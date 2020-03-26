@@ -1,0 +1,12 @@
+build
+composer.lock
+docs
+vendor
+coverage
+*.sublime-project
+*.sublime-workspace
+.idea
+.php_cs.cache
+.phpunit.result.cache
+.phpstorm.meta.php
+_ide_helper.php
