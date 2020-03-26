@@ -1,4 +1,4 @@
-# Put your Laravel application into read-only mode
+# A Table Component for Laravel Livewire
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rappasoft/livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/livewire-tables)
 ![Run Tests](https://github.com/rappasoft/livewire-tables/workflows/Run%20Tests/badge.svg?branch=master)
