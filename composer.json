@@ -1,6 +1,6 @@
 {
-    "name": "rappasoft/livewire-tables",
-    "description": "Datatables for Laravel Livewire",
+    "name": "rappasoft/laravel-livewire-tables",
+    "description": "Dynamic table component for Laravel Livewire",
     "keywords": [
         "rappasoft",
         "livewire",
@@ -8,7 +8,7 @@
         "tables",
         "laravel"
     ],
-    "homepage": "https://github.com/rappasoft/livewire-tables",
+    "homepage": "https://github.com/rappasoft/laravel-livewire-tables",
     "license": "MIT",
     "type": "library",
     "authors": [

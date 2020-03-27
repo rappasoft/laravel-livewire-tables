@@ -17,7 +17,7 @@ class LivewireTablesServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/livewire-tables.php' => config_path('livewire-tables.php'),
+                __DIR__.'/../config/laravel-livewire-tables.php' => config_path('laravel-livewire-tables.php'),
             ], 'config');
         }
 
@@ -30,6 +30,6 @@ class LivewireTablesServiceProvider extends ServiceProvider
     public function register()
     {
         // Register the config file
-        $this->mergeConfigFrom(__DIR__.'/../config/livewire-tables.php', 'livewire-tables');
+        $this->mergeConfigFrom(__DIR__.'/../config/laravel-livewire-tables.php', 'laravel-livewire-tables');
     }
 }
