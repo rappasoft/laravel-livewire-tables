@@ -62,9 +62,9 @@ trait Table
     /**
      * @param $attribute
      *
-     * @return |null
+     * @return string|null
      */
-    public function thClass($attribute)
+    public function thClass($attribute) : ?string
     {
         return null;
     }
@@ -72,9 +72,9 @@ trait Table
     /**
      * @param $model
      *
-     * @return |null
+     * @return string|null
      */
-    public function trClass($model)
+    public function trClass($model) : ?string
     {
         return null;
     }
@@ -83,9 +83,9 @@ trait Table
      * @param $attribute
      * @param $value
      *
-     * @return |null
+     * @return string|null
      */
-    public function tdClass($attribute, $value)
+    public function tdClass($attribute, $value) : ?string
     {
         return null;
     }
