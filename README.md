@@ -1,4 +1,4 @@
-# A Table Component for Laravel Livewire
+# A dynamic table component for Laravel Livewire
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
 [![StyleCI](https://styleci.io/repos/242222088/shield?style=plastic)](https://github.styleci.io/repos/242222088)

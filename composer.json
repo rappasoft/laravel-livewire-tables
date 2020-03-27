@@ -1,6 +1,6 @@
 {
     "name": "rappasoft/laravel-livewire-tables",
-    "description": "Dynamic table component for Laravel Livewire",
+    "description": "A dynamic table component for Laravel Livewire",
     "keywords": [
         "rappasoft",
         "livewire",
