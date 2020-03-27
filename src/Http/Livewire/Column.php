@@ -38,6 +38,11 @@ class Column
     protected $sortable = false;
 
     /**
+     * @var
+     */
+    protected $sortCallback;
+
+    /**
      * @var bool
      */
     protected $unescaped = false;
@@ -48,21 +53,16 @@ class Column
     protected $html = false;
 
     /**
-     * @var
-     */
-    protected $sortCallback;
-
-    /**
-     * @var
-     */
-    protected $view;
-
-    /**
      * This column is a custom attribute on the model and not a column in the database
      *
      * @var bool
      */
     protected $customAttribute = false;
+
+    /**
+     * @var
+     */
+    protected $view;
 
     /**
      * Column constructor.
@@ -168,6 +168,21 @@ class Column
     }
 
     /**
+     * @return $this
+     */
+    public function customAttribute() : self {
+        $this->customAttribute = true;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCustomAttribute() : bool {
+        return $this->customAttribute;
+    }
+
+    /**
      * @param $view
      *
      * @return $this
@@ -183,20 +198,5 @@ class Column
      */
     public function isView() : bool {
         return view()->exists($this->view);
-    }
-
-    /**
-     * @return $this
-     */
-    public function customAttribute() : self {
-        $this->customAttribute = true;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isCustomAttribute() : bool {
-        return $this->customAttribute;
     }
 }

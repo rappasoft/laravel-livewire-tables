@@ -1,20 +1,26 @@
 # A Table Component for Laravel Livewire
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/rappasoft/livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/livewire-tables)
-![Run Tests](https://github.com/rappasoft/livewire-tables/workflows/Run%20Tests/badge.svg?branch=master)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
+![Run Tests](https://github.com/rappasoft/laravel-livewire-tables/workflows/Run%20Tests/badge.svg?branch=master)
 [![StyleCI](https://styleci.io/repos/242222088/shield?style=plastic)](https://github.styleci.io/repos/242222088)
-[![Code Coverage](https://scrutinizer-ci.com/g/rappasoft/livewire-tables/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/rappasoft/livewire-tables/?branch=master)
-[![Quality Score](https://img.shields.io/scrutinizer/g/rappasoft/livewire-tables.svg?style=flat-square)](https://scrutinizer-ci.com/g/rappasoft/livewire-tables)
-[![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/livewire-tables)
+[![Code Coverage](https://scrutinizer-ci.com/g/rappasoft/laravel-livewire-tables/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/rappasoft/laravel-livewire-tables/?branch=master)
+[![Quality Score](https://img.shields.io/scrutinizer/g/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://scrutinizer-ci.com/g/rappasoft/laravel-livewire-tables)
+[![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
 
 A Laravel Livewire extension for data tables.
+
+Inspiration from:
+
+[https://github.com/kdion4891/laravel-livewire-tables](https://github.com/kdion4891/laravel-livewire-tables)
+
+[https://github.com/yajra/laravel-datatables](https://github.com/yajra/laravel-datatables)
 
 ## Installation
 
 You can install the package via composer:
 
 ``` bash
-composer require rappasoft/livewire-tables
+composer require rappasoft/laravel-livewire-tables
 ```
 
 ## Version Compatibility
