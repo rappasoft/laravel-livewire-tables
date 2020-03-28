@@ -3,26 +3,23 @@
 namespace Rappasoft\LivewireTables\Http\Livewire\Traits;
 
 /**
- * Trait Loading
- *
- * @package Rappasoft\LivewireTables\Http\Livewire\Traits
+ * Trait Loading.
  */
 trait Loading
 {
-
     /**
-     * Loading
+     * Loading.
      */
 
     /**
-     * Whether or not to show a loading indicator when searching
+     * Whether or not to show a loading indicator when searching.
      *
      * @var bool
      */
     public $loadingIndicator = false;
 
     /**
-     * The loading message that gets displayed
+     * The loading message that gets displayed.
      *
      * @var string
      */

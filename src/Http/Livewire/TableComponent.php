@@ -2,11 +2,11 @@
 
 namespace Rappasoft\LivewireTables\Http\Livewire;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
-use Illuminate\Support\Str;
 use Livewire\WithPagination;
-use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LivewireTables\Http\Livewire\Traits\Checkboxes;
 use Rappasoft\LivewireTables\Http\Livewire\Traits\Loading;
 use Rappasoft\LivewireTables\Http\Livewire\Traits\Offline;
@@ -17,13 +17,10 @@ use Rappasoft\LivewireTables\Http\Livewire\Traits\Table;
 use Rappasoft\LivewireTables\Http\Livewire\Traits\Yajra;
 
 /**
- * Class TableComponent
- *
- * @package App\Http\Livewire
+ * Class TableComponent.
  */
 abstract class TableComponent extends Component
 {
-
     use Checkboxes,
         Loading,
         Offline,
@@ -35,7 +32,7 @@ abstract class TableComponent extends Component
         Yajra;
 
     /**
-     * The classes applied to the wrapper div
+     * The classes applied to the wrapper div.
      *
      * @var string
      */
@@ -45,23 +42,25 @@ abstract class TableComponent extends Component
      * Whether or not to refresh the table at a certain interval
      * false is off
      * If it's an integer it will be treated as milliseconds (2000 = refresh every 2 seconds)
-     * If it's a string it will call that function every 5 seconds
+     * If it's a string it will call that function every 5 seconds.
      *
      * @var bool|string
      */
     public $refresh = false;
 
     /**
-     * Constructor
+     * Constructor.
      */
-    public function mount() {
+    public function mount()
+    {
         $this->setTranslationStrings();
     }
 
     /**
-     * Sets the initial translations of these items
+     * Sets the initial translations of these items.
      */
-    public function setTranslationStrings() {
+    public function setTranslationStrings()
+    {
         $this->loadingMessage = __('Loading...');
         $this->offlineMessage = __('You are not currently connected to the internet.');
         $this->noResultsMessage = __('There are no results to display for this query.');
@@ -72,24 +71,25 @@ abstract class TableComponent extends Component
     /**
      * @return mixed
      */
-    abstract public function query() : Builder;
+    abstract public function query(): Builder;
 
     /**
      * @return mixed
      */
-    abstract public function columns() : array ;
+    abstract public function columns(): array;
 
     /**
      * @return string
      */
-    public function view() : string {
+    public function view(): string
+    {
         return 'laravel-livewire-tables::table';
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function render() : View
+    public function render(): View
     {
         return view($this->view(), [
             'columns' => $this->columns(),
@@ -100,7 +100,7 @@ abstract class TableComponent extends Component
     /**
      * @return Builder
      */
-    public function models() : Builder
+    public function models(): Builder
     {
         $models = $this->query();
 
@@ -112,12 +112,12 @@ abstract class TableComponent extends Component
                             $query = app()->call($column->searchCallback, ['builder' => $query, 'term' => $this->search]);
                         } elseif (Str::contains($column->attribute, '.')) {
                             $relationship = $this->relationship($column->attribute);
- 
+
                             $query->orWhereHas($relationship->name, function (Builder $query) use ($relationship) {
-                                $query->where($relationship->attribute, 'like', '%' . $this->search . '%');
+                                $query->where($relationship->attribute, 'like', '%'.$this->search.'%');
                             });
                         } else {
-                            $query->orWhere($query->getModel()->getTable() . '.' . $column->attribute, 'like', '%' . $this->search . '%');
+                            $query->orWhere($query->getModel()->getTable().'.'.$column->attribute, 'like', '%'.$this->search.'%');
                         }
                     }
                 }
