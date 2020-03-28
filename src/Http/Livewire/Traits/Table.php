@@ -3,49 +3,44 @@
 namespace Rappasoft\LivewireTables\Http\Livewire\Traits;
 
 /**
- * Trait Table
- *
- * @package Rappasoft\LivewireTables\Http\Livewire\Traits
+ * Trait Table.
  */
 trait Table
 {
-
     /**
-     * Table
+     * Table.
      */
 
     /**
-     * Whether or not to display the table header
+     * Whether or not to display the table header.
      *
      * @var bool
      */
     public $tableHeaderEnabled = true;
 
-
-
     /**
-     * Whether or not to display the table footer
+     * Whether or not to display the table footer.
      *
      * @var bool
      */
     public $tableFooterEnabled = false;
 
     /**
-     * The class to set on the table
+     * The class to set on the table.
      *
      * @var string
      */
     public $tableClass = 'table table-striped';
 
     /**
-     * The class to set on the thead of the table
+     * The class to set on the thead of the table.
      *
      * @var string
      */
     public $tableHeaderClass = '';
 
     /**
-     * The class to set on the tfoot of the table
+     * The class to set on the tfoot of the table.
      *
      * @var string
      */
@@ -53,7 +48,7 @@ trait Table
 
     /**
      * false is off
-     * string is the tables wrapping div class
+     * string is the tables wrapping div class.
      *
      * @var bool
      */
@@ -64,7 +59,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableHeadClass($attribute) : ?string
+    public function setTableHeadClass($attribute): ?string
     {
         return null;
     }
@@ -74,7 +69,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableHeadId($attribute) : ?string
+    public function setTableHeadId($attribute): ?string
     {
         return null;
     }
@@ -84,7 +79,7 @@ trait Table
      *
      * @return array|null
      */
-    public function setTableHeadAttributes($attribute) : array
+    public function setTableHeadAttributes($attribute): array
     {
         return [];
     }
@@ -94,7 +89,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableRowClass($model) : ?string
+    public function setTableRowClass($model): ?string
     {
         return null;
     }
@@ -104,7 +99,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableRowId($model) : ?string
+    public function setTableRowId($model): ?string
     {
         return null;
     }
@@ -114,7 +109,7 @@ trait Table
      *
      * @return array
      */
-    public function setTableRowAttributes($model) : array
+    public function setTableRowAttributes($model): array
     {
         return [];
     }
@@ -125,7 +120,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableDataClass($attribute, $value) : ?string
+    public function setTableDataClass($attribute, $value): ?string
     {
         return null;
     }
@@ -136,7 +131,7 @@ trait Table
      *
      * @return string|null
      */
-    public function setTableDataId($attribute, $value) : ?string
+    public function setTableDataId($attribute, $value): ?string
     {
         return null;
     }
@@ -147,7 +142,7 @@ trait Table
      *
      * @return array
      */
-    public function setTableDataAttributes($attribute, $value) : array
+    public function setTableDataAttributes($attribute, $value): array
     {
         return [];
     }
