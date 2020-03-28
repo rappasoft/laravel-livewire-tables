@@ -4,9 +4,11 @@
 [![StyleCI](https://styleci.io/repos/250246992/shield?style=plastic)](https://github.styleci.io/repos/250246992)
 [![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
 
-A Laravel Livewire component for data tables.
-
 **This package is currently in development and the source is constantly changing, use at your own risk.**
+
+A dynamic Laravel Livewire component for data tables.
+
+This plugin assumes you already have [Laravel Livewire](https://laravel-livewire.com/) installed and configured in your project.
 
 ## Installation
 
@@ -79,6 +81,20 @@ public function query() : Builder;
  */
 public function columns() : array;
 ```
+
+### Rendering the table
+
+Place the following where you want the table to appear.
+
+Laravel 6.x: 
+
+`@livewire('users-table')`
+
+Laravel 7.x:
+
+`<livewire:users-table />`
+
+Obviously replace *users-table* with your component name.
 
 ### Defining Columns
 
