@@ -3,26 +3,23 @@
 namespace Rappasoft\LivewireTables\Http\Livewire\Traits;
 
 /**
- * Trait Offline
- *
- * @package Rappasoft\LivewireTables\Http\Livewire\Traits
+ * Trait Offline.
  */
 trait Offline
 {
-
     /**
-     * Offline
+     * Offline.
      */
 
     /**
-     * Whether or not to display an offline message when there is no connection
+     * Whether or not to display an offline message when there is no connection.
      *
      * @var bool
      */
     public $offlineIndicator = true;
 
     /**
-     * The message to display when offline
+     * The message to display when offline.
      *
      * @var string
      */
