@@ -104,22 +104,20 @@ abstract class TableComponent extends Component
     {
         $models = $this->query();
 
-        if ($this->searchEnabled && $this->search) {
+        if ($this->searchEnabled && trim($this->search) !== '') {
             $models->where(function (Builder $query) {
                 foreach ($this->columns() as $column) {
                     if ($column->searchable) {
                         if (is_callable($column->searchCallback)) {
                             $query = app()->call($column->searchCallback, ['builder' => $query, 'term' => $this->search]);
+                        } elseif (Str::contains($column->attribute, '.')) {
+                            $relationship = $this->relationship($column->attribute);
+ 
+                            $query->orWhereHas($relationship->name, function (Builder $query) use ($relationship) {
+                                $query->where($relationship->attribute, 'like', '%' . $this->search . '%');
+                            });
                         } else {
-                            if (Str::contains($column->attribute, '.')) {
-                                $relationship = $this->relationship($column->attribute);
-
-                                $query->orWhereHas($relationship->name, function (Builder $query) use ($relationship) {
-                                    $query->where($relationship->attribute, 'like', '%' . $this->search . '%');
-                                });
-                            } else {
-                                $query->orWhere($query->getModel()->getTable() . '.' . $column->attribute, 'like', '%' . $this->search . '%');
-                            }
+                            $query->orWhere($query->getModel()->getTable() . '.' . $column->attribute, 'like', '%' . $this->search . '%');
                         }
                     }
                 }
