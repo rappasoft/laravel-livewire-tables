@@ -3,13 +3,21 @@
         <tr><td colspan="{{ collect($columns)->count() }}">{{ $noResultsMessage }}</td></tr>
     @else
         @foreach($models as $model)
-            <tr class="{{ $this->trClass($model) }}">
+            <tr
+                class="{{ $this->setTableRowClass($model) }}"
+                id="{{ $this->setTableRowId($model) }}"
+                @foreach ($this->setTableRowAttributes($model) as $key => $value) {{ $key . '="'.$value.'"' }} @endforeach
+            >
                 @if($checkbox && $checkboxLocation === 'left')
                     @include('laravel-livewire-tables::includes._checkbox-row')
                 @endif
 
                 @foreach($columns as $column)
-                    <td class="{{ $this->tdClass($column->attribute, Arr::get($model->toArray(), $column->attribute)) }}">
+                    <td
+                        class="{{ $this->setTableDataClass($column->attribute, Arr::get($model->toArray(), $column->attribute)) }}"
+                        id="{{ $this->setTableDataId($column->attribute, Arr::get($model->toArray(), $column->attribute)) }}"
+                        @foreach ($this->setTableDataAttributes($column->attribute, Arr::get($model->toArray(), $column->attribute)) as $key => $value) {{ $key . '="'.$value.'"' }} @endforeach
+                    >
                         @if ($column->isView())
                             @include($column->view)
                         @else

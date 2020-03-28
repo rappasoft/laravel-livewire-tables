@@ -64,7 +64,37 @@ trait Table
      *
      * @return string|null
      */
-    public function thClass($attribute) : ?string
+    public function setTableHeadClass($attribute) : ?string
+    {
+        return null;
+    }
+
+    /**
+     * @param $attribute
+     *
+     * @return string|null
+     */
+    public function setTableHeadId($attribute) : ?string
+    {
+        return null;
+    }
+
+    /**
+     * @param $attribute
+     *
+     * @return array|null
+     */
+    public function setTableHeadAttributes($attribute) : array
+    {
+        return [];
+    }
+
+    /**
+     * @param $model
+     *
+     * @return string|null
+     */
+    public function setTableRowClass($model) : ?string
     {
         return null;
     }
@@ -74,7 +104,28 @@ trait Table
      *
      * @return string|null
      */
-    public function trClass($model) : ?string
+    public function setTableRowId($model) : ?string
+    {
+        return null;
+    }
+
+    /**
+     * @param $model
+     *
+     * @return array
+     */
+    public function setTableRowAttributes($model) : array
+    {
+        return [];
+    }
+
+    /**
+     * @param $attribute
+     * @param $value
+     *
+     * @return string|null
+     */
+    public function setTableDataClass($attribute, $value) : ?string
     {
         return null;
     }
@@ -85,8 +136,19 @@ trait Table
      *
      * @return string|null
      */
-    public function tdClass($attribute, $value) : ?string
+    public function setTableDataId($attribute, $value) : ?string
     {
         return null;
+    }
+
+    /**
+     * @param $attribute
+     * @param $value
+     *
+     * @return array
+     */
+    public function setTableDataAttributes($attribute, $value) : array
+    {
+        return [];
     }
 }

@@ -3,7 +3,11 @@
 @endif
 
 @foreach($columns as $column)
-    <th class="{{ $this->thClass($column->attribute) }}">
+    <th
+        class="{{ $this->setTableHeadClass($column->attribute) }}"
+        id="{{ $this->setTableHeadId($column->attribute) }}"
+        @foreach ($this->setTableHeadAttributes($column->attribute) as $key => $value) {{ $key . '="'.$value.'"' }} @endforeach
+    >
         @if($column->sortable)
             <span style="cursor: pointer;" wire:click="sort('{{ $column->attribute }}')">
                 {{ $column->text }}

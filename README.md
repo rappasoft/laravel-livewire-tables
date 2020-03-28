@@ -208,18 +208,53 @@ You can override any of these in your table component:
 /**
  * Used to set a class on a table header based on the column attribute
  */
-public function thClass($attribute) : ?string;
+public function setTableHeadClass($attribute) : ?string;
+
+/**
+ * Used to set a ID on a table header based on the column attribute
+ */
+public function setTableHeadId($attribute) : ?string;
+
+/**
+ * Used to set any attributes on a table header based on the column attribute
+ * ['name' => 'my-custom-name', 'data-key' => 'my-custom-key']
+ */
+public function setTableHeadAttributes($attribute) : array;
 
 /**
  * Used to set a class on a table row
  * You have the entre model of the row to work with
  */
-public function trClass($model) : ?string;
+public function setTableRowClass($model) : ?string;
+
+/**
+ * Used to set a ID on a table row
+ * You have the entre model of the row to work with
+ */
+public function setTableRowId($model) : ?string;
+
+/**
+ * Used to set any attribute on a table row
+ * You have the entre model of the row to work with
+ * ['name' => 'my-custom-name', 'data-key' => 'my-custom-key']
+ */
+public function setTableRowAttributes($model) : array;
 
 /**
  * Used to set the class of a table cell based on the column and the value of the cell
  */
-public function tdClass($attribute, $value) : ?string;
+public function setTableDataClass($attribute, $value) : ?string;
+
+/**
+ * Used to set the ID of a table cell based on the column and the value of the cell
+ */
+public function setTableDataId($attribute, $value) : ?string;
+
+/**
+ * Used to set any attributes of a table cell based on the column and the value of the cell
+ * ['name' => 'my-custom-name', 'data-key' => 'my-custom-key']
+ */
+public function setTableDataAttributes($attribute, $value) : array;
 ```
 
 ## Changelog
