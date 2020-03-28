@@ -8,11 +8,6 @@ A Laravel Livewire component for data tables.
 
 **This package is currently in development and the source is constantly changing, use at your own risk.**
 
-Inspiration/Code From:
-
-- [https://github.com/kdion4891/laravel-livewire-tables](https://github.com/kdion4891/laravel-livewire-tables)
-- [https://github.com/yajra/laravel-datatables](https://github.com/yajra/laravel-datatables)
-
 ## Installation
 
 You can install the package via composer:
@@ -256,6 +251,11 @@ public function setTableDataId($attribute, $value) : ?string;
  */
 public function setTableDataAttributes($attribute, $value) : array;
 ```
+
+## Inspiration From:
+
+- [https://github.com/kdion4891/laravel-livewire-tables](https://github.com/kdion4891/laravel-livewire-tables)
+- [https://github.com/yajra/laravel-datatables](https://github.com/yajra/laravel-datatables)
 
 ## Changelog
 
