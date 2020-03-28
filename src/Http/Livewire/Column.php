@@ -5,13 +5,10 @@ namespace Rappasoft\LivewireTables\Http\Livewire;
 use Illuminate\Support\Str;
 
 /**
- * Class Column
- *
- * @package App\Http\Livewire
+ * Class Column.
  */
 class Column
 {
-
     /**
      * @var
      */
@@ -53,7 +50,7 @@ class Column
     protected $html = false;
 
     /**
-     * This column is a custom attribute on the model and not a column in the database
+     * This column is a custom attribute on the model and not a column in the database.
      *
      * @var bool
      */
@@ -102,17 +99,19 @@ class Column
      *
      * @return $this
      */
-    public function searchable(callable $callable = null) : self
+    public function searchable(callable $callable = null): self
     {
         $this->searchCallback = $callable;
         $this->searchable = true;
+
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isSearchable() : bool {
+    public function isSearchable(): bool
+    {
         return $this->searchable;
     }
 
@@ -121,64 +120,73 @@ class Column
      *
      * @return $this
      */
-    public function sortable(callable $callable = null) : self
+    public function sortable(callable $callable = null): self
     {
         $this->sortCallback = $callable;
         $this->sortable = true;
+
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isSortable() : bool {
+    public function isSortable(): bool
+    {
         return $this->sortable;
     }
 
     /**
      * @return $this
      */
-    public function unescaped() : self
+    public function unescaped(): self
     {
         $this->unescaped = true;
+
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isUnescaped() : bool {
+    public function isUnescaped(): bool
+    {
         return $this->unescaped;
     }
 
     /**
      * @return $this
      */
-    public function html() : self
+    public function html(): self
     {
         $this->html = true;
+
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isHtml() : bool {
+    public function isHtml(): bool
+    {
         return $this->html;
     }
 
     /**
      * @return $this
      */
-    public function customAttribute() : self {
+    public function customAttribute(): self
+    {
         $this->customAttribute = true;
+
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isCustomAttribute() : bool {
+    public function isCustomAttribute(): bool
+    {
         return $this->customAttribute;
     }
 
@@ -187,16 +195,18 @@ class Column
      *
      * @return $this
      */
-    public function view($view) : self
+    public function view($view): self
     {
         $this->view = $view;
+
         return $this;
     }
 
     /**
      * @return bool
      */
-    public function isView() : bool {
+    public function isView(): bool
+    {
         return view()->exists($this->view);
     }
 }

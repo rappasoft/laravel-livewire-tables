@@ -3,26 +3,23 @@
 namespace Rappasoft\LivewireTables\Http\Livewire\Traits;
 
 /**
- * Trait Sorting
- *
- * @package Rappasoft\LivewireTables\Http\Livewire\Traits
+ * Trait Sorting.
  */
 trait Sorting
 {
-
     /**
-     * Sorting
+     * Sorting.
      */
 
     /**
-     * The initial field to be sorting by
+     * The initial field to be sorting by.
      *
      * @var string
      */
     public $sortField = 'id';
 
     /**
-     * The initial direction to sort
+     * The initial direction to sort.
      *
      * @var bool
      */
@@ -31,7 +28,7 @@ trait Sorting
     /**
      * @param $attribute
      */
-    public function sort($attribute) : void
+    public function sort($attribute): void
     {
         if ($this->sortField !== $attribute) {
             $this->sortDirection = 'asc';

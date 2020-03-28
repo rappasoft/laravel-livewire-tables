@@ -9,7 +9,6 @@ use Illuminate\Support\ServiceProvider;
  */
 class LivewireTablesServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap the application services.
      */

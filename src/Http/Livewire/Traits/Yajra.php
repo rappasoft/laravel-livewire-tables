@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 
 /**
- * Trait Yajra
- *
- * @package Rappasoft\LivewireTables\Http\Livewire\Traits
+ * Trait Yajra.
  */
 trait Yajra
 {
@@ -23,7 +21,7 @@ trait Yajra
     {
         $parts = explode('.', $attribute);
 
-        return (object)[
+        return (object) [
             'attribute' => array_pop($parts),
             'name' => implode('.', $parts),
         ];
@@ -54,10 +52,10 @@ trait Yajra
                     $related = $model->getRelated();
                     $table = $related->getTable();
                     $tablePK = $related->getForeignKey();
-                    $foreign = $pivot . '.' . $tablePK;
+                    $foreign = $pivot.'.'.$tablePK;
                     $other = $related->getQualifiedKeyName();
 
-                    $last_query->addSelect($table . '.' . $attribute);
+                    $last_query->addSelect($table.'.'.$attribute);
                     $query->leftJoin($table, $foreign, $other);
 
                     break;
@@ -82,7 +80,7 @@ trait Yajra
             $last_query = $model->getQuery();
         }
 
-        return $table . '.' . $attribute;
+        return $table.'.'.$attribute;
     }
 
     /**
@@ -97,7 +95,5 @@ trait Yajra
                 return $col;
             }
         }
-
-        return null;
     }
 }
