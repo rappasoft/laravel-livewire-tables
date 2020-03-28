@@ -82,7 +82,7 @@ public function query() : Builder;
 public function columns() : array;
 ```
 
-### Rendering the table
+### Rendering the Table
 
 Place the following where you want the table to appear.
 
