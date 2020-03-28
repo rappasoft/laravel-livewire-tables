@@ -5,7 +5,7 @@ namespace Rappasoft\LivewireTables\Tests;
 use Rappasoft\LivewireTables\LivewireTablesServiceProvider;
 
 /**
- * Class LockoutTest.
+ * Class TestCase.
  */
 class TestCase extends \Orchestra\Testbench\TestCase
 {
