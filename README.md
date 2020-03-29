@@ -24,7 +24,7 @@ composer require rappasoft/laravel-livewire-tables
 
 To create a table component you can start with the below stub:
 
-```
+```php
 <?php
 
 namespace App\Http\Livewire;
@@ -70,7 +70,7 @@ class UsersTable extends TableComponent
 
 Your component must implement two methods:
 
-```
+```php
 /**
  * This defines the start of the query, usually Model::query() but can also eagar load relationships and counts.
  */
@@ -100,7 +100,7 @@ Obviously replace *users-table* with your component name.
 
 You can define the columns of your table with the column class:
 
-```
+```php
 Column::make('Name', 'column_name')
 ```
 
@@ -108,7 +108,7 @@ The first parameter is the name of the table header. The second parameter is the
 
 Here are a list of the column method you can chain to build your columns:
 
-```
+```php
 /**
  * This column is searchable, with no callback it will search the column by name or by the supplied relationship, using a callback overrides the default searching functionality.
  */
@@ -215,7 +215,7 @@ You can override any of these in your table component:
 
 ### Table Methods
 
-```
+```php
 /**
  * Used to set a class on a table header based on the column attribute
  */
