@@ -19,10 +19,10 @@
         }
     ],
     "require": {
-        "php": "^7.2.5"
+        "php": "^7.2.5",
+        "livewire/livewire": "^1.0"
     },
     "require-dev": {
-        "livewire/livewire": "^1.0",
         "phpunit/phpunit": "^8.0|^9.0"
     },
     "autoload": {
