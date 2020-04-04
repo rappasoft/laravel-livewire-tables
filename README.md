@@ -272,7 +272,7 @@ public function setTableDataAttributes($attribute, $value) : array;
 
 Along with being able to provide a view to a column, you can use pre-defined components that are built into the package. These are good for when you want to add actions to a column.
 
-**Note:** By design using the components() method on a column will disable all other functionality (i.e. searching/sorting etc.).
+**Note:** By design using the `components()` method on a column will disable all other functionality (i.e. searching/sorting etc.).
 
 #### Defining Components for a Column
 
@@ -292,7 +292,7 @@ Column::make('Actions')
     ->addComponent(Link::make('Delete'))
 ````
 
-If you would like to all the components for a given row, you may pass a callback as the second parameter of the `components()` method:
+If you would like to hide all the components for a given row, you may pass a callback as the second parameter of the `components()` method:
 
 ```php
 Column::make('Actions')
@@ -304,6 +304,8 @@ Column::make('Actions')
         return $model->id === 1;
     })
 ````
+
+**Note:** You should still assert on the backend that these functions can not be performed on this entity.
 
 Building on that, if you would like to pass a custom message to that column when hiding the components for this row, you may pass another callback as the third parameter:
 
