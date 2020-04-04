@@ -4,7 +4,7 @@
 [![StyleCI](https://styleci.io/repos/250246992/shield?style=plastic)](https://github.styleci.io/repos/250246992)
 [![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
 
-**This package is currently in development and the source is constantly changing, use at your own risk.**
+**This package is still in development and does not have a test suite.**
 
 A dynamic Laravel Livewire component for data tables.
 
@@ -31,8 +31,8 @@ namespace App\Http\Livewire;
 
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LivewireTables\Http\Livewire\Column;
-use Rappasoft\LivewireTables\Http\Livewire\TableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\TableComponent;
 
 class UsersTable extends TableComponent
 {
@@ -266,6 +266,147 @@ public function setTableDataId($attribute, $value) : ?string;
  * ['name' => 'my-custom-name', 'data-key' => 'my-custom-key']
  */
 public function setTableDataAttributes($attribute, $value) : array;
+```
+
+### Components
+
+Along with being able to provide a view to a column, you can use pre-defined components that are built into the package. These are good for when you want to add actions to a column.
+
+**Note:** By design using the `components()` method on a column will disable all other functionality (i.e. searching/sorting etc.).
+
+#### Defining Components for a Column
+
+```php
+Column::make('Actions')
+    ->components([
+        Link::make('Edit'),
+        Link::make('Delete'),
+    ])
+````
+
+or
+
+```php
+Column::make('Actions')
+    ->addComponent(Link::make('Edit'))
+    ->addComponent(Link::make('Delete'))
+````
+
+If you would like to hide all the components for a given row, you may pass a callback as the second parameter of the `components()` method:
+
+```php
+Column::make('Actions')
+    ->components([
+        Link::make('Edit'),
+        Link::make('Delete'),
+    ], function($model) {
+        // Hide the actions for model id 1
+        return $model->id === 1;
+    })
+````
+
+**Note:** You should still assert on the backend that these functions can not be performed on this entity.
+
+Building on that, if you would like to pass a custom message to that column when hiding the components for this row, you may pass another callback as the third parameter:
+
+```php
+Column::make('Actions')
+    ->components([
+        Link::make('Edit'),
+        Link::make('Delete'),
+    ], function($model) {
+        // Hide the actions for model id 1
+        return $model->id === 1;
+    }, function($model) {
+        return __('You can not alter role ' . $model->name . '.');
+    })
+````
+
+#### Methods
+
+Of course two links that don't do anything would be useless, here are a list of methods to be used for the built in components.
+
+#### Inherited by all components
+| Method | Usage |
+| -------- | ----- |
+| setAttribute($attribute, $value) | Set an attribute on the component |
+| setAttributes(array $attributes = []) | Set multiple attributes at once |
+| getAttributes() | Get the array of available attributes |
+| setOption($option, $value) | Set an option on the component |
+| setOptions(array $options = []) | Set multiple options at once |
+| getOptions() | Get the array of available options |
+| hideIf($condition) | Hide this component if true |
+| hide() | Hide this component forever |
+| isHidden() | This component is currently hidden |
+
+By default all components have access to the `$attributes` and `$options` arrays.
+
+#### Link Component
+
+| Method | Usage | Type |
+| -------- | ----- | ---- |
+| text($text) | Set the text of the link | string/false |
+| class($class) | Set the html class on the link | string |
+| id($id) | Set the id of the link | string |
+| icon($icon) | Set the icon of the link (font awesome) | string |
+| href(function($model){}) | Set the href of the link | string/callback |
+| view($view) | The view to render for the component | string |
+
+#### Button Component
+
+| Method | Usage | Type |
+| -------- | ----- | ---- |
+| text($text) | Set the text of the button | string/false |
+| class($class) | Set the html class on the button | string |
+| id($id) | Set the id of the button | string |
+| icon($icon) | Set the icon of the button (font awesome) | string |
+| view($view) | The view to render for the component | string |
+
+#### Example
+
+This example comes from the upcoming release of my popular [Laravel Boilerplate Project](http://laravel-boilerplate.com). Here we render the roles table in the admin panel.
+
+This example uses searching, sorting, relationships, custom attributes, counted relationships, and components:
+
+```php
+public function columns() : array {
+    return [
+        Column::make('Name')
+            ->searchable()
+            ->sortable(),
+        Column::make('Permissions', 'permissions_label')
+            ->customAttribute()
+            ->html()
+            ->searchable(function($builder, $term) {
+                return $builder->orWhereHas('permissions', function($query) use($term) {
+                   return $query->where('name', 'like', '%'.$term.'%');
+                });
+            }),
+        Column::make('Number of Users', 'users_count')
+            ->sortable(),
+        Column::make('Actions')
+            ->components([
+                Link::make('Edit') // Optionally pass false to hide the text
+                    ->icon('fas fa-pencil-alt')
+                    ->class('btn btn-primary btn-sm')
+                    ->href(function($model) {
+                        return route('admin.auth.role.edit', $model->id);
+                    })
+                    ->hideIf(auth()->user()->cannot('access.roles.edit')),
+                Link::make('Delete')
+                    ->icon('fas fa-trash')
+                    ->class('btn btn-danger btn-sm')
+                    ->setAttribute('data-method', 'delete') // Javascript takes over and injects a hidden form
+                    ->href(function($model) {
+                        return route('admin.auth.role.destroy', $model->id);
+                    })
+                    ->hideIf(auth()->user()->cannot('access.roles.delete')),
+            ], function($model) {
+                // Hide components for this row if..
+                return $model->id === config('access.roles.admin');
+            }),
+    ];
+}
 ```
 
 ## Inspiration From:
