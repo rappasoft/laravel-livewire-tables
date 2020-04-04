@@ -27,18 +27,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Rappasoft\\LivewireTables\\": "src"
+            "Rappasoft\\LaravelLivewireTables\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rappasoft\\LivewireTables\\Tests\\": "tests"
+            "Rappasoft\\LaravelLivewireTables\\Tests\\": "tests"
         }
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
     },
     "config": {
         "sort-packages": true
@@ -46,7 +45,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rappasoft\\LivewireTables\\LivewireTablesServiceProvider"
+                "Rappasoft\\LaravelLivewireTables\\LivewireTablesServiceProvider"
             ]
         }
     }

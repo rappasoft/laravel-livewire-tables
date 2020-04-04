@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LivewireTables;
+namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Support\ServiceProvider;
 
