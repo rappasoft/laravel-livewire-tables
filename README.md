@@ -386,14 +386,14 @@ public function columns() : array {
             ->sortable(),
         Column::make('Actions')
             ->components([
-                Link::make(false) // We want to hide the text and just show an icon
+                Link::make('Edit') // Optionally pass false to hide the text
                     ->icon('fas fa-pencil-alt')
                     ->class('btn btn-primary btn-sm')
                     ->href(function($model) {
                         return route('admin.auth.role.edit', $model->id);
                     })
                     ->hideIf(auth()->user()->cannot('access.roles.edit')),
-                Link::make(false) // We want to hide the text and just show an icon
+                Link::make('Delete')
                     ->icon('fas fa-trash')
                     ->class('btn btn-danger btn-sm')
                     ->setAttribute('data-method', 'delete') // Javascript takes over and injects a hidden form
