@@ -10,7 +10,6 @@ use Rappasoft\LaravelLivewireTables\Views\Contracts\ComponentContract;
  */
 abstract class Component implements ComponentContract
 {
-
     use CanBeHidden;
 
     /**
@@ -29,7 +28,8 @@ abstract class Component implements ComponentContract
      *
      * @return $this
      */
-    public function setAttribute($attribute, $value) : self {
+    public function setAttribute($attribute, $value): self
+    {
         $this->attributes[$attribute] = $value;
 
         return $this;
@@ -40,7 +40,8 @@ abstract class Component implements ComponentContract
      *
      * @return $this
      */
-    public function setAttributes(array $attributes = []) : self {
+    public function setAttributes(array $attributes = []): self
+    {
         $this->attributes = array_merge($this->attributes, $attributes);
 
         return $this;
@@ -49,7 +50,8 @@ abstract class Component implements ComponentContract
     /**
      * @return array
      */
-    public function getAttributes() : array {
+    public function getAttributes(): array
+    {
         return $this->attributes;
     }
 
@@ -59,7 +61,8 @@ abstract class Component implements ComponentContract
      *
      * @return $this
      */
-    public function setOption($option, $value) : self {
+    public function setOption($option, $value): self
+    {
         $this->options[$option] = $value;
 
         return $this;
@@ -70,7 +73,8 @@ abstract class Component implements ComponentContract
      *
      * @return $this
      */
-    public function setOptions(array $options = []) : self {
+    public function setOptions(array $options = []): self
+    {
         $this->options = array_merge($this->options, $options);
 
         return $this;
@@ -79,7 +83,8 @@ abstract class Component implements ComponentContract
     /**
      * @return array
      */
-    public function getOptions() : array {
+    public function getOptions(): array
+    {
         return $this->options;
     }
 }
