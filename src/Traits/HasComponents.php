@@ -7,7 +7,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait HasComponents
 {
-
     /**
      * @var array
      */
@@ -30,7 +29,8 @@ trait HasComponents
      *
      * @return $this
      */
-    public function components(array $components = [], $hidden = false, $hiddenMessage = false) : self {
+    public function components(array $components = [], $hidden = false, $hiddenMessage = false): self
+    {
         $this->components = $components;
         $this->hidden = $hidden;
         $this->hiddenMessage = $hiddenMessage;
@@ -43,7 +43,8 @@ trait HasComponents
      *
      * @return $this
      */
-    public function addComponent($component) : self {
+    public function addComponent($component): self
+    {
         $this->components[] = $component;
 
         return $this;
@@ -52,14 +53,16 @@ trait HasComponents
     /**
      * @return bool
      */
-    public function hasComponents() : bool {
+    public function hasComponents(): bool
+    {
         return count($this->components) > 0;
     }
 
     /**
      * @return array
      */
-    public function getComponents() : array {
+    public function getComponents(): array
+    {
         return $this->components;
     }
 
@@ -68,7 +71,8 @@ trait HasComponents
      *
      * @return mixed
      */
-    public function componentsAreHiddenForModel($model) {
+    public function componentsAreHiddenForModel($model)
+    {
         if (is_callable($this->hidden)) {
             return app()->call($this->hidden, ['model' => $model]);
         }
@@ -81,7 +85,8 @@ trait HasComponents
      *
      * @return bool|mixed
      */
-    public function componentsHiddenMessageForModel($model) {
+    public function componentsHiddenMessageForModel($model)
+    {
         if (is_callable($this->hiddenMessage)) {
             return app()->call($this->hiddenMessage, ['model' => $model]);
         }

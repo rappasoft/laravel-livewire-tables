@@ -10,7 +10,6 @@ use Rappasoft\LaravelLivewireTables\Traits\HasComponents;
  */
 class Column
 {
-
     use HasComponents;
 
     /**

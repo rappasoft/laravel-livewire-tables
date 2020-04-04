@@ -5,8 +5,8 @@ namespace Rappasoft\LaravelLivewireTables\Views;
 /**
  * Class Button.
  */
-class Button extends Component {
-
+class Button extends Component
+{
     /**
      * Component constructor.
      *
@@ -24,7 +24,8 @@ class Button extends Component {
      *
      * @return self
      */
-    public static function make($text) : self {
+    public static function make($text): self
+    {
         return new static($text);
     }
 
@@ -33,7 +34,8 @@ class Button extends Component {
      *
      * @return self
      */
-    public function text($text) : self {
+    public function text($text): self
+    {
         return $this->setAttribute('text', $text);
     }
 
@@ -42,7 +44,8 @@ class Button extends Component {
      *
      * @return $this
      */
-    public function class($class) : self {
+    public function class($class): self
+    {
         return $this->setAttribute('class', $class);
     }
 
@@ -51,7 +54,8 @@ class Button extends Component {
      *
      * @return $this
      */
-    public function id($id) : self {
+    public function id($id): self
+    {
         return $this->setAttribute('id', $id);
     }
 
@@ -60,14 +64,16 @@ class Button extends Component {
      *
      * @return $this
      */
-    public function icon($icon) : self {
+    public function icon($icon): self
+    {
         return $this->setOption('icon', $icon);
     }
 
     /**
      * @return string
      */
-    public function view() : string {
+    public function view(): string
+    {
         return 'laravel-livewire-tables::components.button';
     }
 }
