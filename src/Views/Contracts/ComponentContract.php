@@ -3,15 +3,12 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Contracts;
 
 /**
- * Interface Component
- *
- * @package Rappasoft\LaravelLivewireTables\Views\Contracts
+ * Interface Component.
  */
 interface ComponentContract
 {
-
     /**
      * @return string
      */
-    public function view() : string;
+    public function view(): string;
 }

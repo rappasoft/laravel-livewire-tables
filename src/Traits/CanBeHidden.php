@@ -7,7 +7,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait CanBeHidden
 {
-
     /**
      * @var bool
      */
@@ -18,7 +17,8 @@ trait CanBeHidden
      *
      * @return $this
      */
-    public function hideIf($condition) : self {
+    public function hideIf($condition): self
+    {
         $this->hidden = $condition === true;
 
         return $this;
@@ -29,7 +29,8 @@ trait CanBeHidden
      *
      * @return $this
      */
-    public function hide($hidden = true) : self {
+    public function hide($hidden = true): self
+    {
         $this->hidden = $hidden;
 
         return $this;
@@ -38,7 +39,8 @@ trait CanBeHidden
     /**
      * @return bool
      */
-    public function isHidden() : bool {
+    public function isHidden(): bool
+    {
         return $this->hidden;
     }
 }
