@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LivewireTables\Http\Livewire\Traits;
+namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

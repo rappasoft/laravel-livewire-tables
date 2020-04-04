@@ -1,14 +1,18 @@
 <?php
 
-namespace Rappasoft\LivewireTables\Http\Livewire;
+namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
+use Rappasoft\LaravelLivewireTables\Traits\HasComponents;
 
 /**
  * Class Column.
  */
 class Column
 {
+
+    use HasComponents;
+
     /**
      * @var
      */
@@ -101,6 +105,10 @@ class Column
      */
     public function searchable(callable $callable = null): self
     {
+        if ($this->hasComponents()) {
+            return $this;
+        }
+
         $this->searchCallback = $callable;
         $this->searchable = true;
 
@@ -122,6 +130,10 @@ class Column
      */
     public function sortable(callable $callable = null): self
     {
+        if ($this->hasComponents()) {
+            return $this;
+        }
+
         $this->sortCallback = $callable;
         $this->sortable = true;
 
@@ -141,6 +153,10 @@ class Column
      */
     public function unescaped(): self
     {
+        if ($this->hasComponents()) {
+            return $this;
+        }
+
         $this->unescaped = true;
 
         return $this;
@@ -159,6 +175,10 @@ class Column
      */
     public function html(): self
     {
+        if ($this->hasComponents()) {
+            return $this;
+        }
+
         $this->html = true;
 
         return $this;
@@ -177,6 +197,10 @@ class Column
      */
     public function customAttribute(): self
     {
+        if ($this->hasComponents()) {
+            return $this;
+        }
+
         $this->customAttribute = true;
 
         return $this;
@@ -197,6 +221,10 @@ class Column
      */
     public function view($view): self
     {
+        if ($this->hasComponents()) {
+            return $this;
+        }
+
         $this->view = $view;
 
         return $this;

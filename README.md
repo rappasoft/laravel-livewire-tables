@@ -31,8 +31,8 @@ namespace App\Http\Livewire;
 
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LivewireTables\Http\Livewire\Column;
-use Rappasoft\LivewireTables\Http\Livewire\TableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\TableComponent;
 
 class UsersTable extends TableComponent
 {

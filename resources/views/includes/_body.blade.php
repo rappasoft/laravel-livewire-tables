@@ -6,7 +6,9 @@
             <tr
                 class="{{ $this->setTableRowClass($model) }}"
                 id="{{ $this->setTableRowId($model) }}"
-                @foreach ($this->setTableRowAttributes($model) as $key => $value) {{ $key . '="'.$value.'"' }} @endforeach
+                @foreach ($this->setTableRowAttributes($model) as $key => $value)
+                    {{ $key }}="{{ $value }}"
+                @endforeach
             >
                 @if($checkbox && $checkboxLocation === 'left')
                     @include('laravel-livewire-tables::includes._checkbox-row')
@@ -16,9 +18,25 @@
                     <td
                         class="{{ $this->setTableDataClass($column->attribute, Arr::get($model->toArray(), $column->attribute)) }}"
                         id="{{ $this->setTableDataId($column->attribute, Arr::get($model->toArray(), $column->attribute)) }}"
-                        @foreach ($this->setTableDataAttributes($column->attribute, Arr::get($model->toArray(), $column->attribute)) as $key => $value) {{ $key . '="'.$value.'"' }} @endforeach
+                        @foreach ($this->setTableDataAttributes($column->attribute, Arr::get($model->toArray(), $column->attribute)) as $key => $value)
+                            {{ $key }}="{{ $value }}"
+                        @endforeach
                     >
-                        @if ($column->isView())
+                        @if ($column->hasComponents())
+                            @if ($column->componentsAreHiddenForModel($model))
+                                @if ($message = $column->componentsHiddenMessageForModel($model))
+                                    {{ $message }}
+                                @else
+                                    &nbsp;&nbsp;
+                                @endif
+                            @else
+                                @foreach($column->getComponents() as $component)
+                                    @if (! $component->isHidden())
+                                        @include($component->view(), ['model' => $model, 'attributes' => $component->getAttributes(), 'options' => $component->getOptions()])
+                                    @endif
+                                @endforeach
+                            @endif
+                        @elseif ($column->isView())
                             @include($column->view)
                         @else
                             @if ($column->isHtml())

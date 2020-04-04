@@ -1,8 +1,8 @@
 <?php
 
-namespace Rappasoft\LivewireTables\Tests;
+namespace Rappasoft\LaravelLivewireTables\Tests;
 
-use Rappasoft\LivewireTables\LivewireTablesServiceProvider;
+use Rappasoft\LaravelLivewireTables\LivewireTablesServiceProvider;
 
 /**
  * Class TestCase.
