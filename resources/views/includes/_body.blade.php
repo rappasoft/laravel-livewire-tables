@@ -27,7 +27,7 @@
                                 @if ($message = $column->componentsHiddenMessageForModel($model))
                                     {{ $message }}
                                 @else
-                                    &nbsp;&nbsp;
+                                    &nbsp;
                                 @endif
                             @else
                                 @foreach($column->getComponents() as $component)
