@@ -83,7 +83,7 @@ abstract class TableComponent extends Component
      */
     public function view(): string
     {
-        return 'laravel-livewire-tables::table';
+        return 'laravel-livewire-tables::table-component';
     }
 
     /**
