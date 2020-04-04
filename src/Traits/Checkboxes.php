@@ -46,9 +46,6 @@ trait Checkboxes
      */
     public $checkboxValues = [];
 
-    /**
-     *
-     */
     public function updatedCheckboxAll()
     {
         $this->checkboxValues = [];
@@ -60,9 +57,6 @@ trait Checkboxes
         }
     }
 
-    /**
-     *
-     */
     public function updatedCheckboxValues()
     {
         $this->checkboxAll = false;
