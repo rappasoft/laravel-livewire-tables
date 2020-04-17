@@ -51,6 +51,8 @@
                                 @else
                                     {!! Arr::get($model->toArray(), $column->attribute) !!}
                                 @endif
+                            @elseif ($column->isJsonKeyVal())
+                                {{ $model->{$column->attribute}[$column->key] ?? null }}
                             @else
                                 @if ($column->isCustomAttribute())
                                     {{ $model->{$column->attribute} }}

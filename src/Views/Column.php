@@ -23,6 +23,11 @@ class Column
     protected $attribute;
 
     /**
+     * @var string
+     */
+    protected $key;
+
+    /**
      * @var bool
      */
     protected $searchable = false;
@@ -59,6 +64,8 @@ class Column
      */
     protected $customAttribute = false;
 
+    protected $jsonKeyVal = false;
+
     /**
      * @var
      */
@@ -69,11 +76,13 @@ class Column
      *
      * @param $text
      * @param $attribute
+     * @param $key
      */
-    public function __construct($text, $attribute)
+    public function __construct($text, $attribute = false, $key = false)
     {
         $this->text = $text;
         $this->attribute = $attribute ?? Str::snake(Str::lower($text));
+        $this->key = $key ?? null;
     }
 
     /**
@@ -87,14 +96,15 @@ class Column
     }
 
     /**
-     * @param  null  $text
-     * @param  null  $attribute
+     * @param  string  $text
+     * @param  string  $attribute
+     * @param  string  $key
      *
      * @return static
      */
-    public static function make($text = null, $attribute = null)
+    public static function make($text = null, $attribute = null, $key = null)
     {
-        return new static($text, $attribute);
+        return new static($text, $attribute, $key);
     }
 
     /**
@@ -211,6 +221,25 @@ class Column
     public function isCustomAttribute(): bool
     {
         return $this->customAttribute;
+    }
+
+    /**
+     * @return $this
+     */
+    public function jsonKeyVal(): self
+    {
+
+        $this->jsonKeyVal = true;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isJsonKeyVal(): bool
+    {
+        return $this->jsonKeyVal;
     }
 
     /**
