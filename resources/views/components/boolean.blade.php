@@ -4,17 +4,17 @@
     @endforeach
 >
 @php
-    $value = $options['jsonKeyVal'] ? ($model->{$options['column']}[$options['key']] || false) : ($model->{$options['column']} || false);
-    $true_class = $options['icon']['true-class'] ? $options['icon']['true-class'] : 'text-success';
-    $false_class = $options['icon']['false-class'] ? $options['icon']['false-class'] : 'text-danger';
-    $true = $options['icon']['true'] ? '<i class="' . $options['icon']['true'] . $true_class . '"></i>' : '<i class="fas fa-toggle-on ' . $true_class . '"></i>';
-    $false = $options['icon']['false'] ? '<i class="' . $options['icon']['false'] . $false_class . '"></i>' : '<i class="fas fa-toggle-off ' . $false_class . '"></i>';
-    $text = $options['text'] ?? '';
-    if($value) {
-        echo $true;
-    } else {
-        echo $false;
-    }
-    echo $text;
+    $value = \Arr::has($options, 'jsonKeyVal') ? ($model->{$options['column']}[$options['key']] || false) : ($model->{$options['column']} || false);
+    $true_class = \Arr::get($options, 'icon.true-class', 'text-success');
+    $false_class = \Arr::get($options, 'icon.false-class', 'text-danger');
+    $true = \Arr::get($options, 'icon.true', 'fas fa-toggle-on');
+    $false = \Arr::get($options, 'icon.false', 'fas fa-toggle-off');
+    $text = \Arr::get($options, 'text', '');
 @endphp
+@if($value)
+<i class="{{ $true . $true_class }} mx-2"></i>
+@else
+<i class="{{ $false . $false_class }} mx-2"></i>
+@endif
+{{ $text }}
 </span>
