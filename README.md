@@ -106,37 +106,50 @@ Column::make('Name', 'column_name')
 
 The first parameter is the name of the table header. The second parameter is the name of the table column. You can leave blank and the lowercase snake_case version will be used by default.
 
-Here are a list of the column method you can chain to build your columns:
+### The column methods you can chain to build your columns:
+
+
+Make a column **searchable**, with no callback it will search the column by name or by the supplied relationship, using a callback overrides the default searching functionality.
 
 ```php
-/**
- * This column is searchable, with no callback it will search the column by name or by the supplied relationship, using a callback overrides the default searching functionality.
- */
 public function searchable(callable $callable = null) : self;
+```
 
-/**
- * This column is sortable, with no callback it will sort the column by name and sort order defined on the components $sortDirection variable
- */
+
+Make a column **sortable**, with no callback it will sort the column by name and sort order defined on the components $sortDirection variable
+```php
 public function sortable(callable $callable = null) : self;
+```
 
-/**
- * The columns output will be put through {!! !!} instead of {{ }}.
- */
+Render the column with **{!! !!}** instead of **{{ }}**.
+```php
 public function unescaped() : self;
+```
 
-/**
- * The columns output will be put through the Laravel HtmlString class.
- */
+
+The columns output will be put through the Laravel **HtmlString** class.
+```php
 public function html() : self;
+```
 
-/**
- * This column will not look on the table for the column name, it will look on the model for the given attribute. Useful for custom attributes like getFullNameAttribute: Column::make('Full Name', 'full_name')->customAttribute()
- */
+Set the column to use a **models attribute** instead of a database column name. Useful for custom attributes like `$model->full_name` - `getFullNameAttribute()`:
+ 
+```php
+Column::make('Full Name', 'full_name')->customAttribute()
+
 public function customAttribute() : self;
+```
+ 
+Use the third `$key` paramater to retreive a value from a **json** column with flat key/value pairs, **or** a models **array** attribute.
 
-/**
- * This view will be used for the column, can still be used with sortable and searchable.
- */
+```php
+Column::make('Published on map', 'settings', 'show_on_map')
+   ->jsonKeyVal(),
+```
+
+
+Use a **custom a view** to render the column, can still be used with sortable and searchable.
+```php
 public function view($view) : self;
 ```
 
@@ -215,56 +228,55 @@ You can override any of these in your table component:
 
 ### Table Methods
 
+Set a **class** on a **table header** based on the column attribute
 ```php
-/**
- * Used to set a class on a table header based on the column attribute
- */
 public function setTableHeadClass($attribute) : ?string;
+```
 
-/**
- * Used to set a ID on a table header based on the column attribute
- */
+Set an **ID** on a **table header** based on the column attribute
+```php
 public function setTableHeadId($attribute) : ?string;
+```
 
-/**
- * Used to set any attributes on a table header based on the column attribute
- * ['name' => 'my-custom-name', 'data-key' => 'my-custom-key']
- */
+Set any **attributes** on a **table header** based on the column attribute
+
+`['name' => 'my-custom-name', 'data-key' => 'my-custom-key']`
+```php
 public function setTableHeadAttributes($attribute) : array;
+```
 
-/**
- * Used to set a class on a table row
- * You have the entre model of the row to work with
- */
+Used to set a **class** on a **table row**. You have the entre model of the row to work with.
+```php
 public function setTableRowClass($model) : ?string;
+```
 
-/**
- * Used to set a ID on a table row
- * You have the entre model of the row to work with
- */
+Set a **ID** on a **table row**. You have the entre model of the row to work with
+```php
 public function setTableRowId($model) : ?string;
+```
 
-/**
- * Used to set any attribute on a table row
- * You have the entre model of the row to work with
- * ['name' => 'my-custom-name', 'data-key' => 'my-custom-key']
- */
+Set any **attribute** on a **table row**. You have the entre model of the row to work with.
+
+`['name' => 'my-custom-name', 'data-key' => 'my-custom-key']`
+```php
 public function setTableRowAttributes($model) : array;
+```
 
-/**
- * Used to set the class of a table cell based on the column and the value of the cell
- */
+Set the **class** of a **table cell** based on the column and the value of the cell
+```php
 public function setTableDataClass($attribute, $value) : ?string;
+```
 
-/**
- * Used to set the ID of a table cell based on the column and the value of the cell
- */
+Set the **ID** of a **table cell** based on the column and the value of the cell
+```php
 public function setTableDataId($attribute, $value) : ?string;
+```
 
-/**
- * Used to set any attributes of a table cell based on the column and the value of the cell
- * ['name' => 'my-custom-name', 'data-key' => 'my-custom-key']
- */
+Set any **attributes** of a **table cell** based on the column and the value of the cell
+
+`['name' => 'my-custom-name', 'data-key' => 'my-custom-key']`
+
+```php
 public function setTableDataAttributes($attribute, $value) : array;
 ```
 
@@ -282,7 +294,7 @@ Column::make('Actions')
         Link::make('Edit'),
         Link::make('Delete'),
     ])
-````
+```
 
 or
 
@@ -290,7 +302,7 @@ or
 Column::make('Actions')
     ->addComponent(Link::make('Edit'))
     ->addComponent(Link::make('Delete'))
-````
+```
 
 If you would like to hide all the components for a given row, you may pass a callback as the second parameter of the `components()` method:
 
@@ -303,7 +315,7 @@ Column::make('Actions')
         // Hide the actions for model id 1
         return $model->id === 1;
     })
-````
+```
 
 **Note:** You should still assert on the backend that these functions can not be performed on this entity.
 
@@ -320,7 +332,7 @@ Column::make('Actions')
     }, function($model) {
         return __('You can not alter role ' . $model->name . '.');
     })
-````
+```
 
 #### Methods
 
@@ -361,6 +373,87 @@ By default all components have access to the `$attributes` and `$options` arrays
 | id($id) | Set the id of the button | string |
 | icon($icon) | Set the icon of the button (font awesome) | string |
 | view($view) | The view to render for the component | string |
+
+#### Boolean Component
+You define `text`, `column`, and optional `key` when you define the boolean component.
+
+| Method | Usage | Type |
+| -------- | ----- | ---- |
+| class($class) | Optional class on the surrounding span tag | string |
+| id($id) | Optional the id of the surrounding span tag | string |
+| icon([..]) | Optional true/false icon and color (font awesome) | array |
+| view($view) | The view to render for the component | string |
+
+| Attributes | Usage | Type |
+| -------- | ----- | ---- |
+| $label | Optional label to display in the table cell | string |
+| $column | Required, name of the table column | string |
+| $key  | Optional parameter used with a json column or a models array attribute `$model->column[$key]` You must `$cast` the column to array on the model | array |
+
+##### The default values for the Boolean `icon` component
+You do not have to specify any values for the icon. The component falls back to these settings. But many times a truthy value is considered negative and vice versa, you can therefor defin any icon and color you wish.
+```php
+->icon([
+   'true' => 'fas fa-toggle-on',
+   'false' => 'fas fa-toggle-off',
+   'true-class' => 'text-success',
+   'false-class' => 'text-danger'
+ ])
+```
+
+
+##### Boolean component example from a standard database tinyint column.
+```php
+Boolean::make($label, $column)->icon([...])
+```
+
+```php
+
+Column::make('Published', 'published')
+                ->sortable()
+                ->components([
+                    Boolean::make( null, 'published')
+                    ->icon([
+                        'true' => 'fas fa-eye',
+                        'false' => 'fas fa-eye-slash',
+                        'true-class' => 'text-aurora-green',
+                        'false-class' => 'text-aurora-red'
+                    ])
+                    ->class('bg-white')
+                ]),
+```
+
+##### Boolean component example from a `json` column (or models `array attribute`) with flat key/value pairs.
+Remember to `cast` the json column to array on the model.
+```php
+Boolean::make($label, $column, $key)->icon([...])
+```
+
+```php
+Column::make('Hide in guide', 'settings')
+                ->components([
+                    Boolean::make(null, 'settings', 'hide_in_guide')
+                        ->jsonKeyVal()
+                ]),
+```
+
+
+```php
+
+Column::make('Published', 'published')
+                ->sortable()
+                ->components([
+                    Boolean::make( null, 'published')
+                    ->icon([
+                        'true' => 'fas fa-eye',
+                        'false' => 'fas fa-eye-slash',
+                        'true-class' => 'text-aurora-green',
+                        'false-class' => 'text-aurora-red'
+                    ])
+                    ->class('bg-white')
+                ]),
+```
+
 
 #### Example
 
