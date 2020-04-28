@@ -1,4 +1,4 @@
-@if ($paginationEnabled && $models->count())
+@if ($paginationEnabled)
     <div class="row">
         <div class="col">
             {{ $models->links() }}
