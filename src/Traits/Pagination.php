@@ -46,4 +46,13 @@ trait Pagination
      * @var string
      */
     public $perPageLabel;
+
+    /**
+     * https://laravel-livewire.com/docs/pagination
+     * Resetting Pagination After Filtering Data
+     */
+    public function updatingSearch() : void
+    {
+        $this->resetPage();
+    }
 }

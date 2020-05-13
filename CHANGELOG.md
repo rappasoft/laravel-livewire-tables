@@ -9,6 +9,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 - Ability to turn off per page option while keeping pagination on
+- Fix the search feature if pagination is on, and you're not searching from the first page using Livewire's native resetPage() method.
 
 ## [0.1.2] - 2020-04-28
 
