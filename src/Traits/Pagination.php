@@ -20,7 +20,7 @@ trait Pagination
 
     /**
      * Whether or not the per page checker is visible
-     * Can have pagination on with the per page off
+     * Can have pagination on with the per page off.
      *
      * @var bool
      */
