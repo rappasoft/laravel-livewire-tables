@@ -49,9 +49,9 @@ trait Pagination
 
     /**
      * https://laravel-livewire.com/docs/pagination
-     * Resetting Pagination After Filtering Data
+     * Resetting Pagination After Filtering Data.
      */
-    public function updatingSearch() : void
+    public function updatingSearch(): void
     {
         $this->resetPage();
     }
