@@ -19,6 +19,14 @@ trait Pagination
     public $paginationEnabled = true;
 
     /**
+     * Whether or not the per page checker is visible
+     * Can have pagination on with the per page off
+     *
+     * @var bool
+     */
+    public $perPageEnabled = true;
+
+    /**
      * The options to limit the amount of results per page.
      *
      * @var array

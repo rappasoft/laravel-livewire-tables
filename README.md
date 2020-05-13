@@ -177,7 +177,8 @@ You can override any of these in your table component:
 
 | Property | Default | Usage |
 | -------- | ------- | ----- |
-| $paginationEnabled | true | Displays per page and pagination links |
+| $paginationEnabled | true | Enables or disables pagination as a whole |
+| $perPageEnabled | true | Displays per page |
 | $perPageOptions | [10, 25, 50] | The options to limit the amount of results per page |
 | $perPage | 25 | Amount of items to show per page |
 | $perPageLabel | Per Page | The label for the per page filter |
