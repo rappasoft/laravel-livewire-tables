@@ -102,22 +102,22 @@ abstract class TableComponent extends Component
      */
     public function models(): Builder
     {
-        $models = $this->query();
+        $builder = $this->query();
 
         if ($this->searchEnabled && trim($this->search) !== '') {
-            $models->where(function (Builder $query) {
+            $builder->where(function (Builder $builder) {
                 foreach ($this->columns() as $column) {
                     if ($column->searchable) {
                         if (is_callable($column->searchCallback)) {
-                            $query = app()->call($column->searchCallback, ['builder' => $query, 'term' => $this->search]);
+                            $builder = app()->call($column->searchCallback, ['builder' => $builder, 'term' => $this->search]);
                         } elseif (Str::contains($column->attribute, '.')) {
                             $relationship = $this->relationship($column->attribute);
 
-                            $query->orWhereHas($relationship->name, function (Builder $query) use ($relationship) {
-                                $query->where($relationship->attribute, 'like', '%'.$this->search.'%');
+                            $builder->orWhereHas($relationship->name, function (Builder $builder) use ($relationship) {
+                                $builder->where($relationship->attribute, 'like', '%'.$this->search.'%');
                             });
                         } else {
-                            $query->orWhere($query->getModel()->getTable().'.'.$column->attribute, 'like', '%'.$this->search.'%');
+                            $builder->orWhere($builder->getModel()->getTable().'.'.$column->attribute, 'like', '%'.$this->search.'%');
                         }
                     }
                 }
@@ -126,15 +126,15 @@ abstract class TableComponent extends Component
 
         if (Str::contains($this->sortField, '.')) {
             $relationship = $this->relationship($this->sortField);
-            $sortField = $this->attribute($models, $relationship->name, $relationship->attribute);
+            $sortField = $this->attribute($builder, $relationship->name, $relationship->attribute);
         } else {
             $sortField = $this->sortField;
         }
 
         if (($column = $this->getColumnByAttribute($this->sortField)) !== null && is_callable($column->sortCallback)) {
-            return app()->call($column->sortCallback, ['models' => $models, 'sortField' => $sortField, 'sortDirection' => $this->sortDirection]);
+            return app()->call($column->sortCallback, ['builder' => $builder, 'direction' => $this->sortDirection]);
         }
 
-        return $models->orderBy($sortField, $this->sortDirection);
+        return $builder->orderBy($sortField, $this->sortDirection);
     }
 }
