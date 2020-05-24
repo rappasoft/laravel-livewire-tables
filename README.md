@@ -340,7 +340,7 @@ Of course two links that don't do anything would be useless, here are a list of 
 | hide() | Hide this component forever |
 | isHidden() | This component is currently hidden |
 
-By default all components have access to the `$attributes` and `$options` arrays.
+By default, all components have access to the `$attributes` and `$options` arrays.
 
 #### Link Component
 
