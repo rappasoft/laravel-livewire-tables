@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [0.1.5] - 2020-05-26
+
+### Changed
+
+- Use constructor instead of mount so that the child classes have access to a mount method that they can accept parameters in.
+
 ## [0.1.4] - 2020-05-24
 
 ### Changed
@@ -34,7 +40,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.4...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.5...development
+[0.1.5]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.1...v0.1.2

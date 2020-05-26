@@ -49,10 +49,16 @@ abstract class TableComponent extends Component
     public $refresh = false;
 
     /**
-     * Constructor.
+     * Use constructor instead of mount so that the child classes have access to a mount method that they can accept parameters in.
+     *
+     * TableComponent constructor.
+     *
+     * @param $id
      */
-    public function mount()
+    public function __construct($id)
     {
+        parent::__construct($id);
+
         $this->setTranslationStrings();
     }
 
