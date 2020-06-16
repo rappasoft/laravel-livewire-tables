@@ -137,7 +137,7 @@ public function customAttribute() : self;
 /**
  * This view will be used for the column, can still be used with sortable and searchable.
  */
-public function view($view) : self;
+public function view($view, $viewModelName = 'model') : self;
 ```
 
 ### Properties
