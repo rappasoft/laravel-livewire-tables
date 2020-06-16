@@ -65,6 +65,13 @@ class Column
     protected $view;
 
     /**
+     * The name of the model variable passed to the view
+     *
+     * @var string
+     */
+    protected $viewModelName;
+
+    /**
      * Column constructor.
      *
      * @param $text
@@ -215,16 +222,18 @@ class Column
 
     /**
      * @param $view
+     * @param  string  $viewModelName
      *
      * @return $this
      */
-    public function view($view): self
+    public function view($view, $viewModelName = 'model'): self
     {
         if ($this->hasComponents()) {
             return $this;
         }
 
         $this->view = $view;
+        $this->viewModelName = $viewModelName;
 
         return $this;
     }
@@ -235,5 +244,12 @@ class Column
     public function isView(): bool
     {
         return view()->exists($this->view);
+    }
+
+    /**
+     * @return string
+     */
+    public function getViewModelName() {
+        return $this->viewModelName;
     }
 }
