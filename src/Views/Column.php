@@ -65,7 +65,7 @@ class Column
     protected $view;
 
     /**
-     * The name of the model variable passed to the view
+     * The name of the model variable passed to the view.
      *
      * @var string
      */
@@ -249,7 +249,8 @@ class Column
     /**
      * @return string
      */
-    public function getViewModelName() {
+    public function getViewModelName()
+    {
         return $this->viewModelName;
     }
 }
