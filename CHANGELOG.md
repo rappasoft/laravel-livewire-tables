@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [0.1.6] - 2020-06-15
+
+### Changed
+
+- Add second parameter to view method for the name of the model variable available in the view.
+
 ## [0.1.5] - 2020-05-26
 
 ### Changed
@@ -40,7 +46,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.5...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.6...development
+[0.1.6]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.2...v0.1.3
