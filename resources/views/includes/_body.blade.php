@@ -37,7 +37,7 @@
                                 @endforeach
                             @endif
                         @elseif ($column->isView())
-                            @include($column->view)
+                            @include($column->view, [$column->getViewModelName() => $model])
                         @else
                             @if ($column->isHtml())
                                 @if ($column->isCustomAttribute())
