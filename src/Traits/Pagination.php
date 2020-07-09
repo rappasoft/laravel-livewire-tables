@@ -48,6 +48,34 @@ trait Pagination
     public $perPageLabel;
 
     /**
+     * The label for shown string.
+     *
+     * @var string
+     */
+    public $shownLabel='Showing';
+
+    /**
+     * The label for results string.
+     *
+     * @var string
+     */
+    public $resultsLable='results';
+
+    /**
+     * The label for out of string.
+     *
+     * @var string
+     */
+    public $outOfLabel='out of';
+
+    /**
+     * The label for to string.
+     *
+     * @var string
+     */
+    public $toLabel='to';
+
+    /**
      * https://laravel-livewire.com/docs/pagination
      * Resetting Pagination After Filtering Data.
      */
