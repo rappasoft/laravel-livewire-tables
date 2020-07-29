@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## Changed
+
+- Updated Livewire to 1.3
+
 ## [0.1.6] - 2020-06-15
 
 ### Changed
