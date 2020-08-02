@@ -75,12 +75,12 @@ abstract class TableComponent extends Component
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     abstract public function query(): Builder;
 
     /**
-     * @return mixed
+     * @return array
      */
     abstract public function columns(): array;
 
