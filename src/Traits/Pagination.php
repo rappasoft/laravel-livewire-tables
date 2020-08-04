@@ -55,4 +55,13 @@ trait Pagination
     {
         $this->resetPage();
     }
+
+    /**
+     * https://laravel-livewire.com/docs/pagination
+     * Resetting Pagination After Changing the perPage.
+     */
+    public function updatingPerPage(): void
+    {
+        $this->resetPage();
+    }
 }
