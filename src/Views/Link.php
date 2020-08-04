@@ -24,7 +24,7 @@ class Link extends Component
      *
      * @return self
      */
-    public static function make($text): self
+    public static function make(?string $text = null): self
     {
         return new static($text);
     }
