@@ -15,5 +15,9 @@ class LivewireTablesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-livewire-tables');
+        
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-livewire-tables'),
+        ]);
     }
 }
