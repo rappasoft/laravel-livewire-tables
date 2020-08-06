@@ -53,7 +53,7 @@
                                 @endif
                             @else
                                 @if ($column->isCustomAttribute())
-                                    {{ $model->{$column->attribute} }}
+                                    {{ data_get($model, $column->attribute) }}
                                 @else
                                     {{ Arr::get($model->toArray(), $column->attribute) }}
                                 @endif
