@@ -41,13 +41,13 @@
                         @else
                             @if ($column->isHtml())
                                 @if ($column->isCustomAttribute())
-                                    {{ new \Illuminate\Support\HtmlString($model->{$column->attribute}) }}
+                                    {{ new \Illuminate\Support\HtmlString(data_get($model, $column->attribute)) }}
                                 @else
                                     {{ new \Illuminate\Support\HtmlString(Arr::get($model->toArray(), $column->attribute)) }}
                                 @endif
                             @elseif ($column->isUnescaped())
                                 @if ($column->isCustomAttribute())
-                                    {!! $model->{$column->attribute} !!}
+                                    {!! data_get($model, $column->attribute) !!}
                                 @else
                                     {!! Arr::get($model->toArray(), $column->attribute) !!}
                                 @endif
