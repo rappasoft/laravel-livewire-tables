@@ -12,11 +12,9 @@ class Button extends Component
      *
      * @param $text
      */
-    public function __construct($text = false)
+    public function __construct(?string $text = null)
     {
-        if ($text) {
-            $this->options['text'] = $text;
-        }
+        $this->options['text'] = $text;
     }
 
     /**
@@ -24,7 +22,7 @@ class Button extends Component
      *
      * @return self
      */
-    public static function make($text): self
+    public static function make(?string $text = null): self
     {
         return new static($text);
     }
