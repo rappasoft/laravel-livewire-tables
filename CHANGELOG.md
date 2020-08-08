@@ -15,6 +15,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Add pagination reset for perPage updates
 - Add second parameter to view method for the name of the model variable available in the view.
 - Allow publishing of views
+- Make docblocks work with psalm
 
 ### Changed
 
