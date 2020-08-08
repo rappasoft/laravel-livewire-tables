@@ -13,6 +13,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 - Add second parameter to view method for the name of the model variable available in the view.
+- Allow publishing of views
 
 ## [0.1.5] - 2020-05-26
 
