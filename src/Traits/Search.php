@@ -12,6 +12,12 @@ trait Search
      */
 
     /**
+     * Method to search by: debounce or lazy
+     * @var string
+     */
+    public $searchUpdateMethod = 'debounce';
+
+    /**
      * Whether or not searching is enabled.
      *
      * @var bool

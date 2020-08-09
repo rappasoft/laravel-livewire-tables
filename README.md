@@ -160,6 +160,7 @@ You can override any of these in your table component:
 | Property | Default | Usage |
 | -------- | ------- | ----- |
 | $searchEnabled | true | Whether or not searching is enabled |
+| $searchUpdateMethod | debounce | debounce or lazy |
 | $searchDebounce | 350 | Amount of time in ms to wait to send the search query and refresh the table |
 | $disableSearchOnLoading | true | Whether or not to disable the search bar when it is searching/loading new data | 
 | $search | *none* | The initial search string |
