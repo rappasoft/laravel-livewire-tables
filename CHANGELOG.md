@@ -11,6 +11,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Allow publishing of views
 - Make docblocks work with psalm
 - Added searching method either debounce or lazy
+- Allow dot notation for customer attributes
 
 ### Changed
 
