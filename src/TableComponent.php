@@ -115,15 +115,15 @@ abstract class TableComponent extends Component
                 foreach ($this->columns() as $column) {
                     if ($column->searchable) {
                         if (is_callable($column->searchCallback)) {
-                            $builder = app()->call($column->searchCallback, ['builder' => $builder, 'term' => $this->search]);
+                            $builder = app()->call($column->searchCallback, ['builder' => $builder, 'term' => trim($this->search)]);
                         } elseif (Str::contains($column->attribute, '.')) {
                             $relationship = $this->relationship($column->attribute);
 
                             $builder->orWhereHas($relationship->name, function (Builder $builder) use ($relationship) {
-                                $builder->where($relationship->attribute, 'like', '%'.$this->search.'%');
+                                $builder->where($relationship->attribute, 'like', '%'.trim($this->search).'%');
                             });
                         } else {
-                            $builder->orWhere($builder->getModel()->getTable().'.'.$column->attribute, 'like', '%'.$this->search.'%');
+                            $builder->orWhere($builder->getModel()->getTable().'.'.$column->attribute, 'like', '%'.trim($this->search).'%');
                         }
                     }
                 }
