@@ -4,12 +4,6 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
-## Changed
-
-- Updated Livewire to 1.3
-
-## [0.1.6] - 2020-06-15
-
 ### Added
 
 - Add pagination reset for perPage updates
@@ -20,7 +14,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Changed
 
+- Updated Livewire to 1.3
+
 ### Removed
+
+## [0.1.6] - 2020-06-15
+
+### Changed
+- Add second parameter to view method for the name of the model variable available in the view.
 
 ## [0.1.5] - 2020-05-26
 
