@@ -7,7 +7,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait Checkboxes
 {
-
     /**
      * Whether or not checkboxes are enabled.
      *
@@ -44,9 +43,9 @@ trait Checkboxes
     public $checkboxValues = [];
 
     /**
-     * Adds all the id's to the checkbox array
+     * Adds all the id's to the checkbox array.
      */
-    public function updatedCheckboxAll() : void
+    public function updatedCheckboxAll(): void
     {
         $this->checkboxValues = [];
 
@@ -58,9 +57,9 @@ trait Checkboxes
     }
 
     /**
-     * Toggles the checkbox that selects/deselects all of the checkboxes
+     * Toggles the checkbox that selects/deselects all of the checkboxes.
      */
-    public function updatedCheckboxValues() : void
+    public function updatedCheckboxValues(): void
     {
         $this->checkboxAll = false;
     }
