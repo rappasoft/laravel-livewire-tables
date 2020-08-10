@@ -4,10 +4,31 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
-## [0.1.6] - 2020-06-15
+### Added
+
+- Add pagination reset for perPage updates
+- Add second parameter to view method for the name of the model variable available in the view.
+- Allow publishing of views
+- Make docblocks work with psalm
+- Added searching method either debounce or lazy
+- Allow dot notation for customer attributes
+- Added loading message to table body if $loadingIndicator is true
+- Add clear button option to search box
 
 ### Changed
 
+- Updated Livewire to 1.3
+- $disableSearchOnLoading default to false
+- Trim the search term when processing
+- Added language to publishable translation file
+
+### Removed
+
+- Existing loading subview for tbody message
+
+## [0.1.6] - 2020-06-15
+
+### Changed
 - Add second parameter to view method for the name of the model variable available in the view.
 
 ## [0.1.5] - 2020-05-26

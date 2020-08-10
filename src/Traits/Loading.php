@@ -16,12 +16,12 @@ trait Loading
      *
      * @var bool
      */
-    public $loadingIndicator = false;
+    public $loadingIndicator = true;
 
     /**
-     * The loading message that gets displayed.
+     * Whether or not to disable the search bar when it is searching/loading new data.
      *
-     * @var string
+     * @var bool
      */
-    public $loadingMessage;
+    public $disableSearchOnLoading = false;
 }
