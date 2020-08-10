@@ -40,23 +40,23 @@ trait Search
     public $search = '';
 
     /**
-     * A button to clear the search box
+     * A button to clear the search box.
      *
      * @var bool
      */
     public $clearSearchButton = false;
 
     /**
-     * The classes to apply to the clear search box button
+     * Class to apply to the clear button
      *
      * @var string
      */
     public $clearSearchButtonClass = 'btn btn-outline-dark';
 
     /**
-     * Resets the search string
+     * Resets the search string.
      */
-    public function clearSearch() : void
+    public function clearSearch(): void
     {
         $this->search = '';
     }
