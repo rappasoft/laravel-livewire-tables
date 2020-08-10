@@ -47,7 +47,7 @@ trait Search
     public $clearSearchButton = false;
 
     /**
-     * Class to apply to the clear button
+     * Class to apply to the clear button.
      *
      * @var string
      */
