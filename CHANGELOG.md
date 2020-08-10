@@ -12,12 +12,18 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Make docblocks work with psalm
 - Added searching method either debounce or lazy
 - Allow dot notation for customer attributes
+- Added loading message to table body if $loadingIndicator is true
+- Add clear button option to search box
 
 ### Changed
 
 - Updated Livewire to 1.3
+- $disableSearchOnLoading default to false
+- Trim the search term when processing
 
 ### Removed
+
+- Existing loading subview for tbody message
 
 ## [0.1.6] - 2020-06-15
 
