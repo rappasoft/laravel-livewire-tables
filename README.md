@@ -164,11 +164,8 @@ You can override any of these in your table component:
 | $searchDebounce | 350 | Amount of time in ms to wait to send the search query and refresh the table |
 | $disableSearchOnLoading | false | Whether or not to disable the search bar when it is searching/loading new data | 
 | $search | *none* | The initial search string |
-| $searchLabel | Search... | The placeholder for the search box |
-| $noResultsMessage | There are no results to display for this query. | The message to display when there are no results |
 | $clearSearchButton | false | Adds a clear button to the search input |
 | $clearSearchButtonClass | btn btn-outline-dark | The class applied to the clear button |
-| $clearSearchButtonLabel | Search | The label of the search button |
 
 #### Sorting
 
@@ -185,21 +182,18 @@ You can override any of these in your table component:
 | $perPageEnabled | true | Displays per page |
 | $perPageOptions | [10, 25, 50] | The options to limit the amount of results per page |
 | $perPage | 25 | Amount of items to show per page |
-| $perPageLabel | Per Page | The label for the per page filter |
 
 #### Loading
 
 | Property | Default | Usage |
 | -------- | ------- | ----- |
 | $loadingIndicator | false | Whether or not to show a loading indicator when searching |
-| $loadingMessage | Loading... | The loading message that gets displayed |
 
 #### Offline
 
 | Property | Default | Usage |
 | -------- | ------- | ----- |
 | $offlineIndicator | true | Whether or not to display an offline message when there is no connection |
-| $offlineMessage | You are not currently connected to the internet. | The message to display when offline | 
 
 #### Checkboxes
 

@@ -1,6 +1,6 @@
 @if ($loadingIndicator)
     <tbody wire:loading>
-        <tr><td colspan="{{ collect($columns)->count() }}">{{ $loadingMessage }}</td></tr>
+        <tr><td colspan="{{ collect($columns)->count() }}">@lang('laravel-livewire-tables::strings.loading')</td></tr>
     </tbody>
 
     <tbody wire:loading.remove>
@@ -8,7 +8,7 @@
     <tbody>
 @endif
     @if($models->isEmpty())
-        <tr><td colspan="{{ collect($columns)->count() }}">{{ $noResultsMessage }}</td></tr>
+        <tr><td colspan="{{ collect($columns)->count() }}">@lang('laravel-livewire-tables::strings.no_results')</td></tr>
     @else
         @foreach($models as $model)
             <tr

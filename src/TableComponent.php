@@ -49,33 +49,6 @@ abstract class TableComponent extends Component
     public $refresh = false;
 
     /**
-     * Use constructor instead of mount so that the child classes have access to a mount method that they can accept parameters in.
-     *
-     * TableComponent constructor.
-     *
-     * @param $id
-     */
-    public function __construct($id)
-    {
-        parent::__construct($id);
-
-        $this->setTranslationStrings();
-    }
-
-    /**
-     * Sets the initial translations of these items.
-     */
-    public function setTranslationStrings()
-    {
-        $this->loadingMessage = __('Loading...');
-        $this->offlineMessage = __('You are not currently connected to the internet.');
-        $this->noResultsMessage = __('There are no results to display for this query.');
-        $this->perPageLabel = __('Per Page');
-        $this->searchLabel = __('Search...');
-        $this->clearSearchButtonLabel = __('Clear');
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Builder
      */
     abstract public function query(): Builder;

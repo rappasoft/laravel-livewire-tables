@@ -41,13 +41,6 @@ trait Pagination
     public $perPage = 25;
 
     /**
-     * The label for the per page filter.
-     *
-     * @var string
-     */
-    public $perPageLabel;
-
-    /**
      * https://laravel-livewire.com/docs/pagination
      * Resetting Pagination After Filtering Data.
      */

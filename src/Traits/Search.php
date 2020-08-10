@@ -40,32 +40,11 @@ trait Search
     public $search = '';
 
     /**
-     * The placeholder for the search box.
-     *
-     * @var string
-     */
-    public $searchLabel;
-
-    /**
-     * The message to display when there are no results.
-     *
-     * @var string
-     */
-    public $noResultsMessage;
-
-    /**
      * A button to clear the search box
      *
      * @var bool
      */
     public $clearSearchButton = false;
-
-    /**
-     * The text for the clear search box button
-     *
-     * @var
-     */
-    public $clearSearchButtonLabel;
 
     /**
      * The classes to apply to the clear search box button

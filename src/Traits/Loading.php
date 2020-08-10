@@ -24,11 +24,4 @@ trait Loading
      * @var bool
      */
     public $disableSearchOnLoading = false;
-
-    /**
-     * The loading message that gets displayed.
-     *
-     * @var string
-     */
-    public $loadingMessage;
 }
