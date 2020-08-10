@@ -54,30 +54,30 @@ trait Search
     public $noResultsMessage;
 
     /**
-     * A button to clear the search box
+     * A button to clear the search box.
      *
      * @var bool
      */
     public $clearSearchButton = false;
 
     /**
-     * The text for the clear search box button
+     * The text for the clear search box button.
      *
      * @var
      */
     public $clearSearchButtonLabel;
 
     /**
-     * The classes to apply to the clear search box button
+     * The classes to apply to the clear search box button.
      *
      * @var string
      */
     public $clearSearchButtonClass = 'btn btn-outline-dark';
 
     /**
-     * Resets the search string
+     * Resets the search string.
      */
-    public function clearSearch() : void
+    public function clearSearch(): void
     {
         $this->search = '';
     }
