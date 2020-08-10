@@ -20,14 +20,23 @@
 
         @if ($searchEnabled)
             <div class="col">
-                <input
-                    @if (is_numeric($searchDebounce) && $searchUpdateMethod === 'debounce') wire:model.debounce.{{ $searchDebounce }}ms="search" @endif
-                    @if ($searchUpdateMethod === 'lazy') wire:model.lazy="search" @endif
-                    @if ($disableSearchOnLoading) wire:loading.attr="disabled" @endif
-                    class="form-control"
-                    type="text"
-                    placeholder="{{ $searchLabel }}"
-                />
+                @if ($clearSearchButton)
+                    <div class="input-group">
+                @endif
+                    <input
+                        @if (is_numeric($searchDebounce) && $searchUpdateMethod === 'debounce') wire:model.debounce.{{ $searchDebounce }}ms="search" @endif
+                        @if ($searchUpdateMethod === 'lazy') wire:model.lazy="search" @endif
+                        @if ($disableSearchOnLoading) wire:loading.attr="disabled" @endif
+                        class="form-control"
+                        type="text"
+                        placeholder="{{ $searchLabel }}"
+                    />
+                @if ($clearSearchButton)
+                        <div class="input-group-append">
+                            <button class="{{ $clearSearchButtonClass }}" type="button" wire:click="clearSearch">{{ $clearSearchButtonLabel }}</button>
+                        </div>
+                    </div>
+                @endif
             </div>
         @endif
     </div>

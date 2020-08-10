@@ -162,10 +162,13 @@ You can override any of these in your table component:
 | $searchEnabled | true | Whether or not searching is enabled |
 | $searchUpdateMethod | debounce | debounce or lazy |
 | $searchDebounce | 350 | Amount of time in ms to wait to send the search query and refresh the table |
-| $disableSearchOnLoading | true | Whether or not to disable the search bar when it is searching/loading new data | 
+| $disableSearchOnLoading | false | Whether or not to disable the search bar when it is searching/loading new data | 
 | $search | *none* | The initial search string |
 | $searchLabel | Search... | The placeholder for the search box |
 | $noResultsMessage | There are no results to display for this query. | The message to display when there are no results |
+| $clearSearchButton | false | Adds a clear button to the search input |
+| $clearSearchButtonClass | btn btn-outline-dark | The class applied to the clear button |
+| $clearSearchButtonLabel | Search | The label of the search button |
 
 #### Sorting
 

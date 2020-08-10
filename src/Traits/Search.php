@@ -33,13 +33,6 @@ trait Search
     public $searchDebounce = 350;
 
     /**
-     * Whether or not to disable the search bar when it is searching/loading new data.
-     *
-     * @var bool
-     */
-    public $disableSearchOnLoading = true;
-
-    /**
      * The initial search string.
      *
      * @var string
@@ -59,4 +52,33 @@ trait Search
      * @var string
      */
     public $noResultsMessage;
+
+    /**
+     * A button to clear the search box
+     *
+     * @var bool
+     */
+    public $clearSearchButton = false;
+
+    /**
+     * The text for the clear search box button
+     *
+     * @var
+     */
+    public $clearSearchButtonLabel;
+
+    /**
+     * The classes to apply to the clear search box button
+     *
+     * @var string
+     */
+    public $clearSearchButtonClass = 'btn btn-outline-dark';
+
+    /**
+     * Resets the search string
+     */
+    public function clearSearch() : void
+    {
+        $this->search = '';
+    }
 }

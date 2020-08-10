@@ -72,6 +72,7 @@ abstract class TableComponent extends Component
         $this->noResultsMessage = __('There are no results to display for this query.');
         $this->perPageLabel = __('Per Page');
         $this->searchLabel = __('Search...');
+        $this->clearSearchButtonLabel = __('Clear');
     }
 
     /**

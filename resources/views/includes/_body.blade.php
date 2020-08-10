@@ -1,4 +1,12 @@
-<tbody>
+@if ($loadingIndicator)
+    <tbody wire:loading>
+        <tr><td colspan="{{ collect($columns)->count() }}">{{ $loadingMessage }}</td></tr>
+    </tbody>
+
+    <tbody wire:loading.remove>
+@else
+    <tbody>
+@endif
     @if($models->isEmpty())
         <tr><td colspan="{{ collect($columns)->count() }}">{{ $noResultsMessage }}</td></tr>
     @else

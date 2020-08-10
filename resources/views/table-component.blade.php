@@ -7,7 +7,6 @@
 @endif
     @include('laravel-livewire-tables::includes._offline')
     @include('laravel-livewire-tables::includes._options')
-    @include('laravel-livewire-tables::includes._loading')
 
     @if (is_string($responsive))
         <div class="{{ $responsive }}">
