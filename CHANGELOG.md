@@ -20,6 +20,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Updated Livewire to 1.3
 - $disableSearchOnLoading default to false
 - Trim the search term when processing
+- Added language to publishable translation file
 
 ### Removed
 

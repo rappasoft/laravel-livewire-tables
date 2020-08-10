@@ -2,7 +2,7 @@
     <div class="row mb-4">
         @if ($paginationEnabled && $perPageEnabled)
             <div class="col form-inline">
-                {{ $perPageLabel }}: &nbsp;
+                @lang('laravel-livewire-tables::strings.per_page'): &nbsp;
 
                 <select wire:model="perPage" class="form-control">
                     @if (is_array($perPageOptions))
@@ -29,11 +29,11 @@
                         @if ($disableSearchOnLoading) wire:loading.attr="disabled" @endif
                         class="form-control"
                         type="text"
-                        placeholder="{{ $searchLabel }}"
+                        placeholder="{{ __('laravel-livewire-tables::strings.search') }}"
                     />
                 @if ($clearSearchButton)
                         <div class="input-group-append">
-                            <button class="{{ $clearSearchButtonClass }}" type="button" wire:click="clearSearch">{{ $clearSearchButtonLabel }}</button>
+                            <button class="{{ $clearSearchButtonClass }}" type="button" wire:click="clearSearch">@lang('laravel-livewire-tables::strings.clear')</button>
                         </div>
                     </div>
                 @endif

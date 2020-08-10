@@ -17,11 +17,4 @@ trait Offline
      * @var bool
      */
     public $offlineIndicator = true;
-
-    /**
-     * The message to display when offline.
-     *
-     * @var string
-     */
-    public $offlineMessage;
 }
