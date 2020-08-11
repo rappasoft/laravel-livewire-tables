@@ -24,6 +24,6 @@ class LivewireTablesServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-livewire-tables'),
-        ]);
+        ],'laravel-livewire-tables');
     }
 }
