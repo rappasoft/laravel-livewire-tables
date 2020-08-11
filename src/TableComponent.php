@@ -49,38 +49,12 @@ abstract class TableComponent extends Component
     public $refresh = false;
 
     /**
-     * Use constructor instead of mount so that the child classes have access to a mount method that they can accept parameters in.
-     *
-     * TableComponent constructor.
-     *
-     * @param $id
-     */
-    public function __construct($id)
-    {
-        parent::__construct($id);
-
-        $this->setTranslationStrings();
-    }
-
-    /**
-     * Sets the initial translations of these items.
-     */
-    public function setTranslationStrings()
-    {
-        $this->loadingMessage = __('Loading...');
-        $this->offlineMessage = __('You are not currently connected to the internet.');
-        $this->noResultsMessage = __('There are no results to display for this query.');
-        $this->perPageLabel = __('Per Page');
-        $this->searchLabel = __('Search...');
-    }
-
-    /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     abstract public function query(): Builder;
 
     /**
-     * @return mixed
+     * @return array
      */
     abstract public function columns(): array;
 
@@ -115,15 +89,15 @@ abstract class TableComponent extends Component
                 foreach ($this->columns() as $column) {
                     if ($column->searchable) {
                         if (is_callable($column->searchCallback)) {
-                            $builder = app()->call($column->searchCallback, ['builder' => $builder, 'term' => $this->search]);
+                            $builder = app()->call($column->searchCallback, ['builder' => $builder, 'term' => trim($this->search)]);
                         } elseif (Str::contains($column->attribute, '.')) {
                             $relationship = $this->relationship($column->attribute);
 
                             $builder->orWhereHas($relationship->name, function (Builder $builder) use ($relationship) {
-                                $builder->where($relationship->attribute, 'like', '%'.$this->search.'%');
+                                $builder->where($relationship->attribute, 'like', '%'.trim($this->search).'%');
                             });
                         } else {
-                            $builder->orWhere($builder->getModel()->getTable().'.'.$column->attribute, 'like', '%'.$this->search.'%');
+                            $builder->orWhere($builder->getModel()->getTable().'.'.$column->attribute, 'like', '%'.trim($this->search).'%');
                         }
                     }
                 }

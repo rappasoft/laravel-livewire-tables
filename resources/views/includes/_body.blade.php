@@ -1,6 +1,14 @@
-<tbody>
+@if ($loadingIndicator)
+    <tbody wire:loading>
+        <tr><td colspan="{{ collect($columns)->count() }}">@lang('laravel-livewire-tables::strings.loading')</td></tr>
+    </tbody>
+
+    <tbody wire:loading.remove>
+@else
+    <tbody>
+@endif
     @if($models->isEmpty())
-        <tr><td colspan="{{ collect($columns)->count() }}">{{ $noResultsMessage }}</td></tr>
+        <tr><td colspan="{{ collect($columns)->count() }}">@lang('laravel-livewire-tables::strings.no_results')</td></tr>
     @else
         @foreach($models as $model)
             <tr
@@ -41,19 +49,19 @@
                         @else
                             @if ($column->isHtml())
                                 @if ($column->isCustomAttribute())
-                                    {{ new \Illuminate\Support\HtmlString($model->{$column->attribute}) }}
+                                    {{ new \Illuminate\Support\HtmlString(data_get($model, $column->attribute)) }}
                                 @else
                                     {{ new \Illuminate\Support\HtmlString(Arr::get($model->toArray(), $column->attribute)) }}
                                 @endif
                             @elseif ($column->isUnescaped())
                                 @if ($column->isCustomAttribute())
-                                    {!! $model->{$column->attribute} !!}
+                                    {!! data_get($model, $column->attribute) !!}
                                 @else
                                     {!! Arr::get($model->toArray(), $column->attribute) !!}
                                 @endif
                             @else
                                 @if ($column->isCustomAttribute())
-                                    {{ $model->{$column->attribute} }}
+                                    {{ data_get($model, $column->attribute) }}
                                 @else
                                     {{ Arr::get($model->toArray(), $column->attribute) }}
                                 @endif

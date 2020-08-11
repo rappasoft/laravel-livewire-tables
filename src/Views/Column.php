@@ -94,12 +94,12 @@ class Column
     }
 
     /**
-     * @param  null  $text
-     * @param  null  $attribute
+     * @param  string  $text
+     * @param  string  $attribute
      *
      * @return static
      */
-    public static function make($text = null, $attribute = null)
+    public static function make($text, $attribute = null)
     {
         return new static($text, $attribute);
     }
