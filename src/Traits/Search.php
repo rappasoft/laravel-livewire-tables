@@ -11,12 +11,11 @@ trait Search
      * Search.
      */
 
-
     /**
-     * Whether search work:  debounce or lazy
+     * Method to search by: debounce or lazy.
      * @var string
      */
-    public $searchType = 'debounce';
+    public $searchUpdateMethod = 'debounce';
 
     /**
      * Whether or not searching is enabled.
@@ -34,13 +33,6 @@ trait Search
     public $searchDebounce = 350;
 
     /**
-     * Whether or not to disable the search bar when it is searching/loading new data.
-     *
-     * @var bool
-     */
-    public $disableSearchOnLoading = true;
-
-    /**
      * The initial search string.
      *
      * @var string
@@ -48,16 +40,24 @@ trait Search
     public $search = '';
 
     /**
-     * The placeholder for the search box.
+     * A button to clear the search box.
      *
-     * @var string
+     * @var bool
      */
-    public $searchLabel;
+    public $clearSearchButton = false;
 
     /**
-     * The message to display when there are no results.
+     * Class to apply to the clear button.
      *
      * @var string
      */
-    public $noResultsMessage;
+    public $clearSearchButtonClass = 'btn btn-outline-dark';
+
+    /**
+     * Resets the search string.
+     */
+    public function clearSearch(): void
+    {
+        $this->search = '';
+    }
 }
