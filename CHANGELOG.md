@@ -4,6 +4,16 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [0.3.0] - 2020-08-XX
+
+### Added
+
+- Arabic translations
+
+### Changed
+
+- Publish tags to service provider
+
 ## [0.2.0] - 2020-08-10
 
 ### Added
