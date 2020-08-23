@@ -251,6 +251,11 @@ public function setTableRowId($model) : ?string;
 public function setTableRowAttributes($model) : array;
 
 /**
+ * Return a URL to go to when the table row is clicked
+ */
+public function getTableRowUrl($model): ?string;
+
+/**
  * Used to set the class of a table cell based on the column and the value of the cell
  */
 public function setTableDataClass($attribute, $value) : ?string;

@@ -115,6 +115,16 @@ trait Table
     }
 
     /**
+     * @param $model
+     *
+     * @return string|null
+     */
+    public function getTableRowUrl($model): ?string
+    {
+        return null;
+    }
+
+    /**
      * @param $attribute
      * @param $value
      *
