@@ -17,6 +17,10 @@
                 @foreach ($this->setTableRowAttributes($model) as $key => $value)
                     {{ $key }}="{{ $value }}"
                 @endforeach
+                @if ($this->getTableRowUrl($model))
+                    onclick="window.location='{{ $this->getTableRowUrl($model) }}';"
+                    style="cursor:pointer"
+                @endif
             >
                 @if($checkbox && $checkboxLocation === 'left')
                     @include('laravel-livewire-tables::includes._checkbox-row')
