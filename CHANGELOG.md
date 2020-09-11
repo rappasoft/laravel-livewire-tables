@@ -4,6 +4,27 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [0.2.1] - 2020-09-10
+
+### Added
+
+- Arabic translations
+- Ability to add a link to make table rows clickable
+- Added the ability to change the sort icons
+- Ability to hide a column based on a condition or permanently
+
+### Updated
+
+- Livewire to 2.x
+
+### Removed
+
+- Removed 1 hard coded font awesome icon
+
+### Changed
+
+- Publish tags to service provider
+
 ## [0.2.0] - 2020-08-10
 
 ### Added
