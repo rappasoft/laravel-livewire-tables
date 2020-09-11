@@ -11,6 +11,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Arabic translations
 - Ability to add a link to make table rows clickable
 - Added the ability to change the sort icons
+- Ability to hide a column based on a condition or permanently
 
 ### Updated
 

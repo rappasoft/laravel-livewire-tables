@@ -27,15 +27,17 @@
                 @endif
 
                 @foreach($columns as $column)
-                    <td
-                        class="{{ $this->setTableDataClass($column->attribute, Arr::get($model->toArray(), $column->attribute)) }}"
-                        id="{{ $this->setTableDataId($column->attribute, Arr::get($model->toArray(), $column->attribute)) }}"
-                        @foreach ($this->setTableDataAttributes($column->attribute, Arr::get($model->toArray(), $column->attribute)) as $key => $value)
-                            {{ $key }}="{{ $value }}"
-                        @endforeach
-                    >
-                        @include('laravel-livewire-tables::includes._column-data')
-                    </td>
+                    @if (!$column->isHidden())
+                        <td
+                            class="{{ $this->setTableDataClass($column->attribute, Arr::get($model->toArray(), $column->attribute)) }}"
+                            id="{{ $this->setTableDataId($column->attribute, Arr::get($model->toArray(), $column->attribute)) }}"
+                            @foreach ($this->setTableDataAttributes($column->attribute, Arr::get($model->toArray(), $column->attribute)) as $key => $value)
+                                {{ $key }}="{{ $value }}"
+                            @endforeach
+                        >
+                            @include('laravel-livewire-tables::includes._column-data')
+                        </td>
+                    @endif
                 @endforeach
 
                 @if($checkbox && $checkboxLocation === 'right')
