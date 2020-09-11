@@ -11,6 +11,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Arabic translations
 - Ability to add a link to make table rows clickable
 
+### Updated
+
+- Livewire to 2.x
+
 ### Changed
 
 - Publish tags to service provider
