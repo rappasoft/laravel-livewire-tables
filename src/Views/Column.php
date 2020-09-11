@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
+use Rappasoft\LaravelLivewireTables\Traits\CanBeHidden;
 use Rappasoft\LaravelLivewireTables\Traits\HasComponents;
 
 /**
@@ -10,7 +11,8 @@ use Rappasoft\LaravelLivewireTables\Traits\HasComponents;
  */
 class Column
 {
-    use HasComponents;
+    use CanBeHidden,
+        HasComponents;
 
     /**
      * @var

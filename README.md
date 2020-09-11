@@ -48,7 +48,8 @@ class UsersTable extends TableComponent
         return [
             Column::make('ID')
                 ->searchable()
-                ->sortable(),
+                ->sortable()
+                ->hideIf(!auth()->user()->hasRole('admin')),
             Column::make('Name')
                 ->searchable()
                 ->sortable(),
@@ -138,6 +139,16 @@ public function customAttribute() : self;
  * This view will be used for the column, can still be used with sortable and searchable.
  */
 public function view($view, $viewModelName = 'model') : self;
+
+/**
+ * Hide this column permanently
+ */
+public function hide() : self;
+
+/**
+ * Hide this column based on a condition. i.e.: user has or doesn't have a role or permission
+ */
+public function hideIf($condition) : self;
 ```
 
 ### Properties
@@ -173,6 +184,9 @@ You can override any of these in your table component:
 | -------- | ------- | ----- |
 | $sortField | id | The initial field to be sorting by |
 | $sortDirection | asc | The initial direction to sort |
+| $sortDefaultClass | text-muted fas fa-sort | The default sort icon |
+| $ascSortClass | fas fa-sort-up | The sort icon when currently sorting ascending |
+| $descSortClass | fas fa-sort-down | The sort icon when currently sorting descending |
 
 #### Pagination
 
@@ -249,6 +263,11 @@ public function setTableRowId($model) : ?string;
  * ['name' => 'my-custom-name', 'data-key' => 'my-custom-key']
  */
 public function setTableRowAttributes($model) : array;
+
+/**
+ * Return a URL to go to when the table row is clicked
+ */
+public function getTableRowUrl($model): ?string;
 
 /**
  * Used to set the class of a table cell based on the column and the value of the cell
