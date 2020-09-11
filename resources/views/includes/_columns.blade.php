@@ -15,11 +15,11 @@
                 {{ $column->text }}
 
                 @if ($sortField !== $column->attribute)
-                    <i class="text-muted fas fa-sort"></i>
+                    <i class="{{ $sortDefaultClass }}"></i>
                 @elseif ($sortDirection === 'asc')
-                    <i class="fas fa-sort-up"></i>
+                    <i class="{{ $ascSortClass }}"></i>
                 @else
-                    <i class="fas fa-sort-down"></i>
+                    <i class="{{ $descSortClass }}"></i>
                 @endif
             </span>
         @else

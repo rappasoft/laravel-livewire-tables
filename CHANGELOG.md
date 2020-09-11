@@ -10,10 +10,15 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Arabic translations
 - Ability to add a link to make table rows clickable
+- Added the ability to change the sort icons
 
 ### Updated
 
 - Livewire to 2.x
+
+### Removed
+
+- Removed 1 hard coded font awesome icon
 
 ### Changed
 
