@@ -187,9 +187,9 @@ You can override any of these in your table component:
 | -------- | ------- | ----- |
 | $sortField | id | The initial field to be sorting by |
 | $sortDirection | asc | The initial direction to sort |
-| $sortDefaultIcon | <i class="text-muted fas fa-sort"></i> | The default sort icon |
-| $ascSortIcon | <i class="fas fa-sort-up"></i> | The sort icon when currently sorting ascending |
-| $descSortIcon | <i class="fas fa-sort-down"></i> | The sort icon when currently sorting descending |
+| $sortDefaultIcon | `<i class="text-muted fas fa-sort"></i>` | The default sort icon |
+| $ascSortIcon | `<i class="fas fa-sort-up"></i>` | The sort icon when currently sorting ascending |
+| $descSortIcon | `<i class="fas fa-sort-down"></i>` | The sort icon when currently sorting descending |
 
 #### Pagination
 
