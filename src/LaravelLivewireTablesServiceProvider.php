@@ -5,9 +5,7 @@ namespace Rappasoft\LaravelLivewireTables;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class LaravelLivewireTablesServiceProvider
- *
- * @package Rappasoft\LaravelLivewireTables
+ * Class LaravelLivewireTablesServiceProvider.
  */
 class LaravelLivewireTablesServiceProvider extends ServiceProvider
 {

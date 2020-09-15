@@ -2,17 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Illuminate\Support\HtmlString;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Support\HtmlString;
 
 /**
- * Trait HtmlBuilder
- *
- * @package Rappasoft\LaravelLivewireTables\Helpers
+ * Trait HtmlBuilder.
  */
 trait HtmlComponents
 {
-
     /**
      * Convert an HTML string to entities.
      *
@@ -39,7 +36,7 @@ trait HtmlComponents
     {
         $attributes['alt'] = $alt;
 
-        return $this->html('<img src="' . resolve(UrlGenerator::class)->asset($url, $secure) . '"' . $this->attributes($attributes) . '>');
+        return $this->html('<img src="'.resolve(UrlGenerator::class)->asset($url, $secure).'"'.$this->attributes($attributes).'>');
     }
 
     /**
@@ -65,7 +62,7 @@ trait HtmlComponents
             $title = $this->entities($title);
         }
 
-        return $this->html('<a href="' . $this->entities($url) . '"' . $this->attributes($attributes) . '>' . $title . '</a>');
+        return $this->html('<a href="'.$this->entities($url).'"'.$this->attributes($attributes).'>'.$title.'</a>');
     }
 
     /**
@@ -170,9 +167,9 @@ trait HtmlComponents
             $title = $this->entities($title);
         }
 
-        $email = $this->obfuscate('mailto:') . $email;
+        $email = $this->obfuscate('mailto:').$email;
 
-        return $this->html('<a href="' . $email . '"' . $this->attributes($attributes) . '>' . $title . '</a>');
+        return $this->html('<a href="'.$email.'"'.$this->attributes($attributes).'>'.$title.'</a>');
     }
 
     /**
@@ -206,7 +203,7 @@ trait HtmlComponents
             }
         }
 
-        return count($html) > 0 ? ' ' . implode(' ', $html) : '';
+        return count($html) > 0 ? ' '.implode(' ', $html) : '';
     }
 
     /**
@@ -234,11 +231,11 @@ trait HtmlComponents
         }
 
         if (is_array($value) && $key === 'class') {
-            return 'class="' . implode(' ', $value) . '"';
+            return 'class="'.implode(' ', $value).'"';
         }
 
         if (! is_null($value)) {
-            return $key . '="' . e($value, false) . '"';
+            return $key.'="'.e($value, false).'"';
         }
     }
 
@@ -263,11 +260,11 @@ trait HtmlComponents
             // the randomly obfuscated letters out of the string on the responses.
             switch (rand(1, 3)) {
                 case 1:
-                    $safe .= '&#' . ord($letter) . ';';
+                    $safe .= '&#'.ord($letter).';';
                     break;
 
                 case 2:
-                    $safe .= '&#x' . dechex(ord($letter)) . ';';
+                    $safe .= '&#x'.dechex(ord($letter)).';';
                     break;
 
                 case 3:
@@ -279,7 +276,7 @@ trait HtmlComponents
     }
 
     /**
-     * Transform the string to an Html serializable object
+     * Transform the string to an Html serializable object.
      *
      * @param $html
      *

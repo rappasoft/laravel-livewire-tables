@@ -85,7 +85,7 @@ trait Yajra
     /**
      * @param $attribute
      *
-     * @return mixed|boolean
+     * @return mixed|bool
      */
     protected function getColumnByAttribute($attribute)
     {
