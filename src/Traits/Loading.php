@@ -7,7 +7,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait Loading
 {
-
     /**
      * Whether or not to show a loading indicator when searching.
      *
@@ -24,7 +23,7 @@ trait Loading
 
     /**
      * When the table is loading, hide all data but the loading row
-     * Otherwise the loading row gets shown above the data (makes the page less jumpy)
+     * Otherwise the loading row gets shown above the data (makes the page less jumpy).
      *
      * @var bool
      */

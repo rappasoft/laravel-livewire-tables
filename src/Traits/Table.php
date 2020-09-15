@@ -7,7 +7,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait Table
 {
-
     /**
      * Whether or not to display the table header.
      *

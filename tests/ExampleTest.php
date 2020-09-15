@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 
 class ExampleTest extends TestCase
 {
-
     protected function getPackageProviders($app)
     {
         return [LaravelLivewireTablesServiceProvider::class];
