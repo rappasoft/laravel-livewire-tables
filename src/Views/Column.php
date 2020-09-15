@@ -10,7 +10,6 @@ use Rappasoft\LaravelLivewireTables\Traits\CanBeHidden;
  */
 class Column
 {
-
     use CanBeHidden;
 
     /**
@@ -145,7 +144,8 @@ class Column
      *
      * @return $this
      */
-    public function format(callable $callable): Column {
+    public function format(callable $callable): Column
+    {
         $this->formatCallback = $callable;
 
         return $this;

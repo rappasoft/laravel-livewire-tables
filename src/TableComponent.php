@@ -19,7 +19,6 @@ use Rappasoft\LaravelLivewireTables\Traits\Yajra;
  */
 abstract class TableComponent extends Component
 {
-
     use Loading,
         Pagination,
         Search,
@@ -29,7 +28,7 @@ abstract class TableComponent extends Component
         Yajra;
 
     /**
-     * The default pagination theme
+     * The default pagination theme.
      *
      * @var string
      */
