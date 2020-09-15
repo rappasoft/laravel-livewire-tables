@@ -226,16 +226,16 @@ You can override any of these in your table component:
 Use the following methods to alter the column/row metadata.
 
 ```php
-    public function setTableHeadClass($attribute): ?string
-    public function setTableHeadId($attribute): ?string
-    public function setTableHeadAttributes($attribute): array
-    public function setTableRowClass($model): ?string
-    public function setTableRowId($model): ?string
-    public function setTableRowAttributes($model): array
-    public function getTableRowUrl($model): ?string
-    public function setTableDataClass($attribute, $value): ?string
-    public function setTableDataId($attribute, $value): ?string
-    public function setTableDataAttributes($attribute, $value): array
+public function setTableHeadClass($attribute): ?string
+public function setTableHeadId($attribute): ?string
+public function setTableHeadAttributes($attribute): array
+public function setTableRowClass($model): ?string
+public function setTableRowId($model): ?string
+public function setTableRowAttributes($model): array
+public function getTableRowUrl($model): ?string
+public function setTableDataClass($attribute, $value): ?string
+public function setTableDataId($attribute, $value): ?string
+public function setTableDataAttributes($attribute, $value): array
 ```
 
 #### Pagination
