@@ -47,6 +47,6 @@ trait CanBeHidden
      */
     public function isHidden(): bool
     {
-        return !$this->isVisible();
+        return ! $this->isVisible();
     }
 }
