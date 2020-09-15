@@ -4,6 +4,27 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [0.3] - 2020-XX-XX
+
+- Ground up rebuild
+
+### Added
+
+- Config file to choose frontend framework - currently limited to bootstrap
+- Render method to columns which returns whatever you put into it, you can return a view, html, an attribute, etc.
+- Pulled in and modified the HTML component library from laravelcollective so you an return html components from the render method. i.e.: $this->image(...);
+- Added new loading config on whether to keep displaying the current data while loading or collapse it
+
+### Changed
+
+- Extracted the sorting icons out to their actual HTML so you can use whatever you want, not limited to the 'i' tag.
+
+### Removed
+
+- Checkbox functionality for now
+- Component functionality pending debate
+- All class and styling based properties. It's better to publish the views to change something.
+
 ## [0.2.1] - 2020-09-10
 
 ### Added
@@ -90,7 +111,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.2.1...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.0...development
+[0.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.5...v0.1.6

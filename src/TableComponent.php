@@ -7,9 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Rappasoft\LaravelLivewireTables\Traits\Checkboxes;
 use Rappasoft\LaravelLivewireTables\Traits\Loading;
-use Rappasoft\LaravelLivewireTables\Traits\Offline;
 use Rappasoft\LaravelLivewireTables\Traits\Pagination;
 use Rappasoft\LaravelLivewireTables\Traits\Search;
 use Rappasoft\LaravelLivewireTables\Traits\Sorting;
@@ -21,9 +19,8 @@ use Rappasoft\LaravelLivewireTables\Traits\Yajra;
  */
 abstract class TableComponent extends Component
 {
-    use Checkboxes,
-        Loading,
-        Offline,
+
+    use Loading,
         Pagination,
         Search,
         Sorting,
@@ -32,11 +29,11 @@ abstract class TableComponent extends Component
         Yajra;
 
     /**
-     * The classes applied to the wrapper div.
+     * The default pagination theme
      *
      * @var string
      */
-    public $wrapperClass = '';
+    public $paginationTheme = 'tailwind';
 
     /**
      * Whether or not to refresh the table at a certain interval
@@ -47,6 +44,27 @@ abstract class TableComponent extends Component
      * @var bool|string
      */
     public $refresh = false;
+
+    /**
+     * Whether or not to display an offline message when there is no connection.
+     *
+     * @var bool
+     */
+    public $offlineIndicator = true;
+
+    /**
+     * TableComponent constructor.
+     *
+     * @param  null  $id
+     */
+    public function __construct($id = null)
+    {
+        if (config('laravel-livewire-tables.theme') === 'bootstrap-4') {
+            $this->paginationTheme = 'bootstrap';
+        }
+
+        parent::__construct($id);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Builder
@@ -63,7 +81,7 @@ abstract class TableComponent extends Component
      */
     public function view(): string
     {
-        return 'laravel-livewire-tables::table-component';
+        return 'laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.table-component';
     }
 
     /**
@@ -87,34 +105,27 @@ abstract class TableComponent extends Component
         if ($this->searchEnabled && trim($this->search) !== '') {
             $builder->where(function (Builder $builder) {
                 foreach ($this->columns() as $column) {
-                    if ($column->searchable) {
-                        if (is_callable($column->searchCallback)) {
-                            $builder = app()->call($column->searchCallback, ['builder' => $builder, 'term' => trim($this->search)]);
-                        } elseif (Str::contains($column->attribute, '.')) {
-                            $relationship = $this->relationship($column->attribute);
+                    if ($column->isSearchable()) {
+                        if (is_callable($column->getSearchCallback())) {
+                            $builder = app()->call($column->getSearchCallback(), ['builder' => $builder, 'term' => trim($this->search)]);
+                        } elseif (Str::contains($column->getAttribute(), '.')) {
+                            $relationship = $this->relationship($column->getAttribute());
 
                             $builder->orWhereHas($relationship->name, function (Builder $builder) use ($relationship) {
                                 $builder->where($relationship->attribute, 'like', '%'.trim($this->search).'%');
                             });
                         } else {
-                            $builder->orWhere($builder->getModel()->getTable().'.'.$column->attribute, 'like', '%'.trim($this->search).'%');
+                            $builder->orWhere($builder->getModel()->getTable().'.'.$column->getAttribute(), 'like', '%'.trim($this->search).'%');
                         }
                     }
                 }
             });
         }
 
-        if (Str::contains($this->sortField, '.')) {
-            $relationship = $this->relationship($this->sortField);
-            $sortField = $this->attribute($builder, $relationship->name, $relationship->attribute);
-        } else {
-            $sortField = $this->sortField;
+        if (($column = $this->getColumnByAttribute($this->sortField)) !== false && is_callable($column->getSortCallback())) {
+            return app()->call($column->getSortCallback(), ['builder' => $builder, 'direction' => $this->sortDirection]);
         }
 
-        if (($column = $this->getColumnByAttribute($this->sortField)) !== null && is_callable($column->sortCallback)) {
-            return app()->call($column->sortCallback, ['builder' => $builder, 'direction' => $this->sortDirection]);
-        }
-
-        return $builder->orderBy($sortField, $this->sortDirection);
+        return $builder->orderBy($this->getSortField($builder), $this->sortDirection);
     }
 }

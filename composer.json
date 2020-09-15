@@ -19,13 +19,13 @@
         }
     ],
     "require": {
-        "php": "^7.2.5",
-        "livewire/livewire": "^1.3|^2.0"
+        "php": "^7.3",
+        "livewire/livewire": "^2.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
         "orchestra/testbench": "^5.0",
-        "phpunit/phpunit": "^8.0|^9.0"
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "psr-4": {
@@ -48,7 +48,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rappasoft\\LaravelLivewireTables\\LivewireTablesServiceProvider"
+              "Rappasoft\\LaravelLivewireTables\\LaravelLivewireTablesServiceProvider"
             ]
         }
     }
