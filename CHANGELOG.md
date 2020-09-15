@@ -17,7 +17,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Changed
 
-- Extracted the sorting icons out to their actual HTML so you can use whatever you want, not limited to the 'i' tag.
+- Extracted the sorting icons out to their actual HTML, so you can use whatever you want, not limited to the 'i' tag.
 
 ### Removed
 
