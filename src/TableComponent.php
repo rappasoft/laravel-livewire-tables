@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Rappasoft\LaravelLivewireTables\Traits\Loading;
+use Rappasoft\LaravelLivewireTables\Traits\Options;
 use Rappasoft\LaravelLivewireTables\Traits\Pagination;
 use Rappasoft\LaravelLivewireTables\Traits\Search;
 use Rappasoft\LaravelLivewireTables\Traits\Sorting;
@@ -20,6 +21,7 @@ use Rappasoft\LaravelLivewireTables\Traits\Yajra;
 abstract class TableComponent extends Component
 {
     use Loading,
+        Options,
         Pagination,
         Search,
         Sorting,
@@ -61,6 +63,8 @@ abstract class TableComponent extends Component
         if (config('laravel-livewire-tables.theme') === 'bootstrap-4') {
             $this->paginationTheme = 'bootstrap';
         }
+
+        $this->setOptions();
 
         parent::__construct($id);
     }

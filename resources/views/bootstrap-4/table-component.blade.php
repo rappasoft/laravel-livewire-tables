@@ -1,9 +1,14 @@
-<div class="container-fluid" @if (is_numeric($refresh)) wire:poll.{{ $refresh }}.ms @elseif(is_string($refresh)) wire:poll="{{ $refresh }}" @endif>
+<div
+    class="{{ $this->getOption('bootstrap.container') ? 'container-fluid' : '' }}"
+    @if (is_numeric($refresh)) wire:poll.{{ $refresh }}.ms @elseif(is_string($refresh)) wire:poll="{{ $refresh }}" @endif
+>
     @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.offline')
     @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.options')
 
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
+    @if ($this->getOption('bootstrap.responsive'))
+        <div class="table-responsive">
+    @endif
+        <table class="{{ $this->getOption('bootstrap.classes.table') }}">
             @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.thead')
 
             @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.loading')
@@ -16,7 +21,9 @@
 
             @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.tfoot')
         </table>
-    </div><!--table-responsive-->
+    @if ($this->getOption('bootstrap.responsive'))
+        </div><!--table-responsive-->
+    @endif
 
     @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.pagination')
 </div>
