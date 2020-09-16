@@ -284,6 +284,32 @@ public function email($email): string
 public function html($html): HtmlString
 ```
 
+### Setting Options
+
+There are some frontend framework specific options that can be set.
+
+These have to be set from the `mount()` method of your component.
+
+They are done this way instead of the config file that way you can have per-component control over these settings.
+
+```php
+public function mount()
+{
+    $this->setOptions([
+        // The class set on the table when using bootstrap
+        'bootstrap.classes.table' => 'table table-striped table-bordered',
+        
+        // Whether or not the table is wrapped in a `.container-fluid` or not
+        'bootstrap.container' => true,
+    
+        // Whether or not the table is wrapped in a `.table-responsive` or not
+        'bootstrap.responsive' => true,
+    ]);
+}
+```
+
+For this to work you have to pass an associative array of overrides to the `setOptions()` method. The above are the defaults, if you're not changing them then you can leave them out.
+
 ### Passing Properties
 
 To pass properties from your blade view to your table, you can use the normal Livewire mount method:

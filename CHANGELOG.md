@@ -14,6 +14,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Render method to columns which returns whatever you put into it, you can return a view, html, an attribute, etc.
 - Pulled in and modified the HTML component library from laravelcollective so you an return html components from the render method. i.e.: $this->image(...);
 - Added new loading config on whether to keep displaying the current data while loading or collapse it
+- Added ability to set frontend framework specific options via the mount method on a per component basis.
 
 ### Changed
 
