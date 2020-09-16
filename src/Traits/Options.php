@@ -9,7 +9,6 @@ use Illuminate\Support\Arr;
  */
 trait Options
 {
-
     /**
      * @var array
      */
