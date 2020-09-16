@@ -9,10 +9,16 @@ use Illuminate\Support\Arr;
  */
 trait Options
 {
+
     /**
      * @var array
      */
-    protected $options = [
+    protected $options = [];
+
+    /**
+     * @var array
+     */
+    protected $optionDefaults = [
         'bootstrap' => [
             'classes' => [
                 'table' => 'table table-bordered table-striped',
@@ -29,7 +35,7 @@ trait Options
      */
     public function getOption($option)
     {
-        return Arr::dot($this->options)[$option] ?? null;
+        return Arr::dot($this->optionDefaults)[$option] ?? null;
     }
 
     /**
@@ -38,7 +44,7 @@ trait Options
     protected function setOptions(array $overrides = []): void
     {
         foreach ($overrides as $key => $value) {
-            data_set($this->options, $key, $value);
+            data_set($this->optionDefaults, $key, $value);
         }
     }
 }

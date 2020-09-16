@@ -64,7 +64,7 @@ abstract class TableComponent extends Component
             $this->paginationTheme = 'bootstrap';
         }
 
-        $this->setOptions();
+        $this->setOptions($this->options);
 
         parent::__construct($id);
     }
