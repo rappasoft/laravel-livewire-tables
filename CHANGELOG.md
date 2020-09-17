@@ -4,7 +4,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
-## [0.3] - 2020-XX-XX
+## [0.3] - 2020-09-16
 
 - Ground up rebuild
 
