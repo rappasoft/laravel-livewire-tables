@@ -8,8 +8,11 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 trait Search
 {
     /**
-     * Search.
+     * The initial search string.
+     *
+     * @var string
      */
+    public $search = '';
 
     /**
      * Method to search by: debounce or lazy.
@@ -33,25 +36,11 @@ trait Search
     public $searchDebounce = 350;
 
     /**
-     * The initial search string.
-     *
-     * @var string
-     */
-    public $search = '';
-
-    /**
      * A button to clear the search box.
      *
      * @var bool
      */
     public $clearSearchButton = false;
-
-    /**
-     * Class to apply to the clear button.
-     *
-     * @var string
-     */
-    public $clearSearchButtonClass = 'btn btn-outline-dark';
 
     /**
      * Resets the search string.
