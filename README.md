@@ -126,11 +126,19 @@ You can define the columns of your table with the column class.
 The following methods are available to chain to a column:
 
 ```php
+
+/**
+ * The first argument is the column header text
+ * The attribute can be omitted if the text is equal to the lower case snake_cased version of the column
+ * The attribute can also be used to reference a relationship (i.e. role.name)
+ */
+public function make($text, ?$attribute) : Column;
+
 /**
  * Used to format the column data in different ways, see the HTML Components section.
  * You will be passed the current model and column (if you need it for some reason) which can be omitted as an argument if you don't need it.
  */
-public function format(Model $model, Column $column) : self;
+public function format(callable $callable = null) : self;
 
 /**
  * This column is searchable, with no callback it will search the column by name or by the supplied relationship, using a callback overrides the default searching functionality.

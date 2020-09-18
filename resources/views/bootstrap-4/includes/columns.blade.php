@@ -22,7 +22,15 @@
                     @endif
                 </th>
             @else
-                <th>{{ $column->getText() }}</th>
+                <th
+                    class="{{ $this->setTableHeadClass($column->getAttribute()) }}"
+                    id="{{ $this->setTableHeadId($column->getAttribute()) }}"
+                    @foreach ($this->setTableHeadAttributes($column->getAttribute()) as $key => $value)
+                        {{ $key }}="{{ $value }}"
+                    @endforeach
+                >
+                    {{ $column->getText() }}
+                </th>
             @endif
         @endif
     @endforeach
