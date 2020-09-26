@@ -10,13 +10,10 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Rappasoft\LaravelLivewireTables\Traits\ExportHelper;
 
 /**
- * Class CSVExport
- *
- * @package Rappasoft\LaravelLivewireTables\Exports
+ * Class CSVExport.
  */
 class Export implements FromQuery, WithHeadings, WithMapping
 {
-
     use Exportable, ExportHelper;
 
     /**
@@ -35,7 +32,8 @@ class Export implements FromQuery, WithHeadings, WithMapping
      * @param  Builder  $builder
      * @param  array  $columns
      */
-    public function __construct(Builder $builder, array $columns = []) {
+    public function __construct(Builder $builder, array $columns = [])
+    {
         $this->builder = $builder;
         $this->columns = $columns;
     }
