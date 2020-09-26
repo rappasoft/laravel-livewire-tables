@@ -7,11 +7,11 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait ExportHelper
 {
-
     /**
      * @return array
      */
-    public function getHeadingRow(): array {
+    public function getHeadingRow(): array
+    {
         $headers = [];
 
         foreach ($this->columns as $column) {
