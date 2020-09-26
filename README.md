@@ -304,6 +304,9 @@ They are done this way instead of the config file that way you can have per-comp
 protected $options = [
     // The class set on the table when using bootstrap
     'bootstrap.classes.table' => 'table table-striped table-bordered',
+
+    // The class set on the table's thead when using bootstrap
+    'bootstrap.classes.thead' => null,
     
     // Whether or not the table is wrapped in a `.container-fluid` or not
     'bootstrap.container' => true,

@@ -21,6 +21,7 @@ trait Options
         'bootstrap' => [
             'classes' => [
                 'table' => 'table table-bordered table-striped',
+                'thead' => null,
             ],
             'container' => true,
             'responsive' => true,
