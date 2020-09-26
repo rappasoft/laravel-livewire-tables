@@ -250,7 +250,8 @@ class Column
     /**
      * @return $this
      */
-    public function excludeFromExport(): self {
+    public function excludeFromExport(): self
+    {
         $this->includeInExport = false;
 
         return $this;
