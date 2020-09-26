@@ -11,7 +11,6 @@ use Rappasoft\LaravelLivewireTables\Exceptions\UnsupportedExportFormatException;
  */
 trait Exports
 {
-
     /**
      * @var string
      */
@@ -28,14 +27,15 @@ trait Exports
      * @return mixed
      * @throws Exception
      */
-    public function export($type) {
+    public function export($type)
+    {
         $type = strtolower($type);
 
-        if (!in_array($type, ['csv', 'xls', 'xlsx'], true)) {
+        if (! in_array($type, ['csv', 'xls', 'xlsx'], true)) {
             throw new UnsupportedExportFormatException(__('This export type is not supported.'));
         }
 
-        if (!in_array($type, array_map('strtolower', $this->exports), true)) {
+        if (! in_array($type, array_map('strtolower', $this->exports), true)) {
             throw new UnsupportedExportFormatException(__('This export type is not set on this table component.'));
         }
 
