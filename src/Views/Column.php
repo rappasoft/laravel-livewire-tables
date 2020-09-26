@@ -45,12 +45,22 @@ class Column
     /**
      * @var
      */
+    protected $exportFormatCallback;
+
+    /**
+     * @var
+     */
     protected $sortCallback;
 
     /**
      * @var null
      */
     protected $searchCallback;
+
+    /**
+     * @var bool
+     */
+    protected $includeInExport = true;
 
     /**
      * Column constructor.
@@ -118,6 +128,14 @@ class Column
     /**
      * @return bool
      */
+    public function hasExportFormat(): bool
+    {
+        return is_callable($this->exportFormatCallback);
+    }
+
+    /**
+     * @return bool
+     */
     public function isSortable(): bool
     {
         return $this->sortable === true;
@@ -152,6 +170,18 @@ class Column
     }
 
     /**
+     * @param  callable  $callable
+     *
+     * @return $this
+     */
+    public function exportFormat(callable $callable): Column
+    {
+        $this->exportFormatCallback = $callable;
+
+        return $this;
+    }
+
+    /**
      * @param $model
      * @param $column
      *
@@ -160,6 +190,17 @@ class Column
     public function formatted($model, $column)
     {
         return app()->call($this->formatCallback, ['model' => $model, 'column' => $column]);
+    }
+
+    /**
+     * @param $model
+     * @param $column
+     *
+     * @return mixed
+     */
+    public function formattedForExport($model, $column)
+    {
+        return app()->call($this->exportFormatCallback, ['model' => $model, 'column' => $column]);
     }
 
     /**
@@ -194,6 +235,23 @@ class Column
     public function raw(): self
     {
         $this->raw = true;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function includedInExport(): bool
+    {
+        return $this->includeInExport === true;
+    }
+
+    /**
+     * @return $this
+     */
+    public function excludeFromExport(): self {
+        $this->includeInExport = false;
 
         return $this;
     }

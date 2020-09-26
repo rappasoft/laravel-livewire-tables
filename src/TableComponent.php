@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Rappasoft\LaravelLivewireTables\Traits\Exports;
 use Rappasoft\LaravelLivewireTables\Traits\Loading;
 use Rappasoft\LaravelLivewireTables\Traits\Options;
 use Rappasoft\LaravelLivewireTables\Traits\Pagination;
@@ -20,7 +21,8 @@ use Rappasoft\LaravelLivewireTables\Traits\Yajra;
  */
 abstract class TableComponent extends Component
 {
-    use Loading,
+    use Exports,
+        Loading,
         Options,
         Pagination,
         Search,

@@ -33,5 +33,7 @@
                 @endif
             </div>
         @endif
+
+        @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.export')
     </div><!--row-->
 @endif
