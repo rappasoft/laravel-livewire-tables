@@ -27,6 +27,9 @@
         "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^9.0"
     },
+    "suggest": {
+        "maatwebsite/excel": "Required to use export functionality"
+    },
     "autoload": {
         "psr-4": {
             "Rappasoft\\LaravelLivewireTables\\": "src"
