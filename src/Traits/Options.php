@@ -20,7 +20,11 @@ trait Options
     protected $optionDefaults = [
         'bootstrap' => [
             'classes' => [
+                'buttons' => [
+                    'export' => 'btn',
+                ],
                 'table' => 'table table-bordered table-striped',
+                'thead' => null,
             ],
             'container' => true,
             'responsive' => true,
