@@ -38,6 +38,16 @@ class Column
     protected $raw = false;
 
     /**
+     * @var bool
+     */
+    protected $includeInExport = true;
+
+    /**
+     * @var bool
+     */
+    protected $exportOnly = false;
+
+    /**
      * @var
      */
     protected $formatCallback;
@@ -56,11 +66,6 @@ class Column
      * @var null
      */
     protected $searchCallback;
-
-    /**
-     * @var bool
-     */
-    protected $includeInExport = true;
 
     /**
      * Column constructor.
@@ -245,6 +250,25 @@ class Column
     public function includedInExport(): bool
     {
         return $this->includeInExport === true;
+    }
+
+    /**
+     * @return $this
+     */
+    public function exportOnly(): self
+    {
+        $this->hidden = true;
+        $this->exportOnly = true;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isExportOnly(): bool
+    {
+        return $this->exportOnly === true;
     }
 
     /**

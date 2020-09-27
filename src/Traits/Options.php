@@ -21,7 +21,7 @@ trait Options
         'bootstrap' => [
             'classes' => [
                 'buttons' => [
-                    'export' => 'btn btn-info',
+                    'export' => 'btn',
                 ],
                 'table' => 'table table-bordered table-striped',
                 'thead' => null,
