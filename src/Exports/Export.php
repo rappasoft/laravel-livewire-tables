@@ -64,7 +64,7 @@ class Export implements FromQuery, WithHeadings, WithMapping
         $map = [];
 
         foreach ($this->columns as $column) {
-            if ($column->isVisible() && $column->includedInExport()) {
+            if ($column->isExportOnly() || ($column->isVisible() && $column->includedInExport())) {
                 if ($column->isFormatted()) {
                     if ($column->hasExportFormat()) {
                         $map[] = $column->formattedForExport($row, $column);

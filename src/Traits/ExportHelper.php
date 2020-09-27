@@ -15,7 +15,7 @@ trait ExportHelper
         $headers = [];
 
         foreach ($this->columns as $column) {
-            if ($column->isVisible() && $column->includedInExport()) {
+            if ($column->isExportOnly() || ($column->isVisible() && $column->includedInExport())) {
                 $headers[] = $column->getText();
             }
         }

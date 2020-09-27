@@ -16,6 +16,10 @@
             @if (in_array('xlsx', $exports, true))
                 <a class="dropdown-item" href="#" wire:click.prevent="export('xlsx')">XLSX</a>
             @endif
+
+            @if (in_array('pdf', $exports, true))
+                <a class="dropdown-item" href="#" wire:click.prevent="export('pdf')">PDF</a>
+            @endif
         </div>
     </div><!--export-dropdown-->
 @endif

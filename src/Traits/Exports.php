@@ -31,7 +31,7 @@ trait Exports
     {
         $type = strtolower($type);
 
-        if (! in_array($type, ['csv', 'xls', 'xlsx'], true)) {
+        if (! in_array($type, ['csv', 'xls', 'xlsx', 'pdf'], true)) {
             throw new UnsupportedExportFormatException(__('This export type is not supported.'));
         }
 
@@ -42,15 +42,28 @@ trait Exports
         switch ($type) {
             case 'csv':default:
                 $writer = Excel::CSV;
-                break;
+            break;
 
             case 'xls':
                 $writer = Excel::XLS;
-                break;
+            break;
 
             case 'xlsx':
                 $writer = Excel::XLSX;
-                break;
+            break;
+
+            case 'pdf':
+                $writer = Excel::DOMPDF;
+                $library = strtolower(config('laravel-livewire-tables.pdf_library'));
+
+                if (! in_array($library, ['dompdf', 'mpdf'], true)) {
+                    throw new UnsupportedExportFormatException(__('This PDF export library is not supported.'));
+                }
+
+                if ($library === 'mpdf') {
+                    $writer = Excel::MPDF;
+                }
+            break;
         }
 
         $class = config('laravel-livewire-tables.exports');
