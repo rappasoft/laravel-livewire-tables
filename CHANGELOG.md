@@ -6,6 +6,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [0.3.2] - 2020-09-25
 
+### Added
+
+- Ability to export the list set to CSV/XLS/XLSX/PDF
+- Ability to mark a visible column as not to be exported
+- Ability to mark a column as export only, which hides it from UI
+- Ability to format a single column differently for export as it is for its UI
+- Added option to change the button class from the config
+
 ### Changed
 
 - Added thead class to option array
