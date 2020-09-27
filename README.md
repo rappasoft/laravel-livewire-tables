@@ -164,6 +164,21 @@ public function hide() : self;
  * Hide this column based on a condition. i.e.: user has or doesn't have a role or permission. Must return a boolean, not a closure.
  */
 public function hideIf($condition) : self;
+
+/**
+ * This column is only included in exports and is not available to the UI
+ */
+public function exportOnly() : self;
+
+/**
+ * This column is excluded from the export but visible to the UI unless defined otherwise with hide() or hideIf()
+ */
+public function excludeFromExport() : self;
+
+/**
+ * If supplied, and the column is exportable, this will be the format when rendering the CSV/XLS/PDF instead of the format() function. You may have both, format() for the UI, and exportFormat() for the export only. If this method is not supplied, format() will be used and passed through strip_tags() to try to clean the output.
+ */
+public function exportFormat(callable $callable = null) : self;
 ```
 
 ### Properties
@@ -220,6 +235,13 @@ You can override any of these in your table component:
 | Property | Default | Usage |
 | -------- | ------- | ----- |
 | $offlineIndicator | true | Whether or not to display an offline message when there is no connection |
+
+#### Exports
+
+| Property | Default | Usage |
+| -------- | ------- | ----- |
+| $exportFileName | data | The name of the downloaded file when exported |
+| $exports | [] | The available options to export this table as (csv, xls, xlsx, pdf) |
 
 #### Other
 
@@ -292,7 +314,120 @@ public function email($email): string
 public function html($html): HtmlString
 ```
 
-### Setting Options
+### Exporting Data
+
+The table component supports exporting to CSV, XLS, XLSX, and PDF.
+
+In order to use this functionality you must install [Laravel Excel](https://laravel-excel.com) 3.1 or newer.
+
+In order to use the PDF export functionality, you must also install either [DOMPDF](https://github.com/dompdf/dompdf) or [MPDF](https://github.com/mpdf/mpdf).
+
+You may set the PDF export library in the config file under **pdf_library**. DOMPDF is the default.
+
+#### What exports your table supports
+
+By default, exporting is off. You can add a list of available export types with the $export class property.
+
+`public $exports = ['csv', 'xls', 'xlsx', 'pdf'];`
+
+#### Defining the file name.
+
+By default, the filename will be `data.type`. I.e. `data.pdf`, `data.csv`.
+
+You can change the filename with the `$exportFileName` class property.
+
+`public $exportFileName = 'users-table';` - *Obviously omit the file type*
+
+#### Deciding what columns to export
+
+You have a couple option on exporting information. By default, if not defined at all, all columns will be exported.
+
+If you have a column that you want visible to the UI, but not to the export, you can chain on `->excludeFromExport()`
+
+If you have a column that you want visible to the export, but not to the UI, you can chain on `->exportOnly()`
+
+#### Formatting column data for export
+
+By default, the export will attempt to render the information just as it is shown to the UI. For a normal column based attribute this is fine, but when exporting formatted columns that output a view or HTML, it will attempt to strip the HTML out.
+
+Instead, you have available to you the `->exportFormat()` method on your column, to define how you want this column to be formatted when outputted to the file.
+
+So you can have a column that you want both available to the UI and the export, and format them differently based on where it is being outputted.
+
+#### Exporting example
+
+```php
+<?php
+
+namespace App\Http\Livewire;
+
+use App\User;
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\TableComponent;
+use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+
+class UsersTable extends TableComponent
+{
+    use HtmlComponents;
+
+    public function query() : Builder
+    {
+        return User::query();
+    }
+
+    public function columns() : array
+    {
+        return [
+            Column::make('ID')
+                ->searchable()
+                ->sortable()
+                ->excludeFromExport(), // This column is visible to the UI, but not export.
+            Column::make('ID')
+                ->exportOnly(), // This column is only rendered on export
+            Column::make('Avatar')
+                ->format(function(User $model) {
+                    return $this->image($model->avatar, $model->name, ['class' => 'img-fluid']);
+                })
+                ->excludeFromExport(), // This column is visible to the UI, but not export.
+            Column::make('Name') // This columns is visible to both the UI and export, and is rendered the same
+                ->searchable()
+                ->sortable(),
+            Column::make('E-mail', 'email')
+                ->searchable()
+                ->sortable()
+                ->format(function(User $model) {
+                    return $this->mailto($model->email, null, ['target' => '_blank']);
+                })
+                ->exportFormat(function(User $model) { // This column is visible to both the UI and the export, but is formatted differently to the export via this method.
+                    return $model->email;
+                }),
+            Column::make('Role', 'role.name') // This columns is visible to both the UI and export, and is rendered the same
+                ->searchable()
+                ->sortable(),
+            Column::make('Permissions') // This columns is visible to both the UI and export, and is rendered the same, except the HTML tags will be removed because it is not specifically calling a exportFormat() function.
+                ->sortable()
+                ->format(function(User $model) {
+                    return $this->html('<strong>'.$model->permissions_count.'</strong>');
+                }),
+            Column::make('Actions')
+                ->format(function(User $model) {
+                    return view('backend.auth.user.includes.actions', ['user' => $model]);
+                })
+                ->hideIf(auth()->user()->cannot('do-this'))
+                ->excludeFromExport(), // This column is visible to the UI, but not export.
+        ];
+    }
+}
+```
+
+#### Customizing Exports
+
+Currently, there are no customization options available. But there is a config item called `exports` where you can define the class to do the rendering. You can use the `\Rappasoft\LaravelLivewireTables\Exports\Export` class as a base.
+
+More options will be added in the future, but the built in options should be good for most applications.
+
+### Setting Component Options
 
 There are some frontend framework specific options that can be set.
 
@@ -307,6 +442,9 @@ protected $options = [
 
     // The class set on the table's thead when using bootstrap
     'bootstrap.classes.thead' => null,
+
+    // The class set on the table's export dropdown button
+    'bootstrap.classes.buttons.export' => 'btn',
     
     // Whether or not the table is wrapped in a `.container-fluid` or not
     'bootstrap.container' => true,
