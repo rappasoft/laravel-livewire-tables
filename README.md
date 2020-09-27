@@ -326,13 +326,13 @@ You may set the PDF export library in the config file under **pdf_library**. DOM
 
 #### What exports your table supports
 
-By default, exporting is off. You can add a list of available export types with the $export class property.
+By default, exporting is off. You can add a list of available export types with the $exports class property.
 
 `public $exports = ['csv', 'xls', 'xlsx', 'pdf'];`
 
 #### Defining the file name.
 
-By default, the filename will be `data.type`. I.e. `data.pdf`, `data.csv`.
+By default, the filename will be `data`.*type*. I.e. `data.pdf`, `data.csv`.
 
 You can change the filename with the `$exportFileName` class property.
 
@@ -342,15 +342,15 @@ You can change the filename with the `$exportFileName` class property.
 
 You have a couple option on exporting information. By default, if not defined at all, all columns will be exported.
 
-If you have a column that you want visible to the UI, but not to the export, you can chain on `->excludeFromExport()`
+If you have a column that you want visible to the UI, but not to the export, you can chain on `excludeFromExport()`
 
-If you have a column that you want visible to the export, but not to the UI, you can chain on `->exportOnly()`
+If you have a column that you want visible to the export, but not to the UI, you can chain on `exportOnly()`
 
 #### Formatting column data for export
 
 By default, the export will attempt to render the information just as it is shown to the UI. For a normal column based attribute this is fine, but when exporting formatted columns that output a view or HTML, it will attempt to strip the HTML out.
 
-Instead, you have available to you the `->exportFormat()` method on your column, to define how you want this column to be formatted when outputted to the file.
+Instead, you have available to you the `exportFormat()` method on your column, to define how you want this column to be formatted when outputted to the file.
 
 So you can have a column that you want both available to the UI and the export, and format them differently based on where it is being outputted.
 
@@ -373,7 +373,7 @@ class UsersTable extends TableComponent
 
     public function query() : Builder
     {
-        return User::query();
+        return User::with('role')->withCount('permissions');
     }
 
     public function columns() : array
