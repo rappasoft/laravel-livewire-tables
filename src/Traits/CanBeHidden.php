@@ -19,19 +19,17 @@ trait CanBeHidden
      */
     public function hideIf($condition): self
     {
-        $this->hidden = $condition === true;
+        $this->hidden = $condition;
 
         return $this;
     }
 
     /**
-     * @param  bool  $hidden
-     *
      * @return $this
      */
-    public function hide($hidden = true): self
+    public function hide(): self
     {
-        $this->hidden = $hidden;
+        $this->hidden = true;
 
         return $this;
     }
@@ -39,8 +37,16 @@ trait CanBeHidden
     /**
      * @return bool
      */
+    public function isVisible(): bool
+    {
+        return $this->hidden !== true;
+    }
+
+    /**
+     * @return bool
+     */
     public function isHidden(): bool
     {
-        return $this->hidden;
+        return ! $this->isVisible();
     }
 }

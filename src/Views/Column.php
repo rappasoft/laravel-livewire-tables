@@ -3,17 +3,17 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\Traits\HasComponents;
+use Rappasoft\LaravelLivewireTables\Traits\CanBeHidden;
 
 /**
  * Class Column.
  */
 class Column
 {
-    use HasComponents;
+    use CanBeHidden;
 
     /**
-     * @var
+     * @var string
      */
     protected $text;
 
@@ -25,17 +25,37 @@ class Column
     /**
      * @var bool
      */
-    protected $searchable = false;
-
-    /**
-     * @var null
-     */
-    protected $searchCallback;
+    protected $sortable = false;
 
     /**
      * @var bool
      */
-    protected $sortable = false;
+    protected $searchable = false;
+
+    /**
+     * @var bool
+     */
+    protected $raw = false;
+
+    /**
+     * @var bool
+     */
+    protected $includeInExport = true;
+
+    /**
+     * @var bool
+     */
+    protected $exportOnly = false;
+
+    /**
+     * @var
+     */
+    protected $formatCallback;
+
+    /**
+     * @var
+     */
+    protected $exportFormatCallback;
 
     /**
      * @var
@@ -43,82 +63,87 @@ class Column
     protected $sortCallback;
 
     /**
-     * @var bool
+     * @var null
      */
-    protected $unescaped = false;
-
-    /**
-     * @var bool
-     */
-    protected $html = false;
-
-    /**
-     * This column is a custom attribute on the model and not a column in the database.
-     *
-     * @var bool
-     */
-    protected $customAttribute = false;
-
-    /**
-     * @var
-     */
-    protected $view;
-
-    /**
-     * The name of the model variable passed to the view.
-     *
-     * @var string
-     */
-    protected $viewModelName;
+    protected $searchCallback;
 
     /**
      * Column constructor.
      *
-     * @param $text
-     * @param $attribute
+     * @param  string  $text
+     * @param  string|null  $attribute
      */
-    public function __construct($text, $attribute)
+    public function __construct(string $text, ?string $attribute)
     {
         $this->text = $text;
         $this->attribute = $attribute ?? Str::snake(Str::lower($text));
     }
 
     /**
-     * @param $property
+     * @param  string  $text
+     * @param  string|null  $attribute
      *
-     * @return mixed
+     * @return Column
      */
-    public function __get($property)
-    {
-        return $this->$property;
-    }
-
-    /**
-     * @param  null  $text
-     * @param  null  $attribute
-     *
-     * @return static
-     */
-    public static function make($text = null, $attribute = null)
+    public static function make(string $text, ?string $attribute = null): Column
     {
         return new static($text, $attribute);
     }
 
     /**
-     * @param  callable|null  $callable
-     *
-     * @return $this
+     * @return string
      */
-    public function searchable(callable $callable = null): self
+    public function getText(): string
     {
-        if ($this->hasComponents()) {
-            return $this;
-        }
+        return $this->text;
+    }
 
-        $this->searchCallback = $callable;
-        $this->searchable = true;
+    /**
+     * @return string
+     */
+    public function getAttribute(): string
+    {
+        return $this->attribute;
+    }
 
-        return $this;
+    /**
+     * @return mixed
+     */
+    public function getSortCallback()
+    {
+        return $this->sortCallback;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSearchCallback()
+    {
+        return $this->searchCallback;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFormatted(): bool
+    {
+        return is_callable($this->formatCallback);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasExportFormat(): bool
+    {
+        return is_callable($this->exportFormatCallback);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSortable(): bool
+    {
+        return $this->sortable === true;
     }
 
     /**
@@ -126,7 +151,61 @@ class Column
      */
     public function isSearchable(): bool
     {
-        return $this->searchable;
+        return $this->searchable === true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRaw(): bool
+    {
+        return $this->raw === true;
+    }
+
+    /**
+     * @param  callable  $callable
+     *
+     * @return $this
+     */
+    public function format(callable $callable): Column
+    {
+        $this->formatCallback = $callable;
+
+        return $this;
+    }
+
+    /**
+     * @param  callable  $callable
+     *
+     * @return $this
+     */
+    public function exportFormat(callable $callable): Column
+    {
+        $this->exportFormatCallback = $callable;
+
+        return $this;
+    }
+
+    /**
+     * @param $model
+     * @param $column
+     *
+     * @return mixed
+     */
+    public function formatted($model, $column)
+    {
+        return app()->call($this->formatCallback, ['model' => $model, 'column' => $column]);
+    }
+
+    /**
+     * @param $model
+     * @param $column
+     *
+     * @return mixed
+     */
+    public function formattedForExport($model, $column)
+    {
+        return app()->call($this->exportFormatCallback, ['model' => $model, 'column' => $column]);
     }
 
     /**
@@ -136,10 +215,6 @@ class Column
      */
     public function sortable(callable $callable = null): self
     {
-        if ($this->hasComponents()) {
-            return $this;
-        }
-
         $this->sortCallback = $callable;
         $this->sortable = true;
 
@@ -147,93 +222,24 @@ class Column
     }
 
     /**
-     * @return bool
-     */
-    public function isSortable(): bool
-    {
-        return $this->sortable;
-    }
-
-    /**
-     * @return $this
-     */
-    public function unescaped(): self
-    {
-        if ($this->hasComponents()) {
-            return $this;
-        }
-
-        $this->unescaped = true;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isUnescaped(): bool
-    {
-        return $this->unescaped;
-    }
-
-    /**
-     * @return $this
-     */
-    public function html(): self
-    {
-        if ($this->hasComponents()) {
-            return $this;
-        }
-
-        $this->html = true;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isHtml(): bool
-    {
-        return $this->html;
-    }
-
-    /**
-     * @return $this
-     */
-    public function customAttribute(): self
-    {
-        if ($this->hasComponents()) {
-            return $this;
-        }
-
-        $this->customAttribute = true;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isCustomAttribute(): bool
-    {
-        return $this->customAttribute;
-    }
-
-    /**
-     * @param $view
-     * @param  string  $viewModelName
+     * @param  callable|null  $callable
      *
      * @return $this
      */
-    public function view($view, $viewModelName = 'model'): self
+    public function searchable(callable $callable = null): self
     {
-        if ($this->hasComponents()) {
-            return $this;
-        }
+        $this->searchCallback = $callable;
+        $this->searchable = true;
 
-        $this->view = $view;
-        $this->viewModelName = $viewModelName;
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function raw(): self
+    {
+        $this->raw = true;
 
         return $this;
     }
@@ -241,16 +247,37 @@ class Column
     /**
      * @return bool
      */
-    public function isView(): bool
+    public function includedInExport(): bool
     {
-        return view()->exists($this->view);
+        return $this->includeInExport === true;
     }
 
     /**
-     * @return string
+     * @return $this
      */
-    public function getViewModelName()
+    public function exportOnly(): self
     {
-        return $this->viewModelName;
+        $this->hidden = true;
+        $this->exportOnly = true;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isExportOnly(): bool
+    {
+        return $this->exportOnly === true;
+    }
+
+    /**
+     * @return $this
+     */
+    public function excludeFromExport(): self
+    {
+        $this->includeInExport = false;
+
+        return $this;
     }
 }

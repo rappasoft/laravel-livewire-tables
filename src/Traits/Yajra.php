@@ -34,7 +34,7 @@ trait Yajra
      *
      * @return string
      */
-    public function attribute(Builder $query, $relationships, $attribute)
+    public function attribute(Builder $query, $relationships, $attribute): string
     {
         $table = '';
         $last_query = $query;
@@ -57,22 +57,19 @@ trait Yajra
 
                     $last_query->addSelect($table.'.'.$attribute);
                     $query->leftJoin($table, $foreign, $other);
-
-                    break;
+                break;
 
                 case $model instanceof HasOneOrMany:
                     $table = $model->getRelated()->getTable();
                     $foreign = $model->getQualifiedForeignKeyName();
                     $other = $model->getQualifiedParentKeyName();
-
-                    break;
+                break;
 
                 case $model instanceof BelongsTo:
                     $table = $model->getRelated()->getTable();
                     $foreign = $model->getQualifiedForeignKeyName();
                     $other = $model->getQualifiedOwnerKeyName();
-
-                    break;
+                break;
 
                 default:
                     return $attribute;
@@ -88,14 +85,16 @@ trait Yajra
     /**
      * @param $attribute
      *
-     * @return mixed|null
+     * @return mixed|bool
      */
     protected function getColumnByAttribute($attribute)
     {
-        foreach ($this->columns() as $col) {
-            if ($col->attribute === $attribute) {
-                return $col;
+        foreach ($this->columns() as $column) {
+            if ($column->getAttribute() === $attribute) {
+                return $column;
             }
         }
+
+        return false;
     }
 }

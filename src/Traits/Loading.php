@@ -8,20 +8,24 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 trait Loading
 {
     /**
-     * Loading.
-     */
-
-    /**
      * Whether or not to show a loading indicator when searching.
      *
      * @var bool
      */
-    public $loadingIndicator = false;
+    public $loadingIndicator = true;
 
     /**
-     * The loading message that gets displayed.
+     * Whether or not to disable the search bar when it is searching/loading new data.
      *
-     * @var string
+     * @var bool
      */
-    public $loadingMessage;
+    public $disableSearchOnLoading = false;
+
+    /**
+     * When the table is loading, hide all data but the loading row
+     * Otherwise the loading row gets shown above the data (makes the page less jumpy).
+     *
+     * @var bool
+     */
+    public $collapseDataOnLoading = false;
 }
