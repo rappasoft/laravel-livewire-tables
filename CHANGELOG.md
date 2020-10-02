@@ -4,6 +4,67 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [0.3.2] - 2020-09-25
+
+### Added
+
+- Added thead class to option array
+- Ability to export the list set to CSV/XLS/XLSX/PDF
+- Ability to mark a visible column as not to be exported
+- Ability to mark a column as export only, which hides it from UI
+- Ability to format a single column differently for export as it is for its UI
+- Added option to change the button class from the config
+
+## [0.3.1] - 2020-09-18
+
+### Changed
+
+- Fixed non-sortable column headers not getting classes applied.
+- Updated documentation
+
+## [0.3] - 2020-09-16
+
+- Ground up rebuild
+
+### Added
+
+- Config file to choose frontend framework - currently limited to bootstrap
+- Render method to columns which returns whatever you put into it, you can return a view, html, an attribute, etc.
+- Pulled in and modified the HTML component library from laravelcollective so you can return html components from the render method. i.e.: $this->image(...);
+- Added new loading config on whether to keep displaying the current data while loading or collapse it
+- Added ability to set frontend framework specific options via a property on a per component basis.
+
+### Changed
+
+- Extracted the sorting icons out to their actual HTML, so you can use whatever you want, not limited to the 'i' tag.
+
+### Removed
+
+- Checkbox functionality for now
+- Component functionality pending debate
+- All class and styling based properties. It's better to publish the views to change something.
+
+## [0.2.1] - 2020-09-10
+
+### Added
+
+- Arabic translations
+- Ability to add a link to make table rows clickable
+- Added the ability to change the sort icons
+- Ability to hide a column based on a condition or permanently
+
+### Updated
+
+- Livewire to 2.x
+
+### Removed
+
+- Removed 1 hard coded font awesome icon
+
+### Changed
+
+- Publish tags to service provider
+
 ## [0.2.0] - 2020-08-10
 
 ### Added
@@ -69,7 +130,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.2.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.2...development
+[0.3.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.1...v0.3.2
+[0.3.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.2.1...v0.3.0
+[0.2.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.1.4...v0.1.5
