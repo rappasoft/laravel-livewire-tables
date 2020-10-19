@@ -1,4 +1,4 @@
-@if ($paginationEnabled || $searchEnabled)
+@if ($paginationEnabled || $searchEnabled || $filterEnabled)
     <div class="row mb-4">
         @if ($paginationEnabled && count($perPageOptions))
             <div class="col form-inline">
@@ -35,5 +35,6 @@
         @endif
 
         @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.export')
+        @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.filter')
     </div><!--row-->
 @endif

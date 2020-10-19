@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Rappasoft\LaravelLivewireTables\Traits\Exports;
+use Rappasoft\LaravelLivewireTables\Traits\Filter;
 use Rappasoft\LaravelLivewireTables\Traits\Loading;
 use Rappasoft\LaravelLivewireTables\Traits\Options;
 use Rappasoft\LaravelLivewireTables\Traits\Pagination;
@@ -29,7 +30,8 @@ abstract class TableComponent extends Component
         Sorting,
         Table,
         WithPagination,
-        Yajra;
+        Yajra,
+        Filter;
 
     /**
      * The default pagination theme.
