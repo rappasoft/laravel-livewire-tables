@@ -8,8 +8,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Added
 
+- PHP8 Support
 - Spanish translations
 - German translations
+- French translations
 
 ### Changed
 
