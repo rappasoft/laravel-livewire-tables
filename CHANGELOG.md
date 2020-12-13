@@ -4,6 +4,19 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [0.3.3] - 2020-12-13
+
+### Added
+
+- PHP8 Support
+- Spanish translations
+- German translations
+- French translations
+
+### Changed
+
+- Updated Arabic translations
+
 ## [0.3.2] - 2020-09-25
 
 ### Added
@@ -130,7 +143,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.2...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.3...development
+[0.3.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.2.1...v0.3.0
