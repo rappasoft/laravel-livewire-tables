@@ -43,6 +43,13 @@ trait Search
     public $clearSearchButton = false;
 
     /**
+     * The class applied to the clear button
+     *
+     * @var bool
+     */
+    public $clearSearchButtonClass = false;
+
+    /**
      * Resets the search string.
      */
     public function clearSearch(): void
