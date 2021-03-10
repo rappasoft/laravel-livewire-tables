@@ -47,7 +47,7 @@ trait Search
      *
      * @var bool
      */
-    public $clearSearchButtonClass = false;
+    public $clearSearchButtonClass = 'btn btn-outline-dark';
 
     /**
      * Resets the search string.
