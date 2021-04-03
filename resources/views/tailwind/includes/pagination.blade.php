@@ -1,7 +1,6 @@
 @if ($paginationEnabled)
-    <div class="row">
-        <div class="col">
-            {{ $models->links() }}
-        </div>
+    <div class="m-3">
+        {{ $models->links() }}
     </div>
+
 @endif
