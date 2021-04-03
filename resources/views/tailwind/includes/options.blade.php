@@ -21,10 +21,9 @@
                             placeholder="{{ __('laravel-livewire-tables::strings.search') }}"
                         />
                         @if ($clearSearchButton)
-                            <div wire:click="clearSearch" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                <!-- Heroicon name: solid/question-mark-circle -->
-                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                            <div wire:click="clearSearch" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer">
+                                <svg class="h-4 w-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </div>
                         @endif
