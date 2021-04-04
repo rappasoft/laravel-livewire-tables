@@ -50,4 +50,11 @@ trait Options
             data_set($this->optionDefaults, $key, $value);
         }
     }
+
+    /**
+     * The route to a model add page
+     *
+     * @var string
+     */
+    public $addRoute = '';
 }
