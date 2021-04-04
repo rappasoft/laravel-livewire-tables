@@ -52,7 +52,7 @@ trait Options
     }
 
     /**
-     * The route to a model add page
+     * The route to a model add page.
      *
      * @var string
      */
