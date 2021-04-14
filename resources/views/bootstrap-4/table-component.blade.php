@@ -1,6 +1,6 @@
 <div
     class="{{ $this->getOption('bootstrap.container') ? 'container-fluid' : '' }}"
-    @if (is_numeric($refresh)) wire:poll.{{ $refresh }}.ms @elseif(is_string($refresh)) wire:poll="{{ $refresh }}" @endif
+    @if (is_numeric($refresh)) wire:poll.{{ $refresh }}ms @elseif(is_string($refresh)) wire:poll="{{ $refresh }}" @endif
 >
     @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.offline')
     @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.options')

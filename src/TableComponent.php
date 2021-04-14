@@ -96,7 +96,7 @@ abstract class TableComponent extends Component
     {
         return view($this->view(), [
             'columns' => $this->columns(),
-            'models' => $this->paginationEnabled ? $this->models()->paginate($this->perPage) : $this->models()->get(),
+            'models' => $this->paginationEnabled ? $this->models()->paginate((int) $this->perPage) : $this->models()->get(),
         ]);
     }
 

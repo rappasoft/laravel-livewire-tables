@@ -27,7 +27,7 @@
                         />
                         @if ($clearSearchButton)
                             <div class="input-group-append">
-                                <button class="btn btn-outline-dark" type="button" wire:click="clearSearch">@lang('laravel-livewire-tables::strings.clear')</button>
+                                <button class="{{ $clearSearchButtonClass }}" type="button" wire:click="clearSearch">@lang('laravel-livewire-tables::strings.clear')</button>
                             </div>
                     </div>
                 @endif
