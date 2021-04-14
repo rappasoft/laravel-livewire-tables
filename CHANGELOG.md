@@ -10,6 +10,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Fixed polling issue
 - Fixed [MongoDB per page issue](https://github.com/rappasoft/laravel-livewire-tables/pull/107)
+- [Fixed use of $clearSearchButtonClass variable](https://github.com/rappasoft/laravel-livewire-tables/pull/118) 
 
 ## [0.3.3] - 2020-12-13
 
