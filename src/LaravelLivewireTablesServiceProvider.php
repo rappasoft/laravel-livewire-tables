@@ -2,42 +2,34 @@
 
 namespace Rappasoft\LaravelLivewireTables;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 /**
- * Class LaravelLivewireTablesServiceProvider.
+ * Class LaravelLivewireTablesServiceProvider
+ *
+ * @package Rappasoft\LaravelLivewireTables
  */
-class LaravelLivewireTablesServiceProvider extends ServiceProvider
+class LaravelLivewireTablesServiceProvider extends PackageServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
-    public function boot()
+
+    public function bootingPackage(): void
     {
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-livewire-tables');
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-livewire-tables');
-
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('laravel-livewire-tables.php'),
-            ], 'config');
-
-            $this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-livewire-tables'),
-            ], 'views');
-
-            $this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-livewire-tables'),
-            ], 'lang');
-        }
+        Blade::component('livewire-tables::tailwind.components.table.table', 'livewire-tables::table');
+        Blade::component('livewire-tables::tailwind.components.table.heading', 'livewire-tables::table.heading');
+        Blade::component('livewire-tables::tailwind.components.table.row', 'livewire-tables::table.row');
+        Blade::component('livewire-tables::tailwind.components.table.cell', 'livewire-tables::table.cell');
     }
 
     /**
-     * Register the application services.
+     * @param  Package  $package
      */
-    public function register()
+    public function configurePackage(Package $package): void
     {
-        // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-livewire-tables');
+        $package
+            ->name('laravel-livewire-tables')
+            ->hasConfigFile()
+            ->hasViews();
     }
 }

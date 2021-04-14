@@ -2,140 +2,75 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views;
 
-use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\Traits\CanBeHidden;
-
 /**
  * Class Column.
  */
 class Column
 {
-    use CanBeHidden;
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected $text;
+    public ?string $column = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected $attribute;
-
-    /**
-     * @var bool
-     */
-    protected $sortable = false;
+    public ?string $text = null;
 
     /**
      * @var bool
      */
-    protected $searchable = false;
+    public bool $sortable = false;
 
     /**
      * @var bool
      */
-    protected $raw = false;
+    public bool $multiColumn = false;
+
+    /**
+     * @var string|null
+     */
+    public ?string $class = null;
 
     /**
      * @var bool
      */
-    protected $includeInExport = true;
-
-    /**
-     * @var bool
-     */
-    protected $exportOnly = false;
-
-    /**
-     * @var
-     */
-    protected $formatCallback;
-
-    /**
-     * @var
-     */
-    protected $exportFormatCallback;
-
-    /**
-     * @var
-     */
-    protected $sortCallback;
-
-    /**
-     * @var null
-     */
-    protected $searchCallback;
+    public bool $blank = false;
 
     /**
      * Column constructor.
      *
-     * @param  string  $text
-     * @param  string|null  $attribute
+     * @param  string|null  $column
+     * @param  string|null  $text
      */
-    public function __construct(string $text, ?string $attribute)
+    public function __construct(string $column = null, string $text = null)
     {
+        $this->column = $column;
         $this->text = $text;
-        $this->attribute = $attribute ?? Str::snake(Str::lower($text));
+
+        if (! $this->column && ! $this->text) {
+            $this->blank = true;
+        }
     }
 
     /**
-     * @param  string  $text
-     * @param  string|null  $attribute
+     * @param  string|null  $column
+     * @param  string|null  $text
      *
      * @return Column
      */
-    public static function make(string $text, ?string $attribute = null): Column
+    public static function make(string $column = null, string $text = null): Column
     {
-        return new static($text, $attribute);
+        return new static($column, $text);
     }
 
     /**
-     * @return string
+     * @return Column
      */
-    public function getText(): string
+    public static function blank(): Column
     {
-        return $this->text;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAttribute(): string
-    {
-        return $this->attribute;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSortCallback()
-    {
-        return $this->sortCallback;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSearchCallback()
-    {
-        return $this->searchCallback;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isFormatted(): bool
-    {
-        return is_callable($this->formatCallback);
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasExportFormat(): bool
-    {
-        return is_callable($this->exportFormatCallback);
+        return new static(null, null);
     }
 
     /**
@@ -149,135 +84,72 @@ class Column
     /**
      * @return bool
      */
-    public function isSearchable(): bool
+    public function isMultiColumn(): bool
     {
-        return $this->searchable === true;
+        return $this->multiColumn === true;
     }
 
     /**
      * @return bool
      */
-    public function isRaw(): bool
+    public function isBlank(): bool
     {
-        return $this->raw === true;
+        return $this->blank === true;
     }
 
     /**
-     * @param  callable  $callable
-     *
      * @return $this
      */
-    public function format(callable $callable): Column
+    public function sortable(): self
     {
-        $this->formatCallback = $callable;
-
-        return $this;
-    }
-
-    /**
-     * @param  callable  $callable
-     *
-     * @return $this
-     */
-    public function exportFormat(callable $callable): Column
-    {
-        $this->exportFormatCallback = $callable;
-
-        return $this;
-    }
-
-    /**
-     * @param $model
-     * @param $column
-     *
-     * @return mixed
-     */
-    public function formatted($model, $column)
-    {
-        return app()->call($this->formatCallback, ['model' => $model, 'column' => $column]);
-    }
-
-    /**
-     * @param $model
-     * @param $column
-     *
-     * @return mixed
-     */
-    public function formattedForExport($model, $column)
-    {
-        return app()->call($this->exportFormatCallback, ['model' => $model, 'column' => $column]);
-    }
-
-    /**
-     * @param  callable|null  $callable
-     *
-     * @return $this
-     */
-    public function sortable(callable $callable = null): self
-    {
-        $this->sortCallback = $callable;
         $this->sortable = true;
 
         return $this;
     }
 
     /**
-     * @param  callable|null  $callable
+     * @return $this
+     */
+    public function multiColumn(): self
+    {
+        $this->multiColumn = true;
+
+        return $this;
+    }
+
+    /**
+     * @param  string  $class
      *
      * @return $this
      */
-    public function searchable(callable $callable = null): self
+    public function addClass(string $class): self
     {
-        $this->searchCallback = $callable;
-        $this->searchable = true;
+        $this->class = $class;
 
         return $this;
     }
 
     /**
-     * @return $this
+     * @return string|null
      */
-    public function raw(): self
+    public function class(): ?string
     {
-        $this->raw = true;
-
-        return $this;
+        return $this->class;
     }
 
     /**
-     * @return bool
+     * @return string|null
      */
-    public function includedInExport(): bool
+    public function column(): ?string
     {
-        return $this->includeInExport === true;
+        return $this->column;
     }
 
     /**
-     * @return $this
+     * @return string|null
      */
-    public function exportOnly(): self
+    public function text(): ?string
     {
-        $this->hidden = true;
-        $this->exportOnly = true;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isExportOnly(): bool
-    {
-        return $this->exportOnly === true;
-    }
-
-    /**
-     * @return $this
-     */
-    public function excludeFromExport(): self
-    {
-        $this->includeInExport = false;
-
-        return $this;
+        return $this->text;
     }
 }
