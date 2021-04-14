@@ -9,6 +9,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 - Fixed polling issue
+- Fixed [MongoDB per page issue](https://github.com/rappasoft/laravel-livewire-tables/pull/107)
 
 ## [0.3.3] - 2020-12-13
 
