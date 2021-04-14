@@ -1,4 +1,7 @@
-<div class="flex-col space-y-4">
+<div
+    @if (is_numeric($refresh)) wire:poll.{{ $refresh }}.ms @elseif(is_string($refresh)) wire:poll="{{ $refresh }}" @endif
+    class="flex-col space-y-4"
+>
     @if ($showSorting && count($sorts))
         <div wire:key="sort-badges" class="p-6 md:p-0">
             <small class="text-gray-700">@lang('Applied Sorting'):</small>

@@ -293,7 +293,7 @@ In the component you have access to `$this->selectedRowsQuery` which is a **Buil
 
 ### Options
 
-There are a couple class level properties you can set:
+There are some class level properties you can set:
 
 | Property | Default | Usage |
 | -------- | ------- | ----- |
@@ -302,6 +302,7 @@ There are a couple class level properties you can set:
 | $showPagination | true | Show the pagination |
 | $showSorting | true | Show the sorting pills |
 | $showFilters | true | Show the filter pills |
+| $refresh | false | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
 
 #### Using more than one table on a page
 

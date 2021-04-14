@@ -58,6 +58,16 @@ abstract class DataTableComponent extends Component
     public bool $showFilters = true;
 
     /**
+     * Whether or not to refresh the table at a certain interval
+     * false is off
+     * If it's an integer it will be treated as milliseconds (2000 = refresh every 2 seconds)
+     * If it's a string it will call that function every 5 seconds.
+     *
+     * @var bool|string
+     */
+    public $refresh = false;
+
+    /**
      * Name of the page parameter for pagination
      * Good to change the default if you have more than one datatable on a page.
      *
