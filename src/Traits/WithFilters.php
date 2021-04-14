@@ -38,7 +38,7 @@ trait WithFilters
             if (
                 $filter->isSelect() &&
                 $this->hasFilter($key) &&
-                !in_array($this->getFilter($key), $this->getFilterOptions($key), true)
+                ! in_array($this->getFilter($key), $this->getFilterOptions($key), true)
             ) {
                 $this->removeFilter($key);
             }
