@@ -7,13 +7,10 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 /**
- * Class LaravelLivewireTablesServiceProvider
- *
- * @package Rappasoft\LaravelLivewireTables
+ * Class LaravelLivewireTablesServiceProvider.
  */
 class LaravelLivewireTablesServiceProvider extends PackageServiceProvider
 {
-
     public function bootingPackage(): void
     {
         Blade::component('livewire-tables::tailwind.components.table.table', 'livewire-tables::table');
@@ -23,7 +20,7 @@ class LaravelLivewireTablesServiceProvider extends PackageServiceProvider
     }
 
     /**
-     * @param  Package  $package
+     * @param Package $package
      */
     public function configurePackage(Package $package): void
     {
