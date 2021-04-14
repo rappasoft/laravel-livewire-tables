@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [0.4.0] - 2021-04-14
+
+### Changed
+
+- Fixed polling issue
+
 ## [0.3.3] - 2020-12-13
 
 ### Added
