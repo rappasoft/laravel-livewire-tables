@@ -1,5 +1,5 @@
 <div
-    @if (is_numeric($refresh)) wire:poll.{{ $refresh }}.ms @elseif(is_string($refresh)) wire:poll="{{ $refresh }}" @endif
+    @if (is_numeric($refresh)) wire:poll.{{ $refresh }}ms @elseif(is_string($refresh)) wire:poll="{{ $refresh }}" @endif
     class="flex-col space-y-4"
 >
     @if ($showSorting && count($sorts))
