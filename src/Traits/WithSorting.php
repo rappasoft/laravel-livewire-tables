@@ -14,7 +14,7 @@ trait WithSorting
 
     public function sortBy(string $field): ?string
     {
-        if (!isset($this->sorts[$field])) {
+        if (! isset($this->sorts[$field])) {
             return $this->sorts[$field] = 'asc';
         }
 
