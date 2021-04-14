@@ -15,7 +15,7 @@ trait WithCustomPagination
     public function pageName(): string
     {
         if (property_exists($this, 'pageName')) {
-            if (! isset($this->{$this->pageName})) {
+            if (!isset($this->{$this->pageName})) {
                 $this->{$this->pageName} = 1;
             }
 
