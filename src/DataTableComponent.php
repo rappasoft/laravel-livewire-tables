@@ -80,7 +80,7 @@ abstract class DataTableComponent extends Component
      */
     protected $queryString = [
         'filters' => ['except' => null],
-        'sorts'   => ['except' => null],
+        'sorts' => ['except' => null],
     ];
 
     /**
