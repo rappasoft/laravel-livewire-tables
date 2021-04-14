@@ -48,7 +48,7 @@ class Column
         $this->column = $column;
         $this->text = $text;
 
-        if (! $this->column && ! $this->text) {
+        if (!$this->column && !$this->text) {
             $this->blank = true;
         }
     }
