@@ -7,7 +7,6 @@ namespace Rappasoft\LaravelLivewireTables\Views;
  */
 class Column
 {
-
     /**
      * @var string|null
      */
@@ -41,22 +40,22 @@ class Column
     /**
      * Column constructor.
      *
-     * @param  string|null  $column
-     * @param  string|null  $text
+     * @param string|null $column
+     * @param string|null $text
      */
     public function __construct(string $column = null, string $text = null)
     {
         $this->column = $column;
         $this->text = $text;
 
-        if (! $this->column && ! $this->text) {
+        if (!$this->column && !$this->text) {
             $this->blank = true;
         }
     }
 
     /**
-     * @param  string|null  $column
-     * @param  string|null  $text
+     * @param string|null $column
+     * @param string|null $text
      *
      * @return Column
      */
@@ -118,7 +117,7 @@ class Column
     }
 
     /**
-     * @param  string  $class
+     * @param string $class
      *
      * @return $this
      */

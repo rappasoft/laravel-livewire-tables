@@ -3,9 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 /**
- * Trait WithBulkActions
- *
- * @package App\Http\Livewire\DataTable
+ * Trait WithBulkActions.
  */
 trait WithBulkActions
 {
