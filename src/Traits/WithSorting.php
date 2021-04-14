@@ -5,9 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Trait WithSorting
- *
- * @package App\Http\Livewire\DataTable
+ * Trait WithSorting.
  */
 trait WithSorting
 {
@@ -16,7 +14,7 @@ trait WithSorting
 
     public function sortBy(string $field): ?string
     {
-        if (! isset($this->sorts[$field])) {
+        if (!isset($this->sorts[$field])) {
             return $this->sorts[$field] = 'asc';
         }
 

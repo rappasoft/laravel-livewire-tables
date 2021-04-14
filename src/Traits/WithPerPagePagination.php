@@ -3,9 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 /**
- * Trait WithPerPagePagination
- *
- * @package App\Http\Livewire\DataTable
+ * Trait WithPerPagePagination.
  */
 trait WithPerPagePagination
 {
@@ -24,7 +22,7 @@ trait WithPerPagePagination
     public function updatedPerPage($value): void
     {
         if (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
-            session()->put($this->tableName.'-perPage', (int)$value);
+            session()->put($this->tableName.'-perPage', (int) $value);
         } else {
             session()->put($this->tableName.'-perPage', 10);
         }

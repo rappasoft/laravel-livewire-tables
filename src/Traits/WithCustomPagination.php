@@ -6,9 +6,7 @@ use Illuminate\Pagination\Paginator;
 use Livewire\WithPagination;
 
 /**
- * Trait WithCustomPagination
- *
- * @package App\Http\Livewire\DataTable
+ * Trait WithCustomPagination.
  */
 trait WithCustomPagination
 {
@@ -17,7 +15,7 @@ trait WithCustomPagination
     public function pageName(): string
     {
         if (property_exists($this, 'pageName')) {
-            if (! isset($this->{$this->pageName})) {
+            if (!isset($this->{$this->pageName})) {
                 $this->{$this->pageName} = 1;
             }
 
@@ -45,7 +43,6 @@ trait WithCustomPagination
 
         Paginator::defaultView($this->paginationView());
     }
-
 
     public function previousPage(): void
     {

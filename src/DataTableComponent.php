@@ -16,43 +16,42 @@ use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
  */
 abstract class DataTableComponent extends Component
 {
-
-    use WithBulkActions,
-        WithCustomPagination,
-        WithFilters,
-        WithPerPagePagination,
-        WithSorting;
+    use WithBulkActions;
+    use WithCustomPagination;
+    use WithFilters;
+    use WithPerPagePagination;
+    use WithSorting;
 
     /**
-     * Show the search field
+     * Show the search field.
      *
      * @var bool
      */
     public bool $showSearch = true;
 
     /**
-     * Show the per page select
+     * Show the per page select.
      *
      * @var bool
      */
     public bool $showPerPage = true;
 
     /**
-     * Show the pagination numbers and links
+     * Show the pagination numbers and links.
      *
      * @var bool
      */
     public bool $showPagination = true;
 
     /**
-     * Show the sorting indicators
+     * Show the sorting indicators.
      *
      * @var bool
      */
     public bool $showSorting = true;
 
     /**
-     * Show the filtering indicators
+     * Show the filtering indicators.
      *
      * @var bool
      */
@@ -60,7 +59,7 @@ abstract class DataTableComponent extends Component
 
     /**
      * Name of the page parameter for pagination
-     * Good to change the default if you have more than one datatable on a page
+     * Good to change the default if you have more than one datatable on a page.
      *
      * @var string
      */
@@ -81,7 +80,7 @@ abstract class DataTableComponent extends Component
      */
     protected $queryString = [
         'filters' => ['except' => null],
-        'sorts' => ['except' => null],
+        'sorts'   => ['except' => null],
     ];
 
     /**
@@ -90,21 +89,21 @@ abstract class DataTableComponent extends Component
     protected $listeners = ['refreshDatatable' => '$refresh'];
 
     /**
-     * The array defining the columns of the table
+     * The array defining the columns of the table.
      *
      * @return array
      */
     abstract public function columns(): array;
 
     /**
-     * The base query with search and filters for the table
+     * The base query with search and filters for the table.
      *
      * @return Builder
      */
     abstract public function query(): Builder;
 
     /**
-     * The view to render each row of the table
+     * The view to render each row of the table.
      *
      * @return string
      */
@@ -113,7 +112,7 @@ abstract class DataTableComponent extends Component
     /**
      * TableComponent constructor.
      *
-     * @param  null  $id
+     * @param null $id
      */
     public function __construct($id = null)
     {
@@ -127,7 +126,7 @@ abstract class DataTableComponent extends Component
     }
 
     /**
-     * Get the rows query builder with sorting applied
+     * Get the rows query builder with sorting applied.
      *
      * @return Builder
      */
@@ -139,7 +138,7 @@ abstract class DataTableComponent extends Component
     }
 
     /**
-     * Get the rows paginated collection that will be returned to the view
+     * Get the rows paginated collection that will be returned to the view.
      *
      * @return LengthAwarePaginator
      */

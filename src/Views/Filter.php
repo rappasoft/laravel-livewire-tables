@@ -7,7 +7,6 @@ namespace Rappasoft\LaravelLivewireTables\Views;
  */
 class Filter
 {
-
     public const TYPE_SELECT = 'select';
 
     /**
@@ -28,7 +27,7 @@ class Filter
     /**
      * Filter constructor.
      *
-     * @param  string  $name
+     * @param string $name
      */
     public function __construct(string $name)
     {
@@ -36,7 +35,7 @@ class Filter
     }
 
     /**
-     * @param  string  $name
+     * @param string $name
      *
      * @return Filter
      */
@@ -46,7 +45,7 @@ class Filter
     }
 
     /**
-     * @param  array  $options
+     * @param array $options
      *
      * @return $this
      */
