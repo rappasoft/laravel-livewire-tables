@@ -58,9 +58,9 @@ class Column
     public function __construct(string $text = null, string $column = null)
     {
         $this->text = $text;
-        if (!$column) {
+        if (! $column) {
             $this->column = Str::snake($text);
-        }else{
+        } else {
             $this->column = $column;
         }
 
@@ -190,7 +190,7 @@ class Column
     {
         if ($column && $column instanceof Column) {
             $columnName = $column->column();
-        } elseif ( is_string($column) ) {
+        } elseif (is_string($column)) {
             $columnName = $column;
         } else {
             $columnName = $this->column();
@@ -200,7 +200,7 @@ class Column
 
         if ($this->formatCallback) {
             return app()->call($this->formatCallback, ['value' => $value, 'column' => $column, 'row' => $row]);
-        }else{
+        } else {
             return $value;
         }
     }
