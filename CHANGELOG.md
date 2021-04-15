@@ -8,6 +8,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Ground up rebuild, see documentation for usage.
 
+## [0.4.0] - 2021-04-14
+
+### Changed
+
+- Fixed polling issue
+- Fixed [MongoDB per page issue](https://github.com/rappasoft/laravel-livewire-tables/pull/107)
+- [Fixed use of $clearSearchButtonClass variable](https://github.com/rappasoft/laravel-livewire-tables/pull/118)
+
 ## [0.3.3] - 2020-12-13
 
 ### Added
@@ -148,7 +156,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Initial release
 
 [Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.0...development
-[1.0.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.3...v1.0.0
+[1.0.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.4.0...v1.0.0
+[0.4.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.3...v0.4.0
 [0.3.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.0...v0.3.1

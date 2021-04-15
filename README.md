@@ -22,9 +22,9 @@ composer require rappasoft/laravel-livewire-tables
 Publishing assets are optional unless you want to customize this package.
 
 ``` bash
-php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=laravel-livewire-tables-config
+php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-config
 
-php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=laravel-livewire-tables-views
+php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-views
 ```
 
 ## Usage
