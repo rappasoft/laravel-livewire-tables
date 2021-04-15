@@ -1,7 +1,7 @@
 <x-livewire-tables::table>
     <x-slot name="head">
         @if (count($bulkActions))
-            <x-livewire-tables::table.heading class="pr-0 w-8 hidden md:table-cell">
+            <x-livewire-tables::table.heading>
                 <div class="flex rounded-md shadow-sm">
                     <input
                         wire:model="selectPage"
@@ -31,7 +31,7 @@
     <x-slot name="body">
         @if (count($bulkActions) && $selectPage && $rows->total() > $rows->count())
             <x-livewire-tables::table.row wire:key="row-message" class="bg-primary-50">
-                <x-livewire-tables::table.cell colspan="8">
+                <x-livewire-tables::table.cell :colspan="count($bulkActions) ? count($columns) + 1 : count($columns)">
                     @unless ($selectAll)
                         <div>
                             <span>{!! __('You have selected <strong>:count</strong> users, do you want to select all <strong>:total</strong>?', ['count' => $rows->count(), 'total' => number_format($rows->total())]) !!}</span>
@@ -68,7 +68,7 @@
                 class="{{ $index % 2 === 0 ? 'bg-white' : 'bg-gray-50' }}"
             >
                 @if (count($bulkActions))
-                    <x-livewire-tables::table.cell class="pr-0 hidden md:table-cell">
+                    <x-livewire-tables::table.cell>
                         <div class="flex rounded-md shadow-sm">
                             <input
                                 wire:model="selected"

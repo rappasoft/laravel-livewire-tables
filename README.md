@@ -546,8 +546,9 @@ The final result would look like:
 
 ## To-do/Roadmap
 
-- [ ] Test Suite
 - [ ] Bootstrap Templates
+- [ ] Test Suite
+- [ ] Column Search
 
 ## Changelog
 
