@@ -314,6 +314,7 @@
                 <x-livewire-tables::table.row
                     wire:loading.class.delay="opacity-50"
                     wire:key="table-row-{{ $row->getKey() }}"
+                    url="{{ method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : null }}"
                     class="{{ $index % 2 === 0 ? 'bg-white' : 'bg-gray-50' }}"
                 >
                     @if (count($bulkActions))
@@ -329,7 +330,7 @@
                         </x-livewire-tables::table.cell>
                     @endif
 
-                    @include($rowsView, ['row' => $row])
+                    @include($rowsView)
                 </x-livewire-tables::table.row>
             @empty
                 <x-livewire-tables::table.row>

@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views;
 
+use Illuminate\Support\Str;
+
 /**
  * Class Column.
  */
@@ -38,15 +40,29 @@ class Column
     public bool $blank = false;
 
     /**
+     * @var
+     */
+    public $formatCallback;
+
+    /**
+     * @var bool
+     */
+    public bool $asHtml = false;
+
+    /**
      * Column constructor.
      *
      * @param string|null $column
      * @param string|null $text
      */
-    public function __construct(string $column = null, string $text = null)
+    public function __construct(string $text = null, string $column = null)
     {
-        $this->column = $column;
         $this->text = $text;
+        if (!$column) {
+            $this->column = Str::snake($text);
+        }else{
+            $this->column = $column;
+        }
 
         if (! $this->column && ! $this->text) {
             $this->blank = true;
@@ -59,9 +75,9 @@ class Column
      *
      * @return Column
      */
-    public static function make(string $column = null, string $text = null): Column
+    public static function make(string $text = null, string $column = null): Column
     {
-        return new static($column, $text);
+        return new static($text, $column);
     }
 
     /**
@@ -150,5 +166,52 @@ class Column
     public function text(): ?string
     {
         return $this->text;
+    }
+
+    /**
+     * @param  callable  $callable
+     *
+     * @return $this
+     */
+    public function format(callable $callable): Column
+    {
+        $this->formatCallback = $callable;
+
+        return $this;
+    }
+
+    /**
+     * @param $model
+     * @param $column
+     *
+     * @return mixed
+     */
+    public function formatted($row, $column = null)
+    {
+        if ($column && $column instanceof Column) {
+            $columnName = $column->column();
+        } elseif ( is_string($column) ) {
+            $columnName = $column;
+        } else {
+            $columnName = $this->column();
+        }
+
+        $value = data_get($row, $columnName) ?? null;
+
+        if ($this->formatCallback) {
+            return app()->call($this->formatCallback, ['value' => $value, 'column' => $column, 'row' => $row]);
+        }else{
+            return $value;
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function asHtml(): self
+    {
+        $this->asHtml = true;
+
+        return $this;
     }
 }

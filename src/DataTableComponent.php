@@ -117,7 +117,10 @@ abstract class DataTableComponent extends Component
      *
      * @return string
      */
-    abstract public function rowView(): string;
+    public function rowView(): string
+    {
+        return 'livewire-tables::'.config('livewire-tables.theme').'.components.table.row-columns';
+    }
 
     /**
      * TableComponent constructor.
