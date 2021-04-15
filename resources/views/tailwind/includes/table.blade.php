@@ -80,7 +80,7 @@
                     </x-livewire-tables::table.cell>
                 @endif
 
-                @include($rowsView, ['row' => $row])
+                @include($rowView, ['row' => $row])
             </x-livewire-tables::table.row>
         @empty
             <x-livewire-tables::table.row>

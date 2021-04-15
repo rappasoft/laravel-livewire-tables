@@ -170,10 +170,12 @@ abstract class DataTableComponent extends Component
     public function render()
     {
         return view('livewire-tables::'.config('livewire-tables.theme').'.datatable')
-            ->withColumns($this->columns())
-            ->withRowsView($this->rowView())
-            ->withFiltersView($this->filtersView())
-            ->withCustomFilters($this->filters())
-            ->withRows($this->rows);
+            ->with([
+                'columns' => $this->columns(),
+                'rowView' => $this->rowView(),
+                'filtersView' => $this->filtersView(),
+                'customFilters' => $this->filters(),
+                'rows' => $this->rows,
+            ]);
     }
 }
