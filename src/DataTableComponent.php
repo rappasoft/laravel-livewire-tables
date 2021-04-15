@@ -23,6 +23,13 @@ abstract class DataTableComponent extends Component
     use WithSorting;
 
     /**
+     * The default pagination theme.
+     *
+     * @var string
+     */
+    public $paginationTheme = 'tailwind';
+
+    /**
      * Show the search field.
      *
      * @var bool
