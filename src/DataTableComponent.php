@@ -120,13 +120,6 @@ abstract class DataTableComponent extends Component
     abstract public function query(): Builder;
 
     /**
-     * The view to render each row of the table.
-     *
-     * @return string
-     */
-    abstract public function rowView(): string;
-
-    /**
      * TableComponent constructor.
      *
      * @param null $id
@@ -162,6 +155,16 @@ abstract class DataTableComponent extends Component
     public function getRowsProperty(): LengthAwarePaginator
     {
         return $this->applyPagination($this->rowsQuery);
+    }
+
+    /**
+     * The view to render each row of the table.
+     *
+     * @return string
+     */
+    public function rowView(): string
+    {
+        return 'livewire-tables::'.config('livewire-tables.theme').'.components.table.row-columns';
     }
 
     /**
