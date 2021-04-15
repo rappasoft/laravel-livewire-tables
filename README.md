@@ -544,7 +544,7 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+Please e-mail anthony@rappasoft.com to report any security vulnerabilities instead of the issue tracker.
 
 ## Credits
 
