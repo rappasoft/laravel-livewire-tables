@@ -366,6 +366,7 @@ There are some class level properties you can set:
 | $showSorting | true | Show the sorting pills |
 | $showFilters | true | Show the filter pills |
 | $refresh | false | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
+| $offlineIndicator | true | Shows a red banner when there is no internet connection. |
 
 #### Using more than one table on a page
 

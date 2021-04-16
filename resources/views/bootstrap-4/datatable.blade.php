@@ -2,6 +2,7 @@
     @if (is_numeric($refresh)) wire:poll.{{ $refresh }}ms @elseif(is_string($refresh)) wire:poll="{{ $refresh }}" @endif
     class="container-fluid"
 >
+    @include('livewire-tables::bootstrap-4.includes.offline')
     @include('livewire-tables::bootstrap-4.includes.sorting-pills')
     @include('livewire-tables::bootstrap-4.includes.filter-pills')
 

@@ -75,6 +75,13 @@ abstract class DataTableComponent extends Component
     public $refresh = false;
 
     /**
+     * Whether or not to display an offline message when there is no connection.
+     *
+     * @var bool
+     */
+    public $offlineIndicator = true;
+
+    /**
      * Name of the page parameter for pagination
      * Good to change the default if you have more than one datatable on a page.
      *
