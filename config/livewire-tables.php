@@ -2,7 +2,7 @@
 
 return [
     /**
-     * Options: tailwind.
+     * Options: tailwind | bootstrap-4.
      */
     'theme' => 'tailwind',
 ];

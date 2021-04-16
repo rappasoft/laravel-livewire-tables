@@ -128,7 +128,7 @@ abstract class DataTableComponent extends Component
     {
         parent::__construct($id);
 
-        if (config('laravel-livewire-tables.theme') === 'bootstrap-4') {
+        if (config('livewire-tables.theme') === 'bootstrap-4') {
             $this->paginationTheme = 'bootstrap';
         }
 

@@ -27,6 +27,19 @@ php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLi
 php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-views
 ```
 
+This is the contents of the published config file:
+
+```php
+<?php
+
+return [
+    /**
+     * Options: tailwind | bootstrap-4.
+     */
+    'theme' => 'tailwind',
+];
+```
+
 ## Usage
 
 [Skip to a full example](#example-table)
@@ -53,11 +66,9 @@ class Table extends DataTableComponent
     {
         return [
             Column::make('Type')
-                ->sortable()
-                ->multiColumn(),
+                ->sortable(),
             Column::make('Name')
-                ->sortable()
-                ->multiColumn(),
+                ->sortable(),
             Column::make('Permissions'),
             Column::blank(),
         ];
@@ -79,7 +90,6 @@ If you would like to format the cell inline, you can use the format helper:
 ```php
 Column::make('Name')
     ->sortable()
-    ->multiColumn()
     ->format(function($value) {
         return timezone()->convertToLocal($value);
     }),
@@ -92,7 +102,6 @@ If you would like to render HTML from the format method, you may call `asHtml` o
 ```php
 Column::make('Name')
     ->sortable()
-    ->multiColumn()
     ->format(function($value) {
         return '<strong>'.timezone()->convertToLocal($value).'</strong>';
     })
@@ -175,14 +184,11 @@ public function columns(): array
         return [
             Column::make('Type') // Column text and optional column name, column name will be snake case of text if not defined
                 ->sortable() // Whether or not the heading can be clicked to sort
-                ->multiColumn(),
             Column::make('Name')
                 ->sortable()
-                ->multiColumn(),
             Column::make('Permissions'),
             Column::make('Other', 'my_other_column')
                 ->sortable() // Allows the column to interact with the sorting methods
-                ->multiColumn() // Adds visual cues for multi sorting this column with other columns
                 ->addClass('hidden md:table-cell'), // Adds to the existing class list
             Column::blank(), // Generates a blank cell
         ];
@@ -463,25 +469,19 @@ class UsersTable extends DataTableComponent
         return [
             Column::make('Type')
                 ->sortable()
-                ->multiColumn()
                 ->addClass('hidden md:table-cell'),
             Column::make('Name')
-                ->sortable()
-                ->multiColumn(),
+                ->sortable(),
             Column::make('E-mail', 'email')
-                ->sortable()
-                ->multiColumn(),
+                ->sortable(),
             Column::make('Active')
                 ->sortable()
-                ->multiColumn()
                 ->addClass('hidden md:table-cell'),
             Column::make('Verified', 'email_verified_at')
                 ->sortable()
-                ->multiColumn()
                 ->addClass('hidden md:table-cell'),
             Column::make('2FA', 'two_factor_secret')
                 ->sortable()
-                ->multiColumn()
                 ->addClass('hidden md:table-cell'),
             Column::blank(),
         ];

@@ -45,17 +45,17 @@
                             </button>
                         </div>
                     @else
-                        <span>
-                                {!! __('You are currently selecting all <strong>:total</strong> users.', ['total' => number_format($rows->total())]) !!}
+                        <div>
+                            <span>{!! __('You are currently selecting all <strong>:total</strong> users.', ['total' => number_format($rows->total())]) !!}</span>
 
-                                <button
-                                    wire:click="resetBulk"
-                                    type="button"
-                                    class="ml-1 text-blue-600 underline text-cool-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-cool-gray-800 focus:underline transition duration-150 ease-in-out"
-                                >
-                                    @lang('Unselect All')
-                                </button>
-                            </span>
+                            <button
+                                wire:click="resetBulk"
+                                type="button"
+                                class="ml-1 text-blue-600 underline text-cool-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-cool-gray-800 focus:underline transition duration-150 ease-in-out"
+                            >
+                                @lang('Unselect All')
+                            </button>
+                        </div>
                     @endif
                 </x-livewire-tables::table.cell>
             </x-livewire-tables::table.row>

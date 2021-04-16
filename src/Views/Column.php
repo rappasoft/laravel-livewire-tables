@@ -25,11 +25,6 @@ class Column
     public bool $sortable = false;
 
     /**
-     * @var bool
-     */
-    public bool $multiColumn = false;
-
-    /**
      * @var string|null
      */
     public ?string $class = null;
@@ -100,14 +95,6 @@ class Column
     /**
      * @return bool
      */
-    public function isMultiColumn(): bool
-    {
-        return $this->multiColumn === true;
-    }
-
-    /**
-     * @return bool
-     */
     public function isBlank(): bool
     {
         return $this->blank === true;
@@ -119,16 +106,6 @@ class Column
     public function sortable(): self
     {
         $this->sortable = true;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function multiColumn(): self
-    {
-        $this->multiColumn = true;
 
         return $this;
     }
