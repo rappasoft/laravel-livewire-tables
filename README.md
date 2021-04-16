@@ -590,6 +590,7 @@ The final result would look like:
 ## To-do/Roadmap
 
 - [x] Bootstrap 4 Template
+- [ ] Sorting By Relationships
 - [ ] Test Suite
 - [ ] Column Search
 
