@@ -18,7 +18,6 @@
             @else
                 <x-livewire-tables::table.heading
                     :sortable="$column->isSortable()"
-                    :multi-column="$column->isMultiColumn()"
                     :column="$column->column()"
                     :direction="$column->column() ? $sorts[$column->column()] ?? null : null"
                     :text="$column->text() ?? ''"
