@@ -1,5 +1,5 @@
 @if ($showSearch)
-    <div class="input-group">
+    <div class="mb-3 mb-md-0 input-group">
         <input
             wire:model.debounce.250ms="filters.search"
             placeholder="{{ __('Search') }}"

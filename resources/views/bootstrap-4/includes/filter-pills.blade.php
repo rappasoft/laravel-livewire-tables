@@ -1,5 +1,5 @@
 @if ($showFilters && count(array_filter($filters)) && !(count(array_filter($filters)) === 1 && isset($filters['search'])))
-    <div wire:key="filter-badges" class="p-2 p-md-0 mb-3">
+    <div wire:key="filter-badges" class="mb-3">
         <small class="text-secondary">@lang('Applied Filters'):</small>
 
         @foreach($filters as $key => $value)

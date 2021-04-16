@@ -1,10 +1,10 @@
 @if (count($bulkActions))
-    <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id="bulkActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown mb-3 mb-md-0 d-block d-md-inline">
+        <button class="btn dropdown-toggle d-block w-100 d-md-inline" type="button" id="bulkActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ __('Bulk Actions') }}
         </button>
 
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bulkActions">
+        <div class="dropdown-menu dropdown-menu-right w-100" aria-labelledby="bulkActions">
             @foreach($bulkActions as $action => $title)
                 <a href="#" wire:click.prevent="{{ $action }}" class="dropdown-item">{{ $title }}</a>
             @endforeach

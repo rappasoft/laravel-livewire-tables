@@ -588,7 +588,7 @@ The final result would look like:
 
 ## To-do/Roadmap
 
-- [ ] Bootstrap Templates
+- [x] Bootstrap 4 Template
 - [ ] Test Suite
 - [ ] Column Search
 

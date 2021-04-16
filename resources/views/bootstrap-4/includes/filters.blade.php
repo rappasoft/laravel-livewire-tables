@@ -1,6 +1,6 @@
 @if ($filtersView || count($customFilters))
-    <div class="btn-group">
-        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+    <div class="btn-group d-block d-md-inline">
+        <button type="button" class="btn dropdown-toggle d-block w-100 d-md-inline" data-toggle="dropdown">
             {{ __('Filters') }}
 
             @if (count(array_filter($filters)) && !(count(array_filter($filters)) === 1 && isset($filters['search'])))
@@ -11,7 +11,7 @@
 
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" role="menu">
+        <ul class="dropdown-menu w-100" role="menu">
             <li>
                 @if ($filtersView)
                     @include($filtersView)

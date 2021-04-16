@@ -1,5 +1,5 @@
 @if ($showSorting && count($sorts))
-    <div wire:key="sort-badges" class="p-2 p-md-0 mb-3">
+    <div wire:key="sort-badges" class="mb-3">
         <small class="text-secondary">@lang('Applied Sorting'):</small>
 
         @foreach($sorts as $col => $dir)
