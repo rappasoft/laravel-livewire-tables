@@ -3,139 +3,85 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\Traits\CanBeHidden;
 
 /**
  * Class Column.
  */
 class Column
 {
-    use CanBeHidden;
+    /**
+     * @var string|null
+     */
+    public ?string $column = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected $text;
-
-    /**
-     * @var string
-     */
-    protected $attribute;
-
-    /**
-     * @var bool
-     */
-    protected $sortable = false;
+    public ?string $text = null;
 
     /**
      * @var bool
      */
-    protected $searchable = false;
+    public bool $sortable = false;
+
+    /**
+     * @var string|null
+     */
+    public ?string $class = null;
 
     /**
      * @var bool
      */
-    protected $raw = false;
-
-    /**
-     * @var bool
-     */
-    protected $includeInExport = true;
-
-    /**
-     * @var bool
-     */
-    protected $exportOnly = false;
+    public bool $blank = false;
 
     /**
      * @var
      */
-    protected $formatCallback;
+    public $formatCallback;
 
     /**
-     * @var
+     * @var bool
      */
-    protected $exportFormatCallback;
-
-    /**
-     * @var
-     */
-    protected $sortCallback;
-
-    /**
-     * @var null
-     */
-    protected $searchCallback;
+    public bool $asHtml = false;
 
     /**
      * Column constructor.
      *
-     * @param  string  $text
-     * @param  string|null  $attribute
+     * @param string|null $column
+     * @param string|null $text
      */
-    public function __construct(string $text, ?string $attribute)
+    public function __construct(string $text = null, string $column = null)
     {
         $this->text = $text;
-        $this->attribute = $attribute ?? Str::snake(Str::lower($text));
+
+        if (! $column && $text) {
+            $this->column = Str::snake($text);
+        } else {
+            $this->column = $column;
+        }
+
+        if (! $this->column && ! $this->text) {
+            $this->blank = true;
+        }
     }
 
     /**
-     * @param  string  $text
-     * @param  string|null  $attribute
+     * @param string|null $column
+     * @param string|null $text
      *
      * @return Column
      */
-    public static function make(string $text, ?string $attribute = null): Column
+    public static function make(string $text = null, string $column = null): Column
     {
-        return new static($text, $attribute);
+        return new static($text, $column);
     }
 
     /**
-     * @return string
+     * @return Column
      */
-    public function getText(): string
+    public static function blank(): Column
     {
-        return $this->text;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAttribute(): string
-    {
-        return $this->attribute;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSortCallback()
-    {
-        return $this->sortCallback;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSearchCallback()
-    {
-        return $this->searchCallback;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isFormatted(): bool
-    {
-        return is_callable($this->formatCallback);
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasExportFormat(): bool
-    {
-        return is_callable($this->exportFormatCallback);
+        return new static(null, null);
     }
 
     /**
@@ -149,17 +95,65 @@ class Column
     /**
      * @return bool
      */
-    public function isSearchable(): bool
+    public function isBlank(): bool
     {
-        return $this->searchable === true;
+        return $this->blank === true;
     }
 
     /**
-     * @return bool
+     * @return $this
      */
-    public function isRaw(): bool
+    public function sortable(): self
     {
-        return $this->raw === true;
+        $this->sortable = true;
+
+        return $this;
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return $this
+     */
+    public function addClass(string $class): self
+    {
+        $this->class = $class;
+
+        return $this;
+    }
+
+    /**
+     * @return Column
+     */
+    public function asHtml(): Column
+    {
+        $this->asHtml = true;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function class(): ?string
+    {
+        return $this->class;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function column(): ?string
+    {
+        return $this->column;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function text(): ?string
+    {
+        return $this->text;
     }
 
     /**
@@ -175,109 +169,27 @@ class Column
     }
 
     /**
-     * @param  callable  $callable
+     * @param $row
+     * @param  null  $column
      *
-     * @return $this
+     * @return array|mixed|null
      */
-    public function exportFormat(callable $callable): Column
+    public function formatted($row, $column = null)
     {
-        $this->exportFormatCallback = $callable;
+        if ($column instanceof self) {
+            $columnName = $column->column();
+        } elseif (is_string($column)) {
+            $columnName = $column;
+        } else {
+            $columnName = $this->column();
+        }
 
-        return $this;
-    }
+        $value = data_get($row, $columnName);
 
-    /**
-     * @param $model
-     * @param $column
-     *
-     * @return mixed
-     */
-    public function formatted($model, $column)
-    {
-        return app()->call($this->formatCallback, ['model' => $model, 'column' => $column]);
-    }
+        if ($this->formatCallback) {
+            return app()->call($this->formatCallback, ['value' => $value, 'column' => $column, 'row' => $row]);
+        }
 
-    /**
-     * @param $model
-     * @param $column
-     *
-     * @return mixed
-     */
-    public function formattedForExport($model, $column)
-    {
-        return app()->call($this->exportFormatCallback, ['model' => $model, 'column' => $column]);
-    }
-
-    /**
-     * @param  callable|null  $callable
-     *
-     * @return $this
-     */
-    public function sortable(callable $callable = null): self
-    {
-        $this->sortCallback = $callable;
-        $this->sortable = true;
-
-        return $this;
-    }
-
-    /**
-     * @param  callable|null  $callable
-     *
-     * @return $this
-     */
-    public function searchable(callable $callable = null): self
-    {
-        $this->searchCallback = $callable;
-        $this->searchable = true;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function raw(): self
-    {
-        $this->raw = true;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function includedInExport(): bool
-    {
-        return $this->includeInExport === true;
-    }
-
-    /**
-     * @return $this
-     */
-    public function exportOnly(): self
-    {
-        $this->hidden = true;
-        $this->exportOnly = true;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isExportOnly(): bool
-    {
-        return $this->exportOnly === true;
-    }
-
-    /**
-     * @return $this
-     */
-    public function excludeFromExport(): self
-    {
-        $this->includeInExport = false;
-
-        return $this;
+        return $value;
     }
 }

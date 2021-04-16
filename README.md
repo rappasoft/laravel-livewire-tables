@@ -1,14 +1,13 @@
 ![Package Logo](https://banners.beyondco.de/Laravel%20Livewire%20Tables.png?theme=light&packageName=rappasoft%2Flaravel-livewire-tables&pattern=hideout&style=style_1&description=A+dynamic+table+component+for+Laravel+Livewire&md=1&fontSize=100px&images=table)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
-[![StyleCI](https://styleci.io/repos/250246992/shield?style=plastic)](https://github.styleci.io/repos/250246992)
+[![Styling](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml)
+[![Tests](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml/badge.svg)](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
-
-**This package is still in development and does not have a test suite.**
 
 A dynamic Laravel Livewire component for data tables.
 
-This plugin assumes you already have [Laravel Livewire](https://laravel-livewire.com/) installed and configured in your project.
+This plugin assumes you already have [Laravel Livewire](https://laravel-livewire.com) and [Alpine.js](https://github.com/alpinejs/alpine) installed and configured in your project.
 
 ## Installation
 
@@ -23,466 +22,589 @@ composer require rappasoft/laravel-livewire-tables
 Publishing assets are optional unless you want to customize this package.
 
 ``` bash
-php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=config
+php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-config
 
-php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=views
+php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-views
+```
 
-php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=lang
+This is the contents of the published config file:
+
+```php
+<?php
+
+return [
+    /**
+     * Options: tailwind | bootstrap-4.
+     */
+    'theme' => 'tailwind',
+];
 ```
 
 ## Usage
 
+[Skip to a full example](#example-table)
+
 ### Creating Tables
 
-To create a table component you draw inspiration from the below stub:
+To create the most basic of a table, you need a new Livewire component that extends the DataTable component, and you need to define a list of a columns and a base query.
+
+Example:
 
 ```php
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\Role;
 
-use App\User;
+use App\Domains\Auth\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\TableComponent;
-use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class UsersTable extends TableComponent
+class Table extends DataTableComponent
 {
-    use HtmlComponents;
-
-    public function query() : Builder
-    {
-        return User::with('role')->withCount('permissions');
-    }
-
-    public function columns() : array
+    public function columns(): array
     {
         return [
-            Column::make('ID')
-                ->searchable()
+            Column::make('Type')
                 ->sortable(),
-            Column::make('Avatar')
-                ->format(function(User $model) {
-                    return $this->image($model->avatar, $model->name, ['class' => 'img-fluid']);
-                }),
             Column::make('Name')
-                ->searchable()
                 ->sortable(),
-            Column::make('E-mail', 'email')
-                ->searchable()
-                ->sortable()
-                ->format(function(User $model) {
-                    return $this->mailto($model->email, null, ['target' => '_blank']);
-                }),
-            Column::make('Role', 'role.name')
-                ->searchable()
-                ->sortable(),
-            Column::make('Permissions')
-                ->sortable()
-                ->format(function(User $model) {
-                    return $this->html('<strong>'.$model->permissions_count.'</strong>');
-                }),
-            Column::make('Actions')
-                ->format(function(User $model) {
-                    return view('backend.auth.user.includes.actions', ['user' => $model]);
-                })
-                ->hideIf(auth()->user()->cannot('do-this')),
+            Column::make('Permissions'),
+            Column::blank(),
         ];
+    }
+
+    public function query(): Builder
+    {
+        return Role::query();
     }
 }
 ```
 
-Your component must implement two methods:
+### Creating rows
+
+By default, the rows will be generated by the column name, so if you have a users table, and the column is 'type', the cell generated for that column will be `$row['type']`.
+
+If you would like to format the cell inline, you can use the format helper:
 
 ```php
-/**
- * This defines the start of the query, usually Model::query() but can also eager load relationships and counts if needed.
- */
-public function query() : Builder;
-
-/**
- * This defines the columns of the table, they don't necessarily have to map to columns on the database table.
- */
-public function columns() : array;
+Column::make('Name')
+    ->sortable()
+    ->format(function($value) {
+        return timezone()->convertToLocal($value);
+    }),
 ```
 
-### Rendering the Table
+**Note:** If you need more control, the full parameter list for the format callback is `$value, $column, $row`.
 
-Place the following where you want the table to appear.
-
-Laravel 6.x: 
-
-`@livewire('users-table')`
-
-Laravel 7.x|8.x:
-
-`<livewire:users-table />`
-
-### Defining Columns
-
-You can define the columns of your table with the column class.
-
-The following methods are available to chain to a column:
+If you would like to render HTML from the format method, you may call `asHtml` on the column.
 
 ```php
-
-/**
- * The first argument is the column header text
- * The attribute can be omitted if the text is equal to the lower case snake_cased version of the column
- * The attribute can also be used to reference a relationship (i.e. role.name)
- */
-public function make($text, ?$attribute) : Column;
-
-/**
- * Used to format the column data in different ways, see the HTML Components section.
- * You will be passed the current model and column (if you need it for some reason) which can be omitted as an argument if you don't need it.
- */
-public function format(callable $callable = null) : self;
-
-/**
- * This column is searchable, with no callback it will search the column by name or by the supplied relationship, using a callback overrides the default searching functionality.
- */
-public function searchable(callable $callable = null) : self;
-
-/**
- * This column is sortable, with no callback it will sort the column by name and sort order defined on the components $sortDirection variable
- */
-public function sortable(callable $callable = null) : self;
-
-/**
- * The columns output will be put through {!! !!} instead of {{ }}.
- */
-public function raw() : self;
-
-/**
- * Hide this column permanently
- */
-public function hide() : self;
-
-/**
- * Hide this column based on a condition. i.e.: user has or doesn't have a role or permission. Must return a boolean, not a closure.
- */
-public function hideIf($condition) : self;
-
-/**
- * This column is only included in exports and is not available to the UI
- */
-public function exportOnly() : self;
-
-/**
- * This column is excluded from the export but visible to the UI unless defined otherwise with hide() or hideIf()
- */
-public function excludeFromExport() : self;
-
-/**
- * If supplied, and the column is exportable, this will be the format when rendering the CSV/XLS/PDF instead of the format() function. You may have both, format() for the UI, and exportFormat() for the export only. If this method is not supplied, format() will be used and passed through strip_tags() to try to clean the output.
- */
-public function exportFormat(callable $callable = null) : self;
+Column::make('Name')
+    ->sortable()
+    ->format(function($value) {
+        return '<strong>'.timezone()->convertToLocal($value).'</strong>';
+    })
+    ->asHtml(),
 ```
 
-### Properties
+If you would like full control over your rows without using the Column formatter, than you can define a `rowView` and return the string to the view to render the rows. The view will be passed the current $row.
 
-You can override any of these in your table component:
-
-#### Table
-
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $tableHeaderEnabled | true | Whether or not to display the table header |
-| $tableFooterEnabled | false | Whether or not to display the table footer |
-
-#### Searching
-
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $searchEnabled | true | Whether or not searching is enabled |
-| $searchUpdateMethod | debounce | debounce or lazy |
-| $searchDebounce | 350 | Amount of time in ms to wait to send the search query and refresh the table |
-| $disableSearchOnLoading | false | Whether or not to disable the search bar when it is searching/loading new data | 
-| $search | *none* | The initial search string |
-| $clearSearchButton | false | Adds a clear button to the search input |
-| $clearSearchButtonClass | btn btn-outline-dark | The class applied to the clear button |
-
-#### Sorting
-
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $sortField | id | The initial field to be sorting by |
-| $sortDirection | asc | The initial direction to sort |
-| $sortDefaultIcon | `<i class="text-muted fas fa-sort"></i>` | The default sort icon |
-| $ascSortIcon | `<i class="fas fa-sort-up"></i>` | The sort icon when currently sorting ascending |
-| $descSortIcon | `<i class="fas fa-sort-down"></i>` | The sort icon when currently sorting descending |
-
-#### Pagination
-
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $paginationEnabled | true | Enables or disables pagination as a whole |
-| $perPageOptions | [10, 25, 50] | The options to limit the amount of results per page. Set to [] to disable. |
-| $perPage | 25 | Amount of items to show per page |
-
-#### Loading
-
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $loadingIndicator | false | Whether or not to show a loading indicator when searching |
-| $disableSearchOnLoading | false | Whether or not to disable the search bar when it is searching/loading new data |
-| $collapseDataOnLoading | false | When the table is loading, hide all data but the loading row |
-
-#### Offline
-
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $offlineIndicator | true | Whether or not to display an offline message when there is no connection |
-
-#### Exports
-
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $exportFileName | data | The name of the downloaded file when exported |
-| $exports | [] | The available options to export this table as (csv, xls, xlsx, pdf) |
-
-#### Other
-
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $refresh | false | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
-
-### Table Methods
-
-#### Columns/Data
-
-Use the following methods to alter the column/row metadata.
+**row.blade.php**
 
 ```php
-public function setTableHeadClass($attribute): ?string
-public function setTableHeadId($attribute): ?string
-public function setTableHeadAttributes($attribute): array
-public function setTableRowClass($model): ?string
-public function setTableRowId($model): ?string
-public function setTableRowAttributes($model): array
-public function getTableRowUrl($model): ?string
-public function setTableDataClass($attribute, $value): ?string
-public function setTableDataId($attribute, $value): ?string
-public function setTableDataAttributes($attribute, $value): array
-```
-
-#### Pagination
-
-Override these methods if you want to perform extra tasks when the search or per page attributes change.
-
-```php
-public function updatingSearch(): void
-public function updatingPerPage(): void
-```
-
-#### Search
-
-Override this method if you want to perform extra steps when the search has been cleared.
-
-```php
-public function clearSearch(): void
-```
-
-#### Sorting
-
-Override this method if you want to change the default sorting behavior.
-
-```php
-public function sort($attribute): void
-```
-
-### HTML Components
-
-This package includes some of the functionality from the laravelcollective/html package modified to fit the needs of this package.
-
-To use these you must import the *Rappasoft\LaravelLivewireTables\Traits\HtmlComponents* trait.
-
-You may return any of these functions from the format() method of a column:
-
-```php
-public function image($url, $alt = null, $attributes = [], $secure = null): HtmlString
-public function link($url, $title = null, $attributes = [], $secure = null, $escape = true): HtmlString
-public function secureLink($url, $title = null, $attributes = [], $escape = true): HtmlString
-public function linkAsset($url, $title = null, $attributes = [], $secure = null, $escape = true): HtmlString
-public function linkSecureAsset($url, $title = null, $attributes = [], $escape = true): HtmlString
-public function linkRoute($name, $title = null, $parameters = [], $attributes = [], $secure = null, $escape = true): HtmlString
-public function linkAction($action, $title = null, $parameters = [], $attributes = [], $secure = null, $escape = true): HtmlString
-public function mailto($email, $title = null, $attributes = [], $escape = true): HtmlString
-public function email($email): string
-public function html($html): HtmlString
-```
-
-### Exporting Data
-
-The table component supports exporting to CSV, XLS, XLSX, and PDF.
-
-In order to use this functionality you must install [Laravel Excel](https://laravel-excel.com) 3.1 or newer.
-
-In order to use the PDF export functionality, you must also install either [DOMPDF](https://github.com/dompdf/dompdf) or [MPDF](https://github.com/mpdf/mpdf).
-
-You may set the PDF export library in the config file under **pdf_library**. DOMPDF is the default.
-
-#### What exports your table supports
-
-By default, exporting is off. You can add a list of available export types with the $exports class property.
-
-`public $exports = ['csv', 'xls', 'xlsx', 'pdf'];`
-
-#### Defining the file name.
-
-By default, the filename will be `data`.*type*. I.e. `data.pdf`, `data.csv`.
-
-You can change the filename with the `$exportFileName` class property.
-
-`public $exportFileName = 'users-table';` - *Obviously omit the file type*
-
-#### Deciding what columns to export
-
-You have a couple option on exporting information. By default, if not defined at all, all columns will be exported.
-
-If you have a column that you want visible to the UI, but not to the export, you can chain on `excludeFromExport()`
-
-If you have a column that you want visible to the export, but not to the UI, you can chain on `exportOnly()`
-
-#### Formatting column data for export
-
-By default, the export will attempt to render the information just as it is shown to the UI. For a normal column based attribute this is fine, but when exporting formatted columns that output a view or HTML, it will attempt to strip the HTML out.
-
-Instead, you have available to you the `exportFormat()` method on your column, to define how you want this column to be formatted when outputted to the file.
-
-So you can have a column that you want both available to the UI and the export, and format them differently based on where it is being outputted.
-
-#### Exporting example
-
-```php
-<?php
-
-namespace App\Http\Livewire;
-
-use App\User;
-use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\TableComponent;
-use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-
-class UsersTable extends TableComponent
+public function rowView(): string
 {
-    use HtmlComponents;
+     return 'location.to.my.row.view';
+}
+```
 
-    public function query() : Builder
-    {
-        return User::with('role')->withCount('permissions');
-    }
+```html
+<x-livewire-tables::table.cell>
+    {{ ucfirst($row->type) }}
+</x-livewire-tables::table.cell>
 
-    public function columns() : array
+<x-livewire-tables::table.cell>
+    {{ $row->name }}
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    @if ($row->isAdmin())
+        @lang('All')
+    @elseif (! $row->permissions->count())
+        @lang('None')
+    @else
+        {!! collect($row->permissions->pluck('description'))->implode('<br/>') !!}
+    @endif
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    @if(! $row->isAdmin())
+        <a href="{{ route('admin.auth.role.edit', $row) }}" class="text-primary-600 font-medium hover:text-primary-900">Manage</a>
+    @else
+        <span>-</span>
+    @endif
+</x-livewire-tables::table.cell>
+```
+
+The row view will be passed the current model named as **$row**.
+
+#### Making the table row clickable
+
+Add this method to your component if you would like to be able to click a row to go to a URL:
+
+```php
+public function getTableRowUrl($row): string
+{
+    return route('my.edit.route', $row);
+}
+```
+
+### Using the included blade components in the row view:
+
+To create cells, you should use the `<x-livewire-tables::table.cell>` table cell component, which will be rendered to:
+
+```html
+<td {{ $attributes->merge(['class' => 'px-3 py-2 md:px-6 md:py-4 whitespace-no-wrap text-sm leading-5 text-cool-gray-900']) }}>
+    {{ $slot }}
+</td>
+```
+
+You are free to publish and change these views as needed.
+
+### Creating Columns
+
+Your datatable must have one or more columns, you define your columns in the **columns()** method using the **Column** class:
+
+A list of all available methods are displayed below:
+
+```php
+public function columns(): array
     {
         return [
-            Column::make('ID')
-                ->searchable()
+            Column::make('Type') // Column text and optional column name, column name will be snake case of text if not defined
+                ->sortable() // Whether or not the heading can be clicked to sort
+            Column::make('Name')
                 ->sortable()
-                ->excludeFromExport(), // This column is visible to the UI, but not export.
-            Column::make('ID')
-                ->exportOnly(), // This column is only rendered on export
-            Column::make('Avatar')
-                ->format(function(User $model) {
-                    return $this->image($model->avatar, $model->name, ['class' => 'img-fluid']);
-                })
-                ->excludeFromExport(), // This column is visible to the UI, but not export.
-            Column::make('Name') // This columns is visible to both the UI and export, and is rendered the same
-                ->searchable()
-                ->sortable(),
-            Column::make('E-mail', 'email')
-                ->searchable()
-                ->sortable()
-                ->format(function(User $model) {
-                    return $this->mailto($model->email, null, ['target' => '_blank']);
-                })
-                ->exportFormat(function(User $model) { // This column is visible to both the UI and the export, but is formatted differently to the export via this method.
-                    return $model->email;
-                }),
-            Column::make('Role', 'role.name') // This columns is visible to both the UI and export, and is rendered the same
-                ->searchable()
-                ->sortable(),
-            Column::make('Permissions') // This columns is visible to both the UI and export, and is rendered the same, except the HTML tags will be removed because it is not specifically calling a exportFormat() function.
-                ->sortable()
-                ->format(function(User $model) {
-                    return $this->html('<strong>'.$model->permissions_count.'</strong>');
-                }),
-            Column::make('Actions')
-                ->format(function(User $model) {
-                    return view('backend.auth.user.includes.actions', ['user' => $model]);
-                })
-                ->hideIf(auth()->user()->cannot('do-this'))
-                ->excludeFromExport(), // This column is visible to the UI, but not export.
+            Column::make('Permissions'),
+            Column::make('Other', 'my_other_column')
+                ->sortable() // Allows the column to interact with the sorting methods
+                ->addClass('hidden md:table-cell'), // Adds to the existing class list
+            Column::blank(), // Generates a blank cell
         ];
     }
-}
 ```
 
-#### Customizing Exports
+#### Configuring Sort Names
 
-Currently, there are no customization options available. But there is a config item called `exports` where you can define the class to do the rendering. You can use the `\Rappasoft\LaravelLivewireTables\Exports\Export` class as a base.
-
-More options will be added in the future, but the built in options should be good for most applications.
-
-### Setting Component Options
-
-There are some frontend framework specific options that can be set.
-
-These have to be set from the `$options` property of your component.
-
-They are done this way instead of the config file that way you can have per-component control over these settings.
+When clicking sortable column headers, the component will use the column name to define the sorting pill in the UI, if you don't like the way the name is rendered, you can overwrite it:
 
 ```php
-protected $options = [
-    // The class set on the table when using bootstrap
-    'bootstrap.classes.table' => 'table table-striped table-bordered',
-
-    // The class set on the table's thead when using bootstrap
-    'bootstrap.classes.thead' => null,
-
-    // The class set on the table's export dropdown button
-    'bootstrap.classes.buttons.export' => 'btn',
-    
-    // Whether or not the table is wrapped in a `.container-fluid` or not
-    'bootstrap.container' => true,
-    
-    // Whether or not the table is wrapped in a `.table-responsive` or not
-    'bootstrap.responsive' => true,
+public array $sortNames = [
+    'email_verified_at' => 'Verification Status',
+    '2fa' => 'Two Factor Authentication Status',
 ];
 ```
 
-For this to work you have to pass an associative array of overrides to the `$options` property. The above are the defaults, if you're not changing them then you can leave them out or disregard the property all together.
+### Defining The Query
 
-### Passing Properties
+Your datatable must have a base query, which you define in the **query()** method:
 
-To pass properties from your blade view to your table, you can use the normal Livewire mount method:
-
-```php
-<livewire:users-table status="{{ request('status') }}" />
-```
+**Note:** Do not end the query, i.e. make sure it returns a Builder instance.
 
 ```php
-protected $status = 'active';
-
-public function mount($status) {
-    $this->status = $status;
+public function query(): Builder
+{
+    return Role::query();
 }
 ```
 
+You will see how to get more out of this base query using filters and search below.
+
+### Creating Filters
+
+Creating filters is not required, and the filters box will be hidden if none are defined.
+
+Creating filters requires a few easy steps.
+
+#### Adding to the filters array
+
+You must first define a filter key in the **$filters** array, this tells the component to save the filter status in the query string for page reloads, as well as let you set a default.
+
+```php
+public array $filters = [
+    'type' => null,
+    'active' => null,
+];
+```
+
+#### Defining the filter UI
+
+After you define the filters for the component, you must specify their options using the **filters()** method.
+
+Right now the only supported filter type is a select dropdown.
+
+```php
+public function filters(): array
+{
+    return [
+        'type' => Filter::make('User Type')
+            ->select([
+                '' => 'Any',
+                User::TYPE_ADMIN => 'Administrators',
+                User::TYPE_USER => 'Users',
+            ]),
+        'active' => Filter::make('Active')
+            ->select([
+                '' => 'Any',
+                'yes' => 'Yes',
+                'no' => 'No',
+            ]),
+    ];
+}
+```
+
+You specify your filters array using the **key** as the filter name supplied in the **$filters** array on the component.
+
+The keys of the options you supply will be validated on select to make sure they match one of the options on the backend, otherwise it will be changed to _null_ for safety.
+
+#### Alternate: Defining a filter view
+
+If you want full control over your filters, you can omit the **filters()** method and instead add a **filtersView()** method that return the string view name, which will be included in the master component on render. This is useful when you have different types of filters than the package offers:
+
+You can take a look as the master component markup to get ideas on how best to lay out the filters UI.
+
+```php
+public function filtersView(): ?string
+{
+    return 'path.to.my.filters.view';
+}
+```
+
+If you have this defined, it will take precedence over the **filters()** method.
+
+#### Defining how the filter works
+
+Finally, after you configure your filters, you must add them to your query so that the table knows what to do when one is selected:
+
+```php
+public function query(): Builder
+    {
+        return User::query()
+            ->when($this->getFilter('type'), fn ($query, $type) => $query->where('type', $type))
+            ->when($this->getFilter('active'), fn ($query, $active) => $query->where('active', $active === 'yes'));
+    }
+```
+
+As you can see we are just using the built-in Eloquent **when** method to check existence of our filter, and then apply the query.
+
+**Note:** `$this->getFilter('filter')` is a helper that amounts to `$this->filters['filter'] ?? null`.
+
+#### Configuring Filter Names
+
+When selecting filters, by default the component will use the filter key to render the filter pill selection above the table, if you don't like the way the component decided to do this, you may override the actual titles of these pills using a component property:
+
+```php
+public array $filterNames = [
+    'type' => 'User Type',
+    'active' => 'User Status',
+];
+```
+
+### Adding Search
+
+The search is a special built-in filter that is managed by the component, but you need to define the search query, you can do so the same as any other filter:
+
+```php
+public function query(): Builder
+{
+    return User::query()
+        ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
+}
+```
+
+You can make this even more streamlined by adding a search scope like demonstrated above. Or you can use regular where/orWhere clauses.
+
+### Creating Bulk Actions
+
+Bulk actions are not required, and the bulk actions box, as well as the left-hand checkboxes will be hidden if none are defined.
+
+To define your bulk actions, you add them to the **$bulkActions** array.
+
+```php
+public array $bulkActions = [
+    'exportSelected' => 'Export',
+];
+```
+
+The **key** is the Livewire method to call, and the value is the name of the item in the bulk actions dropdown.
+
+You can define your method to do whatever you want, all you need to know is how to get the actual selected rows to work with:
+
+```php
+public function exportSelected()
+{
+    if ($this->selectedRowsQuery->count() > 0) {
+        // Do something with the selected rows
+    }
+
+    // Notify there is nothing to export
+}
+```
+
+In the component you have access to `$this->selectedRowsQuery` which is a **Builder** instance of the selected rows.
+
+### Options
+
+There are some class level properties you can set:
+
+| Property | Default | Usage |
+| -------- | ------- | ----- |
+| $showSearch | true | Show the search box |
+| $showPerPage | true | Show the per page selector |
+| $showPagination | true | Show the pagination |
+| $showSorting | true | Show the sorting pills |
+| $showFilters | true | Show the filter pills |
+| $refresh | false | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
+| $offlineIndicator | true | Shows a red banner when there is no internet connection. |
+
+#### Using more than one table on a page
+
+The component has some built in logic to add custom page names for multiple tables on the same page, as well as saving the per page in the session for different tables:
+
+```php
+// Change the page URL parameter for pagination
+protected string $pageName = 'users';
+
+// A unique name to identify the table in session variables
+protected string $tableName = 'users';
+```
+
+If you are not putting more than one datatable on a page, you may omit these properties from your component to use the defaults.
+
+## Example Table
+(With most options)
+
+```php
+<?php
+
+namespace App\Http\Livewire\Admin\User;
+
+use App\Domains\Auth\Models\User;
+use App\Domains\User\Exports\UserExport;
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
+
+class UsersTable extends DataTableComponent
+{
+
+    public array $filters = [
+        'type' => null,
+        'active' => null,
+        'verified' => null,
+        '2fa' => null,
+    ];
+
+    public array $sortNames = [
+        'email_verified_at' => 'Verified',
+        'two_factor_secret' => '2FA',
+    ];
+
+    public array $filterNames = [
+        'type' => 'User Type',
+        'verified' => 'E-mail Verified',
+        '2fa' => 'Two Factor Authentication',
+    ];
+
+    public array $bulkActions = [
+        'exportSelected' => 'Export',
+    ];
+
+    protected string $pageName = 'users';
+    protected string $tableName = 'users';
+
+    public function exportSelected()
+    {
+        if ($this->selectedRowsQuery->count() > 0) {
+            return (new UserExport($this->selectedRowsQuery))->download($this->tableName.'.xlsx');
+        }
+
+        // Not included in package, just an example.
+        $this->notify(__('You did not select any users to export.'), 'danger');
+    }
+
+    public function filters(): array
+    {
+        return [
+            'type' => Filter::make('User Type')
+                ->select([
+                    '' => 'Any',
+                    User::TYPE_ADMIN => 'Administrators',
+                    User::TYPE_USER => 'Users',
+                ]),
+            'active' => Filter::make('Active')
+                ->select([
+                    '' => 'Any',
+                    'yes' => 'Yes',
+                    'no' => 'No',
+                ]),
+            'verified' => Filter::make('E-mail Verified')
+                ->select([
+                    '' => 'Any',
+                    'yes' => 'Yes',
+                    'no' => 'No',
+                ]),
+            '2fa' => Filter::make('Two Factor Authentication')
+                ->select([
+                    '' => 'Any',
+                    'enabled' => 'Enabled',
+                    'disabled' => 'Disabled',
+                ]),
+        ];
+    }
+
+    public function columns(): array
+    {
+        return [
+            Column::make('Type')
+                ->sortable()
+                ->addClass('hidden md:table-cell'),
+            Column::make('Name')
+                ->sortable(),
+            Column::make('E-mail', 'email')
+                ->sortable(),
+            Column::make('Active')
+                ->sortable()
+                ->addClass('hidden md:table-cell'),
+            Column::make('Verified', 'email_verified_at')
+                ->sortable()
+                ->addClass('hidden md:table-cell'),
+            Column::make('2FA', 'two_factor_secret')
+                ->sortable()
+                ->addClass('hidden md:table-cell'),
+            Column::blank(),
+        ];
+    }
+
+    public function query(): Builder
+    {
+        return User::query()
+            ->when($this->getFilter('search'), fn ($query, $search) => $query->search($search))
+            ->when($this->getFilter('type'), fn ($query, $type) => $query->where('type', $type))
+            ->when($this->getFilter('active'), fn ($query, $active) => $query->where('active', $active === 'yes'))
+            ->when($this->getFilter('verified'), fn ($query, $verified) => $verified === 'yes' ? $query->whereNotNull('email_verified_at') : $query->whereNull('email_verified_at'))
+            ->when($this->getFilter('2fa'), fn ($query, $twoFactor) => $twoFactor === 'enabled' ? $query->whereNotNull('two_factor_secret') : $query->whereNull('two_factor_secret'));
+    }
+
+    public function rowView(): string
+    {
+        return 'location.to.my.row.view';
+    }
+}
+```
+
+**row.blade.php**
+
+```html
+<x-livewire-tables::table.cell class="hidden md:table-cell">
+    <div>
+        @if ($row->isAdmin())
+            <x-badges.success>{{ ucfirst($row->type) }}</x-badges.success>
+        @else
+            <x-badges.default>{{ ucfirst($row->type) }}</x-badges.default>
+        @endif
+    </div>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <div class="flex items-center">
+        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+            <div wire:key="profile-picture-{{ $row->id }}" class="flex-shrink-0 h-10 w-10">
+                <img class="h-10 w-10 rounded-full" src="{{ $row->profile_photo_url }}" alt="{{ $row->name }}" />
+            </div>
+        @endif
+
+        <div class="@if (Laravel\Jetstream\Jetstream::managesProfilePhotos()) ml-4 @endif">
+            <div class="text-sm font-medium text-gray-900">
+                {{ $row->name }}
+            </div>
+
+            @if($row->timezone)
+                <div wire:key="timezone-{{ $row->id }}" class="text-sm text-gray-500">
+                    {{ str_replace('_', ' ', $row->timezone) }}
+                </div>
+            @endif
+        </div>
+    </div>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <p class="text-blue-400 truncate">
+        <a href="mailto:{{ $row->email }}" class="hover:underline">{{ $row->email }}</a>
+    </p>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell class="hidden md:table-cell">
+    <div>
+        @if ($row->isActive())
+            <x-badges.success>@lang('Yes')</x-badges.success>
+        @else
+            <x-badges.danger>@lang('No')</x-badges.danger>
+        @endif
+    </div>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell class="hidden md:table-cell">
+    <div>
+        @if ($row->isVerified())
+            <x-badges.success>@lang('Yes')</x-badges.success>
+        @else
+            <x-badges.danger>@lang('No')</x-badges.danger>
+        @endif
+    </div>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell class="hidden md:table-cell">
+    <div>
+        @if ($row->twoFactorEnabled())
+            <x-badges.success>@lang('Enabled')</x-badges.success>
+        @else
+            <x-badges.danger>@lang('Disabled')</x-badges.danger>
+        @endif
+    </div>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <a href="#" wire:click.prevent="manage({{ $row->id }})" class="text-primary-600 font-medium hover:text-primary-900">Manage</a>
+</x-livewire-tables::table.cell>
+```
+
+The final result would look like:
+
+![Full Table](https://i.imgur.com/2kfibjR.png)
+![With Filters Open](https://i.imgur.com/OHpuOmf.png)
+![With Filtering and Sorting](https://i.imgur.com/niBhMPR.png)
+
+## To-do/Roadmap
+
+- [x] Bootstrap 4 Template
+- [ ] Sorting By Relationships
+- [ ] Test Suite
+- [ ] Column Search
+
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-### Security
+## Security Vulnerabilities
 
-If you discover any security related issues, please email rappa819@gmail.com instead of using the issue tracker.
+Please e-mail anthony@rappasoft.com to report any security vulnerabilities instead of the issue tracker.
 
 ## Credits
 
