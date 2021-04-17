@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.0.2] - 2021-04-17
+
+### Changed
+
+- Fixed checkbox click with row click combination following URL and not checking checkbox.
+
 ## [1.0.1] - 2021-04-17
 
 ### Changed
@@ -163,7 +169,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.1...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.2...development
+[1.0.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.3...v0.4.0
