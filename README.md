@@ -120,7 +120,7 @@ public function rowView(): string
 ```
 
 ```html
-<x-livewire-tables::table.cell>
+<x-livewire-tables::table.cell> // Note: Tailwind Specific, see below.
     {{ ucfirst($row->type) }}
 </x-livewire-tables::table.cell>
 
@@ -169,6 +169,12 @@ To create cells, you should use the `<x-livewire-tables::table.cell>` table cell
     {{ $slot }}
 </td>
 ```
+
+**Note:** The default `x-livewire-tables::table.row` and `x-livewire-tables::table.cell` default to Tailwind, for Bootstrap specific versions use `x-livewire-tables::bs4.table.row` and `x-livewire-tables::bs4.table.cell`.
+
+There is also a Tailwind alias of `x-livewire-tables::tw.table.row` and `x-livewire-tables::tw.table.cell` if you want to be specific.
+
+The helpers are generally more for Tailwind users, as Bootstrap does not have any default added classes to their rows or cells.
 
 You are free to publish and change these views as needed.
 

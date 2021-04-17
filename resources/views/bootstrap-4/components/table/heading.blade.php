@@ -1,19 +1,22 @@
-@unless ($column->isSortable())
-    <th class="{{ $column->class() ?? '' }}">
-        {{ $column->text() ?? '' }}
+@props([
+    'column',
+    'sortable' => null,
+    'direction' => null,
+    'text' => null,
+])
+
+@unless ($sortable)
+    <th {{ $attributes->only('class') }}>
+        {{ $text ?? $slot }}
     </th>
 @else
     <th
-        wire:click="sortBy('{{ $column->column() }}', '{{ $column->text() ?? $column->column() }}')"
-        class="{{ $column->class() ?? '' }}"
+        wire:click="sortBy('{{ $column }}', '{{ $text ?? $column }}')"
+        {{ $attributes->only('class') }}
         style="cursor:pointer;"
     >
         <div class="d-flex align-items-center">
-            <span>{{ $column->text() }}</span>
-
-            @php
-                $direction = $column->column() ? $sorts[$column->column()] ?? null : null;
-            @endphp
+            <span>{{ $text }}</span>
 
             <span class="relative d-flex align-items-center">
                 @if ($direction === 'asc')
