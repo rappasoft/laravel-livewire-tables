@@ -4,6 +4,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.0.1] - 2021-04-17
+
+### Changed
+
+- Fixed missing bootstrap components aliased to bs4.table.*
+- Updated readme
+- Added missing row click on bootstrap
+
 ## [1.0.0] - 2021-04-16
 
 - Ground up rebuild, see documentation for usage.
