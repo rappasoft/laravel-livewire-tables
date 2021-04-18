@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 /**
@@ -39,7 +39,7 @@ trait WithPerPagePagination
 
     public function updatedPerPage($value): void
     {
-        if ( $this->paginate === false ) {
+        if ($this->paginate === false) {
             // do nothing if disabled
         } elseif (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
             session()->put($this->tableName.'-perPage', (int) $value);
@@ -56,9 +56,9 @@ trait WithPerPagePagination
      */
     public function applyPagination(Builder $query) : mixed
     {
-        if( $this->paginate === false ){
+        if ($this->paginate === false) {
             return $query->get();
-        }else{
+        } else {
             return $query->paginate($this->perPage, ['*'], $this->pageName());
         }
     }
