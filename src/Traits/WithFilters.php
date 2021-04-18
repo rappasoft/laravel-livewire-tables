@@ -115,7 +115,7 @@ trait WithFilters
                 foreach ($this->columns() as $column) {
 
                     // only apply to searchable columns
-                    if ($column->isSearchable() && !$column->isAggregate()) {
+                    if ($column->isSearchable() && ! $column->isAggregate()) {
 
                         // does this column have a relation?
                         $hasRelation = ColumnUtilities::hasRelation($column->column());
@@ -128,9 +128,11 @@ trait WithFilters
                             switch ($column->type) {
                                 case Column::TYPE_BOOLEAN:
                                     $subQuery->orWhere($selectedColumn ?? $column->column(), '=', (bool)$search);
+
                                     break;
                                 case Column::TYPE_NUMBER:
                                     $subQuery->orWhere($selectedColumn ?? $column->column(), '=', $search);
+
                                     break;
                                 default:
                                     $subQuery->orWhere($selectedColumn ?? $column->column(), 'like', '%' . $search . '%');
@@ -143,9 +145,11 @@ trait WithFilters
                                 switch ($column->type) {
                                     case Column::TYPE_BOOLEAN:
                                         $hasQuery->where($fieldName, '=', (bool)$search);
+
                                         break;
                                     case Column::TYPE_NUMBER:
                                         $hasQuery->where($fieldName, '=', $search);
+
                                         break;
                                     default:
                                         $hasQuery->where($fieldName, 'like', '%' . $search . '%');
