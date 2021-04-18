@@ -4,13 +4,15 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.0.3] - 2021-04-18
+
 ### Added
 
 - Added Bootstrap 5 theme
 
 ### Changed
 
-- Removed calls to custom primary color with indigo
+- Removed calls to custom primary color with indigo for tailwind
 - Updated search and row click sections of read me to be more clear.
 - Added resetPage to per page dropdown and filters.
 
@@ -179,7 +181,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.2...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.3...development
+[1.0.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.4.0...v1.0.0
