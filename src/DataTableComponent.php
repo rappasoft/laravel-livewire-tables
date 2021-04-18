@@ -2,14 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
-use Rappasoft\LaravelLivewireTables\Traits\WithPerPagePagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -185,7 +184,7 @@ abstract class DataTableComponent extends Component
         // paginating?
         if (method_exists($this, 'applyPagination')) {
             return $this->applyPagination($rowsQuery);
-        }else{
+        } else {
             return $rowsQuery->get();
         }
     }

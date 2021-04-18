@@ -88,7 +88,6 @@ trait WithFilters
         foreach ($this->filters() as $key => $filter) {
 
             // @todo: do the things
-
         }
 
         return $query;
@@ -104,7 +103,6 @@ trait WithFilters
     {
         // @todo: make truthy?
         if ($this->hasFilter('search')) {
-
             $search = $this->getFilter('search');
 
             // trim?
@@ -112,19 +110,14 @@ trait WithFilters
 
             // group search conditions together
             $query->where(function (Builder $query) use ($search) {
-
                 foreach ($this->columns() as $column) {
 
                     // only apply to searchable columns
                     if ($column->isSearchable()) {
-
                         $query->orWhere($column->column(), 'like', '%' . $search . '%');
-
                     }
                 }
-
             });
-
         }
 
         return $query;

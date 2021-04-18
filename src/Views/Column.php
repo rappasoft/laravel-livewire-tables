@@ -132,13 +132,13 @@ class Column
      */
     public function type($type): self
     {
-        if (!in_array($type, [
+        if (! in_array($type, [
             self::TYPE_TEXT,
             self::TYPE_NUMBER,
             self::TYPE_BOOLEAN,
         ])) {
             throw new UnsupportedColumnTypeException("Column type `$type` not supported.");
-        }else{
+        } else {
             $this->type = $type;
         }
 
