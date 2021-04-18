@@ -63,7 +63,7 @@ trait WithFilters
         $filterDefinitions = $this->filters();
 
         // filter $filters values
-        $this->filters = array_filter($this->filters, function($filterValue, $filterName) use($filterDefinitions) {
+        $this->filters = array_filter($this->filters, function ($filterValue, $filterName) use ($filterDefinitions) {
 
             // ignore search
             if ($filterName === 'search') {
@@ -71,7 +71,7 @@ trait WithFilters
             }
 
             // filter out any keys that weren't defined as a filter
-            if (!isset($filterDefinitions[$filterName])) {
+            if (! isset($filterDefinitions[$filterName])) {
                 return false;
             }
 
@@ -82,7 +82,6 @@ trait WithFilters
 
             // handle Select filters
             if ($filterDefinitions[$filterName]->isSelect()) {
-
                 foreach ($filterDefinitions[$filterName]->options() as $optionValue => $optionLabel) {
 
                     // if the option is an integer, typecast filter value
@@ -92,13 +91,10 @@ trait WithFilters
                     } elseif ($optionValue === $filterValue) {
                         return true;
                     }
-
                 }
-
             }
 
             return false;
-
         }, ARRAY_FILTER_USE_BOTH);
     }
 
