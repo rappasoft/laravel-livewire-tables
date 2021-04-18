@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Utilities;
 
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder as Builder;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Support\Str;
 
 class ColumnUtilities
@@ -63,13 +63,13 @@ class ColumnUtilities
      */
     public static function hasWildcardMatch($column, $searchColumns)
     {
-        return count(array_filter( $searchColumns ?? [], function($searchColumn) use ($column) {
+        return count(array_filter($searchColumns ?? [], function ($searchColumn) use ($column) {
 
             // match wildcards such as * or table.*
             $hasWildcard = Str::endsWith($searchColumn, '*');
 
             // if no wildcard, skip
-            if(!$hasWildcard){
+            if (! $hasWildcard) {
                 return false;
             }
 
@@ -77,7 +77,6 @@ class ColumnUtilities
             $columnPrefix = self::parseRelation($column);
 
             return $selectColumnPrefix === $columnPrefix;
-
         })) > 0;
     }
 
@@ -97,7 +96,7 @@ class ColumnUtilities
         } elseif ($queryBuilder instanceof Builder) {
             $select = $queryBuilder->columns;
         // if no query builder, we can't match anything
-        }else{
+        } else {
             return null;
         }
 
@@ -150,18 +149,16 @@ class ColumnUtilities
 
         // if we didn't previously match the column and there isn't
         // a relation
-        if (!$hasRelation) {
+        if (! $hasRelation) {
 
             // there's nothing else to do
             return null;
 
         // this is easiest when using the eloquent query builder
         } elseif ($queryBuilder instanceof EloquentBuilder) {
-
             $relation = $queryBuilder->getRelation($relationName);
             $possibleTable = $relation->getModel()->getTable();
-
-        }elseif ($queryBuilder instanceof Builder) {
+        } elseif ($queryBuilder instanceof Builder) {
 
             // basically, there is no clean way to do this directly on
             // a database builder. we just start making a bunch of
@@ -176,19 +173,16 @@ class ColumnUtilities
                 /** @var Model $possibleModel */
                 $possibleModel = new $possibleModelClassName;
                 $possibleTable = $possibleModel->getTable();
-
-            }else{
+            } else {
                 $possibleTable = null;
             }
-
-        }else{
+        } else {
             // we would have already returned before this is possible
             $possibleTable = null;
         }
 
         // if we found a possible table
-        if (!is_null($possibleTable)) {
-
+        if (! is_null($possibleTable)) {
             $possibleSelectColumn = $possibleTable . '.' . $fieldName;
 
             $possibleMatch = self::hasMatch($possibleSelectColumn, $select);
@@ -205,11 +199,9 @@ class ColumnUtilities
             if ($possibleWildcardMatch) {
                 return $possibleSelectColumn;
             }
-
         }
 
         // we couldn't match to a selected column
         return null;
     }
-
 }

@@ -90,7 +90,6 @@ trait WithFilters
         foreach ($this->filters() as $key => $filter) {
 
             // @todo: do the things
-
         }
 
         return $query;
@@ -106,7 +105,6 @@ trait WithFilters
     {
         // @todo: make truthy?
         if ($this->hasFilter('search')) {
-
             $search = $this->getFilter('search');
 
             // trim?
@@ -114,7 +112,6 @@ trait WithFilters
 
             // group search conditions together
             $query->where(function (Builder $subQuery) use ($search, $query) {
-
                 foreach ($this->columns() as $column) {
 
                     // only apply to searchable columns
@@ -129,47 +126,41 @@ trait WithFilters
                         //var_dump($selectedColumn);
 
                         // if the column isn't a relation or if it was previously selected
-                        if (!$hasRelation || $selectedColumn) {
-
+                        if (! $hasRelation || $selectedColumn) {
                             switch ($column->type) {
                                 case Column::TYPE_BOOLEAN:
                                     $subQuery->orWhere($selectedColumn ?? $column->column(), '=', (bool)$search);
+
                                     break;
                                 case Column::TYPE_NUMBER:
                                     $subQuery->orWhere($selectedColumn ?? $column->column(), '=', $search);
+
                                     break;
                                 default:
                                     $subQuery->orWhere($selectedColumn ?? $column->column(), 'like', '%' . $search . '%');
                             }
-
                         } else {
-
                             $relationName = ColumnUtilities::parseRelation($column->column());
                             $fieldName = ColumnUtilities::parseField($column->column());
 
                             $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($fieldName, $column, $search) {
-
                                 switch ($column->type) {
                                     case Column::TYPE_BOOLEAN:
                                         $hasQuery->where($fieldName, '=', (bool)$search);
+
                                         break;
                                     case Column::TYPE_NUMBER:
                                         $hasQuery->where($fieldName, '=', $search);
+
                                         break;
                                     default:
                                         $hasQuery->where($fieldName, 'like', '%' . $search . '%');
                                 }
-
                             });
-
-
                         }
-
                     }
                 }
-
             });
-
         }
 
         return $query;
