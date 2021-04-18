@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Rappasoft\LaravelLivewireTables\Views\Filter;
+
 /**
  * Trait WithFilters.
  */
@@ -41,22 +43,63 @@ trait WithFilters
         $this->resetBulk();
     }
 
+    /**
+     * Define filters
+     *
+     * @return Filter[]
+     */
     public function filters(): array
     {
         return [];
     }
 
+    /**
+     * Cleans $filter property of any values that don't exist
+     * in the filter() definition.
+     */
     public function cleanFilters(): void
     {
-        foreach ($this->filters() as $key => $filter) {
-            if (
-                $filter->isSelect() &&
-                $this->hasFilter($key) &&
-                ! in_array($this->getFilter($key), $this->getFilterOptions($key), true)
-            ) {
-                $this->removeFilter($key);
+        // grab the filter definitions
+        $filterDefinitions = $this->filters();
+
+        // filter $filters values
+        $this->filters = array_filter($this->filters, function($filterValue, $filterName) use($filterDefinitions) {
+
+            // ignore search
+            if ($filterName === 'search') {
+                return true;
             }
-        }
+
+            // filter out any keys that weren't defined as a filter
+            if (!isset($filterDefinitions[$filterName])) {
+                return false;
+            }
+
+            // ignore null values
+            if (is_null($filterValue)) {
+                return true;
+            }
+
+            // handle Select filters
+            if ($filterDefinitions[$filterName]->isSelect()) {
+
+                foreach ($filterDefinitions[$filterName]->options() as $optionValue => $optionLabel) {
+
+                    // if the option is an integer, typecast filter value
+                    if (is_int($optionValue) && $optionValue === (int)$filterValue) {
+                        return true;
+                    // strict check the value
+                    } elseif ($optionValue === $filterValue) {
+                        return true;
+                    }
+
+                }
+
+            }
+
+            return false;
+
+        }, ARRAY_FILTER_USE_BOTH);
     }
 
     public function filtersView(): ?string
