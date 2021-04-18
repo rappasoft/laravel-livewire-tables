@@ -26,6 +26,8 @@ trait WithPerPagePagination
         } else {
             session()->put($this->tableName.'-perPage', 10);
         }
+
+        $this->resetPage();
     }
 
     public function applyPagination($query)
