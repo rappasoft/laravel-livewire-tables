@@ -51,7 +51,7 @@ class ColumnUtilities
      */
     public static function hasMatch($column, $searchColumns)
     {
-        return array_search($column, $searchColumns) !== false;
+        return array_search($column, $searchColumns ?? []) !== false;
     }
 
     /**
