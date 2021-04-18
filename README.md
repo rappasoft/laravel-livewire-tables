@@ -34,7 +34,7 @@ This is the contents of the published config file:
 
 return [
     /**
-     * Options: tailwind | bootstrap-4.
+     * Options: tailwind | bootstrap-4 | bootstrap-5.
      */
     'theme' => 'tailwind',
 ];
@@ -160,6 +160,8 @@ public function getTableRowUrl($row): string
 }
 ```
 
+**Note:** When you have a clickable row, you might have issues with other clickable items in your cells following the row URL instead of the items action. As of right now I'd advise against using both until there is a better solution.
+
 ### Using the included blade components in the row view:
 
 To create cells, you should use the `<x-livewire-tables::table.cell>` table cell component, which will be rendered to:
@@ -170,7 +172,8 @@ To create cells, you should use the `<x-livewire-tables::table.cell>` table cell
 </td>
 ```
 
-**Note:** The default `x-livewire-tables::table.row` and `x-livewire-tables::table.cell` default to Tailwind, for Bootstrap specific versions use `x-livewire-tables::bs4.table.row` and `x-livewire-tables::bs4.table.cell`.
+**Note:** The default `x-livewire-tables::table.row` and `x-livewire-tables::table.cell` default to Tailwind, for Bootstrap specific versions use `x-livewire-tables::bs4.table.row` and `x-livewire-tables::bs4.table.cell` for
+Bootstrap 4, or `x-livewire-tables::bs5.table.row` and `x-livewire-tables::bs5.table.cell` for Bootstrap 5.
 
 There is also a Tailwind alias of `x-livewire-tables::tw.table.row` and `x-livewire-tables::tw.table.cell` if you want to be specific.
 
@@ -325,11 +328,30 @@ The search is a special built-in filter that is managed by the component, but yo
 public function query(): Builder
 {
     return User::query()
-        ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
+        ->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%')->orWhere('email', 'like', '%'.$term.'%'));
 }
 ```
 
-You can make this even more streamlined by adding a search scope like demonstrated above. Or you can use regular where/orWhere clauses.
+You can make this even more streamlined by adding a search scope to your model like so:
+
+```php
+public function scopeSearch($query, $term)
+{
+    return $query->where(
+        fn ($query) => $query->where('name', 'like', '%'.$term.'%')
+            ->orWhere('email', 'like', '%'.$term.'%')
+    );
+}
+```
+
+And then using it like this:
+
+```php
+{
+    return User::query()
+        ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
+}
+```
 
 ### Creating Bulk Actions
 

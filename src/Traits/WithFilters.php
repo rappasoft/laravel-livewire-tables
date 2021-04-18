@@ -27,6 +27,11 @@ trait WithFilters
         $this->filters['search'] = $search;
     }
 
+    public function updatingFilters(): void
+    {
+        $this->resetPage();
+    }
+
     public function resetAll(): void
     {
         $this->resetFilters();
