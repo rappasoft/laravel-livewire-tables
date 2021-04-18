@@ -1,7 +1,7 @@
 @if ($showSearch)
     <div class="mb-3 mb-md-0 input-group">
         <input
-            wire:model.debounce.250ms="filters.search"
+            wire:model{{ $this->searchFilterOptions }}="filters.search"
             placeholder="{{ __('Search') }}"
             type="text"
             class="form-control"

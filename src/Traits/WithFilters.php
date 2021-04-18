@@ -7,11 +7,61 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait WithFilters
 {
+    /**
+     * Filter values
+     *
+     * @var array
+     */
     public array $filters = [];
+
+    /**
+     * Map filter names
+     *
+     * @var array
+     */
     public array $filterNames = [];
+
+    /**
+     * Default filters
+     *
+     * @var array|null[]
+     */
     public array $baseFilters = [
         'search' => null,
     ];
+
+    /**
+     * @var int
+     */
+    public ?int $searchFilterDebounce = null;
+
+    /**
+     * @var bool
+     */
+    public ?bool $searchFilterLazy = null;
+
+    /**
+     * @var bool
+     */
+    public ?bool $searchFilterDefer = null;
+
+    /**
+     * Build livewire model options for the search input
+     *
+     * @return string
+     */
+    public function getSearchFilterOptionsProperty()
+    {
+        if ($this->searchFilterLazy) {
+            return '.lazy';
+        } elseif($this->searchFilterDefer) {
+            return '.defer';
+        }elseif($this->searchFilterDebounce){
+            return '.debounce.' . $this->searchFilterDebounce . 'ms';
+        }else{
+            return '';
+        }
+    }
 
     public function resetFilters(): void
     {
