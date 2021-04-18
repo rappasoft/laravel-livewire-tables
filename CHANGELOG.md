@@ -11,6 +11,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 - Removed calls to custom primary color with indigo
+- Updated search and row click sections of read me to be more clear.
+- Added resetPage to per page dropdown and filters.
 
 ## [1.0.2] - 2021-04-17
 
