@@ -2,17 +2,35 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+
 /**
  * Trait WithPerPagePagination.
  */
 trait WithPerPagePagination
 {
+    /**
+     * @var bool
+     */
+    public bool $paginate = true;
+
+    /**
+     * @var int
+     */
     public int $perPage = 10;
+
+    /**
+     * @var array|int[]
+     */
     protected array $perPageAccepted = [10, 25, 50];
 
     public function mountWithPerPagePagination(): void
     {
-        if (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
+        if ($this->paginate === false) {
+            // do nothing if disabled
+        } elseif (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
             $this->perPage = session()->get($this->tableName.'-perPage', $this->perPage);
         } else {
             $this->perPage = 10;
@@ -21,15 +39,27 @@ trait WithPerPagePagination
 
     public function updatedPerPage($value): void
     {
-        if (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
+        if ( $this->paginate === false ) {
+            // do nothing if disabled
+        } elseif (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
             session()->put($this->tableName.'-perPage', (int) $value);
         } else {
             session()->put($this->tableName.'-perPage', 10);
         }
     }
 
-    public function applyPagination($query)
+    /**
+     * Apply pagination to the query
+     *
+     * @param Builder $query
+     * @return Collection|LengthAwarePaginator
+     */
+    public function applyPagination(Builder $query) : mixed
     {
-        return $query->paginate($this->perPage, ['*'], $this->pageName());
+        if( $this->paginate === false ){
+            return $query->get();
+        }else{
+            return $query->paginate($this->perPage, ['*'], $this->pageName());
+        }
     }
 }

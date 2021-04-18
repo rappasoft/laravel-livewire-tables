@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
+
 /**
  * Trait WithFilters.
  */
@@ -15,8 +17,11 @@ trait WithFilters
 
     public function resetFilters(): void
     {
+        // save the search filter
         $search = $this->filters['search'] ?? null;
+        // clear filters
         $this->reset('filters');
+        // re-add the search filter
         $this->filters['search'] = $search;
     }
 
@@ -70,5 +75,58 @@ trait WithFilters
     public function getFilterOptions(string $filter): array
     {
         return array_filter(array_keys($this->filters()[$filter]->options() ?? []));
+    }
+
+    /**
+     * Apply Filters
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function applyFilters(Builder $query): Builder
+    {
+        foreach ($this->filters() as $key => $filter) {
+
+            // @todo: do the things
+
+        }
+
+        return $query;
+    }
+
+    /**
+     * Apply Search Filter
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function applySearchFilter(Builder $query): Builder
+    {
+        // @todo: make truthy?
+        if ($this->hasFilter('search')) {
+
+            $search = $this->getFilter('search');
+
+            // trim?
+            $search = trim($search);
+
+            // group search conditions together
+            $query->where(function (Builder $query) use ($search) {
+
+                foreach ($this->columns() as $column) {
+
+                    // only apply to searchable columns
+                    if ($column->isSearchable()) {
+
+                        $query->orWhere($column->column(), 'like', '%' . $search . '%');
+
+                    }
+                }
+
+            });
+
+        }
+
+        return $query;
     }
 }

@@ -3,13 +3,15 @@
 namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
 use Rappasoft\LaravelLivewireTables\Traits\WithPerPagePagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 /**
  * Class TableComponent.
@@ -19,7 +21,6 @@ abstract class DataTableComponent extends Component
     use WithBulkActions;
     use WithCustomPagination;
     use WithFilters;
-    use WithPerPagePagination;
     use WithSorting;
 
     /**
@@ -115,7 +116,7 @@ abstract class DataTableComponent extends Component
     /**
      * The array defining the columns of the table.
      *
-     * @return array
+     * @return Column[]
      */
     abstract public function columns(): array;
 
@@ -151,17 +152,42 @@ abstract class DataTableComponent extends Component
     {
         $this->cleanFilters();
 
-        return $this->applySorting($this->query());
+        // grab query
+        $query = $this->query();
+
+        // sorting?
+        if (method_exists($this, 'applySorting')) {
+            $query = $this->applySorting($query);
+        }
+
+        // filtering?
+        if (method_exists($this, 'applyFilters')) {
+            $query = $this->applyFilters($query);
+        }
+
+        // searching?
+        if (method_exists($this, 'applySearchFilter')) {
+            $query = $this->applySearchFilter($query);
+        }
+
+        return $query;
     }
 
     /**
      * Get the rows paginated collection that will be returned to the view.
      *
-     * @return LengthAwarePaginator
+     * @return Collection|LengthAwarePaginator
      */
-    public function getRowsProperty(): LengthAwarePaginator
+    public function getRowsProperty(): mixed
     {
-        return $this->applyPagination($this->rowsQuery);
+        $rowsQuery = $this->getRowsQueryProperty();
+
+        // paginating?
+        if (method_exists($this, 'applyPagination')) {
+            return $this->applyPagination($rowsQuery);
+        }else{
+            return $rowsQuery->get();
+        }
     }
 
     /**
@@ -185,7 +211,7 @@ abstract class DataTableComponent extends Component
                 'rowView' => $this->rowView(),
                 'filtersView' => $this->filtersView(),
                 'customFilters' => $this->filters(),
-                'rows' => $this->rows,
+                'rows' => $this->getRowsProperty(),
             ]);
     }
 }

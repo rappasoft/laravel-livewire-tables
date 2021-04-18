@@ -3,12 +3,22 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
+use Rappasoft\LaravelLivewireTables\Exceptions\UnsupportedColumnTypeException;
 
 /**
  * Class Column.
  */
 class Column
 {
+    public const TYPE_BOOLEAN = 'boolean';
+    public const TYPE_NUMBER = 'number';
+    public const TYPE_TEXT = 'text';
+
+    /**
+     * @var string|null
+     */
+    public string $type = self::TYPE_TEXT;
+
     /**
      * @var string|null
      */
@@ -23,6 +33,11 @@ class Column
      * @var bool
      */
     public bool $sortable = false;
+
+    /**
+     * @var bool
+     */
+    public bool $searchable = false;
 
     /**
      * @var string|null
@@ -95,17 +110,81 @@ class Column
     /**
      * @return bool
      */
+    public function isSearchable(): bool
+    {
+        return $this->searchable === true;
+    }
+
+    /**
+     * @return bool
+     */
     public function isBlank(): bool
     {
         return $this->blank === true;
     }
 
     /**
+     * Set column type (e.g. text, boolean, number)
+     *
+     * @param $type
+     * @return $this
+     * @throws UnsupportedColumnTypeException
+     */
+    public function type($type): self
+    {
+        if (!in_array($type, [
+            self::TYPE_TEXT,
+            self::TYPE_NUMBER,
+            self::TYPE_BOOLEAN,
+        ])) {
+            throw new UnsupportedColumnTypeException("Column type `$type` not supported.");
+        }else{
+            $this->type = $type;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set column type to number
+     *
+     * @return $this
+     * @throws UnsupportedColumnTypeException
+     */
+    public function number(): self
+    {
+        return $this->type(self::TYPE_NUMBER);
+    }
+
+    /**
+     * Set column type to boolean
+     *
+     * @return $this
+     * @throws UnsupportedColumnTypeException
+     */
+    public function boolean(): self
+    {
+        return $this->type(self::TYPE_BOOLEAN);
+    }
+
+    /**
+     * @param bool $enable
      * @return $this
      */
-    public function sortable(): self
+    public function sortable($enable = true): self
     {
-        $this->sortable = true;
+        $this->sortable = $enable;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $enable
+     * @return $this
+     */
+    public function searchable($enable = true): self
+    {
+        $this->searchable = $enable;
 
         return $this;
     }
@@ -125,7 +204,7 @@ class Column
     /**
      * @return Column
      */
-    public function asHtml(): Column
+    public function asHtml(): self
     {
         $this->asHtml = true;
 
@@ -161,7 +240,7 @@ class Column
      *
      * @return $this
      */
-    public function format(callable $callable): Column
+    public function format(callable $callable): self
     {
         $this->formatCallback = $callable;
 
