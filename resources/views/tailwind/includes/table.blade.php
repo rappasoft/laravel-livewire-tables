@@ -28,7 +28,7 @@
     </x-slot>
 
     <x-slot name="body">
-        @if (count($bulkActions) && $selectPage && $rows->total() > $rows->count())
+        @if (count($bulkActions) && $paginate ?? false && $selectPage && $rows->total() > $rows->count())
             <x-livewire-tables::table.row wire:key="row-message" class="bg-primary-50">
                 <x-livewire-tables::table.cell :colspan="count($bulkActions) ? count($columns) + 1 : count($columns)">
                     @unless ($selectAll)
