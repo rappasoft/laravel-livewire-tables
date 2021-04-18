@@ -14,7 +14,7 @@ trait WithPerPagePagination
     /**
      * @var bool
      */
-    public bool $paginate = true;
+    public bool $pagination = true;
 
     /**
      * @var int
@@ -28,7 +28,7 @@ trait WithPerPagePagination
 
     public function mountWithPerPagePagination(): void
     {
-        if ($this->paginate === false) {
+        if ($this->pagination === false) {
             // do nothing if disabled
         } elseif (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
             $this->perPage = session()->get($this->tableName.'-perPage', $this->perPage);
@@ -39,7 +39,7 @@ trait WithPerPagePagination
 
     public function updatedPerPage($value): void
     {
-        if ($this->paginate === false) {
+        if ($this->pagination === false) {
             // do nothing if disabled
         } elseif (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
             session()->put($this->tableName.'-perPage', (int) $value);
@@ -56,7 +56,7 @@ trait WithPerPagePagination
      */
     public function applyPagination(Builder $query) : mixed
     {
-        if ($this->paginate === false) {
+        if ($this->pagination === false) {
             return $query->get();
         } else {
             return $query->paginate($this->perPage, ['*'], $this->pageName());

@@ -47,6 +47,11 @@ class Column
     /**
      * @var bool
      */
+    public bool $aggregate = false;
+
+    /**
+     * @var bool
+     */
     public bool $blank = false;
 
     /**
@@ -113,6 +118,14 @@ class Column
     public function isSearchable(): bool
     {
         return $this->searchable === true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAggregate(): bool
+    {
+        return $this->aggregate === true;
     }
 
     /**
@@ -185,6 +198,17 @@ class Column
     public function searchable($enable = true): self
     {
         $this->searchable = $enable;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $enable
+     * @return $this
+     */
+    public function aggregate($enable = true): self
+    {
+        $this->aggregate = $enable;
 
         return $this;
     }

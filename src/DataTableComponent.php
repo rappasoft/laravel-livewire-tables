@@ -9,6 +9,7 @@ use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
+use Rappasoft\LaravelLivewireTables\Traits\WithPerPagePagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -21,6 +22,7 @@ abstract class DataTableComponent extends Component
     use WithCustomPagination;
     use WithFilters;
     use WithSorting;
+    use WithPerPagePagination;
 
     /**
      * The default pagination theme.
@@ -169,7 +171,7 @@ abstract class DataTableComponent extends Component
             $query = $this->applySearchFilter($query);
         }
 
-        //dd($query->toSql());
+        dd($query->toSql());
 
         return $query;
     }
