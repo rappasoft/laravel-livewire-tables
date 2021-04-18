@@ -54,11 +54,11 @@ trait WithFilters
     {
         if ($this->searchFilterLazy) {
             return '.lazy';
-        } elseif($this->searchFilterDefer) {
+        } elseif ($this->searchFilterDefer) {
             return '.defer';
-        }elseif($this->searchFilterDebounce){
+        } elseif ($this->searchFilterDebounce) {
             return '.debounce.' . $this->searchFilterDebounce . 'ms';
-        }else{
+        } else {
             return '';
         }
     }
