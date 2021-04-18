@@ -170,6 +170,8 @@ abstract class DataTableComponent extends Component
             $query = $this->applySearchFilter($query);
         }
 
+        //dd($query->toSql());
+
         return $query;
     }
 
