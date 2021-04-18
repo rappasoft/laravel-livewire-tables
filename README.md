@@ -618,9 +618,11 @@ The final result would look like:
 ## To-do/Roadmap
 
 - [x] Bootstrap 4 Template
+- [x] Bootstrap 5 Template
 - [ ] Sorting By Relationships
 - [ ] Test Suite
 - [ ] Column Search
+- [ ] Greater Configurability
 
 ## Changelog
 
