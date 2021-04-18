@@ -34,7 +34,7 @@ This is the contents of the published config file:
 
 return [
     /**
-     * Options: tailwind | bootstrap-4.
+     * Options: tailwind | bootstrap-4 | bootstrap-5.
      */
     'theme' => 'tailwind',
 ];
@@ -170,7 +170,8 @@ To create cells, you should use the `<x-livewire-tables::table.cell>` table cell
 </td>
 ```
 
-**Note:** The default `x-livewire-tables::table.row` and `x-livewire-tables::table.cell` default to Tailwind, for Bootstrap specific versions use `x-livewire-tables::bs4.table.row` and `x-livewire-tables::bs4.table.cell`.
+**Note:** The default `x-livewire-tables::table.row` and `x-livewire-tables::table.cell` default to Tailwind, for Bootstrap specific versions use `x-livewire-tables::bs4.table.row` and `x-livewire-tables::bs4.table.cell` for
+Bootstrap 4, or `x-livewire-tables::bs5.table.row` and `x-livewire-tables::bs5.table.cell` for Bootstrap 5.
 
 There is also a Tailwind alias of `x-livewire-tables::tw.table.row` and `x-livewire-tables::tw.table.cell` if you want to be specific.
 

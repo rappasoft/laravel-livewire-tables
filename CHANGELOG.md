@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Added Bootstrap 5 theme
+
 ## [1.0.2] - 2021-04-17
 
 ### Changed

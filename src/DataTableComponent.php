@@ -135,7 +135,8 @@ abstract class DataTableComponent extends Component
     {
         parent::__construct($id);
 
-        if (config('livewire-tables.theme') === 'bootstrap-4') {
+        $theme = config('livewire-tables.theme');
+        if ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') {
             $this->paginationTheme = 'bootstrap';
         }
 
