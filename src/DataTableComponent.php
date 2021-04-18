@@ -150,7 +150,7 @@ abstract class DataTableComponent extends Component
      */
     public function getRowsQueryProperty(): Builder
     {
-        $this->cleanFilters();
+        //$this->cleanFilters();
 
         return $this->applySorting($this->query());
     }
