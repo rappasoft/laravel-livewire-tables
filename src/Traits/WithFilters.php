@@ -15,8 +15,8 @@ trait WithFilters
 
     public function mountWithFilters()
     {
-        foreach($this->filters() as $filter => $options){
-            if(!isset($this->filters[$filter])){
+        foreach ($this->filters() as $filter => $options) {
+            if (! isset($this->filters[$filter])) {
                 $this->filters[$filter] = null;
             }
         }
