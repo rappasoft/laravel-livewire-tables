@@ -15,7 +15,7 @@
                         wire:click.prevent="removeFilter('{{ $key }}')"
                         class="text-white ml-2"
                     >
-                        <span class="sr-only">@lang('Remove sort option')</span>
+                        <span class="sr-only">@lang('Remove filter option')</span>
                         <svg style="width:.5em;height:.5em" stroke="currentColor" fill="none" viewBox="0 0 8 8">
                             <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
                         </svg>

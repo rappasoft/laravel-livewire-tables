@@ -8,6 +8,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Added Bootstrap 5 theme
 
+### Changed
+
+- Removed calls to custom primary color with indigo
+
 ## [1.0.2] - 2021-04-17
 
 ### Changed

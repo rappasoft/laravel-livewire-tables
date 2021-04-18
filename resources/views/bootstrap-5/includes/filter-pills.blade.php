@@ -15,7 +15,7 @@
                         wire:click.prevent="removeFilter('{{ $key }}')"
                         class="text-white ms-2"
                     >
-                        <span class="sr-only">@lang('Remove sort option')</span>
+                        <span class="visually-hidden">@lang('Remove filter option')</span>
                         <svg style="width:.5em;height:.5em" stroke="currentColor" fill="none" viewBox="0 0 8 8">
                             <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
                         </svg>
@@ -27,7 +27,7 @@
         <a
             href="#"
             wire:click.prevent="resetFilters"
-            class="badge rounded-pill bg-light"
+            class="badge rounded-pill bg-light text-dark text-decoration-none"
         >
             @lang('Clear')
         </a>
