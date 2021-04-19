@@ -1,10 +1,10 @@
 @if ($showSorting && count($sorts))
-    <div wire:key="sort-badges" class="p-6 md:p-0">
+    <div class="p-6 md:p-0">
         <small class="text-gray-700">@lang('Applied Sorting'):</small>
 
         @foreach($sorts as $col => $dir)
             <span
-                wire:key="sort-{{ $col }}"
+                wire:key="sorting-pill-{{ $key }}"
                 class="inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700"
             >
                 {{ $sortNames[$col] ?? ucwords(strtr($col, ['_' => ' ', '-' => ' '])) }}: {{ $dir === 'asc' ? 'A-Z' : 'Z-A' }}

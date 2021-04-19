@@ -17,7 +17,7 @@
                     @include($filtersView)
                 @elseif (count($customFilters))
                     @foreach ($customFilters as $key => $filter)
-                        <div class="p-2">
+                        <div wire:key="filter-{{ $key }}" class="p-2">
                             @if ($filter->isSelect())
                                 <label for="filter-{{ $key }}" class="mb-2">
                                     {{ $filter->name() }}
