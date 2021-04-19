@@ -30,9 +30,14 @@ trait WithSorting
     public function applySorting(Builder $query): Builder
     {
         foreach ($this->sorts as $field => $direction) {
+            if(! $this->tapSorting($query, $field, $direction))
             $query->orderBy($field, $direction);
         }
 
+        return $query;
+    }
+    
+    public function tapSorting(Builder $query, $field, $direction) {
         return $query;
     }
 
