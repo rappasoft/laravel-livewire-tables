@@ -31,36 +31,40 @@ trait WithFilters
     ];
 
     /**
-     * @var int
+     * @var int|null
      */
     public ?int $searchFilterDebounce = null;
 
     /**
-     * @var bool
-     */
-    public ?bool $searchFilterLazy = null;
-
-    /**
-     * @var bool
+     * @var bool|null
      */
     public ?bool $searchFilterDefer = null;
 
     /**
-     * Build livewire model options for the search input
+     * @var bool|null
+     */
+    public ?bool $searchFilterLazy = null;
+
+    /**
+     * Build Livewire model options for the search input
      *
      * @return string
      */
-    public function getSearchFilterOptionsProperty()
+    public function getSearchFilterOptionsProperty(): string
     {
+        if ($this->searchFilterDebounce) {
+            return '.debounce.' . $this->searchFilterDebounce . 'ms';
+        }
+
+        if ($this->searchFilterDefer) {
+            return '.defer';
+        }
+
         if ($this->searchFilterLazy) {
             return '.lazy';
-        } elseif ($this->searchFilterDefer) {
-            return '.defer';
-        } elseif ($this->searchFilterDebounce) {
-            return '.debounce.' . $this->searchFilterDebounce . 'ms';
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     public function resetFilters(): void
