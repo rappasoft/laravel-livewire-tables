@@ -50,7 +50,7 @@ trait WithFilters
      */
     public function mountWithFilters(): void
     {
-        foreach ($this->filters() as $filter => $default) {
+        foreach ($this->filters() as $filter => $_default) {
             if (! isset($this->filters[$filter])) {
                 $this->filters[$filter] = null;
             }
