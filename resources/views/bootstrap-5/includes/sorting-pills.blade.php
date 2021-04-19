@@ -4,7 +4,7 @@
 
         @foreach($sorts as $col => $dir)
             <span
-                wire:key="sorting-pill-{{ $key }}"
+                wire:key="sorting-pill-{{ $col }}"
                 class="badge rounded-pill bg-info d-inline-flex align-items-center"
             >
                 <span>{{ $sortNames[$col] ?? ucwords(strtr($col, ['_' => ' ', '-' => ' '])) }}: {{ $dir === 'asc' ? 'A-Z' : 'Z-A' }}</span>
