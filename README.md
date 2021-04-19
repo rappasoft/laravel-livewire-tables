@@ -234,22 +234,7 @@ You will see how to get more out of this base query using filters and search bel
 
 Creating filters is not required, and the filters box will be hidden if none are defined.
 
-Creating filters requires a few easy steps.
-
-#### Adding to the filters array
-
-You must first define a filter key in the **$filters** array, this tells the component to save the filter status in the query string for page reloads, as well as let you set a default.
-
-```php
-public array $filters = [
-    'type' => null,
-    'active' => null,
-];
-```
-
-#### Defining the filter UI
-
-After you define the filters for the component, you must specify their options using the **filters()** method.
+#### Defining the filters
 
 Right now the only supported filter type is a select dropdown.
 
@@ -273,9 +258,20 @@ public function filters(): array
 }
 ```
 
-You specify your filters array using the **key** as the filter name supplied in the **$filters** array on the component.
-
 The keys of the options you supply will be validated on select to make sure they match one of the options on the backend, otherwise it will be changed to _null_ for safety.
+
+#### Setting filter defaults
+
+When you define the filters, a class property of $filters is generated for you.
+
+```php
+public array $filters = [
+    'type' => null,
+    'active' => null,
+];
+```
+
+You may overwrite this property to set defaults to your filters if you would like.
 
 #### Alternate: Defining a filter view
 

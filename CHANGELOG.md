@@ -8,7 +8,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Added
 
-- `$searchFilterDebounce`, `$searchFilterDefer`, `$searchFilterLazy`, for defining the search input data binding property.
+- `$searchFilterDebounce`, `$searchFilterDefer`, `$searchFilterLazy`, for defining the search input data binding property. https://github.com/rappasoft/laravel-livewire-tables/pull/211
+- Remove ability to need to define filters if not defining defaults. https://github.com/rappasoft/laravel-livewire-tables/pull/213
 
 ## [1.0.3] - 2021-04-18
 
