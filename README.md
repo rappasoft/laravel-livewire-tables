@@ -386,15 +386,18 @@ In the component you have access to `$this->selectedRowsQuery` which is a **Buil
 
 There are some class level properties you can set:
 
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $showSearch | true | Show the search box |
-| $showPerPage | true | Show the per page selector |
-| $showPagination | true | Show the pagination |
-| $showSorting | true | Show the sorting pills |
-| $showFilters | true | Show the filter pills |
-| $refresh | false | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
-| $offlineIndicator | true | Shows a red banner when there is no internet connection. |
+| Property | Default | Options | Usage |
+| -------- | ------- | ------- | ----- |
+| $showSearch | true | bool | Show the search box |
+| $showPerPage | true | bool | Show the per page selector |
+| $showPagination | true | bool | Show the pagination |
+| $showSorting | true | bool | Show the sorting pills |
+| $showFilters | true | bool | Show the filter pills |
+| $searchFilterDebounce | null | null/int | Adds a debounce of `$searchFilterDebounce` ms to the search input |
+| $searchFilterDefer | null | null/bool | Adds `.defer` to the search input |
+| $searchFilterLazy | null | null/bool | Adds `.lazy` to the search input |
+| $refresh | false | false/int/string | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
+| $offlineIndicator | true | bool | Shows a red banner when there is no internet connection. |
 
 #### Using more than one table on a page
 
