@@ -9,8 +9,25 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
  */
 trait WithFilters
 {
+    /**
+     * Filter values
+     *
+     * @var array
+     */
     public array $filters = [];
+
+    /**
+     * Map filter names
+     *
+     * @var array
+     */
     public array $filterNames = [];
+
+    /**
+     * Default filters
+     *
+     * @var array|null[]
+     */
     public array $baseFilters = [
         'search' => null,
     ];
@@ -22,6 +39,43 @@ trait WithFilters
                 $this->filters[$filter] = null;
             }
         }
+    }
+  
+    /**
+     * @var int|null
+     */
+    public ?int $searchFilterDebounce = null;
+
+    /**
+     * @var bool|null
+     */
+    public ?bool $searchFilterDefer = null;
+
+    /**
+     * @var bool|null
+     */
+    public ?bool $searchFilterLazy = null;
+
+    /**
+     * Build Livewire model options for the search input
+     *
+     * @return string
+     */
+    public function getSearchFilterOptionsProperty(): string
+    {
+        if ($this->searchFilterDebounce) {
+            return '.debounce.' . $this->searchFilterDebounce . 'ms';
+        }
+
+        if ($this->searchFilterDefer) {
+            return '.defer';
+        }
+
+        if ($this->searchFilterLazy) {
+            return '.lazy';
+        }
+
+        return '';
     }
 
     public function resetFilters(): void
