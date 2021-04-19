@@ -1,11 +1,11 @@
 @if ($showFilters && count(array_filter($filters)) && !(count(array_filter($filters)) === 1 && isset($filters['search'])))
-    <div wire:key="filter-badges" class="p-6 md:p-0">
+    <div class="p-6 md:p-0">
         <small class="text-gray-700">@lang('Applied Filters'):</small>
 
         @foreach($filters as $key => $value)
             @if ($key !== 'search' && strlen($value))
                 <span
-                    wire:key="filter-{{ $key }}"
+                    wire:key="filter-pill-{{ $key }}"
                     class="inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700"
                 >
                     {{ $filterNames[$key] ?? ucwords(strtr($key, ['_' => ' ', '-' => ' '])) }}: {{ ucwords(strtr($value, ['_' => ' ', '-' => ' '])) }}

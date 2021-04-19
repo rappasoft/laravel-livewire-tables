@@ -234,22 +234,7 @@ You will see how to get more out of this base query using filters and search bel
 
 Creating filters is not required, and the filters box will be hidden if none are defined.
 
-Creating filters requires a few easy steps.
-
-#### Adding to the filters array
-
-You must first define a filter key in the **$filters** array, this tells the component to save the filter status in the query string for page reloads, as well as let you set a default.
-
-```php
-public array $filters = [
-    'type' => null,
-    'active' => null,
-];
-```
-
-#### Defining the filter UI
-
-After you define the filters for the component, you must specify their options using the **filters()** method.
+#### Defining the filters
 
 Right now the only supported filter type is a select dropdown.
 
@@ -273,9 +258,20 @@ public function filters(): array
 }
 ```
 
-You specify your filters array using the **key** as the filter name supplied in the **$filters** array on the component.
-
 The keys of the options you supply will be validated on select to make sure they match one of the options on the backend, otherwise it will be changed to _null_ for safety.
+
+#### Setting filter defaults
+
+When you define the filters, a class property of $filters is generated for you.
+
+```php
+public array $filters = [
+    'type' => null,
+    'active' => null,
+];
+```
+
+You may overwrite this property to set defaults to your filters if you would like.
 
 #### Alternate: Defining a filter view
 
@@ -386,15 +382,18 @@ In the component you have access to `$this->selectedRowsQuery` which is a **Buil
 
 There are some class level properties you can set:
 
-| Property | Default | Usage |
-| -------- | ------- | ----- |
-| $showSearch | true | Show the search box |
-| $showPerPage | true | Show the per page selector |
-| $showPagination | true | Show the pagination |
-| $showSorting | true | Show the sorting pills |
-| $showFilters | true | Show the filter pills |
-| $refresh | false | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
-| $offlineIndicator | true | Shows a red banner when there is no internet connection. |
+| Property | Default | Options | Usage |
+| -------- | ------- | ------- | ----- |
+| $showSearch | true | bool | Show the search box |
+| $showPerPage | true | bool | Show the per page selector |
+| $showPagination | true | bool | Show the pagination |
+| $showSorting | true | bool | Show the sorting pills |
+| $showFilters | true | bool | Show the filter pills |
+| $searchFilterDebounce | null | null/int | Adds a debounce of `$searchFilterDebounce` ms to the search input |
+| $searchFilterDefer | null | null/bool | Adds `.defer` to the search input |
+| $searchFilterLazy | null | null/bool | Adds `.lazy` to the search input |
+| $refresh | false | false/int/string | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
+| $offlineIndicator | true | bool | Shows a red banner when there is no internet connection. |
 
 #### Using more than one table on a page
 
@@ -618,9 +617,11 @@ The final result would look like:
 ## To-do/Roadmap
 
 - [x] Bootstrap 4 Template
+- [x] Bootstrap 5 Template
 - [ ] Sorting By Relationships
 - [ ] Test Suite
 - [ ] Column Search
+- [ ] Greater Configurability
 
 ## Changelog
 

@@ -40,7 +40,13 @@
                 <div class="rounded-md bg-white shadow-xs">
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         @foreach($bulkActions as $action => $title)
-                            <button wire:click="{{ $action }}" type="button" class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 flex items-center space-x-2" role="menuitem">
+                            <button
+                                wire:click="{{ $action }}"
+                                wire:key="bulk-action-{{ $action }}"
+                                type="button"
+                                class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 flex items-center space-x-2"
+                                role="menuitem"
+                            >
                                 <span>{{ $title }}</span>
                             </button>
                         @endforeach
