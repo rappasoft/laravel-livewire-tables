@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Changed
+
+- Updated Tailwind search clear button (https://github.com/rappasoft/laravel-livewire-tables/pull/217).
+
 ## [1.0.4] - 2021-04-18
 
 ### Added
