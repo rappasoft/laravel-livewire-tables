@@ -14,7 +14,7 @@ class PetsTable extends DataTableComponent
      */
     public function query() : Builder
     {
-        return Pet::query()->when($this->getFilter('search'), function (Builder $query, $search){
+        return Pet::query()->when($this->getFilter('search'), function (Builder $query, $search) {
             $query->where('name', 'like', '%'.$search.'%');
         });
     }
