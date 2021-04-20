@@ -194,11 +194,11 @@ abstract class DataTableComponent extends Component
     /**
      * Get a column object by its field
      *
-     * @param $column
+     * @param  string  $column
      *
      * @return mixed
      */
-    protected function getColumn($column)
+    protected function getColumn(string $column)
     {
         return collect($this->columns())
             ->where('column', $column)
