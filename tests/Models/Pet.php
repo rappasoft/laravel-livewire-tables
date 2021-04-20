@@ -46,4 +46,20 @@ class Pet extends Model
         'species_id',
         'breed_id',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Species[]
+     */
+    public function species()
+    {
+        return $this->belongsTo(Species::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Breed[]
+     */
+    public function breeds()
+    {
+        return $this->belongsTo(Breed::class);
+    }
 }
