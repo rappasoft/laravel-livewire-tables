@@ -7,6 +7,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Added callback to column's sortable() method to customize sorting functionality per column.
+- Support for polling `keep-alive` and `visible`.
 
 ### Changed
 
