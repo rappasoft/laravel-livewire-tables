@@ -427,13 +427,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class UsersTable extends DataTableComponent
 {
 
-    public array $filters = [
-        'type' => null,
-        'active' => null,
-        'verified' => null,
-        '2fa' => null,
-    ];
-
     public array $sortNames = [
         'email_verified_at' => 'Verified',
         'two_factor_secret' => '2FA',
