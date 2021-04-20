@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Support for polling `keep-alive` and `visible`.
+
 ### Changed
 
 - Updated Tailwind search clear button (https://github.com/rappasoft/laravel-livewire-tables/pull/217).

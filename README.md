@@ -392,7 +392,7 @@ There are some class level properties you can set:
 | $searchFilterDebounce | null | null/int | Adds a debounce of `$searchFilterDebounce` ms to the search input |
 | $searchFilterDefer | null | null/bool | Adds `.defer` to the search input |
 | $searchFilterLazy | null | null/bool | Adds `.lazy` to the search input |
-| $refresh | false | false/int/string | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
+| $refresh | false | false/int/string | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall (if the string is `keep-alive` it will use `wire:poll.keep-alive`, if the string is `visible` it will use `wire:poll.visible`) |
 | $offlineIndicator | true | bool | Shows a red banner when there is no internet connection. |
 
 #### Using more than one table on a page
