@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Added callback to column's sortable() method to customize sorting functionality per column.
+
 ### Changed
 
 - Updated Tailwind search clear button (https://github.com/rappasoft/laravel-livewire-tables/pull/217).
