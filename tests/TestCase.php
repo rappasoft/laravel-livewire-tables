@@ -2,11 +2,97 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
+use Illuminate\Container\Container;
+use Illuminate\Database\Capsule\Manager as DB;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Facade;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 
 class TestCase extends Orchestra
 {
+    protected $db;
+
+    /**
+     * Setup the test environment.
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->db = $db = new DB;
+
+        // define database
+        $database = __DIR__ . '/tests.sqlite';
+
+        // remove database
+        file_exists($database) ? unlink($database) : null;
+
+        // create database
+        touch($database);
+
+        // setup connection
+        $db->addConnection([
+            'driver' => 'sqlite',
+            'database' => $database,
+        ]);
+
+        $db->setAsGlobal();
+
+        // setup species table
+        $this->db->connection()->getSchemaBuilder()->create('species', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
+
+        Species::insert([
+            [ 'id' => 1, 'name' => 'Cat', ],
+            [ 'id' => 2, 'name' => 'Dog', ],
+        ]);
+
+        // setup breeds table
+        $this->db->connection()->getSchemaBuilder()->create('breeds', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('species_id')->unsigned();
+            $table->foreign('species_id')->references('id')->on('species');
+        });
+
+        Breed::insert([
+            [ 'id' => 1, 'name' => 'Maine Coon', 'species_id' => 1, ],
+            [ 'id' => 2, 'name' => 'Persian', 'species_id' => 1, ],
+            [ 'id' => 3, 'name' => 'Norwegian Forest', 'species_id' => 1, ],
+            [ 'id' => 4, 'name' => 'American Shorthair', 'species_id' => 1, ],
+            [ 'id' => 100, 'name' => 'Beagle', 'species_id' => 2, ],
+            [ 'id' => 101, 'name' => 'Corgi', 'species_id' => 2, ],
+            [ 'id' => 102, 'name' => 'Red Setter', 'species_id' => 2, ],
+        ]);
+
+        // setup user table
+        $this->db->connection()->getSchemaBuilder()->create('pets', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->index();
+            $table->string('age')->nullable();
+            $table->date('last_visit')->nullable();
+            $table->integer('species_id')->unsigned()->nullable();
+            $table->integer('breed_id')->unsigned()->nullable();
+            $table->foreign('species_id')->references('id')->on('species');
+            $table->foreign('breed_id')->references('id')->on('breeds');
+        });
+
+        Pet::insert([
+            [ 'id' => 1, 'name' => 'Cartman', 'age' => 22, 'species_id' => 1, 'breed_id' => 4 ],
+            [ 'id' => 2, 'name' => 'Tux', 'age' => 8, 'species_id' => 1, 'breed_id' => 4 ],
+            [ 'id' => 3, 'name' => 'May', 'age' => 8, 'species_id' => 2, 'breed_id' => 102 ],
+        ]);
+
+        $container = new Container;
+        $container->instance('db', $db->getDatabaseManager());
+        Facade::setFacadeApplication($container);
+    }
+
     protected function getPackageProviders($app)
     {
         return [
@@ -19,7 +105,7 @@ class TestCase extends Orchestra
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
             'driver' => 'sqlite',
-            'database' => ':memory:',
+            'database' => __DIR__ . '/tests.sqlite',
             'prefix' => '',
         ]);
     }
