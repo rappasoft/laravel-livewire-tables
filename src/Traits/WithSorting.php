@@ -30,7 +30,11 @@ trait WithSorting
     public function applySorting(Builder $query): Builder
     {
         foreach ($this->sorts as $field => $direction) {
-            $query->orderBy($field, $direction);
+            if (optional($this->getColumn($field))->hasSortCallback()) {
+                $query = app()->call($this->getColumn($field)->getSortCallback(), ['builder' => $query, 'direction' => $direction]);
+            } else {
+                $query->orderBy($field, $direction);
+            }
         }
 
         return $query;

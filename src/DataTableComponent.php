@@ -16,11 +16,11 @@ use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
  */
 abstract class DataTableComponent extends Component
 {
-    use WithBulkActions;
-    use WithCustomPagination;
-    use WithFilters;
-    use WithPerPagePagination;
-    use WithSorting;
+    use WithBulkActions,
+        WithCustomPagination,
+        WithFilters,
+        WithPerPagePagination,
+        WithSorting;
 
     /**
      * The default pagination theme.
@@ -189,5 +189,19 @@ abstract class DataTableComponent extends Component
                 'customFilters' => $this->filters(),
                 'rows' => $this->rows,
             ]);
+    }
+
+    /**
+     * Get a column object by its field
+     *
+     * @param $column
+     *
+     * @return mixed
+     */
+    protected function getColumn($column)
+    {
+        return collect($this->columns())
+            ->where('column', $column)
+            ->first();
     }
 }
