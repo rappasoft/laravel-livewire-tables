@@ -4,10 +4,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.1.0] - 2021-04-21
+
 ### Added
 
-- Added callback to column's sortable() method to customize sorting functionality per column.
+- Added callback to column's sortable() method to customize sorting functionality per column. (https://github.com/rappasoft/laravel-livewire-tables/pull/216)
 - Support for polling `keep-alive` and `visible`.
+- Start of a test suite (https://github.com/rappasoft/laravel-livewire-tables/pull/218)
 
 ### Changed
 
@@ -202,7 +205,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.4...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.1.0...development
+[1.1.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.4...v1.1.0
 [1.0.4]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.1...v1.0.2
