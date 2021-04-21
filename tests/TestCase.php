@@ -64,6 +64,7 @@ class TestCase extends Orchestra
             'prefix' => '',
         ]);
 
-        resolve(CreateTestTables::class)->up();
+        include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
+        (new \CreateTestTables())->up();
     }
 }
