@@ -192,9 +192,9 @@ public function columns(): array
     {
         return [
             Column::make('Type') // Column text and optional column name, column name will be snake case of text if not defined
-                ->sortable() // Whether or not the heading can be clicked to sort
+                ->sortable(), // Whether or not the heading can be clicked to sort
             Column::make('Name')
-                ->sortable()
+                ->sortable(),
             Column::make('Permissions'),
             Column::make('Other', 'my_other_column')
                 ->sortable() // Allows the column to interact with the sorting methods
@@ -202,6 +202,17 @@ public function columns(): array
             Column::blank(), // Generates a blank cell
         ];
     }
+```
+
+#### Customizing Sort Behavior
+
+If you need more control over the sort behavior of a column, you can pass a callback to the sortable() method:
+
+```php
+Column::make(__('Address'))
+    ->sortable(function(Builder $query, $direction) {
+        return $query->orderBy(UserAttribute::select('address')->whereColumn('user_attributes.user_id', 'users.id'), $direction);
+    })
 ```
 
 #### Configuring Sort Names
@@ -392,7 +403,7 @@ There are some class level properties you can set:
 | $searchFilterDebounce | null | null/int | Adds a debounce of `$searchFilterDebounce` ms to the search input |
 | $searchFilterDefer | null | null/bool | Adds `.defer` to the search input |
 | $searchFilterLazy | null | null/bool | Adds `.lazy` to the search input |
-| $refresh | false | false/int/string | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall |
+| $refresh | false | false/int/string | Whether or not to refresh the table at a certain interval. false = off, int = ms, string = functionCall (if the string is `keep-alive` it will use `wire:poll.keep-alive`, if the string is `visible` it will use `wire:poll.visible`) |
 | $offlineIndicator | true | bool | Shows a red banner when there is no internet connection. |
 
 #### Using more than one table on a page
@@ -426,13 +437,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class UsersTable extends DataTableComponent
 {
-
-    public array $filters = [
-        'type' => null,
-        'active' => null,
-        'verified' => null,
-        '2fa' => null,
-    ];
 
     public array $sortNames = [
         'email_verified_at' => 'Verified',
@@ -618,10 +622,17 @@ The final result would look like:
 
 - [x] Bootstrap 4 Template
 - [x] Bootstrap 5 Template
-- [ ] Sorting By Relationships
-- [ ] Test Suite
+- [x] Sorting By Relationships
+- [ ] Collection/Query Support  
+- [ ] Test Suite (WIP)
 - [ ] Column Search
 - [ ] Greater Configurability
+
+## Testing
+
+```bash
+composer test
+```
 
 ## Changelog
 

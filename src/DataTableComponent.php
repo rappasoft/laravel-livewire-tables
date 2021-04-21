@@ -68,7 +68,7 @@ abstract class DataTableComponent extends Component
      * Whether or not to refresh the table at a certain interval
      * false is off
      * If it's an integer it will be treated as milliseconds (2000 = refresh every 2 seconds)
-     * If it's a string it will call that function every 5 seconds.
+     * If it's a string it will call that function every 5 seconds unless it is 'keep-alive' or 'visible'.
      *
      * @var bool|string
      */
@@ -189,5 +189,19 @@ abstract class DataTableComponent extends Component
                 'customFilters' => $this->filters(),
                 'rows' => $this->rows,
             ]);
+    }
+
+    /**
+     * Get a column object by its field
+     *
+     * @param  string  $column
+     *
+     * @return mixed
+     */
+    protected function getColumn(string $column)
+    {
+        return collect($this->columns())
+            ->where('column', $column)
+            ->first();
     }
 }
