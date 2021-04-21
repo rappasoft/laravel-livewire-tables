@@ -623,6 +623,7 @@ The final result would look like:
 - [x] Bootstrap 4 Template
 - [x] Bootstrap 5 Template
 - [x] Sorting By Relationships
+- [ ] Collection/Query Support  
 - [ ] Test Suite (WIP)
 - [ ] Column Search
 - [ ] Greater Configurability
