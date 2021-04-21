@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
@@ -15,34 +14,25 @@ class DataTableComponentTest extends TestCase
     {
         parent::setUp();
 
-        $this->table = $table = new PetsTable();
+        $this->table = new PetsTable();
     }
 
     /** @test */
-    public function bootstrap_test_datatable()
+    public function bootstrap_test_datatable(): void
     {
         $this->assertInstanceOf(DataTableComponent::class, $this->table);
     }
 
     /** @test */
-    public function test_query()
-    {
-        $query = $this->table->query();
-
-        $this->assertInstanceOf(Builder::class, $query);
-    }
-
-    /** @test */
-    public function test_columns()
+    public function test_columns(): void
     {
         $columns = $this->table->columns();
 
-        $this->assertIsArray($columns);
         $this->assertCount(5, $columns);
     }
 
     /** @test */
-    public function test_rows()
+    public function test_rows(): void
     {
         $rows = $this->table->rows;
 
@@ -51,14 +41,14 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function test_search_filter()
+    public function test_search_filter(): void
     {
         $this->table->filters['search'] = 'Cartman';
         $this->assertEquals(1, $this->table->getRowsProperty()->total());
     }
 
     /** @test */
-    public function test_search_filter_reset()
+    public function test_search_filter_reset(): void
     {
         $this->table->filters['search'] = 'Cartman';
         $this->table->resetFilters();
@@ -66,7 +56,7 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function test_search_filter_remove()
+    public function test_search_filter_remove(): void
     {
         $this->table->filters['search'] = 'Cartman';
         $this->table->removeFilter('search');
