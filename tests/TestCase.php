@@ -11,7 +11,6 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 
 class TestCase extends Orchestra
 {
-
     /**
      * Setup the test environment.
      */
