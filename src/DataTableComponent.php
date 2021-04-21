@@ -190,4 +190,18 @@ abstract class DataTableComponent extends Component
                 'rows' => $this->rows,
             ]);
     }
+
+    /**
+     * Get a column object by its field
+     *
+     * @param  string  $column
+     *
+     * @return mixed
+     */
+    protected function getColumn(string $column)
+    {
+        return collect($this->columns())
+            ->where('column', $column)
+            ->first();
+    }
 }

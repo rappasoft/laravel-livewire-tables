@@ -192,9 +192,9 @@ public function columns(): array
     {
         return [
             Column::make('Type') // Column text and optional column name, column name will be snake case of text if not defined
-                ->sortable() // Whether or not the heading can be clicked to sort
+                ->sortable(), // Whether or not the heading can be clicked to sort
             Column::make('Name')
-                ->sortable()
+                ->sortable(),
             Column::make('Permissions'),
             Column::make('Other', 'my_other_column')
                 ->sortable() // Allows the column to interact with the sorting methods
@@ -202,6 +202,17 @@ public function columns(): array
             Column::blank(), // Generates a blank cell
         ];
     }
+```
+
+#### Customizing Sort Behavior
+
+If you need more control over the sort behavior of a column, you can pass a callback to the sortable() method:
+
+```php
+Column::make(__('Address'))
+    ->sortable(function(Builder $query, $direction) {
+        return $query->orderBy(UserAttribute::select('address')->whereColumn('user_attributes.user_id', 'users.id'), $direction);
+    })
 ```
 
 #### Configuring Sort Names

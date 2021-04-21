@@ -25,6 +25,11 @@ class Column
     public bool $sortable = false;
 
     /**
+     * @var
+     */
+    public $sortCallback;
+
+    /**
      * @var string|null
      */
     public ?string $class = null;
@@ -103,9 +108,11 @@ class Column
     /**
      * @return $this
      */
-    public function sortable(): self
+    public function sortable($callback = null): self
     {
         $this->sortable = true;
+
+        $this->sortCallback = $callback;
 
         return $this;
     }
@@ -191,5 +198,21 @@ class Column
         }
 
         return $value;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSortCallback(): bool
+    {
+        return $this->sortCallback !== null;
+    }
+
+    /**
+     * @return callable|null
+     */
+    public function getSortCallback(): ?callable
+    {
+        return $this->sortCallback;
     }
 }
