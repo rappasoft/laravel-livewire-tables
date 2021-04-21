@@ -25,7 +25,8 @@ class TestCase extends Orchestra
         $this->db = $db = new DB;
 
         // define database
-        $database = __DIR__ . '/tests.sqlite';
+        //$database = __DIR__ . '/tests.sqlite';
+        $database = 'tests.sqlite';
 
         // remove database
         file_exists($database) ? unlink($database) : null;
@@ -110,7 +111,7 @@ class TestCase extends Orchestra
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
             'driver' => 'sqlite',
-            'database' => __DIR__ . '/tests.sqlite',
+            'database' => 'tests.sqlite',
             'prefix' => '',
         ]);
     }
