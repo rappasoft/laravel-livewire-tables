@@ -622,10 +622,16 @@ The final result would look like:
 
 - [x] Bootstrap 4 Template
 - [x] Bootstrap 5 Template
-- [ ] Sorting By Relationships
-- [ ] Test Suite
+- [x] Sorting By Relationships
+- [ ] Test Suite (WIP)
 - [ ] Column Search
 - [ ] Greater Configurability
+
+## Testing
+
+```bash
+composer test
+```
 
 ## Changelog
 
