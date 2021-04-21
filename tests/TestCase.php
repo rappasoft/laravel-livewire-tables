@@ -24,15 +24,8 @@ class TestCase extends Orchestra
 
         $this->db = $db = new DB;
 
-        // define database
-        //$database = __DIR__ . '/tests.sqlite';
-        $database = 'tests.sqlite';
-
-        // remove database
-        file_exists($database) ? unlink($database) : null;
-
-        // create database
-        touch($database);
+        // grab database
+        $database = $this->app['config']['database']['connections']['sqlite']['database'];
 
         // setup connection
         $db->addConnection([
@@ -111,7 +104,8 @@ class TestCase extends Orchestra
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
             'driver' => 'sqlite',
-            'database' => 'tests.sqlite',
+            //'database' => 'tests/tests.sqlite',
+            'database' => tempnam(sys_get_temp_dir(), 'LaravelLivewireTables'),
             'prefix' => '',
         ]);
     }
