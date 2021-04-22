@@ -57,7 +57,7 @@ trait WithBulkActions
 
     public function getSelectedRowsQueryProperty()
     {
-        return (clone $this->rowsQuery)
+        return (clone $this->rowsQuery())
             ->unless($this->selectAll, fn ($query) => $query->whereKey($this->selected));
     }
 }

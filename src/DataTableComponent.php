@@ -124,7 +124,7 @@ abstract class DataTableComponent extends Component
      *
      * @return Builder
      */
-    public function getRowsQueryProperty(): Builder
+    public function rowsQuery(): Builder
     {
         $this->cleanFilters();
 
@@ -132,17 +132,25 @@ abstract class DataTableComponent extends Component
     }
 
     /**
+     * @return Builder
+     */
+    public function getRowsQueryProperty(): Builder
+    {
+        return $this->rowsQuery();
+    }
+
+    /**
      * Get the rows paginated collection that will be returned to the view.
      *
-     * @return LengthAwarePaginator|Collection
+     * @return Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
      */
     public function getRowsProperty()
     {
         if ($this->paginationEnabled) {
-            return $this->applyPagination($this->rowsQuery);
+            return $this->applyPagination($this->rowsQuery());
         }
 
-        return $this->rowsQuery->get();
+        return $this->rowsQuery()->get();
     }
 
     /**
