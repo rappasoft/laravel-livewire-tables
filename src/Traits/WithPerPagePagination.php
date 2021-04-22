@@ -7,7 +7,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait WithPerPagePagination
 {
-
     public bool $paginationEnabled = true;
     public bool $showPerPage = true;
     public bool $showPagination = true;

@@ -7,7 +7,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait WithBulkActions
 {
-
     public bool $showFilters = true;
     public bool $selectPage = false;
     public bool $selectAll = false;
