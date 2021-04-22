@@ -40,34 +40,6 @@ abstract class DataTableComponent extends Component
     public bool $showSearch = true;
 
     /**
-     * Show the per page select.
-     *
-     * @var bool
-     */
-    public bool $showPerPage = true;
-
-    /**
-     * Show the pagination numbers and links.
-     *
-     * @var bool
-     */
-    public bool $showPagination = true;
-
-    /**
-     * Show the sorting indicators.
-     *
-     * @var bool
-     */
-    public bool $showSorting = true;
-
-    /**
-     * Show the filtering indicators.
-     *
-     * @var bool
-     */
-    public bool $showFilters = true;
-
-    /**
      * Whether or not to refresh the table at a certain interval
      * false is off
      * If it's an integer it will be treated as milliseconds (2000 = refresh every 2 seconds)
@@ -166,11 +138,11 @@ abstract class DataTableComponent extends Component
      */
     public function getRowsProperty()
     {
-        if ($this->pagination ?? false === true) {
+        if ($this->paginationEnabled) {
             return $this->applyPagination($this->rowsQuery);
-        } else {
-            return $this->rowsQuery->get();
         }
+
+        return $this->rowsQuery->get();
     }
 
     /**

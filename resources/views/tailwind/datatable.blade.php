@@ -25,10 +25,7 @@
 
             <div class="md:space-x-2 md:flex md:items-center">
                 @include('livewire-tables::tailwind.includes.bulk-actions')
-
-                <div class="w-full md:w-auto">
-                    @include('livewire-tables::tailwind.includes.per-page')
-                </div>
+                @include('livewire-tables::tailwind.includes.per-page')
             </div>
         </div>
 

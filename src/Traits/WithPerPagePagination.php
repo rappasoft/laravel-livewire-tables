@@ -7,21 +7,11 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait WithPerPagePagination
 {
-    /**
-     * Enable / Disable Pagination
-     *
-     * @var bool
-     */
-    public bool $pagination = true;
 
-    /**
-     * @var int
-     */
+    public bool $paginationEnabled = true;
+    public bool $showPerPage = true;
+    public bool $showPagination = true;
     public int $perPage = 10;
-
-    /**
-     * @var array|int[]
-     */
     protected array $perPageAccepted = [10, 25, 50];
 
     public function mountWithPerPagePagination(): void

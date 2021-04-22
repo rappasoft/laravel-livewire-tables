@@ -396,8 +396,9 @@ There are some class level properties you can set:
 | Property | Default | Options | Usage |
 | -------- | ------- | ------- | ----- |
 | $showSearch | true | bool | Show the search box |
-| $showPerPage | true | bool | Show the per page selector |
-| $showPagination | true | bool | Show the pagination |
+| $paginationEnabled | true | bool | Enable pagination or fetch all records with no pagination |
+| $showPerPage | true | bool | Show the per page selector when pagination is enabled |
+| $showPagination | true | bool | Show the pagination when pagination is enabled |
 | $showSorting | true | bool | Show the sorting pills |
 | $showFilters | true | bool | Show the filter pills |
 | $searchFilterDebounce | null | null/int | Adds a debounce of `$searchFilterDebounce` ms to the search input |

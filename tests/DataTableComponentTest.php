@@ -46,7 +46,7 @@ class DataTableComponentTest extends TestCase
     {
         $this->assertInstanceOf(LengthAwarePaginator::class, $this->table->rows);
         $this->assertEquals(10, $this->table->perPage);
-        $this->assertTrue($this->table->pagination);
+        $this->assertTrue($this->table->paginationEnabled);
         $this->assertTrue($this->table->showPerPage);
     }
 
@@ -62,7 +62,7 @@ class DataTableComponentTest extends TestCase
     /** @test */
     public function test_pagination_disabled(): void
     {
-        $this->table->pagination = false;
+        $this->table->paginationEnabled = false;
         $this->table->perPage = 2;
         $this->assertInstanceOf(Collection::class, $this->table->rows);
         $this->assertCount(5, $this->table->rows);
