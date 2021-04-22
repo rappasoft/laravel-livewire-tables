@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
@@ -13,6 +14,8 @@ use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
 
 /**
  * Class TableComponent.
+ *
+ * @property LengthAwarePaginator|Collection|null $rows
  */
 abstract class DataTableComponent extends Component
 {
@@ -159,11 +162,15 @@ abstract class DataTableComponent extends Component
     /**
      * Get the rows paginated collection that will be returned to the view.
      *
-     * @return LengthAwarePaginator
+     * @return LengthAwarePaginator|Collection
      */
-    public function getRowsProperty(): LengthAwarePaginator
+    public function getRowsProperty()
     {
-        return $this->applyPagination($this->rowsQuery);
+        if ($this->pagination ?? false === true) {
+            return $this->applyPagination($this->rowsQuery);
+        } else {
+            return $this->rowsQuery->get();
+        }
     }
 
     /**

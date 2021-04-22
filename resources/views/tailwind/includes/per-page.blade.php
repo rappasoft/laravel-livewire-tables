@@ -1,4 +1,4 @@
-@if ($showPerPage)
+@if ($pagination ?? false && $showPerPage ?? false)
     <select
         wire:model="perPage"
         id="perPage"

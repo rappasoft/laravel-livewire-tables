@@ -7,7 +7,21 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait WithPerPagePagination
 {
+    /**
+     * Enable / Disable Pagination
+     *
+     * @var bool
+     */
+    public bool $pagination = true;
+
+    /**
+     * @var int
+     */
     public int $perPage = 10;
+
+    /**
+     * @var array|int[]
+     */
     protected array $perPageAccepted = [10, 25, 50];
 
     public function mountWithPerPagePagination(): void
@@ -19,6 +33,9 @@ trait WithPerPagePagination
         }
     }
 
+    /**
+     * @param $value
+     */
     public function updatedPerPage($value): void
     {
         if (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
@@ -30,6 +47,10 @@ trait WithPerPagePagination
         $this->resetPage();
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function applyPagination($query)
     {
         return $query->paginate($this->perPage, ['*'], $this->pageName());

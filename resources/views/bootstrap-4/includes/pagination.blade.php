@@ -1,4 +1,4 @@
-@if ($showPagination)
+@if ($pagination ?? false || $showPerPage ?? false)
     <div class="row">
         <div class="col-12 col-md-6">
             {{ $rows->links() }}
