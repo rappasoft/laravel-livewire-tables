@@ -19,11 +19,11 @@ use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
  */
 abstract class DataTableComponent extends Component
 {
-    use WithBulkActions;
-    use WithCustomPagination;
-    use WithFilters;
-    use WithPerPagePagination;
-    use WithSorting;
+    use WithBulkActions,
+        WithCustomPagination,
+        WithFilters,
+        WithPerPagePagination,
+        WithSorting;
 
     /**
      * The default pagination theme.
