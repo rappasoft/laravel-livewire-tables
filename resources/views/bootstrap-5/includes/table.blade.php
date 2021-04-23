@@ -31,7 +31,7 @@
                 <x-livewire-tables::bs5.table.cell colspan="{{ count($bulkActions) ? count($columns) + 1 : count($columns) }}">
                     @unless ($selectAll)
                         <div>
-                            <span>{!! __('You have selected <strong>:count</strong> users, do you want to select all <strong>:total</strong>?', ['count' => $rows->count(), 'total' => number_format($rows->total())]) !!}</span>
+                            <span>{!! __('You have selected <strong>:count</strong> rows, do you want to select all <strong>:total</strong>?', ['count' => $rows->count(), 'total' => number_format($rows->total())]) !!}</span>
 
                             <button
                                 wire:click="selectAll"
@@ -43,7 +43,7 @@
                         </div>
                     @else
                         <div>
-                            <span>{!! __('You are currently selecting all <strong>:total</strong> users.', ['total' => number_format($rows->total())]) !!}</span>
+                            <span>{!! __('You are currently selecting all <strong>:total</strong> rows.', ['total' => number_format($rows->total())]) !!}</span>
 
                             <button
                                 wire:click="resetBulk"
