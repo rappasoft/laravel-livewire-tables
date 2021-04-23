@@ -5,9 +5,9 @@
             id="perPage"
             class="form-control"
         >
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
+            @foreach ($perPageAccepted as $item)
+                <option value="{{ $item }}">{{ $item }}</option>
+            @endforeach
         </select>
     </div>
 @endif

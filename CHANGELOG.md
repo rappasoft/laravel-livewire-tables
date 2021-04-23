@@ -12,6 +12,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Clarified where rowView looks in read me
 - Null the search filter when it's empty
+- Fill per page options from $perPageAccepted in views
+- Make $perPageAccepted public
 
 ### Removed
 

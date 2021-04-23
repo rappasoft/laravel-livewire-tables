@@ -11,7 +11,7 @@ trait WithPerPagePagination
     public bool $showPerPage = true;
     public bool $showPagination = true;
     public int $perPage = 10;
-    protected array $perPageAccepted = [10, 25, 50];
+    public array $perPageAccepted = [10, 25, 50];
 
     public function mountWithPerPagePagination(): void
     {

@@ -404,6 +404,8 @@ There are some class level properties you can set:
 | $showPagination | true | bool | Show the pagination when pagination is enabled |
 | $showSorting | true | bool | Show the sorting pills |
 | $showFilters | true | bool | Show the filter pills |
+| $perPage | 10 | int | The default per page amount selected (must exist in list) |
+| $perPageAccepted | [10, 25, 50] | int[] | The values for the per page dropdown, in order |
 | $searchFilterDebounce | null | null/int | Adds a debounce of `$searchFilterDebounce` ms to the search input |
 | $searchFilterDefer | null | null/bool | Adds `.defer` to the search input |
 | $searchFilterLazy | null | null/bool | Adds `.lazy` to the search input |
