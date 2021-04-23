@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
+
 /**
  * Trait WithBulkActions.
  */
@@ -41,7 +43,7 @@ trait WithBulkActions
 
     public function selectPageRows(): void
     {
-        $this->selected = $this->rows->pluck($this->primaryKey)->map(fn ($id) => (string) $id);
+        $this->selected = $this->rows->pluck($this->primaryKey)->map(fn ($key) => (string) $key);
     }
 
     public function selectAll(): void
@@ -56,14 +58,24 @@ trait WithBulkActions
         $this->selected = [];
     }
 
-    public function getSelectedRowsQueryProperty()
+    public function selectedRowsQuery(): Builder
     {
         return (clone $this->rowsQuery())
             ->unless($this->selectAll, fn ($query) => $query->whereKey($this->selected));
     }
 
-    public function getSelectedKeysProperty()
+    public function getSelectedRowsQueryProperty(): Builder
     {
-        return $this->selectedRowsQuery->pluck($this->primaryKey)->toArray();
+        return $this->selectedRowsQuery();
+    }
+
+    public function selectedKeys(): array
+    {
+        return $this->selectedRowsQuery()->pluck($this->primaryKey)->toArray();
+    }
+
+    public function getSelectedKeysProperty(): array
+    {
+        return $this->selectedKeys();
     }
 }
