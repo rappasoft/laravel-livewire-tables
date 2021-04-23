@@ -10,8 +10,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Changed
 
-- Removed default padding on bootstrap tables
 - Clarified where rowView looks in read me
+- Null the search filter when it's empty
+
+### Removed
+
+- Removed `text-secondary` class from sorting title
 
 ## [1.1.0] - 2021-04-21
 

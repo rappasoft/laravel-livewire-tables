@@ -10,6 +10,7 @@ use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
 use Rappasoft\LaravelLivewireTables\Traits\WithPerPagePagination;
+use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
 use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
 
 /**
@@ -23,6 +24,7 @@ abstract class DataTableComponent extends Component
     use WithCustomPagination;
     use WithFilters;
     use WithPerPagePagination;
+    use WithSearch;
     use WithSorting;
 
     /**
@@ -31,13 +33,6 @@ abstract class DataTableComponent extends Component
      * @var string
      */
     public $paginationTheme = 'tailwind';
-
-    /**
-     * Show the search field.
-     *
-     * @var bool
-     */
-    public bool $showSearch = true;
 
     /**
      * Whether or not to refresh the table at a certain interval
