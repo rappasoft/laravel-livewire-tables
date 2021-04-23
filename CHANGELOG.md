@@ -7,6 +7,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Ability to disable pagination (https://github.com/rappasoft/laravel-livewire-tables/pull/222)
+- Ability to define the sorting direction names for each column. i.e. A-Z, Z-A, Yes, No, Enabled, Disabled, etc.
 
 ### Changed
 

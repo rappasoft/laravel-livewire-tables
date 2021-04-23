@@ -229,6 +229,18 @@ public array $sortNames = [
 ];
 ```
 
+#### Configuring Sort Direction Names
+
+The default sort direction names are A-Z for ascending and Z-A for descending.
+
+```php
+public array $sortDirectionNames = [
+    'enabled' => [
+        'asc' => 'Yes',
+        'desc' => 'No',
+    ],
+];
+
 ### Defining The Query
 
 Your datatable must have a base query, which you define in the **query()** method:
@@ -404,6 +416,8 @@ There are some class level properties you can set:
 | $showPagination | true | bool | Show the pagination when pagination is enabled |
 | $showSorting | true | bool | Show the sorting pills |
 | $showFilters | true | bool | Show the filter pills |
+| $sortNames | [] | string[] | Change the sort name of the column for the sorting pill display |
+| $sortDirectionNames | [] | string[] | Change the direction name of the column for the sorting pill display (i.e. A-Z, Z-A) |
 | $perPage | 10 | int | The default per page amount selected (must exist in list) |
 | $perPageAccepted | [10, 25, 50] | int[] | The values for the per page dropdown, in order |
 | $searchFilterDebounce | null | null/int | Adds a debounce of `$searchFilterDebounce` ms to the search input |

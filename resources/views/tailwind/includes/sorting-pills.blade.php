@@ -7,7 +7,7 @@
                 wire:key="sorting-pill-{{ $col }}"
                 class="inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700"
             >
-                {{ $sortNames[$col] ?? ucwords(strtr($col, ['_' => ' ', '-' => ' '])) }}: {{ $dir === 'asc' ? 'A-Z' : 'Z-A' }}
+                {{ $sortNames[$col] ?? ucwords(strtr($col, ['_' => ' ', '-' => ' '])) }}: {{ $dir === 'asc' ? ($sortDirectionNames[$col]['asc'] ?? 'A-Z') : ($sortDirectionNames[$col]['desc'] ?? 'Z-A') }}
 
                 <button
                     wire:click="removeSort('{{ $col }}')"

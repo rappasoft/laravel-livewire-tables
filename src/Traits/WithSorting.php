@@ -12,6 +12,7 @@ trait WithSorting
     public bool $showSorting = true;
     public array $sorts = [];
     public array $sortNames = [];
+    public array $sortDirectionNames = [];
 
     public function sortBy(string $field): ?string
     {
