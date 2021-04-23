@@ -7,6 +7,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
  */
 trait WithBulkActions
 {
+    public string $primaryKey = 'id';
     public bool $showFilters = true;
     public bool $selectPage = false;
     public bool $selectAll = false;
@@ -40,7 +41,7 @@ trait WithBulkActions
 
     public function selectPageRows(): void
     {
-        $this->selected = $this->rows->pluck('id')->map(fn ($id) => (string) $id);
+        $this->selected = $this->rows->pluck($this->primaryKey)->map(fn ($id) => (string) $id);
     }
 
     public function selectAll(): void
@@ -59,5 +60,10 @@ trait WithBulkActions
     {
         return (clone $this->rowsQuery())
             ->unless($this->selectAll, fn ($query) => $query->whereKey($this->selected));
+    }
+
+    public function getSelectedKeysProperty()
+    {
+        return $this->selectedRowsQuery->pluck($this->primaryKey)->toArray();
     }
 }

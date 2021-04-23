@@ -375,9 +375,15 @@ And then using it like this:
 }
 ```
 
-### Creating Bulk Actions
+### Bulk Actions
 
 Bulk actions are not required, and the bulk actions box, as well as the left-hand checkboxes will be hidden if none are defined.
+
+#### The primary key
+
+Each row must have a primary key, it's `'id'` by default but you can override it with the `$primaryKey` property.
+
+#### Defining Bulk Actions
 
 To define your bulk actions, you add them to the **$bulkActions** array.
 
@@ -404,6 +410,29 @@ public function exportSelected()
 
 In the component you have access to `$this->selectedRowsQuery` which is a **Builder** instance of the selected rows.
 
+You may also call `selectedKeys` which gives you an array of the primary keys in order they were selected:
+
+**Note:** See above to setting the primary key if not `'id`.
+
+```php
+public function exportSelected()
+{
+    if (count($this->selectedKeys)) {
+        // Do something with the selected rows
+        dd($this->selectedKeys);
+        
+//        => [
+//            1,
+//            2,
+//            3,
+//            4,
+//        ]   
+    }
+
+    // Notify there is nothing to export
+}
+```
+
 ### Options
 
 There are some class level properties you can set:
@@ -420,6 +449,7 @@ There are some class level properties you can set:
 | $sortDirectionNames | [] | string[] | Change the direction name of the column for the sorting pill display (i.e. A-Z, Z-A) |
 | $perPage | 10 | int | The default per page amount selected (must exist in list) |
 | $perPageAccepted | [10, 25, 50] | int[] | The values for the per page dropdown, in order |
+| $primaryKey | id | string | The column to pluck for bulk actions to populate the `selectedKeys` property |
 | $searchFilterDebounce | null | null/int | Adds a debounce of `$searchFilterDebounce` ms to the search input |
 | $searchFilterDefer | null | null/bool | Adds `.defer` to the search input |
 | $searchFilterLazy | null | null/bool | Adds `.lazy` to the search input |
