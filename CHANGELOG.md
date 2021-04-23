@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.2.2] - 2021-04-23
+
+### Changed
+
+- Removed hard coded bulk text of **users** and changed to **rows**
+
 ## [1.2.1] - 2021-04-22
 
 ### Changed
