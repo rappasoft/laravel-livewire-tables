@@ -240,6 +240,7 @@ public array $sortDirectionNames = [
         'desc' => 'No',
     ],
 ];
+```
 
 ### Defining The Query
 
