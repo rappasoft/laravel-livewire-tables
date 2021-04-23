@@ -110,11 +110,14 @@ Column::make('Name')
 
 If you would like full control over your rows without using the Column formatter, than you can define a `rowView` and return the string to the view to render the rows. The view will be passed the current $row.
 
+The string is just passed to a regular Laravel `@include()` so it starts at the resources/views directory which you do not need to specify.
+
 **row.blade.php**
 
 ```php
 public function rowView(): string
 {
+     // Becomes /resources/views/location/to/my/row.blade.php
      return 'location.to.my.row.view';
 }
 ```
