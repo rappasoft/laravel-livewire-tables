@@ -27,10 +27,7 @@
 
         <div class="d-md-flex">
             @include('livewire-tables::bootstrap-4.includes.bulk-actions')
-
-            <div class="ml-0 ml-md-3">
-                @include('livewire-tables::bootstrap-4.includes.per-page')
-            </div>
+            @include('livewire-tables::bootstrap-4.includes.per-page')
         </div>
     </div>
 

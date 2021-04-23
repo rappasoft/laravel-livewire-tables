@@ -1,6 +1,6 @@
 @if ($showFilters && count(array_filter($filters)) && !(count(array_filter($filters)) === 1 && isset($filters['search'])))
     <div class="mb-3">
-        <small class="text-secondary">@lang('Applied Filters'):</small>
+        <small>@lang('Applied Filters'):</small>
 
         @foreach($filters as $key => $value)
             @if ($key !== 'search' && strlen($value))

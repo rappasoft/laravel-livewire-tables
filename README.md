@@ -110,11 +110,14 @@ Column::make('Name')
 
 If you would like full control over your rows without using the Column formatter, than you can define a `rowView` and return the string to the view to render the rows. The view will be passed the current $row.
 
+The string is just passed to a regular Laravel `@include()` so it starts at the resources/views directory which you do not need to specify.
+
 **row.blade.php**
 
 ```php
 public function rowView(): string
 {
+     // Becomes /resources/views/location/to/my/row.blade.php
      return 'location.to.my.row.view';
 }
 ```
@@ -225,6 +228,18 @@ public array $sortNames = [
     '2fa' => 'Two Factor Authentication Status',
 ];
 ```
+
+#### Configuring Sort Direction Names
+
+The default sort direction names are A-Z for ascending and Z-A for descending.
+
+```php
+public array $sortDirectionNames = [
+    'enabled' => [
+        'asc' => 'Yes',
+        'desc' => 'No',
+    ],
+];
 
 ### Defining The Query
 
@@ -360,9 +375,15 @@ And then using it like this:
 }
 ```
 
-### Creating Bulk Actions
+### Bulk Actions
 
 Bulk actions are not required, and the bulk actions box, as well as the left-hand checkboxes will be hidden if none are defined.
+
+#### The primary key
+
+Each row must have a primary key, it's `'id'` by default but you can override it with the `$primaryKey` property.
+
+#### Defining Bulk Actions
 
 To define your bulk actions, you add them to the **$bulkActions** array.
 
@@ -389,6 +410,29 @@ public function exportSelected()
 
 In the component you have access to `$this->selectedRowsQuery` which is a **Builder** instance of the selected rows.
 
+You may also call `selectedKeys` which gives you an array of the primary keys in order they were selected:
+
+**Note:** See above to setting the primary key if not `'id`.
+
+```php
+public function exportSelected()
+{
+    if (count($this->selectedKeys)) {
+        // Do something with the selected rows
+        dd($this->selectedKeys);
+        
+//        => [
+//            1,
+//            2,
+//            3,
+//            4,
+//        ]   
+    }
+
+    // Notify there is nothing to export
+}
+```
+
 ### Options
 
 There are some class level properties you can set:
@@ -396,10 +440,16 @@ There are some class level properties you can set:
 | Property | Default | Options | Usage |
 | -------- | ------- | ------- | ----- |
 | $showSearch | true | bool | Show the search box |
-| $showPerPage | true | bool | Show the per page selector |
-| $showPagination | true | bool | Show the pagination |
+| $paginationEnabled | true | bool | Enable pagination or fetch all records with no pagination |
+| $showPerPage | true | bool | Show the per page selector when pagination is enabled |
+| $showPagination | true | bool | Show the pagination when pagination is enabled |
 | $showSorting | true | bool | Show the sorting pills |
 | $showFilters | true | bool | Show the filter pills |
+| $sortNames | [] | string[] | Change the sort name of the column for the sorting pill display |
+| $sortDirectionNames | [] | string[] | Change the direction name of the column for the sorting pill display (i.e. A-Z, Z-A) |
+| $perPage | 10 | int | The default per page amount selected (must exist in list) |
+| $perPageAccepted | [10, 25, 50] | int[] | The values for the per page dropdown, in order |
+| $primaryKey | id | string | The column to pluck for bulk actions to populate the `selectedKeys` property |
 | $searchFilterDebounce | null | null/int | Adds a debounce of `$searchFilterDebounce` ms to the search input |
 | $searchFilterDefer | null | null/bool | Adds `.defer` to the search input |
 | $searchFilterLazy | null | null/bool | Adds `.lazy` to the search input |

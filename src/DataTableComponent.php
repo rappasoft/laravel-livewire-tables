@@ -4,15 +4,19 @@ namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
 use Rappasoft\LaravelLivewireTables\Traits\WithPerPagePagination;
+use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
 use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
 
 /**
  * Class TableComponent.
+ *
+ * @property LengthAwarePaginator|Collection|null $rows
  */
 abstract class DataTableComponent extends Component
 {
@@ -20,6 +24,7 @@ abstract class DataTableComponent extends Component
     use WithCustomPagination;
     use WithFilters;
     use WithPerPagePagination;
+    use WithSearch;
     use WithSorting;
 
     /**
@@ -28,41 +33,6 @@ abstract class DataTableComponent extends Component
      * @var string
      */
     public $paginationTheme = 'tailwind';
-
-    /**
-     * Show the search field.
-     *
-     * @var bool
-     */
-    public bool $showSearch = true;
-
-    /**
-     * Show the per page select.
-     *
-     * @var bool
-     */
-    public bool $showPerPage = true;
-
-    /**
-     * Show the pagination numbers and links.
-     *
-     * @var bool
-     */
-    public bool $showPagination = true;
-
-    /**
-     * Show the sorting indicators.
-     *
-     * @var bool
-     */
-    public bool $showSorting = true;
-
-    /**
-     * Show the filtering indicators.
-     *
-     * @var bool
-     */
-    public bool $showFilters = true;
 
     /**
      * Whether or not to refresh the table at a certain interval
@@ -149,7 +119,7 @@ abstract class DataTableComponent extends Component
      *
      * @return Builder
      */
-    public function getRowsQueryProperty(): Builder
+    public function rowsQuery(): Builder
     {
         $this->cleanFilters();
 
@@ -157,13 +127,25 @@ abstract class DataTableComponent extends Component
     }
 
     /**
+     * @return Builder
+     */
+    public function getRowsQueryProperty(): Builder
+    {
+        return $this->rowsQuery();
+    }
+
+    /**
      * Get the rows paginated collection that will be returned to the view.
      *
-     * @return LengthAwarePaginator
+     * @return Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
      */
-    public function getRowsProperty(): LengthAwarePaginator
+    public function getRowsProperty()
     {
-        return $this->applyPagination($this->rowsQuery);
+        if ($this->paginationEnabled) {
+            return $this->applyPagination($this->rowsQuery());
+        }
+
+        return $this->rowsQuery()->get();
     }
 
     /**

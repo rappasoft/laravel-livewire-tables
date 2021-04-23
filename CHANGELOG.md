@@ -4,6 +4,26 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-04-22
+
+### Added
+
+- Ability to disable pagination (https://github.com/rappasoft/laravel-livewire-tables/pull/222)
+- Ability to define the sorting direction names for each column. i.e. A-Z, Z-A, Yes, No, Enabled, Disabled, etc.
+- Added ability to define primary key of rows for bulk select
+- Added selectedKeys property that returns an array of the ids of the selected rows
+
+### Changed
+
+- Clarified where rowView looks in read me
+- Null the search filter when it's empty
+- Fill per page options from $perPageAccepted in views
+- Make $perPageAccepted public
+
+### Removed
+
+- Removed `text-secondary` class from sorting title
+
 ## [1.1.0] - 2021-04-21
 
 ### Added
@@ -205,7 +225,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.1.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.0...development
+[1.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.4...v1.2.0
 [1.1.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.4...v1.1.0
 [1.0.4]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.2...v1.0.3

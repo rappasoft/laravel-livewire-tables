@@ -1,13 +1,13 @@
 @if ($showSorting && count($sorts))
     <div class="mb-3">
-        <small class="text-secondary">@lang('Applied Sorting'):</small>
+        <small>@lang('Applied Sorting'):</small>
 
         @foreach($sorts as $col => $dir)
             <span
                 wire:key="sorting-pill-{{ $col }}"
                 class="badge badge-pill badge-info d-inline-flex align-items-center"
             >
-                <span>{{ $sortNames[$col] ?? ucwords(strtr($col, ['_' => ' ', '-' => ' '])) }}: {{ $dir === 'asc' ? 'A-Z' : 'Z-A' }}</span>
+                <span>{{ $sortNames[$col] ?? ucwords(strtr($col, ['_' => ' ', '-' => ' '])) }}: {{ $dir === 'asc' ? ($sortDirectionNames[$col]['asc'] ?? 'A-Z') : ($sortDirectionNames[$col]['desc'] ?? 'Z-A') }}</span>
 
                 <a
                     href="#"
