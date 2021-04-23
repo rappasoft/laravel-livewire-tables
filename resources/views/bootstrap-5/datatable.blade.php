@@ -10,7 +10,6 @@
             wire:poll="{{ $refresh }}"
         @endif
     @endif
-    class="container-fluid"
 >
     @include('livewire-tables::bootstrap-5.includes.offline')
     @include('livewire-tables::bootstrap-5.includes.sorting-pills')

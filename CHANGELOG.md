@@ -8,6 +8,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Ability to disable pagination (https://github.com/rappasoft/laravel-livewire-tables/pull/222)
 
+### Changed
+
+- Removed default padding on bootstrap tables
+- Clarified where rowView looks in read me
+
 ## [1.1.0] - 2021-04-21
 
 ### Added
