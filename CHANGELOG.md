@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.2.1] - 2021-04-22
+
+### Changed
+
+- Remove padding from bootstrap container to keep it flush with sides like Tailwind
+
 ## [1.2.0] - 2021-04-22
 
 ### Added
