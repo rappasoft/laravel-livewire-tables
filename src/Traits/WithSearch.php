@@ -34,8 +34,7 @@ trait WithSearch
      */
     public function updatedFilters(): void
     {
-        if (isset($this->filters['search']) && $this->filters['search'] === '')
-        {
+        if (isset($this->filters['search']) && $this->filters['search'] === '') {
             $this->filters['search'] = null;
         }
     }
