@@ -4,6 +4,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-04-22
+
 ### Added
 
 - Ability to disable pagination (https://github.com/rappasoft/laravel-livewire-tables/pull/222)
@@ -223,7 +225,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.1.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.0...development
+[1.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.4...v1.2.0
 [1.1.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.4...v1.1.0
 [1.0.4]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.2...v1.0.3
