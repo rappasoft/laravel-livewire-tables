@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Utilities;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder as Builder;
 use Illuminate\Support\Str;
 
@@ -66,23 +65,22 @@ class ColumnUtilities
         return count(array_filter($searchColumns ?? [], function ($searchColumn) use ($column) {
 
                 // match wildcards such as * or table.*
-                $hasWildcard = Str::endsWith($searchColumn, '*');
+            $hasWildcard = Str::endsWith($searchColumn, '*');
 
-                // if no wildcard, skip
-                if (! $hasWildcard) {
-                    return false;
-                }
+            // if no wildcard, skip
+            if (! $hasWildcard) {
+                return false;
+            }
 
-                if (! self::hasRelation($column)) {
-                    return true;
-                } else {
-                    $selectColumnPrefix = self::parseRelation($searchColumn);
-                    $columnPrefix = self::parseRelation($column);
+            if (! self::hasRelation($column)) {
+                return true;
+            } else {
+                $selectColumnPrefix = self::parseRelation($searchColumn);
+                $columnPrefix = self::parseRelation($column);
 
-                    return $selectColumnPrefix === $columnPrefix;
-                }
-
-            })) > 0;
+                return $selectColumnPrefix === $columnPrefix;
+            }
+        })) > 0;
     }
 
     /**
@@ -165,20 +163,16 @@ class ColumnUtilities
 
         // this is easiest when using the eloquent query builder
         } elseif ($queryBuilder instanceof EloquentBuilder) {
-
             $relation = $queryBuilder->getRelation($relationName);
             $possibleTable = $relation->getModel()->getTable();
-
         } elseif ($queryBuilder instanceof Builder) {
 
             // @todo: possible ways to do this?
             $possibleTable = null;
-
         } else {
 
             // we would have already returned before this is possible
             $possibleTable = null;
-
         }
 
         // if we found a possible table

@@ -2,10 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities;
 
