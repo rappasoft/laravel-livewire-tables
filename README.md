@@ -66,9 +66,11 @@ class Table extends DataTableComponent
     {
         return [
             Column::make('Type')
-                ->sortable(),
+                ->sortable()
+				->searchable(),
             Column::make('Name')
-                ->sortable(),
+                ->sortable()
+				->searchable(),
             Column::make('Permissions'),
             Column::blank(),
         ];
@@ -345,7 +347,14 @@ public array $filterNames = [
 
 ### Adding Search
 
-The search is a special built-in filter that is managed by the component, but you need to define the search query, you can do so the same as any other filter:
+The search is a special built-in filter that is managed by the component, but you need to define the behavior. For a simple default search behavior, add searchable() to columns:
+
+```php
+Column::make('Type')
+	->searchable()
+```
+
+Sometimes the default search behavior may not meet your requirements. If this is the case, skip using the searchable() method on columns and define your own behavior directly on the query.
 
 ```php
 public function query(): Builder
