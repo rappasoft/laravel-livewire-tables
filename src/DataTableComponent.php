@@ -123,15 +123,19 @@ abstract class DataTableComponent extends Component
     {
         $this->cleanFilters();
 
-        return $this->applySorting($this->query());
-    }
+        $query = $this->query();
 
-    /**
-     * @return Builder
-     */
-    public function getRowsQueryProperty(): Builder
-    {
-        return $this->rowsQuery();
+        // sorting?
+        if (method_exists($this, 'applySorting')) {
+            $query = $this->applySorting($query);
+        }
+
+        // searching?
+        if (method_exists($this, 'applySearchFilter')) {
+            $query = $this->applySearchFilter($query);
+        }
+
+        return $query;
     }
 
     /**
