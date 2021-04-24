@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Changed
+
+- Fixed offline indicators to display block
+
 ## [1.2.2] - 2021-04-23
 
 ### Changed
