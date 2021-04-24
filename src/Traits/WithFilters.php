@@ -236,8 +236,15 @@ trait WithFilters
                     // if the column isn't a relation or if it was previously selected
                     } elseif (! $hasRelation || $selectedColumn) {
 
+                        $whereColumn = $selectedColumn ?? $column->column();
+
+                        // @todo: skip aggregates
+                        if (!$hasRelation && $query instanceof Builder) {
+                            $whereColumn = $query->getModel()->getTable() . '.' . $whereColumn;
+                        }
+
                         // we can use a simple where clause
-                        $subQuery->orWhere($selectedColumn ?? $column->column(), 'like', '%' . $search . '%');
+                        $subQuery->orWhere($whereColumn, 'like', '%' . $search . '%');
 
                     } else {
 
