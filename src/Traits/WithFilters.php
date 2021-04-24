@@ -195,7 +195,7 @@ trait WithFilters
      */
     public function getSearchableColumns() : array
     {
-        return array_filter($this->columns(), function(Column $column) {
+        return array_filter($this->columns(), function (Column $column) {
             return $column->isSearchable();
         });
     }
@@ -218,7 +218,6 @@ trait WithFilters
 
             // group search conditions together
             $query->where(function (Builder $subQuery) use ($search, $query) {
-
                 foreach ($this->getSearchableColumns() as $column) {
 
                     // does this column have an alias or relation?
@@ -256,11 +255,9 @@ trait WithFilters
                         $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($fieldName, $column, $search) {
                             $hasQuery->where($fieldName, 'like', '%' . $search . '%');
                         });
-
                     }
                 }
             });
-
         }
 
         return $query;
