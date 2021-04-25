@@ -358,7 +358,7 @@ You can also pass a callback for more control:
 
 ```php
 Column::make('Type')
-	->searchable(function (Builder $query, $searchTerm) {
+    ->searchable(function (Builder $query, $searchTerm) {
         $query->orWhere(...);
     }),
 ```
