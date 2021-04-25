@@ -246,4 +246,20 @@ class Column
     {
         return $this->sortCallback;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasSearchCallback(): bool
+    {
+        return $this->searchCallback !== null;
+    }
+
+    /**
+     * @return callable|null
+     */
+    public function getSearchCallback(): ?callable
+    {
+        return $this->searchCallback;
+    }
 }

@@ -221,9 +221,9 @@ trait WithFilters
                     $selectedColumn = ColumnUtilities::mapToSelected($column->column(), $query);
 
                     // If the column has a search callback, just use that
-                    if ($column->searchCallback) {
+                    if ($column->hasSearchCallback()) {
                         // Call the callback
-                        ($column->searchCallback)($query, $search);
+                        ($column->getSearchCallback())($query, $search);
                     } elseif (! $hasRelation || $selectedColumn) { // If the column isn't a relation or if it was previously selected
                         $whereColumn = $selectedColumn ?? $column->column();
 
