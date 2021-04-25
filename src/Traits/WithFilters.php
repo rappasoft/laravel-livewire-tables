@@ -228,7 +228,7 @@ trait WithFilters
                         $whereColumn = $selectedColumn ?? $column->column();
 
                         // TODO: Skip Aggregates
-                        if (! $hasRelation && $query instanceof Builder) {
+                        if (! $hasRelation) {
                             $whereColumn = $query->getModel()->getTable() . '.' . $whereColumn;
                         }
 
@@ -240,7 +240,7 @@ trait WithFilters
                         $fieldName = ColumnUtilities::parseField($column->column());
 
                         // We use whereHas which can work with unselected relations
-                        $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($fieldName, $column, $search) {
+                        $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($fieldName, $search) {
                             $hasQuery->where($fieldName, 'like', '%' . $search . '%');
                         });
                     }
