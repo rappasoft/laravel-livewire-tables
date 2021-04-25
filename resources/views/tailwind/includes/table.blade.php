@@ -6,7 +6,7 @@
                     <input
                         wire:model="selectPage"
                         type="checkbox"
-                        class="rounded-md shadow-sm border-cool-gray-300 block transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                        class="rounded-md shadow-sm border-gray-300 block transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                     />
                 </div>
             </x-livewire-tables::table.heading>
@@ -38,7 +38,7 @@
                             <button
                                 wire:click="selectAll"
                                 type="button"
-                                class="ml-1 text-blue-600 underline text-cool-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-cool-gray-800 focus:underline transition duration-150 ease-in-out"
+                                class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out"
                             >
                                 @lang('Select All')
                             </button>
@@ -50,7 +50,7 @@
                             <button
                                 wire:click="resetBulk"
                                 type="button"
-                                class="ml-1 text-blue-600 underline text-cool-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-cool-gray-800 focus:underline transition duration-150 ease-in-out"
+                                class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out"
                             >
                                 @lang('Unselect All')
                             </button>
@@ -75,7 +75,7 @@
                                 value="{{ $row->getKey() }}"
                                 onclick="event.stopPropagation();return true;"
                                 type="checkbox"
-                                class="rounded-md shadow-sm border-cool-gray-300 block transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                class="rounded-md shadow-sm border-gray-300 block transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                             />
                         </div>
                     </x-livewire-tables::table.cell>
@@ -87,11 +87,11 @@
             <x-livewire-tables::table.row>
                 <x-livewire-tables::table.cell :colspan="count($bulkActions) ? count($columns) + 1 : count($columns)">
                     <div class="flex justify-center items-center space-x-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-cool-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                         </svg>
 
-                        <span class="font-medium py-8 text-cool-gray-400 text-xl">@lang('No items found. Try narrowing your search.')</span>
+                        <span class="font-medium py-8 text-gray-400 text-xl">@lang('No items found. Try narrowing your search.')</span>
                     </div>
                 </x-livewire-tables::table.cell>
             </x-livewire-tables::table.row>
