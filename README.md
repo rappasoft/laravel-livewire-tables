@@ -351,7 +351,16 @@ The search is a special built-in filter that is managed by the component, but yo
 
 ```php
 Column::make('Type')
-	->searchable()
+	->searchable(),
+```
+
+You can also pass a callback for more control:
+
+```php
+Column::make('Type')
+	->searchable(function (Builder $query, $searchTerm) {
+        $query->orWhere(...);
+    }),
 ```
 
 Sometimes the default search behavior may not meet your requirements. If this is the case, skip using the searchable() method on columns and define your own behavior directly on the query.

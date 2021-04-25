@@ -223,7 +223,7 @@ trait WithFilters
                     // If the column has a search callback, just use that
                     if ($column->hasSearchCallback()) {
                         // Call the callback
-                        ($column->getSearchCallback())($query, $search);
+                        ($column->getSearchCallback())($subQuery, $search);
                     } elseif (! $hasRelation || $selectedColumn) { // If the column isn't a relation or if it was previously selected
                         $whereColumn = $selectedColumn ?? $column->column();
 
