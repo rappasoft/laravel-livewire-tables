@@ -40,7 +40,7 @@ class TestCase extends Orchestra
         Pet::insert([
             [ 'id' => 1, 'name' => 'Cartman', 'age' => 22, 'species_id' => 1, 'breed_id' => 4 ],
             [ 'id' => 2, 'name' => 'Tux', 'age' => 8, 'species_id' => 1, 'breed_id' => 4 ],
-            [ 'id' => 3, 'name' => 'May', 'age' => 3, 'species_id' => 2, 'breed_id' => 102 ],
+            [ 'id' => 3, 'name' => 'May', 'age' => 2, 'species_id' => 2, 'breed_id' => 102 ],
             [ 'id' => 4, 'name' => 'Ben', 'age' => 5, 'species_id' => 3, 'breed_id' => 200 ],
             [ 'id' => 5, 'name' => 'Chico', 'age' => 7, 'species_id' => 3, 'breed_id' => 202 ],
         ]);

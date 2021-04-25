@@ -7,16 +7,16 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class PetsTable extends DataTableComponent
+class PetsAltQueryTable extends DataTableComponent
 {
     /**
      * @return Builder
      */
     public function query() : Builder
     {
-        return Pet::query()
-            ->with('species')
-            ->with('breed');
+        return Pet::query()->select('pets.name', 'pets.age', 'pets.last_visit', 'species.name', 'breeds.name')
+            ->join('species', 'pets.species_id', '=', 'species.id')
+            ->join('breeds', 'breed_id', '=', 'breeds.id');
     }
 
     public function columns(): array
@@ -25,9 +25,7 @@ class PetsTable extends DataTableComponent
             Column::make('Name', 'name')
                 ->searchable(),
             Column::make('Age', 'age')
-                ->searchable(function (Builder $query, $search) {
-                    $query->orWhere('age', '=', $search);
-                }),
+                ->searchable(),
             Column::make('Last Visit', 'last_visit')
                 ->searchable(),
             Column::make('Species', 'species.name')

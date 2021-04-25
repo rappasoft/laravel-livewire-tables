@@ -30,6 +30,16 @@ class Column
     public $sortCallback;
 
     /**
+     * @var bool
+     */
+    public bool $searchable = false;
+
+    /**
+     * @var callable
+     */
+    public $searchCallback;
+
+    /**
      * @var string|null
      */
     public ?string $class = null;
@@ -100,6 +110,14 @@ class Column
     /**
      * @return bool
      */
+    public function isSearchable(): bool
+    {
+        return $this->searchable === true;
+    }
+
+    /**
+     * @return bool
+     */
     public function isBlank(): bool
     {
         return $this->blank === true;
@@ -113,6 +131,19 @@ class Column
         $this->sortable = true;
 
         $this->sortCallback = $callback;
+
+        return $this;
+    }
+
+    /**
+     * @param callable|null $callback
+     * @return $this
+     */
+    public function searchable(callable $callback = null): self
+    {
+        $this->searchable = true;
+
+        $this->searchCallback = $callback;
 
         return $this;
     }
@@ -214,5 +245,21 @@ class Column
     public function getSortCallback(): ?callable
     {
         return $this->sortCallback;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSearchCallback(): bool
+    {
+        return $this->searchCallback !== null;
+    }
+
+    /**
+     * @return callable|null
+     */
+    public function getSearchCallback(): ?callable
+    {
+        return $this->searchCallback;
     }
 }

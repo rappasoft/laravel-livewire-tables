@@ -66,9 +66,11 @@ class Table extends DataTableComponent
     {
         return [
             Column::make('Type')
-                ->sortable(),
+                ->sortable()
+				->searchable(),
             Column::make('Name')
-                ->sortable(),
+                ->sortable()
+				->searchable(),
             Column::make('Permissions'),
             Column::blank(),
         ];
@@ -170,7 +172,7 @@ public function getTableRowUrl($row): string
 To create cells, you should use the `<x-livewire-tables::table.cell>` table cell component, which will be rendered to:
 
 ```html
-<td {{ $attributes->merge(['class' => 'px-3 py-2 md:px-6 md:py-4 whitespace-no-wrap text-sm leading-5 text-cool-gray-900']) }}>
+<td {{ $attributes->merge(['class' => 'px-3 py-2 md:px-6 md:py-4 whitespace-no-wrap text-sm leading-5 text-gray-900']) }}>
     {{ $slot }}
 </td>
 ```
@@ -345,7 +347,23 @@ public array $filterNames = [
 
 ### Adding Search
 
-The search is a special built-in filter that is managed by the component, but you need to define the search query, you can do so the same as any other filter:
+The search is a special built-in filter that is managed by the component, but you need to define the behavior. For a simple default search behavior, add searchable() to columns:
+
+```php
+Column::make('Type')
+	->searchable(),
+```
+
+You can also pass a callback for more control:
+
+```php
+Column::make('Type')
+	->searchable(function (Builder $query, $searchTerm) {
+        $query->orWhere(...);
+    }),
+```
+
+Sometimes the default search behavior may not meet your requirements. If this is the case, skip using the searchable() method on columns and define your own behavior directly on the query.
 
 ```php
 public function query(): Builder

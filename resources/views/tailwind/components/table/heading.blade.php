@@ -6,17 +6,17 @@
 ])
 
 <th
-    {{ $attributes->merge(['class' => 'px-3 py-2 md:px-6 md:py-3 bg-cool-gray-50'])->only('class') }}
+    {{ $attributes->merge(['class' => 'px-3 py-2 md:px-6 md:py-3 bg-gray-50'])->only('class') }}
 >
     @unless ($sortable)
-        <span class="block text-left text-xs leading-4 font-medium text-cool-gray-500 uppercase tracking-wider">
+        <span class="block text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
             {{ $text ?? $slot }}
         </span>
     @else
         <button
             wire:click="sortBy('{{ $column }}', '{{ $text ?? $column }}')"
             {{ $attributes->except('class') }}
-            class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-cool-gray-500 uppercase tracking-wider group focus:outline-none focus:underline"
+            class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none focus:underline"
         >
             <span>{{ $text ?? $slot }}</span>
 

@@ -4,6 +4,17 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.3.0] - 2021-04-25
+
+### Added
+
+- Added searchable() to columns (https://github.com/rappasoft/laravel-livewire-tables/pull/233)
+
+### Changed
+
+- Fixed offline indicators to display block.
+- Tailwind cool-gray to just gray since it is included by default.
+
 ## [1.2.2] - 2021-04-23
 
 ### Changed
@@ -237,8 +248,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.0...development
-[1.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.4...v1.2.0
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.3.0...development
+[1.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.2...v1.3.0
+[1.2.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.1...v1.2.2
+[1.2.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.4...v1.1.0
 [1.0.4]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.2...v1.0.3

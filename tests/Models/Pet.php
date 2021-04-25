@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $last_visit
  * @property int $species_id
  * @property int $breed_id
+ * @property Species $species
+ * @property Breed $breed
  */
 class Pet extends Model
 {
@@ -48,7 +50,7 @@ class Pet extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Species[]
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Species
      */
     public function species()
     {
@@ -56,9 +58,9 @@ class Pet extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Breed[]
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Breed
      */
-    public function breeds()
+    public function breed()
     {
         return $this->belongsTo(Breed::class);
     }
