@@ -25,7 +25,7 @@ class PetsTable extends DataTableComponent
             Column::make('Name', 'name')
                 ->searchable(),
             Column::make('Age', 'age')
-                ->searchable(function(Builder $query, $search){
+                ->searchable(function (Builder $query, $search) {
                     $query->orWhere('age', '=', $search);
                 }),
             Column::make('Last Visit', 'last_visit')

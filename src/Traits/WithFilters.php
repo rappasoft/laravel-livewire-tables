@@ -256,7 +256,6 @@ trait WithFilters
                     }
                 }
             });
-
         }
 
         return $query;
