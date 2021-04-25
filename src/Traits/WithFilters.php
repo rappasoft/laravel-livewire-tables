@@ -2,6 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+
 /**
  * Trait WithFilters.
  */
@@ -182,5 +186,78 @@ trait WithFilters
     public function getFilterOptions(string $filter): array
     {
         return array_filter(array_keys($this->filters()[$filter]->options() ?? []));
+    }
+
+    /**
+     * Collects columns with $searchable = true
+     *
+     * @return Column[]
+     */
+    public function getSearchableColumns() : array
+    {
+        return array_filter($this->columns(), function (Column $column) {
+            return $column->isSearchable();
+        });
+    }
+
+    /**
+     * Apply Search Filter
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function applySearchFilter(Builder $query): Builder
+    {
+        if ($this->hasFilter('search')) {
+
+            // get search value
+            $search = $this->getFilter('search');
+
+            // trim
+            $search = trim($search);
+
+            // group search conditions together
+            $query->where(function (Builder $subQuery) use ($search, $query) {
+                foreach ($this->getSearchableColumns() as $column) {
+
+                    // does this column have an alias or relation?
+                    $hasRelation = ColumnUtilities::hasRelation($column->column());
+
+                    // let's try to map this column to a selected column
+                    $selectedColumn = ColumnUtilities::mapToSelected($column->column(), $query);
+
+                    // if the column has a search callback, just use that
+                    if ($column->searchCallback) {
+
+                        // call the callback
+                        ($column->searchCallback)($query, $search);
+
+                    // if the column isn't a relation or if it was previously selected
+                    } elseif (! $hasRelation || $selectedColumn) {
+                        $whereColumn = $selectedColumn ?? $column->column();
+
+                        // @todo: skip aggregates
+                        if (! $hasRelation && $query instanceof Builder) {
+                            $whereColumn = $query->getModel()->getTable() . '.' . $whereColumn;
+                        }
+
+                        // we can use a simple where clause
+                        $subQuery->orWhere($whereColumn, 'like', '%' . $search . '%');
+                    } else {
+
+                        // parse the column
+                        $relationName = ColumnUtilities::parseRelation($column->column());
+                        $fieldName = ColumnUtilities::parseField($column->column());
+
+                        // we use whereHas which can work with unselected relations
+                        $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($fieldName, $column, $search) {
+                            $hasQuery->where($fieldName, 'like', '%' . $search . '%');
+                        });
+                    }
+                }
+            });
+        }
+
+        return $query;
     }
 }

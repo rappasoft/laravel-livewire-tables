@@ -5,17 +5,20 @@ namespace Rappasoft\LaravelLivewireTables\Tests;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsAltQueryTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
 class DataTableComponentTest extends TestCase
 {
     protected DataTableComponent $table;
+    protected DataTableComponent $tableAltQuery;
 
     public function setUp(): void
     {
         parent::setUp();
 
         $this->table = new PetsTable();
+        $this->tableAltQuery = new PetsAltQueryTable();
     }
 
     /** @test */
@@ -89,5 +92,17 @@ class DataTableComponentTest extends TestCase
         $this->table->filters['search'] = 'Cartman';
         $this->table->removeFilter('search');
         $this->assertEquals(5, $this->table->rows->total());
+    }
+
+    public function test_search_filter_alt_query()
+    {
+        $this->tableAltQuery->filters['search'] = 'Cartman';
+        $this->assertEquals(1, $this->tableAltQuery->rows->total());
+    }
+
+    public function test_search_filter_alt_query_relation()
+    {
+        $this->tableAltQuery->filters['search'] = 'Cat';
+        $this->assertEquals(2, $this->tableAltQuery->rows->total());
     }
 }
