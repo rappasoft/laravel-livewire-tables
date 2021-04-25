@@ -94,6 +94,13 @@ class DataTableComponentTest extends TestCase
         $this->assertEquals(5, $this->table->rows->total());
     }
 
+    /** @test */
+    public function test_search_filter_callback(): void
+    {
+        $this->table->filters['search'] = '2';
+        $this->assertEquals(1, $this->table->getRowsProperty()->total());
+    }
+
     public function test_search_filter_alt_query()
     {
         $this->tableAltQuery->filters['search'] = 'Cartman';

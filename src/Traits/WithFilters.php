@@ -230,7 +230,7 @@ trait WithFilters
                     if ($column->searchCallback) {
 
                         // call the callback
-                        ($column->searchCallback)($query, $search);
+                        ($column->searchCallback)($subQuery, $search);
 
                     // if the column isn't a relation or if it was previously selected
                     } elseif (! $hasRelation || $selectedColumn) {
@@ -256,6 +256,7 @@ trait WithFilters
                     }
                 }
             });
+
         }
 
         return $query;
