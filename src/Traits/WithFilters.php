@@ -195,9 +195,7 @@ trait WithFilters
      */
     public function getSearchableColumns() : array
     {
-        return array_filter($this->columns(), function (Column $column) {
-            return $column->isSearchable();
-        });
+        return array_filter($this->columns(), fn (Column $column) => $column->isSearchable());
     }
 
     /**
@@ -208,48 +206,40 @@ trait WithFilters
      */
     public function applySearchFilter(Builder $query): Builder
     {
-        if ($this->hasFilter('search')) {
+        $searchableColumns = $this->getSearchableColumns();
 
-            // get search value
-            $search = $this->getFilter('search');
+        if ($this->hasFilter('search') && count($searchableColumns)) {
+            $search = trim($this->getFilter('search'));
 
-            // trim
-            $search = trim($search);
-
-            // group search conditions together
-            $query->where(function (Builder $subQuery) use ($search, $query) {
-                foreach ($this->getSearchableColumns() as $column) {
-
-                    // does this column have an alias or relation?
+            // Group search conditions together
+            $query->where(function (Builder $subQuery) use ($search, $query, $searchableColumns) {
+                foreach ($searchableColumns as $column) {
+                    // Does this column have an alias or relation?
                     $hasRelation = ColumnUtilities::hasRelation($column->column());
 
-                    // let's try to map this column to a selected column
+                    // Let's try to map this column to a selected column
                     $selectedColumn = ColumnUtilities::mapToSelected($column->column(), $query);
 
-                    // if the column has a search callback, just use that
+                    // If the column has a search callback, just use that
                     if ($column->searchCallback) {
-
-                        // call the callback
+                        // Call the callback
                         ($column->searchCallback)($query, $search);
-
-                    // if the column isn't a relation or if it was previously selected
-                    } elseif (! $hasRelation || $selectedColumn) {
+                    } elseif (! $hasRelation || $selectedColumn) { // If the column isn't a relation or if it was previously selected
                         $whereColumn = $selectedColumn ?? $column->column();
 
-                        // @todo: skip aggregates
+                        // TODO: Skip Aggregates
                         if (! $hasRelation && $query instanceof Builder) {
                             $whereColumn = $query->getModel()->getTable() . '.' . $whereColumn;
                         }
 
-                        // we can use a simple where clause
+                        // We can use a simple where clause
                         $subQuery->orWhere($whereColumn, 'like', '%' . $search . '%');
                     } else {
-
-                        // parse the column
+                        // Parse the column
                         $relationName = ColumnUtilities::parseRelation($column->column());
                         $fieldName = ColumnUtilities::parseField($column->column());
 
-                        // we use whereHas which can work with unselected relations
+                        // We use whereHas which can work with unselected relations
                         $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($fieldName, $column, $search) {
                             $hasQuery->where($fieldName, 'like', '%' . $search . '%');
                         });

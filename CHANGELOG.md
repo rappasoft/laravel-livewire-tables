@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Added searchable() to columns (https://github.com/rappasoft/laravel-livewire-tables/pull/233)
+
 ### Changed
 
 - Fixed offline indicators to display block

@@ -125,12 +125,10 @@ abstract class DataTableComponent extends Component
 
         $query = $this->query();
 
-        // sorting?
         if (method_exists($this, 'applySorting')) {
             $query = $this->applySorting($query);
         }
 
-        // searching?
         if (method_exists($this, 'applySearchFilter')) {
             $query = $this->applySearchFilter($query);
         }

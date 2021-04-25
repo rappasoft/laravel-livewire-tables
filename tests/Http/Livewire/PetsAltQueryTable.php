@@ -15,8 +15,8 @@ class PetsAltQueryTable extends DataTableComponent
     public function query() : Builder
     {
         return Pet::query()->select('pets.name', 'pets.age', 'pets.last_visit', 'species.name', 'breeds.name')
-                            ->join('species', 'pets.species_id', '=', 'species.id')
-                            ->join('breeds', 'breed_id', '=', 'breeds.id');
+            ->join('species', 'pets.species_id', '=', 'species.id')
+            ->join('breeds', 'breed_id', '=', 'breeds.id');
     }
 
     public function columns(): array

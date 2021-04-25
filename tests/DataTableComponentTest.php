@@ -28,7 +28,7 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function test_columns(): void
+    public function columns(): void
     {
         $columns = $this->table->columns();
 
@@ -36,7 +36,7 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function test_rows(): void
+    public function rows(): void
     {
         $rows = $this->table->rows;
 
@@ -45,7 +45,7 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function test_pagination_default(): void
+    public function pagination_default(): void
     {
         $this->assertInstanceOf(LengthAwarePaginator::class, $this->table->rows);
         $this->assertEquals(10, $this->table->perPage);
@@ -54,7 +54,7 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function test_pagination(): void
+    public function pagination(): void
     {
         $this->table->perPage = 2;
         $this->assertEquals(1, $this->table->rows->currentPage());
@@ -63,7 +63,7 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function test_pagination_disabled(): void
+    public function pagination_disabled(): void
     {
         $this->table->paginationEnabled = false;
         $this->table->perPage = 2;
@@ -72,14 +72,14 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function test_search_filter(): void
+    public function search_filter(): void
     {
         $this->table->filters['search'] = 'Cartman';
         $this->assertEquals(1, $this->table->getRowsProperty()->total());
     }
 
     /** @test */
-    public function test_search_filter_reset(): void
+    public function search_filter_reset(): void
     {
         $this->table->filters['search'] = 'Cartman';
         $this->table->resetFilters();
@@ -87,20 +87,22 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function test_search_filter_remove(): void
+    public function search_filter_remove(): void
     {
         $this->table->filters['search'] = 'Cartman';
         $this->table->removeFilter('search');
         $this->assertEquals(5, $this->table->rows->total());
     }
 
-    public function test_search_filter_alt_query()
+    /** @test */
+    public function search_filter_alt_query()
     {
         $this->tableAltQuery->filters['search'] = 'Cartman';
         $this->assertEquals(1, $this->tableAltQuery->rows->total());
     }
 
-    public function test_search_filter_alt_query_relation()
+    /** @test */
+    public function search_filter_alt_query_relation()
     {
         $this->tableAltQuery->filters['search'] = 'Cat';
         $this->assertEquals(2, $this->tableAltQuery->rows->total());

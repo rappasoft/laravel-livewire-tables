@@ -9,13 +9,8 @@ class ColumnUtilitiesTest extends TestCase
 {
     protected $query;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
     /** @test */
-    public function test_parse_relation(): void
+    public function parse_relation(): void
     {
         $this->assertFalse(ColumnUtilities::hasRelation('id'));
         $this->assertTrue(ColumnUtilities::hasRelation('pets.id'));
@@ -24,27 +19,27 @@ class ColumnUtilitiesTest extends TestCase
     }
 
     /** @test */
-    public function test_parse_field(): void
+    public function parse_field(): void
     {
         $this->assertEquals('id', ColumnUtilities::parseField('pets.id'));
     }
 
     /** @test */
-    public function test_has_match(): void
+    public function has_match(): void
     {
         $this->assertTrue(ColumnUtilities::hasMatch('id', ['id', 'name']));
         $this->assertTrue(ColumnUtilities::hasMatch('name', ['id', 'name']));
     }
 
     /** @test */
-    public function test_has_wildcard_match(): void
+    public function has_wildcard_match(): void
     {
         $this->assertTrue(ColumnUtilities::hasWildcardMatch('id', ['*']));
         $this->assertTrue(ColumnUtilities::hasWildcardMatch('pets.id', ['pets.*']));
     }
 
     /** @test */
-    public function test_get_columns(): void
+    public function get_columns(): void
     {
         $query = Pet::query();
         $this->assertIsNotArray(ColumnUtilities::columnsFromBuilder($query));
@@ -55,28 +50,29 @@ class ColumnUtilitiesTest extends TestCase
     }
 
     /** @test */
-    public function test_map(): void
+    public function map(): void
     {
-        // simple match
+        // Simple match
         $query = Pet::query()->select('id');
         $this->assertEquals('id', ColumnUtilities::mapToSelected('id', $query));
 
-        // wildcard match
+        // Wildcard match
         $query = Pet::query()->select('*');
         $this->assertEquals('id', ColumnUtilities::mapToSelected('id', $query));
 
-        // alias match
+        // Alias match
         $query = Pet::query()->select('pets.id');
         $this->assertEquals('pets.id', ColumnUtilities::mapToSelected('pets.id', $query));
 
-        // alias wildcard match
+        // Alias wildcard match
         $query = Pet::query()->select('pets.*');
         $this->assertEquals('pets.id', ColumnUtilities::mapToSelected('pets.id', $query));
 
-        // join relation wildcard match
+        // Join relation wildcard match
         $query = Pet::query()->select('breeds.*')->join('breeds', 'pets.breeds_id', '=', 'breeds.id');
         $this->assertEquals('breeds.id', ColumnUtilities::mapToSelected('breeds.id', $query));
-        // using relation only
+
+        // Using relation only
         $this->assertEquals('breeds.id', ColumnUtilities::mapToSelected('breed.id', $query));
     }
 }
