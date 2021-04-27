@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Removed
+
+- Removed old readme for the documentation link
+
 ## [1.3.0] - 2021-04-25
 
 ### Added
