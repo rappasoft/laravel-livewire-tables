@@ -10,7 +10,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Changed
 
-- Added row count when pagination is disabled. (https://github.com/rappasoft/laravel-livewire-tables/pull/239)
+- Added row count when pagination is disabled. (https://github.com/rappasoft/laravel-livewire-tables/pull/239**)
+- Fixed whitespace-nowrap in tailwind cell. (https://github.com/rappasoft/laravel-livewire-tables/issues/240)
 
 ### Removed
 
