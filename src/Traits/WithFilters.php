@@ -186,7 +186,7 @@ trait WithFilters
      */
     public function getFilterOptions(string $filter): array
     {
-        return array_filter(array_keys($this->filters()[$filter]->options() ?? []));
+        return array_filter(array_keys($this->filters()[$filter]->options()));
     }
 
     /**
