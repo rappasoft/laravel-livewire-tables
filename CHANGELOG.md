@@ -4,9 +4,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Use the filter option name instead of the value on the filter pills. (https://github.com/rappasoft/laravel-livewire-tables/pull/238)
+
 ### Changed
 
-- Added row count when pagination is disabled.
+- Added row count when pagination is disabled. (https://github.com/rappasoft/laravel-livewire-tables/pull/239)
 
 ### Removed
 
