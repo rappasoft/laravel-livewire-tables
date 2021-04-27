@@ -8,7 +8,12 @@
                     wire:key="filter-pill-{{ $key }}"
                     class="badge rounded-pill bg-info d-inline-flex align-items-center"
                 >
-                    {{ $filterNames[$key] ?? ucwords(strtr($key, ['_' => ' ', '-' => ' '])) }}: {{ ucwords(strtr($value, ['_' => ' ', '-' => ' '])) }}
+                    {{ $filterNames[$key] ?? ucwords(strtr($key, ['_' => ' ', '-' => ' '])) }}:
+                    @if(isset($customFilters[$key]) && method_exists($customFilters[$key], 'options'))
+                        {{ $customFilters[$key]->options()[$value] ?? $value }}
+                    @else
+                        {{ ucwords(strtr($value, ['_' => ' ', '-' => ' '])) }}
+                    @endif
 
                     <a
                         href="#"
