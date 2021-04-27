@@ -4,9 +4,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Changed
+
+- Added row count when pagination is disabled.
+
 ### Removed
 
-- Removed old readme for the documentation link
+- Removed old readme for the documentation link.
 
 ## [1.3.0] - 2021-04-25
 
