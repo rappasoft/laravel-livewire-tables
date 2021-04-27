@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 /**
  * Trait WithFilters.
@@ -79,7 +80,7 @@ trait WithFilters
     /**
      * Define the filters array
      *
-     * @return array
+     * @return Filter[]
      */
     public function filters(): array
     {
