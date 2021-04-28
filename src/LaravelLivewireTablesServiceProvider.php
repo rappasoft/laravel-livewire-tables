@@ -42,6 +42,7 @@ class LaravelLivewireTablesServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-livewire-tables')
             ->hasConfigFile()
-            ->hasViews();
+            ->hasViews()
+            ->hasTranslations();
     }
 }

@@ -5,17 +5,21 @@
         </div>
 
         <div class="col-12 col-md-6 text-center text-md-end text-muted">
-            @lang('Showing :first to :last out of :total results', [
-                'first' => $rows->count() ? $rows->firstItem() : 0,
-                'last' => $rows->count() ? $rows->lastItem() : 0,
-                'total' => $rows->total()
-            ])
+            @lang('Showing')
+            <strong>{{ $rows->count() ? $rows->firstItem() : 0 }}</strong>
+            @lang('to')
+            <strong>{{ $rows->count() ? $rows->lastItem() : 0 }}</strong>
+            @lang('of')
+            <strong>{{ $rows->total() }}</strong>
+            @lang('results')
         </div>
     </div>
 @else
     <div class="row">
         <div class="col-12 text-muted">
-            {!! __('Showing <strong>:count</strong> results', ['count' => $rows->count()]) !!}
+            @lang('Showing')
+            <strong>{{ $rows->count() }}</strong>
+            @lang('results')
         </div>
     </div>
 @endif

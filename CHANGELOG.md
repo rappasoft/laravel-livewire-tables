@@ -6,7 +6,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Added
 
-- Added option for single column sorting only
+- Added option for single column sorting only.
+- Ability to change empty message per table.
+- Added en.json lang file.
+
+### Changed
+
+- Modified views to support localization better where necessary (republish views).
 
 ## [1.3.1] - 2021-04-26
 

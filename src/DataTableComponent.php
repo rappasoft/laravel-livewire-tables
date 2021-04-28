@@ -49,7 +49,14 @@ abstract class DataTableComponent extends Component
      *
      * @var bool
      */
-    public $offlineIndicator = true;
+    public bool $offlineIndicator = true;
+
+    /**
+     * The message to show when there are no results from a search or query
+     *
+     * @var string
+     */
+    public string $emptyMessage = 'No items found. Try narrowing your search.';
 
     /**
      * Name of the page parameter for pagination

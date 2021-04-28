@@ -1,7 +1,7 @@
 @if ($filtersView || count($customFilters))
     <div class="btn-group d-block d-md-inline">
         <button type="button" class="btn dropdown-toggle d-block w-100 d-md-inline" data-bs-toggle="dropdown">
-            {{ __('Filters') }}
+            @lang('Filters')
 
             @if (count(array_filter($filters)) && !(count(array_filter($filters)) === 1 && isset($filters['search'])))
                 <span class="badge bg-info">
