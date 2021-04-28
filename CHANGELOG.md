@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Added option for single column sorting only
+
 ## [1.3.1] - 2021-04-26
 
 ### Added
