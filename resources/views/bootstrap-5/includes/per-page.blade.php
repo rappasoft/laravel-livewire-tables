@@ -6,7 +6,7 @@
             class="form-select"
         >
             @foreach ($perPageAccepted as $item)
-                <option value="{{ $item }}">{{ $item }}</option>
+                <option value="{{ $item }}">{{ $item === -1 ? __('All') : $item }}</option>
             @endforeach
         </select>
     </div>
