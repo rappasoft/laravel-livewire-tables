@@ -17,7 +17,7 @@ trait WithSorting
 
     public function sortBy(string $field): ?string
     {
-        if ($this->singleColumnSorting && count($this->sorts) && !isset($this->sorts[$field])) {
+        if ($this->singleColumnSorting && count($this->sorts) && ! isset($this->sorts[$field])) {
             $this->sorts = [];
         }
 
