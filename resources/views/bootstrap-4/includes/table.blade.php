@@ -76,7 +76,7 @@
                     <x-livewire-tables::bs4.table.cell>
                         <input
                             wire:model="selected"
-                            value="{{ $row->getKey() }}"
+                            value="{{ $row->{$primaryKey} }}"
                             onclick="event.stopPropagation();return true;"
                             type="checkbox"
                         />

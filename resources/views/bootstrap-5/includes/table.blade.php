@@ -77,7 +77,7 @@
                     <x-livewire-tables::bs5.table.cell class="align-middle">
                         <input
                             wire:model="selected"
-                            value="{{ $row->getKey() }}"
+                            value="{{ $row->{$primaryKey} }}"
                             onclick="event.stopPropagation();return true;"
                             class="form-check-input"
                             type="checkbox"
