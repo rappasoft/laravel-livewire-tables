@@ -12,9 +12,14 @@ trait WithPerPagePagination
     public bool $showPagination = true;
     public int $perPage = 10;
     public array $perPageAccepted = [10, 25, 50];
+    public bool $perPageAll = false;
 
     public function mountWithPerPagePagination(): void
     {
+        if ($this->perPageAll) {
+            $this->perPageAccepted[] = -1;
+        }
+
         if (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
             $this->perPage = session()->get($this->tableName.'-perPage', $this->perPage);
         } else {
@@ -42,6 +47,6 @@ trait WithPerPagePagination
      */
     public function applyPagination($query)
     {
-        return $query->paginate($this->perPage, ['*'], $this->pageName());
+        return $query->paginate($this->perPage === -1 ? $query->count() : $this->perPage, ['*'], $this->pageName());
     }
 }

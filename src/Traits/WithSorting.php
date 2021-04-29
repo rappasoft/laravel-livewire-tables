@@ -10,12 +10,17 @@ use Illuminate\Database\Eloquent\Builder;
 trait WithSorting
 {
     public bool $showSorting = true;
+    public bool $singleColumnSorting = false;
     public array $sorts = [];
     public array $sortNames = [];
     public array $sortDirectionNames = [];
 
     public function sortBy(string $field): ?string
     {
+        if ($this->singleColumnSorting && count($this->sorts) && ! isset($this->sorts[$field])) {
+            $this->sorts = [];
+        }
+
         if (! isset($this->sorts[$field])) {
             return $this->sorts[$field] = 'asc';
         }

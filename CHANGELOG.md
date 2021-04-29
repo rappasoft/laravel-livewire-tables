@@ -4,6 +4,22 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.4.0] - 2021-04-29
+
+### Added
+
+- Added option for single column sorting only.
+- Ability to change empty message per table.
+- Added en.json lang file.
+- Ability to add 'All' option to per-page.
+
+### Changed
+
+- Modified views to support localization better where necessary (republish views).
+- Alphabetize en.json
+- Fixed bulk actions using wrong key to select instead of $primaryKey
+- Make bulk select checkbox use primary key
+
 ## [1.3.1] - 2021-04-26
 
 ### Added
@@ -263,7 +279,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.3.1...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.4.0...development
+[1.4.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.2...v1.3.0
 [1.2.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.1...v1.2.2

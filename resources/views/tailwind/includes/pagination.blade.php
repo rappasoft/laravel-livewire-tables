@@ -2,6 +2,10 @@
     @if ($paginationEnabled && $showPerPage && $rows->lastPage() > 1)
         {{ $rows->links() }}
     @else
-        <p class="text-sm text-gray-700 leading-5">{!! __('Showing <span class="font-medium">:count</span> results', ['count' => $rows->count()]) !!}</p>
+        <p class="text-sm text-gray-700 leading-5">
+            @lang('Showing')
+            <span class="font-medium">{{ $rows->count() }}</span>
+            @lang('results')
+        </p>
     @endif
 </div>

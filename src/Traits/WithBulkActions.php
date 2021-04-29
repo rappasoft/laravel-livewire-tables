@@ -61,7 +61,7 @@ trait WithBulkActions
     public function selectedRowsQuery(): Builder
     {
         return (clone $this->rowsQuery())
-            ->unless($this->selectAll, fn ($query) => $query->whereKey($this->selected));
+            ->unless($this->selectAll, fn ($query) => $query->whereIn($this->primaryKey, $this->selected));
     }
 
     public function getSelectedRowsQueryProperty(): Builder

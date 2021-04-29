@@ -30,7 +30,12 @@
                 <x-livewire-tables::bs4.table.cell colspan="{{ count($bulkActions) ? count($columns) + 1 : count($columns) }}">
                     @unless ($selectAll)
                         <div>
-                            <span>{!! __('You have selected <strong>:count</strong> rows, do you want to select all <strong>:total</strong>?', ['count' => $rows->count(), 'total' => number_format($rows->total())]) !!}</span>
+                            <span>
+                                @lang('You have selected')
+                                <strong>{{ $rows->count() }}</strong>
+                                @lang('rows, do you want to select all')
+                                <strong>{{ number_format($rows->total()) }}</strong>?
+                            </span>
 
                             <button
                                 wire:click="selectAll"
@@ -42,7 +47,11 @@
                         </div>
                     @else
                         <div>
-                            <span>{!! __('You are currently selecting all <strong>:total</strong> rows.', ['total' => number_format($rows->total())]) !!}</span>
+                            <span>
+                                @lang('You are currently selecting all')
+                                <strong>{{ number_format($rows->total()) }}</strong>
+                                @lang('rows').
+                            </span>
 
                             <button
                                 wire:click="resetBulk"
@@ -67,7 +76,7 @@
                     <x-livewire-tables::bs4.table.cell>
                         <input
                             wire:model="selected"
-                            value="{{ $row->getKey() }}"
+                            value="{{ $row->{$primaryKey} }}"
                             onclick="event.stopPropagation();return true;"
                             type="checkbox"
                         />
@@ -79,7 +88,7 @@
         @empty
             <x-livewire-tables::bs4.table.row>
                 <x-livewire-tables::bs4.table.cell colspan="{{ count($bulkActions) ? count($columns) + 1 : count($columns) }}">
-                    @lang('No items found. Try narrowing your search.')
+                    @lang($emptyMessage)
                 </x-livewire-tables::bs4.table.cell>
             </x-livewire-tables::bs4.table.row>
         @endforelse
