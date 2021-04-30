@@ -11,16 +11,18 @@
         @endif
 
         @foreach($columns as $column)
-            @if ($column->isBlank())
-                <x-livewire-tables::bs5.table.heading />
-            @else
-                <x-livewire-tables::bs5.table.heading
-                    :sortable="$column->isSortable()"
-                    :column="$column->column()"
-                    :direction="$column->column() ? $sorts[$column->column()] ?? null : null"
-                    :text="$column->text() ?? ''"
-                    :class="$column->class() ?? ''"
-                />
+            @if ($column->isVisible())
+                @if ($column->isBlank())
+                    <x-livewire-tables::bs5.table.heading />
+                @else
+                    <x-livewire-tables::bs5.table.heading
+                        :sortable="$column->isSortable()"
+                        :column="$column->column()"
+                        :direction="$column->column() ? $sorts[$column->column()] ?? null : null"
+                        :text="$column->text() ?? ''"
+                        :class="$column->class() ?? ''"
+                    />
+                @endif
             @endif
         @endforeach
     </x-slot>

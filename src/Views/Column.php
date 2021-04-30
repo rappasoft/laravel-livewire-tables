@@ -60,6 +60,11 @@ class Column
     public bool $asHtml = false;
 
     /**
+     * @var bool
+     */
+    public bool $hidden = false;
+
+    /**
      * Column constructor.
      *
      * @param string|null $column
@@ -261,5 +266,25 @@ class Column
     public function getSearchCallback(): ?callable
     {
         return $this->searchCallback;
+    }
+
+    /**
+     * @param $condition
+     *
+     * @return $this
+     */
+    public function hideIf($condition): self
+    {
+        $this->hidden = $condition;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVisible(): bool
+    {
+        return $this->hidden !== true;
     }
 }
