@@ -7,6 +7,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Added hideIf for columns to hide a column with a conditional, works out of the box for cells not using rowView, if using rowView you must wrap the cells you want to hide in the same conditional. [See documentation](https://github.com/rappasoft/laravel-livewire-tables/wiki/Conditionally-hiding-columns).
+- Added selected row de-selector when not selecting full page or all.
 
 ## [1.4.0] - 2021-04-29
 

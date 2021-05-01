@@ -28,10 +28,42 @@
     </x-slot>
 
     <x-slot name="body">
-        @if (count($bulkActions) && $selectPage && $rows->total() > $rows->count())
+        @if (count($bulkActions) && (($selectPage && $rows->total() > $rows->count()) || count($selected)))
             <x-livewire-tables::bs5.table.row wire:key="row-message">
                 <x-livewire-tables::bs5.table.cell colspan="{{ count($bulkActions) ? count($columns) + 1 : count($columns) }}">
-                    @unless ($selectAll)
+                    @if (count($selected) && !$selectAll && !$selectPage)
+                        <div>
+                            <span>
+                                @lang('You have selected')
+                                <strong>{{ count($selected) }}</strong>
+                                @lang('rows')
+                            </span>
+
+                            <button
+                                wire:click="resetBulk"
+                                type="button"
+                                class="btn btn-primary btn-sm"
+                            >
+                                @lang('Unselect All')
+                            </button>
+                        </div>
+                    @elseif ($selectAll)
+                        <div>
+                            <span>
+                                @lang('You are currently selecting all')
+                                <strong>{{ number_format($rows->total()) }}</strong>
+                                @lang('rows').
+                            </span>
+
+                            <button
+                                wire:click="resetBulk"
+                                type="button"
+                                class="btn btn-primary btn-sm"
+                            >
+                                @lang('Unselect All')
+                            </button>
+                        </div>
+                    @else
                         <div>
                             <span>
                                 @lang('You have selected')
@@ -46,22 +78,6 @@
                                 class="btn btn-primary btn-sm"
                             >
                                 @lang('Select All')
-                            </button>
-                        </div>
-                    @else
-                        <div>
-                            <span>
-                                @lang('You are currently selecting all')
-                                <strong>{{ number_format($rows->total()) }}</strong>
-                                @lang('rows').
-                            </span>
-
-                            <button
-                                wire:click="resetBulk"
-                                type="button"
-                                class="btn btn-primary btn-sm"
-                            >
-                                @lang('Unselect All')
                             </button>
                         </div>
                     @endif
