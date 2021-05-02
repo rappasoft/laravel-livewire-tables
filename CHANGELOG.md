@@ -4,6 +4,15 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Added Unselect All button on bulk row when selecting page.
+
+### Changed
+
+- When selecting a page, if there are the same selected as total rows, just show the amount of selected instead of showing "Selecting 1 row. Do you want to select all 1 rows.".
+- Move bulk select row to its own partial for all templates.
+
 ## [1.5.1] - 2021-05-02
 
 ### Added
