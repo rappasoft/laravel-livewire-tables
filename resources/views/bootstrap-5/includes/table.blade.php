@@ -36,7 +36,7 @@
                             <span>
                                 @lang('You have selected')
                                 <strong>{{ count($selected) }}</strong>
-                                @lang('rows')
+                                @lang('rows').
                             </span>
 
                             <button
