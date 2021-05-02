@@ -35,8 +35,16 @@ trait WithSearch
     public function updatedFilters(): void
     {
         if (isset($this->filters['search']) && $this->filters['search'] === '') {
-            $this->filters['search'] = null;
+            $this->resetSearch();
         }
+    }
+
+    /**
+     * Clear the search filter specifically
+     */
+    public function resetSearch(): void
+    {
+        $this->filters['search'] = null;
     }
 
     /**

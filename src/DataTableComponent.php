@@ -158,6 +158,18 @@ abstract class DataTableComponent extends Component
     }
 
     /**
+     * Reset all the criteria
+     */
+    public function resetAll(): void
+    {
+        $this->resetFilters();
+        $this->resetSearch();
+        $this->resetSorts();
+        $this->resetBulk();
+        $this->resetPage();
+    }
+
+    /**
      * The view to render each row of the table.
      *
      * @return string
