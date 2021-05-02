@@ -68,16 +68,6 @@ trait WithFilters
     }
 
     /**
-     * Reset all the filters
-     */
-    public function resetAll(): void
-    {
-        $this->resetFilters();
-        $this->resetSorts();
-        $this->resetBulk();
-    }
-
-    /**
      * Define the filters array
      *
      * @return Filter[]
