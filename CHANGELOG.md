@@ -9,6 +9,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added Unselect All button on bulk row when selecting page.
 - Added disabled delay on select checkboxes.
 - Added disabled on bulk row button clicks.
+- Added missing showPagination conditional to views.
 
 ### Changed
 
