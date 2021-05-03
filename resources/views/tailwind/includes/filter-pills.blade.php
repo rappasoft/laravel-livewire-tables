@@ -1,4 +1,4 @@
-@if ($showFilters && count(array_filter($filters)) && !(count(array_filter($filters)) === 1 && isset($filters['search'])))
+@if ($showFilters && count($this->getFilters()) && !(count($this->getFilters()) === 1 && isset($filters['search'])))
     <div class="p-6 md:p-0">
         <small class="text-gray-700">@lang('Applied Filters'):</small>
 

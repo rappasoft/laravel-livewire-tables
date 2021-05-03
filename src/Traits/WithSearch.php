@@ -30,16 +30,6 @@ trait WithSearch
     public ?bool $searchFilterLazy = null;
 
     /**
-     * Remove the search filter when it's empty
-     */
-    public function updatedFilters(): void
-    {
-        if (isset($this->filters['search']) && $this->filters['search'] === '') {
-            $this->resetSearch();
-        }
-    }
-
-    /**
      * Clear the search filter specifically
      */
     public function resetSearch(): void

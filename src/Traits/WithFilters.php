@@ -40,11 +40,7 @@ trait WithFilters
      */
     public function mountWithFilters(): void
     {
-        foreach ($this->filters() as $filter => $_default) {
-            if (! isset($this->filters[$filter])) {
-                $this->filters[$filter] = null;
-            }
-        }
+        $this->checkFilters();
     }
 
     /**
@@ -60,12 +56,22 @@ trait WithFilters
     }
 
     /**
-     * Reset the page if the filters are updated
+     * Runs when any filter is changed
      */
-    public function updatingFilters(): void
+    public function updatedFilters(): void
     {
+        // Remove the search filter when it's empty
+        if (isset($this->filters['search']) && $this->filters['search'] === '') {
+            $this->resetSearch();
+        }
+
+        // Remove any url params that are empty
+        $this->checkFilters();
+
+        // Reset the page when filters are changed
         $this->resetPage();
     }
+
 
     /**
      * Define the filters array
@@ -75,6 +81,18 @@ trait WithFilters
     public function filters(): array
     {
         return [];
+    }
+
+    /**
+     * Removes any filters that are empty
+     */
+    public function checkFilters(): void
+    {
+        foreach ($this->filters() as $filter => $_default) {
+            if (! isset($this->filters[$filter]) || $this->filters[$filter] === '') {
+                $this->filters[$filter] = null;
+            }
+        }
     }
 
     /**
@@ -152,7 +170,19 @@ trait WithFilters
      */
     public function getFilter(string $filter): ?string
     {
-        return $this->filters[$filter] ?? null;
+        return isset($this->filters[$filter]) && $this->filters[$filter] !== null && $this->filters[$filter] !== '' ?
+            $this->filters[$filter] :
+            null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFilters(): array
+    {
+        return collect($this->filters)
+            ->reject(fn($value) => $value === null || $value === '')
+            ->toArray();
     }
 
     /**
@@ -176,7 +206,10 @@ trait WithFilters
      */
     public function getFilterOptions(string $filter): array
     {
-        return array_filter(array_keys($this->filters()[$filter]->options()));
+        return collect($this->filters()[$filter]->options())
+            ->keys()
+            ->reject(fn ($item) => $item === '' || $item === null)
+            ->toArray();
     }
 
     /**
