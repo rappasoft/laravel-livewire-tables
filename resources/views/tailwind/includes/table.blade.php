@@ -44,6 +44,7 @@
                         <div class="flex rounded-md shadow-sm">
                             <input
                                 wire:model="selected"
+                                wire:loading.attr.delay="disabled"
                                 value="{{ $row->{$primaryKey} }}"
                                 onclick="event.stopPropagation();return true;"
                                 type="checkbox"

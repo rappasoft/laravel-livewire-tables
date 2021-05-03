@@ -40,6 +40,7 @@
                     <x-livewire-tables::bs5.table.cell class="align-middle">
                         <input
                             wire:model="selected"
+                            wire:loading.attr.delay="disabled"
                             value="{{ $row->{$primaryKey} }}"
                             onclick="event.stopPropagation();return true;"
                             class="form-check-input"

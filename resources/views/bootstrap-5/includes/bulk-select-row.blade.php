@@ -11,6 +11,7 @@
 
                     <button
                         wire:click="resetBulk"
+                        wire:loading.attr="disabled"
                         type="button"
                         class="btn btn-primary btn-sm"
                     >
@@ -27,6 +28,7 @@
 
                     <button
                         wire:click="resetBulk"
+                        wire:loading.attr="disabled"
                         type="button"
                         class="btn btn-primary btn-sm"
                     >
@@ -44,6 +46,7 @@
 
                         <button
                             wire:click="resetBulk"
+                            wire:loading.attr="disabled"
                             type="button"
                             class="btn btn-primary btn-sm"
                         >
@@ -61,6 +64,7 @@
 
                         <button
                             wire:click="selectAll"
+                            wire:loading.attr="disabled"
                             type="button"
                             class="btn btn-primary btn-sm"
                         >
@@ -69,6 +73,7 @@
 
                         <button
                             wire:click="resetBulk"
+                            wire:loading.attr="disabled"
                             type="button"
                             class="btn btn-primary btn-sm"
                         >
