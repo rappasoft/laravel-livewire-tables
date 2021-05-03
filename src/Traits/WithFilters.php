@@ -72,7 +72,6 @@ trait WithFilters
         $this->resetPage();
     }
 
-
     /**
      * Define the filters array
      *
@@ -181,7 +180,7 @@ trait WithFilters
     public function getFilters(): array
     {
         return collect($this->filters)
-            ->reject(fn($value) => $value === null || $value === '')
+            ->reject(fn ($value) => $value === null || $value === '')
             ->toArray();
     }
 
