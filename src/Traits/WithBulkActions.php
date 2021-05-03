@@ -44,6 +44,8 @@ trait WithBulkActions
     public function selectPageRows(): void
     {
         $this->selected = $this->rows->pluck($this->primaryKey)->map(fn ($key) => (string) $key);
+
+        $this->selectAll = count($this->selected) === $this->rows->count();
     }
 
     public function selectAll(): void
