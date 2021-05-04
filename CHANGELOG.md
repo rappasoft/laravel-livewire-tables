@@ -4,17 +4,30 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.6.0] - 2021-05-04
+
 ### Added
 
 - Added Unselect All button on bulk row when selecting page.
 - Added disabled delay on select checkboxes.
 - Added disabled on bulk row button clicks.
 - Added missing showPagination conditional to views.
+- Added getFilters and getFiltersWithoutSearch methods and refactor views.
+- Added checkFilters method and refactor mountWithFilters
+- Added hasIntegerKeys method
 
 ### Changed
 
 - When selecting a page, if there are the same selected as total rows, just show the amount of selected instead of showing "Selecting 1 row. Do you want to select all 1 rows.".
 - Move bulk select row to its own partial for all templates.
+- Moved updatedFilters from WithSearch to WithFilters
+- Refactor hasFilter to support numeric keys
+- Refactor getFilter to support numeric keys
+- Refactor getFilterOptions to support numeric keys
+
+### Removed
+
+- Removed updatingFilters from WithFilters
 
 ## [1.5.1] - 2021-05-02
 
@@ -310,7 +323,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.5.1...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.6.0...development
+[1.6.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.4.0...v1.6.0
 [1.5.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.4.0...v1.5.1
 [1.5.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.3.1...v1.4.0
