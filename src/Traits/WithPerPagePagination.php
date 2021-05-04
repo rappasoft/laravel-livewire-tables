@@ -23,7 +23,7 @@ trait WithPerPagePagination
         if (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
             $this->perPage = session()->get($this->tableName.'-perPage', $this->perPage);
         } else {
-            $this->perPage = 10;
+            $this->perPage = $this->perPageAccepted[0] ?? 10;
         }
     }
 
@@ -35,7 +35,7 @@ trait WithPerPagePagination
         if (in_array(session()->get($this->tableName.'-perPage', $this->perPage), $this->perPageAccepted, true)) {
             session()->put($this->tableName.'-perPage', (int) $value);
         } else {
-            session()->put($this->tableName.'-perPage', 10);
+            session()->put($this->tableName.'-perPage', $this->perPageAccepted[0] ?? 10);
         }
 
         $this->resetPage();

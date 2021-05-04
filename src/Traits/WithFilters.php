@@ -40,11 +40,7 @@ trait WithFilters
      */
     public function mountWithFilters(): void
     {
-        foreach ($this->filters() as $filter => $_default) {
-            if (! isset($this->filters[$filter])) {
-                $this->filters[$filter] = null;
-            }
-        }
+        $this->checkFilters();
     }
 
     /**
@@ -60,10 +56,19 @@ trait WithFilters
     }
 
     /**
-     * Reset the page if the filters are updated
+     * Runs when any filter is changed
      */
-    public function updatingFilters(): void
+    public function updatedFilters(): void
     {
+        // Remove the search filter when it's empty
+        if (isset($this->filters['search']) && $this->filters['search'] === '') {
+            $this->resetSearch();
+        }
+
+        // Remove any url params that are empty
+        $this->checkFilters();
+
+        // Reset the page when filters are changed
         $this->resetPage();
     }
 
@@ -75,6 +80,18 @@ trait WithFilters
     public function filters(): array
     {
         return [];
+    }
+
+    /**
+     * Removes any filters that are empty
+     */
+    public function checkFilters(): void
+    {
+        foreach ($this->filters() as $filter => $_default) {
+            if (! isset($this->filters[$filter]) || $this->filters[$filter] === '') {
+                $this->filters[$filter] = null;
+            }
+        }
     }
 
     /**
@@ -140,7 +157,7 @@ trait WithFilters
      */
     public function hasFilter(string $filter): bool
     {
-        return isset($this->filters[$filter]) && $this->filters[$filter] !== null;
+        return isset($this->filters[$filter]) && $this->filters[$filter] !== null && $this->filters[$filter] !== '';
     }
 
     /**
@@ -148,11 +165,39 @@ trait WithFilters
      *
      * @param  string  $filter
      *
-     * @return string|null
+     * @return int|string|null
      */
-    public function getFilter(string $filter): ?string
+    public function getFilter(string $filter)
     {
-        return $this->filters[$filter] ?? null;
+        if ($this->hasFilter($filter)) {
+            if (in_array($filter, collect($this->filters())->keys()->toArray(), true) && $this->filters()[$filter]->isSelect()) {
+                return $this->hasIntegerKeys($filter) ? (int)$this->filters[$filter] : trim($this->filters[$filter]);
+            }
+
+            return trim($this->filters[$filter]);
+        }
+
+        return null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFilters(): array
+    {
+        return collect($this->filters)
+            ->reject(fn ($value) => $value === null || $value === '')
+            ->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    public function getFiltersWithoutSearch(): array
+    {
+        return collect($this->getFilters())
+            ->reject(fn ($_value, $key) => $key === 'search')
+            ->toArray();
     }
 
     /**
@@ -176,7 +221,23 @@ trait WithFilters
      */
     public function getFilterOptions(string $filter): array
     {
-        return array_filter(array_keys($this->filters()[$filter]->options()));
+        return collect($this->filters()[$filter]->options())
+            ->keys()
+            ->reject(fn ($item) => $item === '' || $item === null)
+            ->values()
+            ->toArray();
+    }
+
+    /**
+     * Check whether the filter has numeric keys or not
+     *
+     * @param  string  $filter
+     *
+     * @return bool
+     */
+    public function hasIntegerKeys(string $filter): bool
+    {
+        return is_int($this->getFilterOptions($filter)[0] ?? null);
     }
 
     /**
@@ -200,7 +261,7 @@ trait WithFilters
         $searchableColumns = $this->getSearchableColumns();
 
         if ($this->hasFilter('search') && count($searchableColumns)) {
-            $search = trim($this->getFilter('search'));
+            $search = $this->getFilter('search');
 
             // Group search conditions together
             $query->where(function (Builder $subQuery) use ($search, $query, $searchableColumns) {
