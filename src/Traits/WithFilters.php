@@ -165,11 +165,15 @@ trait WithFilters
      *
      * @param  string  $filter
      *
-     * @return string|null
+     * @return int|mixed|null
      */
-    public function getFilter(string $filter): ?string
+    public function getFilter(string $filter)
     {
-        return $this->hasFilter($filter) ? $this->filters[$filter] : null;
+        if ($this->hasFilter($filter)) {
+            return $this->hasIntegerKeys($filter) ? (int)$this->filters[$filter] : $this->filters[$filter];
+        }
+
+        return null;
     }
 
     /**
@@ -206,7 +210,20 @@ trait WithFilters
         return collect($this->filters()[$filter]->options())
             ->keys()
             ->reject(fn ($item) => $item === '' || $item === null)
+            ->values()
             ->toArray();
+    }
+
+    /**
+     * Check whether the filter has numeric keys or not
+     *
+     * @param  string  $filter
+     *
+     * @return bool
+     */
+    public function hasIntegerKeys(string $filter): bool
+    {
+        return is_int($this->getFilterOptions($filter)[0] ?? null);
     }
 
     /**
