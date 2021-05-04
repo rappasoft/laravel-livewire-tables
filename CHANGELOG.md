@@ -26,6 +26,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Changed resetAll method to include search and page and moved to parent component.
 - Refactored search method to use new resetSearch.
+- [Use custom per page on first load](https://github.com/rappasoft/laravel-livewire-tables/pull/270)
 
 ## [1.5.0] - 2021-05-02
 
