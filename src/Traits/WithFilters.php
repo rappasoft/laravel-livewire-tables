@@ -157,7 +157,7 @@ trait WithFilters
      */
     public function hasFilter(string $filter): bool
     {
-        return isset($this->filters[$filter]) && $this->filters[$filter] !== null;
+        return isset($this->filters[$filter]) && $this->filters[$filter] !== null && $this->filters[$filter] !== '';
     }
 
     /**
