@@ -11,9 +11,9 @@
                 class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo" id="filters-menu" @click="open = !open" aria-haspopup="true" x-bind:aria-expanded="open" aria-expanded="true">
                 @lang('Filters')
 
-                @if (count($this->getFilters()) && !(count($this->getFilters()) === 1 && isset($filters['search'])))
+                @if (count($this->getFiltersWithoutSearch()))
                     <span class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize">
-                       {{ isset($filters['search']) ? count($this->getFilters()) - 1 : count($this->getFilters()) }}
+                       {{ count($this->getFiltersWithoutSearch()) }}
                     </span>
                 @endif
 
@@ -66,7 +66,7 @@
                 @endforeach
             @endif
 
-            @if (count($this->getFilters()) && !(count($this->getFilters()) === 1 && isset($filters['search'])))
+            @if (count($this->getFiltersWithoutSearch()))
                 <div class="py-1" role="none">
                     <div class="block px-4 py-2 text-sm text-gray-700" role="menuitem">
                         <button

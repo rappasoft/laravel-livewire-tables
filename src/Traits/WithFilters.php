@@ -165,12 +165,16 @@ trait WithFilters
      *
      * @param  string  $filter
      *
-     * @return int|mixed|null
+     * @return int|string|null
      */
     public function getFilter(string $filter)
     {
         if ($this->hasFilter($filter)) {
-            return $this->hasIntegerKeys($filter) ? (int)$this->filters[$filter] : $this->filters[$filter];
+            if (in_array($filter, collect($this->filters())->keys()->toArray(), true) && $this->filters()[$filter]->isSelect()) {
+                return $this->hasIntegerKeys($filter) ? (int)$this->filters[$filter] : trim($this->filters[$filter]);
+            }
+
+            return trim($this->filters[$filter]);
         }
 
         return null;
@@ -183,6 +187,16 @@ trait WithFilters
     {
         return collect($this->filters)
             ->reject(fn ($value) => $value === null || $value === '')
+            ->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    public function getFiltersWithoutSearch(): array
+    {
+        return collect($this->getFilters())
+            ->reject(fn ($_value, $key) => $key === 'search')
             ->toArray();
     }
 
@@ -247,7 +261,7 @@ trait WithFilters
         $searchableColumns = $this->getSearchableColumns();
 
         if ($this->hasFilter('search') && count($searchableColumns)) {
-            $search = trim($this->getFilter('search'));
+            $search = $this->getFilter('search');
 
             // Group search conditions together
             $query->where(function (Builder $subQuery) use ($search, $query, $searchableColumns) {

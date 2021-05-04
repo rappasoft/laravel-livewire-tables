@@ -3,9 +3,9 @@
         <button type="button" class="btn dropdown-toggle d-block w-100 d-md-inline" data-bs-toggle="dropdown">
             @lang('Filters')
 
-            @if (count($this->getFilters()) && !(count($this->getFilters()) === 1 && isset($filters['search'])))
+            @if (count($this->getFiltersWithoutSearch()))
                 <span class="badge bg-info">
-                   {{ isset($filters['search']) ? count($this->getFilters()) - 1 : count($this->getFilters()) }}
+                   {{ count($this->getFiltersWithoutSearch()) }}
                 </span>
             @endif
 
@@ -38,7 +38,7 @@
                     @endforeach
                 @endif
 
-                @if (count($this->getFilters()) && !(count($this->getFilters()) === 1 && isset($filters['search'])))
+                @if (count($this->getFiltersWithoutSearch()))
                     <div class="dropdown-divider"></div>
 
                     <a
