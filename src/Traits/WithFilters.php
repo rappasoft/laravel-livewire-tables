@@ -169,9 +169,7 @@ trait WithFilters
      */
     public function getFilter(string $filter): ?string
     {
-        return isset($this->filters[$filter]) && $this->filters[$filter] !== null && $this->filters[$filter] !== '' ?
-            $this->filters[$filter] :
-            null;
+        return $this->hasFilter($filter) ? $this->filters[$filter] : null;
     }
 
     /**
