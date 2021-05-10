@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 /**
  * Trait WithBulkActions.
@@ -58,13 +59,19 @@ trait WithBulkActions
         $this->selected = [];
     }
 
-    public function selectedRowsQuery(): Builder
+    /**
+     * @return Builder|Relation
+     */
+    public function selectedRowsQuery()
     {
         return (clone $this->rowsQuery())
             ->unless($this->selectAll, fn ($query) => $query->whereIn($this->primaryKey, $this->selected));
     }
 
-    public function getSelectedRowsQueryProperty(): Builder
+    /**
+     * @return Builder|Relation
+     */
+    public function getSelectedRowsQueryProperty()
     {
         return $this->selectedRowsQuery();
     }

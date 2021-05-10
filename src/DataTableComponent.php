@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -99,9 +100,9 @@ abstract class DataTableComponent extends Component
     /**
      * The base query with search and filters for the table.
      *
-     * @return Builder
+     * @return Builder|Relation
      */
-    abstract public function query(): Builder;
+    abstract public function query();
 
     /**
      * TableComponent constructor.
@@ -124,9 +125,9 @@ abstract class DataTableComponent extends Component
     /**
      * Get the rows query builder with sorting applied.
      *
-     * @return Builder
+     * @return Builder|Relation
      */
-    public function rowsQuery(): Builder
+    public function rowsQuery()
     {
         $this->cleanFilters();
 
