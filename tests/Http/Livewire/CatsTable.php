@@ -3,7 +3,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 
-
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
