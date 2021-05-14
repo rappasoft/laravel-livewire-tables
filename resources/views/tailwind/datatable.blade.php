@@ -23,7 +23,7 @@
                 @include('livewire-tables::tailwind.includes.filters')
             </div>
 
-            <div class="md:space-x-2 md:flex md:items-center">
+            <div class="md:space-x-2 md:flex md:items-start">
                 @include('livewire-tables::tailwind.includes.bulk-actions')
                 @include('livewire-tables::tailwind.includes.per-page')
             </div>
