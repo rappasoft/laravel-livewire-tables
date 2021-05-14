@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 /**
  * Trait WithSorting.
@@ -34,7 +35,12 @@ trait WithSorting
         return null;
     }
 
-    public function applySorting(Builder $query): Builder
+    /**
+     * @param  Builder|Relation  $query
+     *
+     * @return Builder|Relation
+     */
+    public function applySorting($query)
     {
         foreach ($this->sorts as $field => $direction) {
             if (optional($this->getColumn($field))->hasSortCallback()) {

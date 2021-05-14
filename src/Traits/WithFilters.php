@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
@@ -253,10 +254,10 @@ trait WithFilters
     /**
      * Apply Search Filter
      *
-     * @param Builder $query
-     * @return Builder
+     * @param Builder|Relation $query
+     * @return Builder|Relation
      */
-    public function applySearchFilter(Builder $query): Builder
+    public function applySearchFilter($query)
     {
         $searchableColumns = $this->getSearchableColumns();
 
