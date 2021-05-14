@@ -6,21 +6,21 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class CatsTable extends DataTableComponent
+class PetVeterinariesTable extends DataTableComponent
 {
+    public Pet $pet;
+
     public array $bulkActions = [
-        'feed' => 'Feed selected',
+        'count' => 'Count selected',
     ];
 
     public function query(): Relation
     {
-        /** @var Species $dogSpecimen */
-        $dogSpecimen = Species::query()->where('name', 'Cat')->first();
-
-        return $dogSpecimen->pets()->with('species')->with('breed');
+        return $this->pet->veterinaries();
     }
 
     public function columns(): array
@@ -28,20 +28,14 @@ class CatsTable extends DataTableComponent
         return [
             Column::make('Name', 'name')
                 ->searchable(),
-            Column::make('Age', 'age')
+            Column::make('Phone', 'phone')
                 ->searchable(function (Builder $query, $search) {
-                    $query->orWhere('age', '=', $search);
+                    $query->orWhere('phone', '=', $search);
                 }),
-            Column::make('Last Visit', 'last_visit')
-                ->searchable(),
-            Column::make('Species', 'species.name')
-                ->searchable(),
-            Column::make('Breed', 'breed.name')
-                ->searchable(),
         ];
     }
 
-    public function feed(): int{
+    public function count(): int{
         return $this->selectedRowsQuery()->count();
     }
 }

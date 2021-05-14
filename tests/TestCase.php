@@ -2,11 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
+use DB;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
+use Symfony\Component\Console\Helper\Table;
 
 class TestCase extends Orchestra
 {
@@ -43,6 +46,19 @@ class TestCase extends Orchestra
             [ 'id' => 3, 'name' => 'May', 'age' => 2, 'species_id' => 2, 'breed_id' => 102 ],
             [ 'id' => 4, 'name' => 'Ben', 'age' => 5, 'species_id' => 3, 'breed_id' => 200 ],
             [ 'id' => 5, 'name' => 'Chico', 'age' => 7, 'species_id' => 3, 'breed_id' => 202 ],
+        ]);
+
+        Veterinary::insert([
+            ['id' => 1, 'name' => 'Dr John Smith', 'phone' => "123456798"],
+            ['id' => 2, 'name' => 'Dr Fabio Ivona', 'phone' => "789456123"],
+            ['id' => 3, 'name' => 'Dr Anthony Rappa', 'phone' => "987654321"],
+        ]);
+
+        DB::table('pet_veterinary')->insert([
+            ['id' => 1, 'pet_id' => 1, 'veterinary_id' => 1],
+            ['id' => 2, 'pet_id' => 1, 'veterinary_id' => 2],
+            ['id' => 3, 'pet_id' => 2, 'veterinary_id' => 1],
+            ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
         ]);
     }
 

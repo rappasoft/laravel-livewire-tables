@@ -6,7 +6,8 @@ use Amp\ByteStream\StreamException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\CatsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetVeterinariesTable;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 
 class RelationshipDataTableComponentTest extends TestCase
 {
@@ -16,7 +17,8 @@ class RelationshipDataTableComponentTest extends TestCase
     {
         parent::setUp();
 
-        $this->table = new CatsTable();
+        $this->table = new PetVeterinariesTable();
+        $this->table->pet = Pet::find(1);
     }
 
     /** @test */
@@ -30,7 +32,7 @@ class RelationshipDataTableComponentTest extends TestCase
     {
         $columns = $this->table->columns();
 
-        $this->assertCount(5, $columns);
+        $this->assertCount(2, $columns);
     }
 
     /** @test */
@@ -72,14 +74,14 @@ class RelationshipDataTableComponentTest extends TestCase
     /** @test */
     public function search_filter(): void
     {
-        $this->table->filters['search'] = 'Cartman';
+        $this->table->filters['search'] = 'John';
         $this->assertEquals(1, $this->table->getRowsProperty()->total());
     }
 
     /** @test */
     public function search_filter_reset(): void
     {
-        $this->table->filters['search'] = 'Cartman';
+        $this->table->filters['search'] = 'John';
         $this->table->resetFilters();
         $this->assertEquals(1, $this->table->rows->total());
     }
@@ -87,7 +89,7 @@ class RelationshipDataTableComponentTest extends TestCase
     /** @test */
     public function search_filter_remove(): void
     {
-        $this->table->filters['search'] = 'Cartman';
+        $this->table->filters['search'] = 'John';
         $this->table->removeFilter('search');
         $this->assertEquals(2, $this->table->rows->total());
     }
@@ -95,13 +97,13 @@ class RelationshipDataTableComponentTest extends TestCase
     /** @test */
     public function search_filter_callback(): void
     {
-        $this->table->filters['search'] = '22';
+        $this->table->filters['search'] = '123456798';
         $this->assertEquals(1, $this->table->getRowsProperty()->total());
     }
 
     /** @test */
     public function bulk_actions(){
         $this->table->selected[] = 1;
-        $this->assertEquals(1, $this->table->feed());
+        $this->assertEquals(1, $this->table->count());
     }
 }
