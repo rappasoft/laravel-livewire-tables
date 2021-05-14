@@ -11,6 +11,10 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class CatsTable extends DataTableComponent
 {
+    public array $bulkActions = [
+        'feed' => 'Feed selected',
+    ];
+
     public function query(): Relation
     {
         /** @var Species $dogSpecimen */
@@ -35,5 +39,9 @@ class CatsTable extends DataTableComponent
             Column::make('Breed', 'breed.name')
                 ->searchable(),
         ];
+    }
+
+    public function feed(): int{
+        return $this->selectedRowsQuery()->count();
     }
 }

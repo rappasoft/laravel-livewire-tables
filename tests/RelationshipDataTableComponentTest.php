@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
+use Amp\ByteStream\StreamException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
@@ -96,5 +97,11 @@ class RelationshipDataTableComponentTest extends TestCase
     {
         $this->table->filters['search'] = '22';
         $this->assertEquals(1, $this->table->getRowsProperty()->total());
+    }
+
+    /** @test */
+    public function bulk_actions(){
+        $this->table->selected[] = 1;
+        $this->assertEquals(1, $this->table->feed());
     }
 }
