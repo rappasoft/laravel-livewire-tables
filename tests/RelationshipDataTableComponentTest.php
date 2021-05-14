@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
-use Amp\ByteStream\StreamException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
