@@ -101,7 +101,8 @@ class RelationshipDataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function bulk_actions(){
+    public function bulk_actions()
+    {
         $this->table->selected[] = 1;
         $this->assertEquals(1, $this->table->count());
     }

@@ -66,7 +66,8 @@ class Pet extends Model
         return $this->belongsTo(Breed::class);
     }
 
-    public function veterinaries(): BelongsToMany{
+    public function veterinaries(): BelongsToMany
+    {
         return $this->belongsToMany(Veterinary::class);
     }
 }

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class PetVeterinariesTable extends DataTableComponent
@@ -35,7 +34,8 @@ class PetVeterinariesTable extends DataTableComponent
         ];
     }
 
-    public function count(): int{
+    public function count(): int
+    {
         return $this->selectedRowsQuery()->count();
     }
 }

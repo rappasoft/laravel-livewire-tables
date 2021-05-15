@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
-use Symfony\Component\Console\Helper\Table;
 
 class TestCase extends Orchestra
 {

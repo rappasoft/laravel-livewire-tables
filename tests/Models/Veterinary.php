@@ -3,7 +3,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -39,7 +38,8 @@ class Veterinary extends Model
         'phone',
     ];
 
-    public function pets(): BelongsToMany{
+    public function pets(): BelongsToMany
+    {
         return $this->belongsToMany(Pet::class);
     }
 }
