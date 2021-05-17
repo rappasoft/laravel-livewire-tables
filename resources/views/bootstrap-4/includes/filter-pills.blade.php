@@ -8,7 +8,7 @@
                     wire:key="filter-pill-{{ $key }}"
                     class="badge badge-pill badge-info d-inline-flex align-items-center"
                 >
-                    {{ $filterNames[$key] ?? ucwords(strtr($key, ['_' => ' ', '-' => ' '])) }}:
+                    {{ $filterNames[$key] ?? collect($this->columns())->pluck('text', 'column')->get($key, ucwords(strtr($key, ['_' => ' ', '-' => ' ']))) }}:
                     @if(isset($customFilters[$key]) && method_exists($customFilters[$key], 'options'))
                         {{ $customFilters[$key]->options()[$value] ?? $value }}
                     @else
