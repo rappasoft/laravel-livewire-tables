@@ -7,6 +7,7 @@
                 wire:key="sorting-pill-{{ $col }}"
                 class="badge badge-pill badge-info d-inline-flex align-items-center"
             >
+
                 <span>{{ $sortNames[$col] ?? collect($this->columns())->pluck('text', 'column')->get($col, ucwords(strtr($col, ['_' => ' ', '-' => ' ']))) }}: {{ $dir === 'asc' ? ($sortDirectionNames[$col]['asc'] ?? 'A-Z') : ($sortDirectionNames[$col]['desc'] ?? 'Z-A') }}</span>
 
                 <a
