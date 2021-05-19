@@ -35,5 +35,17 @@ class CreateTestTables extends Migration
             $table->foreign('species_id')->references('id')->on('species');
             $table->foreign('breed_id')->references('id')->on('breeds');
         });
+
+        Schema::create('veterinaries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->index();
+            $table->string('phone')->index();
+        });
+
+        Schema::create('pet_veterinary', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('pet_id')->constrained();
+            $table->foreignId('veterinary_id')->constrained();
+        });
     }
 }

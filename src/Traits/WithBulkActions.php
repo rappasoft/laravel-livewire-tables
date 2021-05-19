@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 trait WithBulkActions
 {
     public string $primaryKey = 'id';
-    public bool $showFilters = true;
     public bool $selectPage = false;
     public bool $selectAll = false;
     public $selected = [];
@@ -65,7 +64,7 @@ trait WithBulkActions
     public function selectedRowsQuery()
     {
         return (clone $this->rowsQuery())
-            ->unless($this->selectAll, fn ($query) => $query->whereIn($this->primaryKey, $this->selected));
+            ->unless($this->selectAll, fn ($query) => $query->whereIn($query->qualifyColumn($this->primaryKey), $this->selected));
     }
 
     /**
@@ -78,7 +77,7 @@ trait WithBulkActions
 
     public function selectedKeys(): array
     {
-        return $this->selectedRowsQuery()->pluck($this->primaryKey)->toArray();
+        return $this->selectedRowsQuery()->pluck($this->rowsQuery()->qualifyColumn($this->primaryKey))->toArray();
     }
 
     public function getSelectedKeysProperty(): array
