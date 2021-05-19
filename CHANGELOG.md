@@ -7,13 +7,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 [Fix ambiguous column id when using Relation instead of Builder](https://github.com/rappasoft/laravel-livewire-tables/pull/283)
+- [Use column text for sorting and filter pills if no $filterNames or $sortNames exist](https://github.com/rappasoft/laravel-livewire-tables/pull/286)
+- [Fix tailwind pagination view](https://github.com/rappasoft/laravel-livewire-tables/pull/284)
 
 ## [1.6.1] - 2021-05-13
 
 ### Changed
 
 - [Allows to use Relation instead of Builder to generate data](https://github.com/rappasoft/laravel-livewire-tables/pull/279)
-- [Use column text for sorting and filter pills if no $filterNames or $sortNames exist](https://github.com/rappasoft/laravel-livewire-tables/pull/286)
 
 ## [1.6.0] - 2021-05-04
 
