@@ -1,6 +1,6 @@
 @if ($showPagination)
     <div class="p-6 md:p-0">
-        @if ($paginationEnabled && $showPerPage && $rows->lastPage() > 1)
+        @if ($paginationEnabled && $rows->lastPage() > 1)
             {{ $rows->links() }}
         @else
             <p class="text-sm text-gray-700 leading-5">

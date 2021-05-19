@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
@@ -63,5 +64,10 @@ class Pet extends Model
     public function breed()
     {
         return $this->belongsTo(Breed::class);
+    }
+
+    public function veterinaries(): BelongsToMany
+    {
+        return $this->belongsToMany(Veterinary::class);
     }
 }
