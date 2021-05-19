@@ -4,6 +4,16 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- [Ability to turn off filter dropdown](https://github.com/rappasoft/laravel-livewire-tables/pull/285)
+
+### Changed
+
+- [Fix ambiguous column id when using Relation instead of Builder](https://github.com/rappasoft/laravel-livewire-tables/pull/283)
+- [Use column text for sorting and filter pills if no $filterNames or $sortNames exist](https://github.com/rappasoft/laravel-livewire-tables/pull/286)
+- [Fix tailwind pagination view](https://github.com/rappasoft/laravel-livewire-tables/pull/284)
+
 ## [1.6.1] - 2021-05-13
 
 ### Changed

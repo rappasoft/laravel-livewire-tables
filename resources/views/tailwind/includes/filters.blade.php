@@ -1,4 +1,4 @@
-@if ($showFilters && ($filtersView || count($customFilters)))
+@if ($showFilterDropdown && ($filtersView || count($customFilters)))
     <div
         x-data="{ open: false }"
         @keydown.escape.stop="open = false"

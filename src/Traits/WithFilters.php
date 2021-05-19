@@ -28,6 +28,20 @@ trait WithFilters
     public array $filterNames = [];
 
     /**
+     * Show the filter pills
+     *
+     * @var bool
+     */
+    public bool $showFilters = true;
+
+    /**
+     * Show the filter dropdown
+     *
+     * @var bool
+     */
+    public bool $showFilterDropdown = true;
+
+    /**
      * Default filters
      *
      * @var array|null[]

@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 trait WithBulkActions
 {
     public string $primaryKey = 'id';
-    public bool $showFilters = true;
     public bool $selectPage = false;
     public bool $selectAll = false;
     public $selected = [];
