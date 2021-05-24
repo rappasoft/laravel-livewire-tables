@@ -4,6 +4,217 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.7.0] - 2021-05-18
+
+### Added
+
+- [Ability to turn off filter dropdown](https://github.com/rappasoft/laravel-livewire-tables/pull/285)
+
+### Changed
+
+- [Fix ambiguous column id when using Relation instead of Builder](https://github.com/rappasoft/laravel-livewire-tables/pull/283)
+- [Use column text for sorting and filter pills if no $filterNames or $sortNames exist](https://github.com/rappasoft/laravel-livewire-tables/pull/286)
+- [Fix tailwind pagination view](https://github.com/rappasoft/laravel-livewire-tables/pull/284)
+
+## [1.6.1] - 2021-05-13
+
+### Changed
+
+- [Allows to use Relation instead of Builder to generate data](https://github.com/rappasoft/laravel-livewire-tables/pull/279)
+
+## [1.6.0] - 2021-05-04
+
+### Added
+
+- Added Unselect All button on bulk row when selecting page.
+- Added disabled delay on select checkboxes.
+- Added disabled on bulk row button clicks.
+- Added missing showPagination conditional to views.
+- Added getFilters and getFiltersWithoutSearch methods and refactor views.
+- Added checkFilters method and refactor mountWithFilters
+- Added hasIntegerKeys method
+
+### Changed
+
+- When selecting a page, if there are the same selected as total rows, just show the amount of selected instead of showing "Selecting 1 row. Do you want to select all 1 rows.".
+- Move bulk select row to its own partial for all templates.
+- Moved updatedFilters from WithSearch to WithFilters
+- Refactor hasFilter to support numeric keys
+- Refactor getFilter to support numeric keys
+- Refactor getFilterOptions to support numeric keys
+
+### Removed
+
+- Removed updatingFilters from WithFilters
+
+## [1.5.1] - 2021-05-02
+
+### Added
+
+- Added clear search method.
+
+### Changed
+
+- Changed resetAll method to include search and page and moved to parent component.
+- Refactored search method to use new resetSearch.
+- [Use custom per page on first load](https://github.com/rappasoft/laravel-livewire-tables/pull/270)
+
+## [1.5.0] - 2021-05-02
+
+### Added
+
+- Added hideIf for columns to hide a column with a conditional, works out of the box for cells not using rowView, if using rowView you must wrap the cells you want to hide in the same conditional. [See documentation](https://github.com/rappasoft/laravel-livewire-tables/wiki/Conditionally-hiding-columns).
+- Added selected row de-selector when not selecting full page or all.
+
+## [1.4.0] - 2021-04-29
+
+### Added
+
+- Added option for single column sorting only.
+- Ability to change empty message per table.
+- Added en.json lang file.
+- Ability to add 'All' option to per-page.
+
+### Changed
+
+- Modified views to support localization better where necessary (republish views).
+- Alphabetize en.json
+- Fixed bulk actions using wrong key to select instead of $primaryKey
+- Make bulk select checkbox use primary key
+
+## [1.3.1] - 2021-04-26
+
+### Added
+
+- Use the filter option name instead of the value on the filter pills. (https://github.com/rappasoft/laravel-livewire-tables/pull/238)
+
+### Changed
+
+- Added row count when pagination is disabled. (https://github.com/rappasoft/laravel-livewire-tables/pull/239**)
+- Fixed whitespace-nowrap in tailwind cell. (https://github.com/rappasoft/laravel-livewire-tables/issues/240)
+
+### Removed
+
+- Removed old readme for the documentation link.
+
+## [1.3.0] - 2021-04-25
+
+### Added
+
+- Added searchable() to columns (https://github.com/rappasoft/laravel-livewire-tables/pull/233)
+
+### Changed
+
+- Fixed offline indicators to display block.
+- Tailwind cool-gray to just gray since it is included by default.
+
+## [1.2.2] - 2021-04-23
+
+### Changed
+
+- Removed hard coded bulk text of **users** and changed to **rows**
+
+## [1.2.1] - 2021-04-22
+
+### Changed
+
+- Remove padding from bootstrap container to keep it flush with sides like Tailwind
+
+## [1.2.0] - 2021-04-22
+
+### Added
+
+- Ability to disable pagination (https://github.com/rappasoft/laravel-livewire-tables/pull/222)
+- Ability to define the sorting direction names for each column. i.e. A-Z, Z-A, Yes, No, Enabled, Disabled, etc.
+- Added ability to define primary key of rows for bulk select
+- Added selectedKeys property that returns an array of the ids of the selected rows
+
+### Changed
+
+- Clarified where rowView looks in read me
+- Null the search filter when it's empty
+- Fill per page options from $perPageAccepted in views
+- Make $perPageAccepted public
+
+### Removed
+
+- Removed `text-secondary` class from sorting title
+
+## [1.1.0] - 2021-04-21
+
+### Added
+
+- Added callback to column's sortable() method to customize sorting functionality per column. (https://github.com/rappasoft/laravel-livewire-tables/pull/216)
+- Support for polling `keep-alive` and `visible`.
+- Start of a test suite (https://github.com/rappasoft/laravel-livewire-tables/pull/218)
+
+### Changed
+
+- Updated Tailwind search clear button (https://github.com/rappasoft/laravel-livewire-tables/pull/217).
+- Updated readme
+
+## [1.0.4] - 2021-04-18
+
+### Added
+
+- `$searchFilterDebounce`, `$searchFilterDefer`, `$searchFilterLazy`, for defining the search input data binding property. https://github.com/rappasoft/laravel-livewire-tables/pull/211
+- Remove ability to need to define filters if not defining defaults. https://github.com/rappasoft/laravel-livewire-tables/pull/213
+
+### Changed
+
+- Rearrange wire:keys
+
+## [1.0.3] - 2021-04-18
+
+### Added
+
+- Added Bootstrap 5 theme
+
+### Changed
+
+- Removed calls to custom primary color with indigo for tailwind
+- Updated search and row click sections of read me to be more clear.
+- Added resetPage to per page dropdown and filters.
+
+## [1.0.2] - 2021-04-17
+
+### Changed
+
+- Fixed checkbox click with row click combination following URL and not checking checkbox.
+
+## [1.0.1] - 2021-04-17
+
+### Changed
+
+- Fixed missing bootstrap components aliased to bs4.table.*
+- Updated readme
+- Added missing row click on bootstrap
+
+## [1.0.0] - 2021-04-16
+
+- Ground up rebuild, see documentation for usage.
+
+## [0.4.0] - 2021-04-14
+
+### Changed
+
+- Fixed polling issue
+- Fixed [MongoDB per page issue](https://github.com/rappasoft/laravel-livewire-tables/pull/107)
+- [Fixed use of $clearSearchButtonClass variable](https://github.com/rappasoft/laravel-livewire-tables/pull/118)
+
+## [0.3.3] - 2020-12-13
+
+### Added
+
+- PHP8 Support
+- Spanish translations
+- German translations
+- French translations
+
+### Changed
+
+- Updated Arabic translations
+
 ## [0.3.2] - 2020-09-25
 
 ### Added
@@ -130,7 +341,26 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.2...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.7.0...development
+[1.7.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.6.1...v1.7.0
+[1.6.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.6.0...v1.6.1
+[1.6.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.5.1...v1.6.0
+[1.5.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.4.0...v1.5.1
+[1.5.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.4.0...v1.5.0
+[1.4.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.3.1...v1.4.0
+[1.3.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.3.0...v1.3.1
+[1.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.2...v1.3.0
+[1.2.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.1...v1.2.2
+[1.2.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.4...v1.1.0
+[1.0.4]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.3...v1.0.4
+[1.0.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.4.0...v1.0.0
+[0.4.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.3...v0.4.0
+[0.3.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v0.2.1...v0.3.0
