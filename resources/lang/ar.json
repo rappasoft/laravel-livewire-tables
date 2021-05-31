@@ -1,0 +1,22 @@
+{
+    "All": "الكل",
+    "Applied Filters": "التصفيات المطبقة",
+    "Applied Sorting": "الترتيب المطبق",
+    "Bulk Actions": "إجراءات",
+    "Clear": "مسح",
+    "Filters": "التصفيات",
+    "Remove filter option": "خذف خيار التصفيه",
+    "Remove sort option": "خذف خيار الترتيب",
+    "Search": "بحث",
+    "Select All": "تحديد الكل",
+    "Showing": "إستعراض",
+    "Unselect All": "إلغاء تحديد الكل",
+    "You are currently selecting all": "أنت الآن تختار الكل",
+    "You are not connected to the internet.": "أنت غير متصل بالإنترنت.",
+    "You have selected": "لقد قمت باختيار",
+    "of": "من",
+    "results": "النتائج",
+    "rows": "صفوف",
+    "rows, do you want to select all": "الصفوف ، هل تريد تحديد الكل",
+    "to": "إلي"
+}
