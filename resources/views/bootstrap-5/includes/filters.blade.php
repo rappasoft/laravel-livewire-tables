@@ -25,7 +25,7 @@
 
                                 <select
                                     onclick="event.stopPropagation();"
-                                    wire:model="filters.{{ $key }}"
+                                    wire:model.prevent="filters.{{ $key }}"
                                     id="filter-{{ $key }}"
                                     class="form-select"
                                 >
