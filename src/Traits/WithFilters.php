@@ -287,6 +287,12 @@ trait WithFilters
                     // Let's try to map this column to a selected column
                     $selectedColumn = ColumnUtilities::mapToSelected($column->column(), $query);
 
+                    $searchEach = function(Builder $query, string $cloumn, string $search){
+                        foreach (explode(' ', $search) as $value) {
+                            $query->orWhere($cloumn, 'like', '%' . $value . '%');
+                        }
+                    };
+
                     // If the column has a search callback, just use that
                     if ($column->hasSearchCallback()) {
                         // Call the callback
@@ -300,21 +306,20 @@ trait WithFilters
                         }
 
                         // We can use a simple where clause
-                        $subQuery->orWhere($whereColumn, 'like', '%' . $search . '%');
+                        $subQuery->orWhere(function(Builder $query) use($whereColumn, $search, $searchEach){
+                            $searchEach($query, $whereColumn, $search);
+                        });
                     } else {
                         // Parse the column
                         $relationName = ColumnUtilities::parseRelation($column->column());
                         $fieldName = ColumnUtilities::parseField($column->column());
 
                         // We use whereHas which can work with unselected relations
-                        $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($fieldName, $search) {
-                            $hasQuery->where($fieldName, 'like', '%' . $search . '%');
+                        $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($fieldName, $search, $searchEach) {
+                            $searchEach($hasQuery, $fieldName, $search);
                         });
                     }
                 }
             });
         }
-
-        return $query;
-    }
 }
