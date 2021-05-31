@@ -322,4 +322,7 @@ trait WithFilters
                 }
             });
         }
+
+        return $query;
+    }
 }
