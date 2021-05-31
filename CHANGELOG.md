@@ -6,6 +6,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [1.7.1] - 2021-05-30
 
+### Added
+
+- [Arabic translation file](https://github.com/rappasoft/laravel-livewire-tables/pull/299)
+
 ### Changed
 
 - [Fix select tag className in Bootstrap 5](https://github.com/rappasoft/laravel-livewire-tables/pull/291)
