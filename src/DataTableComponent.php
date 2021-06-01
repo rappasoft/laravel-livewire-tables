@@ -34,6 +34,8 @@ abstract class DataTableComponent extends Component
      * @var string
      */
     public $paginationTheme = 'tailwind';
+    
+    public $sortable = config('livewire-tables.sortable');
 
     /**
      * Whether or not to refresh the table at a certain interval
