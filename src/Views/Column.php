@@ -302,7 +302,7 @@ class Column
     public function exported($flag): self
     {
         $this->exported = $flag;
+
         return $this;
     }
-
 }
