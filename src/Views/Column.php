@@ -64,6 +64,12 @@ class Column
      */
     public bool $hidden = false;
 
+
+    /**
+     * @var bool
+     */
+    public bool $exported = true;
+
     /**
      * Column constructor.
      *
@@ -287,4 +293,16 @@ class Column
     {
         return $this->hidden !== true;
     }
+
+    /**
+     * @param $flag : boolean value must be true or false
+     *
+     * @return $this
+     */
+    public function exported($flag): self
+    {
+        $this->exported = $flag;
+        return $this;
+    }
+
 }
