@@ -9,6 +9,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - [Actual default sorting](https://github.com/rappasoft/laravel-livewire-tables/pull/313)
+- [Added place to put modals in the scope of the component](https://github.com/rappasoft/laravel-livewire-tables/wiki/Working-with-modals)
 
 ### Changed
 

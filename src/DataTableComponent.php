@@ -181,6 +181,16 @@ abstract class DataTableComponent extends Component
     }
 
     /**
+     * The view to add any modals for the table, could also be used for any non-visible html
+     *
+     * @return string
+     */
+    public function modalsView(): string
+    {
+        return 'livewire-tables::stubs.modals';
+    }
+
+    /**
      * @return mixed
      */
     public function render()
@@ -192,6 +202,7 @@ abstract class DataTableComponent extends Component
                 'filtersView' => $this->filtersView(),
                 'customFilters' => $this->filters(),
                 'rows' => $this->rows,
+                'modalsView' => $this->modalsView(),
             ]);
     }
 
