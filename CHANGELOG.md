@@ -4,12 +4,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
-## [1.8.0] - 2021-06-XX
+## [1.8.0] - 2021-06-06
 
 ### Added
 
 - [Actual default sorting](https://github.com/rappasoft/laravel-livewire-tables/pull/313)
 - [Added place to put modals in the scope of the component](https://github.com/rappasoft/laravel-livewire-tables/wiki/Working-with-modals)
+- Added `setTableRowClass`, `setTableRowId`, `setTableRowAttributes`, `setTableDataClass`, `setTableDataId`, `setTableDataAttributes` methods to modify cells and rows depending on data for non-custom rows.
 
 ### Changed
 

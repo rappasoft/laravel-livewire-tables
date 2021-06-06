@@ -36,8 +36,16 @@
             <x-livewire-tables::table.row
                 wire:loading.class.delay="opacity-50"
                 wire:key="table-row-{{ $row->getKey() }}"
-                :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : null"
-                :class="$index % 2 === 0 ? 'bg-white' . (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '') : 'bg-gray-50' . (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '')"
+                :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
+                :class="
+                    ($index % 2 === 0 ?
+                    'bg-white' . (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '') :
+                    'bg-gray-50') .
+                    (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '') .
+                    (method_exists($this, 'setTableRowClass') ? ' ' . $this->setTableRowClass($row) : '')
+                "
+                :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
+                :customAttributes="method_exists($this, 'setTableRowAttributes') ? $this->setTableRowAttributes($row) : []"
             >
                 @if (count($bulkActions))
                     <x-livewire-tables::table.cell>

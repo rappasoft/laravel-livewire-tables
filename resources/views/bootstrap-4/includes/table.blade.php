@@ -33,7 +33,10 @@
             <x-livewire-tables::bs4.table.row
                 wire:loading.class.delay="text-muted"
                 wire:key="table-row-{{ $row->getKey() }}"
-                :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : null"
+                :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
+                :class="method_exists($this, 'setTableRowClass') ? ' ' . $this->setTableRowClass($row) : ''"
+                :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
+                :customAttributes="method_exists($this, 'setTableRowAttributes') ? $this->setTableRowAttributes($row) : []"
             >
                 @if (count($bulkActions))
                     <x-livewire-tables::bs4.table.cell>
