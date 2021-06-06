@@ -1,7 +1,7 @@
-@props(['url' => null])
+@props(['url' => null, 'customAttributes' => []])
 
 <tr
-    {{ $attributes->merge(['class' => 'bg-white']) }}
+    {{ $attributes->merge($customAttributes) }}
 
     @if ($url)
         onclick="window.location='{{ $url }}';"
