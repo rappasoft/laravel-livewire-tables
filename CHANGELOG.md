@@ -10,6 +10,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - [Actual default sorting](https://github.com/rappasoft/laravel-livewire-tables/pull/313)
 
+### Changed
+
+- [Fix tailwind style for div containing checkbox](https://github.com/rappasoft/laravel-livewire-tables/pull/314)
+
 ## [1.7.1] - 2021-05-30
 
 ### Added
