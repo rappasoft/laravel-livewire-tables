@@ -2,7 +2,7 @@
     <x-slot name="head">
         @if (count($bulkActions))
             <x-livewire-tables::table.heading>
-                <div class="flex rounded-md shadow-sm">
+                <div class="inline-flex rounded-md shadow-sm">
                     <input
                         wire:model="selectPage"
                         type="checkbox"
@@ -41,7 +41,7 @@
             >
                 @if (count($bulkActions))
                     <x-livewire-tables::table.cell>
-                        <div class="flex rounded-md shadow-sm">
+                        <div class="inline-flex rounded-md shadow-sm">
                             <input
                                 wire:model="selected"
                                 wire:loading.attr.delay="disabled"
