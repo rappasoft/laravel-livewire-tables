@@ -35,5 +35,7 @@
         </div>
     </div>
 
-    @include($modalsView)
+    @isset($modalsView)
+        @include($modalsView)
+    @endisset
 </div>

@@ -38,5 +38,7 @@
         @include('livewire-tables::bootstrap-5.includes.pagination')
     </div>
 
-    @include($modalsView)
+    @isset($modalsView)
+        @include($modalsView)
+    @endisset
 </div>
