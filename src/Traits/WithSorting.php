@@ -44,7 +44,7 @@ trait WithSorting
      */
     public function applySorting($query)
     {
-        if (! empty($this->defaultSortColumn) && empty($this->sorts)) {
+        if (! empty($this->defaultSortColumn) && ! count($this->sorts)) {
             return $query->orderBy($this->defaultSortColumn, $this->defaultSortDirection);
         }
 
