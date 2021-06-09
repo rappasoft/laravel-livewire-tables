@@ -8,7 +8,9 @@
         <div>
             <button
                 type="button"
-                class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo" id="filters-menu" @click="open = !open" aria-haspopup="true" x-bind:aria-expanded="open" aria-expanded="true">
+                class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo"
+                id="filters-menu" @click="open = !open" aria-haspopup="true" x-bind:aria-expanded="open"
+                aria-expanded="true">
                 @lang('Filters')
 
                 @if (count($this->getFiltersWithoutSearch()))
@@ -17,8 +19,10 @@
                     </span>
                 @endif
 
-                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
                 </svg>
             </button>
         </div>
@@ -43,23 +47,14 @@
                 @foreach ($customFilters as $key => $filter)
                     <div class="py-1" role="none">
                         <div class="block px-4 py-2 text-sm text-gray-700" role="menuitem">
+                            <label for="filter-{{ $key }}"
+                                   class="block text-sm font-medium leading-5 text-gray-700">
+                                {{ $filter->name() }}
+                            </label>
                             @if ($filter->isSelect())
-                                <label for="filter-{{ $key }}" class="block text-sm font-medium leading-5 text-gray-700">
-                                    {{ $filter->name() }}
-                                </label>
-
-                                <div class="mt-1 relative rounded-md shadow-sm">
-                                    <select
-                                        wire:model="filters.{{ $key }}"
-                                        wire:key="filter-{{ $key }}"
-                                        id="filter-{{ $key }}"
-                                        class="rounded-md shadow-sm block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
-                                    >
-                                        @foreach($filter->options() as $key => $value)
-                                            <option value="{{ $key }}">{{ $value }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                @include('livewire-tables::tailwind.includes.filter-type-select')
+                            @elseif($filter->isDate())
+                                @include('livewire-tables::tailwind.includes.filter-type-date')
                             @endif
                         </div>
                     </div>

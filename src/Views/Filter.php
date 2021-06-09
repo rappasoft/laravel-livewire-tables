@@ -9,6 +9,8 @@ class Filter
 {
     public const TYPE_SELECT = 'select';
 
+    public const TYPE_DATE = 'date';
+
     /**
      * @var string
      */
@@ -59,6 +61,20 @@ class Filter
     }
 
     /**
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function date(array $options = []): Filter
+    {
+        $this->type = self::TYPE_DATE;
+
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function name(): string
@@ -80,5 +96,13 @@ class Filter
     public function isSelect(): bool
     {
         return $this->type === self::TYPE_SELECT;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDate(): bool
+    {
+        return $this->type === self::TYPE_DATE;
     }
 }

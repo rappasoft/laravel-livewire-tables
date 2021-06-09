@@ -149,6 +149,10 @@ trait WithFilters
                 }
             }
 
+            if ($filterDefinitions[$filterName]->isDate()) {
+                return true;
+            }
+
             return false;
         })->toArray();
     }
