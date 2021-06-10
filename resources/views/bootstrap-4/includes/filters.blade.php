@@ -18,10 +18,10 @@
                 @elseif (count($customFilters))
                     @foreach ($customFilters as $key => $filter)
                         <div wire:key="filter-{{ $key }}" class="p-2">
-
                             <label for="filter-{{ $key }}" class="mb-2">
                                 {{ $filter->name() }}
                             </label>
+
                             @if ($filter->isSelect())
                                 @include('livewire-tables::bootstrap-4.includes.filter-type-select')
                             @elseif($filter->isDate())

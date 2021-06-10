@@ -7,9 +7,9 @@ namespace Rappasoft\LaravelLivewireTables\Views;
  */
 class Filter
 {
-    public const TYPE_SELECT = 'select';
-
     public const TYPE_DATE = 'date';
+
+    public const TYPE_SELECT = 'select';
 
     /**
      * @var string

@@ -9,8 +9,12 @@
             <button
                 type="button"
                 class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo"
-                id="filters-menu" @click="open = !open" aria-haspopup="true" x-bind:aria-expanded="open"
-                aria-expanded="true">
+                id="filters-menu"
+                @click="open = !open"
+                aria-haspopup="true"
+                x-bind:aria-expanded="open"
+                aria-expanded="true"
+            >
                 @lang('Filters')
 
                 @if (count($this->getFiltersWithoutSearch()))
@@ -51,6 +55,7 @@
                                    class="block text-sm font-medium leading-5 text-gray-700">
                                 {{ $filter->name() }}
                             </label>
+
                             @if ($filter->isSelect())
                                 @include('livewire-tables::tailwind.includes.filter-type-select')
                             @elseif($filter->isDate())
