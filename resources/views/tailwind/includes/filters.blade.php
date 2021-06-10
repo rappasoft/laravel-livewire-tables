@@ -2,7 +2,7 @@
     <div
         x-data="{ open: false }"
         @keydown.escape.stop="open = false"
-        @click.away="open = false"
+        @mousedown.away="open = false"
         class="relative block md:inline-block text-left"
     >
         <div>
