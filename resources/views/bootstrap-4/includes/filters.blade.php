@@ -11,7 +11,7 @@
 
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu w-100" role="menu">
+        <ul class="dropdown-menu w-200" role="menu">
             <li>
                 @if ($filtersView)
                     @include($filtersView)

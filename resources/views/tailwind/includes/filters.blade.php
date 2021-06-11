@@ -32,7 +32,6 @@
         </div>
 
         <div
-            wire:ignore.self
             x-cloak
             x-show="open"
             x-transition:enter="transition ease-out duration-100"
