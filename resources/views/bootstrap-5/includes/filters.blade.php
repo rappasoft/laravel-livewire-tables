@@ -1,4 +1,4 @@
-@if ($filtersView || count($customFilters))
+@if ($showFilterDropdown && ($filtersView || count($customFilters)))
     <div class="btn-group d-block d-md-inline">
         <button type="button" class="btn dropdown-toggle d-block w-100 d-md-inline" data-bs-toggle="dropdown">
             @lang('Filters')
