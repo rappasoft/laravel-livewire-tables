@@ -1,6 +1,6 @@
 <div class="flex rounded-md shadow-sm mt-1">
     <input
-        wire:model="filters.{{ $key }}"
+        wire:model.stop="filters.{{ $key }}"
         wire:key="filter-{{ $key }}"
         id="filter-{{ $key }}"
         type="date"
