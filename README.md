@@ -9,8 +9,6 @@ A dynamic Laravel Livewire component for data tables.
 
 ![Full Table](https://i.imgur.com/2kfibjR.png)
 
-This plugin assumes you already have [Laravel Livewire](https://laravel-livewire.com) and [Alpine.js](https://github.com/alpinejs/alpine) installed and configured in your project.
-
 ## Installation
 
 You can install the package via composer:
@@ -18,6 +16,8 @@ You can install the package via composer:
 ``` bash
 composer require rappasoft/laravel-livewire-tables
 ```
+
+Please see the rest of the [installation instructions](https://github.com/rappasoft/laravel-livewire-tables/wiki/Installation-&-Configuration).
 
 ## Usage
 

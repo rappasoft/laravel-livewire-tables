@@ -1,6 +1,16 @@
 @if ($showFilterDropdown && ($filtersView || count($customFilters)))
-    <div class="btn-group d-block d-md-inline">
-        <button type="button" class="btn dropdown-toggle d-block w-100 d-md-inline" data-bs-toggle="dropdown">
+    <div
+        x-cloak
+        x-data="{ open: false }"
+        @keydown.escape.stop="open = false"
+        @mousedown.away="open = false"
+        class="btn-group d-block d-md-inline"
+    >
+        <button
+            @click="open = !open"
+            type="button"
+            class="btn dropdown-toggle d-block w-100 d-md-inline"
+        >
             @lang('Filters')
 
             @if (count($this->getFiltersWithoutSearch()))
@@ -11,7 +21,11 @@
 
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu w-200" role="menu">
+        <ul
+            class="dropdown-menu w-200 mt-3"
+            :class="{'show' : open}"
+            role="menu"
+        >
             <li>
                 @if ($filtersView)
                     @include($filtersView)
@@ -34,13 +48,13 @@
                 @if (count($this->getFiltersWithoutSearch()))
                     <div class="dropdown-divider"></div>
 
-                    <a
-                        href="#"
+                    <button
                         wire:click.prevent="resetFilters"
-                        class="dropdown-item"
+                        @click="open = false"
+                        class="dropdown-item text-center"
                     >
                         @lang('Clear')
-                    </a>
+                    </button>
                 @endif
             </li>
         </ul>
