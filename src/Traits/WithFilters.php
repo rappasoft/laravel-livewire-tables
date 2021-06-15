@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities;
@@ -147,6 +148,15 @@ trait WithFilters
                         return true;
                     }
                 }
+            }
+
+            if ($filterDefinitions[$filterName]->isDate()) {
+                // array_sum trick is a terse way of ensuring that PHP
+                // did not do "month shifting"
+                // (e.g. consider that January 32 is February 1)
+                $dt = DateTime::createFromFormat("Y-m-d", $filterValue);
+
+                return $dt !== false && ! array_sum($dt::getLastErrors());
             }
 
             return false;

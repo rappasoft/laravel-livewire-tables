@@ -4,6 +4,20 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.9.0] - 2021-06-15
+
+**This release requires re-publishing of assets.**
+
+### Added
+
+- [Date filters](https://github.com/rappasoft/laravel-livewire-tables/pull/332)
+
+### Changed
+
+- Replaced bootstrap dropdowns with Alpine on bootstrap themes which fixes them closing prematurely when selecting filters.
+- Added wrapping divs around needed `if` statements.
+- Fixed Bootstrap pagination DOM-diffing issues.
+
 ## [1.8.0] - 2021-06-06
 
 ### Added
@@ -363,7 +377,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.8.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.9.0...development
+[1.9.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.7.1...v1.8.0
 [1.7.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.6.1...v1.7.0

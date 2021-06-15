@@ -6,13 +6,13 @@
             </div>
 
             <div class="col-12 col-md-6 text-center text-md-end text-muted">
-                @lang('Showing')
+                <span>@lang('Showing')</span>
                 <strong>{{ $rows->count() ? $rows->firstItem() : 0 }}</strong>
-                @lang('to')
+                <span>@lang('to')</span>
                 <strong>{{ $rows->count() ? $rows->lastItem() : 0 }}</strong>
-                @lang('of')
+                <span>@lang('of')</span>
                 <strong>{{ $rows->total() }}</strong>
-                @lang('results')
+                <span>@lang('results')</span>
             </div>
         </div>
     @else

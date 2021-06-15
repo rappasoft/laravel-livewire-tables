@@ -1,6 +1,16 @@
-@if ($filtersView || count($customFilters))
-    <div class="btn-group d-block d-md-inline">
-        <button type="button" class="btn dropdown-toggle d-block w-100 d-md-inline" data-toggle="dropdown">
+@if ($showFilterDropdown && ($filtersView || count($customFilters)))
+    <div
+        x-cloak
+        x-data="{ open: false }"
+        @keydown.escape.stop="open = false"
+        @mousedown.away="open = false"
+        class="btn-group d-block d-md-inline"
+    >
+        <button
+            @click="open = !open"
+            type="button"
+            class="btn dropdown-toggle d-block w-100 d-md-inline"
+        >
             @lang('Filters')
 
             @if (count($this->getFiltersWithoutSearch()))
@@ -11,28 +21,25 @@
 
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu w-100" role="menu">
+        <ul
+            class="dropdown-menu w-200 mt-3"
+            :class="{'show' : open}"
+            role="menu"
+        >
             <li>
                 @if ($filtersView)
                     @include($filtersView)
                 @elseif (count($customFilters))
                     @foreach ($customFilters as $key => $filter)
                         <div wire:key="filter-{{ $key }}" class="p-2">
-                            @if ($filter->isSelect())
-                                <label for="filter-{{ $key }}" class="mb-2">
-                                    {{ $filter->name() }}
-                                </label>
+                            <label for="filter-{{ $key }}" class="mb-2">
+                                {{ $filter->name() }}
+                            </label>
 
-                                <select
-                                    onclick="event.stopPropagation();"
-                                    wire:model="filters.{{ $key }}"
-                                    id="filter-{{ $key }}"
-                                    class="form-control"
-                                >
-                                    @foreach($filter->options() as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
-                                    @endforeach
-                                </select>
+                            @if ($filter->isSelect())
+                                @include('livewire-tables::bootstrap-4.includes.filter-type-select')
+                            @elseif($filter->isDate())
+                                @include('livewire-tables::bootstrap-4.includes.filter-type-date')
                             @endif
                         </div>
                     @endforeach
@@ -41,13 +48,13 @@
                 @if (count($this->getFiltersWithoutSearch()))
                     <div class="dropdown-divider"></div>
 
-                    <a
-                        href="#"
+                    <button
                         wire:click.prevent="resetFilters"
-                        class="dropdown-item"
+                        @click="open = false"
+                        class="dropdown-item btn text-center"
                     >
                         @lang('Clear')
-                    </a>
+                    </button>
                 @endif
             </li>
         </ul>
