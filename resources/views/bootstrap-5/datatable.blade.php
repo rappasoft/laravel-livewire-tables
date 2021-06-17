@@ -30,6 +30,7 @@
 
             <div class="d-md-flex">
                 @include('livewire-tables::bootstrap-5.includes.bulk-actions')
+                @include('livewire-tables::bootstrap-5.includes.column-select')
                 @include('livewire-tables::bootstrap-5.includes.per-page')
             </div>
         </div>
