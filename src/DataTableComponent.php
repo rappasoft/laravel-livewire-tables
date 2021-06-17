@@ -8,6 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
+use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
 use Rappasoft\LaravelLivewireTables\Traits\WithPerPagePagination;
@@ -22,6 +23,7 @@ use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
 abstract class DataTableComponent extends Component
 {
     use WithBulkActions;
+    use WithColumnSelect;
     use WithCustomPagination;
     use WithFilters;
     use WithPerPagePagination;
