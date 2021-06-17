@@ -40,7 +40,7 @@
                 <div class="rounded-md bg-white shadow-xs">
                     <div class="p-2" role="menu" aria-orientation="vertical" aria-labelledby="column-select-menu">
                         @foreach($columns as $column)
-                            @if ($column->isVisible() && ! $this->isColumnSelectExcluded($column))
+                            @if ($column->isVisible() && $column->isSelectable())
                                 <div>
                                     <label class="px-2 py-1 inline-flex items-center">
                                         <input wire:model="columnSelectEnabled" type="checkbox" value="{{ $column->column() }}">

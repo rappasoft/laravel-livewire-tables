@@ -10,7 +10,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 trait WithColumnSelect
 {
     public bool $columnSelect = false;
-    public array $columnSelectExcluded = [];
     public array $columnSelectEnabled = [];
 
     public function mountWithColumnSelect(): void
@@ -22,7 +21,7 @@ trait WithColumnSelect
 
         // Get a list of visible default columns that are not excluded
         $columns = collect($this->columns())
-            ->filter(fn ($column) => $column->isVisible() && ! $this->isColumnSelectExcluded($column))
+            ->filter(fn ($column) => $column->isVisible() && $column->isSelectable())
             ->map(fn ($column) => $column->column())
             ->values()
             ->toArray();
@@ -31,9 +30,10 @@ trait WithColumnSelect
         $this->columnSelectEnabled = session()->get($this->tableName.'-columnSelectEnabled', $columns);
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them
-        foreach ($this->columnSelectExcluded as $column) {
-            if (! in_array($column, $this->columnSelectEnabled, true)) {
-                session([$this->tableName.'-columnSelectEnabled' => $this->columnSelectEnabled[] = $column]);
+        foreach ($this->columns() as $column) {
+            if (! $column->isSelectable() && ! in_array($column->column(), $this->columnSelectEnabled, true)) {
+                $this->columnSelectEnabled[] = $column->column();
+                session([$this->tableName.'-columnSelectEnabled' => $this->columnSelectEnabled]);
             }
         }
     }
@@ -46,10 +46,5 @@ trait WithColumnSelect
     public function isColumnSelectEnabled($column): bool
     {
         return in_array($column instanceof Column ? $column->column() : $column, $this->columnSelectEnabled, true);
-    }
-
-    public function isColumnSelectExcluded($column): bool
-    {
-        return in_array($column instanceof Column ? $column->column() : $column, $this->columnSelectExcluded, true);
     }
 }
