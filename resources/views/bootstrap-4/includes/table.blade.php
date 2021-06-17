@@ -11,6 +11,8 @@
 
         @foreach($columns as $column)
             @if ($column->isVisible())
+                @continue($columnSelect && ! $this->isColumnSelectEnabled($column))
+
                 @if ($column->isBlank())
                     <x-livewire-tables::bs4.table.heading />
                 @else
