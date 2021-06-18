@@ -9,7 +9,13 @@
                 @if ($column->isVisible() && $column->isSelectable())
                     <div>
                         <label class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}">
-                            <input wire:model="columnSelectEnabled" type="checkbox" value="{{ $column->column() }}">
+                            <input
+                                wire:model="columnSelectEnabled"
+                                wire:target="columnSelectEnabled"
+                                wire:loading.attr="disabled"
+                                type="checkbox"
+                                value="{{ $column->column() }}"
+                            />
                             <span class="ml-2">{{ $column->text() }}</span>
                         </label>
                     </div>
