@@ -42,8 +42,13 @@
                         @foreach($columns as $column)
                             @if ($column->isVisible() && $column->isSelectable())
                                 <div wire:key="columnSelect-{{ $loop->index }}">
-                                    <label class="px-2 py-1 inline-flex items-center">
+                                    <label
+                                        wire:loading.attr="disabled"
+                                        wire:target="columnSelectEnabled"
+                                        class="px-2 py-1 inline-flex items-center disabled:opacity-50 disabled:cursor-wait"
+                                    >
                                         <input
+                                            class="disabled:opacity-50 disabled:cursor-wait"
                                             wire:model="columnSelectEnabled"
                                             wire:target="columnSelectEnabled"
                                             wire:loading.attr="disabled"

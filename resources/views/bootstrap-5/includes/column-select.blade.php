@@ -1,10 +1,27 @@
 @if ($columnSelect)
-    <div class="dropdown mb-3 mb-md-0 md-0 ms-md-3 d-block d-md-inline">
-        <button class="btn dropdown-toggle d-block w-100 d-md-inline" type="button" id="columnSelect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div
+        x-cloak
+        x-data="{ open: false }"
+        @keydown.escape.stop="open = false"
+        @mousedown.away="open = false"
+        class="dropdown mb-3 mb-md-0 md-0 ms-md-3 d-block d-md-inline"
+    >
+        <button
+            @click="open = !open"
+            class="btn dropdown-toggle d-block w-100 d-md-inline"
+            type="button"
+            id="columnSelect"
+            aria-haspopup="true"
+            aria-expanded="false"
+        >
             @lang('Columns')
         </button>
 
-        <div class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="columnSelect">
+        <div
+            class="dropdown-menu dropdown-menu-end w-100"
+            :class="{'show' : open}"
+            aria-labelledby="columnSelect"
+        >
             @foreach($columns as $column)
                 @if ($column->isVisible() && $column->isSelectable())
                     <div wire:key="columnSelect-{{ $loop->index }}">
