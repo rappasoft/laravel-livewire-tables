@@ -41,7 +41,7 @@
                     <div class="p-2" role="menu" aria-orientation="vertical" aria-labelledby="column-select-menu">
                         @foreach($columns as $column)
                             @if ($column->isVisible() && $column->isSelectable())
-                                <div>
+                                <div wire:key="columnSelect-{{ $loop->index }}">
                                     <label class="px-2 py-1 inline-flex items-center">
                                         <input
                                             wire:model="columnSelectEnabled"

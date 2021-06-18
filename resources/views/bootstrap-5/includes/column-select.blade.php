@@ -7,7 +7,7 @@
         <div class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="columnSelect">
             @foreach($columns as $column)
                 @if ($column->isVisible() && $column->isSelectable())
-                    <div>
+                    <div wire:key="columnSelect-{{ $loop->index }}">
                         <label class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}">
                             <input
                                 wire:model="columnSelectEnabled"
