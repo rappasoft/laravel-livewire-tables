@@ -11,7 +11,7 @@ trait WithReordering
     public string $orderColumn = 'sort';
     public string $orderColumnDirection = 'asc';
 
-    public function renderingWithReordering(): void
+    public function mountWithReordering(): void
     {
         if (is_string($this->reorderRows)) {
             $this->showSorting = false;
