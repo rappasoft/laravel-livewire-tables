@@ -4,21 +4,20 @@ namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
 use Rappasoft\LaravelLivewireTables\Traits\WithPerPagePagination;
+use Rappasoft\LaravelLivewireTables\Traits\WithReordering;
 use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
 use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
 
 /**
- * Class TableComponent.
+ * Class DataTableComponent
  *
- * @property LengthAwarePaginator|Collection|null $rows
+ * @package Rappasoft\LaravelLivewireTables
  */
 abstract class DataTableComponent extends Component
 {
@@ -27,6 +26,7 @@ abstract class DataTableComponent extends Component
     use WithCustomPagination;
     use WithFilters;
     use WithPerPagePagination;
+    use WithReordering;
     use WithSearch;
     use WithSorting;
 

@@ -14,6 +14,12 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
  */
 trait WithFilters
 {
+
+    /**
+     * @var bool
+     */
+    public bool $filtersEnabled = true;
+
     /**
      * Filter values
      *
@@ -56,6 +62,10 @@ trait WithFilters
      */
     public function mountWithFilters(): void
     {
+        if (! $this->filtersEnabled) {
+            return;
+        }
+
         $this->checkFilters();
     }
 
