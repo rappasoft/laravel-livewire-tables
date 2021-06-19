@@ -1,5 +1,9 @@
-<x-livewire-tables::bs5.table>
+<x-livewire-tables::bs5.table wire:sortable="{{ $reorderRows }}">
     <x-slot name="head">
+        @if (is_string($reorderRows))
+            <x-livewire-tables::bs5.table.heading />
+        @endif
+
         @if (count($bulkActions))
             <x-livewire-tables::bs5.table.heading>
                 <input
@@ -18,6 +22,7 @@
                     <x-livewire-tables::bs5.table.heading />
                 @else
                     <x-livewire-tables::bs5.table.heading
+                        :sortingEnabled="$sortingEnabled"
                         :sortable="$column->isSortable()"
                         :column="$column->column()"
                         :direction="$column->column() ? $sorts[$column->column()] ?? null : null"
@@ -30,17 +35,32 @@
     </x-slot>
 
     <x-slot name="body">
+        @php
+            $colspan = count($columns);
+            if (count($bulkActions)) $colspan++;
+            if (is_string($reorderRows)) $colspan++;
+        @endphp
+
         @include('livewire-tables::bootstrap-5.includes.bulk-select-row')
 
         @forelse ($rows as $index => $row)
             <x-livewire-tables::bs5.table.row
                 wire:loading.class.delay="text-muted"
-                wire:key="table-row-{{ $row->getKey() }}"
+                wire:key="table-row-{{ $row->{$primaryKey} }}"
+                wire:sortable.item="{{ $row->{$primaryKey} }}"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
                 :class="method_exists($this, 'setTableRowClass') ? ' ' . $this->setTableRowClass($row) : ''"
                 :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
                 :customAttributes="method_exists($this, 'setTableRowAttributes') ? $this->setTableRowAttributes($row) : []"
             >
+                @if (is_string($reorderRows))
+                    <x-livewire-tables::bs5.table.cell wire:sortable.handle>
+                        <svg xmlns="http://www.w3.org/2000/svg" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </x-livewire-tables::bs5.table.cell>
+                @endif
+
                 @if (count($bulkActions))
                     <x-livewire-tables::bs5.table.cell class="align-middle">
                         <input

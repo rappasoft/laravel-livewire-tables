@@ -21,8 +21,8 @@
             <div class="d-md-flex">
                 @include('livewire-tables::bootstrap-5.includes.search')
 
-                @if ($showFilterDropdown)
-                    <div class="ms-0 ms-md-3 mb-3 mb-md-0">
+                @if ($filtersEnabled && $showFilterDropdown)
+                    <div class="{{ $showSearch ? 'ms-0 ms-md-3' : '' }} mb-3 mb-md-0">
                         @include('livewire-tables::bootstrap-5.includes.filters')
                     </div>
                 @endif

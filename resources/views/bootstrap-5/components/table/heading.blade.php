@@ -1,11 +1,12 @@
 @props([
     'column',
+    'sortingEnabled' => true,
     'sortable' => null,
     'direction' => null,
     'text' => null,
 ])
 
-@unless ($sortable)
+@unless ($sortingEnabled && $sortable)
     <th {{ $attributes->only('class') }}>
         {{ $text ?? $slot }}
     </th>
