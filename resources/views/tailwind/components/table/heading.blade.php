@@ -1,5 +1,6 @@
 @props([
     'column',
+    'sortingEnabled' => true,
     'sortable' => null,
     'direction' => null,
     'text' => null,
@@ -8,7 +9,7 @@
 <th
     {{ $attributes->merge(['class' => 'px-3 py-2 md:px-6 md:py-3 bg-gray-50'])->only('class') }}
 >
-    @unless ($sortable)
+    @unless ($sortingEnabled && $sortable)
         <span class="block text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
             {{ $text ?? $slot }}
         </span>
