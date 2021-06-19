@@ -1,6 +1,6 @@
-<x-livewire-tables::bs5.table wire:sortable="{{ $reorderRows }}">
+<x-livewire-tables::bs5.table wire:sortable="{{ $reorderingMethod }}">
     <x-slot name="head">
-        @if (is_string($reorderRows))
+        @if ($reordering)
             <x-livewire-tables::bs5.table.heading />
         @endif
 
@@ -38,7 +38,7 @@
         @php
             $colspan = count($columns);
             if (count($bulkActions)) $colspan++;
-            if (is_string($reorderRows)) $colspan++;
+            if ($reordering) $colspan++;
         @endphp
 
         @include('livewire-tables::bootstrap-5.includes.bulk-select-row')
@@ -53,7 +53,7 @@
                 :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
                 :customAttributes="method_exists($this, 'setTableRowAttributes') ? $this->setTableRowAttributes($row) : []"
             >
-                @if (is_string($reorderRows))
+                @if ($reordering)
                     <x-livewire-tables::bs5.table.cell wire:sortable.handle>
                         <svg xmlns="http://www.w3.org/2000/svg" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />

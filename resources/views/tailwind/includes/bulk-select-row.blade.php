@@ -1,4 +1,4 @@
-@if (count($bulkActions) && (($selectPage && $rows->total() > $rows->count()) || count($selected)))
+@if ($bulkActionsEnabled && count($bulkActions) && (($selectPage && $rows->total() > $rows->count()) || count($selected)))
     <x-livewire-tables::table.row wire:key="row-message" class="bg-indigo-50">
         <x-livewire-tables::table.cell :colspan="$colspan">
             @if (count($selected) && !$selectAll && !$selectPage)

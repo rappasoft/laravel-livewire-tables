@@ -21,6 +21,7 @@
             <div class="space-y-4">
                 <div class="md:flex md:justify-between p-6 md:p-0">
                     <div class="w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-4">
+                        @include('livewire-tables::tailwind.includes.reorder')
                         @include('livewire-tables::tailwind.includes.search')
                         @include('livewire-tables::tailwind.includes.filters')
                     </div>

@@ -1,10 +1,10 @@
-<x-livewire-tables::table wire:sortable="{{ $reorderRows }}">
+<x-livewire-tables::table wire:sortable="{{ $reordering ? $reorderingMethod : '' }}">
     <x-slot name="head">
-        @if (is_string($reorderRows))
+        @if ($reordering)
             <x-livewire-tables::table.heading />
         @endif
 
-        @if (count($bulkActions))
+        @if ($bulkActionsEnabled && count($bulkActions))
             <x-livewire-tables::table.heading>
                 <div class="inline-flex rounded-md shadow-sm">
                     <input
@@ -39,8 +39,8 @@
     <x-slot name="body">
         @php
             $colspan = count($columns);
-            if (count($bulkActions)) $colspan++;
-            if (is_string($reorderRows)) $colspan++;
+            if ($bulkActionsEnabled && count($bulkActions)) $colspan++;
+            if ($reordering) $colspan++;
         @endphp
 
         @include('livewire-tables::tailwind.includes.bulk-select-row')
@@ -50,6 +50,7 @@
                 wire:loading.class.delay="opacity-50"
                 wire:key="table-row-{{ $row->{$primaryKey} }}"
                 wire:sortable.item="{{ $row->{$primaryKey} }}"
+                :reordering="$reordering"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
                 :class="
                     ($index % 2 === 0 ?
@@ -61,15 +62,15 @@
                 :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
                 :customAttributes="method_exists($this, 'setTableRowAttributes') ? $this->setTableRowAttributes($row) : []"
             >
-                @if (is_string($reorderRows))
+                @if ($reordering)
                     <x-livewire-tables::table.cell wire:sortable.handle>
-                        <svg xmlns="http://www.w3.org/2000/svg" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="inline" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </x-livewire-tables::table.cell>
                 @endif
 
-                @if (count($bulkActions))
+                @if ($bulkActionsEnabled && count($bulkActions))
                     <x-livewire-tables::table.cell>
                         <div class="inline-flex rounded-md shadow-sm">
                             <input
@@ -88,7 +89,7 @@
             </x-livewire-tables::table.row>
         @empty
             <x-livewire-tables::table.row>
-                <x-livewire-tables::table.cell :colspan="count($bulkActions) ? count($columns) + 1 : count($columns)">
+                <x-livewire-tables::table.cell :colspan="$colspan">
                     <div class="flex justify-center items-center space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />

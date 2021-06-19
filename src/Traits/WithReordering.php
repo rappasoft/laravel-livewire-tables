@@ -3,17 +3,55 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 /**
- * Trait EWithDragAndDrop.
+ * Trait WithReordering.
  */
 trait WithReordering
 {
-    public ?string $reorderRows = null;
-    public string $orderColumn = 'sort';
-    public string $orderColumnDirection = 'asc';
+    public bool $reorderEnabled = false;
+    public bool $reordering = false;
+    public string $reorderingMethod = 'reorder';
 
     public function mountWithReordering(): void
     {
-        if (is_string($this->reorderRows)) {
+        if (! $this->reorderEnabled && $this->hasReorderingSession()) {
+            $this->forgetReorderingSession();
+        }
+
+        $this->setReorderingProperties();
+    }
+
+    public function enableReordering(): void
+    {
+        $this->setReorderingSession();
+        $this->setReorderingProperties();
+    }
+
+    public function disableReordering(): void
+    {
+        $this->forgetReorderingSession();
+        $this->setReorderingProperties();
+    }
+
+    private function setReorderingSession(): void
+    {
+        session(['reordering-'.$this->tableName => true]);
+    }
+
+    private function forgetReorderingSession(): void
+    {
+        session()->forget('reordering-'.$this->tableName);
+    }
+
+    private function hasReorderingSession(): bool
+    {
+        return session()->has('reordering-'.$this->tableName);
+    }
+
+    private function setReorderingProperties(): void
+    {
+        if ($this->hasReorderingSession()) {
+            $this->reordering = true;
+            $this->bulkActionsEnabled = false;
             $this->showSorting = false;
             $this->sortingEnabled = false;
             $this->filtersEnabled = false;
@@ -24,6 +62,22 @@ trait WithReordering
             $this->showSearch = false;
             $this->perPageAll = true;
             $this->perPage = -1;
+            $this->resetPage();
+        } else {
+            $this->reordering = false;
+            $this->reset([
+                'bulkActionsEnabled',
+                'showSorting',
+                'sortingEnabled',
+                'filtersEnabled',
+                'sorts',
+                'filters',
+                'showPagination',
+                'showPerPage',
+                'showSearch',
+                'perPageAll',
+                'perPage',
+            ]);
         }
     }
 }
