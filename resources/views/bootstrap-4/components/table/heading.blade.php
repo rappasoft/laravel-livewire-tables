@@ -6,7 +6,7 @@
     'text' => null,
 ])
 
-@unless ($sortable && $sortingEnabled)
+@unless ($sortingEnabled && $sortable)
     <th {{ $attributes->only('class') }}>
         {{ $text ?? $slot }}
     </th>
