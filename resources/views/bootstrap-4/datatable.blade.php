@@ -23,7 +23,7 @@
                 @include('livewire-tables::bootstrap-4.includes.search')
 
                 @if ($filtersEnabled && $showFilterDropdown)
-                    <div class="{{ $showSearch ? 'ml-0 ml-md-3' : '' }} mb-3 mb-md-0">
+                    <div class="{{ $showSearch ? 'ml-0 ml-md-2' : '' }} mb-3 mb-md-0">
                         @include('livewire-tables::bootstrap-4.includes.filters')
                     </div>
                 @endif

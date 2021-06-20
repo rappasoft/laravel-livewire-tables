@@ -4,7 +4,7 @@
         x-data="{ open: false }"
         x-on:keydown.escape.stop="open = false"
         x-on:mousedown.away="open = false"
-        class="dropdown mb-3 mb-md-0 md-0 ms-md-3 d-block d-md-inline"
+        class="dropdown mb-3 mb-md-0 md-0 ms-md-2 d-block d-md-inline"
     >
         <button
             x-on:click="open = !open"

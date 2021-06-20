@@ -1,5 +1,5 @@
 @if ($reorderEnabled)
-    <div class="mr-0 mr-md-3 mb-3 mb-md-0">
+    <div class="mr-0 mr-md-2 mb-3 mb-md-0">
         <button
             wire:click="{{ $reordering ? 'disableReordering' : 'enableReordering' }}"
             type="button"
