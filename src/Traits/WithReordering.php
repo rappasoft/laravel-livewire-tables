@@ -52,6 +52,9 @@ trait WithReordering
         if ($this->hasReorderingSession()) {
             $this->reordering = true;
             $this->bulkActionsEnabled = false;
+            $this->selectPage = false;
+            $this->selectAll = false;
+            $this->selected = [];
             $this->showSorting = false;
             $this->sortingEnabled = false;
             $this->filtersEnabled = false;
@@ -67,6 +70,9 @@ trait WithReordering
             $this->reordering = false;
             $this->reset([
                 'bulkActionsEnabled',
+                'selectPage',
+                'selectAll',
+                'selected',
                 'showSorting',
                 'sortingEnabled',
                 'filtersEnabled',

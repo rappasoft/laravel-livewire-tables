@@ -4,7 +4,7 @@
             <x-livewire-tables::bs5.table.heading />
         @endif
 
-        @if (count($bulkActions))
+        @if ($bulkActionsEnabled && count($bulkActions))
             <x-livewire-tables::bs5.table.heading>
                 <input
                     wire:model="selectPage"
@@ -37,7 +37,7 @@
     <x-slot name="body">
         @php
             $colspan = count($columns);
-            if (count($bulkActions)) $colspan++;
+            if ($bulkActionsEnabled && count($bulkActions)) $colspan++;
             if ($reordering) $colspan++;
         @endphp
 
@@ -61,7 +61,7 @@
                     </x-livewire-tables::bs5.table.cell>
                 @endif
 
-                @if (count($bulkActions))
+                @if ($bulkActionsEnabled && count($bulkActions))
                     <x-livewire-tables::bs5.table.cell class="align-middle">
                         <input
                             wire:model="selected"
@@ -78,7 +78,7 @@
             </x-livewire-tables::bs5.table.row>
         @empty
             <x-livewire-tables::bs5.table.row>
-                <x-livewire-tables::bs5.table.cell colspan="{{ count($bulkActions) ? count($columns) + 1 : count($columns) }}">
+                <x-livewire-tables::bs5.table.cell :colspan="$colspan">
                     @lang($emptyMessage)
                 </x-livewire-tables::bs5.table.cell>
             </x-livewire-tables::bs5.table.row>
