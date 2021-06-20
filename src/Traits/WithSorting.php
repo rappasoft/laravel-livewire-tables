@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
  */
 trait WithSorting
 {
+    public bool $sortingEnabled = true;
     public bool $showSorting = true;
     public bool $singleColumnSorting = false;
     public array $sorts = [];
@@ -20,6 +21,10 @@ trait WithSorting
 
     public function sortBy(string $field): ?string
     {
+        if (! $this->sortingEnabled) {
+            return null;
+        }
+
         if ($this->singleColumnSorting && count($this->sorts) && ! isset($this->sorts[$field])) {
             $this->sorts = [];
         }

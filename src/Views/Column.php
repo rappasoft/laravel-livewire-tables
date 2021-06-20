@@ -65,6 +65,11 @@ class Column
     public bool $hidden = false;
 
     /**
+     * @var bool
+     */
+    public bool $selectable = true;
+
+    /**
      * Column constructor.
      *
      * @param string|null $column
@@ -286,5 +291,23 @@ class Column
     public function isVisible(): bool
     {
         return $this->hidden !== true;
+    }
+
+    /**
+     * @return $this
+     */
+    public function excludeFromSelectable(): self
+    {
+        $this->selectable = false;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSelectable(): bool
+    {
+        return $this->selectable === true;
     }
 }

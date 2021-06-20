@@ -66,6 +66,8 @@ class UsersTable extends DataTableComponent
 - [x] Bootstrap 4 Template
 - [x] Bootstrap 5 Template
 - [x] Sorting By Relationships
+- [x] User Column Selection  
+- [x] Drag & Drop (alpha)
 - [ ] Collection/Query Support  
 - [ ] Test Suite (WIP)
 - [ ] Column Search

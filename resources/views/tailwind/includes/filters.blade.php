@@ -1,8 +1,8 @@
-@if ($showFilterDropdown && ($filtersView || count($customFilters)))
+@if ($filtersEnabled && $showFilterDropdown && ($filtersView || count($customFilters)))
     <div
         x-data="{ open: false }"
-        @keydown.escape.stop="open = false"
-        @mousedown.away="open = false"
+        x-on:keydown.escape.stop="open = false"
+        x-on:mousedown.away="open = false"
         class="relative block md:inline-block text-left"
     >
         <div>
@@ -10,7 +10,7 @@
                 type="button"
                 class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo"
                 id="filters-menu"
-                @click="open = !open"
+                x-on:click="open = !open"
                 aria-haspopup="true"
                 x-bind:aria-expanded="open"
                 aria-expanded="true"
@@ -71,7 +71,7 @@
                     <div class="block px-4 py-2 text-sm text-gray-700" role="menuitem">
                         <button
                             wire:click.prevent="resetFilters"
-                            @click="open = false"
+                            x-on:click="open = false"
                             type="button"
                             class="w-full inline-flex items-center justify-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
