@@ -4,13 +4,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
-## [1.10.0] - 2021-06-XX
+## [1.10.0] - 2021-06-20
 
 **This release requires re-publishing of assets.**
 
 ### Added
 
 - [Column selector for users to show/hide columns](https://github.com/rappasoft/laravel-livewire-tables/wiki/User-column-selection)
+- [Drag & Drop reordering](https://github.com/rappasoft/laravel-livewire-tables/wiki/Drag-and-drop)
 
 ## [1.9.0] - 2021-06-15
 
