@@ -1,12 +1,12 @@
 <div class="table-responsive">
-    <table class="table table-striped">
+    <table {{ $attributes->except('wire:sortable') }} class="table table-striped">
         <thead>
             <tr>
                 {{ $head }}
             </tr>
         </thead>
 
-        <tbody>
+        <tbody {{ $attributes->only('wire:sortable') }}>
             {{ $body }}
         </tbody>
     </table>

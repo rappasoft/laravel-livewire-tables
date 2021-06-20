@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
  */
 trait WithBulkActions
 {
+    public bool $bulkActionsEnabled = true;
     public string $primaryKey = 'id';
     public bool $selectPage = false;
     public bool $selectAll = false;
@@ -18,6 +19,10 @@ trait WithBulkActions
 
     public function renderingWithBulkActions(): void
     {
+        if (! $this->bulkActionsEnabled) {
+            return;
+        }
+
         if ($this->selectAll) {
             $this->selectPageRows();
         }

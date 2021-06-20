@@ -1,15 +1,15 @@
-@if (count($bulkActions))
+@if ($bulkActionsEnabled && count($bulkActions))
     <div class="w-full md:w-auto mb-4 md:mb-0">
         <div
             x-data="{ open: false }"
             @keydown.window.escape="open = false"
-            @click.away="open = false"
+            x-on:click.away="open = false"
             class="relative inline-block text-left z-10 w-full md:w-auto"
         >
             <div>
                 <span class="rounded-md shadow-sm">
                     <button
-                        @click="open = !open"
+                        x-on:click="open = !open"
                         type="button"
                         class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
                         id="options-menu"
@@ -35,7 +35,7 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95"
-                class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50"
+                class="origin-top-right absolute right-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50"
             >
                 <div class="rounded-md bg-white shadow-xs">
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">

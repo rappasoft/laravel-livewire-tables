@@ -2,12 +2,12 @@
     <div
         x-cloak
         x-data="{ open: false }"
-        @keydown.escape.stop="open = false"
-        @mousedown.away="open = false"
+        x-on:keydown.escape.stop="open = false"
+        x-on:mousedown.away="open = false"
         class="btn-group d-block d-md-inline"
     >
         <button
-            @click="open = !open"
+            x-on:click="open = !open"
             type="button"
             class="btn dropdown-toggle d-block w-100 d-md-inline"
         >
@@ -22,7 +22,7 @@
             <span class="caret"></span>
         </button>
         <ul
-            class="dropdown-menu w-200 mt-3"
+            class="dropdown-menu w-100 mt-md-3"
             :class="{'show' : open}"
             role="menu"
         >
@@ -50,7 +50,7 @@
 
                     <button
                         wire:click.prevent="resetFilters"
-                        @click="open = false"
+                        x-on:click="open = false"
                         class="dropdown-item btn text-center"
                     >
                         @lang('Clear')

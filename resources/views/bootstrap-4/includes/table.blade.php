@@ -1,6 +1,10 @@
-<x-livewire-tables::bs4.table>
+<x-livewire-tables::bs4.table wire:sortable="{{ $reordering ? $reorderingMethod : '' }}">
     <x-slot name="head">
-        @if (count($bulkActions))
+        @if ($reordering)
+            <x-livewire-tables::bs4.table.heading />
+        @endif
+
+        @if ($bulkActionsEnabled && count($bulkActions))
             <x-livewire-tables::bs4.table.heading>
                 <input
                     wire:model="selectPage"
@@ -17,6 +21,7 @@
                     <x-livewire-tables::bs4.table.heading />
                 @else
                     <x-livewire-tables::bs4.table.heading
+                        :sortingEnabled="$sortingEnabled"
                         :sortable="$column->isSortable()"
                         :column="$column->column()"
                         :direction="$column->column() ? $sorts[$column->column()] ?? null : null"
@@ -29,18 +34,34 @@
     </x-slot>
 
     <x-slot name="body">
+        @php
+            $colspan = count($columns);
+            if ($bulkActionsEnabled && count($bulkActions)) $colspan++;
+            if ($reordering) $colspan++;
+        @endphp
+
         @include('livewire-tables::bootstrap-4.includes.bulk-select-row')
 
         @forelse ($rows as $index => $row)
             <x-livewire-tables::bs4.table.row
                 wire:loading.class.delay="text-muted"
-                wire:key="table-row-{{ $row->getKey() }}"
+                wire:key="table-row-{{ $row->{$primaryKey} }}"
+                wire:sortable.item="{{ $row->{$primaryKey} }}"
+                :reordering="$reordering"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
                 :class="method_exists($this, 'setTableRowClass') ? ' ' . $this->setTableRowClass($row) : ''"
                 :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
                 :customAttributes="method_exists($this, 'setTableRowAttributes') ? $this->setTableRowAttributes($row) : []"
             >
-                @if (count($bulkActions))
+                @if ($reordering)
+                    <x-livewire-tables::bs4.table.cell wire:sortable.handle>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-inline" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </x-livewire-tables::bs4.table.cell>
+                @endif
+
+                @if ($bulkActionsEnabled && count($bulkActions))
                     <x-livewire-tables::bs4.table.cell>
                         <input
                             wire:model="selected"
@@ -56,7 +77,7 @@
             </x-livewire-tables::bs4.table.row>
         @empty
             <x-livewire-tables::bs4.table.row>
-                <x-livewire-tables::bs4.table.cell colspan="{{ count($bulkActions) ? count($columns) + 1 : count($columns) }}">
+                <x-livewire-tables::bs4.table.cell :colspan="$colspan">
                     @lang($emptyMessage)
                 </x-livewire-tables::bs4.table.cell>
             </x-livewire-tables::bs4.table.row>
