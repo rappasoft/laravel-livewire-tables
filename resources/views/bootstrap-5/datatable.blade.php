@@ -19,6 +19,7 @@
 
         <div class="d-md-flex justify-content-between mb-3">
             <div class="d-md-flex">
+                @include('livewire-tables::bootstrap-5.includes.reorder')
                 @include('livewire-tables::bootstrap-5.includes.search')
 
                 @if ($filtersEnabled && $showFilterDropdown)

@@ -1,4 +1,4 @@
-<x-livewire-tables::bs5.table wire:sortable="{{ $reorderingMethod }}">
+<x-livewire-tables::bs5.table wire:sortable="{{ $reordering ? $reorderingMethod : '' }}">
     <x-slot name="head">
         @if ($reordering)
             <x-livewire-tables::bs5.table.heading />
@@ -48,6 +48,7 @@
                 wire:loading.class.delay="text-muted"
                 wire:key="table-row-{{ $row->{$primaryKey} }}"
                 wire:sortable.item="{{ $row->{$primaryKey} }}"
+                :reordering="$reordering"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
                 :class="method_exists($this, 'setTableRowClass') ? ' ' . $this->setTableRowClass($row) : ''"
                 :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
@@ -55,7 +56,7 @@
             >
                 @if ($reordering)
                     <x-livewire-tables::bs5.table.cell wire:sortable.handle>
-                        <svg xmlns="http://www.w3.org/2000/svg" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-inline" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </x-livewire-tables::bs5.table.cell>

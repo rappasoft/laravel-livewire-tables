@@ -22,7 +22,7 @@
             <span class="caret"></span>
         </button>
         <ul
-            class="dropdown-menu w-200 mt-3"
+            class="dropdown-menu w-100"
             :class="{'show' : open}"
             role="menu"
         >
