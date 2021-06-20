@@ -34,17 +34,17 @@ trait WithReordering
 
     private function setReorderingSession(): void
     {
-        session(['reordering-'.$this->tableName => true]);
+        session([$this->getReorderingSessionKey() => true]);
     }
 
     private function forgetReorderingSession(): void
     {
-        session()->forget('reordering-'.$this->tableName);
+        session()->forget($this->getReorderingSessionKey());
     }
 
     private function hasReorderingSession(): bool
     {
-        return session()->has('reordering-'.$this->tableName);
+        return session()->has($this->getReorderingSessionKey());
     }
 
     private function setReorderingProperties(): void
@@ -85,5 +85,10 @@ trait WithReordering
                 'perPage',
             ]);
         }
+    }
+
+    private function getReorderingSessionKey(): string
+    {
+        return $this->tableName.'-reordering';
     }
 }
