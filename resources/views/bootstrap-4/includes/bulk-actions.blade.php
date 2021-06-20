@@ -1,4 +1,4 @@
-@if (count($bulkActions))
+@if ($bulkActionsEnabled && count($bulkActions))
     <div class="dropdown mb-3 mb-md-0 d-block d-md-inline">
         <button class="btn dropdown-toggle d-block w-100 d-md-inline" type="button" id="bulkActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             @lang('Bulk Actions')

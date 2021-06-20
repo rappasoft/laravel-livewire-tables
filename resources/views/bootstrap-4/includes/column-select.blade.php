@@ -2,12 +2,12 @@
     <div
         x-cloak
         x-data="{ open: false }"
-        @keydown.escape.stop="open = false"
-        @mousedown.away="open = false"
+        x-on:keydown.escape.stop="open = false"
+        x-on:mousedown.away="open = false"
         class="dropdown mb-3 mb-md-0 pl-0 pl-md-3 d-block d-md-inline"
     >
         <button
-            @click="open = !open"
+            x-on:click="open = !open"
             class="btn dropdown-toggle d-block w-100 d-md-inline"
             type="button"
             id="columnSelect"
