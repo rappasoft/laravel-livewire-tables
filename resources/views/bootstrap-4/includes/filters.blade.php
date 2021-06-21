@@ -23,7 +23,7 @@
         </button>
         <ul
             class="dropdown-menu w-100 mt-md-3"
-            :class="{'show' : open}"
+            x-bind:class="{'show' : open}"
             role="menu"
         >
             <li>
