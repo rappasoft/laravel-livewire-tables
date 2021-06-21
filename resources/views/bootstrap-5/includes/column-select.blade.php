@@ -19,7 +19,7 @@
 
             <div
                 class="dropdown-menu dropdown-menu-end w-100"
-                :class="{'show' : open}"
+                x-bind:class="{'show' : open}"
                 aria-labelledby="columnSelect"
             >
                 @foreach($columns as $column)

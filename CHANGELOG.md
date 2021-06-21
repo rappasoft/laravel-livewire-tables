@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.10.2] - 2021-06-21
+
+### Changed
+
+- [Use Alpine binding syntax to avoid conflicts with Vue](https://github.com/rappasoft/laravel-livewire-tables/pull/354)
+
 ## [1.10.1] - 2021-06-20
 
 ### Changed
@@ -392,7 +398,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.1...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.2...development
+[1.10.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.1...v1.10.2
 [1.10.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.8.0...v1.9.0
