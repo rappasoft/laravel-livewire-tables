@@ -4,6 +4,16 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.10.3] - 2021-06-22
+
+### Added
+
+- When reordering, the last known state of the table is now saved in the session so when you're done reordering you are back where you left off and no filters/sorts/search is lost.
+
+### Changed
+
+- Fixed query string getting wiped out on reload
+
 ## [1.10.2] - 2021-06-21
 
 ### Changed
@@ -398,7 +408,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.2...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.3...development
+[1.10.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.2...v1.10.3
 [1.10.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.1...v1.10.2
 [1.10.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.9.0...v1.10.0
