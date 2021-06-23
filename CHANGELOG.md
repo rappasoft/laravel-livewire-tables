@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.11.0] - 2021-06-23
+
+### Added
+
+- Added $hideBulkActionsOnEmpty to hide the bulk actions dropdown until something is selected.
+
 ## [1.10.3] - 2021-06-22
 
 ### Added
