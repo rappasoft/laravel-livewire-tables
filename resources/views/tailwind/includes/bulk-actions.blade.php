@@ -1,4 +1,4 @@
-@if ($bulkActionsEnabled && count($bulkActions))
+@if ($this->showBulkActionsDropdown)
     <div class="w-full md:w-auto mb-4 md:mb-0">
         <div
             x-data="{ open: false }"
