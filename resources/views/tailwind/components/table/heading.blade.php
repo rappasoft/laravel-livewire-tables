@@ -6,9 +6,21 @@
     'text' => null,
 ])
 
-<th
-    {{ $attributes->merge(['class' => 'px-3 py-2 md:px-6 md:py-3 bg-gray-50'])->only('class') }}
->
+@php
+$headerAttributesList = [];
+$headerAttributesList[] = ['class' => 'px-3 py-2 md:px-6 md:py-3 bg-gray-50 ' . $attributes->get('class')];
+$headerAttributesList[] = $attributes->get('extraAttributes') ?? [];
+
+$headerAttributes = '';
+collect($headerAttributesList)->each(function($item) use(&$headerAttributes) {
+    if(count($item)) {
+        $headerAttributes .= collect($item)->map(fn($value, $key) => $key . '="' . $value . '"')->implode(' ');
+    }
+});
+
+@endphp
+
+<th {!! $headerAttributes !!}>
     @unless ($sortingEnabled && $sortable)
         <span class="block text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
             {{ $text ?? $slot }}
