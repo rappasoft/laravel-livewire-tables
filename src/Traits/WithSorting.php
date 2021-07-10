@@ -54,8 +54,7 @@ trait WithSorting
         }
 
         foreach ($this->sorts as $field => $direction) {
-
-            if (!in_array($direction, ['asc', 'desc'])) {
+            if (! in_array($direction, ['asc', 'desc'])) {
                 $direction = 'desc';
             }
 
