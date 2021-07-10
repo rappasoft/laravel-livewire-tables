@@ -28,7 +28,7 @@
                         :direction="$column->column() ? $sorts[$column->column()] ?? null : null"
                         :text="$column->text() ?? ''"
                         :class="$column->class() ?? ''"
-                        :extraAttributes="$column->attributes()"
+                        :customAttributes="$column->attributes()"
                     />
                 @endif
             @endif

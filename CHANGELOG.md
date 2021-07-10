@@ -4,7 +4,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
-## [1.10.5] - 2021-07-10
+## [1.11.0] - 2021-07-10
+
+### Added
+
+- [Added `addAttributes` method to column headers](https://github.com/rappasoft/laravel-livewire-tables/pull/379)
 
 ### Changed
 
@@ -421,8 +425,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.5...development
-[1.10.5]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.4...v1.10.5
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.11.0...development
+[1.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.4...v1.11.0
 [1.10.4]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.3...v1.10.4
 [1.10.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.2...v1.10.3
 [1.10.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.1...v1.10.2

@@ -4,30 +4,17 @@
     'sortable' => null,
     'direction' => null,
     'text' => null,
+    'customAttributes' => [],
 ])
 
-@php
-$headerAttributesList = [];
-$headerAttributesList[] = ['class' => $attributes->get('class')];
-$headerAttributesList[] = $attributes->get('extraAttributes') ?? [];
-
-$headerAttributes = '';
-collect($headerAttributesList)->each(function($item) use(&$headerAttributes) {
-    if(count($item)) {
-        $headerAttributes .= collect($item)->map(fn($value, $key) => $key . '="' . $value . '"')->implode(' ');
-    }
-});
-
-@endphp
-
 @unless ($sortingEnabled && $sortable)
-    <th {!! $headerAttributes !!}>
+    <th {{ $attributes->merge($customAttributes) }}>
         {{ $text ?? $slot }}
     </th>
 @else
     <th
         wire:click="sortBy('{{ $column }}', '{{ $text ?? $column }}')"
-        {!! $headerAttributes !!}
+        {{ $attributes->merge($customAttributes) }}
         style="cursor:pointer;"
     >
         <div class="d-flex align-items-center">
