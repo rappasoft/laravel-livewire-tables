@@ -54,7 +54,6 @@ trait WithSorting
         }
 
         foreach ($this->sorts as $field => $direction) {
-
             $column = $this->getColumn($field);
 
             if (is_null($column)) {
