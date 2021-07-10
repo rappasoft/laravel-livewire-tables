@@ -29,6 +29,10 @@ trait WithPerPagePagination
 
     public function updatedPerPage($value): void
     {
+        if (! in_array($value, $this->perPageAccepted, false)) {
+            $value = $this->perPage = $this->perPageAccepted[0] ?? 10;
+        }
+
         if (in_array(session()->get($this->getPerPagePaginationSessionKey(), $this->perPage), $this->perPageAccepted, true)) {
             session()->put($this->getPerPagePaginationSessionKey(), (int) $value);
         } else {

@@ -54,7 +54,17 @@ trait WithSorting
         }
 
         foreach ($this->sorts as $field => $direction) {
-            if (optional($this->getColumn($field))->hasSortCallback()) {
+            if (! in_array($direction, ['asc', 'desc'])) {
+                $direction = 'desc';
+            }
+
+            $column = $this->getColumn($field);
+
+            if (is_null($column)) {
+                continue;
+            }
+
+            if ($column->hasSortCallback()) {
                 $query = app()->call($this->getColumn($field)->getSortCallback(), ['query' => $query, 'direction' => $direction]);
             } else {
                 $query->orderBy($field, $direction);
