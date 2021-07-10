@@ -20,6 +20,11 @@ class Column
     public ?string $text = null;
 
     /**
+     * @var array
+     */
+    public array $attributes = [];
+
+    /**
      * @var bool
      */
     public bool $sortable = false;
@@ -171,6 +176,18 @@ class Column
     }
 
     /**
+     * @param array $attributes
+     *
+     * @return $this
+     */
+    public function addAttributes(array $attributes): self
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
      * @return Column
      */
     public function asHtml(): Column
@@ -202,6 +219,14 @@ class Column
     public function text(): ?string
     {
         return $this->text;
+    }
+
+    /**
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return $this->attributes;
     }
 
     /**

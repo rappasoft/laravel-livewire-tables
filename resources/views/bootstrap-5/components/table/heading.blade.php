@@ -6,14 +6,28 @@
     'text' => null,
 ])
 
+@php
+$headerAttributesList = [];
+$headerAttributesList[] = ['class' => $attributes->get('class')];
+$headerAttributesList[] = $attributes->get('extraAttributes') ?? [];
+
+$headerAttributes = '';
+collect($headerAttributesList)->each(function($item) use(&$headerAttributes) {
+    if(count($item)) {
+        $headerAttributes .= collect($item)->map(fn($value, $key) => $key . '="' . $value . '"')->implode(' ');
+    }
+});
+
+@endphp
+
 @unless ($sortingEnabled && $sortable)
-    <th {{ $attributes->only('class') }}>
+    <th {!! $headerAttributes !!}>
         {{ $text ?? $slot }}
     </th>
 @else
     <th
         wire:click="sortBy('{{ $column }}', '{{ $text ?? $column }}')"
-        {{ $attributes->only('class') }}
+        {!! $headerAttributes !!}
         style="cursor:pointer;"
     >
         <div class="d-flex align-items-center">
