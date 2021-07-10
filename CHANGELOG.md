@@ -16,6 +16,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added default empty message to lang file.
 - [Fix people messing with sort direction from URL](https://github.com/rappasoft/laravel-livewire-tables/pull/389)
 - [Check to make sure column exists before sorting](https://github.com/rappasoft/laravel-livewire-tables/pull/390)
+- Removed ability to alter per page dropdown select to bypass allowed values.
 
 ## [1.10.4] - 2021-06-23
 
