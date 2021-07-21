@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Support\Facades\Blade;
+use Rappasoft\LaravelLivewireTables\Commands\MakeCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -32,6 +33,17 @@ class LaravelLivewireTablesServiceProvider extends PackageServiceProvider
         Blade::component('livewire-tables::bootstrap-5.components.table.heading', 'livewire-tables::bs5.table.heading');
         Blade::component('livewire-tables::bootstrap-5.components.table.row', 'livewire-tables::bs5.table.row');
         Blade::component('livewire-tables::bootstrap-5.components.table.cell', 'livewire-tables::bs5.table.cell');
+
+        $this->registerCommands();
+    }
+
+    protected function registerCommands()
+    {
+        if (! $this->app->runningInConsole()) return;
+
+        $this->commands([
+            MakeCommand::class,         // make:table
+        ]);
     }
 
     /**
