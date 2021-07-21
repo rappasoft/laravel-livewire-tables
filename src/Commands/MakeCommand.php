@@ -122,17 +122,21 @@ class MakeCommand extends Command
         }
 
         if($this->viewPath) {
-            $viewPath = Str::after($this->viewPath, 'resources/views/');
             $contents = Str::replaceLast("}\n", "
     public function rowView(): string
     {
-        return '" . $viewPath . "';
+        return '" . $this->getViewPathForRowView() . "';
     }
 }\n",
                 $contents);
         }
 
         return $contents;
+    }
+
+    private function getViewPathForRowView(): string
+    {
+        return Str::before(Str::after($this->viewPath, 'resources/views/'), '.blade.php');
     }
 
     public function viewContents()
