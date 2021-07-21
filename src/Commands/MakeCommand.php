@@ -4,18 +4,23 @@ namespace Rappasoft\LaravelLivewireTables\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Livewire\Commands\ComponentParser;
 use Livewire\Commands\MakeCommand as LivewireMakeCommand;
 
 class MakeCommand extends Command
 {
     protected $parser;
+    protected $model = null;
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:table {name} {--force}';
+    protected $signature = 'make:table
+        {name : The name of your Livewire class}
+        {model? : The name of the model you want to use in this table }
+        {--force}';
 
     /**
      * The console command description.
@@ -40,6 +45,7 @@ class MakeCommand extends Command
             return;
         }
 
+        $this->model = Str::studly($this->argument('model'));
         $force = $this->option('force');
 
         $this->createClass($force);
@@ -74,12 +80,34 @@ class MakeCommand extends Command
 
     public function classContents()
     {
-        $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table.stub');
+        if($this->model) {
+            $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table-with-model.stub');
 
-        return preg_replace_array(
-            ['/\[namespace\]/', '/\[class\]/'],
-            [$this->parser->classNamespace(), $this->parser->className()],
-            $template
-        );
+            return preg_replace_array(
+                ['/\[namespace\]/', '/\[class\]/', '/\[model\]/', '/\[model_import\]/'],
+                [$this->parser->classNamespace(), $this->parser->className(), $this->model, $this->getModelImport()],
+                $template
+            );
+        } else {
+            $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table.stub');
+
+            return preg_replace_array(
+                ['/\[namespace\]/', '/\[class\]/'],
+                [$this->parser->classNamespace(), $this->parser->className()],
+                $template
+            );
+        }
+    }
+
+    public function getModelImport()
+    {
+        if(File::exists(app_path('Models/' . $this->model . '.php'))) {
+            return 'App\Models\\' . $this->model;
+        }
+        if(File::exists(app_path($this->model . '.php'))) {
+            return 'App\\' . $this->model;
+        }
+        $this->error('Could not find path to model');
+        return 'App\Models\\' . $this->model;
     }
 }
