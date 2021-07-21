@@ -12,6 +12,7 @@ class MakeCommand extends Command
 {
     protected $parser;
     protected $model = null;
+    protected $viewPath = null;
     /**
      * The name and signature of the console command.
      *
@@ -20,7 +21,8 @@ class MakeCommand extends Command
     protected $signature = 'make:table
         {name : The name of your Livewire class}
         {model? : The name of the model you want to use in this table }
-        {--force}';
+        {--V|view : We will generate a row view for you}
+        {--force }';
 
     /**
      * The console command description.
@@ -48,6 +50,7 @@ class MakeCommand extends Command
         $this->model = Str::studly($this->argument('model'));
         $force = $this->option('force');
 
+        $this->viewPath = $this->createView($force);
         $this->createClass($force);
 
         $this->info('Livewire Datatable Created: ' . $this->parser->className());
@@ -71,6 +74,26 @@ class MakeCommand extends Command
         return $classPath;
     }
 
+    protected function createView($force = false)
+    {
+        if(! $this->option('view')) {
+            return null;
+        }
+        $viewPath = base_path('resources/views/livewire-tables/rows/' . Str::snake($this->parser->className()->__toString()) . '.blade.php');
+        if (File::exists($viewPath) && ! $force) {
+            $this->line("<options=bold,reverse;fg=red> WHOOPS-IE-TOOTLES </> 😳 \n");
+            $this->line("<fg=red;options=bold>View already exists:</> {$viewPath}");
+
+            return false;
+        }
+
+        $this->ensureDirectoryExists($viewPath);
+
+        File::put($viewPath, $this->viewContents());
+
+        return $viewPath;
+    }
+
     protected function ensureDirectoryExists($path)
     {
         if (! File::isDirectory(dirname($path))) {
@@ -83,7 +106,7 @@ class MakeCommand extends Command
         if($this->model) {
             $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table-with-model.stub');
 
-            return preg_replace_array(
+            $contents = preg_replace_array(
                 ['/\[namespace\]/', '/\[class\]/', '/\[model\]/', '/\[model_import\]/'],
                 [$this->parser->classNamespace(), $this->parser->className(), $this->model, $this->getModelImport()],
                 $template
@@ -91,12 +114,30 @@ class MakeCommand extends Command
         } else {
             $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table.stub');
 
-            return preg_replace_array(
+            $contents =  preg_replace_array(
                 ['/\[namespace\]/', '/\[class\]/'],
                 [$this->parser->classNamespace(), $this->parser->className()],
                 $template
             );
         }
+
+        if($this->viewPath) {
+            $viewPath = Str::after($this->viewPath, 'resources/views/');
+            $contents = Str::replaceLast("}\n", "
+    public function rowView(): string
+    {
+        return '" . $viewPath . "';
+    }
+}\n",
+                $contents);
+        }
+
+        return $contents;
+    }
+
+    public function viewContents()
+    {
+        return file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'view.stub');
     }
 
     public function getModelImport()
