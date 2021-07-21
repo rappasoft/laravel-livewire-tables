@@ -21,7 +21,7 @@ class MakeCommand extends Command
     protected $signature = 'make:table
         {name : The name of your Livewire class}
         {model? : The name of the model you want to use in this table }
-        {--V|view : We will generate a row view for you}
+        {--view : We will generate a row view for you}
         {--force }';
 
     /**
