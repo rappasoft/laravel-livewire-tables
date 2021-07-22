@@ -18,8 +18,8 @@
     "You have selected": "You have selected",
     "of": "of",
     "Reorder": "Reorder",
-    "results": "results",
-    "rows": "rows",
+    "results": "result|results",
+    "rows": "row|rows",
     "rows, do you want to select all": "rows, do you want to select all",
     "No items found. Try narrowing your search.": "No items found. Try narrowing your search.",
     "to": "to"

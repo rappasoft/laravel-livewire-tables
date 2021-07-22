@@ -23,7 +23,7 @@
                     <span>
                         @lang('You are currently selecting all')
                         <strong>{{ number_format($rows->total()) }}</strong>
-                        @lang('rows').
+                        {{ trans_choice('rows', $rows->total()) }}
                     </span>
 
                     <button
