@@ -12,7 +12,7 @@
                 <strong>{{ $rows->count() ? $rows->lastItem() : 0 }}</strong>
                 <span>@lang('of')</span>
                 <strong>{{ $rows->total() }}</strong>
-                <span>{{ trans_choice('results', $rows->total()) }}</span>
+                <span>@choice('results', $rows->total())</span>
             </div>
         </div>
     @else
@@ -20,7 +20,7 @@
             <div class="col-12 text-muted">
                 @lang('Showing')
                 <strong>{{ $rows->count() }}</strong>
-                {{ trans_choice('results', $rows->count()) }}
+                @choice('results', $rows->count())
             </div>
         </div>
     @endif
