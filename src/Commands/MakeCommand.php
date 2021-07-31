@@ -8,30 +8,48 @@ use Illuminate\Support\Str;
 use Livewire\Commands\ComponentParser;
 use Livewire\Commands\MakeCommand as LivewireMakeCommand;
 
+/**
+ * Class MakeCommand
+ *
+ * @package Rappasoft\LaravelLivewireTables\Commands
+ */
 class MakeCommand extends Command
 {
+
+    /**
+     * @var
+     */
     protected $parser;
-    protected $model = null;
-    protected $viewPath = null;
+
+    /**
+     * @var
+     */
+    protected $model;
+
+    /**
+     * @var
+     */
+    protected $viewPath;
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:table
+    protected $signature = 'make:datatable
         {name : The name of your Livewire class}
-        {model? : The name of the model you want to use in this table }
+        {model? : The name of the model you want to use in this table}
         {--view : We will generate a row view for you}
-        {--force }';
+        {--force}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate a Laravel Livewire table class and view';
+    protected $description = 'Generate a Laravel Livewire datatable class and view';
 
-    public function handle()
+    public function handle(): void
     {
         $this->parser = new ComponentParser(
             config('livewire.class_namespace'),
@@ -42,7 +60,6 @@ class MakeCommand extends Command
         $livewireMakeCommand = new LivewireMakeCommand();
 
         if($livewireMakeCommand->isReservedClassName($name = $this->parser->className())) {
-            $this->line("<options=bold,reverse;fg=red> WHOOPS! </> 😳 \n");
             $this->line("<fg=red;options=bold>Class is reserved:</> {$name}");
             return;
         }
@@ -56,12 +73,16 @@ class MakeCommand extends Command
         $this->info('Livewire Datatable Created: ' . $this->parser->className());
     }
 
-    protected function createClass($force = false)
+    /**
+     * @param  false  $force
+     *
+     * @return false
+     */
+    protected function createClass(bool $force = false)
     {
         $classPath = $this->parser->classPath();
 
-        if (File::exists($classPath) && ! $force) {
-            $this->line("<options=bold,reverse;fg=red> WHOOPS-IE-TOOTLES </> 😳 \n");
+        if (! $force && File::exists($classPath)) {
             $this->line("<fg=red;options=bold>Class already exists:</> {$this->parser->relativeClassPath()}");
 
             return false;
@@ -74,14 +95,20 @@ class MakeCommand extends Command
         return $classPath;
     }
 
+    /**
+     * @param  false  $force
+     *
+     * @return false|string|null
+     */
     protected function createView($force = false)
     {
         if(! $this->option('view')) {
             return null;
         }
+
         $viewPath = base_path('resources/views/livewire-tables/rows/' . Str::snake($this->parser->className()->__toString()) . '.blade.php');
-        if (File::exists($viewPath) && ! $force) {
-            $this->line("<options=bold,reverse;fg=red> WHOOPS-IE-TOOTLES </> 😳 \n");
+
+        if (! $force && File::exists($viewPath)) {
             $this->line("<fg=red;options=bold>View already exists:</> {$viewPath}");
 
             return false;
@@ -94,14 +121,20 @@ class MakeCommand extends Command
         return $viewPath;
     }
 
-    protected function ensureDirectoryExists($path)
+    /**
+     * @param $path
+     */
+    protected function ensureDirectoryExists($path): void
     {
         if (! File::isDirectory(dirname($path))) {
-            File::makeDirectory(dirname($path), 0777, $recursive = true, $force = true);
+            File::makeDirectory(dirname($path), 0777, true, true);
         }
     }
 
-    public function classContents()
+    /**
+     * @return string
+     */
+    public function classContents(): string
     {
         if($this->model) {
             $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table-with-model.stub');
@@ -134,25 +167,37 @@ class MakeCommand extends Command
         return $contents;
     }
 
+    /**
+     * @return string
+     */
     private function getViewPathForRowView(): string
     {
-        return Str::before(Str::after($this->viewPath, 'resources/views/'), '.blade.php');
+        return Str::replace('/', '.', Str::before(Str::after($this->viewPath, 'resources/views/'), '.blade.php'));
     }
 
+    /**
+     * @return false|string
+     */
     public function viewContents()
     {
         return file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'view.stub');
     }
 
-    public function getModelImport()
+    /**
+     * @return string
+     */
+    public function getModelImport(): string
     {
         if(File::exists(app_path('Models/' . $this->model . '.php'))) {
             return 'App\Models\\' . $this->model;
         }
+
         if(File::exists(app_path($this->model . '.php'))) {
             return 'App\\' . $this->model;
         }
-        $this->error('Could not find path to model');
+
+        $this->error('Could not find path to model.');
+
         return 'App\Models\\' . $this->model;
     }
 }

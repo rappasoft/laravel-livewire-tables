@@ -37,12 +37,14 @@ class LaravelLivewireTablesServiceProvider extends PackageServiceProvider
         $this->registerCommands();
     }
 
-    protected function registerCommands()
+    protected function registerCommands(): void
     {
-        if (! $this->app->runningInConsole()) return;
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
 
         $this->commands([
-            MakeCommand::class,         // make:table
+            MakeCommand::class,
         ]);
     }
 

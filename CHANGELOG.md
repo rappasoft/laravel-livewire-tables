@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.12.0] - 2021-07-31
+
+### Added
+
+- [Make datatable command](https://github.com/rappasoft/laravel-livewire-tables/pull/408)
+
 ## [1.11.0] - 2021-07-10
 
 ### Added
@@ -428,7 +434,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.11.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.12.0...development
+[1.12.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.4...v1.11.0
 [1.10.4]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.3...v1.10.4
 [1.10.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.2...v1.10.3
