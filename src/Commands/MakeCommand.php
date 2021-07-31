@@ -59,8 +59,9 @@ class MakeCommand extends Command
 
         $livewireMakeCommand = new LivewireMakeCommand();
 
-        if($livewireMakeCommand->isReservedClassName($name = $this->parser->className())) {
+        if ($livewireMakeCommand->isReservedClassName($name = $this->parser->className())) {
             $this->line("<fg=red;options=bold>Class is reserved:</> {$name}");
+
             return;
         }
 
@@ -102,7 +103,7 @@ class MakeCommand extends Command
      */
     protected function createView(bool $force = false)
     {
-        if(! $this->option('view')) {
+        if (! $this->option('view')) {
             return null;
         }
 
@@ -136,7 +137,7 @@ class MakeCommand extends Command
      */
     public function classContents(): string
     {
-        if($this->model) {
+        if ($this->model) {
             $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table-with-model.stub');
 
             $contents = str_replace(
@@ -147,21 +148,24 @@ class MakeCommand extends Command
         } else {
             $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table.stub');
 
-            $contents =  str_replace(
+            $contents = str_replace(
                 ['[namespace]', '[class]'],
                 [$this->parser->classNamespace(), $this->parser->className()],
                 $template
             );
         }
 
-        if($this->viewPath) {
-            $contents = Str::replaceLast("}\n", "
+        if ($this->viewPath) {
+            $contents = Str::replaceLast(
+                "}\n",
+                "
     public function rowView(): string
     {
         return '" . $this->getViewPathForRowView() . "';
     }
 }\n",
-                $contents);
+                $contents
+            );
         }
 
         return $contents;
@@ -188,11 +192,11 @@ class MakeCommand extends Command
      */
     public function getModelImport(): string
     {
-        if(File::exists(app_path('Models/' . $this->model . '.php'))) {
+        if (File::exists(app_path('Models/' . $this->model . '.php'))) {
             return 'App\Models\\' . $this->model;
         }
 
-        if(File::exists(app_path($this->model . '.php'))) {
+        if (File::exists(app_path($this->model . '.php'))) {
             return 'App\\' . $this->model;
         }
 
