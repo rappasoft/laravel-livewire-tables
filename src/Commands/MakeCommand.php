@@ -47,8 +47,8 @@ class MakeCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generate a Laravel Livewire datatable class and view';
-
+    protected $description = 'Generate a Laravel Livewire datatable class and view.';
+    
     public function handle(): void
     {
         $this->parser = new ComponentParser(
@@ -74,7 +74,7 @@ class MakeCommand extends Command
     }
 
     /**
-     * @param  false  $force
+     * @param  bool  $force
      *
      * @return false
      */
@@ -96,11 +96,11 @@ class MakeCommand extends Command
     }
 
     /**
-     * @param  false  $force
+     * @param  bool  $force
      *
      * @return false|string|null
      */
-    protected function createView($force = false)
+    protected function createView(bool $force = false)
     {
         if(! $this->option('view')) {
             return null;
@@ -139,16 +139,16 @@ class MakeCommand extends Command
         if($this->model) {
             $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table-with-model.stub');
 
-            $contents = preg_replace_array(
-                ['/\[namespace\]/', '/\[class\]/', '/\[model\]/', '/\[model_import\]/'],
+            $contents = str_replace(
+                ['[namespace]', '[class]', '[model]', '[model_import]'],
                 [$this->parser->classNamespace(), $this->parser->className(), $this->model, $this->getModelImport()],
                 $template
             );
         } else {
             $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table.stub');
 
-            $contents =  preg_replace_array(
-                ['/\[namespace\]/', '/\[class\]/'],
+            $contents =  str_replace(
+                ['[namespace]', '[class]'],
                 [$this->parser->classNamespace(), $this->parser->className()],
                 $template
             );
