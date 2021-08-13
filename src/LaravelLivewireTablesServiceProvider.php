@@ -33,19 +33,6 @@ class LaravelLivewireTablesServiceProvider extends PackageServiceProvider
         Blade::component('livewire-tables::bootstrap-5.components.table.heading', 'livewire-tables::bs5.table.heading');
         Blade::component('livewire-tables::bootstrap-5.components.table.row', 'livewire-tables::bs5.table.row');
         Blade::component('livewire-tables::bootstrap-5.components.table.cell', 'livewire-tables::bs5.table.cell');
-
-        $this->registerCommands();
-    }
-
-    protected function registerCommands(): void
-    {
-        if (! $this->app->runningInConsole()) {
-            return;
-        }
-
-        $this->commands([
-            MakeCommand::class,
-        ]);
     }
 
     /**
@@ -57,6 +44,7 @@ class LaravelLivewireTablesServiceProvider extends PackageServiceProvider
             ->name('laravel-livewire-tables')
             ->hasConfigFile()
             ->hasViews()
-            ->hasTranslations();
+            ->hasTranslations()
+            ->hasCommand(MakeCommand::class);
     }
 }
