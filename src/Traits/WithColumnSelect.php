@@ -21,7 +21,7 @@ trait WithColumnSelect
 
         // Get a list of visible default columns that are not excluded
         $columns = collect($this->columns())
-            ->filter(fn ($column) => $column->isVisible() && $column->isSelectable())
+            ->filter(fn ($column) => $column->isVisible() && $column->isSelectable() && $column->isSelected())
             ->map(fn ($column) => $column->column())
             ->values()
             ->toArray();
