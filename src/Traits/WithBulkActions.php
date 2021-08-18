@@ -14,7 +14,7 @@ trait WithBulkActions
     public string $primaryKey = 'id';
     public bool $selectPage = false;
     public bool $selectAll = false;
-    public $selected = [];
+    public array $selected = [];
     public array $bulkActions = [];
     public bool $hideBulkActionsOnEmpty = false;
 
@@ -49,7 +49,7 @@ trait WithBulkActions
 
     public function selectPageRows(): void
     {
-        $this->selected = $this->rows->pluck($this->primaryKey)->map(fn ($key) => (string) $key);
+        $this->selected = $this->rows->pluck($this->primaryKey)->map(fn ($key) => (string) $key)->toArray();
     }
 
     public function selectAll(): void
