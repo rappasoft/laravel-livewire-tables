@@ -67,10 +67,12 @@ trait WithBulkActions
     /**
      * @return Builder|Relation
      */
-    public function selectedRowsQuery()
+    public function selectedRowsQuery(): Relation|Builder
     {
-        return (clone $this->rowsQuery())
-            ->unless($this->selectAll, fn ($query) => $query->whereIn($query->qualifyColumn($this->primaryKey), $this->selected));
+        return $this->query()->unless(
+            $this->selectAll,
+            fn ($query) => $query->whereIn($query->qualifyColumn($this->primaryKey), $this->selected)
+        );
     }
 
     /**
@@ -83,7 +85,7 @@ trait WithBulkActions
 
     public function selectedKeys(): array
     {
-        return $this->selectedRowsQuery()->pluck($this->rowsQuery()->qualifyColumn($this->primaryKey))->toArray();
+        return $this->selectedRowsQuery()->pluck($this->query()->qualifyColumn($this->primaryKey))->toArray();
     }
 
     public function getSelectedKeysProperty(): array
