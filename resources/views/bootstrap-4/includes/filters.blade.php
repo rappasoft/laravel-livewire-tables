@@ -38,6 +38,8 @@
 
                             @if ($filter->isSelect())
                                 @include('livewire-tables::bootstrap-4.includes.filter-type-select')
+                            @elseif($filter->isMultiSelect())
+                                @include('livewire-tables::bootstrap-4.includes.filter-type-multiselect')
                             @elseif($filter->isDate())
                                 @include('livewire-tables::bootstrap-4.includes.filter-type-date')
                             @endif
