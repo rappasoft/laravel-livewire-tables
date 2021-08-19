@@ -161,6 +161,17 @@ trait WithFilters
                 }
             }
 
+            // Handle 'multiselect' filters
+            if ($filterDefinitions[$filterName]->isMultiSelect() && is_array($filterValue)) {
+                foreach ($filterValue as $selectedValue) {
+                    if (!in_array($selectedValue, $this->getFilterOptions($filterName))) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
             if ($filterDefinitions[$filterName]->isDate()) {
                 // array_sum trick is a terse way of ensuring that PHP
                 // did not do "month shifting"
@@ -210,7 +221,11 @@ trait WithFilters
                 return $this->hasIntegerKeys($filter) ? (int)$this->filters[$filter] : trim($this->filters[$filter]);
             }
 
-            return trim($this->filters[$filter]);
+            if(is_string($this->filters[$filter])) {
+                return trim($this->filters[$filter]);
+            }
+
+            return $this->filters[$filter];
         }
 
         return null;

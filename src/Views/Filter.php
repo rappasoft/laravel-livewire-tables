@@ -11,6 +11,8 @@ class Filter
 
     public const TYPE_SELECT = 'select';
 
+    public const TYPE_MULTISELECT = 'multiselect';
+
     /**
      * @var string
      */
@@ -65,6 +67,20 @@ class Filter
      *
      * @return $this
      */
+    public function multiSelect(array $options = []): Filter
+    {
+        $this->type = self::TYPE_MULTISELECT;
+
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * @param array $options
+     *
+     * @return $this
+     */
     public function date(array $options = []): Filter
     {
         $this->type = self::TYPE_DATE;
@@ -96,6 +112,14 @@ class Filter
     public function isSelect(): bool
     {
         return $this->type === self::TYPE_SELECT;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMultiSelect(): bool
+    {
+        return $this->type === self::TYPE_MULTISELECT;
     }
 
     /**

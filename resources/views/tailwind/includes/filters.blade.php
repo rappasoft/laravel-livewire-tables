@@ -58,6 +58,8 @@
 
                             @if ($filter->isSelect())
                                 @include('livewire-tables::tailwind.includes.filter-type-select')
+                            @elseif($filter->isMultiSelect())
+                                @include('livewire-tables::tailwind.includes.filter-type-multiselect')
                             @elseif($filter->isDate())
                                 @include('livewire-tables::tailwind.includes.filter-type-date')
                             @endif
