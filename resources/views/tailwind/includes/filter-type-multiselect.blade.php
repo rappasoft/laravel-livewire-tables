@@ -12,13 +12,13 @@
 {{--        @endforeach--}}
 {{--    </select>--}}
 
-    @foreach($filter->options() as $k => $value)
+    @foreach($filter->options() as $optionKey => $value)
         <input
             type="checkbox"
             id="filter-{{$key}}-{{ $loop->index }}"
             wire:key="filter-{{$key}}-{{ $loop->index }}"
             wire:model.stop="filters.{{$key}}.{{ $loop->index }}"
-            value="{{ $k }}"
+            value="{{ $optionKey }}"
         >
         <label for="filter-{{$key}}-{{ $loop->index }}">{{ $value }}</label>
         <br>
