@@ -6,7 +6,7 @@
                     <span>
                         @lang('You have selected')
                         <strong>{{ count($selected) }}</strong>
-                        @lang(':rows', ['rows' => count($selected) === 1 ? 'row' : 'rows']).
+                        @lang(count($selected) === 1 ? 'row' : 'rows').
                     </span>
 
                     <button
@@ -41,7 +41,7 @@
                         <span>
                             @lang('You have selected')
                             <strong>{{ count($selected) }}</strong>
-                            @lang(':rows', ['rows' => count($selected) === 1 ? 'row' : 'rows']).
+                            @lang(count($selected) === 1 ? 'row' : 'rows').
                         </span>
 
                         <button
