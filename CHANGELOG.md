@@ -9,6 +9,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - [Spanish translation](https://github.com/rappasoft/laravel-livewire-tables/pull/433)
+- [Use package tool to register commands](https://github.com/rappasoft/laravel-livewire-tables/pull/434)
 
 ## [1.12.0] - 2021-07-31
 
