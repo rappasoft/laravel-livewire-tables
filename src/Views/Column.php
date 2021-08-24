@@ -260,7 +260,7 @@ class Column
         $value = data_get($row, $columnName);
 
         if ($this->formatCallback) {
-            $value = call_user_func($this->formatCallback, $value, $row, $column);
+            $value = call_user_func($this->formatCallback, $value, $column, $row);
         }
 
         return $value;
