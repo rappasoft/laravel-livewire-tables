@@ -59,7 +59,7 @@ abstract class DataTableComponent extends Component
      *
      * @var string
      */
-    public string $emptyMessage = 'No items found. Try narrowing your search.';
+    public string $emptyMessage = 'No items found. Try to broaden your search.';
 
     /**
      * Name of the page parameter for pagination
