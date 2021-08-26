@@ -67,7 +67,7 @@ trait WithBulkActions
     /**
      * @return Builder|Relation
      */
-    public function selectedRowsQuery(): Relation|Builder
+    public function selectedRowsQuery()
     {
         return $this->query()->unless(
             $this->selectAll,
