@@ -75,6 +75,11 @@ class Column
     public bool $selectable = true;
 
     /**
+     * @var bool
+     */
+    public bool $selected = false;
+
+    /**
      * Column constructor.
      *
      * @param string|null $column
@@ -334,5 +339,23 @@ class Column
     public function isSelectable(): bool
     {
         return $this->selectable === true;
+    }
+
+    /**
+     * @return $this
+     */
+    public function selected(): self
+    {
+        $this->selected = true;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSelected(): bool
+    {
+        return $this->selected;
     }
 }
