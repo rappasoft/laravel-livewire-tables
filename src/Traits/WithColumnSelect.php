@@ -11,20 +11,24 @@ trait WithColumnSelect
 {
     public bool $columnSelect = false;
     public array $columnSelectEnabled = [];
-
     public bool $usesSelect = false;
+    public bool $rememberColumnSelection = true;
 
     public function mountWithColumnSelect(): void
     {
+        if (! $this->rememberColumnSelection) {
+            $this->forgetColumnSelectSession();
+        }
+
         // If the column select is off, make sure to clear the session
         if (! $this->columnSelect && session()->has($this->getColumnSelectSessionKey())) {
             session()->forget($this->getColumnSelectSessionKey());
         }
 
-        $selected = collect($this->columns())
-            ->filter(fn ($column) => $column->isSelected())->count();
-
-        if ($selected > 0) $this->usesSelect = true;
+        // If any of the columns are user selected
+        if (collect($this->columns())->filter(fn ($column) => $column->isSelected())->count() > 0) {
+            $this->usesSelect = true;
+        }
 
         // Get a list of visible default columns that are not excluded
         $columns = collect($this->columns())
@@ -32,6 +36,7 @@ trait WithColumnSelect
                 if ($this->usesSelect) {
                     return $column->isVisible() && $column->isSelectable() && $column->isSelected();
                 }
+
                 return $column->isVisible() && $column->isSelectable();
             })
             ->map(fn ($column) => $column->column())
@@ -58,6 +63,11 @@ trait WithColumnSelect
     public function isColumnSelectEnabled($column): bool
     {
         return in_array($column instanceof Column ? $column->column() : $column, $this->columnSelectEnabled, true);
+    }
+
+    private function forgetColumnSelectSession(): void
+    {
+        session()->forget($this->getColumnSelectSessionKey());
     }
 
     private function getColumnSelectSessionKey(): string
