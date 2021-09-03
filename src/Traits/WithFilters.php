@@ -3,12 +3,12 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use DateTime;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Schema;
+use Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities;
 
 /**
  * Trait WithFilters.
