@@ -11,6 +11,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added [ID language file](https://github.com/rappasoft/laravel-livewire-tables/pull/444)
 - Added [ability to preselect columns](https://github.com/rappasoft/laravel-livewire-tables/pull/436)
 - Added ability to turn off column session
+- [Support virtual columns](https://github.com/rappasoft/laravel-livewire-tables/pull/447)
 
 ## [1.13.0] - 2021-08-24
 
