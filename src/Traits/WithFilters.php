@@ -318,7 +318,6 @@ trait WithFilters
                         // TODO: Skip Aggregates
                         if (! $hasRelation) {
                             $whereColumn = Schema::hasColumn($query->getModel()->getTable(), $whereColumn) ? $query->getModel()->getTable() . '.' . $whereColumn : $whereColumn;
-
                         }
 
                         // We can use a simple where clause
