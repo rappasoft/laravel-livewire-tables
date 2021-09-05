@@ -12,6 +12,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added [ability to preselect columns](https://github.com/rappasoft/laravel-livewire-tables/pull/436)
 - Added ability to turn off column session
 - [Support virtual columns](https://github.com/rappasoft/laravel-livewire-tables/pull/447)
+- Added ability to dump filters above table for debugging
 
 ## [1.13.0] - 2021-08-24
 
