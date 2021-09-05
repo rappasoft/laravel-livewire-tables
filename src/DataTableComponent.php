@@ -31,6 +31,13 @@ abstract class DataTableComponent extends Component
     use WithSorting;
 
     /**
+     * Dump the filters array for debugging at the top of the datatable
+     *
+     * @var bool
+     */
+    public bool $dumpFilters = false;
+
+    /**
      * The default pagination theme.
      *
      * @var string

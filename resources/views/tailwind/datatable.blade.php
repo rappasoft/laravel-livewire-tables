@@ -12,6 +12,7 @@
             @endif
         @endif
     >
+        @include('livewire-tables::includes.debug')
         @include('livewire-tables::tailwind.includes.offline')
 
         <div class="flex-col">
