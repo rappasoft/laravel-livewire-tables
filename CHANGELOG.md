@@ -4,6 +4,16 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.14.0] - 2021-08-31
+
+### Added
+
+- Added [ID language file](https://github.com/rappasoft/laravel-livewire-tables/pull/444)
+- Added [ability to preselect columns](https://github.com/rappasoft/laravel-livewire-tables/pull/436)
+- Added ability to turn off column session
+- [Support virtual columns](https://github.com/rappasoft/laravel-livewire-tables/pull/447)
+- Added ability to dump filters above table for debugging
+
 ## [1.13.0] - 2021-08-24
 
 ### Added
@@ -446,7 +456,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.13.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.14.0...development
+[1.14.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.13.0...v1.14.0
 [1.13.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.10.4...v1.11.0

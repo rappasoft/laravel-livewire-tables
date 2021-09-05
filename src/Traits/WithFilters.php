@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Schema;
 use Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
@@ -316,7 +317,7 @@ trait WithFilters
 
                         // TODO: Skip Aggregates
                         if (! $hasRelation) {
-                            $whereColumn = $query->getModel()->getTable() . '.' . $whereColumn;
+                            $whereColumn = Schema::hasColumn($query->getModel()->getTable(), $whereColumn) ? $query->getModel()->getTable() . '.' . $whereColumn : $whereColumn;
                         }
 
                         // We can use a simple where clause

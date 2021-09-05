@@ -13,6 +13,7 @@
         @endif
         class="container-fluid p-0"
     >
+        @include('livewire-tables::includes.debug')
         @include('livewire-tables::bootstrap-4.includes.offline')
         @include('livewire-tables::bootstrap-4.includes.sorting-pills')
         @include('livewire-tables::bootstrap-4.includes.filter-pills')
