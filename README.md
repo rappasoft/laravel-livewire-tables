@@ -7,6 +7,8 @@
 
 A dynamic Laravel Livewire component for data tables.
 
+![Dark Mode](https://imgur.com/QoEdC7n.png)
+
 ![Full Table](https://i.imgur.com/2kfibjR.png)
 
 ### [Bootstrap 4 Demo](https://tables.laravel-boilerplate.com/bootstrap-4) | [Bootstrap 5 Demo](https://tables.laravel-boilerplate.com/bootstrap-5) | [Tailwind Demo](https://tables.laravel-boilerplate.com/tailwind)
