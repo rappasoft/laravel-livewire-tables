@@ -1,7 +1,7 @@
 <div>
     @if ($showFilters && count($this->getFiltersWithoutSearch()))
         <div class="mb-4 p-6 md:p-0">
-            <small class="text-gray-700">@lang('Applied Filters'):</small>
+            <small class="text-gray-700 dark:text-white">@lang('Applied Filters'):</small>
 
             @foreach($filters as $key => $value)
                 @if ($key !== 'search' && strlen($value))

@@ -10,7 +10,7 @@
                     <input
                         wire:model="selectPage"
                         type="checkbox"
-                        class="rounded-md shadow-sm border-gray-300 block transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                        class="rounded border-gray-300 text-indigo-600 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600"
                     />
                 </div>
             </x-livewire-tables::table.heading>
@@ -55,9 +55,9 @@
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
                 :class="
                     ($index % 2 === 0 ?
-                    'bg-white' . (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '') :
-                    'bg-gray-50') .
-                    (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '') .
+                    'bg-white dark:bg-gray-700 dark:text-white' . (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '') :
+                    'bg-gray-50 dark:bg-gray-800 dark:text-white') .
+                    (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100 dark:hover:bg-gray-900 transition' : '') .
                     (method_exists($this, 'setTableRowClass') ? ' ' . $this->setTableRowClass($row) : '')
                 "
                 :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
@@ -80,7 +80,7 @@
                                 value="{{ $row->{$primaryKey} }}"
                                 onclick="event.stopPropagation();return true;"
                                 type="checkbox"
-                                class="rounded-md shadow-sm border-gray-300 block transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                class="rounded border-gray-300 text-indigo-600 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600"
                             />
                         </div>
                     </x-livewire-tables::table.cell>
@@ -90,13 +90,13 @@
             </x-livewire-tables::table.row>
         @empty
             <x-livewire-tables::table.row>
-                <x-livewire-tables::table.cell :colspan="$colspan">
-                    <div class="flex justify-center items-center space-x-2">
+                <x-livewire-tables::table.cell :colspan="$colspan" class="dark:bg-gray-800">
+                    <div class="flex justify-center items-center space-x-2 dark:bg-gray-800">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                         </svg>
 
-                        <span class="font-medium py-8 text-gray-400 text-xl">@lang($emptyMessage)</span>
+                        <span class="font-medium py-8 text-gray-400 text-xl dark:text-white">@lang($emptyMessage)</span>
                     </div>
                 </x-livewire-tables::table.cell>
             </x-livewire-tables::table.row>

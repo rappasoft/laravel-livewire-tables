@@ -4,6 +4,16 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.15.0] - 2021-09-XX
+
+### Added
+
+- Dark styles for Tailwind
+
+### Changed
+
+- Minimum Livewire version to 2.6.2 to avoid 2.6.1 bug.
+
 ## [1.14.0] - 2021-08-31
 
 ### Added
@@ -456,7 +466,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.14.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.15.0...development
+[1.15.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.13.0...v1.14.0
 [1.13.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.11.0...v1.12.0
