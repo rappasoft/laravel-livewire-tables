@@ -13,6 +13,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 - Minimum Livewire version to 2.6.2 to avoid 2.6.1 bug.
+- Remove our custom pagination as Livewire 2.6 supports multiple pagination per page now.
 
 ## [1.14.0] - 2021-08-31
 
