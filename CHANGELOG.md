@@ -4,7 +4,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
-## [1.15.0] - 2021-09-XX
+## [1.15.0] - 2021-09-19
 
 ### Added
 
