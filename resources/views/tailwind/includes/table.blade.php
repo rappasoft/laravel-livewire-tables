@@ -48,7 +48,7 @@
 
         @forelse ($rows as $index => $row)
             <x-livewire-tables::table.row
-                wire:loading.class.delay="opacity-50"
+                wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
                 wire:key="table-row-{{ $row->{$primaryKey} }}"
                 wire:sortable.item="{{ $row->{$primaryKey} }}"
                 :reordering="$reordering"
