@@ -86,9 +86,9 @@ class Column
     public $linkCallback;
 
     /**
-     * @var string
+     * @var ?string
      */
-    public string $linkTarget;
+    public ?string $linkTarget;
 
     /**
      * Column constructor.
