@@ -388,6 +388,7 @@ class Column
     {
         $this->linkCallback = $callable;
         $this->linkTarget = $target;
+
         return $this;
     }
 }
