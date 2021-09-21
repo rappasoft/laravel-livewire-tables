@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
 use DB;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
@@ -64,6 +65,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            LivewireServiceProvider::class,
             LaravelLivewireTablesServiceProvider::class,
         ];
     }

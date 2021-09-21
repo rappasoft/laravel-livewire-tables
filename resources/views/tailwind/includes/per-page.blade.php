@@ -3,7 +3,7 @@
         <select
             wire:model="perPage"
             id="perPage"
-            class="rounded-md shadow-sm block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
+            class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600"
         >
             @foreach ($perPageAccepted as $item)
                 <option value="{{ $item }}">{{ $item === -1 ? __('All') : $item }}</option>

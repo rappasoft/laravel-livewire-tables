@@ -7,6 +7,8 @@
 
 A dynamic Laravel Livewire component for data tables.
 
+![Dark Mode](https://imgur.com/QoEdC7n.png)
+
 ![Full Table](https://i.imgur.com/2kfibjR.png)
 
 ### [Bootstrap 4 Demo](https://tables.laravel-boilerplate.com/bootstrap-4) | [Bootstrap 5 Demo](https://tables.laravel-boilerplate.com/bootstrap-5) | [Tailwind Demo](https://tables.laravel-boilerplate.com/tailwind)
@@ -19,11 +21,11 @@ You can install the package via composer:
 composer require rappasoft/laravel-livewire-tables
 ```
 
-Please see the rest of the [installation instructions](https://github.com/rappasoft/laravel-livewire-tables/wiki/Installation-&-Configuration).
+Please see the rest of the [installation instructions](https://rappasoft.github.io/laravel-livewire-tables-docs/start/Installation-&-Configuration).
 
 ## Usage
 
-### [Read the documentation](https://github.com/rappasoft/laravel-livewire-tables/wiki)
+### [Read the documentation](https://rappasoft.github.io/laravel-livewire-tables-docs/)
 
 ## Basic Example
 
@@ -61,7 +63,7 @@ class UsersTable extends DataTableComponent
 }
 ```
 
-### [See advanced example](https://github.com/rappasoft/laravel-livewire-tables/wiki/Advanced-Example-Table)
+### [See advanced example](https://rappasoft.github.io/laravel-livewire-tables-docs/usage/Advanced-Example-Table)
 
 ## To-do/Roadmap
 
