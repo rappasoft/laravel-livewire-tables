@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views;
 
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
 /**
@@ -78,6 +79,16 @@ class Column
      * @var bool
      */
     public bool $selected = false;
+
+    /**
+     * @var
+     */
+    public $linkCallback;
+
+    /**
+     * @var string
+     */
+    public string $linkTarget;
 
     /**
      * Column constructor.
@@ -268,6 +279,14 @@ class Column
             $value = call_user_func($this->formatCallback, $value, $column, $row);
         }
 
+        if ($this->linkCallback) {
+            $url = call_user_func($this->linkCallback, $value, $column, $row);
+            if ($url) {
+                $linkTarget = $this->linkTarget ? "target='$this->linkTarget'" : '';
+                $value = new HtmlString("<a href='$url' $linkTarget>$value</a>");
+            }
+        }
+
         return $value;
     }
 
@@ -357,5 +376,18 @@ class Column
     public function isSelected(): bool
     {
         return $this->selected;
+    }
+
+    /**
+     * @param  callable  $callable
+     * @param  ?string  $target
+     *
+     * @return $this
+     */
+    public function linkTo(callable $callable, string $target = null): self
+    {
+        $this->linkCallback = $callable;
+        $this->linkTarget = $target;
+        return $this;
     }
 }
