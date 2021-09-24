@@ -6,7 +6,7 @@
             </button>
 
             <div class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="bulkActions">
-                @foreach($bulkActions as $action => $title)
+                @foreach($this->bulkActions as $action => $title)
                     <a
                         href="#"
                         wire:click.prevent="{{ $action }}"

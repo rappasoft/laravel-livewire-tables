@@ -4,7 +4,7 @@
             <x-livewire-tables::table.heading />
         @endif
 
-        @if ($bulkActionsEnabled && count($bulkActions))
+        @if ($bulkActionsEnabled && count($this->bulkActions))
             <x-livewire-tables::table.heading>
                 <div class="inline-flex rounded-md shadow-sm">
                     <input
@@ -40,7 +40,7 @@
     <x-slot name="body">
         @php
             $colspan = count($columns);
-            if ($bulkActionsEnabled && count($bulkActions)) $colspan++;
+            if ($bulkActionsEnabled && count($this->bulkActions)) $colspan++;
             if ($reordering) $colspan++;
         @endphp
 
@@ -71,7 +71,7 @@
                     </x-livewire-tables::table.cell>
                 @endif
 
-                @if ($bulkActionsEnabled && count($bulkActions))
+                @if ($bulkActionsEnabled && count($this->bulkActions))
                     <x-livewire-tables::table.cell>
                         <div class="inline-flex rounded-md shadow-sm">
                             <input
