@@ -114,4 +114,11 @@ class DataTableComponentTest extends TestCase
         $this->tableAltQuery->filters['search'] = 'Cat';
         $this->assertEquals(2, $this->tableAltQuery->rows->total());
     }
+
+    /** @test */
+    public function bulk_actions_defined_with_function()
+    {
+        $this->table->selected[] = 1;
+        $this->assertEquals(1, $this->table->count());
+    }
 }
