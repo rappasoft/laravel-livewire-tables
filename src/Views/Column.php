@@ -281,6 +281,7 @@ class Column
 
         if ($this->linkCallback) {
             $url = call_user_func($this->linkCallback, $value, $column, $row);
+
             if ($url) {
                 $linkTarget = $this->linkTarget ? "target='$this->linkTarget'" : '';
                 $value = new HtmlString("<a href='$url' $linkTarget>$value</a>");
