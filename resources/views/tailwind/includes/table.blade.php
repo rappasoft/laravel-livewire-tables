@@ -119,7 +119,7 @@
                     <x-livewire-tables::table.footer />
                 @endif
 
-                @if ($bulkActionsEnabled && count($bulkActions))
+                @if ($bulkActionsEnabled && count($this->bulkActions))
                     <x-livewire-tables::table.footer />
                 @endif
 

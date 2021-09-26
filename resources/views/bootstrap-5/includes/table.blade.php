@@ -103,7 +103,7 @@
                     <x-livewire-tables::bs5.table.footer />
                 @endif
 
-                @if ($bulkActionsEnabled && count($bulkActions))
+                @if ($bulkActionsEnabled && count($this->bulkActions))
                     <x-livewire-tables::bs5.table.footer />
                 @endif
 
