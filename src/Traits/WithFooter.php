@@ -12,7 +12,7 @@ trait WithFooter
 
     public function mountWithFooter(): void
     {
-        foreach($this->columns() as $column) {
+        foreach ($this->columns() as $column) {
             if ($column->hasFooter()) {
                 $this->customFooter = true;
             }
