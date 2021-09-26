@@ -116,9 +116,9 @@
                                 :customAttributes="method_exists($this, 'setFooterDataAttributes') ? $this->setFooterDataAttributes($column, $rows) : []"
                             >
                                 @if ($column->isHtml())
-                                    {{ new \Illuminate\Support\HtmlString($column->footerFormatted($row)) }}
+                                    {{ new \Illuminate\Support\HtmlString($column->footerFormatted($rows)) }}
                                 @else
-                                    {{ $column->footerFormatted($row) }}
+                                    {{ $column->footerFormatted($rows) }}
                                 @endif
                             </x-livewire-tables::bs4.table.footer>
                         @else
