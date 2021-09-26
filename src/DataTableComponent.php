@@ -71,7 +71,7 @@ abstract class DataTableComponent extends Component
     public string $emptyMessage = 'No items found. Try to broaden your search.';
 
     /**
-     * Wheter or not to display a responsive table
+     * Whether or not to display a responsive table
      *
      * @var bool
      */
