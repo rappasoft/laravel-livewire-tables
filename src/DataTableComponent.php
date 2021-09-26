@@ -9,6 +9,7 @@ use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
+use Rappasoft\LaravelLivewireTables\Traits\WithFooter;
 use Rappasoft\LaravelLivewireTables\Traits\WithPerPagePagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithReordering;
 use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
@@ -25,6 +26,7 @@ abstract class DataTableComponent extends Component
     use WithColumnSelect;
     use WithCustomPagination;
     use WithFilters;
+    use WithFooter;
     use WithPerPagePagination;
     use WithReordering;
     use WithSearch;

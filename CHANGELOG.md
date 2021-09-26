@@ -4,6 +4,16 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.16.0] - 2021-09-XX
+
+### Added
+
+- Ability to use the header as the footer
+- Ability to define a custom footer cell per column
+- Ability to set the footer row classes/id/attributes
+- Ability to set the footer cell classes/id/attributes
+- Added isHtml method on the column and replace use of property in views for internal use.
+
 ## [1.15.0] - 2021-09-19
 
 ### Added

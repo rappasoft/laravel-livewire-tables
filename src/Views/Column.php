@@ -80,6 +80,16 @@ class Column
     public bool $selected = false;
 
     /**
+     * @var bool
+     */
+    public bool $footer = false;
+
+    /**
+     * @var
+     */
+    public $footerCallback;
+
+    /**
      * Column constructor.
      *
      * @param string|null $column
@@ -200,6 +210,14 @@ class Column
         $this->asHtml = true;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHtml(): bool
+    {
+        return $this->asHtml === true;
     }
 
     /**
@@ -357,5 +375,41 @@ class Column
     public function isSelected(): bool
     {
         return $this->selected;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasFooter(): bool
+    {
+        return $this->footer === true;
+    }
+
+    /**
+     * @return $this
+     */
+    public function footer($callback = null): self
+    {
+        $this->footer = true;
+
+        $this->footerCallback = $callback;
+
+        return $this;
+    }
+
+    /**
+     * @param $rows
+     *
+     * @return false|mixed|null
+     */
+    public function footerFormatted($rows)
+    {
+        $value = null;
+
+        if ($this->footerCallback) {
+            $value = call_user_func($this->footerCallback, $rows);
+        }
+
+        return $value;
     }
 }

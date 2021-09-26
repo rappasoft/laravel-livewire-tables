@@ -9,5 +9,17 @@
         <tbody {{ $attributes->only('wire:sortable') }}>
             {{ $body }}
         </tbody>
+
+        @if ($useHeaderAsFooter || $customFooter)
+            <tfoot>
+                @if ($useHeaderAsFooter)
+                    <tr>
+                        {{ $head }}
+                    </tr>
+                @elseif($customFooter)
+                    {{ $foot }}
+                @endif
+            </tfoot>
+        @endif
     </table>
 </div>

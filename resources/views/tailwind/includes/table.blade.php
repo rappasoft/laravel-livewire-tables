@@ -1,4 +1,8 @@
-<x-livewire-tables::table wire:sortable="{{ $reordering ? $reorderingMethod : '' }}">
+<x-livewire-tables::table
+    wire:sortable="{{ $reordering ? $reorderingMethod : '' }}"
+    :useHeaderAsFooter="$useHeaderAsFooter"
+    :customFooter="$customFooter"
+>
     <x-slot name="head">
         @if ($reordering)
             <x-livewire-tables::table.heading />
@@ -102,4 +106,45 @@
             </x-livewire-tables::table.row>
         @endforelse
     </x-slot>
+
+    @if ($customFooter)
+        <x-slot name="foot">
+            <x-livewire-tables::table.row
+                wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
+                :class="method_exists($this, 'setFooterRowClass') ? ' ' . $this->setFooterRowClass($rows) : ''"
+                :id="method_exists($this, 'setFooterRowId') ? $this->setFooterRowId($rows) : ''"
+                :customAttributes="method_exists($this, 'setFooterRowAttributes') ? $this->setFooterRowAttributes($rows) : []"
+            >
+                @if ($reordering)
+                    <x-livewire-tables::table.footer />
+                @endif
+
+                @if ($bulkActionsEnabled && count($bulkActions))
+                    <x-livewire-tables::table.footer />
+                @endif
+
+                @foreach($columns as $column)
+                    @if ($column->isVisible())
+                        @continue($columnSelect && ! $this->isColumnSelectEnabled($column))
+
+                        @if ($column->hasFooter())
+                            <x-livewire-tables::table.footer
+                                :class="method_exists($this, 'setFooterDataClass') ? $this->setFooterDataClass($column, $rows) : ''"
+                                :id="method_exists($this, 'setFooterDataId') ? $this->setFooterDataId($column, $rows) : ''"
+                                :customAttributes="method_exists($this, 'setFooterDataAttributes') ? $this->setFooterDataAttributes($column, $rows) : []"
+                            >
+                                @if ($column->isHtml())
+                                    {{ new \Illuminate\Support\HtmlString($column->footerFormatted($row)) }}
+                                @else
+                                    {{ $column->footerFormatted($row) }}
+                                @endif
+                            </x-livewire-tables::table.footer>
+                        @else
+                            <x-livewire-tables::table.footer />
+                        @endif
+                    @endif
+                @endforeach
+            </x-livewire-tables::table.row>
+        </x-slot>
+    @endif
 </x-livewire-tables::table>
