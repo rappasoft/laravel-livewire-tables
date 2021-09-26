@@ -13,6 +13,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Ability to set the footer row classes/id/attributes
 - Ability to set the footer cell classes/id/attributes
 - Added isHtml method on the column and replace use of property in views for internal use.
+- [Ability to define bulk actions with a method](https://github.com/rappasoft/laravel-livewire-tables/pull/467)
 
 ## [1.15.0] - 2021-09-19
 
