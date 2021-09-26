@@ -1,5 +1,5 @@
 @if ($showPagination)
-    <div class="p-6 md:p-0">
+    <div class="px-6 py-2 md:p-0">
         @if ($paginationEnabled && $rows->lastPage() > 1)
             {{ $rows->links('livewire-tables::tailwind.includes.partials.pagination') }}
         @else
