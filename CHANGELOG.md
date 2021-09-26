@@ -15,6 +15,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added isHtml method on the column and replace use of property in views for internal use.
 - [Ability to define bulk actions with a method](https://github.com/rappasoft/laravel-livewire-tables/pull/467)
 
+### Changed
+
+- [Reduce horizontal spacing in Tailwind responsive view](https://github.com/rappasoft/laravel-livewire-tables/pull/464)
+
 ## [1.15.0] - 2021-09-19
 
 ### Added
