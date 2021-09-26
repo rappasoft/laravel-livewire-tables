@@ -39,7 +39,7 @@
             >
                 <div class="rounded-md bg-white shadow-xs dark:bg-gray-700 dark:text-white">
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        @foreach($bulkActions as $action => $title)
+                        @foreach($this->bulkActions as $action => $title)
                             <button
                                 wire:click="{{ $action }}"
                                 wire:key="bulk-action-{{ $action }}"

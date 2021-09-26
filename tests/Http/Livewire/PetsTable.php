@@ -9,6 +9,11 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class PetsTable extends DataTableComponent
 {
+    public function bulkActions(): array
+    {
+        return ['count' => 'Count selected'];
+    }
+
     /**
      * @return Builder
      */
@@ -35,5 +40,10 @@ class PetsTable extends DataTableComponent
             Column::make('Breed', 'breed.name')
                 ->searchable(),
         ];
+    }
+
+    public function count(): int
+    {
+        return $this->selectedRowsQuery()->count();
     }
 }
