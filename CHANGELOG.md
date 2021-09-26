@@ -15,6 +15,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added isHtml method on the column and replace use of property in views for internal use.
 - [Ability to define bulk actions with a method](https://github.com/rappasoft/laravel-livewire-tables/pull/467)
 - [Allow to disable responsive status of the table](https://github.com/rappasoft/laravel-livewire-tables/pull/458)
+- [Ability to link each cell](https://github.com/rappasoft/laravel-livewire-tables/pull/461)
 
 ### Changed
 
