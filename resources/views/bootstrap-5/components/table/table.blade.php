@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="{{$this->responsive ? 'table-responsive' : ''}}">
     <table {{ $attributes->except('wire:sortable') }} class="table table-striped">
         <thead>
             <tr>

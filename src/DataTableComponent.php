@@ -71,6 +71,13 @@ abstract class DataTableComponent extends Component
     public string $emptyMessage = 'No items found. Try to broaden your search.';
 
     /**
+     * Wheter or not to display a responsive table
+     *
+     * @var bool
+     */
+    public bool $responsive = true;
+
+    /**
      * Name of the page parameter for pagination
      * Good to change the default if you have more than one datatable on a page.
      *
