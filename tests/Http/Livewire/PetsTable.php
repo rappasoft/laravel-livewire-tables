@@ -11,7 +11,7 @@ class PetsTable extends DataTableComponent
 {
     public function bulkActions(): array
     {
-        return [ 'count' => 'Count selected'];
+        return ['count' => 'Count selected'];
     }
 
     /**
