@@ -4,6 +4,23 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.16.0] - 2021-09-26
+
+### Added
+
+- Ability to use the header as the footer
+- Ability to define a custom footer cell per column
+- Ability to set the footer row classes/id/attributes
+- Ability to set the footer cell classes/id/attributes
+- Added isHtml method on the column and replace use of property in views for internal use.
+- [Ability to define bulk actions with a method](https://github.com/rappasoft/laravel-livewire-tables/pull/467)
+- [Allow to disable responsive status of the table](https://github.com/rappasoft/laravel-livewire-tables/pull/458)
+- [Ability to link each cell](https://github.com/rappasoft/laravel-livewire-tables/pull/461)
+
+### Changed
+
+- [Reduce horizontal spacing in Tailwind responsive view](https://github.com/rappasoft/laravel-livewire-tables/pull/464)
+
 ## [1.15.0] - 2021-09-19
 
 ### Added
@@ -467,7 +484,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.15.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.16.0...development
+[1.16.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.13.0...v1.14.0
 [1.13.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.12.0...v1.13.0

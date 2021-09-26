@@ -1,6 +1,6 @@
 <div>
     @if ($showSorting && count($sorts))
-        <div class="mb-4 p-6 md:p-0">
+        <div class="md:mb-4 px-6 py-2 md:p-0">
             <small class="text-gray-700 dark:text-white">@lang('Applied Sorting'):</small>
 
             @foreach($sorts as $col => $dir)

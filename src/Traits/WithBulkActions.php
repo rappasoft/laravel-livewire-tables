@@ -15,7 +15,7 @@ trait WithBulkActions
     public bool $selectPage = false;
     public bool $selectAll = false;
     public $selected = [];
-    public array $bulkActions = [];
+
     public bool $hideBulkActionsOnEmpty = false;
 
     public function renderingWithBulkActions(): void
@@ -91,12 +91,26 @@ trait WithBulkActions
         return $this->selectedKeys();
     }
 
+    public function getBulkActionsProperty(): array
+    {
+        return $this->bulkActions();
+    }
+
+    public function bulkActions(): array
+    {
+        if (property_exists($this, 'bulkActions')) {
+            return $this->bulkActions;
+        }
+
+        return [];
+    }
+
     public function getShowBulkActionsDropdownProperty(): bool
     {
         $showBulkActions = false;
 
         if ($this->bulkActionsEnabled) {
-            if (count($this->bulkActions)) {
+            if (count($this->bulkActions())) {
                 $showBulkActions = true;
             }
 

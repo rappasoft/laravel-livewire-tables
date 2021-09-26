@@ -1,10 +1,14 @@
-<x-livewire-tables::bs4.table wire:sortable="{{ $reordering ? $reorderingMethod : '' }}">
+<x-livewire-tables::bs4.table
+    wire:sortable="{{ $reordering ? $reorderingMethod : '' }}"
+    :useHeaderAsFooter="$useHeaderAsFooter"
+    :customFooter="$customFooter"
+>
     <x-slot name="head">
         @if ($reordering)
             <x-livewire-tables::bs4.table.heading />
         @endif
 
-        @if ($bulkActionsEnabled && count($bulkActions))
+        @if ($bulkActionsEnabled && count($this->bulkActions))
             <x-livewire-tables::bs4.table.heading>
                 <input
                     wire:model="selectPage"
@@ -37,7 +41,7 @@
     <x-slot name="body">
         @php
             $colspan = count($columns);
-            if ($bulkActionsEnabled && count($bulkActions)) $colspan++;
+            if ($bulkActionsEnabled && count($this->bulkActions)) $colspan++;
             if ($reordering) $colspan++;
         @endphp
 
@@ -62,7 +66,7 @@
                     </x-livewire-tables::bs4.table.cell>
                 @endif
 
-                @if ($bulkActionsEnabled && count($bulkActions))
+                @if ($bulkActionsEnabled && count($this->bulkActions))
                     <x-livewire-tables::bs4.table.cell>
                         <input
                             wire:model="selected"
@@ -84,4 +88,45 @@
             </x-livewire-tables::bs4.table.row>
         @endforelse
     </x-slot>
+
+    @if ($customFooter)
+        <x-slot name="foot">
+            <x-livewire-tables::bs4.table.row
+                wire:loading.class.delay="text-muted"
+                :class="method_exists($this, 'setFooterRowClass') ? ' ' . $this->setFooterRowClass($rows) : ''"
+                :id="method_exists($this, 'setFooterRowId') ? $this->setFooterRowId($rows) : ''"
+                :customAttributes="method_exists($this, 'setFooterRowAttributes') ? $this->setFooterRowAttributes($rows) : []"
+            >
+                @if ($reordering)
+                    <x-livewire-tables::bs4.table.footer />
+                @endif
+
+                @if ($bulkActionsEnabled && count($this->bulkActions))
+                    <x-livewire-tables::bs4.table.footer />
+                @endif
+
+                @foreach($columns as $column)
+                    @if ($column->isVisible())
+                        @continue($columnSelect && ! $this->isColumnSelectEnabled($column))
+
+                        @if ($column->hasFooter())
+                            <x-livewire-tables::bs4.table.footer
+                                :class="method_exists($this, 'setFooterDataClass') ? $this->setFooterDataClass($column, $rows) : ''"
+                                :id="method_exists($this, 'setFooterDataId') ? $this->setFooterDataId($column, $rows) : ''"
+                                :customAttributes="method_exists($this, 'setFooterDataAttributes') ? $this->setFooterDataAttributes($column, $rows) : []"
+                            >
+                                @if ($column->isHtml())
+                                    {{ new \Illuminate\Support\HtmlString($column->footerFormatted($rows)) }}
+                                @else
+                                    {{ $column->footerFormatted($rows) }}
+                                @endif
+                            </x-livewire-tables::bs4.table.footer>
+                        @else
+                            <x-livewire-tables::bs4.table.footer />
+                        @endif
+                    @endif
+                @endforeach
+            </x-livewire-tables::bs4.table.row>
+        </x-slot>
+    @endif
 </x-livewire-tables::bs4.table>
