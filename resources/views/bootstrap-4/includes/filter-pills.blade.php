@@ -4,13 +4,12 @@
             <small>@lang('Applied Filters'):</small>
 
             @foreach($filters as $key => $value)
-                @if ($key !== 'search' && (is_array($value) || strlen($value)))
+                @if ($key !== 'search' && filled($value))
                     <span
                         wire:key="filter-pill-{{ $key }}"
                         class="badge badge-pill badge-info d-inline-flex align-items-center"
                     >
                         {{ $filterNames[$key] ?? collect($this->columns())->pluck('text', 'column')->get($key, ucwords(strtr($key, ['_' => ' ', '-' => ' ']))) }}:
-
                         @if(isset($customFilters[$key]) && method_exists($customFilters[$key], 'options'))
                             @if(is_array($value))
                                 @foreach($value as $selectedValue)
