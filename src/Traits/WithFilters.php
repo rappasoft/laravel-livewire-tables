@@ -114,10 +114,18 @@ trait WithFilters
      */
     public function checkFilters(): void
     {
-        foreach ($this->filters() as $filter => $_default) {
-            if (! isset($this->filters[$filter]) || $this->filters[$filter] === '') {
-                $this->filters[$filter] = null;
+        foreach ($this->filters() as $key => $filter) {
+            if (isset($this->filters[$key]) && filled($this->filters[$key])) {
+                continue;
             }
+
+            // If the filter is multiselect, we'll initialize it as an array.
+            if ($filter->isMultiSelect()) {
+                $this->filters[$key] = [];
+                continue;
+            }
+
+            $this->filters[$key] = null;
         }
     }
 
