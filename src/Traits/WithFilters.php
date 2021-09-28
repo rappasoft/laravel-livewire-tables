@@ -80,6 +80,8 @@ trait WithFilters
         $this->reset('filters');
 
         $this->filters['search'] = $search;
+
+        $this->checkFilters();
     }
 
     /**
