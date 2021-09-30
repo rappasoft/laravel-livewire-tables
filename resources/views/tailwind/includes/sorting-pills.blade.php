@@ -6,14 +6,14 @@
             @foreach($sorts as $col => $dir)
                 <span
                     wire:key="sorting-pill-{{ $col }}"
-                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900"
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-{{ $this->themeColor }}-100 text-{{ $this->themeColor }}-800 capitalize dark:bg-{{ $this->themeColor }}-200 dark:text-{{ $this->themeColor }}-900"
                 >
                     {{ $sortNames[$col] ?? collect($this->columns())->pluck('text', 'column')->get($col, ucwords(strtr($col, ['_' => ' ', '-' => ' ']))) }}: {{ $dir === 'asc' ? ($sortDirectionNames[$col]['asc'] ?? 'A-Z') : ($sortDirectionNames[$col]['desc'] ?? 'Z-A') }}
 
                     <button
                         wire:click="removeSort('{{ $col }}')"
                         type="button"
-                        class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
+                        class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-{{ $this->themeColor }}-400 hover:bg-{{ $this->themeColor }}-200 hover:text-{{ $this->themeColor }}-500 focus:outline-none focus:bg-{{ $this->themeColor }}-500 focus:text-white"
                     >
                         <span class="sr-only">@lang('Remove sort option')</span>
                         <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">

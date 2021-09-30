@@ -4,7 +4,7 @@
             wire:model{{ $this->searchFilterOptions }}="filters.search"
             placeholder="{{ __('Search') }}"
             type="text"
-            class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if (isset($filters['search']) && strlen($filters['search'])) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif"
+            class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if (isset($filters['search']) && strlen($filters['search'])) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-{{ $this->themeColor }}-300 focus:ring focus:ring-{{ $this->themeColor }}-200 focus:ring-opacity-50 rounded-md @endif"
         />
 
         @if (isset($filters['search']) && strlen($filters['search']))

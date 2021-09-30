@@ -78,6 +78,13 @@ abstract class DataTableComponent extends Component
     public bool $responsive = true;
 
     /**
+     * The Theme-color of the tables (default: indigo)
+     *
+     * @var string
+     */
+    public string $themeColor = 'indigo';
+
+    /**
      * Name of the page parameter for pagination
      * Good to change the default if you have more than one datatable on a page.
      *
