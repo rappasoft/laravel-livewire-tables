@@ -9,7 +9,7 @@
         <button
             x-on:click="open = !open"
             type="button"
-            class="btn dropdown-toggle d-block w-100 d-md-inline"
+            class="btn btn-outline-secondary dropdown-toggle d-block w-100 d-md-inline"
         >
             @lang('Filters')
 
