@@ -82,7 +82,7 @@ abstract class DataTableComponent extends Component
      *
      * @var string
      */
-    public string $themeColor = 'indigo';
+    public ?string $customThemeColor = null;
 
     /**
      * Name of the page parameter for pagination
@@ -202,7 +202,7 @@ abstract class DataTableComponent extends Component
      */
     public function rowView(): string
     {
-        return 'livewire-tables::'.config('livewire-tables.theme').'.components.table.row-columns';
+        return 'livewire-tables::' . config('livewire-tables.theme') . '.components.table.row-columns';
     }
 
     /**
@@ -220,7 +220,7 @@ abstract class DataTableComponent extends Component
      */
     public function render()
     {
-        return view('livewire-tables::'.config('livewire-tables.theme').'.datatable')
+        return view('livewire-tables::' . config('livewire-tables.theme') . '.datatable')
             ->with([
                 'columns' => $this->columns(),
                 'rowView' => $this->rowView(),
