@@ -10,3 +10,6 @@ phpunit.xml
 psalm.xml
 testbench.yaml
 vendor
+
+# MacOS specific #
+.DS_Store
