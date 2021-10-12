@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Changed
+
+- Fixed default version of livewire - https://github.com/rappasoft/laravel-livewire-tables/issues/486
+
 ## [1.16.0] - 2021-09-26
 
 ### Added

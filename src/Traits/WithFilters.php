@@ -231,7 +231,7 @@ trait WithFilters
                 return $this->hasIntegerKeys($filter) ? (int)$this->filters[$filter] : trim($this->filters[$filter]);
             }
 
-            if(is_string($this->filters[$filter])) {
+            if (is_string($this->filters[$filter])) {
                 return trim($this->filters[$filter]);
             }
 
