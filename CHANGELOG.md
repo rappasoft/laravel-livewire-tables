@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.17.0] - 2021-10-XX
+
+### Added
+
+- Multiselect filter - https://github.com/rappasoft/laravel-livewire-tables/pull/469
+
 ### Changed
 
 - Fixed default version of livewire - https://github.com/rappasoft/laravel-livewire-tables/issues/486
@@ -488,7 +494,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.16.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.17.0...development
+[1.17.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.16.0...v1.17.0
 [1.16.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.13.0...v1.14.0
