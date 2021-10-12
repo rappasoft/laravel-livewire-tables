@@ -124,6 +124,7 @@ trait WithFilters
             // If the filter is multiselect, we'll initialize it as an array.
             if ($filter->isMultiSelect()) {
                 $this->filters[$key] = [];
+
                 continue;
             }
 
@@ -174,7 +175,7 @@ trait WithFilters
             // Handle 'multiselect' filters
             if ($filterDefinitions[$filterName]->isMultiSelect() && is_array($filterValue)) {
                 foreach ($filterValue as $selectedValue) {
-                    if (!in_array($selectedValue, $this->getFilterOptions($filterName))) {
+                    if (! in_array($selectedValue, $this->getFilterOptions($filterName))) {
                         return false;
                     }
                 }
