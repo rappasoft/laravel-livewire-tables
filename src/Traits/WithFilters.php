@@ -80,6 +80,8 @@ trait WithFilters
         $this->reset('filters');
 
         $this->filters['search'] = $search;
+
+        $this->checkFilters();
     }
 
     /**
@@ -114,10 +116,19 @@ trait WithFilters
      */
     public function checkFilters(): void
     {
-        foreach ($this->filters() as $filter => $_default) {
-            if (! isset($this->filters[$filter]) || $this->filters[$filter] === '') {
-                $this->filters[$filter] = null;
+        foreach ($this->filters() as $key => $filter) {
+            if (isset($this->filters[$key]) && filled($this->filters[$key])) {
+                continue;
             }
+
+            // If the filter is multiselect, we'll initialize it as an array.
+            if ($filter->isMultiSelect()) {
+                $this->filters[$key] = [];
+
+                continue;
+            }
+
+            $this->filters[$key] = null;
         }
     }
 
@@ -159,6 +170,17 @@ trait WithFilters
                         return true;
                     }
                 }
+            }
+
+            // Handle 'multiselect' filters
+            if ($filterDefinitions[$filterName]->isMultiSelect() && is_array($filterValue)) {
+                foreach ($filterValue as $selectedValue) {
+                    if (! in_array($selectedValue, $this->getFilterOptions($filterName))) {
+                        return false;
+                    }
+                }
+
+                return true;
             }
 
             if ($filterDefinitions[$filterName]->isDate()) {
@@ -210,7 +232,11 @@ trait WithFilters
                 return $this->hasIntegerKeys($filter) ? (int)$this->filters[$filter] : trim($this->filters[$filter]);
             }
 
-            return trim($this->filters[$filter]);
+            if (is_string($this->filters[$filter])) {
+                return trim($this->filters[$filter]);
+            }
+
+            return $this->filters[$filter];
         }
 
         return null;
@@ -222,7 +248,7 @@ trait WithFilters
     public function getFilters(): array
     {
         return collect($this->filters)
-            ->reject(fn ($value) => $value === null || $value === '')
+            ->reject(fn ($value) => blank($value))
             ->toArray();
     }
 
