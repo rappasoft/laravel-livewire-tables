@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.19.0] - 2021-10-XX
+
+### Added
+
+- Thai translation - https://github.com/rappasoft/laravel-livewire-tables/pull/491
+
 ## [1.18.0] - 2021-10-13
 
 ### Added
@@ -505,7 +511,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.1.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.0...development
+[1.19.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.18.0...v1.19.0
 [1.18.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.17.0...v1.18.0
 [1.17.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.16.0...v1.17.0
 [1.16.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.15.0...v1.16.0
