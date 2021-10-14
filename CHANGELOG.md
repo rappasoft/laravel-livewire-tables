@@ -9,6 +9,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Thai translation - https://github.com/rappasoft/laravel-livewire-tables/pull/491
+- Italian translation - https://github.com/rappasoft/laravel-livewire-tables/pull/493
 
 ## [1.18.0] - 2021-10-13
 
