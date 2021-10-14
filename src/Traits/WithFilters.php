@@ -273,6 +273,12 @@ trait WithFilters
             return;
         }
 
+        if ($filter === 'search') {
+            $this->filters['search'] = null;
+
+            return;
+        }
+
         if ($this->filters()[$filter]->isMultiSelect()) {
             $this->filters[$filter] = [];
 
