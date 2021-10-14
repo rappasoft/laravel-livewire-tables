@@ -21,6 +21,12 @@
             </x-livewire-tables::table.heading>
         @endif
 
+        @if ($rowNumberEnabled)
+            <x-livewire-tables::table.heading>
+                #
+            </x-livewire-tables::table.heading>
+        @endif
+
         @foreach($columns as $column)
             @if ($column->isVisible())
                 @continue($columnSelect && ! $this->isColumnSelectEnabled($column))
@@ -55,6 +61,10 @@
                 @endif
 
                 @if ($bulkActionsEnabled && count($this->bulkActions))
+                    <x-livewire-tables::table.cell />
+                @endif
+
+                @if ($rowNumberEnabled)
                     <x-livewire-tables::table.cell />
                 @endif
 
@@ -132,6 +142,12 @@
                     </x-livewire-tables::table.cell>
                 @endif
 
+                @if ($rowNumberEnabled)
+                    </x-livewire-tables::table.cell>
+                        {{ $rows->firstItem() + $loop->index }}
+                    </x-livewire-tables::table.row>
+                @endif
+
                 @include($rowView)
             </x-livewire-tables::table.row>
         @empty
@@ -162,6 +178,10 @@
                 @endif
 
                 @if ($bulkActionsEnabled && count($this->bulkActions))
+                    <x-livewire-tables::table.footer />
+                @endif
+
+                @if ($rowNumberEnabled)
                     <x-livewire-tables::table.footer />
                 @endif
 

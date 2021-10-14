@@ -2,19 +2,20 @@
 
 namespace Rappasoft\LaravelLivewireTables;
 
+use Livewire\Component;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Livewire\Component;
+use Rappasoft\LaravelLivewireTables\Traits\WithFooter;
+use Rappasoft\LaravelLivewireTables\Traits\WithHeader;
+use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
+use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
+use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
+use Rappasoft\LaravelLivewireTables\Traits\WithRowNumber;
+use Rappasoft\LaravelLivewireTables\Traits\WithReordering;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
-use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
-use Rappasoft\LaravelLivewireTables\Traits\WithFooter;
-use Rappasoft\LaravelLivewireTables\Traits\WithHeader;
 use Rappasoft\LaravelLivewireTables\Traits\WithPerPagePagination;
-use Rappasoft\LaravelLivewireTables\Traits\WithReordering;
-use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
-use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
 
 /**
  * Class DataTableComponent
@@ -33,6 +34,7 @@ abstract class DataTableComponent extends Component
     use WithReordering;
     use WithSearch;
     use WithSorting;
+    use WithRowNumber;
 
     /**
      * Dump the filters array for debugging at the top of the datatable
