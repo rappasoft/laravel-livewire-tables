@@ -1,5 +1,6 @@
 <x-livewire-tables::bs4.table
     wire:sortable="{{ $reordering ? $reorderingMethod : '' }}"
+    :customSecondaryHeader="$secondaryHeader"
     :useHeaderAsFooter="$useHeaderAsFooter"
     :customFooter="$customFooter"
 >
@@ -37,6 +38,47 @@
             @endif
         @endforeach
     </x-slot>
+
+    @if ($secondaryHeader)
+        <x-slot name="customSecondaryHead">
+            <x-livewire-tables::bs4.table.row
+                wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
+                :class="method_exists($this, 'setSecondaryHeaderRowClass') ? ' ' . $this->setSecondaryHeaderRowClass($rows) : ''"
+                :id="method_exists($this, 'setSecondaryHeaderRowId') ? $this->setSecondaryHeaderRowId($rows) : ''"
+                :customAttributes="method_exists($this, 'setSecondaryHeaderRowAttributes') ? $this->setSecondaryHeaderRowAttributes($rows) : []"
+            >
+                @if ($reordering)
+                    <x-livewire-tables::bs4.table.cell />
+                @endif
+
+                @if ($bulkActionsEnabled && count($this->bulkActions))
+                    <x-livewire-tables::bs4.table.cell />
+                @endif
+
+                @foreach($columns as $column)
+                    @if ($column->isVisible())
+                        @continue($columnSelect && ! $this->isColumnSelectEnabled($column))
+
+                        @if ($column->hasSecondaryHeader())
+                            <x-livewire-tables::bs4.table.cell
+                                :class="method_exists($this, 'setSecondaryHeaderDataClass') ? $this->setSecondaryHeaderDataClass($column, $rows) : ''"
+                                :id="method_exists($this, 'setSecondaryHeaderDataId') ? $this->setSecondaryHeaderDataId($column, $rows) : ''"
+                                :customAttributes="method_exists($this, 'setSecondaryHeaderDataAttributes') ? $this->setSecondaryHeaderDataAttributes($column, $rows) : []"
+                            >
+                                @if ($column->isHtml())
+                                    {{ new \Illuminate\Support\HtmlString($column->secondaryHeaderFormatted($rows)) }}
+                                @else
+                                    {{ $column->secondaryHeaderFormatted($rows) }}
+                                @endif
+                            </x-livewire-tables::bs4.table.cell>
+                        @else
+                            <x-livewire-tables::bs4.table.cell />
+                        @endif
+                    @endif
+                @endforeach
+            </x-livewire-tables::bs4.table.row>
+        </x-slot>
+    @endif
 
     <x-slot name="body">
         @php
