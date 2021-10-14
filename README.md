@@ -72,10 +72,10 @@ class UsersTable extends DataTableComponent
 - [x] Sorting By Relationships
 - [x] User Column Selection  
 - [x] Drag & Drop (beta)
+- [x] Column Search
+- [x] Greater Configurability
 - [ ] Collection/Query Support  
 - [ ] Test Suite (WIP)
-- [ ] Column Search
-- [ ] Greater Configurability
 
 ## Testing
 
