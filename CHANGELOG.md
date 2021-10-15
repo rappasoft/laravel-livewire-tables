@@ -11,10 +11,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Thai translation - https://github.com/rappasoft/laravel-livewire-tables/pull/491
 - Italian translation - https://github.com/rappasoft/laravel-livewire-tables/pull/493
 - Added getTableRowUrlTarget to set row click target based on the row
+- Add custom class to table - https://github.com/rappasoft/laravel-livewire-tables/pull/495
 
 ### Changed
 
-- Removing a multiselect filter - https://github.com/rappasoft/laravel-livewire-tables/pull/494
+- Fix removing a multiselect filter - https://github.com/rappasoft/laravel-livewire-tables/pull/494
 
 ## [1.18.0] - 2021-10-13
 
