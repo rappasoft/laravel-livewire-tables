@@ -10,6 +10,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Extracts just the field name from primaryKey - https://github.com/rappasoft/laravel-livewire-tables/pull/506
 - Update BS4 pagination - https://github.com/rappasoft/laravel-livewire-tables/pull/507
+- Update minimum Livewire version to 2.6
 
 ## [1.19.1] - 2021-10-14
 
