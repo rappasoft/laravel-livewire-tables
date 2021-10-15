@@ -7,7 +7,7 @@
                 @if ($key !== 'search' && strlen($value))
                     <span
                         wire:key="filter-pill-{{ $key }}"
-                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900"
+                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 {{ $this->customThemeColor ? "bg-{$this->customThemeColor}-100 text-{$this->customThemeColor}-800 dark:bg-{$this->customThemeColor}-200" : 'bg-indigo-100 text-indigo-800 dark:bg-indigo-200' }} capitalize dark:text-indigo-900"
                     >
                         {{ $filterNames[$key] ?? collect($this->columns())->pluck('text', 'column')->get($key, ucwords(strtr($key, ['_' => ' ', '-' => ' ']))) }}:
                         @if(isset($customFilters[$key]) && method_exists($customFilters[$key], 'options'))
@@ -19,7 +19,8 @@
                         <button
                             wire:click="removeFilter('{{ $key }}')"
                             type="button"
-                            class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
+                            class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center {{ $this->customThemeColor ? "text-{$this->customThemeColor}-400 hover:bg-{$this->customThemeColor}-200 hover:text-{$this->customThemeColor}-500 focus:bg-{$this->customThemeColor}-500" : 'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500' }} focus:outline-none
+                              focus:text-white"
                         >
                             <span class="sr-only">@lang('Remove filter option')</span>
                             <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">

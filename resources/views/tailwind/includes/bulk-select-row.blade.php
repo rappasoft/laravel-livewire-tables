@@ -1,5 +1,6 @@
 @if ($bulkActionsEnabled && count($this->bulkActions) && (($selectPage && $rows->total() > $rows->count()) || count($selected)))
-    <x-livewire-tables::table.row wire:key="row-message" class="bg-indigo-50 dark:bg-gray-900 dark:text-white">
+    <x-livewire-tables::table.row wire:key="row-message" class="{{ $this->customThemeColor ? "bg-{$this->customThemeColor}-50 " : 'bg-indigo-50 ' }}
+         dark:bg-gray-900 dark:text-white">
         <x-livewire-tables::table.cell :colspan="$colspan">
             @if (count($selected) && !$selectAll && !$selectPage)
                 <div>

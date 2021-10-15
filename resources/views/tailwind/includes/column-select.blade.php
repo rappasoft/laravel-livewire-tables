@@ -11,7 +11,7 @@
                     <button
                         x-on:click="open = !open"
                         type="button"
-                        class="inline-flex justify-center px-4 py-2 w-full text-sm font-medium text-gray-700 bg-white rounded-md border border-gray-300 shadow-sm hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
+                        class="inline-flex justify-center px-4 py-2 w-full text-sm font-medium text-gray-700 bg-white rounded-md border border-gray-300 shadow-sm hover:bg-gray-50 {{ $this->customThemeColor ? "focus:border-{$this->customThemeColor}-300 focus:ring-{$this->customThemeColor}-200" : 'focus:border-indigo-300 focus:ring-indigo-200' }} focus:ring focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
                         id="column-select-menu"
                         aria-haspopup="true"
                         x-bind:aria-expanded="open"
@@ -48,7 +48,8 @@
                                         class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait"
                                     >
                                         <input
-                                            class="text-indigo-600 rounded border-gray-300 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
+                                            class="{{ $this->customThemeColor ? "text-{$this->customThemeColor}-600 focus:border-{$this->customThemeColor}-300 focus:ring-{$this->customThemeColor}-200" : 'text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200' }}
+                                             rounded border-gray-300 shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
                                             wire:model="columnSelectEnabled"
                                             wire:target="columnSelectEnabled"
                                             wire:loading.attr="disabled"
