@@ -1,8 +1,7 @@
 @props(['customSecondaryHeader' => false, 'useHeaderAsFooter' => false, 'customFooter' => false])
 
 <div class="{{ $this->responsive ? 'table-responsive' : '' }}">
-    @dump($attributes)
-    <table {{ $attributes->except(['wire:sortable','class']) }} class="{{trim($attributes->get("class")) ?: 'table table-striped'}}">
+    <table {{ $attributes->except(['wire:sortable', 'class']) }} class="{{ trim($attributes->get('class')) ?: 'table table-striped'}}">
         <thead>
             <tr>
                 {{ $head }}
