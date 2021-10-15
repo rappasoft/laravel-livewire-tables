@@ -269,9 +269,23 @@ trait WithFilters
      */
     public function removeFilter($filter): void
     {
-        if (isset($this->filters[$filter])) {
-            $this->filters[$filter] = null;
+        if (! isset($this->filters[$filter])) {
+            return;
         }
+
+        if ($filter === 'search') {
+            $this->filters['search'] = null;
+
+            return;
+        }
+
+        if ($this->filters()[$filter]->isMultiSelect()) {
+            $this->filters[$filter] = [];
+
+            return;
+        }
+
+        $this->filters[$filter] = null;
     }
 
     /**

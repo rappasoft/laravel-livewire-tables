@@ -3,6 +3,7 @@
     :customSecondaryHeader="$secondaryHeader"
     :useHeaderAsFooter="$useHeaderAsFooter"
     :customFooter="$customFooter"
+    :class="method_exists($this, 'setTableClass') ? ' ' . $this->setTableClass() : '' "
 >
     <x-slot name="head">
         @if ($reordering)
@@ -99,6 +100,7 @@
                 wire:sortable.item="{{ $row->{$primaryKey} }}"
                 :reordering="$reordering"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
+                :target="method_exists($this, 'getTableRowUrlTarget') ? $this->getTableRowUrlTarget($row) : ''"
                 :class="
                     ($index % 2 === 0 ?
                     'bg-white dark:bg-gray-700 dark:text-white' . (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '') :
