@@ -14,8 +14,8 @@ trait WithBulkActions
     public string $primaryKey = 'id';
     public bool $selectPage = false;
     public bool $selectAll = false;
-    public $selected = [];
-
+    public array $selected = [];
+    public array $bulkActions = [];
     public bool $hideBulkActionsOnEmpty = false;
 
     public function renderingWithBulkActions(): void
@@ -49,7 +49,7 @@ trait WithBulkActions
 
     public function selectPageRows(): void
     {
-        $this->selected = $this->rows->pluck($this->primaryKey)->map(fn ($key) => (string) $key);
+        $this->selected = $this->rows->pluck($this->primaryKey)->map(fn ($key) => (string) $key)->toArray();
     }
 
     public function selectAll(): void
@@ -69,8 +69,10 @@ trait WithBulkActions
      */
     public function selectedRowsQuery()
     {
-        return (clone $this->rowsQuery())
-            ->unless($this->selectAll, fn ($query) => $query->whereIn($query->qualifyColumn($this->primaryKey), $this->selected));
+        return $this->query()->unless(
+            $this->selectAll,
+            fn ($query) => $query->whereIn($query->qualifyColumn($this->primaryKey), $this->selected)
+        );
     }
 
     /**
@@ -83,7 +85,7 @@ trait WithBulkActions
 
     public function selectedKeys(): array
     {
-        return $this->selectedRowsQuery()->pluck($this->rowsQuery()->qualifyColumn($this->primaryKey))->toArray();
+        return $this->selectedRowsQuery()->pluck($this->query()->qualifyColumn($this->primaryKey))->toArray();
     }
 
     public function getSelectedKeysProperty(): array

@@ -66,6 +66,9 @@ trait WithReordering
             $this->showSearch = false;
             $this->perPageAll = true;
             $this->perPage = -1;
+            $this->secondaryHeader = false;
+            $this->customFooter = false;
+            $this->useHeaderAsFooter = false;
             $this->resetPage();
         } else {
             $this->reordering = false;
@@ -85,6 +88,9 @@ trait WithReordering
                 'showSearch',
                 'perPageAll',
                 'perPage',
+                'secondaryHeader',
+                'customFooter',
+                'useHeaderAsFooter',
             ]);
 
             $this->getReorderingBackup();
@@ -123,6 +129,9 @@ trait WithReordering
             'perPageAll' => $this->perPageAll,
             'perPage' => $this->perPage,
             'page' => $this->page,
+            'secondaryHeader' => $this->secondaryHeader,
+            'customFooter' => $this->customFooter,
+            'useHeaderAsFooter' => $this->useHeaderAsFooter,
         ]]);
     }
 
@@ -145,6 +154,9 @@ trait WithReordering
             $this->perPageAll = $save['perPageAll'] ?? true;
             $this->perPage = $save['perPage'] ?? -1;
             $this->page = $save['page'] ?? 1;
+            $this->secondaryHeader = $save['secondaryHeader'] ?? false;
+            $this->customFooter = $save['customFooter'] ?? false;
+            $this->useHeaderAsFooter = $save['useHeaderAsFooter'] ?? false;
             session()->forget($this->getReorderingBackupSessionKey());
         }
     }

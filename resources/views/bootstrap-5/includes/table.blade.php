@@ -1,7 +1,9 @@
 <x-livewire-tables::bs5.table
     wire:sortable="{{ $reordering ? $reorderingMethod : '' }}"
+    :customSecondaryHeader="$secondaryHeader"
     :useHeaderAsFooter="$useHeaderAsFooter"
     :customFooter="$customFooter"
+    :class="method_exists($this, 'setTableClass') ? ' ' . $this->setTableClass() : '' "
 >
     <x-slot name="head">
         @if ($reordering)
@@ -39,6 +41,47 @@
         @endforeach
     </x-slot>
 
+    @if ($secondaryHeader)
+        <x-slot name="customSecondaryHead">
+            <x-livewire-tables::bs5.table.row
+                wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
+                :class="method_exists($this, 'setSecondaryHeaderRowClass') ? ' ' . $this->setSecondaryHeaderRowClass($rows) : ''"
+                :id="method_exists($this, 'setSecondaryHeaderRowId') ? $this->setSecondaryHeaderRowId($rows) : ''"
+                :customAttributes="method_exists($this, 'setSecondaryHeaderRowAttributes') ? $this->setSecondaryHeaderRowAttributes($rows) : []"
+            >
+                @if ($reordering)
+                    <x-livewire-tables::bs5.table.cell />
+                @endif
+
+                @if ($bulkActionsEnabled && count($this->bulkActions))
+                    <x-livewire-tables::bs5.table.cell />
+                @endif
+
+                @foreach($columns as $column)
+                    @if ($column->isVisible())
+                        @continue($columnSelect && ! $this->isColumnSelectEnabled($column))
+
+                        @if ($column->hasSecondaryHeader())
+                            <x-livewire-tables::bs5.table.cell
+                                :class="method_exists($this, 'setSecondaryHeaderDataClass') ? $this->setSecondaryHeaderDataClass($column, $rows) : ''"
+                                :id="method_exists($this, 'setSecondaryHeaderDataId') ? $this->setSecondaryHeaderDataId($column, $rows) : ''"
+                                :customAttributes="method_exists($this, 'setSecondaryHeaderDataAttributes') ? $this->setSecondaryHeaderDataAttributes($column, $rows) : []"
+                            >
+                                @if ($column->isHtml())
+                                    {{ new \Illuminate\Support\HtmlString($column->secondaryHeaderFormatted($rows)) }}
+                                @else
+                                    {{ $column->secondaryHeaderFormatted($rows) }}
+                                @endif
+                            </x-livewire-tables::bs5.table.cell>
+                        @else
+                            <x-livewire-tables::bs5.table.cell />
+                        @endif
+                    @endif
+                @endforeach
+            </x-livewire-tables::bs5.table.row>
+        </x-slot>
+    @endif
+
     <x-slot name="body">
         @php
             $colspan = count($columns);
@@ -55,6 +98,7 @@
                 wire:sortable.item="{{ $row->{$primaryKey} }}"
                 :reordering="$reordering"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
+                :target="method_exists($this, 'getTableRowUrlTarget') ? $this->getTableRowUrlTarget($row) : '_self'"
                 :class="method_exists($this, 'setTableRowClass') ? ' ' . $this->setTableRowClass($row) : ''"
                 :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
                 :customAttributes="method_exists($this, 'setTableRowAttributes') ? $this->setTableRowAttributes($row) : []"

@@ -83,6 +83,16 @@ class Column
     /**
      * @var bool
      */
+    public bool $secondaryHeader = false;
+
+    /**
+     * @var
+     */
+    public $secondaryHeaderCallback;
+
+    /**
+     * @var bool
+     */
     public bool $footer = false;
 
     /**
@@ -395,6 +405,42 @@ class Column
     public function isSelected(): bool
     {
         return $this->selected;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSecondaryHeader(): bool
+    {
+        return $this->secondaryHeader === true;
+    }
+
+    /**
+     * @return $this
+     */
+    public function secondaryHeader($callback = null): self
+    {
+        $this->secondaryHeader = true;
+
+        $this->secondaryHeaderCallback = $callback;
+
+        return $this;
+    }
+
+    /**
+     * @param $rows
+     *
+     * @return false|mixed|null
+     */
+    public function secondaryHeaderFormatted($rows)
+    {
+        $value = null;
+
+        if ($this->secondaryHeaderCallback) {
+            $value = call_user_func($this->secondaryHeaderCallback, $rows);
+        }
+
+        return $value;
     }
 
     /**
