@@ -116,7 +116,7 @@
                         <input
                             wire:model="selected"
                             wire:loading.attr.delay="disabled"
-                            value="{{ $row->{$primaryKey} }}"
+                            value="{{ $row->{\Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities::parseField($primaryKey)} }}"
                             onclick="event.stopPropagation();return true;"
                             class="form-check-input"
                             type="checkbox"
