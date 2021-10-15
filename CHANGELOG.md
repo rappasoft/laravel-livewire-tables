@@ -6,6 +6,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [1.19.2] - 2021-10-15
 
+### Added
+
+- German translation - https://github.com/rappasoft/laravel-livewire-tables/pull/502
+
 ### Changed
 
 - Extracts just the field name from primaryKey - https://github.com/rappasoft/laravel-livewire-tables/pull/506
