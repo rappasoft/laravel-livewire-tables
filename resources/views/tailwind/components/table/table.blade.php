@@ -1,7 +1,7 @@
 @props(['customSecondaryHeader' => false, 'useHeaderAsFooter' => false, 'customFooter' => false])
 
 <div class="align-middle min-w-full overflow-x-auto shadow overflow-hidden rounded-none md:rounded-lg">
-    <table {{ $attributes->except('wire:sortable') }} class="min-w-full divide-y divide-gray-200 dark:divide-none">
+    <table {{ $attributes->except(['wire:sortable', 'class']) }} class="{{ trim($attributes->get('class')) ?: 'min-w-full divide-y divide-gray-200 dark:divide-none'}}">
         <thead>
             <tr>
                 {{ $head }}
