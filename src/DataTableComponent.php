@@ -84,7 +84,7 @@ abstract class DataTableComponent extends Component
      *
      * @var string
      */
-    public ?string $customThemeColor = null;
+    public string $customThemeColor = 'indigo';
 
     /**
      * Name of the page parameter for pagination
