@@ -4,6 +4,18 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.19.2] - 2021-10-15
+
+### Added
+
+- German translation - https://github.com/rappasoft/laravel-livewire-tables/pull/502
+
+### Changed
+
+- Extracts just the field name from primaryKey - https://github.com/rappasoft/laravel-livewire-tables/pull/506
+- Update BS4 pagination - https://github.com/rappasoft/laravel-livewire-tables/pull/507
+- Update minimum Livewire version to 2.6
+
 ## [1.19.1] - 2021-10-14
 
 ### Changed
@@ -524,7 +536,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.1...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.2...development
+[1.19.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.2...v1.19.2
 [1.19.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.18.0...v1.19.1
 [1.19.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.18.0...v1.19.0
 [1.18.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.17.0...v1.18.0
