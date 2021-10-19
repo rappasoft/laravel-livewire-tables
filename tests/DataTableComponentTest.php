@@ -116,8 +116,10 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function bulk_actions_defined_with_function()
+    public function bulk_actions_defined_through_function()
     {
+        $this->assertArrayHasKey('count', $this->table->bulkActions);
+
         $this->table->selected[] = 1;
         $this->assertEquals(1, $this->table->count());
     }
