@@ -15,7 +15,6 @@ trait WithBulkActions
     public bool $selectPage = false;
     public bool $selectAll = false;
     public array $selected = [];
-    public array $bulkActions = [];
     public bool $hideBulkActionsOnEmpty = false;
 
     public function renderingWithBulkActions(): void
