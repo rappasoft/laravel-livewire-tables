@@ -96,7 +96,7 @@
         @forelse ($rows as $index => $row)
             <x-livewire-tables::table.row
                 wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
-                wire:key="table-row-{{ $row->{$primaryKey} }}"
+                wire:key="table-row-{{ md5(rand()) }}-{{ $row->{\Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities::parseField($primaryKey)} }}"
                 wire:sortable.item="{{ $row->{$primaryKey} }}"
                 :reordering="$reordering"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
