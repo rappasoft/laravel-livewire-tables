@@ -7,11 +7,13 @@
 @endif
 
 <tr
-    {{ $attributes->merge($customAttributes) }}
+    $attributes->merge($customAttributes)->class([
+        'h-auto block border-t-4 md:border-t-0 py-4 px-2 md:p-0 md:table-row w-screen',
+        'cursor-pointer' => $url
+    ]) }}
 
     @if ($url)
         onclick="window.open('{{ $url }}', '{{ $target }}')"
-        style="cursor:pointer"
     @endif
 >
     {{ $slot }}
