@@ -15,6 +15,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Made tableName property public so it can be accessed in views
 - Fixed bulk actions dropdown on Bootstrap - https://github.com/rappasoft/laravel-livewire-tables/pull/519
 - Fixed bulk row/select with pagination off - https://github.com/rappasoft/laravel-livewire-tables/issues/510
+- Conditionally show cursor-pointer class instead of inline style - https://github.com/rappasoft/laravel-livewire-tables/pull/529
 
 ## [1.19.3] - 2021-10-25
 
