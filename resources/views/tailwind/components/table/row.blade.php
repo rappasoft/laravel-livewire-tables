@@ -7,11 +7,10 @@
 @endif
 
 <tr
-    {{ $attributes->merge($customAttributes) }}
+    {{ $attributes->merge($customAttributes)->class(['cursor-pointer' => $url]) }}
 
     @if ($url)
         onclick="window.open('{{ $url }}', '{{ $target }}')"
-        style="cursor:pointer"
     @endif
 >
     {{ $slot }}
