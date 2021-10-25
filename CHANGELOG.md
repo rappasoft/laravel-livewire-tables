@@ -10,6 +10,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Singular row translation - https://github.com/rappasoft/laravel-livewire-tables/pull/526
 
+### Changed
+
+- Made tableName property public so it can be accessed in views
+- Fixed bulk actions dropdown on Bootstrap - https://github.com/rappasoft/laravel-livewire-tables/pull/519
+
 ## [1.19.3] - 2021-10-25
 
 ### Changed
