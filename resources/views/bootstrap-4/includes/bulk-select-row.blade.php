@@ -1,7 +1,19 @@
-@if ($bulkActionsEnabled && count($this->bulkActions) && (($selectPage && $rows->total() > $rows->count()) || count($selected)))
+@if (
+    $bulkActionsEnabled &&
+    count($this->bulkActions) &&
+    (
+        (
+            $paginationEnabled && (
+                ($selectPage && $rows->total() > $rows->count()) ||
+                count($selected)
+            )
+        ) ||
+        count($selected)
+    )
+)
     <x-livewire-tables::bs4.table.row wire:key="row-message">
         <x-livewire-tables::bs4.table.cell colspan="{{ $colspan }}">
-            @if (count($selected) && !$selectAll && !$selectPage)
+            @if ((!$paginationEnabled && $selectPage) || (count($selected) && $paginationEnabled && !$selectAll && !$selectPage))
                 <div>
                     <span>
                         @lang('You have selected')

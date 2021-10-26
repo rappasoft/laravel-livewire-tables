@@ -80,14 +80,6 @@ abstract class DataTableComponent extends Component
     public bool $responsive = true;
 
     /**
-     * Name of the page parameter for pagination
-     * Good to change the default if you have more than one datatable on a page.
-     *
-     * @var string
-     */
-    protected string $pageName = 'page';
-
-    /**
      * Unique name to use for this table if you want the 'per page' options to be remembered on a per table basis.
      * If not, all 'per page' stored in the session will default to the same option for every table with this default name.
      *
@@ -96,6 +88,14 @@ abstract class DataTableComponent extends Component
      * @var string
      */
     protected string $tableName = 'table';
+
+    /**
+     * Name of the page parameter for pagination
+     * Good to change the default if you have more than one datatable on a page.
+     *
+     * @var string
+     */
+    protected string $pageName = 'page';
 
     /**
      * @var \null[][]
