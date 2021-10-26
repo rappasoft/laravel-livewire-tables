@@ -33,7 +33,12 @@ abstract class DataTableComponent extends Component
     use WithReordering;
     use WithSearch;
     use WithSorting;
-
+    
+    /**
+    * This property avoids the error
+    * TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given
+    */
+    public array $bulkActions = [];
     /**
      * Dump the filters array for debugging at the top of the datatable
      *
