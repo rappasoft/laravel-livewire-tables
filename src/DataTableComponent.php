@@ -87,7 +87,7 @@ abstract class DataTableComponent extends Component
      *
      * @var string
      */
-    public string $tableName = 'table';
+    protected string $tableName = 'table';
 
     /**
      * Name of the page parameter for pagination
