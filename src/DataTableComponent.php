@@ -223,6 +223,7 @@ abstract class DataTableComponent extends Component
                 'customFilters' => $this->filters(),
                 'rows' => $this->rows,
                 'modalsView' => $this->modalsView(),
+                'bulkActions' => $this->bulkActions
             ]);
     }
 
