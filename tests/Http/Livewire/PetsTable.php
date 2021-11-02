@@ -15,17 +15,17 @@ class PetsTable extends DataTableComponent
         return [
             'species.name' => Filter::make('Filter Species')->select([
                 '' => 'All',
-                1  => 'Cat',
-                2  => 'Dog',
-                3  => 'Horse',
-                4  => 'Bird',
+                1 => 'Cat',
+                2 => 'Dog',
+                3 => 'Horse',
+                4 => 'Bird',
             ]),
-            'breed_id'     => Filter::make('Filter Breed')->select([
+            'breed_id' => Filter::make('Filter Breed')->select([
                 '' => 'All',
-                1  => 'American Shorthair',
-                2  => 'Maine Coon',
-                3  => 'Persian',
-                4  => 'Norwegian Forest',
+                1 => 'American Shorthair',
+                2 => 'Maine Coon',
+                3 => 'Persian',
+                4 => 'Norwegian Forest',
             ]),
         ];
     }

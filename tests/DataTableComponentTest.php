@@ -5,8 +5,6 @@ namespace Rappasoft\LaravelLivewireTables\Tests;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\View\View;
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsAltQueryTable;
@@ -150,7 +148,7 @@ class DataTableComponentTest extends TestCase
 
         Livewire::test(PetsTable::class)
             ->set('filters', [
-                'breed_id' => 1
+                'breed_id' => 1,
             ])
             ->assertSeeTextInOrder(['Applied Filters:', 'Filter Breed:', 'American Shorthair', 'Filters']);
     }
