@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.20.1] - 2021-11-01
+
+### Changed
+
+- Fix bulk actions breaking change - https://github.com/rappasoft/laravel-livewire-tables/pull/535
+
 ## [1.20.0] - 2021-10-25
 
 ### Added
@@ -554,7 +560,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...development
+[1.20.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.3...v1.20.1
 [1.20.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.3...v1.20.0
 [1.19.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.2...v1.19.3
 [1.19.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.1...v1.19.2
