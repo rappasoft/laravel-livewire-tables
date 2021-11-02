@@ -3,7 +3,11 @@
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
+use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsAltQueryTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
@@ -113,6 +117,42 @@ class DataTableComponentTest extends TestCase
     {
         $this->tableAltQuery->filters['search'] = 'Cat';
         $this->assertEquals(2, $this->tableAltQuery->rows->total());
+    }
+
+    /** @test */
+    public function custom_filter()
+    {
+        $this->table->filters['species.name'] = 1;
+
+        $this->assertTrue($this->table->getRowsProperty()->where('name', 'Cartman')->isNotEmpty());
+        $this->assertTrue($this->table->getRowsProperty()->where('name', 'Tux')->isNotEmpty());
+        $this->assertFalse($this->table->getRowsProperty()->where('May', 'Tux')->isNotEmpty());
+        $this->assertFalse($this->table->getRowsProperty()->where('Ben', 'Tux')->isNotEmpty());
+        $this->assertFalse($this->table->getRowsProperty()->where('Chico', 'Tux')->isNotEmpty());
+    }
+
+    /** @test */
+    public function custom_filters_pills_label_use_column_name_when_possible()
+    {
+        config()->set('app.key', Encrypter::generateKey(config('app.cipher')));
+
+        Livewire::test(PetsTable::class)
+            ->set('filters', [
+                'species.name' => 1,
+            ])
+            ->assertSeeTextInOrder(['Applied Filters:', 'Species:', 'Cat', 'Filters']);
+    }
+
+    /** @test */
+    public function custom_filters_pills_label_use_filter_name_when_is_not_bound_to_a_column()
+    {
+        config()->set('app.key', Encrypter::generateKey(config('app.cipher')));
+
+        Livewire::test(PetsTable::class)
+            ->set('filters', [
+                'breed_id' => 1
+            ])
+            ->assertSeeTextInOrder(['Applied Filters:', 'Filter Breed:', 'American Shorthair', 'Filters']);
     }
 
     /** @test */
