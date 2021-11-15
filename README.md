@@ -25,7 +25,7 @@ Please see the rest of the [installation instructions](https://rappasoft.github.
 
 ## Usage
 
-### [Read the documentation](https://rappasoft.github.io/laravel-livewire-tables-docs/)
+### [Read the documentation](https://rappasoft.com/docs/laravel-livewire-tables)
 
 ## Basic Example
 
