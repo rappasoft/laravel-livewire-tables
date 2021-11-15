@@ -21,7 +21,7 @@ You can install the package via composer:
 composer require rappasoft/laravel-livewire-tables
 ```
 
-Please see the rest of the [installation instructions](https://rappasoft.github.io/laravel-livewire-tables-docs/start/Installation-&-Configuration).
+Please see the rest of the [installation instructions](https://rappasoft.com/docs/laravel-livewire-tables/v1/start/installation-&-configuration).
 
 ## Usage
 
@@ -63,7 +63,7 @@ class UsersTable extends DataTableComponent
 }
 ```
 
-### [See advanced example](https://rappasoft.github.io/laravel-livewire-tables-docs/usage/Advanced-Example-Table)
+### [See advanced example](https://rappasoft.com/docs/laravel-livewire-tables/v1/usage/advanced-example-table)
 
 ## To-do/Roadmap
 
