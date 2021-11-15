@@ -12,3 +12,4 @@
 /psalm.xml              export-ignore
 /psalm.xml.dist         export-ignore
 /testbench.yaml         export-ignore
+/docs                   export-ignore
