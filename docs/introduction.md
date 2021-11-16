@@ -10,7 +10,7 @@ weight: 1
     <a href="https://packagist.org/packages/rappasoft/laravel-livewire-tables"><img src="https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square" alt="Total Downloads"></a>
 </section>
 
-Welcome to the Laravel Livewire Tables documentation!
+Welcome to the [Laravel Livewire Tables](https://github.com/rappasoft/laravel-livewire-tables) documentation!
 
 I will do my best to document all features and configurations of this plugin.
 
