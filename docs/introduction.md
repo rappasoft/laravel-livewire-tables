@@ -4,10 +4,10 @@ weight: 1
 ---
 
 <section class="article_badges">
-    [![Latest Version on Packagist](https://img.shields.io/packagist/v/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
-    [![Styling](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml)
-    [![Tests](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml/badge.svg)](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml)
-    [![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
+    <a href="https://packagist.org/packages/rappasoft/laravel-livewire-tables"><img src="https://img.shields.io/packagist/v/rappasoft/laravel-livewire-tables.svg?style=flat-square" alt="Latest Version on Packagist"></a>
+    <a href="https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml"><img src="https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml/badge.svg" alt="Styling"></a>
+    <a href="https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml"><img src="https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml/badge.svg" alt="Tests"></a>
+    <a href="https://packagist.org/packages/rappasoft/laravel-livewire-tables"><img src="https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square" alt="Total Downloads"></a>
 </section>
 
 Welcome to the Laravel Livewire Tables documentation!
