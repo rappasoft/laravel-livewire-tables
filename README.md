@@ -21,11 +21,11 @@ You can install the package via composer:
 composer require rappasoft/laravel-livewire-tables
 ```
 
-Please see the rest of the [installation instructions](https://rappasoft.com/docs/laravel-livewire-tables/v1/start/installation-&-configuration).
+Please see the rest of the [installation instructions](https://rappasoft.com/docs/laravel-livewire-tables/v1/start/installation).
 
-## Usage
+## Documentation and Usage Instructions
 
-### [Read the documentation](https://rappasoft.com/docs/laravel-livewire-tables)
+See the [documentation](https://rappasoft.com/docs/laravel-livewire-tables) for detailed installation and usage instructions.
 
 ## Basic Example
 
