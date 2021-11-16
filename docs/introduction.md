@@ -2,6 +2,12 @@
 title: Introduction
 weight: 1
 ---
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
+[![Styling](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml)
+[![Tests](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml/badge.svg)](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
+
 Welcome to the Laravel Livewire Tables documentation!
 
 I will do my best to document all features and configurations of this plugin.
