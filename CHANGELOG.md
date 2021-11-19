@@ -9,6 +9,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Added Chinese translation - https://github.com/rappasoft/laravel-livewire-tables/pull/540
+- Added 'select all' checkbox for multiselect filters - https://github.com/rappasoft/laravel-livewire-tables/pull/551
+
+### Changed
+
+- Removed excess left padding on Bootstrap 5 form check on multiselect filters.
 
 ## [1.20.1] - 2021-11-01
 
