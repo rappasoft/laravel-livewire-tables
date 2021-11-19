@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Livewire\Component;
+use Rappasoft\LaravelLivewireTables\Traits\ComponentHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
@@ -23,6 +24,7 @@ use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
  */
 abstract class DataTableComponent extends Component
 {
+    use ComponentHelpers;
     use WithBulkActions;
     use WithColumnSelect;
     use WithCustomPagination;
@@ -225,19 +227,5 @@ abstract class DataTableComponent extends Component
                 'modalsView' => $this->modalsView(),
                 'bulkActions' => $this->bulkActions,
             ]);
-    }
-
-    /**
-     * Get a column object by its field
-     *
-     * @param  string  $column
-     *
-     * @return mixed
-     */
-    protected function getColumn(string $column)
-    {
-        return collect($this->columns())
-            ->where('column', $column)
-            ->first();
     }
 }

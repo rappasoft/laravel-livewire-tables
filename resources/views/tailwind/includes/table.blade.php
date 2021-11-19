@@ -96,7 +96,7 @@
         @forelse ($rows as $index => $row)
             <x-livewire-tables::table.row
                 wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
-                wire:key="table-row-{{ md5(rand()) }}-{{ $row->{\Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities::parseField($primaryKey)} }}"
+                wire:key="table-row-{{ md5(mt_rand()) }}-{{ $row->{$this->parseField($primaryKey)} }}"
                 wire:sortable.item="{{ $row->{$primaryKey} }}"
                 :reordering="$reordering"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
@@ -125,7 +125,7 @@
                             <input
                                 wire:model="selected"
                                 wire:loading.attr.delay="disabled"
-                                value="{{ $row->{\Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities::parseField($primaryKey)} }}"
+                                value="{{ $row->{$this->parseField($primaryKey)} }}"
                                 onclick="event.stopPropagation();return true;"
                                 type="checkbox"
                                 class="rounded border-gray-300 text-indigo-600 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600"
