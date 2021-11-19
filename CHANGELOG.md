@@ -14,6 +14,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 - Removed excess left padding on Bootstrap 5 form check on multiselect filters.
+- Patch bulk actions random wire:key - https://github.com/rappasoft/laravel-livewire-tables/pull/557
 
 ## [1.20.1] - 2021-11-01
 
