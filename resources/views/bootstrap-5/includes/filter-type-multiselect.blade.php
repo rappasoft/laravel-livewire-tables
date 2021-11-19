@@ -1,3 +1,13 @@
+<div class="form-check">
+    <input
+        onclick="event.stopPropagation();"
+        type="checkbox"
+        id="filter-{{$key}}-select-all"
+        wire:input="selectAllFilters('{{ $key }}')"
+        {{ count($filters[$key]) === count($filter->options()) ? 'checked' : ''}}
+    >
+    <label class="form-check-label" for="filter-{{$key}}-select-all">@lang('All')</label>
+</div>
 @foreach($filter->options() as $optionKey => $value)
     <div class="form-check" wire:key="filter-{{ $key }}-multiselect-{{ $optionKey }}">
         <input

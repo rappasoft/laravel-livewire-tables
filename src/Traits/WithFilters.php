@@ -196,6 +196,22 @@ trait WithFilters
         })->toArray();
     }
 
+    public function selectAllFilters($filterKey): void
+    {
+        $filter = $this->filters()[$filterKey];
+
+        if (! $filter->isMultiSelect()) {
+            return;
+        }
+
+        if (count($this->filters[$filterKey]) === count($filter->options())) {
+            $this->removeFilter($filterKey);
+            return;
+        }
+
+        $this->filters[$filterKey] = array_keys($filter->options());
+    }
+
     /**
      * Define the string location to a view to be included as the filters view
      *
