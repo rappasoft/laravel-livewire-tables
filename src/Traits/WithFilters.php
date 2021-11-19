@@ -206,6 +206,7 @@ trait WithFilters
 
         if (count($this->filters[$filterKey]) === count($filter->options())) {
             $this->removeFilter($filterKey);
+
             return;
         }
 
