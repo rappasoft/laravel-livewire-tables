@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.21.0] - 2021-11-XX
+
+### Added
+
+- Added Chinese translation - https://github.com/rappasoft/laravel-livewire-tables/pull/540
+
 ## [1.20.1] - 2021-11-01
 
 ### Changed
