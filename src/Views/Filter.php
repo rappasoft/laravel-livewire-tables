@@ -34,9 +34,8 @@ class Filter
     public array $attributes = [];
 
     /**
-     * Filter constructor.
-     *
-     * @param string $name
+     * @param  string  $name
+     * @param  array|null  $attributes
      */
     public function __construct(string $name, ?array $attributes = [])
     {
@@ -45,7 +44,8 @@ class Filter
     }
 
     /**
-     * @param string $name
+     * @param  string  $name
+     * @param  array|null  $attributes
      *
      * @return Filter
      */
