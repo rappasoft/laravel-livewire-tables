@@ -9,7 +9,7 @@
                         wire:key="filter-pill-{{ $key }}"
                         class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900"
                     >
-                        {{ $filterNames[$key] ?? collect($this->columns())->pluck('text', 'column')->get($key, ucwords(strtr($key, ['_' => ' ', '-' => ' ']))) }}:
+                        {{ $filterNames[$key] ?? collect($this->columns())->pluck('text', 'column')->get($key, isset($customFilters[$key]) && property_exists($customFilters[$key], 'name') ? $customFilters[$key]->name : ucwords(strtr($key, ['_' => ' ', '-' => ' ']))) }}:
                         @if(isset($customFilters[$key]) && method_exists($customFilters[$key], 'options'))
                             @if(is_array($value))
                                 @foreach($value as $selectedValue)
