@@ -11,6 +11,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added Chinese translation - https://github.com/rappasoft/laravel-livewire-tables/pull/540
 - Added 'select all' checkbox for multiselect filters - https://github.com/rappasoft/laravel-livewire-tables/pull/551
 - Added attributes to filters - https://github.com/rappasoft/laravel-livewire-tables/pull/558
+- Added 4th option for pills fallback value - https://github.com/rappasoft/laravel-livewire-tables/pull/538
 
 ### Changed
 
