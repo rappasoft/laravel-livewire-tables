@@ -29,23 +29,29 @@ class Filter
     public array $options = [];
 
     /**
-     * Filter constructor.
-     *
-     * @param string $name
+     * @var array
      */
-    public function __construct(string $name)
+    public array $attributes = [];
+
+    /**
+     * @param  string  $name
+     * @param  array|null  $attributes
+     */
+    public function __construct(string $name, ?array $attributes = [])
     {
         $this->name = $name;
+        $this->attributes = $attributes;
     }
 
     /**
-     * @param string $name
+     * @param  string  $name
+     * @param  array|null  $attributes
      *
      * @return Filter
      */
-    public static function make(string $name): Filter
+    public static function make(string $name, ?array $attributes = []): Filter
     {
-        return new static($name);
+        return new static($name, $attributes);
     }
 
     /**

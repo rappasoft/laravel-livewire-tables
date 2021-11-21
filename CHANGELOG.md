@@ -4,6 +4,20 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.21.0] - 2021-11-20
+
+### Added
+
+- Added Chinese translation - https://github.com/rappasoft/laravel-livewire-tables/pull/540
+- Added 'select all' checkbox for multiselect filters - https://github.com/rappasoft/laravel-livewire-tables/pull/551
+- Added attributes to filters - https://github.com/rappasoft/laravel-livewire-tables/pull/558
+- Added 4th option for pills fallback value - https://github.com/rappasoft/laravel-livewire-tables/pull/538
+
+### Changed
+
+- Removed excess left padding on Bootstrap 5 form check on multiselect filters.
+- Patch bulk actions random wire:key - https://github.com/rappasoft/laravel-livewire-tables/pull/557
+
 ## [1.20.1] - 2021-11-01
 
 ### Changed
@@ -561,7 +575,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Initial release
 
 [Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...development
-[1.20.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.3...v1.20.1
+[1.21.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...v1.21.0
+[1.20.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.0...v1.20.1
 [1.20.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.3...v1.20.0
 [1.19.3]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.2...v1.19.3
 [1.19.2]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.1...v1.19.2

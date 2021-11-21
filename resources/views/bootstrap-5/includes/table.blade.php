@@ -94,7 +94,7 @@
         @forelse ($rows as $index => $row)
             <x-livewire-tables::bs5.table.row
                 wire:loading.class.delay="text-muted"
-                wire:key="table-row-{{ $row->{$primaryKey} }}"
+                wire:key="table-row-{{ md5(mt_rand()) }}-{{ $row->{$this->parseField($primaryKey)} }}"
                 wire:sortable.item="{{ $row->{$primaryKey} }}"
                 :reordering="$reordering"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
@@ -116,7 +116,7 @@
                         <input
                             wire:model="selected"
                             wire:loading.attr.delay="disabled"
-                            value="{{ $row->{\Rappasoft\LaravelLivewireTables\Utilities\ColumnUtilities::parseField($primaryKey)} }}"
+                            value="{{ $row->{$this->parseField($primaryKey)} }}"
                             onclick="event.stopPropagation();return true;"
                             class="form-check-input"
                             type="checkbox"
