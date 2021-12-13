@@ -7,7 +7,7 @@
 @endif
 
 <tr
-    {{ $attributes->merge($customAttributes)->merge(['class' => ($url || $wire) ? 'cursor-pointer' : '']) }}
+    {{ $attributes->merge($customAttributes)->merge(['class' => ($url || $wireclick) ? 'cursor-pointer' : '']) }}
 
     @if ($url)
         onclick="window.open('{{ $url }}', '{{ $target }}')"
