@@ -11,7 +11,7 @@
 
     @if ($url)
         onclick="window.open('{{ $url }}', '{{ $target }}')"
-    @elseif ($wire)
+    @elseif ($wireclick)
         wire:click="{{ $wireclick }}"
     @endif
 >
