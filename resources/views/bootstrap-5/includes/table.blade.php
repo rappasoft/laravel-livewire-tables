@@ -99,6 +99,7 @@
                 :reordering="$reordering"
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : ''"
                 :target="method_exists($this, 'getTableRowUrlTarget') ? $this->getTableRowUrlTarget($row) : '_self'"
+                :wireclick="method_exists($this, 'getTableRowWireClick') ? $this->getTableRowWireClick($row) : ''"
                 :class="method_exists($this, 'setTableRowClass') ? ' ' . $this->setTableRowClass($row) : ''"
                 :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
                 :customAttributes="method_exists($this, 'setTableRowAttributes') ? $this->setTableRowAttributes($row) : []"

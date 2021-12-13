@@ -1,4 +1,4 @@
-@props(['url' => null, 'target' => '_self', 'reordering' => false, 'customAttributes' => []])
+@props(['url' => null, 'wireclick' => null, 'target' => '_self', 'reordering' => false, 'customAttributes' => []])
 
 @if (!$reordering && (method_exists($attributes, 'has') ? $attributes->has('wire:sortable.item') : array_key_exists('wire:sortable.item', $attributes->getAttributes())))
     @php
@@ -7,10 +7,12 @@
 @endif
 
 <tr
-    {{ $attributes->merge($customAttributes)->merge(['class' => $url ? 'cursor-pointer' : '']) }}
+    {{ $attributes->merge($customAttributes)->merge(['class' => ($url || $wire) ? 'cursor-pointer' : '']) }}
 
     @if ($url)
         onclick="window.open('{{ $url }}', '{{ $target }}')"
+    @elseif ($wire)
+        wire:click="{{ $wireclick }}"
     @endif
 >
     {{ $slot }}
