@@ -70,4 +70,4 @@ public function doSomething()
 }
 ```
 
-Adding a URL (using `getTableRowUrl`) to a row dismisses the option to use `getTableRowWireClick`, you cannot state both, the URL will supersede.
+If you state both `getTableRowUrl` & `getTableRowWireClick`, the URL will supersede when a non-null value is supplied.
