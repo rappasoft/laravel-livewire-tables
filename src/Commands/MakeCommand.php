@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Livewire\Commands\ComponentParser;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Commands\MakeCommand as LivewireMakeCommand;
 
 /**
@@ -141,8 +142,8 @@ class MakeCommand extends Command
             $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table-with-model.stub');
 
             $contents = str_replace(
-                ['[namespace]', '[class]', '[model]', '[model_import]'],
-                [$this->parser->classNamespace(), $this->parser->className(), $this->model, $this->getModelImport()],
+                ['[namespace]', '[class]', '[model]', '[model_import]', '[columns]'],
+                [$this->parser->classNamespace(), $this->parser->className(), $this->model, $this->getModelImport(), $this->generateColumns($this->getModelImport())],
                 $template
             );
         } else {
@@ -203,5 +204,41 @@ class MakeCommand extends Command
         $this->error('Could not find path to model.');
 
         return 'App\Models\\' . $this->model;
+    }
+
+    /**
+     * @param string $modelName
+     * @return string
+     * @throws Exception
+     */
+    private function generateColumns(string $modelName): string
+    {
+        $model = new $modelName();
+
+        if ($model instanceof Model === false) {
+            throw new \Exception('Invalid model given.');
+        }
+
+        $getFillable    = array_merge(
+            [$model->getKeyName()],
+            $model->getFillable(),
+            ['created_at', 'updated_at']
+        );
+
+        $columns        = "[\n";
+
+        foreach ($getFillable as $field) {
+            if (in_array($field, $model->getHidden())) {
+                continue;
+            }
+
+            $title = Str::of($field)->replace('_', ' ')->ucfirst();
+
+            $columns    .= '            Column::make("' . $title . '", "' . $field . '")' . "\n" . '                ->sortable(),' . "\n\n";
+        }
+
+        $columns .= "        ]\n";
+
+        return $columns;
     }
 }
