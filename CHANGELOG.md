@@ -7,6 +7,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 -   Updated some ES translations - https://github.com/rappasoft/laravel-livewire-tables/pull/577
+-   Updated some AR translations - https://github.com/rappasoft/laravel-livewire-tables/pull/580
 
 ## [1.21.0] - 2021-11-20
 
