@@ -53,3 +53,21 @@ public function redirectToModel(string $name, array $parameters = [], $absolute 
 ```
 
 Now the blank space of the row should have its action, while your links go to their own action.
+
+## Working with `wire:click` on rows
+
+You can add the row-level Livewire clicks by utilizing the following method.
+
+```php
+public function getTableRowWireClick($row): ?string
+{
+    return "doSomething(" . $row->id . ")";
+}
+
+public function doSomething($id)
+{
+    // ...
+}
+```
+
+If you state both `getTableRowUrl` & `getTableRowWireClick`, the URL will supersede when a non-null value is supplied.
