@@ -56,7 +56,7 @@ Now the blank space of the row should have its action, while your links go to th
 
 ## Working with `wire:click` on rows
 
-You can add the row-level livewire clicks by utilising the following method.
+You can add the row-level Livewire clicks by utilizing the following method.
 
 ```php
 public function getTableRowWireClick($row): ?string
@@ -64,7 +64,7 @@ public function getTableRowWireClick($row): ?string
     return "doSomething(" . $row->id . ")";
 }
 
-public function doSomething()
+public function doSomething($id)
 {
     // ...
 }
