@@ -219,13 +219,13 @@ class MakeCommand extends Command
             throw new \Exception('Invalid model given.');
         }
 
-        $getFillable    = array_merge(
+        $getFillable = array_merge(
             [$model->getKeyName()],
             $model->getFillable(),
             ['created_at', 'updated_at']
         );
 
-        $columns        = "[\n";
+        $columns = "[\n";
 
         foreach ($getFillable as $field) {
             if (in_array($field, $model->getHidden())) {
@@ -234,10 +234,10 @@ class MakeCommand extends Command
 
             $title = Str::of($field)->replace('_', ' ')->ucfirst();
 
-            $columns    .= '            Column::make("' . $title . '", "' . $field . '")' . "\n" . '                ->sortable(),' . "\n\n";
+            $columns .= '            Column::make("' . $title . '", "' . $field . '")' . "\n" . '                ->sortable(),' . "\n";
         }
 
-        $columns .= "        ]\n";
+        $columns .= "        ]";
 
         return $columns;
     }
