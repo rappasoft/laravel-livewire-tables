@@ -4,6 +4,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.22.0] - 2022-01-20
+
 ### Added
 
 -   Added Datetime filter - https://github.com/rappasoft/laravel-livewire-tables/pull/585
@@ -588,7 +590,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 -   Initial release
 
-[unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...development
+[unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.22.0...development
+[1.22.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.21.0...v1.22.0
 [1.21.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...v1.21.0
 [1.20.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.0...v1.20.1
 [1.20.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.19.3...v1.20.0
