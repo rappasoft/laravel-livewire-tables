@@ -3,10 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Livewire\Commands\ComponentParser;
-use Illuminate\Database\Eloquent\Model;
 use Livewire\Commands\MakeCommand as LivewireMakeCommand;
 
 /**
