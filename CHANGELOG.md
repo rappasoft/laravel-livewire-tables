@@ -8,6 +8,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 -   Added Datetime filter - https://github.com/rappasoft/laravel-livewire-tables/pull/585
 -   Added wire:click to rows - https://github.com/rappasoft/laravel-livewire-tables/pull/591
+-   Added button type to mobile paginate buttons - https://github.com/rappasoft/laravel-livewire-tables/pull/595
 
 ### Changed
 
