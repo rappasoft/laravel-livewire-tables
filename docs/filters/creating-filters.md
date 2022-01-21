@@ -7,7 +7,7 @@ Creating filters is not required, and the filters box will be hidden if none are
 
 To create filters, you return an array of `Filter` class objects from the `filters()` method.
 
-The current types of filters are: `select`, `multiSelect`, and `date`.
+The current types of filters are: `select`, `multiSelect`, `date`, and `datetime` (for supported browsers).
 
 There are two steps to making a filter:
 
@@ -49,7 +49,7 @@ public function filters(): array
                 'tag2' => 'Tags 2',
                 'tag3' => 'Tags 3',
                 'tag4' => 'Tags 4',
-            ]),     
+            ]),
     ];
 }
 ```

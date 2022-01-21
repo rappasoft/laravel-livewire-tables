@@ -192,6 +192,15 @@ trait WithFilters
                 return $dt !== false && ! array_sum($dt::getLastErrors());
             }
 
+            if ($filterDefinitions[$filterName]->isDatetime()) {
+                // array_sum trick is a terse way of ensuring that PHP
+                // did not do "month shifting"
+                // (e.g. consider that January 32 is February 1)
+                $dt = DateTime::createFromFormat("Y-m-d\TH:i", $filterValue);
+
+                return $dt !== false && ! array_sum($dt::getLastErrors());
+            }
+
             return false;
         })->toArray();
     }
