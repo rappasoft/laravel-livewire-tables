@@ -69,7 +69,7 @@ trait WithReordering
             $this->secondaryHeader = false;
             $this->customFooter = false;
             $this->useHeaderAsFooter = false;
-            $this->resetPage();
+            $this->resetPage($this->pageName());
         } else {
             $this->reordering = false;
 

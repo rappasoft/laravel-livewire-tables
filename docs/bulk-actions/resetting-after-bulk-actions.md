@@ -34,6 +34,6 @@ public function myBulkAction()
     $this->resetSearch(); // Remove the search query
     $this->resetSorts(); // Remove the sorts
     $this->resetBulk(); // Clear the selected rows
-    $this->resetPage(); // Go back to page 1
+    $this->resetPage($this->pageName()); // Go back to page 1
 }
 ```

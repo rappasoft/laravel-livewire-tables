@@ -98,7 +98,7 @@ trait WithFilters
         $this->checkFilters();
 
         // Reset the page when filters are changed
-        $this->resetPage();
+        $this->resetPage($this->pageName());
     }
 
     /**
