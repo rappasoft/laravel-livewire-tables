@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+-   Added Datetime filter - https://github.com/rappasoft/laravel-livewire-tables/pull/585
+
 ### Changed
 
 -   Updated some ES translations - https://github.com/rappasoft/laravel-livewire-tables/pull/577
