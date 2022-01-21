@@ -39,7 +39,7 @@ trait WithPerPagePagination
             session()->put($this->getPerPagePaginationSessionKey(), $this->perPageAccepted[0] ?? 10);
         }
 
-        $this->resetPage();
+        $this->resetPage($this->pageName());
     }
 
     public function applyPagination($query)

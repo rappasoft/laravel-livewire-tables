@@ -62,6 +62,8 @@
                                 @include('livewire-tables::tailwind.includes.filter-type-multiselect')
                             @elseif($filter->isDate())
                                 @include('livewire-tables::tailwind.includes.filter-type-date')
+                            @elseif($filter->isDatetime())
+                                @include('livewire-tables::tailwind.includes.filter-type-datetime')    
                             @endif
                         </div>
                     </div>

@@ -9,6 +9,8 @@ class Filter
 {
     public const TYPE_DATE = 'date';
 
+    public const TYPE_DATETIME_LOCAL = 'datetime-local';
+
     public const TYPE_SELECT = 'select';
 
     public const TYPE_MULTISELECT = 'multiselect';
@@ -97,6 +99,20 @@ class Filter
     }
 
     /**
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function datetime(array $options = []): Filter
+    {
+        $this->type = self::TYPE_DATETIME_LOCAL;
+
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function name(): string
@@ -134,5 +150,13 @@ class Filter
     public function isDate(): bool
     {
         return $this->type === self::TYPE_DATE;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDatetime(): bool
+    {
+        return $this->type === self::TYPE_DATETIME_LOCAL;
     }
 }

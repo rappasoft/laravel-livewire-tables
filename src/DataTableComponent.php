@@ -189,7 +189,7 @@ abstract class DataTableComponent extends Component
         $this->resetSearch();
         $this->resetSorts();
         $this->resetBulk();
-        $this->resetPage();
+        $this->resetPage($this->pageName());
     }
 
     /**

@@ -42,6 +42,8 @@
                                 @include('livewire-tables::bootstrap-4.includes.filter-type-multiselect')
                             @elseif($filter->isDate())
                                 @include('livewire-tables::bootstrap-4.includes.filter-type-date')
+                            @elseif($filter->isDatetime())
+                                @include('livewire-tables::bootstrap-4.includes.filter-type-datetime')
                             @endif
                         </div>
                     @endforeach
