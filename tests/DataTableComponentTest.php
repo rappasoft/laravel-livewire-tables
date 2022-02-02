@@ -161,4 +161,16 @@ class DataTableComponentTest extends TestCase
         $this->table->selected[] = 1;
         $this->assertEquals(1, $this->table->count());
     }
+
+     /** @test */
+     public function bulk_actions_defined_through_with_select_all_function()
+     {
+         $this->assertArrayHasKey('count', $this->table->bulkActions);
+ 
+         $this->table->resetFilters();
+         $this->table->filters['search'] = 'Chico';
+         $this->assertEquals(1, $this->table->getRowsProperty()->total());
+         $this->table->selectAll();
+         $this->assertEquals(1, $this->table->count());
+     }
 }
