@@ -10,7 +10,6 @@
                 x-on:click="open = !open"
                 class="btn dropdown-toggle d-block w-100 d-md-inline"
                 type="button"
-                id="columnSelect"
                 aria-haspopup="true"
                 x-bind:aria-expanded="open"
             >
@@ -20,7 +19,6 @@
             <div
                 class="dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3"
                 x-bind:class="{'show' : open}"
-                aria-labelledby="columnSelect"
             >
                 @foreach($columns as $column)
                     @if ($column->isVisible() && $column->isSelectable())
