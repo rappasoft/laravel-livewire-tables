@@ -1,5 +1,5 @@
 @if ($columnSelect)
-    <div class="mb-4 w-full md:w-auto md:mb-0 md:ml-2">
+    <div class="mb-4 w-full md:w-auto md:mb-0 md:ml-2" wire:ignore>
         <div
             x-data="{ open: false }"
             @keydown.window.escape="open = false"

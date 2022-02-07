@@ -1,5 +1,5 @@
 @if ($this->showBulkActionsDropdown)
-    <div class="w-full md:w-auto mb-4 md:mb-0">
+    <div class="w-full md:w-auto mb-4 md:mb-0" wire:ignore>
         <div
             x-data="{ open: false }"
             @keydown.window.escape="open = false"

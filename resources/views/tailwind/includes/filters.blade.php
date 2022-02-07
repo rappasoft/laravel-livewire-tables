@@ -4,6 +4,7 @@
         x-on:keydown.escape.stop="open = false"
         x-on:mousedown.away="open = false"
         class="relative block md:inline-block text-left"
+        wire:ignore
     >
         <div>
             <button

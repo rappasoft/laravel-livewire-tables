@@ -1,5 +1,5 @@
 @if ($columnSelect)
-    <div class="mb-3 mb-md-0 md-0 ms-md-2">
+    <div class="mb-3 mb-md-0 md-0 ms-md-2" wire:ignore>
         <div
             x-data="{ open: false }"
             x-on:keydown.escape.stop="open = false"

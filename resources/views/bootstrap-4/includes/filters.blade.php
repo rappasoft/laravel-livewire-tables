@@ -5,6 +5,7 @@
         x-on:keydown.escape.stop="open = false"
         x-on:mousedown.away="open = false"
         class="btn-group d-block d-md-inline"
+        wire:ignore
     >
         <button
             x-on:click="open = !open"
