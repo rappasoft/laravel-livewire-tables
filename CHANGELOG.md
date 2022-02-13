@@ -14,6 +14,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 - Fixed white border in dark mode - https://github.com/rappasoft/laravel-livewire-tables/pull/621
+- Removed text-left to use default - https://github.com/rappasoft/laravel-livewire-tables/pull/620
 
 ## [1.23.0] - 2022-02-11
 
