@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.24.0] - 2022-02-XX
+
+### Added
+
+- Russian Localization - https://github.com/rappasoft/laravel-livewire-tables/pull/633
+
 ## [1.23.0] - 2022-02-11
 
 ### Added
