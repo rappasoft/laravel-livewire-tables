@@ -12,7 +12,6 @@
                         x-on:click="open = !open"
                         type="button"
                         class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
-                        id="options-menu"
                         aria-haspopup="true"
                         x-bind:aria-expanded="open"
                         aria-expanded="true"
@@ -38,7 +37,7 @@
                 class="origin-top-right absolute right-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50"
             >
                 <div class="rounded-md bg-white shadow-xs dark:bg-gray-700 dark:text-white">
-                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                    <div class="py-1" role="menu" aria-orientation="vertical">
                         @foreach($this->bulkActions as $action => $title)
                             <button
                                 wire:click="{{ $action }}"
