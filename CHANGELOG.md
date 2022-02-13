@@ -11,6 +11,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Russian Localization - https://github.com/rappasoft/laravel-livewire-tables/pull/633
 - Portuguese Localization - https://github.com/rappasoft/laravel-livewire-tables/pull/619
 
+### Changed
+
+- Fixed white border in dark mode - https://github.com/rappasoft/laravel-livewire-tables/pull/621
+
 ## [1.23.0] - 2022-02-11
 
 ### Added
