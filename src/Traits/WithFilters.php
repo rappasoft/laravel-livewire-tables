@@ -387,15 +387,24 @@ trait WithFilters
                         }
 
                         // We can use a simple where clause
-                        $subQuery->orWhere($whereColumn, 'like', '%' . $search . '%');
+                        if($column->searchExactMatch){
+                            $subQuery->orWhereRaw("LOWER({$whereColumn}) = LOWER('{$search}')");
+                        } else {
+                            $subQuery->orWhere($whereColumn, 'like', '%' . $search . '%');
+                        }
+
                     } else {
                         // Parse the column
                         $relationName = ColumnUtilities::parseRelation($column->column());
                         $fieldName = ColumnUtilities::parseField($column->column());
 
                         // We use whereHas which can work with unselected relations
-                        $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($fieldName, $search) {
-                            $hasQuery->where($fieldName, 'like', '%' . $search . '%');
+                        $subQuery->orWhereHas($relationName, function (Builder $hasQuery) use ($column, $fieldName, $search) {
+                            if($column->searchExactMatch){
+                                $hasQuery->whereRaw("LOWER({$fieldName}) = LOWER('{$search}')");
+                            } else {
+                                $hasQuery->where($fieldName, 'like', '%' . $search . '%');
+                            }
                         });
                     }
                 }

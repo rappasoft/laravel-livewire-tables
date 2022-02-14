@@ -61,7 +61,7 @@ class PetsTable extends DataTableComponent
             Column::make('Species', 'species.name')
                 ->searchable(),
             Column::make('Breed', 'breed.name')
-                ->searchable(),
+                ->exactMatchSearchable(),
         ];
     }
 

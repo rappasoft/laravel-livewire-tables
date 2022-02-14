@@ -111,6 +111,11 @@ class Column
     public ?string $linkTarget;
 
     /**
+     * @var bool $searchExactMatch
+     */
+    public bool $searchExactMatch  = false;
+
+    /**
      * Column constructor.
      *
      * @param string|null $column
@@ -197,6 +202,18 @@ class Column
         $this->searchCallback = $callback;
 
         return $this;
+    }
+
+    /**
+     * No option to pass a callback, use the method searchable() for that.
+     *
+     * @return $this
+     */
+    public function exactMatchSearchable(): self
+    {
+        $this->searchExactMatch = true;
+
+        return $this->searchable();
     }
 
     /**

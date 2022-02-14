@@ -76,8 +76,18 @@ class DataTableComponentTest extends TestCase
     /** @test */
     public function search_filter(): void
     {
-        $this->table->filters['search'] = 'Cartman';
+        $this->table->filters['search'] = 'Cart';
         $this->assertEquals(1, $this->table->getRowsProperty()->total());
+    }
+
+    /** @test */
+    public function search_full_match(): void
+    {
+        $this->table->filters['search'] = 'red set';
+        self::assertSame(0, $this->table->rowsQuery()->count());
+
+        $this->table->filters['search'] = 'red setter';
+        self::assertSame(1, $this->table->rowsQuery()->count());
     }
 
     /** @test */
