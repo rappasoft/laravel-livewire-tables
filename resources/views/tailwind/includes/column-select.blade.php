@@ -12,7 +12,6 @@
                         x-on:click="open = !open"
                         type="button"
                         class="inline-flex justify-center px-4 py-2 w-full text-sm font-medium text-gray-700 bg-white rounded-md border border-gray-300 shadow-sm hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
-                        id="column-select-menu"
                         aria-haspopup="true"
                         x-bind:aria-expanded="open"
                         aria-expanded="true"
@@ -38,7 +37,7 @@
                 class="absolute right-0 z-50 mt-2 w-full bg-white rounded-md divide-y divide-gray-100 ring-1 ring-black ring-opacity-5 shadow-lg origin-top-right md:w-48 focus:outline-none"
             >
                 <div class="bg-white rounded-md shadow-xs dark:bg-gray-700 dark:text-white">
-                    <div class="p-2" role="menu" aria-orientation="vertical" aria-labelledby="column-select-menu">
+                    <div class="p-2" role="menu" aria-orientation="vertical">
                         @foreach($columns as $column)
                             @if ($column->isVisible() && $column->isSelectable())
                                 <div wire:key="columnSelect-{{ $loop->index }}">

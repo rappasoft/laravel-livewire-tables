@@ -8,7 +8,7 @@
             </tr>
         </thead>
 
-        <tbody {{ $attributes->only('wire:sortable') }} class="bg-white divide-y divide-gray-200 dark:divide-none">
+        <tbody {{ $attributes->only('wire:sortable') }} class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-none">
             @if ($customSecondaryHeader)
                 {{ $customSecondaryHead }}
             @endif
