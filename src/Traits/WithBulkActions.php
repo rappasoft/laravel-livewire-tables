@@ -68,8 +68,9 @@ trait WithBulkActions
      */
     public function selectedRowsQuery()
     {
-        return $this->query()->unless(
+        return $this->query()->when(
             $this->selectAll,
+            fn ($query) => $this->applySearchFilter($query),
             fn ($query) => $query->whereIn($query->qualifyColumn($this->primaryKey), $this->selected)
         );
     }
