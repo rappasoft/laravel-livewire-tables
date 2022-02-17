@@ -388,7 +388,10 @@ trait WithFilters
 
                         // We can use a simple where clause
                         if($column->searchExactMatch){
-                            $subQuery->orWhereRaw("LOWER({$whereColumn}) = LOWER('{$search}')");
+                            $subQuery->orWhereRaw("LOWER(?column) = LOWER(?search)", [
+                                '?column' => $whereColumn,
+                                '?search' => $search
+                            ]);
                         } else {
                             $subQuery->orWhere($whereColumn, 'like', '%' . $search . '%');
                         }
