@@ -48,7 +48,7 @@
             @elseif (count($customFilters))
                 @foreach ($customFilters as $key => $filter)
                     <div class="py-1" role="none">
-                        <div class="block px-4 py-2 text-sm text-gray-700" role="menuitem">
+                        <div class="block px-4 py-2 text-sm text-gray-700 dark:text-white" role="menuitem">
                             <label for="filter-{{ $key }}"
                                    class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
                                 {{ $filter->name() }}
