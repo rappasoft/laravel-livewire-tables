@@ -5,11 +5,11 @@
         @elseif(is_string($refresh))
             @if ($refresh === '.keep-alive' || $refresh === 'keep-alive')
                 wire:poll.keep-alive
-            @elseif($refresh === '.visible' || $refresh === 'visible')
-                wire:poll.visible
-            @else
-                wire:poll="{{ $refresh }}"
-            @endif
+        @elseif($refresh === '.visible' || $refresh === 'visible')
+            wire:poll.visible
+        @else
+            wire:poll="{{ $refresh }}"
+        @endif
         @endif
     >
         @include('livewire-tables::includes.debug')
@@ -30,7 +30,7 @@
                     <div class="md:flex md:flex-nowrap md:items-center sm:space-x-2">
                         <div>@include('livewire-tables::tailwind.includes.bulk-actions')</div>
                         <div>@include('livewire-tables::tailwind.includes.column-select')</div>
-                        <div>@include('livewire-tables::tailwind.includes.buttons')</div>
+                        <div>@include('livewire-tables::tailwind.includes.actions')</div>
                     </div>
                 </div>
 

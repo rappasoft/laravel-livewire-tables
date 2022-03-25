@@ -1,6 +1,6 @@
-@if ($this->showButtons)
+@if ($this->showActions)
     <div class="w-full md:flex md:flex-nowrap mb-4 md:mb-0 md:space-x-1 space-y-1 md:space-y-0">
-        @foreach($this->buttons as $action => $title)
+        @foreach($this->actions as $action => $title)
             <button
                 wire:click="{{ $action }}"
                 wire:key="button-{{ $action }}"
