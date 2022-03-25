@@ -16,6 +16,7 @@ trait WithBulkActions
     public bool $selectAll = false;
     public array $selected = [];
     public bool $hideBulkActionsOnEmpty = false;
+    public bool $bulkActionsInline = false;
 
     public function renderingWithBulkActions(): void
     {
@@ -107,7 +108,7 @@ trait WithBulkActions
         return [];
     }
 
-    public function getShowBulkActionsDropdownProperty(): bool
+    public function getShowBulkActionsProperty(): bool
     {
         $showBulkActions = false;
 

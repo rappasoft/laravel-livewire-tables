@@ -1,5 +1,5 @@
 @if ($showSearch)
-    <div class="flex rounded-md shadow-sm">
+    <div class="flex rounded-md shadow-sm md:mr-2">
         <input
             wire:model{{ $this->searchFilterOptions }}="filters.search"
             placeholder="{{ __('Search') }}"

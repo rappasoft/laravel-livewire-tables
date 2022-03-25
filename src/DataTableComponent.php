@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\ComponentHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
+use Rappasoft\LaravelLivewireTables\Traits\WithButtons;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\WithCustomPagination;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
@@ -26,6 +27,7 @@ abstract class DataTableComponent extends Component
 {
     use ComponentHelpers;
     use WithBulkActions;
+    use WithButtons;
     use WithColumnSelect;
     use WithCustomPagination;
     use WithFilters;
@@ -226,6 +228,7 @@ abstract class DataTableComponent extends Component
                 'rows' => $this->rows,
                 'modalsView' => $this->modalsView(),
                 'bulkActions' => $this->bulkActions,
+                'buttons' => $this->buttons,
             ]);
     }
 }

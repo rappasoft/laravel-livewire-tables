@@ -1,5 +1,5 @@
-@if ($paginationEnabled && $showPerPage)
-    <div class="w-full md:w-auto ml-0 md:ml-2">
+@if ($showPerPage)
+    <div class="w-full sm:w-20 mr-0 mt-2 sm:mt-0 sm:mr-2">
         <select
             wire:model="perPage"
             id="perPage"

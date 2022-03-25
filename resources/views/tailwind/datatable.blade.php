@@ -27,10 +27,10 @@
                         @include('livewire-tables::tailwind.includes.filters')
                     </div>
 
-                    <div class="md:flex md:items-center">
+                    <div class="md:flex md:flex-nowrap md:items-center sm:space-x-2">
                         <div>@include('livewire-tables::tailwind.includes.bulk-actions')</div>
                         <div>@include('livewire-tables::tailwind.includes.column-select')</div>
-                        <div>@include('livewire-tables::tailwind.includes.per-page')</div>
+                        <div>@include('livewire-tables::tailwind.includes.buttons')</div>
                     </div>
                 </div>
 

@@ -1,4 +1,18 @@
-@if ($this->showBulkActionsDropdown)
+@if ($this->showBulkActions)
+    @if($this->bulkActionsInline)
+        <div class="w-full md:flex md:flex-nowrap mb-4 md:mb-0 md:space-x-1 space-y-1 md:space-y-0">
+        @foreach($this->bulkActions as $action => $title)
+            <button
+                wire:click="{{ $action }}"
+                wire:key="bulk-action-{{ $action }}"
+                type="button"
+                class="whitespace-nowrap inline-flex justify-center items-center w-full md:w-auto px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
+            >
+                <span>{{ $title }}</span>
+            </button>
+        @endforeach
+        </div>
+    @else
     <div class="w-full md:w-auto mb-4 md:mb-0">
         <div
             x-data="{ open: false }"
@@ -54,4 +68,5 @@
             </div>
         </div>
     </div>
+    @endif
 @endif
