@@ -106,7 +106,7 @@
                     ($index % 2 === 0 ?
                     'bg-white dark:bg-gray-700 dark:text-white' . (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '') :
                     'bg-gray-50 dark:bg-gray-800 dark:text-white') .
-                    (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100 dark:hover:bg-gray-900 transition' : '') .
+                    (method_exists($this, 'getTableRowUrl') || method_exists($this, 'getTableRowWireClick') ? ' hover:bg-gray-100 dark:hover:bg-gray-900 transition' : '') .
                     (method_exists($this, 'setTableRowClass') ? ' ' . $this->setTableRowClass($row) : '')
                 "
                 :id="method_exists($this, 'setTableRowId') ? $this->setTableRowId($row) : ''"
