@@ -5,7 +5,7 @@
                 wire:click="{{ $action }}"
                 wire:key="button-{{ $action }}"
                 type="button"
-                class="whitespace-nowrap focus:outline-none inline-flex justify-center items-center transition-all ease-in duration-100 focus:ring-2 focus:ring-offset-2 hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed rounded gap-x-2 text-sm px-4 py-2 ring-secondary-500 text-white bg-secondary-500 hover:bg-secondary-600 hover:ring-secondary-600 dark:ring-offset-slate-800 dark:bg-secondary-700 dark:ring-secondary-700 dark:hover:bg-secondary-600 dark:hover:ring-secondary-600"
+                class="whitespace-nowrap w-full md:w-auto focus:outline-none inline-flex justify-center items-center transition-all ease-in duration-100 focus:ring-2 focus:ring-offset-2 hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed rounded gap-x-2 text-sm px-4 py-2 ring-secondary-500 text-white bg-secondary-500 hover:bg-secondary-600 hover:ring-secondary-600 dark:ring-offset-slate-800 dark:bg-secondary-700 dark:ring-secondary-700 dark:hover:bg-secondary-600 dark:hover:ring-secondary-600"
             >
                 <span>{{ $title }}</span>
             </button>
