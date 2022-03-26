@@ -18,7 +18,7 @@
         <button
             wire:click="sortBy('{{ $column }}', '{{ $text ?? $column }}')"
             {{ $attributes->except('class') }}
-            class="flex items-center space-x-1 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none focus:underline dark:text-gray-400"
+            class="text-left flex items-center space-x-1 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none focus:underline dark:text-gray-400"
         >
             <span>{{ $text ?? $slot }}</span>
 
