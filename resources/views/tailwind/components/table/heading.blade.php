@@ -8,7 +8,7 @@
 ])
 
 <th
-    {{ $attributes->merge(array_merge(['class' => 'p-2 md:p-4 bg-gray-50 dark:bg-gray-800'], $customAttributes)) }}
+    {{ $attributes->merge(array_merge(['class' => 'text-left p-2 md:p-4 bg-gray-50 dark:bg-gray-800'], $customAttributes)) }}
 >
     @unless ($sortingEnabled && $sortable)
         <span class="block text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
