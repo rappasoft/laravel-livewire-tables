@@ -65,7 +65,7 @@ class Filter
     {
         $this->type = self::TYPE_SELECT;
 
-        if (!is_null($defaultOption)) {
+        if (!empty($defaultOption)) {
             $options = ['' => $defaultOption] + $options;
         }
         $this->options = $options;
