@@ -61,7 +61,7 @@ class Filter
      *
      * @return $this
      */
-    public function select(array $options = [], ?string $defaultOption = '---'): Filter
+    public function select(array $options = [], string $defaultOption = ''): Filter
     {
         $this->type = self::TYPE_SELECT;
 
