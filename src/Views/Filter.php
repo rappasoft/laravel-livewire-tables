@@ -61,11 +61,14 @@ class Filter
      *
      * @return $this
      */
-    public function select(array $options = []): Filter
+    public function select(array $options = [], ?string $defaultOption = '---'): Filter
     {
         $this->type = self::TYPE_SELECT;
 
-        $this->options = [''=> __('---')] + $options;
+        if (!is_null($defaultOption)) {
+            $options = ['' => $defaultOption] + $options;
+        }
+        $this->options = $options;
 
         return $this;
     }
