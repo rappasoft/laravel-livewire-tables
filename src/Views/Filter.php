@@ -65,7 +65,7 @@ class Filter
     {
         $this->type = self::TYPE_SELECT;
 
-        $this->options = $options;
+        $this->options = [''=> __('---')] + $options;
 
         return $this;
     }
