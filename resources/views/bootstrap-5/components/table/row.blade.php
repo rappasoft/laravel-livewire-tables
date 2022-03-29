@@ -7,11 +7,12 @@
 @endif
 
 <tr
-    {{ $attributes->merge($customAttributes) }}
+    {{ $attributes->merge($customAttributes)->merge(['style' => ($url || $wireclick) ? 'cursor: pointer;' : '']) }}
 
     @if ($url)
         onclick="window.open('{{ $url }}', '{{ $target }}')"
-        style="cursor:pointer"
+    @elseif ($wireclick)
+        wire:click="{{ $wireclick }}"
     @endif
 >
     {{ $slot }}
