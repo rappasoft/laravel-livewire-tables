@@ -9,6 +9,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added missing row wire:click to BS4/5 - https://github.com/rappasoft/laravel-livewire-tables/pull/658
 - Added Turkmen Localization - https://github.com/rappasoft/laravel-livewire-tables/pull/666
 - Added filters text color for dark mode in tailwind theme - https://github.com/rappasoft/laravel-livewire-tables/pull/668
+- Added Catalan translation - https://github.com/rappasoft/laravel-livewire-tables/pull/673
 
 ## [1.24.0] - 2022-02-13
 
