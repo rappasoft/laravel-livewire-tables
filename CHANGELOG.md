@@ -4,6 +4,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.25.0] - 2022-03-28
+
 ### Added
 
 - Added missing row wire:click to BS4/5 - https://github.com/rappasoft/laravel-livewire-tables/pull/658
@@ -617,7 +619,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 -   Initial release
 
-[unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.24.0...development
+[unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.25.0...development
+[1.25.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.24.0...v1.25.0
 [1.24.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.23.0...v1.24.0
 [1.23.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.22.0...v1.23.0
 [1.22.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.21.0...v1.22.0
