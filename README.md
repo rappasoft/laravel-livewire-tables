@@ -42,6 +42,8 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class UsersTable extends DataTableComponent
 {
 
+    protected $model = User::class;
+
     public function columns(): array
     {
         return [
@@ -54,11 +56,6 @@ class UsersTable extends DataTableComponent
             Column::make('Verified', 'email_verified_at')
                 ->sortable(),
         ];
-    }
-
-    public function query(): Builder
-    {
-        return User::query();
     }
 }
 ```
