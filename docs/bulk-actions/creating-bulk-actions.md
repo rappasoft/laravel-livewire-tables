@@ -1,9 +1,17 @@
 ---
-title: Creating bulk actions
+title: Creating Bulk Actions
 weight: 2
 ---
 
-To create bulk actions, you must specify a `method` and a `button title` in the `$bulkActions` component property.
+There are 3 ways to define your bulk actions.
+
+They all do the same thing except provide different levels of flexibility.
+
+The **key** is the Livewire method to call, and the value is the name of the item in the bulk actions dropdown.
+
+## Property
+
+The first way to define your bulk actions is with the `bulkActions` component property:
 
 ```php
 public array $bulkActions = [
@@ -11,36 +19,28 @@ public array $bulkActions = [
 ];
 ```
 
-------
+## Method
 
-**The following method is only available in v1.16 and above**
-
-As of v1.16 you can define bulk action with a method, so you can perform other actions to determine what your actions are or perform translations on the strings:
+You can also use the `bulkActions` method on the component:
 
 ```php
 public function bulkActions(): array
 {
-    // Figure out what actions the admin gets
-    ...
-
     return [
-        'activate'   => __('Activate'),
-        'deactivate' => __('Deactivate'),
+        'exportSelected' => 'Export',
     ];
 }
 ```
 
-------
+## Configuration
 
-The **key** is the Livewire method to call, and the value is the name of the item in the bulk actions dropdown.
-
-You can define your method to do whatever you want:
+You can also set them via the component's configure method:
 
 ```php
-public function exportSelected()
+public function configure(): void
 {
-    // Do something with the selected rows.
+    $this->setBulkActions([
+        'exportSelected' => 'Export',
+    ]);
 }
 ```
-
-See [Getting the selected rows query](./getting-the-selected-rows-query) or [Getting the selected keys](./getting-the-selected-keys) to understand how to work with the selected data.

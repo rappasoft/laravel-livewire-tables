@@ -27,6 +27,7 @@ class CreateTestTables extends Migration
 
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
+            $table->integer('sort')->default(0);
             $table->string('name')->index();
             $table->string('age')->nullable();
             $table->date('last_visit')->nullable();

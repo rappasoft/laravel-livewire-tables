@@ -3,86 +3,87 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\Relation;
+use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
 
-/**
- * Trait WithSorting.
- */
 trait WithSorting
 {
-    public bool $sortingEnabled = true;
-    public bool $showSorting = true;
-    public bool $singleColumnSorting = false;
-    public array $sorts = [];
-    public array $sortNames = [];
-    public array $sortDirectionNames = [];
-    public string $defaultSortColumn = '';
-    public string $defaultSortDirection = 'asc';
+    use SortingConfiguration,
+        SortingHelpers;
 
-    public function sortBy(string $field): ?string
+    public array $sorts = [];
+    public bool $sortingStatus = true;
+    public bool $singleColumnSortingStatus = true;
+    public bool $sortingPillsStatus = true;
+    public ?string $defaultSortColumn = null;
+    public string $defaultSortDirection = 'asc';
+    public string $defaultSortingLabelAsc = 'A-Z';
+    public string $defaultSortingLabelDesc = 'Z-A';
+
+    /**
+     * @param  string  $columnSelectName
+     *
+     * @return string|null
+     */
+    public function sortBy(string $columnSelectName): ?string
     {
-        if (! $this->sortingEnabled) {
+        if ($this->sortingIsDisabled()) {
             return null;
         }
 
-        if ($this->singleColumnSorting && count($this->sorts) && ! isset($this->sorts[$field])) {
-            $this->sorts = [];
+        // If single sorting is enabled and there are sorts but not the field that is being sorted,
+        // then clear all the sorts
+        if ($this->singleSortingIsEnabled() && $this->hasSorts() && ! $this->hasSort($columnSelectName)) {
+            $this->clearSorts();
         }
 
-        if (! isset($this->sorts[$field])) {
-            return $this->sorts[$field] = 'asc';
+        if (! $this->hasSort($columnSelectName)) {
+            return $this->setSortAsc($columnSelectName);
         }
 
-        if ($this->sorts[$field] === 'asc') {
-            return $this->sorts[$field] = 'desc';
+        if ($this->isSortAsc($columnSelectName)) {
+            return $this->setSortDesc($columnSelectName);
         }
 
-        unset($this->sorts[$field]);
+        $this->clearSort($columnSelectName);
 
         return null;
     }
 
     /**
-     * @param  Builder|Relation  $query
+     * @param  Builder  $builder
      *
-     * @return Builder|Relation
+     * @return Builder
      */
-    public function applySorting($query)
+    public function applySorting(Builder $builder): Builder
     {
-        if (! empty($this->defaultSortColumn) && ! count($this->sorts)) {
-            return $query->orderBy($this->defaultSortColumn, $this->defaultSortDirection);
+        if ($this->hasDefaultSort() && ! $this->hasSorts()) {
+            return $builder->orderBy($this->getDefaultSortColumn(), $this->getDefaultSortDirection());
         }
 
-        foreach ($this->sorts as $field => $direction) {
+        foreach ($this->getSorts() as $column => $direction) {
             if (! in_array($direction, ['asc', 'desc'])) {
-                $direction = 'desc';
+                $direction = 'asc';
             }
 
-            $column = $this->getColumn($field);
-
-            if (is_null($column)) {
+            if (is_null($column = $this->getColumnBySelectName($column))) {
                 continue;
             }
 
+            if (! $column->isSortable()) {
+                continue;
+            }
+
+            // TODO: Test
             if ($column->hasSortCallback()) {
-                $query = app()->call($this->getColumn($field)->getSortCallback(), ['query' => $query, 'direction' => $direction]);
+                $builder = app()->call($column->getSortCallback(), ['builder' => $builder, 'direction' => $direction]);
+            } elseif ($column->isBaseColumn()) {
+                $builder->orderBy($column->getColumnSelectName(), $direction);
             } else {
-                $query->orderBy($field, $direction);
+                $builder->orderByRaw('`'.$column->getColumnSelectName().'`' . ' ' . $direction);
             }
         }
 
-        return $query;
-    }
-
-    public function removeSort(string $field): void
-    {
-        if (isset($this->sorts[$field])) {
-            unset($this->sorts[$field]);
-        }
-    }
-
-    public function resetSorts(): void
-    {
-        $this->sorts = [];
+        return $builder;
     }
 }

@@ -1,95 +1,126 @@
 ---
-title: Creating filters
+title: Creating Filters
 weight: 2
 ---
 
-Creating filters is not required, and the filters box will be hidden if none are defined.
-
-To create filters, you return an array of `Filter` class objects from the `filters()` method.
-
-The current types of filters are: `select`, `multiSelect`, `date`, and `datetime` (for supported browsers).
-
-There are two steps to making a filter:
-
-1. Adding the `Filter` object to `filters`.
-2. Specifying how that filter acts on the `query`.
-
-## 1. Adding the `Filter` object to `filters`.
+To create filters, you must implement the `filters()` method on your component.
 
 ```php
 public function filters(): array
 {
+    return [];
+}
+```
+
+This method will return an array of filter objects. There are a few filter types to choose from:
+
+## Select Filters
+
+Select filters are a simple dropdown list. The user selects one choice from the list.
+
+```php
+use Rappasoft\LaravelLivewireTables\Views\SelectFilter;
+
+public function filters(): array
+{
     return [
-        'type' => Filter::make('User Type')
-            ->select([
-                '' => 'Any',
-                User::TYPE_ADMIN => 'Administrators',
-                User::TYPE_USER => 'Users',
-            ]),
-        'active' => Filter::make('Active')
-            ->select([
-                '' => 'Any',
+        SelectFilter::make('Active')
+            ->options([
+                '' => 'All',
                 'yes' => 'Yes',
                 'no' => 'No',
-            ]),
-        'verified' => Filter::make('E-mail Verified')
-            ->select([
-                '' => 'Any',
-                1 => 'Yes',
-                0 => 'No',
-            ]),
-         'date' => Filter::make('Date')
-            ->date([
-                'min' => now()->subYear()->format('Y-m-d'), // Optional
-                'max' => now()->format('Y-m-d') // Optional
-            ]),
-         'tags' => Filter::make('Tags')
-            ->multiSelect([
-                'tag1' => 'Tags 1',
-                'tag2' => 'Tags 2',
-                'tag3' => 'Tags 3',
-                'tag4' => 'Tags 4',
             ]),
     ];
 }
 ```
 
-When using the select box filter, the keys of the options you supply will be validated on select to make sure they match one of the options on the backend, otherwise it will be changed to `null` for safety.
+### The default value
 
-String or integer keys are supported.
+You should supply the first option as the default value. I.e. nothing selected, so the filter is not applied. This value should be an empty string. When this value is selected, the filter will be removed from the query and the query string.
 
-## 2. Specifying how that filter acts on the 'query'.
+## Multi-select Filters
 
-To apply the filter in your query, you first check its existence, and then just append some constraints.
+Multi-select filters are a list of checkboxes. The user can select multiple options from the list. There is also an 'All' option that will select all values.
 
 ```php
-public function query(): Builder
+use Rappasoft\LaravelLivewireTables\Views\MultiSelectFilter;
+
+public function filters(): array
 {
-    return User::query()
-        ->when($this->getFilter('type'), fn ($query, $type) => $query->where('type', $type))
-        ->when($this->getFilter('active'), fn ($query, $active) => $query->where('active', $active === 'yes'));
+    return [
+        MultiSelectFilter::make('Tags')
+            ->options(
+                Tag::query()
+                    ->orderBy('name')
+                    ->get()
+                    ->keyBy('id')
+                    ->map(fn($tag) => $tag->name)
+                    ->toArray()
+            ),
+    ];
 }
 ```
 
-As you can see we are just using the built-in Eloquent when method to check existence of our filter, and then apply the query.
+## Date Filters
 
-### 2.1. Working with numeric keys:
-
-If your filter has numeric keys, you may run into issues when you have a key that equals zero.
-
-You will have to explicitly check:
+Date filters are HTML date elements.
 
 ```php
-public function query(): Builder
+use Rappasoft\LaravelLivewireTables\Views\DateFilter;
+
+public function filters(): array
 {
-    return User::with('attributes', 'parent')
-        ->when($this->getFilter('email'), fn ($query, $email) => $email === 'yes' ? $query->whereNotNull('email') : $query->whereNull('email'))
-        ->when($this->hasFilter('verified'), function ($query) {
-            if ($this->getFilter('verified') === 1) {
-                $query = $query->whereNotNull('email');
-            } else {
-                $query = $query->whereNull('email');
-            }
-        });
+    return [
+        DateFilter::make('Verified From'),
+    ];
 }
 ```
+
+Date filters have options to set min and max:
+
+```php
+public function filters(): array
+{
+    return [
+        DateFilter::make('Verified From')
+            ->config([
+                'min' => '2020-01-01',
+                'max' => '2021-12-31',
+            ])
+    ];
+}
+```
+
+## DateTime Filters
+
+DateTime filters are HTML datetime-local elements and act the same as date filters.
+
+Make sure to look at [all available configurations](available-methods#filter-methods) on the Filter classes.
+
+## Filter Keys
+
+By default, the filter key is just the snake version of the filter name. This is used to generate the query string as well as look up the filter object in necessary places. Each filter should have a unique key.
+
+You can override this by supplying a custom key:
+
+```php
+SelectFilter::make('Active', 'user_status')
+```
+
+Yields a query string of:
+
+```
+?table[filters][user_status]=yes
+```
+
+Instead of:
+
+```
+?table[filters][active]=yes
+```
+
+## A note about values
+
+Your values should be strings. If you want to use a number, you should convert it to a string.
+
+Since the frontend HTML elements treat all values as strings, it makes it easier to work with strings everywhere and convert them to integers where you need to. This is no different than submitting a form with integer values in a dropdown, they still make it to the server as strings.

@@ -3,6 +3,12 @@ title: Introduction
 weight: 1
 ---
 
-Filters are a way for you to give your users the ability to narrow down the dataset without having to search:
+Filters are a good way to narrow down your data. Version 2 has two ways to interact with filters, either by a popover menu or a slide down area.
 
-![Filters](https://imgur.com/UuZKazn.jpg)
+## Popover Menu
+
+![Popover Menu](https://imgur.com/u4P9z4g.png)
+
+## Slide Down
+
+![Slide Down](https://imgur.com/OuUjsDC.png)

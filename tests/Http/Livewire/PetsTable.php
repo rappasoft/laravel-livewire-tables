@@ -4,69 +4,58 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 class PetsTable extends DataTableComponent
 {
-    public function filters(): array
-    {
-        return [
-            'species.name' => Filter::make('Filter Species')->select([
-                '' => 'All',
-                1 => 'Cat',
-                2 => 'Dog',
-                3 => 'Horse',
-                4 => 'Bird',
-            ]),
-            'breed_id' => Filter::make('Filter Breed')->select([
-                '' => 'All',
-                1 => 'American Shorthair',
-                2 => 'Maine Coon',
-                3 => 'Persian',
-                4 => 'Norwegian Forest',
-            ]),
-        ];
-    }
+    public $model = Pet::class;
 
-    public function bulkActions(): array
+    public function configure(): void
     {
-        return ['count' => 'Count selected'];
-    }
-
-    /**
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return Pet::query()
-            ->with('species')
-            ->with('breed')
-            ->when($this->getFilter('species.name'), fn (Builder $query, $specimen_id) => $query->where('species_id', $specimen_id))
-            ->when($this->getFilter('breed_id'), fn (Builder $query, $breed_id) => $query->where('breed_id', $breed_id));
+        $this->setPrimaryKey('id');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Name', 'name')
+            Column::make('ID', 'id')
+                ->sortable()
+                ->setSortingPillTitle('Key')
+                ->setSortingPillDirections('0-9', '9-0'),
+            Column::make('Sort')
+                ->sortable()
+                ->excludeFromColumnSelect(),
+            Column::make('Name')
+                ->sortable()
                 ->searchable(),
-            Column::make('Age', 'age')
-                ->searchable(function (Builder $query, $search) {
-                    $query->orWhere('age', '=', $search);
-                }),
-            Column::make('Last Visit', 'last_visit')
-                ->searchable(),
-            Column::make('Species', 'species.name')
-                ->searchable(),
+            Column::make('Age'),
             Column::make('Breed', 'breed.name')
-                ->searchable(),
+                ->sortable(),
+            Column::make('Other')
+                ->label(function ($row, Column $column) {
+                    return 'Other';
+                }),
         ];
     }
 
-    public function count(): int
+    public function filters(): array
     {
-        return $this->selectedRowsQuery()->count();
+        return [
+            MultiSelectFilter::make('Breed')
+                ->options(
+                    Breed::query()
+                        ->orderBy('name')
+                        ->get()
+                        ->keyBy('id')
+                        ->map(fn ($breed) => $breed->name)
+                        ->toArray()
+                )
+                ->filter(function (Builder $builder, array $values) {
+                    return $builder->whereIn('breed_id', $values);
+                }),
+        ];
     }
 }

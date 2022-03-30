@@ -5,10 +5,6 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * @property int $id
- * @property string $name
- */
 class Species extends Model
 {
     /**
@@ -17,13 +13,6 @@ class Species extends Model
      * @var string
      */
     protected $table = 'species';
-
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'id';
 
     /**
      * @var bool
@@ -40,6 +29,9 @@ class Species extends Model
         'name',
     ];
 
+    /**
+     * @return HasMany
+     */
     public function pets(): HasMany
     {
         return $this->hasMany(Pet::class);

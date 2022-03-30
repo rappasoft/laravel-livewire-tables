@@ -16,13 +16,6 @@ class Veterinary extends Model
     protected $table = 'veterinaries';
 
     /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'id';
-
-    /**
      * @var bool
      */
     public $timestamps = false;
@@ -38,6 +31,9 @@ class Veterinary extends Model
         'phone',
     ];
 
+    /**
+     * @return BelongsToMany
+     */
     public function pets(): BelongsToMany
     {
         return $this->belongsToMany(Pet::class);
