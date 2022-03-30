@@ -1,4 +1,4 @@
-@props(['url' => null, 'target' => '_self', 'reordering' => false, 'customAttributes' => []])
+@props(['url' => null, 'target' => '_self', 'reordering' => false, 'customAttributes' => [], 'wireclick' => null])
 
 @if (!$reordering && (method_exists($attributes, 'has') ? $attributes->has('wire:sortable.item') : array_key_exists('wire:sortable.item', $attributes->getAttributes())))
     @php

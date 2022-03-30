@@ -4,6 +4,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [1.25.1] - 2022-03-29
+
+### Changed
+
+- Fixed $wireclick issue
 ## [1.25.0] - 2022-03-28
 
 ### Added
@@ -619,7 +624,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 -   Initial release
 
-[unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.25.0...development
+[unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.25.1...development
+[1.25.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.25.0...v1.25.1
 [1.25.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.24.0...v1.25.0
 [1.24.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.23.0...v1.24.0
 [1.23.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.22.0...v1.23.0
