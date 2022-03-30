@@ -60,7 +60,7 @@ class UsersTable extends DataTableComponent
 }
 ```
 
-### [See advanced example](https://rappasoft.com/docs/laravel-livewire-tables/v2/usage/advanced-example-table)
+### [See advanced example](https://rappasoft.com/docs/laravel-livewire-tables/v2/examples/advanced-example)
 
 ## Testing
 
