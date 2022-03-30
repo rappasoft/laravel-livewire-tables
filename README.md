@@ -21,6 +21,8 @@ You can install the package via composer:
 composer require rappasoft/laravel-livewire-tables
 ```
 
+You must also have [Alpine.js](https://alpinejs.dev) version 3 or greater installed and available to the component.
+
 ## Documentation and Usage Instructions
 
 See the [documentation](https://rappasoft.com/docs/laravel-livewire-tables) for detailed installation and usage instructions.
@@ -61,19 +63,7 @@ class UsersTable extends DataTableComponent
 }
 ```
 
-### [See advanced example](https://rappasoft.com/docs/laravel-livewire-tables/v1/usage/advanced-example-table)
-
-## To-do/Roadmap
-
-- [x] Bootstrap 4 Template
-- [x] Bootstrap 5 Template
-- [x] Sorting By Relationships
-- [x] User Column Selection  
-- [x] Drag & Drop (beta)
-- [x] Column Search
-- [x] Greater Configurability
-- [ ] Collection/Query Support  
-- [ ] Test Suite (WIP)
+### [See advanced example](https://rappasoft.com/docs/laravel-livewire-tables/v2/usage/advanced-example-table)
 
 ## Testing
 

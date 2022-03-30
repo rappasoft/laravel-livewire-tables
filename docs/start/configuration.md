@@ -1,19 +1,15 @@
 ---
 title: Configuration
-weight: 2
+weight: 3
 ---
 
 ## Publishing Assets
 
 Publishing assets are optional unless you want to customize this package.
 
-----
-
 **Note: I don't recommend you publishing the views unless you really need to change them, and if so, only keep the ones you are changing. Let the package display the rest. The views change quite often and you will miss out on new features or have unforeseeable issues.**
 
-----
-
-``` bash
+```bash
 php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-config
 
 php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-views
@@ -53,7 +49,7 @@ module.exports = {
 };
 ```
 
-## Other
+## Alpine.js Cloak
 
 You must also make sure you have this Alpine style available globally:
 

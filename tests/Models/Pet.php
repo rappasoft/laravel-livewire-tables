@@ -3,18 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-/**
- * @property int $id
- * @property string $name
- * @property string $age
- * @property string $last_visit
- * @property int $species_id
- * @property int $breed_id
- * @property Species $species
- * @property Breed $breed
- */
 class Pet extends Model
 {
     /**
@@ -23,13 +14,6 @@ class Pet extends Model
      * @var string
      */
     protected $table = 'pets';
-
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'id';
 
     /**
      * @var bool
@@ -43,6 +27,7 @@ class Pet extends Model
      */
     protected $fillable = [
         'id',
+        'sort',
         'name',
         'age',
         'last_visit',
@@ -51,21 +36,24 @@ class Pet extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Species
+     * @return BelongsTo
      */
-    public function species()
+    public function species(): BelongsTo
     {
         return $this->belongsTo(Species::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|Breed
+     * @return BelongsTo
      */
-    public function breed()
+    public function breed(): BelongsTo
     {
         return $this->belongsTo(Breed::class);
     }
 
+    /**
+     * @return BelongsToMany
+     */
     public function veterinaries(): BelongsToMany
     {
         return $this->belongsToMany(Veterinary::class);

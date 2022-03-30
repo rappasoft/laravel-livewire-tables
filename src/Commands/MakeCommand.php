@@ -28,19 +28,13 @@ class MakeCommand extends Command
     protected $model;
 
     /**
-     * @var
-     */
-    protected $viewPath;
-
-    /**
      * The name and signature of the console command.
      *
      * @var string
      */
     protected $signature = 'make:datatable
         {name : The name of your Livewire class}
-        {model? : The name of the model you want to use in this table}
-        {--view : We will generate a row view for you}
+        {model : The name of the model you want to use in this table}
         {--force}';
 
     /**
@@ -48,8 +42,11 @@ class MakeCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generate a Laravel Livewire datatable class and view.';
-    
+    protected $description = 'Generate a Laravel Livewire Datatable class.';
+
+    /**
+     * Generate the Datatable component
+     */
     public function handle(): void
     {
         $this->parser = new ComponentParser(
@@ -69,7 +66,6 @@ class MakeCommand extends Command
         $this->model = Str::studly($this->argument('model'));
         $force = $this->option('force');
 
-        $this->viewPath = $this->createView($force);
         $this->createClass($force);
 
         $this->info('Livewire Datatable Created: ' . $this->parser->className());
@@ -78,9 +74,9 @@ class MakeCommand extends Command
     /**
      * @param  bool  $force
      *
-     * @return false
+     * @return bool
      */
-    protected function createClass(bool $force = false)
+    protected function createClass(bool $force = false): bool
     {
         $classPath = $this->parser->classPath();
 
@@ -98,32 +94,6 @@ class MakeCommand extends Command
     }
 
     /**
-     * @param  bool  $force
-     *
-     * @return false|string|null
-     */
-    protected function createView(bool $force = false)
-    {
-        if (! $this->option('view')) {
-            return null;
-        }
-
-        $viewPath = base_path('resources/views/livewire-tables/rows/' . Str::snake($this->parser->className()->__toString()) . '.blade.php');
-
-        if (! $force && File::exists($viewPath)) {
-            $this->line("<fg=red;options=bold>View already exists:</> {$viewPath}");
-
-            return false;
-        }
-
-        $this->ensureDirectoryExists($viewPath);
-
-        File::put($viewPath, $this->viewContents());
-
-        return $viewPath;
-    }
-
-    /**
      * @param $path
      */
     protected function ensureDirectoryExists($path): void
@@ -138,54 +108,11 @@ class MakeCommand extends Command
      */
     public function classContents(): string
     {
-        if ($this->model) {
-            $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table-with-model.stub');
-
-            $contents = str_replace(
-                ['[namespace]', '[class]', '[model]', '[model_import]', '[columns]'],
-                [$this->parser->classNamespace(), $this->parser->className(), $this->model, $this->getModelImport(), $this->generateColumns($this->getModelImport())],
-                $template
-            );
-        } else {
-            $template = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table.stub');
-
-            $contents = str_replace(
-                ['[namespace]', '[class]'],
-                [$this->parser->classNamespace(), $this->parser->className()],
-                $template
-            );
-        }
-
-        if ($this->viewPath) {
-            $contents = Str::replaceLast(
-                "}\n",
-                "
-    public function rowView(): string
-    {
-        return '" . $this->getViewPathForRowView() . "';
-    }
-}\n",
-                $contents
-            );
-        }
-
-        return $contents;
-    }
-
-    /**
-     * @return string
-     */
-    private function getViewPathForRowView(): string
-    {
-        return Str::replace('/', '.', Str::before(Str::after($this->viewPath, 'resources/views/'), '.blade.php'));
-    }
-
-    /**
-     * @return false|string
-     */
-    public function viewContents()
-    {
-        return file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'view.stub');
+        return str_replace(
+            ['[namespace]', '[class]', '[model]', '[model_import]', '[columns]'],
+            [$this->parser->classNamespace(), $this->parser->className(), $this->model, $this->getModelImport(), $this->generateColumns($this->getModelImport())],
+            file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table.stub')
+        );
     }
 
     /**

@@ -2,60 +2,41 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-/**
- * Trait WithSearch.
- */
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
+
 trait WithSearch
 {
-    /**
-     * Show the search field.
-     *
-     * @var bool
-     */
-    public bool $showSearch = true;
+    use SearchConfiguration,
+        SearchHelpers;
 
-    /**
-     * @var int|null
-     */
+    public ?string $search = null;
+    public bool $searchStatus = true;
+    public bool $searchVisibilityStatus = true;
     public ?int $searchFilterDebounce = null;
-
-    /**
-     * @var bool|null
-     */
     public ?bool $searchFilterDefer = null;
-
-    /**
-     * @var bool|null
-     */
     public ?bool $searchFilterLazy = null;
 
-    /**
-     * Clear the search filter specifically
-     */
-    public function resetSearch(): void
+    // TODO
+    public function applySearch(Builder $builder): Builder
     {
-        $this->filters['search'] = null;
-    }
+        if ($this->searchIsEnabled() && $this->hasSearch()) {
+            $searchableColumns = $this->getSearchableColumns();
 
-    /**
-     * Build Livewire model options for the search input
-     *
-     * @return string
-     */
-    public function getSearchFilterOptionsProperty(): string
-    {
-        if ($this->searchFilterDebounce) {
-            return '.debounce.' . $this->searchFilterDebounce . 'ms';
+            if ($searchableColumns->count()) {
+                $builder->where(function ($query) use ($searchableColumns) {
+                    foreach ($searchableColumns as $index => $column) {
+                        if ($column->hasSearchCallback()) {
+                            ($column->getSearchCallback())($query, $this->getSearch());
+                        } else {
+                            $query->{$index === 0 ? 'where' : 'orWhere'}($column->getColumn(), 'like', '%'.$this->getSearch().'%');
+                        }
+                    }
+                });
+            }
         }
 
-        if ($this->searchFilterDefer) {
-            return '.defer';
-        }
-
-        if ($this->searchFilterLazy) {
-            return '.lazy';
-        }
-
-        return '';
+        return $builder;
     }
 }

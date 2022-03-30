@@ -2,494 +2,90 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views;
 
-use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\RelationshipHelpers;
 
-/**
- * Class Column.
- */
 class Column
 {
-    /**
-     * @var string|null
-     */
-    public ?string $column = null;
+    use ColumnConfiguration,
+        ColumnHelpers,
+        RelationshipHelpers;
+
+    protected ?DataTableComponent $component = null;
+
+    // What displays in the columns header
+    protected string $title;
+
+    // Act as a unique identifier for the column
+    protected string $hash;
+
+    // The columns or relationship location: i.e. name, or address.group.name
+    protected ?string $from = null;
+
+    // The underlying columns name: i.e. name
+    protected ?string $field = null;
+
+    // The table of the columns or relationship
+    protected ?string $table = null;
+
+    // An array of relationships: i.e. address.group.name => ['address', 'group']
+    protected array $relations = [];
+
+    protected bool $sortable = false;
+    protected $sortCallback;
+    protected bool $searchable = false;
+    protected $searchCallback;
+    protected bool $collapseOnMobile = false;
+    protected bool $collapseOnTablet = false;
+    protected ?string $sortingPillTitle = null;
+    protected ?string $sortingPillDirectionAsc = null;
+    protected ?string $sortingPillDirectionDesc = null;
+    protected bool $eagerLoadRelations = false;
+    protected $formatCallback;
+    protected bool $html = false;
+    protected $labelCallback;
+    protected bool $hidden = false;
+    protected bool $selectable = true;
+    protected bool $secondaryHeader = false;
+    protected $secondaryHeaderCallback;
+    protected bool $footer = false;
+    protected $footerCallback;
 
     /**
-     * @var string|null
+     * @param  string  $title
+     * @param  string|null  $from
      */
-    public ?string $text = null;
-
-    /**
-     * @var array
-     */
-    public array $attributes = [];
-
-    /**
-     * @var bool
-     */
-    public bool $sortable = false;
-
-    /**
-     * @var
-     */
-    public $sortCallback;
-
-    /**
-     * @var bool
-     */
-    public bool $searchable = false;
-
-    /**
-     * @var callable
-     */
-    public $searchCallback;
-
-    /**
-     * @var string|null
-     */
-    public ?string $class = null;
-
-    /**
-     * @var bool
-     */
-    public bool $blank = false;
-
-    /**
-     * @var
-     */
-    public $formatCallback;
-
-    /**
-     * @var bool
-     */
-    public bool $asHtml = false;
-
-    /**
-     * @var bool
-     */
-    public bool $hidden = false;
-
-    /**
-     * @var bool
-     */
-    public bool $selectable = true;
-
-    /**
-     * @var bool
-     */
-    public bool $selected = false;
-
-    /**
-     * @var bool
-     */
-    public bool $secondaryHeader = false;
-
-    /**
-     * @var
-     */
-    public $secondaryHeaderCallback;
-
-    /**
-     * @var bool
-     */
-    public bool $footer = false;
-
-    /**
-     * @var
-     */
-    public $footerCallback;
-
-    /**
-     * @var
-     */
-    public $linkCallback;
-
-    /**
-     * @var ?string
-     */
-    public ?string $linkTarget;
-
-    /**
-     * Column constructor.
-     *
-     * @param string|null $column
-     * @param string|null $text
-     */
-    public function __construct(string $text = null, string $column = null)
+    public function __construct(string $title, string $from = null)
     {
-        $this->text = $text;
+        $this->title = trim($title);
 
-        if (! $column && $text) {
-            $this->column = Str::snake($text);
-        } else {
-            $this->column = $column;
-        }
+        if ($from) {
+            $this->from = trim($from);
+            $this->hash = md5($this->from);
 
-        if (! $this->column && ! $this->text) {
-            $this->blank = true;
-        }
-    }
-
-    /**
-     * @param string|null $column
-     * @param string|null $text
-     *
-     * @return Column
-     */
-    public static function make(string $text = null, string $column = null): Column
-    {
-        return new static($text, $column);
-    }
-
-    /**
-     * @return Column
-     */
-    public static function blank(): Column
-    {
-        return new static(null, null);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSortable(): bool
-    {
-        return $this->sortable === true;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSearchable(): bool
-    {
-        return $this->searchable === true;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isBlank(): bool
-    {
-        return $this->blank === true;
-    }
-
-    /**
-     * @return $this
-     */
-    public function sortable($callback = null): self
-    {
-        $this->sortable = true;
-
-        $this->sortCallback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * @param callable|null $callback
-     * @return $this
-     */
-    public function searchable(callable $callback = null): self
-    {
-        $this->searchable = true;
-
-        $this->searchCallback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * @param string $class
-     *
-     * @return $this
-     */
-    public function addClass(string $class): self
-    {
-        $this->class = $class;
-
-        return $this;
-    }
-
-    /**
-     * @param array $attributes
-     *
-     * @return $this
-     */
-    public function addAttributes(array $attributes): self
-    {
-        $this->attributes = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * @return Column
-     */
-    public function asHtml(): Column
-    {
-        $this->asHtml = true;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isHtml(): bool
-    {
-        return $this->asHtml === true;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function class(): ?string
-    {
-        return $this->class;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function column(): ?string
-    {
-        return $this->column;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function text(): ?string
-    {
-        return $this->text;
-    }
-
-    /**
-     * @return array
-     */
-    public function attributes(): array
-    {
-        return $this->attributes;
-    }
-
-    /**
-     * @param  callable  $callable
-     *
-     * @return $this
-     */
-    public function format(callable $callable): Column
-    {
-        $this->formatCallback = $callable;
-
-        return $this;
-    }
-
-    /**
-     * @param $row
-     * @param  null  $column
-     *
-     * @return array|mixed|null
-     */
-    public function formatted($row, $column = null)
-    {
-        if ($column instanceof self) {
-            $columnName = $column->column();
-        } elseif (is_string($column)) {
-            $columnName = $column;
-        } else {
-            $columnName = $this->column();
-        }
-
-        $value = data_get($row, $columnName);
-
-        if ($this->formatCallback) {
-            $value = call_user_func($this->formatCallback, $value, $column, $row);
-        }
-
-        if ($this->linkCallback) {
-            $url = call_user_func($this->linkCallback, $value, $column, $row);
-
-            if ($url) {
-                $linkTarget = $this->linkTarget ? "target='$this->linkTarget'" : '';
-                $value = new HtmlString("<a href='$url' $linkTarget>$value</a>");
+            if (Str::contains($this->from, '.')) {
+                $this->field = Str::afterLast($this->from, '.');
+                $this->relations = explode('.', Str::beforeLast($this->from, '.'));
+            } else {
+                $this->field = $this->from;
             }
+        } else {
+            $this->field = Str::snake($title);
+            $this->hash = md5($this->field);
         }
-
-        return $value;
     }
 
     /**
-     * @return bool
-     */
-    public function hasSortCallback(): bool
-    {
-        return $this->sortCallback !== null;
-    }
-
-    /**
-     * @return callable|null
-     */
-    public function getSortCallback(): ?callable
-    {
-        return $this->sortCallback;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasSearchCallback(): bool
-    {
-        return $this->searchCallback !== null;
-    }
-
-    /**
-     * @return callable|null
-     */
-    public function getSearchCallback(): ?callable
-    {
-        return $this->searchCallback;
-    }
-
-    /**
-     * @param $condition
+     * @param  string  $title
+     * @param  string|null  $from
      *
-     * @return $this
+     * @return Column
      */
-    public function hideIf($condition): self
+    public static function make(string $title, string $from = null): Column
     {
-        $this->hidden = $condition;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isVisible(): bool
-    {
-        return $this->hidden !== true;
-    }
-
-    /**
-     * @return $this
-     */
-    public function excludeFromSelectable(): self
-    {
-        $this->selectable = false;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSelectable(): bool
-    {
-        return $this->selectable === true;
-    }
-
-    /**
-     * @return $this
-     */
-    public function selected(): self
-    {
-        $this->selected = true;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSelected(): bool
-    {
-        return $this->selected;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasSecondaryHeader(): bool
-    {
-        return $this->secondaryHeader === true;
-    }
-
-    /**
-     * @return $this
-     */
-    public function secondaryHeader($callback = null): self
-    {
-        $this->secondaryHeader = true;
-
-        $this->secondaryHeaderCallback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * @param $rows
-     *
-     * @return false|mixed|null
-     */
-    public function secondaryHeaderFormatted($rows)
-    {
-        $value = null;
-
-        if ($this->secondaryHeaderCallback) {
-            $value = call_user_func($this->secondaryHeaderCallback, $rows);
-        }
-
-        return $value;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasFooter(): bool
-    {
-        return $this->footer === true;
-    }
-
-    /**
-     * @return $this
-     */
-    public function footer($callback = null): self
-    {
-        $this->footer = true;
-
-        $this->footerCallback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * @param $rows
-     *
-     * @return false|mixed|null
-     */
-    public function footerFormatted($rows)
-    {
-        $value = null;
-
-        if ($this->footerCallback) {
-            $value = call_user_func($this->footerCallback, $rows);
-        }
-
-        return $value;
-    }
-
-    /**
-     * @param  callable  $callable
-     * @param  string|null  $target
-     *
-     * @return $this
-     */
-    public function linkTo(callable $callable, string $target = null): self
-    {
-        $this->linkCallback = $callable;
-        $this->linkTarget = $target;
-
-        return $this;
+        return new static($title, $from);
     }
 }

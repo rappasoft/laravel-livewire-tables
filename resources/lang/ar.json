@@ -5,12 +5,12 @@
     "Bulk Actions": "إجراءات",
     "Clear": "مسح",
     "Filters": "التصفيات",
-    "Remove filter option": "حذف خيار التصفية",
-    "Remove sort option": "حذف خيار الترتيب",
+    "Remove filter option": "خذف خيار التصفيه",
+    "Remove sort option": "خذف خيار الترتيب",
     "Search": "بحث",
     "Select All": "تحديد الكل",
-    "Showing": "استعراض",
-    "Unselect All": "إلغاء تحديد الكل",
+    "Showing": "إستعراض",
+    "Deselect All": "إلغاء تحديد الكل",
     "You are currently selecting all": "أنت الآن تختار الكل",
     "You are not connected to the internet.": "أنت غير متصل بالإنترنت.",
     "You have selected": "لقد قمت باختيار",
@@ -18,5 +18,5 @@
     "results": "النتائج",
     "rows": "صفوف",
     "rows, do you want to select all": "الصفوف ، هل تريد تحديد الكل",
-    "to": "إلى"
+    "to": "إلي"
 }
