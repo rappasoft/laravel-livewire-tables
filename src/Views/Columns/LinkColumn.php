@@ -22,7 +22,9 @@ class LinkColumn extends Column
     {
         parent::__construct($title, $from);
 
-        $this->label(fn () => null);
+        if (is_null($from)) {
+            $this->label(fn () => null);
+        }
     }
 
     public function getContents(Model $row)
