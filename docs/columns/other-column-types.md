@@ -79,6 +79,11 @@ ImageColumn::make('Avatar')
     ->location(function($row) {
         return storage_path('app/public/avatars/' . $row->id . '.jpg');
     })
+// Or if you want to query a column instead of using primary key
+ImageColumn::make('Avatar', 'avatar')
+    ->location(function($row) {
+        return $row->avatar;
+    })
 ```
 
 You may also pass an array of attributes to apply to the image tag:
@@ -104,6 +109,10 @@ Link columns provide a way to display HTML links in your table without having to
 LinkColumn::make('Action')
     ->title(fn($row) => 'Edit')
     ->location(fn($row) => route('admin.users.edit', $row))
+// Or if you want to query a column instead of using primary key
+LinkColumn::make('Link', 'link')
+    ->title(fn($row) => 'Link')
+    ->location(fn($row) => $row->link)
 ```
 
 You may also pass an array of attributes to apply to the `a` tag:

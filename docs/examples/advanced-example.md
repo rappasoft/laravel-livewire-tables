@@ -73,6 +73,15 @@ class UsersTable extends DataTableComponent
                         'class' => 'w-8 h-8 rounded-full',
                     ];
                 }),
+            ImageColumn::make('Avatar', 'image')
+                ->location(function($row) {
+                    return $row->image;
+                })
+                ->attributes(function($row) {
+                    return [
+                        'class' => 'w-8 h-8 rounded-full',
+                    ];
+                }),
             Column::make('Order', 'sort')
                 ->sortable()
                 ->collapseOnMobile()
