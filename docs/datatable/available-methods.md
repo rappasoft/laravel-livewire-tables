@@ -222,7 +222,7 @@ Set a list of attributes to override on the td elements
 public function configure(): void
 {
   // Takes a callback that gives you the current column, row, column index, and row index
-  $this->setTdAttributes(function(Column $column, $row, $columnIndex, $rowIndex) {
+  $this->setTdAttributes(function(Column $column, $row, $columnIndex) {
     if ($column->isField('total') && $row->total < 1000) {
       return [
         'class' => 'bg-red-500 text-white',
@@ -240,7 +240,7 @@ By default, this replaces the default classes on the td, if you would like to ke
 public function configure(): void
 {
   // Takes a callback that gives you the current column, row, column index, and row index
-  $this->setTdAttributes(function(Column $column, $row, $columnIndex, $rowIndex) {
+  $this->setTdAttributes(function(Column $column, $row, $columnIndex) {
     if ($column->isField('total') && $row->total < 1000) {
       return [
         'default' => true,
