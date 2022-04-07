@@ -100,8 +100,8 @@ class ComponentConfigurationTest extends TestCase
             return ['default' => true, 'here' => 'there'];
         });
 
-        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[1], Pet::find(1), 0), ['default' => true, 'here' => 'there']);
-        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[0], Pet::find(2), 1), ['default' => false, 'this' => 'that']);
+        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[1], Pet::find(1), 0, 1), ['default' => true, 'here' => 'there']);
+        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[0], Pet::find(2), 1, 1), ['default' => false, 'this' => 'that']);
     }
 
     /** @test */

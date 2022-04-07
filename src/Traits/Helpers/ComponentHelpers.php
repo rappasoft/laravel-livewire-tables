@@ -127,9 +127,9 @@ trait ComponentHelpers
      *
      * @return bool[]
      */
-    public function getTdAttributes(Column $column, Model $row, int $index): array
+    public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
     {
-        return $this->tdAttributesCallback ? call_user_func($this->tdAttributesCallback, $column, $row, $index) : ['default' => true];
+        return $this->tdAttributesCallback ? call_user_func($this->tdAttributesCallback, $column, $row, $colIndex, $rowIndex) : ['default' => true];
     }
 
     /**
