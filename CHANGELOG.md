@@ -8,6 +8,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Turkish Translation - https://github.com/rappasoft/laravel-livewire-tables/pull/686
 
+### Changed
+
+- Update filter docs - https://github.com/rappasoft/laravel-livewire-tables/pull/691
+
 ## [2.0.0] - 2022-03-30
 
 Ground Up Rebuild
