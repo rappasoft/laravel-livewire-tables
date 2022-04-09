@@ -10,7 +10,7 @@ Boolean columns are good if you have a column type that is a true/false, or 0/1 
 For example:
 
 ```php
-BooleanColumn::make('Active')
+BooleanColumn::make('Active');
 ```
 
 Would yield:
@@ -23,7 +23,7 @@ If you don't want to use the default view and icons you can set your own:
 
 ```php
 BooleanColumn::make('Active')
-    ->view('my.active.view')
+    ->view('my.active.view');
 ```
 
 You will have access to `$component`, `$status`, and `$successValue`.
@@ -48,7 +48,7 @@ If you want the false value to be the green option, you can set:
 
 ```php
 BooleanColumn::make('Active')
-    ->setSuccessValue(false) // Makes false the 'successful' option
+    ->setSuccessValue(false); // Makes false the 'successful' option
 ```
 
 That would swap the colors of the icons in the image above.
@@ -67,7 +67,7 @@ You can override this functionality:
 BooleanColumn::make('Active')
     ->setCallback(function(string $value) {
         // Figure out what makes $value true
-    })
+    }),
 ```
 
 ## Image Columns
@@ -76,24 +76,22 @@ Image columns provide a way to display images in your table without having to us
 
 ```php
 ImageColumn::make('Avatar')
-    ->location(function($row) {
-        return storage_path('app/public/avatars/' . $row->id . '.jpg');
-    })
+    ->location(
+        fn($row) => storage_path('app/public/avatars/' . $row->id . '.jpg')
+    ),
 ```
 
 You may also pass an array of attributes to apply to the image tag:
 
 ```php
 ImageColumn::make('Avatar')
-    ->location(function($row) {
-        return storage_path('app/public/avatars/' . $row->id . '.jpg');
-    })
-    ->attributes(function($row) {
-        return [
-            'class' => 'rounded-full',
-            'alt' => $row->name . ' Avatar',
-        ];
-    })
+    ->location(
+        fn($row) => storage_path('app/public/avatars/' . $row->id . '.jpg')
+    )
+    ->attributes(fn($row) => [
+        'class' => 'rounded-full',
+        'alt' => $row->name . ' Avatar',
+    ]),
 ```
 
 ## Link Columns
@@ -103,7 +101,7 @@ Link columns provide a way to display HTML links in your table without having to
 ```php
 LinkColumn::make('Action')
     ->title(fn($row) => 'Edit')
-    ->location(fn($row) => route('admin.users.edit', $row))
+    ->location(fn($row) => route('admin.users.edit', $row)),
 ```
 
 You may also pass an array of attributes to apply to the `a` tag:
@@ -112,10 +110,8 @@ You may also pass an array of attributes to apply to the `a` tag:
 LinkColumn::make('Action')
     ->title(fn($row) => 'Edit')
     ->location(fn($row) => route('admin.users.edit', $row))
-    ->attributes(function($row) {
-        return [
-            'class' => 'rounded-full',
-            'alt' => $row->name . ' Avatar',
-        ];
-    })
+    ->attributes(fn($row) => [
+        'class' => 'rounded-full',
+        'alt' => $row->name . ' Avatar',
+    ]),
 ```

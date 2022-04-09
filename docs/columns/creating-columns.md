@@ -25,8 +25,8 @@ So if you have:
 public function columns(): array
 {
     return [
-        Column::make('Name') // Looks for column `name`
-        Column::make('Email') // Looks for column `email`
+        Column::make('Name'), // Looks for column `name`
+        Column::make('Email'), // Looks for column `email`
     ];
 }
 ```
