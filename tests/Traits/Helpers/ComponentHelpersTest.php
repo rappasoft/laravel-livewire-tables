@@ -140,4 +140,16 @@ class ComponentHelpersTest extends TestCase
 
         $this->assertFalse($this->basicTable->getCollapsingColumnsStatus());
     }
+
+    /** @test */
+    public function can_check_for_tr_url(): void
+    {
+        $this->assertFalse($this->basicTable->hasTableRowUrl());
+
+        $this->basicTable->setTableRowUrl(function ($row) {
+            return 'https://example.com';
+        });
+
+        $this->assertTrue($this->basicTable->hasTableRowUrl());
+    }
 }

@@ -19,7 +19,7 @@ This method will return an array of filter objects. There are a few filter types
 Select filters are a simple dropdown list. The user selects one choice from the list.
 
 ```php
-use Rappasoft\LaravelLivewireTables\Views\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 public function filters(): array
 {
@@ -43,7 +43,7 @@ You should supply the first option as the default value. I.e. nothing selected, 
 Multi-select filters are a list of checkboxes. The user can select multiple options from the list. There is also an 'All' option that will select all values.
 
 ```php
-use Rappasoft\LaravelLivewireTables\Views\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 public function filters(): array
 {
@@ -66,7 +66,7 @@ public function filters(): array
 Date filters are HTML date elements.
 
 ```php
-use Rappasoft\LaravelLivewireTables\Views\DateFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 
 public function filters(): array
 {

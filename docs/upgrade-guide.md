@@ -53,5 +53,5 @@ $this->getFilter('active');
 New:
 
 ```php
-$this->getAppliedFilter('active');
+$this->getAppliedFilterWithValue('active');
 ```

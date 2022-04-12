@@ -49,6 +49,9 @@ abstract class DataTableComponent extends Component
             'filters' => $this->{$this->tableName}['filters'] ?? [],
         ];
 
+        // Set the filter defaults based on the filter type
+        $this->setFilterDefaults();
+        
         // Set the user defined columns to work with
         $this->setColumns();
 
@@ -59,9 +62,6 @@ abstract class DataTableComponent extends Component
         if (! $this->hasPrimaryKey()) {
             throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
         }
-
-        // Set the filter defaults based on the filter type
-        $this->setFilterDefaults();
     }
 
     /**

@@ -35,11 +35,11 @@ If you don't want to apply at the filter level, you can apply the filter at the 
 public function builder(): Builder
 {
     return User::query();
-         ->when($this->getAppliedFilter('active'), fn($query, $active) => $query->where('active', $active === 'yes'));
+         ->when($this->getAppliedFilterWithValue('active'), fn($query, $active) => $query->where('active', $active === 'yes'));
 }
 ```
 
-You can use the `getAppliedFilter()` method to grab the current value of the filter or null if it is not applied.
+You can use the `getAppliedFilterWithValue()` method to grab the current value of the filter or null if it is not applied.
 
 ### A note about integer values
 
@@ -47,4 +47,4 @@ Even if you have your values as strings, but are still using integers, you may h
 
 For example, if you have values of `0 and 1`, the eloquent `when()` method will not execute when the value is '0' as it treats it as false.
 
-So it is better to not use `getAppliedFilter()` or `integer keys` in the situations where you want to apply the filter in the builder method.
+So it is better to not use `getAppliedFilterWithValue()` or `integer keys` in the situations where you want to apply the filter in the builder method.

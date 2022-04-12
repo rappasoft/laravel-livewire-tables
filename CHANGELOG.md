@@ -4,6 +4,21 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.1.0] - 2022-04-12
+
+### Added
+
+- Turkish Translation - https://github.com/rappasoft/laravel-livewire-tables/pull/686
+- Added missing table row click functionality
+- Added ability to mark column as unclickable if you need a cell to have another clickable element with clickable rows turned on.
+
+### Changed
+
+- Update filter docs - https://github.com/rappasoft/laravel-livewire-tables/pull/691
+- Update getTdAttributes to take 4th missing argument
+- Add filters in the config section - https://github.com/rappasoft/laravel-livewire-tables/pull/709
+- Update some docs formatting
+
 ## [2.0.0] - 2022-03-30
 
 Ground Up Rebuild
@@ -578,7 +593,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.0.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.1.0...development
+[2.1.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...v2.0.0
 [1.21.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...v1.21.0
 [1.20.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.0...v1.20.1

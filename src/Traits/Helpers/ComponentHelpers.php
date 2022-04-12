@@ -127,9 +127,9 @@ trait ComponentHelpers
      *
      * @return bool[]
      */
-    public function getTdAttributes(Column $column, Model $row, int $index): array
+    public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
     {
-        return $this->tdAttributesCallback ? call_user_func($this->tdAttributesCallback, $column, $row, $index) : ['default' => true];
+        return $this->tdAttributesCallback ? call_user_func($this->tdAttributesCallback, $column, $row, $colIndex, $rowIndex) : ['default' => true];
     }
 
     /**
@@ -274,5 +274,33 @@ trait ComponentHelpers
     public function collapsingColumnsAreDisabled(): bool
     {
         return $this->getCollapsingColumnsStatus() === false;
+    }
+
+    /**
+    * @return bool
+    */
+    public function hasTableRowUrl(): bool
+    {
+        return $this->trUrlCallback !== null;
+    }
+
+    /**
+     * @param  $row
+     *
+     * @return ?string
+     */
+    public function getTableRowUrl($row): ?string
+    {
+        return $this->trUrlCallback ? call_user_func($this->trUrlCallback, $row) : null;
+    }
+
+    /**
+     * @param  $row
+     *
+     * @return ?string
+     */
+    public function getTableRowUrlTarget($row): ?string
+    {
+        return $this->trUrlTargetCallback ? call_user_func($this->trUrlTargetCallback, $row) : null;
     }
 }

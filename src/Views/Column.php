@@ -53,6 +53,7 @@ class Column
     protected $secondaryHeaderCallback;
     protected bool $footer = false;
     protected $footerCallback;
+    protected bool $clickable = true;
 
     /**
      * @param  string  $title

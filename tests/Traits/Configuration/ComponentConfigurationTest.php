@@ -100,8 +100,8 @@ class ComponentConfigurationTest extends TestCase
             return ['default' => true, 'here' => 'there'];
         });
 
-        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[1], Pet::find(1), 0), ['default' => true, 'here' => 'there']);
-        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[0], Pet::find(2), 1), ['default' => false, 'this' => 'that']);
+        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[1], Pet::find(1), 0, 1), ['default' => true, 'here' => 'there']);
+        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[0], Pet::find(2), 1, 1), ['default' => false, 'this' => 'that']);
     }
 
     /** @test */
@@ -210,5 +210,29 @@ class ComponentConfigurationTest extends TestCase
         $this->basicTable->setCollapsingColumnsEnabled();
 
         $this->assertTrue($this->basicTable->getCollapsingColumnsStatus());
+    }
+
+    /** @test */
+    public function can_set_tr_url(): void
+    {
+        $this->assertNull($this->basicTable->getTableRowUrl(1));
+
+        $this->basicTable->setTableRowUrl(function ($row) {
+            return 'https://example.com';
+        });
+
+        $this->assertSame($this->basicTable->getTableRowUrl(1), 'https://example.com');
+    }
+
+    /** @test */
+    public function can_set_tr_url_target(): void
+    {
+        $this->assertNull($this->basicTable->getTableRowUrlTarget(1));
+
+        $this->basicTable->setTableRowUrlTarget(function ($row) {
+            return '_blank';
+        });
+
+        $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '_blank');
     }
 }
