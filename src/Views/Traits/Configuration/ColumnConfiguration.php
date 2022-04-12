@@ -177,6 +177,9 @@ trait ColumnConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function unclickable(): self
     {
         $this->clickable = false;

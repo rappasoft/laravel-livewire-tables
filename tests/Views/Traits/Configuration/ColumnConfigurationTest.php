@@ -80,4 +80,20 @@ class ColumnConfigurationTest extends TestCase
 
         $this->assertFalse($column->isSelectable());
     }
+
+    /** @test */
+    public function can_make_column_unclickable(): void
+    {
+        $column = Column::make('Name');
+
+        $column->setComponent($this->basicTable);
+        
+        $this->basicTable->setTableRowUrl(fn ($row) => 'https://example.com');
+
+        $this->assertTrue($column->isClickable());
+
+        $column->unclickable();
+
+        $this->assertFalse($column->isClickable());
+    }
 }

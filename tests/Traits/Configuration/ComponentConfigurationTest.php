@@ -211,4 +211,28 @@ class ComponentConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->getCollapsingColumnsStatus());
     }
+
+    /** @test */
+    public function can_set_tr_url(): void
+    {
+        $this->assertNull($this->basicTable->getTableRowUrl(1));
+
+        $this->basicTable->setTableRowUrl(function ($row) {
+            return 'https://example.com';
+        });
+
+        $this->assertSame($this->basicTable->getTableRowUrl(1), 'https://example.com');
+    }
+
+    /** @test */
+    public function can_set_tr_url_target(): void
+    {
+        $this->assertNull($this->basicTable->getTableRowUrlTarget(1));
+
+        $this->basicTable->setTableRowUrlTarget(function ($row) {
+            return '__blank';
+        });
+
+        $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '__blank');
+    }
 }

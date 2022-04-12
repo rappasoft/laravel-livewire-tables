@@ -7,6 +7,7 @@ use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 trait ColumnHelpers
 {
@@ -510,6 +511,9 @@ trait ColumnHelpers
         }, array_keys($attributes)));
     }
 
+    /**
+     * @return bool
+     */
     public function isClickable(): bool
     {
         return $this->clickable &&
