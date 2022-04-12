@@ -19,7 +19,7 @@ If you would like more control over the sort behavior of a specific column, you 
 ```php
 Column::make(__('Address'))
     ->sortable(
-        fn(Builder $query, string $direction) => $query->orderBy() //...
+        fn(Builder $query, string $direction) => $query->orderBy()
     ),
 ```
 

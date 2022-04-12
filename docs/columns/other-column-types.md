@@ -10,7 +10,7 @@ Boolean columns are good if you have a column type that is a true/false, or 0/1 
 For example:
 
 ```php
-BooleanColumn::make('Active');
+BooleanColumn::make('Active')
 ```
 
 Would yield:
@@ -23,7 +23,7 @@ If you don't want to use the default view and icons you can set your own:
 
 ```php
 BooleanColumn::make('Active')
-    ->view('my.active.view');
+    ->view('my.active.view')
 ```
 
 You will have access to `$component`, `$status`, and `$successValue`.
