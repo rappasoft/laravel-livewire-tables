@@ -19,6 +19,7 @@
             $attributes->merge($customAttributes)
                 ->class(['bg-white dark:bg-gray-700 dark:text-white' => ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0])
                 ->class(['bg-gray-50 dark:bg-gray-800 dark:text-white' => ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0])
+                ->class(['cursor-pointer' => $component->hasTableRowUrl()])
                 ->except('default')
         }}
     >
@@ -27,7 +28,7 @@
 @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
     <tr
         wire:loading.class.delay=""
-
+        
         @if ($component->reorderIsEnabled() && $component->currentlyReorderingIsEnabled())
             wire:sortable.item="{{ $row->getKey() }}"
         @endif

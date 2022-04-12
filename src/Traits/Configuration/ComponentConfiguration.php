@@ -261,4 +261,23 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+
+
+
+
+
+    public function setTableRowUrl(callable $callback): self
+    {
+        $this->trUrlCallback = $callback;
+
+        return $this;
+    }
+
+    public function setTableRowUrlTarget(callable $callback): self
+    {
+        $this->trUrlTargetCallback = $callback;
+
+        return $this;
+    }
 }

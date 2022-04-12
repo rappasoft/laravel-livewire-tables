@@ -275,4 +275,22 @@ trait ComponentHelpers
     {
         return $this->getCollapsingColumnsStatus() === false;
     }
+
+
+
+
+    public function hasTableRowUrl(): bool
+    {
+        return $this->trUrlCallback !== null;
+    }
+
+    public function getTableRowUrl($row): ?string
+    {
+        return $this->trUrlCallback ? call_user_func($this->trUrlCallback, $row) : null;
+    }
+
+    public function getTableRowUrlTarget($row): ?string
+    {
+        return $this->trUrlTargetCallback ? call_user_func($this->trUrlTargetCallback, $row) : null;
+    }
 }

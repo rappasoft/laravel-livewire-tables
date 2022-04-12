@@ -509,4 +509,14 @@ trait ColumnHelpers
             return $key . '="' . $attributes[$key] . '"';
         }, array_keys($attributes)));
     }
+
+
+
+
+    public function isClickable(): bool
+    {
+        return $this->clickable && 
+            $this->component->hasTableRowUrl() &&
+            ! $this instanceof LinkColumn;
+    }
 }

@@ -26,6 +26,8 @@ trait ComponentUtilities
     protected array $tbodyAttributes = [];
     protected $thAttributesCallback;
     protected $trAttributesCallback;
+    protected $trUrlCallback;
+    protected $trUrlTargetCallback;
     protected $tdAttributesCallback;
     protected $collapsingColumnsStatus = true;
     protected string $emptyMessage = 'No items found. Try to broaden your search.';

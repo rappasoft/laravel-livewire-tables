@@ -7,6 +7,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Turkish Translation - https://github.com/rappasoft/laravel-livewire-tables/pull/686
+- Added missing table row click functionality
+- Added ability to mark column as unclickable if you need a cell to have another clickable element with clickable rows turned on.
 
 ### Changed
 
