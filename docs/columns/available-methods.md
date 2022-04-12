@@ -227,3 +227,14 @@ If you don't want a column to be able to be turned off from the column select bo
 Column::make('Address', 'address.address')
     ->excludeFromColumnSelect()
 ```
+
+### Preventing clicks if row URL is enabled
+
+If you have row URLs enabled, but you have a specific column you do not want clickable, i.e. in the event there is something else clickable in that row, you may yse the following:
+
+```php
+Column::make('Name')
+    ->unclickable(),
+```
+
+See more in the [clickable rows documentation](../rows/clickable-rows).

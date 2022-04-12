@@ -230,9 +230,9 @@ class ComponentConfigurationTest extends TestCase
         $this->assertNull($this->basicTable->getTableRowUrlTarget(1));
 
         $this->basicTable->setTableRowUrlTarget(function ($row) {
-            return '__blank';
+            return '_blank';
         });
 
-        $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '__blank');
+        $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '_blank');
     }
 }
