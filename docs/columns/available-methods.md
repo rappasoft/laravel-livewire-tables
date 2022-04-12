@@ -11,16 +11,16 @@ To enable sorting you can chain the `sortable` method on your column:
 
 ```php
 Column::make('Name')
-    ->sortable()
+    ->sortable(),
 ```
 
 If you would like more control over the sort behavior of a specific column, you may pass a closure:
 
 ```php
 Column::make(__('Address'))
-    ->sortable(function(Builder $query, string $direction) {
-        return $query->orderBy()...
-    })
+    ->sortable(
+        fn(Builder $query, string $direction) => $query->orderBy()
+    ),
 ```
 
 ### [Multi-column sorting](../sorting/available-methods#setsinglesortingstatus)
@@ -55,16 +55,16 @@ To enable searching you can chain the `searchable` method on your column:
 
 ```php
 Column::make('Name')
-    ->searchable()
+    ->searchable(),
 ```
 
 You can override the default search query using a closure:
 
 ```php
 Column::make('Name')
-    ->searchable(function (Builder $query, $searchTerm) {
-        $query->orWhere(...);
-    }),
+    ->searchable(
+        fn(Builder $query, $searchTerm) => $query->orWhere()
+    ),
 ```
 
 ## Formatting
@@ -79,9 +79,9 @@ If you would like to modify the value of the column, you can chain the `format` 
 
 ```php
 Column::make('Name')
-    ->format(function($value, $row, Column $column) {
-        return $row->first_name . ' ' . $row->last_name;
-    })
+    ->format(
+        fn($value, $row, Column $column) => $row->first_name . ' ' . $row->last_name
+    ),
 ```
 
 ### Rendering HTML
@@ -90,10 +90,10 @@ If you would like to return HTML from the format method you may:
 
 ```php
 Column::make('Name')
-    ->format(function($value, $row, Column $column) {
-        return '<strong>'.$row->first_name . ' ' . $row->last_name.'</strong>';
-    })
-    ->html()
+    ->format(
+        fn($value, $row, Column $column) => '<strong>'.$row->first_name . ' ' . $row->last_name.'</strong>'
+    )
+    ->html(),
 ```
 
 ### Using a view
@@ -102,16 +102,16 @@ If you would like to render a view for the cell:
 
 ```php
 Column::make('Name')
-    ->format(function($value, $row, Column $column) {
-        return view('my.custom.view')->withValue($value);
-    })
+    ->format(
+        fn($value, $row, Column $column) => view('my.custom.view')->withValue($value)
+    ),
 ```
 
 As a shorthand you can use the following:
 
 ```php
 Column::make('Name')
-    ->view('my.custom.view')
+    ->view('my.custom.view'),
 ```
 
 You will have access to `$row`, `$value`, and `$column` from within your view.
@@ -122,19 +122,19 @@ If you have a column that is not associated with a database column, you can chai
 
 ```php
 Column::make('My one off column')
-    ->label(function($row, Column $column) {
-        return $this->getSomeOtherValue($row, $column);
-    })
+    ->label(
+        fn($row, Column $column) => $this->getSomeOtherValue($row, $column)
+    ),
 ```
 
 You can return HTML:
 
 ```php
 Column::make('My one off column')
-    ->label(function($row, Column $column) {
-        return '<strong>'.$row->this_other_column.'</strong>';
-    })
-    ->html()
+    ->label(
+        fn($row, Column $column)  => '<strong>'.$row->this_other_column.'</strong>'
+    )
+    ->html(),
 ```
 
 You can also return a view:
@@ -142,9 +142,9 @@ You can also return a view:
 ```php
 Column::make('My one off column')
     // Note: The view() method is reserved for columns that have a field
-    ->label(function($row, Column $column) {
-        return view('my.other.view')->withRow($row);
-    })
+    ->label(
+        fn($row, Column $column) => view('my.other.view')->withRow($row)
+    ),
 ```
 
 ## Collapsing
@@ -159,7 +159,7 @@ Collapse on tablet:
 
 ```php
 Column::make('Name')
-    ->collapseOnTablet()
+    ->collapseOnTablet(),
 ```
 
 The columns will collapse on tablet and mobile.
@@ -168,7 +168,7 @@ Collapse on mobile:
 
 ```php
 Column::make('Name')
-    ->collapseOnMobile()
+    ->collapseOnMobile(),
 ```
 
 The column will collapse on mobile only.
@@ -183,7 +183,7 @@ You can customize the name on the pill for the specific column that's being sort
 
 ```php
 Column::make('Name')
-    ->setSortingPillTitle('Full Name')
+    ->setSortingPillTitle('Full Name'),
 ```
 
 ### Customizing sorting pill directions
@@ -193,7 +193,7 @@ You can customize the directions on the pill for the specific column that's bein
 ```php
 Column::make('Name')
     // Instead of Name: A-Z it will say Name: Asc
-    ->setSortingPillDirections('Asc', 'Desc')
+    ->setSortingPillDirections('Asc', 'Desc'),
 ```
 
 ## Misc.
@@ -204,7 +204,7 @@ If you need the access the relationships on the model from a format call or some
 
 ```php
 Column::make('Address', 'address.address')
-    ->eagerLoadRelations() // Adds with('address') to the query
+    ->eagerLoadRelations(), // Adds with('address') to the query
 ```
 
 ### Conditionally Hiding Columns
@@ -213,10 +213,10 @@ Sometimes you may want to hide columns based on certain conditions. You can use 
 
 ```php
 Column::make('Type', 'user.type')
-    ->hideIf(request()->routeIs('this.other.route'))
+    ->hideIf(request()->routeIs('this.other.route')),
 
 Column::make('Last 4', 'card_last_four')
-    ->hideIf(! auth()->user()->isAdmin())
+    ->hideIf(! auth()->user()->isAdmin()),
 ```
 
 ### Excluding from Column Select
@@ -230,7 +230,7 @@ Column::make('Address', 'address.address')
 
 ### Preventing clicks if row URL is enabled
 
-If you have row URLs enabled, but you have a specific column you do not want clickable, i.e. in the event there is something else clickable in that row, you may yse the following:
+If you have row URLs enabled, but you have a specific column you do not want clickable, i.e. in the event there is something else clickable in that row, you may use the following:
 
 ```php
 Column::make('Name')

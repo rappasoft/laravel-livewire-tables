@@ -49,9 +49,9 @@ Column::make('Name')
     ->sortable()
     ->searchable()
     ->asHtml()
-    ->secondaryHeader(function() {
-        return view('tables.cells.input-search', ['field' => 'name']);
-    }),
+    ->secondaryHeader(
+        fn() => view('tables.cells.input-search', ['field' => 'name']);
+    ),
 ```
 
 **input-search.blade.php**
@@ -68,7 +68,10 @@ Now you need to tell the query what to do when something is typed into the searc
 public function query()
 {
     return User::query()
-        ->when($this->columnSearch['name'] ?? null, fn ($query, $name) => $query->where('name', 'like', '%' . $name . '%'));
+        ->when(
+            $this->columnSearch['name'] ?? null, 
+            fn ($query, $name) => $query->where('name', 'like', '%' . $name . '%')
+        );
 }
 ```
 
@@ -83,9 +86,12 @@ Column::make('Name')
     ->sortable()
     ->searchable()
     ->asHtml()
-    ->secondaryHeader(function() {
-        return view('tables.cells.input-search', ['field' => 'name', 'columnSearch' => $this->columnSearch]);
-    }),
+    ->secondaryHeader(
+        fn() => view('tables.cells.input-search', [
+            'field' => 'name', 
+            'columnSearch' => $this->columnSearch
+        ])    
+    ),
 ```
 
 2. Copy the search field and modify:

@@ -11,7 +11,7 @@ If you don't want a column to be able to be turned off from the column select bo
 
 ```php
 Column::make('Address', 'address.address')
-    ->excludeFromColumnSelect()
+    ->excludeFromColumnSelect(),
 ```
 
 ## Available Methods
