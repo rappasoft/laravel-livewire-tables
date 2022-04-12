@@ -262,11 +262,6 @@ trait ComponentConfiguration
         return $this;
     }
 
-
-
-
-
-
     public function setTableRowUrl(callable $callback): self
     {
         $this->trUrlCallback = $callback;

@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\RelationshipHelpers;

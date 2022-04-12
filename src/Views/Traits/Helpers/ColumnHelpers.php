@@ -510,12 +510,9 @@ trait ColumnHelpers
         }, array_keys($attributes)));
     }
 
-
-
-
     public function isClickable(): bool
     {
-        return $this->clickable && 
+        return $this->clickable &&
             $this->component->hasTableRowUrl() &&
             ! $this instanceof LinkColumn;
     }

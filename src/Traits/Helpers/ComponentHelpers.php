@@ -276,9 +276,6 @@ trait ComponentHelpers
         return $this->getCollapsingColumnsStatus() === false;
     }
 
-
-
-
     public function hasTableRowUrl(): bool
     {
         return $this->trUrlCallback !== null;
