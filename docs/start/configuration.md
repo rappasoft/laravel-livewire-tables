@@ -43,7 +43,7 @@ module.exports = {
     mode: 'jit',
     purge: [
         ...
-        './vendor/rappasoft/laravel-livewire-tables/resources/views/tailwind/**/*.blade.php',
+        './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
     ],
     ...
 };
