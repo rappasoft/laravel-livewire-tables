@@ -15,6 +15,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Update filter docs - https://github.com/rappasoft/laravel-livewire-tables/pull/691
 - Update getTdAttributes to take 4th missing argument
 - Add filters in the config section - https://github.com/rappasoft/laravel-livewire-tables/pull/709
+- Update some docs formatting
 
 ## [2.0.0] - 2022-03-30
 
