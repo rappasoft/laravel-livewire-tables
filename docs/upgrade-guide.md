@@ -55,3 +55,7 @@ New:
 ```php
 $this->getAppliedFilterWithValue('active');
 ```
+
+## Modals
+
+`modalsView()` was changed to `customView()`

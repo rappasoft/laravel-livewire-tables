@@ -97,6 +97,16 @@ abstract class DataTableComponent extends Component
     }
 
     /**
+     * The view to add any modals for the table, could also be used for any non-visible html
+     *
+     * @return string
+     */
+    public function customView(): string
+    {
+        return 'livewire-tables::stubs.custom';
+    }
+    
+    /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function render()
@@ -105,6 +115,7 @@ abstract class DataTableComponent extends Component
             ->with([
                 'columns' => $this->getColumns(),
                 'rows' => $this->getRows(),
+                'customView' => $this->customView(),
             ]);
     }
 }

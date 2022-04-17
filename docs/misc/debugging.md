@@ -1,6 +1,6 @@
 ---
 title: Debugging
-weight: 3
+weight: 4
 ---
 
 ## Configuration
