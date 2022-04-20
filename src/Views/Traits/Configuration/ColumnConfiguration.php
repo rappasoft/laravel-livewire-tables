@@ -150,6 +150,16 @@ trait ColumnConfiguration
     }
 
     /**
+     * @return $this
+     */
+    public function deselect(): self
+    {
+        $this->selected = false;
+
+        return $this;
+    }
+
+    /**
      * @param  string  $field
      *
      * @return $this
