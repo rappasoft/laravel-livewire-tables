@@ -7,6 +7,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Added space to include custom markup at the end of the component.
+- Added events documentation
 
 ## [2.1.0] - 2022-04-12
 
