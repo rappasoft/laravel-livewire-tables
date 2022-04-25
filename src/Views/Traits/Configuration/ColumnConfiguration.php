@@ -152,7 +152,7 @@ trait ColumnConfiguration
     /**
      * @return $this
      */
-    public function deselect(): self
+    public function deselected(): self
     {
         $this->selected = false;
 
