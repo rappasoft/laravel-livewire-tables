@@ -84,7 +84,6 @@
             
                     @if ($component->isFilterLayoutPopover())
                         <div
-                            wire:key='{{ $component->getTableName() }}-filters-popover-menu'
                             x-cloak
                             x-show="open"
                             x-transition:enter="transition ease-out duration-100"
@@ -380,7 +379,6 @@
 
                         @if ($component->isFilterLayoutPopover())
                             <ul
-                                wire:key='{{ $component->getTableName() }}-filters-popover-menu'
                                 x-cloak
                                 class="dropdown-menu w-100 mt-md-5"
                                 x-bind:class="{'show' : open}"
@@ -604,7 +602,6 @@
 
                         @if ($component->isFilterLayoutPopover())
                             <ul
-                                wire:key='{{ $component->getTableName() }}-filters-popover-menu'
                                 x-cloak
                                 class="dropdown-menu w-100"
                                 x-bind:class="{'show' : open}"
