@@ -29,7 +29,7 @@ trait WithColumnSelect
         // Get a list of visible default columns that are not excluded
         $columns = collect($this->getColumns())
             ->filter(function ($column) {
-                return $column->isVisible() && $column->isSelectable();
+                return $column->isVisible() && $column->isSelectable() && $column->isSelected();
             })
             ->map(fn ($column) => $column->getHash())
             ->values()

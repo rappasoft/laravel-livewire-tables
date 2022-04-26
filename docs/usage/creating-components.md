@@ -22,15 +22,17 @@ class UsersTable extends DataTableComponent
 
     public function configure(): void
     {
-        $this->setPrimaryKey('id')
+        $this->setPrimaryKey('id');
     }
 
     public function columns(): array
     {
-        Column::make('ID', 'id')
-            ->sortable(),
-        Column::make('Name')
-            ->sortable(),
+        return [
+            Column::make('ID', 'id')
+                ->sortable(),
+            Column::make('Name')
+                ->sortable(),
+        ];
     }
 }
 ```

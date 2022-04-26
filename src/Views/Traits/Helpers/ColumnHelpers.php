@@ -416,6 +416,14 @@ trait ColumnHelpers
     /**
      * @return bool
      */
+    public function isSelected(): bool
+    {
+        return $this->selected === true;
+    }
+
+    /**
+     * @return bool
+     */
     public function hasSecondaryHeader(): bool
     {
         return $this->secondaryHeader === true;

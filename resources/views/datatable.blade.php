@@ -60,4 +60,8 @@
     </x-livewire-tables::table>
 
     <x-livewire-tables::pagination :rows="$rows" />
+
+    @isset($customView)
+        @include($customView)
+    @endisset
 </x-livewire-tables::wrapper>

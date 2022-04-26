@@ -14,6 +14,15 @@ Column::make('Address', 'address.address')
     ->excludeFromColumnSelect(),
 ```
 
+## Deselected by default
+
+If you would like a column to be included in the column select but deselected by default, you can specify:
+
+```php
+Column::make('Address', 'address.address')
+    ->deselected(),
+```
+
 ## Available Methods
 
 ### setColumnSelectStatus
