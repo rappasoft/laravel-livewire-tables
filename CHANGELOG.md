@@ -8,6 +8,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Added space to include custom markup at the end of the component.
 - Added events documentation
+- Added ability to set columns as deselected by default - https://github.com/rappasoft/laravel-livewire-tables/pull/731
 
 ## [2.1.0] - 2022-04-12
 
