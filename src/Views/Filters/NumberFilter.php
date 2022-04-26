@@ -9,7 +9,7 @@ class NumberFilter extends Filter
 {
     public function validate($value)
     {
-        return is_numeric($value)? $value:false;
+        return is_numeric($value) ? $value : false;
     }
 
     public function isEmpty($value): bool
