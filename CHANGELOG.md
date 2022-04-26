@@ -10,6 +10,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added events documentation
 - Added ability to set columns as deselected by default - https://github.com/rappasoft/laravel-livewire-tables/pull/731
 
+### Changed 
+
+- Fixed issue with Postgres and quotes - https://github.com/rappasoft/laravel-livewire-tables/pull/734
+
 ## [2.1.0] - 2022-04-12
 
 ### Added
