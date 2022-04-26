@@ -19,6 +19,7 @@ use Rappasoft\LaravelLivewireTables\Traits\WithReordering;
 use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
 use Rappasoft\LaravelLivewireTables\Traits\WithSecondaryHeader;
 use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
+use Rappasoft\LaravelLivewireTables\Traits\WithLoading;
 
 abstract class DataTableComponent extends Component
 {
@@ -35,7 +36,8 @@ abstract class DataTableComponent extends Component
         WithRefresh,
         WithReordering,
         WithSearch,
-        WithSorting;
+        WithSorting,
+        WithLoading;
 
     protected $listeners = ['refreshDatatable' => '$refresh'];
 

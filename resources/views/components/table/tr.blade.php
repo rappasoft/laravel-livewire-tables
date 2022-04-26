@@ -9,7 +9,12 @@
 
 @if ($theme === 'tailwind')
     <tr
-        wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
+        @if($component->loadingIsEnabled())
+            @php
+                $loadingDelay = ($component->loadingDelayIsEnabled()) ? ($component->hasLoadingDelayModifier()) ? '.delay.'.$component->getLoadingDelayModifier() : '.delay' : '';
+            @endphp
+            wire:loading.class{{$loadingDelay}}="opacity-50 dark:bg-gray-900 dark:opacity-60"
+        @endif
 
         @if ($component->reorderIsEnabled() && $component->currentlyReorderingIsEnabled())
             wire:sortable.item="{{ $row->getKey() }}"
