@@ -4,12 +4,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.2.0] - 2022-04-25
+
 ### Added
 
 - Added space to include custom markup at the end of the component.
 - Added events documentation
 - Added ability to set columns as deselected by default - https://github.com/rappasoft/laravel-livewire-tables/pull/731
-
+- Added NumberFilter - https://github.com/rappasoft/laravel-livewire-tables/pull/729
 ### Changed 
 
 - Fixed issue with Postgres and quotes - https://github.com/rappasoft/laravel-livewire-tables/pull/734
@@ -603,7 +605,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.1.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.0...development
+[2.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...v2.0.0
 [1.21.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...v1.21.0
