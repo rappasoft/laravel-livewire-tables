@@ -96,4 +96,16 @@ class ColumnConfigurationTest extends TestCase
 
         $this->assertFalse($column->isClickable());
     }
+
+    /** @test */
+    public function can_deselect_column(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertTrue($column->isSelected());
+
+        $column->deselected();
+
+        $this->assertFalse($column->isSelected());
+    }
 }
