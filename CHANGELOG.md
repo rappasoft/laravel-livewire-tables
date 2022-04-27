@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.2.1] - 2022-04-27
+
+### Changed
+
+- Fixed filter dropdown opening on sort - https://github.com/rappasoft/laravel-livewire-tables/pull/740
+
 ## [2.2.0] - 2022-04-25
 
 ### Added
@@ -605,7 +611,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.1...development
+[2.2.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v1.20.1...v2.0.0
