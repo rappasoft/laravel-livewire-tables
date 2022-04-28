@@ -4,9 +4,17 @@
     $theme = $component->getTheme();
 @endphp
 
+@if ($component->hasConfigurableAreaFor('before-toolbar'))
+    @include($component->getConfigurableAreaFor('before-toolbar'))
+@endif
+
 @if ($theme === 'tailwind')
     <div class="md:flex md:justify-between mb-4 px-4 md:p-0">
         <div class="w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2">
+            @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
+                @include($component->getConfigurableAreaFor('toolbar-left-start'))
+            @endif
+
             @if ($component->reorderIsEnabled())
                 <button
                     wire:click="{{ $component->currentlyReorderingIsEnabled() ? 'disableReordering' : 'enableReordering' }}"
@@ -126,9 +134,17 @@
                     @endif
                 </div>
             @endif
+
+            @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
+                @include($component->getConfigurableAreaFor('toolbar-left-end'))
+            @endif
         </div>
 
         <div class="md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2">
+            @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
+                @include($component->getConfigurableAreaFor('toolbar-right-start'))
+            @endif
+
             @if ($component->showBulkActionsDropdown())
                 <div class="w-full md:w-auto mb-4 md:mb-0">
                     <div
@@ -270,6 +286,10 @@
                     </select>
                 </div>
             @endif
+
+            @if ($component->hasConfigurableAreaFor('toolbar-right-end'))
+                @include($component->getConfigurableAreaFor('toolbar-right-end'))
+            @endif
         </div>
     </div>
 
@@ -301,6 +321,10 @@
 @elseif ($theme === 'bootstrap-4')
     <div class="d-md-flex justify-content-between mb-3">
         <div class="d-md-flex">
+            @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
+                @include($component->getConfigurableAreaFor('toolbar-left-start'))
+            @endif
+
             @if ($component->reorderIsEnabled())
                 <div class="mr-0 mr-md-2 mb-3 mb-md-0">
                     <button
@@ -410,9 +434,17 @@
                     </div>
                 </div>
             @endif
+
+            @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
+                @include($component->getConfigurableAreaFor('toolbar-left-end'))
+            @endif
         </div>
 
         <div class="d-md-flex">
+            @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
+                @include($component->getConfigurableAreaFor('toolbar-right-start'))
+            @endif
+
             @if ($component->showBulkActionsDropdown())
                 <div class="mb-3 mb-md-0">
                     <div class="dropdown d-block d-md-inline">
@@ -499,6 +531,10 @@
                     </select>
                 </div>
             @endif
+
+            @if ($component->hasConfigurableAreaFor('toolbar-right-end'))
+                @include($component->getConfigurableAreaFor('toolbar-right-end'))
+            @endif
         </div>
     </div>
 
@@ -526,6 +562,10 @@
 @elseif ($theme === 'bootstrap-5')
     <div class="d-md-flex justify-content-between mb-3">
         <div class="d-md-flex">
+            @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
+                @include($component->getConfigurableAreaFor('toolbar-left-start'))
+            @endif
+
             @if ($component->reorderIsEnabled())
                 <div class="me-0 me-md-2 mb-3 mb-md-0">
                     <button
@@ -633,9 +673,17 @@
                     </div>
                 </div>
             @endif
+
+            @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
+                @include($component->getConfigurableAreaFor('toolbar-left-end'))
+            @endif
         </div>
 
         <div class="d-md-flex">
+            @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
+                @include($component->getConfigurableAreaFor('toolbar-right-start'))
+            @endif
+
             @if ($component->showBulkActionsDropdown())
                 <div class="mb-3 mb-md-0">
                     <div class="dropdown d-block d-md-inline">
@@ -722,6 +770,10 @@
                     </select>
                 </div>
             @endif
+
+            @if ($component->hasConfigurableAreaFor('toolbar-right-end'))
+                @include($component->getConfigurableAreaFor('toolbar-right-end'))
+            @endif
         </div>
     </div>
 
@@ -746,4 +798,8 @@
             </div>
         </div>
     @endif
+@endif
+
+@if ($component->hasConfigurableAreaFor('after-toolbar'))
+    @include($component->getConfigurableAreaFor('after-toolbar'))
 @endif

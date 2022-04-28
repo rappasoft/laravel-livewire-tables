@@ -5,6 +5,10 @@
     $theme = $component->getTheme();
 @endphp
 
+@if ($component->hasConfigurableAreaFor('before-pagination'))
+    @include($component->getConfigurableAreaFor('before-pagination'))
+@endif
+
 @if ($theme === 'tailwind')
     <div>
         @if ($component->paginationVisibilityIsEnabled())
@@ -95,4 +99,8 @@
             @endif
         @endif
     </div>
+@endif
+
+@if ($component->hasConfigurableAreaFor('after-pagination'))
+    @include($component->getConfigurableAreaFor('after-pagination'))
 @endif

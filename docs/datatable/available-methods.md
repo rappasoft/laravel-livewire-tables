@@ -373,6 +373,21 @@ public function configure(): void
 }
 ```
 
+## Builder
+
+### setAdditionalSelects
+
+By default the only columns defined in the select statement are the ones defined via columns. If you need to define additional selects that you don't have a column for you may:
+
+```php
+public function configure(): void
+{
+  $this->setAdditionalSelects(['users.id as id']);
+}
+```
+
+Since you probably won't have an `ID` column defined, the ID will not be available on the model to use. In the case of an actions column where you have buttons specific to the row, you probably need that, so you can add the select statement to make it available on the model.
+
 ## Misc.
 
 ### setEmptyMessage

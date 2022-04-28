@@ -4,6 +4,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.3.0] - 2022-04-28
+
+### Added
+
+- Added ability to define additional select statements outside the scope of a column using the `setAdditionalSelects(array $selects)` configuration method.
+- Added 8 configurable areas, see `Configurable Areas` of the `Datatable` section of the documentation.
+
 ## [2.2.1] - 2022-04-27
 
 ### Changed
@@ -611,7 +618,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.1...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.3.0...development
+[2.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.1...v2.3.0
 [2.2.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.0.0...v2.1.0
