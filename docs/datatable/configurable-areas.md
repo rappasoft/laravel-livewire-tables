@@ -3,7 +3,7 @@ title: Configurable Areas
 weight: 3
 ---
 
-There are certain areas of the datatable as of `v2.2` where you can include your own view files. This is good for adding additional functionality to the toolbar, for example.
+There are certain areas of the datatable as of `v2.3` where you can include your own view files. This is good for adding additional functionality to the toolbar, for example.
 
 ## Available Methods
 
