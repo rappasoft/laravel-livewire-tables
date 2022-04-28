@@ -284,7 +284,7 @@ trait ComponentConfiguration
 
     /**
      * @param  $selects
-     * 
+     *
      * @return $this
      */
     public function setAdditionalSelects($selects): self
