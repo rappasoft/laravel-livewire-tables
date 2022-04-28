@@ -107,6 +107,11 @@ trait WithData
 
     protected function selectFields(Builder $builder): Builder
     {
+        // Load any additional selects that were not already columns
+        foreach ($this->getAdditionalSelects() as $select) {
+            $builder->addSelect($select);
+        }
+
         foreach ($this->getSelectableColumns() as $column) {
             $builder->addSelect($column->getColumn() . ' as ' .$column->getColumnSelectName());
         }

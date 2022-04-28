@@ -152,4 +152,14 @@ class ComponentHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasTableRowUrl());
     }
+
+    /** @test */
+    public function can_get_additional_selects(): void
+    {
+        $this->assertEquals([], $this->basicTable->getAdditionalSelects());
+
+        $this->basicTable->setAdditionalSelects(['id', 'name']);
+
+        $this->assertEquals(['id', 'name'], $this->basicTable->getAdditionalSelects());
+    }
 }

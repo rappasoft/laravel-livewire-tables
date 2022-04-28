@@ -31,6 +31,7 @@ trait ComponentUtilities
     protected $tdAttributesCallback;
     protected $collapsingColumnsStatus = true;
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
+    protected array $additionalSelects = [];
 
     /**
      * Set the custom query string array for this specific table

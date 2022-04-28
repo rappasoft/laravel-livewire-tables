@@ -303,4 +303,12 @@ trait ComponentHelpers
     {
         return $this->trUrlTargetCallback ? call_user_func($this->trUrlTargetCallback, $row) : null;
     }
+
+    /**
+     * @return array
+     */
+    public function getAdditionalSelects(): array
+    {
+        return $this->additionalSelects;
+    }
 }

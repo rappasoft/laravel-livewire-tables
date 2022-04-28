@@ -281,4 +281,20 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    /**
+     * @param  $selects
+     * 
+     * @return $this
+     */
+    public function setAdditionalSelects($selects): self
+    {
+        if (! is_array($selects)) {
+            $selects = [$selects];
+        }
+
+        $this->additionalSelects = $selects;
+
+        return $this;
+    }
 }
