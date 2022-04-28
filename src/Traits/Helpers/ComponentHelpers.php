@@ -311,4 +311,32 @@ trait ComponentHelpers
     {
         return $this->additionalSelects;
     }
+
+    /**
+     * @return array
+     */
+    public function getConfigurableAreas(): array
+    {
+        return $this->configurableAreas;
+    }
+
+    /**
+     * @param  string  $area
+     * 
+     * @return bool
+     */
+    public function hasConfigurableAreaFor(string $area): bool
+    {
+        return isset($this->configurableAreas[$area]) && $this->getConfigurableAreaFor($area) !== null;
+    }
+
+    /**
+     * @param  string  $area
+     * 
+     * @return string|null
+     */
+    public function getConfigurableAreaFor(string $area): ?string
+    {
+        return $this->configurableAreas[$area] ?? null;
+    }
 }

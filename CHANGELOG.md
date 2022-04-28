@@ -7,6 +7,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Added ability to define additional select statements outside the scope of a column using the `setAdditionalSelects(array $selects)` configuration method.
+- Added 8 configurable areas, see `Configurable Areas` of the `Datatable` section of the documentation.
 
 ## [2.2.1] - 2022-04-27
 

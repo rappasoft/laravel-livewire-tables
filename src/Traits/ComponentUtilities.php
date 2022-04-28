@@ -32,6 +32,16 @@ trait ComponentUtilities
     protected $collapsingColumnsStatus = true;
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
     protected array $additionalSelects = [];
+    protected array $configurableAreas = [
+        'toolbar-left-start' => null,
+        'toolbar-left-end' => null,
+        'toolbar-right-start' => null,
+        'toolbar-right-end' => null,
+        'before-toolbar' => null,
+        'after-toolbar' => null,
+        'before-pagination' => null,
+        'after-pagination' => null,
+    ];
 
     /**
      * Set the custom query string array for this specific table

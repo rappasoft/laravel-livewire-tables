@@ -162,4 +162,25 @@ class ComponentHelpersTest extends TestCase
 
         $this->assertEquals(['id', 'name'], $this->basicTable->getAdditionalSelects());
     }
+
+    /** @test */
+    public function can_get_configurable_areas(): void
+    {
+        $this->assertEquals([
+            'toolbar-left-start' => null,
+            'toolbar-left-end' => null,
+            'toolbar-right-start' => null,
+            'toolbar-right-end' => null,
+            'before-toolbar' => null,
+            'after-toolbar' => null,
+            'before-pagination' => null,
+            'after-pagination' => null,
+        ], $this->basicTable->getConfigurableAreas());
+
+        $this->basicTable->setConfigurableAreas([
+            'toolbar-left-start' => 'includes.areas.toolbar-left-start'
+        ]);
+
+        $this->assertEquals('includes.areas.toolbar-left-start', $this->basicTable->getConfigurableAreaFor('toolbar-left-start'));
+    }
 }

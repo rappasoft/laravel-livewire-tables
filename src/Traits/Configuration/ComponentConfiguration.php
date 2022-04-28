@@ -297,4 +297,16 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    /**
+     * @param  $areas
+     * 
+     * @return $this
+     */
+    public function setConfigurableAreas(array $areas): self
+    {
+        $this->configurableAreas = $areas;
+
+        return $this;
+    }
 }
