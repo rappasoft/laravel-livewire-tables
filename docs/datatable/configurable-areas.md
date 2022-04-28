@@ -47,7 +47,7 @@ Example dropdown for the toolbar:
             @keydown.window.escape="open = false"
             x-on:click.away="open = false"
             class="relative z-10 inline-block w-full text-left md:w-auto"
-            wire:key="bulk-actions-button-{{ $component->getTableName() }}"
+            wire:key="my-dropdown-button-{{ $component->getTableName() }}"
         >
             <div>
                 <span class="rounded-md shadow-sm">
