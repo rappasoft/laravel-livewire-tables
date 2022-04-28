@@ -33,7 +33,7 @@ public function configure(): void
 
 Example dropdown for the toolbar:
 
-```php
+```html
 @aware(['component'])
 
 @php
@@ -100,7 +100,7 @@ Example dropdown for the toolbar:
 @endif
 ```
 
-**Note:** If you don't specify the theme conditional, it will show up on every
+**Note:** If you don't specify the theme conditional, it will show up on every theme.
 
 ## Areas
 
