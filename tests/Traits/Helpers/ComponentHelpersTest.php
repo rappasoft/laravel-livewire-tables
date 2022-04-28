@@ -178,7 +178,7 @@ class ComponentHelpersTest extends TestCase
         ], $this->basicTable->getConfigurableAreas());
 
         $this->basicTable->setConfigurableAreas([
-            'toolbar-left-start' => 'includes.areas.toolbar-left-start'
+            'toolbar-left-start' => 'includes.areas.toolbar-left-start',
         ]);
 
         $this->assertEquals('includes.areas.toolbar-left-start', $this->basicTable->getConfigurableAreaFor('toolbar-left-start'));

@@ -300,7 +300,7 @@ trait ComponentConfiguration
 
     /**
      * @param  $areas
-     * 
+     *
      * @return $this
      */
     public function setConfigurableAreas(array $areas): self

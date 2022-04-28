@@ -322,7 +322,7 @@ trait ComponentHelpers
 
     /**
      * @param  string  $area
-     * 
+     *
      * @return bool
      */
     public function hasConfigurableAreaFor(string $area): bool
@@ -332,7 +332,7 @@ trait ComponentHelpers
 
     /**
      * @param  string  $area
-     * 
+     *
      * @return string|null
      */
     public function getConfigurableAreaFor(string $area): ?string
