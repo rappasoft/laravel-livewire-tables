@@ -10,4 +10,9 @@ trait WithColumns
     use ColumnHelpers;
 
     protected Collection $columns;
+
+    public function bootWithColumns(): void
+    {
+        $this->columns = collect();
+    }
 }

@@ -59,9 +59,6 @@ abstract class DataTableComponent extends Component
 
         // Set the filter defaults based on the filter type
         $this->setFilterDefaults();
-        
-        // Set the user defined columns to work with
-        $this->setColumns();
 
         // Call the child configuration, if any
         $this->configure();
@@ -78,6 +75,8 @@ abstract class DataTableComponent extends Component
     public function booted(): void
     {
         $this->setTheme();
+        $this->setBuilder($this->builder());
+        $this->setColumns();
     }
 
     /**
@@ -119,6 +118,14 @@ abstract class DataTableComponent extends Component
      */
     public function render()
     {
+        $this->setBuilder($this->builder());
+        $this->setColumns();
+        $this->setupColumnSelect();
+        $this->setupPagination();
+        $this->setupSecondaryHeader();
+        $this->setupFooter();
+        $this->setupReordering();
+
         return view('livewire-tables::datatable')
             ->with([
                 'columns' => $this->getColumns(),

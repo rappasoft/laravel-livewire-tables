@@ -12,54 +12,58 @@ trait WithData
     // TODO: Test
     public function getRows()
     {
-        return $this->executeQuery($this->baseQuery());
+        $this->baseQuery();
+        
+        return $this->executeQuery();
     }
 
     protected function baseQuery(): Builder
     {
-        $builder = $this->joinRelations($this->builder());
+        $this->setBuilder($this->joinRelations());
 
-        $builder = $this->selectFields($builder);
+        $this->setBuilder($this->selectFields());
 
-        $builder = $this->applySearch($builder);
+        $this->setBuilder($this->applySearch());
 
-        $builder = $this->applyFilters($builder);
+        $this->setBuilder($this->applyFilters());
 
         if ($this->currentlyReorderingIsEnabled()) {
-            return $builder->orderBy($this->getDefaultReorderColumn(), $this->getDefaultReorderDirection());
+            $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultReorderColumn(), $this->getDefaultReorderDirection()));
+
+            return $this->getBuilder();
         }
 
-        return $this->applySorting($builder);
+        return $this->applySorting();
     }
 
-    protected function executeQuery(Builder $builder)
+    protected function executeQuery()
     {
         return $this->paginationIsEnabled() ?
-            $builder->paginate($this->getPerPage() === -1 ? $builder->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()) :
-            $builder->get();
+            $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()) :
+            $this->getBuilder()->get();
     }
 
-    protected function joinRelations(Builder $builder): Builder
+    protected function joinRelations(): Builder
     {
         foreach ($this->getSelectableColumns() as $column) {
             if ($column->hasRelations()) {
-                $builder = $this->joinRelation($builder, $column);
+                $this->setBuilder($this->joinRelation($column));
             }
         }
 
-        return $builder;
+        return $this->getBuilder();
     }
 
-    protected function joinRelation(Builder $builder, Column $column): Builder
+    protected function joinRelation(Column $column): Builder
     {
         if ($column->eagerLoadRelationsIsEnabled() || $this->eagerLoadAllRelationsIsEnabled()) {
-            $builder->with($column->getRelationString());
+            $this->setBuilder($this->getBuilder()->with($column->getRelationString()));
         }
 
         $table = false;
         $foreign = false;
         $other = false;
-        $lastQuery = $builder;
+        $lastQuery = clone $this->getBuilder();
 
         foreach ($column->getRelations() as $relationPart) {
             $model = $lastQuery->getRelation($relationPart);
@@ -81,48 +85,48 @@ trait WithData
             }
 
             if ($table) {
-                $builder = $this->performJoin($builder, $table, $foreign, $other);
+                $this->setBuilder($this->performJoin($table, $foreign, $other));
             }
 
             $lastQuery = $model->getQuery();
         }
 
-        return $builder;
+        return $this->getBuilder();
     }
 
-    protected function performJoin(Builder $builder, $table, $foreign, $other, $type = 'left'): Builder
+    protected function performJoin($table, $foreign, $other, $type = 'left'): Builder
     {
         $joins = [];
 
-        foreach ($builder->getQuery()->joins ?? [] as $join) {
+        foreach ($this->getBuilder()->getQuery()->joins ?? [] as $join) {
             $joins[] = $join->table;
         }
 
         if (! in_array($table, $joins, true)) {
-            $builder->join($table, $foreign, '=', $other, $type);
+            $this->setBuilder($this->getBuilder()->join($table, $foreign, '=', $other, $type));
         }
 
-        return $builder;
+        return $this->getBuilder();
     }
 
-    protected function selectFields(Builder $builder): Builder
+    protected function selectFields(): Builder
     {
         // Load any additional selects that were not already columns
         foreach ($this->getAdditionalSelects() as $select) {
-            $builder->addSelect($select);
+            $this->setBuilder($this->getBuilder()->addSelect($select));
         }
 
         foreach ($this->getSelectableColumns() as $column) {
-            $builder->addSelect($column->getColumn() . ' as ' .$column->getColumnSelectName());
+            $this->setBuilder($this->getBuilder()->addSelect($column->getColumn() . ' as ' .$column->getColumnSelectName()));
         }
 
-        return $builder;
+        return $this->getBuilder();
     }
 
     protected function getTableForColumn(Column $column): ?string
     {
         $table = null;
-        $lastQuery = $this->builder();
+        $lastQuery = clone $this->getBuilder();
 
         foreach ($column->getRelations() as $relationPart) {
             $model = $lastQuery->getRelation($relationPart);

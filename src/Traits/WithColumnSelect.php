@@ -14,7 +14,7 @@ trait WithColumnSelect
     protected bool $columnSelectStatus = true;
     protected bool $rememberColumnSelectionStatus = true;
 
-    public function mountWithColumnSelect(): void
+    public function setupColumnSelect(): void
     {
         // If remember selection is off, then clear the session
         if ($this->rememberColumnSelectionIsDisabled()) {
