@@ -152,7 +152,6 @@
                         @keydown.window.escape="open = false"
                         x-on:click.away="open = false"
                         class="relative inline-block text-left z-10 w-full md:w-auto"
-                        wire:key="bulk-actions-button-{{ $component->getTableName() }}"
                     >
                         <div>
                             <span class="rounded-md shadow-sm">
