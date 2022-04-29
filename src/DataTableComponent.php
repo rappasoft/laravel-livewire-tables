@@ -11,6 +11,7 @@ use Rappasoft\LaravelLivewireTables\Traits\WithColumns;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\WithData;
 use Rappasoft\LaravelLivewireTables\Traits\WithDebugging;
+use Rappasoft\LaravelLivewireTables\Traits\WithEvents;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
 use Rappasoft\LaravelLivewireTables\Traits\WithFooter;
 use Rappasoft\LaravelLivewireTables\Traits\WithPagination;
@@ -28,6 +29,7 @@ abstract class DataTableComponent extends Component
         WithColumnSelect,
         WithData,
         WithDebugging,
+        WithEvents,
         WithFilters,
         WithFooter,
         WithSecondaryHeader,
@@ -37,7 +39,13 @@ abstract class DataTableComponent extends Component
         WithSearch,
         WithSorting;
 
-    protected $listeners = ['refreshDatatable' => '$refresh'];
+    protected $listeners = [
+        'refreshDatatable' => '$refresh',
+        'setSort' => 'setSortEvent',
+        'clearSorts' => 'clearSortEvent',
+        'setFilter' => 'setFilterEvent',
+        'clearFilters' => 'clearFilterEvent',
+    ];
 
     /**
      * Runs on every request, immediately after the component is instantiated, but before any other lifecycle methods are called

@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Added table event listeners to sort/filter/clear from other components.
+
 ## [2.3.0] - 2022-04-28
 
 ### Added
