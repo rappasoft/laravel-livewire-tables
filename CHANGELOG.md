@@ -7,7 +7,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Added table event listeners to sort/filter/clear from other components.
-- Added text filters.
+- Added text filter.
+- Added $row as second parameter to BooleanColumn `setCallback()`.
 
 ## [2.3.0] - 2022-04-28
 

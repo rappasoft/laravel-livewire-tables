@@ -65,7 +65,8 @@ You can override this functionality:
 
 ```php
 BooleanColumn::make('Active')
-    ->setCallback(function(string $value) {
+    // Note: Parameter `$row` available as of v2.4
+    ->setCallback(function(string $value, $row) {
         // Figure out what makes $value true
     }),
 ```

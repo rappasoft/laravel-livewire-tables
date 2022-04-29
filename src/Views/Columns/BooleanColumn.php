@@ -28,6 +28,6 @@ class BooleanColumn extends Column
         return view($this->getView())
             ->withComponent($this->getComponent())
             ->withSuccessValue($this->getSuccessValue())
-            ->withStatus($this->hasCallback() ? app()->call($this->getCallback(), ['value' => $value]) : (bool)$value === true);
+            ->withStatus($this->hasCallback() ? app()->call($this->getCallback(), ['value' => $value, 'row' => $row]) : (bool)$value === true);
     }
 }
