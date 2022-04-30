@@ -99,6 +99,20 @@ trait ComponentConfiguration
     }
 
     /**
+     * Get a list of attributes to override on the th sort button elements
+     *
+     * @param  callable  $callback
+     *
+     * @return $this
+     */
+    public function setThSortButtonAttributes(callable $callback): self
+    {
+        $this->thSortButtonAttributesCallback = $callback;
+
+        return $this;
+    }
+
+    /**
      * Get a list of attributes to override on the td elements
      *
      * @return $this

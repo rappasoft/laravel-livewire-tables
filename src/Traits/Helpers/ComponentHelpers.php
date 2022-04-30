@@ -110,6 +110,16 @@ trait ComponentHelpers
     }
 
     /**
+     * @param  Column  $column
+     *
+     * @return bool[]
+     */
+    public function getThSortButtonAttributes(Column $column): array
+    {
+        return $this->thSortButtonAttributesCallback ? call_user_func($this->thSortButtonAttributesCallback, $column) : ['default' => true];
+    }
+
+    /**
      * @param  Model  $row
      * @param  int  $index
      *

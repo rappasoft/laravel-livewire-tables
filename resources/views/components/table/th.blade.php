@@ -5,6 +5,7 @@
     $attributes = $attributes->merge(['wire:key' => 'header-col-'.$index.'-'.$component->id]);
     $theme = $component->getTheme();
     $customAttributes = $component->getThAttributes($column);
+    $customSortButtonAttributes = $component->getThSortButtonAttributes($column);
     $direction = $column->hasField() ? $component->getSort($column->getColumnSelectName()) : null;
 @endphp
 
@@ -21,7 +22,10 @@
         @else
             <button
                 wire:click="sortBy('{{ $column->getColumnSelectName() }}')"
-                class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400"
+                {{ 
+                    $attributes->merge($customSortButtonAttributes)
+                        ->class(['flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])
+                }}
             >
                 <span>{{ $column->getTitle() }}</span>
 

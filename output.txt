@@ -1,0 +1,208 @@
+PHPUnit 9.5.20 [44m#StandWith[0m[43mUkraine[0m
+
+Runtime:       PHP 8.0.18
+Configuration: /Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/phpunit.xml.dist
+Random Seed:   1651282637
+Warning:       No code coverage driver available
+
+........E......................................................  63 / 339 ( 18%)
+.....................EE........................................ 126 / 339 ( 37%)
+............................................................... 189 / 339 ( 55%)
+......EEEEEEEEEE.EEEEEEEEE..................................... 252 / 339 ( 74%)
+............................................................... 315 / 339 ( 92%)
+.....................E.E                                        339 / 339 (100%)
+
+Time: 00:06.166, Memory: 54.00 MB
+
+There were 24 errors:
+
+1) Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Helpers\ColumnHelpersTest::can_get_colspan_count
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:115
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:217
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Views/Traits/Helpers/ColumnHelpersTest.php:293
+
+2) Rappasoft\LaravelLivewireTables\Tests\Views\ColumnTest::column_table_gets_set_for_base_and_relationship_columns
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:61
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Views/ColumnTest.php:63
+
+3) Rappasoft\LaravelLivewireTables\Tests\Views\ColumnTest::can_get_contents_of_column
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:95
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/WithData.php:48
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/WithData.php:22
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/WithData.php:15
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Views/ColumnTest.php:55
+
+4) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_collapsed_mobile_columns
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:139
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:65
+
+5) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_collapsed_tablet_columns_count
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:183
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:193
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:139
+
+6) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_collapsed_tablet_columns
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:183
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:126
+
+7) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_collapsed_mobile_columns_count
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:139
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:149
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:79
+
+8) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_column_count
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:115
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:35
+
+9) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_searchable_columns
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:105
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:186
+
+10) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_visible_tablet_columns
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:201
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:150
+
+11) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_visible_mobile_columns
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:157
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:90
+
+12) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_tell_if_columns_should_collapse_on_tablet
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:183
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:193
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:175
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:116
+
+13) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_column_by_select_name
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:61
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:27
+
+14) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_visible_tablet_columns_count
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:201
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:211
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:165
+
+15) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_visible_mobile_columns_count
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:157
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:167
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:105
+
+16) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_tell_if_columns_should_collapse_on_mobile
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:139
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:149
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:131
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:55
+
+17) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_a_list_of_column_relation_strings
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:83
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:202
+
+18) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_tell_if_there_are_collapsable_columns
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:139
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:149
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:131
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:123
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:41
+
+19) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_selectable_columns
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:95
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:176
+
+20) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_column_list
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:13
+
+21) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_a_list_of_column_relations
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:71
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:196
+
+22) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\ColumnHelpersTest::can_get_column_by_column
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:49
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/ColumnHelpersTest.php:19
+
+23) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\BulkActionsHelpersTest::update_select_all_clears_or_selects_all_depending_on_status
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:95
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/WithData.php:48
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/WithData.php:22
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/BulkActionsHelpers.php:175
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/BulkActionsHelpersTest.php:155
+
+24) Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers\BulkActionsHelpersTest::set_select_all_selects_all
+Error: Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$columns must not be accessed before initialization
+
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:39
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/ColumnHelpers.php:95
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/WithData.php:48
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/WithData.php:22
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/src/Traits/Helpers/BulkActionsHelpers.php:188
+/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables/tests/Traits/Helpers/BulkActionsHelpersTest.php:171
+
+ERRORS!
+Tests: 339, Assertions: 848, Errors: 24.

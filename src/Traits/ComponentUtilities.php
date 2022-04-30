@@ -25,6 +25,7 @@ trait ComponentUtilities
     protected array $theadAttributes = [];
     protected array $tbodyAttributes = [];
     protected $thAttributesCallback;
+    protected $thSortButtonAttributesCallback;
     protected $trAttributesCallback;
     protected $trUrlCallback;
     protected $trUrlTargetCallback;
