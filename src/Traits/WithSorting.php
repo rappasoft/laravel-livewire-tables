@@ -51,14 +51,14 @@ trait WithSorting
     }
 
     /**
-     * @param  Builder  $builder
-     *
      * @return Builder
      */
-    public function applySorting(Builder $builder): Builder
+    public function applySorting(): Builder
     {
         if ($this->hasDefaultSort() && ! $this->hasSorts()) {
-            return $builder->orderBy($this->getDefaultSortColumn(), $this->getDefaultSortDirection());
+            $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultSortColumn(), $this->getDefaultSortDirection()));
+
+            return $this->getBuilder();
         }
 
         foreach ($this->getSorts() as $column => $direction) {
@@ -76,14 +76,14 @@ trait WithSorting
 
             // TODO: Test
             if ($column->hasSortCallback()) {
-                $builder = app()->call($column->getSortCallback(), ['builder' => $builder, 'direction' => $direction]);
+                $this->setBuilder(app()->call($column->getSortCallback(), ['builder' => $this->getBuilder(), 'direction' => $direction]));
             } elseif ($column->isBaseColumn()) {
-                $builder->orderBy($column->getColumnSelectName(), $direction);
+                $this->setBuilder($this->getBuilder()->orderBy($column->getColumnSelectName(), $direction));
             } else {
-                $builder->orderByRaw('"'.$column->getColumnSelectName().'"' . ' ' . $direction);
+                $this->setBuilder($this->getBuilder()->orderByRaw('"'.$column->getColumnSelectName().'"' . ' ' . $direction));
             }
         }
 
-        return $builder;
+        return $this->getBuilder();
     }
 }

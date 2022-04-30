@@ -2,11 +2,28 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ComponentHelpers
 {
+    /**
+     * @param Builder
+     */
+    public function setBuilder(Builder $builder): void
+    {
+        $this->builder = $builder;
+    }
+
+    /**
+     * @return Builder
+     */
+    public function getBuilder(): Builder
+    {
+        return $this->builder;
+    }
+
     /**
      * @return bool
      */
@@ -107,6 +124,16 @@ trait ComponentHelpers
     public function getThAttributes(Column $column): array
     {
         return $this->thAttributesCallback ? call_user_func($this->thAttributesCallback, $column) : ['default' => true];
+    }
+
+    /**
+     * @param  Column  $column
+     *
+     * @return bool[]
+     */
+    public function getThSortButtonAttributes(Column $column): array
+    {
+        return $this->thSortButtonAttributesCallback ? call_user_func($this->thSortButtonAttributesCallback, $column) : ['default' => true];
     }
 
     /**
@@ -327,6 +354,10 @@ trait ComponentHelpers
      */
     public function hasConfigurableAreaFor(string $area): bool
     {
+        if ($this->hideConfigurableAreasWhenReorderingIsEnabled() && $this->reorderIsEnabled() && $this->currentlyReorderingIsEnabled()) {
+            return false;
+        }
+
         return isset($this->configurableAreas[$area]) && $this->getConfigurableAreaFor($area) !== null;
     }
 
@@ -338,5 +369,29 @@ trait ComponentHelpers
     public function getConfigurableAreaFor(string $area): ?string
     {
         return $this->configurableAreas[$area] ?? null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideConfigurableAreasWhenReorderingStatus(): bool
+    {
+        return $this->hideConfigurableAreasWhenReorderingStatus;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hideConfigurableAreasWhenReorderingIsEnabled(): bool
+    {
+        return $this->getHideConfigurableAreasWhenReorderingStatus() === true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hideConfigurableAreasWhenReorderingIsDisabled(): bool
+    {
+        return $this->getHideConfigurableAreasWhenReorderingStatus() === false;
     }
 }

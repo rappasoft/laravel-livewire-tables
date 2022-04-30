@@ -9,3 +9,4 @@ phpunit.xml
 psalm.xml
 testbench.yaml
 vendor
+output.txt

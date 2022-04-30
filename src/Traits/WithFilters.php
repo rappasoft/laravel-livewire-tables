@@ -21,7 +21,7 @@ trait WithFilters
         return [];
     }
 
-    public function applyFilters(Builder $builder): Builder
+    public function applyFilters(): Builder
     {
         if ($this->filtersAreEnabled() && $this->hasFilters() && $this->hasAppliedFiltersWithValues()) {
             foreach ($this->getFilters() as $filter) {
@@ -34,12 +34,12 @@ trait WithFilters
                             continue;
                         }
 
-                        ($filter->getFilterCallback())($builder, $value);
+                        ($filter->getFilterCallback())($this->getBuilder(), $value);
                     }
                 }
             }
         }
 
-        return $builder;
+        return $this->getBuilder();
     }
 }

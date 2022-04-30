@@ -19,13 +19,13 @@ trait WithSearch
     public ?bool $searchFilterLazy = null;
 
     // TODO
-    public function applySearch(Builder $builder): Builder
+    public function applySearch(): Builder
     {
         if ($this->searchIsEnabled() && $this->hasSearch()) {
             $searchableColumns = $this->getSearchableColumns();
 
             if ($searchableColumns->count()) {
-                $builder->where(function ($query) use ($searchableColumns) {
+                $this->setBuilder($this->getBuilder()->where(function ($query) use ($searchableColumns) {
                     foreach ($searchableColumns as $index => $column) {
                         if ($column->hasSearchCallback()) {
                             ($column->getSearchCallback())($query, $this->getSearch());
@@ -33,10 +33,10 @@ trait WithSearch
                             $query->{$index === 0 ? 'where' : 'orWhere'}($column->getColumn(), 'like', '%'.$this->getSearch().'%');
                         }
                     }
-                });
+                }));
             }
         }
 
-        return $builder;
+        return $this->getBuilder();
     }
 }

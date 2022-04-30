@@ -15,7 +15,7 @@ trait WithSecondaryHeader
     protected $secondaryHeaderTrAttributesCallback;
     protected $secondaryHeaderTdAttributesCallback;
 
-    public function bootWithSecondaryHeader(): void
+    public function setupSecondaryHeader(): void
     {
         foreach ($this->getColumns() as $column) {
             if ($column->hasSecondaryHeader()) {

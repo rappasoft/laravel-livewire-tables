@@ -110,7 +110,7 @@ class ComponentHelpersTest extends TestCase
     /** @test */
     public function can_get_eager_load_relations_status(): void
     {
-        $this->assertFalse($this->basicTable->getEagerLoadAllRelationsStatus());
+        $this->assertFalse($this->basicTable->getHideReorderColumnUnlessReorderingStatus());
 
         $this->assertFalse($this->basicTable->eagerLoadAllRelationsIsEnabled());
 
@@ -182,5 +182,25 @@ class ComponentHelpersTest extends TestCase
         ]);
 
         $this->assertEquals('includes.areas.toolbar-left-start', $this->basicTable->getConfigurableAreaFor('toolbar-left-start'));
+    }
+
+    /** @test */
+    public function can_get_hide_configurable_areas_when_reordering_status(): void
+    {
+        $this->assertTrue($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
+
+        $this->assertTrue($this->basicTable->hideConfigurableAreasWhenReorderingIsEnabled());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingDisabled();
+
+        $this->assertTrue($this->basicTable->hideConfigurableAreasWhenReorderingIsDisabled());
+
+        $this->assertFalse($this->basicTable->hideConfigurableAreasWhenReorderingIsEnabled());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingEnabled();
+
+        $this->assertTrue($this->basicTable->hideConfigurableAreasWhenReorderingIsEnabled());
+
+        $this->assertFalse($this->basicTable->hideConfigurableAreasWhenReorderingIsDisabled());
     }
 }

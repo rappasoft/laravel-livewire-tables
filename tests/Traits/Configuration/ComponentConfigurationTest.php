@@ -75,6 +75,21 @@ class ComponentConfigurationTest extends TestCase
     }
 
     /** @test */
+    public function can_set_th_sort_button_attributes(): void
+    {
+        $this->basicTable->setThSortButtonAttributes(function (Column $column) {
+            if ($column->isField('id')) {
+                return ['default' => false, 'this' => 'that'];
+            }
+
+            return ['default' => true, 'here' => 'there'];
+        });
+
+        $this->assertSame($this->basicTable->getThSortButtonAttributes($this->basicTable->columns()[0]), ['default' => false, 'this' => 'that']);
+        $this->assertSame($this->basicTable->getThSortButtonAttributes($this->basicTable->columns()[1]), ['default' => true, 'here' => 'there']);
+    }
+
+    /** @test */
     public function can_set_tr_attributes(): void
     {
         $this->basicTable->setTrAttributes(function (Model $row, $index) {
@@ -234,5 +249,27 @@ class ComponentConfigurationTest extends TestCase
         });
 
         $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '_blank');
+    }
+
+    /** @test */
+    public function can_set_hide_configurable_areas_when_reordering_status(): void
+    {
+        $this->assertTrue($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(false);
+
+        $this->assertFalse($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(true);
+
+        $this->assertTrue($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingDisabled();
+
+        $this->assertFalse($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingEnabled();
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(true);
     }
 }

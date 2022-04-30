@@ -172,7 +172,7 @@ trait BulkActionsHelpers
      */
     public function updatedSelectAll(): void
     {
-        if (count($this->getSelected()) === $this->baseQuery()->pluck($this->getPrimaryKey())->count()) {
+        if (count($this->getSelected()) === (clone $this->baseQuery())->pluck($this->getPrimaryKey())->count()) {
             $this->clearSelected();
         } else {
             $this->setAllSelected();
@@ -185,6 +185,6 @@ trait BulkActionsHelpers
     public function setAllSelected(): void
     {
         $this->setSelectAllEnabled();
-        $this->setSelected($this->baseQuery()->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray());
+        $this->setSelected((clone $this->baseQuery())->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray());
     }
 }

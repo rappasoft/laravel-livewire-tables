@@ -99,6 +99,20 @@ trait ComponentConfiguration
     }
 
     /**
+     * Get a list of attributes to override on the th sort button elements
+     *
+     * @param  callable  $callback
+     *
+     * @return $this
+     */
+    public function setThSortButtonAttributes(callable $callback): self
+    {
+        $this->thSortButtonAttributesCallback = $callback;
+
+        return $this;
+    }
+
+    /**
      * Get a list of attributes to override on the td elements
      *
      * @return $this
@@ -306,6 +320,38 @@ trait ComponentConfiguration
     public function setConfigurableAreas(array $areas): self
     {
         $this->configurableAreas = $areas;
+
+        return $this;
+    }
+
+    /**
+     * @param  bool  $status
+     *
+     * @return $this
+     */
+    public function setHideConfigurableAreasWhenReorderingStatus(bool $status): self
+    {
+        $this->hideConfigurableAreasWhenReorderingStatus = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setHideConfigurableAreasWhenReorderingEnabled(): self
+    {
+        $this->setHideConfigurableAreasWhenReorderingStatus(true);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setHideConfigurableAreasWhenReorderingDisabled(): self
+    {
+        $this->setHideConfigurableAreasWhenReorderingStatus(false);
 
         return $this;
     }

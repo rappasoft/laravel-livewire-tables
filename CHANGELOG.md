@@ -4,6 +4,21 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.4.0] - 2022-04-30
+
+### Added
+
+- Added table event listeners to sort/filter/clear from other components.
+- Added text filter.
+- Added $row as second parameter to BooleanColumn `setCallback()`.
+- Added `setThSortButtonAttributes()` to set attributes for th sort button.
+- Added `setHideConfigurableAreasWhenReorderingStatus()` to hide configurable areas when reordering status which now defaults to true.
+
+### Changed
+
+- Rework builder to fix passed parameters in `builder()` and `columns()` methods.
+- Fixed possible bug with bulk actions dropdown on Tailwind when bulk actions are hidden until a selection is made.
+
 ## [2.3.0] - 2022-04-28
 
 ### Added
@@ -618,7 +633,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.3.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.4.0...development
+[2.4.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.1...v2.3.0
 [2.2.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.1.0...v2.2.0

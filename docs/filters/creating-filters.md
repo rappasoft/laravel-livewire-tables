@@ -97,6 +97,26 @@ DateTime filters are HTML datetime-local elements and act the same as date filte
 
 Make sure to look at [all available configurations](available-methods#filter-methods) on the Filter classes.
 
+## Text Filters
+
+Text filters are just HTML text fields.
+
+```php
+public function filters(): array
+{
+    return [
+        TextFilter::make('Name')
+            ->config([
+                'placeholder' => 'Search Name',
+                'maxlength' => '25',
+            ])
+            ->filter(function(Builder $builder, string $value) {
+                $builder->where('users.name', 'like', '%'.$value.'%');
+            }),
+    ];
+}
+```
+
 ## Filter Keys
 
 By default, the filter key is just the snake version of the filter name. This is used to generate the query string as well as look up the filter object in necessary places. Each filter should have a unique key.

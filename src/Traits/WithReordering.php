@@ -17,7 +17,7 @@ trait WithReordering
     public string $defaultReorderColumn = 'sort';
     public string $defaultReorderDirection = 'asc';
 
-    public function mountWithReordering(): void
+    public function setupReordering(): void
     {
         if ($this->reorderIsDisabled()) {
             return;

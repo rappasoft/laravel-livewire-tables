@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
@@ -13,6 +14,7 @@ trait ComponentUtilities
 
     public array $table = [];
     public $theme = null;
+    protected Builder $builder;
     protected $model;
     protected $primaryKey;
     protected string $tableName = 'table';
@@ -25,6 +27,7 @@ trait ComponentUtilities
     protected array $theadAttributes = [];
     protected array $tbodyAttributes = [];
     protected $thAttributesCallback;
+    protected $thSortButtonAttributesCallback;
     protected $trAttributesCallback;
     protected $trUrlCallback;
     protected $trUrlTargetCallback;
@@ -32,6 +35,7 @@ trait ComponentUtilities
     protected $collapsingColumnsStatus = true;
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
     protected array $additionalSelects = [];
+    protected bool $hideConfigurableAreasWhenReorderingStatus = true;
     protected array $configurableAreas = [
         'toolbar-left-start' => null,
         'toolbar-left-end' => null,

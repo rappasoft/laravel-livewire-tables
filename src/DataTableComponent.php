@@ -11,6 +11,7 @@ use Rappasoft\LaravelLivewireTables\Traits\WithColumns;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\WithData;
 use Rappasoft\LaravelLivewireTables\Traits\WithDebugging;
+use Rappasoft\LaravelLivewireTables\Traits\WithEvents;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
 use Rappasoft\LaravelLivewireTables\Traits\WithFooter;
 use Rappasoft\LaravelLivewireTables\Traits\WithPagination;
@@ -28,6 +29,7 @@ abstract class DataTableComponent extends Component
         WithColumnSelect,
         WithData,
         WithDebugging,
+        WithEvents,
         WithFilters,
         WithFooter,
         WithSecondaryHeader,
@@ -37,7 +39,13 @@ abstract class DataTableComponent extends Component
         WithSearch,
         WithSorting;
 
-    protected $listeners = ['refreshDatatable' => '$refresh'];
+    protected $listeners = [
+        'refreshDatatable' => '$refresh',
+        'setSort' => 'setSortEvent',
+        'clearSorts' => 'clearSortEvent',
+        'setFilter' => 'setFilterEvent',
+        'clearFilters' => 'clearFilterEvent',
+    ];
 
     /**
      * Runs on every request, immediately after the component is instantiated, but before any other lifecycle methods are called
@@ -51,9 +59,6 @@ abstract class DataTableComponent extends Component
 
         // Set the filter defaults based on the filter type
         $this->setFilterDefaults();
-        
-        // Set the user defined columns to work with
-        $this->setColumns();
 
         // Call the child configuration, if any
         $this->configure();
@@ -70,6 +75,8 @@ abstract class DataTableComponent extends Component
     public function booted(): void
     {
         $this->setTheme();
+        $this->setBuilder($this->builder());
+        $this->setColumns();
     }
 
     /**
@@ -111,6 +118,14 @@ abstract class DataTableComponent extends Component
      */
     public function render()
     {
+        $this->setBuilder($this->builder());
+        $this->setColumns();
+        $this->setupColumnSelect();
+        $this->setupPagination();
+        $this->setupSecondaryHeader();
+        $this->setupFooter();
+        $this->setupReordering();
+
         return view('livewire-tables::datatable')
             ->with([
                 'columns' => $this->getColumns(),
