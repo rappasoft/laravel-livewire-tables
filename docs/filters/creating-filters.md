@@ -97,6 +97,26 @@ DateTime filters are HTML datetime-local elements and act the same as date filte
 
 Make sure to look at [all available configurations](available-methods#filter-methods) on the Filter classes.
 
+## Number Filters
+
+Number filters are just HTML number inputs.
+
+```php
+public function filters(): array
+{
+    return [
+        NumberFilter::make('Amount')
+            ->config([
+                'min' => 0,
+                'max' => 100,
+            ])
+            ->filter(function(Builder $builder, string $value) {
+                $builder->where('amount', '<', $value);
+            }),
+    ];
+}
+```
+
 ## Text Filters
 
 Text filters are just HTML text fields.
