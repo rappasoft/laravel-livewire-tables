@@ -29,6 +29,43 @@ public function configure(): void
 
 **Note:** Only specify the keys you are actually implementing, otherwise you may get uneven spacing.
 
+### setHideConfigurableAreasWhenReorderingStatus
+
+Defaults to **true**, set whether or not configurable areas are hidden during reordering.
+
+```php
+public function configure(): void
+{
+  $this->setHideConfigurableAreasWhenReorderingStatus(true);
+  $this->setHideConfigurableAreasWhenReorderingStatus(false);
+}
+```
+
+### setHideConfigurableAreasWhenReorderingEnabled
+
+Hide configurable areas when reordering.
+
+```php
+public function configure(): void
+{
+  // Shorthand for $this->setHideConfigurableAreasWhenReorderingStatus(true)
+  $this->setHideConfigurableAreasWhenReorderingEnabled();
+}
+```
+
+### setHideConfigurableAreasWhenReorderingDisabled
+
+Show configurable areas when reordering.
+
+```php
+public function configure(): void
+{
+  // Shorthand for $this->setHideConfigurableAreasWhenReorderingStatus(false)
+  $this->setHideConfigurableAreasWhenReorderingDisabled();
+}
+```
+
+
 ## Example View
 
 Example dropdown for the toolbar:

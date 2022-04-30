@@ -250,4 +250,26 @@ class ComponentConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '_blank');
     }
+
+    /** @test */
+    public function can_set_hide_configurable_areas_when_reordering_status(): void
+    {
+        $this->assertTrue($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(false);
+
+        $this->assertFalse($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(true);
+
+        $this->assertTrue($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingDisabled();
+
+        $this->assertFalse($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingEnabled();
+
+        $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(true);
+    }
 }

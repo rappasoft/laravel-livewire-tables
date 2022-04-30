@@ -35,6 +35,7 @@ trait ComponentUtilities
     protected $collapsingColumnsStatus = true;
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
     protected array $additionalSelects = [];
+    protected bool $hideConfigurableAreasWhenReorderingStatus = true;
     protected array $configurableAreas = [
         'toolbar-left-start' => null,
         'toolbar-left-end' => null,

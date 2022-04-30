@@ -354,6 +354,10 @@ trait ComponentHelpers
      */
     public function hasConfigurableAreaFor(string $area): bool
     {
+        if ($this->hideConfigurableAreasWhenReorderingIsEnabled() && $this->reorderIsEnabled() && $this->currentlyReorderingIsEnabled()) {
+            return false;
+        }
+
         return isset($this->configurableAreas[$area]) && $this->getConfigurableAreaFor($area) !== null;
     }
 
@@ -365,5 +369,29 @@ trait ComponentHelpers
     public function getConfigurableAreaFor(string $area): ?string
     {
         return $this->configurableAreas[$area] ?? null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideConfigurableAreasWhenReorderingStatus(): bool
+    {
+        return $this->hideConfigurableAreasWhenReorderingStatus;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hideConfigurableAreasWhenReorderingIsEnabled(): bool
+    {
+        return $this->getHideConfigurableAreasWhenReorderingStatus() === true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hideConfigurableAreasWhenReorderingIsDisabled(): bool
+    {
+        return $this->getHideConfigurableAreasWhenReorderingStatus() === false;
     }
 }

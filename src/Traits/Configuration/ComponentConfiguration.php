@@ -323,4 +323,36 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    /**
+     * @param  bool  $status
+     *
+     * @return $this
+     */
+    public function setHideConfigurableAreasWhenReorderingStatus(bool $status): self
+    {
+        $this->hideConfigurableAreasWhenReorderingStatus = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setHideConfigurableAreasWhenReorderingEnabled(): self
+    {
+        $this->setHideConfigurableAreasWhenReorderingStatus(true);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setHideConfigurableAreasWhenReorderingDisabled(): self
+    {
+        $this->setHideConfigurableAreasWhenReorderingStatus(false);
+
+        return $this;
+    }
 }
