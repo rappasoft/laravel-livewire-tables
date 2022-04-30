@@ -19,7 +19,7 @@ trait ColumnHelpers
 
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {
-                        $column->setTable($this->builder()->getModel()->getTable());
+                        $column->setTable($this->getBuilder()->getModel()->getTable());
                     } else {
                         $column->setTable($this->getTableForColumn($column));
                     }

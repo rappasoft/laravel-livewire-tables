@@ -11,6 +11,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added $row as second parameter to BooleanColumn `setCallback()`.
 - Added `setThSortButtonAttributes()` to set attributes for th sort button.
 
+### Changed
+
+- Rework builder to fix passed parameters in `builder()` and `columns()` methods.
+- Fixed possible bug with bulk actions dropdown on Tailwind when bulk actions are hidden until a selection is made.
+
 ## [2.3.0] - 2022-04-28
 
 ### Added

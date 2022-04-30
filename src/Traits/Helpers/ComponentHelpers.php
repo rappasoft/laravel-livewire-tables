@@ -2,11 +2,28 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ComponentHelpers
 {
+    /**
+     * @param Builder
+     */
+    public function setBuilder(Builder $builder): void
+    {
+        $this->builder = $builder;
+    }
+
+    /**
+     * @return Builder
+     */
+    public function getBuilder(): Builder
+    {
+        return $this->builder;
+    }
+
     /**
      * @return bool
      */

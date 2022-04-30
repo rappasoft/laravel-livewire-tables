@@ -16,9 +16,9 @@ trait WithFooter
     protected $footerTrAttributesCallback;
     protected $footerTdAttributesCallback;
 
-    public function bootWithFooter(): void
+    public function setupFooter(): void
     {
-        foreach ($this->columns() as $column) {
+        foreach ($this->getColumns() as $column) {
             if ($column->hasFooter()) {
                 $this->columnsWithFooter = true;
             }

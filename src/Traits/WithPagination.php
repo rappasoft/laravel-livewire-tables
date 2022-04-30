@@ -21,7 +21,7 @@ trait WithPagination
     public bool $perPageVisibilityStatus = true;
 
     // TODO: Test
-    public function mountWithPagination(): void
+    public function setupPagination(): void
     {
         if ($this->paginationIsDisabled()) {
             return;

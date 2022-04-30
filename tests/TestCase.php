@@ -26,6 +26,8 @@ class TestCase extends Orchestra
 
         $this->basicTable = new PetsTable();
         $this->basicTable->boot();
+        $this->basicTable->booted();
+        $this->basicTable->render();
 
         Species::insert([
             ['id' => 1, 'name' => 'Cat'],
