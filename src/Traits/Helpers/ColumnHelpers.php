@@ -103,7 +103,7 @@ trait ColumnHelpers
     public function getSearchableColumns(): Collection
     {
         return $this->getColumns()
-            ->filter(fn (Column $column) => $column->isSearchable())
+            ->filter(fn (Column $column) => $column->isSearchable() || $column->hasSearchCallback())
             ->values();
     }
 

@@ -182,6 +182,28 @@ class ComponentHelpersTest extends TestCase
         ]);
 
         $this->assertEquals('includes.areas.toolbar-left-start', $this->basicTable->getConfigurableAreaFor('toolbar-left-start'));
+
+        $this->basicTable->setConfigurableAreas([
+            'toolbar-left-start' => ['includes.areas.toolbar-left-start', ['param1' => 'hello']],
+        ]);
+
+        $this->assertEquals('includes.areas.toolbar-left-start', $this->basicTable->getConfigurableAreaFor('toolbar-left-start'));
+    }
+
+    /** @test */
+    public function can_get_configurable_area_parameters(): void
+    {
+        $this->basicTable->setConfigurableAreas([
+            'toolbar-left-start' => 'includes.areas.toolbar-left-start',
+        ]);
+
+        $this->assertEquals([], $this->basicTable->getParametersForConfigurableArea('toolbar-left-start'));
+
+        $this->basicTable->setConfigurableAreas([
+            'toolbar-left-start' => ['includes.areas.toolbar-left-start', ['param1' => 'hello']],
+        ]);
+
+        $this->assertEquals(['param1' => 'hello'], $this->basicTable->getParametersForConfigurableArea('toolbar-left-start'));
     }
 
     /** @test */

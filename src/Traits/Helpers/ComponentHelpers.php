@@ -362,13 +362,35 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  string  $area
+     * @param  string|array  $area
      *
      * @return string|null
      */
-    public function getConfigurableAreaFor(string $area): ?string
+    public function getConfigurableAreaFor($area): ?string
     {
-        return $this->configurableAreas[$area] ?? null;
+        $area = $this->configurableAreas[$area] ?? null;
+
+        if (is_array($area)) {
+            return $area[0];
+        }
+
+        return $area;
+    }
+
+    /**
+     * @param  string|array  $area
+     *
+     * @return array
+     */
+    public function getParametersForConfigurableArea($area): array
+    {
+        $area = $this->configurableAreas[$area] ?? null;
+
+        if (is_array($area) && isset($area[1]) && is_array($area[1])) {
+            return $area[1];
+        }
+
+        return [];
     }
 
     /**
