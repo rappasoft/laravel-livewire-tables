@@ -65,6 +65,23 @@ public function configure(): void
 }
 ```
 
+## Passing Parameters
+
+You can pass parameters to configurable areas that come from your mount method or any other service by proving an array:
+
+```php
+public function configure(): void
+{
+    $this->setConfigurableAreas([
+        'toolbar-left-start' => [
+            'path.to.my.view', [
+                'param1' => $this->user_id,
+                'param2' => resolve(MyService::class)->getThing($this->user_id),
+            ],
+        ],
+    ]);
+}
+```
 
 ## Example View
 

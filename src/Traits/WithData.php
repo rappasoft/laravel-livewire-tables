@@ -143,6 +143,6 @@ trait WithData
 
     protected function getQuerySql(): string
     {
-        return $this->baseQuery()->toSql();
+        return (clone $this->getBuilder())->toSql();
     }
 }

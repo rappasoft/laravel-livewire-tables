@@ -4,6 +4,24 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.5.0] - 2022-05-03
+
+### Added
+
+- Ability to pass mount parameters to configurable areas
+
+### Changed
+
+- Move configure call to boot instead of booteed.
+- Mount methods now available in `configure()` method.
+- Non-field columns with a searchable callback are now included in the search query.
+- Fixed debug query output duplicating select statements.
+- Fixed header issue on column hide - https://github.com/rappasoft/laravel-livewire-tables/pull/754
+
+### Removed
+
+- Calls to set builder and columns in render as it doesn't seem to make a difference since it's also called in booted.
+
 ## [2.4.0] - 2022-04-30
 
 ### Added
@@ -633,7 +651,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.4.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.5.0...development
+[2.5.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.1...v2.3.0
 [2.2.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.0...v2.2.1
