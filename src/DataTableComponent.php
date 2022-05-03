@@ -59,14 +59,6 @@ abstract class DataTableComponent extends Component
 
         // Set the filter defaults based on the filter type
         $this->setFilterDefaults();
-
-        // Call the child configuration, if any
-        $this->configure();
-
-        // Make sure a primary key is set
-        if (! $this->hasPrimaryKey()) {
-            throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
-        }
     }
 
     /**
@@ -74,9 +66,15 @@ abstract class DataTableComponent extends Component
      */
     public function booted(): void
     {
+        $this->configure();
         $this->setTheme();
         $this->setBuilder($this->builder());
         $this->setColumns();
+
+        // Make sure a primary key is set
+        if (! $this->hasPrimaryKey()) {
+            throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
+        }
     }
 
     /**

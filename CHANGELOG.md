@@ -4,6 +4,15 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Ability to pass mount parameters to configurable areas
+
+### Changed
+
+- Move configure call to boot instead of booteed.
+- Mount methods now available in `configure()` method.
+
 ## [2.4.0] - 2022-04-30
 
 ### Added
