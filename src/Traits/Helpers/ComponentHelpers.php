@@ -382,7 +382,8 @@ trait ComponentHelpers
      *
      * @return array
      */
-    public function getParametersForConfigurableArea($area): array {
+    public function getParametersForConfigurableArea($area): array
+    {
         $area = $this->configurableAreas[$area] ?? null;
 
         if (is_array($area) && isset($area[1]) && is_array($area[1])) {
