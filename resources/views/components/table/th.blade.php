@@ -12,7 +12,7 @@
 @if ($theme === 'tailwind')
     <th scope="col" {{
         $attributes->merge($customAttributes)
-            ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
+            ->class(['px-6 py-3 ltr:text-left rtl:text-right text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
             ->class(['hidden sm:table-cell' => $column->shouldCollapseOnMobile()])
             ->class(['hidden md:table-cell' => $column->shouldCollapseOnTablet()])
             ->except('default')
@@ -24,7 +24,7 @@
                 wire:click="sortBy('{{ $column->getColumnSelectName() }}')"
                 {{ 
                     $attributes->merge($customSortButtonAttributes)
-                        ->class(['flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])
+                        ->class(['flex items-center space-x-1 rtl:space-x-reverse ltr:text-left rtl:text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])
                         ->except('default')
                 }}
             >
@@ -76,15 +76,15 @@
 
                 <span class="relative d-flex align-items-center">
                     @if ($direction === 'asc')
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-1" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ltr:ml-1 rtl:mr-1" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                         </svg>
                     @elseif ($direction === 'desc')
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-1" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ltr:ml-1 rtl:mr-1" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     @else
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-1" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ltr:ml-1 rtl:mr-1" style="width:1em;height:1em;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                         </svg>
                     @endif

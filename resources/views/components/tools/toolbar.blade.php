@@ -10,7 +10,7 @@
 
 @if ($theme === 'tailwind')
     <div class="md:flex md:justify-between mb-4 px-4 md:p-0">
-        <div class="w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2">
+        <div class="w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2 rtl:space-x-reverse">
             @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
                 @include($component->getConfigurableAreaFor('toolbar-left-start'))
             @endif
@@ -35,7 +35,7 @@
                         wire:model{{ $component->getSearchOptions() }}="{{ $component->getTableName() }}.search"
                         placeholder="{{ __('Search') }}"
                         type="text"
-                        class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if ($component->hasSearch()) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif"
+                        class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if ($component->hasSearch()) rounded-none ltr:rounded-l-md rtl:rounded-r-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif"
                     />
 
                     @if ($component->hasSearch())
@@ -56,7 +56,7 @@
                         x-on:mousedown.away="open = false"
                     @endif
 
-                    class="relative block md:inline-block text-left"
+                    class="relative block md:inline-block ltr:text-left rtl:text-right"
                 >
                     <div>
                         <button
@@ -77,12 +77,12 @@
                             @lang('Filters')
             
                             @if ($component->hasAppliedFiltersWithValues())
-                                <span class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900">
+                                <span class="ltr:ml-1 rtl:mr-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900">
                                     {{ $component->getAppliedFiltersWithValuesCount()}}
                                 </span>
                             @endif
             
-                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            <svg class="ltr:-mr-1 rtl:-ml-1 ltr:ml-2 rtl:mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
@@ -140,7 +140,7 @@
             @endif
         </div>
 
-        <div class="md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2">
+        <div class="md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2 rtl:space-x-reverse">
             @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
                 @include($component->getConfigurableAreaFor('toolbar-right-start'))
             @endif
@@ -151,7 +151,7 @@
                         x-data="{ open: false }"
                         @keydown.window.escape="open = false"
                         x-on:click.away="open = false"
-                        class="relative inline-block text-left z-10 w-full md:w-auto"
+                        class="relative inline-block ltr:text-left rtl:text-right z-10 w-full md:w-auto"
                     >
                         <div>
                             <span class="rounded-md shadow-sm">
@@ -165,7 +165,7 @@
                                 >
                                     @lang('Bulk Actions')
 
-                                    <svg class="-mr-1 ml-2 h-5 w-5" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg class="ltr:-mr-1 rtl:-ml-1 ltr:ml-2 rtl:mr-2 h-5 w-5" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
@@ -181,7 +181,7 @@
                             x-transition:leave="transition ease-in duration-75"
                             x-transition:leave-start="transform opacity-100 scale-100"
                             x-transition:leave-end="transform opacity-0 scale-95"
-                            class="origin-top-right absolute right-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50"
+                            class="origin-top-right absolute ltr:right-0 rtl:left-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50"
                         >
                             <div class="rounded-md bg-white shadow-xs dark:bg-gray-700 dark:text-white">
                                 <div class="py-1" role="menu" aria-orientation="vertical">
@@ -204,12 +204,12 @@
             @endif
 
             @if ($component->columnSelectIsEnabled())
-                <div class="mb-4 w-full md:w-auto md:mb-0 md:ml-2">
+                <div class="mb-4 w-full md:w-auto md:mb-0 ltr:md:ml-2 rtl:md:mr-2">
                     <div
                         x-data="{ open: false }"
                         @keydown.window.escape="open = false"
                         x-on:click.away="open = false"
-                        class="inline-block relative w-full text-left md:w-auto"
+                        class="inline-block relative w-full ltr:text-left rtl:text-right md:w-auto"
                         wire:key="column-select-button-{{ $component->getTableName() }}"
                     >
                         <div>
@@ -224,7 +224,7 @@
                                 >
                                     @lang('Columns')
             
-                                    <svg class="-mr-1 ml-2 w-5 h-5" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg class="ltr:-mr-1 rtl:-ml-1 ltr:ml-2 rtl:mr-2 w-5 h-5" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
@@ -260,7 +260,7 @@
                                                         type="checkbox"
                                                         value="{{ $column->getHash() }}"
                                                     />
-                                                    <span class="ml-2">{{ $column->getTitle() }}</span>
+                                                    <span class="ltr:ml-2 rtl:mr-2">{{ $column->getTitle() }}</span>
                                                 </label>
                                             </div>
                                         @endif
@@ -362,7 +362,7 @@
             @endif
 
             @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasFilters())
-                <div class="ml-0 ml-md-2 mb-3 mb-md-0">
+                <div class="ltr:ml-0 ltr:ml-md-2 rtl:mr-0 rtl:mr-md-2 mb-3 mb-md-0">
                     <div
                         @if ($component->isFilterLayoutPopover())
                             x-data="{ open: false }"
@@ -468,7 +468,7 @@
             @endif
 
             @if ($component->columnSelectIsEnabled())
-                <div class="mb-3 mb-md-0 pl-0 pl-md-2">
+                <div class="mb-3 mb-md-0 ltr:pl-0 ltr:pl-md-2 rtl:pr-0 rtl:pr-md-2">
                     <div
                         x-data="{ open: false }"
                         x-on:keydown.escape.stop="open = false"
@@ -507,7 +507,7 @@
                                                 type="checkbox"
                                                 value="{{ $column->getHash() }}"
                                             />
-                                            <span class="ml-2">{{ $column->getTitle() }}</span>
+                                            <span class="ltr:ml-2 rtl:mr-2">{{ $column->getTitle() }}</span>
                                         </label>
                                     </div>
                                 @endif
@@ -518,7 +518,7 @@
             @endif
 
             @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
-                <div class="ml-0 ml-md-2">
+                <div class="ltr:ml-0 ltr:ml-md-2 rtl:mr-0 rtl:mr-md-2">
                     <select
                         wire:model="perPage"
                         id="perPage"
@@ -746,7 +746,7 @@
                                                 type="checkbox"
                                                 value="{{ $column->getHash() }}"
                                             />
-                                            <span class="ml-2">{{ $column->getTitle() }}</span>
+                                            <span class="ltr:ml-2 rtl:mr-2">{{ $column->getTitle() }}</span>
                                         </label>
                                     </div>
                                 @endif
