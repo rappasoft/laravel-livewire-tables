@@ -37,4 +37,12 @@ trait BooleanColumnHelpers
     {
         return $this->view;
     }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
 }

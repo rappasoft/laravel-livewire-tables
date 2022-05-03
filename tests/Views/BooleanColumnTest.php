@@ -16,4 +16,16 @@ class BooleanColumnTest extends TestCase
 
         BooleanColumn::make('Name')->label(fn () => 'My Label')->getContents(Pet::find(1));
     }
+
+    /** @test */
+    public function boolean_column_can_be_yes_no(): void
+    {
+        $column = BooleanColumn::make('Name');
+
+        $this->assertEquals('icons', $column->getType());
+
+        $column->yesNo();
+
+        $this->assertEquals('yes-no', $column->getType());
+    }
 }

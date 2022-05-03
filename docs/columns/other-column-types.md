@@ -71,6 +71,17 @@ BooleanColumn::make('Active')
     }),
 ```
 
+### Different types of boolean display
+
+By default, the BooleanColumn displays icons.
+
+If you would like the BooleanColumn to display a plain Yes/No, you can set:
+
+```php
+BooleanColumn::make('Active')
+    ->yesNo()
+```
+
 ## Image Columns
 
 Image columns provide a way to display images in your table without having to use `format()` or partial views:
