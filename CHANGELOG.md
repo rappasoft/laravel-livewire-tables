@@ -12,6 +12,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Move configure call to boot instead of booteed.
 - Mount methods now available in `configure()` method.
+- Non-field columns with a searchable callback are now included in the search query.
+- Fixed debug query output duplicating select statements.
+
+### Removed
+
+- Calls to set builder and columns in render as it doesn't seem to make a difference since it's also called in booted.
 
 ## [2.4.0] - 2022-04-30
 
