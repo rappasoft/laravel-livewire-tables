@@ -14,7 +14,7 @@ trait ButtonGroupColumnHelpers
     public function getButtons(): array
     {
         return collect($this->buttons)
-            ->reject(fn($button) => ! $button instanceof LinkColumn)
+            ->reject(fn ($button) => ! $button instanceof LinkColumn)
             ->toArray();
     }
 
