@@ -80,7 +80,7 @@ trait WithSorting
             } elseif ($column->isBaseColumn()) {
                 $this->setBuilder($this->getBuilder()->orderBy($column->getColumnSelectName(), $direction));
             } else {
-                $this->setBuilder($this->getBuilder()->orderByRaw('"'.$column->getColumnSelectName().'"' . ' ' . $direction));
+                $this->setBuilder($this->getBuilder()->orderByRaw('`'.$column->getColumnSelectName().'`' . ' ' . $direction));
             }
         }
 
