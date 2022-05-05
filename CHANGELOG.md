@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Added functionality to hide individual filters from popover and slide down views
+
 ## [2.6.0] - 2022-05-05
 
 ### Added
