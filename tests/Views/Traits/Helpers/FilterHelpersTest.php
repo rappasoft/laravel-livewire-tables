@@ -136,4 +136,18 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($filter->hasConfig('foo'));
         $this->assertFalse($filter->hasConfig('bar'));
     }
+
+    /** @test */
+    public function can_check_if_filter_is_hidden(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $this->assertFalse($filter->isHidden());
+        $this->assertTrue($filter->isVisible());
+
+        $filter->hidden();
+
+        $this->assertTrue($filter->isHidden());
+        $this->assertFalse($filter->isVisible());
+    }
 }
