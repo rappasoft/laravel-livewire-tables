@@ -169,4 +169,24 @@ trait FilterHelpers
     {
         return array_key_exists($key, $this->getConfigs()) && $this->getConfig($key) !== null;
     }
+
+    /**
+     * Check if the hidden propery is set to true.
+     *
+     * @return bool
+     */
+    public function isHidden(): bool
+    {
+        return $this->hidden === true;
+    }
+
+    /**
+     * Check if the hidden propery is set to false.
+     * 
+     * @return bool
+     */
+    public function isVisible(): bool
+    {
+        return $this->hidden === false;
+    }
 }

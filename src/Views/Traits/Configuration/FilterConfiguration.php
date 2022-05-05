@@ -42,4 +42,14 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+     public function hidden(): self
+     {
+         $this->hidden = true;
+
+         return $this;
+     }
 }
