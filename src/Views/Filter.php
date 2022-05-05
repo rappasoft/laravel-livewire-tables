@@ -14,6 +14,7 @@ abstract class Filter
 
     protected string $name;
     protected string $key;
+    protected bool $hidden = false;
     protected $filterCallback = null;
     protected array $config = [];
     protected ?string $filterPillTitle = null;
