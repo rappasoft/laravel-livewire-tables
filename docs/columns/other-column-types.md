@@ -140,7 +140,7 @@ ButtonGroupColumn::make('Actions')
         ];
     })
     ->buttons([
-        LinkColumn::make('View')
+        LinkColumn::make('View') // make() has no effect in this case but needs to be set anyway
             ->title(fn($row) => 'View ' . $row->name)
             ->location(fn($row) => route('user.show', $row)),
             ->attributes(function($row) {
@@ -148,8 +148,8 @@ ButtonGroupColumn::make('Actions')
                     'class' => 'underline text-blue-500 hover:no-underline',
                 ];
             }),
-        LinkColumn::make('Edit ' . $row->name)
-            ->title(fn($row) => 'Edit')
+        LinkColumn::make('Edit')
+            ->title(fn($row) => 'Edit ' . $row->name)
             ->location(fn($row) => route('user.edit', $row)),
             ->attributes(function($row) {
                 return [
