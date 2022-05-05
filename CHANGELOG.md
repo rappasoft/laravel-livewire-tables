@@ -4,6 +4,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.6.0] - 2022-05-05
+
 ### Added
 
 - Added functionality to display BooleanColumn as Yes/No instead of icons.
@@ -657,7 +659,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.5.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.6.0...development
+[2.6.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.2.1...v2.3.0
