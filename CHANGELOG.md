@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- Added functionality to display BooleanColumn as Yes/No instead of icons.
+- Added ButtonGroupColumn for multiple LinkColumns in one group. Pretty much built in action buttons support.
+- Added bulk action export example to docs.
+
 ## [2.5.0] - 2022-05-03
 
 ### Added

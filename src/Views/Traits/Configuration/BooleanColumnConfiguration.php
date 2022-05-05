@@ -41,4 +41,24 @@ trait BooleanColumnConfiguration
 
         return $this;
     }
+
+    /**
+     * @return $this
+     */
+    public function icons(): self
+    {
+        $this->type = 'icons';
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function yesNo()
+    {
+        $this->type = 'yes-no';
+
+        return $this;
+    }
 }

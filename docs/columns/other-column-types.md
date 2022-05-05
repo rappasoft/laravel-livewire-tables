@@ -71,6 +71,17 @@ BooleanColumn::make('Active')
     }),
 ```
 
+### Different types of boolean display
+
+By default, the BooleanColumn displays icons.
+
+If you would like the BooleanColumn to display a plain Yes/No, you can set:
+
+```php
+BooleanColumn::make('Active')
+    ->yesNo()
+```
+
 ## Image Columns
 
 Image columns provide a way to display images in your table without having to use `format()` or partial views:
@@ -114,5 +125,37 @@ LinkColumn::make('Action')
     ->attributes(fn($row) => [
         'class' => 'rounded-full',
         'alt' => $row->name . ' Avatar',
+    ]),
+```
+
+## Button Group Columns
+
+Button group columns let you provide an array of LinkColumns to display in a single cell.
+
+```php
+ButtonGroupColumn::make('Actions')
+    ->attributes(function($row) {
+        return [
+            'class' => 'space-x-2',
+        ];
+    })
+    ->buttons([
+        LinkColumn::make('View')
+            ->title(fn($row) => 'View ' . $row->name)
+            ->location(fn($row) => route('user.show', $row)),
+            ->attributes(function($row) {
+                return [
+                    'class' => 'underline text-blue-500 hover:no-underline',
+                ];
+            }),
+        LinkColumn::make('Edit ' . $row->name)
+            ->title(fn($row) => 'Edit')
+            ->location(fn($row) => route('user.edit', $row)),
+            ->attributes(function($row) {
+                return [
+                    'target' => '_blank',
+                    'class' => 'underline text-blue-500 hover:no-underline',
+                ];
+            }),
     ]),
 ```
