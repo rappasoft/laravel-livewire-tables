@@ -58,6 +58,12 @@ trait FilterHelpers
         return $this->getFilters()->count();
     }
 
+    // TODO: Test
+    public function hasVisibleFilters(): bool
+    {
+        return $this->getFilters()->reject(fn(Filter $filter) => $filter->isHidden())->count();
+    }
+
     public function getFilters(): Collection
     {
         return collect($this->filters());
