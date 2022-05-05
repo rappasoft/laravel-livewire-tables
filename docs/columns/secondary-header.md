@@ -28,7 +28,6 @@ Here are the steps you need to take:
 1. Add state to the component to track the input values
 2. Add the inputs to the columns using the secondaryHeader method
 3. Add the clause to the query based on the new state
-4. Optionally, add the state to the query string to preserve it on page load.
 
 ### 1. Add state to the component to track the input values
 
