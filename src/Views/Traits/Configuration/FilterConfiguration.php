@@ -43,41 +43,41 @@ trait FilterConfiguration
         return $this;
     }
 
-     // TODO: Test
-     public function hiddenFromMenus(): self
-     {
-         $this->hiddenFromMenus = true;
+    // TODO: Test
+    public function hiddenFromMenus(): self
+    {
+        $this->hiddenFromMenus = true;
 
-         return $this;
-     }
+        return $this;
+    }
 
-     public function hiddenFromPills(): self
-     {
-         $this->hiddenFromPills = true;
+    public function hiddenFromPills(): self
+    {
+        $this->hiddenFromPills = true;
 
-         return $this;
-     }
+        return $this;
+    }
 
-     public function hiddenFromFilterCount(): self
-     {
-         $this->hiddenFromFilterCount = true;
+    public function hiddenFromFilterCount(): self
+    {
+        $this->hiddenFromFilterCount = true;
 
-         return $this;
-     }
+        return $this;
+    }
 
-     public function hiddenFromAll(): self
-     {
-         $this->hiddenFromMenus = true;
-         $this->hiddenFromPills = true;
-         $this->hiddenFromFilterCount = true;
+    public function hiddenFromAll(): self
+    {
+        $this->hiddenFromMenus = true;
+        $this->hiddenFromPills = true;
+        $this->hiddenFromFilterCount = true;
 
-         return $this;
-     }
+        return $this;
+    }
 
-     public function notResetByClearButton(): self
-     {
-         $this->resetByClearButton = false;
+    public function notResetByClearButton(): self
+    {
+        $this->resetByClearButton = false;
 
-         return $this;
-     }
+        return $this;
+    }
 }

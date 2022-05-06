@@ -62,7 +62,7 @@ trait FilterHelpers
     public function hasVisibleFilters(): bool
     {
         return $this->getFilters()
-            ->reject(fn(Filter $filter) => $filter->isHiddenFromMenus())
+            ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus())
             ->count();
     }
 
@@ -128,24 +128,24 @@ trait FilterHelpers
     public function hasAppliedVisibleFiltersWithValuesThatCanBeCleared(): bool
     {
         return collect($this->getAppliedFiltersWithValues())
-            ->map(fn($_item, $key) => $this->getFilterByKey($key))
-            ->reject(fn(Filter $filter) => $filter->isHiddenFromMenus() && !$filter->isResetByClearButton())
+            ->map(fn ($_item, $key) => $this->getFilterByKey($key))
+            ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus() && ! $filter->isResetByClearButton())
             ->count();
     }
 
     public function getFilterBadgeCount(): int
     {
         return collect($this->getAppliedFiltersWithValues())
-            ->map(fn($_item, $key) => $this->getFilterByKey($key))
-            ->reject(fn(Filter $filter) => $filter->isHiddenFromFilterCount())
+            ->map(fn ($_item, $key) => $this->getFilterByKey($key))
+            ->reject(fn (Filter $filter) => $filter->isHiddenFromFilterCount())
             ->count();
     }
 
     public function hasAppliedVisibleFiltersForPills(): bool
     {
         return collect($this->getAppliedFiltersWithValues())
-            ->map(fn($_item, $key) => $this->getFilterByKey($key))
-            ->reject(fn(Filter $filter) => $filter->isHiddenFromPills())
+            ->map(fn ($_item, $key) => $this->getFilterByKey($key))
+            ->reject(fn (Filter $filter) => $filter->isHiddenFromPills())
             ->count();
     }
 
