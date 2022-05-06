@@ -6,7 +6,7 @@
 
 @if ($theme === 'tailwind')
     <div>
-        @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedFiltersWithValues())
+        @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedVisibleFiltersForPills())
             <div class="mb-4 px-4 md:p-0">
                 <small class="text-gray-700 dark:text-white">@lang('Applied Filters'):</small>
 
@@ -16,6 +16,7 @@
                     @endphp
 
                     @continue(is_null($filter))
+                    @continue($filter->isHiddenFromPills())
 
                     <span
                         wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
@@ -49,7 +50,7 @@
     </div>
 @elseif ($theme === 'bootstrap-4')
     <div>
-        @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedFiltersWithValues())
+        @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedVisibleFiltersForPills())
             <div class="mb-3">
                 <small>@lang('Applied Filters'):</small>
 
@@ -59,6 +60,7 @@
                     @endphp
 
                     @continue(is_null($filter))
+                    @continue($filter->isHiddenFromPills())
 
                     <span
                         wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
@@ -91,7 +93,7 @@
     </div>
 @elseif ($theme === 'bootstrap-5')
     <div>
-        @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedFiltersWithValues())
+        @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedVisibleFiltersForPills())
             <div class="mb-3">
                 <small>@lang('Applied Filters'):</small>
 
@@ -101,6 +103,7 @@
                     @endphp
 
                     @continue(is_null($filter))
+                    @continue($filter->isHiddenFromPills())
 
                     <span
                         wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"

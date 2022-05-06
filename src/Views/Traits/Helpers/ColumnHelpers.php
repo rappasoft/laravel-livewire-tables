@@ -8,7 +8,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait ColumnHelpers
 {
@@ -460,7 +460,7 @@ trait ColumnHelpers
                 if ($this->isHtml()) {
                     return new HtmlString($value);
                 }
-            } elseif ($this->getSecondaryHeaderCallback() instanceof SelectFilter) {
+            } elseif ($this->getSecondaryHeaderCallback() instanceof Filter) {
                 return $this->getSecondaryHeaderCallback()->render($this->getComponent());
             } else {
                 throw new DataTableConfigurationException('The secondary header callback must be a closure or a filter object.');
@@ -508,7 +508,7 @@ trait ColumnHelpers
                 if ($this->isHtml()) {
                     return new HtmlString($value);
                 }
-            } elseif ($this->getFooterCallback() instanceof SelectFilter) {
+            } elseif ($this->getFooterCallback() instanceof Filter) {
                 return $this->getFooterCallback()->render($this->getComponent());
             } else {
                 throw new DataTableConfigurationException('The footer callback must be a closure or a filter object.');

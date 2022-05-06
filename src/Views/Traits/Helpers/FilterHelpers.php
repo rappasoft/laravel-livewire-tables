@@ -171,22 +171,39 @@ trait FilterHelpers
     }
 
     /**
-     * Check if the hidden propery is set to true.
-     *
      * @return bool
      */
-    public function isHidden(): bool
+    public function isHiddenFromMenus(): bool
     {
-        return $this->hidden === true;
+        return $this->hiddenFromMenus === true;
     }
 
     /**
-     * Check if the hidden propery is set to false.
-     * 
      * @return bool
      */
-    public function isVisible(): bool
+    public function isVisibleInMenu(): bool
     {
-        return $this->hidden === false;
+        return $this->hiddenFromMenus === false;
+    }
+
+    // TODO: Test
+    public function isHiddenFromPills(): bool
+    {
+        return $this->hiddenFromPills === true;
+    }
+
+    public function isVisibleInPills(): bool
+    {
+        return $this->hiddenFromPills === false;
+    }
+
+    public function isHiddenFromFilterCount(): bool
+    {
+        return $this->hiddenFromFilterCount === true;
+    }
+
+    public function isResetByClearButton(): bool
+    {
+        return $this->resetByClearButton === true;
     }
 }

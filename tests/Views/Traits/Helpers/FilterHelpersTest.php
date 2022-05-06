@@ -142,12 +142,12 @@ class FilterHelpersTest extends TestCase
     {
         $filter = SelectFilter::make('Active');
 
-        $this->assertFalse($filter->isHidden());
-        $this->assertTrue($filter->isVisible());
+        $this->assertFalse($filter->isHiddenFromMenus());
+        $this->assertTrue($filter->isVisibleInMenus());
 
-        $filter->hidden();
+        $filter->hiddenFromMenus();
 
-        $this->assertTrue($filter->isHidden());
-        $this->assertFalse($filter->isVisible());
+        $this->assertTrue($filter->isHiddenFromMenus());
+        $this->assertFalse($filter->isVisibleInMenus());
     }
 }

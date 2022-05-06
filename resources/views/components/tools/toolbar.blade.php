@@ -76,9 +76,9 @@
                         >
                             @lang('Filters')
             
-                            @if ($component->hasAppliedFiltersWithValues())
+                            @if ($count = $component->getFilterBadgeCount())
                                 <span class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900">
-                                    {{ $component->getAppliedFiltersWithValuesCount()}}
+                                    {{ $count }}
                                 </span>
                             @endif
             
@@ -106,7 +106,7 @@
                             aria-labelledby="filters-menu"
                         >
                             @foreach($component->getFilters() as $filter)
-                                @if($filter->isVisible())
+                                @if($filter->isVisibleInMenu())
                                     <div class="py-1" role="none">
                                         <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem">
                                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
@@ -120,7 +120,7 @@
                                 @endif
                             @endforeach
 
-                            @if ($component->hasAppliedFiltersWithValues())
+                            @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
                                 <div class="block px-4 py-3 text-sm text-gray-700 dark:text-white" role="menuitem">
                                     <button
                                         wire:click.prevent="setFilterDefaults"
@@ -307,7 +307,7 @@
         >
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4 md:p-0 mb-6">
                 @foreach($component->getFilters() as $filter)
-                    @if($filter->isVisible())
+                    @if($filter->isVisibleInMenu())
                         <div class="space-y-1">
                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
                                 class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
@@ -394,9 +394,9 @@
                             >
                                 @lang('Filters')
                 
-                                @if ($component->hasAppliedFiltersWithValues())
+                                @if ($count = $component->getFilterBadgeCount())
                                     <span class="badge badge-info">
-                                        {{ $component->getAppliedFiltersWithValuesCount()}}
+                                        {{ $count }}
                                     </span>
                                 @endif
                 
@@ -412,7 +412,7 @@
                                 role="menu"
                             >
                                 @foreach($component->getFilters() as $filter)
-                                    @if($filter->isVisible())
+                                    @if($filter->isVisibleInMenu())
                                         <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
                                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
                                                 {{ $filter->getName() }}
@@ -423,7 +423,7 @@
                                     @endif
                                 @endforeach
 
-                                @if ($component->hasAppliedFiltersWithValues())
+                                @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
                                     <div class="dropdown-divider"></div>
 
                                     <button
@@ -551,7 +551,7 @@
             <div class="container">
                 <div class="row">
                     @foreach($component->getFilters() as $filter)
-                        @if($filter->isVisible())
+                        @if($filter->isVisibleInMenu())
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                                 <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
                                     class="d-block">
@@ -637,9 +637,9 @@
                             >
                                 @lang('Filters')
                 
-                                @if ($component->hasAppliedFiltersWithValues())
+                                @if ($count = $component->getFilterBadgeCount())
                                     <span class="badge bg-info">
-                                        {{ $component->getAppliedFiltersWithValuesCount()}}
+                                        {{ $count }}
                                     </span>
                                 @endif
                 
@@ -655,7 +655,7 @@
                                 role="menu"
                             >
                                 @foreach($component->getFilters() as $filter)
-                                    @if($filter->isVisible())
+                                    @if($filter->isVisibleInMenu())
                                         <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
                                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
                                                 {{ $filter->getName() }}
@@ -666,7 +666,7 @@
                                     @endif
                                 @endforeach
 
-                                @if ($component->hasAppliedFiltersWithValues())
+                                @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
                                     <div class="dropdown-divider"></div>
 
                                     <button
@@ -794,7 +794,7 @@
             <div class="container">
                 <div class="row">
                     @foreach($component->getFilters() as $filter)
-                        @if($filter->isVisible())
+                        @if($filter->isVisibleInMenu())
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                                 <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
                                     class="d-block">

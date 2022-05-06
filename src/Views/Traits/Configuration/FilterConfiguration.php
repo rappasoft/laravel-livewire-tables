@@ -22,7 +22,7 @@ trait FilterConfiguration
     /**
      * @param string $key
      *
-     * @return mixed
+     * @return $this
      */
     public function setFilterPillTitle(string $title): self
     {
@@ -34,7 +34,7 @@ trait FilterConfiguration
     /**
      * @param string $key
      *
-     * @return mixed
+     * @return $this
      */
     public function setFilterPillValues(array $values): self
     {
@@ -43,12 +43,40 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-     public function hidden(): self
+     // TODO: Test
+     public function hiddenFromMenus(): self
      {
-         $this->hidden = true;
+         $this->hiddenFromMenus = true;
+
+         return $this;
+     }
+
+     public function hiddenFromPills(): self
+     {
+         $this->hiddenFromPills = true;
+
+         return $this;
+     }
+
+     public function hiddenFromFilterCount(): self
+     {
+         $this->hiddenFromFilterCount = true;
+
+         return $this;
+     }
+
+     public function hiddenFromAll(): self
+     {
+         $this->hiddenFromMenus = true;
+         $this->hiddenFromPills = true;
+         $this->hiddenFromFilterCount = true;
+
+         return $this;
+     }
+
+     public function notResetByClearButton(): self
+     {
+         $this->resetByClearButton = false;
 
          return $this;
      }
