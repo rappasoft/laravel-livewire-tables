@@ -206,19 +206,3 @@ If the filter takes any config options, you can set them with the `config` metho
         'max' => '2021-12-31',
     ])
 ```
-
-### Hiding filters
-
-If you don't want the filter to be visible in the `ui`, you can use the `hidden` method:
-
-```php
-
-    // this filter won't  be seen in popover and slide down
-    SelectFilter::make('Active')
-        ->options([
-            '' => 'All',
-            'yes' => 'Yes',
-            'no' => 'No',
-        ])
-        ->hidden() // hide the filter from popover and slidedown
-```

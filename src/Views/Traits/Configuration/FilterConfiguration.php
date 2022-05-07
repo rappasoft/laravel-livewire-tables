@@ -43,7 +43,9 @@ trait FilterConfiguration
         return $this;
     }
 
-    // TODO: Test
+    /**
+     * @return $this
+     */
     public function hiddenFromMenus(): self
     {
         $this->hiddenFromMenus = true;
@@ -51,6 +53,9 @@ trait FilterConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function hiddenFromPills(): self
     {
         $this->hiddenFromPills = true;
@@ -58,6 +63,9 @@ trait FilterConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function hiddenFromFilterCount(): self
     {
         $this->hiddenFromFilterCount = true;
@@ -65,6 +73,9 @@ trait FilterConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function hiddenFromAll(): self
     {
         $this->hiddenFromMenus = true;
@@ -74,6 +85,9 @@ trait FilterConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function notResetByClearButton(): self
     {
         $this->resetByClearButton = false;

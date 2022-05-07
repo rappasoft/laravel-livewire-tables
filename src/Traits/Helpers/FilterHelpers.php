@@ -58,7 +58,6 @@ trait FilterHelpers
         return $this->getFilters()->count();
     }
 
-    // TODO: Test
     public function hasVisibleFilters(): bool
     {
         return $this->getFilters()
@@ -124,7 +123,6 @@ trait FilterHelpers
         return count($this->getAppliedFiltersWithValues());
     }
 
-    // TODO: Test
     public function hasAppliedVisibleFiltersWithValuesThatCanBeCleared(): bool
     {
         return collect($this->getAppliedFiltersWithValues())

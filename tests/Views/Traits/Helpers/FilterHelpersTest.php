@@ -138,7 +138,7 @@ class FilterHelpersTest extends TestCase
     }
 
     /** @test */
-    public function can_check_if_filter_is_hidden(): void
+    public function can_check_if_filter_is_hidden_from_menus(): void
     {
         $filter = SelectFilter::make('Active');
 
