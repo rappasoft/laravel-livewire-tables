@@ -181,7 +181,7 @@ trait FilterHelpers
     /**
      * @return bool
      */
-    public function isVisibleInMenu(): bool
+    public function isVisibleInMenus(): bool
     {
         return $this->hiddenFromMenus === false;
     }
