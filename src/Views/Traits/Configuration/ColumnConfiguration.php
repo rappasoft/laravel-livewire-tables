@@ -173,6 +173,16 @@ trait ColumnConfiguration
         return $this;
     }
 
+    // TODO: Test
+    public function secondaryHeaderFilter(string $filterKey): self
+    {
+        $this->secondaryHeader = true;
+
+        $this->secondaryHeaderCallback = $filterKey;
+
+        return $this;
+    }
+
     /**
      * @param  string  $field
      *
@@ -183,6 +193,16 @@ trait ColumnConfiguration
         $this->footer = true;
 
         $this->footerCallback = $callback;
+
+        return $this;
+    }
+
+    // TODO: Test
+    public function footerFilter(string $filterKey): self
+    {
+        $this->footer = true;
+
+        $this->footerCallback = $filterKey;
 
         return $this;
     }

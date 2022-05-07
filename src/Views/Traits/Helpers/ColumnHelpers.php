@@ -452,18 +452,25 @@ trait ColumnHelpers
     public function getSecondaryHeaderContents($rows)
     {
         $value = null;
+        $callback = $this->getSecondaryHeaderCallback();
 
         if ($this->hasSecondaryHeaderCallback()) {
-            if (is_callable($this->getSecondaryHeaderCallback())) {
-                $value = call_user_func($this->getSecondaryHeaderCallback(), $rows);
+            if (is_callable($callback)) {
+                $value = call_user_func($callback, $rows);
 
                 if ($this->isHtml()) {
                     return new HtmlString($value);
                 }
-            } elseif ($this->getSecondaryHeaderCallback() instanceof Filter) {
-                return $this->getSecondaryHeaderCallback()->render($this->getComponent());
+            } elseif ($callback instanceof Filter) {
+                return $callback->render($this->getComponent());
+            } elseif (is_string($callback)) {
+                $filter = $this->getComponent()->getFilterByKey($callback);
+
+                if ($filter instanceof Filter) {
+                    return $filter->render($this->getComponent());
+                }
             } else {
-                throw new DataTableConfigurationException('The secondary header callback must be a closure or a filter object.');
+                throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
             }
         }
 
@@ -500,18 +507,25 @@ trait ColumnHelpers
     public function getFooterContents($rows)
     {
         $value = null;
+        $callback = $this->getFooterCallback();
 
         if ($this->hasFooterCallback()) {
-            if (is_callable($this->getFooterCallback())) {
-                $value = call_user_func($this->getFooterCallback(), $rows);
+            if (is_callable($callback)) {
+                $value = call_user_func($callback, $rows);
 
                 if ($this->isHtml()) {
                     return new HtmlString($value);
                 }
-            } elseif ($this->getFooterCallback() instanceof Filter) {
-                return $this->getFooterCallback()->render($this->getComponent());
+            } elseif ($callback instanceof Filter) {
+                return $callback->render($this->getComponent());
+            } elseif (is_string($callback)) {
+                $filter = $this->getComponent()->getFilterByKey($callback);
+
+                if ($filter instanceof Filter) {
+                    return $filter->render($this->getComponent());
+                }
             } else {
-                throw new DataTableConfigurationException('The footer callback must be a closure or a filter object.');
+                throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
             }
         }
 
