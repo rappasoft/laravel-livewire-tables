@@ -186,22 +186,41 @@ trait FilterHelpers
         return $this->hiddenFromMenus === false;
     }
 
-    // TODO: Test
+    /**
+     * @return bool
+     */
     public function isHiddenFromPills(): bool
     {
         return $this->hiddenFromPills === true;
     }
 
+    /**
+     * @return bool
+     */
     public function isVisibleInPills(): bool
     {
         return $this->hiddenFromPills === false;
     }
 
+    /**
+     * @return bool
+     */
     public function isHiddenFromFilterCount(): bool
     {
         return $this->hiddenFromFilterCount === true;
     }
 
+    /**
+     * @return bool
+     */
+    public function isVisibleInFilterCount(): bool
+    {
+        return $this->hiddenFromFilterCount === false;
+    }
+
+    /**
+     * @return bool
+     */
     public function isResetByClearButton(): bool
     {
         return $this->resetByClearButton === true;
