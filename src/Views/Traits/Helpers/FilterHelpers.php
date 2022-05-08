@@ -169,4 +169,60 @@ trait FilterHelpers
     {
         return array_key_exists($key, $this->getConfigs()) && $this->getConfig($key) !== null;
     }
+
+    /**
+     * @return bool
+     */
+    public function isHiddenFromMenus(): bool
+    {
+        return $this->hiddenFromMenus === true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVisibleInMenus(): bool
+    {
+        return $this->hiddenFromMenus === false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHiddenFromPills(): bool
+    {
+        return $this->hiddenFromPills === true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVisibleInPills(): bool
+    {
+        return $this->hiddenFromPills === false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHiddenFromFilterCount(): bool
+    {
+        return $this->hiddenFromFilterCount === true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVisibleInFilterCount(): bool
+    {
+        return $this->hiddenFromFilterCount === false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isResetByClearButton(): bool
+    {
+        return $this->resetByClearButton === true;
+    }
 }

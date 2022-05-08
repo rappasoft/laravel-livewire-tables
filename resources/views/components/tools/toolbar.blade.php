@@ -48,7 +48,7 @@
                 </div>
             @endif
 
-            @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasFilters())
+            @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
                 <div
                     @if ($component->isFilterLayoutPopover())
                         x-data="{ open: false }"
@@ -76,9 +76,9 @@
                         >
                             @lang('Filters')
             
-                            @if ($component->hasAppliedFiltersWithValues())
+                            @if ($count = $component->getFilterBadgeCount())
                                 <span class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900">
-                                    {{ $component->getAppliedFiltersWithValuesCount()}}
+                                    {{ $count }}
                                 </span>
                             @endif
             
@@ -106,19 +106,21 @@
                             aria-labelledby="filters-menu"
                         >
                             @foreach($component->getFilters() as $filter)
-                                <div class="py-1" role="none">
-                                    <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem">
-                                        <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                            class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
-                                            {{ $filter->getName() }}
-                                        </label>
-            
-                                        {{ $filter->render($component) }}
+                                @if($filter->isVisibleInMenus())
+                                    <div class="py-1" role="none">
+                                        <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem">
+                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                                class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
+                                                {{ $filter->getName() }}
+                                            </label>
+                
+                                            {{ $filter->render($component) }}
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
 
-                            @if ($component->hasAppliedFiltersWithValues())
+                            @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
                                 <div class="block px-4 py-3 text-sm text-gray-700 dark:text-white" role="menuitem">
                                     <button
                                         wire:click.prevent="setFilterDefaults"
@@ -292,7 +294,7 @@
         </div>
     </div>
 
-    @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasFilters() && $component->isFilterLayoutSlideDown())
+    @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters() && $component->isFilterLayoutSlideDown())
         <div
             x-cloak
             x-show="filtersOpen"
@@ -305,14 +307,16 @@
         >
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4 md:p-0 mb-6">
                 @foreach($component->getFilters() as $filter)
-                    <div class="space-y-1">
-                        <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                            class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
-                            {{ $filter->getName() }}
-                        </label>
+                    @if($filter->isVisibleInMenus())
+                        <div class="space-y-1">
+                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
+                                {{ $filter->getName() }}
+                            </label>
 
-                        {{ $filter->render($component) }}
-                    </div>
+                            {{ $filter->render($component) }}
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -361,7 +365,7 @@
                 </div>
             @endif
 
-            @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasFilters())
+            @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
                 <div class="ml-0 ml-md-2 mb-3 mb-md-0">
                     <div
                         @if ($component->isFilterLayoutPopover())
@@ -390,9 +394,9 @@
                             >
                                 @lang('Filters')
                 
-                                @if ($component->hasAppliedFiltersWithValues())
+                                @if ($count = $component->getFilterBadgeCount())
                                     <span class="badge badge-info">
-                                        {{ $component->getAppliedFiltersWithValuesCount()}}
+                                        {{ $count }}
                                     </span>
                                 @endif
                 
@@ -408,16 +412,18 @@
                                 role="menu"
                             >
                                 @foreach($component->getFilters() as $filter)
-                                    <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
-                                        <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
-                                            {{ $filter->getName() }}
-                                        </label>
+                                    @if($filter->isVisibleInMenus())
+                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
+                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
+                                                {{ $filter->getName() }}
+                                            </label>
 
-                                        {{ $filter->render($component) }}
-                                    </div>
+                                            {{ $filter->render($component) }}
+                                        </div>
+                                    @endif
                                 @endforeach
 
-                                @if ($component->hasAppliedFiltersWithValues())
+                                @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
                                     <div class="dropdown-divider"></div>
 
                                     <button
@@ -537,7 +543,7 @@
         </div>
     </div>
 
-    @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasFilters() && $component->isFilterLayoutSlideDown())
+    @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters() && $component->isFilterLayoutSlideDown())
         <div
             x-cloak
             x-show="filtersOpen"
@@ -545,14 +551,16 @@
             <div class="container">
                 <div class="row">
                     @foreach($component->getFilters() as $filter)
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                class="d-block">
-                                {{ $filter->getName() }}
-                            </label>
+                        @if($filter->isVisibleInMenus())
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                    class="d-block">
+                                    {{ $filter->getName() }}
+                                </label>
 
-                            {{ $filter->render($component) }}
-                        </div>
+                                {{ $filter->render($component) }}
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
@@ -600,7 +608,7 @@
                 </div>
             @endif
 
-            @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasFilters())
+            @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
                 <div class="{{ $component->searchIsEnabled() ? 'ms-0 ms-md-2' : '' }} mb-3 mb-md-0">
                     <div
                         @if ($component->isFilterLayoutPopover())
@@ -629,9 +637,9 @@
                             >
                                 @lang('Filters')
                 
-                                @if ($component->hasAppliedFiltersWithValues())
+                                @if ($count = $component->getFilterBadgeCount())
                                     <span class="badge bg-info">
-                                        {{ $component->getAppliedFiltersWithValuesCount()}}
+                                        {{ $count }}
                                     </span>
                                 @endif
                 
@@ -647,16 +655,18 @@
                                 role="menu"
                             >
                                 @foreach($component->getFilters() as $filter)
-                                    <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
-                                        <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
-                                            {{ $filter->getName() }}
-                                        </label>
+                                    @if($filter->isVisibleInMenus())
+                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
+                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
+                                                {{ $filter->getName() }}
+                                            </label>
 
-                                        {{ $filter->render($component) }}
-                                    </div>
+                                            {{ $filter->render($component) }}
+                                        </div>
+                                    @endif
                                 @endforeach
 
-                                @if ($component->hasAppliedFiltersWithValues())
+                                @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
                                     <div class="dropdown-divider"></div>
 
                                     <button
@@ -776,7 +786,7 @@
         </div>
     </div>
 
-    @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasFilters() && $component->isFilterLayoutSlideDown())
+    @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters() && $component->isFilterLayoutSlideDown())
         <div
             x-cloak
             x-show="filtersOpen"
@@ -784,14 +794,16 @@
             <div class="container">
                 <div class="row">
                     @foreach($component->getFilters() as $filter)
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                class="d-block">
-                                {{ $filter->getName() }}
-                            </label>
+                        @if($filter->isVisibleInMenus())
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                    class="d-block">
+                                    {{ $filter->getName() }}
+                                </label>
 
-                            {{ $filter->render($component) }}
-                        </div>
+                                {{ $filter->render($component) }}
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

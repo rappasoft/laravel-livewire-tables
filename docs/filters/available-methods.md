@@ -195,6 +195,51 @@ SelectFilter::make('Active')
 
 Now instead of `Active: Yes` it will say `User Status: Active`
 
+### hiddenFromMenus
+
+Hide the filter from both the filter popover and the filter slide down.
+
+```php
+SelectFilter::make('Active')
+    ->hiddenFromMenus()
+```
+
+### hiddenFromPills
+
+Hide the filter from the filter pills when applied.
+
+```php
+SelectFilter::make('Active')
+    ->hiddenFromPills()
+```
+
+### hiddenFromFilterCount
+
+Hide the filter from the filter count when applied.
+
+```php
+SelectFilter::make('Active')
+    ->hiddenFromFilterCount()
+```
+
+### hiddenFromAll
+
+Hide the filter from the menus, pills, and count.
+
+```php
+SelectFilter::make('Active')
+    ->hiddenFromAll()
+```
+
+### notResetByClearButton
+
+By default the `clear` button will reset all filters to their defaults. You can prevent this on a specific filter by using this method.
+
+```php
+SelectFilter::make('Active')
+    ->notResetByClearButton()
+```
+
 ### Config
 
 If the filter takes any config options, you can set them with the `config` method:

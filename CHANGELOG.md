@@ -4,6 +4,16 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [dev-develop] - 2022-05-05
+
+### Added
+
+- Added functionality to hide individual filters from popover and slide down views
+- Added functionality to hide individual filters from filter pills
+- Added functionality to hide individual filters from the active filter count
+- Added functionality to say which filters get reset by the clear button
+- Added functionality to set filters as secondaryHeader or footer of columns
+
 ## [2.6.0] - 2022-05-05
 
 ### Added

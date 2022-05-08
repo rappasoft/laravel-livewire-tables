@@ -10,3 +10,4 @@ psalm.xml
 testbench.yaml
 vendor
 output.txt
+.vscode
