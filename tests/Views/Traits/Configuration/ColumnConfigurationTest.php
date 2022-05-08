@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class ColumnConfigurationTest extends TestCase
 {
@@ -107,5 +108,31 @@ class ColumnConfigurationTest extends TestCase
         $column->deselected();
 
         $this->assertFalse($column->isSelected());
+    }
+
+    /** @test */
+    public function can_set_secondary_header_as_filter(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertFalse($column->hasSecondaryHeader());
+
+        $column->secondaryHeader($this->basicTable->getFilterByKey('breed'));
+
+        $this->assertTrue($column->hasSecondaryHeader());
+        $this->assertInstanceOf(Filter::class, $column->getSecondaryHeaderCallback());
+    }
+
+    /** @test */
+    public function can_set_footer_as_filter(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertFalse($column->hasFooter());
+
+        $column->footer($this->basicTable->getFilterByKey('breed'));
+
+        $this->assertTrue($column->hasFooter());
+        $this->assertInstanceOf(Filter::class, $column->getFooterCallback());
     }
 }

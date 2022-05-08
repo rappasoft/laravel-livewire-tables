@@ -8,6 +8,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait ColumnHelpers
 {
@@ -438,9 +439,9 @@ trait ColumnHelpers
     }
 
     /**
-     * @return callable|null
+     * @return mixed
      */
-    public function getSecondaryHeaderCallback(): ?callable
+    public function getSecondaryHeaderCallback()
     {
         return $this->secondaryHeaderCallback;
     }
@@ -451,12 +452,25 @@ trait ColumnHelpers
     public function getSecondaryHeaderContents($rows)
     {
         $value = null;
+        $callback = $this->getSecondaryHeaderCallback();
 
         if ($this->hasSecondaryHeaderCallback()) {
-            $value = call_user_func($this->getSecondaryHeaderCallback(), $rows);
+            if (is_callable($callback)) {
+                $value = call_user_func($callback, $rows);
 
-            if ($this->isHtml()) {
-                return new HtmlString($value);
+                if ($this->isHtml()) {
+                    return new HtmlString($value);
+                }
+            } elseif ($callback instanceof Filter) {
+                return $callback->render($this->getComponent());
+            } elseif (is_string($callback)) {
+                $filter = $this->getComponent()->getFilterByKey($callback);
+
+                if ($filter instanceof Filter) {
+                    return $filter->render($this->getComponent());
+                }
+            } else {
+                throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
             }
         }
 
@@ -480,9 +494,9 @@ trait ColumnHelpers
     }
 
     /**
-     * @return callable|null
+     * @return mixed
      */
-    public function getFooterCallback(): ?callable
+    public function getFooterCallback()
     {
         return $this->footerCallback;
     }
@@ -493,12 +507,25 @@ trait ColumnHelpers
     public function getFooterContents($rows)
     {
         $value = null;
+        $callback = $this->getFooterCallback();
 
         if ($this->hasFooterCallback()) {
-            $value = call_user_func($this->getFooterCallback(), $rows);
+            if (is_callable($callback)) {
+                $value = call_user_func($callback, $rows);
 
-            if ($this->isHtml()) {
-                return new HtmlString($value);
+                if ($this->isHtml()) {
+                    return new HtmlString($value);
+                }
+            } elseif ($callback instanceof Filter) {
+                return $callback->render($this->getComponent());
+            } elseif (is_string($callback)) {
+                $filter = $this->getComponent()->getFilterByKey($callback);
+
+                if ($filter instanceof Filter) {
+                    return $filter->render($this->getComponent());
+                }
+            } else {
+                throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
             }
         }
 

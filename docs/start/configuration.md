@@ -36,12 +36,22 @@ return [
 
 If you find that Tailwind's CSS purge is removing styles that are needed, you have to tell Tailwind to look for the table styles so it knows not to purge them.
 
-In your tailwind.config.js purge configuration:
+In your tailwind.config.js configuration:
 
 ```js
+// V2
 module.exports = {
     mode: 'jit',
     purge: [
+        ...
+        './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
+    ],
+    ...
+};
+
+// V3
+module.exports = {
+    content: [
         ...
         './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
     ],
