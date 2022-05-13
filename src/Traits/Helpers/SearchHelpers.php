@@ -26,6 +26,7 @@ trait SearchHelpers
     public function clearSearch(): void
     {
         $this->{$this->getTableName()}['search'] = null;
+        $this->refresh = true;
     }
 
     /**
