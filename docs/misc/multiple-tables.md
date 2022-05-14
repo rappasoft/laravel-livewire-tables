@@ -51,7 +51,6 @@ You should also disable the columns selection for those components so the query 
 ```php
 public function configure(): void
 {
-    $this->setColumnSelectStatus(true);
     $this->setColumnSelectStatus(false);
 }
 ```
