@@ -49,9 +49,9 @@ public function configure(): void
 If you must have multiple of the same component on the same page, and you also need column selection enabled, you can override `dataTableFingerprint()` for one or more of the components:
 
 ```php
-public string $uniqueIdentifier;
+public ?string $uniqueIdentifier;
 
-public function mount($uniqueIdentifier)
+public function mount($uniqueIdentifier = null)
 {
     $this->uniqueIdentifier = $uniqueIdentifier
 }
@@ -61,12 +61,12 @@ public function mount($uniqueIdentifier)
  */
 public function dataTableFingerprint(): string
 {
-    return $this->uniqueIdentifier;
+    return $this->uniqueIdentifier ?? parent::dataTableFingerprint();
 }
 ```
 
 ```html
-<livewire:users-table status="active" uniqueIdentifier="active-users" />
+<livewire:users-table status="active" />
 
 <livewire:users-table status="pending" uniqueIdentifier="pending-users" />
 ```
