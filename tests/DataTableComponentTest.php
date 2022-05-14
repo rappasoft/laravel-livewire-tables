@@ -40,4 +40,52 @@ class DataTableComponentTest extends TestCase
 //            ->call('setPrimaryKey', null)
 //            ->call('setSearch', 'abcd');
     }
+
+    /** @test */
+    public function fingerprint_will_always_be_the_same_for_same_datatable(): void
+    {
+        $this->assertSame(
+            [
+                $this->basicTable->dataTableFingerprint(),
+                $this->basicTable->dataTableFingerprint(),
+                $this->basicTable->dataTableFingerprint(),
+            ],
+            [
+                $this->basicTable->dataTableFingerprint(),
+                $this->basicTable->dataTableFingerprint(),
+                $this->basicTable->dataTableFingerprint(),
+            ]
+        );
+        $this->assertSame($this->basicTable->dataTableFingerprint(), $this->fingerprintingAlgo($this->basicTable::class));
+    }
+
+    /** @test */
+    public function datatable_fingerprints_will_be_different_for_each_table(): void
+    {
+        $mockTable = new class() extends PetsTable {
+        };
+
+        $this->assertNotSame($this->basicTable->dataTableFingerprint(), $mockTable->dataTableFingerprint());
+    }
+
+    /** @test */
+    public function fingerprint_will_be_url_friendy(): void
+    {
+        $mocks = [];
+        for ($i = 0; $i < 9; $i++) {
+            $mocks[$i] = new class() extends PetsTable {
+            };
+            $this->assertFalse(filter_var('http://'.$mocks[$i]->dataTableFingerprint().'.dev', FILTER_VALIDATE_URL) === false);
+        }
+        // control
+        $this->assertTrue(filter_var('http://[9/$].dev', FILTER_VALIDATE_URL) === false);
+    }
+
+    protected function fingerPrintingAlgo($className)
+    {
+        $className = str_split($className);
+        $crc32 = sprintf('%u', crc32(serialize($className)));
+
+        return base_convert($crc32, 10, 36);
+    }
 }
