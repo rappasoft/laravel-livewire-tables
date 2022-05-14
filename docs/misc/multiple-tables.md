@@ -66,7 +66,7 @@ public function dataTableFingerprint(): string
 ```
 
 ```html
-<livewire:users-table status="active" />
+<livewire:users-table status="active" uniqueIdentifier="active-users" />
 
 <livewire:users-table status="pending" uniqueIdentifier="pending-users" />
 ```
