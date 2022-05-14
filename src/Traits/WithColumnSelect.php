@@ -36,8 +36,8 @@ trait WithColumnSelect
             ->toArray();
 
         // Set to either the default set or what is stored in the session
-        $this->selectedColumns = count($this->userSelectedColumns) > 0 ? 
-            $this->userSelectedColumns : 
+        $this->selectedColumns = count($this->userSelectedColumns) > 0 ?
+            $this->userSelectedColumns :
             session()->get($this->getColumnSelectSessionKey(), $columns);
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them

@@ -58,7 +58,7 @@ trait ComponentUtilities
         if ($this->queryStringIsEnabled()) {
             return [
                 $this->getTableName() => ['except' => null, 'as' => $this->dataTableFingerprint()],
-                'userSelectedColumns' => ['except' => null, 'as' => $this->dataTableFingerprint() . '-c']
+                'userSelectedColumns' => ['except' => null, 'as' => $this->dataTableFingerprint() . '-c'],
             ];
         }
 
