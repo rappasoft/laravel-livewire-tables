@@ -89,7 +89,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('sortingStatus', true)
             ->call('sortBy', 'id')
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => []]])
+            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => []], 'columns' => []])
             ->assertSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('enableReordering')
             ->assertSet('sortingStatus', false)
@@ -97,7 +97,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('disableReordering')
             ->assertSet('sortingStatus', true)
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => []]])
+            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => []], 'columns' => []])
             ->assertSeeHtml('wire:click="sortBy(\'id\')"');
     }
 
@@ -264,7 +264,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('filtersStatus', true)
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => ['breed' => [1]], 'sorts' => []])
+            ->assertSet('table', ['filters' => ['breed' => [1]], 'sorts' => [], 'columns' => []])
             ->assertSee('Filters')
             ->call('enableReordering')
             ->assertSet('filtersStatus', false)
@@ -272,7 +272,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('Filters')
             ->call('disableReordering')
             ->assertSet('filtersStatus', true)
-            ->assertSet('table', ['filters' => ['breed' => [1]], 'sorts' => []])
+            ->assertSet('table', ['filters' => ['breed' => [1]], 'sorts' => [], 'columns' => []])
             ->assertSeeHtml('Filters');
     }
 
@@ -282,7 +282,7 @@ class ReorderingVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => ['breed' => [1]], 'sorts' => []])
+            ->assertSet('table', ['filters' => ['breed' => [1]], 'sorts' => [], 'columns' => []])
             ->assertSee('Applied Filters')
             ->call('enableReordering')
             ->assertDontSee('Applied Filters');
