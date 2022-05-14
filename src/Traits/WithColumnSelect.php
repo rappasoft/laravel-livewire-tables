@@ -31,17 +31,19 @@ trait WithColumnSelect
             ->filter(function ($column) {
                 return $column->isVisible() && $column->isSelectable() && $column->isSelected();
             })
-            ->map(fn ($column) => $column->getHash())
+            ->map(fn ($column) => $column->getField())
             ->values()
             ->toArray();
 
         // Set to either the default set or what is stored in the session
-        $this->selectedColumns = session()->get($this->getColumnSelectSessionKey(), $columns);
+        $this->selectedColumns = count($this->userSelectedColumns) > 0 ?
+            $this->userSelectedColumns :
+            session()->get($this->getColumnSelectSessionKey(), $columns);
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them
         foreach ($this->getColumns() as $column) {
-            if (! $column->isSelectable() && ! in_array($column->getHash(), $this->selectedColumns, true)) {
-                $this->selectedColumns[] = $column->getHash();
+            if (! $column->isSelectable() && ! in_array($column->getField(), $this->selectedColumns, true)) {
+                $this->selectedColumns[] = $column->getField();
                 session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
             }
         }
@@ -49,6 +51,7 @@ trait WithColumnSelect
 
     public function updatedSelectedColumns(): void
     {
-        session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
+        $this->userSelectedColumns = $this->selectedColumns;
+        session([$this->getColumnSelectSessionKey() => $this->userSelectedColumns]);
     }
 }

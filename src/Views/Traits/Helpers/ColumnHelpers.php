@@ -21,16 +21,6 @@ trait ColumnHelpers
     }
 
     /**
-     * @param  DataTableComponent  $component
-     *
-     * @return $this
-     */
-    public function getHash(): string
-    {
-        return $this->hash;
-    }
-
-    /**
      * @return bool
      */
     public function hasFrom(): bool
