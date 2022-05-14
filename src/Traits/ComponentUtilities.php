@@ -14,8 +14,8 @@ trait ComponentUtilities
 
     public array $table = [];
     public $theme = null;
+    public array $userSelectedColumns = [];
     protected Builder $builder;
-    public $userSelectedColumns = [];
     protected $model;
     protected $primaryKey;
     protected string $tableName = 'table';
