@@ -65,7 +65,7 @@ trait ColumnSelectHelpers
      */
     public function columnSelectIsEnabledForColumn($column): bool
     {
-        return in_array($column instanceof Column ? $column->getField() : $column, $this->selectedColumns, true);
+        return in_array($column instanceof Column ? $column->getSlug() : $column, $this->selectedColumns, true);
     }
 
     /**

@@ -31,7 +31,7 @@ trait WithColumnSelect
             ->filter(function ($column) {
                 return $column->isVisible() && $column->isSelectable() && $column->isSelected();
             })
-            ->map(fn ($column) => $column->getField())
+            ->map(fn ($column) => $column->getSlug())
             ->values()
             ->toArray();
 
@@ -42,8 +42,8 @@ trait WithColumnSelect
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them
         foreach ($this->getColumns() as $column) {
-            if (! $column->isSelectable() && ! in_array($column->getField(), $this->selectedColumns, true)) {
-                $this->selectedColumns[] = $column->getField();
+            if (! $column->isSelectable() && ! in_array($column->getSlug(), $this->selectedColumns, true)) {
+                $this->selectedColumns[] = $column->getSlug();
                 session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
             }
         }
