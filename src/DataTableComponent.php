@@ -66,6 +66,7 @@ abstract class DataTableComponent extends Component
         $this->{$this->tableName} = [
             'sorts' => $this->{$this->tableName}['sorts'] ?? [],
             'filters' => $this->{$this->tableName}['filters'] ?? [],
+            'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];
 
         // Set the filter defaults based on the filter type
