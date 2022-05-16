@@ -28,6 +28,4 @@ class FingerprintConfigurationTest extends TestCase
 
         $this->assertSame('test', $mock->getDataTableFingerprint());
     }
-
-
 }
