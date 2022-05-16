@@ -8,6 +8,30 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ComponentHelpers
 {
+    public function getDataTableFingerprint(): string
+    {
+        return $this->dataTableFingerprint ?? $this->dataTableFingerprint();
+    }
+
+    public function setDataTableFingerprint(string $dataTableFingerprint): self
+    {
+        $this->dataTableFingerprint = $dataTableFingerprint;
+
+        return $this;
+    }
+
+    public function getQueryStringAlias(): string
+    {
+        return $this->queryStringAlias ?? $this->getTableName();
+    }
+
+    public function setQueryStringAlias(string $queryStringAlias): self
+    {
+        $this->queryStringAlias = $queryStringAlias;
+
+        return $this;
+    }
+
     /**
      * @param Builder
      */

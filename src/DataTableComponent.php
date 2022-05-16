@@ -50,7 +50,7 @@ abstract class DataTableComponent extends Component
     /**
      * returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
      */
-    public function dataTableFingerprint(): string
+    protected function dataTableFingerprint(): string
     {
         $className = str_split(static::class);
         $crc32 = sprintf('%u', crc32(serialize($className)));

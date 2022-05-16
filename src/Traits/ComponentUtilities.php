@@ -56,7 +56,7 @@ trait ComponentUtilities
     {
         if ($this->queryStringIsEnabled()) {
             return [
-                $this->getTableName() => ['except' => null, 'as' => $this->dataTableFingerprint()],
+                $this->getTableName() => ['except' => null, 'as' => $this->getQueryStringAlias()],
             ];
         }
 

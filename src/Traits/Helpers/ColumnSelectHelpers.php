@@ -82,6 +82,6 @@ trait ColumnSelectHelpers
      */
     protected function getColumnSelectSessionKey()
     {
-        return $this->dataTableFingerprint().'-columnSelectEnabled';
+        return $this->getDataTableFingerprint().'-columnSelectEnabled';
     }
 }

@@ -42,50 +42,42 @@ class DataTableComponentTest extends TestCase
     }
 
     /** @test */
-    public function fingerprint_will_always_be_the_same_for_same_datatable(): void
+    public function default_fingerprint_will_always_be_the_same_for_same_datatable(): void
     {
         $this->assertSame(
             [
-                $this->basicTable->dataTableFingerprint(),
-                $this->basicTable->dataTableFingerprint(),
-                $this->basicTable->dataTableFingerprint(),
+                $this->basicTable->getDataTableFingerprint(),
+                $this->basicTable->getDataTableFingerprint(),
+                $this->basicTable->getDataTableFingerprint(),
             ],
             [
-                $this->basicTable->dataTableFingerprint(),
-                $this->basicTable->dataTableFingerprint(),
-                $this->basicTable->dataTableFingerprint(),
+                $this->basicTable->getDataTableFingerprint(),
+                $this->basicTable->getDataTableFingerprint(),
+                $this->basicTable->getDataTableFingerprint(),
             ]
         );
-        $this->assertSame($this->basicTable->dataTableFingerprint(), $this->fingerprintingAlgo($this->basicTable::class));
+        $this->assertSame($this->basicTable->getDataTableFingerprint(), $this->defaultFingerprintingAlgo($this->basicTable::class));
     }
 
     /** @test */
-    public function datatable_fingerprints_will_be_different_for_each_table(): void
+    public function default_datatable_fingerprints_will_be_different_for_each_table(): void
     {
         $mockTable = new class() extends PetsTable {
         };
 
-        $this->assertNotSame($this->basicTable->dataTableFingerprint(), $mockTable->dataTableFingerprint());
+        $this->assertNotSame($this->basicTable->getDataTableFingerprint(), $mockTable->getDataTableFingerprint());
     }
 
     /** @test */
-    public function fingerprint_will_be_url_friendy(): void
+    public function default_fingerprint_will_be_url_friendy(): void
     {
         $mocks = [];
         for ($i = 0; $i < 9; $i++) {
             $mocks[$i] = new class() extends PetsTable {
             };
-            $this->assertFalse(filter_var('http://'.$mocks[$i]->dataTableFingerprint().'.dev', FILTER_VALIDATE_URL) === false);
+            $this->assertFalse(filter_var('http://'.$mocks[$i]->getDataTableFingerprint().'.dev', FILTER_VALIDATE_URL) === false);
         }
         // control
         $this->assertTrue(filter_var('http://[9/$].dev', FILTER_VALIDATE_URL) === false);
-    }
-
-    protected function fingerPrintingAlgo($className)
-    {
-        $className = str_split($className);
-        $crc32 = sprintf('%u', crc32(serialize($className)));
-
-        return base_convert($crc32, 10, 36);
     }
 }
