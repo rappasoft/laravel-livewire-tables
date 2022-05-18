@@ -4,12 +4,6 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
-## [column-select-dev] - 2022-05-18
-
-### Added
-
-- Added functionality to select/desect all columns in column selection dropdown
-
 ## [column-select-dev] - 2022-05-16
 
 ### Added

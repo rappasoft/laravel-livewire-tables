@@ -27,7 +27,13 @@ trait WithColumnSelect
         }
 
         // Get a list of visible default columns that are not excluded
-        $columns = $this->getDefaultVisibleColumns();
+        $columns = collect($this->getColumns())
+            ->filter(function ($column) {
+                return $column->isVisible() && $column->isSelectable() && $column->isSelected();
+            })
+            ->map(fn ($column) => $column->getSlug())
+            ->values()
+            ->toArray();
 
         // Set to either the default set or what is stored in the session
         $this->selectedColumns = (isset($this->{$this->tableName}['columns']) && count($this->{$this->tableName}['columns']) > 0) ?
@@ -43,38 +49,9 @@ trait WithColumnSelect
         }
     }
 
-    public function getDefaultVisibleColumns(): array
-    {
-        return collect($this->getColumns())
-        ->filter(function ($column) {
-            return $column->isVisible() && $column->isSelectable() && $column->isSelected();
-        })
-        ->map(fn ($column) => $column->getSlug())
-        ->values()
-        ->toArray();
-    }
-
-    public function selectAllColumns()
-    {
-        $this->{$this->tableName}['columns'] = [];
-        $this->forgetColumnSelectSession();
-    }
-
-    public function deselectAllColumns()
-    {
-        $this->{$this->tableName}['columns'] = [];
-        $this->selectedColumns = [];
-        session([$this->getColumnSelectSessionKey() => []]);
-    }
-
     public function updatedSelectedColumns(): void
     {
-        // The query string isn't needed if it's the same as the default
-        if(count($this->selectedColumns) === count($this->getDefaultVisibleColumns())){
-            $this->selectAllColumns();
-        }else{
-            $this->{$this->tableName}['columns'] = $this->selectedColumns;
-            session([$this->getColumnSelectSessionKey() => $this->{$this->tableName}['columns']]);
-        }
+        $this->{$this->tableName}['columns'] = $this->selectedColumns;
+        session([$this->getColumnSelectSessionKey() => $this->{$this->tableName}['columns']]);
     }
 }
