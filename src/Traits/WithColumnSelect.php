@@ -70,11 +70,21 @@ trait WithColumnSelect
     public function updatedSelectedColumns(): void
     {
         // The query string isn't needed if it's the same as the default
-        if(count($this->selectedColumns) === count($this->getDefaultVisibleColumns())){
+        if ($this->allDefaultVisibleColumnsAreSelected() && $this->allSelectedColumnsAreVisibleByDefault()) {
             $this->selectAllColumns();
-        }else{
+        } else {
             $this->{$this->tableName}['columns'] = $this->selectedColumns;
             session([$this->getColumnSelectSessionKey() => $this->{$this->tableName}['columns']]);
         }
+    }
+
+    public function allDefaultVisibleColumnsAreSelected(): bool
+    {
+        return count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns())) === count($this->getDefaultVisibleColumns());
+    }
+
+    public function allSelectedColumnsAreVisibleByDefault(): bool
+    {
+        return count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns())) === count($this->selectedColumns);
     }
 }
