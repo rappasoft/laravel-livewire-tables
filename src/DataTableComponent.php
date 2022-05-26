@@ -71,7 +71,6 @@ abstract class DataTableComponent extends Component
         
         // Set the filter defaults based on the filter type
         $this->setFilterDefaults();
-        $this->configure();
     }
 
     /**
@@ -79,6 +78,7 @@ abstract class DataTableComponent extends Component
      */
     public function booted(): void
     {
+        $this->configure();
         $this->setTheme();
         $this->setBuilder($this->builder());
         $this->setColumns();

@@ -353,17 +353,6 @@ public function configure(): void
 }
 ```
 
-### setQueryStringAlias
-
-Set an alias for the query string.
-
-```php
-public function configure(): void
-{
-  $this->setQueryStringAlias('my-custom-alias');
-}
-```
-
 ## Relationships
 
 **Disabled by default**, enable to eager load relationships for all columns in the component.
