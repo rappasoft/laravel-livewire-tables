@@ -260,7 +260,7 @@
                                                         wire:target="selectedColumns"
                                                         wire:loading.attr="disabled"
                                                         type="checkbox"
-                                                        value="{{ $column->getHash() }}"
+                                                        value="{{ $column->getSlug() }}"
                                                     />
                                                     <span class="ml-2">{{ $column->getTitle() }}</span>
                                                 </label>
@@ -511,7 +511,7 @@
                                                 wire:target="selectedColumns"
                                                 wire:loading.attr="disabled"
                                                 type="checkbox"
-                                                value="{{ $column->getHash() }}"
+                                                value="{{ $column->getSlug() }}"
                                             />
                                             <span class="ml-2">{{ $column->getTitle() }}</span>
                                         </label>
@@ -754,7 +754,7 @@
                                                 wire:target="selectedColumns"
                                                 wire:loading.attr="disabled"
                                                 type="checkbox"
-                                                value="{{ $column->getHash() }}"
+                                                value="{{ $column->getSlug() }}"
                                             />
                                             <span class="ml-2">{{ $column->getTitle() }}</span>
                                         </label>

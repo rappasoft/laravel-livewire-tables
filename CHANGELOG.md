@@ -4,6 +4,15 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [column-select-dev] - 2022-05-16
+
+### Added
+
+- Added functionality to bookmark or deep link column selection
+- Added functionality to identify different datatable components as unique in column selection
+- Added Funcitonality to configure query string alias
+- Added Funcitonality to configure session key for column selection (dataTableFingerprint)
+
 ## [2.7.0] - 2022-05-07
 
 ### Added

@@ -93,4 +93,12 @@ class TestCase extends Orchestra
 
         config()->set('app.key', Encrypter::generateKey(config('app.cipher')));
     }
+
+    protected function defaultFingerPrintingAlgo($className)
+    {
+        $className = str_split($className);
+        $crc32 = sprintf('%u', crc32(serialize($className)));
+
+        return base_convert($crc32, 10, 36);
+    }
 }

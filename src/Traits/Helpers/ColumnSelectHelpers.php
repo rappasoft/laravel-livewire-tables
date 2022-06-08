@@ -65,7 +65,7 @@ trait ColumnSelectHelpers
      */
     public function columnSelectIsEnabledForColumn($column): bool
     {
-        return in_array($column instanceof Column ? $column->getHash() : $column, $this->selectedColumns, true);
+        return in_array($column instanceof Column ? $column->getSlug() : $column, $this->selectedColumns, true);
     }
 
     /**
@@ -82,6 +82,6 @@ trait ColumnSelectHelpers
      */
     protected function getColumnSelectSessionKey()
     {
-        return $this->getTableName().'-columnSelectEnabled';
+        return $this->getDataTableFingerprint().'-columnSelectEnabled';
     }
 }

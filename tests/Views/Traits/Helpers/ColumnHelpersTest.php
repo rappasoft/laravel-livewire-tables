@@ -321,14 +321,6 @@ class ColumnHelpersTest extends TestCase
     }
 
     /** @test */
-    public function can_get_column_hash(): void
-    {
-        $column = Column::make('Name');
-
-        $this->assertSame($column->getHash(), md5('name'));
-    }
-
-    /** @test */
     public function can_check_if_column_has_secondary_header(): void
     {
         $column = Column::make('ID', 'id');

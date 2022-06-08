@@ -92,3 +92,14 @@ public function configure(): void
     $this->setQueryStringDisabled();
 }
 ```
+
+## Disabling column selection for multiple of the same component
+
+You should also disable the columns selection for those components so the column selection state does not get replaced by one or the other:
+
+```php
+public function configure(): void
+{
+    $this->setColumnSelectStatus(false);
+}
+```
