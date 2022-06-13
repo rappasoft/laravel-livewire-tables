@@ -14,6 +14,10 @@ abstract class Filter
 
     protected string $name;
     protected string $key;
+    protected bool $hiddenFromMenus = false;
+    protected bool $hiddenFromPills = false;
+    protected bool $hiddenFromFilterCount = false;
+    protected bool $resetByClearButton = true;
     protected $filterCallback = null;
     protected array $config = [];
     protected ?string $filterPillTitle = null;

@@ -136,4 +136,58 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($filter->hasConfig('foo'));
         $this->assertFalse($filter->hasConfig('bar'));
     }
+
+    /** @test */
+    public function can_check_if_filter_is_hidden_from_menus(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $this->assertFalse($filter->isHiddenFromMenus());
+        $this->assertTrue($filter->isVisibleInMenus());
+
+        $filter->hiddenFromMenus();
+
+        $this->assertTrue($filter->isHiddenFromMenus());
+        $this->assertFalse($filter->isVisibleInMenus());
+    }
+
+    /** @test */
+    public function can_check_if_filter_is_hidden_from_pills(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $this->assertFalse($filter->isHiddenFromPills());
+        $this->assertTrue($filter->isVisibleInPills());
+
+        $filter->hiddenFromPills();
+
+        $this->assertTrue($filter->isHiddenFromPills());
+        $this->assertFalse($filter->isVisibleInPills());
+    }
+
+    /** @test */
+    public function can_check_if_filter_is_hidden_from_count(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $this->assertFalse($filter->isHiddenFromFilterCount());
+        $this->assertTrue($filter->isVisibleInFilterCount());
+
+        $filter->hiddenFromFilterCount();
+
+        $this->assertTrue($filter->isHiddenFromFilterCount());
+        $this->assertFalse($filter->isVisibleInFilterCount());
+    }
+
+    /** @test */
+    public function can_check_if_filter_is_reset_by_clear_button(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $this->assertTrue($filter->isResetByClearButton());
+
+        $filter->notResetByClearButton();
+
+        $this->assertFalse($filter->isResetByClearButton());
+    }
 }
