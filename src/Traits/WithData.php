@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait WithData
@@ -13,7 +14,7 @@ trait WithData
     public function getRows()
     {
         $this->baseQuery();
-        
+
         return $this->executeQuery();
     }
 
@@ -69,6 +70,7 @@ trait WithData
             $model = $lastQuery->getRelation($relationPart);
 
             switch (true) {
+                case $model instanceof MorphOne:
                 case $model instanceof HasOne:
                     $table = $model->getRelated()->getTable();
                     $foreign = $model->getQualifiedForeignKeyName();
@@ -131,7 +133,7 @@ trait WithData
         foreach ($column->getRelations() as $relationPart) {
             $model = $lastQuery->getRelation($relationPart);
 
-            if ($model instanceof HasOne || $model instanceof BelongsTo) {
+            if ($model instanceof HasOne || $model instanceof BelongsTo || $model instanceof MorphOne) {
                 $table = $model->getRelated()->getTable();
             }
 
