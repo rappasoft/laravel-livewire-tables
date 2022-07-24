@@ -4,20 +4,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
-## [column-select-dev] - 2022-05-18
-
-### Added
-
-- Added functionality to select/desect all columns in column selection dropdown
-
-## [column-select-dev] - 2022-05-16
-
-### Added
+## [2.8.0] - 2022-XX-XX
 
 - Added functionality to bookmark or deep link column selection
 - Added functionality to identify different datatable components as unique in column selection
-- Added Funcitonality to configure query string alias
-- Added Funcitonality to configure session key for column selection (dataTableFingerprint)
+- Added funcitonality to configure query string alias
+- Added funcitonality to configure session key for column selection (dataTableFingerprint)
+- Added functionality to select/desect all columns in column selection dropdown
 
 ## [2.7.0] - 2022-05-07
 
@@ -684,7 +677,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.7.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.8.0...development
+[2.8.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.4.0...v2.5.0
