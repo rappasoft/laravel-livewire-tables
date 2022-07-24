@@ -21,6 +21,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added functionality to hide individual filters from the active filter count
 - Added functionality to say which filters get reset by the clear button
 - Added functionality to set filters as secondaryHeader or footer of columns
+- Added Brazilian Portuguese translation - https://github.com/rappasoft/laravel-livewire-tables/pull/797
 
 ## [2.6.0] - 2022-05-05
 
