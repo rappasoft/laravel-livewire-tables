@@ -13,6 +13,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added funcitonality to configure query string alias
 - Added funcitonality to configure session key for column selection (dataTableFingerprint)
 - Added functionality to select/desect all columns in column selection dropdown
+- Added French translation - https://github.com/rappasoft/laravel-livewire-tables/pull/816
 
 ### Changed
 
