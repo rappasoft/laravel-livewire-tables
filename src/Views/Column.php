@@ -84,7 +84,7 @@ class Column
      * @param  string  $title
      * @param  string|null  $from
      *
-     * @return Column
+     * @return static
      */
     public static function make(string $title, string $from = null): Column
     {

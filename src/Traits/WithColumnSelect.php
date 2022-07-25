@@ -27,28 +27,64 @@ trait WithColumnSelect
         }
 
         // Get a list of visible default columns that are not excluded
-        $columns = collect($this->getColumns())
-            ->filter(function ($column) {
-                return $column->isVisible() && $column->isSelectable() && $column->isSelected();
-            })
-            ->map(fn ($column) => $column->getHash())
-            ->values()
-            ->toArray();
+        $columns = $this->getDefaultVisibleColumns();
 
         // Set to either the default set or what is stored in the session
-        $this->selectedColumns = session()->get($this->getColumnSelectSessionKey(), $columns);
+        $this->selectedColumns = (isset($this->{$this->tableName}['columns']) && count($this->{$this->tableName}['columns']) > 0) ?
+            $this->{$this->tableName}['columns'] :
+            session()->get($this->getColumnSelectSessionKey(), $columns);
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them
         foreach ($this->getColumns() as $column) {
-            if (! $column->isSelectable() && ! in_array($column->getHash(), $this->selectedColumns, true)) {
-                $this->selectedColumns[] = $column->getHash();
+            if (! $column->isSelectable() && ! in_array($column->getSlug(), $this->selectedColumns, true)) {
+                $this->selectedColumns[] = $column->getSlug();
                 session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
             }
         }
     }
 
+    public function getDefaultVisibleColumns(): array
+    {
+        return collect($this->getColumns())
+        ->filter(function ($column) {
+            return $column->isVisible() && $column->isSelectable() && $column->isSelected();
+        })
+        ->map(fn ($column) => $column->getSlug())
+        ->values()
+        ->toArray();
+    }
+
+    public function selectAllColumns()
+    {
+        $this->{$this->tableName}['columns'] = [];
+        $this->forgetColumnSelectSession();
+    }
+
+    public function deselectAllColumns()
+    {
+        $this->{$this->tableName}['columns'] = [];
+        $this->selectedColumns = [];
+        session([$this->getColumnSelectSessionKey() => []]);
+    }
+
     public function updatedSelectedColumns(): void
     {
-        session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
+        // The query string isn't needed if it's the same as the default
+        if ($this->allDefaultVisibleColumnsAreSelected() && $this->allSelectedColumnsAreVisibleByDefault()) {
+            $this->selectAllColumns();
+        } else {
+            $this->{$this->tableName}['columns'] = $this->selectedColumns;
+            session([$this->getColumnSelectSessionKey() => $this->{$this->tableName}['columns']]);
+        }
+    }
+
+    public function allDefaultVisibleColumnsAreSelected(): bool
+    {
+        return count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns())) === count($this->getDefaultVisibleColumns());
+    }
+
+    public function allSelectedColumnsAreVisibleByDefault(): bool
+    {
+        return count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns())) === count($this->selectedColumns);
     }
 }

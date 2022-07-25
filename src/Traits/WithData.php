@@ -74,14 +74,14 @@ trait WithData
                     $foreign = $model->getQualifiedForeignKeyName();
                     $other = $model->getQualifiedParentKeyName();
 
-                break;
+                    break;
 
                 case $model instanceof BelongsTo:
                     $table = $model->getRelated()->getTable();
                     $foreign = $model->getQualifiedForeignKeyName();
                     $other = $model->getQualifiedOwnerKeyName();
 
-                break;
+                    break;
             }
 
             if ($table) {

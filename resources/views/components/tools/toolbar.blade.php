@@ -246,6 +246,26 @@
                         >
                             <div class="bg-white rounded-md shadow-xs dark:bg-gray-700 dark:text-white">
                                 <div class="p-2" role="menu" aria-orientation="vertical" aria-labelledby="column-select-menu">
+                                    <div>
+                                        <label
+                                            wire:loading.attr="disabled"
+                                            class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait"
+                                        >
+                                            <input
+                                                class="text-indigo-600 transition duration-150 ease-in-out border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
+                                                @if($component->allDefaultVisibleColumnsAreSelected())
+                                                    checked
+                                                    wire:click="deselectAllColumns"
+                                                @else
+                                                    unchecked
+                                                    wire:click="selectAllColumns"
+                                                @endif
+                                                wire:loading.attr="disabled"
+                                                type="checkbox"
+                                            />
+                                            <span class="ml-2">{{ __('All Columns') }}</span>
+                                        </label>
+                                    </div>
                                     @foreach($component->getColumns() as $column)
                                         @if ($column->isVisible() && $column->isSelectable())
                                             <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}">
@@ -260,7 +280,7 @@
                                                         wire:target="selectedColumns"
                                                         wire:loading.attr="disabled"
                                                         type="checkbox"
-                                                        value="{{ $column->getHash() }}"
+                                                        value="{{ $column->getSlug() }}"
                                                     />
                                                     <span class="ml-2">{{ $column->getTitle() }}</span>
                                                 </label>
@@ -498,6 +518,25 @@
                             x-bind:class="{'show' : open}"
                             aria-labelledby="columnSelect-{{ $component->getTableName() }}"
                         >
+                            <div>
+                                <label
+                                    wire:loading.attr="disabled"
+                                    class="px-2 mb-1"
+                                >
+                                    <input
+                                        @if($component->allDefaultVisibleColumnsAreSelected())
+                                            checked
+                                            wire:click="deselectAllColumns"
+                                        @else
+                                            unchecked
+                                            wire:click="selectAllColumns"
+                                        @endif
+                                        wire:loading.attr="disabled"
+                                        type="checkbox"
+                                    />
+                                    <span class="ml-2">{{ __('All Columns') }}</span>
+                                </label>
+                            </div>
                             @foreach($component->getColumns() as $column)
                                 @if ($column->isVisible() && $column->isSelectable())
                                     <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}">
@@ -511,7 +550,7 @@
                                                 wire:target="selectedColumns"
                                                 wire:loading.attr="disabled"
                                                 type="checkbox"
-                                                value="{{ $column->getHash() }}"
+                                                value="{{ $column->getSlug() }}"
                                             />
                                             <span class="ml-2">{{ $column->getTitle() }}</span>
                                         </label>
@@ -741,6 +780,25 @@
                             x-bind:class="{'show' : open}"
                             aria-labelledby="columnSelect-{{ $component->getTableName() }}"
                         >
+                            <div>
+                                <label
+                                    wire:loading.attr="disabled"
+                                    class="px-2 mb-1"
+                                >
+                                    <input
+                                        @if($component->allDefaultVisibleColumnsAreSelected())
+                                            checked
+                                            wire:click="deselectAllColumns"
+                                        @else
+                                            unchecked
+                                            wire:click="selectAllColumns"
+                                        @endif
+                                        wire:loading.attr="disabled"
+                                        type="checkbox"
+                                    />
+                                    <span class="ml-2">{{ __('All Columns') }}</span>
+                                </label>
+                            </div>
                             @foreach($component->getColumns() as $column)
                                 @if ($column->isVisible() && $column->isSelectable())
                                     <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}">
@@ -754,7 +812,7 @@
                                                 wire:target="selectedColumns"
                                                 wire:loading.attr="disabled"
                                                 type="checkbox"
-                                                value="{{ $column->getHash() }}"
+                                                value="{{ $column->getSlug() }}"
                                             />
                                             <span class="ml-2">{{ $column->getTitle() }}</span>
                                         </label>

@@ -76,7 +76,7 @@ trait WithSorting
 
             // TODO: Test
             if ($column->hasSortCallback()) {
-                $this->setBuilder(app()->call($column->getSortCallback(), ['builder' => $this->getBuilder(), 'direction' => $direction]));
+                $this->setBuilder(call_user_func($column->getSortCallback(), $this->getBuilder(), $direction));
             } elseif ($column->isBaseColumn()) {
                 $this->setBuilder($this->getBuilder()->orderBy($column->getColumnSelectName(), $direction));
             } else {
