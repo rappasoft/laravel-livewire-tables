@@ -16,6 +16,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added French translation - https://github.com/rappasoft/laravel-livewire-tables/pull/816
 - Added Malay translation - https://github.com/rappasoft/laravel-livewire-tables/pull/821
 - Added Dutch translation - https://github.com/rappasoft/laravel-livewire-tables/pull/834
+- Added Ukranian translation - https://github.com/rappasoft/laravel-livewire-tables/pull/840
 
 ### Changed
 
