@@ -21,7 +21,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 - Fixed bug with sort callback on newer versions of Livewire - https://github.com/rappasoft/laravel-livewire-tables/pull/805
-
+- Fixed: Removed :mixed return type hint as it requires PHP8.0 - https://github.com/rappasoft/laravel-livewire-tables/pull/822
 ## [2.7.0] - 2022-05-07
 
 ### Added
