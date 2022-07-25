@@ -521,7 +521,7 @@
                             <div>
                                 <label
                                     wire:loading.attr="disabled"
-                                    class="mb-1"
+                                    class="px-2 mb-1"
                                 >
                                     <input
                                         @if($component->allDefaultVisibleColumnsAreSelected())
@@ -783,7 +783,7 @@
                             <div>
                                 <label
                                     wire:loading.attr="disabled"
-                                    class="mb-1"
+                                    class="px-2 mb-1"
                                 >
                                     <input
                                         @if($component->allDefaultVisibleColumnsAreSelected())
