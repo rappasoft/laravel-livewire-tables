@@ -40,6 +40,7 @@ class Column
     protected $searchCallback;
     protected bool $collapseOnMobile = false;
     protected bool $collapseOnTablet = false;
+    protected bool $collapseOnAll = false;
     protected ?string $sortingPillTitle = null;
     protected ?string $sortingPillDirectionAsc = null;
     protected ?string $sortingPillDirectionDesc = null;

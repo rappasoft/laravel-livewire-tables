@@ -211,6 +211,42 @@ trait ColumnHelpers
         return $this->getVisibleTabletColumns()->count();
     }
 
+    /**
+     * @return bool
+     */
+    public function shouldCollapseOnAll(): bool
+    {
+        return $this->getCollapsedColumnsCount();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCollapsedColumns(): Collection
+    {
+        return $this->getColumns()
+            ->filter(fn (Column $column) => $column->shouldCollapseOnAll())
+            ->values();
+    }
+
+    /**
+     * @return int
+     */
+    public function getCollapsedColumnsCount(): int
+    {
+        return $this->getCollapsedColumns()->count();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getVisibleColumns(): Collection
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->shouldCollapseOnAll())
+            ->values();
+    }
+
     // TODO
     public function getColspanCount(): int
     {

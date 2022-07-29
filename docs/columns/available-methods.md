@@ -153,7 +153,14 @@ The component has the ability to collapse certain columns at different screen si
 
 ![Collapsing](https://imgur.com/z1rWHzP.png)
 
-You have 2 options when it comes to collapsing.
+You have 3 options when it comes to collapsing.
+
+Collapse on all screen size:
+
+```php
+Column::make('Name')
+    ->collapseOnAll(),
+```
 
 Collapse on tablet:
 

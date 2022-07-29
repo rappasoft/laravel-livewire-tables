@@ -138,6 +138,10 @@ trait ColumnHelpers
     // TODO: Test
     public function renderContents(Model $row)
     {
+        if ($this->shouldCollapseOnAll() && ($this->shouldCollapseOnTablet() || $this->shouldCollapseOnMobile())) {
+            throw new DataTableConfigurationException('When collapsing column on all screen size, no need to specify collapse on mobile OR tablet.');
+        }
+
         if ($this->shouldCollapseOnMobile() && $this->shouldCollapseOnTablet()) {
             throw new DataTableConfigurationException('You should only specify a columns should collapse on mobile OR tablet, not both.');
         }
@@ -257,6 +261,14 @@ trait ColumnHelpers
     public function shouldCollapseOnTablet(): bool
     {
         return $this->collapseOnTablet;
+    }
+
+    /**
+     * @return bool
+     */
+    public function shouldCollapseOnAll(): bool
+    {
+        return $this->collapseOnAll;
     }
 
     /**
@@ -540,7 +552,7 @@ trait ColumnHelpers
             if (is_bool($attributes[$key])) {
                 return $attributes[$key] ? $key : '';
             }
-            
+
             return $key . '="' . $attributes[$key] . '"';
         }, array_keys($attributes)));
     }

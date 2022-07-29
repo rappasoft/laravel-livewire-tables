@@ -11,6 +11,7 @@
         ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $customAttributes['default'] ?? true])
         ->class(['hidden sm:table-cell' => $column && $column->shouldCollapseOnMobile()])
         ->class(['hidden md:table-cell' => $column && $column->shouldCollapseOnTablet()])
+        ->class(['hidden' => $column && $column->shouldCollapseOnAll()])
         ->except('default')
     }}>{{ $slot }}</td>
 @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
@@ -19,6 +20,7 @@
         ->class(['' => $customAttributes['default'] ?? true])
         ->class(['none d-sm-table-cell' => $column && $column->shouldCollapseOnMobile()])
         ->class(['none d-md-table-cell' => $column && $column->shouldCollapseOnTablet()])
+        ->class(['none' => $column && $column->shouldCollapseOnAll()])
         ->except('default')
     }}>{{ $slot }}</td>
 @endif
