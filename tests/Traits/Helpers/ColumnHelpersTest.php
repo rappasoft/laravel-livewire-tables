@@ -40,6 +40,10 @@ class ColumnHelpersTest extends TestCase
     {
         $this->assertFalse($this->basicTable->hasCollapsedColumns());
 
+        $this->assertFalse($this->basicTable->getColumnBySelectName('id')->shouldCollapseOnAll());
+
+        $this->basicTable->getColumnBySelectName('id')->collapseOnAll();
+
         $this->assertFalse($this->basicTable->getColumnBySelectName('id')->shouldCollapseOnMobile());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
@@ -47,6 +51,67 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->getColumnBySelectName('id')->shouldCollapseOnMobile());
 
         $this->assertTrue($this->basicTable->hasCollapsedColumns());
+    }
+
+    /** @test */
+    public function can_tell_if_columns_should_collapse_on_all(): void
+    {
+        $this->assertFalse($this->basicTable->shouldCollapseOnAll());
+
+        $this->basicTable->getColumnBySelectName('id')->collapseOnAll();
+
+        $this->assertTrue($this->basicTable->shouldCollapseOnAll());
+    }
+
+    /** @test */
+    public function can_get_collapsed_columns(): void
+    {
+        $this->assertCount(0, $this->basicTable->getCollapsedColumns());
+
+        $this->basicTable->getColumnBySelectName('id')->collapseOnAll();
+        $this->basicTable->getColumnBySelectName('name')->collapseOnAll();
+
+        $this->assertCount(2, $this->basicTable->getCollapsedColumns());
+
+        $this->assertSame('ID', $this->basicTable->getCollapsedColumns()[0]->getTitle());
+        $this->assertSame('Name', $this->basicTable->getCollapsedColumns()[1]->getTitle());
+    }
+
+    /** @test */
+    public function can_get_collapsed_columns_count(): void
+    {
+        $this->assertSame(0, $this->basicTable->getCollapsedColumnsCount());
+
+        $this->basicTable->getColumnBySelectName('id')->collapseOnAll();
+        $this->basicTable->getColumnBySelectName('name')->collapseOnAll();
+
+        $this->assertSame(2, $this->basicTable->getCollapsedColumnsCount());
+    }
+
+    /** @test */
+    public function can_get_visible_columns(): void
+    {
+        $this->assertCount(6, $this->basicTable->getVisibleColumns());
+
+        $this->basicTable->getColumnBySelectName('id')->collapseOnAll();
+        $this->basicTable->getColumnBySelectName('name')->collapseOnAll();
+
+        $this->assertCount(4, $this->basicTable->getVisibleColumns());
+        $this->assertSame('Sort', $this->basicTable->getVisibleColumns()->values()[0]->getTitle());
+        $this->assertSame('Age', $this->basicTable->getVisibleColumns()->values()[1]->getTitle());
+        $this->assertSame('Breed', $this->basicTable->getVisibleColumns()->values()[2]->getTitle());
+        $this->assertSame('Other', $this->basicTable->getVisibleColumns()->values()[3]->getTitle());
+    }
+
+    /** @test */
+    public function can_get_visible_columns_count(): void
+    {
+        $this->assertSame(6, $this->basicTable->getVisibleColumnsCount());
+
+        $this->basicTable->getColumnBySelectName('id')->collapseOnAll();
+        $this->basicTable->getColumnBySelectName('name')->collapseOnAll();
+
+        $this->assertSame(4, $this->basicTable->getVisibleColumnsCount());
     }
 
     /** @test */

@@ -238,6 +238,16 @@ trait ColumnHelpers
     }
 
     /**
+     * @return $this
+     */
+    public function collapseOnAll(): self
+    {
+        $this->collapseOnAll = true;
+
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function shouldCollapseOnMobile(): bool

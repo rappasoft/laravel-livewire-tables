@@ -120,7 +120,7 @@ trait ColumnHelpers
      */
     public function hasCollapsedColumns(): bool
     {
-        return $this->shouldCollapseOnMobile() + $this->shouldCollapseOnTablet() > 0;
+        return $this->shouldCollapseOnMobile() + $this->shouldCollapseOnTablet() + $this->shouldCollapseOnAll() > 0;
     }
 
     /**
@@ -245,6 +245,14 @@ trait ColumnHelpers
         return $this->getColumns()
             ->reject(fn (Column $column) => $column->shouldCollapseOnAll())
             ->values();
+    }
+
+    /**
+     * @return int
+     */
+    public function getVisibleColumnsCount(): int
+    {
+        return $this->getVisibleColumns()->count();
     }
 
     // TODO
