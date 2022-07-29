@@ -3,6 +3,7 @@
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @php
         $theme = $component->getTheme();
+        $hasCollapseOnAllColumn = $component->getCollapsedColumnsCount();
     @endphp
 
     @if ($theme === 'tailwind')
@@ -11,12 +12,13 @@
             {{
                 $attributes
                     ->merge(['class' => 'table-cell dark:bg-gray-800'])
+                    ->class(['' => $hasCollapseOnAllColumn ])
                     ->class([
-                        'md:hidden' =>
+                        'md:hidden' => !$hasCollapseOnAllColumn && (
                             (($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
-                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile()))
+                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile())))
                     ])
-                    ->class(['sm:hidden' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
+                    ->class(['sm:hidden' => !$hasCollapseOnAllColumn && ($component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet())])
             }}
         ></th>
     @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
@@ -25,13 +27,14 @@
             {{
                 $attributes
                     ->merge(['class' => 'd-table-cell'])
+                    ->class(['' => $hasCollapseOnAllColumn ])
                     ->class([
-                        'd-md-none' =>
+                        'd-md-none' => !$hasCollapseOnAllColumn && (
                             (($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
-                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile()))
+                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile())))
                     ])
-                    ->class(['d-sm-none' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
+                    ->class(['d-sm-none' => !$hasCollapseOnAllColumn && ($component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet())])
             }}
-        ></th>
+        >Test</th>
     @endif
 @endif

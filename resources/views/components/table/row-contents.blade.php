@@ -5,11 +5,14 @@
     @php
         $theme = $component->getTheme();
         $columns = collect([]);
+        $hasCollapseOnAllColumn = false;
 
         if($component->shouldCollapseOnAll()) {
             $columns->push($component->getCollapsedColumns());
+            $hasCollapseOnAllColumn = $component->getCollapsedColumnsCount();
         }
-        elseif ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) {
+
+        if ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) {
             $columns->push($component->getCollapsedMobileColumns());
             $columns->push($component->getCollapsedTabletColumns());
         } elseif ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile()) {
@@ -31,7 +34,7 @@
             x-data
             @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('hidden') : null"
 
-            @if ($column->shouldCollapseOnAll())
+            @if ($hasCollapseOnAllColumn)
                 class="hidden bg-white dark:bg-gray-700 dark:text-white"
             @else
                 class="hidden md:hidden bg-white dark:bg-gray-700 dark:text-white"
@@ -55,7 +58,7 @@
             wire:key="row-{{ $rowIndex }}-collapsed-contents"
             x-data
             @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('d-none') : null"
-            @if ($column->shouldCollapseOnAll())
+            @if ($hasCollapseOnAllColumn)
                 class="d-none"
             @else
                 class="d-none d-md-none"
