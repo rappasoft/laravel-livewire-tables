@@ -68,9 +68,6 @@ abstract class DataTableComponent extends Component
             'filters' => $this->{$this->tableName}['filters'] ?? [],
             'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];
-        
-        // Set the filter defaults based on the filter type
-        $this->setFilterDefaults();
     }
 
     /**
@@ -122,7 +119,7 @@ abstract class DataTableComponent extends Component
     {
         return 'livewire-tables::stubs.custom';
     }
-    
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
