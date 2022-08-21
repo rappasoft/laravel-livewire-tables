@@ -16,6 +16,12 @@ trait WithFilters
     public bool $filterPillsStatus = true;
     public string $filterLayout = 'popover';
 
+    // Set the filter defaults based on the filter type
+    public function mountWithFilters(): void
+    {
+        $this->setFilterDefaults();
+    }
+
     public function filters(): array
     {
         return [];
