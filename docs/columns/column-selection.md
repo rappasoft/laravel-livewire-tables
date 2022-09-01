@@ -96,3 +96,18 @@ public function configure(): void
     $this->setRememberColumnSelectionDisabled();
 }
 ```
+
+### setDataTableFingerprint
+
+In order to idenfify each table and prevent conflicts on column selection, each table is given a unique fingerprint.
+This fingerprint is generated using the static::class name of the component. If you are reusing
+the same component in different parts of your application, you may need to set your own custom fingerprint.
+
+```php
+public function configure(): void
+{
+    // Default fingerprint is output of protected method dataTableFingerprint()
+    // Below will prepend the current route name
+    $this->setDataTableFingerprint(route()->getName() . '-' . $this->dataTableFingerprint());
+}
+```

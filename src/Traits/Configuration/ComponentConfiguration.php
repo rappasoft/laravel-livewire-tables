@@ -355,4 +355,18 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    public function setDataTableFingerprint(string $dataTableFingerprint): self
+    {
+        $this->dataTableFingerprint = $dataTableFingerprint;
+
+        return $this;
+    }
+
+    public function setQueryStringAlias(string $queryStringAlias): self
+    {
+        $this->queryStringAlias = $queryStringAlias;
+
+        return $this;
+    }
 }

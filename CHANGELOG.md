@@ -4,6 +4,24 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.8.0] - 2022-07-24
+
+### Added
+
+- Added functionality to bookmark or deep link column selection
+- Added functionality to identify different datatable components as unique in column selection
+- Added funcitonality to configure query string alias
+- Added funcitonality to configure session key for column selection (dataTableFingerprint)
+- Added functionality to select/desect all columns in column selection dropdown
+- Added French translation - https://github.com/rappasoft/laravel-livewire-tables/pull/816
+- Added Malay translation - https://github.com/rappasoft/laravel-livewire-tables/pull/821
+- Added Dutch translation - https://github.com/rappasoft/laravel-livewire-tables/pull/834
+- Added Ukranian translation - https://github.com/rappasoft/laravel-livewire-tables/pull/840
+
+### Changed
+
+- Fixed bug with sort callback on newer versions of Livewire - https://github.com/rappasoft/laravel-livewire-tables/pull/805
+- Fixed: Removed :mixed return type hint as it requires PHP8.0 - https://github.com/rappasoft/laravel-livewire-tables/pull/822
 ## [2.7.0] - 2022-05-07
 
 ### Added
@@ -13,6 +31,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added functionality to hide individual filters from the active filter count
 - Added functionality to say which filters get reset by the clear button
 - Added functionality to set filters as secondaryHeader or footer of columns
+- Added Brazilian Portuguese translation - https://github.com/rappasoft/laravel-livewire-tables/pull/797
 
 ## [2.6.0] - 2022-05-05
 
@@ -669,7 +688,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.7.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.8.0...development
+[2.8.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.4.0...v2.5.0

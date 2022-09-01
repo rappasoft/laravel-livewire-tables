@@ -48,6 +48,17 @@ abstract class DataTableComponent extends Component
     ];
 
     /**
+     * returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
+     */
+    protected function dataTableFingerprint(): string
+    {
+        $className = str_split(static::class);
+        $crc32 = sprintf('%u', crc32(serialize($className)));
+
+        return base_convert($crc32, 10, 36);
+    }
+
+    /**
      * Runs on every request, immediately after the component is instantiated, but before any other lifecycle methods are called
      */
     public function boot(): void
@@ -55,8 +66,9 @@ abstract class DataTableComponent extends Component
         $this->{$this->tableName} = [
             'sorts' => $this->{$this->tableName}['sorts'] ?? [],
             'filters' => $this->{$this->tableName}['filters'] ?? [],
+            'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];
-
+        
         // Set the filter defaults based on the filter type
         $this->setFilterDefaults();
     }

@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -18,16 +19,6 @@ trait ColumnHelpers
     public function getComponent(): ?DataTableComponent
     {
         return $this->component;
-    }
-
-    /**
-     * @param  DataTableComponent  $component
-     *
-     * @return $this
-     */
-    public function getHash(): string
-    {
-        return $this->hash;
     }
 
     /**
@@ -52,6 +43,14 @@ trait ColumnHelpers
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return Str::slug($this->title);
     }
 
     /**
