@@ -24,7 +24,7 @@
                 wire:click="sortBy('{{ $column->getColumnSelectName() }}')"
                 {{ 
                     $attributes->merge($customSortButtonAttributes)
-                        ->class(['flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])
+                        ->class(['inline-flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])
                         ->except(['default', 'wire:key'])
                 }}
             >
