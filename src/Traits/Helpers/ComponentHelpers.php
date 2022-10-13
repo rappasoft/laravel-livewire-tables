@@ -51,6 +51,14 @@ trait ComponentHelpers
     }
 
     /**
+     * @return array
+     */
+    public function getRelationships(): array
+    {
+        return $this->relationships;
+    }
+
+    /**
      * @return bool
      */
     public function hasModel(): bool

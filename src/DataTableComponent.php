@@ -107,7 +107,7 @@ abstract class DataTableComponent extends Component
     public function builder(): Builder
     {
         if ($this->hasModel()) {
-            return $this->getModel()::query();
+            return $this->getModel()::query()->with($this->getRelationships());
         }
 
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
