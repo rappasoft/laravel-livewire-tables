@@ -216,4 +216,14 @@ trait ColumnConfiguration
 
         return $this;
     }
+
+    /**
+     * @return $this
+     */
+    public function applyTableNamePrefix(bool $applyTableNamePrefix): self
+    {
+        $this->applyTableNamePrefix = $applyTableNamePrefix;
+
+        return $this;
+    }
 }

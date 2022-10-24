@@ -13,7 +13,7 @@ trait WithData
     public function getRows()
     {
         $this->baseQuery();
-        
+
         return $this->executeQuery();
     }
 
@@ -117,7 +117,8 @@ trait WithData
         }
 
         foreach ($this->getSelectableColumns() as $column) {
-            $this->setBuilder($this->getBuilder()->addSelect($column->getColumn() . ' as ' .$column->getColumnSelectName()));
+            $tablePrefix = ($column->getApplyTableNamePrefix() ? $column->getColumn() . ' as ' : '');
+            $this->setBuilder($this->getBuilder()->addSelect($tablePrefix . $column->getColumnSelectName()));
         }
 
         return $this->getBuilder();

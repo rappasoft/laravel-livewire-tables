@@ -540,7 +540,7 @@ trait ColumnHelpers
             if (is_bool($attributes[$key])) {
                 return $attributes[$key] ? $key : '';
             }
-            
+
             return $key . '="' . $attributes[$key] . '"';
         }, array_keys($attributes)));
     }
@@ -553,5 +553,13 @@ trait ColumnHelpers
         return $this->clickable &&
             $this->component->hasTableRowUrl() &&
             ! $this instanceof LinkColumn;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getApplyTableNamePrefix(): bool
+    {
+        return $this->applyTableNamePrefix === true;
     }
 }
