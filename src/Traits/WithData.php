@@ -117,8 +117,11 @@ trait WithData
         }
 
         foreach ($this->getSelectableColumns() as $column) {
-            $tablePrefix = ($column->getApplyTableNamePrefix() ? $column->getColumn() . ' as ' : '');
-            $this->setBuilder($this->getBuilder()->addSelect($tablePrefix . $column->getColumnSelectName()));
+            if ($column->getModifiedQuerySelect() === "") continue;
+
+            $selectQuery = ($column->getModifiedQuerySelect() === null ?
+                $column->getColumn() . ' as ' . $column->getColumnSelectName() : $column->getModifiedQuerySelect());
+            $this->setBuilder($this->getBuilder()->addSelect($selectQuery));
         }
 
         return $this->getBuilder();

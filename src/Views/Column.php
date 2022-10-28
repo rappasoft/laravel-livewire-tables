@@ -55,7 +55,7 @@ class Column
     protected bool $footer = false;
     protected $footerCallback;
     protected bool $clickable = true;
-    protected bool $applyTableNamePrefix = true;
+    protected ?string $modifiedQuerySelect = null;
 
     /**
      * @param  string  $title

@@ -556,10 +556,10 @@ trait ColumnHelpers
     }
 
     /**
-     * @return bool
+     * @return ?string
      */
-    public function getApplyTableNamePrefix(): bool
+    public function getModifiedQuerySelect(): ?string
     {
-        return $this->applyTableNamePrefix === true;
+        return $this->modifiedQuerySelect;
     }
 }

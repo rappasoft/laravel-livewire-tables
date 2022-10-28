@@ -220,9 +220,9 @@ trait ColumnConfiguration
     /**
      * @return $this
      */
-    public function applyTableNamePrefix(bool $applyTableNamePrefix): self
+    public function modifyQuerySelect(?string $querySelect = null): self
     {
-        $this->applyTableNamePrefix = $applyTableNamePrefix;
+        $this->modifiedQuerySelect = empty($querySelect) ? "" : $querySelect;
 
         return $this;
     }
