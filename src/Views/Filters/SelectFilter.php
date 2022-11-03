@@ -43,7 +43,10 @@ class SelectFilter extends Filter
 
     public function getFilterPillValue($value): ?string
     {
-        return $this->getCustomFilterPillValue($value) ?? $this->getOptions()[$value] ?? null;
+        return $this->getCustomFilterPillValue($value)
+            ?? collect($this->getOptions())
+                ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$value]
+            ?? null;
     }
 
     public function isEmpty($value): bool

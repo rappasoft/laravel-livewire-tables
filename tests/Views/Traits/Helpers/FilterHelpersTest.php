@@ -131,6 +131,21 @@ class FilterHelpersTest extends TestCase
     }
 
     /** @test */
+    public function can_get_nested_filter_pill_value(): void
+    {
+        $filter = SelectFilter::make('Active')
+            ->options(['foo' => ['bar' => 'baz']]);
+
+        $this->assertSame('baz', $filter->getFilterPillValue('bar'));
+
+        $filter = SelectFilter::make('Active')
+            ->options(['foo' => ['bar' => 'baz']])
+            ->setFilterPillValues(['bar' => 'etc']);
+
+        $this->assertSame('etc', $filter->getFilterPillValue('bar'));
+    }
+
+    /** @test */
     public function can_check_if_filter_has_configs(): void
     {
         $filter = SelectFilter::make('Active');
