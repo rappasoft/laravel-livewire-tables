@@ -24,7 +24,8 @@ class SelectFilter extends Filter
     public function getKeys(): array
     {
         return collect($this->getOptions())
-            ->keys()
+            ->map(fn ($value) => is_iterable($value) ? collect($value)->keys() : $value)
+            ->flatten()
             ->map(fn ($value) => (string)$value)
             ->filter(fn ($value) => strlen($value) > 0)
             ->values()
