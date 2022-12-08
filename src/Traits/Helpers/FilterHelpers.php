@@ -116,7 +116,7 @@ trait FilterHelpers
     public function getAppliedFilters(): array
     {
         $validFilterKeys = $this->getFilters()
-            ->map(fn(Filter $filter) => $filter->getKey())
+            ->map(fn (Filter $filter) => $filter->getKey())
             ->toArray();
 
         return collect($this->{$this->getTableName()}['filters'] ?? [])
