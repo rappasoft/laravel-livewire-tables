@@ -34,14 +34,14 @@ class ComponentColumn extends Column
             throw new DataTableConfigurationException('You must specify a component view for a component column');
         }
 
-        $attributes  = [];
-        $value       = $this->getValue($row);
+        $attributes = [];
+        $value = $this->getValue($row);
         $slotContent = $value;
 
         if ($this->hasAttributesCallback()) {
             $attributes = call_user_func($this->getAttributesCallback(), $value, $row, $this);
 
-            if (!is_array($attributes)) {
+            if (! is_array($attributes)) {
                 throw new DataTableConfigurationException('The return type of callback must be an array');
             }
         }
@@ -53,7 +53,7 @@ class ComponentColumn extends Column
         }
 
         return view($this->getComponentView(), [
-            'attributes' =>  new ComponentAttributeBag($attributes),
+            'attributes' => new ComponentAttributeBag($attributes),
             'slot' => $slotContent,
         ]);
     }
