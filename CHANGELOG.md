@@ -17,6 +17,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Fixed errors when filter does not exist - https://github.com/rappasoft/laravel-livewire-tables/pull/979
 - Update basic example to represent V2 requirements - https://github.com/rappasoft/laravel-livewire-tables/pull/944
 - Fixed responsive on bootstrap 4 & 5 - https://github.com/rappasoft/laravel-livewire-tables/pull/903
+- Fix for select and checkbox inputs styling with Bootstrap 5 theme - https://github.com/rappasoft/laravel-livewire-tables/pull/864
 
 ## [2.8.0] - 2022-07-24
 
