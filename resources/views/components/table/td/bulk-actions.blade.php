@@ -18,7 +18,7 @@
                 />
             </div>
         </x-livewire-tables::table.td.plain>
-    @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+    @elseif ($theme === 'bootstrap-4')
         <x-livewire-tables::table.td.plain>
             <input
                 wire:model="selected"
@@ -26,6 +26,18 @@
                 value="{{ $row->{$this->getPrimaryKey()} }}"
                 type="checkbox"
             />
+        </x-livewire-tables::table.td.plain>
+    @elseif ($theme === 'bootstrap-5')
+        <x-livewire-tables::table.td.plain>
+            <div class="form-check">
+                <input
+                    wire:model="selected"
+                    wire:loading.attr.delay="disabled"
+                    value="{{ $row->{$this->getPrimaryKey()} }}"
+                    type="checkbox"
+                    class="form-check-input"
+                />
+            </div>
         </x-livewire-tables::table.td.plain>
     @endif
 @endif

@@ -28,7 +28,7 @@
         wire:model.stop="{{ $component->getTableName() }}.filters.{{ $filter->getKey() }}"
         wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
         id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-        class="form-control"
+        class="{{ $theme === 'bootstrap-4' ? 'form-control' : 'form-select' }}"
     >
         @foreach($filter->getOptions() as $key => $value)
             @if (is_iterable($value))
