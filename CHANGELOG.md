@@ -4,6 +4,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.9.0] - 2022-12-XX
+
+### Added
+
+### Changed
+
+- Fixed formatting for relational column - https://github.com/rappasoft/laravel-livewire-tables/pull/757
+
 ## [2.8.0] - 2022-07-24
 
 ### Added
