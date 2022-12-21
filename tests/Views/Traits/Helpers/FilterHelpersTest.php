@@ -59,6 +59,22 @@ class FilterHelpersTest extends TestCase
     }
 
     /** @test */
+    public function can_get_nested_filter_keys(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $this->assertSame([], $filter->getKeys());
+
+        $filter->options(['foo' => ['bar' => 'baz']]);
+
+        $this->assertSame(['bar'], $filter->getKeys());
+
+        $filter->options(['foo' => collect(['bar' => 'baz'])]);
+
+        $this->assertSame(['bar'], $filter->getKeys());
+    }
+
+    /** @test */
     public function can_get_filter_default_value(): void
     {
         $filter = SelectFilter::make('Active');
@@ -112,6 +128,21 @@ class FilterHelpersTest extends TestCase
             ->setFilterPillValues(['foo' => 'baz']);
 
         $this->assertSame('baz', $filter->getFilterPillValue('foo'));
+    }
+
+    /** @test */
+    public function can_get_nested_filter_pill_value(): void
+    {
+        $filter = SelectFilter::make('Active')
+            ->options(['foo' => ['bar' => 'baz']]);
+
+        $this->assertSame('baz', $filter->getFilterPillValue('bar'));
+
+        $filter = SelectFilter::make('Active')
+            ->options(['foo' => ['bar' => 'baz']])
+            ->setFilterPillValues(['bar' => 'etc']);
+
+        $this->assertSame('etc', $filter->getFilterPillValue('bar'));
     }
 
     /** @test */
