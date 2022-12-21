@@ -10,6 +10,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Added support for optgroups in SelectFilter - https://github.com/rappasoft/laravel-livewire-tables/pull/962
 - Added information about applying filters on boot - https://github.com/rappasoft/laravel-livewire-tables/pull/949
+- Added ComponentColumn - https://github.com/rappasoft/laravel-livewire-tables/pull/827
 
 ### Changed
 
@@ -25,9 +26,9 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Added functionality to bookmark or deep link column selection
 - Added functionality to identify different datatable components as unique in column selection
-- Added funcitonality to configure query string alias
-- Added funcitonality to configure session key for column selection (dataTableFingerprint)
-- Added functionality to select/desect all columns in column selection dropdown
+- Added functionality to configure query string alias
+- Added functionality to configure session key for column selection (dataTableFingerprint)
+- Added functionality to select/deselect all columns in column selection dropdown
 - Added French translation - https://github.com/rappasoft/laravel-livewire-tables/pull/816
 - Added Malay translation - https://github.com/rappasoft/laravel-livewire-tables/pull/821
 - Added Dutch translation - https://github.com/rappasoft/laravel-livewire-tables/pull/834
