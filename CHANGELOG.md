@@ -15,6 +15,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Fixed formatting for relational column - https://github.com/rappasoft/laravel-livewire-tables/pull/757
 - Fixed errors when filter does not exist - https://github.com/rappasoft/laravel-livewire-tables/pull/979
+- Update basic example to represent V2 requirements - https://github.com/rappasoft/laravel-livewire-tables/pull/944
 
 ## [2.8.0] - 2022-07-24
 
