@@ -41,6 +41,16 @@ public function builder(): Builder
 
 You can use the `getAppliedFilterWithValue()` method to grab the current value of the filter or null if it is not applied.
 
+## Apply Filters at the Component Boot Level
+
+You may wish to apply default filters i.e. current month on accessing the view in this case you can use:
+
+```php
+public function mount() {
+    $this->setFilter('created_after', date('Y-m-d', strtotime('now -1 month'));
+}
+```
+
 ### A note about integer values
 
 Even if you have your values as strings, but are still using integers, you may have unexpected results when using Eloquent's `when()` method to apply your filters (if going that route).
