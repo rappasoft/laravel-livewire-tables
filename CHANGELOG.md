@@ -8,6 +8,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Added
 
+- Added support for optgroups in SelectFilter - https://github.com/rappasoft/laravel-livewire-tables/pull/962
+
 ### Changed
 
 - Fixed formatting for relational column - https://github.com/rappasoft/laravel-livewire-tables/pull/757
