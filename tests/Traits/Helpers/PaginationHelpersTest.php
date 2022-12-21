@@ -73,4 +73,18 @@ class PaginationHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->perPageVisibilityIsEnabled());
     }
+
+    /** @test */
+    public function can_check_and_set_pagination_method(): void
+    {
+        $this->assertTrue($this->basicTable->isPaginationMethod('standard'));
+
+        $this->basicTable->setPaginationMethod('simple');
+
+        $this->assertTrue($this->basicTable->isPaginationMethod('simple'));
+
+        $this->basicTable->setPaginationMethod('standard');
+
+        $this->assertTrue($this->basicTable->isPaginationMethod('standard'));
+    }
 }

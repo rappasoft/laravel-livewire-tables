@@ -154,4 +154,16 @@ trait PaginationConfiguration
 
         return $this;
     }
+
+    /**
+     * @param  string  $paginationMethod
+     *
+     * @return $this
+     */
+    public function setPaginationMethod(string $paginationMethod): self
+    {
+        $this->paginationMethod = $paginationMethod;
+
+        return $this;
+    }
 }

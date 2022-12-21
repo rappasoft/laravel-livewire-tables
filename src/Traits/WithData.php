@@ -13,7 +13,7 @@ trait WithData
     public function getRows()
     {
         $this->baseQuery();
-        
+
         return $this->executeQuery();
     }
 
@@ -38,9 +38,17 @@ trait WithData
 
     protected function executeQuery()
     {
-        return $this->paginationIsEnabled() ?
-            $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()) :
-            $this->getBuilder()->get();
+        if ($this->paginationIsEnabled()) {
+            if ($this->isPaginationMethod('standard')) {
+                return $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+            }
+
+            if ($this->isPaginationMethod('simple')) {
+                return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+            }
+        }
+
+        return $this->getBuilder()->get();
     }
 
     protected function joinRelations(): Builder

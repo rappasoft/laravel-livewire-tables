@@ -19,6 +19,7 @@ trait WithPagination
     public bool $paginationStatus = true;
     public bool $paginationVisibilityStatus = true;
     public bool $perPageVisibilityStatus = true;
+    public string $paginationMethod = 'standard';
 
     // TODO: Test
     public function setupPagination(): void

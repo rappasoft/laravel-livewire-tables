@@ -11,6 +11,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added support for optgroups in SelectFilter - https://github.com/rappasoft/laravel-livewire-tables/pull/962
 - Added information about applying filters on boot - https://github.com/rappasoft/laravel-livewire-tables/pull/949
 - Added ComponentColumn - https://github.com/rappasoft/laravel-livewire-tables/pull/827
+- Added ability to set the pagination mode of `standard` or `simple`
 
 ### Changed
 
