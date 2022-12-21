@@ -124,7 +124,6 @@ class FilterHelpersTest extends TestCase
         $this->assertArrayNotHasKey('invalid-filter', $this->basicTable->getAppliedFilters());
     }
 
-
     /** @test */
     public function can_see_if_filters_set_with_values(): void
     {
