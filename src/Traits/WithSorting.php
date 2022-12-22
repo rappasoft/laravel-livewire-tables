@@ -80,7 +80,9 @@ trait WithSorting
             } elseif ($column->isBaseColumn()) {
                 $this->setBuilder($this->getBuilder()->orderBy($column->getColumnSelectName(), $direction));
             } else {
-                $this->setBuilder($this->getBuilder()->orderByRaw('"'.$column->getColumnSelectName().'"' . ' ' . $direction));
+                $value = $this->getBuilder()->getGrammar()->wrap($column->getColumn() . ' as ' . $column->getColumnSelectName());
+                $segments = preg_split('/\s+as\s+/i', $value);
+                $this->setBuilder($this->getBuilder()->orderByRaw($segments[1] . ' ' . $direction));
             }
         }
 

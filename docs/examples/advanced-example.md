@@ -171,6 +171,19 @@ class UsersTable extends DataTableComponent
                         $builder->where('active', false);
                     }
                 }),
+            SelectFilter::make('Address Group')
+                ->options([
+                    '' => 'All',
+                    AddressGroup::query()
+                        ->orderBy('type')
+                        ->get()
+                        ->groupBy('type')
+                        ->map(fn ($addressGroup) => $addressGroup->pluck('type', 'id')->filter())
+                        ->toArray(),
+                ])
+                ->filter(function(Builder $builder, string $value) {
+                    $builder->where('address_groups.type', $value);
+                }),
             DateFilter::make('Verified From')
                 ->config([
                     'min' => '2020-01-01',

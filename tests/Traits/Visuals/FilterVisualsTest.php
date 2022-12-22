@@ -88,4 +88,13 @@ class FilterVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->assertDontSee('Applied Filters');
     }
+
+    /** @test */
+    public function filters_with_invalid_key_dont_error(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->set('table.filters.invalid-filter', [1])
+            ->assertHasNoErrors()
+            ->assertDontSee('Applied Filters');
+    }
 }

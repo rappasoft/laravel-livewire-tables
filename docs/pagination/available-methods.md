@@ -159,3 +159,16 @@ public function configure(): void
 ```
 
 **Note:** The value set must be included in the `per page accepted` values.
+
+## setPaginationMethod
+
+Set the pagination method. By default, the table will use the `paginate` method.
+
+You may specify `simplePaginate` like so:
+
+```php
+public function configure(): void
+{
+    $this->setPaginationMethod('simple');
+}
+```

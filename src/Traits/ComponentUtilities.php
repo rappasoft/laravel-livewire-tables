@@ -94,7 +94,7 @@ trait ComponentUtilities
             $filterName = Str::after($name, $this->getTableName().'.filters.');
             $filter = $this->getFilterByKey($filterName);
 
-            if ($filter->isEmpty($value)) {
+            if ($filter && $filter->isEmpty($value)) {
                 $this->resetFilter($filterName);
             }
         }

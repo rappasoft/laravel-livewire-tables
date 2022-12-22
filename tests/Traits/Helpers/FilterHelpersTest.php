@@ -115,6 +115,16 @@ class FilterHelpersTest extends TestCase
     }
 
     /** @test */
+    public function can_not_set_invalid_filter(): void
+    {
+        $this->basicTable->setFilter('invalid-filter', ['1']);
+
+        $this->assertNull($this->basicTable->getAppliedFilterWithValue('invalid-filter'));
+
+        $this->assertArrayNotHasKey('invalid-filter', $this->basicTable->getAppliedFilters());
+    }
+
+    /** @test */
     public function can_see_if_filters_set_with_values(): void
     {
         $this->assertFalse($this->basicTable->hasAppliedFiltersWithValues());
