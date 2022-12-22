@@ -47,7 +47,7 @@ You may wish to apply default filters i.e. current month on accessing the view i
 
 ```php
 public function mount() {
-    $this->setFilter('created_after', date('Y-m-d', strtotime('now -1 month'));
+    $this->setFilter('created_after', date('Y-m-d', strtotime('now -1 month')));
 }
 ```
 
