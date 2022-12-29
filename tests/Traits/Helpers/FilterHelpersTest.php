@@ -167,4 +167,24 @@ class FilterHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->isFilterLayoutSlideDown());
     }
+
+    /** @test */
+    public function can_check_if_filter_layout_slidedown_is_visible(): void
+    {
+        $this->assertFalse($this->basicTable->getFilterSlideDownDefaultStatus());
+
+        $this->basicTable->setFilterSlideDownDefaultStatusEnabled();
+
+        $this->assertTrue($this->basicTable->getFilterSlideDownDefaultStatus());
+    }
+
+    /** @test */
+    public function can_check_if_filter_layout_slidedown_is_hidden(): void
+    {
+        $this->assertFalse($this->basicTable->getFilterSlideDownDefaultStatus());
+
+        $this->basicTable->setFilterSlideDownDefaultStatusDisabled();
+
+        $this->assertFalse($this->basicTable->getFilterSlideDownDefaultStatus());
+    }
 }

@@ -13,7 +13,7 @@
     @endif
 
     @if ($component->isFilterLayoutSlideDown())
-        x-data="{ filtersOpen: false }"
+        wire:ignore.self x-data="{ filtersOpen: $wire.filterSlideDownDefaultVisible }"
     @endif
 >
      @include('livewire-tables::includes.debug')

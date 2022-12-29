@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 class FilterConfigurationTest extends TestCase
 {
@@ -99,5 +99,27 @@ class FilterConfigurationTest extends TestCase
         $this->basicTable->setFilterLayoutPopover();
 
         $this->basicTable->setFilterLayout('popover');
+    }
+
+    /** @test */
+    public function filters_layout_popover_default_can_be_set(): void
+    {
+        $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
+
+        $this->basicTable->setFilterSlideDownDefaultStatusEnabled();
+
+        $this->assertTrue($this->basicTable->filterSlideDownDefaultVisible);
+
+        $this->basicTable->setFilterSlideDownDefaultStatusDisabled();
+
+        $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
+
+        $this->basicTable->setFilterSlideDownDefaultStatus(true);
+
+        $this->assertTrue($this->basicTable->filterSlideDownDefaultVisible);
+
+        $this->basicTable->setFilterSlideDownDefaultStatus(false);
+
+        $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
     }
 }

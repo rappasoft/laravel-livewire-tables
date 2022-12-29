@@ -38,6 +38,21 @@ trait FilterHelpers
         return $this->getFiltersVisibilityStatus() === false;
     }
 
+    public function getFilterSlideDownDefaultStatus(): bool
+    {
+        return $this->filterSlideDownDefaultVisible;
+    }
+
+    public function filtersSlideDownIsDefaultVisible(): bool
+    {
+        return $this->getFilterSlideDownDefaultStatus() === true;
+    }
+
+    public function filtersSlideDownIsDefaultHidden(): bool
+    {
+        return $this->getFilterSlideDownDefaultStatus() === false;
+    }
+
     public function getFilterPillsStatus(): bool
     {
         return $this->filterPillsStatus;
@@ -175,7 +190,7 @@ trait FilterHelpers
         if (! $filter instanceof Filter) {
             $filter = $this->getFilterByKey($filter);
         }
-        
+
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
     }
 
