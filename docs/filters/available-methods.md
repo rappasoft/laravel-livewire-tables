@@ -172,7 +172,7 @@ public function configure(): void
 
 ### setFilterSlideDownDefaultStatusDisabled
 
-Set the filter slide down to invisible by default
+Set the filter slide down to collapsed by default
 
 ```php
 public function configure(): void
