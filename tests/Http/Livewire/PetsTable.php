@@ -8,8 +8,8 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 class PetsTable extends DataTableComponent
 {
