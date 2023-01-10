@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 class FilterHelpersTest extends TestCase
 {
@@ -61,7 +61,6 @@ class FilterHelpersTest extends TestCase
     {
         $this->assertInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilters()[0]);
         $this->assertInstanceOf(MultiSelectDropdownFilter::class, $this->basicTable->getFilters()[1]);
-
     }
 
     /** @test */
@@ -80,7 +79,6 @@ class FilterHelpersTest extends TestCase
         $this->assertNotInstanceOf(MultiSelectDropdownFilter::class, $this->basicTable->getFilterByKey('test'));
 
         $this->assertInstanceOf(MultiSelectDropdownFilter::class, $this->basicTable->getFilterByKey('species'));
-
     }
 
     /** @test */
@@ -95,7 +93,6 @@ class FilterHelpersTest extends TestCase
         $this->basicTable->setFilter('species', ['1']);
 
         $this->assertSame(['1'], $this->basicTable->getAppliedFilterWithValue('species'));
-
     }
 
     /** @test */
@@ -115,8 +112,6 @@ class FilterHelpersTest extends TestCase
             3,
             102,
         ], $this->basicTable->getAppliedFilterWithValue('breed'));
-
-
     }
 
     /** @test */
@@ -157,7 +152,6 @@ class FilterHelpersTest extends TestCase
         $this->basicTable->setFilter('species', ['1']);
 
         $this->assertTrue($this->basicTable->hasAppliedFiltersWithValues());
-
     }
 
     /** @test */
@@ -182,7 +176,6 @@ class FilterHelpersTest extends TestCase
         $this->basicTable->setFilter('species', ['1']);
 
         $this->assertSame(2, $this->basicTable->getAppliedFiltersWithValuesCount());
-
     }
 
     /** @test */
