@@ -100,4 +100,27 @@ class FilterConfigurationTest extends TestCase
 
         $this->basicTable->setFilterLayout('popover');
     }
+
+    /** @test */
+    /* Not present in this branch
+    public function filters_layout_popover_default_can_be_set(): void
+    {
+        $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
+
+        $this->basicTable->setFilterSlideDownDefaultStatusEnabled();
+
+        $this->assertTrue($this->basicTable->filterSlideDownDefaultVisible);
+
+        $this->basicTable->setFilterSlideDownDefaultStatusDisabled();
+
+        $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
+
+        $this->basicTable->setFilterSlideDownDefaultStatus(true);
+
+        $this->assertTrue($this->basicTable->filterSlideDownDefaultVisible);
+
+        $this->basicTable->setFilterSlideDownDefaultStatus(false);
+
+        $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
+    }*/
 }

@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 
 trait FilterHelpers
 {
@@ -91,7 +92,7 @@ trait FilterHelpers
     {
         $filter = $this->getFilterByKey($filterKey);
 
-        if (! $filter instanceof MultiSelectFilter) {
+        if (! $filter instanceof MultiSelectFilter && ! $filter instanceof MultiSelectDropdownFilter) {
             return;
         }
 
@@ -175,7 +176,7 @@ trait FilterHelpers
         if (! $filter instanceof Filter) {
             $filter = $this->getFilterByKey($filter);
         }
-        
+
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
     }
 
