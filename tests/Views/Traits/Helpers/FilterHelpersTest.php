@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Helpers;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class FilterHelpersTest extends TestCase
@@ -54,7 +55,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame([], $filter->getKeys());
 
         $filter->options(['foo' => 'bar']);
-        
+
         $this->assertSame(['foo'], $filter->getKeys());
     }
 
@@ -82,6 +83,10 @@ class FilterHelpersTest extends TestCase
         $this->assertNull($filter->getDefaultValue());
 
         $filter = MultiSelectFilter::make('Active');
+
+        $this->assertSame([], $filter->getDefaultValue());
+
+        $filter = MultiSelectDropdownFilter::make('Active');
 
         $this->assertSame([], $filter->getDefaultValue());
     }
