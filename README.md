@@ -4,14 +4,31 @@
 This is a fork of the brilliant Rappsoft Laravel Livewire Tables, with the following pull requests (which are yet to be added to core)
 
 * Fix - updated languages to contain an "All Columns" string
+* Fix for Bootstrap 5
+  
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/994)
 * Fix for Bulk Actions Simple Pagination 
-* Fix for typo in toolbar.blade.php causing toolbar-right-end to not function correctly
+ 
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1015)
+* Fix for typo in toolbar.blade.php causing toolbar-right-end to not function correctly 
+ 
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1015)
 * Add support for MorphOne relationships
-* Adding option to set first option for select filter
-* Adding the capability to add a "first option" (all) to a SelectFilter when generating options from a query/builder
-* Adding a new filter for "select multiple" (MultiSelectDropdownFilter)
-* Adding an option to set the SlideDown filter panel to "Open By Default" and "Closed by Default", Default is "Closed by Default".
-* Added eagerloading so anyone can load any type of relationship when using $model (rather than builder)
+  
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/844)
+* Adding the capability to add a "first option" (all) to a SelectFilter when generating options from a query/builder 
+ 
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1016)
+* Adding a new filter for "select multiple" (MultiSelectDropdownFilter) 
+
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1011)
+* Adding an option to set the SlideDown filter panel to "Open By Default" and "Closed by Default", Default is "Closed by Default". 
+ 
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1017)
+* Added eagerloading so anyone can load any type of relationship when using $model (rather than builder) 
+
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/943)
+
 
 A dynamic Laravel Livewire component for data tables.
 
