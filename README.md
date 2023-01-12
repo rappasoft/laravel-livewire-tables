@@ -94,9 +94,9 @@ class UsersTable extends DataTableComponent
 composer test
 ```
 
-### Modals
+## Modals
 
-## Bulk Actions
+### Bulk Actions
 You will need to include a view using the customView function.  This view can either contain the reference to a Livewire modal component, or just be a blade based component
 
 Then in the relevant function for the bulkActions, you will need to retrieve the selected items, then open & populate your modal.
@@ -150,7 +150,7 @@ public function openModal()
    $this->emit('openModal', "path-to-modal", ['selectedItems' => $selectedItems]);
 }
 ```
-## Buttons and wire-elements/modal
+### Buttons and wire-elements/modal
 You will need to create a ButtonColumn, and emit the path to your modal, and any values that you wish to send
 ```
 LinkColumn::make('Edit')
