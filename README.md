@@ -46,6 +46,15 @@ You can install the package via composer:
 composer require rappasoft/laravel-livewire-tables
 ```
 
+You will then need to amend your composer.json to include this repository to get the fixes & features included in this repo.
+```
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/LowerRockLabs/laravel-livewire-tables"
+    }
+],
+```
 You must also have [Alpine.js](https://alpinejs.dev) version 3 or greater installed and available to the component.
 
 ## Documentation and Usage Instructions
