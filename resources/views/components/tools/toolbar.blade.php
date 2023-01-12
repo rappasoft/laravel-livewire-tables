@@ -843,7 +843,7 @@
             @endif
 
             @if ($component->hasConfigurableAreaFor('toolbar-right-end'))
-                @include($component->getConfigurableAreaFor('toolbar-right-end'), $component->getParametersForConfigurableArea('toolbar-righ-end'))
+                @include($component->getConfigurableAreaFor('toolbar-right-end'), $component->getParametersForConfigurableArea('toolbar-right-end'))
             @endif
         </div>
     </div>

@@ -8,6 +8,7 @@
         $colspan = $component->getColspanCount();
         $selected = $component->getSelectedCount();
         $selectAll = $component->selectAllIsEnabled();
+        $simplePagination = ($component->paginationMethod == "simple") ? true : false;
     @endphp
 
     @if ($theme === 'tailwind')
@@ -20,7 +21,7 @@
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            <strong>{{ number_format($rows->total()) }}</strong>
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                             @lang('rows').
                         </span>
 
@@ -39,7 +40,7 @@
                             @lang('You have selected')
                             <strong>{{ $selected }}</strong>
                             @lang('rows, do you want to select all')
-                            <strong>{{ number_format($rows->total()) }}</strong>?
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                         </span>
 
                         <button
@@ -72,7 +73,7 @@
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            <strong>{{ number_format($rows->total()) }}</strong>
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                             @lang('rows').
                         </span>
 
@@ -91,7 +92,7 @@
                             @lang('You have selected')
                             <strong>{{ $selected }}</strong>
                             @lang('rows, do you want to select all')
-                            <strong>{{ number_format($rows->total()) }}</strong>?
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                         </span>
 
                         <button
