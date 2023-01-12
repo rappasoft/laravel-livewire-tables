@@ -94,6 +94,76 @@ class UsersTable extends DataTableComponent
 composer test
 ```
 
+### Modals
+
+## Bulk Actions
+You will need to include a view using the customView function.  This view can either contain the reference to a Livewire modal component, or just be a blade based component
+
+Then in the relevant function for the bulkActions, you will need to retrieve the selected items, then open & populate your modal.
+
+If you're using wire-elements/modal, then you can emit the create/open function.
+
+```
+public $selectedItems;
+public $modalIsOpen = false;
+
+public array $bulkActions = [
+        'openModal' => 'Install Something'
+];
+
+public function openModal()
+{
+   $this->selectedItems = $this->getSelected();
+   $this->modalIsOpen = true;
+}
+public function customView(): string
+{
+    return 'components.genericModal';
+}
+```
+Then your components.genericModal blade may have something like this:
+```
+@if($modalIsOpen)
+<div class="modal">
+   @foreach($selectedItems as $selectedItem)
+    <span>{{ $selectedItem }}</span><br />
+  @endforeach
+</div>
+@endif
+```
+or something like this:
+```
+@if($modalIsOpen)
+   <livewire:components.generic-modal :selectedItems="$selectedItems" />
+@endif
+```
+
+**For wire-elements/modal:**
+```
+public array $bulkActions = [
+        'openModal' => 'Install Something'
+];
+
+public function openModal()
+{
+   $selectedItems = $this->getSelected();
+   $this->emit('openModal', "path-to-modal", ['selectedItems' => $selectedItems]);
+}
+```
+## Buttons and wire-elements/modal
+You will need to create a ButtonColumn, and emit the path to your modal, and any values that you wish to send
+```
+LinkColumn::make('Edit')
+->title(fn($row) => 'Edit')
+->location(fn($row) => '#')
+->attributes(function($row) {
+    return [
+        'class' => 'underline text-blue-500 hover:no-underline',
+        'wire:click' => '$emit(\'openModal\',\'PATHTOMODAL\', {\'id\':\''.$row->id.'\'})'
+    ];
+}),
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
