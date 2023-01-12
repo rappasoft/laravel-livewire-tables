@@ -8,8 +8,8 @@ This is a fork of the brilliant Rappsoft Laravel Livewire Tables, with the follo
 * Fix for typo in toolbar.blade.php causing toolbar-right-end to not function correctly
 * Add support for MorphOne relationships
 * Adding option to set first option for select filter
-* Adding the capability  to add a "first option" (all) to a SelectFilter when generating options from a query/builder
-* Adding a new filter for <select multiple> (MultiSelectDropdownFilter)
+* Adding the capability to add a "first option" (all) to a SelectFilter when generating options from a query/builder
+* Adding a new filter for "select multiple" (MultiSelectDropdownFilter)
 * Adding an option to set the SlideDown filter panel to "Open By Default" and "Closed by Default", Default is "Closed by Default".
 * Added eagerloading so anyone can load any type of relationship when using $model (rather than builder)
 
