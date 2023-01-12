@@ -1,6 +1,11 @@
 name: run-tests
-
-on: [push, pull_request]
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - development
 
 jobs:
   test:
