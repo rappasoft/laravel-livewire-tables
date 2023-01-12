@@ -8,7 +8,7 @@
     <div class="flex-col">
         {{ $slot }}
     </div>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@else ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
     <div class="d-flex flex-column">
         {{ $slot }}
     </div>
