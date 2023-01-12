@@ -17,6 +17,7 @@ trait ComponentUtilities
     protected Builder $builder;
     protected $model;
     protected $primaryKey;
+    protected array $relationships = [];
     protected string $tableName = 'table';
     protected bool $queryStringStatus = true;
     protected bool $offlineIndicatorStatus = true;
