@@ -8,6 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class MultiSelectDropdownFilter extends Filter
 {
     protected array $options = [];
+    protected string $firstOption = "";
 
     public function options(array $options = []): MultiSelectDropdownFilter
     {
@@ -19,6 +20,19 @@ class MultiSelectDropdownFilter extends Filter
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+
+    public function setFirstOption(string $firstOption): MultiSelectDropdownFilter
+    {
+        $this->firstOption = $firstOption;
+
+        return $this;
+    }
+
+    public function getFirstOption(): string
+    {
+        return $this->firstOption;
     }
 
     public function getKeys(): array
@@ -67,7 +81,15 @@ class MultiSelectDropdownFilter extends Filter
 
     public function isEmpty($value): bool
     {
-        return ! is_array($value);
+        if (!is_array($value))
+        {
+            return true;
+        }
+        else if (in_array("all", $value))
+        {
+            return true;
+        }
+        return false;
     }
 
     public function render(DataTableComponent $component)
