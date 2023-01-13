@@ -1,17 +1,34 @@
-![Package Logo](https://banners.beyondco.de/Laravel%20Livewire%20Tables.png?theme=light&packageName=rappasoft%2Flaravel-livewire-tables&pattern=hideout&style=style_1&description=A+dynamic+table+component+for+Laravel+Livewire&md=1&fontSize=100px&images=table
-
 [![Styling](https://github.com/LowerRockLabs/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/LowerRockLabs/laravel-livewire-tables/actions/workflows/php-cs-fixer.yml)
 [![Tests](https://github.com/LowerRockLabs/laravel-livewire-tables/actions/workflows/run-tests.yml/badge.svg)](https://github.com/LowerRockLabs/laravel-livewire-tables/actions/workflows/run-tests.yml)
 
 This is a fork of the brilliant Rappsoft Laravel Livewire Tables, with the following pull requests (which are yet to be added to core)
 
-* Updated languages to contain "All Columns"
+* Fix - updated languages to contain an "All Columns" string
+* Fix for Bootstrap 5
+  
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/994)
+* Fix for Bulk Actions Simple Pagination 
+ 
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1015)
+* Fix for typo in toolbar.blade.php causing toolbar-right-end to not function correctly 
+ 
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1015)
 * Add support for MorphOne relationships
-* Adding option to set first option for select filter
-* Fix for using SimplePagination with Bulk Actions
-* Adding the capability for a SelectFilter to add a "first option" (all) when generating from a query/builder
-* Adding capability for Multi select dropdown filter
-* Adding an option to SlideDown filter panel to allow for "Open By Default" and "Closed by Default", Default is closed.
+  
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/844)
+* Adding the capability to add a "first option" (all) to a SelectFilter when generating options from a query/builder 
+ 
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1016)
+* Adding a new filter for "select multiple" (MultiSelectDropdownFilter) 
+
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1011)
+* Adding an option to set the SlideDown filter panel to "Open By Default" and "Closed by Default", Default is "Closed by Default". 
+ 
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1017)
+* Added eagerloading so anyone can load any type of relationship when using $model (rather than builder) 
+
+  [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/943)
+
 
 A dynamic Laravel Livewire component for data tables.
 
@@ -29,6 +46,15 @@ You can install the package via composer:
 composer require rappasoft/laravel-livewire-tables
 ```
 
+You will then need to amend your composer.json to include this repository to get the fixes & features included in this repo.
+```
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/LowerRockLabs/laravel-livewire-tables"
+    }
+],
+```
 You must also have [Alpine.js](https://alpinejs.dev) version 3 or greater installed and available to the component.
 
 ## Documentation and Usage Instructions
@@ -75,6 +101,76 @@ class UsersTable extends DataTableComponent
 
 ```bash
 composer test
+```
+
+## Modals
+
+### Bulk Actions
+You will need to include a view using the customView function.  This view can either contain the reference to a Livewire modal component, or just be a blade based component
+
+Then in the relevant function for the bulkActions, you will need to retrieve the selected items, then open & populate your modal.
+
+If you're using wire-elements/modal, then you can emit the create/open function.
+
+```
+public $selectedItems;
+public $modalIsOpen = false;
+
+public array $bulkActions = [
+        'openModal' => 'Install Something'
+];
+
+public function openModal()
+{
+   $this->selectedItems = $this->getSelected();
+   $this->modalIsOpen = true;
+}
+public function customView(): string
+{
+    return 'components.genericModal';
+}
+```
+Then your components.genericModal blade may have something like this:
+```
+@if($modalIsOpen)
+<div class="modal">
+   @foreach($selectedItems as $selectedItem)
+    <span>{{ $selectedItem }}</span><br />
+  @endforeach
+</div>
+@endif
+```
+or something like this:
+```
+@if($modalIsOpen)
+   <livewire:components.generic-modal :selectedItems="$selectedItems" />
+@endif
+```
+
+**For wire-elements/modal:**
+```
+public array $bulkActions = [
+        'openModal' => 'Install Something'
+];
+
+public function openModal()
+{
+   $selectedItems = $this->getSelected();
+   $this->emit('openModal', "path-to-modal", ['selectedItems' => $selectedItems]);
+}
+```
+### Buttons and wire-elements/modal
+You will need to create a ButtonColumn, and emit the path to your modal, and any values that you wish to send
+```
+LinkColumn::make('Edit')
+->title(fn($row) => 'Edit')
+->location(fn($row) => '#')
+->attributes(function($row) {
+    return [
+        'class' => 'underline text-blue-500 hover:no-underline',
+        'wire:click' => '$emit(\'openModal\',\'PATHTOMODAL\', {\'id\':\''.$row->id.'\'})'
+    ];
+}),
 ```
 
 ## Changelog
