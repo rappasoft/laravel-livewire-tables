@@ -8,6 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class MultiSelectFilter extends Filter
 {
     protected array $options = [];
+    protected string $firstOption = "";
 
     public function options(array $options = []): MultiSelectFilter
     {
@@ -20,6 +21,19 @@ class MultiSelectFilter extends Filter
     {
         return $this->options;
     }
+
+    public function setFirstOption(string $firstOption)
+    {
+        $this->firstOption = $firstOption;
+
+        return $this;
+    }
+
+    public function getFirstOption(): string
+    {
+        return $this->firstOption;
+    }
+
 
     public function getKeys(): array
     {
