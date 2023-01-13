@@ -22,7 +22,6 @@ class MultiSelectDropdownFilter extends Filter
         return $this->options;
     }
 
-
     public function setFirstOption(string $firstOption): MultiSelectDropdownFilter
     {
         $this->firstOption = $firstOption;
@@ -81,14 +80,12 @@ class MultiSelectDropdownFilter extends Filter
 
     public function isEmpty($value): bool
     {
-        if (!is_array($value))
-        {
+        if (! is_array($value)) {
+            return true;
+        } elseif (in_array("all", $value)) {
             return true;
         }
-        else if (in_array("all", $value))
-        {
-            return true;
-        }
+
         return false;
     }
 
