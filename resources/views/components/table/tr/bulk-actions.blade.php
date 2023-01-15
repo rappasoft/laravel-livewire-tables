@@ -8,6 +8,7 @@
         $colspan = $component->getColspanCount();
         $selected = $component->getSelectedCount();
         $selectAll = $component->selectAllIsEnabled();
+        $simplePagination = ($component->paginationMethod == "simple") ? true : false;
     @endphp
 
     @if ($theme === 'tailwind')
@@ -20,7 +21,7 @@
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            <strong>{{ number_format($rows->total()) }}</strong>
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                             @lang('rows').
                         </span>
 
@@ -39,8 +40,17 @@
                             @lang('You have selected')
                             <strong>{{ $selected }}</strong>
                             @lang('rows, do you want to select all')
-                            <strong>{{ number_format($rows->total()) }}</strong>?
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                         </span>
+
+                        <button
+                            wire:click="setAllVisibleSelected"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
+                            @lang('Select All On This Page')
+                        </button>
 
                         <button
                             wire:click="setAllSelected"
@@ -72,7 +82,7 @@
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            <strong>{{ number_format($rows->total()) }}</strong>
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                             @lang('rows').
                         </span>
 
@@ -91,8 +101,18 @@
                             @lang('You have selected')
                             <strong>{{ $selected }}</strong>
                             @lang('rows, do you want to select all')
-                            <strong>{{ number_format($rows->total()) }}</strong>?
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                         </span>
+
+                        <button
+                            wire:click="setAllVisibleSelected"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
+                            @lang('Select All On This Page')
+                        </button>
+
 
                         <button
                             wire:click="setAllSelected"
