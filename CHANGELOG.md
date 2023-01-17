@@ -10,6 +10,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Added support for MorphOne relationships - https://github.com/rappasoft/laravel-livewire-tables/pull/844
 
+### Changed
+
+- Updated EN translations - https://github.com/rappasoft/laravel-livewire-tables/pull/999
+- Updated ES translations - 
+
 ## [2.9.0] - 2022-12-21
 
 ### Added
