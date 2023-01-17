@@ -123,7 +123,7 @@ trait BulkActionsHelpers
      */
     public function setSelected(array $selected): array
     {
-        return $this->selected = array_fill_keys($selected,true);
+        return $this->selected = array_fill_keys($selected, true);
     }
 
     /**
@@ -131,7 +131,7 @@ trait BulkActionsHelpers
      */
     public function getSelected(): array
     {
-        return array_keys($this->selected,true);
+        return array_keys($this->selected, true);
     }
 
     /**
@@ -193,7 +193,7 @@ trait BulkActionsHelpers
      */
     public function setAllVisibleSelected(): void
     {
-        $pageSelected = array_fill_keys((clone $this->baseQuery()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()))->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray(),true);
-        $this->selected = array_merge($this->selected,$pageSelected);
+        $pageSelected = array_fill_keys((clone $this->baseQuery()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()))->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray(), true);
+        $this->selected = array_merge($this->selected, $pageSelected);
     }
 }
