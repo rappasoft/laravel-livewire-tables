@@ -64,7 +64,7 @@ class FilterHelpersTest extends TestCase
     /** @test */
     public function can_get_component_filter_count(): void
     {
-        $this->assertEquals(1, $this->basicTable->getFiltersCount());
+        $this->assertEquals(2, $this->basicTable->getFiltersCount());
     }
 
     /** @test */
@@ -111,7 +111,7 @@ class FilterHelpersTest extends TestCase
 
         $this->basicTable->setFilterDefaults();
 
-        $this->assertSame(['breed' => []], $this->basicTable->getAppliedFilters());
+        $this->assertSame(['breed' => [], 'species' => []], $this->basicTable->getAppliedFilters());
     }
 
     /** @test */

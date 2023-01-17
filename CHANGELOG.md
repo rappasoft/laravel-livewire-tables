@@ -10,6 +10,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Added support for MorphOne relationships - https://github.com/rappasoft/laravel-livewire-tables/pull/844
 - Added MultiSelectDropdownFilter - https://github.com/rappasoft/laravel-livewire-tables/pull/1011
+- FilterSlideDown - Ability to set Default to Open or Closed - https://github.com/rappasoft/laravel-livewire-tables/pull/1017
 
 ### Changed
 
