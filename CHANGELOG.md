@@ -4,6 +4,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.10.0] - 2023-01-XX
+
 ## [2.9.0] - 2022-12-21
 
 ### Added
