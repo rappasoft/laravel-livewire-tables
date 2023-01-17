@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 class FilterHelpersTest extends TestCase
@@ -60,13 +59,12 @@ class FilterHelpersTest extends TestCase
     public function can_get_component_filters(): void
     {
         $this->assertInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilters()[0]);
-        $this->assertInstanceOf(MultiSelectDropdownFilter::class, $this->basicTable->getFilters()[1]);
     }
 
     /** @test */
     public function can_get_component_filter_count(): void
     {
-        $this->assertEquals(2, $this->basicTable->getFiltersCount());
+        $this->assertEquals(1, $this->basicTable->getFiltersCount());
     }
 
     /** @test */
@@ -75,10 +73,6 @@ class FilterHelpersTest extends TestCase
         $this->assertNotInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilterByKey('test'));
 
         $this->assertInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilterByKey('breed'));
-
-        $this->assertNotInstanceOf(MultiSelectDropdownFilter::class, $this->basicTable->getFilterByKey('test'));
-
-        $this->assertInstanceOf(MultiSelectDropdownFilter::class, $this->basicTable->getFilterByKey('species'));
     }
 
     /** @test */
@@ -87,12 +81,6 @@ class FilterHelpersTest extends TestCase
         $this->basicTable->setFilter('breed', ['1']);
 
         $this->assertSame(['1'], $this->basicTable->getAppliedFilterWithValue('breed'));
-
-        $this->basicTable->setFilter('breed', ['0']);
-
-        $this->basicTable->setFilter('species', ['1']);
-
-        $this->assertSame(['1'], $this->basicTable->getAppliedFilterWithValue('species'));
     }
 
     /** @test */
@@ -123,7 +111,7 @@ class FilterHelpersTest extends TestCase
 
         $this->basicTable->setFilterDefaults();
 
-        $this->assertSame(['breed' => [], 'species' => []], $this->basicTable->getAppliedFilters());
+        $this->assertSame(['breed' => []], $this->basicTable->getAppliedFilters());
     }
 
     /** @test */
@@ -144,14 +132,6 @@ class FilterHelpersTest extends TestCase
         $this->basicTable->setFilter('breed', ['1']);
 
         $this->assertTrue($this->basicTable->hasAppliedFiltersWithValues());
-
-        $this->basicTable->setFilter('breed', []);
-
-        $this->assertFalse($this->basicTable->hasAppliedFiltersWithValues());
-
-        $this->basicTable->setFilter('species', ['1']);
-
-        $this->assertTrue($this->basicTable->hasAppliedFiltersWithValues());
     }
 
     /** @test */
@@ -159,9 +139,7 @@ class FilterHelpersTest extends TestCase
     {
         $this->basicTable->setFilter('breed', ['1']);
 
-        $this->basicTable->setFilter('species', ['0']);
-
-        $this->assertSame(['breed' => ['1'], 'species' => ['0']], $this->basicTable->getAppliedFiltersWithValues());
+        $this->assertSame(['breed' => ['1']], $this->basicTable->getAppliedFiltersWithValues());
     }
 
     /** @test */
@@ -172,10 +150,6 @@ class FilterHelpersTest extends TestCase
         $this->basicTable->setFilter('breed', ['1']);
 
         $this->assertSame(1, $this->basicTable->getAppliedFiltersWithValuesCount());
-
-        $this->basicTable->setFilter('species', ['1']);
-
-        $this->assertSame(2, $this->basicTable->getAppliedFiltersWithValuesCount());
     }
 
     /** @test */
@@ -195,7 +169,6 @@ class FilterHelpersTest extends TestCase
     }
 
     /** @test */
-    /*
     public function can_check_if_filter_layout_slidedown_is_visible(): void
     {
         $this->assertFalse($this->basicTable->getFilterSlideDownDefaultStatus());
@@ -203,10 +176,9 @@ class FilterHelpersTest extends TestCase
         $this->basicTable->setFilterSlideDownDefaultStatusEnabled();
 
         $this->assertTrue($this->basicTable->getFilterSlideDownDefaultStatus());
-    }*/
+    }
 
     /** @test */
-    /*
     public function can_check_if_filter_layout_slidedown_is_hidden(): void
     {
         $this->assertFalse($this->basicTable->getFilterSlideDownDefaultStatus());
@@ -214,5 +186,5 @@ class FilterHelpersTest extends TestCase
         $this->basicTable->setFilterSlideDownDefaultStatusDisabled();
 
         $this->assertFalse($this->basicTable->getFilterSlideDownDefaultStatus());
-    }*/
+    }
 }

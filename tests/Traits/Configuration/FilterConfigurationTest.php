@@ -102,7 +102,6 @@ class FilterConfigurationTest extends TestCase
     }
 
     /** @test */
-    /* Not present in this branch
     public function filters_layout_popover_default_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
@@ -122,5 +121,5 @@ class FilterConfigurationTest extends TestCase
         $this->basicTable->setFilterSlideDownDefaultStatus(false);
 
         $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
-    }*/
+    }
 }

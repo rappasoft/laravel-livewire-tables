@@ -14,6 +14,7 @@ trait WithFilters
     public bool $filtersStatus = true;
     public bool $filtersVisibilityStatus = true;
     public bool $filterPillsStatus = true;
+    public bool $filterSlideDownDefaultVisible = false;
     public string $filterLayout = 'popover';
 
     public function filters(): array
