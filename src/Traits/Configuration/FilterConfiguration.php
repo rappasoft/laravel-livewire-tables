@@ -137,4 +137,36 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    /**
+     * @param  bool $status
+     *
+     * @return $this
+     */
+    public function setFilterSlideDownDefaultStatus(bool $status): self
+    {
+        $this->filterSlideDownDefaultVisible = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setFilterSlideDownDefaultStatusDisabled(): self
+    {
+        $this->setFilterSlideDownDefaultStatus(false);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setFilterSlideDownDefaultStatusEnabled(): self
+    {
+        $this->setFilterSlideDownDefaultStatus(true);
+
+        return $this;
+    }
 }
