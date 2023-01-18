@@ -172,6 +172,6 @@ class BulkActionsHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->selectAllIsEnabled());
 
-        $this->assertSame([0. 1, 2, 3, 4], $this->basicTable->getSelected());
+        $this->assertSame([0, 1, 2, 3, 4], $this->basicTable->getSelected());
     }
 }
