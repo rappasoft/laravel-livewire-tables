@@ -131,7 +131,7 @@ trait BulkActionsHelpers
      */
     public function getSelected(): array
     {
-        return array_keys($this->selected, true);
+        return array_keys($this->selected);
     }
 
     /**
