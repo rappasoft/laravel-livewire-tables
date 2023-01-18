@@ -111,4 +111,22 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getBulkSelectionsTdClasses(): string
+    {
+        return $this->bulkSelectionsTdClasses;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setBulkSelectionsTdClasses($classList): self
+    {
+        $this->bulkSelectionsTdClasses = $classList;
+
+        return $this;
+    }
 }
