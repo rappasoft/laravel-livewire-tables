@@ -123,7 +123,9 @@ trait BulkActionsHelpers
      */
     public function setSelected(array $selected): array
     {
-        return $this->selected = array_filter($selected, function($v, $k) { return ($v == true || $v == "true"); }, ARRAY_FILTER_USE_BOTH);
+        return $this->selected = array_filter($selected, function ($v, $k) {
+            return ($v == true || $v == "true");
+        }, ARRAY_FILTER_USE_BOTH);
     }
 
     /**
@@ -131,7 +133,9 @@ trait BulkActionsHelpers
      */
     public function getSelected(): array
     {
-        return array_keys(array_filter($this->selected, function($v, $k) { return ($v == true || $v == "true"); }, ARRAY_FILTER_USE_BOTH));
+        return array_keys(array_filter($this->selected, function ($v, $k) {
+            return ($v == true || $v == "true");
+        }, ARRAY_FILTER_USE_BOTH));
     }
 
     /**
@@ -193,7 +197,6 @@ trait BulkActionsHelpers
      */
     public function setAllVisibleSelected(): void
     {
-
         // Fill the keys for the current page with "true" to indicate that they are selected
         $pageSelected = array_fill_keys((clone $this->baseQuery()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()))->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray(), true);
 
@@ -201,10 +204,11 @@ trait BulkActionsHelpers
         $allSelected = array_merge($this->selected, $pageSelected);
 
         // Remove any false instances
-        $this->selected = array_filter($allSelected, function($v, $k) { return ($v == true || $v == "true"); }, ARRAY_FILTER_USE_BOTH);
+        $this->selected = array_filter($allSelected, function ($v, $k) {
+            return ($v == true || $v == "true");
+        }, ARRAY_FILTER_USE_BOTH);
 
         // Fixing any errant keys
         unset($this->selected["true"]);
-
     }
 }
