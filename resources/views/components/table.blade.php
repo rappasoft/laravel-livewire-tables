@@ -53,7 +53,7 @@
         </table>
     </div>
 @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
-    <div {{ 
+    <div {{
         $attributes->merge($customAttributes['wrapper'])
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
