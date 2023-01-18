@@ -93,7 +93,7 @@ class BulkActionsHelpersTest extends TestCase
 
         $this->basicTable->setSelected([1, 2, 3]);
 
-        $this->assertSame([1, 2, 3], $this->basicTable->getSelected());
+        $this->assertSame([0, 1, 2], $this->basicTable->getSelected());
     }
 
     /** @test */
@@ -160,7 +160,7 @@ class BulkActionsHelpersTest extends TestCase
 
         $this->basicTable->updatedSelectAll();
 
-        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
+        $this->assertSame([0, 1, 2, 3, 4], $this->basicTable->getSelected());
     }
 
     /** @test */
@@ -172,6 +172,6 @@ class BulkActionsHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->selectAllIsEnabled());
 
-        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
+        $this->assertSame([0. 1, 2, 3, 4], $this->basicTable->getSelected());
     }
 }
