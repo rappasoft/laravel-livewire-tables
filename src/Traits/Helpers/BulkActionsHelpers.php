@@ -169,6 +169,11 @@ trait BulkActionsHelpers
     public function updatedSelected(): void
     {
         $this->setSelectAllDisabled();
+        // Remove any false instances
+
+        $this->selected = array_filter($this->selected, function ($v, $k) {
+            return ($v == true || $v == "true");
+        }, ARRAY_FILTER_USE_BOTH);
     }
 
     /**
