@@ -12,7 +12,7 @@ class MultiSelectDropdownFilter extends Filter
 
     public function options(array $options = []): MultiSelectDropdownFilter
     {
-        $this->options = $options;
+        $this->options = $this->firstOption ? ['' => $this->firstOption] + $options : $options;
 
         return $this;
     }
