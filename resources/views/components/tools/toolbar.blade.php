@@ -784,7 +784,7 @@
                             x-on:click="open = !open"
                             class="btn dropdown-toggle d-block w-100 d-md-inline"
                             type="button"
-                            id="columnSelect-{{ $component->getTableName() }}"
+                            wire:key="bulk-actions-dropdown-button-{{ $component->getTableName() }}"
                             aria-haspopup="true"
                             x-bind:aria-expanded="open"
                         >
