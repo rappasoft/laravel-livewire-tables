@@ -734,12 +734,28 @@
 
             @if ($component->showBulkActionsDropdown())
                 <div class="mb-3 mb-md-0">
-                    <div class="dropdown d-block d-md-inline">
-                        <button class="btn dropdown-toggle d-block w-100 d-md-inline" type="button" id="{{ $component->getTableName() }}-bulkActionsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown d-block d-md-inline"
+                         x-data="{ open: false }"
+                         x-on:keydown.escape.stop="open = false"
+                         x-on:mousedown.away="open = false"
+                         wire:key="column-select-button-{{ $component->getTableName() }}"
+                    >
+                        <button
+                            x-on:click="open = !open"
+                            class="btn dropdown-toggle d-block w-100 d-md-inline"
+                            type="button"
+                            id="{{ $component->getTableName() }}-bulkActionsDropdown"
+                            aria-haspopup="true"
+                            x-bind:aria-expanded="open"
+                        >
                             @lang('Bulk Actions')
                         </button>
 
-                        <div class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="{{ $component->getTableName() }}-bulkActionsDropdown">
+                        <div
+                            class="dropdown-menu dropdown-menu-right w-100"
+                            x-bind:class="{'show' : open}"
+                            aria-labelledby="{{ $component->getTableName() }}-bulkActionsDropdown"
+                        >
                             @foreach($component->getBulkActions() as $action => $title)
                                 <a
                                     href="#"
