@@ -63,7 +63,7 @@ public function configure(): void
 
 ### setColumnSelectHiddenOnTablet
 
-Hide column select menu when on tablet
+Hide column select menu when on tablet or mobile
 
 ```php
 public function configure(): void
