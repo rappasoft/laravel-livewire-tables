@@ -63,12 +63,11 @@ public function configure(): void
 
 ### setColumnSelectHiddenOnTablet
 
-Hide column select menu when on tablet or mobile.
+Hide column select menu when on tablet
 
 ```php
 public function configure(): void
 {
-    // Shorthand for $this->setColumnSelectStatus(false)
     $this->setColumnSelectHiddenOnTablet();
 }
 ```
@@ -80,7 +79,6 @@ Hide column select menu when on mobile.
 ```php
 public function configure(): void
 {
-    // Shorthand for $this->setColumnSelectStatus(false)
     $this->setColumnSelectHiddenOnMobile();
 }
 ```

@@ -92,13 +92,14 @@ trait ColumnSelectHelpers
     public function setColumnSelectHiddenOnMobile(): self
     {
         $this->columnSelectHiddenOnMobile = true;
+
         return $this;
     }
 
     /**
      * @return bool
      */
-    protected function getColumnSelectIsHiddenOnTablet(): bool
+    public function getColumnSelectIsHiddenOnTablet(): bool
     {
         return $this->columnSelectHiddenOnTablet;
     }
@@ -116,7 +117,7 @@ trait ColumnSelectHelpers
     /**
      * @return bool
      */
-    protected function getColumnSelectIsHiddenOnMobile(): bool
+    public function getColumnSelectIsHiddenOnMobile(): bool
     {
         return $this->columnSelectHiddenOnMobile;
     }

@@ -51,23 +51,4 @@ class ColumnSelectConfigurationTest extends TestCase
     }
 
 
-    /** @test */
-    public function can_set_column_select_hidden_on_mobile_status(): void
-    {
-        $this->assertFalse($this->basicTable->getColumnSelectIsHiddenOnMobile());
-
-        $this->basicTable->setColumnSelectHiddenOnMobile();
-
-        $this->assertTrue($this->basicTable->getColumnSelectIsHiddenOnMobile());
-    }
-
-    /** @test */
-    public function can_set_column_select_hidden_on_tablet_status(): void
-    {
-        $this->assertFalse($this->basicTable->getColumnSelectIsHiddenOnTablet());
-
-        $this->basicTable->setColumnSelectHiddenOnTablet();
-
-        $this->assertTrue($this->basicTable->getColumnSelectIsHiddenOnTablet());
-    }
 }
