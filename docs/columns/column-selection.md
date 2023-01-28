@@ -61,6 +61,31 @@ public function configure(): void
 }
 ```
 
+### setColumnSelectHiddenOnTablet
+
+Hide column select menu when on tablet or mobile.
+
+```php
+public function configure(): void
+{
+    // Shorthand for $this->setColumnSelectStatus(false)
+    $this->setColumnSelectHiddenOnTablet();
+}
+```
+
+### setColumnSelectHiddenOnMobile
+
+Hide column select menu when on mobile.
+
+```php
+public function configure(): void
+{
+    // Shorthand for $this->setColumnSelectStatus(false)
+    $this->setColumnSelectHiddenOnMobile();
+}
+```
+
+
 ### setRememberColumnSelectionStatus
 
 **Enabled by default**, whether or not to remember the users column select choices.

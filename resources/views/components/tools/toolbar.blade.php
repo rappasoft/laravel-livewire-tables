@@ -206,7 +206,7 @@
             @endif
 
             @if ($component->columnSelectIsEnabled())
-                <div class="mb-4 w-full md:w-auto md:mb-0 md:ml-2">
+                <div class="@if ($component->getColumnSelectIsHiddenOnMobile()) hidden md:block @elseif ($component->getColumnSelectIsHiddenOnTablet()) hidden lg:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
                     <div
                         x-data="{ open: false }"
                         @keydown.window.escape="open = false"

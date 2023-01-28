@@ -13,6 +13,8 @@ trait WithColumnSelect
     public array $selectedColumns = [];
     protected bool $columnSelectStatus = true;
     protected bool $rememberColumnSelectionStatus = true;
+    protected bool $columnSelectHiddenOnMobile = false;
+    protected bool $columnSelectHiddenOnTablet = false;
 
     public function setupColumnSelect(): void
     {
