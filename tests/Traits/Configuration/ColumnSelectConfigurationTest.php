@@ -49,6 +49,4 @@ class ColumnSelectConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->getRememberColumnSelectionStatus());
     }
-
-
 }

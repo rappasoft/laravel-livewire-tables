@@ -85,7 +85,6 @@ trait ColumnSelectHelpers
         return $this->getDataTableFingerprint().'-columnSelectEnabled';
     }
 
-
     /**
      * @return $this
      */
@@ -110,8 +109,8 @@ trait ColumnSelectHelpers
     public function setColumnSelectHiddenOnTablet(): self
     {
         $this->columnSelectHiddenOnTablet = true;
-        return $this;
 
+        return $this;
     }
 
     /**

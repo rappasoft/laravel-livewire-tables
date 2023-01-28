@@ -34,7 +34,6 @@ class ColumnSelectHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->rememberColumnSelectionIsEnabled());
     }
 
-
     /** @test */
     public function can_set_column_select_hidden_on_mobile_status(): void
     {
@@ -47,7 +46,6 @@ class ColumnSelectHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->getColumnSelectIsHiddenOnMobile());
 
         $this->assertFalse($this->basicTable->getColumnSelectIsHiddenOnTablet());
-
     }
 
     /** @test */
@@ -62,7 +60,5 @@ class ColumnSelectHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->getColumnSelectIsHiddenOnMobile());
 
         $this->assertTrue($this->basicTable->getColumnSelectIsHiddenOnTablet());
-
-
     }
 }
