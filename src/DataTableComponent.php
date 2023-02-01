@@ -68,7 +68,7 @@ abstract class DataTableComponent extends Component
             'filters' => $this->{$this->tableName}['filters'] ?? [],
             'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];
-        
+
         // Set the filter defaults based on the filter type
         $this->setFilterDefaults();
     }
@@ -122,7 +122,18 @@ abstract class DataTableComponent extends Component
     {
         return 'livewire-tables::stubs.custom';
     }
-    
+
+
+    /**
+     * The view to add any html before the table
+     *
+     * @return string
+     */
+    public function customViewPrepend(): string
+    {
+        return 'livewire-tables::stubs.custom-prepend';
+    }
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -139,6 +150,7 @@ abstract class DataTableComponent extends Component
                 'columns' => $this->getColumns(),
                 'rows' => $this->getRows(),
                 'customView' => $this->customView(),
+                'customViewPrepend' => $this->customViewPrepend(),
             ]);
     }
 }

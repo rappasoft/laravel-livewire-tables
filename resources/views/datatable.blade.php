@@ -1,4 +1,7 @@
 <x-livewire-tables::wrapper :component="$this">
+    @isset($customViewPrepend)
+        @include($customViewPrepend)
+    @endisset
     <x-livewire-tables::tools>
         <x-livewire-tables::tools.sorting-pills />
         <x-livewire-tables::tools.filter-pills />
