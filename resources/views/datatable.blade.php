@@ -1,4 +1,9 @@
 <x-livewire-tables::wrapper :component="$this">
+
+    @if ($component->hasConfigurableAreaFor('before-tools'))
+        @include($component->getConfigurableAreaFor('before-tools'), $component->getParametersForConfigurableArea('before-tools'))
+    @endif
+
     <x-livewire-tables::tools>
         <x-livewire-tables::tools.sorting-pills />
         <x-livewire-tables::tools.filter-pills />
