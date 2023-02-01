@@ -3,7 +3,7 @@ title: Relationships
 weight: 2
 ---
 
-Out of the box the columns support `hasOne` and `belongsTo` relationships for display, sorting, and searching. The component will automatically join the necessary tables.
+Out of the box the columns support `hasOne`, `belongsTo`, and `MorphOne` relationships for display, sorting, and searching. The component will automatically join the necessary tables.
 
 To call these relationships, just use the relationship dot-notation string as the field name:
 
