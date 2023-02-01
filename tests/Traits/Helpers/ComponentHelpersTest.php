@@ -167,6 +167,7 @@ class ComponentHelpersTest extends TestCase
     public function can_get_configurable_areas(): void
     {
         $this->assertEquals([
+            'before-tools' => null,
             'toolbar-left-start' => null,
             'toolbar-left-end' => null,
             'toolbar-right-start' => null,

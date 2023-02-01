@@ -5,6 +5,10 @@
     $theme = $component->getTheme();
 @endphp
 
+@if ($component->hasConfigurableAreaFor('before-tools'))
+    @include($component->getConfigurableAreaFor('before-tools'), $component->getParametersForConfigurableArea('before-tools'))
+@endif
+
  <div
     {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
 

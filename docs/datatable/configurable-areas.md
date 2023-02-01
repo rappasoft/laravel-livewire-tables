@@ -15,6 +15,7 @@ You can use the `setConfigurableAreas` method to set the areas that you want to 
 public function configure(): void
 {
   $this->setConfigurableAreas([
+    'before-tools' => 'path.to.my.view',
     'toolbar-left-start' => 'path.to.my.view',
     'toolbar-left-end' => 'path.to.my.view',
     'toolbar-right-start' => 'path.to.my.view',
