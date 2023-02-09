@@ -35,6 +35,6 @@
                     ])
                     ->class(['d-sm-none' => !$hasCollapseOnAllColumn && ($component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet())])
             }}
-        >Test</th>
+        ></th>
     @endif
 @endif
