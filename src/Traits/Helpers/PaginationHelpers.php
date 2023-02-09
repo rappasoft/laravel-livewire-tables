@@ -133,4 +133,14 @@ trait PaginationHelpers
     {
         return $this->getPerPageVisibilityStatus() === false;
     }
+
+    /**
+     * @param  string  $paginationMethod
+     *
+     * @return bool
+     */
+    public function isPaginationMethod(string $paginationMethod): bool
+    {
+        return $this->paginationMethod === $paginationMethod;
+    }
 }

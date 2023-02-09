@@ -75,13 +75,13 @@
                             @endif
                         >
                             @lang('Filters')
-            
+
                             @if ($count = $component->getFilterBadgeCount())
                                 <span class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900">
                                     {{ $count }}
                                 </span>
                             @endif
-            
+
                             <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -89,7 +89,7 @@
                             </svg>
                         </button>
                     </div>
-            
+
                     @if ($component->isFilterLayoutPopover())
                         <div
                             x-cloak
@@ -113,7 +113,7 @@
                                                 class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
                                                 {{ $filter->getName() }}
                                             </label>
-                
+
                                             {{ $filter->render($component) }}
                                         </div>
                                     </div>
@@ -225,14 +225,14 @@
                                     aria-expanded="true"
                                 >
                                     @lang('Columns')
-            
+
                                     <svg class="-mr-1 ml-2 w-5 h-5" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
                             </span>
                         </div>
-            
+
                         <div
                             x-cloak
                             x-show="open"
@@ -413,13 +413,13 @@
                                 @endif
                             >
                                 @lang('Filters')
-                
+
                                 @if ($count = $component->getFilterBadgeCount())
                                     <span class="badge badge-info">
                                         {{ $count }}
                                     </span>
                                 @endif
-                
+
                                 <span class="caret"></span>
                             </button>
                         </div>
@@ -675,13 +675,13 @@
                                 @endif
                             >
                                 @lang('Filters')
-                
+
                                 @if ($count = $component->getFilterBadgeCount())
                                     <span class="badge bg-info">
                                         {{ $count }}
                                     </span>
                                 @endif
-                
+
                                 <span class="caret"></span>
                             </button>
                         </div>
@@ -780,41 +780,45 @@
                             x-bind:class="{'show' : open}"
                             aria-labelledby="columnSelect-{{ $component->getTableName() }}"
                         >
-                            <div>
+                            <div class="form-check ms-2">
+                                <input
+                                    @if($component->allDefaultVisibleColumnsAreSelected())
+                                        checked
+                                    wire:click="deselectAllColumns"
+                                    @else
+                                        unchecked
+                                    wire:click="selectAllColumns"
+                                    @endif
+                                    wire:loading.attr="disabled"
+                                    type="checkbox"
+                                    class="form-check-input"
+                                />
                                 <label
                                     wire:loading.attr="disabled"
-                                    class="px-2 mb-1"
+                                    class="form-check-label"
                                 >
-                                    <input
-                                        @if($component->allDefaultVisibleColumnsAreSelected())
-                                            checked
-                                            wire:click="deselectAllColumns"
-                                        @else
-                                            unchecked
-                                            wire:click="selectAllColumns"
-                                        @endif
-                                        wire:loading.attr="disabled"
-                                        type="checkbox"
-                                    />
-                                    <span class="ml-2">{{ __('All Columns') }}</span>
+                                    {{ __('All Columns') }}
                                 </label>
                             </div>
                             @foreach($component->getColumns() as $column)
                                 @if ($column->isVisible() && $column->isSelectable())
-                                    <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}">
+                                    <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}"
+                                         class="form-check ms-2"
+                                    >
+                                        <input
+                                            wire:model="selectedColumns"
+                                            wire:target="selectedColumns"
+                                            wire:loading.attr="disabled"
+                                            type="checkbox"
+                                            class="form-check-input"
+                                            value="{{ $column->getSlug() }}"
+                                        />
                                         <label
                                             wire:loading.attr="disabled"
                                             wire:target="selectedColumns"
-                                            class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}"
-                                        >
-                                            <input
-                                                wire:model="selectedColumns"
-                                                wire:target="selectedColumns"
-                                                wire:loading.attr="disabled"
-                                                type="checkbox"
-                                                value="{{ $column->getSlug() }}"
-                                            />
-                                            <span class="ml-2">{{ $column->getTitle() }}</span>
+                                            class="{{ $loop->last ? 'mb-0' : 'mb-1' }} form-check-label"
+                                        >{{ $column->getTitle() }}</label>
+
                                         </label>
                                     </div>
                                 @endif
@@ -829,7 +833,7 @@
                     <select
                         wire:model="perPage"
                         id="perPage"
-                        class="form-control"
+                        class="form-select"
                     >
                         @foreach ($component->getPerPageAccepted() as $item)
                             <option value="{{ $item }}" wire:key="per-page-{{ $item }}-{{ $component->getTableName() }}">{{ $item === -1 ? __('All') : $item }}</option>
@@ -839,7 +843,7 @@
             @endif
 
             @if ($component->hasConfigurableAreaFor('toolbar-right-end'))
-                @include($component->getConfigurableAreaFor('toolbar-right-end'), $component->getParametersForConfigurableArea('toolbar-righ-end'))
+                @include($component->getConfigurableAreaFor('toolbar-right-end'), $component->getParametersForConfigurableArea('toolbar-right-end'))
             @endif
         </div>
     </div>

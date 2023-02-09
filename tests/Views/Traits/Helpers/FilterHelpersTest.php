@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
@@ -54,8 +55,24 @@ class FilterHelpersTest extends TestCase
         $this->assertSame([], $filter->getKeys());
 
         $filter->options(['foo' => 'bar']);
-        
+
         $this->assertSame(['foo'], $filter->getKeys());
+    }
+
+    /** @test */
+    public function can_get_nested_filter_keys(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $this->assertSame([], $filter->getKeys());
+
+        $filter->options(['foo' => ['bar' => 'baz']]);
+
+        $this->assertSame(['bar'], $filter->getKeys());
+
+        $filter->options(['foo' => collect(['bar' => 'baz'])]);
+
+        $this->assertSame(['bar'], $filter->getKeys());
     }
 
     /** @test */
@@ -66,6 +83,10 @@ class FilterHelpersTest extends TestCase
         $this->assertNull($filter->getDefaultValue());
 
         $filter = MultiSelectFilter::make('Active');
+
+        $this->assertSame([], $filter->getDefaultValue());
+
+        $filter = MultiSelectDropdownFilter::make('Active');
 
         $this->assertSame([], $filter->getDefaultValue());
     }
@@ -112,6 +133,21 @@ class FilterHelpersTest extends TestCase
             ->setFilterPillValues(['foo' => 'baz']);
 
         $this->assertSame('baz', $filter->getFilterPillValue('foo'));
+    }
+
+    /** @test */
+    public function can_get_nested_filter_pill_value(): void
+    {
+        $filter = SelectFilter::make('Active')
+            ->options(['foo' => ['bar' => 'baz']]);
+
+        $this->assertSame('baz', $filter->getFilterPillValue('bar'));
+
+        $filter = SelectFilter::make('Active')
+            ->options(['foo' => ['bar' => 'baz']])
+            ->setFilterPillValues(['bar' => 'etc']);
+
+        $this->assertSame('etc', $filter->getFilterPillValue('bar'));
     }
 
     /** @test */

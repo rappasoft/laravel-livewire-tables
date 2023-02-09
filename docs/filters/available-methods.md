@@ -158,6 +158,31 @@ public function configure(): void
 }
 ```
 
+### setFilterSlideDownDefaultStatusEnabled
+
+Set the filter slide down to visible by default
+
+```php
+public function configure(): void
+{
+    // Shorthand for $this->setFilterSlideDownDefaultStatus(true)
+    $this->setFilterSlideDownDefaultStatusEnabled();
+}
+```
+
+### setFilterSlideDownDefaultStatusDisabled
+
+Set the filter slide down to collapsed by default
+
+```php
+public function configure(): void
+{
+    // Shorthand for $this->setFilterSlideDownDefaultStatus(false)
+    $this->setFilterSlideDownDefaultStatusDisabled();
+}
+```
+
+
 ----
 
 ## Filter Methods

@@ -24,9 +24,10 @@ class SelectFilter extends Filter
     public function getKeys(): array
     {
         return collect($this->getOptions())
-            ->keys()
+            ->map(fn ($value, $key) => is_iterable($value) ? collect($value)->keys() : $key)
+            ->flatten()
             ->map(fn ($value) => (string)$value)
-            ->filter(fn ($value) => strlen($value))
+            ->filter(fn ($value) => strlen($value) > 0)
             ->values()
             ->toArray();
     }
@@ -42,7 +43,10 @@ class SelectFilter extends Filter
 
     public function getFilterPillValue($value): ?string
     {
-        return $this->getCustomFilterPillValue($value) ?? $this->getOptions()[$value] ?? null;
+        return $this->getCustomFilterPillValue($value)
+            ?? collect($this->getOptions())
+                ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$value]
+            ?? null;
     }
 
     public function isEmpty($value): bool

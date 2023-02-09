@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 class PetsTable extends DataTableComponent
@@ -56,6 +58,18 @@ class PetsTable extends DataTableComponent
                 ->filter(function (Builder $builder, array $values) {
                     return $builder->whereIn('breed_id', $values);
                 }),
+            MultiSelectDropdownFilter::make('Species')
+            ->options(
+                Species::query()
+                    ->orderBy('name')
+                    ->get()
+                    ->keyBy('id')
+                    ->map(fn ($species) => $species->name)
+                    ->toArray()
+            )
+            ->filter(function (Builder $builder, array $values) {
+                return $builder->whereIn('species_id', $values);
+            }),
         ];
     }
 }

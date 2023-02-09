@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 trait FilterHelpers
@@ -36,6 +37,21 @@ trait FilterHelpers
     public function filtersVisibilityIsDisabled(): bool
     {
         return $this->getFiltersVisibilityStatus() === false;
+    }
+
+    public function getFilterSlideDownDefaultStatus(): bool
+    {
+        return $this->filterSlideDownDefaultVisible;
+    }
+
+    public function filtersSlideDownIsDefaultVisible(): bool
+    {
+        return $this->getFilterSlideDownDefaultStatus() === true;
+    }
+
+    public function filtersSlideDownIsDefaultHidden(): bool
+    {
+        return $this->getFilterSlideDownDefaultStatus() === false;
     }
 
     public function getFilterPillsStatus(): bool
@@ -91,7 +107,7 @@ trait FilterHelpers
     {
         $filter = $this->getFilterByKey($filterKey);
 
-        if (! $filter instanceof MultiSelectFilter) {
+        if (! $filter instanceof MultiSelectFilter && ! $filter instanceof MultiSelectDropdownFilter) {
             return;
         }
 
@@ -115,7 +131,13 @@ trait FilterHelpers
 
     public function getAppliedFilters(): array
     {
-        return $this->{$this->getTableName()}['filters'] ?? [];
+        $validFilterKeys = $this->getFilters()
+            ->map(fn (Filter $filter) => $filter->getKey())
+            ->toArray();
+
+        return collect($this->{$this->getTableName()}['filters'] ?? [])
+            ->filter(fn ($value, $key) => in_array($key, $validFilterKeys, true))
+            ->toArray();
     }
 
     public function hasAppliedFiltersWithValues(): bool
@@ -169,7 +191,7 @@ trait FilterHelpers
         if (! $filter instanceof Filter) {
             $filter = $this->getFilterByKey($filter);
         }
-        
+
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
     }
 

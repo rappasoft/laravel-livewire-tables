@@ -38,6 +38,39 @@ public function filters(): array
 
 You should supply the first option as the default value. I.e. nothing selected, so the filter is not applied. This value should be an empty string. When this value is selected, the filter will be removed from the query and the query string.
 
+### Option Groups
+
+To use `<optgroup>` elements, pass a nested array of options to the select filter.
+
+```php
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+
+public function filters(): array
+{
+    return [
+        SelectFilter::make('Active')
+            ->options([
+                '' => 'All',
+                'Open' => [
+                    1 => 'Type A',
+                    2 => 'Type B',
+                    3 => 'Type C',
+                ],
+                'Closed' => [
+                    24 => 'Type X',
+                    25 => 'Type Y',
+                    26 => 'Type Z',
+                ],
+            ])
+            ->setFirstOption('All Tags'),
+    ];
+}
+```
+To set a defualt "All" option at the start of the dropdown, you can do so by utilising the 
+```
+->SetFirstOption('NAME')
+```
+
 ## Multi-select Filters
 
 Multi-select filters are a list of checkboxes. The user can select multiple options from the list. There is also an 'All' option that will select all values.
@@ -57,6 +90,30 @@ public function filters(): array
                     ->map(fn($tag) => $tag->name)
                     ->toArray()
             ),
+    ];
+}
+```
+
+## Multi-select dropdown Filters
+
+Multi-select dropdown filters are a simple dropdown list. The user can select multiple options from the list. There is also an 'All' option that will select all values
+
+```php
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+
+public function filters(): array
+{
+    return [
+        SelectFilter::make('Tags')
+            ->options(
+                Tag::query()
+                    ->orderBy('name')
+                    ->get()
+                    ->keyBy('id')
+                    ->map(fn($tag) => $tag->name)
+                    ->toArray()
+            )
+            ->setFirstOption('All Tags'),
     ];
 }
 ```
