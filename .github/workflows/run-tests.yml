@@ -13,7 +13,7 @@ jobs:
         laravel: [9.*, 10.*]
         stability: [prefer-stable]
         exclude:
-          - laravel: ^10
+          - laravel: 10.*
             php: 8.0
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
