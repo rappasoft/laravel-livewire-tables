@@ -2,9 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Events;
 
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use JohnDoe\BlogPackage\Models\Post;
+use Illuminate\Queue\SerializesModels;
 
 class ColumnsSelected
 {
@@ -18,6 +17,4 @@ class ColumnsSelected
         $this->key = $key;
         $this->columns = $columns;
     }
-    
-
 }
