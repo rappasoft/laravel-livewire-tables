@@ -4,6 +4,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.11.0] - 2023-02-XX
+
+### Added
+
+- Support for Laravel 10 - https://github.com/rappasoft/laravel-livewire-tables/pull/1049
+
 ## [2.10.0] - 2023-01-16
 
 ### Added
@@ -719,7 +725,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.10.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.11.0...development
+[2.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.10.0...v2.11.0
 [2.10.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.9.0...v2.10.0
 [2.9.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.8.0...v2.9.0
 [2.8.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.7.0...v2.8.0
