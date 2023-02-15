@@ -14,6 +14,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 
 - Corrected issue in filter docs - https://github.com/rappasoft/laravel-livewire-tables/pull/1048
+- Fixed filter pill values for option groups - https://github.com/rappasoft/laravel-livewire-tables/pull/1044
 
 ## [2.10.0] - 2023-01-16
 
