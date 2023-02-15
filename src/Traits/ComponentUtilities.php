@@ -37,6 +37,7 @@ trait ComponentUtilities
     protected array $additionalSelects = [];
     protected bool $hideConfigurableAreasWhenReorderingStatus = true;
     protected array $configurableAreas = [
+        'before-tools' => null,
         'toolbar-left-start' => null,
         'toolbar-left-end' => null,
         'toolbar-right-start' => null,
