@@ -9,6 +9,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Added
 
 - Support for Laravel 10 - https://github.com/rappasoft/laravel-livewire-tables/pull/1049
+- Trigger events when changing selected columns - https://github.com/rappasoft/laravel-livewire-tables/pull/1046
+
+### Changed
+
+- Corrected issue in filter docs - https://github.com/rappasoft/laravel-livewire-tables/pull/1048
 
 ## [2.10.0] - 2023-01-16
 
