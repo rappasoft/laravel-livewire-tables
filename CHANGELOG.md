@@ -11,6 +11,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Support for Laravel 10 - https://github.com/rappasoft/laravel-livewire-tables/pull/1049
 - Trigger events when changing selected columns - https://github.com/rappasoft/laravel-livewire-tables/pull/1046
 - Added before-tools configurable area - https://github.com/rappasoft/laravel-livewire-tables/pull/1037
+- Added support to hide column select on tablet or mobile - https://github.com/rappasoft/laravel-livewire-tables/pull/1031
 
 ### Changed
 
