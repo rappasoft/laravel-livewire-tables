@@ -68,7 +68,10 @@ class MultiSelectDropdownFilter extends Filter
         $values = [];
 
         foreach ($value as $item) {
-            $found = $this->getCustomFilterPillValue($item) ?? $this->getOptions()[$item] ?? null;
+            $found = $this->getCustomFilterPillValue($item)
+                        ?? collect($this->getOptions())
+                            ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$item]
+                        ?? null;
 
             if ($found) {
                 $values[] = $found;

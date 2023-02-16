@@ -4,6 +4,20 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.11.0] - 2023-02-16
+
+### Added
+
+- Support for Laravel 10 - https://github.com/rappasoft/laravel-livewire-tables/pull/1049
+- Trigger events when changing selected columns - https://github.com/rappasoft/laravel-livewire-tables/pull/1046
+- Added before-tools configurable area - https://github.com/rappasoft/laravel-livewire-tables/pull/1037
+- Added support to hide column select on tablet or mobile - https://github.com/rappasoft/laravel-livewire-tables/pull/1031
+
+### Changed
+
+- Corrected issue in filter docs - https://github.com/rappasoft/laravel-livewire-tables/pull/1048
+- Fixed filter pill values for option groups - https://github.com/rappasoft/laravel-livewire-tables/pull/1044
+
 ## [2.10.0] - 2023-01-16
 
 ### Added
@@ -719,7 +733,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.10.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.11.0...development
+[2.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.10.0...v2.11.0
 [2.10.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.9.0...v2.10.0
 [2.9.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.8.0...v2.9.0
 [2.8.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.7.0...v2.8.0
