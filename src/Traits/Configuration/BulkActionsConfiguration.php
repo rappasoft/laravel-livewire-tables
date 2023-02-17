@@ -125,4 +125,28 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+        /**
+     * @param array $attributes
+     *
+     * @return self
+     */
+    public function setBulkSelectionsContainerAttributes(array $attributes): self
+    {
+        $this->bulkSelectionsContainerAttributes = $attributes;
+
+        return $this;
+    }
+
+        /**
+     * @param array $attributes
+     *
+     * @return self
+     */
+    public function setBulkSelectionsInputAttributes(array $attributes): self
+    {
+        $this->bulkSelectionsInputAttributes = $attributes;
+
+        return $this;
+    }
 }
