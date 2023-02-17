@@ -4,18 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait BulkActionsConfiguration
 {
-    
-    /**
-     * @param array $attributes
-     *
-     * @return self
-     */
-    public function setBulkSelectionsTdAttributes(array $attributes): self
-    {
-        $this->bulkSelectionsTdAttributes = $attributes;
-
-        return $this;
-    }
 
     /**
      * @param  array  $bulkActions
@@ -121,6 +109,19 @@ trait BulkActionsConfiguration
     public function setHideBulkActionsWhenEmptyDisabled(): self
     {
         $this->setHideBulkActionsWhenEmptyStatus(false);
+
+        return $this;
+    }
+    
+        
+    /**
+     * @param array $attributes
+     *
+     * @return self
+     */
+    public function setBulkSelectionsTdAttributes(array $attributes): self
+    {
+        $this->bulkSelectionsTdAttributes = $attributes;
 
         return $this;
     }
