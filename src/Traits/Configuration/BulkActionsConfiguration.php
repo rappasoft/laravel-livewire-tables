@@ -4,8 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait BulkActionsConfiguration
 {
-    
-     /**
+    /**
     * @param mixed $attributes
     *
     * @return self
@@ -44,6 +43,7 @@ trait BulkActionsConfiguration
     {
         return $this->bulkSelectionsTdAttributes;
     }
+
     /**
      * @param  array  $bulkActions
      *
