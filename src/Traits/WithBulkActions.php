@@ -9,12 +9,14 @@ trait WithBulkActions
 {
     use BulkActionsConfiguration,
         BulkActionsHelpers;
-
+    
     public bool $bulkActionsStatus = true;
     public bool $selectAll = false;
     public array $bulkActions = [];
     public array $selected = [];
     public bool $hideBulkActionsWhenEmpty = false;
+    public string $bulkSelectionsTdAttributes = "";
+    public string $bulkSelectionsTheadAttributes = "";
 
     public function bulkActions(): array
     {
