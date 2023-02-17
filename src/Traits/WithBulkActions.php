@@ -15,8 +15,7 @@ trait WithBulkActions
     public array $bulkActions = [];
     public array $selected = [];
     public bool $hideBulkActionsWhenEmpty = false;
-    public string $bulkSelectionsTdAttributes = "";
-    public string $bulkSelectionsTheadAttributes = "";
+    public array $bulkSelectionsTdAttributes = [];
 
     public function bulkActions(): array
     {
