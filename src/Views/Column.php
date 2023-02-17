@@ -46,6 +46,7 @@ class Column
     protected bool $eagerLoadRelations = false;
     protected $formatCallback;
     protected bool $html = false;
+    protected bool $numeric = false;
     protected $labelCallback;
     protected bool $hidden = false;
     protected bool $selectable = true;
