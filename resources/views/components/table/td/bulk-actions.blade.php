@@ -1,17 +1,14 @@
-@aware(['component', 'row', 'rowIndex'])
+@aware(['component'])
 @props(['row'])
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
     @php
         $theme = $component->getTheme();
-        $attributes = $attributes->merge(['wire:key' => 'cell-' . $rowIndex . '-0-' . $component->id]);
-        $theme = $component->getTheme();
-        $customAttributes['bulkactions'] = $this->getBulkSelectionsTdAttributes();
+        $customAttributes = $this->getBulkSelectionsTdAttributes();
     @endphp
 
     @if ($theme === 'tailwind')
-        <x-livewire-tables::table.td.plain
-            {{ $attributes->merge($customAttributes['bulkactions'])->class(['' => $customAttributes['bulkactions']['default'] ?? true])->except('default') }}>
+        <x-livewire-tables::table.td.plain :customAttributes=$customAttributes>
             <div class="inline-flex rounded-md shadow-sm">
                 <input wire:model="selected" wire:loading.attr.delay="disabled"
                     value="{{ $row->{$this->getPrimaryKey()} }}" type="checkbox"
@@ -19,16 +16,12 @@
             </div>
         </x-livewire-tables::table.td.plain>
     @elseif ($theme === 'bootstrap-4')
-        <x-livewire-tables::table.td.plain
-            {{ $attributes->merge($customAttributes['bulkactions'])->class(['' => $customAttributes['bulkactions']['default'] ?? true])->except('default') }}>
-
+        <x-livewire-tables::table.td.plain :customAttributes=$customAttributes>
             <input wire:model="selected" wire:loading.attr.delay="disabled" value="{{ $row->{$this->getPrimaryKey()} }}"
                 type="checkbox" />
         </x-livewire-tables::table.td.plain>
     @elseif ($theme === 'bootstrap-5')
-        <x-livewire-tables::table.td.plain
-            {{ $attributes->merge($customAttributes['bulkactions'])->class(['' => $customAttributes['bulkactions']['default'] ?? true])->except('default') }}>
-
+        <x-livewire-tables::table.td.plain :customAttributes=$customAttributes>
             <div class="form-check">
                 <input wire:model="selected" wire:loading.attr.delay="disabled"
                     value="{{ $row->{$this->getPrimaryKey()} }}" type="checkbox" class="form-check-input" />
