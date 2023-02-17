@@ -4,12 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait BulkActionsConfiguration
 {
-
     /**
-     * @param  array  $bulkActions
-     *
-     * @return $this
-     */
+    * @param  array  $bulkActions
+    *
+    * @return $this
+    */
     public function setBulkActions(array $bulkActions): self
     {
         $this->bulkActions = $bulkActions;
@@ -112,8 +111,7 @@ trait BulkActionsConfiguration
 
         return $this;
     }
-    
-        
+
     /**
      * @param array $attributes
      *
@@ -121,31 +119,31 @@ trait BulkActionsConfiguration
      */
     public function setBulkSelectionsTdAttributes(array $attributes): self
     {
-        $this->bulkSelectionsTdAttributes = $attributes;
+        $this->bulkSelectionsTdAttributes =  (isset($attributes['default'])) ? $attributes : array_merge($attributes, ['default' => false]);
 
         return $this;
     }
 
-        /**
+    /**
      * @param array $attributes
      *
      * @return self
      */
     public function setBulkSelectionsContainerAttributes(array $attributes): self
     {
-        $this->bulkSelectionsContainerAttributes = $attributes;
+        $this->bulkSelectionsContainerAttributes = (isset($attributes['default'])) ? $attributes : array_merge($attributes, ['default' => false]);
 
         return $this;
     }
 
-        /**
+    /**
      * @param array $attributes
      *
      * @return self
      */
     public function setBulkSelectionsInputAttributes(array $attributes): self
     {
-        $this->bulkSelectionsInputAttributes = $attributes;
+        $this->bulkSelectionsInputAttributes = (isset($attributes['default'])) ? $attributes : array_merge($attributes, ['default' => false]);
 
         return $this;
     }
