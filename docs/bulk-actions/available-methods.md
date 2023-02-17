@@ -133,3 +133,36 @@ public function configure(): void
     $this->setHideBulkActionsWhenEmptyDisabled();
 }
 ```
+
+## setBulkSelectionsTdAttributes
+
+Customise the attributes for the Column containing the Bulk Actions select boxes.  By default, this replaces the default classes on this Column, if you would like to keep them, set the default flag to true.
+
+```php
+public function configure(): void
+{
+    $this->setBulkSelectionsTdAttributes(['class' => 'p-8', 'default' => true])
+}
+```
+
+## setBulkSelectionsContainerAttributes
+
+Customise the attributes for the div/container within the Column that contains the Bulk Actions select boxes.  By default, this replaces the default classes on this container, if you would like to keep them, set the default flag to true.
+
+```php
+public function configure(): void
+{
+    $this->setBulkSelectionsContainerAttributes(['class' => 'p-8', 'default' => true])
+}
+```
+
+## setBulkSelectionsInputAttributes
+
+Customise the attributes for the Bulk Actions select boxes.  By default, this replaces the default classes on this checkbox, if you would like to keep them, set the default flag to true.
+
+```php
+public function configure(): void
+{
+    $this->setBulkSelectionsInputAttributes(['class' => 'p-8', 'default' => true])
+}
+```

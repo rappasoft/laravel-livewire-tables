@@ -9,7 +9,7 @@ trait WithBulkActions
 {
     use BulkActionsConfiguration,
         BulkActionsHelpers;
-    
+
     public bool $bulkActionsStatus = true;
     public bool $selectAll = false;
     public array $bulkActions = [];
@@ -18,7 +18,7 @@ trait WithBulkActions
     public array $bulkSelectionsTdAttributes = [];
     public array $bulkSelectionsContainerAttributes = [];
     public array $bulkSelectionsInputAttributes = [];
-    
+
     public function bulkActions(): array
     {
         if (property_exists($this, 'bulkActions')) {
