@@ -4,11 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait BulkActionsConfiguration
 {
-     /**
-     * @param  array  $bulkActions
-     *
-     * @return $this
-     */
+    /**
+    * @param  array  $bulkActions
+    *
+    * @return $this
+    */
     public function setBulkActions(array $bulkActions): self
     {
         $this->bulkActions = $bulkActions;
