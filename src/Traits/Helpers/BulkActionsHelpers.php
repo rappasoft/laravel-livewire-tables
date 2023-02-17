@@ -187,4 +187,12 @@ trait BulkActionsHelpers
         $this->setSelectAllEnabled();
         $this->setSelected((clone $this->baseQuery())->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray());
     }
+    
+     /**
+     * Get custom attributes for the Bulk Selections column
+     */
+    public function getBulkSelectionsTdAttributes(): array
+    {
+        return $this->bulkSelectionsTdAttributes;
+    }
 }
