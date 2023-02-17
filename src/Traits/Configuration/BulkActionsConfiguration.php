@@ -119,7 +119,7 @@ trait BulkActionsConfiguration
      */
     public function setBulkSelectionsTdAttributes(array $attributes): self
     {
-        $this->bulkSelectionsTdAttributes =  (isset($attributes['default'])) ? $attributes : array_merge($attributes, ['default' => false]);
+        $this->bulkSelectionsTdAttributes = (isset($attributes['default'])) ? $attributes : array_merge($attributes, ['default' => false]);
 
         return $this;
     }
