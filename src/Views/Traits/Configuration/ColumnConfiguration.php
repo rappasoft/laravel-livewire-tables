@@ -80,16 +80,6 @@ trait ColumnConfiguration
 
         return $this;
     }
-    
-    /**
-     * @return $this
-     */
-    public function numeric(): self
-    {
-        $this->numeric = true;
-
-        return $this;
-    }
 
     /**
      * @param  string  $table

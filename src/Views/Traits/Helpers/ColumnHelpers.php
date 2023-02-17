@@ -373,14 +373,6 @@ trait ColumnHelpers
     {
         return $this->html === true;
     }
-    
-    /**
-     * @return bool
-     */
-    public function isNumeric(): bool
-    {
-        return $this->numeric === true;
-    }
 
     // TODO
     public function view($view): self
@@ -548,7 +540,7 @@ trait ColumnHelpers
             if (is_bool($attributes[$key])) {
                 return $attributes[$key] ? $key : '';
             }
-            
+
             return $key . '="' . $attributes[$key] . '"';
         }, array_keys($attributes)));
     }
