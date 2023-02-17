@@ -4,6 +4,46 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait BulkActionsConfiguration
 {
+    
+     /**
+    * @param mixed $attributes
+    *
+    * @return self
+    */
+    public function setBulkSelectionsTheadAttributes($attributes): self
+    {
+        $this->bulkSelectionsTheadAttributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBulkSelectionsTheadAttributes()
+    {
+        return $this->bulkSelectionsTheadAttributes;
+    }
+
+    /**
+     * @param mixed $attributes
+     *
+     * @return self
+     */
+    public function setBulkSelectionsTdAttributes($attributes): self
+    {
+        $this->bulkSelectionsTdAttributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBulkSelectionsTdAttributes()
+    {
+        return $this->bulkSelectionsTdAttributes;
+    }
     /**
      * @param  array  $bulkActions
      *
