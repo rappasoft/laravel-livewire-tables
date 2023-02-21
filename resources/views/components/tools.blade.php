@@ -5,11 +5,11 @@
 @endphp
 
 @if ($theme === 'tailwind')
-    <div class="flex-col">
+    <div class="flex-col tools">
         {{ $slot }}
     </div>
 @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column tools">
         {{ $slot }}
     </div>
 @endif

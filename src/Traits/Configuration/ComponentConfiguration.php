@@ -369,4 +369,60 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    /**
+     * @param $status
+     * 
+     * @return $this
+     */
+    public function setToolbarStatus(bool $status): self
+    {
+        $this->toolbarStatus = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setToolbarDisabled(): self
+    {
+        return $this->setToolbarStatus(false);
+    }
+
+    /**
+     * @return $this
+     */
+    public function setToolbarEnabled(): self
+    {
+        return $this->setToolbarStatus(true);
+    }
+
+    /**
+     * @param $status
+     * 
+     * @return $this
+     */
+    public function setHideOnEmptyStatus(bool $status): self
+    {
+        $this->hideOnEmptyStatus = $status;
+        
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setHideOnEmptyDisabled(): self
+    {
+        return $this->setHideOnEmptyStatus(false);
+    }
+
+    /**
+     * @return $this
+     */
+    public function setHideOnEmptyEnabled(): self
+    {
+        return $this->setHideOnEmptyStatus(true);
+    }
 }

@@ -1,13 +1,19 @@
+@if (!$this->getHideOnEmptyStatus() || ($this->getHideOnEmptyStatus() && !empty($rows)))
+@isset($beforeComponentView)
+    @include($beforeComponentView)
+@endisset
 <x-livewire-tables::wrapper :component="$this">
     @if ($this->hasConfigurableAreaFor('before-tools'))
         @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
     @endif
 
+    @if ($this->getToolbarStatusIsEnabled())
     <x-livewire-tables::tools>
         <x-livewire-tables::tools.sorting-pills />
         <x-livewire-tables::tools.filter-pills />
         <x-livewire-tables::tools.toolbar />
     </x-livewire-tables::tools>
+    @endif
 
     <x-livewire-tables::table>
         <x-slot name="thead">
@@ -69,3 +75,4 @@
         @include($customView)
     @endisset
 </x-livewire-tables::wrapper>
+@endif

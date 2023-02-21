@@ -426,4 +426,52 @@ trait ComponentHelpers
     {
         return $this->getHideConfigurableAreasWhenReorderingStatus() === false;
     }
+
+    /**
+     * @return bool
+     */
+    public function getToolbarStatus(): bool
+    {
+        return $this->toolbarStatus;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getToolbarStatusIsEnabled(): bool
+    {
+        return $this->getToolbarStatus() === true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getToolbarStatusIsDisabled(): bool
+    {
+        return $this->getToolbarStatus() === false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideOnEmptyStatus(): bool
+    {
+        return $this->hideOnEmptyStatus;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideOnEmptyStatusIsEnabled(): bool
+    {
+        return $this->getHideOnEmptyStatus() === true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideOnEmptyStatusIsDisabled(): bool
+    {
+        return $this->getHideOnEmptyStatus() === false;
+    }
 }

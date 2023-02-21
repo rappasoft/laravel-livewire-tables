@@ -122,6 +122,16 @@ abstract class DataTableComponent extends Component
     {
         return 'livewire-tables::stubs.custom';
     }
+
+    /**
+     * The view to add any modals for the table, could also be used for any non-visible html
+     *
+     * @return string
+     */
+    public function beforeComponentView(): string
+    {
+        return 'livewire-tables::stubs.before';
+    }
     
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -139,6 +149,7 @@ abstract class DataTableComponent extends Component
                 'columns' => $this->getColumns(),
                 'rows' => $this->getRows(),
                 'customView' => $this->customView(),
+                'before' => $this->beforeComponentView(),
             ]);
     }
 }

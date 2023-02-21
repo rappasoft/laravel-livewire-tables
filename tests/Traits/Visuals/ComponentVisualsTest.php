@@ -24,6 +24,23 @@ class ComponentVisualsTest extends TestCase
     }
 
     /** @test */
+    public function disable_when_hide_on_empty_enabled_with_no_results(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->call('setHideOnEmptyEnabled')
+            ->set('table.search', 'sdfsdfsdf')
+            ->assertDontSeeText('datatable');
+    }
+
+    /** @test */
+    public function visible_when_hide_on_empty_enabled_with_results(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->call('setHideOnEmptyEnabled')
+            ->assertSee('Cartman');
+    }
+
+    /** @test */
     public function debugging_shows_when_enabled(): void
     {
         Livewire::test(PetsTable::class)

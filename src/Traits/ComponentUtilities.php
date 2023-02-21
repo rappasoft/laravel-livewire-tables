@@ -36,6 +36,8 @@ trait ComponentUtilities
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
     protected array $additionalSelects = [];
     protected bool $hideConfigurableAreasWhenReorderingStatus = true;
+    protected bool $toolbarStatus = true;
+    protected bool $hideOnEmptyStatus = false;
     protected array $configurableAreas = [
         'before-tools' => null,
         'toolbar-left-start' => null,

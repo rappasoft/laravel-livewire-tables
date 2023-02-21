@@ -238,4 +238,40 @@ class ComponentHelpersTest extends TestCase
     {
         $this->assertSame($this->basicTable->getTableName(), $this->basicTable->getQueryStringAlias());
     }
+
+    /** @test */
+    public function can_get_toolbar_status(): void
+    {
+        $this->assertTrue($this->basicTable->getToolbarStatus());
+        
+        $this->basicTable->setToolbarDisabled();
+        
+        $this->assertSame(false, $this->basicTable->getToolbarStatus());
+        
+        $this->basicTable->setToolbarEnabled();
+
+        $this->assertTrue($this->basicTable->getToolbarStatus());
+
+        $bool = boolval(mt_rand(0,1));
+
+        $this->basicTable->setToolbarStatus($bool);
+
+        $this->assertSame($bool, $this->basicTable->getToolbarStatus());
+    }
+
+    /** @test */
+    public function can_get_hide_on_empty_status(): void
+    {
+        $this->assertFalse($this->basicTable->getHideOnEmptyStatus());
+        
+        $this->basicTable->setHideOnEmptyEnabled();
+        
+        $this->assertSame(true, $this->basicTable->getHideOnEmptyStatus());
+
+        $bool = boolval(mt_rand(0,1));
+
+        $this->basicTable->setHideOnEmptyStatus($bool);
+
+        $this->assertSame($bool, $this->basicTable->getHideOnEmptyStatus());
+    }
 }
