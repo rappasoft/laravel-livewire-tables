@@ -5,6 +5,8 @@
 [![Tests](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml/badge.svg)](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
 
+### Enjoying this package? [Buy me a beer 🍺](https://www.buymeacoffee.com/rappasoft)
+
 A dynamic Laravel Livewire component for data tables.
 
 ![Dark Mode](https://imgur.com/QoEdC7n.png)
