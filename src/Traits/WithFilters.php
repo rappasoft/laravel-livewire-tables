@@ -15,7 +15,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
  */
 trait WithFilters
 {
-
     /**
      * @var bool
      */

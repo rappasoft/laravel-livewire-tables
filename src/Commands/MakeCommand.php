@@ -16,7 +16,6 @@ use Livewire\Commands\MakeCommand as LivewireMakeCommand;
  */
 class MakeCommand extends Command
 {
-
     /**
      * @var
      */
