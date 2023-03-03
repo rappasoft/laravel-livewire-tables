@@ -136,7 +136,7 @@ trait FilterHelpers
             ->toArray();
 
         return collect($this->{$this->getTableName()}['filters'] ?? [])
-            ->filter(fn ($value, $key) => in_array($key, $validFilterKeys, true))
+            ->filter(fn ($value, $key) => (in_array($key, $validFilterKeys, true) && ! $this->getFilterByKey($key)->isEmpty($value)))
             ->toArray();
     }
 
