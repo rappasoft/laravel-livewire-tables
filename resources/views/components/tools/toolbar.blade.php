@@ -51,9 +51,9 @@
             @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
                 <div
                     @if ($component->isFilterLayoutPopover())
-                        x-data="{ open: false }"
-                        x-on:keydown.escape.stop="open = false"
-                        x-on:mousedown.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                        x-on:mousedown.away="if (!childElementOpen) { open = false }"
                     @endif
 
                     class="relative block md:inline-block text-left"
@@ -152,9 +152,9 @@
             @if ($component->showBulkActionsDropdown())
                 <div class="w-full md:w-auto mb-4 md:mb-0">
                     <div
-                        x-data="{ open: false }"
-                        @keydown.window.escape="open = false"
-                        x-on:click.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        @keydown.window.escape="if (!childElementOpen) { open = false }"
+                        x-on:click.away="if (!childElementOpen) { open = false }"
                         class="relative inline-block text-left z-10 w-full md:w-auto"
                     >
                         <div>
@@ -210,9 +210,9 @@
             @if ($component->columnSelectIsEnabled())
                 <div class="@if ($component->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($component->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
                     <div
-                        x-data="{ open: false }"
-                        @keydown.window.escape="open = false"
-                        x-on:click.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        @keydown.window.escape="if (!childElementOpen) { open = false }"
+                        x-on:click.away="if (!childElementOpen) { open = false }"
                         class="inline-block relative w-full text-left md:w-auto"
                         wire:key="column-select-button-{{ $component->getTableName() }}"
                     >
@@ -393,9 +393,9 @@
                 <div class="ml-0 ml-md-2 mb-3 mb-md-0">
                     <div
                         @if ($component->isFilterLayoutPopover())
-                            x-data="{ open: false }"
-                            x-on:keydown.escape.stop="open = false"
-                            x-on:mousedown.away="open = false"
+                            x-data="{ open: false, childElementOpen: false  }"
+                            x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                            x-on:mousedown.away="if (!childElementOpen) { open = false }"
                         @endif
 
                         class="btn-group d-block d-md-inline"
@@ -502,9 +502,9 @@
             @if ($component->columnSelectIsEnabled())
                 <div class="@if ($component->getColumnSelectIsHiddenOnMobile()) d-none d-sm-block @elseif ($component->getColumnSelectIsHiddenOnTablet()) d-none d-md-block @endif mb-3 mb-md-0 pl-0 pl-md-2">
                     <div
-                        x-data="{ open: false }"
-                        x-on:keydown.escape.stop="open = false"
-                        x-on:mousedown.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                        x-on:mousedown.away="if (!childElementOpen) { open = false }"
                         class="dropdown d-block d-md-inline"
                         wire:key="column-select-button-{{ $component->getTableName() }}"
                     >
@@ -658,9 +658,9 @@
                 <div class="{{ $component->searchIsEnabled() ? 'ms-0 ms-md-2' : '' }} mb-3 mb-md-0">
                     <div
                         @if ($component->isFilterLayoutPopover())
-                            x-data="{ open: false }"
-                            x-on:keydown.escape.stop="open = false"
-                            x-on:mousedown.away="open = false"
+                            x-data="{ open: false, childElementOpen: false  }"
+                            x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                            x-on:mousedown.away="if (!childElementOpen) { open = false }"
                         @endif
 
                         class="btn-group d-block d-md-inline"
@@ -767,9 +767,9 @@
             @if ($component->columnSelectIsEnabled())
                 <div class="@if ($component->getColumnSelectIsHiddenOnMobile()) d-none d-sm-block @elseif ($component->getColumnSelectIsHiddenOnTablet()) d-none d-md-block @endif mb-3 mb-md-0 md-0 ms-md-2">
                     <div
-                        x-data="{ open: false }"
-                        x-on:keydown.escape.stop="open = false"
-                        x-on:mousedown.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                        x-on:mousedown.away="if (!childElementOpen) { open = false }"
                         class="dropdown d-block d-md-inline"
                         wire:key="column-select-button-{{ $component->getTableName() }}"
                     >
