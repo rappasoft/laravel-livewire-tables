@@ -288,7 +288,7 @@ trait ComponentHelpers
     {
         return $this->collapsingColumnsStatus;
     }
-    
+
     /**
      * @return bool
      */
@@ -347,6 +347,14 @@ trait ComponentHelpers
     public function getAdditionalSelects(): array
     {
         return $this->additionalSelects;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAdditionalSelectRaws(): array
+    {
+        return $this->additionalSelectRaws;
     }
 
     /**
