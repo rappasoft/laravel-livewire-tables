@@ -108,8 +108,10 @@
                             @foreach($component->getFilters() as $filter)
                                 @if($filter->isVisibleInMenus())
                                     <div class="py-1" role="none">
-                                        <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem">
+                                        <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem"
+                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
                                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label"
                                                 class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
                                                 {{ $filter->getName() }}
                                             </label>
@@ -328,8 +330,10 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4 md:p-0 mb-6">
                 @foreach($component->getFilters() as $filter)
                     @if($filter->isVisibleInMenus())
-                        <div class="space-y-1">
+                        <div class="space-y-1"
+                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label"
                                 class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
                                 {{ $filter->getName() }}
                             </label>
@@ -433,8 +437,10 @@
                             >
                                 @foreach($component->getFilters() as $filter)
                                     @if($filter->isVisibleInMenus())
-                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
-                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
+                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2"
+                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
+                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2"
+                                            id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label">
                                                 {{ $filter->getName() }}
                                             </label>
 
@@ -591,9 +597,10 @@
                 <div class="row">
                     @foreach($component->getFilters() as $filter)
                         @if($filter->isVisibleInMenus())
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+                            id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
                                 <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                    class="d-block">
+                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label" class="d-block">
                                     {{ $filter->getName() }}
                                 </label>
 
@@ -695,8 +702,10 @@
                             >
                                 @foreach($component->getFilters() as $filter)
                                     @if($filter->isVisibleInMenus())
-                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
-                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
+                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2"
+                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
+                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2"
+                                            id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label">
                                                 {{ $filter->getName() }}
                                             </label>
 
@@ -857,9 +866,10 @@
                 <div class="row">
                     @foreach($component->getFilters() as $filter)
                         @if($filter->isVisibleInMenus())
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+                            id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
                                 <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                    class="d-block">
+                                    id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label" class="d-block">
                                     {{ $filter->getName() }}
                                 </label>
 
