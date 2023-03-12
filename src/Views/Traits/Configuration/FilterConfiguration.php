@@ -54,7 +54,6 @@ trait FilterConfiguration
         return $this;
     }
 
-
     /**
      * @param array<mixed> $values
      *
