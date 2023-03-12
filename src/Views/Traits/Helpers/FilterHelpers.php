@@ -43,7 +43,7 @@ trait FilterHelpers
      */
     public function hasFilterSlidedownRow(): bool
     {
-        return (!is_null($this->filterSlidedownRow));
+        return (! is_null($this->filterSlidedownRow));
     }
 
     /**
@@ -63,7 +63,7 @@ trait FilterHelpers
      */
     public function hasFilterSlidedownColspan(): bool
     {
-        return (!is_null($this->filterSlidedownColspan));
+        return (! is_null($this->filterSlidedownColspan));
     }
 
     /**
