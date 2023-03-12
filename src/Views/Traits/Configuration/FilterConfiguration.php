@@ -7,8 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 trait FilterConfiguration
 {
     /**
-     * @param string $key
-     * @param mixed  $value
+     * @param array<mixed> $config
      *
      * @return $this
      */
@@ -20,7 +19,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $key
+     * @param string $title
      *
      * @return $this
      */
@@ -32,7 +31,32 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $key
+     * @param string $filterSlidedownRow
+     *
+     * @return $this
+     */
+    public function setFilterSlidedownRow(string $filterSlidedownRow): self
+    {
+        $this->filterSlidedownRow = $filterSlidedownRow;
+
+        return $this;
+    }
+
+    /**
+     * @param string $filterSlidedownColspan
+     *
+     * @return $this
+     */
+    public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
+    {
+        $this->filterSlidedownColspan = $filterSlidedownColspan;
+
+        return $this;
+    }
+
+
+    /**
+     * @param array<mixed> $values
      *
      * @return $this
      */
