@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 trait SecondaryHeaderHelpers
 {
     /**
-     * @var bool
+     * @return bool
      */
     public function hasColumnsWithSecondaryHeader(): bool
     {
@@ -15,7 +15,7 @@ trait SecondaryHeaderHelpers
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function getSecondaryHeaderStatus(): bool
     {
@@ -23,7 +23,7 @@ trait SecondaryHeaderHelpers
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function secondaryHeaderIsEnabled(): bool
     {
@@ -31,7 +31,7 @@ trait SecondaryHeaderHelpers
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function secondaryHeaderIsDisabled(): bool
     {
@@ -39,7 +39,9 @@ trait SecondaryHeaderHelpers
     }
 
     /**
-     * @var bool
+     * @param mixed $rows
+     *
+     * @return array<mixed>
      */
     public function getSecondaryHeaderTrAttributes($rows): array
     {
@@ -47,7 +49,11 @@ trait SecondaryHeaderHelpers
     }
 
     /**
-     * @var bool
+     * @param Column $column
+     * @param mixed $rows
+     * @param int $index
+     *
+     * @return array<mixed>
      */
     public function getSecondaryHeaderTdAttributes(Column $column, $rows, int $index): array
     {

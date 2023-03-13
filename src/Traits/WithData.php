@@ -18,6 +18,9 @@ trait WithData
         return $this->executeQuery();
     }
 
+    /**
+     * @return Builder
+     */
     protected function baseQuery(): Builder
     {
         $this->setBuilder($this->joinRelations());
@@ -52,6 +55,9 @@ trait WithData
         return $this->getBuilder()->get();
     }
 
+    /**
+     * @return Builder
+     */
     protected function joinRelations(): Builder
     {
         foreach ($this->getSelectableColumns() as $column) {
@@ -63,6 +69,11 @@ trait WithData
         return $this->getBuilder();
     }
 
+    /**
+     * @param Column $column
+     *
+     * @return Builder
+     */
     protected function joinRelation(Column $column): Builder
     {
         if ($column->eagerLoadRelationsIsEnabled() || $this->eagerLoadAllRelationsIsEnabled()) {
@@ -104,10 +115,19 @@ trait WithData
         return $this->getBuilder();
     }
 
+    /**
+     * @param mixed $table
+     * @param mixed $foreign
+     * @param mixed $other
+     * @param string $type
+     *
+     * @return Builder
+     */
     protected function performJoin($table, $foreign, $other, $type = 'left'): Builder
     {
         $joins = [];
 
+        /** @phpstan-ignore-next-line */
         foreach ($this->getBuilder()->getQuery()->joins ?? [] as $join) {
             $joins[] = $join->table;
         }
@@ -119,11 +139,28 @@ trait WithData
         return $this->getBuilder();
     }
 
+    /**
+     * @return Builder
+     */
     protected function selectFields(): Builder
     {
         // Load any additional selects that were not already columns
         foreach ($this->getAdditionalSelects() as $select) {
             $this->setBuilder($this->getBuilder()->addSelect($select));
+        }
+
+        // Load any additional selects that were not already columns
+        $rawCount = 1;
+        foreach ($this->getAdditionalSelectRaws() as $selectRaw) {
+            if (is_array($selectRaw)) {
+                if (strpos($selectRaw[0], 'as') === false) {
+                    $selectRaw[0] .= ' as rawSelect'.$rawCount;
+                }
+                $this->setBuilder($this->getBuilder()->selectRaw($selectRaw[0], (is_array($selectRaw[1]) ? $selectRaw[1] : [$selectRaw[1]])));
+            } else {
+                $this->setBuilder($this->getBuilder()->selectRaw($selectRaw));
+            }
+            $rawCount++;
         }
 
         foreach ($this->getSelectableColumns() as $column) {
@@ -133,6 +170,11 @@ trait WithData
         return $this->getBuilder();
     }
 
+    /**
+     * @param Column $column
+     *
+     * @return string|null
+     */
     protected function getTableForColumn(Column $column): ?string
     {
         $table = null;
@@ -151,6 +193,9 @@ trait WithData
         return $table;
     }
 
+    /**
+     * @return string
+     */
     protected function getQuerySql(): string
     {
         return (clone $this->getBuilder())->toSql();

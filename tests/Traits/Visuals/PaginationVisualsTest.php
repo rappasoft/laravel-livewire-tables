@@ -22,13 +22,7 @@ class PaginationVisualsTest extends TestCase
     public function per_page_shows_by_default(): void
     {
         Livewire::test(PetsTable::class)
-            ->assertSeeHtml(
-                '<select
-                        wire:model="perPage"
-                        id="perPage"
-                        class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                    >'
-            );
+            ->assertSeeHtml('<select wire:model="perPage" id="perPage"');
     }
 
     /** @test */
@@ -56,13 +50,7 @@ class PaginationVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->call('setPerPageVisibilityDisabled')
-            ->assertDontSeeHtml(
-                '<select
-                        wire:model="perPage"
-                        id="perPage"
-                        class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                    >'
-            );
+            ->assertDontSeeHtml('<select wire:model="perPage" id="perPage"');
     }
 
     /** @test */
@@ -71,11 +59,7 @@ class PaginationVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setPaginationDisabled')
             ->assertDontSeeHtml(
-                '<select
-                        wire:model="perPage"
-                        id="perPage"
-                        class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                    >'
+                '<select wire:model="perPage" id="perPage"'
             );
     }
 

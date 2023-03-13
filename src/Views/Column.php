@@ -55,6 +55,7 @@ class Column
     protected bool $footer = false;
     protected $footerCallback;
     protected bool $clickable = true;
+    protected ?string $customSlug = null;
 
     /**
      * @param  string  $title
