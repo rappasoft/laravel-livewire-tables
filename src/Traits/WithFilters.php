@@ -17,11 +17,17 @@ trait WithFilters
     public bool $filterSlideDownDefaultVisible = false;
     public string $filterLayout = 'popover';
 
+    /**
+     * @return array<mixed>
+     */
     public function filters(): array
     {
         return [];
     }
 
+    /**
+     * @return Builder
+     */
     public function applyFilters(): Builder
     {
         if ($this->filtersAreEnabled() && $this->hasFilters() && $this->hasAppliedFiltersWithValues()) {

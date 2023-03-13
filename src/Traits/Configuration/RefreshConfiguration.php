@@ -5,11 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait RefreshConfiguration
 {
     /**
-     * @param  int  $time
+     * @param  int|string  $time
      *
-     * @return $this
+     * @return self
      */
-    public function setRefreshTime(int $time): self
+    public function setRefreshTime(int|string $time): self
     {
         $this->refresh = $time;
 
@@ -17,7 +17,7 @@ trait RefreshConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setRefreshKeepAlive(): self
     {
@@ -27,7 +27,7 @@ trait RefreshConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setRefreshVisible(): self
     {
@@ -39,7 +39,7 @@ trait RefreshConfiguration
     /**
      * @param  string  $method
      *
-     * @return $this
+     * @return self
      */
     public function setRefreshMethod(string $method): self
     {

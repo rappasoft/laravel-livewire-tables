@@ -17,12 +17,12 @@ use Livewire\Commands\MakeCommand as LivewireMakeCommand;
 class MakeCommand extends Command
 {
     /**
-     * @var
+     * @var ComponentParser
      */
     protected $parser;
 
     /**
-     * @var
+     * @var string
      */
     protected $model;
 
@@ -135,7 +135,7 @@ class MakeCommand extends Command
     /**
      * @param string $modelName
      * @return string
-     * @throws Exception
+     * @throws \Exception
      */
     private function generateColumns(string $modelName): string
     {

@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait BulkActionsConfiguration
 {
     /**
-     * @param  array  $bulkActions
+     * @param  array<mixed>  $bulkActions
      *
-     * @return $this
+     * @return self
      */
     public function setBulkActions(array $bulkActions): self
     {
@@ -19,7 +19,7 @@ trait BulkActionsConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setBulkActionsStatus(bool $status): self
     {
@@ -29,7 +29,7 @@ trait BulkActionsConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setBulkActionsEnabled(): self
     {
@@ -39,7 +39,7 @@ trait BulkActionsConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setBulkActionsDisabled(): self
     {
@@ -51,7 +51,7 @@ trait BulkActionsConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setSelectAllStatus(bool $status): self
     {
@@ -61,7 +61,7 @@ trait BulkActionsConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setSelectAllEnabled(): self
     {
@@ -71,7 +71,7 @@ trait BulkActionsConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setSelectAllDisabled(): self
     {
@@ -83,7 +83,7 @@ trait BulkActionsConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setHideBulkActionsWhenEmptyStatus(bool $status): self
     {
@@ -93,7 +93,7 @@ trait BulkActionsConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setHideBulkActionsWhenEmptyEnabled(): self
     {
@@ -103,7 +103,7 @@ trait BulkActionsConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setHideBulkActionsWhenEmptyDisabled(): self
     {
