@@ -110,7 +110,7 @@ trait FilterHelpers
      */
     public function hasFilters(): bool
     {
-        return $this->getFilters()->count();
+        return ($this->getFilters()->count() > 0);
     }
 
     /**
@@ -118,9 +118,9 @@ trait FilterHelpers
      */
     public function hasVisibleFilters(): bool
     {
-        return $this->getFilters()
+        return ($this->getFilters()
             ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus())
-            ->count();
+            ->count() > 0);
     }
 
     /**
@@ -215,7 +215,7 @@ trait FilterHelpers
      */
     public function hasAppliedFiltersWithValues(): bool
     {
-        return count($this->getAppliedFiltersWithValues());
+        return (count($this->getAppliedFiltersWithValues()) > 0);
     }
 
     /**
@@ -223,10 +223,10 @@ trait FilterHelpers
      */
     public function hasAppliedVisibleFiltersWithValuesThatCanBeCleared(): bool
     {
-        return collect($this->getAppliedFiltersWithValues())
+        return (collect($this->getAppliedFiltersWithValues())
             ->map(fn ($_item, $key) => $this->getFilterByKey($key))
             ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus() && ! $filter->isResetByClearButton())
-            ->count();
+            ->count() > 0);
     }
 
     /**
@@ -245,10 +245,10 @@ trait FilterHelpers
      */
     public function hasAppliedVisibleFiltersForPills(): bool
     {
-        return collect($this->getAppliedFiltersWithValues())
+        return (collect($this->getAppliedFiltersWithValues())
             ->map(fn ($_item, $key) => $this->getFilterByKey($key))
             ->reject(fn (Filter $filter) => $filter->isHiddenFromPills())
-            ->count();
+            ->count() > 0);
     }
 
     /**

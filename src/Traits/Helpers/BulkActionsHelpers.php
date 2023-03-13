@@ -81,7 +81,7 @@ trait BulkActionsHelpers
      */
     public function hasBulkActions(): bool
     {
-        return count($this->bulkActions());
+        return (count($this->bulkActions()) > 0);
     }
 
     /**
@@ -139,7 +139,7 @@ trait BulkActionsHelpers
      */
     public function hasSelected(): bool
     {
-        return $this->getSelectedCount();
+        return ($this->getSelectedCount() > 0);
     }
 
     /**
