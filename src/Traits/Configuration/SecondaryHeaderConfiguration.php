@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait SecondaryHeaderConfiguration
 {
-
     /**
      * @param bool $status
      *
