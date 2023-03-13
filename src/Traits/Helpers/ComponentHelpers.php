@@ -75,7 +75,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return string
+     * @return void
      */
     public function setTheme(): void
     {
@@ -166,9 +166,10 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  Column  $column
-     * @param  Model  $row
-     * @param  int  $index
+     * @param Column $column
+     * @param Model $row
+     * @param int $colIndex
+     * @param int $rowIndex
      *
      * @return array<mixed>
      */
@@ -288,9 +289,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  string  $name
-     *
-     * @return string
+     * @return bool
      */
     public function getCollapsingColumnsStatus(): bool
     {

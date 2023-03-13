@@ -11,3 +11,4 @@ testbench.yaml
 vendor
 output.txt
 .vscode
+.phpstan.result
