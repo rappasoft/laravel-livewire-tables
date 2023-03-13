@@ -147,7 +147,7 @@ trait ComponentHelpers
     /**
      * @param Column $column
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getThSortButtonAttributes(Column $column): array
     {
