@@ -48,7 +48,6 @@ trait SecondaryHeaderHelpers
         return $this->secondaryHeaderTrAttributesCallback ? call_user_func($this->secondaryHeaderTrAttributesCallback, $rows) : ['default' => true];
     }
 
-
     /**
      * @param Column $column
      * @param mixed $rows

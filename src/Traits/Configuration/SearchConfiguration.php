@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait SearchConfiguration
 {
-
     /**
      * @param string $query
      *

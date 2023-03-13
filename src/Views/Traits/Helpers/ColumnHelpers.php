@@ -529,7 +529,6 @@ trait ColumnHelpers
         return $value;
     }
 
-
     /**
      * @param array<mixed> $attributes
      *
