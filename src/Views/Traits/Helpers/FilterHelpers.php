@@ -190,7 +190,27 @@ trait FilterHelpers
     }
 
     /**
-     * Get whether the filter has configurations defined.
+     * Determine if filter has a Custom Pill Blade
+     *
+     * @return bool
+     */
+    public function hasCustomPillBlade(): bool
+    {
+        return $this->filterCustomPillBlade != null;
+    }
+
+    /**
+     * Get the path to the Custom Pill Blade
+     *
+     * @return string|null
+     */
+    public function getCustomPillBlade(): ?string
+    {
+        return $this->filterCustomPillBlade ?? null;
+    }
+
+    /**
+     * Get the filter options.
      *
      * @return bool
      */

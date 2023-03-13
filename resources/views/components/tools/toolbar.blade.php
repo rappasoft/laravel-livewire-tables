@@ -93,8 +93,10 @@
                             @foreach ($component->getFilters() as $filter)
                                 @if ($filter->isVisibleInMenus())
                                     <div class="py-1" role="none">
-                                        <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem">
+                                        <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem"
+                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
                                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label"
                                                 class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
                                                 {{ $filter->getName() }}
                                             </label>
@@ -267,7 +269,6 @@
             @endif
         </div>
     </div>
-
     @if (
         $component->filtersAreEnabled() &&
             $component->filtersVisibilityIsEnabled() &&
@@ -299,6 +300,7 @@
                                 $filter->getFilterSlidedownColspan() >= 5,
                         ])>
                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label"
                                 class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
                                 {{ $filter->getName() }}
                             </label>
@@ -541,7 +543,7 @@
                             ])>
 
                                 <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                    class="d-block">
+                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label" class="d-block">
                                     {{ $filter->getName() }}
                                 </label>
 
@@ -778,7 +780,7 @@
                                     $filter->getFilterSlidedownColspan() == 4,
                             ])>
                                 <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                    class="d-block">
+                                    id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label" class="d-block">
                                     {{ $filter->getName() }}
                                 </label>
 

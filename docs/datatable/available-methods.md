@@ -408,6 +408,37 @@ public function configure(): void
 
 Since you probably won't have an `ID` column defined, the ID will not be available on the model to use. In the case of an actions column where you have buttons specific to the row, you probably need that, so you can add the select statement to make it available on the model.
 
+
+### setAdditionalSelectRaws
+
+By default the only columns defined in the select statement are the ones defined via columns. If you need to add DB::raw selects so that they are available in the model, you can do so here.  All statements will be added individually, you should add an "as" to each to ensure that it will be available for use.
+
+Raw statements will be injected into the query as strings, so you should be extremely careful to avoid creating SQL injection vulnerabilities.
+
+
+```php
+public function configure(): void
+{
+  $this->setAdditionalSelectRaws(["CONCAT(users.id,users.name) as idName", "CONCAT(users.firstname,' ',users.parent_id)"])     
+}
+```
+
+You may optionally pass one or more variables to the raw query either as a string or an array.
+```php
+public function configure(): void
+{
+  $this->setAdditionalSelectRaws(["CONCAT(users.id,users.name) as idName", ['CONCAT(users.id,?,users.parent_id) as userParentLink', ' has parent of ']])   
+}
+```
+
+
+This can be used in the table as follows:
+```php
+Column::make('Full Name')
+    ->label(fn ($row) => $row->fullname),
+```
+
+
 ## Misc.
 
 ### setEmptyMessage

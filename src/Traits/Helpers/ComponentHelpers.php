@@ -359,6 +359,14 @@ trait ComponentHelpers
     /**
      * @return array<mixed>
      */
+    public function getAdditionalSelectRaws(): array
+    {
+        return $this->additionalSelectRaws;
+    }
+
+    /**
+     * @return array
+     */
     public function getConfigurableAreas(): array
     {
         return $this->configurableAreas;
