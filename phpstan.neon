@@ -4,6 +4,6 @@ includes:
 parameters:
     treatPhpDocTypesAsCertain: false
     checkGenericClassInNonGenericObjectType: false
-    level: 4
+    level: 6
     paths:
         - ./src
