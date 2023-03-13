@@ -100,7 +100,6 @@ trait ReorderingHelpers
         return $this->defaultReorderDirection;
     }
 
-
     /**
      * @return void
      */
