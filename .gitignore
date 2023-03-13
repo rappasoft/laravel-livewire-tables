@@ -12,3 +12,6 @@ vendor
 output.txt
 .vscode
 .phpstan.result
+phpstan.neon
+phpstan-baseline.neon
+phpstan.neon
