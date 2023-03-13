@@ -108,7 +108,8 @@ trait WithData
     {
         $joins = [];
 
-        foreach ($this->getBuilder()->getQuery()->joins as $join) {
+        /** @phpstan-ignore-next-line */
+        foreach ($this->getBuilder()->getQuery()->joins ?? [] as $join) {
             $joins[] = $join->table;
         }
 

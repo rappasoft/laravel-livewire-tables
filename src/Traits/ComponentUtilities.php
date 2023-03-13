@@ -21,8 +21,6 @@ trait ComponentUtilities
     protected bool $queryStringStatus = true;
     protected bool $offlineIndicatorStatus = true;
     protected bool $eagerLoadAllRelationsStatus = false;
-    protected string $dataTableFingerprint = '';
-    protected string $queryStringAlias = '';
     protected array $componentWrapperAttributes = [];
     protected array $tableWrapperAttributes = [];
     protected array $tableAttributes = [];
