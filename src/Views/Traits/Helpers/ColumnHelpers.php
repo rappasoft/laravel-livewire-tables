@@ -388,9 +388,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @param  callable  $callback
-     *
-     * @return $this
+     * @return bool
      */
     public function isVisible(): bool
     {
@@ -531,8 +529,11 @@ trait ColumnHelpers
         return $value;
     }
 
+
     /**
-     * @return bool
+     * @param array<mixed> $attributes
+     *
+     * @return mixed
      */
     public function arrayToAttributes(array $attributes)
     {
@@ -540,7 +541,7 @@ trait ColumnHelpers
             if (is_bool($attributes[$key])) {
                 return $attributes[$key] ? $key : '';
             }
-            
+
             return $key . '="' . $attributes[$key] . '"';
         }, array_keys($attributes)));
     }

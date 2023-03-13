@@ -64,7 +64,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getColumnRelations(): array
     {
@@ -76,7 +76,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getColumnRelationStrings(): array
     {
@@ -124,9 +124,9 @@ trait ColumnHelpers
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function shouldCollapseOnMobile(): bool
+    public function shouldCollapseOnMobile(): int
     {
         return $this->getCollapsedMobileColumnsCount();
     }
@@ -168,9 +168,9 @@ trait ColumnHelpers
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function shouldCollapseOnTablet(): bool
+    public function shouldCollapseOnTablet(): int
     {
         return $this->getCollapsedTabletColumnsCount();
     }
