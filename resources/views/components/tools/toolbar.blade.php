@@ -105,8 +105,7 @@
                             aria-orientation="vertical"
                             aria-labelledby="filters-menu"
                         >
-                            @foreach($component->getFilters() as $filter)
-                                @if($filter->isVisibleInMenus())
+                            @foreach($component->getVisibleFilters() as $filter)
                                     <div class="py-1" role="none">
                                         <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem">
                                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
@@ -117,7 +116,6 @@
                                             {{ $filter->render($component) }}
                                         </div>
                                     </div>
-                                @endif
                             @endforeach
 
                             @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
@@ -325,20 +323,35 @@
             x-transition:leave-start="transform opacity-100"
             x-transition:leave-end="transform opacity-0"
         >
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4 md:p-0 mb-6">
-                @foreach($component->getFilters() as $filter)
-                    @if($filter->isVisibleInMenus())
-                        <div class="space-y-1">
-                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
-                                {{ $filter->getName() }}
-                            </label>
+                @foreach($component->getFiltersByRow() as $filterRowIndex => $filterRow)
+                    <div row="{{$filterRowIndex}}" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4 md:p-0 mb-6"
+                    @class(['row-start-1 row-start-2 row-start-3 row-start-4 row-start-5 row-start-6 row-start-7 row-start-8 row-start9' => true == false])>
+                        @foreach($filterRow as $filter)
+                                <div @class([
+                                        'space-y-1',
+                                        'sm:col-span-2 md:col-span-2 lg:col-span-2' =>
+                                            $filter->hasFilterSlidedownColspan() &&
+                                            $filter->getFilterSlidedownColspan() == 2,
+                                        'sm:col-span-2 md:col-span-3 lg:col-span-3' =>
+                                            $filter->hasFilterSlidedownColspan() &&
+                                            $filter->getFilterSlidedownColspan() == 3,
+                                        'sm:col-span-2 md:col-span-4 lg:col-span-4' =>
+                                            $filter->hasFilterSlidedownColspan() &&
+                                            $filter->getFilterSlidedownColspan() == 4,
+                                        'sm:col-span-2 md:col-span-4 lg:col-span-5' =>
+                                            $filter->hasFilterSlidedownColspan() &&
+                                            $filter->getFilterSlidedownColspan() >= 5,
+                                ])>
+                                    <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                        class="inline-block text-sm font-medium leading-5 text-gray-700 dark:text-white">
+                                        {{ $filter->getName() }}
+                                    </label>
 
-                            {{ $filter->render($component) }}
-                        </div>
-                    @endif
+                                    {{ $filter->render($component) }}
+                                </div>
+                        @endforeach
+                    </div>
                 @endforeach
-            </div>
         </div>
     @endif
 @elseif ($theme === 'bootstrap-4')
@@ -431,8 +444,7 @@
                                 x-bind:class="{'show' : open}"
                                 role="menu"
                             >
-                                @foreach($component->getFilters() as $filter)
-                                    @if($filter->isVisibleInMenus())
+                                @foreach($component->getVisibleFilters() as $filter)
                                         <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
                                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
                                                 {{ $filter->getName() }}
@@ -440,7 +452,6 @@
 
                                             {{ $filter->render($component) }}
                                         </div>
-                                    @endif
                                 @endforeach
 
                                 @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
@@ -588,20 +599,32 @@
             x-show="filtersOpen"
         >
             <div class="container">
-                <div class="row">
-                    @foreach($component->getFilters() as $filter)
-                        @if($filter->isVisibleInMenus())
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                                <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                    class="d-block">
-                                    {{ $filter->getName() }}
-                                </label>
-
-                                {{ $filter->render($component) }}
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
+                @foreach($component->getFiltersByRow() as $filterRowIndex => $filterRow)
+                    <div class="row col-12" row="{{ $filterRowIndex }}">
+                        @foreach($filterRow as $filter)
+                            <div @class([
+                                    'space-y-1 mb-4',
+                                    'col-12 col-sm-9 col-md-6 col-lg-3' => !$filter->hasFilterSlidedownColspan(),
+                                    'col-12 col-sm-6 col-md-6 col-lg-3' =>
+                                        $filter->hasFilterSlidedownColspan() &&
+                                        $filter->getFilterSlidedownColspan() == 2,
+                                    'col-12 col-sm-3 col-md-3 col-lg-3' =>
+                                        $filter->hasFilterSlidedownColspan() &&
+                                        $filter->getFilterSlidedownColspan() == 3,
+                                    'col-12 col-sm-1 col-md-1 col-lg-1' =>
+                                        $filter->hasFilterSlidedownColspan() &&
+                                        $filter->getFilterSlidedownColspan() == 4,
+                                ])
+                                >
+                                    <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                        class="d-block">
+                                        {{ $filter->getName() }}
+                                    </label>
+                                    {{ $filter->render($component) }}
+                                </div>
+                        @endforeach
+                    </div>
+                @endforeach
             </div>
         </div>
     @endif
@@ -693,8 +716,7 @@
                                 x-bind:class="{'show' : open}"
                                 role="menu"
                             >
-                                @foreach($component->getFilters() as $filter)
-                                    @if($filter->isVisibleInMenus())
+                                @foreach($component->getVisibleFilters() as $filter)
                                         <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
                                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
                                                 {{ $filter->getName() }}
@@ -702,7 +724,6 @@
 
                                             {{ $filter->render($component) }}
                                         </div>
-                                    @endif
                                 @endforeach
 
                                 @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
@@ -854,20 +875,34 @@
             x-show="filtersOpen"
         >
             <div class="container">
-                <div class="row">
-                    @foreach($component->getFilters() as $filter)
-                        @if($filter->isVisibleInMenus())
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                                <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                    class="d-block">
-                                    {{ $filter->getName() }}
-                                </label>
-
-                                {{ $filter->render($component) }}
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
+                @foreach($component->getFiltersByRow() as $filterRow)
+                    <div class="row">
+                        @foreach($filterRow as $filter)
+                            @if($filter->isVisibleInMenus())
+                            <div @class([
+                                    'space-y-1 col-12 col-span-1 mb-4',
+                                    'col-sm-6 col-md-4 col-lg-3' => !$filter->hasFilterSlidedownColspan(),
+                                    'col-sm-6 col-md-6 col-lg-6' =>
+                                        $filter->hasFilterSlidedownColspan() &&
+                                        $filter->getFilterSlidedownColspan() == 2,
+                                    'col-sm-9 col-md-9 col-lg-9' =>
+                                        $filter->hasFilterSlidedownColspan() &&
+                                        $filter->getFilterSlidedownColspan() == 3,
+                                    'col-sm-12 col-md-12 col-lg-12' =>
+                                        $filter->hasFilterSlidedownColspan() &&
+                                        $filter->getFilterSlidedownColspan() == 4,
+                                ])
+                                >
+                                    <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                        class="d-block">
+                                        {{ $filter->getName() }}
+                                    </label>
+                                    {{ $filter->render($component) }}
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                @endforeach
             </div>
         </div>
     @endif

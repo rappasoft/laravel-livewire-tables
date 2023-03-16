@@ -159,7 +159,7 @@ trait FilterHelpers
     {
         return count($this->getConfigs()) > 0;
     }
-    
+
     /**
      * Get the filter options.
      *
@@ -224,5 +224,45 @@ trait FilterHelpers
     public function isResetByClearButton(): bool
     {
         return $this->resetByClearButton === true;
+    }
+
+    /**
+     * Get the filter slide down row.
+     *
+     * @return int|null
+     */
+    public function getFilterSlidedownRow(): ?int
+    {
+        return $this->filterSlidedownRow;
+    }
+
+    /**
+     * Get whether the filter has a configured slide down row.
+     *
+     * @return bool
+     */
+    public function hasFilterSlidedownRow(): bool
+    {
+        return (!is_null($this->filterSlidedownRow));
+    }
+
+    /**
+     * Get the filter slide down col span.
+     *
+     * @return int|null
+     */
+    public function getFilterSlidedownColspan(): ?int
+    {
+        return $this->filterSlidedownColspan;
+    }
+
+    /**
+     * Get whether the filter has a configured slide down colspan.
+     *
+     * @return bool
+     */
+    public function hasFilterSlidedownColspan(): bool
+    {
+        return (!is_null($this->filterSlidedownColspan));
     }
 }
