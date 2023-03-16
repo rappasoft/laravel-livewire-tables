@@ -11,9 +11,6 @@ trait WithColumns
 
     protected Collection $columns;
 
-    /**
-     * @return void
-     */
     public function bootWithColumns(): void
     {
         $this->columns = collect();

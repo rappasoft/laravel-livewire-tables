@@ -19,7 +19,7 @@ trait RelationshipHelpers
      */
     public function hasRelations(): bool
     {
-        return ($this->getRelations()->count() > 0);
+        return $this->getRelations()->count();
     }
 
     /**
