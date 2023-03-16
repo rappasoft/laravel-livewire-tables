@@ -7,7 +7,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 trait FilterConfiguration
 {
     /**
-     * @param array<mixed> $config
+     * @param string $key
+     * @param mixed  $value
      *
      * @return $this
      */
@@ -19,7 +20,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $title
+     * @param string $key
      *
      * @return $this
      */
@@ -31,25 +32,13 @@ trait FilterConfiguration
     }
 
     /**
-     * @param array<mixed> $values
+     * @param string $key
      *
      * @return $this
      */
     public function setFilterPillValues(array $values): self
     {
         $this->filterPillValues = $values;
-
-        return $this;
-    }
-
-    /**
-     * @param string $blade
-     *
-     * @return $this
-     */
-    public function setFilterPillBlade(string $blade): self
-    {
-        $this->filterCustomPillBlade = $blade;
 
         return $this;
     }
