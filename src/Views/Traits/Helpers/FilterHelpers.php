@@ -27,46 +27,6 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter slide down row.
-     *
-     * @return string
-     */
-    public function getFilterSlidedownRow(): string
-    {
-        return $this->filterSlidedownRow;
-    }
-
-    /**
-     * Get whether the filter has a configured slide down row.
-     *
-     * @return bool
-     */
-    public function hasFilterSlidedownRow(): bool
-    {
-        return (! is_null($this->filterSlidedownRow));
-    }
-
-    /**
-     * Get the filter slide down col span.
-     *
-     * @return string
-     */
-    public function getFilterSlidedownColspan(): string
-    {
-        return $this->filterSlidedownColspan;
-    }
-
-    /**
-     * Get whether the filter has a configured slide down colspan.
-     *
-     * @return bool
-     */
-    public function hasFilterSlidedownColspan(): bool
-    {
-        return (! is_null($this->filterSlidedownColspan));
-    }
-
-    /**
      * Get the filter configs.
      *
      * @return array<mixed>

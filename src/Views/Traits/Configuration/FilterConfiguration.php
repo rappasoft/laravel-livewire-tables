@@ -31,30 +31,6 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $filterSlidedownRow
-     *
-     * @return $this
-     */
-    public function setFilterSlidedownRow(string $filterSlidedownRow): self
-    {
-        $this->filterSlidedownRow = $filterSlidedownRow;
-
-        return $this;
-    }
-
-    /**
-     * @param string $filterSlidedownColspan
-     *
-     * @return $this
-     */
-    public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
-    {
-        $this->filterSlidedownColspan = $filterSlidedownColspan;
-
-        return $this;
-    }
-
-    /**
      * @param array<mixed> $values
      *
      * @return $this
