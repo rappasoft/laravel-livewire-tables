@@ -22,8 +22,6 @@ trait SearchHelpers
 
     /**
      * Search the search query from the table array
-     *
-     * @return void
      */
     public function clearSearch(): void
     {

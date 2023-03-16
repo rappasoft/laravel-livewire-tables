@@ -5,9 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait ColumnSelectConfiguration
 {
     /**
-     * @param bool $status
-     *
-     * @return self
+     * @var bool
      */
     public function setColumnSelectStatus(bool $status): self
     {
@@ -17,7 +15,7 @@ trait ColumnSelectConfiguration
     }
 
     /**
-     * @return self
+     * @var bool
      */
     public function setColumnSelectEnabled(): self
     {
@@ -27,7 +25,7 @@ trait ColumnSelectConfiguration
     }
 
     /**
-     * @return self
+     * @var bool
      */
     public function setColumnSelectDisabled(): self
     {
@@ -37,9 +35,7 @@ trait ColumnSelectConfiguration
     }
 
     /**
-     * @param bool $status
-     *
-     * @return self
+     * @var bool
      */
     public function setRememberColumnSelectionStatus(bool $status): self
     {
@@ -49,7 +45,7 @@ trait ColumnSelectConfiguration
     }
 
     /**
-     * @return self
+     * @var bool
      */
     public function setRememberColumnSelectionEnabled(): self
     {
@@ -59,7 +55,7 @@ trait ColumnSelectConfiguration
     }
 
     /**
-     * @return self
+     * @var bool
      */
     public function setRememberColumnSelectionDisabled(): self
     {

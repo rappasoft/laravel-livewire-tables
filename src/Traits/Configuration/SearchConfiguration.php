@@ -7,9 +7,9 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 trait SearchConfiguration
 {
     /**
-     * @param string $query
+     * @param  string  $query
      *
-     * @return self
+     * @return $this
      */
     public function setSearch(string $query): self
     {
@@ -19,9 +19,9 @@ trait SearchConfiguration
     }
 
     /**
-     * @param bool $status
+     * @param  bool  $status
      *
-     * @return self
+     * @return $this
      */
     public function setSearchStatus(bool $status): self
     {
@@ -31,7 +31,7 @@ trait SearchConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSearchEnabled(): self
     {
@@ -41,7 +41,7 @@ trait SearchConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSearchDisabled(): self
     {
@@ -51,9 +51,9 @@ trait SearchConfiguration
     }
 
     /**
-     * @param bool $status
+     * @param  bool  $status
      *
-     * @return self
+     * @return $this
      */
     public function setSearchVisibilityStatus(bool $status): self
     {
@@ -63,7 +63,7 @@ trait SearchConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSearchVisibilityEnabled(): self
     {
@@ -73,7 +73,7 @@ trait SearchConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSearchVisibilityDisabled(): self
     {
@@ -85,7 +85,7 @@ trait SearchConfiguration
     /**
      * @param  int  $milliseconds
      *
-     * @return self
+     * @return $this
      * @throws DataTableConfigurationException
      */
     public function setSearchDebounce(int $milliseconds): self
@@ -100,7 +100,7 @@ trait SearchConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      * @throws DataTableConfigurationException
      */
     public function setSearchDefer(): self
@@ -115,7 +115,7 @@ trait SearchConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      * @throws DataTableConfigurationException
      */
     public function setSearchLazy(): self

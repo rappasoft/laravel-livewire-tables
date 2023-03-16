@@ -8,26 +8,18 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ComponentHelpers
 {
-    /**
-     * @return string
-     */
     public function getDataTableFingerprint(): string
     {
         return $this->dataTableFingerprint ?? $this->dataTableFingerprint();
     }
 
-    /**
-     * @return string
-     */
     public function getQueryStringAlias(): string
     {
         return $this->queryStringAlias ?? $this->getTableName();
     }
 
     /**
-     * @param Builder $builder
-     *
-     * @return void
+     * @param Builder
      */
     public function setBuilder(Builder $builder): void
     {
@@ -75,7 +67,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return void
+     * @return string
      */
     public function setTheme(): void
     {
@@ -95,7 +87,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return string[]
      */
     public function getComponentWrapperAttributes(): array
     {
@@ -103,7 +95,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return string[]
      */
     public function getTableWrapperAttributes(): array
     {
@@ -111,7 +103,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return bool[]
      */
     public function getTableAttributes(): array
     {
@@ -119,7 +111,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return bool[]
      */
     public function getTheadAttributes(): array
     {
@@ -127,7 +119,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return bool[]
      */
     public function getTbodyAttributes(): array
     {
@@ -135,9 +127,9 @@ trait ComponentHelpers
     }
 
     /**
-     * @param Column $column
+     * @param  Column  $column
      *
-     * @return array<mixed>
+     * @return bool[]
      */
     public function getThAttributes(Column $column): array
     {
@@ -145,9 +137,9 @@ trait ComponentHelpers
     }
 
     /**
-     * @param Column $column
+     * @param  Column  $column
      *
-     * @return array<mixed>
+     * @return bool[]
      */
     public function getThSortButtonAttributes(Column $column): array
     {
@@ -158,7 +150,7 @@ trait ComponentHelpers
      * @param  Model  $row
      * @param  int  $index
      *
-     * @return array<mixed>
+     * @return bool[]
      */
     public function getTrAttributes(Model $row, int $index): array
     {
@@ -166,12 +158,11 @@ trait ComponentHelpers
     }
 
     /**
-     * @param Column $column
-     * @param Model $row
-     * @param int $colIndex
-     * @param int $rowIndex
+     * @param  Column  $column
+     * @param  Model  $row
+     * @param  int  $index
      *
-     * @return array<mixed>
+     * @return bool[]
      */
     public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
     {
@@ -289,7 +280,9 @@ trait ComponentHelpers
     }
 
     /**
-     * @return bool
+     * @param  string  $name
+     *
+     * @return string
      */
     public function getCollapsingColumnsStatus(): bool
     {
@@ -349,19 +342,11 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return array
      */
     public function getAdditionalSelects(): array
     {
         return $this->additionalSelects;
-    }
-
-    /**
-     * @return array<mixed>
-     */
-    public function getAdditionalSelectRaws(): array
-    {
-        return $this->additionalSelectRaws;
     }
 
     /**
@@ -387,7 +372,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  string|array<mixed>  $area
+     * @param  string|array  $area
      *
      * @return string|null
      */
@@ -403,9 +388,9 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  string|array<mixed>  $area
+     * @param  string|array  $area
      *
-     * @return array<mixed>
+     * @return array
      */
     public function getParametersForConfigurableArea($area): array
     {
