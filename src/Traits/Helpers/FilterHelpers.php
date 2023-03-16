@@ -218,8 +218,7 @@ trait FilterHelpers
     public function hasFiltersWithSlidedownRows(): bool
     {
         return ($this->getFilters()
-        ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());
-        ->reject(fn (Filter $filter) => !$filter->hasFilterSlidedownRow())
+        ->reject(fn (Filter $filter) => ($filter->isHiddenFromMenus() || !$filter->hasFilterSlidedownRow()))
         ->count() > 0);
     }
 
