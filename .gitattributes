@@ -13,5 +13,3 @@
 /psalm.xml.dist         export-ignore
 /testbench.yaml         export-ignore
 /docs                   export-ignore
-/phpstan-baseline.neon  export-ignore
-/phpstan.neon           export-ignore
