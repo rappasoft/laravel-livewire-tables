@@ -218,7 +218,7 @@ trait FilterHelpers
     public function hasFiltersWithSlidedownRows(): bool
     {
         return ($this->getFilters()
-        ->reject(fn (Filter $filter) => ($filter->isHiddenFromMenus() || !$filter->hasFilterSlidedownRow()))
+        ->reject(fn (Filter $filter) => ($filter->isHiddenFromMenus() || ! $filter->hasFilterSlidedownRow()))
         ->count() > 0);
     }
 
@@ -232,7 +232,6 @@ trait FilterHelpers
         return $this->getFilters()->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());
     }
 
-
     /**
      * Get filters sorted by row
      *
@@ -242,24 +241,18 @@ trait FilterHelpers
     {
         $orderedFilters = [];
         $filterList = ($this->hasFiltersWithSlidedownRows()) ? $this->getVisibleFilters()->sortBy('filterSlidedownRow') : $this->getVisibleFilters();
-        if ($this->hasFiltersWithSlidedownRows())
-        {
-            foreach($filterList as $filter)
-            {
+        if ($this->hasFiltersWithSlidedownRows()) {
+            foreach ($filterList as $filter) {
                 $orderedFilters[$filter->getFilterSlidedownRow() ?? 99][] = $filter;
             }
 
 
-            if (empty($orderedFilters[1]))
-            {
+            if (empty($orderedFilters[1])) {
                 $orderedFilters[0] = $orderedFilters[99];
                 unset($orderedFilters[99]);
             }
-        }
-        else
-        {
-            foreach($filterList as $filter)
-            {
+        } else {
+            foreach ($filterList as $filter) {
                 $orderedFilters[] = $filter;
             }
         }
@@ -267,5 +260,4 @@ trait FilterHelpers
 
         return $orderedFilters;
     }
-
 }
