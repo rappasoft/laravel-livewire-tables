@@ -324,23 +324,20 @@
             x-transition:leave-end="transform opacity-0"
         >
                 @foreach($component->getFiltersByRow() as $filterRowIndex => $filterRow)
-                    <div row="{{$filterRowIndex}}" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4 md:p-0 mb-6"
-                    @class(['row-start-1 row-start-2 row-start-3 row-start-4 row-start-5 row-start-6 row-start-7 row-start-8 row-start9' => true == false])>
+                    <div row="{{$filterRowIndex}}" class="grid grid-cols-12 gap-6 px-4 md:p-0 mb-6"
+                    @class(['col-span-12 sm:col-span-12 sm:col-span-6 sm:col-span-3  row-start-1 row-start-2 row-start-3 row-start-4 row-start-5 row-start-6 row-start-7 row-start-8 row-start9' => true == false])>
                         @foreach($filterRow as $filter)
                                 <div @class([
-                                        'space-y-1',
-                                        'sm:col-span-2 md:col-span-2 lg:col-span-2' =>
+                                        'space-y-1 col-span-12',
+                                        'sm:col-span-6 md:col-span-6 lg:col-span-6' =>
                                             $filter->hasFilterSlidedownColspan() &&
                                             $filter->getFilterSlidedownColspan() == 2,
-                                        'sm:col-span-2 md:col-span-3 lg:col-span-3' =>
+                                        'sm:col-span-9 md:col-span-9 lg:col-span-9' =>
                                             $filter->hasFilterSlidedownColspan() &&
                                             $filter->getFilterSlidedownColspan() == 3,
-                                        'sm:col-span-2 md:col-span-4 lg:col-span-4' =>
+                                        'md:col-span-12 lg:col-span-12' =>
                                             $filter->hasFilterSlidedownColspan() &&
-                                            $filter->getFilterSlidedownColspan() == 4,
-                                        'sm:col-span-2 md:col-span-4 lg:col-span-5' =>
-                                            $filter->hasFilterSlidedownColspan() &&
-                                            $filter->getFilterSlidedownColspan() >= 5,
+                                            $filter->getFilterSlidedownColspan() == 4
                                 ])>
                                     <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
                                         class="inline-block text-sm font-medium leading-5 text-gray-700 dark:text-white">
