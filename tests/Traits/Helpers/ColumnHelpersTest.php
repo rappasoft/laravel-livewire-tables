@@ -215,4 +215,28 @@ class ColumnHelpersTest extends TestCase
 
         $this->assertTrue($column->isReorderColumn());
     }
+
+    /** @test */
+    public function can_check_if_column_has_custom_slug(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertFalse($column->hasCustomSlug());
+
+        $column->setCustomSlug('test123');
+
+        $this->assertTrue($column->hasCustomSlug());
+    }
+
+    /** @test */
+    public function can_column_custom_slug_returns(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertSame(\Illuminate\Support\Str::slug($column->getTitle()), $column->getSlug());
+
+        $column->setCustomSlug('test123');
+
+        $this->assertSame(\Illuminate\Support\Str::slug('test123'), $column->getSlug());
+    }
 }

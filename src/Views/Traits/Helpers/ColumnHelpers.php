@@ -50,7 +50,11 @@ trait ColumnHelpers
      */
     public function getSlug(): string
     {
-        return Str::slug($this->title);
+        if ($this->hasCustomSlug()) {
+            return Str::slug($this->customSlug);
+        } else {
+            return Str::slug($this->title);
+        }
     }
 
     /**
@@ -388,9 +392,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @param  callable  $callback
-     *
-     * @return $this
+     * @return bool
      */
     public function isVisible(): bool
     {
@@ -532,7 +534,9 @@ trait ColumnHelpers
     }
 
     /**
-     * @return bool
+     * @param array<mixed> $attributes
+     *
+     * @return mixed
      */
     public function arrayToAttributes(array $attributes)
     {
@@ -540,7 +544,7 @@ trait ColumnHelpers
             if (is_bool($attributes[$key])) {
                 return $attributes[$key] ? $key : '';
             }
-            
+
             return $key . '="' . $attributes[$key] . '"';
         }, array_keys($attributes)));
     }
@@ -553,5 +557,21 @@ trait ColumnHelpers
         return $this->clickable &&
             $this->component->hasTableRowUrl() &&
             ! $this instanceof LinkColumn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomSlug(): string
+    {
+        return $this->customSlug;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasCustomSlug(): bool
+    {
+        return $this->customSlug !== null;
     }
 }

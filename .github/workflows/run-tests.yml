@@ -26,8 +26,26 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
-          coverage: none
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pcov, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: pcov
+          tools: phpstan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Get composer cache directory
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-${{ matrix.php }}-${{ matrix.laravel }}-composer--${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.php }}-${{ matrix.laravel }}-composer-
+
+      - name: Add token
+        run: |
+          composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup problem matchers
         run: |
@@ -35,9 +53,12 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Install dependencies
-        run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+
+      - name: Update dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
-        run: vendor/bin/phpunit
+        run: php -d pcov.enabled=1 ./vendor/bin/paratest --passthru-php="'-d pcov.enabled=1'"
