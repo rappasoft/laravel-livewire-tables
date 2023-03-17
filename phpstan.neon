@@ -1,9 +1,0 @@
-includes:
-    - phpstan-baseline.neon
-    - vendor/nunomaduro/larastan/extension.neon
-parameters:
-    treatPhpDocTypesAsCertain: false
-    checkGenericClassInNonGenericObjectType: false
-    level: 6
-    paths:
-        - ./src

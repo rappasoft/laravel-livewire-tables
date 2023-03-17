@@ -35,7 +35,6 @@ trait ComponentUtilities
     protected $collapsingColumnsStatus = true;
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
     protected array $additionalSelects = [];
-    protected array $additionalSelectRaws = [];
     protected bool $hideConfigurableAreasWhenReorderingStatus = true;
     protected array $configurableAreas = [
         'before-tools' => null,

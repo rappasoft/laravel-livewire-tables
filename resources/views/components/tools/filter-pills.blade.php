@@ -17,9 +17,7 @@
 
                     @continue(is_null($filter))
                     @continue($filter->isHiddenFromPills())
-                    @if ($filter->hasCustomPillBlade())
-                        @include($filter->getCustomPillBlade(), ['filter' => $filter])
-                    @else
+
                     <span
                         wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
                         class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900"
@@ -37,7 +35,6 @@
                             </svg>
                         </button>
                     </span>
-                    @endif
                 @endforeach
 
                 <button
@@ -64,9 +61,7 @@
 
                     @continue(is_null($filter))
                     @continue($filter->isHiddenFromPills())
-                    @if ($filter->hasCustomPillBlade())
-                        @include($filter->getCustomPillBlade(), ['filter' => $filter])
-                    @else
+
                     <span
                         wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
                         class="badge badge-pill badge-info d-inline-flex align-items-center"
@@ -84,7 +79,6 @@
                             </svg>
                         </a>
                     </span>
-                    @endif
                 @endforeach
 
                 <a
@@ -110,9 +104,7 @@
 
                     @continue(is_null($filter))
                     @continue($filter->isHiddenFromPills())
-                    @if ($filter->hasCustomPillBlade())
-                        @include($filter->getCustomPillBlade(), ['filter' => $filter])
-                    @else
+
                     <span
                         wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
                         class="badge rounded-pill bg-info d-inline-flex align-items-center"
@@ -130,7 +122,6 @@
                             </svg>
                         </a>
                     </span>
-                    @endif
                 @endforeach
 
                 <a

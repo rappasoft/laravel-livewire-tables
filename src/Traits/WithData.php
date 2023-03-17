@@ -149,20 +149,6 @@ trait WithData
             $this->setBuilder($this->getBuilder()->addSelect($select));
         }
 
-        // Load any additional selects that were not already columns
-        $rawCount = 1;
-        foreach ($this->getAdditionalSelectRaws() as $selectRaw) {
-            if (is_array($selectRaw)) {
-                if (strpos($selectRaw[0], 'as') === false) {
-                    $selectRaw[0] .= ' as rawSelect'.$rawCount;
-                }
-                $this->setBuilder($this->getBuilder()->selectRaw($selectRaw[0], (is_array($selectRaw[1]) ? $selectRaw[1] : [$selectRaw[1]])));
-            } else {
-                $this->setBuilder($this->getBuilder()->selectRaw($selectRaw));
-            }
-            $rawCount++;
-        }
-
         foreach ($this->getSelectableColumns() as $column) {
             $this->setBuilder($this->getBuilder()->addSelect($column->getColumn() . ' as ' .$column->getColumnSelectName()));
         }

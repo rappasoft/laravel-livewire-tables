@@ -323,21 +323,6 @@ trait ComponentConfiguration
     }
 
     /**
-     * @param array<mixed> $selects
-     * @return $this
-     */
-    public function setAdditionalSelectRaws($selects): self
-    {
-        if (! is_array($selects)) {
-            $selects = [$selects];
-        }
-
-        $this->additionalSelectRaws = $selects;
-
-        return $this;
-    }
-
-    /**
      * @param  $areas
      *
      * @return self
