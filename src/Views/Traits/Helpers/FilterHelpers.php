@@ -71,7 +71,7 @@ trait FilterHelpers
      * Get the filter instance.
      *
      * @param callable $callback
-     * 
+     *
      * @return  \Rappasoft\LaravelLivewireTables\Views\Filter
      */
     public function filter(callable $callback): Filter
@@ -123,9 +123,9 @@ trait FilterHelpers
 
     /**
      * Get the filter options.
-     * 
+     *
      * @param mixed $value
-     * 
+     *
      * @return string|null
      */
     public function getFilterPillValue($value): ?string
@@ -147,7 +147,7 @@ trait FilterHelpers
      * Get the filter custom filter pill.
      *
      * @param string $value
-     * 
+     *
      * @return string|null
      */
     public function getCustomFilterPillValue(string $value): ?string
@@ -167,9 +167,9 @@ trait FilterHelpers
 
     /**
      * Get whether the filter has a specific configuration.
-     * 
+     *
      * @param string $key
-     * 
+     *
      * @return bool
      */
     public function hasConfig(string $key): bool

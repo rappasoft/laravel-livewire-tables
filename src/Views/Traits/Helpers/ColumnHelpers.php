@@ -50,7 +50,7 @@ trait ColumnHelpers
      */
     public function getSlug(): string
     {
-            return Str::slug($this->title);
+        return Str::slug($this->title);
     }
 
     /**
