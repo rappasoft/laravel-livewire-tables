@@ -94,4 +94,16 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    /**
+     * @param string $blade
+     *
+     * @return $this
+     */
+    public function setFilterPillBlade(string $blade): self
+    {
+        $this->filterCustomPillBlade = $blade;
+
+        return $this;
+    }
 }
