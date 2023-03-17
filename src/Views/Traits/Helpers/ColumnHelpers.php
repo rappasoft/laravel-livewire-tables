@@ -50,11 +50,7 @@ trait ColumnHelpers
      */
     public function getSlug(): string
     {
-        if ($this->hasCustomSlug()) {
-            return Str::slug($this->customSlug);
-        } else {
             return Str::slug($this->title);
-        }
     }
 
     /**
@@ -557,21 +553,5 @@ trait ColumnHelpers
         return $this->clickable &&
             $this->component->hasTableRowUrl() &&
             ! $this instanceof LinkColumn;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCustomSlug(): string
-    {
-        return $this->customSlug;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasCustomSlug(): bool
-    {
-        return $this->customSlug !== null;
     }
 }

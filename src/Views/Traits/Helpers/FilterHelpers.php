@@ -27,46 +27,6 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter slide down row.
-     *
-     * @return string
-     */
-    public function getFilterSlidedownRow(): string
-    {
-        return $this->filterSlidedownRow;
-    }
-
-    /**
-     * Get whether the filter has a configured slide down row.
-     *
-     * @return bool
-     */
-    public function hasFilterSlidedownRow(): bool
-    {
-        return (! is_null($this->filterSlidedownRow));
-    }
-
-    /**
-     * Get the filter slide down col span.
-     *
-     * @return string
-     */
-    public function getFilterSlidedownColspan(): string
-    {
-        return $this->filterSlidedownColspan;
-    }
-
-    /**
-     * Get whether the filter has a configured slide down colspan.
-     *
-     * @return bool
-     */
-    public function hasFilterSlidedownColspan(): bool
-    {
-        return (! is_null($this->filterSlidedownColspan));
-    }
-
-    /**
      * Get the filter configs.
      *
      * @return array<mixed>
@@ -110,7 +70,9 @@ trait FilterHelpers
     /**
      * Get the filter instance.
      *
-     * @return \Rappasoft\LaravelLivewireTables\Views\Filter
+     * @param callable $callback
+     * 
+     * @return  \Rappasoft\LaravelLivewireTables\Views\Filter
      */
     public function filter(callable $callback): Filter
     {
@@ -161,7 +123,9 @@ trait FilterHelpers
 
     /**
      * Get the filter options.
-     *
+     * 
+     * @param mixed $value
+     * 
      * @return string|null
      */
     public function getFilterPillValue($value): ?string
@@ -182,31 +146,13 @@ trait FilterHelpers
     /**
      * Get the filter custom filter pill.
      *
+     * @param string $value
+     * 
      * @return string|null
      */
     public function getCustomFilterPillValue(string $value): ?string
     {
         return $this->getCustomFilterPillValues()[$value] ?? null;
-    }
-
-    /**
-     * Determine if filter has a Custom Pill Blade
-     *
-     * @return bool
-     */
-    public function hasCustomPillBlade(): bool
-    {
-        return $this->filterCustomPillBlade != null;
-    }
-
-    /**
-     * Get the path to the Custom Pill Blade
-     *
-     * @return string|null
-     */
-    public function getCustomPillBlade(): ?string
-    {
-        return $this->filterCustomPillBlade ?? null;
     }
 
     /**
@@ -221,7 +167,9 @@ trait FilterHelpers
 
     /**
      * Get whether the filter has a specific configuration.
-     *
+     * 
+     * @param string $key
+     * 
      * @return bool
      */
     public function hasConfig(string $key): bool

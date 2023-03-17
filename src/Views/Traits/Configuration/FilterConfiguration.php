@@ -9,7 +9,7 @@ trait FilterConfiguration
     /**
      * @param array<mixed> $config
      *
-     * @return $this
+     * @return  \Rappasoft\LaravelLivewireTables\Views\Filter
      */
     public function config(array $config = []): Filter
     {
@@ -21,7 +21,7 @@ trait FilterConfiguration
     /**
      * @param string $title
      *
-     * @return $this
+     * @return self
      */
     public function setFilterPillTitle(string $title): self
     {
@@ -31,33 +31,9 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $filterSlidedownRow
-     *
-     * @return $this
-     */
-    public function setFilterSlidedownRow(string $filterSlidedownRow): self
-    {
-        $this->filterSlidedownRow = $filterSlidedownRow;
-
-        return $this;
-    }
-
-    /**
-     * @param string $filterSlidedownColspan
-     *
-     * @return $this
-     */
-    public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
-    {
-        $this->filterSlidedownColspan = $filterSlidedownColspan;
-
-        return $this;
-    }
-
-    /**
      * @param array<mixed> $values
      *
-     * @return $this
+     * @return self
      */
     public function setFilterPillValues(array $values): self
     {
@@ -67,19 +43,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $blade
-     *
-     * @return $this
-     */
-    public function setFilterPillBlade(string $blade): self
-    {
-        $this->filterCustomPillBlade = $blade;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
+     * @return self
      */
     public function hiddenFromMenus(): self
     {
@@ -89,7 +53,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function hiddenFromPills(): self
     {
@@ -99,7 +63,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function hiddenFromFilterCount(): self
     {
@@ -109,7 +73,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function hiddenFromAll(): self
     {
@@ -121,7 +85,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function notResetByClearButton(): self
     {
