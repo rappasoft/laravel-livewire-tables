@@ -103,6 +103,7 @@ trait FilterConfiguration
     public function setFilterPosition(string $position): self
     {
         $this->filterPosition = $position;
+
         return $this;
     }
 }

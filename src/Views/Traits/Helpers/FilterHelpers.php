@@ -231,7 +231,7 @@ trait FilterHelpers
      */
     public function hasCustomPosition(): bool
     {
-        return !is_null($this->filterPosition);
+        return ! is_null($this->filterPosition);
     }
 
     /**
