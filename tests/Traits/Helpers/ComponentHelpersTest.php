@@ -164,16 +164,6 @@ class ComponentHelpersTest extends TestCase
     }
 
     /** @test */
-    public function can_get_additional_select_raws(): void
-    {
-        $this->assertEquals([], $this->basicTable->getAdditionalSelectRaws());
-
-        $this->basicTable->setAdditionalSelectRaws(['CONCAT(users.id,users.name) as concatName']);
-
-        $this->assertEquals(['CONCAT(users.id,users.name) as concatName'], $this->basicTable->getAdditionalSelectRaws());
-    }
-
-    /** @test */
     public function can_get_configurable_areas(): void
     {
         $this->assertEquals([
