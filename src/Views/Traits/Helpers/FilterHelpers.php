@@ -225,4 +225,20 @@ trait FilterHelpers
     {
         return $this->resetByClearButton === true;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasCustomPosition(): bool
+    {
+        return !is_null($this->filterPosition);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomPosition(): string
+    {
+        return $this->filterPosition;
+    }
 }

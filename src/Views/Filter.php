@@ -22,6 +22,7 @@ abstract class Filter
     protected array $config = [];
     protected ?string $filterPillTitle = null;
     protected array $filterPillValues = [];
+    public ?string $filterPosition = null;
 
     public function __construct(string $name, string $key = null)
     {

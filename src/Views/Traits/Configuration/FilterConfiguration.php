@@ -94,4 +94,15 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    /**
+     * @param string $position
+     *
+     * @return $this
+     */
+    public function setFilterPosition(string $position): self
+    {
+        $this->filterPosition = $position;
+        return $this;
+    }
 }
