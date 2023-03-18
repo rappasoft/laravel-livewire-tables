@@ -276,3 +276,12 @@ If the filter takes any config options, you can set them with the `config` metho
         'max' => '2021-12-31',
     ])
 ```
+
+### setFilterPillBlade
+
+Set a blade file for use in displaying the filter values in the pills area.
+
+```php
+SelectFilter::make('Active')
+    ->setFilterPillBlade('path.to.blade')
+```
