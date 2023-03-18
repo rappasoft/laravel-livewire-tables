@@ -191,17 +191,15 @@ class FilterHelpersTest extends TestCase
     /** @test */
     public function can_get_custom_pills_blade_status(): void
     {
-
         $filter3 = $this->basicTable->getFilters()[2];
         $this->assertFalse($filter3->hasCustomPillBlade());
 
         $filter = $this->basicTable->getFilters()[1];
         $filter->setFilterPillBlade('tests.custom');
         $this->assertTrue($filter->hasCustomPillBlade());
-        $this->assertSame('tests.custom',$filter->getCustomPillBlade());
+        $this->assertSame('tests.custom', $filter->getCustomPillBlade());
 
         $filter2 = $this->basicTable->getFilters()[3];
         $this->assertFalse($filter2->hasCustomPillBlade());
-
     }
 }
