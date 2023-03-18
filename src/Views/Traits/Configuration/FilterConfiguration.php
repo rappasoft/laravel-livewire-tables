@@ -96,6 +96,30 @@ trait FilterConfiguration
     }
 
     /**
+     * @param string $filterSlidedownRow
+     *
+     * @return $this
+     */
+    public function setFilterSlidedownRow(string $filterSlidedownRow): self
+    {
+        $this->filterSlidedownRow = intval($filterSlidedownRow);
+
+        return $this;
+    }
+
+    /**
+     * @param string $filterSlidedownColspan
+     *
+     * @return $this
+     */
+    public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
+    {
+        $this->filterSlidedownColspan = intval($filterSlidedownColspan);
+        
+        return $this;
+    }
+    
+    /**
      * @param string $blade
      *
      * @return $this

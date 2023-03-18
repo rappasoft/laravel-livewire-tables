@@ -209,4 +209,54 @@ trait FilterHelpers
     {
         return $this->getFilterLayout() === 'slide-down';
     }
+
+    /**
+     * Get whether any filter has a configured slide down row.
+     *
+     * @return bool
+     */
+    public function hasFiltersWithSlidedownRows(): bool
+    {
+        return ($this->getFilters()
+        ->reject(fn (Filter $filter) => ! $filter->hasFilterSlidedownRow())
+        ->count() > 0);
+    }
+
+    /**
+     * Get vusublke filter has a configured slide down row.
+     *
+     * @return mixed
+     */
+    public function getVisibleFilters(): Collection
+    {
+        return $this->getFilters()->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());
+    }
+
+    /**
+     * Get filters sorted by row
+     *
+     * @return array<mixed>
+     */
+    public function getFiltersByRow(): array
+    {
+        $orderedFilters = [];
+        $filterList = ($this->hasFiltersWithSlidedownRows()) ? $this->getVisibleFilters()->sortBy('filterSlidedownRow') : $this->getVisibleFilters();
+        if ($this->hasFiltersWithSlidedownRows()) {
+            foreach ($filterList as $filter) {
+                $orderedFilters[(string) $filter->filterSlidedownRow][] = $filter;
+            }
+
+            if (empty($orderedFilters['1'])) {
+                $orderedFilters['1'] = $orderedFilters['99'];
+                unset($orderedFilters['99']);
+            }
+        } else {
+            $orderedFilters = array_wrap($filterList);
+            $orderedFilters["1"] = $orderedFilters[0];
+            unset($orderedFilters[0]);
+        }
+        ksort($orderedFilters);
+
+        return $orderedFilters;
+    }
 }
