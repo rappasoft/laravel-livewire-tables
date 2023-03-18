@@ -24,7 +24,8 @@ abstract class Filter
     protected array $filterPillValues = [];
     protected ?int $filterSlidedownRow = null;
     protected ?int $filterSlidedownColspan = null;
-
+    protected ?string $filterCustomPillBlade = null;
+    
     public function __construct(string $name, string $key = null)
     {
         $this->name = $name;

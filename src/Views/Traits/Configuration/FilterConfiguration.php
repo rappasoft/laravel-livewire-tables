@@ -115,6 +115,18 @@ trait FilterConfiguration
     public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
     {
         $this->filterSlidedownColspan = intval($filterSlidedownColspan);
+        
+        return $this;
+    }
+    
+    /**
+     * @param string $blade
+     *
+     * @return $this
+     */
+    public function setFilterPillBlade(string $blade): self
+    {
+        $this->filterCustomPillBlade = $blade;
 
         return $this;
     }

@@ -51,9 +51,9 @@
             @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
                 <div
                     @if ($component->isFilterLayoutPopover())
-                        x-data="{ open: false }"
-                        x-on:keydown.escape.stop="open = false"
-                        x-on:mousedown.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                        x-on:mousedown.away="if (!childElementOpen) { open = false }"
                     @endif
 
                     class="relative block md:inline-block text-left"
@@ -107,8 +107,10 @@
                         >
                             @foreach($component->getVisibleFilters() as $filter)
                                     <div class="py-1" role="none">
-                                        <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem">
+                                        <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem"
+                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
                                             <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label"
                                                 class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
                                                 {{ $filter->getName() }}
                                             </label>
@@ -148,9 +150,9 @@
             @if ($component->showBulkActionsDropdown())
                 <div class="w-full md:w-auto mb-4 md:mb-0">
                     <div
-                        x-data="{ open: false }"
-                        @keydown.window.escape="open = false"
-                        x-on:click.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        @keydown.window.escape="if (!childElementOpen) { open = false }"
+                        x-on:click.away="if (!childElementOpen) { open = false }"
                         class="relative inline-block text-left z-10 w-full md:w-auto"
                     >
                         <div>
@@ -206,9 +208,9 @@
             @if ($component->columnSelectIsEnabled())
                 <div class="@if ($component->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($component->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
                     <div
-                        x-data="{ open: false }"
-                        @keydown.window.escape="open = false"
-                        x-on:click.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        @keydown.window.escape="if (!childElementOpen) { open = false }"
+                        x-on:click.away="if (!childElementOpen) { open = false }"
                         class="inline-block relative w-full text-left md:w-auto"
                         wire:key="column-select-button-{{ $component->getTableName() }}"
                     >
@@ -336,8 +338,10 @@
                                         'sm:col-span-9 md:col-span-4 lg:col-span-3' =>
                                             $filter->hasFilterSlidedownColspan() &&
                                             $filter->getFilterSlidedownColspan() == 3
-                                ])>
+                                ])
+                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
                                     <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label"
                                         class="inline-block text-sm font-medium leading-5 text-gray-700 dark:text-white">
                                         {{ $filter->getName() }}
                                     </label>
@@ -397,9 +401,9 @@
                 <div class="ml-0 ml-md-2 mb-3 mb-md-0">
                     <div
                         @if ($component->isFilterLayoutPopover())
-                            x-data="{ open: false }"
-                            x-on:keydown.escape.stop="open = false"
-                            x-on:mousedown.away="open = false"
+                            x-data="{ open: false, childElementOpen: false  }"
+                            x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                            x-on:mousedown.away="if (!childElementOpen) { open = false }"
                         @endif
 
                         class="btn-group d-block d-md-inline"
@@ -440,8 +444,10 @@
                                 role="menu"
                             >
                                 @foreach($component->getVisibleFilters() as $filter)
-                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
-                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
+                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
+                                        
+                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label">
+
                                                 {{ $filter->getName() }}
                                             </label>
 
@@ -502,9 +508,9 @@
             @if ($component->columnSelectIsEnabled())
                 <div class="@if ($component->getColumnSelectIsHiddenOnMobile()) d-none d-sm-block @elseif ($component->getColumnSelectIsHiddenOnTablet()) d-none d-md-block @endif mb-3 mb-md-0 pl-0 pl-md-2">
                     <div
-                        x-data="{ open: false }"
-                        x-on:keydown.escape.stop="open = false"
-                        x-on:mousedown.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                        x-on:mousedown.away="if (!childElementOpen) { open = false }"
                         class="dropdown d-block d-md-inline"
                         wire:key="column-select-button-{{ $component->getTableName() }}"
                     >
@@ -610,9 +616,10 @@
                                         $filter->hasFilterSlidedownColspan() &&
                                         $filter->getFilterSlidedownColspan() == 4,
                                 ])
+                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper"
                                 >
                                     <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                        class="d-block">
+                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label" class="d-block">
                                         {{ $filter->getName() }}
                                     </label>
                                     {{ $filter->render($component) }}
@@ -669,9 +676,9 @@
                 <div class="{{ $component->searchIsEnabled() ? 'ms-0 ms-md-2' : '' }} mb-3 mb-md-0">
                     <div
                         @if ($component->isFilterLayoutPopover())
-                            x-data="{ open: false }"
-                            x-on:keydown.escape.stop="open = false"
-                            x-on:mousedown.away="open = false"
+                            x-data="{ open: false, childElementOpen: false  }"
+                            x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                            x-on:mousedown.away="if (!childElementOpen) { open = false }"
                         @endif
 
                         class="btn-group d-block d-md-inline"
@@ -712,8 +719,8 @@
                                 role="menu"
                             >
                                 @foreach($component->getVisibleFilters() as $filter)
-                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2">
-                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2">
+                                        <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
+                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label">
                                                 {{ $filter->getName() }}
                                             </label>
 
@@ -774,9 +781,9 @@
             @if ($component->columnSelectIsEnabled())
                 <div class="@if ($component->getColumnSelectIsHiddenOnMobile()) d-none d-sm-block @elseif ($component->getColumnSelectIsHiddenOnTablet()) d-none d-md-block @endif mb-3 mb-md-0 md-0 ms-md-2">
                     <div
-                        x-data="{ open: false }"
-                        x-on:keydown.escape.stop="open = false"
-                        x-on:mousedown.away="open = false"
+                        x-data="{ open: false, childElementOpen: false  }"
+                        x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
+                        x-on:mousedown.away="if (!childElementOpen) { open = false }"
                         class="dropdown d-block d-md-inline"
                         wire:key="column-select-button-{{ $component->getTableName() }}"
                     >
@@ -887,9 +894,10 @@
                                         $filter->hasFilterSlidedownColspan() &&
                                         $filter->getFilterSlidedownColspan() == 4,
                                 ])
+                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper"
                                 >
                                     <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                        class="d-block">
+                                        class="d-block" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label" class="d-block">
                                         {{ $filter->getName() }}
                                     </label>
                                     {{ $filter->render($component) }}
