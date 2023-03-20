@@ -264,6 +264,33 @@ By default the `clear` button will reset all filters to their defaults. You can 
 SelectFilter::make('Active')
     ->notResetByClearButton()
 ```
+                                
+### setFilterSlidedownRow
+
+This method applies only when using the Slide Down approach to filter display.
+By default the filters will be displayed in the order that they are listed in the filters() method.  This method allows you to specify the row that the filter will be listed.  When multiple filters are placed on the same row, and a mobile device is used, then the first filter listed will "win" that row.
+You may use either a string or an integer to pass to this method, and it can be used in conjunction with setFilterSlidedownColspan
+
+```php
+SelectFilter::make('Active')
+    ->setFilterSlidedownRow(1)
+```
+
+### setFilterSlidedownColspan
+
+This method applies only when using the Slide Down approach to filter display.
+By default each filter will take up one column, with the number of columns determined by the size of the screen, this ranges from 1 on a mobile device, to a maximum of 5 on a large display.  This method allows you to specify the number of columns that the filter should span.  It will span the number of columns specified, up to the number of columns available (depending on screen size).
+You may use either a string or an integer to pass to this method, and it can be used in conjunction with setFilterSlidedownRow
+
+```php
+DateFilter::make('Date')
+    ->config([
+        'min' => '2020-01-01',
+        'max' => '2021-12-31',
+    ])
+    ->setFilterSlidedownColspan('2')
+```
+
 
 ### Config
 
@@ -275,4 +302,13 @@ If the filter takes any config options, you can set them with the `config` metho
         'min' => '2020-01-01',
         'max' => '2021-12-31',
     ])
+```
+
+### setFilterPillBlade
+
+Set a blade file for use in displaying the filter values in the pills area.
+
+```php
+SelectFilter::make('Active')
+    ->setFilterPillBlade('path.to.blade')
 ```
