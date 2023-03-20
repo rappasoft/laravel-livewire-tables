@@ -228,7 +228,7 @@ trait FilterHelpers
 
     public function hasCustomFilterLabel(): bool
     {
-        return !is_null($this->filterCustomLabel);
+        return ! is_null($this->filterCustomLabel);
     }
 
     public function getCustomFilterLabel(): string
