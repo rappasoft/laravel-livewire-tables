@@ -240,12 +240,12 @@ trait FilterHelpers
     public function getCustomPosition(): string
     {
         return $this->filterPosition;
-     }
+    }
      
      public function hasCustomFilterLabel(): bool
-    {
-        return ! is_null($this->filterCustomLabel);
-    }
+     {
+         return ! is_null($this->filterCustomLabel);
+     }
 
     public function getCustomFilterLabel(): string
     {
