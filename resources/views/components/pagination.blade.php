@@ -10,7 +10,7 @@
 @endif
 
 @if ($theme === 'tailwind')
-    <div>
+    <div x-init="this.visibleItems = @js($rows->pluck($component->getPrimaryKey())->toArray());">
         @if ($component->paginationVisibilityIsEnabled())
             <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">
                 <div>
@@ -47,7 +47,7 @@
         @endif
     </div>
 @elseif ($theme === 'bootstrap-4')
-    <div>
+    <div x-init="this.visibleItems = @js($rows->pluck($component->getPrimaryKey())->toArray());">
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">
@@ -90,7 +90,7 @@
         @endif
     </div>
 @elseif ($theme === 'bootstrap-5')
-    <div>
+    <div x-init="this.visibleItems = @js($rows->pluck($component->getPrimaryKey())->toArray());">
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">
