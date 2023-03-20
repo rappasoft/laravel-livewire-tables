@@ -22,6 +22,7 @@ abstract class Filter
     protected array $config = [];
     protected ?string $filterPillTitle = null;
     protected array $filterPillValues = [];
+    protected ?string $filterCustomLabel = null;
     protected ?int $filterSlidedownRow = null;
     protected ?int $filterSlidedownColspan = null;
     protected ?string $filterCustomPillBlade = null;

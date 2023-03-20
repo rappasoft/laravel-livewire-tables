@@ -109,12 +109,6 @@
                                     <div class="py-1" role="none">
                                         <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem"
                                         id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
-                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label"
-                                                class="block text-sm font-medium leading-5 text-gray-700 dark:text-white">
-                                                {{ $filter->getName() }}
-                                            </label>
-
                                             {{ $filter->render($component) }}
                                         </div>
                                     </div>
@@ -325,6 +319,7 @@
             x-transition:leave-start="transform opacity-100"
             x-transition:leave-end="transform opacity-0"
         >
+
                 @foreach($component->getFiltersByRow() as $filterRowIndex => $filterRow)
                     <div row="{{$filterRowIndex}}" class="grid grid-cols-12 gap-6 px-4 md:p-0 mb-6"
                     @class(['col-span-12  sm:col-span-12 sm:col-span-6 sm:col-span-3 sm:col-span-1 md:col-span-12 md:col-span-6 md:col-span-3 md:col-span-1 lg:col-span-12 lg:col-span-6 lg:col-span-3 lg:col-span-1 row-start-1 row-start-2 row-start-3 row-start-4 row-start-5 row-start-6 row-start-7 row-start-8 row-start9' => true == false])>
@@ -340,12 +335,6 @@
                                             $filter->getFilterSlidedownColspan() == 3
                                 ])
                                 id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
-                                    <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label"
-                                        class="inline-block text-sm font-medium leading-5 text-gray-700 dark:text-white">
-                                        {{ $filter->getName() }}
-                                    </label>
-
                                     {{ $filter->render($component) }}
                                 </div>
                         @endforeach
@@ -445,13 +434,7 @@
                             >
                                 @foreach($component->getVisibleFilters() as $filter)
                                         <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
-                                        
-                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label">
-
-                                                {{ $filter->getName() }}
-                                            </label>
-
-                                            {{ $filter->render($component) }}
+                                                {{ $filter->render($component) }}
                                         </div>
                                 @endforeach
 
@@ -618,10 +601,6 @@
                                 ])
                                 id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper"
                                 >
-                                    <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label" class="d-block">
-                                        {{ $filter->getName() }}
-                                    </label>
                                     {{ $filter->render($component) }}
                                 </div>
                         @endforeach
@@ -720,10 +699,6 @@
                             >
                                 @foreach($component->getVisibleFilters() as $filter)
                                         <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="p-2" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
-                                            <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" class="mb-2" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label">
-                                                {{ $filter->getName() }}
-                                            </label>
-
                                             {{ $filter->render($component) }}
                                         </div>
                                 @endforeach
@@ -896,10 +871,6 @@
                                 ])
                                 id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper"
                                 >
-                                    <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                        class="d-block" id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-label" class="d-block">
-                                        {{ $filter->getName() }}
-                                    </label>
                                     {{ $filter->render($component) }}
                                 </div>
                             @endif

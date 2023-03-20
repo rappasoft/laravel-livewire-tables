@@ -96,6 +96,18 @@ trait FilterConfiguration
     }
 
     /**
+     * @param string $filterCustomLabel
+     *
+     * @return $this
+     */
+    public function setCustomFilterLabel(string $filterCustomLabel): self
+    {
+        $this->filterCustomLabel = $filterCustomLabel;
+
+        return $this;
+    }
+    
+    /**
      * @param string $filterSlidedownRow
      *
      * @return $this
