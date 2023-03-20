@@ -244,17 +244,17 @@ trait FilterHelpers
         $filterList = ($this->hasFiltersWithSlidedownRows()) ? $this->getVisibleFilters()->sortBy('filterSlidedownRow') : $this->getVisibleFilters();
         if ($this->hasFiltersWithSlidedownRows()) {
             foreach ($filterList as $filter) {
-                $orderedFilters[(string) $filter->filterSlidedownRow][] = $filter;
+                $orderedFilters[(string) $filter->getFilterSlidedownRow()][] = $filter;
             }
 
             if (empty($orderedFilters['1'])) {
-                $orderedFilters['1'] = $orderedFilters['99'];
-                unset($orderedFilters['99']);
+                $orderedFilters['1'] = (isset($orderedFilters['99']) ? $orderedFilers['99'] : []);
+                if (isset($orderedFilters['99'])) unset($orderedFilters['99']);
             }
         } else {
             $orderedFilters = Arr::wrap($filterList);
-            $orderedFilters["1"] = $orderedFilters[0];
-            unset($orderedFilters[0]);
+            $orderedFilters['1'] = $orderedFilters['0'];
+            unset($orderedFilters['0']);
         }
         ksort($orderedFilters);
 
