@@ -94,4 +94,16 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    /**
+     * @param string $filterCustomLabel
+     *
+     * @return $this
+     */
+    public function setCustomFilterLabel(string $filterCustomLabel): self
+    {
+        $this->filterCustomLabel = $filterCustomLabel;
+
+        return $this;
+    }
 }
