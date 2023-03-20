@@ -226,7 +226,23 @@ trait FilterHelpers
         return $this->resetByClearButton === true;
     }
 
-    public function hasCustomFilterLabel(): bool
+    /**
+     * @return bool
+     */
+    public function hasCustomPosition(): bool
+    {
+        return ! is_null($this->filterPosition);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomPosition(): string
+    {
+        return $this->filterPosition;
+     }
+     
+     public function hasCustomFilterLabel(): bool
     {
         return ! is_null($this->filterCustomLabel);
     }

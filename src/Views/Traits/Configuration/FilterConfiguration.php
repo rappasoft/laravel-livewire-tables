@@ -96,6 +96,17 @@ trait FilterConfiguration
     }
 
     /**
+     * @param string $position
+     *
+     * @return $this
+     */
+    public function setFilterPosition(string $position): self
+    {
+        $this->filterPosition = $position;
+        return $this;   
+     }
+     
+     /**
      * @param string $filterCustomLabel
      *
      * @return $this
@@ -139,7 +150,6 @@ trait FilterConfiguration
     public function setFilterPillBlade(string $blade): self
     {
         $this->filterCustomPillBlade = $blade;
-
         return $this;
     }
 }
