@@ -103,6 +103,7 @@ trait FilterConfiguration
     public function setCustomFilterLabel(string $filterCustomLabel): self
     {
         $this->filterCustomLabel = $filterCustomLabel;
+
         return $this;
     }
     
@@ -138,6 +139,7 @@ trait FilterConfiguration
     public function setFilterPillBlade(string $blade): self
     {
         $this->filterCustomPillBlade = $blade;
+
         return $this;
     }
 }
