@@ -4,6 +4,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Changed
+
+- Workflow (run-tests) - Use of ParaTest, Composer Caching, Fix Stability Matrix Clash - https://github.com/rappasoft/laravel-livewire-tables/pull/1105
+- Improve active page visibility - https://github.com/rappasoft/laravel-livewire-tables/pull/1096
+- Additional AlpineJS Variable for Toolbar Blade - childElementOpen - https://github.com/rappasoft/laravel-livewire-tables/pull/1076
+- Core - New Functionality - Add Custom Column Slug option - https://github.com/rappasoft/laravel-livewire-tables/pull/1088
+
 ## [2.11.0] - 2023-02-16
 
 ### Added
