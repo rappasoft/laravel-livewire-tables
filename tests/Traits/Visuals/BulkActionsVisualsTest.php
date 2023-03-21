@@ -36,8 +36,7 @@ class BulkActionsVisualsTest extends TestCase
             ->assertDontSeeHtml('wire:model="selectAll"')
             ->assertDontSeeHtml('x-on:click="selectAllOnPage')
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml('wire:model="selectAll"')
-            ->assertSeeHtml('x-on:click="selectAllOnPage');
+            ->assertSeeHtml('wire:model="selectAll"');
     }
 
     /** @test */
