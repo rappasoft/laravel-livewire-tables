@@ -369,4 +369,36 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    /**
+     * @param  bool  $status
+     *
+     * @return $this
+     */
+    public function setCardLayoutStatus(bool $status): self
+    {
+        $this->cardLayoutStatus = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setCardLayoutEnabled(): self
+    {
+        $this->setCardLayoutStatus(true);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setCardLayoutDisabled(): self
+    {
+        $this->setCardLayoutStatus(false);
+
+        return $this;
+    }
 }

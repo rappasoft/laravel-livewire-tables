@@ -34,6 +34,19 @@ public function configure(): void
 }
 ```
 
+### setCardLayoutEnabled
+
+Enable card layout instead of table layout.
+
+```php
+public function configure(): void
+{
+  $this->setCardLayoutEnabled();
+}
+```
+
+
+
 ### setTableWrapperAttributes
 
 Set a list of attributes to override on the div that wraps the table
