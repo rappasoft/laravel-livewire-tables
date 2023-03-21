@@ -31,12 +31,12 @@ class BulkActionsVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
             ->assertDontSeeHtml('wire:model="selectAll"')
-            ->assertDontSeeHtml('x-on:click="selectAllOnPage()"');
+            ->assertDontSeeHtml('x-on:click="selectAllOnPage()"')
             ->call('setBulkActionsEnabled')
             ->assertDontSeeHtml('wire:model="selectAll"')
-            ->assertDontSeeHtml('x-on:click="selectAllOnPage()"');
+            ->assertDontSeeHtml('x-on:click="selectAllOnPage()"')
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml('wire:model="selectAll"');
+            ->assertSeeHtml('wire:model="selectAll"')
             ->assertSeeHtml('x-on:click="selectAllOnPage()"');
 
             
@@ -52,8 +52,7 @@ class BulkActionsVisualsTest extends TestCase
             ->call('setBulkActionsEnabled')
             ->assertDontSeeHtml(`x-on:click="toggleSelectedItem('{{ $row->{$this->getPrimaryKey()} }}')"`)
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml(`x-on:click="toggleSelectedItem('{{ $row->{$this->getPrimaryKey()} }}')"`)
-
+            ->assertSeeHtml(`x-on:click="toggleSelectedItem('{{ $row->{$this->getPrimaryKey()} }}')"`);
     }
 
     /** @test */
@@ -81,8 +80,8 @@ class BulkActionsVisualsTest extends TestCase
             ->call('setBulkActions', ['activate' => 'Activate'])
             ->call('setAllSelected')
             ->assertSee('You are currently selecting all')
-            ->assertDontSee('do you want to select all');
-            ->assertDontSee('Select All On Page')
+            ->assertDontSee('do you want to select all')
+            ->assertDontSee('Select All On Page');
     }
 
     /** @test */
