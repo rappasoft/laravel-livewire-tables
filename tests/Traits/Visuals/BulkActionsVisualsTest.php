@@ -48,11 +48,11 @@ class BulkActionsVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
-            ->assertDontSeeHtml(`x-on:click="toggleSelectedItem('{{ $row->{$this->getPrimaryKey()} }}')"`)
+            ->assertDontSeeHtml('x-on:click="toggleSelectedItem')
             ->call('setBulkActionsEnabled')
-            ->assertDontSeeHtml(`x-on:click="toggleSelectedItem('{{ $row->{$this->getPrimaryKey()} }}')"`)
+            ->assertDontSeeHtml('x-on:click="toggleSelectedItem')
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml(`x-on:click="toggleSelectedItem('{{ $row->{$this->getPrimaryKey()} }}')"`);
+            ->assertSeeHtml('x-on:click="toggleSelectedItem');
     }
 
     /** @test */
