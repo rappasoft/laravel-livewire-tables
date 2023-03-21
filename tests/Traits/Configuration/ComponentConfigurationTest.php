@@ -272,4 +272,18 @@ class ComponentConfigurationTest extends TestCase
 
         $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(true);
     }
+
+    /** @test */
+    public function can_set_card_layout_status(): void
+    {
+        $this->assertFalse($this->basicTable->cardLayoutIsEnabled());
+
+        $this->basicTable->setCardLayoutStatus(true);
+
+        $this->assertTrue($this->basicTable->cardLayoutIsEnabled());
+
+        $this->basicTable->setCardLayoutStatus(false);
+
+        $this->assertFalse($this->basicTable->cardLayoutIsEnabled());
+    }
 }

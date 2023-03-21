@@ -237,4 +237,19 @@ class ComponentHelpersTest extends TestCase
     {
         $this->assertSame($this->basicTable->getTableName(), $this->basicTable->getQueryStringAlias());
     }
+
+    /** @test */
+    public function can_get_card_layout_status(): void
+    {
+        $this->assertFalse($this->basicTable->cardLayoutIsEnabled());
+
+        $this->basicTable->setCardLayoutEnabled();
+
+        $this->assertTrue($this->basicTable->cardLayoutIsEnabled());
+
+        $this->basicTable->setCardLayoutDisabled();
+
+        $this->assertFalse($this->basicTable->cardLayoutIsEnabled());
+    }
+
 }
