@@ -13,28 +13,11 @@
             visibleItems: {},
             selectAllOnPage() {
                 let tempSelectedItems = this.selectedItems;
-                
                 const iterator = visibleItems.values();
                 for (const value of iterator) {
                     tempSelectedItems.push(value.toString());
                 }
                 this.selectedItems = [...new Set(tempSelectedItems)];
-            },
-            toggleSelectedItem(itemID) {
-                let selectedItemIndex = this.selectedItems.indexOf(itemID);
-
-                if (selectedItemIndex !== undefined && selectedItemIndex !== -1)
-                {
-                    let tempSelectedItems = this.selectedItems;
-                    let itemIndex = tempSelectedItems.indexOf(itemID);
-                    while (itemIndex !== -1) {
-                        tempSelectedItems.splice(itemIndex, 1);
-                        itemIndex = tempSelectedItems.indexOf(itemID);
-                    }
-                    this.selectedItems = [...new Set(tempSelectedItems)];
-                } else {
-                    this.selectedItems.push(itemID);
-                }
             },
             @endif
         }"
