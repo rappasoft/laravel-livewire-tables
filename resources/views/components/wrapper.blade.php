@@ -5,8 +5,7 @@
     $theme = $component->getTheme();
 @endphp
 
- <div
-        x-data="{ 
+ <div x-data="{ 
             @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
             @if ($component->bulkActionsAreEnabled())
             selectedItems: $wire.entangle('selected'),
@@ -20,19 +19,21 @@
                 this.selectedItems = [...new Set(tempSelectedItems)];
             },
             @endif
-        }"
-    {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
+        }">
+    <div
+        {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
 
-    @if ($component->hasRefresh())
-        wire:poll{{ $component->getRefreshOptions() }}
-    @endif
+        @if ($component->hasRefresh())
+            wire:poll{{ $component->getRefreshOptions() }}
+        @endif
 
-    @if ($component->isFilterLayoutSlideDown())
-        wire:ignore.self 
-    @endif
->
-     @include('livewire-tables::includes.debug')
-     @include('livewire-tables::includes.offline')
+        @if ($component->isFilterLayoutSlideDown())
+            wire:ignore.self 
+        @endif
+    >
+         @include('livewire-tables::includes.debug')
+         @include('livewire-tables::includes.offline')
 
-     {{ $slot }}
+         {{ $slot }}
+    </div>
 </div>
