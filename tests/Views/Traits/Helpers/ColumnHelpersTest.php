@@ -290,7 +290,7 @@ class ColumnHelpersTest extends TestCase
     {
         $this->basicTable->setBulkActionsDisabled();
 
-        $this->assertEquals(6, $this->basicTable->getColspanCount());
+        $this->assertEquals(7, $this->basicTable->getColspanCount());
 
         // TODO: Not working
 //        $this->basicTable->setReorderEnabled();

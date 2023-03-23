@@ -3,8 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 class LinkColumnTest extends TestCase
 {
@@ -17,56 +19,36 @@ class LinkColumnTest extends TestCase
     }
 
     /** @test */
-    public function can_infer_field_name_from_title_if_no_from(): void
+    public function can_not_infer_field_name_from_title_if_no_from(): void
     {
         $column = LinkColumn::make('My Title');
 
-        $this->assertSame('my_title', $column->getField());
+        $this->assertNull($column->getField());
     }
 
     /** @test */
-    public function can_set_base_field_from_from(): void
+    public function can_not_render_field_if_no_title_callback(): void
     {
-        $column = LinkColumn::make('Name', 'name');
+        $this->expectException(DataTableConfigurationException::class);
 
-        $this->assertSame('name', $column->getField());
+        LinkColumn::make('Name')->getContents(Pet::find(1));
     }
 
     /** @test */
-    public function can_set_relation_field_from_from(): void
+    public function can_not_render_field_if_no_location_callback(): void
     {
-        $column = LinkColumn::make('Name', 'address.group.name');
+        $this->expectException(DataTableConfigurationException::class);
 
-        $this->assertSame('name', $column->getField());
+        LinkColumn::make('Name')->title(fn($row) => 'Edit')->getContents(Pet::find(1));
     }
 
     /** @test */
-    public function can_set_relations_from_from(): void
+    public function can_render_field_if_title_and_location_callback(): void
     {
-        $column = LinkColumn::make('Name', 'address.group.name');
+        $column = LinkColumn::make('Name')->title(fn($row) => 'Edit')->location(fn($row) => 'test'.$row->id)->getContents(Pet::find(1));
 
-        $this->assertSame(['address', 'group'], $column->getRelations()->toArray());
-        $this->assertSame('address.group', $column->getRelationString());
+        $this->assertNotEmpty($column);
+
     }
 
-    /** @test */
-    public function can_get_contents_of_column(): void
-    {
-        // TODO: Figure out how to call getContents on a row object to verify that way
-        $rows = $this->basicTable->getRows();
-        $this->assertSame('Cartman', $rows->first()->name);
-        $this->assertSame('Norwegian Forest', $rows->first()['breed.name']);
-    }
-
-    /** @test */
-    public function column_table_gets_set_for_base_and_relationship_columns(): void
-    {
-        $column = $this->basicTable->getColumnBySelectName('name');
-
-        $this->assertSame('pets', $column->getTable());
-
-        $column = $this->basicTable->getColumnBySelectName('breed.name');
-
-        $this->assertSame('breeds', $column->getTable());
-    }
 }
