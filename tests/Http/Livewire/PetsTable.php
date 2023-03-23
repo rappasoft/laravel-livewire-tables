@@ -10,6 +10,8 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 class PetsTable extends DataTableComponent
 {
@@ -69,6 +71,15 @@ class PetsTable extends DataTableComponent
             )
             ->filter(function (Builder $builder, array $values) {
                 return $builder->whereIn('species_id', $values);
+            }),
+            NumberFilter::make('Breed ID','breed_id_filter')
+            ->filter(function (Builder $builder, string $value) {
+                return $builder->where('breed_id', '=', $value);
+            }),
+            
+            TextFilter::make('Pet Name','pet_name_filter')
+            ->filter(function (Builder $builder, string $value) {
+                return $builder->where('pets.name', '=', $value);
             }),
         ];
     }

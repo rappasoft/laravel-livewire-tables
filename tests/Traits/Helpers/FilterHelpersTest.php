@@ -4,6 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 class FilterHelpersTest extends TestCase
 {
@@ -59,12 +61,15 @@ class FilterHelpersTest extends TestCase
     public function can_get_component_filters(): void
     {
         $this->assertInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilters()[0]);
+        $this->assertInstanceOf(NumberFilter::class, $this->basicTable->getFilters()[2]);
+        $this->assertInstanceOf(TextFilter::class, $this->basicTable->getFilters()[3]);
+
     }
 
     /** @test */
     public function can_get_component_filter_count(): void
     {
-        $this->assertEquals(2, $this->basicTable->getFiltersCount());
+        $this->assertEquals(4, $this->basicTable->getFiltersCount());
     }
 
     /** @test */
@@ -73,6 +78,15 @@ class FilterHelpersTest extends TestCase
         $this->assertNotInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilterByKey('test'));
 
         $this->assertInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilterByKey('breed'));
+
+        $this->assertNotInstanceOf(NumberFilter::class, $this->basicTable->getFilterByKey('test'));
+
+        $this->assertInstanceOf(NumberFilter::class, $this->basicTable->getFilterByKey('breed_id_filter'));
+
+        $this->assertNotInstanceOf(TextFilter::class, $this->basicTable->getFilterByKey('breed_id_filter'));
+
+        $this->assertInstanceOf(TextFilter::class, $this->basicTable->getFilterByKey('pet_name_filter'));
+
     }
 
     /** @test */
@@ -81,6 +95,14 @@ class FilterHelpersTest extends TestCase
         $this->basicTable->setFilter('breed', ['1']);
 
         $this->assertSame(['1'], $this->basicTable->getAppliedFilterWithValue('breed'));
+
+        $this->basicTable->setFilter('breed_id_filter', '2');
+
+        $this->assertSame('2', $this->basicTable->getAppliedFilterWithValue('breed_id_filter'));
+
+        $this->basicTable->setFilter('pet_name_filter', 'Test');
+
+        $this->assertSame('Test', $this->basicTable->getAppliedFilterWithValue('pet_name_filter'));
     }
 
     /** @test */
@@ -111,7 +133,7 @@ class FilterHelpersTest extends TestCase
 
         $this->basicTable->setFilterDefaults();
 
-        $this->assertSame(['breed' => [], 'species' => []], $this->basicTable->getAppliedFilters());
+        $this->assertSame(['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null], $this->basicTable->getAppliedFilters());
     }
 
     /** @test */
