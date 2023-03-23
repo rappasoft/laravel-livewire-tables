@@ -51,6 +51,23 @@ class BooleanColumnTest extends TestCase
     }    
 
     /** @test */
+    public function can_set_boolean_column_icons(): void
+    {
+        $column = BooleanColumn::make('Name')->setSuccessValue(false)->icons();
+
+        $this->assertSame('icons', $column->getType());
+    }    
+
+    /** @test */
+    public function can_set_boolean_column_yesno(): void
+    {
+        $column = BooleanColumn::make('Name')->setSuccessValue(false)->yesNo();
+
+        $this->assertSame('yes-no', $column->getType());
+    }    
+    
+
+    /** @test */
     public function can_return_status_true(): void
     {
         $row = Pet::find(1);
