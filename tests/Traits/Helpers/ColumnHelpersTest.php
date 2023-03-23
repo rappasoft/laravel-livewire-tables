@@ -5,6 +5,8 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 
 class ColumnHelpersTest extends TestCase
 {
@@ -224,5 +226,14 @@ class ColumnHelpersTest extends TestCase
             $this->assertTrue($column->hasSecondaryHeaderCallback());
             $callback = $column->getSecondaryHeaderCallback();
             $this->assertTrue($callback instanceof TextFilter);
+        }
+
+        /** @test */
+        public function can_check_if_column_has_secondary_header_filter(): void
+        {
+            $column = $this->basicTable->getColumnBySelectName('breed.name');
+            $this->assertTrue($column->hasSecondaryHeader());
+            $contents = $column->getSecondaryHeaderContents(Pet::find(1));
+            $this->assertStringContainsString('id="table-filter-breed-8"', $contents);
         }
 }

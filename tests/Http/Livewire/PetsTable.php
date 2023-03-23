@@ -40,6 +40,7 @@ class PetsTable extends DataTableComponent
                 ->searchable(),
             Column::make('Age'),
             Column::make('Breed', 'breed.name')
+                ->secondaryHeaderFilter('breed')
                 ->sortable(),
             Column::make('Other')
                 ->label(function ($row, Column $column) {
