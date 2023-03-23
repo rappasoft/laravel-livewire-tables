@@ -9,6 +9,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
@@ -50,6 +51,12 @@ class PetsTable extends DataTableComponent
                 'class' => 'rounded-full',
                 'alt' => $row->name . ' Avatar',
             ]),        
+            ImageColumn::make('RowImg')
+            ->location(fn($row) => 'test'.$row->id)
+            ->attributes(fn($row) => [
+                'class' => 'rounded-full',
+                'alt' => $row->name . ' Avatar',
+            ]),
         ];
     }
 
