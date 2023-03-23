@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 class ColumnHelpersTest extends TestCase
 {
@@ -215,4 +216,13 @@ class ColumnHelpersTest extends TestCase
 
         $this->assertTrue($column->isReorderColumn());
     }
+
+        /** @test */
+        public function can_check_if_column_has_secondary_header(): void
+        {
+            $column = $this->basicTable->getColumnBySelectName('name');
+            $this->assertTrue($column->hasSecondaryHeaderCallback());
+            $callback = $column->getSecondaryHeaderCallback();
+            $this->assertTrue($callback instanceof TextFilter);
+        }
 }

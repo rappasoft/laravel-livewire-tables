@@ -36,6 +36,7 @@ class PetsTable extends DataTableComponent
                 ->excludeFromColumnSelect(),
             Column::make('Name')
                 ->sortable()
+                ->secondaryHeader($this->getFilterByKey('pet_name_filter'))
                 ->searchable(),
             Column::make('Age'),
             Column::make('Breed', 'breed.name')
