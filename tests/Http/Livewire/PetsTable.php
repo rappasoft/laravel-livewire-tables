@@ -12,6 +12,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
@@ -109,6 +110,19 @@ class PetsTable extends DataTableComponent
             DateTimeFilter::make('Last Visit Before DateTime','last_visit_datetime_filter')
             ->filter(function (Builder $builder, string $value) {
                 return $builder->whereDate('pets.last_visit', '<=', $value);
+            }),
+
+            SelectFilter::make('Breed SelectFilter', 'breed_select_filter')
+            ->options(
+                Breed::query()
+                    ->orderBy('name')
+                    ->get()
+                    ->keyBy('id')
+                    ->map(fn ($breed) => $breed->name)
+                    ->toArray()
+            )
+            ->filter(function (Builder $builder, string $value) {
+                return $builder->where('breed_id', $value);
             }),
         ];
     }
