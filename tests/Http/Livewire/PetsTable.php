@@ -14,6 +14,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
 
 class PetsTable extends DataTableComponent
 {
@@ -97,6 +99,16 @@ class PetsTable extends DataTableComponent
             TextFilter::make('Pet Name','pet_name_filter')
             ->filter(function (Builder $builder, string $value) {
                 return $builder->where('pets.name', '=', $value);
+            }),
+
+            DateFilter::make('Last Visit After Date','last_visit_date_filter')
+            ->filter(function (Builder $builder, string $value) {
+                return $builder->whereDate('pets.last_visit', '=>', $value);
+            }),
+
+            DateTimeFilter::make('Last Visit Before DateTime','last_visit_datetime_filter')
+            ->filter(function (Builder $builder, string $value) {
+                return $builder->whereDate('pets.last_visit', '<=', $value);
             }),
         ];
     }

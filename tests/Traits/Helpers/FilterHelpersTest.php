@@ -6,6 +6,8 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
 
 class FilterHelpersTest extends TestCase
 {
@@ -63,13 +65,15 @@ class FilterHelpersTest extends TestCase
         $this->assertInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilters()[0]);
         $this->assertInstanceOf(NumberFilter::class, $this->basicTable->getFilters()[2]);
         $this->assertInstanceOf(TextFilter::class, $this->basicTable->getFilters()[3]);
+        $this->assertInstanceOf(DateFilter::class, $this->basicTable->getFilters()[4]);
+        $this->assertInstanceOf(DateTimeFilter::class, $this->basicTable->getFilters()[5]);
 
     }
 
     /** @test */
     public function can_get_component_filter_count(): void
     {
-        $this->assertEquals(4, $this->basicTable->getFiltersCount());
+        $this->assertEquals(6, $this->basicTable->getFiltersCount());
     }
 
     /** @test */
@@ -86,6 +90,14 @@ class FilterHelpersTest extends TestCase
         $this->assertNotInstanceOf(TextFilter::class, $this->basicTable->getFilterByKey('breed_id_filter'));
 
         $this->assertInstanceOf(TextFilter::class, $this->basicTable->getFilterByKey('pet_name_filter'));
+
+        $this->assertNotInstanceOf(DateFilter::class, $this->basicTable->getFilterByKey('pet_name_filter'));
+
+        $this->assertInstanceOf(DateFilter::class, $this->basicTable->getFilterByKey('last_visit_date_filter'));
+
+        $this->assertNotInstanceOf(DateTimeFilter::class, $this->basicTable->getFilterByKey('breed'));
+
+        $this->assertInstanceOf(DateTimeFilter::class, $this->basicTable->getFilterByKey('last_visit_datetime_filter'));
 
     }
 
@@ -133,7 +145,7 @@ class FilterHelpersTest extends TestCase
 
         $this->basicTable->setFilterDefaults();
 
-        $this->assertSame(['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null], $this->basicTable->getAppliedFilters());
+        $this->assertSame(['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null], $this->basicTable->getAppliedFilters());
     }
 
     /** @test */
