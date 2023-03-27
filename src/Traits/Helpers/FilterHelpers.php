@@ -171,9 +171,9 @@ trait FilterHelpers
 
     public function getAppliedFiltersWithValues(): array
     {
-        return array_filter($this->getAppliedFilters(), function ($item) {
-            return is_array($item) ? count($item) : $item !== null;
-        });
+        return array_filter($this->getAppliedFilters(), function ($item, $key) {
+            return ! $this->getFilterByKey($key)->isEmpty($item) && (is_array($item) ? count($item) : $item !== null);
+        }, ARRAY_FILTER_USE_BOTH);
     }
 
     public function getAppliedFilterWithValue(string $filterKey)
@@ -208,5 +208,55 @@ trait FilterHelpers
     public function isFilterLayoutSlideDown(): bool
     {
         return $this->getFilterLayout() === 'slide-down';
+    }
+
+    /**
+     * Get whether any filter has a configured slide down row.
+     *
+     * @return bool
+     */
+    public function hasFiltersWithSlidedownRows(): bool
+    {
+        return ($this->getFilters()
+        ->reject(fn (Filter $filter) => ! $filter->hasFilterSlidedownRow())
+        ->count() > 0);
+    }
+
+    /**
+     * Get vusublke filter has a configured slide down row.
+     *
+     * @return mixed
+     */
+    public function getVisibleFilters(): Collection
+    {
+        return $this->getFilters()->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());
+    }
+
+    /**
+     * Get filters sorted by row
+     *
+     * @return array<mixed>
+     */
+    public function getFiltersByRow(): array
+    {
+        $orderedFilters = [];
+        $filterList = ($this->hasFiltersWithSlidedownRows()) ? $this->getVisibleFilters()->sortBy('filterSlidedownRow') : $this->getVisibleFilters();
+        if ($this->hasFiltersWithSlidedownRows()) {
+            foreach ($filterList as $filter) {
+                $orderedFilters[(string) $filter->filterSlidedownRow][] = $filter;
+            }
+
+            if (empty($orderedFilters['1'])) {
+                $orderedFilters['1'] = $orderedFilters['99'];
+                unset($orderedFilters['99']);
+            }
+        } else {
+            $orderedFilters = array_wrap($filterList);
+            $orderedFilters["1"] = $orderedFilters[0];
+            unset($orderedFilters[0]);
+        }
+        ksort($orderedFilters);
+
+        return $orderedFilters;
     }
 }

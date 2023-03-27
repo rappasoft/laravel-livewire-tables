@@ -461,12 +461,12 @@ trait ColumnHelpers
                     return new HtmlString($value);
                 }
             } elseif ($callback instanceof Filter) {
-                return $callback->render($this->getComponent());
+                return $callback->setFilterPosition('header')->render($this->getComponent());
             } elseif (is_string($callback)) {
                 $filter = $this->getComponent()->getFilterByKey($callback);
 
                 if ($filter instanceof Filter) {
-                    return $filter->render($this->getComponent());
+                    return $filter->setFilterPosition('header')->render($this->getComponent());
                 }
             } else {
                 throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
@@ -516,12 +516,12 @@ trait ColumnHelpers
                     return new HtmlString($value);
                 }
             } elseif ($callback instanceof Filter) {
-                return $callback->render($this->getComponent());
+                return $callback->setFilterPosition('footer')->render($this->getComponent());
             } elseif (is_string($callback)) {
                 $filter = $this->getComponent()->getFilterByKey($callback);
 
                 if ($filter instanceof Filter) {
-                    return $filter->render($this->getComponent());
+                    return $filter->setFilterPosition('footer')->render($this->getComponent());
                 }
             } else {
                 throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
@@ -540,7 +540,7 @@ trait ColumnHelpers
             if (is_bool($attributes[$key])) {
                 return $attributes[$key] ? $key : '';
             }
-            
+
             return $key . '="' . $attributes[$key] . '"';
         }, array_keys($attributes)));
     }
