@@ -219,21 +219,45 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->isReorderColumn());
     }
 
-        /** @test */
-        public function can_check_if_column_has_secondary_header(): void
-        {
-            $column = $this->basicTable->getColumnBySelectName('name');
-            $this->assertTrue($column->hasSecondaryHeaderCallback());
-            $callback = $column->getSecondaryHeaderCallback();
-            $this->assertTrue($callback instanceof TextFilter);
-        }
+    /** @test */
+    public function can_check_if_column_has_secondary_header(): void
+    {
+        $column = $this->basicTable->getColumnBySelectName('name');
+        $this->assertTrue($column->hasSecondaryHeaderCallback());
+        $callback = $column->getSecondaryHeaderCallback();
+        $this->assertTrue($callback instanceof TextFilter);
+    }
 
-        /** @test */
-        public function can_check_if_column_has_secondary_header_filter(): void
-        {
-            $column = $this->basicTable->getColumnBySelectName('breed.name');
-            $this->assertTrue($column->hasSecondaryHeader());
-            $contents = $column->getSecondaryHeaderContents(Pet::find(1));
-            $this->assertStringContainsString('id="table-filter-breed-8"', $contents);
-        }
+    /** @test */
+    public function can_check_if_column_has_secondary_header_filter(): void
+    {
+        $column = $this->basicTable->getColumnBySelectName('breed.name');
+        $this->assertTrue($column->hasSecondaryHeader());
+        $contents = $column->getSecondaryHeaderContents(Pet::find(1));
+        $this->assertStringContainsString('id="table-filter-breed-8"', $contents);
+    }
+
+    /** @test */
+    public function can_check_if_column_has_custom_slug(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertFalse($column->hasCustomSlug());
+
+        $column->setCustomSlug('test123');
+
+        $this->assertTrue($column->hasCustomSlug());
+    }
+
+    /** @test */
+    public function can_column_custom_slug_returns(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertSame(\Illuminate\Support\Str::slug($column->getTitle()), $column->getSlug());
+
+        $column->setCustomSlug('test123');
+
+        $this->assertSame(\Illuminate\Support\Str::slug('test123'), $column->getSlug());
+    }
 }
