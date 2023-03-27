@@ -96,10 +96,22 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $filterCustomLabel
+     * @param string $position
      *
      * @return $this
      */
+    public function setFilterPosition(string $position): self
+    {
+        $this->filterPosition = $position;
+
+        return $this;
+    }
+     
+     /**
+    * @param string $filterCustomLabel
+    *
+    * @return $this
+    */
     public function setCustomFilterLabel(string $filterCustomLabel): self
     {
         $this->filterCustomLabel = $filterCustomLabel;

@@ -1,18 +1,19 @@
 @php
     $theme = $component->getTheme();
+    $filterLayout = $component->getFilterLayout();
 @endphp
 <div>
     @if($filter->hasCustomFilterLabel())
-        @include($filter->getCustomFilterLabel(),['filter' => $filter])
+        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout ])
     @else
-        <x-livewire-tables::tools.filter-label :filter="$filter" />
+        <x-livewire-tables::tools.filter-label :filter="$filter" :theme="$theme" :filterLayout="$filterLayout" />
     @endif
         @if ($theme === 'tailwind')
         <div class="rounded-md shadow-sm">
             <input
                 wire:model.stop="{{ $component->getTableName() }}.filters.{{ $filter->getKey() }}"
-                wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
+                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 type="number"
                 @if($filter->hasConfig('min')) min="{{ $filter->getConfig('min') }}" @endif
                 @if($filter->hasConfig('max')) max="{{ $filter->getConfig('max') }}" @endif
@@ -23,8 +24,8 @@
         <div class="mb-3 mb-md-0 input-group">
             <input
                 wire:model.stop="{{ $component->getTableName() }}.filters.{{ $filter->getKey() }}"
-                wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
+                id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 type="number"
                 @if($filter->hasConfig('min')) min="{{ $filter->getConfig('min') }}" @endif
                 @if($filter->hasConfig('max')) max="{{ $filter->getConfig('max') }}" @endif

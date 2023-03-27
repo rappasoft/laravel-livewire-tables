@@ -237,6 +237,32 @@ trait FilterHelpers
     }
 
     /**
+     * @return bool
+     */
+    public function hasCustomPosition(): bool
+    {
+        return ! is_null($this->filterPosition);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomPosition(): string
+    {
+        return $this->filterPosition;
+    }
+     
+     public function hasCustomFilterLabel(): bool
+     {
+         return ! is_null($this->filterCustomLabel);
+     }
+
+    public function getCustomFilterLabel(): string
+    {
+        return $this->filterCustomLabel ?? '';
+    }
+
+    /**
      * Get the filter slide down row.
      *
      * @return int|null
