@@ -226,6 +226,16 @@ trait FilterHelpers
         return $this->resetByClearButton === true;
     }
 
+    public function hasCustomFilterLabel(): bool
+    {
+        return ! is_null($this->filterCustomLabel);
+    }
+
+    public function getCustomFilterLabel(): string
+    {
+        return $this->filterCustomLabel ?? '';
+    }
+
     /**
      * @return bool
      */
@@ -309,6 +319,6 @@ trait FilterHelpers
      */
     public function getCustomPillBlade(): ?string
     {
-        return $this->filterCustomPillBlade ?? null;
+        return $this->filterCustomPillBlade;
     }
 }
