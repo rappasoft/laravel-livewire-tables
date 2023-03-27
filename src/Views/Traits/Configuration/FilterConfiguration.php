@@ -7,9 +7,10 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 trait FilterConfiguration
 {
     /**
-     * @param array<mixed> $config
+     * @param string $key
+     * @param mixed  $value
      *
-     * @return  \Rappasoft\LaravelLivewireTables\Views\Filter
+     * @return $this
      */
     public function config(array $config = []): Filter
     {
@@ -19,9 +20,9 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $title
+     * @param string $key
      *
-     * @return self
+     * @return $this
      */
     public function setFilterPillTitle(string $title): self
     {
@@ -31,9 +32,9 @@ trait FilterConfiguration
     }
 
     /**
-     * @param array<mixed> $values
+     * @param string $key
      *
-     * @return self
+     * @return $this
      */
     public function setFilterPillValues(array $values): self
     {
@@ -43,7 +44,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function hiddenFromMenus(): self
     {
@@ -53,7 +54,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function hiddenFromPills(): self
     {
@@ -63,7 +64,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function hiddenFromFilterCount(): self
     {
@@ -73,7 +74,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function hiddenFromAll(): self
     {
@@ -85,7 +86,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function notResetByClearButton(): self
     {

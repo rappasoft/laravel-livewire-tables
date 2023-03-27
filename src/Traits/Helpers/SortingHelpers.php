@@ -21,7 +21,7 @@ trait SortingHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return array
      */
     public function getSorts(): array
     {
@@ -29,9 +29,9 @@ trait SortingHelpers
     }
 
     /**
-     * @param  array<mixed>  $sorts
+     * @param  array  $sorts
      *
-     * @return array<mixed>
+     * @return array
      */
     public function setSorts(array $sorts): array
     {
@@ -64,7 +64,7 @@ trait SortingHelpers
      */
     public function hasSorts(): bool
     {
-        return (count($this->getSorts()) > 0);
+        return count($this->getSorts());
     }
 
     /**

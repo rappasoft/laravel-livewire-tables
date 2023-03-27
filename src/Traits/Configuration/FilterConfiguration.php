@@ -9,7 +9,7 @@ trait FilterConfiguration
     /**
      * @param  bool  $status
      *
-     * @return self
+     * @return $this
      */
     public function setFiltersStatus(bool $status): self
     {
@@ -19,7 +19,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setFiltersEnabled(): self
     {
@@ -29,7 +29,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setFiltersDisabled(): self
     {
@@ -41,7 +41,7 @@ trait FilterConfiguration
     /**
      * @param  bool $status
      *
-     * @return self
+     * @return $this
      */
     public function setFiltersVisibilityStatus(bool $status): self
     {
@@ -51,7 +51,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setFiltersVisibilityEnabled(): self
     {
@@ -61,7 +61,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setFiltersVisibilityDisabled(): self
     {
@@ -73,7 +73,7 @@ trait FilterConfiguration
     /**
      * @param  bool $status
      *
-     * @return self
+     * @return $this
      */
     public function setFilterPillsStatus(bool $status): self
     {
@@ -83,7 +83,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setFilterPillsEnabled(): self
     {
@@ -103,9 +103,9 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $type
+     * @param  bool $status
      *
-     * @return self
+     * @return $this
      */
     public function setFilterLayout(string $type): self
     {
@@ -119,7 +119,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setFilterLayoutPopover(): self
     {
@@ -129,7 +129,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setFilterLayoutSlideDown(): self
     {
@@ -141,7 +141,7 @@ trait FilterConfiguration
     /**
      * @param  bool $status
      *
-     * @return self
+     * @return $this
      */
     public function setFilterSlideDownDefaultStatus(bool $status): self
     {
@@ -151,7 +151,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setFilterSlideDownDefaultStatusDisabled(): self
     {
@@ -161,7 +161,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setFilterSlideDownDefaultStatusEnabled(): self
     {

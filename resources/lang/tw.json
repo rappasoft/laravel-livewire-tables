@@ -1,12 +1,10 @@
 {
     "All": "全部",
-    "All Columns": "所有專欄",
     "Applied Filters": "已套用的過濾規則",
     "Applied Sorting": "已套用的搜尋規則",
     "Bulk Actions": "批次操作",
     "Clear": "清除",
     "Columns": "欄位",
-    "Debugging Values": "調試值",
     "Done Reordering": "排序完成",
     "Filters": "過濾規則",
     "Remove filter option": "移除過濾規則",
@@ -24,7 +22,5 @@
     "rows": "筆資料",
     "rows, do you want to select all": "筆資料，您是否要全選",
     "No items found. Try to broaden your search.": "無資料呈現。請嘗試擴大搜尋範圍。",
-    "to": "至",
-    "No": "不",
-    "Yes": "是的"
+    "to": "至"
 }

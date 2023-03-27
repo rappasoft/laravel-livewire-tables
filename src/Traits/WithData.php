@@ -18,9 +18,6 @@ trait WithData
         return $this->executeQuery();
     }
 
-    /**
-     * @return Builder
-     */
     protected function baseQuery(): Builder
     {
         $this->setBuilder($this->joinRelations());
@@ -55,9 +52,6 @@ trait WithData
         return $this->getBuilder()->get();
     }
 
-    /**
-     * @return Builder
-     */
     protected function joinRelations(): Builder
     {
         foreach ($this->getSelectableColumns() as $column) {
@@ -69,11 +63,6 @@ trait WithData
         return $this->getBuilder();
     }
 
-    /**
-     * @param Column $column
-     *
-     * @return Builder
-     */
     protected function joinRelation(Column $column): Builder
     {
         if ($column->eagerLoadRelationsIsEnabled() || $this->eagerLoadAllRelationsIsEnabled()) {
@@ -115,19 +104,10 @@ trait WithData
         return $this->getBuilder();
     }
 
-    /**
-     * @param mixed $table
-     * @param mixed $foreign
-     * @param mixed $other
-     * @param string $type
-     *
-     * @return Builder
-     */
     protected function performJoin($table, $foreign, $other, $type = 'left'): Builder
     {
         $joins = [];
 
-        /** @phpstan-ignore-next-line */
         foreach ($this->getBuilder()->getQuery()->joins ?? [] as $join) {
             $joins[] = $join->table;
         }
@@ -139,9 +119,6 @@ trait WithData
         return $this->getBuilder();
     }
 
-    /**
-     * @return Builder
-     */
     protected function selectFields(): Builder
     {
         // Load any additional selects that were not already columns
@@ -156,11 +133,6 @@ trait WithData
         return $this->getBuilder();
     }
 
-    /**
-     * @param Column $column
-     *
-     * @return string|null
-     */
     protected function getTableForColumn(Column $column): ?string
     {
         $table = null;
@@ -179,9 +151,6 @@ trait WithData
         return $table;
     }
 
-    /**
-     * @return string
-     */
     protected function getQuerySql(): string
     {
         return (clone $this->getBuilder())->toSql();

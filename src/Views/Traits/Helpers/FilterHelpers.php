@@ -9,6 +9,7 @@ trait FilterHelpers
     /**
      * Get the filter name.
      *
+     * @param  string  $name
      * @return string
      */
     public function getName(): string
@@ -29,7 +30,7 @@ trait FilterHelpers
     /**
      * Get the filter configs.
      *
-     * @return array<mixed>
+     * @return array
      */
     public function getConfigs(): array
     {
@@ -50,7 +51,7 @@ trait FilterHelpers
     /**
      * Get the filter keys.
      *
-     * @return array<mixed>
+     * @return array
      */
     public function getKeys(): array
     {
@@ -60,7 +61,7 @@ trait FilterHelpers
     /**
      * Get the filter options.
      *
-     * @return mixed
+     * @return array
      */
     public function getDefaultValue()
     {
@@ -68,11 +69,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter instance.
+     * Get the filter options.
      *
-     * @param callable $callback
-     *
-     * @return  \Rappasoft\LaravelLivewireTables\Views\Filter
+     * @return array
      */
     public function filter(callable $callback): Filter
     {
@@ -82,9 +81,9 @@ trait FilterHelpers
     }
 
     /**
-     * Determine if the filter has a callback.
+     * Get the filter options.
      *
-     * @return bool
+     * @return array
      */
     public function hasFilterCallback(): bool
     {
@@ -92,9 +91,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter callback.
+     * Get the filter options.
      *
-     * @return callable
+     * @return array
      */
     public function getFilterCallback(): callable
     {
@@ -102,9 +101,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter custom filter pill title.
+     * Get the filter options.
      *
-     * @return string|null
+     * @return array
      */
     public function getCustomFilterPillTitle(): ?string
     {
@@ -112,9 +111,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter title.
+     * Get the filter options.
      *
-     * @return string
+     * @return array
      */
     public function getFilterPillTitle(): string
     {
@@ -124,9 +123,7 @@ trait FilterHelpers
     /**
      * Get the filter options.
      *
-     * @param mixed $value
-     *
-     * @return string|null
+     * @return array
      */
     public function getFilterPillValue($value): ?string
     {
@@ -136,7 +133,7 @@ trait FilterHelpers
     /**
      * Get the filter options.
      *
-     * @return array<mixed>
+     * @return array
      */
     public function getCustomFilterPillValues(): array
     {
@@ -144,11 +141,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter custom filter pill.
+     * Get the filter options.
      *
-     * @param string $value
-     *
-     * @return string|null
+     * @return array
      */
     public function getCustomFilterPillValue(string $value): ?string
     {
@@ -158,7 +153,7 @@ trait FilterHelpers
     /**
      * Get the filter options.
      *
-     * @return bool
+     * @return array
      */
     public function hasConfigs(): bool
     {
@@ -166,11 +161,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get whether the filter has a specific configuration.
+     * Get the filter options.
      *
-     * @param string $key
-     *
-     * @return bool
+     * @return array
      */
     public function hasConfig(string $key): bool
     {

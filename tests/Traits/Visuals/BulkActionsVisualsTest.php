@@ -31,10 +31,8 @@ class BulkActionsVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
             ->assertDontSeeHtml('wire:model="selectAll"')
-            ->assertDontSeeHtml('x-model="selectedItems"')
             ->call('setBulkActionsEnabled')
             ->assertDontSeeHtml('wire:model="selectAll"')
-            ->assertDontSeeHtml('x-model="selectedItems"')
             ->call('setBulkActions', ['activate' => 'Activate'])
             ->assertSeeHtml('wire:model="selectAll"');
     }
@@ -44,11 +42,11 @@ class BulkActionsVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
-            ->assertDontSeeHtml('x-model="selectedItems"')
+            ->assertDontSeeHtml('wire:model="selected"')
             ->call('setBulkActionsEnabled')
-            ->assertDontSeeHtml('x-model="selectedItems"')
+            ->assertDontSeeHtml('wire:model="selected"')
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml('x-model="selectedItems"');
+            ->assertSeeHtml('wire:model="selected"');
     }
 
     /** @test */
@@ -71,13 +69,11 @@ class BulkActionsVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
             ->assertDontSee('You are currently selecting all')
-            ->assertDontSee('Select All On Page')
             ->call('setBulkActionsEnabled')
             ->call('setBulkActions', ['activate' => 'Activate'])
             ->call('setAllSelected')
             ->assertSee('You are currently selecting all')
-            ->assertDontSee('do you want to select all')
-            ->assertDontSee('Select All On Page');
+            ->assertDontSee('do you want to select all');
     }
 
     /** @test */
@@ -86,12 +82,10 @@ class BulkActionsVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
             ->assertDontSee('do you want to select all')
-            ->assertDontSee('Select All On Page')
             ->call('setBulkActionsEnabled')
             ->call('setBulkActions', ['activate' => 'Activate'])
             ->call('setSelected', [1, 2, 3])
             ->assertSee('do you want to select all')
-            ->assertSee('Select All On Page')
             ->assertDontSee('You are currently selecting all');
     }
 }

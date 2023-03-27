@@ -103,7 +103,7 @@ trait PaginationHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return array
      */
     public function getPerPageAccepted(): array
     {

@@ -101,7 +101,7 @@ trait ReorderingHelpers
     }
 
     /**
-     * @return void
+     *
      */
     public function setReorderingSession(): void
     {
@@ -109,7 +109,7 @@ trait ReorderingHelpers
     }
 
     /**
-     * @return void
+     *
      */
     public function forgetReorderingSession(): void
     {

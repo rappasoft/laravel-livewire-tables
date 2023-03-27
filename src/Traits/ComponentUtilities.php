@@ -51,7 +51,7 @@ trait ComponentUtilities
     /**
      * Set the custom query string array for this specific table
      *
-     * @return array<mixed>
+     * @return array|\null[][]
      */
     public function queryString(): array
     {
@@ -65,10 +65,10 @@ trait ComponentUtilities
     }
 
     /**
-     * @param mixed $name
-     * @param mixed $value
+     * Keep track of any properties on the custom query string key for this specific table
      *
-     * @return void
+     * @param $name
+     * @param $value
      */
     public function updated($name, $value): void
     {
@@ -103,8 +103,6 @@ trait ComponentUtilities
 
     /**
      * 1. After the sorting method is hit we need to tell the table to go back into reordering mode
-     *
-     * @return void
      */
     public function hydrate(): void
     {

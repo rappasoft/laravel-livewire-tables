@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 trait ColumnSelectHelpers
 {
     /**
-     * @return bool
+     * @var bool
      */
     public function getColumnSelectStatus(): bool
     {
@@ -15,7 +15,8 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @return bool
+     * @param bool $status
+     * @return $this
      */
     public function columnSelectIsEnabled(): bool
     {
@@ -23,7 +24,8 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @return bool
+     * @param bool $status
+     * @return $this
      */
     public function columnSelectIsDisabled(): bool
     {
@@ -31,7 +33,8 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @return bool
+     * @param bool $status
+     * @return $this
      */
     public function getRememberColumnSelectionStatus(): bool
     {
@@ -39,7 +42,8 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @return bool
+     * @param bool $status
+     * @return $this
      */
     public function rememberColumnSelectionIsEnabled(): bool
     {
@@ -47,7 +51,8 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @return bool
+     * @param bool $status
+     * @return $this
      */
     public function rememberColumnSelectionIsDisabled(): bool
     {
@@ -55,9 +60,8 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @param mixed $column
-     *
-     * @return bool
+     * @param bool $status
+     * @return $this
      */
     public function columnSelectIsEnabledForColumn($column): bool
     {
@@ -65,7 +69,8 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @return mixed
+     * @param array $columns
+     * @return $this
      */
     protected function forgetColumnSelectSession()
     {
@@ -81,7 +86,7 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setColumnSelectHiddenOnMobile(): self
     {
@@ -99,7 +104,7 @@ trait ColumnSelectHelpers
     }
 
      /**
-     * @return self
+     * @return $this
      */
     public function setColumnSelectHiddenOnTablet(): self
     {

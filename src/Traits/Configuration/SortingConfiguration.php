@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait SortingConfiguration
 {
     /**
-     * @param bool $status
+     * @param  bool  $status
      *
-     * @return self
+     * @return $this
      */
     public function setSortingStatus(bool $status): self
     {
@@ -17,7 +17,7 @@ trait SortingConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSortingEnabled(): self
     {
@@ -27,7 +27,7 @@ trait SortingConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSortingDisabled(): self
     {
@@ -37,9 +37,9 @@ trait SortingConfiguration
     }
 
     /**
-     * @param bool $status
+     * @param  bool  $status
      *
-     * @return self
+     * @return $this
      */
     public function setSingleSortingStatus(bool $status): self
     {
@@ -49,7 +49,7 @@ trait SortingConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSingleSortingEnabled(): self
     {
@@ -59,7 +59,7 @@ trait SortingConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSingleSortingDisabled(): self
     {
@@ -69,10 +69,10 @@ trait SortingConfiguration
     }
 
     /**
-     * @param string $field
-     * @param string $direction
+     * @param  string  $field
+     * @param  string  $direction
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultSort(string $field, string $direction = 'asc'): self
     {
@@ -83,7 +83,7 @@ trait SortingConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function removeDefaultSort(): self
     {
@@ -94,9 +94,9 @@ trait SortingConfiguration
     }
 
     /**
-     * @param bool $status
+     * @param  bool  $status
      *
-     * @return self
+     * @return $this
      */
     public function setSortingPillsStatus(bool $status): self
     {
@@ -106,7 +106,7 @@ trait SortingConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSortingPillsEnabled(): self
     {
@@ -116,7 +116,7 @@ trait SortingConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function setSortingPillsDisabled(): self
     {
@@ -126,10 +126,10 @@ trait SortingConfiguration
     }
 
     /**
-     * @param string $asc
-     * @param string $desc
+     * @param  string  $asc
+     * @param  string  $desc
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultSortingLabels(string $asc, string $desc): self
     {

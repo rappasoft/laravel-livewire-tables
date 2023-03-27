@@ -89,7 +89,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('sortingStatus', true)
             ->call('sortBy', 'id')
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null], 'columns' => []])
+            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => [], 'species' => []], 'columns' => []])
             ->assertSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('enableReordering')
             ->assertSet('sortingStatus', false)
@@ -97,7 +97,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('disableReordering')
             ->assertSet('sortingStatus', true)
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null], 'columns' => []])
+            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => [], 'species' => []], 'columns' => []])
             ->assertSeeHtml('wire:click="sortBy(\'id\')"');
     }
 
@@ -223,10 +223,10 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('bulkActionsStatus', true)
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml('x-model="selectedItems"')
+            ->assertSeeHtml('wire:model="selected"')
             ->call('enableReordering')
             ->assertSet('bulkActionsStatus', false)
-            ->assertDontSeeHtml('x-model="selectedItems"');
+            ->assertDontSeeHtml('wire:model="selected"');
     }
 
     /** @test */
@@ -264,7 +264,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('filtersStatus', true)
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => ['breed' => [1], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null], 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => ['breed' => [1], 'species' => []], 'sorts' => [], 'columns' => []])
             ->assertSee('Filters')
             ->call('enableReordering')
             ->assertSet('filtersStatus', false)
@@ -272,7 +272,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('Filters')
             ->call('disableReordering')
             ->assertSet('filtersStatus', true)
-            ->assertSet('table', ['filters' => ['breed' => [1], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null], 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => ['breed' => [1], 'species' => []], 'sorts' => [], 'columns' => []])
             ->assertSeeHtml('Filters');
     }
 
@@ -282,7 +282,7 @@ class ReorderingVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => ['breed' => [1], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null, 'breed_select_filter' => null], 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => ['breed' => [1], 'species' => []], 'sorts' => [], 'columns' => []])
             ->assertSee('Applied Filters')
             ->call('enableReordering')
             ->assertDontSee('Applied Filters');

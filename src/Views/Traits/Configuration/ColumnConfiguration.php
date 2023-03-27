@@ -10,7 +10,7 @@ trait ColumnConfiguration
     /**
      * @param  DataTableComponent  $component
      *
-     * @return self
+     * @return $this
      */
     public function setComponent(DataTableComponent $component): self
     {
@@ -20,7 +20,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function label(callable $callback): self
     {
@@ -34,7 +34,7 @@ trait ColumnConfiguration
     /**
      * @param  callable|null  $callback
      *
-     * @return self
+     * @return $this
      */
     public function sortable(callable $callback = null): self
     {
@@ -72,7 +72,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function html(): self
     {
@@ -84,7 +84,7 @@ trait ColumnConfiguration
     /**
      * @param  string  $table
      *
-     * @return self
+     * @return $this
      */
     public function setTable(string $table): self
     {
@@ -96,7 +96,7 @@ trait ColumnConfiguration
     /**
      * @param  string  $title
      *
-     * @return self
+     * @return $this
      */
     public function setSortingPillTitle(string $title): self
     {
@@ -109,7 +109,7 @@ trait ColumnConfiguration
      * @param  string  $asc
      * @param  string  $desc
      *
-     * @return self
+     * @return $this
      */
     public function setSortingPillDirections(string $asc, string $desc): self
     {
@@ -120,7 +120,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function eagerLoadRelations(): self
     {
@@ -130,7 +130,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function hideIf($condition): self
     {
@@ -140,7 +140,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function excludeFromColumnSelect(): self
     {
@@ -150,7 +150,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function deselected(): self
     {
@@ -160,9 +160,9 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param mixed $callback
+     * @param  string  $field
      *
-     * @return self
+     * @return $this
      */
     public function secondaryHeader($callback = null): self
     {
@@ -174,11 +174,6 @@ trait ColumnConfiguration
     }
 
     // TODO: Test
-    /**
-     * @param string $filterKey
-     *
-     * @return self
-     */
     public function secondaryHeaderFilter(string $filterKey): self
     {
         $this->secondaryHeader = true;
@@ -189,9 +184,9 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param mixed $callback
+     * @param  string  $field
      *
-     * @return self
+     * @return $this
      */
     public function footer($callback = null): self
     {
@@ -203,11 +198,6 @@ trait ColumnConfiguration
     }
 
     // TODO: Test
-    /**
-     * @param string $filterKey
-     *
-     * @return self
-     */
     public function footerFilter(string $filterKey): self
     {
         $this->footer = true;
@@ -218,18 +208,11 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function unclickable(): self
     {
         $this->clickable = false;
-
-        return $this;
-    }
-
-    public function setCustomSlug(string $customSlug): self
-    {
-        $this->customSlug = $customSlug;
 
         return $this;
     }

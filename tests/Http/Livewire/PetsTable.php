@@ -8,15 +8,8 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
 
 class PetsTable extends DataTableComponent
 {
@@ -39,29 +32,14 @@ class PetsTable extends DataTableComponent
                 ->excludeFromColumnSelect(),
             Column::make('Name')
                 ->sortable()
-                ->secondaryHeader($this->getFilterByKey('pet_name_filter'))
                 ->searchable(),
             Column::make('Age'),
             Column::make('Breed', 'breed.name')
-                ->secondaryHeaderFilter('breed')
                 ->sortable(),
             Column::make('Other')
                 ->label(function ($row, Column $column) {
                     return 'Other';
                 }),
-            LinkColumn::make('Link')
-            ->title(fn($row) => 'Edit')
-            ->location(fn($row) => 'http://www.google.com')
-            ->attributes(fn($row) => [
-                'class' => 'rounded-full',
-                'alt' => $row->name . ' Avatar',
-            ]),        
-            ImageColumn::make('RowImg')
-            ->location(fn($row) => 'test'.$row->id)
-            ->attributes(fn($row) => [
-                'class' => 'rounded-full',
-                'alt' => $row->name . ' Avatar',
-            ]),
         ];
     }
 
@@ -91,38 +69,6 @@ class PetsTable extends DataTableComponent
             )
             ->filter(function (Builder $builder, array $values) {
                 return $builder->whereIn('species_id', $values);
-            }),
-            NumberFilter::make('Breed ID','breed_id_filter')
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->where('breed_id', '=', $value);
-            }),
-            
-            TextFilter::make('Pet Name','pet_name_filter')
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->where('pets.name', '=', $value);
-            }),
-
-            DateFilter::make('Last Visit After Date','last_visit_date_filter')
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->whereDate('pets.last_visit', '=>', $value);
-            }),
-
-            DateTimeFilter::make('Last Visit Before DateTime','last_visit_datetime_filter')
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->whereDate('pets.last_visit', '<=', $value);
-            }),
-
-            SelectFilter::make('Breed SelectFilter', 'breed_select_filter')
-            ->options(
-                Breed::query()
-                    ->orderBy('name')
-                    ->get()
-                    ->keyBy('id')
-                    ->map(fn ($breed) => $breed->name)
-                    ->toArray()
-            )
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->where('breed_id', $value);
             }),
         ];
     }

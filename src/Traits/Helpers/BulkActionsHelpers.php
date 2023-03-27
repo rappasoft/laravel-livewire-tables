@@ -81,11 +81,11 @@ trait BulkActionsHelpers
      */
     public function hasBulkActions(): bool
     {
-        return (count($this->bulkActions()) > 0);
+        return count($this->bulkActions());
     }
 
     /**
-     * @return array<mixed>
+     * @return array
      */
     public function getBulkActions(): array
     {
@@ -117,9 +117,9 @@ trait BulkActionsHelpers
     }
 
     /**
-     * @param  array<mixed>  $selected
+     * @param  array  $selected
      *
-     * @return array<mixed>
+     * @return array
      */
     public function setSelected(array $selected): array
     {
@@ -127,7 +127,7 @@ trait BulkActionsHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return array
      */
     public function getSelected(): array
     {
@@ -139,7 +139,7 @@ trait BulkActionsHelpers
      */
     public function hasSelected(): bool
     {
-        return ($this->getSelectedCount() > 0);
+        return $this->getSelectedCount();
     }
 
     /**
