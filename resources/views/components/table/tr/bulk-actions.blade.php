@@ -44,6 +44,15 @@
                         </span>
 
                         <button
+                            x-on:click="selectAllOnPage()"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
+                            @lang('Select All On Page')
+                        </button>&nbsp;
+
+                        <button
                             wire:click="setAllSelected"
                             wire:loading.attr="disabled"
                             type="button"
@@ -94,6 +103,15 @@
                             @lang('rows, do you want to select all')
                             @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                         </span>
+
+                        <button
+                            x-on:click="selectAllOnPage()"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="btn btn-primary btn-sm"
+                        >
+                            @lang('Select All On Page')
+                        </button>&nbsp;
 
                         <button
                             wire:click="setAllSelected"
