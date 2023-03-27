@@ -226,4 +226,11 @@ trait ColumnConfiguration
 
         return $this;
     }
+
+    public function setCustomSlug(string $customSlug): self
+    {
+        $this->customSlug = $customSlug;
+
+        return $this;
+    }
 }
