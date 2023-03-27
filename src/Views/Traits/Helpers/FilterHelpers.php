@@ -309,6 +309,6 @@ trait FilterHelpers
      */
     public function getCustomPillBlade(): ?string
     {
-        return $this->filterCustomPillBlade;
+        return $this->filterCustomPillBlade ?? null;
     }
 }
