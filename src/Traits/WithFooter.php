@@ -16,6 +16,9 @@ trait WithFooter
     protected $footerTrAttributesCallback;
     protected $footerTdAttributesCallback;
 
+    /**
+     * @return void
+     */
     public function setupFooter(): void
     {
         foreach ($this->getColumns() as $column) {

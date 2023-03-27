@@ -238,3 +238,12 @@ Column::make('Name')
 ```
 
 See more in the [clickable rows documentation](../rows/clickable-rows).
+
+### Custom Column Slugs
+
+If you are using non-latin characters as the Column Title, you should set a latin character based slug for the column.  This must be unique for each Column using non-latin Title
+
+```php
+Column::make('地址', 'address.address')
+    ->setCustomSlug('Address')
+```

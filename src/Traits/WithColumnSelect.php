@@ -17,6 +17,9 @@ trait WithColumnSelect
     protected bool $columnSelectHiddenOnMobile = false;
     protected bool $columnSelectHiddenOnTablet = false;
 
+    /**
+     * @return void
+     */
     public function setupColumnSelect(): void
     {
         // If remember selection is off, then clear the session
@@ -46,6 +49,9 @@ trait WithColumnSelect
         }
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getDefaultVisibleColumns(): array
     {
         return collect($this->getColumns())
@@ -72,6 +78,9 @@ trait WithColumnSelect
         event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
     }
 
+    /**
+     * @return void
+     */
     public function updatedSelectedColumns(): void
     {
         // The query string isn't needed if it's the same as the default
@@ -84,11 +93,17 @@ trait WithColumnSelect
         }
     }
 
+    /**
+     * @return bool
+     */
     public function allDefaultVisibleColumnsAreSelected(): bool
     {
         return count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns())) === count($this->getDefaultVisibleColumns());
     }
 
+    /**
+     * @return bool
+     */
     public function allSelectedColumnsAreVisibleByDefault(): bool
     {
         return count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns())) === count($this->selectedColumns);

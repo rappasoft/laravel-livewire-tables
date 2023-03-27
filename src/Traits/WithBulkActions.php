@@ -16,6 +16,9 @@ trait WithBulkActions
     public array $selected = [];
     public bool $hideBulkActionsWhenEmpty = false;
 
+    /**
+     * @return array<mixed>
+     */
     public function bulkActions(): array
     {
         if (property_exists($this, 'bulkActions')) {
