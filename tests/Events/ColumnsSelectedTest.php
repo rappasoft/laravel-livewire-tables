@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Events;
 use Illuminate\Support\Facades\Event;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class ColumnSelectedTest extends TestCase
+class ColumnsSelectedTest extends TestCase
 {
     /** @test */
     public function an_event_is_emitted_when_a_column_selection_are_updated()
