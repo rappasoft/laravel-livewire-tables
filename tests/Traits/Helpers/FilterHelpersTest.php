@@ -196,7 +196,7 @@ class FilterHelpersTest extends TestCase
 
         $filter = $this->basicTable->getFilters()[1];
         $filter->setFilterPillBlade('tests.custom');
-        
+
         $this->assertTrue($filter->hasCustomPillBlade());
         $this->assertSame('tests.custom', $filter->getCustomPillBlade());
 
@@ -216,7 +216,7 @@ class FilterHelpersTest extends TestCase
         $filter->setFilterSlidedownRow('3');
         $this->assertTrue($filter->hasFilterSlidedownRow());
 
-        $this->assertSame('3', $filter->getFilterSlidedownRow());
+        $this->assertSame(3, $filter->getFilterSlidedownRow());
     }
 
     /** @test */
@@ -230,7 +230,7 @@ class FilterHelpersTest extends TestCase
         $filter->setFilterSlidedownColspan('4');
         $this->assertTrue($filter->hasFilterSlidedownColspan());
 
-        $this->assertSame('4', $filter->getFilterSlidedownColspan());
+        $this->assertSame(4, $filter->getFilterSlidedownColspan());
     }
 
     /** @test */
