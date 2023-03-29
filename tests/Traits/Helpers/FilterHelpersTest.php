@@ -247,5 +247,4 @@ class FilterHelpersTest extends TestCase
         $filter2 = $this->basicTable->getFilters()[0];
         $this->assertFalse($filter2->hasCustomFilterLabel());
     }
-    
 }
