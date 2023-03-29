@@ -243,7 +243,7 @@ trait FilterHelpers
         $filterList = ($this->hasFiltersWithSlidedownRows()) ? $this->getVisibleFilters()->sortBy('filterSlidedownRow') : $this->getVisibleFilters();
         if ($this->hasFiltersWithSlidedownRows()) {
             foreach ($filterList as $filter) {
-                $orderedFilters[(string) $filter->filterSlidedownRow][] = $filter;
+                $orderedFilters[(string) $filter->getFilterSlidedownRow()][] = $filter;
             }
 
             if (empty($orderedFilters['1'])) {
