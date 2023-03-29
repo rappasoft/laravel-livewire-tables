@@ -223,7 +223,7 @@ trait FilterHelpers
     }
 
     /**
-     * Get vusublke filter has a configured slide down row.
+     * Get whether filter has a configured slide down row.
      *
      * @return mixed
      */

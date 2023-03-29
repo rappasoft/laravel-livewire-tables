@@ -196,10 +196,56 @@ class FilterHelpersTest extends TestCase
 
         $filter = $this->basicTable->getFilters()[1];
         $filter->setFilterPillBlade('tests.custom');
+        
         $this->assertTrue($filter->hasCustomPillBlade());
         $this->assertSame('tests.custom', $filter->getCustomPillBlade());
 
         $filter2 = $this->basicTable->getFilters()[0];
         $this->assertFalse($filter2->hasCustomPillBlade());
     }
+
+    /** @test */
+    public function can_get_custom_slidedown_row(): void
+    {
+        $filter3 = $this->basicTable->getFilters()[0];
+        $this->assertFalse($filter3->hasFilterSlidedownRow());
+
+        $filter = $this->basicTable->getFilters()[1];
+        $this->assertFalse($filter->hasFilterSlidedownRow());
+
+        $filter->setFilterSlidedownRow('3');
+        $this->assertTrue($filter->hasFilterSlidedownRow());
+
+        $this->assertSame('3', $filter->getFilterSlidedownRow());
+    }
+
+    /** @test */
+    public function can_get_custom_slidedown_colspan(): void
+    {
+        $filter3 = $this->basicTable->getFilters()[0];
+        $this->assertFalse($filter3->hasFilterSlidedownColspan());
+
+        $filter = $this->basicTable->getFilters()[1];
+        $this->assertFalse($filter->hasFilterSlidedownColspan());
+        $filter->setFilterSlidedownColspan('4');
+        $this->assertTrue($filter->hasFilterSlidedownColspan());
+
+        $this->assertSame('4', $filter->getFilterSlidedownColspan());
+    }
+
+    /** @test */
+    public function can_get_custom_label_blade_status(): void
+    {
+        $filter3 = $this->basicTable->getFilters()[0];
+        $this->assertFalse($filter3->hasCustomFilterLabel());
+
+        $filter = $this->basicTable->getFilters()[1];
+        $filter->setCustomFilterLabel('tests.custom');
+        $this->assertTrue($filter->hasCustomFilterLabel());
+        $this->assertSame('tests.custom', $filter->getCustomFilterLabel());
+
+        $filter2 = $this->basicTable->getFilters()[0];
+        $this->assertFalse($filter2->hasCustomFilterLabel());
+    }
+    
 }

@@ -1,5 +1,5 @@
 @aware(['component'])
-@props(['filter'])
+@props(['filter','theme','filterLayout'])
 @php
     $theme = $component->getTheme();
 @endphp
