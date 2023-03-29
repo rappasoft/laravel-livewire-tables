@@ -3,18 +3,44 @@ name: run-tests
 on: [push, pull_request]
 
 jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        if: ${{ github.event_name != 'pull_request'  }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run PHP CS Fixer
+        if: ${{ github.event_name != 'pull_request'  }}
+        uses: docker://oskarstark/php-cs-fixer-ga
+        with:
+          args: --config=.php-cs-fixer.php --allow-risky=yes
+
+      - name: Commit changes
+        if: ${{ github.event_name != 'pull_request'  }}
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Fix styling
+
+      - name: Set completion to true
+        run: |
+          echo "CSFix Completed"
+
   test:
+    if: always()
+    needs: php-cs-fixer
     runs-on: ${{ matrix.os }}
-    if: "!contains(github.event.head_commit.message, '[ci]')"
     strategy:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
         php: [8.0, 8.1, 8.2]
-        laravel: [8.*, 9.*, 10.*]
+        laravel: [8, 9, 10]
         stability: [prefer-stable]
         exclude:
-          - laravel: 10.*
+          - laravel: 10
             php: 8.0
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
@@ -22,16 +48,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+          
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pcov, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: pcov
           tools: phpstan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Get composer cache directory
         id: composer-cache
@@ -40,23 +71,20 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-${{ matrix.php }}-${{ matrix.laravel }}-composer--${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-${{ matrix.php }}-${{ matrix.laravel }}-composer-
+          key: ${{ runner.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |
           composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
 
       - name: Update dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer update --${{ matrix.stability }} --no-interaction
 
-      - name: Setup problem matchers
-        run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
       - name: Run Unit Tests
         run: php -d pcov.enabled=1 ./vendor/bin/paratest --passthru-php="'-d pcov.enabled=1'"

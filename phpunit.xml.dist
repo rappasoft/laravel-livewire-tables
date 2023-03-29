@@ -3,6 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
     bootstrap="vendor/autoload.php"
+    cacheResult="true"
     colors="true"
     executionOrder="random"
     failOnWarning="true"
@@ -16,7 +17,7 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <coverage>
+    <coverage cacheDirectory="build/.phpunit.cache/code-coverage" processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./src</directory>
         </include>
