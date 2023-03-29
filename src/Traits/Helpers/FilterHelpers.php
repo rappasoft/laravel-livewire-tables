@@ -247,13 +247,15 @@ trait FilterHelpers
             }
 
             if (empty($orderedFilters['1'])) {
-                $orderedFilters['1'] = $orderedFilters['99'];
-                unset($orderedFilters['99']);
+                $orderedFilters['1'] = (isset($orderedFilters['99']) ? $orderedFilers['99'] : []);
+                if (isset($orderedFilters['99'])) {
+                    unset($orderedFilters['99']);
+                }
             }
         } else {
-            $orderedFilters = array_wrap($filterList);
-            $orderedFilters["1"] = $orderedFilters[0];
-            unset($orderedFilters[0]);
+            $orderedFilters = Arr::wrap($filterList);
+            $orderedFilters['1'] = $orderedFilters['0'];
+            unset($orderedFilters['0']);
         }
         ksort($orderedFilters);
 
