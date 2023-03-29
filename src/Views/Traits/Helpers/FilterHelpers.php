@@ -228,7 +228,7 @@ trait FilterHelpers
 
     /**
      * Determines whether this filter instance is in the secondary header/footer
-     * 
+     *
      * @return bool
      */
     public function hasCustomPosition(): bool
@@ -238,7 +238,7 @@ trait FilterHelpers
 
     /**
      * Returns the custom position of the footer (header or footer)
-     * 
+     *
      * @return string
      */
     public function getCustomPosition(): string
@@ -247,7 +247,7 @@ trait FilterHelpers
     }
      
      /**
-      * Returns whether the filter has a custom label blade 
+      * Returns whether the filter has a custom label blade
       *
       * @return bool
       */
@@ -258,7 +258,7 @@ trait FilterHelpers
 
     /**
      * Returns the path to the custom filter label blade
-     * 
+     *
      * @return string
      */
     public function getCustomFilterLabel(): string
