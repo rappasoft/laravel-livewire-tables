@@ -120,25 +120,25 @@ trait FilterConfiguration
     }
     
     /**
-     * @param string $filterSlidedownRow
+     * @param string|int $filterSlidedownRow
      *
      * @return $this
      */
-    public function setFilterSlidedownRow(string $filterSlidedownRow): self
+    public function setFilterSlidedownRow(string|int $filterSlidedownRow): self
     {
-        $this->filterSlidedownRow = intval($filterSlidedownRow);
+        $this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
 
         return $this;
     }
 
     /**
-     * @param string $filterSlidedownColspan
+     * @param string|int $filterSlidedownColspan
      *
      * @return $this
      */
-    public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
+    public function setFilterSlidedownColspan(string|int $filterSlidedownColspan): self
     {
-        $this->filterSlidedownColspan = intval($filterSlidedownColspan);
+        $this->filterSlidedownColspan = (is_int($filterSlidedownColspan) ? $filterSlidedownColspan : intval($filterSlidedownColspan));
         
         return $this;
     }
