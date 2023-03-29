@@ -16,7 +16,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Workflow (run-tests) - Use of ParaTest, Composer Caching, Fix Stability Matrix Clash - https://github.com/rappasoft/laravel-livewire-tables/pull/1105
 - Workflow (php-cs-fixer) - Audit-Only Mode (For Badge) - https://github.com/rappasoft/laravel-livewire-tables/pull/1125 / https://github.com/rappasoft/laravel-livewire-tables/pull/1126
 - Workflow (run-tests) - PHP-CS-Fixer (Fix Mode) - https://github.com/rappasoft/laravel-livewire-tables/pull/1125 / https://github.com/rappasoft/laravel-livewire-tables/pull/1126
-- 
+
 ## [2.11.0] - 2023-02-16
 
 ### Added
