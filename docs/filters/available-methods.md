@@ -291,6 +291,70 @@ DateFilter::make('Date')
     ->setFilterSlidedownColspan('2')
 ```
 
+### setFilterPillBlade
+
+Set a blade file for use in displaying the filter values in the pills area.  You can use this in conjunction with setFilterPillValues() to prettify your applied filter values display.  You will receive two properties ($filter) containing the filter instance, and ($value) containing the filter value.
+
+```php
+SelectFilter::make('Active')
+    ->setFilterPillBlade('path.to.blade')
+```
+
+Example blade:
+```php
+@aware(['component'])
+@props(['filter'])
+@php
+    $theme = $component->getTheme();
+@endphp
+<span wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
+    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900"
+>
+    {{ $filter->getFilterPillTitle() }} - ({{ $filter->getFilterPillValue($value) }})
+
+    <button
+        wire:click="resetFilter('{{ $filter->getKey() }}')"
+        type="button"
+        class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
+    >
+        <span class="sr-only">@lang('Remove filter option')</span>
+        <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
+            <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
+        </svg>
+    </button>
+</span>
+```
+
+### setCustomFilterLabel
+
+Set a custom blade file for the filter's label.  This will be used in both the Pop-Over and SlideDown filter displays, you should therefore ensure that you cater for the different filter layouts.
+
+```php
+SelectFilter::make('Active')
+    ->setCustomFilterLabel('path.to.blade')
+```
+
+You will receive two properties to your blade, filter (the filter instance), and theme (your chosen theme).  You may access the filter layout as shown below
+
+Example blade:
+```php
+@aware(['component'])
+@props(['filter','theme'])
+@php
+    $theme = $component->getTheme();
+@endphp
+<label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" 
+    @class([
+        'block text-sm font-large leading-5 text-red-700 dark:text-red-700' => $theme === 'tailwind',
+        'd-block' => $theme === 'bootstrap-4' && $component->isFilterLayoutSlideDown(),
+        'mb-2' => $theme === 'bootstrap-4' && $component->isFilterLayoutPopover(),
+        'd-block display-4' => $theme === 'bootstrap-5' && $component->isFilterLayoutSlideDown(),
+        'mb-2 display-4' => $theme === 'bootstrap-5' && $component->isFilterLayoutPopover(),
+    ])
+>
+    {{ $filter->getName() }}
+</label>
+```
 
 ### Config
 
@@ -302,13 +366,4 @@ If the filter takes any config options, you can set them with the `config` metho
         'min' => '2020-01-01',
         'max' => '2021-12-31',
     ])
-```
-
-### setFilterPillBlade
-
-Set a blade file for use in displaying the filter values in the pills area.
-
-```php
-SelectFilter::make('Active')
-    ->setFilterPillBlade('path.to.blade')
 ```
