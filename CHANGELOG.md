@@ -19,6 +19,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
  - SlideDown Filter
    - Set Row for Filter (setFilterSlidedownRow(())
    - Set ColSpan for Filter (setFilterSlidedownColspan())
+- Workflow (run-phpstan) - Introducing PHP-Stan at Level 3 to ensure code-quality persists - https://github.com/rappasoft/laravel-livewire-tables/pull/1133
 
 ### Changed
 
@@ -26,6 +27,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Workflow (run-tests) - Use of ParaTest, Composer Caching, Fix Stability Matrix Clash - https://github.com/rappasoft/laravel-livewire-tables/pull/1105
 - Workflow (php-cs-fixer) - Audit-Only Mode (For Badge) - https://github.com/rappasoft/laravel-livewire-tables/pull/1125 / https://github.com/rappasoft/laravel-livewire-tables/pull/1126
 - Workflow (run-tests) - PHP-CS-Fixer (Fix Mode) - https://github.com/rappasoft/laravel-livewire-tables/pull/1125 / https://github.com/rappasoft/laravel-livewire-tables/pull/1126
+- Workflow (all) - Fixes to all workflows - https://github.com/rappasoft/laravel-livewire-tables/pull/1133
 
 ## [2.11.0] - 2023-02-16
 
