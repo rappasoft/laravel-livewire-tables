@@ -8,7 +8,7 @@ trait FilterConfiguration
 {
     /**
      * @param array<mixed> $config
-     * 
+     *
      * @return Filter
      */
     public function config(array $config = []): Filter
@@ -32,7 +32,7 @@ trait FilterConfiguration
 
     /**
      * @param array<mixed> $values
-     * 
+     *
      * @return self
      */
     public function setFilterPillValues(array $values): self
@@ -96,7 +96,7 @@ trait FilterConfiguration
 
     /**
      * @param string $position
-     * 
+     *
      * @return self
      */
     public function setFilterPosition(string $position): self
@@ -108,7 +108,7 @@ trait FilterConfiguration
      
     /**
      * @param string $filterCustomLabel
-     * 
+     *
      * @return self
      */
     public function setCustomFilterLabel(string $filterCustomLabel): self
@@ -120,7 +120,7 @@ trait FilterConfiguration
     
     /**
      * @param string|int $filterSlidedownRow
-     * 
+     *
      * @return self
      */
     public function setFilterSlidedownRow(string|int $filterSlidedownRow): self
@@ -132,7 +132,7 @@ trait FilterConfiguration
 
     /**
      * @param string|int $filterSlidedownColspan
-     * 
+     *
      * @return self
      */
     public function setFilterSlidedownColspan(string|int $filterSlidedownColspan): self
@@ -144,7 +144,7 @@ trait FilterConfiguration
     
     /**
      * @param string $blade
-     * 
+     *
      * @return self
      */
     public function setFilterPillBlade(string $blade): self
