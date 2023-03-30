@@ -9,7 +9,6 @@ trait FilterHelpers
     /**
      * Get the filter name.
      *
-     * @param  string  $name
      * @return string
      */
     public function getName(): string
@@ -30,7 +29,7 @@ trait FilterHelpers
     /**
      * Get the filter configs.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getConfigs(): array
     {
@@ -51,7 +50,7 @@ trait FilterHelpers
     /**
      * Get the filter keys.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getKeys(): array
     {
@@ -61,7 +60,6 @@ trait FilterHelpers
     /**
      * Get the filter options.
      *
-     * @return null
      */
     public function getDefaultValue()
     {
@@ -69,9 +67,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @param callable $callback
+     * 
+     * @return Filter
      */
     public function filter(callable $callback): Filter
     {
@@ -81,9 +79,7 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @return bool
      */
     public function hasFilterCallback(): bool
     {
@@ -91,9 +87,7 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @return callable
      */
     public function getFilterCallback(): callable
     {
@@ -101,9 +95,7 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @return string|null
      */
     public function getCustomFilterPillTitle(): ?string
     {
@@ -111,9 +103,7 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @return string
      */
     public function getFilterPillTitle(): string
     {
@@ -121,9 +111,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @param mixed $value
+     * 
+     * @return string|null
      */
     public function getFilterPillValue($value): ?string
     {
@@ -131,9 +121,7 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @return array<mixed>
      */
     public function getCustomFilterPillValues(): array
     {
@@ -141,9 +129,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @param string $value
+     * 
+     * @return string|null
      */
     public function getCustomFilterPillValue(string $value): ?string
     {
@@ -151,9 +139,7 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @return bool
      */
     public function hasConfigs(): bool
     {
@@ -161,9 +147,9 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @param string $key
+     * 
+     * @return bool
      */
     public function hasConfig(string $key): bool
     {

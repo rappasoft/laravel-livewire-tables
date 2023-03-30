@@ -536,7 +536,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @return bool
+     * @return mixed
      */
     public function arrayToAttributes(array $attributes)
     {

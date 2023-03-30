@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
@@ -110,7 +111,7 @@ trait FilterHelpers
      */
     public function hasFilters(): bool
     {
-        return $this->getFilters()->count();
+        return ($this->getFilters()->count() > 0);
     }
 
     /**
@@ -118,9 +119,9 @@ trait FilterHelpers
      */
     public function hasVisibleFilters(): bool
     {
-        return $this->getFilters()
+        return ($this->getFilters()
             ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus())
-            ->count();
+            ->count() > 0);
     }
 
     /**
@@ -215,7 +216,7 @@ trait FilterHelpers
      */
     public function hasAppliedFiltersWithValues(): bool
     {
-        return count($this->getAppliedFiltersWithValues());
+        return count($this->getAppliedFiltersWithValues() > 0);
     }
 
     /**
@@ -223,10 +224,10 @@ trait FilterHelpers
      */
     public function hasAppliedVisibleFiltersWithValuesThatCanBeCleared(): bool
     {
-        return collect($this->getAppliedFiltersWithValues())
+        return (collect($this->getAppliedFiltersWithValues())
             ->map(fn ($_item, $key) => $this->getFilterByKey($key))
             ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus() && ! $filter->isResetByClearButton())
-            ->count();
+            ->count() > 0);
     }
 
     /**
@@ -245,10 +246,10 @@ trait FilterHelpers
      */
     public function hasAppliedVisibleFiltersForPills(): bool
     {
-        return collect($this->getAppliedFiltersWithValues())
+        return (collect($this->getAppliedFiltersWithValues())
             ->map(fn ($_item, $key) => $this->getFilterByKey($key))
             ->reject(fn (Filter $filter) => $filter->isHiddenFromPills())
-            ->count();
+            ->count() > 0);
     }
 
     /**
@@ -354,15 +355,15 @@ trait FilterHelpers
             }
 
             if (empty($orderedFilters['1'])) {
-                $orderedFilters['1'] = (isset($orderedFilters['99']) ? $orderedFilers['99'] : []);
+                $orderedFilters['1'] = (isset($orderedFilters['99']) ? $orderedFilters['99'] : []);
                 if (isset($orderedFilters['99'])) {
                     unset($orderedFilters['99']);
                 }
             }
         } else {
             $orderedFilters = Arr::wrap($filterList);
-            $orderedFilters['1'] = $orderedFilters['0'];
-            unset($orderedFilters['0']);
+            $orderedFilters['1'] = $orderedFilters['0'] ?? [];
+            if (isset($orderedFilters['0'])) { unset($orderedFilters['0']); }
         }
         ksort($orderedFilters);
 

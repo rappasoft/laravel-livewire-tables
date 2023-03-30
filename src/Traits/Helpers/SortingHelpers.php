@@ -64,7 +64,7 @@ trait SortingHelpers
      */
     public function hasSorts(): bool
     {
-        return count($this->getSorts());
+        return count($this->getSorts() > 0);
     }
 
     /**

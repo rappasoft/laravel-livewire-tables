@@ -11,7 +11,7 @@ trait RefreshConfiguration
      */
     public function setRefreshTime(int $time): self
     {
-        $this->refresh = $time;
+        $this->refresh = (string) $time;
 
         return $this;
     }

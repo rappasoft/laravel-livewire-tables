@@ -50,7 +50,7 @@ class MultiSelectFilter extends Filter
      *
      * @return array<mixed>
      */
-    public function getDefaultValue(): array
+    public function getDefaultValue()
     {
         return [];
     }
