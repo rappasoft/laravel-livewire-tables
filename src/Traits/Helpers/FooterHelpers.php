@@ -62,10 +62,9 @@ trait FooterHelpers
         return $this->getUseHeaderAsFooterStatus() === false;
     }
 
-
     /**
      * @param mixed $rows
-     * 
+     *
      * @return array<mixed>
      */
     public function getFooterTrAttributes($rows): array
@@ -77,7 +76,7 @@ trait FooterHelpers
      * @param Column $column
      * @param mixed $rows
      * @param int $index
-     * 
+     *
      * @return array<mixed>
      */
     public function getFooterTdAttributes(Column $column, $rows, int $index): array

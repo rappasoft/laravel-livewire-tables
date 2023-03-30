@@ -4,10 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait FooterConfiguration
 {
-
     /**
      * @param bool $status
-     * 
+     *
      * @return self
      */
     public function setFooterStatus(bool $status): self
@@ -39,7 +38,7 @@ trait FooterConfiguration
 
     /**
      * @param bool $status
-     * 
+     *
      * @return self
      */
     public function setUseHeaderAsFooterStatus(bool $status): self
@@ -71,7 +70,7 @@ trait FooterConfiguration
 
     /**
      * @param callable $callback
-     * 
+     *
      * @return self
      */
     public function setFooterTrAttributes(callable $callback): self
@@ -83,7 +82,7 @@ trait FooterConfiguration
 
     /**
      * @param callable $callback
-     * 
+     *
      * @return self
      */
     public function setFooterTdAttributes(callable $callback): self

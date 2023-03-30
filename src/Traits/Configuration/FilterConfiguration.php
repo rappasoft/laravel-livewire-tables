@@ -102,10 +102,9 @@ trait FilterConfiguration
         return $this;
     }
 
-
     /**
      * @param string $type
-     * 
+     *
      * @return self
      */
     public function setFilterLayout(string $type): self

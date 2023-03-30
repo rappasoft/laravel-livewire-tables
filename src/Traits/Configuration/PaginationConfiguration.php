@@ -6,10 +6,9 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait PaginationConfiguration
 {
-
     /**
      * @param string $name
-     * 
+     *
      * @return self
      */
     public function setPageName(string $name): self
@@ -21,7 +20,7 @@ trait PaginationConfiguration
 
     /**
      * @param string $theme
-     * 
+     *
      * @return self
      */
     public function setPaginationTheme(string $theme): self
@@ -33,7 +32,7 @@ trait PaginationConfiguration
 
     /**
      * @param bool $status
-     * 
+     *
      * @return self
      */
     public function setPaginationStatus(bool $status): self
@@ -65,7 +64,7 @@ trait PaginationConfiguration
 
     /**
      * @param bool $status
-     * 
+     *
      * @return self
      */
     public function setPaginationVisibilityStatus(bool $status): self
