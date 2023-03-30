@@ -75,7 +75,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return string
+     * @return void
      */
     public function setTheme(): void
     {
@@ -95,7 +95,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return string[]
+     * @return array<mixed>
      */
     public function getComponentWrapperAttributes(): array
     {
@@ -103,7 +103,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return string[]
+     * @return  array<mixed>
      */
     public function getTableWrapperAttributes(): array
     {
@@ -111,7 +111,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getTableAttributes(): array
     {
@@ -119,7 +119,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getTheadAttributes(): array
     {
@@ -127,7 +127,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getTbodyAttributes(): array
     {
@@ -137,7 +137,7 @@ trait ComponentHelpers
     /**
      * @param  Column  $column
      *
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getThAttributes(Column $column): array
     {
@@ -147,7 +147,7 @@ trait ComponentHelpers
     /**
      * @param  Column  $column
      *
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getThSortButtonAttributes(Column $column): array
     {
@@ -158,7 +158,7 @@ trait ComponentHelpers
      * @param  Model  $row
      * @param  int  $index
      *
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getTrAttributes(Model $row, int $index): array
     {
@@ -170,7 +170,7 @@ trait ComponentHelpers
      * @param  Model  $row
      * @param  int  $index
      *
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
     {
@@ -288,9 +288,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  string  $name
-     *
-     * @return string
+     * @return bool
      */
     public function getCollapsingColumnsStatus(): bool
     {
@@ -332,7 +330,7 @@ trait ComponentHelpers
     /**
      * @param  $row
      *
-     * @return ?string
+     * @return string|null
      */
     public function getTableRowUrl($row): ?string
     {
@@ -342,7 +340,7 @@ trait ComponentHelpers
     /**
      * @param  $row
      *
-     * @return ?string
+     * @return string|null
      */
     public function getTableRowUrlTarget($row): ?string
     {
