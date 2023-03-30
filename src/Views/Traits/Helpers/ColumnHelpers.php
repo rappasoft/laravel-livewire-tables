@@ -457,7 +457,7 @@ trait ColumnHelpers
 
     /**
      * @param mixed $rows
-     * 
+     *
      * @return mixed
      */
     public function getSecondaryHeaderContents($rows)
@@ -514,7 +514,7 @@ trait ColumnHelpers
 
     /**
      * @param mixed $rows
-     * 
+     *
      * @return mixed
      */
     public function getFooterContents($rows)
@@ -547,7 +547,7 @@ trait ColumnHelpers
 
     /**
      * @param array<mixed> $attributes
-     * 
+     *
      * @return mixed
      */
     public function arrayToAttributes(array $attributes)

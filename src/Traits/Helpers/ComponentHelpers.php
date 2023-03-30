@@ -157,7 +157,7 @@ trait ComponentHelpers
     /**
      * @param Model $row
      * @param int $index
-     * 
+     *
      * @return array<mixed>
      */
     public function getTrAttributes(Model $row, int $index): array
@@ -170,7 +170,7 @@ trait ComponentHelpers
      * @param Model $row
      * @param int $colIndex
      * @param int $rowIndex
-     * 
+     *
      * @return array<mixed>
      */
     public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
