@@ -6,7 +6,7 @@ trait ColumnSelectConfiguration
 {
     /**
      * @param bool $status
-     * 
+     *
      * @return self
      */
     public function setColumnSelectStatus(bool $status): self
@@ -38,7 +38,7 @@ trait ColumnSelectConfiguration
 
     /**
      * @param bool $status
-     * 
+     *
      * @return self
      */
     public function setRememberColumnSelectionStatus(bool $status): self
