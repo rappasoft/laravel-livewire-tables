@@ -16,7 +16,6 @@ use Livewire\Commands\MakeCommand as LivewireMakeCommand;
  */
 class MakeCommand extends Command
 {
-
     /**
      * @var ComponentParser
      */
@@ -29,7 +28,7 @@ class MakeCommand extends Command
 
     /**
      * The name and signature of the console command.
-     * 
+     *
      * @var string
      */
     protected $signature = 'make:datatable
@@ -95,7 +94,7 @@ class MakeCommand extends Command
 
     /**
      * @param mixed $path
-     * 
+     *
      * @return void
      */
     protected function ensureDirectoryExists($path): void
