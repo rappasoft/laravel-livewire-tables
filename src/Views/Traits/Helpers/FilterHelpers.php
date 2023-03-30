@@ -68,7 +68,7 @@ trait FilterHelpers
 
     /**
      * @param callable $callback
-     * 
+     *
      * @return Filter
      */
     public function filter(callable $callback): Filter
@@ -112,7 +112,7 @@ trait FilterHelpers
 
     /**
      * @param mixed $value
-     * 
+     *
      * @return string|null
      */
     public function getFilterPillValue($value): ?string
@@ -130,7 +130,7 @@ trait FilterHelpers
 
     /**
      * @param string $value
-     * 
+     *
      * @return string|null
      */
     public function getCustomFilterPillValue(string $value): ?string
@@ -148,7 +148,7 @@ trait FilterHelpers
 
     /**
      * @param string $key
-     * 
+     *
      * @return bool
      */
     public function hasConfig(string $key): bool

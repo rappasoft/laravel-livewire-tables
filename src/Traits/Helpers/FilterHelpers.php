@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
@@ -363,7 +363,9 @@ trait FilterHelpers
         } else {
             $orderedFilters = Arr::wrap($filterList);
             $orderedFilters['1'] = $orderedFilters['0'] ?? [];
-            if (isset($orderedFilters['0'])) { unset($orderedFilters['0']); }
+            if (isset($orderedFilters['0'])) {
+                unset($orderedFilters['0']);
+            }
         }
         ksort($orderedFilters);
 
