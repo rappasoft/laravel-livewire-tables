@@ -21,7 +21,7 @@ trait SortingHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getSorts(): array
     {
@@ -29,9 +29,9 @@ trait SortingHelpers
     }
 
     /**
-     * @param  array  $sorts
+     * @param  array<mixed>  $sorts
      *
-     * @return array
+     * @return array<mixed>
      */
     public function setSorts(array $sorts): array
     {

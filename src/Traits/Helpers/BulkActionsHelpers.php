@@ -85,7 +85,7 @@ trait BulkActionsHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getBulkActions(): array
     {
@@ -117,9 +117,9 @@ trait BulkActionsHelpers
     }
 
     /**
-     * @param  array  $selected
+     * @param  array<mixed>  $selected
      *
-     * @return array
+     * @return array<mixed>
      */
     public function setSelected(array $selected): array
     {
@@ -127,7 +127,7 @@ trait BulkActionsHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getSelected(): array
     {

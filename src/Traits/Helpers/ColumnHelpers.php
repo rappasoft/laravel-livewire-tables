@@ -64,7 +64,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getColumnRelations(): array
     {
@@ -76,7 +76,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getColumnRelationStrings(): array
     {
@@ -211,7 +211,9 @@ trait ColumnHelpers
         return $this->getVisibleTabletColumns()->count();
     }
 
-    // TODO
+    /**
+     * @return int
+     */
     public function getColspanCount(): int
     {
         $all = $this->getColumnCount();

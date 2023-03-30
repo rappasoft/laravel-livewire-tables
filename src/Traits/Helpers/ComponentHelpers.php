@@ -51,7 +51,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getRelationships(): array
     {
@@ -350,7 +350,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getAdditionalSelects(): array
     {
@@ -358,7 +358,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getConfigurableAreas(): array
     {
@@ -380,7 +380,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  string|array  $area
+     * @param  string|array<mixed>  $area
      *
      * @return string|null
      */
@@ -396,9 +396,9 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  string|array  $area
+     * @param  string|array<mixed>  $area
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getParametersForConfigurableArea($area): array
     {
