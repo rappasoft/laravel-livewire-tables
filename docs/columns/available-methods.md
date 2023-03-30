@@ -75,10 +75,10 @@ You can either modify that value or bypass it entirely.
 
 ### Modifying the column value
 
-If you would like to modify the value of the column, you can chain the `format` method:
+If you would like to modify the value of the column, you can chain the `format` method, note that the column must exist.
 
 ```php
-Column::make('Name')
+Column::make('Name', 'first_name')
     ->format(
         fn($value, $row, Column $column) => $row->first_name . ' ' . $row->last_name
     ),
@@ -91,7 +91,7 @@ If you would like to return HTML from the format method you may:
 ```php
 Column::make('Name')
     ->format(
-        fn($value, $row, Column $column) => '<strong>'.$row->first_name . ' ' . $row->last_name.'</strong>'
+        fn($value, $row, Column $column) => '<strong>'.$row->name.'</strong>'
     )
     ->html(),
 ```
