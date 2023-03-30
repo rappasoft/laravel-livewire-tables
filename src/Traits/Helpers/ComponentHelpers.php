@@ -26,7 +26,7 @@ trait ComponentHelpers
 
     /**
      * @param Builder $builder
-     * 
+     *
      * @return void
      */
     public function setBuilder(Builder $builder): void
