@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait ColumnSelectConfiguration
 {
     /**
-     * @var bool
+     * @var bool $status
      *
      * @return self
      */
@@ -37,7 +37,7 @@ trait ColumnSelectConfiguration
     }
 
     /**
-     * @var bool
+     * @var bool $status
      *
      * @return self
      */

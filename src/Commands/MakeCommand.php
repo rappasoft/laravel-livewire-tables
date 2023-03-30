@@ -16,19 +16,20 @@ use Livewire\Commands\MakeCommand as LivewireMakeCommand;
  */
 class MakeCommand extends Command
 {
-    /**
-     * @var
-     */
-    protected $parser;
 
     /**
-     * @var
+     * @var ComponentParser
+     */
+    protected ComponentParser $parser;
+
+    /**
+     * @var string
      */
     protected $model;
 
     /**
      * The name and signature of the console command.
-     *
+     * 
      * @var string
      */
     protected $signature = 'make:datatable
@@ -93,7 +94,9 @@ class MakeCommand extends Command
     }
 
     /**
-     * @param $path
+     * @param mixed $path
+     * 
+     * @return void
      */
     protected function ensureDirectoryExists($path): void
     {
@@ -135,7 +138,7 @@ class MakeCommand extends Command
     /**
      * @param string $modelName
      * @return string
-     * @throws Exception
+     * @throws \Exception
      */
     private function generateColumns(string $modelName): string
     {

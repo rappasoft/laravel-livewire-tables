@@ -10,7 +10,7 @@ trait ComponentHelpers
 {
     public function getDataTableFingerprint(): string
     {
-        return $this->dataTableFingerprint ?? $this->dataTableFingerprint();
+        return $this->dataTableFingerprint ?? $this->generateDataTableFingerprint();
     }
 
     public function getQueryStringAlias(): string
