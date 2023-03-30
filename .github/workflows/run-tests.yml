@@ -4,8 +4,6 @@ on: [push, pull_request]
 
 jobs:
   test:
-    if: always()
-    needs: run-cs-fixer
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
@@ -30,7 +28,6 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: pcov
-          tools: phpstan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
