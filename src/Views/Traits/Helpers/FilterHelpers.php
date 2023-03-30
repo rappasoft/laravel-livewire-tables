@@ -61,7 +61,7 @@ trait FilterHelpers
     /**
      * Get the filter options.
      *
-     * @return array
+     * @return null
      */
     public function getDefaultValue()
     {

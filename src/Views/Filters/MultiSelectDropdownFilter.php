@@ -58,7 +58,12 @@ class MultiSelectDropdownFilter extends Filter
         return $value;
     }
 
-    public function getDefaultValue()
+    /**
+     * Get the filter default options.
+     *
+     * @return array<mixed>
+     */
+    public function getDefaultValue(): array
     {
         return [];
     }
