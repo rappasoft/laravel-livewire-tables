@@ -3,13 +3,13 @@ name: run-tests
 on: [push, pull_request]
 
 jobs:
-  php-cs-fixer:
+  run-cs-fixer:
     if: ${{ github.event_name != 'pull_request'  }}
     uses: ./.github/workflows/php-cs-checker-badge.yml
 
   test:
     if: always()
-    needs: php-cs-fixer
+    needs: run-cs-fixer
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
