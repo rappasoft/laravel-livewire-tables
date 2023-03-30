@@ -9,6 +9,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Additional AlpineJS Variable for Toolbar Blade - childElementOpen - https://github.com/rappasoft/laravel-livewire-tables/pull/1076
 - Core - New Functionality - Add Custom Column Slug option - https://github.com/rappasoft/laravel-livewire-tables/pull/1088
 - Added eager loading so anyone can load any type of relationship - https://github.com/rappasoft/laravel-livewire-tables/pull/943
+- Filter Updates - https://github.com/rappasoft/laravel-livewire-tables/pull/1129
+ - Restrict AppliedFilters to only return non-empty
+ - Adding ID to Wrapper for targetting
+ - Custom Filter Pill Blades (setFilterPillBlade())
+ - Custom Filter Labels (setCustomFilterLabel(())
+ - SlideDown Filter
+   - Set Row for Filter (setFilterSlidedownRow(())
+   - Set ColSpan for Filter (setFilterSlidedownColspan())
 
 ### Changed
 
