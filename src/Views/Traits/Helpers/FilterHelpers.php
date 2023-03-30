@@ -159,7 +159,7 @@ trait FilterHelpers
     {
         return count($this->getConfigs()) > 0;
     }
-    
+
     /**
      * Get the filter options.
      *
@@ -224,5 +224,105 @@ trait FilterHelpers
     public function isResetByClearButton(): bool
     {
         return $this->resetByClearButton === true;
+    }
+
+    /**
+     * Determines whether this filter instance is in the secondary header/footer
+     *
+     * @return bool
+     */
+    public function hasCustomPosition(): bool
+    {
+        return ! is_null($this->filterPosition);
+    }
+
+    /**
+     * Returns the custom position of the footer (header or footer)
+     *
+     * @return string
+     */
+    public function getCustomPosition(): string
+    {
+        return $this->filterPosition;
+    }
+     
+     /**
+      * Returns whether the filter has a custom label blade
+      *
+      * @return bool
+      */
+     public function hasCustomFilterLabel(): bool
+     {
+         return ! is_null($this->filterCustomLabel);
+     }
+
+    /**
+     * Returns the path to the custom filter label blade
+     *
+     * @return string
+     */
+    public function getCustomFilterLabel(): string
+    {
+        return $this->filterCustomLabel ?? '';
+    }
+
+    /**
+     * Get the filter slide down row.
+     *
+     * @return int|null
+     */
+    public function getFilterSlidedownRow(): ?int
+    {
+        return $this->filterSlidedownRow;
+    }
+
+    /**
+     * Get whether the filter has a configured slide down row.
+     *
+     * @return bool
+     */
+    public function hasFilterSlidedownRow(): bool
+    {
+        return (! is_null($this->filterSlidedownRow));
+    }
+
+    /**
+     * Get the filter slide down col span.
+     *
+     * @return int|null
+     */
+    public function getFilterSlidedownColspan(): ?int
+    {
+        return $this->filterSlidedownColspan;
+    }
+
+    /**
+     * Get whether the filter has a configured slide down colspan.
+     *
+     * @return bool
+     */
+    public function hasFilterSlidedownColspan(): bool
+    {
+        return (! is_null($this->filterSlidedownColspan));
+    }
+    
+    /**
+     * Determine if filter has a Custom Pill Blade
+     *
+     * @return bool
+     */
+    public function hasCustomPillBlade(): bool
+    {
+        return $this->filterCustomPillBlade != null;
+    }
+
+    /**
+     * Get the path to the Custom Pill Blade
+     *
+     * @return string|null
+     */
+    public function getCustomPillBlade(): ?string
+    {
+        return $this->filterCustomPillBlade;
     }
 }

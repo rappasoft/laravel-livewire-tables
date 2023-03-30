@@ -94,4 +94,64 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    /**
+     * @param string $position
+     *
+     * @return $this
+     */
+    public function setFilterPosition(string $position): self
+    {
+        $this->filterPosition = $position;
+
+        return $this;
+    }
+     
+     /**
+    * @param string $filterCustomLabel
+    *
+    * @return $this
+    */
+    public function setCustomFilterLabel(string $filterCustomLabel): self
+    {
+        $this->filterCustomLabel = $filterCustomLabel;
+
+        return $this;
+    }
+    
+    /**
+     * @param string|int $filterSlidedownRow
+     *
+     * @return $this
+     */
+    public function setFilterSlidedownRow(string|int $filterSlidedownRow): self
+    {
+        $this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
+
+        return $this;
+    }
+
+    /**
+     * @param string|int $filterSlidedownColspan
+     *
+     * @return $this
+     */
+    public function setFilterSlidedownColspan(string|int $filterSlidedownColspan): self
+    {
+        $this->filterSlidedownColspan = (is_int($filterSlidedownColspan) ? $filterSlidedownColspan : intval($filterSlidedownColspan));
+        
+        return $this;
+    }
+    
+    /**
+     * @param string $blade
+     *
+     * @return $this
+     */
+    public function setFilterPillBlade(string $blade): self
+    {
+        $this->filterCustomPillBlade = $blade;
+
+        return $this;
+    }
 }

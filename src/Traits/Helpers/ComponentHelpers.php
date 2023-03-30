@@ -296,7 +296,7 @@ trait ComponentHelpers
     {
         return $this->collapsingColumnsStatus;
     }
-    
+
     /**
      * @return bool
      */
