@@ -9,7 +9,7 @@ trait ColumnConfiguration
 {
     /**
      * @param DataTableComponent $component
-     * 
+     *
      * @return self
      */
     public function setComponent(DataTableComponent $component): self
@@ -21,7 +21,7 @@ trait ColumnConfiguration
 
     /**
      * @param callable $callback
-     * 
+     *
      * @return self
      */
     public function label(callable $callback): self
@@ -35,7 +35,7 @@ trait ColumnConfiguration
 
     /**
      * @param callable|null $callback
-     * 
+     *
      * @return self
      */
     public function sortable(callable $callback = null): self
@@ -49,7 +49,7 @@ trait ColumnConfiguration
 
     /**
      * @param callable $callable
-     * 
+     *
      * @return Column
      */
     public function format(callable $callable): Column
@@ -61,7 +61,7 @@ trait ColumnConfiguration
 
     /**
      * @param callable|null $callback
-     * 
+     *
      * @return self
      */
     public function searchable(callable $callback = null): self
@@ -72,7 +72,6 @@ trait ColumnConfiguration
 
         return $this;
     }
-
 
     /**
      * @return self
@@ -86,7 +85,7 @@ trait ColumnConfiguration
 
     /**
      * @param string $table
-     * 
+     *
      * @return self
      */
     public function setTable(string $table): self
@@ -98,7 +97,7 @@ trait ColumnConfiguration
 
     /**
      * @param string $title
-     * 
+     *
      * @return self
      */
     public function setSortingPillTitle(string $title): self
@@ -111,7 +110,7 @@ trait ColumnConfiguration
     /**
      * @param string $asc
      * @param string $desc
-     * 
+     *
      * @return self
      */
     public function setSortingPillDirections(string $asc, string $desc): self
@@ -134,7 +133,7 @@ trait ColumnConfiguration
 
     /**
      * @param mixed $condition
-     * 
+     *
      * @return self
      */
     public function hideIf($condition): self
@@ -166,7 +165,7 @@ trait ColumnConfiguration
 
     /**
      * @param callable|null $callback
-     * 
+     *
      * @return self
      */
     public function secondaryHeader(callable $callback = null): self
@@ -180,7 +179,7 @@ trait ColumnConfiguration
 
     /**
      * @param string $filterKey
-     * 
+     *
      * @return self
      */
     public function secondaryHeaderFilter(string $filterKey): self
@@ -194,7 +193,7 @@ trait ColumnConfiguration
 
     /**
      * @param callable|null $callback
-     * 
+     *
      * @return self
      */
     public function footer(callable $callback = null): self
@@ -208,7 +207,7 @@ trait ColumnConfiguration
 
     /**
      * @param string $filterKey
-     * 
+     *
      * @return self
      */
     public function footerFilter(string $filterKey): self
@@ -232,7 +231,7 @@ trait ColumnConfiguration
 
     /**
      * @param string $customSlug
-     * 
+     *
      * @return self
      */
     public function setCustomSlug(string $customSlug): self
