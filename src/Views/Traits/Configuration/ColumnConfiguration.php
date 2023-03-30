@@ -177,7 +177,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-
     /**
      * @param string $filterKey
      *
