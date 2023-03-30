@@ -26,11 +26,7 @@ jobs:
         with:
           args: --config=.php-cs-fixer.php --allow-risky=yes
 
-      - name: Commit changes
-        if: ${{ github.event_name != 'pull_request'  }}
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Fix styling
+
 
       - name: Set completion to true
         run: |
