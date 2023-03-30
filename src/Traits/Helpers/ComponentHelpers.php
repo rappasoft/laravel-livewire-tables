@@ -155,22 +155,23 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  Model  $row
-     * @param  int  $index
-     *
-     * @return  array<mixed>
+     * @param Model $row
+     * @param int $index
+     * 
+     * @return array<mixed>
      */
     public function getTrAttributes(Model $row, int $index): array
     {
         return $this->trAttributesCallback ? call_user_func($this->trAttributesCallback, $row, $index) : ['default' => true];
     }
-
+    
     /**
-     * @param  Column  $column
-     * @param  Model  $row
-     * @param  int  $index
-     *
-     * @return  array<mixed>
+     * @param Column $column
+     * @param Model $row
+     * @param int $colIndex
+     * @param int $rowIndex
+     * 
+     * @return array<mixed>
      */
     public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
     {
