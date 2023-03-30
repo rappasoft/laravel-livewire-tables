@@ -216,7 +216,7 @@ trait FilterHelpers
      */
     public function hasAppliedFiltersWithValues(): bool
     {
-        return count($this->getAppliedFiltersWithValues() > 0);
+        return count($this->getAppliedFiltersWithValues()) > 0;
     }
 
     /**
@@ -333,7 +333,7 @@ trait FilterHelpers
     /**
      * Get whether filter has a configured slide down row.
      *
-     * @return mixed
+     * @return Collection
      */
     public function getVisibleFilters(): Collection
     {

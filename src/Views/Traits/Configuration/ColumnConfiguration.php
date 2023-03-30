@@ -8,9 +8,9 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 trait ColumnConfiguration
 {
     /**
-     * @param  DataTableComponent  $component
-     *
-     * @return $this
+     * @param DataTableComponent $component
+     * 
+     * @return self
      */
     public function setComponent(DataTableComponent $component): self
     {
@@ -20,7 +20,9 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return $this
+     * @param callable $callback
+     * 
+     * @return self
      */
     public function label(callable $callback): self
     {
@@ -32,9 +34,9 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param  callable|null  $callback
-     *
-     * @return $this
+     * @param callable|null $callback
+     * 
+     * @return self
      */
     public function sortable(callable $callback = null): self
     {
@@ -46,8 +48,8 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param  callable  $callable
-     *
+     * @param callable $callable
+     * 
      * @return Column
      */
     public function format(callable $callable): Column
@@ -58,9 +60,9 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param  callable|null  $callback
-     *
-     * @return $this
+     * @param callable|null $callback
+     * 
+     * @return self
      */
     public function searchable(callable $callback = null): self
     {
@@ -71,8 +73,9 @@ trait ColumnConfiguration
         return $this;
     }
 
+
     /**
-     * @return $this
+     * @return self
      */
     public function html(): self
     {
@@ -82,9 +85,9 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param  string  $table
-     *
-     * @return $this
+     * @param string $table
+     * 
+     * @return self
      */
     public function setTable(string $table): self
     {
@@ -94,9 +97,9 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param  string  $title
-     *
-     * @return $this
+     * @param string $title
+     * 
+     * @return self
      */
     public function setSortingPillTitle(string $title): self
     {
@@ -106,10 +109,10 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param  string  $asc
-     * @param  string  $desc
-     *
-     * @return $this
+     * @param string $asc
+     * @param string $desc
+     * 
+     * @return self
      */
     public function setSortingPillDirections(string $asc, string $desc): self
     {
@@ -120,7 +123,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function eagerLoadRelations(): self
     {
@@ -130,7 +133,9 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return $this
+     * @param mixed $condition
+     * 
+     * @return self
      */
     public function hideIf($condition): self
     {
@@ -140,7 +145,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function excludeFromColumnSelect(): self
     {
@@ -150,7 +155,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function deselected(): self
     {
@@ -160,11 +165,11 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param  string  $field
-     *
-     * @return $this
+     * @param callable|null $callback
+     * 
+     * @return self
      */
-    public function secondaryHeader($callback = null): self
+    public function secondaryHeader(callable $callback = null): self
     {
         $this->secondaryHeader = true;
 
@@ -173,7 +178,11 @@ trait ColumnConfiguration
         return $this;
     }
 
-    // TODO: Test
+    /**
+     * @param string $filterKey
+     * 
+     * @return self
+     */
     public function secondaryHeaderFilter(string $filterKey): self
     {
         $this->secondaryHeader = true;
@@ -184,11 +193,11 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param  string  $field
-     *
-     * @return $this
+     * @param callable|null $callback
+     * 
+     * @return self
      */
-    public function footer($callback = null): self
+    public function footer(callable $callback = null): self
     {
         $this->footer = true;
 
@@ -197,7 +206,11 @@ trait ColumnConfiguration
         return $this;
     }
 
-    // TODO: Test
+    /**
+     * @param string $filterKey
+     * 
+     * @return self
+     */
     public function footerFilter(string $filterKey): self
     {
         $this->footer = true;
@@ -208,7 +221,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function unclickable(): self
     {
@@ -217,6 +230,11 @@ trait ColumnConfiguration
         return $this;
     }
 
+    /**
+     * @param string $customSlug
+     * 
+     * @return self
+     */
     public function setCustomSlug(string $customSlug): self
     {
         $this->customSlug = $customSlug;
