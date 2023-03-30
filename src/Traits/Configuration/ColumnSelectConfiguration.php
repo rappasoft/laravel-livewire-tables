@@ -5,8 +5,8 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait ColumnSelectConfiguration
 {
     /**
-     * @var bool $status
-     *
+     * @param bool $status
+     * 
      * @return self
      */
     public function setColumnSelectStatus(bool $status): self
@@ -37,8 +37,8 @@ trait ColumnSelectConfiguration
     }
 
     /**
-     * @var bool $status
-     *
+     * @param bool $status
+     * 
      * @return self
      */
     public function setRememberColumnSelectionStatus(bool $status): self
