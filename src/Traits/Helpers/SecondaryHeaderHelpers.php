@@ -40,7 +40,7 @@ trait SecondaryHeaderHelpers
 
     /**
      * @param mixed $rows
-     * 
+     *
      * @return array<mixed>
      */
     public function getSecondaryHeaderTrAttributes($rows): array
@@ -52,7 +52,7 @@ trait SecondaryHeaderHelpers
      * @param Column $column
      * @param mixed $rows
      * @param int $index
-     * 
+     *
      * @return array<mixed>
      */
     public function getSecondaryHeaderTdAttributes(Column $column, $rows, int $index): array

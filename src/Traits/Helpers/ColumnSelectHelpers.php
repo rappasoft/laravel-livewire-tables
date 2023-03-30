@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnSelectHelpers
 {
-
     /**
      * @return bool
      */
@@ -57,14 +56,13 @@ trait ColumnSelectHelpers
 
     /**
      * @param mixed $column
-     * 
+     *
      * @return bool
      */
     public function columnSelectIsEnabledForColumn($column): bool
     {
         return in_array($column instanceof Column ? $column->getSlug() : $column, $this->selectedColumns, true);
     }
-
 
     /**
      * @return void

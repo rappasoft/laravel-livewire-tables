@@ -76,7 +76,7 @@ trait ComponentConfiguration
      * Set a list of attributes to override on the tbody element
      *
      * @param  array<mixed>  $attributes
-     * 
+     *
      * @return self
      */
     public function setTbodyAttributes(array $attributes = []): self
@@ -118,7 +118,7 @@ trait ComponentConfiguration
      * Set a list of attributes to override on the td elements
      *
      * @param  callable  $callback
-     * 
+     *
      * @return self
      */
     public function setTrAttributes(callable $callback): self
@@ -132,7 +132,7 @@ trait ComponentConfiguration
      * Set a list of attributes to override on the td elements
      *
      * @param  callable  $callback
-     * 
+     *
      * @return self
      */
     public function setTdAttributes(callable $callback): self
@@ -144,7 +144,7 @@ trait ComponentConfiguration
 
     /**
      * Set the empty message
-     * 
+     *
      * @param  string  $message
      *
      * @return self
@@ -286,7 +286,7 @@ trait ComponentConfiguration
 
     /**
      * @param  callable  $callback
-     * 
+     *
      * @return self
      */
     public function setTableRowUrl(callable $callback): self
@@ -298,7 +298,7 @@ trait ComponentConfiguration
 
     /**
      * @param  callable  $callback
-     * 
+     *
      * @return self
      */
     public function setTableRowUrlTarget(callable $callback): self
@@ -370,7 +370,7 @@ trait ComponentConfiguration
 
     /**
      * @param string $dataTableFingerprint
-     * 
+     *
      * @return self
      */
     public function setDataTableFingerprint(string $dataTableFingerprint): self
@@ -382,7 +382,7 @@ trait ComponentConfiguration
 
     /**
      * @param string $queryStringAlias
-     * 
+     *
      * @return self
      */
     public function setQueryStringAlias(string $queryStringAlias): self

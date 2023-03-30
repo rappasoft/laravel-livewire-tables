@@ -141,7 +141,7 @@ trait FilterHelpers
 
     /**
      * @param string $key
-     * 
+     *
      * @return mixed
      */
     public function getFilterByKey(string $key)
@@ -154,7 +154,7 @@ trait FilterHelpers
     /**
      * @param string $filterKey
      * @param mixed $value
-     * 
+     *
      * @return mixed
      */
     public function setFilter(string $filterKey, $value)
@@ -164,7 +164,7 @@ trait FilterHelpers
 
     /**
      * @param string $filterKey
-     * 
+     *
      * @return void
      */
     public function selectAllFilterOptions(string $filterKey): void
@@ -263,7 +263,7 @@ trait FilterHelpers
 
     /**
      * @param string $filterKey
-     * 
+     *
      * @return mixed
      */
     public function getAppliedFilterWithValue(string $filterKey)
@@ -281,7 +281,7 @@ trait FilterHelpers
 
     /**
      * @param mixed $filter
-     * 
+     *
      * @return void
      */
     public function resetFilter($filter): void

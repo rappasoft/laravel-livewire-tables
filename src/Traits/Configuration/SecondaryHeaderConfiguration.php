@@ -6,7 +6,7 @@ trait SecondaryHeaderConfiguration
 {
     /**
      * @param bool $status
-     * 
+     *
      * @return self
      */
     public function setSecondaryHeaderStatus(bool $status): self
@@ -38,7 +38,7 @@ trait SecondaryHeaderConfiguration
 
     /**
      * @param callable $callback
-     * 
+     *
      * @return self
      */
     public function setSecondaryHeaderTrAttributes(callable $callback): self
@@ -50,7 +50,7 @@ trait SecondaryHeaderConfiguration
 
     /**
      * @param callable $callback
-     * 
+     *
      * @return self
      */
     public function setSecondaryHeaderTdAttributes(callable $callback): self
