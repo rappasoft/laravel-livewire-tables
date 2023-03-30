@@ -19,7 +19,7 @@ trait ComponentUtilities
     protected $primaryKey;
     protected array $relationships = [];
     protected string $tableName = 'table';
-    protected string $dataTableFingerprint = null;
+    protected ?string $dataTableFingerprint;
     protected bool $queryStringStatus = true;
     protected bool $offlineIndicatorStatus = true;
     protected bool $eagerLoadAllRelationsStatus = false;
