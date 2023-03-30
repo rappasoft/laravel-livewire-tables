@@ -7,17 +7,17 @@ trait RefreshConfiguration
     /**
      * @param  int  $time
      *
-     * @return $this
+     * @return self
      */
     public function setRefreshTime(int $time): self
     {
-        $this->refresh = $time;
+        $this->refresh = (string) $time;
 
         return $this;
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setRefreshKeepAlive(): self
     {
@@ -27,7 +27,7 @@ trait RefreshConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setRefreshVisible(): self
     {
@@ -39,7 +39,7 @@ trait RefreshConfiguration
     /**
      * @param  string  $method
      *
-     * @return $this
+     * @return self
      */
     public function setRefreshMethod(string $method): self
     {

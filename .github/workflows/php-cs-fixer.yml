@@ -5,9 +5,9 @@ on: [push]
 jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
-
     steps:
       - name: Setup cache directory
+        if: ${{ github.event_name != 'pull_request'  }}
         uses: actions/cache@v3
         with:
           path: .php-cs-fixer.cache
@@ -15,11 +15,19 @@ jobs:
           restore-keys: ${{ runner.OS }}-${{ github.repository }}-phpcsfixer-
 
       - name: Checkout code
+        if: ${{ github.event_name != 'pull_request'  }}
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
 
       - name: Run PHP CS Fixer
+        if: ${{ github.event_name != 'pull_request'  }}
         uses: docker://oskarstark/php-cs-fixer-ga
         with:
-          args: --config=.php-cs-fixer.php --allow-risky=yes --dry-run
+          args: --config=.php-cs-fixer.php --allow-risky=yes
+
+      - name: Commit changes
+        if: ${{ github.event_name != 'pull_request'  }}
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Fix styling

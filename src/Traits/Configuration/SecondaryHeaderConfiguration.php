@@ -5,7 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait SecondaryHeaderConfiguration
 {
     /**
-     * @var bool
+     * @param bool $status
+     *
+     * @return self
      */
     public function setSecondaryHeaderStatus(bool $status): self
     {
@@ -15,7 +17,7 @@ trait SecondaryHeaderConfiguration
     }
 
     /**
-     * @var bool
+     * @return self
      */
     public function setSecondaryHeaderEnabled(): self
     {
@@ -25,7 +27,7 @@ trait SecondaryHeaderConfiguration
     }
 
     /**
-     * @var bool
+     * @return self
      */
     public function setSecondaryHeaderDisabled(): self
     {
@@ -35,7 +37,9 @@ trait SecondaryHeaderConfiguration
     }
 
     /**
-     * @var bool
+     * @param callable $callback
+     *
+     * @return self
      */
     public function setSecondaryHeaderTrAttributes(callable $callback): self
     {
@@ -45,7 +49,9 @@ trait SecondaryHeaderConfiguration
     }
 
     /**
-     * @var bool
+     * @param callable $callback
+     *
+     * @return self
      */
     public function setSecondaryHeaderTdAttributes(callable $callback): self
     {

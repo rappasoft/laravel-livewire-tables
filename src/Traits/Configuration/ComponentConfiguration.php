@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait ComponentConfiguration
 {
     /**
-     * @param  string  $key
+     * @param  string|null  $key
      *
-     * @return $this
+     * @return self
      */
     public function setPrimaryKey(?string $key): self
     {
@@ -19,7 +19,7 @@ trait ComponentConfiguration
     /**
      * Get a list of attributes to override on the main wrapper of the component
      *
-     * @param  array  $attributes
+     * @param  array<mixed>  $attributes
      *
      * @return $this
      */
@@ -31,11 +31,11 @@ trait ComponentConfiguration
     }
 
     /**
-     * Get a list of attributes to override on the div that wraps the table
+     * Set a list of attributes to override on the div that wraps the table
      *
-     * @param  array  $attributes
+     * @param  array<mixed>  $attributes
      *
-     * @return $this
+     * @return self
      */
     public function setTableWrapperAttributes(array $attributes = []): self
     {
@@ -45,11 +45,11 @@ trait ComponentConfiguration
     }
 
     /**
-     * Get a list of attributes to override on the table element
+     * Set a list of attributes to override on the table element
      *
-     * @param  array  $attributes
+     * @param  array<mixed>  $attributes
      *
-     * @return $this
+     * @return self
      */
     public function setTableAttributes(array $attributes = []): self
     {
@@ -59,11 +59,11 @@ trait ComponentConfiguration
     }
 
     /**
-     * Get a list of attributes to override on the thead element
+     * Set a list of attributes to override on the thead element
      *
-     * @param  array  $attributes
+     * @param  array<mixed>  $attributes
      *
-     * @return $this
+     * @return self
      */
     public function setTheadAttributes(array $attributes = []): self
     {
@@ -73,9 +73,11 @@ trait ComponentConfiguration
     }
 
     /**
-     * Get a list of attributes to override on the tbody element
+     * Set a list of attributes to override on the tbody element
      *
-     * @return $this
+     * @param  array<mixed>  $attributes
+     *
+     * @return self
      */
     public function setTbodyAttributes(array $attributes = []): self
     {
@@ -85,11 +87,11 @@ trait ComponentConfiguration
     }
 
     /**
-     * Get a list of attributes to override on the th elements
+     * Set a list of attributes to override on the th elements
      *
      * @param  callable  $callback
      *
-     * @return $this
+     * @return self
      */
     public function setThAttributes(callable $callback): self
     {
@@ -99,11 +101,11 @@ trait ComponentConfiguration
     }
 
     /**
-     * Get a list of attributes to override on the th sort button elements
+     * Set a list of attributes to override on the th sort button elements
      *
      * @param  callable  $callback
      *
-     * @return $this
+     * @return self
      */
     public function setThSortButtonAttributes(callable $callback): self
     {
@@ -113,9 +115,11 @@ trait ComponentConfiguration
     }
 
     /**
-     * Get a list of attributes to override on the td elements
+     * Set a list of attributes to override on the td elements
      *
-     * @return $this
+     * @param  callable  $callback
+     *
+     * @return self
      */
     public function setTrAttributes(callable $callback): self
     {
@@ -125,9 +129,11 @@ trait ComponentConfiguration
     }
 
     /**
-     * Get a list of attributes to override on the td elements
+     * Set a list of attributes to override on the td elements
      *
-     * @return $this
+     * @param  callable  $callback
+     *
+     * @return self
      */
     public function setTdAttributes(callable $callback): self
     {
@@ -137,9 +143,11 @@ trait ComponentConfiguration
     }
 
     /**
+     * Set the empty message
+     *
      * @param  string  $message
      *
-     * @return $this
+     * @return self
      */
     public function setEmptyMessage(string $message): self
     {
@@ -151,7 +159,7 @@ trait ComponentConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setOfflineIndicatorStatus(bool $status): self
     {
@@ -161,7 +169,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setOfflineIndicatorEnabled(): self
     {
@@ -171,7 +179,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setOfflineIndicatorDisabled(): self
     {
@@ -183,7 +191,7 @@ trait ComponentConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setQueryStringStatus(bool $status): self
     {
@@ -193,7 +201,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setQueryStringEnabled(): self
     {
@@ -203,7 +211,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setQueryStringDisabled(): self
     {
@@ -215,7 +223,7 @@ trait ComponentConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setEagerLoadAllRelationsStatus(bool $status): self
     {
@@ -225,7 +233,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setEagerLoadAllRelationsEnabled(): self
     {
@@ -235,7 +243,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setEagerLoadAllRelationsDisabled(): self
     {
@@ -247,7 +255,7 @@ trait ComponentConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setCollapsingColumnsStatus(bool $status): self
     {
@@ -257,7 +265,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setCollapsingColumnsEnabled(): self
     {
@@ -267,7 +275,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setCollapsingColumnsDisabled(): self
     {
@@ -277,7 +285,9 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @param  callable  $callback
+     *
+     * @return self
      */
     public function setTableRowUrl(callable $callback): self
     {
@@ -287,7 +297,9 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @param  callable  $callback
+     *
+     * @return self
      */
     public function setTableRowUrlTarget(callable $callback): self
     {
@@ -299,7 +311,7 @@ trait ComponentConfiguration
     /**
      * @param  $selects
      *
-     * @return $this
+     * @return self
      */
     public function setAdditionalSelects($selects): self
     {
@@ -313,9 +325,9 @@ trait ComponentConfiguration
     }
 
     /**
-     * @param  $areas
+     * @param  array<mixed> $areas
      *
-     * @return $this
+     * @return self
      */
     public function setConfigurableAreas(array $areas): self
     {
@@ -327,7 +339,7 @@ trait ComponentConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setHideConfigurableAreasWhenReorderingStatus(bool $status): self
     {
@@ -337,7 +349,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setHideConfigurableAreasWhenReorderingEnabled(): self
     {
@@ -347,7 +359,7 @@ trait ComponentConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setHideConfigurableAreasWhenReorderingDisabled(): self
     {
@@ -356,6 +368,11 @@ trait ComponentConfiguration
         return $this;
     }
 
+    /**
+     * @param string $dataTableFingerprint
+     *
+     * @return self
+     */
     public function setDataTableFingerprint(string $dataTableFingerprint): self
     {
         $this->dataTableFingerprint = $dataTableFingerprint;
@@ -363,6 +380,11 @@ trait ComponentConfiguration
         return $this;
     }
 
+    /**
+     * @param string $queryStringAlias
+     *
+     * @return self
+     */
     public function setQueryStringAlias(string $queryStringAlias): self
     {
         $this->queryStringAlias = $queryStringAlias;

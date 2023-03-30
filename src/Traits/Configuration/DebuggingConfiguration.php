@@ -7,7 +7,7 @@ trait DebuggingConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setDebugStatus(bool $status): self
     {
@@ -17,7 +17,7 @@ trait DebuggingConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setDebugEnabled(): self
     {
@@ -27,7 +27,7 @@ trait DebuggingConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setDebugDisabled(): self
     {

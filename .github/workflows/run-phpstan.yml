@@ -1,6 +1,6 @@
-name: run-tests
+name: run-phpstan
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   test:
@@ -9,14 +9,11 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        php: [8.0, 8.1, 8.2]
-        laravel: [8, 9, 10]
+        php: [8.2]
+        laravel: [10]
         stability: [prefer-stable]
-        exclude:
-          - laravel: 10
-            php: 8.0
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: PHPStan - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -26,16 +23,14 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
-          coverage: pcov
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup problem matchers
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
+          
       - name: Get composer cache directory
         id: composer-cache
         run: |
@@ -43,8 +38,8 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ runner.os }}-PHPStan-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-PHPStan-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |
@@ -58,5 +53,8 @@ jobs:
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer update --${{ matrix.stability }} --no-interaction
 
-      - name: Run Unit Tests
-        run: php -d pcov.enabled=1 ./vendor/bin/paratest --passthru-php="'-d pcov.enabled=1'"
+      - name: Install PHPStan
+        run: composer require nunomaduro/larastan:^2.0 --dev --no-interaction
+
+      - name: Run PHPStan Tests
+        run: ./vendor/bin/phpstan analyse

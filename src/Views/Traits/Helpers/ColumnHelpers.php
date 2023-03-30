@@ -211,24 +211,32 @@ trait ColumnHelpers
         return $this->sortCallback !== null;
     }
 
-    // TODO
+    /**
+     * @return callable|null
+     */
     public function getSearchCallback(): ?callable
     {
         return $this->searchCallback;
     }
 
+    /**
+     * @return bool
+     */
     public function isSearchable(): bool
     {
         return $this->hasField() && $this->searchable === true;
     }
 
+    /**
+     * @return bool
+     */
     public function hasSearchCallback(): bool
     {
         return $this->searchCallback !== null;
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function collapseOnMobile(): self
     {
@@ -392,9 +400,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @param  callable  $callback
-     *
-     * @return $this
+     * @return bool
      */
     public function isVisible(): bool
     {
@@ -450,7 +456,9 @@ trait ColumnHelpers
     }
 
     /**
-     * @return string
+     * @param mixed $rows
+     *
+     * @return mixed
      */
     public function getSecondaryHeaderContents($rows)
     {
@@ -505,7 +513,9 @@ trait ColumnHelpers
     }
 
     /**
-     * @return string
+     * @param mixed $rows
+     *
+     * @return mixed
      */
     public function getFooterContents($rows)
     {
@@ -536,7 +546,9 @@ trait ColumnHelpers
     }
 
     /**
-     * @return bool
+     * @param array<mixed> $attributes
+     *
+     * @return mixed
      */
     public function arrayToAttributes(array $attributes)
     {
