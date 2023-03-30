@@ -164,11 +164,11 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param callable|null $callback
+     * @param  mixed  $callback
      *
      * @return self
      */
-    public function secondaryHeader(callable $callback = null): self
+    public function secondaryHeader($callback = null): self
     {
         $this->secondaryHeader = true;
 
@@ -176,6 +176,7 @@ trait ColumnConfiguration
 
         return $this;
     }
+
 
     /**
      * @param string $filterKey
@@ -192,11 +193,11 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param callable|null $callback
+     * @param  mixed  $callback
      *
      * @return self
      */
-    public function footer(callable $callback = null): self
+    public function footer($callback = null): self
     {
         $this->footer = true;
 
