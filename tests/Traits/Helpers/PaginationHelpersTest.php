@@ -87,5 +87,4 @@ class PaginationHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->isPaginationMethod('standard'));
     }
-
 }
