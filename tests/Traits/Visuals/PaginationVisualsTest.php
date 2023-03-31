@@ -164,5 +164,4 @@ class PaginationVisualsTest extends TestCase
         Livewire::test(PetsTable::class)->assertSet('paginationCurrentCount',5)
                                         ->assertNotSet('paginationCurrentCount',125);
     }
-        
 }
