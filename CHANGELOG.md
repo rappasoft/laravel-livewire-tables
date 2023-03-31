@@ -20,6 +20,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
    - Set Row for Filter (setFilterSlidedownRow(())
    - Set ColSpan for Filter (setFilterSlidedownColspan())
 - Workflow (run-phpstan) - Introducing PHP-Stan at Level 3 to ensure code-quality persists - https://github.com/rappasoft/laravel-livewire-tables/pull/1133
+- Added getPerPageDisplayedItemIds() and getPerPageDisplayedItemCount() along with public variables to allow retrieval of currently paginated PrimayKey and Item Count https://github.com/rappasoft/laravel-livewire-tables/pull/1136
 
 ### Changed
 
