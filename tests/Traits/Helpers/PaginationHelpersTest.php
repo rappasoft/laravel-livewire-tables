@@ -99,6 +99,4 @@ class PaginationHelpersTest extends TestCase
     {
         $this->assertSame(5, $this->basicTable->getPerPageDisplayedItemCount());
     }
-    
-    
 }
