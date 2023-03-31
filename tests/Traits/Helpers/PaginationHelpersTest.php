@@ -89,5 +89,9 @@ class PaginationHelpersTest extends TestCase
     }
 
 
-    
+    /** @test */
+    public function can_get_currently_displayed_count(): void
+    {
+        $this->assertSame(5, $this->basicTable->getPerPageDisplayedItemCount());
+    }
 }
