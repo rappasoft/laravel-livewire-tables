@@ -143,4 +143,20 @@ trait PaginationHelpers
     {
         return $this->paginationMethod === $paginationMethod;
     }
+
+    /**
+     * @return array<mixed>
+     */
+    public function getPerPageDisplayedItemIds(): array
+    {
+        return $this->paginationCurrentItems;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPerPageDisplayedItemCount(): int
+    {
+        return $this->paginationCurrentCount;
+    }
 }
