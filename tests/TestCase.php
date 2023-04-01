@@ -28,8 +28,7 @@ class TestCase extends Orchestra
         $this->basicTable->boot();
         $this->basicTable->booted();
         $this->basicTable->render();
-        if (Species::where('id', 1)->count() != 1)
-        {
+        if (Species::where('id', 1)->count() != 1) {
             Species::insert([
                 ['id' => 1, 'name' => 'Cat'],
                 ['id' => 2, 'name' => 'Dog'],
