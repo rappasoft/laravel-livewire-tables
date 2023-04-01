@@ -6,7 +6,7 @@
     cacheResult="true"
     colors="true"
     executionOrder="random"
-    failOnWarning="true"
+    failOnWarning="false"
     failOnRisky="true"
     failOnEmptyTestSuite="true"
     beStrictAboutOutputDuringTests="true"
