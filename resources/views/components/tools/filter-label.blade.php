@@ -1,8 +1,6 @@
 @aware(['component'])
-@props(['filter','theme','filterLayout'])
-@php
-    $theme = $component->getTheme();
-@endphp
+@props(['filter','theme' => 'tailwind','filterLayout'])
+
 <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" 
     @class([
         'block text-sm font-medium leading-5 text-gray-700 dark:text-white' => $theme === 'tailwind',
