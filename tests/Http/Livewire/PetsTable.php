@@ -89,7 +89,7 @@ class PetsTable extends DataTableComponent
         return [
             MultiSelectFilter::make('Breed')
                 ->options(
-                    array(0 => 1,
+                    [0 => 1,
             1 => 200,
             2 => 100,
             3 => 201,
@@ -98,7 +98,7 @@ class PetsTable extends DataTableComponent
             6 => 202,
             7 => 4,
             8 => 3,
-            9 => 102)
+            9 => 102]
                 )
                 ->filter(function (Builder $builder, array $values) {
                     return $builder->whereIn('breed_id', $values);
@@ -137,7 +137,7 @@ class PetsTable extends DataTableComponent
 
             SelectFilter::make('Breed SelectFilter', 'breed_select_filter')
             ->options(
-                array(0 => 1,
+                [0 => 1,
             1 => 200,
             2 => 100,
             3 => 201,
@@ -146,7 +146,7 @@ class PetsTable extends DataTableComponent
             6 => 202,
             7 => 4,
             8 => 3,
-            9 => 102)
+            9 => 102]
             )
             ->filter(function (Builder $builder, string $value) {
                 return $builder->where('breed_id', $value);
