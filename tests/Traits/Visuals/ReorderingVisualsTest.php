@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ReorderingVisualsTest extends TestCase
 {
-
     public array $filterDefaultArray = [];
 
     public function filterArraySetup(): array
