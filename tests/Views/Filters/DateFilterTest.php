@@ -50,7 +50,7 @@ final class DateFilterTest extends FilterTestCase
 
     /**
      * @test
-     */    
+     */
     public function test_can_get_if_date_filter_empty(): void
     {
         $this->assertTrue(self::$filterInstance->isEmpty(''));
@@ -58,7 +58,7 @@ final class DateFilterTest extends FilterTestCase
 
     /**
      * @test
-     */    
+     */
     public function test_can_not_set_date_filter_to_invalid_date_custom_format(): void
     {
         $this->assertFalse(self::$filterInstance->validate('123'));
