@@ -24,7 +24,10 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-
+        $this->basicTable = new PetsTable();
+        $this->basicTable->boot();
+        $this->basicTable->booted();
+        $this->basicTable->render();
         if (Species::where('id', 1)->count() != 1)
         {
             Species::insert([
@@ -67,7 +70,6 @@ class TestCase extends Orchestra
                 ['id' => 3, 'pet_id' => 2, 'veterinary_id' => 1],
                 ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
             ]);
-
         }
         $this->basicTable = new PetsTable();
         $this->basicTable->boot();
