@@ -142,7 +142,7 @@ class PetsTable extends DataTableComponent
             2 => 100,
             3 => 201,
             4 => 101,
-            5 => 2,,
+            5 => 2,
             6 => 202,
             7 => 4,
             8 => 3,
