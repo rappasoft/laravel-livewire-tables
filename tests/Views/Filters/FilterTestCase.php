@@ -24,9 +24,11 @@ abstract class FilterTestCase extends TestCase
     /** @test */
     public function can_get_filter_configs(): void
     {
+        self::$filterInstance->config([]);
+
         $this->assertSame([], self::$filterInstance->getConfigs());
 
-        $filter->config(['foo' => 'bar']);
+        self::$filterInstance->config(['foo' => 'bar']);
 
         $this->assertSame(['foo' => 'bar'], self::$filterInstance->getConfigs());
     }
@@ -46,19 +48,6 @@ abstract class FilterTestCase extends TestCase
     }
 
     /** @test */
-    public function can_get_filter_callback(): void
-    {
-        $this->assertFalse(self::$filterInstance->hasFilterCallback());
-
-        self::$filterInstance->filter(function (Builder $builder, string $value) {
-            return $builder->whereDate('created_at', ">=", $value);
-        });
-
-        $this->assertTrue(self::$filterInstance->hasFilterCallback());
-        $this->assertIsCallable(self::$filterInstance->getFilterCallback());
-    }
-
-    /** @test */
     public function can_get_filter_pill_title(): void
     {
         $this->assertSame('Active', self::$filterInstance->getFilterPillTitle());
@@ -71,6 +60,9 @@ abstract class FilterTestCase extends TestCase
     /** @test */
     public function can_check_if_filter_has_configs(): void
     {
+
+        self::$filterInstance->config([]);
+
         $this->assertFalse(self::$filterInstance->hasConfigs());
 
         self::$filterInstance->config(['foo' => 'bar']);

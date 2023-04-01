@@ -8,7 +8,7 @@ final class DateFilterTest extends FilterTestCase
 {
     public static function setUpBeforeClass(): void
     {
-        self::$filterInstance = DateFilter::make('Created Date');
+        self::$filterInstance = DateFilter::make('Active');
     }
 
     /**
@@ -65,4 +65,18 @@ final class DateFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->validate('2014/01/01'));
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }
+
+    /** @test */
+    public function can_get_filter_callback(): void
+    {
+        $this->assertFalse(self::$filterInstance->hasFilterCallback());
+
+        self::$filterInstance->filter(function (Builder $builder, string $value) {
+            return $builder->whereDate('created_at', ">=", $value);
+        });
+
+        $this->assertTrue(self::$filterInstance->hasFilterCallback());
+        $this->assertIsCallable(self::$filterInstance->getFilterCallback());
+    }
+    
 }
