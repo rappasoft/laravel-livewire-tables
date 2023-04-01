@@ -28,8 +28,7 @@ class TestCase extends Orchestra
         $this->basicTable->boot();
         $this->basicTable->booted();
         $this->basicTable->render();
-        if (Species::where('id', 1)->count() != 1)
-        {
+        if (Species::where('id', 1)->count() != 1) {
             Species::insert([
                 ['id' => 1, 'name' => 'Cat'],
                 ['id' => 2, 'name' => 'Dog'],
@@ -70,7 +69,6 @@ class TestCase extends Orchestra
                 ['id' => 3, 'pet_id' => 2, 'veterinary_id' => 1],
                 ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
             ]);
-
         }
     }
 
