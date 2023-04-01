@@ -52,15 +52,28 @@ class TestCase extends Orchestra
         } else {
 
             touch(__DIR__.'/../database/database.sqlite');
-            $app['config']->set('database.connections.sqlite', [
-                'driver' => 'sqlite',
-                'database' => __DIR__.'/../database/database.sqlite',
-                'prefix' => '',
+            if (file_exists(__DIR__.'/../database/database.sqlite')) {
+
+                $app['config']->set('database.connections.sqlite', [
+                    'driver' => 'sqlite',
+                    'database' => __DIR__.'/../database/database.sqlite',
+                    'prefix' => '',
+                ]);
+            }
+            else
+            {
+                $app['config']->set('database.connections.sqlite', [
+                    'driver' => 'sqlite',
+                    'database' => ':memory:',
+                    'prefix' => '',
+                ]);        
+            }
+
+            $this->artisan('migrate', [
+                '--database' => 'sqlite',
+                '--realpath' => __DIR__.'/../database/migrations',
             ]);
-
-            include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
-
-            (new \CreateTestTables())->up();
+          
             
             Species::insert([
                 ['id' => 1, 'name' => 'Cat'],
