@@ -23,21 +23,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Setup cache environment
-        id: extcache
-        uses: shivammathur/cache-extensions@v1
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: ${{ env.extensions }}
-          key: ${{ env.extensionKey }}
-
-      - name: Cache extensions
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.extcache.outputs.dir }}
-          key: ${{ steps.extcache.outputs.key }}
-          restore-keys: ${{ steps.extcache.outputs.key }}
           
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -78,4 +63,4 @@ jobs:
         run: composer update --${{ matrix.stability }} --no-interaction
 
       - name: Run Unit Tests
-        run: php ./vendor/bin/paratest
+        run: php -d memory_limit=512M ./vendor/bin/paratest --no-coverage --processes=4
