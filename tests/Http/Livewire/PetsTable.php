@@ -28,12 +28,16 @@ class PetsTable extends DataTableComponent
         $this->setPrimaryKey('id');
         if (empty($this->breedFilterOptions))
         {
-            $this->breedFilterOptions = Breed::query()
-                ->orderBy('name')
-                ->get()
-                ->keyBy('id')
-                ->map(fn ($breed) => $breed->name)
-                ->toArray();
+            $this->breedFilterOptions = array(0 => 1,
+            1 => 200,
+            2 => 100,
+            3 => 201,
+            4 => 101,
+            5 => 2,,
+            6 => 202,
+            7 => 4,
+            8 => 3,
+            9 => 102);
         }
     }
 
@@ -90,7 +94,16 @@ class PetsTable extends DataTableComponent
         return [
             MultiSelectFilter::make('Breed')
                 ->options(
-                    $this->breedFilterOptions
+                    array(0 => 1,
+            1 => 200,
+            2 => 100,
+            3 => 201,
+            4 => 101,
+            5 => 2,,
+            6 => 202,
+            7 => 4,
+            8 => 3,
+            9 => 102)
                 )
                 ->filter(function (Builder $builder, array $values) {
                     return $builder->whereIn('breed_id', $values);
@@ -129,7 +142,16 @@ class PetsTable extends DataTableComponent
 
             SelectFilter::make('Breed SelectFilter', 'breed_select_filter')
             ->options(
-                $this->breedFilterOptions
+                array(0 => 1,
+            1 => 200,
+            2 => 100,
+            3 => 201,
+            4 => 101,
+            5 => 2,,
+            6 => 202,
+            7 => 4,
+            8 => 3,
+            9 => 102)
             )
             ->filter(function (Builder $builder, string $value) {
                 return $builder->where('breed_id', $value);
