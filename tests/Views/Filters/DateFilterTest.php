@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 
 final class DateFilterTest extends FilterTestCase
 {
-
     public function setUp(): void
     {
         $this->filterInstance = DateFilter::make('Created Date');
@@ -54,7 +53,7 @@ final class DateFilterTest extends FilterTestCase
     /**
      * @test
      * @depends testCreateFilterInstance
-     */    
+     */
     public function test_can_get_if_date_filter_empty($filterInstance): void
     {
         $this->assertTrue($filterInstance->isEmpty(''));
@@ -63,7 +62,7 @@ final class DateFilterTest extends FilterTestCase
     /**
      * @test
      * @depends testCreateFilterInstance
-     */    
+     */
     public function test_can_not_set_date_filter_to_invalid_date_custom_format($filterInstance): void
     {
         $this->assertFalse($filterInstance->validate('123'));
