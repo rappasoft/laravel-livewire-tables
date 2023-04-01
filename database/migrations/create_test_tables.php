@@ -3,16 +3,16 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreateTestTables extends Migration
+ 
+return new class extends Migration
 {
+
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
+
         Schema::create('species', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -49,4 +49,17 @@ class CreateTestTables extends Migration
             $table->foreignId('veterinary_id')->constrained();
         });
     }
-}
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::drop('species');
+        Schema::drop('breeds');
+        Schema::drop('pets');
+        Schema::drop('veterinaries');
+        Schema::drop('pet_veterinary');
+
+    }
+};
