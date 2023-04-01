@@ -54,7 +54,7 @@ class PetsTable extends DataTableComponent
                 ->label(function ($row, Column $column) {
                     return 'Other';
                 })
-                ->footer(function($rows) {
+                ->footer(function ($rows) {
                     return 'Count: ' . $rows->count();
                 }),
             
