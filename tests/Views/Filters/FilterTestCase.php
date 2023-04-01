@@ -8,7 +8,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 abstract class FilterTestCase extends TestCase
 {
 
-    private static $filterType;
+    private $filterType;
 
     /** @test */
     public function can_get_filter_name(): void
