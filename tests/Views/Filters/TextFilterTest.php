@@ -6,51 +6,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
-class TextFilterTest extends TestCase
+final class TextFilterTest extends FilterTestCase
 {
-    /** @test */
-    public function can_get_filter_name(): void
+    protected function setUp(): void
     {
-        $filter = TextFilter::make('Active');
-
-        $this->assertSame('Active', $filter->getName());
-    }
-
-    /** @test */
-    public function can_get_filter_key(): void
-    {
-        $filter = TextFilter::make('Active');
-
-        $this->assertSame('active', $filter->getKey());
-    }
-
-    /** @test */
-    public function can_get_filter_configs(): void
-    {
-        $filter = TextFilter::make('Active');
-
-        $this->assertSame([], $filter->getConfigs());
-
-        $filter->config(['foo' => 'bar']);
-
-        $this->assertSame(['foo' => 'bar'], $filter->getConfigs());
-    }
-
-    /** @test */
-    public function get_a_single_filter_config(): void
-    {
-        $filter = TextFilter::make('Active')
-            ->config(['foo' => 'bar']);
-
-        $this->assertSame('bar', $filter->getConfig('foo'));
-    }
-
-    /** @test */
-    public function can_get_filter_default_value(): void
-    {
-        $filter = TextFilter::make('Active');
-
-        $this->assertNull($filter->getDefaultValue());
+        self::$filterInstance = TextFilter::make('Active');
     }
 
     /** @test */
@@ -69,95 +29,6 @@ class TextFilterTest extends TestCase
         $this->assertIsCallable($filter->getFilterCallback());
     }
 
-    /** @test */
-    public function can_get_filter_pill_title(): void
-    {
-        $filter = TextFilter::make('Active');
-
-        $this->assertSame('Active', $filter->getFilterPillTitle());
-
-        $filter = TextFilter::make('Active')
-            ->setFilterPillTitle('User Status');
-
-        $this->assertSame('User Status', $filter->getFilterPillTitle());
-    }
-
-    /** @test */
-    public function can_check_if_filter_has_configs(): void
-    {
-        $filter = TextFilter::make('Active');
-
-        $this->assertFalse($filter->hasConfigs());
-
-        $filter = TextFilter::make('Active')
-            ->config(['foo' => 'bar']);
-
-        $this->assertTrue($filter->hasConfigs());
-    }
-
-    /** @test */
-    public function can_check_filter_config_by_name(): void
-    {
-        $filter = TextFilter::make('Active')
-            ->config(['foo' => 'bar']);
-
-        $this->assertTrue($filter->hasConfig('foo'));
-        $this->assertFalse($filter->hasConfig('bar'));
-    }
-
-    /** @test */
-    public function can_check_if_filter_is_hidden_from_menus(): void
-    {
-        $filter = TextFilter::make('Active');
-
-        $this->assertFalse($filter->isHiddenFromMenus());
-        $this->assertTrue($filter->isVisibleInMenus());
-
-        $filter->hiddenFromMenus();
-
-        $this->assertTrue($filter->isHiddenFromMenus());
-        $this->assertFalse($filter->isVisibleInMenus());
-    }
-
-    /** @test */
-    public function can_check_if_filter_is_hidden_from_pills(): void
-    {
-        $filter = TextFilter::make('Active');
-
-        $this->assertFalse($filter->isHiddenFromPills());
-        $this->assertTrue($filter->isVisibleInPills());
-
-        $filter->hiddenFromPills();
-
-        $this->assertTrue($filter->isHiddenFromPills());
-        $this->assertFalse($filter->isVisibleInPills());
-    }
-
-    /** @test */
-    public function can_check_if_filter_is_hidden_from_count(): void
-    {
-        $filter = TextFilter::make('Active');
-
-        $this->assertFalse($filter->isHiddenFromFilterCount());
-        $this->assertTrue($filter->isVisibleInFilterCount());
-
-        $filter->hiddenFromFilterCount();
-
-        $this->assertTrue($filter->isHiddenFromFilterCount());
-        $this->assertFalse($filter->isVisibleInFilterCount());
-    }
-
-    /** @test */
-    public function can_check_if_filter_is_reset_by_clear_button(): void
-    {
-        $filter = TextFilter::make('Active');
-
-        $this->assertTrue($filter->isResetByClearButton());
-
-        $filter->notResetByClearButton();
-
-        $this->assertFalse($filter->isResetByClearButton());
-    }
     
     /** @test */
     public function can_not_exceed_text_filter_max_length(): void
