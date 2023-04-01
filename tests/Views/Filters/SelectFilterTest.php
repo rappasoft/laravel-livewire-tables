@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 final class SelectFilterTest extends FilterTestCase
@@ -21,7 +20,6 @@ final class SelectFilterTest extends FilterTestCase
 
         return $optionsArray;
     }
-
 
     /** @test */
     public function can_get_filter_callback(): void

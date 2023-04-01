@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 final class TextFilterTest extends FilterTestCase
@@ -29,7 +28,6 @@ final class TextFilterTest extends FilterTestCase
         $this->assertTrue($filter->hasFilterCallback());
         $this->assertIsCallable($filter->getFilterCallback());
     }
-
     
     /** @test */
     public function can_not_exceed_text_filter_max_length(): void
