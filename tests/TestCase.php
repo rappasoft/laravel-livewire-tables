@@ -3,10 +3,15 @@
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
 
 class TestCase extends Orchestra
 {
