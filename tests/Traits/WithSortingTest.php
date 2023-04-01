@@ -9,7 +9,6 @@ class WithSortingTest extends TestCase
     /** @test */
     public function cannot_call_sortBy_if_sorting_is_disabled(): void
     {
-
         $this->assertSame($this->basicTable->sortBy('id'), 'asc');
 
         $this->basicTable->setSortingDisabled();
@@ -94,9 +93,7 @@ class WithSortingTest extends TestCase
 
         $this->basicTable->applySorting();
 
-        $this->assertSame($this->basicTable->getBuilder()->toSql(),'select "pets"."id" as "id", "pets"."sort" as "sort", "pets"."name" as "name", "pets"."age" as "age", "breeds"."name" as "breed.name" from "pets" left join "breeds" on "pets"."breed_id" = "breeds"."id"');
-
-
+        $this->assertSame($this->basicTable->getBuilder()->toSql(), 'select "pets"."id" as "id", "pets"."sort" as "sort", "pets"."name" as "name", "pets"."age" as "age", "breeds"."name" as "breed.name" from "pets" left join "breeds" on "pets"."breed_id" = "breeds"."id"');
     }
 
     /** @test */
@@ -106,8 +103,6 @@ class WithSortingTest extends TestCase
 
         $this->basicTable->applySorting();
 
-        $this->assertSame($this->basicTable->getBuilder()->toSql(),'select "pets"."id" as "id", "pets"."sort" as "sort", "pets"."name" as "name", "pets"."age" as "age", "breeds"."name" as "breed.name" from "pets" left join "breeds" on "pets"."breed_id" = "breeds"."id" order by "id" asc');
-
+        $this->assertSame($this->basicTable->getBuilder()->toSql(), 'select "pets"."id" as "id", "pets"."sort" as "sort", "pets"."name" as "name", "pets"."age" as "age", "breeds"."name" as "breed.name" from "pets" left join "breeds" on "pets"."breed_id" = "breeds"."id" order by "id" asc');
     }
-    
 }

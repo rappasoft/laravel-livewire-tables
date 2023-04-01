@@ -67,7 +67,6 @@ class BulkActionsHelpersTest extends TestCase
 
         $this->assertSame(['activate' => 'Activate'], $this->basicTable->bulkActions());
     }
-    
 
     /** @test */
     public function can_check_if_bulk_actions_dropdown_should_bw_shown(): void
