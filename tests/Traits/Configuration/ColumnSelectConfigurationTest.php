@@ -49,4 +49,15 @@ class ColumnSelectConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->getRememberColumnSelectionStatus());
     }
+
+    /** @test  */
+    public function can_deselect_all_columns(): void
+    {
+        $this->assertTrue($this->basicTable->getColumnSelectStatus());
+
+        $this->basicTable->deselectAllColumns();
+
+
+        $this->assertSame([], $this->basicTable->selectedColumns);
+    }
 }
