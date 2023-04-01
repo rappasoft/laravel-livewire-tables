@@ -9,6 +9,7 @@ final class DateFilterTest extends FilterTestCase
     protected function setUp(): void
     {
         $this->filterType = DateFilter::class;
+        $this->filterInstance = DateFilter::make('Created Date');
     }
     
     /** @test */

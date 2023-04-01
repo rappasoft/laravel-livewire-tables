@@ -8,156 +8,135 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 abstract class FilterTestCase extends TestCase
 {
 
-    private $filterType;
+    protected $filterType;
+    protected $filterInstance;
+
+    protected function setUp(): void
+    {
+    }
 
     /** @test */
     public function can_get_filter_name(): void
     {
-        $filter = $this->filterType::make('Active');
-
-        $this->assertSame('Active', $filter->getName());
+        
+        $this->assertSame('Active', $this->filterInstance->getName());
     }
 
     /** @test */
     public function can_get_filter_key(): void
     {
-        $filter = $this->filterType::make('Active');
-
-        $this->assertSame('active', $filter->getKey());
+        $this->assertSame('active', $this->filterInstance->getKey());
     }
 
     /** @test */
     public function can_get_filter_configs(): void
     {
-        $filter = $this->filterType::make('Active');
-
-        $this->assertSame([], $filter->getConfigs());
+        $this->assertSame([], $this->filterInstance->getConfigs());
 
         $filter->config(['foo' => 'bar']);
 
-        $this->assertSame(['foo' => 'bar'], $filter->getConfigs());
+        $this->assertSame(['foo' => 'bar'], $this->filterInstance->getConfigs());
     }
 
     /** @test */
     public function get_a_single_filter_config(): void
     {
-        $filter = $this->filterType::make('Active')
-            ->config(['foo' => 'bar']);
+        $this->filterInstance->config(['foo' => 'bar']);
 
-        $this->assertSame('bar', $filter->getConfig('foo'));
+        $this->assertSame('bar', $this->filterInstance->getConfig('foo'));
     }
 
     /** @test */
     public function can_get_filter_default_value(): void
     {
-        $filter = $this->filterType::make('Active');
-
-        $this->assertNull($filter->getDefaultValue());
+        $this->assertNull($this->filterInstance->getDefaultValue());
     }
 
     /** @test */
     public function can_get_filter_callback(): void
     {
-        $filter = $this->filterType::make('Active');
+        $this->assertFalse($this->filterInstance->hasFilterCallback());
 
-        $this->assertFalse($filter->hasFilterCallback());
-
-        $filter = $this->filterType::make('Active')
-            ->filter(function (Builder $builder, string $value) {
+        $this->filterInstance->filter(function (Builder $builder, string $value) {
                 return $builder->whereDate('created_at', ">=", $value);
             });
 
-        $this->assertTrue($filter->hasFilterCallback());
-        $this->assertIsCallable($filter->getFilterCallback());
+        $this->assertTrue($this->filterInstance->hasFilterCallback());
+        $this->assertIsCallable($this->filterInstance->getFilterCallback());
     }
 
     /** @test */
     public function can_get_filter_pill_title(): void
     {
-        $filter = $this->filterType::make('Active');
+        $this->assertSame('Active', $this->filterInstance->getFilterPillTitle());
 
-        $this->assertSame('Active', $filter->getFilterPillTitle());
+        $this->filterInstance->setFilterPillTitle('User Date');
 
-        $filter = $this->filterType::make('Active')
-            ->setFilterPillTitle('User Date');
-
-        $this->assertSame('User Date', $filter->getFilterPillTitle());
+        $this->assertSame('User Date', $this->filterInstance->getFilterPillTitle());
     }
 
     /** @test */
     public function can_check_if_filter_has_configs(): void
     {
-        $filter = $this->filterType::make('Active');
+        $this->assertFalse($this->filterInstance->hasConfigs());
 
-        $this->assertFalse($filter->hasConfigs());
+        $this->filterInstance->config(['foo' => 'bar']);
 
-        $filter = $this->filterType::make('Active')
-            ->config(['foo' => 'bar']);
-
-        $this->assertTrue($filter->hasConfigs());
+        $this->assertTrue($this->filterInstance->hasConfigs());
     }
 
     /** @test */
     public function can_check_filter_config_by_name(): void
     {
-        $filter = $this->filterType::make('Active')
-            ->config(['foo' => 'bar']);
+        $this->filterInstance->config(['foo' => 'bar']);
 
-        $this->assertTrue($filter->hasConfig('foo'));
-        $this->assertFalse($filter->hasConfig('bar'));
+        $this->assertTrue($this->filterInstance->hasConfig('foo'));
+        $this->assertFalse($this->filterInstance->hasConfig('bar'));
     }
 
     /** @test */
     public function can_check_if_filter_is_hidden_from_menus(): void
     {
-        $filter = $this->filterType::make('Active');
+        $this->assertFalse($this->filterInstance->isHiddenFromMenus());
+        $this->assertTrue($this->filterInstance->isVisibleInMenus());
 
-        $this->assertFalse($filter->isHiddenFromMenus());
-        $this->assertTrue($filter->isVisibleInMenus());
+        $this->filterInstance->hiddenFromMenus();
 
-        $filter->hiddenFromMenus();
-
-        $this->assertTrue($filter->isHiddenFromMenus());
-        $this->assertFalse($filter->isVisibleInMenus());
+        $this->assertTrue($this->filterInstance->isHiddenFromMenus());
+        $this->assertFalse($this->filterInstance->isVisibleInMenus());
     }
 
     /** @test */
     public function can_check_if_filter_is_hidden_from_pills(): void
     {
-        $filter = $this->filterType::make('Active');
+        $this->assertFalse($this->filterInstance->isHiddenFromPills());
+        $this->assertTrue($this->filterInstance->isVisibleInPills());
 
-        $this->assertFalse($filter->isHiddenFromPills());
-        $this->assertTrue($filter->isVisibleInPills());
+        $this->filterInstance->hiddenFromPills();
 
-        $filter->hiddenFromPills();
-
-        $this->assertTrue($filter->isHiddenFromPills());
-        $this->assertFalse($filter->isVisibleInPills());
+        $this->assertTrue($this->filterInstance->isHiddenFromPills());
+        $this->assertFalse($this->filterInstance->isVisibleInPills());
     }
 
     /** @test */
     public function can_check_if_filter_is_hidden_from_count(): void
     {
-        $filter = $this->filterType::make('Active');
+        $this->assertFalse($this->filterInstance->isHiddenFromFilterCount());
+        $this->assertTrue($this->filterInstance->isVisibleInFilterCount());
 
-        $this->assertFalse($filter->isHiddenFromFilterCount());
-        $this->assertTrue($filter->isVisibleInFilterCount());
+        $this->filterInstance->hiddenFromFilterCount();
 
-        $filter->hiddenFromFilterCount();
-
-        $this->assertTrue($filter->isHiddenFromFilterCount());
-        $this->assertFalse($filter->isVisibleInFilterCount());
+        $this->assertTrue($this->filterInstance->isHiddenFromFilterCount());
+        $this->assertFalse($this->filterInstance->isVisibleInFilterCount());
     }
 
     /** @test */
     public function can_check_if_filter_is_reset_by_clear_button(): void
     {
-        $filter = $this->filterType::make('Active');
+        $this->assertTrue($this->filterInstance->isResetByClearButton());
 
-        $this->assertTrue($filter->isResetByClearButton());
+        $this->filterInstance->notResetByClearButton();
 
-        $filter->notResetByClearButton();
-
-        $this->assertFalse($filter->isResetByClearButton());
+        $this->assertFalse($this->filterInstance->isResetByClearButton());
     }
 }
