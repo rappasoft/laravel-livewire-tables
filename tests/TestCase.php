@@ -52,20 +52,17 @@ class TestCase extends Orchestra
         } else {
             touch(__DIR__.'/../database/database.sqlite');
             if (file_exists(__DIR__.'/../database/database.sqlite')) {
-
                 $app['config']->set('database.connections.sqlite', [
                     'driver' => 'sqlite',
                     'database' => __DIR__.'/../database/database.sqlite',
                     'prefix' => '',
                 ]);
-            }
-            else
-            {
+            } else {
                 $app['config']->set('database.connections.sqlite', [
                     'driver' => 'sqlite',
                     'database' => ':memory:',
                     'prefix' => '',
-                ]);        
+                ]);
             }
 
             $this->artisan('migrate', [
