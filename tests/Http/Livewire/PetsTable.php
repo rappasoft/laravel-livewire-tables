@@ -26,18 +26,13 @@ class PetsTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
-        if (empty($this->breedFilterOptions))
-        {
-            $this->breedFilterOptions = array(0 => 1,
-            1 => 200,
-            2 => 100,
-            3 => 201,
-            4 => 101,
-            5 => 2,,
-            6 => 202,
-            7 => 4,
-            8 => 3,
-            9 => 102);
+        if (empty($this->breedFilterOptions)) {
+            $this->breedFilterOptions = Breed::query()
+                ->orderBy('name')
+                ->get()
+                ->keyBy('id')
+                ->map(fn ($breed) => $breed->name)
+                ->toArray();
         }
     }
 
