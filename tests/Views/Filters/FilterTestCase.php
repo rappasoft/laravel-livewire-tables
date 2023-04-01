@@ -17,7 +17,6 @@ abstract class FilterTestCase extends TestCase
     /** @test */
     public function can_get_filter_name(): void
     {
-        
         $this->assertSame('Active', $this->filterInstance->getName());
     }
 
@@ -57,8 +56,8 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse($this->filterInstance->hasFilterCallback());
 
         $this->filterInstance->filter(function (Builder $builder, string $value) {
-                return $builder->whereDate('created_at', ">=", $value);
-            });
+            return $builder->whereDate('created_at', ">=", $value);
+        });
 
         $this->assertTrue($this->filterInstance->hasFilterCallback());
         $this->assertIsCallable($this->filterInstance->getFilterCallback());
