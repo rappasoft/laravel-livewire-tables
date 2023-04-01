@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
 
 class DateTimeFilterTest extends FilterTestCase
@@ -19,13 +18,12 @@ class DateTimeFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->hasFilterCallback());
 
         self::$filterInstance->filter(function (Builder $builder, string $value) {
-                return $builder->whereDate('created_at', ">=", $value);
-            });
+            return $builder->whereDate('created_at', ">=", $value);
+        });
 
         $this->assertTrue(self::$filterInstance->hasFilterCallback());
         $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
-
     
     /** @test */
     public function can_not_set_date_filter_to_non_number(): void
