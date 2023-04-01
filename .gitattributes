@@ -5,7 +5,7 @@
 /.github                    export-ignore
 /.phpunit.cache             export-ignore
 /build                      export-ignore
-/database/sqlite.database   export-ignore
+/database/database.sqlite   export-ignore
 /docs                       export-ignore
 /resources/views/tests      export-ignore
 /tests                      export-ignore

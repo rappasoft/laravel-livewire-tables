@@ -43,6 +43,7 @@ class TestCase extends Orchestra
         config()->set('app.key', Encrypter::generateKey(config('app.cipher')));
 
         $app['config']->set('database.default', 'sqlite');
+        
         if (file_exists(__DIR__.'/../database/database.sqlite')) {
             $app['config']->set('database.connections.sqlite', [
                 'driver' => 'sqlite',
@@ -50,27 +51,15 @@ class TestCase extends Orchestra
                 'prefix' => '',
             ]);
         } else {
-            touch(__DIR__.'/../database/database.sqlite');
-            if (file_exists(__DIR__.'/../database/database.sqlite')) {
-                $app['config']->set('database.connections.sqlite', [
-                    'driver' => 'sqlite',
-                    'database' => __DIR__.'/../database/database.sqlite',
-                    'prefix' => '',
-                ]);
-            } else {
-                $app['config']->set('database.connections.sqlite', [
-                    'driver' => 'sqlite',
-                    'database' => ':memory:',
-                    'prefix' => '',
-                ]);
-            }
-
-            $this->artisan('migrate', [
-                '--database' => 'sqlite',
-                '--realpath' => __DIR__.'/../database/migrations',
+            $app['config']->set('database.connections.sqlite', [
+                'driver' => 'sqlite',
+                'database' => ':memory:',
+                'prefix' => '',
             ]);
-          
-            
+
+            include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
+            (new \CreateTestTables())->up();
+    
             Species::insert([
                 ['id' => 1, 'name' => 'Cat'],
                 ['id' => 2, 'name' => 'Dog'],
