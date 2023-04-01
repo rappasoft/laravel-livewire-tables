@@ -16,7 +16,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
 class TestCase extends Orchestra
 {
     public PetsTable $basicTable;
-    static bool $initialized = false;
+    public static bool $initialized = false;
 
     /**
      * Setup the test environment.
@@ -74,7 +74,6 @@ class TestCase extends Orchestra
                     ['id' => 3, 'pet_id' => 2, 'veterinary_id' => 1],
                     ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
                 ]);
-        
             } else {
                 // If no exclusive lock is available, block until the first process is done with initialization
                 flock($lockFile, LOCK_SH);
@@ -82,15 +81,11 @@ class TestCase extends Orchestra
             $this->basicTable = new PetsTable();
 
             self::$initialized = true;
-        }
-        else
-        {
+        } else {
             $this->basicTable->boot();
             $this->basicTable->booted();
             $this->basicTable->render();
-
         }
-
     }
 
     protected function getPackageProviders($app): array
