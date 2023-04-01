@@ -4,9 +4,9 @@
 @endphp
 <div>
     @if($filter->hasCustomFilterLabel())
-        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout ])
+        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout, 'tableName' => $component->getTableName()  ])
     @else
-        <x-livewire-tables::tools.filter-label :filter="$filter" :theme="$theme" :filterLayout="$filterLayout" />
+        <x-livewire-tables::tools.filter-label :filter="$filter" :theme="$theme" :filterLayout="$filterLayout" :tableName="$component->getTableName()" />
     @endif
         @if ($theme === 'tailwind')
         <div class="rounded-md shadow-sm">
