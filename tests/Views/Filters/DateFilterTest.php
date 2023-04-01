@@ -30,7 +30,7 @@ final class DateFilterTest extends FilterTestCase
     public function test_can_not_set_date_filter_to_number(): void
     {
         $this->assertFalse(self::$filterInstance->validate(123));
-        $this->assertFalse(self::filterInstance->validate('123'));
+        $this->assertFalse(self::$filterInstance->validate('123'));
     }
 
     /**
