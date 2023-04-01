@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 abstract class FilterTestCase extends TestCase
@@ -60,7 +59,6 @@ abstract class FilterTestCase extends TestCase
     /** @test */
     public function can_check_if_filter_has_configs(): void
     {
-
         self::$filterInstance->config([]);
 
         $this->assertFalse(self::$filterInstance->hasConfigs());

@@ -78,5 +78,4 @@ final class DateFilterTest extends FilterTestCase
         $this->assertTrue(self::$filterInstance->hasFilterCallback());
         $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
-    
 }
