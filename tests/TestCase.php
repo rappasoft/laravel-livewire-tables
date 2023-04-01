@@ -24,8 +24,7 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        if(!Breed::where('id',1)->get())
-        {
+        if (! Breed::where('id', 1)->get()) {
             include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
             (new \CreateTestTables())->down();
             (new \CreateTestTables())->up();
@@ -93,13 +92,11 @@ class TestCase extends Orchestra
         $app['config']->set('database.default', 'sqlite');
         
         if (file_exists(__DIR__.'/../database/sqlite.database')) {
-
             $app['config']->set('database.connections.sqlite', [
                 'driver' => 'sqlite',
                 'database' => __DIR__.'/../database/sqlite.database',
                 'prefix' => '',
-            ]);        
-        
+            ]);
         } else {
             $app['config']->set('database.connections.sqlite', [
                 'driver' => 'sqlite',
