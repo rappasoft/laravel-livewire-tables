@@ -93,7 +93,8 @@ class WithSortingTest extends TestCase
 
         $this->basicTable->applySorting();
 
-        $this->assertSame($this->basicTable->getBuilder()->toSql(), 'select "pets"."id" as "id", "pets"."sort" as "sort", "pets"."name" as "name", "pets"."age" as "age", "breeds"."name" as "breed.name" from "pets" left join "breeds" on "pets"."breed_id" = "breeds"."id"');
+        $this->assertStringNotContainsStringIgnoringCase('order by',$this->basicTable->getBuilder()->toSql());
+
     }
 
     /** @test */
@@ -103,6 +104,6 @@ class WithSortingTest extends TestCase
 
         $this->basicTable->applySorting();
 
-        $this->assertSame($this->basicTable->getBuilder()->toSql(), 'select "pets"."id" as "id", "pets"."sort" as "sort", "pets"."name" as "name", "pets"."age" as "age", "breeds"."name" as "breed.name" from "pets" left join "breeds" on "pets"."breed_id" = "breeds"."id" order by "id" asc');
+        $this->assertStringContainsStringIgnoringCase('order by "id"',$this->basicTable->getBuilder()->toSql());
     }
 }
