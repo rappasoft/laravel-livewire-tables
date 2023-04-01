@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Tests\Views\Filters\FilterTestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 
 final class DateFilterTest extends FilterTestCase
