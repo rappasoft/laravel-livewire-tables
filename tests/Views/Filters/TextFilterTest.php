@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 final class TextFilterTest extends FilterTestCase
-{   
+{
     protected function setUp(): void
     {
         parent::setUp();
