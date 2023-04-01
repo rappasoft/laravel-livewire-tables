@@ -70,9 +70,7 @@ class TestCase extends Orchestra
                 ['id' => 3, 'pet_id' => 2, 'veterinary_id' => 1],
                 ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
             ]);
-    
         });
-
     }
 
     protected function getPackageProviders($app): array
