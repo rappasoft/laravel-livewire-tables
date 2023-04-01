@@ -49,10 +49,10 @@ class PetsTable extends DataTableComponent
                 ->secondaryHeaderFilter('breed')
                 ->footer($this->getFilterByKey('breed'))
                 ->sortable(
-                    fn(Builder $query, string $direction) => $query->orderBy('pets.id', $direction)
-                )            
+                    fn (Builder $query, string $direction) => $query->orderBy('pets.id', $direction)
+                )
                 ->searchable(
-                    fn(Builder $query, $searchTerm) => $query->orWhere('breeds.name',$searchTerm)
+                    fn (Builder $query, $searchTerm) => $query->orWhere('breeds.name', $searchTerm)
                 ),
 
             Column::make('Other')
