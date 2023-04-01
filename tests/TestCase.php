@@ -50,7 +50,6 @@ class TestCase extends Orchestra
                 'prefix' => '',
             ]);
         } else {
-
             touch(__DIR__.'/../database/database.sqlite');
             if (file_exists(__DIR__.'/../database/database.sqlite')) {
 
