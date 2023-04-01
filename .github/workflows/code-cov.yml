@@ -54,7 +54,10 @@ jobs:
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-          
+      
+      - name: Fix phpunit Schema
+        run: php ./vendor/bin/phpunit --migrate-configuration
+
       - name: Run Unit Tests
         run: php -d pcov.enabled=1 ./vendor/bin/paratest --passthru-php="'-d pcov.enabled=1'"
 
