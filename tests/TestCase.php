@@ -40,20 +40,21 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app): void
     {
-        $app['config']->set('database.default', 'sqlite');
         config()->set('app.key', Encrypter::generateKey(config('app.cipher')));
 
-        if (file_exists(__DIR__.'/../database/sqlite.database')) {
+        $app['config']->set('database.default', 'sqlite');
+        if (file_exists(__DIR__.'/../database/database.sqlite')) {
             $app['config']->set('database.connections.sqlite', [
                 'driver' => 'sqlite',
-                'database' => __DIR__.'/../database/sqlite.database',
+                'database' => __DIR__.'/../database/database.sqlite',
                 'prefix' => '',
             ]);
         } else {
-            touch(__DIR__.'/../database/sqlite.database');
+
+            touch(__DIR__.'/../database/database.sqlite');
             $app['config']->set('database.connections.sqlite', [
                 'driver' => 'sqlite',
-                'database' => __DIR__.'/../database/sqlite.database',
+                'database' => __DIR__.'/../database/database.sqlite',
                 'prefix' => '',
             ]);
 
