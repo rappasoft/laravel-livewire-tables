@@ -233,7 +233,7 @@ class ColumnHelpersTest extends TestCase
         $column = $this->basicTable->getColumnBySelectName('breed.name');
         $this->assertTrue($column->hasSecondaryHeader());
         $contents = $column->getSecondaryHeaderContents(Pet::find(1));
-        $this->assertStringContainsString('id="table-filter-breed-8"', $contents);
+        $this->assertStringContainsString('id="table-filter-breed-header-8"', $contents);
     }
 
     /** @test */
