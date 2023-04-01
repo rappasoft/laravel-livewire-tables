@@ -6,29 +6,33 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Added
 
-- Additional AlpineJS Variable for Toolbar Blade - childElementOpen - https://github.com/rappasoft/laravel-livewire-tables/pull/1076
-- Core - New Functionality - Add Custom Column Slug option - https://github.com/rappasoft/laravel-livewire-tables/pull/1088
-- Added eager loading so anyone can load any type of relationship - https://github.com/rappasoft/laravel-livewire-tables/pull/943
-- Added setCustomSlug() for Columns allowing for non-roman characters in Column Title
-- Filter Updates - https://github.com/rappasoft/laravel-livewire-tables/pull/1129
- - Fix for re-use of Filters in Secondary Header/Footer
- - Restrict AppliedFilters to only return non-empty
- - Adding ID to Wrapper for targetting
- - Custom Filter Pill Blades (setFilterPillBlade())
- - Custom Filter Labels (setCustomFilterLabel(())
- - SlideDown Filter
-   - Set Row for Filter (setFilterSlidedownRow(())
-   - Set ColSpan for Filter (setFilterSlidedownColspan())
-- Workflow (run-phpstan) - Introducing PHP-Stan at Level 3 to ensure code-quality persists - https://github.com/rappasoft/laravel-livewire-tables/pull/1133
-- Added getPerPageDisplayedItemIds() and getPerPageDisplayedItemCount() along with public variables to allow retrieval of currently paginated PrimayKey and Item Count https://github.com/rappasoft/laravel-livewire-tables/pull/1136
+- AlpineJS Variable for Toolbar Blade - childElementOpen - https://github.com/rappasoft/laravel-livewire-tables/pull/1076
+- Custom Column Slug option for Columns allowing for non-roman characters in the Column Title- https://github.com/rappasoft/laravel-livewire-tables/pull/1088
+- Eager loading so anyone can load any type of relationship - https://github.com/rappasoft/laravel-livewire-tables/pull/943
+- Improve active page visibility - https://github.com/rappasoft/laravel-livewire-tables/pull/1096
+- Two methods - getPerPageDisplayedItemIds() and getPerPageDisplayedItemCount() and public variables contianing the PrimayKeys and Item Count for the current page https://github.com/rappasoft/laravel-livewire-tables/pull/1136
+
+- Filter Changes - https://github.com/rappasoft/laravel-livewire-tables/pull/1129
+  - Custom Filter Pill Blades per filter component (setFilterPillBlade()) - https://github.com/rappasoft/laravel-livewire-tables/pull/1107
+  - Custom Filter Label Blades per filter component (setCustomFilterLabel()) - https://github.com/rappasoft/laravel-livewire-tables/pull/1110
+  - Filter positioning options when using slide-down - https://github.com/rappasoft/laravel-livewire-tables/pull/1108
+    - Set row per Filter component (setFilterSlidedownRow())
+    - Set colspan per Filter component (setFilterSlidedownColspan())
 
 ### Changed
+- Filters
+  - *Fix* - re-use of Filters in Secondary Header/Footer - https://github.com/rappasoft/laravel-livewire-tables/pull/1108
+  - *Fix* - restrict AppliedFilters to only return non-empty - https://github.com/rappasoft/laravel-livewire-tables/pull/1080
+  - *Minor* - added ID to Wrapper for targetting - https://github.com/rappasoft/laravel-livewire-tables/pull/1087
 
-- Improve active page visibility - https://github.com/rappasoft/laravel-livewire-tables/pull/1096
-- Workflow (run-tests) - Use of ParaTest, Composer Caching, Fix Stability Matrix Clash - https://github.com/rappasoft/laravel-livewire-tables/pull/1105
-- Workflow (php-cs-fixer) - Audit-Only Mode (For Badge) - https://github.com/rappasoft/laravel-livewire-tables/pull/1125 / https://github.com/rappasoft/laravel-livewire-tables/pull/1126
-- Workflow (run-tests) - PHP-CS-Fixer (Fix Mode) - https://github.com/rappasoft/laravel-livewire-tables/pull/1125 / https://github.com/rappasoft/laravel-livewire-tables/pull/1126
-- Workflow (all) - Fixes to all workflows - https://github.com/rappasoft/laravel-livewire-tables/pull/1133
+- Workflow Changes
+  - PHPStan - Introducing PHP-Stan at Level 3 to ensure code-quality persists - https://github.com/rappasoft/laravel-livewire-tables/pull/1133
+  - Run-Tests - Use of ParaTest, Composer Caching, Fix Stability Matrix Clash - https://github.com/rappasoft/laravel-livewire-tables/pull/1105
+  - php-cs-fixer - Audit-Only Mode (For Badge) - https://github.com/rappasoft/laravel-livewire-tables/pull/1125 / https://github.com/rappasoft/laravel-livewire-tables/pull/1126
+
+- Testing
+  - Significant quantity of tests, improving test coverage from 81% to 91% - https://github.com/rappasoft/laravel-livewire-tables/pull/1137
+  - DocType/TypeHint Fixes https://github.com/rappasoft/laravel-livewire-tables/pull/1133
 
 ## [2.11.0] - 2023-02-16
 
