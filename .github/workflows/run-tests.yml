@@ -58,5 +58,8 @@ jobs:
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer update --${{ matrix.stability }} --no-interaction
 
+      - name: Fix phpunit Schema
+        run: php ./vendor/bin/phpunit --migrate-configuration
+
       - name: Run Unit Tests
         run: php -d pcov.enabled=1 ./vendor/bin/paratest --passthru-php="'-d pcov.enabled=1'"
