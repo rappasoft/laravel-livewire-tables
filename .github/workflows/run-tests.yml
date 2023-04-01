@@ -11,21 +11,12 @@ jobs:
         os: [ubuntu-latest]
         php: [8.0, 8.1, 8.2]
         laravel: [8, 9, 10]
-        phpunit: [9.5, 10.0]
         stability: [prefer-dist]
         exclude:
           - laravel: 10
             php: 8.0
-          - laravel: 10
-            phpunit: 9.5
-          - laravel: 9
-            phpunit: 9.5
-          - laravel: 8
-            phpunit: 10.0
+
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
-    env:
-      extensionKey: phpextensions
-      extensions: dom, curl, libxml, mbstring, pcntl, pdo, sqlite, pdo_sqlite, bcmath, intl, iconv, fileinfo
 
     steps:
       - name: Checkout code
@@ -35,8 +26,10 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: ${{ env.extensions }}
-          tools: phpunit:{{ matrix.phpunit }}
+          extensions: none, pdo, sqlite, pdo_sqlite, mbstring, dom, fileinfo
+          tools: phpunit:latest
+          ini-values: memory_limit=512M
+          coverage: none
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -70,4 +63,4 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
-        run: php -d memory_limit=128M ./vendor/bin/paratest --no-coverage --processes=2
+        run: php ./vendor/bin/paratest --no-coverage --processes=4
