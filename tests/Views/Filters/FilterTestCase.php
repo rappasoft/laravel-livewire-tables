@@ -7,10 +7,10 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 abstract class FilterTestCase extends TestCase
 {
-    protected $filterType;
-    protected $filterInstance;
+    public $filterType;
+    public $filterInstance;
 
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
     }
 
