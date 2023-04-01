@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
 
-class DateTimeFilterTest extends FilterTestCase
+final class DateTimeFilterTest extends FilterTestCase
 {
-    public static function setUpBeforeClass(): void
+    public static function setUp(): void
     {
         self::$filterInstance = DateTimeFilter::make('Active');
     }
