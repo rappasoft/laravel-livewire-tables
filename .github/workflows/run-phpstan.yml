@@ -11,7 +11,7 @@ jobs:
         os: [ubuntu-latest]
         php: [8.2]
         laravel: [10]
-        stability: [prefer-dist]
+        stability: [prefer-stable]
 
     name: PHPStan - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
     env:
