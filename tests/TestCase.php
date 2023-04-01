@@ -38,22 +38,19 @@ class TestCase extends Orchestra
         $app['config']->set('database.default', 'sqlite');
         config()->set('app.key', Encrypter::generateKey(config('app.cipher')));
 
-        if (file_exists(__DIR__.'/../database/sqlite.database'))
-        {
+        if (file_exists(__DIR__.'/../database/sqlite.database')) {
             $app['config']->set('database.connections.sqlite', [
                 'driver' => 'sqlite',
                 'database' => __DIR__.'/../database/sqlite.database',
                 'prefix' => '',
-            ]);    
-        }
-        else 
-        {
+            ]);
+        } else {
             touch(__DIR__.'/../database/sqlite.database');
             $app['config']->set('database.connections.sqlite', [
                 'driver' => 'sqlite',
                 'database' => __DIR__.'/../database/sqlite.database',
                 'prefix' => '',
-            ]);    
+            ]);
 
             include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
 
@@ -99,7 +96,7 @@ class TestCase extends Orchestra
                 ['id' => 3, 'pet_id' => 2, 'veterinary_id' => 1],
                 ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
             ]);
-        }     
+        }
     }
 
     protected function defaultFingerPrintingAlgo($className)
