@@ -11,7 +11,7 @@ class ReorderingVisualsTest extends TestCase
 
     public array $filterDefaultArray = [];
 
-    public function testArraySetup(): array
+    public function filterArraySetup(): array
     {
         $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
         $this->assertNotEmpty($filterDefaultArray);
@@ -96,9 +96,9 @@ class ReorderingVisualsTest extends TestCase
 
     /**
     * @test
-    * @depends testArraySetup
+    * @depends filterArraySetup
     */
-    public function sorting_is_disabled_on_reorder(): void
+    public function sorting_is_disabled_on_reorder(array $filterDefaults): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -274,9 +274,9 @@ class ReorderingVisualsTest extends TestCase
 
     /**
     * @test
-    * @depends testArraySetup
+    * @depends filterArraySetup
     */
-    public function filters_are_disabled_on_reorder(): void
+    public function filters_are_disabled_on_reorder(array $filterDefaults): void
     {
         $defaultFilter = $this->filterDefaultArray;
         $defaultFilter['breed'] = [1];
@@ -299,9 +299,9 @@ class ReorderingVisualsTest extends TestCase
 
     /**
     * @test
-    * @depends testArraySetup
+    * @depends filterArraySetup
     */
-    public function filter_pills_hide_on_reorder(): void
+    public function filter_pills_hide_on_reorder(array $filterDefaults): void
     {
         $defaultFilter = $this->filterDefaultArray;
         $defaultFilter['breed'] = [1];
