@@ -10,7 +10,7 @@ class ReorderingVisualsTest extends TestCase
 {
     public array $filterDefaultArray = [];
 
-    public function filterArraySetup(): array
+    public function testFilterArraySetup(): array
     {
         $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
         $this->assertNotEmpty($filterDefaultArray);
@@ -95,7 +95,7 @@ class ReorderingVisualsTest extends TestCase
 
     /**
     * @test
-    * @depends filterArraySetup
+    * @depends testFilterArraySetup
     */
     public function sorting_is_disabled_on_reorder(array $filterDefaults): void
     {
@@ -273,7 +273,7 @@ class ReorderingVisualsTest extends TestCase
 
     /**
     * @test
-    * @depends filterArraySetup
+    * @depends testFilterArraySetup
     */
     public function filters_are_disabled_on_reorder(array $filterDefaults): void
     {
@@ -298,7 +298,7 @@ class ReorderingVisualsTest extends TestCase
 
     /**
     * @test
-    * @depends filterArraySetup
+    * @depends testFilterArraySetup
     */
     public function filter_pills_hide_on_reorder(array $filterDefaults): void
     {
