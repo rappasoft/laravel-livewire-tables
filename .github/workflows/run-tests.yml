@@ -11,7 +11,7 @@ jobs:
         os: [ubuntu-latest]
         php: [8.0, 8.1, 8.2]
         laravel: [8, 9, 10]
-        stability: [prefer-stable]
+        stability: [prefer-dist]
         exclude:
           - laravel: 10
             php: 8.0
@@ -49,11 +49,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - name: Setup problem matchers
-        run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Get composer cache directory
         id: composer-cache
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
