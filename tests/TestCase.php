@@ -23,9 +23,9 @@ class TestCase extends Orchestra
      */
     protected function setUp(): void
     {
-        parent::setUp();
         if (! self::$initialized) {
-            
+            parent::setUp();
+
             // We utilize the filesystem as shared mutable state to coordinate between processes
             touch('/tmp/test-initialization-lock-file');
             $lockFile = fopen('/tmp/test-initialization-lock-file', 'r');
@@ -33,10 +33,6 @@ class TestCase extends Orchestra
             // Attempt to get an exclusive lock - first process wins
             if (flock($lockFile, LOCK_EX | LOCK_NB)) {
                 // Since we are the single process that has an exclusive lock, we run the initialization
-                $this->basicTable = new PetsTable();
-                $this->basicTable->boot();
-                $this->basicTable->booted();
-                $this->basicTable->render();
         
                 Species::insert([
                     ['id' => 1, 'name' => 'Cat'],
@@ -83,10 +79,17 @@ class TestCase extends Orchestra
                 // If no exclusive lock is available, block until the first process is done with initialization
                 flock($lockFile, LOCK_SH);
             }
-    
+            $this->basicTable = new PetsTable();
+
             self::$initialized = true;
         }
-    
+        else
+        {
+            $this->basicTable->boot();
+            $this->basicTable->booted();
+            $this->basicTable->render();
+
+        }
 
     }
 
