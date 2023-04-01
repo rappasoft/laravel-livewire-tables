@@ -21,10 +21,20 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 class PetsTable extends DataTableComponent
 {
     public $model = Pet::class;
+    public array $breedFilterOptions = [];
 
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+        if (empty($this->breedFilterOptions))
+        {
+            $this->breedFilterOptions = Breed::query()
+                ->orderBy('name')
+                ->get()
+                ->keyBy('id')
+                ->map(fn ($breed) => $breed->name)
+                ->toArray();
+        }
     }
 
     public function columns(): array
@@ -80,12 +90,7 @@ class PetsTable extends DataTableComponent
         return [
             MultiSelectFilter::make('Breed')
                 ->options(
-                    Breed::query()
-                        ->orderBy('name')
-                        ->get()
-                        ->keyBy('id')
-                        ->map(fn ($breed) => $breed->name)
-                        ->toArray()
+                    $this->breedFilterOptions
                 )
                 ->filter(function (Builder $builder, array $values) {
                     return $builder->whereIn('breed_id', $values);
@@ -124,12 +129,7 @@ class PetsTable extends DataTableComponent
 
             SelectFilter::make('Breed SelectFilter', 'breed_select_filter')
             ->options(
-                Breed::query()
-                    ->orderBy('name')
-                    ->get()
-                    ->keyBy('id')
-                    ->map(fn ($breed) => $breed->name)
-                    ->toArray()
+                $this->breedFilterOptions
             )
             ->filter(function (Builder $builder, string $value) {
                 return $builder->where('breed_id', $value);

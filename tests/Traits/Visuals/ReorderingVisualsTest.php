@@ -8,13 +8,12 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ReorderingVisualsTest extends TestCase
 {
-    public array $filterDefaultArray = [];
 
+    /** @test */
     public function testFilterArraySetup(): array
     {
         $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
         $this->assertNotEmpty($filterDefaultArray);
-        $this->filterDefaultArray = $filterDefaultArray;
 
         return $filterDefaultArray;
     }
@@ -97,13 +96,13 @@ class ReorderingVisualsTest extends TestCase
     * @test
     * @depends testFilterArraySetup
     */
-    public function sorting_is_disabled_on_reorder(array $filterDefaults): void
+    public function sorting_is_disabled_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->assertSet('sortingStatus', true)
             ->call('sortBy', 'id')
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => $this->filterDefaultArray, 'columns' => []])
+            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => $filterDefaultArray, 'columns' => []])
             ->assertSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('enableReordering')
             ->assertSet('sortingStatus', false)
@@ -111,7 +110,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('disableReordering')
             ->assertSet('sortingStatus', true)
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => $this->filterDefaultArray, 'columns' => []])
+            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => $filterDefaultArray, 'columns' => []])
             ->assertSeeHtml('wire:click="sortBy(\'id\')"');
     }
 
@@ -275,16 +274,15 @@ class ReorderingVisualsTest extends TestCase
     * @test
     * @depends testFilterArraySetup
     */
-    public function filters_are_disabled_on_reorder(array $filterDefaults): void
+    public function filters_are_disabled_on_reorder(array $filterDefaultArray): void
     {
-        $defaultFilter = $this->filterDefaultArray;
-        $defaultFilter['breed'] = [1];
+        $filterDefaultArray['breed'] = [1];
 
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->assertSet('filtersStatus', true)
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => $defaultFilter, 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
             ->assertSee('Filters')
             ->call('enableReordering')
             ->assertSet('filtersStatus', false)
@@ -292,7 +290,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('Filters')
             ->call('disableReordering')
             ->assertSet('filtersStatus', true)
-            ->assertSet('table', ['filters' => $defaultFilter, 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
             ->assertSeeHtml('Filters');
     }
 
@@ -300,15 +298,14 @@ class ReorderingVisualsTest extends TestCase
     * @test
     * @depends testFilterArraySetup
     */
-    public function filter_pills_hide_on_reorder(array $filterDefaults): void
+    public function filter_pills_hide_on_reorder(array $filterDefaultArray): void
     {
-        $defaultFilter = $this->filterDefaultArray;
-        $defaultFilter['breed'] = [1];
+        $filterDefaultArray['breed'] = [1];
 
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => $defaultFilter, 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
             ->assertSee('Applied Filters')
             ->call('enableReordering')
             ->assertDontSee('Applied Filters');
