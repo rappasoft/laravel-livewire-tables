@@ -48,7 +48,12 @@ class PetsTable extends DataTableComponent
             Column::make('Breed', 'breed.name')
                 ->secondaryHeaderFilter('breed')
                 ->footer($this->getFilterByKey('breed'))
-                ->sortable(),
+                ->sortable(
+                    fn(Builder $query, string $direction) => $query->orderBy('pets.id', $direction)
+                )            
+                ->searchable(
+                    fn(Builder $query, $searchTerm) => $query->orWhere('breeds.name',$searchTerm)
+                ),
 
             Column::make('Other')
                 ->label(function ($row, Column $column) {
@@ -133,7 +138,9 @@ class PetsTable extends DataTableComponent
             )
             ->filter(function (Builder $builder, string $value) {
                 return $builder->where('breed_id', $value);
-            }),
+            })
+            ->setCustomFilterLabel('livewire-tables::tests.testFilterLabel')
+            ->setFilterPillBlade('livewire-tables::tests.testFilterPills'),
         ];
     }
 }

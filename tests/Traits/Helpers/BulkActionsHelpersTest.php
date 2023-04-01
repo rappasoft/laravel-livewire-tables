@@ -59,6 +59,17 @@ class BulkActionsHelpersTest extends TestCase
     }
 
     /** @test */
+    public function can_get_bulk_actions_array_direct(): void
+    {
+        $this->assertSame([], $this->basicTable->bulkActions());
+
+        $this->basicTable->setBulkActions(['activate' => 'Activate']);
+
+        $this->assertSame(['activate' => 'Activate'], $this->basicTable->bulkActions());
+    }
+    
+
+    /** @test */
     public function can_check_if_bulk_actions_dropdown_should_bw_shown(): void
     {
         $this->basicTable->setBulkActionsDisabled();

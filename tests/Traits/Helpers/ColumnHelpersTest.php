@@ -189,7 +189,7 @@ class ColumnHelpersTest extends TestCase
             ->map(fn (Column $column) => $column->getColumnSelectName())
             ->toArray();
 
-        $this->assertSame(['name'], $selectable);
+        $this->assertSame(['name','breed.name'], $selectable);
     }
 
     /** @test */

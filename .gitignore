@@ -11,3 +11,5 @@ testbench.yaml
 vendor
 output.txt
 .vscode
+.phpunit.cache/
+phpunit.xml.dist.bak

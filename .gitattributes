@@ -18,3 +18,4 @@
 /psalm.xml.dist         export-ignore
 /testbench.yaml         export-ignore
 /vendor                 export-ignore
+/resources/views/tests  export-ignore
