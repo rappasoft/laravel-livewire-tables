@@ -16,7 +16,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
 class TestCase extends Orchestra
 {
     public PetsTable $basicTable;
-    static bool $initialized = false;
+    public static bool $initialized = false;
 
     /**
      * Setup the test environment.
@@ -25,7 +25,6 @@ class TestCase extends Orchestra
     {
         parent::setUp();
         if (! self::$initialized) {
-            
             // We utilize the filesystem as shared mutable state to coordinate between processes
             touch('/tmp/test-initialization-lock-file');
             $lockFile = fopen('/tmp/test-initialization-lock-file', 'r');
@@ -78,7 +77,6 @@ class TestCase extends Orchestra
                     ['id' => 3, 'pet_id' => 2, 'veterinary_id' => 1],
                     ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
                 ]);
-        
             } else {
                 // If no exclusive lock is available, block until the first process is done with initialization
                 flock($lockFile, LOCK_SH);
@@ -86,8 +84,6 @@ class TestCase extends Orchestra
     
             self::$initialized = true;
         }
-    
-
     }
 
     protected function getPackageProviders($app): array
