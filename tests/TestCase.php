@@ -24,8 +24,7 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        if (Species::where('id', 1)->count() != 1)
-        {
+        if (Species::where('id', 1)->count() != 1) {
             Species::insert([
                 ['id' => 1, 'name' => 'Cat'],
                 ['id' => 2, 'name' => 'Dog'],
