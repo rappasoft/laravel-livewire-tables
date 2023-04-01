@@ -47,7 +47,7 @@ class PetsTable extends DataTableComponent
 
             Column::make('Breed', 'breed.name')
                 ->secondaryHeaderFilter('breed')
-                ->footer($this->getFilterByKey('breed')),
+                ->footer($this->getFilterByKey('breed'))
                 ->sortable(),
 
             Column::make('Other')
