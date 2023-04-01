@@ -11,7 +11,7 @@ jobs:
         os: [ubuntu-latest]
         php: [8.0, 8.1, 8.2]
         laravel: [8, 9, 10]
-        stability: [prefer-dist]
+        stability: [prefer-stable]
         exclude:
           - laravel: 10
             php: 8.0
