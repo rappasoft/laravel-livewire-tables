@@ -6,15 +6,14 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 
 final class DateFilterTest extends FilterTestCase
 {
-    public function setUp(): void
+
+
+    public static function setUpBeforeClass(): void
     {
         self::$filterInstance = DateFilter::make('Created Date');
     }
 
-    public function testCreateFilterInstance()
-    {
-        return DateFilter::make('Created Date');
-    }
+
 
     /**
      * @test
