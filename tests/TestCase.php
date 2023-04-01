@@ -81,15 +81,11 @@ class TestCase extends Orchestra
             $this->basicTable = new PetsTable();
 
             self::$initialized = true;
-        }
-        else
-        {
+        } else {
             $this->basicTable->boot();
             $this->basicTable->booted();
             $this->basicTable->render();
-
         }
-
     }
 
     protected function getPackageProviders($app): array
