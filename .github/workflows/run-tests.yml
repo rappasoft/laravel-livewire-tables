@@ -18,7 +18,7 @@ jobs:
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
     env:
       extensionKey: phpextensions
-      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
       - name: Checkout code
@@ -44,7 +44,6 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.extensions }}
-          coverage: pcov
           tools: phpunit:9.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -78,6 +77,5 @@ jobs:
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer update --${{ matrix.stability }} --no-interaction
 
-
       - name: Run Unit Tests
-        run: php -d pcov.enabled=1 ./vendor/bin/paratest --passthru-php="'-d pcov.enabled=1'"
+        run: php ./vendor/bin/paratest
