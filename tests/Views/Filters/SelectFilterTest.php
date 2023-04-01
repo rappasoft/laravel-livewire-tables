@@ -8,9 +8,9 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 final class SelectFilterTest extends FilterTestCase
 {
-
     protected function setUp(): void
-    {
+    {        
+        parent::setUp();
         self::$filterInstance = SelectFilter::make('Active')->options(['Cartman', 'Tux', 'May', 'Ben', 'Chico']);
     }
 

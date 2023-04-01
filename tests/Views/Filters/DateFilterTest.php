@@ -8,6 +8,7 @@ final class DateFilterTest extends FilterTestCase
 {
     protected function setUp(): void
     {
+        parent::setUp();
         self::$filterInstance = DateFilter::make('Active');
     }
 

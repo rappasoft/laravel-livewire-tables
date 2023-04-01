@@ -8,6 +8,11 @@ abstract class FilterTestCase extends TestCase
 {
     protected static $filterInstance;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+    }
+
     /** @test */
     public function can_get_filter_name(): void
     {

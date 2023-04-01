@@ -9,6 +9,7 @@ final class DateTimeFilterTest extends FilterTestCase
 {
     protected function setUp(): void
     {
+        parent::setUp();
         self::$filterInstance = DateTimeFilter::make('Active');
     }
 
