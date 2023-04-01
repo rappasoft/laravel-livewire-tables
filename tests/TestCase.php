@@ -24,42 +24,12 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        $this->basicTable = new PetsTable();
-        $this->basicTable->boot();
-        $this->basicTable->booted();
-        $this->basicTable->render();
-    }
-
-    protected function getPackageProviders($app): array
-    {
-        return [
-            LivewireServiceProvider::class,
-            LaravelLivewireTablesServiceProvider::class,
-        ];
-    }
-
-    public function getEnvironmentSetUp($app): void
-    {
-        config()->set('app.key', Encrypter::generateKey(config('app.cipher')));
-
-        $app['config']->set('database.default', 'sqlite');
-        
-        if (file_exists(__DIR__.'/../database/database.sqlite')) {
-            $app['config']->set('database.connections.sqlite', [
-                'driver' => 'sqlite',
-                'database' => __DIR__.'/../database/database.sqlite',
-                'prefix' => '',
-            ]);
-        } else {
-            $app['config']->set('database.connections.sqlite', [
-                'driver' => 'sqlite',
-                'database' => ':memory:',
-                'prefix' => '',
-            ]);
-
+        if(!Breed::where('id',1)->get())
+        {
             include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
+            (new \CreateTestTables())->down();
             (new \CreateTestTables())->up();
-    
+
             Species::insert([
                 ['id' => 1, 'name' => 'Cat'],
                 ['id' => 2, 'name' => 'Dog'],
@@ -99,6 +69,42 @@ class TestCase extends Orchestra
                 ['id' => 2, 'pet_id' => 1, 'veterinary_id' => 2],
                 ['id' => 3, 'pet_id' => 2, 'veterinary_id' => 1],
                 ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
+            ]);
+        }
+
+        $this->basicTable = new PetsTable();
+        $this->basicTable->boot();
+        $this->basicTable->booted();
+        $this->basicTable->render();
+    }
+
+    protected function getPackageProviders($app): array
+    {
+        return [
+            LivewireServiceProvider::class,
+            LaravelLivewireTablesServiceProvider::class,
+        ];
+    }
+
+    public function getEnvironmentSetUp($app): void
+    {
+        config()->set('app.key', Encrypter::generateKey(config('app.cipher')));
+
+        $app['config']->set('database.default', 'sqlite');
+        
+        if (file_exists(__DIR__.'/../database/sqlite.database')) {
+
+            $app['config']->set('database.connections.sqlite', [
+                'driver' => 'sqlite',
+                'database' => __DIR__.'/../database/sqlite.database',
+                'prefix' => '',
+            ]);        
+        
+        } else {
+            $app['config']->set('database.connections.sqlite', [
+                'driver' => 'sqlite',
+                'database' => ':memory:',
+                'prefix' => '',
             ]);
         }
     }
