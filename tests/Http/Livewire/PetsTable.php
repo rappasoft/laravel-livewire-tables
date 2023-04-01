@@ -26,8 +26,7 @@ class PetsTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
-        if (empty($this->breedFilterOptions))
-        {
+        if (empty($this->breedFilterOptions)) {
             $this->breedFilterOptions = Breed::query()
                 ->orderBy('name')
                 ->get()
