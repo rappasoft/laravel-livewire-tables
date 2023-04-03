@@ -11,7 +11,7 @@ This package only currently supports Eloquent models. You have two ways of hooki
 
 ## Using the model property
 
-If you have a simple table and you know you won't to join any extra tables or make any aliases, you can just use the model property:
+If you have a simple table and you know you won't join any extra tables or make any aliases, you can just use the model property:
 
 ```php
 protected $model = User::class;
