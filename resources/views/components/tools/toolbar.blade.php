@@ -738,7 +738,7 @@
                          x-data="{ open: false }"
                          x-on:keydown.escape.stop="open = false"
                          x-on:mousedown.away="open = false"
-                         wire:key="column-select-button-{{ $component->getTableName() }}"
+                         wire:key="bulk-actions-button-{{ $component->getTableName() }}"
                     >
                         <button
                             x-on:click="open = !open"
@@ -760,7 +760,7 @@
                                 <a
                                     href="#"
                                     wire:click.prevent="{{ $action }}"
-                                    wire:key="bulk-action-{{ $action }}-{{ $component->getTableName() }}"
+                                    wire:key="bulk-actions-{{ $action }}-{{ $component->getTableName() }}"
                                     class="dropdown-item"
                                 >
                                     {{ $title }}
@@ -784,7 +784,8 @@
                             x-on:click="open = !open"
                             class="btn dropdown-toggle d-block w-100 d-md-inline"
                             type="button"
-                            wire:key="bulk-actions-dropdown-button-{{ $component->getTableName() }}"
+                            wire:key="column-select-dropdown-button-{{ $component->getTableName() }}"
+                            id="columnSelect-{{ $component->getTableName() }}"
                             aria-haspopup="true"
                             x-bind:aria-expanded="open"
                         >
