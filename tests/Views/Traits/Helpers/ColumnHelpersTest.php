@@ -293,18 +293,18 @@ class ColumnHelpersTest extends TestCase
         $this->assertEquals(8, $this->basicTable->getColspanCount());
 
         // TODO: Not working
-//        $this->basicTable->setReorderEnabled();
-//        $this->basicTable->setHideBulkActionsWhenEmptyEnabled();
-//
-//        $this->assertEquals(5, $this->basicTable->getColspanCount());
-//
-//        $this->basicTable->setCurrentlyReorderingEnabled();
-//
-//        $this->assertEquals(6, $this->basicTable->getColspanCount());
-//
-//        $this->basicTable->setBulkActionsEnabled();
-//
-//        $this->assertEquals(7, $this->basicTable->getColspanCount());
+        //        $this->basicTable->setReorderEnabled();
+        //        $this->basicTable->setHideBulkActionsWhenEmptyEnabled();
+        //
+        //        $this->assertEquals(5, $this->basicTable->getColspanCount());
+        //
+        //        $this->basicTable->setCurrentlyReorderingEnabled();
+        //
+        //        $this->assertEquals(6, $this->basicTable->getColspanCount());
+        //
+        //        $this->basicTable->setBulkActionsEnabled();
+        //
+        //        $this->assertEquals(7, $this->basicTable->getColspanCount());
     }
 
     /** @test */
