@@ -62,8 +62,5 @@ jobs:
       - name: Setup problem matchers for PHPUnit
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Clear artisan caches
-        run: php artisan optimize:clear
-
       - name: Run Unit Tests
         run: php ./vendor/bin/paratest --no-coverage --processes=4
