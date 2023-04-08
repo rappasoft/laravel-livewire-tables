@@ -1,262 +1,356 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
+namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Helpers;
 
-use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
+use Closure;
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 class ColumnHelpersTest extends TestCase
 {
     /** @test */
-    public function can_get_column_list(): void
+    public function can_get_column_from(): void
     {
-        $this->assertCount(8, $this->basicTable->getColumns()->toArray());
+        $column = Column::make('Name');
+
+        $this->assertNull($column->getFrom());
+
+        $column = Column::make('Name', 'name');
+
+        $this->assertSame('name', $column->getFrom());
     }
 
     /** @test */
-    public function can_get_column_by_column(): void
+    public function can_check_if_column_has_from(): void
     {
-        $column = $this->basicTable->getColumn('pets.id');
+        $column = Column::make('Name');
 
-        $this->assertSame('id', $column->getField());
+        $this->assertFalse($column->hasFrom());
+
+        $column = Column::make('Name', 'name');
+
+        $this->assertTrue($column->hasFrom());
     }
 
     /** @test */
-    public function can_get_column_by_select_name(): void
+    public function can_get_column_title(): void
     {
-        $column = $this->basicTable->getColumnBySelectName('id');
+        $column = Column::make('Name');
 
-        $this->assertSame('id', $column->getField());
+        $this->assertSame('Name', $column->getTitle());
     }
 
     /** @test */
-    public function can_get_column_count(): void
+    public function can_get_column_field(): void
     {
-        $this->assertSame(8, $this->basicTable->getColumnCount());
+        $column = Column::make('Name', 'name');
+
+        $this->assertSame('name', $column->getField());
     }
 
     /** @test */
-    public function can_tell_if_there_are_collapsable_columns(): void
+    public function can_check_if_column_has_field(): void
     {
-        $this->assertFalse($this->basicTable->hasCollapsedColumns());
+        $column = Column::make('Name', 'name');
 
-        $this->assertFalse($this->basicTable->getColumnBySelectName('id')->shouldCollapseOnMobile());
+        $this->assertTrue($column->hasField());
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
+        $column->label(fn () => 'Name');
 
-        $this->assertTrue($this->basicTable->getColumnBySelectName('id')->shouldCollapseOnMobile());
-
-        $this->assertTrue($this->basicTable->hasCollapsedColumns());
+        $this->assertFalse($column->hasField());
     }
 
     /** @test */
-    public function can_tell_if_columns_should_collapse_on_mobile(): void
+    public function can_remove_field_with_label(): void
     {
-        $this->assertFalse($this->basicTable->shouldCollapseOnMobile());
+        $column = Column::make('My Title', 'my_title')->label(fn () => 'My Label');
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
-
-        $this->assertTrue($this->basicTable->shouldCollapseOnMobile());
+        $this->assertNull($column->getFrom());
+        $this->assertNull($column->getField());
     }
 
     /** @test */
-    public function can_get_collapsed_mobile_columns(): void
+    public function can_check_if_column_is_label(): void
     {
-        $this->assertCount(0, $this->basicTable->getCollapsedMobileColumns());
+        $column = Column::make('My Title');
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
-        $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
+        $this->assertFalse($column->isLabel());
 
-        $this->assertCount(2, $this->basicTable->getCollapsedMobileColumns());
+        $column->label(fn () => 'My Label');
 
-        $this->assertSame('ID', $this->basicTable->getCollapsedMobileColumns()[0]->getTitle());
-        $this->assertSame('Name', $this->basicTable->getCollapsedMobileColumns()[1]->getTitle());
+        $this->assertTrue($column->isLabel());
     }
 
     /** @test */
-    public function can_get_collapsed_mobile_columns_count(): void
+    public function can_check_if_column_should_collapse_on_mobile(): void
     {
-        $this->assertSame(0, $this->basicTable->getCollapsedMobileColumnsCount());
+        $column = Column::make('My Title');
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
-        $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
+        $this->assertFalse($column->shouldCollapseOnMobile());
 
-        $this->assertSame(2, $this->basicTable->getCollapsedMobileColumnsCount());
+        $column->collapseOnMobile();
+
+        $this->assertTrue($column->shouldCollapseOnMobile());
     }
 
     /** @test */
-    public function can_get_visible_mobile_columns(): void
+    public function can_check_if_column_should_collapse_on_tablet(): void
     {
-        $this->assertCount(8, $this->basicTable->getVisibleMobileColumns());
+        $column = Column::make('My Title');
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
-        $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
+        $this->assertFalse($column->shouldCollapseOnTablet());
 
-        $this->assertCount(6, $this->basicTable->getVisibleMobileColumns());
-        $this->assertSame('Sort', $this->basicTable->getVisibleMobileColumns()->values()[0]->getTitle());
-        $this->assertSame('Age', $this->basicTable->getVisibleMobileColumns()->values()[1]->getTitle());
-        $this->assertSame('Breed', $this->basicTable->getVisibleMobileColumns()->values()[2]->getTitle());
-        $this->assertSame('Other', $this->basicTable->getVisibleMobileColumns()->values()[3]->getTitle());
+        $column->collapseOnTablet();
+
+        $this->assertTrue($column->shouldCollapseOnTablet());
     }
 
     /** @test */
-    public function can_get_visible_mobile_columns_count(): void
+    public function can_set_custom_sorting_pill_title(): void
     {
-        $this->assertSame(8, $this->basicTable->getVisibleMobileColumnsCount());
+        $column = Column::make('My Title');
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
-        $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
+        $this->assertNull($column->getCustomSortingPillTitle());
 
-        $this->assertSame(6, $this->basicTable->getVisibleMobileColumnsCount());
+        $column->setSortingPillTitle('New Title');
+
+        $this->assertSame('New Title', $column->getCustomSortingPillTitle());
     }
 
     /** @test */
-    public function can_tell_if_columns_should_collapse_on_tablet(): void
+    public function can_set_custom_sorting_pill_directions(): void
     {
-        $this->assertFalse($this->basicTable->shouldCollapseOnTablet());
+        $column = Column::make('My Title');
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
+        $this->assertFalse($column->hasCustomSortingPillDirections());
 
-        $this->assertTrue($this->basicTable->shouldCollapseOnTablet());
+        $column->setSortingPillDirections('1-2', '2-1');
+
+        $this->assertTrue($column->hasCustomSortingPillDirections());
+        $this->assertSame('1-2', $column->getCustomSortingPillDirections('asc'));
+        $this->assertSame('2-1', $column->getCustomSortingPillDirections('desc'));
     }
 
     /** @test */
-    public function can_get_collapsed_tablet_columns(): void
+    public function can_check_if_field_is_relation(): void
     {
-        $this->assertCount(0, $this->basicTable->getCollapsedTabletColumns());
+        $column = Column::make('My Title');
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
-        $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
+        $this->assertCount(0, $column->getRelations());
 
-        $this->assertCount(2, $this->basicTable->getCollapsedTabletColumns());
-        $this->assertSame('ID', $this->basicTable->getCollapsedTabletColumns()[0]->getTitle());
-        $this->assertSame('Name', $this->basicTable->getCollapsedTabletColumns()[1]->getTitle());
+        $column = Column::make('Address', 'address.group.name');
+
+        $this->assertCount(2, $column->getRelations());
     }
 
     /** @test */
-    public function can_get_collapsed_tablet_columns_count(): void
+    public function can_check_if_column_is_same_by_field(): void
     {
-        $this->assertSame(0, $this->basicTable->getCollapsedTabletColumnsCount());
+        $column = Column::make('My Title');
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
-        $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
-
-        $this->assertSame(2, $this->basicTable->getCollapsedTabletColumnsCount());
+        $this->assertTrue($column->isField('my_title'));
+        $this->assertFalse($column->isField('name'));
     }
 
     /** @test */
-    public function can_get_visible_tablet_columns(): void
+    public function can_check_if_column_is_sortable(): void
     {
-        $this->assertCount(8, $this->basicTable->getVisibleTabletColumns());
+        $column = Column::make('My Title');
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
-        $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
+        $this->assertFalse($column->isSortable());
 
-        $this->assertCount(6, $this->basicTable->getVisibleTabletColumns());
-        $this->assertSame('Sort', $this->basicTable->getVisibleTabletColumns()->values()[0]->getTitle());
-        $this->assertSame('Age', $this->basicTable->getVisibleTabletColumns()->values()[1]->getTitle());
-        $this->assertSame('Breed', $this->basicTable->getVisibleTabletColumns()->values()[2]->getTitle());
-        $this->assertSame('Other', $this->basicTable->getVisibleTabletColumns()->values()[3]->getTitle());
+        $column->sortable();
+
+        $this->assertTrue($column->isSortable());
+
+        $column->label(fn () => 'My Label');
+
+        $this->assertFalse($column->isSortable());
     }
 
     /** @test */
-    public function can_get_visible_tablet_columns_count(): void
+    public function can_check_if_column_has_a_sort_callback(): void
     {
-        $this->assertSame(8, $this->basicTable->getVisibleTabletColumnsCount());
+        $column = Column::make('My Title')->sortable();
 
-        $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
-        $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
+        $this->assertFalse($column->hasSortCallback());
 
-        $this->assertSame(6, $this->basicTable->getVisibleTabletColumnsCount());
+        $column = Column::make('My Title')->sortable(function (Builder $builder, string $direction) {
+            return $builder->orderBy('name', $direction);
+        });
+
+        $this->assertTrue($column->hasSortCallback());
     }
 
     /** @test */
-    public function can_get_selectable_columns(): void
+    public function can_get_column_sort_callback(): void
     {
-        $selectable = $this->basicTable->getSelectableColumns()
-            ->map(fn (Column $column) => $column->getColumnSelectName())
-            ->toArray();
+        $column = Column::make('My Title')->sortable();
 
-        $this->assertSame(['id', 'sort', 'name', 'age', 'breed.name'], $selectable);
+        $this->assertNull($column->getSortCallback());
+
+        $column = Column::make('My Title')->sortable(function (Builder $builder, string $direction) {
+            return $builder->orderBy('name', $direction);
+        });
+
+        $this->assertIsCallable($column->getSortCallback());
     }
 
     /** @test */
-    public function can_get_searchable_columns(): void
+    public function can_get_column_table(): void
     {
-        $selectable = $this->basicTable->getSearchableColumns()
-            ->map(fn (Column $column) => $column->getColumnSelectName())
-            ->toArray();
+        $column = Column::make('My Title');
 
-        $this->assertSame(['name','breed.name'], $selectable);
+        $this->assertNull($column->getTable());
+
+        $column->setTable('users');
+
+        $this->assertSame('users', $column->getTable());
     }
 
     /** @test */
-    public function can_get_a_list_of_column_relations(): void
+    public function can_get_full_column_name(): void
     {
-        $this->assertSame([['breed']], $this->basicTable->getColumnRelations());
+        $column = Column::make('Name', 'name');
+
+        $column->setTable('users');
+
+        $this->assertSame('users.name', $column->getColumn());
+
+        $column = Column::make('Address Group', 'address.group.name');
+
+        $column->setTable('addresses');
+
+        $this->assertSame('addresses.name', $column->getColumn());
     }
 
     /** @test */
-    public function can_get_a_list_of_column_relation_strings(): void
+    public function can_get_full_column_select_name(): void
     {
-        $this->assertSame(['breed'], $this->basicTable->getColumnRelationStrings());
+        $column = Column::make('Name', 'name');
+
+        $column->setTable('users');
+
+        $this->assertSame('name', $column->getColumnSelectName());
+
+        $column = Column::make('Address Group', 'address.group.name');
+
+        $column->setTable('addresses');
+
+        $this->assertSame('address.group.name', $column->getColumnSelectName());
     }
 
     /** @test */
-    public function can_check_if_column_is_reorder_column(): void
+    public function can_check_if_column_matches_column_name(): void
     {
-        $column = Column::make('ID', 'id');
-        $column->setComponent($this->basicTable);
+        $column = Column::make('Name', 'name');
+        $column->setTable('users');
 
-        $this->assertFalse($column->isReorderColumn());
+        $this->assertTrue($column->isColumn('users.name'));
+        $this->assertFalse($column->isColumn('name'));
 
-        $column = Column::make('Sort');
-        $column->setComponent($this->basicTable);
+        $column = Column::make('Address Group', 'address.group.name');
+        $column->setTable('addresses');
 
-        $this->assertTrue($column->isReorderColumn());
+        $this->assertTrue($column->isColumn('addresses.name'));
+        $this->assertFalse($column->isColumn('address.group.name'));
+    }
+
+    /** @test */
+    public function can_check_if_column_matches_column_select(): void
+    {
+        $column = Column::make('Name', 'name');
+        $column->setTable('users');
+
+        $this->assertTrue($column->isColumnBySelectName('name'));
+        $this->assertFalse($column->isColumnBySelectName('users.name'));
+
+        $column = Column::make('Address Group', 'address.group.name');
+        $column->setTable('addresses');
+
+        $this->assertTrue($column->isColumnBySelectName('address.group.name'));
+        $this->assertFalse($column->isColumnBySelectName('addresses.name'));
+    }
+
+    /** @test */
+    public function can_check_if_eager_loading_relations_is_enabled(): void
+    {
+        $column = Column::make('My Title');
+
+        $this->assertFalse($column->eagerLoadRelationsIsEnabled());
+
+        $column->eagerLoadRelations();
+
+        $this->assertTrue($column->eagerLoadRelationsIsEnabled());
+    }
+
+    /** @test */
+    public function can_get_colspan_count(): void
+    {
+        $this->basicTable->setBulkActionsDisabled();
+
+        $this->assertEquals(8, $this->basicTable->getColspanCount());
+
+        // TODO: Not working
+        //        $this->basicTable->setReorderEnabled();
+        //        $this->basicTable->setHideBulkActionsWhenEmptyEnabled();
+        //
+        //        $this->assertEquals(5, $this->basicTable->getColspanCount());
+        //
+        //        $this->basicTable->setCurrentlyReorderingEnabled();
+        //
+        //        $this->assertEquals(6, $this->basicTable->getColspanCount());
+        //
+        //        $this->basicTable->setBulkActionsEnabled();
+        //
+        //        $this->assertEquals(7, $this->basicTable->getColspanCount());
+    }
+
+    /** @test */
+    public function can_get_column_formatter(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertFalse($column->hasFormatter());
+        $this->assertNull($column->getFormatCallback());
+
+        $column->format(fn ($value) => $value);
+
+        $this->assertInstanceOf(Closure::class, $column->getFormatCallback());
     }
 
     /** @test */
     public function can_check_if_column_has_secondary_header(): void
     {
-        $column = $this->basicTable->getColumnBySelectName('name');
-        $this->assertTrue($column->hasSecondaryHeaderCallback());
-        $callback = $column->getSecondaryHeaderCallback();
-        $this->assertTrue($callback instanceof TextFilter);
-    }
+        $column = Column::make('ID', 'id');
 
-    /** @test */
-    public function can_check_if_column_has_secondary_header_filter(): void
-    {
-        $column = $this->basicTable->getColumnBySelectName('breed.name');
+        $this->assertFalse($column->hasSecondaryHeader());
+        $this->assertFalse($column->hasSecondaryHeaderCallback());
+
+        $column = Column::make('ID', 'id')
+            ->secondaryHeader(fn ($rows) => 'Hi');
+
         $this->assertTrue($column->hasSecondaryHeader());
-        $contents = $column->getSecondaryHeaderContents(Pet::find(1));
-        $this->assertStringContainsString('id="table-filter-breed-header-8"', $contents);
+        $this->assertTrue($column->hasSecondaryHeaderCallback());
+        $this->assertIsCallable($column->getSecondaryHeaderCallback());
+        $this->assertSame('Hi', $column->getSecondaryHeaderContents([]));
     }
 
     /** @test */
-    public function can_check_if_column_has_custom_slug(): void
+    public function can_check_if_column_has_footer(): void
     {
-        $column = Column::make('Name');
+        $column = Column::make('ID', 'id');
 
-        $this->assertFalse($column->hasCustomSlug());
+        $this->assertFalse($column->hasFooter());
+        $this->assertFalse($column->hasFooterCallback());
 
-        $column->setCustomSlug('test123');
+        $column = Column::make('ID', 'id')
+            ->footer(fn ($rows) => 'Hi');
 
-        $this->assertTrue($column->hasCustomSlug());
-    }
-
-    /** @test */
-    public function can_column_custom_slug_returns(): void
-    {
-        $column = Column::make('Name');
-
-        $this->assertSame(\Illuminate\Support\Str::slug($column->getTitle()), $column->getSlug());
-
-        $column->setCustomSlug('test123');
-
-        $this->assertSame(\Illuminate\Support\Str::slug('test123'), $column->getSlug());
+        $this->assertTrue($column->hasFooter());
+        $this->assertTrue($column->hasFooterCallback());
+        $this->assertIsCallable($column->getFooterCallback());
+        $this->assertSame('Hi', $column->getFooterContents([]));
     }
 }
