@@ -5,16 +5,10 @@ on: [push]
 jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
-    steps:
-      - name: Setup cache directory
-        uses: actions/cache@v3
-        with:
-          path: .php-cs-fixer.cache
-          key: ${{ runner.OS }}-${{ github.repository }}-phpcsfixer-${{ github.sha }}
-          restore-keys: ${{ runner.OS }}-${{ github.repository }}-phpcsfixer-
 
+    steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
 
