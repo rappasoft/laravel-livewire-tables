@@ -4,6 +4,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.12.0] - 2023-04-08
+
 ### Added
 
 - AlpineJS Variable for Toolbar Dropdowns to force the dropdown to remain open - childElementOpen - https://github.com/rappasoft/laravel-livewire-tables/pull/1076
@@ -23,10 +25,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
     - Set the colspan per Filter component (setFilterSlidedownColspan())
 
 ### Changed
+
 - Filters
   - *Fix* - enabled re-use of Filters in Secondary Header/Footer, fixing issue where the filter remains visible after deselecting the Column- https://github.com/rappasoft/laravel-livewire-tables/pull/1108
   - *Fix* - restrict AppliedFilters to only return non-empty - preventing default values from setting the filter https://github.com/rappasoft/laravel-livewire-tables/pull/1080
-  - *Minor* - added ID to Filter Wrapper allowing for easier targetting in blades/AlpineJS - https://github.com/rappasoft/laravel-livewire-tables/pull/1087
+  - *Minor* - added ID to Filter Wrapper allowing for easier targeting in blades/AlpineJS - https://github.com/rappasoft/laravel-livewire-tables/pull/1087
 
 - Workflow Changes
   - PHPStan - Introducing PHP-Stan at Level 3 to ensure code-quality persists - https://github.com/rappasoft/laravel-livewire-tables/pull/1133
@@ -766,7 +769,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.11.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.12.0...development
+[2.12.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.11.0...v2.12.0
 [2.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.10.0...v2.11.0
 [2.10.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.9.0...v2.10.0
 [2.9.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.8.0...v2.9.0
