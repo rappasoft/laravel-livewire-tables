@@ -1,6 +1,11 @@
 name: run-tests
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - master
+      - main
+      - master2
 
 jobs:
   test:
@@ -8,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-20.04]
         php: [8.0, 8.1, 8.2]
         laravel: [8, 9, 10]
         stability: [prefer-dist]
