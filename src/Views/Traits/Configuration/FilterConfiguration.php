@@ -7,10 +7,9 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 trait FilterConfiguration
 {
     /**
-     * @param string $key
-     * @param mixed  $value
+     * @param array<mixed> $config
      *
-     * @return $this
+     * @return Filter
      */
     public function config(array $config = []): Filter
     {
@@ -20,9 +19,9 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $key
+     * @param string $title
      *
-     * @return $this
+     * @return self
      */
     public function setFilterPillTitle(string $title): self
     {
@@ -32,9 +31,9 @@ trait FilterConfiguration
     }
 
     /**
-     * @param string $key
+     * @param array<mixed> $values
      *
-     * @return $this
+     * @return self
      */
     public function setFilterPillValues(array $values): self
     {
@@ -44,7 +43,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function hiddenFromMenus(): self
     {
@@ -54,7 +53,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function hiddenFromPills(): self
     {
@@ -64,7 +63,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function hiddenFromFilterCount(): self
     {
@@ -74,7 +73,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function hiddenFromAll(): self
     {
@@ -86,11 +85,71 @@ trait FilterConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function notResetByClearButton(): self
     {
         $this->resetByClearButton = false;
+
+        return $this;
+    }
+
+    /**
+     * @param string $position
+     *
+     * @return self
+     */
+    public function setFilterPosition(string $position): self
+    {
+        $this->filterPosition = $position;
+
+        return $this;
+    }
+     
+    /**
+     * @param string $filterCustomLabel
+     *
+     * @return self
+     */
+    public function setCustomFilterLabel(string $filterCustomLabel): self
+    {
+        $this->filterCustomLabel = $filterCustomLabel;
+
+        return $this;
+    }
+    
+    /**
+     * @param string|int $filterSlidedownRow
+     *
+     * @return self
+     */
+    public function setFilterSlidedownRow(string|int $filterSlidedownRow): self
+    {
+        $this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
+
+        return $this;
+    }
+
+    /**
+     * @param string|int $filterSlidedownColspan
+     *
+     * @return self
+     */
+    public function setFilterSlidedownColspan(string|int $filterSlidedownColspan): self
+    {
+        $this->filterSlidedownColspan = (is_int($filterSlidedownColspan) ? $filterSlidedownColspan : intval($filterSlidedownColspan));
+        
+        return $this;
+    }
+    
+    /**
+     * @param string $blade
+     *
+     * @return self
+     */
+    public function setFilterPillBlade(string $blade): self
+    {
+        $this->filterCustomPillBlade = $blade;
 
         return $this;
     }

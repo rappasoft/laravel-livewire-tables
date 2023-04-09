@@ -9,15 +9,11 @@ class WithSortingTest extends TestCase
     /** @test */
     public function cannot_call_sortBy_if_sorting_is_disabled(): void
     {
-        $sort = $this->basicTable->sortBy('id');
-
-        $this->assertSame($sort, 'asc');
+        $this->assertSame($this->basicTable->sortBy('id'), 'asc');
 
         $this->basicTable->setSortingDisabled();
 
-        $sort = $this->basicTable->sortBy('id');
-
-        $this->assertNull($sort);
+        $this->assertNull($this->basicTable->sortBy('id'));
     }
 
     /** @test */
@@ -81,6 +77,32 @@ class WithSortingTest extends TestCase
     public function sort_callback_gets_applied_if_specified(): void
     {
         // TODO
-        $this->assertTrue(true);
+        $this->basicTable->clearSorts();
+        $this->basicTable->sortBy('breed.name');
+        $this->assertSame($this->basicTable->getSorts(), ['breed.name' => 'asc']);
+    }
+
+    /** @test */
+    public function cannot_set_sort_on_unsortable_column(): void
+    {
+        $this->basicTable->clearSorts();
+
+        $this->assertFalse($this->basicTable->hasSort('age'));
+
+        $this->basicTable->sortBy('age');
+
+        $this->basicTable->applySorting();
+
+        $this->assertStringNotContainsStringIgnoringCase('order by', $this->basicTable->getBuilder()->toSql());
+    }
+
+    /** @test */
+    public function sort_applies_to_query(): void
+    {
+        $this->basicTable->sortBy('id');
+
+        $this->basicTable->applySorting();
+
+        $this->assertStringContainsStringIgnoringCase('order by "id"', $this->basicTable->getBuilder()->toSql());
     }
 }

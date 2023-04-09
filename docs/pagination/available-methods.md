@@ -172,3 +172,19 @@ public function configure(): void
     $this->setPaginationMethod('simple');
 }
 ```
+
+## getPerPageDisplayedItemIds
+
+Returns the Primary Key for the currently visible rows in an array.  This should be used in a blade to ensure accuracy.
+
+```php
+    $this->getPerPageDisplayedItemIds();
+```
+
+## getPerPageDisplayedItemCount
+
+Returns the number of rows that are currently displayed.  This should be used in a blade to ensure accuracy.
+
+```php
+    $this->getPerPageDisplayedItemCount();
+```

@@ -27,14 +27,14 @@ class WithSearchTest extends TestCase
 
         // TODO: Not working
 
-//        $this->basicTable->setBulkActions(['activate' => 'Activate']);
-//
-//        $this->basicTable->setSelected([1, 2, 3]);
-//
-//        $this->assertSame([1, 2, 3], $this->basicTable->getSelected());
-//
-//        $this->basicTable->setSearch('abcd');
-//
-//        $this->assertSame([], $this->basicTable->getSelected());
+        //        $this->basicTable->setBulkActions(['activate' => 'Activate']);
+        //
+        //        $this->basicTable->setSelected([1, 2, 3]);
+        //
+        //        $this->assertSame([1, 2, 3], $this->basicTable->getSelected());
+        //
+        //        $this->basicTable->setSearch('abcd');
+        //
+        //        $this->assertSame([], $this->basicTable->getSelected());
     }
 }

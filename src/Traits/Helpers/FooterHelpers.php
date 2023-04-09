@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 trait FooterHelpers
 {
     /**
-     * @var bool
+     * @return bool
      */
     public function hasColumnsWithFooter(): bool
     {
@@ -15,7 +15,7 @@ trait FooterHelpers
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function getFooterStatus(): bool
     {
@@ -23,7 +23,7 @@ trait FooterHelpers
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function footerIsEnabled(): bool
     {
@@ -31,7 +31,7 @@ trait FooterHelpers
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function footerIsDisabled(): bool
     {
@@ -39,7 +39,7 @@ trait FooterHelpers
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function getUseHeaderAsFooterStatus(): bool
     {
@@ -47,7 +47,7 @@ trait FooterHelpers
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function useHeaderAsFooterIsEnabled(): bool
     {
@@ -55,7 +55,7 @@ trait FooterHelpers
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function useHeaderAsFooterIsDisabled(): bool
     {
@@ -63,7 +63,9 @@ trait FooterHelpers
     }
 
     /**
-     * @var callable
+     * @param mixed $rows
+     *
+     * @return array<mixed>
      */
     public function getFooterTrAttributes($rows): array
     {
@@ -71,7 +73,11 @@ trait FooterHelpers
     }
 
     /**
-     * @var callable
+     * @param Column $column
+     * @param mixed $rows
+     * @param int $index
+     *
+     * @return array<mixed>
      */
     public function getFooterTdAttributes(Column $column, $rows, int $index): array
     {

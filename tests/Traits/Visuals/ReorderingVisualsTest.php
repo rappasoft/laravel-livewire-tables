@@ -9,6 +9,15 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 class ReorderingVisualsTest extends TestCase
 {
     /** @test */
+    public function testFilterArraySetup(): array
+    {
+        $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
+        $this->assertNotEmpty($filterDefaultArray);
+
+        return $filterDefaultArray;
+    }
+
+    /** @test */
     public function sortable_call_only_available_if_enabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -82,14 +91,17 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:key="sorting-pill-id"');
     }
 
-    /** @test */
-    public function sorting_is_disabled_on_reorder(): void
+    /**
+    * @test
+    * @depends testFilterArraySetup
+    */
+    public function sorting_is_disabled_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->assertSet('sortingStatus', true)
             ->call('sortBy', 'id')
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => [], 'species' => []], 'columns' => []])
+            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => $filterDefaultArray, 'columns' => []])
             ->assertSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('enableReordering')
             ->assertSet('sortingStatus', false)
@@ -97,7 +109,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('disableReordering')
             ->assertSet('sortingStatus', true)
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => ['breed' => [], 'species' => []], 'columns' => []])
+            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => $filterDefaultArray, 'columns' => []])
             ->assertSeeHtml('wire:click="sortBy(\'id\')"');
     }
 
@@ -186,8 +198,8 @@ class ReorderingVisualsTest extends TestCase
             ->set('page', 3)
             ->call('enableReordering')
             ->assertSet('page', 1);
-//            ->call('disableReordering') // TODO: Don't work
-//            ->assertSet('page', 3);
+        //            ->call('disableReordering') // TODO: Don't work
+        //            ->assertSet('page', 3);
     }
 
     /** @test */
@@ -257,14 +269,19 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('do you want to select all');
     }
 
-    /** @test */
-    public function filters_are_disabled_on_reorder(): void
+    /**
+    * @test
+    * @depends testFilterArraySetup
+    */
+    public function filters_are_disabled_on_reorder(array $filterDefaultArray): void
     {
+        $filterDefaultArray['breed'] = [1];
+
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->assertSet('filtersStatus', true)
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => ['breed' => [1], 'species' => []], 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
             ->assertSee('Filters')
             ->call('enableReordering')
             ->assertSet('filtersStatus', false)
@@ -272,17 +289,22 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('Filters')
             ->call('disableReordering')
             ->assertSet('filtersStatus', true)
-            ->assertSet('table', ['filters' => ['breed' => [1], 'species' => []], 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
             ->assertSeeHtml('Filters');
     }
 
-    /** @test */
-    public function filter_pills_hide_on_reorder(): void
+    /**
+    * @test
+    * @depends testFilterArraySetup
+    */
+    public function filter_pills_hide_on_reorder(array $filterDefaultArray): void
     {
+        $filterDefaultArray['breed'] = [1];
+
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => ['breed' => [1], 'species' => []], 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
             ->assertSee('Applied Filters')
             ->call('enableReordering')
             ->assertDontSee('Applied Filters');

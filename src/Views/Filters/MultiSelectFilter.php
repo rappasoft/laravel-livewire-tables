@@ -45,6 +45,11 @@ class MultiSelectFilter extends Filter
         return $value;
     }
 
+    /**
+     * Get the filter default options.
+     *
+     * @return array<mixed>
+     */
     public function getDefaultValue()
     {
         return [];

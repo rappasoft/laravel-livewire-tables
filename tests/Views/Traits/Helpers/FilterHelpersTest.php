@@ -226,4 +226,88 @@ class FilterHelpersTest extends TestCase
 
         $this->assertFalse($filter->isResetByClearButton());
     }
+
+    /** @test */
+    public function can_check_if_filter_has_slidedown_row(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $this->assertFalse($filter->hasFilterSlidedownRow());
+
+        $filter->setFilterSlidedownRow('2');
+
+        $this->assertTrue($filter->hasFilterSlidedownRow());
+
+        $filter->setFilterSlidedownRow(3);
+
+        $this->assertTrue($filter->hasFilterSlidedownRow());
+    }
+
+    /** @test */
+    public function filter_slidedown_row_returns_int(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $filter->setFilterSlidedownRow(2);
+
+        $this->assertIsInt($filter->getFilterSlidedownRow());
+
+        $filter->setFilterSlidedownRow("3");
+
+        $this->assertIsInt($filter->getFilterSlidedownRow());
+    }
+
+    /** @test */
+    public function can_get_filter_slidedown_row(): void
+    {
+        $filter = SelectFilter::make('Active')->setFilterSlidedownRow("2");
+
+        $this->assertSame(2, $filter->getFilterSlidedownRow());
+
+        $filter->setFilterSlidedownRow(3);
+
+        $this->assertSame(3, $filter->getFilterSlidedownRow());
+    }
+
+    /** @test */
+    public function can_check_if_filter_has_slidedown_colspan(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $this->assertFalse($filter->hasFilterSlidedownColspan());
+
+        $filter->setFilterSlidedownColspan('2');
+
+        $this->assertTrue($filter->hasFilterSlidedownColspan());
+
+        $filter->setFilterSlidedownColspan(2);
+
+        $this->assertTrue($filter->hasFilterSlidedownColspan());
+    }
+
+    /** @test */
+    public function filter_slidedown_colspan_returns_int(): void
+    {
+        $filter = SelectFilter::make('Active');
+
+        $filter->setFilterSlidedownColspan(2);
+
+        $this->assertIsInt($filter->getFilterSlidedownColspan());
+
+        $filter->setFilterSlidedownColspan("3");
+
+        $this->assertIsInt($filter->getFilterSlidedownColspan());
+    }
+
+    /** @test */
+    public function can_get_filter_slidedown_colspan(): void
+    {
+        $filter = SelectFilter::make('Active')->setFilterSlidedownColspan("2");
+
+        $this->assertSame(2, $filter->getFilterSlidedownColspan());
+
+        $filter->setFilterSlidedownColspan(3);
+
+        $this->assertSame(3, $filter->getFilterSlidedownColspan());
+    }
 }
