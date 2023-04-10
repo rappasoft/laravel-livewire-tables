@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Added
+- Add capability for passing a custom model path to the MakeCommand
+
+
 ## [2.12.0] - 2023-04-08
 
 ### Added

@@ -27,6 +27,11 @@ class MakeCommand extends Command
     protected $model;
 
     /**
+     * @var string|null
+     */
+    protected $modelPath;
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -34,6 +39,7 @@ class MakeCommand extends Command
     protected $signature = 'make:datatable
         {name : The name of your Livewire class}
         {model : The name of the model you want to use in this table}
+        {modelpath? : The name of the model you want to use in this table}
         {--force}';
 
     /**
@@ -63,6 +69,8 @@ class MakeCommand extends Command
         }
 
         $this->model = Str::studly($this->argument('model'));
+        $this->modelPath = $this->argument('modelpath') ?? null;
+
         $force = $this->option('force');
 
         $this->createClass($force);
@@ -128,6 +136,15 @@ class MakeCommand extends Command
         if (File::exists(app_path($this->model . '.php'))) {
             return 'App\\' . $this->model;
         }
+
+        if (isset($this->modelPath))
+        {
+            if (File::exists(rtrim($this->modelPath,"/")."/".$this->model . '.php')) {
+
+                return Str::studly(str_replace("/","\\",$this->modelPath)) . $this->model;
+            }
+        }
+        
 
         $this->error('Could not find path to model.');
 
