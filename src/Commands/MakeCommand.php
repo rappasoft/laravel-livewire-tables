@@ -137,11 +137,10 @@ class MakeCommand extends Command
             return 'App\\' . $this->model;
         }
 
-        if (isset($this->modelPath))
-        {
-            if (File::exists(rtrim($this->modelPath,"/")."/".$this->model . '.php')) {
+        if (isset($this->modelPath)) {
+            if (File::exists(rtrim($this->modelPath, "/")."/".$this->model . '.php')) {
 
-                return Str::studly(str_replace("/","\\",$this->modelPath)) . $this->model;
+                return Str::studly(str_replace("/", "\\", $this->modelPath)) . $this->model;
             }
         }
         
