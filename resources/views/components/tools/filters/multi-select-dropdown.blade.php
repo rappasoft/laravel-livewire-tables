@@ -55,6 +55,5 @@
                 @endif
             @endforeach
         </select>
-    </div>
   @endif
 </div>
