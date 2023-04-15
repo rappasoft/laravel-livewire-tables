@@ -1,0 +1,16 @@
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    paths:
+        - src
+        - config
+    level: 3
+    tmpDir: build/phpstan
+    checkOctaneCompatibility: true
+    checkModelProperties: true
+    checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        - "#Unsafe usage of new static#"
+        - "#Called 'count' on Laravel collection, but could have been retrieved as a query.#"

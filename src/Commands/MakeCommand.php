@@ -17,12 +17,12 @@ use Livewire\Commands\MakeCommand as LivewireMakeCommand;
 class MakeCommand extends Command
 {
     /**
-     * @var
+     * @var ComponentParser
      */
-    protected $parser;
+    protected ComponentParser $parser;
 
     /**
-     * @var
+     * @var string
      */
     protected $model;
 
@@ -93,7 +93,9 @@ class MakeCommand extends Command
     }
 
     /**
-     * @param $path
+     * @param mixed $path
+     *
+     * @return void
      */
     protected function ensureDirectoryExists($path): void
     {
@@ -135,7 +137,7 @@ class MakeCommand extends Command
     /**
      * @param string $modelName
      * @return string
-     * @throws Exception
+     * @throws \Exception
      */
     private function generateColumns(string $modelName): string
     {

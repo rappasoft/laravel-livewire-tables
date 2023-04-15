@@ -149,4 +149,18 @@ class PaginationVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setPerPage', 15);
     }
+
+    /** @test */
+    public function can_get_currently_displayed_ids(): void
+    {
+        Livewire::test(PetsTable::class)->assertSet('paginationCurrentItems', [1,2,3,4,5])
+                                        ->assertNotSet('paginationCurrentItems', [1,2,3,4,5,6,7,8,9]);
+    }
+
+    /** @test */
+    public function can_get_currently_displayed_count(): void
+    {
+        Livewire::test(PetsTable::class)->assertSet('paginationCurrentCount', 5)
+                                        ->assertNotSet('paginationCurrentCount', 125);
+    }
 }

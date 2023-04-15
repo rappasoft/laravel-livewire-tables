@@ -103,7 +103,7 @@ trait PaginationHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getPerPageAccepted(): array
     {
@@ -142,5 +142,21 @@ trait PaginationHelpers
     public function isPaginationMethod(string $paginationMethod): bool
     {
         return $this->paginationMethod === $paginationMethod;
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    public function getPerPageDisplayedItemIds(): array
+    {
+        return $this->paginationCurrentItems;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPerPageDisplayedItemCount(): int
+    {
+        return $this->paginationCurrentCount;
     }
 }

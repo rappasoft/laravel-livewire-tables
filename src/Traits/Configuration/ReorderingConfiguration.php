@@ -7,7 +7,7 @@ trait ReorderingConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setReorderStatus(bool $status): self
     {
@@ -17,7 +17,7 @@ trait ReorderingConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setReorderEnabled(): self
     {
@@ -27,7 +27,7 @@ trait ReorderingConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setReorderDisabled(): self
     {
@@ -39,7 +39,7 @@ trait ReorderingConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setCurrentlyReorderingStatus(bool $status): self
     {
@@ -49,7 +49,7 @@ trait ReorderingConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setCurrentlyReorderingEnabled(): self
     {
@@ -59,7 +59,7 @@ trait ReorderingConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setCurrentlyReorderingDisabled(): self
     {
@@ -71,7 +71,7 @@ trait ReorderingConfiguration
     /**
      * @param  bool  $status
      *
-     * @return $this
+     * @return self
      */
     public function setHideReorderColumnUnlessReorderingStatus(bool $status): self
     {
@@ -81,7 +81,7 @@ trait ReorderingConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setHideReorderColumnUnlessReorderingEnabled(): self
     {
@@ -91,7 +91,7 @@ trait ReorderingConfiguration
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setHideReorderColumnUnlessReorderingDisabled(): self
     {
@@ -103,7 +103,7 @@ trait ReorderingConfiguration
     /**
      * @param  string  $method
      *
-     * @return $this
+     * @return self
      */
     public function setReorderMethod(string $method): self
     {
@@ -116,7 +116,7 @@ trait ReorderingConfiguration
      * @param  string  $field
      * @param  string  $direction
      *
-     * @return $this
+     * @return self
      */
     public function setDefaultReorderSort(string $field, string $direction = 'asc'): self
     {

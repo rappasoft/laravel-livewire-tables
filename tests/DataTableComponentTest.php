@@ -34,11 +34,11 @@ class DataTableComponentTest extends TestCase
         $this->assertTrue(true);
         
         // TODO: Not working
-//        $this->expectException(DataTableConfigurationException::class);
-//
-//        Livewire::test(PetsTable::class)
-//            ->call('setPrimaryKey', null)
-//            ->call('setSearch', 'abcd');
+        //        $this->expectException(DataTableConfigurationException::class);
+        //
+        //        Livewire::test(PetsTable::class)
+        //            ->call('setPrimaryKey', null)
+        //            ->call('setSearch', 'abcd');
     }
 
     /** @test */

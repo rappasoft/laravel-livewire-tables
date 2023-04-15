@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 trait ColumnSelectHelpers
 {
     /**
-     * @var bool
+     * @return bool
      */
     public function getColumnSelectStatus(): bool
     {
@@ -15,8 +15,7 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @param bool $status
-     * @return $this
+     * @return bool
      */
     public function columnSelectIsEnabled(): bool
     {
@@ -24,8 +23,7 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @param bool $status
-     * @return $this
+     * @return bool
      */
     public function columnSelectIsDisabled(): bool
     {
@@ -33,8 +31,7 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @param bool $status
-     * @return $this
+     * @return bool
      */
     public function getRememberColumnSelectionStatus(): bool
     {
@@ -42,8 +39,7 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @param bool $status
-     * @return $this
+     * @return bool
      */
     public function rememberColumnSelectionIsEnabled(): bool
     {
@@ -51,8 +47,7 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @param bool $status
-     * @return $this
+     * @return bool
      */
     public function rememberColumnSelectionIsDisabled(): bool
     {
@@ -60,8 +55,9 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @param bool $status
-     * @return $this
+     * @param mixed $column
+     *
+     * @return bool
      */
     public function columnSelectIsEnabledForColumn($column): bool
     {
@@ -69,8 +65,7 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @param array $columns
-     * @return $this
+     * @return void
      */
     protected function forgetColumnSelectSession()
     {
@@ -86,7 +81,7 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setColumnSelectHiddenOnMobile(): self
     {
@@ -104,7 +99,7 @@ trait ColumnSelectHelpers
     }
 
      /**
-     * @return $this
+     * @return self
      */
     public function setColumnSelectHiddenOnTablet(): self
     {

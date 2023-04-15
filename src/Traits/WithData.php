@@ -15,7 +15,12 @@ trait WithData
     {
         $this->baseQuery();
 
-        return $this->executeQuery();
+        $executedQuery = $this->executeQuery();
+
+        $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
+        $this->paginationCurrentCount = $executedQuery->count() ?? 0;
+
+        return $executedQuery;
     }
 
     protected function baseQuery(): Builder

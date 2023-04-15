@@ -50,7 +50,7 @@ abstract class DataTableComponent extends Component
     /**
      * returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
      */
-    protected function dataTableFingerprint(): string
+    protected function generateDataTableFingerprint(): string
     {
         $className = str_split(static::class);
         $crc32 = sprintf('%u', crc32(serialize($className)));
@@ -107,7 +107,7 @@ abstract class DataTableComponent extends Component
     public function builder(): Builder
     {
         if ($this->hasModel()) {
-            return $this->getModel()::query();
+            return $this->getModel()::query()->with($this->getRelationships());
         }
 
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');

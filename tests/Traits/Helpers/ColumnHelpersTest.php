@@ -2,15 +2,17 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 class ColumnHelpersTest extends TestCase
 {
     /** @test */
     public function can_get_column_list(): void
     {
-        $this->assertCount(6, $this->basicTable->getColumns()->toArray());
+        $this->assertCount(8, $this->basicTable->getColumns()->toArray());
     }
 
     /** @test */
@@ -32,7 +34,7 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_column_count(): void
     {
-        $this->assertSame(6, $this->basicTable->getColumnCount());
+        $this->assertSame(8, $this->basicTable->getColumnCount());
     }
 
     /** @test */
@@ -87,12 +89,12 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_mobile_columns(): void
     {
-        $this->assertCount(6, $this->basicTable->getVisibleMobileColumns());
+        $this->assertCount(8, $this->basicTable->getVisibleMobileColumns());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
 
-        $this->assertCount(4, $this->basicTable->getVisibleMobileColumns());
+        $this->assertCount(6, $this->basicTable->getVisibleMobileColumns());
         $this->assertSame('Sort', $this->basicTable->getVisibleMobileColumns()->values()[0]->getTitle());
         $this->assertSame('Age', $this->basicTable->getVisibleMobileColumns()->values()[1]->getTitle());
         $this->assertSame('Breed', $this->basicTable->getVisibleMobileColumns()->values()[2]->getTitle());
@@ -102,12 +104,12 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_mobile_columns_count(): void
     {
-        $this->assertSame(6, $this->basicTable->getVisibleMobileColumnsCount());
+        $this->assertSame(8, $this->basicTable->getVisibleMobileColumnsCount());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
 
-        $this->assertSame(4, $this->basicTable->getVisibleMobileColumnsCount());
+        $this->assertSame(6, $this->basicTable->getVisibleMobileColumnsCount());
     }
 
     /** @test */
@@ -147,12 +149,12 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_tablet_columns(): void
     {
-        $this->assertCount(6, $this->basicTable->getVisibleTabletColumns());
+        $this->assertCount(8, $this->basicTable->getVisibleTabletColumns());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
         $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
 
-        $this->assertCount(4, $this->basicTable->getVisibleTabletColumns());
+        $this->assertCount(6, $this->basicTable->getVisibleTabletColumns());
         $this->assertSame('Sort', $this->basicTable->getVisibleTabletColumns()->values()[0]->getTitle());
         $this->assertSame('Age', $this->basicTable->getVisibleTabletColumns()->values()[1]->getTitle());
         $this->assertSame('Breed', $this->basicTable->getVisibleTabletColumns()->values()[2]->getTitle());
@@ -162,12 +164,12 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_tablet_columns_count(): void
     {
-        $this->assertSame(6, $this->basicTable->getVisibleTabletColumnsCount());
+        $this->assertSame(8, $this->basicTable->getVisibleTabletColumnsCount());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
         $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
 
-        $this->assertSame(4, $this->basicTable->getVisibleTabletColumnsCount());
+        $this->assertSame(6, $this->basicTable->getVisibleTabletColumnsCount());
     }
 
     /** @test */
@@ -187,7 +189,7 @@ class ColumnHelpersTest extends TestCase
             ->map(fn (Column $column) => $column->getColumnSelectName())
             ->toArray();
 
-        $this->assertSame(['name'], $selectable);
+        $this->assertSame(['name','breed.name'], $selectable);
     }
 
     /** @test */
@@ -214,5 +216,47 @@ class ColumnHelpersTest extends TestCase
         $column->setComponent($this->basicTable);
 
         $this->assertTrue($column->isReorderColumn());
+    }
+
+    /** @test */
+    public function can_check_if_column_has_secondary_header(): void
+    {
+        $column = $this->basicTable->getColumnBySelectName('name');
+        $this->assertTrue($column->hasSecondaryHeaderCallback());
+        $callback = $column->getSecondaryHeaderCallback();
+        $this->assertTrue($callback instanceof TextFilter);
+    }
+
+    /** @test */
+    public function can_check_if_column_has_secondary_header_filter(): void
+    {
+        $column = $this->basicTable->getColumnBySelectName('breed.name');
+        $this->assertTrue($column->hasSecondaryHeader());
+        $contents = $column->getSecondaryHeaderContents(Pet::find(1));
+        $this->assertStringContainsString('id="table-filter-breed-header-8"', $contents);
+    }
+
+    /** @test */
+    public function can_check_if_column_has_custom_slug(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertFalse($column->hasCustomSlug());
+
+        $column->setCustomSlug('test123');
+
+        $this->assertTrue($column->hasCustomSlug());
+    }
+
+    /** @test */
+    public function can_column_custom_slug_returns(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertSame(\Illuminate\Support\Str::slug($column->getTitle()), $column->getSlug());
+
+        $column->setCustomSlug('test123');
+
+        $this->assertSame(\Illuminate\Support\Str::slug('test123'), $column->getSlug());
     }
 }

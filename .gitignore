@@ -11,3 +11,7 @@ testbench.yaml
 vendor
 output.txt
 .vscode
+.phpunit.cache/
+phpunit.xml.dist.bak
+phpunit.xml.dist.dev
+.github/workflows/code-cov.yml

@@ -13,7 +13,7 @@ class RefreshConfigurationTest extends TestCase
 
         $this->basicTable->setRefreshTime(5000);
 
-        $this->assertSame(5000, $this->basicTable->getRefreshStatus());
+        $this->assertSame('5000', $this->basicTable->getRefreshStatus());
     }
 
     /** @test */
