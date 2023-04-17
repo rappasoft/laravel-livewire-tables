@@ -172,7 +172,7 @@ class ReorderingVisualsTest extends TestCase
     /** @test
     * @depends testFilterArraySetup
     */
-    public function search_hides_on_reorder(): void
+    public function search_hides_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
