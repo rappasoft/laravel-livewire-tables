@@ -4,6 +4,14 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Changed
+- Filters
+  - *Fix* - Changed the booting order to prevent repeated calling of filters() - https://github.com/rappasoft/laravel-livewire-tables/pull/1166 
+  - *Fix* - fixed multiSelectDropdownFilter in menus - https://github.com/rappasoft/laravel-livewire-tables/pull/1160 
+
+- Documentation
+  - *Fix* - Minor wording tweak to documentation - https://github.com/rappasoft/laravel-livewire-tables/pull/1139 
+
 ## [2.12.0] - 2023-04-08
 
 ### Added
