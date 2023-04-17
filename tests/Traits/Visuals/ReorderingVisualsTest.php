@@ -169,8 +169,10 @@ class ReorderingVisualsTest extends TestCase
             ->assertSet('perPage', 10);
     }
 
-    /** @test */
-    public function search_hides_on_reorder(): void
+    /** @test
+    * @depends testFilterArraySetup
+    */
+    public function search_hides_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -183,7 +185,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('Search')
             ->call('disableReordering')
             ->assertSet('searchStatus', true)
-            ->assertSet('table', ['search' => 'abc123'])
+            ->assertSet('table', ['search' => 'abc123', 'filters' => $filterDefaultArray])
             ->assertSee('Search');
     }
 
@@ -275,13 +277,14 @@ class ReorderingVisualsTest extends TestCase
     */
     public function filters_are_disabled_on_reorder(array $filterDefaultArray): void
     {
-        $filterDefaultArray['breed'] = [1];
+        $customisedFilterArray = $filterDefaultArray;
+        $customisedFilterArray['breed'] = [1];
 
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->assertSet('filtersStatus', true)
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $customisedFilterArray, 'sorts' => [], 'columns' => []])
             ->assertSee('Filters')
             ->call('enableReordering')
             ->assertSet('filtersStatus', false)

@@ -59,8 +59,8 @@ class FilterVisualsTest extends TestCase
     public function filter_pills_show_when_visible(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('table.filters.breed', [1])
             ->call('setFiltersVisibilityEnabled')
+            ->set('table.filters.breed', [1])
             ->assertSee('Applied Filters');
     }
 

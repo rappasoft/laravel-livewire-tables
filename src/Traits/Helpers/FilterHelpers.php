@@ -111,7 +111,7 @@ trait FilterHelpers
      */
     public function hasFilters(): bool
     {
-        return ($this->getFilters()->count() > 0);
+        return ($this->getFiltersCount() > 0);
     }
 
     /**
@@ -129,7 +129,12 @@ trait FilterHelpers
      */
     public function getFilters(): Collection
     {
-        return collect($this->filters());
+        if(! isset($this->filterCollection)) {
+            $this->filterCollection = collect($this->filters());
+        }
+
+        return $this->filterCollection;
+
     }
 
     /**
@@ -137,7 +142,12 @@ trait FilterHelpers
      */
     public function getFiltersCount(): int
     {
-        return $this->getFilters()->count();
+        if (! isset($this->filterCount)) {
+            $this->filterCount = $this->getFilters()->count();
+        }
+
+        return $this->filterCount;
+
     }
 
     /**
