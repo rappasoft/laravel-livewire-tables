@@ -69,8 +69,6 @@ abstract class DataTableComponent extends Component
             'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];
         
-        // Set the filter defaults based on the filter type
-        $this->setFilterDefaults();
     }
 
     /**
@@ -78,9 +76,19 @@ abstract class DataTableComponent extends Component
      */
     public function booted(): void
     {
+        // Call the configure() method
         $this->configure();
+
+        // Set the filter defaults based on the filter type
+        $this->setFilterDefaults();
+
+        // Sets the Theme - tailwind/bootstrap
         $this->setTheme();
+
+        //Sets up the Builder Instance
         $this->setBuilder($this->builder());
+
+        // Sets Columns
         $this->setColumns();
 
         // Make sure a primary key is set
