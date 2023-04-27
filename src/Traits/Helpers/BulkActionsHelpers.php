@@ -117,6 +117,15 @@ trait BulkActionsHelpers
     }
 
     /**
+     * @return bool
+     */
+    public function showBulkActionsDropdownAlpine(): bool
+    {
+        return ($this->bulkActionsAreEnabled() && $this->hasBulkActions());
+    }
+
+
+    /**
      * @param  array<mixed>  $selected
      *
      * @return array<mixed>
