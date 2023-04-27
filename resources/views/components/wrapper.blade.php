@@ -8,7 +8,7 @@
  <div x-data="{ 
             @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
             @if ($component->bulkActionsAreEnabled())
-            selectedItems: $wire.entangle('selected'),
+            selectedItems: $wire.entangle('selected').defer,
             visibleItems: {},
             selectAllOnPage() {
                 let tempSelectedItems = this.selectedItems;
