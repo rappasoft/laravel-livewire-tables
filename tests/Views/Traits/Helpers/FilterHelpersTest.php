@@ -310,4 +310,22 @@ class FilterHelpersTest extends TestCase
 
         $this->assertSame(3, $filter->getFilterSlidedownColspan());
     }
+
+    /** @test */
+    public function can_get_filter_default_value_component_level(): void
+    {
+        $filter = SelectFilter::make('Active')->options(['foo' => 'bar', 'lorem' => 'ipsum'])->setFilterDefaultValue(['lorem']);
+        $this->assertSame(['lorem'], $filter->getFilterDefaultValue());
+    }
+
+    /** @test */
+    public function can_get_filter_has_default_value_component_level(): void
+    {
+        $filter = SelectFilter::make('Active')->options(['foo' => 'bar', 'lorem' => 'ipsum']);
+        $this->assertFalse($filter->hasFilterDefaultValue());
+        $filter->setFilterDefaultValue(['foo']);
+        $this->assertTrue($filter->hasFilterDefaultValue());
+    }
+
+
 }
