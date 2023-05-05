@@ -389,15 +389,12 @@ trait FilterHelpers
     {
         $appliedFilters = $this->getAppliedFiltersWithValues();
         foreach ($this->getFilters() as $filter) {
-            if (!isset($appliedFilters[$filter->getKey()]))
-            {
+            if (! isset($appliedFilters[$filter->getKey()])) {
                 if ($filter->hasFilterDefaultValue()) {
                     $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
                 }
-            }
-            else
-            {
-                $this->setFilter($filter->getKey(), $appliedFilters[$filter->getKey()]);                
+            } else {
+                $this->setFilter($filter->getKey(), $appliedFilters[$filter->getKey()]);
             }
         }
     }
