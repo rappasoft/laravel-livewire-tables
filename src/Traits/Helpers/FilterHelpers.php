@@ -388,13 +388,17 @@ trait FilterHelpers
      */
     public function mountFilterHelpers()
     {
+        $appliedFilters = $this->getAppliedFiltersWithValues();
         foreach ($this->getFilters() as $filter) {
-            if ($filter->hasFilterDefaultValue()) {
-                $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
+            if (!isset($appliedFilters[$filter->getKey()]))
+            {
+                if ($filter->hasFilterDefaultValue()) {
+                    $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
+                }
             }
             else
             {
-                $this->resetFilter($filter);
+                $this->setFilter($filter->getKey(), $appliedFilters[$filter->getKey()]);                
             }
         }
     }
