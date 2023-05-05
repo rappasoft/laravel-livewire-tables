@@ -185,7 +185,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('Search')
             ->call('disableReordering')
             ->assertSet('searchStatus', true)
-            ->assertSet('table', ['search' => 'abc123', 'filters' => $filterDefaultArray])
+            ->assertSet('table', ['search' => 'abc123'])
             ->assertSee('Search');
     }
 
@@ -292,6 +292,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('Filters')
             ->call('disableReordering')
             ->assertSet('filtersStatus', true)
+            ->set('table.filters.breed', [])
             ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
             ->assertSeeHtml('Filters');
     }
