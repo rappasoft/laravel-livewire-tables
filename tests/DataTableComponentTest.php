@@ -56,8 +56,8 @@ class DataTableComponentTest extends TestCase
                 $this->basicTable->getDataTableFingerprint(),
             ]
         );
-        // Disable due to PHP 7.4
-        //$this->assertSame($this->basicTable->getDataTableFingerprint(), $this->defaultFingerprintingAlgo($this->basicTable::class));
+        // Changed due to PHP 7.4
+        $this->assertSame($this->basicTable->getDataTableFingerprint(), $this->defaultFingerprintingAlgo(PetsTable::class));
         
         
     }
