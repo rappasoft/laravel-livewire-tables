@@ -127,6 +127,7 @@ trait FilterConfiguration
     {
         //$this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
         $this->filterSlidedownRow = intval($filterSlidedownRow);
+
         return $this;
     }
 
