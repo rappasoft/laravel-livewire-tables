@@ -393,6 +393,10 @@ trait FilterHelpers
                 if ($filter->hasFilterDefaultValue()) {
                     $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
                 }
+                else
+                {
+                    $this->resetFilter($filter);
+                }
             } else {
                 $this->setFilter($filter->getKey(), $appliedFilters[$filter->getKey()]);
             }
