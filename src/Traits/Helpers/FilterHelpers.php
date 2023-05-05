@@ -382,7 +382,6 @@ trait FilterHelpers
         return $orderedFilters;
     }
 
-
     /**
      * Sets Filter Default Values
      */
