@@ -116,7 +116,9 @@ trait ComponentUtilities
     public function mountComponentUtilities()
     {
         // Sets the Theme - tailwind/bootstrap
-        if (is_null($this->theme)){ $this->setTheme(); }
+        if (is_null($this->theme)) {
+            $this->setTheme();
+        }
 
     }
 }
