@@ -34,7 +34,7 @@ If you don't want to apply at the filter level, you can apply the filter at the 
 ```php
 public function builder(): Builder
 {
-    return User::query();
+    return User::query()
          ->when($this->getAppliedFilterWithValue('active'), fn($query, $active) => $query->where('active', $active === 'yes'));
 }
 ```
