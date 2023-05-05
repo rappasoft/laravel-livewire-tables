@@ -111,4 +111,12 @@ trait ComponentUtilities
     {
         $this->restartReorderingIfNecessary();
     }
+
+    // Sets the Theme If Not Already Set
+    public function mountComponentUtilities()
+    {
+        // Sets the Theme - tailwind/bootstrap
+        if (is_null($this->theme)){ $this->setTheme(); }
+
+    }
 }

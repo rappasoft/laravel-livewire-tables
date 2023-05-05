@@ -7,6 +7,9 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 - General
   - Add capability for passing a custom model path to the MakeCommand
+  - Add setFilterDefaultValue() on a per-component basis 
+    - Moved Setting of Filter Defaults to Traits/Helpers/FilterHelpers - mountFilterHelpers
+  - Moved Setting of Theme to Traits/ComponentUtilities - mountComponentUtilities for efficiency
   
 - Filters
   - *Fix* - Changed the booting order to prevent repeated calling of filters() - https://github.com/rappasoft/laravel-livewire-tables/pull/1166 
@@ -14,6 +17,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Documentation
   - *Fix* - Minor wording tweak to documentation - https://github.com/rappasoft/laravel-livewire-tables/pull/1139 
+  - *Fix* - Fix to example in applying-filters
 
 ## [2.12.0] - 2023-04-08
 

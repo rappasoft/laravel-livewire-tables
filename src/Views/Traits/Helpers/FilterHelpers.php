@@ -311,4 +311,24 @@ trait FilterHelpers
     {
         return $this->filterCustomPillBlade;
     }
+
+    /**
+     * Gets the Default Value for this Filter via the Component
+     * 
+     * @return mixed
+     */
+    public function getFilterDefaultValue(): mixed
+    {
+        return $this->filterDefaultValue;
+    }
+
+    /**
+     * Determines if the Filter has a Default Value via the Component
+     * 
+     * @return bool
+     */
+    public function hasFilterDefaultValue(): bool
+    {
+        return !is_null($this->filterDefaultValue);
+    }
 }
