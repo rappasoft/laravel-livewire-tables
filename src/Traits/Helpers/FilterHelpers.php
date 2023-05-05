@@ -392,9 +392,7 @@ trait FilterHelpers
             if (! isset($appliedFilters[$filter->getKey()])) {
                 if ($filter->hasFilterDefaultValue()) {
                     $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
-                }
-                else
-                {
+                } else {
                     $this->resetFilter($filter);
                 }
             } else {
