@@ -315,9 +315,8 @@ trait FilterHelpers
     /**
      * Gets the Default Value for this Filter via the Component
      *
-     * @return mixed
      */
-    public function getFilterDefaultValue(): mixed
+    public function getFilterDefaultValue()
     {
         return $this->filterDefaultValue;
     }
