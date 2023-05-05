@@ -24,14 +24,13 @@ class DateFilter extends Filter
 
     /**
      * Gets the Default Value for this Filter via the Component
-     * 
+     *
      * @return string|null
      */
     public function getFilterDefaultValue(): ?string
     {
         return $this->filterDefaultValue ?? null;
     }
-
 
     public function render(DataTableComponent $component)
     {

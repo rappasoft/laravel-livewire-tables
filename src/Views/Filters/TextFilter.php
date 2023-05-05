@@ -23,7 +23,7 @@ class TextFilter extends Filter
 
     /**
      * Gets the Default Value for this Filter via the Component
-     * 
+     *
      * @return string|null
      */
     public function getFilterDefaultValue(): ?string

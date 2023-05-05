@@ -57,7 +57,7 @@ class MultiSelectFilter extends Filter
 
     /**
      * Gets the Default Value for this Filter via the Component
-     * 
+     *
      * @return array<mixed>
      */
     public function getFilterDefaultValue(): array
