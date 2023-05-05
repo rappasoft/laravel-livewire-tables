@@ -326,6 +326,4 @@ class FilterHelpersTest extends TestCase
         $filter->setFilterDefaultValue(['foo']);
         $this->assertTrue($filter->hasFilterDefaultValue());
     }
-
-
 }
