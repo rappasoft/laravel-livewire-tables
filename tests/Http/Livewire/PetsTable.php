@@ -52,7 +52,7 @@ class PetsTable extends DataTableComponent
                     fn (Builder $query, string $direction) => $query->orderBy('pets.id', $direction)
                 )
                 ->searchable(
-                    fn (Builder $query, $searchTerm) => $query->orWhere('breeds.name', $searchTerm)
+                    fn (Builder $query, $searchTerm) => $query->orWhere('breed.name', $searchTerm)
                 ),
 
             Column::make('Other')

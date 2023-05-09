@@ -66,6 +66,6 @@ class ColumnTest extends TestCase
 
         $column = $this->basicTable->getColumnBySelectName('breed.name');
 
-        $this->assertSame('breeds', $column->getTable());
+        $this->assertSame('breed', $column->getTable());
     }
 }
