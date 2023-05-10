@@ -7,9 +7,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Changed
 - General
   - Add capability for passing a custom model path to the MakeCommand
-  - Add setFilterDefaultValue() on a per-component basis 
-    - Moved Setting of Filter Defaults to Traits/Helpers/FilterHelpers - mountFilterHelpers
+  - Add setFilterDefaultValue() on a per-component basis
+  - Add getFilterDefaultValue() to each Filter Component (to maintain support for PHP7.4 - variable return types)
+  - Moved Setting of Filter Defaults to Traits/Helpers/FilterHelpers - mountFilterHelpers
   - Moved Setting of Theme to Traits/ComponentUtilities - mountComponentUtilities for efficiency
+  - Fix for TypeHint to allow continued support of PHP 7.4
   
 - Filters
   - *Fix* - Changed the booting order to prevent repeated calling of filters() - https://github.com/rappasoft/laravel-livewire-tables/pull/1166 
@@ -18,6 +20,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Documentation
   - *Fix* - Minor wording tweak to documentation - https://github.com/rappasoft/laravel-livewire-tables/pull/1139 
   - *Fix* - Fix to example in applying-filters
+
+- Tests
+  - Restore PHP 7.4 tests for L8 only (includes minor tweaks)
+  - Remove duplicate tests in ComponentHelpersTest
+  - Tweak to ReorderingVisualsTest
+  - Add TextFilter as a test in FilterHelpersTest
+
 
 ## [2.12.0] - 2023-04-08
 
