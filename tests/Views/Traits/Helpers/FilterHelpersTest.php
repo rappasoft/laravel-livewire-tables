@@ -7,6 +7,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 class FilterHelpersTest extends TestCase
 {
@@ -309,5 +310,37 @@ class FilterHelpersTest extends TestCase
         $filter->setFilterSlidedownColspan(3);
 
         $this->assertSame(3, $filter->getFilterSlidedownColspan());
+    }
+
+    /** @test */
+    public function can_get_filter_default_value_component_level_array(): void
+    {
+        $filter = MultiSelectFilter::make('Active')->options(['foo' => 'bar', 'lorem' => 'ipsum'])->setFilterDefaultValue(['lorem']);
+        $this->assertSame(['lorem'], $filter->getFilterDefaultValue());
+    }
+
+    /** @test */
+    public function can_get_filter_has_default_value_component_level_array(): void
+    {
+        $filter = MultiSelectFilter::make('Active')->options(['foo' => 'bar', 'lorem' => 'ipsum']);
+        $this->assertFalse($filter->hasFilterDefaultValue());
+        $filter->setFilterDefaultValue(['foo']);
+        $this->assertTrue($filter->hasFilterDefaultValue());
+    }
+
+    /** @test */
+    public function can_get_filter_default_value_component_level_text(): void
+    {
+        $filter = TextFilter::make('Active')->setFilterDefaultValue('lorem');
+        $this->assertSame('lorem', $filter->getFilterDefaultValue());
+    }
+
+    /** @test */
+    public function can_get_filter_has_default_value_component_level_text(): void
+    {
+        $filter = TextFilter::make('Active');
+        $this->assertFalse($filter->hasFilterDefaultValue());
+        $filter->setFilterDefaultValue('foo');
+        $this->assertTrue($filter->hasFilterDefaultValue());
     }
 }

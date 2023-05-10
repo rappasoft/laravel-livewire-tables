@@ -80,10 +80,12 @@ abstract class DataTableComponent extends Component
         $this->configure();
 
         // Set the filter defaults based on the filter type
-        $this->setFilterDefaults();
+        // Moved to Traits/Helpers/FilterHelpers - mountFilterHelpers
+        //$this->setFilterDefaults();
 
         // Sets the Theme - tailwind/bootstrap
-        $this->setTheme();
+        // Moved to Traits/ComponentUtilities - mountComponentUtilities
+        //$this->setTheme();
 
         //Sets up the Builder Instance
         $this->setBuilder($this->builder());

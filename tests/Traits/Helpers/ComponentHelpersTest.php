@@ -227,11 +227,11 @@ class ComponentHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->hideConfigurableAreasWhenReorderingIsDisabled());
     }
 
-    /** @test */
-    public function can_get_dataTable_fingerprint(): void
-    {
-        $this->assertSame($this->defaultFingerPrintingAlgo($this->basicTable::class), $this->basicTable->getDataTableFingerprint());
-    }
+    // Exists in DataTableComponentTest
+   // public function can_get_dataTable_fingerprint(): void
+    //{
+   //     $this->assertSame($this->defaultFingerPrintingAlgo($this->basicTable::class), $this->basicTable->getDataTableFingerprint());
+   // }
 
     /** @test */
     public function can_get_query_string_alias_and_it_will_be_the_same_as_table_name_by_default(): void

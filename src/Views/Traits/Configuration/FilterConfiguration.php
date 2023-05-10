@@ -155,4 +155,18 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    /**
+     * Sets a Default Value via the Filter Component
+     *
+     * @param mixed $value
+     *
+     * @return self
+     */
+    public function setFilterDefaultValue($value): self
+    {
+        $this->filterDefaultValue = $value;
+
+        return $this;
+    }
 }

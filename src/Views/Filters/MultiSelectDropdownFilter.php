@@ -68,6 +68,16 @@ class MultiSelectDropdownFilter extends Filter
         return [];
     }
 
+    /**
+     * Gets the Default Value for this Filter via the Component
+     *
+     * @return array<mixed>
+     */
+    public function getFilterDefaultValue(): array
+    {
+        return $this->filterDefaultValue ?? [];
+    }
+
     public function getFilterPillValue($value): ?string
     {
         $values = [];

@@ -381,4 +381,23 @@ trait FilterHelpers
 
         return $orderedFilters;
     }
+
+    /**
+     * Sets Filter Default Values
+     */
+    public function mountFilterHelpers()
+    {
+        $appliedFilters = $this->getAppliedFiltersWithValues();
+        foreach ($this->getFilters() as $filter) {
+            if (! isset($appliedFilters[$filter->getKey()])) {
+                if ($filter->hasFilterDefaultValue()) {
+                    $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
+                } else {
+                    $this->resetFilter($filter);
+                }
+            } else {
+                $this->setFilter($filter->getKey(), $appliedFilters[$filter->getKey()]);
+            }
+        }
+    }
 }
