@@ -6,20 +6,22 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Changed
 - General
-  - Add capability for passing a custom model path to the MakeCommand
-  - Add setFilterDefaultValue() on a per-component basis
-  - Add getFilterDefaultValue() to each Filter Component (to maintain support for PHP7.4 - variable return types)
-  - Moved Setting of Filter Defaults to Traits/Helpers/FilterHelpers - mountFilterHelpers
-  - Moved Setting of Theme to Traits/ComponentUtilities - mountComponentUtilities for efficiency
-  - Fix for TypeHint to allow continued support of PHP 7.4
+  - Migrate to AlpineJS for Bulk Actions  - https://github.com/rappasoft/laravel-livewire-tables/pull/1196
+  - Add capability for passing a custom model path to the MakeCommand  - https://github.com/rappasoft/laravel-livewire-tables/pull/1168
+  - Add setFilterDefaultValue() on a per-component basis  - https://github.com/rappasoft/laravel-livewire-tables/pull/1191
+  - Add getFilterDefaultValue() to each Filter Component (to maintain support for PHP7.4 - variable return types)  - https://github.com/rappasoft/laravel-livewire-tables/pull/1191
+  - Moved Setting of Filter Defaults to Traits/Helpers/FilterHelpers - mountFilterHelpers  - https://github.com/rappasoft/laravel-livewire-tables/pull/1191
+  - Moved Setting of Theme to Traits/ComponentUtilities - mountComponentUtilities for efficiency  - https://github.com/rappasoft/laravel-livewire-tables/pull/1191
   
 - Filters
   - *Fix* - Changed the booting order to prevent repeated calling of filters() - https://github.com/rappasoft/laravel-livewire-tables/pull/1166 
   - *Fix* - fixed multiSelectDropdownFilter in menus - https://github.com/rappasoft/laravel-livewire-tables/pull/1160 
+  - *Fix* - TypeHint to allow continued support of PHP 7.4 - https://github.com/rappasoft/laravel-livewire-tables/pull/1185
 
 - Documentation
   - *Fix* - Minor wording tweak to documentation - https://github.com/rappasoft/laravel-livewire-tables/pull/1139 
-  - *Fix* - Fix to example in applying-filters
+  - *Fix* - Fix to example in applying-filters - https://github.com/rappasoft/laravel-livewire-tables/pull/1171
+  - Improved template for New Issue/Bug - https://github.com/rappasoft/laravel-livewire-tables/pull/1194 
 
 - Tests
   - Restore PHP 7.4 tests for L8 only (includes minor tweaks)

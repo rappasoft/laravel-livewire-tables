@@ -187,4 +187,12 @@ trait BulkActionsHelpers
         $this->setSelectAllEnabled();
         $this->setSelected((clone $this->baseQuery())->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray());
     }
+
+    /**
+     * @return bool
+     */
+    public function showBulkActionsDropdownAlpine(): bool
+    {
+        return ($this->bulkActionsAreEnabled() && $this->hasBulkActions());
+    }
 }
