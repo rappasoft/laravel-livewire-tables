@@ -8,7 +8,7 @@
 1. [ ] Does your submission pass tests and did you add any new tests needed for your feature?
 2. [ ] Did you update all templates (if applicable)?
 3. [ ] Did you add the [relevant documentation](https://github.com/rappasoft/laravel-livewire-tables-docs) (if applicable)?
-4. Did you test locally to make sure your feature works as intended?
+4. [ ] Did you test locally to make sure your feature works as intended?
 
 ### Changes to Core Features:
 
