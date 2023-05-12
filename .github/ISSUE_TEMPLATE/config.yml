@@ -6,6 +6,3 @@ contact_links:
     - name: Request a feature
       url: https://github.com/rappasoft/laravel-livewire-tables/discussions/new?category=ideas
       about: Share ideas for new features
-    - name: Report a bug
-      url: https://github.com/rappasoft/laravel-livewire-tables/issues/new
-      about: Report a reproducable bug
