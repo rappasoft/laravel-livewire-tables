@@ -6,11 +6,13 @@
 @endphp
 
 @if ($component->hasConfigurableAreaFor('before-pagination'))
-    @include($component->getConfigurableAreaFor('before-pagination'), $component->getParametersForConfigurableArea('before-pagination'))
+    @include(
+        $component->getConfigurableAreaFor('before-pagination'),
+        $component->getParametersForConfigurableArea('before-pagination'))
 @endif
 
 @if ($theme === 'tailwind')
-    <div>
+    <div x-init="@if ($component->bulkActionsAreEnabled()) this.visibleItems = @js($rows->pluck($component->getPrimaryKey())->toArray()); @endif">
         @if ($component->paginationVisibilityIsEnabled())
             <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">
                 <div>
@@ -47,7 +49,7 @@
         @endif
     </div>
 @elseif ($theme === 'bootstrap-4')
-    <div>
+    <div x-init="@if ($component->bulkActionsAreEnabled()) this.visibleItems = @js($rows->pluck($component->getPrimaryKey())->toArray()); @endif">
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">
@@ -90,7 +92,7 @@
         @endif
     </div>
 @elseif ($theme === 'bootstrap-5')
-    <div>
+    <div x-init="@if ($component->bulkActionsAreEnabled()) this.visibleItems = @js($rows->pluck($component->getPrimaryKey())->toArray()); @endif">
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">
@@ -135,5 +137,7 @@
 @endif
 
 @if ($component->hasConfigurableAreaFor('after-pagination'))
-    @include($component->getConfigurableAreaFor('after-pagination'), $component->getParametersForConfigurableArea('after-pagination'))
+    @include(
+        $component->getConfigurableAreaFor('after-pagination'),
+        $component->getParametersForConfigurableArea('after-pagination'))
 @endif
