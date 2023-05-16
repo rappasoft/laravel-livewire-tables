@@ -14,6 +14,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
   - Moved Setting of Theme to Traits/ComponentUtilities - mountComponentUtilities for efficiency  - https://github.com/rappasoft/laravel-livewire-tables/pull/1191
   
 - Filters
+  - *Fix* - Hide the filter label in the header/footer when using as a secondary header/footer
   - *Fix* - Changed the booting order to prevent repeated calling of filters() - https://github.com/rappasoft/laravel-livewire-tables/pull/1166 
   - *Fix* - fixed multiSelectDropdownFilter in menus - https://github.com/rappasoft/laravel-livewire-tables/pull/1160 
   - *Fix* - TypeHint to allow continued support of PHP 7.4 - https://github.com/rappasoft/laravel-livewire-tables/pull/1185
