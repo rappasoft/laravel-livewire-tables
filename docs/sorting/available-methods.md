@@ -124,7 +124,7 @@ Set the default sorting columns and directions.
 ```php
 public function configure(): void
 {
-    $this->setDefaultSort(['name1', 'name2', ..., 'nameN'], ['desc', 'asc', ...', 'asc']);
+    $this->setDefaultSort(['name1', 'name2', ..., 'nameN'], ['desc', 'asc', ..., 'asc']);
 }
 ```
 
