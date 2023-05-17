@@ -17,6 +17,8 @@ trait WithSorting
     public bool $sortingPillsStatus = true;
     public ?string $defaultSortColumn = null;
     public string $defaultSortDirection = 'asc';
+    public ?array $defaultSortColumns = null;
+    public array $defaultSortDirections = ['asc'];
     public string $defaultSortingLabelAsc = 'A-Z';
     public string $defaultSortingLabelDesc = 'Z-A';
 
@@ -57,6 +59,16 @@ trait WithSorting
     {
         if ($this->hasDefaultSort() && ! $this->hasSorts()) {
             $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultSortColumn(), $this->getDefaultSortDirection()));
+
+            return $this->getBuilder();
+        }
+        
+        if ($this->hasDefaultSortColumns() && ! $this->hasSorts()) {
+            $sortColumns    = $this->getDefaultSortColumns();
+            $sortDirections = $this->getDefaultSortDirections();
+            foreach ($sortColumns as $index => $sortColumn) {
+                $this->setBuilder($this->getBuilder()->orderBy($sortColumn, $sortDirections[$index]));
+            }
 
             return $this->getBuilder();
         }
