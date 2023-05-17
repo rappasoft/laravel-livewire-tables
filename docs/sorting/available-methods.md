@@ -115,6 +115,34 @@ public function configure(): void
 
 ---
 
+There is **no default sort columns by default**, but if you wanted to add some columns:
+
+## setDefaultSortColumns
+
+Set the default sorting columns and directions.
+
+```php
+public function configure(): void
+{
+    $this->setDefaultSort(['name1', 'name2', ..., 'nameN'], ['desc', 'asc', ...', 'asc']);
+}
+```
+
+If you had the need to programmatically remove the default sort columns:
+
+## removeDefaultSortColumns
+
+Remove the default sort columns.
+
+```php
+public function configure(): void
+{
+    $this->removeDefaultSortColumns();
+}
+```
+
+---
+
 Sorting pills are **enabled by default**, but if you ever needed to toggle it you can use the following methods:
 
 ## setSortingPillsStatus
