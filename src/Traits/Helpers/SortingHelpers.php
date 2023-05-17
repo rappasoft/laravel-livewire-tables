@@ -188,6 +188,30 @@ trait SortingHelpers
     {
         return $this->defaultSortDirection;
     }
+    
+    /**
+     * @return bool
+     */
+    public function hasDefaultSortColumns(): bool
+    {
+        return $this->getDefaultSortColumns() !== null;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getDefaultSortColumns(): ?array
+    {
+        return $this->defaultSortColumns;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDefaultSortDirections(): array
+    {
+        return $this->defaultSortDirections;
+    }
 
     /**
      * @return bool
