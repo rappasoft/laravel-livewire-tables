@@ -92,6 +92,35 @@ trait SortingConfiguration
 
         return $this;
     }
+    
+    /**
+     * @param  array  $fields
+     * @param  array  $directions
+     *
+     * @return self
+     */
+    public function setDefaultSortColumns(array $fields, array $directions = ['asc']): self
+    {
+        $this->defaultSortColumns = $fields;
+        if (count($fields) === count($directions)) {
+            $this->defaultSortDirections = $directions;
+        } else {
+            $this->defaultSortDirections = array_fill(0, count($fields), 'asc');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return self
+     */
+    public function removeDefaultSortColumns(): self
+    {
+        $this->defaultSortColumns = null;
+        $this->defaultSortDirections = ['asc'];
+
+        return $this;
+    }
 
     /**
      * @param  bool  $status
