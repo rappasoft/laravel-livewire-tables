@@ -119,12 +119,12 @@ There is **no default sort columns by default**, but if you wanted to add some c
 
 ## setDefaultSortColumns
 
-Set the default sorting columns and directions.
+Set the default sorting columns and directions. If both ```setDefaultSort``` and ```setDefaultSortColumns``` are set, only ```setDefaultSort``` is considered
 
 ```php
 public function configure(): void
 {
-    $this->setDefaultSort(['name1', 'name2', ..., 'nameN'], ['desc', 'asc', ..., 'asc']);
+    $this->setDefaultSortColumns(['name1', 'name2', ..., 'nameN'], ['desc', 'asc', ..., 'asc']);
 }
 ```
 
