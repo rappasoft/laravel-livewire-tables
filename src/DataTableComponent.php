@@ -68,7 +68,7 @@ abstract class DataTableComponent extends Component
             'filters' => $this->{$this->tableName}['filters'] ?? [],
             'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];
-        
+
         // Set the filter defaults based on the filter type
         $this->setFilterDefaults();
     }
@@ -84,7 +84,7 @@ abstract class DataTableComponent extends Component
         $this->setColumns();
 
         // Make sure a primary key is set
-        if (! $this->hasPrimaryKey()) {
+        if (!$this->hasPrimaryKey()) {
             throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
         }
     }
@@ -122,12 +122,13 @@ abstract class DataTableComponent extends Component
     {
         return 'livewire-tables::stubs.custom';
     }
-    
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function render()
     {
+        $this->appendRender();
         $this->setupColumnSelect();
         $this->setupPagination();
         $this->setupSecondaryHeader();
@@ -140,5 +141,10 @@ abstract class DataTableComponent extends Component
                 'rows' => $this->getRows(),
                 'customView' => $this->customView(),
             ]);
+    }
+
+
+    public function appendRender(): void
+    {
     }
 }
