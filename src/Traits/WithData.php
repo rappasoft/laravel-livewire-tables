@@ -50,6 +50,7 @@ trait WithData
             if ($this->isPaginationMethod('standard')) {
                 $paginatedResults = $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
                 $this->paginationTotalItemCount = $paginatedResults->total() ?? 0;
+
                 return $paginatedResults;
             }
 
