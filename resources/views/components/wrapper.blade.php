@@ -11,6 +11,7 @@
         selectedItems: $wire.entangle('selected').defer,
         selectedCount: 0,
         totalItems: 0,
+        totalItemCount: $wire.entangle('paginationTotalItemCount'),
         visibleItems: {},
         allItemsSelected: false,
         toggleSelectAll() {
@@ -34,10 +35,6 @@
                 tempSelectedItems.push(value.toString());
             }
             this.selectedItems = [...new Set(tempSelectedItems)];
-        },
-        updateTotalItemCount(itemCount) {
-            this.totalItems = itemCount;
-            this.allItemsSelected = (itemCount == this.selectedCount);
         },
 }"
     x-init="selectedCount = selectedItems.length; shouldShowBulkActionSelect = (selectedCount > 0);"

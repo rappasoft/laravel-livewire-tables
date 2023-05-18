@@ -22,6 +22,7 @@ trait WithPagination
     public string $paginationMethod = 'standard';
     public array $paginationCurrentItems = [];
     public int $paginationCurrentCount = 0;
+    public ?int $paginationTotalItemCount = null;
 
     // TODO: Test
     public function setupPagination(): void

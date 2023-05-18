@@ -20,6 +20,10 @@ trait WithData
         $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
         $this->paginationCurrentCount = $executedQuery->count() ?? 0;
 
+        if (!$this->isPaginationMethod('simple')) {
+            $this->paginationTotalItemCount = $executedQuery->total();
+        }
+
         return $executedQuery;
     }
 

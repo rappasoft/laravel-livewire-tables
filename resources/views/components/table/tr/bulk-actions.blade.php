@@ -17,7 +17,6 @@
             class="bg-indigo-50 dark:bg-gray-900 dark:text-white" 
             x-cloak
             x-show="shouldShowBulkActionSelect"
-            x-effect="updateTotalItemCount({{ $rows->total() ?? 'unknown' }})"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
                 <template x-if="allItemsSelected">
@@ -82,7 +81,6 @@
             wire:key="bulk-select-message-{{ $table }}"
             x-cloak
             x-show="shouldShowBulkActionSelect"
-            x-effect="updateTotalItemCount({{ $rows->total() ?? 'unknown' }})"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
                 <template x-if="allItemsSelected">
