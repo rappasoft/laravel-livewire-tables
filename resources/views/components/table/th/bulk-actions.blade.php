@@ -8,7 +8,7 @@
     <x-livewire-tables::table.th.plain>
         <div
             x-data="{ bulkActionHeaderChecked: false}"  
-            x-init="$watch('selectedItems', value => bulkActionHeaderChecked = (value.length === totalItemCount))"
+            x-init="$watch('selectedItems', value => bulkActionHeaderChecked = (value.length === paginationTotalItemCount))"
             @class([
                 'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',
                 'form-check' => $theme === 'bootstrap-5',

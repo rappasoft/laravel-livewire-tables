@@ -18,11 +18,11 @@
             x-show="selectedItems.length > 0"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
-                <template x-if="selectedItems.length == totalItemCount">
+                <template x-if="selectedItems.length == paginationTotalItemCount">
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            @if(!$simplePagination) <strong><span x-text="totalItemCount"></span></strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                             @lang('rows').
                         </span>
 
@@ -36,13 +36,13 @@
                         </button>
                     </div>
                 </template>
-                <template x-if="selectedItems.length !== totalItemCount">
+                <template x-if="selectedItems.length !== paginationTotalItemCount">
                     <div wire:key="some-selected-{{ $table }}">
                         <span>
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if(!$simplePagination) <strong><span x-text="totalItemCount"></span></strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                         </span>
 
                         <button
@@ -82,11 +82,11 @@
             x-show="selectedItems.length > 0"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
-                <template x-if="selectedItems.length == totalItemCount">
+                <template x-if="selectedItems.length == paginationTotalItemCount">
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            @if(!$simplePagination) <strong><span x-text="totalItemCount"></span></strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                             @lang('rows').
                         </span>
 
@@ -100,13 +100,13 @@
                         </button>
                     </div>
                 </template>
-                <template x-if="selectedItems.length !== totalItemCount">
+                <template x-if="selectedItems.length !== paginationTotalItemCount">
                     <div wire:key="some-selected-{{ $table }}">
                         <span>
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if(!$simplePagination) <strong><span x-text="totalItemCount"></span></strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                         </span>
 
                         <button
