@@ -13,6 +13,13 @@
         totalItems: 0,
         visibleItems: {},
         allItemsSelected: false,
+        toggleSelectAll() {
+            if (this.totalItems == this.selectedCount) {
+                this.clearSelected()
+            } else {
+                this.setAllSelected()
+            }
+        },
         setAllSelected() {
             allItemsSelected = true;
             $wire.setAllSelected();
