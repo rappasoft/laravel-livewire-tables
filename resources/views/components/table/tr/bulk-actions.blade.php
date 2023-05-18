@@ -42,7 +42,7 @@
                     <div wire:key="some-selected-{{ $table }}">
                         <span>
                             @lang('You have selected')
-                            <strong><span x-text="selectedCount"></span></strong>
+                            <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
                             @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                         </span>
@@ -107,7 +107,7 @@
                     <div wire:key="some-selected-{{ $table }}">
                         <span>
                             @lang('You have selected')
-                            <strong><span x-text="selectedCount"></span></strong>
+                            <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
                             @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                         </span>
