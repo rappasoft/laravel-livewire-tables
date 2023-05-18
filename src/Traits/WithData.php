@@ -20,9 +20,7 @@ trait WithData
         $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
         $this->paginationCurrentCount = $executedQuery->count() ?? 0;
 
-        if (! $this->isPaginationMethod('simple')) {
-            $this->paginationTotalItemCount = number_format($executedQuery->total());
-        }
+
 
         return $executedQuery;
     }
@@ -50,7 +48,9 @@ trait WithData
     {
         if ($this->paginationIsEnabled()) {
             if ($this->isPaginationMethod('standard')) {
-                return $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                $paginatedResults = $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                $this->paginationTotalItemCount = $paginatedResults->total() ?? 0;
+                return $paginatedResults;
             }
 
             if ($this->isPaginationMethod('simple')) {
