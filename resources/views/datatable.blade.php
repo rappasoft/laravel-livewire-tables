@@ -12,7 +12,7 @@
     <x-livewire-tables::table>
         <x-slot name="thead">
             <x-livewire-tables::table.th.reorder />
-            <x-livewire-tables::table.th.bulk-actions />
+            <x-livewire-tables::table.th.bulk-actions :rows="$rows" />
             <x-livewire-tables::table.th.row-contents />
 
             @foreach($columns as $index => $column)
