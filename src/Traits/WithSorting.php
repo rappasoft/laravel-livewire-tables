@@ -77,6 +77,7 @@ trait WithSorting
                         continue;
                     }
                 }
+
                 continue;
             }
 
