@@ -9,7 +9,7 @@
     @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
     paginationCurrentCount: $wire.entangle('paginationCurrentCount'),
     paginationTotalItemCount: $wire.entangle('paginationTotalItemCount'),
-    paginationCurrentItems: $wire.entangle('paginationCurrentItems'),  
+    paginationCurrentItems: $wire.entangle('paginationCurrentItems'),
     @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
     selectedItems: $wire.entangle('selected').defer,
     @else
@@ -17,9 +17,9 @@
     @endif
     toggleSelectAll() {
         if (this.paginationTotalItemCount == this.selectedItems.length) {
-            this.clearSelected()
+            this.clearSelected();
         } else {
-            this.setAllSelected()
+            this.setAllSelected();
         }
     },
     setAllSelected() {
@@ -30,7 +30,7 @@
     },
     selectAllOnPage() {
         let tempSelectedItems = this.selectedItems;
-        const iterator = paginationCurrentItems.values();
+        const iterator = this.paginationCurrentItems.values();
         for (const value of iterator) {
             tempSelectedItems.push(value.toString());
         }
