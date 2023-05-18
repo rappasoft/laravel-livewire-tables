@@ -12,6 +12,12 @@
         selectedCount: 0,
         visibleItems: {},
         allItemsSelected: false,
+        setAllSelected() {
+            $wire.setAllSelected();
+        },
+        clearSelected() {
+            $wire.clearSelected();
+        },
         selectAllOnPage() {
             let tempSelectedItems = this.selectedItems;
             const iterator = visibleItems.values();
