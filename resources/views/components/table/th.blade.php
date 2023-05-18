@@ -64,12 +64,12 @@
             ->class(['d-none d-md-table-cell' => $column->shouldCollapseOnTablet()])
             ->except('default')
     }}>
-        @unless ($component->sortingIsEnabled() && $column->isSortable())
+        @unless ($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
             {{ $column->getTitle() }}
         @else
             <div 
                 class="d-flex align-items-center"
-                wire:click="sortBy('{{ $column->getColumnSelectName() }}')"
+                wire:click="sortBy('{{ ($column->isSortable() ? $column->getColumnSelectName() : $column->getSlug()) }}')"
                 style="cursor:pointer;"
             >
                 <span>{{ $column->getTitle() }}</span>
