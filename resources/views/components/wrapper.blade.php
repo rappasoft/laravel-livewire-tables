@@ -8,11 +8,20 @@
 <div x-data="{
     shouldShowBulkActionSelect: false,
     @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
-    @if ($component->bulkActionsAreEnabled()) selectedItems: $wire.entangle('selected').defer,
+        selectedItems: $wire.entangle('selected').defer,
         selectedCount: 0,
+        totalItems: 0,
         visibleItems: {},
         allItemsSelected: false,
+        toggleSelectAll() {
+            if (this.totalItems == this.selectedCount) {
+                this.clearSelected()
+            } else {
+                this.setAllSelected()
+            }
+        },
         setAllSelected() {
+            allItemsSelected = true;
             $wire.setAllSelected();
         },
         clearSelected() {
@@ -25,9 +34,14 @@
                 tempSelectedItems.push(value.toString());
             }
             this.selectedItems = [...new Set(tempSelectedItems)];
-        }, @endif
+        },
+        updateTotalItemCount(itemCount) {
+            this.totalItems = itemCount;
+            this.allItemsSelected = (itemCount == this.selectedCount);
+        },
 }"
-    x-effect="shouldShowBulkActionSelect = (selectedItems.length > 0); selectedCount = selectedItems.length;">
+    x-init="selectedCount = selectedItems.length; shouldShowBulkActionSelect = (selectedCount > 0);"
+    x-effect="selectedCount = selectedItems.length; shouldShowBulkActionSelect = (selectedItems.length > 0);">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>
