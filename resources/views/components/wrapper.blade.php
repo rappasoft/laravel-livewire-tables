@@ -12,7 +12,7 @@
     totalItemCount: $wire.entangle('paginationTotalItemCount'),
     @else
     selectedItems: {},
-    totalItemCount: 0,
+    totalItemCount: -1,
     @endif
     visibleItems: {},       
     toggleSelectAll() {
@@ -40,6 +40,7 @@
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>
+        
         @include('livewire-tables::includes.debug')
         @include('livewire-tables::includes.offline')
 
