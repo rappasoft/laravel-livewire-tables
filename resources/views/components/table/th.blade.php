@@ -17,11 +17,11 @@
             ->class(['hidden md:table-cell' => $column->shouldCollapseOnTablet()])
             ->except('default')
     }}>
-        @unless ($component->sortingIsEnabled() && $column->isSortable())
+        @unless ($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
             {{ $column->getTitle() }}
         @else
             <button
-                wire:click="sortBy('{{ $column->getColumnSelectName() }}')"
+                wire:click="sortBy('{{ ($column->isSortable() ? $column->getColumnSelectName() : $column->getSlug()) }}')"
                 {{ 
                     $attributes->merge($customSortButtonAttributes)
                         ->class(['flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])

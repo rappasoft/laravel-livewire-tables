@@ -3,6 +3,8 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
+- Fixes
+  - Make label-only column sortable
 
 ## [2.13.0] - 2023-05-17
 
