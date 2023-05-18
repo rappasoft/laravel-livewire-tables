@@ -7,8 +7,13 @@
 
 <div x-data="{
     @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
+    @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
     selectedItems: $wire.entangle('selected').defer,
     totalItemCount: $wire.entangle('paginationTotalItemCount'),
+    @else
+    selectedItems: {},
+    totalItemCount: 0,
+    @endif
     visibleItems: {},       
     toggleSelectAll() {
         if (this.totalItemCount == this.selectedItems.length) {
