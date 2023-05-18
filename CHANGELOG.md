@@ -4,6 +4,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.13.0] - 2023-05-17
+
 ### Changed
 - General
   - Migrate to AlpineJS for Bulk Actions  - https://github.com/rappasoft/laravel-livewire-tables/pull/1196
@@ -30,6 +32,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
   - Tweak to ReorderingVisualsTest
   - Add TextFilter as a test in FilterHelpersTest
 
+- Localization
+  - Added Danish Localization - https://github.com/rappasoft/laravel-livewire-tables/pull/1206
 
 ## [2.12.0] - 2023-04-08
 
@@ -796,7 +800,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.12.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.13.0...development
+[2.13.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.12.0...v2.13.0
 [2.12.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.11.0...v2.12.0
 [2.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.10.0...v2.11.0
 [2.10.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.9.0...v2.10.0
