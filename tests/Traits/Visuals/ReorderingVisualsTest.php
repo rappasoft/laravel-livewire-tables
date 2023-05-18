@@ -224,7 +224,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('bulkActionsStatus', true)
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml('x-model="bulkActionHeaderChecked"')
+            ->assertSeeHtml("selectedItems.length == paginationTotalItemCount")
             ->call('enableReordering')
             ->assertSet('bulkActionsStatus', false)
             ->assertDontSee('Select All');
