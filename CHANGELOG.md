@@ -4,6 +4,13 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Fixes
+- Bulk Actions (AlpineJS)
+  - Moving Table Head Checkbox to AlpineJS
+  - Using AlpineJS for calculating if all items have been selected
+  - Correcting missing x-cloak
+
+
 ## [2.13.0] - 2023-05-17
 
 ### Changed
