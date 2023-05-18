@@ -111,7 +111,7 @@ trait FilterHelpers
      */
     public function hasFilters(): bool
     {
-        return ($this->getFilters()->count() > 0);
+        return ($this->getFiltersCount() > 0);
     }
 
     /**
@@ -129,7 +129,12 @@ trait FilterHelpers
      */
     public function getFilters(): Collection
     {
-        return collect($this->filters());
+        if(! isset($this->filterCollection)) {
+            $this->filterCollection = collect($this->filters());
+        }
+
+        return $this->filterCollection;
+
     }
 
     /**
@@ -137,7 +142,12 @@ trait FilterHelpers
      */
     public function getFiltersCount(): int
     {
-        return $this->getFilters()->count();
+        if (! isset($this->filterCount)) {
+            $this->filterCount = $this->getFilters()->count();
+        }
+
+        return $this->filterCount;
+
     }
 
     /**
@@ -370,5 +380,24 @@ trait FilterHelpers
         ksort($orderedFilters);
 
         return $orderedFilters;
+    }
+
+    /**
+     * Sets Filter Default Values
+     */
+    public function mountFilterHelpers()
+    {
+        $appliedFilters = $this->getAppliedFiltersWithValues();
+        foreach ($this->getFilters() as $filter) {
+            if (! isset($appliedFilters[$filter->getKey()])) {
+                if ($filter->hasFilterDefaultValue()) {
+                    $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
+                } else {
+                    $this->resetFilter($filter);
+                }
+            } else {
+                $this->setFilter($filter->getKey(), $appliedFilters[$filter->getKey()]);
+            }
+        }
     }
 }

@@ -1,0 +1,91 @@
+name: Bug Report
+description: Report an Issue or Bug with the Package
+title: "[Bug]: "
+labels: ["bug"]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              We're sorry to hear you have a problem. Can you help us solve it by providing the following details, please complete as much of the form as possible!
+    - type: textarea
+      id: what-happened
+      attributes:
+          label: What happened?
+          description: What did you expect to happen?
+          placeholder: I cannot currently do X thing, I get Y error message
+      validations:
+          required: true
+    - type: textarea
+      id: how-to-reproduce
+      attributes:
+          label: How to reproduce the bug
+          description: How did this occur, advise the set of reliable steps if possible.
+          placeholder: When I do X I see Y.
+      validations:
+          required: false
+    - type: input
+      id: package-version
+      attributes:
+          label: Package Version
+          description: What version of our Package are you running? Please be as specific as possible
+          placeholder: 2.12.0
+      validations:
+          required: false
+    - type: dropdown
+      id: php-version
+      attributes:
+          label: PHP Version
+          description: What version of PHP are you running? Please be as specific as possible
+          multiple: false
+          options: 
+            - < 7.4
+            - 7.4.x
+            - 8.0.x
+            - 8.1.x
+            - 8.2.x
+            - 8.3.x
+      validations:
+          required: false
+    - type: input
+      id: laravel-version
+      attributes:
+        label: Laravel Version
+        description: What version of Laravel are you running? Please be as specific as possible
+        placeholder: 10.0.0
+      validations:
+        required: false
+    - type: input
+      id: alpine-version
+      attributes:
+        label: Alpine Version
+        description: What version of AlpineJS are you running? Please be as specific as possible
+        placeholder: 3.1.12
+      validations:
+        required: false
+    - type: dropdown
+      id: theme
+      attributes:
+          label: Theme
+          description: Which theme are you using?
+          multiple: false
+          options: 
+            - Tailwind 2.x
+            - Tailwind 3.x
+            - Bootstrap 4.x
+            - Bootstrap 5.x
+      validations:
+          required: false
+    - type: textarea
+      id: notes
+      attributes:
+          label: Notes
+          description: Use this field to provide any other notes that you feel might be relevant to the issue.
+      validations:
+          required: false
+    - type: textarea
+      id: error-message
+      attributes:
+          label: Error Message
+          description: Use this field to provide any error messages that you receive
+      validations:
+          required: false

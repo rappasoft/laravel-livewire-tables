@@ -311,4 +311,14 @@ trait FilterHelpers
     {
         return $this->filterCustomPillBlade;
     }
+
+    /**
+     * Determines if the Filter has a Default Value via the Component
+     *
+     * @return bool
+     */
+    public function hasFilterDefaultValue(): bool
+    {
+        return ! is_null($this->filterDefaultValue);
+    }
 }

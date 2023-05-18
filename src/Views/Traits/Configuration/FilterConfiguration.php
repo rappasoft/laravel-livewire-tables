@@ -119,26 +119,28 @@ trait FilterConfiguration
     }
     
     /**
-     * @param string|int $filterSlidedownRow
+     * @param string $filterSlidedownRow
      *
      * @return self
      */
-    public function setFilterSlidedownRow(string|int $filterSlidedownRow): self
+    public function setFilterSlidedownRow(string $filterSlidedownRow): self
     {
-        $this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
+        //$this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
+        $this->filterSlidedownRow = intval($filterSlidedownRow);
 
         return $this;
     }
 
     /**
-     * @param string|int $filterSlidedownColspan
+     * @param string $filterSlidedownColspan
      *
      * @return self
      */
-    public function setFilterSlidedownColspan(string|int $filterSlidedownColspan): self
+    public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
     {
-        $this->filterSlidedownColspan = (is_int($filterSlidedownColspan) ? $filterSlidedownColspan : intval($filterSlidedownColspan));
-        
+        //$this->filterSlidedownColspan = (is_int($filterSlidedownColspan) ? $filterSlidedownColspan : intval($filterSlidedownColspan));
+        $this->filterSlidedownColspan = intval($filterSlidedownColspan);
+
         return $this;
     }
     
@@ -150,6 +152,20 @@ trait FilterConfiguration
     public function setFilterPillBlade(string $blade): self
     {
         $this->filterCustomPillBlade = $blade;
+
+        return $this;
+    }
+
+    /**
+     * Sets a Default Value via the Filter Component
+     *
+     * @param mixed $value
+     *
+     * @return self
+     */
+    public function setFilterDefaultValue($value): self
+    {
+        $this->filterDefaultValue = $value;
 
         return $this;
     }
