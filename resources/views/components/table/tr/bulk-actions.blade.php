@@ -6,7 +6,6 @@
         $table = $component->getTableName();
         $theme = $component->getTheme();
         $colspan = $component->getColspanCount();
-        $selected = $component->getSelectedCount();
         $selectAll = $component->selectAllIsEnabled();
         $simplePagination = $component->paginationMethod == 'simple' ? true : false;
     @endphp
@@ -16,15 +15,14 @@
             wire:key="bulk-select-message-{{ $table }}"
             class="bg-indigo-50 dark:bg-gray-900 dark:text-white" 
             x-cloak
-            x-show="shouldShowBulkActionSelect"
-            x-effect="updateTotalItemCount({{ $rows->total() ?? 'unknown' }})"
+            x-show="selectedItems.length > 0"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
-                <template x-if="allItemsSelected">
+                <template x-if="selectedItems.length == paginationTotalItemCount">
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                             @lang('rows').
                         </span>
 
@@ -38,13 +36,13 @@
                         </button>
                     </div>
                 </template>
-                <template x-if="!allItemsSelected">
+                <template x-if="selectedItems.length !== paginationTotalItemCount">
                     <div wire:key="some-selected-{{ $table }}">
                         <span>
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                         </span>
 
                         <button
@@ -81,15 +79,14 @@
         <x-livewire-tables::table.tr.plain 
             wire:key="bulk-select-message-{{ $table }}"
             x-cloak
-            x-show="shouldShowBulkActionSelect"
-            x-effect="updateTotalItemCount({{ $rows->total() ?? 'unknown' }})"
+            x-show="selectedItems.length > 0"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
-                <template x-if="allItemsSelected">
+                <template x-if="selectedItems.length == paginationTotalItemCount">
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                             @lang('rows').
                         </span>
 
@@ -103,13 +100,13 @@
                         </button>
                     </div>
                 </template>
-                <template x-if="!allItemsSelected">
+                <template x-if="selectedItems.length !== paginationTotalItemCount">
                     <div wire:key="some-selected-{{ $table }}">
                         <span>
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                         </span>
 
                         <button

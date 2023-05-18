@@ -6,45 +6,41 @@
 @endphp
 
 <div x-data="{
-    shouldShowBulkActionSelect: false,
     @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
-        selectedItems: $wire.entangle('selected').defer,
-        selectedCount: 0,
-        totalItems: 0,
-        visibleItems: {},
-        allItemsSelected: false,
-        toggleSelectAll() {
-            if (this.totalItems == this.selectedCount) {
-                this.clearSelected()
-            } else {
-                this.setAllSelected()
-            }
-        },
-        setAllSelected() {
-            allItemsSelected = true;
-            $wire.setAllSelected();
-        },
-        clearSelected() {
-            $wire.clearSelected();
-        },
-        selectAllOnPage() {
-            let tempSelectedItems = this.selectedItems;
-            const iterator = visibleItems.values();
-            for (const value of iterator) {
-                tempSelectedItems.push(value.toString());
-            }
-            this.selectedItems = [...new Set(tempSelectedItems)];
-        },
-        updateTotalItemCount(itemCount) {
-            this.totalItems = itemCount;
-            this.allItemsSelected = (itemCount == this.selectedCount);
-        },
-}"
-    x-init="selectedCount = selectedItems.length; shouldShowBulkActionSelect = (selectedCount > 0);"
-    x-effect="selectedCount = selectedItems.length; shouldShowBulkActionSelect = (selectedItems.length > 0);">
+    paginationCurrentCount: $wire.entangle('paginationCurrentCount'),
+    paginationTotalItemCount: $wire.entangle('paginationTotalItemCount'),
+    paginationCurrentItems: $wire.entangle('paginationCurrentItems'),
+    @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
+    selectedItems: $wire.entangle('selected').defer,
+    @else
+    selectedItems: {},
+    @endif
+    toggleSelectAll() {
+        if (this.paginationTotalItemCount == this.selectedItems.length) {
+            this.clearSelected();
+        } else {
+            this.setAllSelected();
+        }
+    },
+    setAllSelected() {
+        $wire.setAllSelected();
+    },
+    clearSelected() {
+        $wire.clearSelected();
+    },
+    selectAllOnPage() {
+        let tempSelectedItems = this.selectedItems;
+        const iterator = this.paginationCurrentItems.values();
+        for (const value of iterator) {
+            tempSelectedItems.push(value.toString());
+        }
+        this.selectedItems = [...new Set(tempSelectedItems)];
+    },
+}">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>
+
         @include('livewire-tables::includes.debug')
         @include('livewire-tables::includes.offline')
 
