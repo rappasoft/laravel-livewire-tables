@@ -72,7 +72,8 @@ trait WithSorting
             if (is_null($column)) {
                 foreach ($allCols as $cols) {
                     if ($cols->getSlug() == $tmpCol && $cols->hasSortCallback()) {
-                            $this->setBuilder(call_user_func($cols->getSortCallback(), $this->getBuilder(), $direction));
+                        $this->setBuilder(call_user_func($cols->getSortCallback(), $this->getBuilder(), $direction));
+
                         continue;
                     }
                 }
