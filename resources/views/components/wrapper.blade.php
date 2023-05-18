@@ -6,39 +6,32 @@
 @endphp
 
 <div x-data="{
-    shouldShowBulkActionSelect: false,
     @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
-        selectedItems: $wire.entangle('selected').defer,
-        selectedCount: 0,
-        totalItems: 0,
-        totalItemCount: $wire.entangle('paginationTotalItemCount'),
-        visibleItems: {},
-        allItemsSelected: false,
-        toggleSelectAll() {
-            if (this.totalItems == this.selectedCount) {
-                this.clearSelected()
-            } else {
-                this.setAllSelected()
-            }
-        },
-        setAllSelected() {
-            allItemsSelected = true;
-            $wire.setAllSelected();
-        },
-        clearSelected() {
-            $wire.clearSelected();
-        },
-        selectAllOnPage() {
-            let tempSelectedItems = this.selectedItems;
-            const iterator = visibleItems.values();
-            for (const value of iterator) {
-                tempSelectedItems.push(value.toString());
-            }
-            this.selectedItems = [...new Set(tempSelectedItems)];
-        },
-}"
-    x-init="selectedCount = selectedItems.length; shouldShowBulkActionSelect = (selectedCount > 0);"
-    x-effect="selectedCount = selectedItems.length; shouldShowBulkActionSelect = (selectedItems.length > 0);">
+    selectedItems: $wire.entangle('selected').defer,
+    totalItemCount: $wire.entangle('paginationTotalItemCount'),
+    visibleItems: {},       
+    toggleSelectAll() {
+        if (this.totalItemCount == this.selectedItems.length) {
+            this.clearSelected()
+        } else {
+            this.setAllSelected()
+        }
+    },
+    setAllSelected() {
+        $wire.setAllSelected();
+    },
+    clearSelected() {
+        $wire.clearSelected();
+    },
+    selectAllOnPage() {
+        let tempSelectedItems = this.selectedItems;
+        const iterator = visibleItems.values();
+        for (const value of iterator) {
+            tempSelectedItems.push(value.toString());
+        }
+        this.selectedItems = [...new Set(tempSelectedItems)];
+    },
+}">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>

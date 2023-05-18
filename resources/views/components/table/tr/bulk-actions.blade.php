@@ -16,10 +16,10 @@
             wire:key="bulk-select-message-{{ $table }}"
             class="bg-indigo-50 dark:bg-gray-900 dark:text-white" 
             x-cloak
-            x-show="shouldShowBulkActionSelect"
+            x-show="selectedItems.length > 0"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
-                <template x-if="allItemsSelected">
+                <template x-if="selectedItems.length == totalItemCount">
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
@@ -37,7 +37,7 @@
                         </button>
                     </div>
                 </template>
-                <template x-if="!allItemsSelected">
+                <template x-if="selectedItems.length !== totalItemCount">
                     <div wire:key="some-selected-{{ $table }}">
                         <span>
                             @lang('You have selected')
@@ -80,10 +80,10 @@
         <x-livewire-tables::table.tr.plain 
             wire:key="bulk-select-message-{{ $table }}"
             x-cloak
-            x-show="shouldShowBulkActionSelect"
+            x-show="selectedItems.length > 0"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
-                <template x-if="allItemsSelected">
+                <template x-if="selectedItems.length == totalItemCount">
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
@@ -101,7 +101,7 @@
                         </button>
                     </div>
                 </template>
-                <template x-if="!allItemsSelected">
+                <template x-if="selectedItems.length !== totalItemCount">
                     <div wire:key="some-selected-{{ $table }}">
                         <span>
                             @lang('You have selected')
