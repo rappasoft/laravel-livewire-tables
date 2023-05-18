@@ -6,7 +6,6 @@
         $table = $component->getTableName();
         $theme = $component->getTheme();
         $colspan = $component->getColspanCount();
-        $selected = $component->getSelectedCount();
         $selectAll = $component->selectAllIsEnabled();
         $simplePagination = $component->paginationMethod == 'simple' ? true : false;
     @endphp
@@ -23,7 +22,7 @@
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="totalItemCount"></span></strong> @endif
                             @lang('rows').
                         </span>
 
@@ -43,7 +42,7 @@
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="totalItemCount"></span></strong> @endif
                         </span>
 
                         <button
@@ -87,7 +86,7 @@
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="totalItemCount"></span></strong> @endif
                             @lang('rows').
                         </span>
 
@@ -107,7 +106,7 @@
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @if(!$simplePagination) <strong><span x-text="totalItemCount"></span></strong> @endif
                         </span>
 
                         <button

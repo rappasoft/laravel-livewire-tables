@@ -21,7 +21,7 @@ trait WithData
         $this->paginationCurrentCount = $executedQuery->count() ?? 0;
 
         if (! $this->isPaginationMethod('simple')) {
-            $this->paginationTotalItemCount = $executedQuery->total();
+            $this->paginationTotalItemCount = number_format($executedQuery->total());
         }
 
         return $executedQuery;
