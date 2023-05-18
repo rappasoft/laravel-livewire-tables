@@ -12,7 +12,7 @@
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
                     @php
-                        $column = $component->getColumnBySelectName($columnSelectName);
+                        $column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName);
                     @endphp
 
                     @continue(is_null($column))

@@ -64,6 +64,18 @@ trait ColumnHelpers
     }
 
     /**
+     * @param  string  $columnSlug
+     *
+     * @return Column|null
+     */
+    public function getColumnBySlug(string $columnSlug): ?Column
+    {
+        return $this->getColumns()
+            ->filter(fn (Column $column) => $column->isColumnBySlug($columnSlug))
+            ->first();
+    }
+
+    /**
      * @return array<mixed>
      */
     public function getColumnRelations(): array

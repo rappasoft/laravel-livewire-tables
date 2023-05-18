@@ -96,6 +96,16 @@ trait ColumnHelpers
     }
 
     /**
+     * @param  string  $slug
+     *
+     * @return bool
+     */
+    public function isColumnBySlug(string $slug): bool
+    {
+        return $this->getSlug() === $slug;
+    }
+
+    /**
      * @return bool
      */
     public function hasField(): bool
