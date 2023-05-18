@@ -27,7 +27,7 @@
                         </span>
 
                         <button
-                            wire:click="clearSelected"
+                            x-on:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
@@ -55,7 +55,7 @@
                         </button>&nbsp;
 
                         <button
-                            wire:click="setAllSelected"
+                            x-on:click="setAllSelected"
                             wire:loading.attr="disabled"
                             type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
@@ -64,7 +64,7 @@
                         </button>
 
                         <button
-                            wire:click="clearSelected"
+                            x-on:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
@@ -90,7 +90,7 @@
                         </span>
 
                         <button
-                            wire:click="clearSelected"
+                            x-on:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
                             class="btn btn-primary btn-sm"
@@ -109,7 +109,7 @@
                         </span>
 
                         <button
-                            x-on:click="selectAllOnPage()"
+                            x-on:click="selectAllOnPage"
                             wire:loading.attr="disabled"
                             type="button"
                             class="btn btn-primary btn-sm"
@@ -118,7 +118,7 @@
                         </button>&nbsp;
 
                         <button
-                            wire:click="setAllSelected"
+                            x-on:click="setAllSelected"
                             wire:loading.attr="disabled"
                             type="button"
                             class="btn btn-primary btn-sm"
@@ -127,7 +127,7 @@
                         </button>
 
                         <button
-                            wire:click="clearSelected"
+                            x-on:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
                             class="btn btn-primary btn-sm"
