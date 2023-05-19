@@ -4,6 +4,33 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.14.0] - 2023-05-18
+
+### Changed
+- Fixes
+    - Bulk Actions (AlpineJS)
+    - Moving Table Head Checkbox to AlpineJS
+    - Using AlpineJS for calculating if all items have been selected
+    - Correcting missing x-cloak
+    - Added indeterminateCheckbox for TH for bulk actions
+    - Cleaned up ALpineJS functionality for Bulk Actions
+    - Repair of tests that were looking for wire:model that no longer existed
+
+- Enhancements
+    - Several new public variables for accessing pagination data cleanly, to avoid calling functions repeatedly across various blades.
+        - paginationTotalItemCount (Total number of items in the results across all page)
+        - paginationCurrentItems (Primary keys of items in the current page)
+        - paginationCurrentCount (Number of results on the current page)
+
+- Blades
+    - Several blades have had the classic Tables approach ($theme == 'tailwind', $theme == 'bootstrap) replaced with conditional classes using the @class([]) approach.  This is to reduce the complexity of the blade files.
+
+## [2.13.1] - 2023-05-18
+
+### Changed
+
+- Fixes for AlpineJS
+
 ## [2.13.0] - 2023-05-17
 
 ### Changed
@@ -800,7 +827,9 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.13.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.14.0...development
+[2.14.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.14.0...v2.13.1
+[2.13.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.13.0...v2.13.1
 [2.13.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.12.0...v2.13.0
 [2.12.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.11.0...v2.12.0
 [2.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.10.0...v2.11.0

@@ -72,7 +72,7 @@ class MultiSelectFilterTest extends TestCase
 
         $filter = MultiSelectFilter::make('Active')
             ->filter(function (Builder $builder, int $value) {
-                return $builder->where('name', "=", $value);
+                return $builder->where('name', '=', $value);
             });
 
         $this->assertTrue($filter->hasFilterCallback());
@@ -168,11 +168,12 @@ class MultiSelectFilterTest extends TestCase
 
         $this->assertFalse($filter->isResetByClearButton());
     }
-    
+
     /**
-    * @test
-    * @depends testArraySetup
-    */
+     * @test
+     *
+     * @depends testArraySetup
+     */
     public function can_set_filter_to_number(array $optionsArray): void
     {
         $filter = MultiSelectFilter::make('BreedID')->options($optionsArray);
@@ -181,15 +182,16 @@ class MultiSelectFilterTest extends TestCase
     }
 
     /**
-    * @test
-    * @depends testArraySetup
-    */
+     * @test
+     *
+     * @depends testArraySetup
+     */
     public function can_set_filter_to_valid_value(array $optionsArray): void
     {
         $filter = MultiSelectFilter::make('BreedID')->options($optionsArray);
         $this->assertSame($optionsArray, $filter->getOptions());
-        $this->assertSame(['1','3'], $filter->validate([0 => '1', 1 => '3']));
-        $this->assertSame(['1','3'], $filter->validate([0 => '1', 1 => '3', 2 => '99']));
+        $this->assertSame(['1', '3'], $filter->validate([0 => '1', 1 => '3']));
+        $this->assertSame(['1', '3'], $filter->validate([0 => '1', 1 => '3', 2 => '99']));
     }
 
     /** @test */

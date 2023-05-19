@@ -71,7 +71,7 @@ class BooleanColumnTest extends TestCase
         $column = BooleanColumn::make('Name')->setCallback(function (string $value, $row) {
             return $row->id === 1;
         });
-        $curVal = $column->hasCallback() ? call_user_func($column->getCallback(), $value, $row) : (bool)$value === true;
+        $curVal = $column->hasCallback() ? call_user_func($column->getCallback(), $value, $row) : (bool) $value === true;
         $this->assertSame($curVal, true);
     }
 
@@ -83,7 +83,7 @@ class BooleanColumnTest extends TestCase
         $column = BooleanColumn::make('Name')->setCallback(function (string $value, $row) {
             return $row->id === 2;
         });
-        $curVal = $column->hasCallback() ? call_user_func($column->getCallback(), $value, $row) : (bool)$value === true;
+        $curVal = $column->hasCallback() ? call_user_func($column->getCallback(), $value, $row) : (bool) $value === true;
         $this->assertSame($curVal, false);
     }
 }

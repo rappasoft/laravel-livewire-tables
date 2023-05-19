@@ -92,9 +92,10 @@ class ReorderingVisualsTest extends TestCase
     }
 
     /**
-    * @test
-    * @depends testFilterArraySetup
-    */
+     * @test
+     *
+     * @depends testFilterArraySetup
+     */
     public function sorting_is_disabled_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
@@ -170,8 +171,8 @@ class ReorderingVisualsTest extends TestCase
     }
 
     /** @test
-    * @depends testFilterArraySetup
-    */
+     * @depends testFilterArraySetup
+     */
     public function search_hides_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
@@ -224,7 +225,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('bulkActionsStatus', true)
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml('wire:model="selectAll"')
+            ->assertSeeHtml('selectedItems.length == paginationTotalItemCount')
             ->call('enableReordering')
             ->assertSet('bulkActionsStatus', false)
             ->assertDontSee('Select All');
@@ -272,9 +273,10 @@ class ReorderingVisualsTest extends TestCase
     }
 
     /**
-    * @test
-    * @depends testFilterArraySetup
-    */
+     * @test
+     *
+     * @depends testFilterArraySetup
+     */
     public function filters_are_disabled_on_reorder(array $filterDefaultArray): void
     {
         $customisedFilterArray = $filterDefaultArray;
@@ -298,9 +300,10 @@ class ReorderingVisualsTest extends TestCase
     }
 
     /**
-    * @test
-    * @depends testFilterArraySetup
-    */
+     * @test
+     *
+     * @depends testFilterArraySetup
+     */
     public function filter_pills_hide_on_reorder(array $filterDefaultArray): void
     {
         $filterDefaultArray['breed'] = [1];

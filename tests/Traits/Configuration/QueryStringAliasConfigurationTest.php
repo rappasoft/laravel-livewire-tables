@@ -16,16 +16,17 @@ class QueryStringAliasConfigurationTest extends TestCase
     /** @test */
     public function can_set_query_string_in_configure_method(): void
     {
-        $mock = new class extends PetsTable {
+        $mock = new class extends PetsTable
+        {
             public function configure(): void
             {
                 $this->setQueryStringAlias('test');
             }
         };
-    
+
         $mock->configure();
         $mock->boot();
-    
+
         $this->assertSame('test', $mock->getQueryStringAlias());
     }
 }

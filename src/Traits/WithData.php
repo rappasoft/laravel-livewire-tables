@@ -17,7 +17,10 @@ trait WithData
 
         $executedQuery = $this->executeQuery();
 
+        // Get All Currently Paginated Items Primary Keys
         $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
+
+        // Get Count of Items in Current Page
         $this->paginationCurrentCount = $executedQuery->count() ?? 0;
 
         return $executedQuery;
@@ -46,7 +49,12 @@ trait WithData
     {
         if ($this->paginationIsEnabled()) {
             if ($this->isPaginationMethod('standard')) {
-                return $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                $paginatedResults = $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+
+                // Get the total number of items available
+                $this->paginationTotalItemCount = $paginatedResults->total() ?? 0;
+
+                return $paginatedResults;
             }
 
             if ($this->isPaginationMethod('simple')) {
@@ -132,7 +140,7 @@ trait WithData
         }
 
         foreach ($this->getSelectableColumns() as $column) {
-            $this->setBuilder($this->getBuilder()->addSelect($column->getColumn() . ' as ' .$column->getColumnSelectName()));
+            $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
         }
 
         return $this->getBuilder();

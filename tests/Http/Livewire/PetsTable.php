@@ -60,23 +60,22 @@ class PetsTable extends DataTableComponent
                     return 'Other';
                 })
                 ->footer(function ($rows) {
-                    return 'Count: ' . $rows->count();
+                    return 'Count: '.$rows->count();
                 }),
-            
 
             LinkColumn::make('Link')
-            ->title(fn ($row) => 'Edit')
-            ->location(fn ($row) => 'http://www.google.com')
-            ->attributes(fn ($row) => [
-                'class' => 'rounded-full',
-                'alt' => $row->name . ' Avatar',
-            ]),
+                ->title(fn ($row) => 'Edit')
+                ->location(fn ($row) => 'http://www.google.com')
+                ->attributes(fn ($row) => [
+                    'class' => 'rounded-full',
+                    'alt' => $row->name.' Avatar',
+                ]),
             ImageColumn::make('RowImg')
-            ->location(fn ($row) => 'test'.$row->id)
-            ->attributes(fn ($row) => [
-                'class' => 'rounded-full',
-                'alt' => $row->name . ' Avatar',
-            ]),
+                ->location(fn ($row) => 'test'.$row->id)
+                ->attributes(fn ($row) => [
+                    'class' => 'rounded-full',
+                    'alt' => $row->name.' Avatar',
+                ]),
         ];
     }
 
@@ -96,51 +95,51 @@ class PetsTable extends DataTableComponent
                     return $builder->whereIn('breed_id', $values);
                 }),
             MultiSelectDropdownFilter::make('Species')
-            ->options(
-                Species::query()
-                    ->orderBy('name')
-                    ->get()
-                    ->keyBy('id')
-                    ->map(fn ($species) => $species->name)
-                    ->toArray()
-            )
-            ->filter(function (Builder $builder, array $values) {
-                return $builder->whereIn('species_id', $values);
-            }),
+                ->options(
+                    Species::query()
+                        ->orderBy('name')
+                        ->get()
+                        ->keyBy('id')
+                        ->map(fn ($species) => $species->name)
+                        ->toArray()
+                )
+                ->filter(function (Builder $builder, array $values) {
+                    return $builder->whereIn('species_id', $values);
+                }),
             NumberFilter::make('Breed ID', 'breed_id_filter')
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->where('breed_id', '=', $value);
-            }),
-            
+                ->filter(function (Builder $builder, string $value) {
+                    return $builder->where('breed_id', '=', $value);
+                }),
+
             TextFilter::make('Pet Name', 'pet_name_filter')
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->where('pets.name', '=', $value);
-            }),
+                ->filter(function (Builder $builder, string $value) {
+                    return $builder->where('pets.name', '=', $value);
+                }),
 
             DateFilter::make('Last Visit After Date', 'last_visit_date_filter')
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->whereDate('pets.last_visit', '=>', $value);
-            }),
+                ->filter(function (Builder $builder, string $value) {
+                    return $builder->whereDate('pets.last_visit', '=>', $value);
+                }),
 
             DateTimeFilter::make('Last Visit Before DateTime', 'last_visit_datetime_filter')
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->whereDate('pets.last_visit', '<=', $value);
-            }),
+                ->filter(function (Builder $builder, string $value) {
+                    return $builder->whereDate('pets.last_visit', '<=', $value);
+                }),
 
             SelectFilter::make('Breed SelectFilter', 'breed_select_filter')
-            ->options(
-                Breed::query()
-                    ->orderBy('name')
-                    ->get()
-                    ->keyBy('id')
-                    ->map(fn ($breed) => $breed->name)
-                    ->toArray()
-            )
-            ->filter(function (Builder $builder, string $value) {
-                return $builder->where('breed_id', $value);
-            })
-            ->setCustomFilterLabel('livewire-tables::tests.testFilterLabel')
-            ->setFilterPillBlade('livewire-tables::tests.testFilterPills'),
+                ->options(
+                    Breed::query()
+                        ->orderBy('name')
+                        ->get()
+                        ->keyBy('id')
+                        ->map(fn ($breed) => $breed->name)
+                        ->toArray()
+                )
+                ->filter(function (Builder $builder, string $value) {
+                    return $builder->where('breed_id', $value);
+                })
+                ->setCustomFilterLabel('livewire-tables::tests.testFilterLabel')
+                ->setFilterPillBlade('livewire-tables::tests.testFilterPills'),
         ];
     }
 }

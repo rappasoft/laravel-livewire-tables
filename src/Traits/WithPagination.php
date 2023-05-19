@@ -13,15 +13,26 @@ trait WithPagination
         PaginationHelpers;
 
     public ?string $pageName = null;
+
     public int $perPage = 10;
+
     public array $perPageAccepted = [10, 25, 50];
+
     public string $paginationTheme = 'tailwind';
+
     public bool $paginationStatus = true;
+
     public bool $paginationVisibilityStatus = true;
+
     public bool $perPageVisibilityStatus = true;
+
     public string $paginationMethod = 'standard';
+
     public array $paginationCurrentItems = [];
+
     public int $paginationCurrentCount = 0;
+
+    public ?int $paginationTotalItemCount = null;
 
     // TODO: Test
     public function setupPagination(): void

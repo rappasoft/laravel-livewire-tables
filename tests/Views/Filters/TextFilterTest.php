@@ -22,13 +22,13 @@ final class TextFilterTest extends FilterTestCase
 
         $filter = TextFilter::make('Active')
             ->filter(function (Builder $builder, int $value) {
-                return $builder->where('name', "=", $value);
+                return $builder->where('name', '=', $value);
             });
 
         $this->assertTrue($filter->hasFilterCallback());
         $this->assertIsCallable($filter->getFilterCallback());
     }
-    
+
     /** @test */
     public function can_not_exceed_text_filter_max_length(): void
     {
@@ -43,7 +43,7 @@ final class TextFilterTest extends FilterTestCase
         $this->assertSame(123, $filter->validate(123));
         $this->assertSame('123', $filter->validate('123'));
     }
-    
+
     /** @test */
     public function can_set_text_filter_to_text(): void
     {

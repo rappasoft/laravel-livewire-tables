@@ -28,41 +28,41 @@ final class SelectFilterTest extends FilterTestCase
 
         self::$filterInstance
             ->filter(function (Builder $builder, int $value) {
-                return $builder->where('name', "=", $value);
+                return $builder->where('name', '=', $value);
             });
 
         $this->assertTrue(self::$filterInstance->hasFilterCallback());
         $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
-    
+
     /**
-    * @test
-    */
+     * @test
+     */
     public function can_not_set_filter_to_number(): void
     {
         $this->assertFalse(self::$filterInstance->validate(123));
         $this->assertFalse(self::$filterInstance->validate('123'));
     }
-    
+
     /**
-    * @test
-    */
+     * @test
+     */
     public function can_not_set_filter_to_text(): void
     {
         $this->assertFalse(self::$filterInstance->validate('test'));
     }
 
     /**
-    * @test
-    */
+     * @test
+     */
     public function can_set_filter_to_valid(): void
     {
         $this->assertSame('1', self::$filterInstance->validate('1'));
     }
 
     /**
-    * @test
-    */
+     * @test
+     */
     public function can_get_if_filter_empty(): void
     {
         $this->assertTrue(self::$filterInstance->isEmpty(''));

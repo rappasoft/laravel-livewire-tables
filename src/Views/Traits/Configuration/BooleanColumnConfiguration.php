@@ -7,8 +7,6 @@ use Closure;
 trait BooleanColumnConfiguration
 {
     /**
-     * @param  Closure  $callback
-     *
      * @return $this
      */
     public function setCallback(Closure $callback): self
@@ -19,8 +17,6 @@ trait BooleanColumnConfiguration
     }
 
     /**
-     * @param  bool  $value
-     *
      * @return $this
      */
     public function setSuccessValue(bool $value): self
@@ -31,8 +27,6 @@ trait BooleanColumnConfiguration
     }
 
     /**
-     * @param  string  $view
-     *
      * @return $this
      */
     public function setView(string $view): self

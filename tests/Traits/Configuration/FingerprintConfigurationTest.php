@@ -16,7 +16,8 @@ class FingerprintConfigurationTest extends TestCase
     /** @test */
     public function can_set_fingerprint_in_configure_method(): void
     {
-        $mock = new class extends PetsTable {
+        $mock = new class extends PetsTable
+        {
             public function configure(): void
             {
                 $this->setDataTableFingerprint('test');

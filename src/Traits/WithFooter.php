@@ -11,9 +11,13 @@ trait WithFooter
         FooterHelpers;
 
     protected bool $footerStatus = true;
+
     protected bool $useHeaderAsFooterStatus = false;
+
     protected bool $columnsWithFooter = false;
+
     protected $footerTrAttributesCallback;
+
     protected $footerTdAttributesCallback;
 
     public function setupFooter(): void

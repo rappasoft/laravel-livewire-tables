@@ -12,10 +12,15 @@ trait WithSearch
         SearchHelpers;
 
     public ?string $search = null;
+
     public bool $searchStatus = true;
+
     public bool $searchVisibilityStatus = true;
+
     public ?int $searchFilterDebounce = null;
+
     public ?bool $searchFilterDefer = null;
+
     public ?bool $searchFilterLazy = null;
 
     // TODO

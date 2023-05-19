@@ -14,8 +14,11 @@ class BooleanColumn extends Column
         BooleanColumnHelpers;
 
     protected string $type = 'icons';
+
     protected bool $successValue = true;
+
     protected string $view = 'livewire-tables::includes.columns.boolean';
+
     protected $callback;
 
     public function getContents(Model $row)
@@ -30,6 +33,6 @@ class BooleanColumn extends Column
             ->withComponent($this->getComponent())
             ->withSuccessValue($this->getSuccessValue())
             ->withType($this->getType())
-            ->withStatus($this->hasCallback() ? call_user_func($this->getCallback(), $value, $row) : (bool)$value === true);
+            ->withStatus($this->hasCallback() ? call_user_func($this->getCallback(), $value, $row) : (bool) $value === true);
     }
 }

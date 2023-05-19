@@ -6,31 +6,41 @@
 @endphp
 
 <div x-data="{
-    shouldShowBulkActionSelect: false,
     @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
-    @if ($component->bulkActionsAreEnabled()) selectedItems: $wire.entangle('selected').defer,
-        selectedCount: 0,
-        visibleItems: {},
-        allItemsSelected: false,
-        setAllSelected() {
-            $wire.setAllSelected();
-        },
-        clearSelected() {
-            $wire.clearSelected();
-        },
-        selectAllOnPage() {
-            let tempSelectedItems = this.selectedItems;
-            const iterator = visibleItems.values();
-            for (const value of iterator) {
-                tempSelectedItems.push(value.toString());
-            }
-            this.selectedItems = [...new Set(tempSelectedItems)];
-        }, @endif
-}"
-    x-effect="shouldShowBulkActionSelect = (selectedItems.length > 0); selectedCount = selectedItems.length;">
+    paginationCurrentCount: $wire.entangle('paginationCurrentCount'),
+    paginationTotalItemCount: $wire.entangle('paginationTotalItemCount'),
+    paginationCurrentItems: $wire.entangle('paginationCurrentItems'),
+    @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
+    selectedItems: $wire.entangle('selected').defer,
+    @else
+    selectedItems: {},
+    @endif
+    toggleSelectAll() {
+        if (this.paginationTotalItemCount == this.selectedItems.length) {
+            this.clearSelected();
+        } else {
+            this.setAllSelected();
+        }
+    },
+    setAllSelected() {
+        $wire.setAllSelected();
+    },
+    clearSelected() {
+        $wire.clearSelected();
+    },
+    selectAllOnPage() {
+        let tempSelectedItems = this.selectedItems;
+        const iterator = this.paginationCurrentItems.values();
+        for (const value of iterator) {
+            tempSelectedItems.push(value.toString());
+        }
+        this.selectedItems = [...new Set(tempSelectedItems)];
+    },
+}">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>
+
         @include('livewire-tables::includes.debug')
         @include('livewire-tables::includes.offline')
 

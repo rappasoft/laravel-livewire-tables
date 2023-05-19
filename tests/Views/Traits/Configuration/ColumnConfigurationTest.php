@@ -88,7 +88,7 @@ class ColumnConfigurationTest extends TestCase
         $column = Column::make('Name');
 
         $column->setComponent($this->basicTable);
-        
+
         $this->basicTable->setTableRowUrl(fn ($row) => 'https://example.com');
 
         $this->assertTrue($column->isClickable());

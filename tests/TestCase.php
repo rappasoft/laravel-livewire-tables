@@ -35,7 +35,7 @@ class TestCase extends Orchestra
                 ['id' => 3, 'name' => 'Horse'],
                 ['id' => 4, 'name' => 'Bird'],
             ]);
-    
+
             Breed::insert([
                 ['id' => 1, 'name' => 'American Shorthair', 'species_id' => 1],
                 ['id' => 2, 'name' => 'Maine Coon', 'species_id' => 1],
@@ -48,7 +48,7 @@ class TestCase extends Orchestra
                 ['id' => 201, 'name' => 'Clydesdale', 'species_id' => 3],
                 ['id' => 202, 'name' => 'Mustang', 'species_id' => 3],
             ]);
-    
+
             Pet::insert([
                 ['id' => 1, 'name' => 'Cartman', 'age' => 22, 'species_id' => 1, 'breed_id' => 4],
                 ['id' => 2, 'name' => 'Tux', 'age' => 8, 'species_id' => 1, 'breed_id' => 4],
@@ -56,13 +56,13 @@ class TestCase extends Orchestra
                 ['id' => 4, 'name' => 'Ben', 'age' => 5, 'species_id' => 3, 'breed_id' => 200],
                 ['id' => 5, 'name' => 'Chico', 'age' => 7, 'species_id' => 3, 'breed_id' => 202],
             ]);
-    
+
             Veterinary::insert([
                 ['id' => 1, 'name' => 'Dr John Smith', 'phone' => '123456798'],
                 ['id' => 2, 'name' => 'Dr Fabio Ivona', 'phone' => '789456123'],
                 ['id' => 3, 'name' => 'Dr Anthony Rappa', 'phone' => '987654321'],
             ]);
-    
+
             DB::table('pet_veterinary')->insert([
                 ['id' => 1, 'pet_id' => 1, 'veterinary_id' => 1],
                 ['id' => 2, 'pet_id' => 1, 'veterinary_id' => 2],
@@ -91,9 +91,8 @@ class TestCase extends Orchestra
         config()->set('app.env', 'testing');
         config()->set('cache.default', 'array');
         config()->set('view.cache', false);
-        config()->set('view.compiled',  realpath(storage_path('framework/views')).'/'.rand(0, 100));
+        config()->set('view.compiled', realpath(storage_path('framework/views')).'/'.rand(0, 100));
 
-        
         $app['config']->set('app.env', 'testing');
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('cache.default', 'array');

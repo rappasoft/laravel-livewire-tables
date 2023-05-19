@@ -12,7 +12,7 @@
 @endif
 
 @if ($theme === 'tailwind')
-    <div x-init="@if ($component->bulkActionsAreEnabled()) this.visibleItems = @js($rows->pluck($component->getPrimaryKey())->toArray()); @endif">
+    <div>
         @if ($component->paginationVisibilityIsEnabled())
             <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">
                 <div>
@@ -23,7 +23,7 @@
                             <span>@lang('to')</span>
                             <span class="font-medium">{{ $rows->lastItem() }}</span>
                             <span>@lang('of')</span>
-                            <span class="font-medium">{{ $rows->total() }}</span>
+                            <span class="font-medium"><span x-text="paginationTotalItemCount"></span></span>
                             <span>@lang('results')</span>
                         </p>
                     @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('simple'))
@@ -49,7 +49,7 @@
         @endif
     </div>
 @elseif ($theme === 'bootstrap-4')
-    <div x-init="@if ($component->bulkActionsAreEnabled()) this.visibleItems = @js($rows->pluck($component->getPrimaryKey())->toArray()); @endif">
+    <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">
@@ -63,7 +63,7 @@
                         <span>@lang('to')</span>
                         <strong>{{ $rows->count() ? $rows->lastItem() : 0 }}</strong>
                         <span>@lang('of')</span>
-                        <strong>{{ $rows->total() }}</strong>
+                        <strong><span x-text="paginationTotalItemCount"></span></strong>
                         <span>@lang('results')</span>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
         @endif
     </div>
 @elseif ($theme === 'bootstrap-5')
-    <div x-init="@if ($component->bulkActionsAreEnabled()) this.visibleItems = @js($rows->pluck($component->getPrimaryKey())->toArray()); @endif">
+    <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">
@@ -106,7 +106,7 @@
                         <span>@lang('to')</span>
                         <strong>{{ $rows->count() ? $rows->lastItem() : 0 }}</strong>
                         <span>@lang('of')</span>
-                        <strong>{{ $rows->total() }}</strong>
+                        <strong><span x-text="paginationTotalItemCount"></span></strong>
                         <span>@lang('results')</span>
                     </div>
                 </div>

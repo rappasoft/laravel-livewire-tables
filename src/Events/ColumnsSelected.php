@@ -10,6 +10,7 @@ class ColumnsSelected
     use Dispatchable, SerializesModels;
 
     public $columns;
+
     public $key;
 
     public function __construct($key, $columns)
