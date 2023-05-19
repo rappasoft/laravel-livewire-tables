@@ -4,6 +4,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.14.0] - 2023-05-18
+
 ### Changed
 - Fixes
     - Bulk Actions (AlpineJS)
@@ -22,6 +24,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Blades
     - Several blades have had the classic Tables approach ($theme == 'tailwind', $theme == 'bootstrap) replaced with conditional classes using the @class([]) approach.  This is to reduce the complexity of the blade files.
+
+## [2.13.1] - 2023-05-18
+
+### Changed
+
+- Fixes for AlpineJS
 
 ## [2.13.0] - 2023-05-17
 
@@ -819,7 +827,9 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.13.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.14.0...development
+[2.14.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.14.0...v2.13.1
+[2.13.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.13.0...v2.13.1
 [2.13.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.12.0...v2.13.0
 [2.12.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.11.0...v2.12.0
 [2.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.10.0...v2.11.0
