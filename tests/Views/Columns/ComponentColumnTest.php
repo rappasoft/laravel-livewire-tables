@@ -24,7 +24,7 @@ class ComponentColumnTest extends TestCase
         $this->expectException(DataTableConfigurationException::class);
         $row = Pet::find(1);
 
-        $column = ComponentColumn::make('Name')->label(fn ($row, Column $column) => "Test");
+        $column = ComponentColumn::make('Name')->label(fn ($row, Column $column) => 'Test');
         $column->getContents($row);
     }
 }

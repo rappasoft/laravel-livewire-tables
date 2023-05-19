@@ -12,7 +12,7 @@ class BulkActionsVisualsTest extends TestCase
     public function bulk_dropdown_shows_when_necessary(): void
     {
         Livewire::test(PetsTable::class)
-        ->assertDontSee('No items found. Try to broaden your search.');
+            ->assertDontSee('No items found. Try to broaden your search.');
     }
 
     /** @test */

@@ -26,7 +26,7 @@ class SelectFilter extends Filter
         return collect($this->getOptions())
             ->map(fn ($value, $key) => is_iterable($value) ? collect($value)->keys() : $key)
             ->flatten()
-            ->map(fn ($value) => (string)$value)
+            ->map(fn ($value) => (string) $value)
             ->filter(fn ($value) => strlen($value) > 0)
             ->values()
             ->toArray();
@@ -56,8 +56,6 @@ class SelectFilter extends Filter
 
     /**
      * Gets the Default Value for this Filter via the Component
-     *
-     * @return string|null
      */
     public function getFilterDefaultValue(): ?string
     {

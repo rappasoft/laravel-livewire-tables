@@ -11,8 +11,11 @@ trait WithSecondaryHeader
         SecondaryHeaderHelpers;
 
     protected bool $secondaryHeaderStatus = true;
+
     protected bool $columnsWithSecondaryHeader = false;
+
     protected $secondaryHeaderTrAttributesCallback;
+
     protected $secondaryHeaderTdAttributesCallback;
 
     public function setupSecondaryHeader(): void

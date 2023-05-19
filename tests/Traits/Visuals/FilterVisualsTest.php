@@ -99,8 +99,8 @@ class FilterVisualsTest extends TestCase
     }
 
     /**
-    * @test
-    */
+     * @test
+     */
     public function filter_events_apply_correctly(): void
     {
         Livewire::test(PetsTable::class)

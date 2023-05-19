@@ -11,9 +11,13 @@ trait WithBulkActions
         BulkActionsHelpers;
 
     public bool $bulkActionsStatus = true;
+
     public bool $selectAll = false;
+
     public array $bulkActions = [];
+
     public array $selected = [];
+
     public bool $hideBulkActionsWhenEmpty = false;
 
     public function bulkActions(): array

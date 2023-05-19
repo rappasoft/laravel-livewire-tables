@@ -12,19 +12,21 @@ trait WithSorting
         SortingHelpers;
 
     public array $sorts = [];
+
     public bool $sortingStatus = true;
+
     public bool $singleColumnSortingStatus = true;
+
     public bool $sortingPillsStatus = true;
+
     public ?string $defaultSortColumn = null;
+
     public string $defaultSortDirection = 'asc';
+
     public string $defaultSortingLabelAsc = 'A-Z';
+
     public string $defaultSortingLabelDesc = 'Z-A';
 
-    /**
-     * @param  string  $columnSelectName
-     *
-     * @return string|null
-     */
     public function sortBy(string $columnSelectName): ?string
     {
         if ($this->sortingIsDisabled()) {
@@ -50,9 +52,6 @@ trait WithSorting
         return null;
     }
 
-    /**
-     * @return Builder
-     */
     public function applySorting(): Builder
     {
         if ($this->hasDefaultSort() && ! $this->hasSorts()) {
@@ -80,9 +79,9 @@ trait WithSorting
             } elseif ($column->isBaseColumn()) {
                 $this->setBuilder($this->getBuilder()->orderBy($column->getColumnSelectName(), $direction));
             } else {
-                $value = $this->getBuilder()->getGrammar()->wrap($column->getColumn() . ' as ' . $column->getColumnSelectName());
+                $value = $this->getBuilder()->getGrammar()->wrap($column->getColumn().' as '.$column->getColumnSelectName());
                 $segments = preg_split('/\s+as\s+/i', $value);
-                $this->setBuilder($this->getBuilder()->orderByRaw($segments[1] . ' ' . $direction));
+                $this->setBuilder($this->getBuilder()->orderByRaw($segments[1].' '.$direction));
             }
         }
 

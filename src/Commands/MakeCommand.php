@@ -11,14 +11,9 @@ use Livewire\Commands\MakeCommand as LivewireMakeCommand;
 
 /**
  * Class MakeCommand
- *
- * @package Rappasoft\LaravelLivewireTables\Commands
  */
 class MakeCommand extends Command
 {
-    /**
-     * @var ComponentParser
-     */
     protected ComponentParser $parser;
 
     /**
@@ -75,14 +70,9 @@ class MakeCommand extends Command
 
         $this->createClass($force);
 
-        $this->info('Livewire Datatable Created: ' . $this->parser->className());
+        $this->info('Livewire Datatable Created: '.$this->parser->className());
     }
 
-    /**
-     * @param  bool  $force
-     *
-     * @return bool
-     */
     protected function createClass(bool $force = false): bool
     {
         $classPath = $this->parser->classPath();
@@ -101,9 +91,7 @@ class MakeCommand extends Command
     }
 
     /**
-     * @param mixed $path
-     *
-     * @return void
+     * @param  mixed  $path
      */
     protected function ensureDirectoryExists($path): void
     {
@@ -112,9 +100,6 @@ class MakeCommand extends Command
         }
     }
 
-    /**
-     * @return string
-     */
     public function classContents(): string
     {
         return str_replace(
@@ -124,35 +109,29 @@ class MakeCommand extends Command
         );
     }
 
-    /**
-     * @return string
-     */
     public function getModelImport(): string
     {
-        if (File::exists(app_path('Models/' . $this->model . '.php'))) {
-            return 'App\Models\\' . $this->model;
+        if (File::exists(app_path('Models/'.$this->model.'.php'))) {
+            return 'App\Models\\'.$this->model;
         }
 
-        if (File::exists(app_path($this->model . '.php'))) {
-            return 'App\\' . $this->model;
+        if (File::exists(app_path($this->model.'.php'))) {
+            return 'App\\'.$this->model;
         }
 
         if (isset($this->modelPath)) {
-            if (File::exists(rtrim($this->modelPath, "/")."/".$this->model . '.php')) {
+            if (File::exists(rtrim($this->modelPath, '/').'/'.$this->model.'.php')) {
 
-                return Str::studly(str_replace("/", "\\", $this->modelPath)) . $this->model;
+                return Str::studly(str_replace('/', '\\', $this->modelPath)).$this->model;
             }
         }
-        
 
         $this->error('Could not find path to model.');
 
-        return 'App\Models\\' . $this->model;
+        return 'App\Models\\'.$this->model;
     }
 
     /**
-     * @param string $modelName
-     * @return string
      * @throws \Exception
      */
     private function generateColumns(string $modelName): string
@@ -178,10 +157,10 @@ class MakeCommand extends Command
 
             $title = Str::of($field)->replace('_', ' ')->ucfirst();
 
-            $columns .= '            Column::make("' . $title . '", "' . $field . '")' . "\n" . '                ->sortable(),' . "\n";
+            $columns .= '            Column::make("'.$title.'", "'.$field.'")'."\n".'                ->sortable(),'."\n";
         }
 
-        $columns .= "        ]";
+        $columns .= '        ]';
 
         return $columns;
     }

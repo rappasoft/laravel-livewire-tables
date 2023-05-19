@@ -35,32 +35,49 @@ class Column
     protected array $relations = [];
 
     protected bool $sortable = false;
+
     protected $sortCallback;
+
     protected bool $searchable = false;
+
     protected $searchCallback;
+
     protected bool $collapseOnMobile = false;
+
     protected bool $collapseOnTablet = false;
+
     protected ?string $sortingPillTitle = null;
+
     protected ?string $sortingPillDirectionAsc = null;
+
     protected ?string $sortingPillDirectionDesc = null;
+
     protected bool $eagerLoadRelations = false;
+
     protected $formatCallback;
+
     protected bool $html = false;
+
     protected $labelCallback;
+
     protected bool $hidden = false;
+
     protected bool $selectable = true;
+
     protected bool $selected = true;
+
     protected bool $secondaryHeader = false;
+
     protected $secondaryHeaderCallback;
+
     protected bool $footer = false;
+
     protected $footerCallback;
+
     protected bool $clickable = true;
+
     protected ?string $customSlug = null;
 
-    /**
-     * @param  string  $title
-     * @param  string|null  $from
-     */
     public function __construct(string $title, string $from = null)
     {
         $this->title = trim($title);
@@ -82,9 +99,6 @@ class Column
     }
 
     /**
-     * @param  string  $title
-     * @param  string|null  $from
-     *
      * @return static
      */
     public static function make(string $title, string $from = null): Column

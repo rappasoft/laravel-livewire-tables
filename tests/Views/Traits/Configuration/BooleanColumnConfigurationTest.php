@@ -15,7 +15,7 @@ class BooleanColumnConfigurationTest extends TestCase
 
         $this->assertFalse($column->hasCallback());
 
-        $column->setCallback(fn ($value) => (bool)$value === true);
+        $column->setCallback(fn ($value) => (bool) $value === true);
 
         $this->assertTrue($column->hasCallback());
 

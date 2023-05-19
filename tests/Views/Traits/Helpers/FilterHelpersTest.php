@@ -253,7 +253,7 @@ class FilterHelpersTest extends TestCase
 
         $this->assertIsInt($filter->getFilterSlidedownRow());
 
-        $filter->setFilterSlidedownRow("3");
+        $filter->setFilterSlidedownRow('3');
 
         $this->assertIsInt($filter->getFilterSlidedownRow());
     }
@@ -261,7 +261,7 @@ class FilterHelpersTest extends TestCase
     /** @test */
     public function can_get_filter_slidedown_row(): void
     {
-        $filter = SelectFilter::make('Active')->setFilterSlidedownRow("2");
+        $filter = SelectFilter::make('Active')->setFilterSlidedownRow('2');
 
         $this->assertSame(2, $filter->getFilterSlidedownRow());
 
@@ -295,7 +295,7 @@ class FilterHelpersTest extends TestCase
 
         $this->assertIsInt($filter->getFilterSlidedownColspan());
 
-        $filter->setFilterSlidedownColspan("3");
+        $filter->setFilterSlidedownColspan('3');
 
         $this->assertIsInt($filter->getFilterSlidedownColspan());
     }
@@ -303,7 +303,7 @@ class FilterHelpersTest extends TestCase
     /** @test */
     public function can_get_filter_slidedown_colspan(): void
     {
-        $filter = SelectFilter::make('Active')->setFilterSlidedownColspan("2");
+        $filter = SelectFilter::make('Active')->setFilterSlidedownColspan('2');
 
         $this->assertSame(2, $filter->getFilterSlidedownColspan());
 

@@ -6,8 +6,6 @@ trait BulkActionsConfiguration
 {
     /**
      * @param  array<mixed>  $bulkActions
-     *
-     * @return self
      */
     public function setBulkActions(array $bulkActions): self
     {
@@ -16,11 +14,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-    /**
-     * @param  bool  $status
-     *
-     * @return self
-     */
     public function setBulkActionsStatus(bool $status): self
     {
         $this->bulkActionsStatus = $status;
@@ -28,9 +21,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setBulkActionsEnabled(): self
     {
         $this->setBulkActionsStatus(true);
@@ -38,9 +28,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setBulkActionsDisabled(): self
     {
         $this->setBulkActionsStatus(false);
@@ -48,11 +35,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-    /**
-     * @param  bool  $status
-     *
-     * @return self
-     */
     public function setSelectAllStatus(bool $status): self
     {
         $this->selectAll = $status;
@@ -60,9 +42,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setSelectAllEnabled(): self
     {
         $this->setSelectAllStatus(true);
@@ -70,9 +49,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setSelectAllDisabled(): self
     {
         $this->setSelectAllStatus(false);
@@ -80,11 +56,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-    /**
-     * @param  bool  $status
-     *
-     * @return self
-     */
     public function setHideBulkActionsWhenEmptyStatus(bool $status): self
     {
         $this->hideBulkActionsWhenEmpty = $status;
@@ -92,9 +63,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setHideBulkActionsWhenEmptyEnabled(): self
     {
         $this->setHideBulkActionsWhenEmptyStatus(true);
@@ -102,9 +70,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setHideBulkActionsWhenEmptyDisabled(): self
     {
         $this->setHideBulkActionsWhenEmptyStatus(false);

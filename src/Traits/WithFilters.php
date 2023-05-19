@@ -12,11 +12,17 @@ trait WithFilters
         FilterHelpers;
 
     public bool $filtersStatus = true;
+
     public bool $filtersVisibilityStatus = true;
+
     public bool $filterPillsStatus = true;
+
     public bool $filterSlideDownDefaultVisible = false;
+
     public string $filterLayout = 'popover';
+
     public int $filterCount;
+
     protected $filterCollection;
 
     public function filters(): array

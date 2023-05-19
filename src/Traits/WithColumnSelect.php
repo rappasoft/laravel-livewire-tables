@@ -12,9 +12,13 @@ trait WithColumnSelect
         ColumnSelectHelpers;
 
     public array $selectedColumns = [];
+
     protected bool $columnSelectStatus = true;
+
     protected bool $rememberColumnSelectionStatus = true;
+
     protected bool $columnSelectHiddenOnMobile = false;
+
     protected bool $columnSelectHiddenOnTablet = false;
 
     public function setupColumnSelect(): void
@@ -49,12 +53,12 @@ trait WithColumnSelect
     public function getDefaultVisibleColumns(): array
     {
         return collect($this->getColumns())
-        ->filter(function ($column) {
-            return $column->isVisible() && $column->isSelectable() && $column->isSelected();
-        })
-        ->map(fn ($column) => $column->getSlug())
-        ->values()
-        ->toArray();
+            ->filter(function ($column) {
+                return $column->isVisible() && $column->isSelectable() && $column->isSelected();
+            })
+            ->map(fn ($column) => $column->getSlug())
+            ->values()
+            ->toArray();
     }
 
     public function selectAllColumns()

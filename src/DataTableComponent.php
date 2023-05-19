@@ -68,7 +68,7 @@ abstract class DataTableComponent extends Component
             'filters' => $this->{$this->tableName}['filters'] ?? [],
             'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];
-        
+
     }
 
     /**
@@ -106,8 +106,6 @@ abstract class DataTableComponent extends Component
 
     /**
      * The array defining the columns of the table.
-     *
-     * @return array
      */
     abstract public function columns(): array;
 
@@ -125,14 +123,12 @@ abstract class DataTableComponent extends Component
 
     /**
      * The view to add any modals for the table, could also be used for any non-visible html
-     *
-     * @return string
      */
     public function customView(): string
     {
         return 'livewire-tables::stubs.custom';
     }
-    
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
