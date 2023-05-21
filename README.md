@@ -86,6 +86,7 @@ Please e-mail anthony@rappasoft.com to report any security vulnerabilities inste
 ## Credits
 
 - [Anthony Rappa](https://github.com/rappasoft)
+- [lrljoe](https://github.com/lrljoe)
 - [All Contributors](../../contributors)
 
 ## License
