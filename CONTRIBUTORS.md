@@ -1,4 +1,4 @@
-# Core Contributors
+# Core Maintainers
 - [Anthony Rappa](https://github.com/rappasoft)
 - [Joe McElwee](https://github.com/lrljoe)
 
