@@ -48,8 +48,15 @@ trait WithData
     protected function executeQuery()
     {
         if ($this->paginationIsEnabled()) {
+            $perPage = $this->getPerPage();
+            if ($perPage === -1) {
+                $results = $this->getBuilder()->get();
+                $this->paginationTotalItemCount = $results->count();
+                return new \Illuminate\Pagination\LengthAwarePaginator($results, $this->paginationTotalItemCount, -1);
+            }
+
             if ($this->isPaginationMethod('standard')) {
-                $paginatedResults = $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                $paginatedResults = $this->getBuilder()->paginate($perPage, ['*'], $this->getComputedPageName());
 
                 // Get the total number of items available
                 $this->paginationTotalItemCount = $paginatedResults->total() ?? 0;
@@ -58,7 +65,7 @@ trait WithData
             }
 
             if ($this->isPaginationMethod('simple')) {
-                return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                return $this->getBuilder()->simplePaginate($perPage, ['*'], $this->getComputedPageName());
             }
         }
 
