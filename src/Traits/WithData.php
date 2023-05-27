@@ -52,6 +52,7 @@ trait WithData
             if ($perPage === -1) {
                 $results = $this->getBuilder()->get();
                 $this->paginationTotalItemCount = $results->count();
+
                 return new \Illuminate\Pagination\LengthAwarePaginator($results, $this->paginationTotalItemCount, -1);
             }
 
