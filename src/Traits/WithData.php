@@ -100,7 +100,7 @@ trait WithData
                     $foreign = "$tableAlias.{$model->getForeignKeyName()}";
                     $other = $i === 0
                         ? $model->getQualifiedParentKeyName()
-                        : $lastAlias . '.' . $model->getLocalKeyName();
+                        : $lastAlias.'.'.$model->getLocalKeyName();
 
                     break;
 
@@ -108,7 +108,7 @@ trait WithData
                     $table = "{$model->getRelated()->getTable()} AS $tableAlias";
                     $foreign = $i === 0
                         ? $model->getQualifiedForeignKeyName()
-                        : $lastAlias . '.' . $model->getForeignKeyName();
+                        : $lastAlias.'.'.$model->getForeignKeyName();
 
                     $other = "$tableAlias.{$model->getOwnerKeyName()}";
 
@@ -175,10 +175,6 @@ trait WithData
 
     /**
      * Generate a unique alias used for joins and column selection.
-     *
-     * @param string|null $currentTableAlias
-     * @param string $relationPart
-     * @return string
      */
     protected function getTableAlias(?string $currentTableAlias, string $relationPart): string
     {
@@ -186,7 +182,7 @@ trait WithData
             return $relationPart;
         }
 
-        return $currentTableAlias . '_' . $relationPart;
+        return $currentTableAlias.'_'.$relationPart;
     }
 
     protected function getQuerySql(): string
