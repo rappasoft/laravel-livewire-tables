@@ -3,6 +3,8 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
+- Fixes
+    - Re-enable capability for hideBulkActionsWhenEmptyIsDisabled
 
 ## [2.14.0] - 2023-05-18
 

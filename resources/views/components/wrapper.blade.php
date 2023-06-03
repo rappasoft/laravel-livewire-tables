@@ -10,6 +10,7 @@
     paginationCurrentCount: $wire.entangle('paginationCurrentCount'),
     paginationTotalItemCount: $wire.entangle('paginationTotalItemCount'),
     paginationCurrentItems: $wire.entangle('paginationCurrentItems'),
+    alwaysShowBulkActions: {{ $component->hideBulkActionsWhenEmptyIsDisabled() }},
     @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
     selectedItems: $wire.entangle('selected').defer,
     @else
