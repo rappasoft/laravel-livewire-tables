@@ -10,12 +10,9 @@
     paginationCurrentCount: $wire.entangle('paginationCurrentCount'),
     paginationTotalItemCount: $wire.entangle('paginationTotalItemCount'),
     paginationCurrentItems: $wire.entangle('paginationCurrentItems'),
-    alwaysShowBulkActions: {{ $component->hideBulkActionsWhenEmptyIsDisabled() }},
-    @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
+    alwaysShowBulkActions: {{ $component->hideBulkActionsWhenEmptyIsDisabled() ? 'true' : 'false' }},
     selectedItems: $wire.entangle('selected').defer,
-    @else
-    selectedItems: {},
-    @endif
+    @if ($component->showBulkActionsDropdownAlpine())
     toggleSelectAll() {
         if (this.paginationTotalItemCount == this.selectedItems.length) {
             this.clearSelected();
@@ -37,6 +34,21 @@
         }
         this.selectedItems = [...new Set(tempSelectedItems)];
     },
+    @else
+    toggleSelectAll() {
+        return;
+    },
+    setAllSelected() {
+        return;
+    },
+    clearSelected() {
+        return;
+    },
+    selectAllOnPage() {
+        return;
+    },
+
+    @endif
 }">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
