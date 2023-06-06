@@ -50,7 +50,9 @@ trait WithData
         if ($this->paginationIsEnabled()) {
             $perPage = $this->getPerPage();
             if ($this->isPaginationMethod('standard')) {
-                $perPage  = $perPage === -1 ? $perPage = function ($total) {return $total;} : $perPage;
+                $perPage = $perPage === -1 ? $perPage = function ($total) {
+                    return $total;
+                } : $perPage;
                 $paginatedResults = $this->getBuilder()->paginate($perPage, ['*'], $this->getComputedPageName());
 
                 // Get the total number of items available
@@ -61,6 +63,7 @@ trait WithData
 
             if ($this->isPaginationMethod('simple')) {
                 $perPage = $perPage === -1 ? $perPage = $this->getBuilder()->toBase()->getCountForPagination() : $perPage;
+
                 return $this->getBuilder()->simplePaginate($perPage, ['*'], $this->getComputedPageName());
             }
         }
