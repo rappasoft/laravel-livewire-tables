@@ -50,9 +50,9 @@ trait WithData
         if ($this->paginationIsEnabled()) {
             $perPage = $this->getPerPage();
             if ($this->isPaginationMethod('standard')) {
-                $perPage = $perPage === -1 ? function ($total) {
+                $perPage = $perPage === -1 ? (str_starts_with(app()->version(), '8.') ? $this->getBuilder()->toBase()->getCountForPagination() : function ($total) {
                     return $total;
-                } : $perPage;
+                }) : $perPage;
                 $paginatedResults = $this->getBuilder()->paginate($perPage, ['*'], $this->getComputedPageName());
 
                 // Get the total number of items available
