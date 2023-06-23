@@ -26,7 +26,11 @@ trait SearchHelpers
     {
         return $this->searchStatus;
     }
-
+    
+    public function getSearchPlaceholder(): string {
+        return $this->searchPlaceholder;
+    }
+    
     public function searchIsEnabled(): bool
     {
         return $this->getSearchStatus() === true;
