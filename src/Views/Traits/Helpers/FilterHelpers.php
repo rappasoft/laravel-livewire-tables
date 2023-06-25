@@ -232,15 +232,15 @@ trait FilterHelpers
         return $this->filterPosition;
     }
      
-     /**
-      * Returns whether the filter has a custom label blade
-      *
-      * @return bool
-      */
-     public function hasCustomFilterLabel(): bool
-     {
-         return ! is_null($this->filterCustomLabel);
-     }
+    /**
+     * Returns whether the filter has a custom label blade
+     *
+     * @return bool
+     */
+    public function hasCustomFilterLabel(): bool
+    {
+        return ! is_null($this->filterCustomLabel);
+    }
 
     /**
      * Returns the path to the custom filter label blade
