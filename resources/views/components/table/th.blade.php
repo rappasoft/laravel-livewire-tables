@@ -6,7 +6,7 @@
     $theme = $component->getTheme();
     $customAttributes = $component->getThAttributes($column);
     $customSortButtonAttributes = $component->getThSortButtonAttributes($column);
-    $direction = $column->hasField() ? $component->getSort($column->getColumnSelectName()) : null;
+    $direction = $column->hasField() ? $component->getSort($column->getColumnSelectName()) : $component->getSort($column->getSlug()) ?? null ;
 @endphp
 
 @if ($theme === 'tailwind')

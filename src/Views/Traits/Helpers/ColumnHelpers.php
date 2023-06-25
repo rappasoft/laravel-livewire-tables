@@ -13,41 +13,26 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait ColumnHelpers
 {
-    /**
-     * @return DataTableComponent|null
-     */
     public function getComponent(): ?DataTableComponent
     {
         return $this->component;
     }
 
-    /**
-     * @return bool
-     */
     public function hasFrom(): bool
     {
         return $this->from !== null;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFrom(): ?string
     {
         return $this->from;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug(): string
     {
         if ($this->hasCustomSlug()) {
@@ -57,89 +42,51 @@ trait ColumnHelpers
         }
     }
 
-    /**
-     * @return string|null
-     */
     public function getField(): ?string
     {
         return $this->field;
     }
 
-    /**
-     * @param  string  $field
-     *
-     * @return bool
-     */
     public function isField(string $field): bool
     {
         return $this->getField() === $field;
     }
 
-    /**
-     * @param  string  $column
-     *
-     * @return bool
-     */
     public function isColumn(string $column): bool
     {
         return $this->getColumn() === $column;
     }
 
-    /**
-     * @param  string  $name
-     *
-     * @return bool
-     */
     public function isColumnBySelectName(string $name): bool
     {
         return $this->getColumnSelectName() === $name;
     }
 
-    /**
-     * @param  string  $slug
-     *
-     * @return bool
-     */
+    public function hasField(): bool
+    {
+        return $this->getField() !== null;
+    }
+    
     public function isColumnBySlug(string $slug): bool
     {
         return $this->getSlug() === $slug;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasField(): bool
-    {
-        return $this->getField() !== null;
-    }
-
-    /**
-     * @return bool
-     */
     public function isLabel(): bool
     {
         return ! $this->hasFrom() && ! $this->hasField();
     }
 
-    /**
-     * @return string|null
-     */
     public function getTable(): ?string
     {
         return $this->table;
     }
 
-    /**
-     * @return string|null
-     */
     public function getColumn(): ?string
     {
-        return $this->getTable() . '.' . $this->getField();
+        return $this->getTable().'.'.$this->getField();
     }
 
-    /**
-     * @return string|null
-     */
     public function getColumnSelectName(): ?string
     {
         if ($this->isBaseColumn()) {
@@ -197,57 +144,36 @@ trait ColumnHelpers
         return $row->{$this->getRelationString().'.'.$this->getField()};
     }
 
-    /**
-     * @return callable|null
-     */
     public function getSortCallback(): ?callable
     {
         return $this->sortCallback;
     }
 
-    /**
-     * @return bool
-     */
     public function isSortable(): bool
     {
         return $this->hasField() && $this->sortable === true;
     }
 
-    /**
-     * @return bool
-     */
     public function hasSortCallback(): bool
     {
         return $this->sortCallback !== null;
     }
 
-    /**
-     * @return callable|null
-     */
     public function getSearchCallback(): ?callable
     {
         return $this->searchCallback;
     }
 
-    /**
-     * @return bool
-     */
     public function isSearchable(): bool
     {
         return $this->hasField() && $this->searchable === true;
     }
 
-    /**
-     * @return bool
-     */
     public function hasSearchCallback(): bool
     {
         return $this->searchCallback !== null;
     }
 
-    /**
-     * @return self
-     */
     public function collapseOnMobile(): self
     {
         $this->collapseOnMobile = true;
@@ -255,9 +181,6 @@ trait ColumnHelpers
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function shouldCollapseOnMobile(): bool
     {
         return $this->collapseOnMobile;
@@ -273,17 +196,11 @@ trait ColumnHelpers
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function shouldCollapseOnTablet(): bool
     {
         return $this->collapseOnTablet;
     }
 
-    /**
-     * @return string
-     */
     public function getSortingPillTitle(): string
     {
         if ($this->hasCustomSortingPillTitle()) {
@@ -293,35 +210,21 @@ trait ColumnHelpers
         return $this->getTitle();
     }
 
-    /**
-     * @return string|null
-     */
     public function getCustomSortingPillTitle(): ?string
     {
         return $this->sortingPillTitle;
     }
 
-    /**
-     * @return bool
-     */
     public function hasCustomSortingPillTitle(): bool
     {
         return $this->getCustomSortingPillTitle() !== null;
     }
 
-    /**
-     * @return bool
-     */
     public function hasCustomSortingPillDirections(): bool
     {
         return $this->sortingPillDirectionAsc !== null && $this->sortingPillDirectionDesc !== null;
     }
 
-    /**
-     * @param  string  $direction
-     *
-     * @return string
-     */
     public function getCustomSortingPillDirections(string $direction): string
     {
         if ($direction === 'asc') {
@@ -335,12 +238,6 @@ trait ColumnHelpers
         return __('N/A');
     }
 
-    /**
-     * @param  DataTableComponent  $component
-     * @param  string  $direction
-     *
-     * @return string
-     */
     public function getSortingPillDirection(DataTableComponent $component, string $direction): string
     {
         if ($this->hasCustomSortingPillDirections()) {
@@ -350,33 +247,21 @@ trait ColumnHelpers
         return $direction === 'asc' ? $component->getDefaultSortingLabelAsc() : $component->getDefaultSortingLabelDesc();
     }
 
-    /**
-     * @return bool
-     */
     public function eagerLoadRelationsIsEnabled(): bool
     {
         return $this->eagerLoadRelations === true;
     }
 
-    /**
-     * @return bool
-     */
     public function isReorderColumn(): bool
     {
         return $this->getField() === $this->component->getDefaultReorderColumn();
     }
 
-    /**
-     * @return bool
-     */
     public function hasFormatter(): bool
     {
         return $this->formatCallback !== null;
     }
 
-    /**
-     * @return callable|null
-     */
     public function getFormatCallback(): ?callable
     {
         return $this->formatCallback;
@@ -388,9 +273,6 @@ trait ColumnHelpers
         return $this->labelCallback;
     }
 
-    /**
-     * @return bool
-     */
     public function isHtml(): bool
     {
         return $this->html === true;
@@ -409,49 +291,31 @@ trait ColumnHelpers
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isVisible(): bool
     {
         return $this->hidden !== true;
     }
 
-    /**
-     * @return bool
-     */
     public function isHidden(): bool
     {
         return $this->hidden === true;
     }
 
-    /**
-     * @return bool
-     */
     public function isSelectable(): bool
     {
         return $this->selectable === true;
     }
 
-    /**
-     * @return bool
-     */
     public function isSelected(): bool
     {
         return $this->selected === true;
     }
 
-    /**
-     * @return bool
-     */
     public function hasSecondaryHeader(): bool
     {
         return $this->secondaryHeader === true;
     }
 
-    /**
-     * @return bool
-     */
     public function hasSecondaryHeaderCallback(): bool
     {
         return $this->secondaryHeaderCallback !== null;
@@ -466,8 +330,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @param mixed $rows
-     *
+     * @param  mixed  $rows
      * @return mixed
      */
     public function getSecondaryHeaderContents($rows)
@@ -498,17 +361,11 @@ trait ColumnHelpers
         return $value;
     }
 
-    /**
-     * @return bool
-     */
     public function hasFooter(): bool
     {
         return $this->footer === true;
     }
 
-    /**
-     * @return bool
-     */
     public function hasFooterCallback(): bool
     {
         return $this->footerCallback !== null;
@@ -523,8 +380,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @param mixed $rows
-     *
+     * @param  mixed  $rows
      * @return mixed
      */
     public function getFooterContents($rows)
@@ -556,24 +412,20 @@ trait ColumnHelpers
     }
 
     /**
-     * @param array<mixed> $attributes
-     *
+     * @param  array<mixed>  $attributes
      * @return mixed
      */
     public function arrayToAttributes(array $attributes)
     {
-        return join(' ', array_map(function ($key) use ($attributes) {
+        return implode(' ', array_map(function ($key) use ($attributes) {
             if (is_bool($attributes[$key])) {
                 return $attributes[$key] ? $key : '';
             }
 
-            return $key . '="' . $attributes[$key] . '"';
+            return $key.'="'.$attributes[$key].'"';
         }, array_keys($attributes)));
     }
 
-    /**
-     * @return bool
-     */
     public function isClickable(): bool
     {
         return $this->clickable &&
@@ -581,17 +433,11 @@ trait ColumnHelpers
             ! $this instanceof LinkColumn;
     }
 
-    /**
-     * @return string
-     */
     public function getCustomSlug(): string
     {
         return $this->customSlug;
     }
 
-    /**
-     * @return bool
-     */
     public function hasCustomSlug(): bool
     {
         return $this->customSlug !== null;
