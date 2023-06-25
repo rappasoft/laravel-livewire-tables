@@ -23,7 +23,7 @@ If you don't want to use the default view and icons you can set your own:
 
 ```php
 BooleanColumn::make('Active')
-    ->view('my.active.view')
+    ->setView('my.active.view')
 ```
 
 You will have access to `$component`, `$status`, and `$successValue`.

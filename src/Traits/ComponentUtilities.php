@@ -13,32 +13,59 @@ trait ComponentUtilities
         ComponentHelpers;
 
     public array $table = [];
+
     public $theme = null;
+
     protected Builder $builder;
+
     protected $model;
+
     protected $primaryKey;
+
     protected array $relationships = [];
+
     protected string $tableName = 'table';
+
     protected ?string $dataTableFingerprint;
+
     protected ?string $queryStringAlias;
+
     protected bool $queryStringStatus = true;
+
     protected bool $offlineIndicatorStatus = true;
+
     protected bool $eagerLoadAllRelationsStatus = false;
+
     protected array $componentWrapperAttributes = [];
+
     protected array $tableWrapperAttributes = [];
+
     protected array $tableAttributes = [];
+
     protected array $theadAttributes = [];
+
     protected array $tbodyAttributes = [];
+
     protected $thAttributesCallback;
+
     protected $thSortButtonAttributesCallback;
+
     protected $trAttributesCallback;
+
     protected $trUrlCallback;
+
     protected $trUrlTargetCallback;
+
     protected $tdAttributesCallback;
+
     protected $collapsingColumnsStatus = true;
+
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
+
     protected array $additionalSelects = [];
+
     protected bool $hideConfigurableAreasWhenReorderingStatus = true;
+
     protected array $configurableAreas = [
         'before-tools' => null,
         'toolbar-left-start' => null,
@@ -69,9 +96,6 @@ trait ComponentUtilities
 
     /**
      * Keep track of any properties on the custom query string key for this specific table
-     *
-     * @param $name
-     * @param $value
      */
     public function updated($name, $value): void
     {
@@ -110,5 +134,15 @@ trait ComponentUtilities
     public function hydrate(): void
     {
         $this->restartReorderingIfNecessary();
+    }
+
+    // Sets the Theme If Not Already Set
+    public function mountComponentUtilities()
+    {
+        // Sets the Theme - tailwind/bootstrap
+        if (is_null($this->theme)) {
+            $this->setTheme();
+        }
+
     }
 }

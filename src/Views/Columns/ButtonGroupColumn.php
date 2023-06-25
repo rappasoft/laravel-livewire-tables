@@ -13,7 +13,9 @@ class ButtonGroupColumn extends Column
         ButtonGroupColumnHelpers;
 
     protected array $buttons = [];
+
     protected string $view = 'livewire-tables::includes.columns.button-group';
+
     protected $attributesCallback;
 
     public function __construct(string $title, string $from = null)

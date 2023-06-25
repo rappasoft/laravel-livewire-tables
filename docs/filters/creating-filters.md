@@ -66,9 +66,9 @@ public function filters(): array
     ];
 }
 ```
-To set a defualt "All" option at the start of the dropdown, you can do so by utilising the 
+To set a default "All" option at the start of the dropdown, you can do so by utilising the 
 ```
-->SetFirstOption('NAME')
+->setFirstOption('NAME')
 ```
 
 ## Multi-select Filters

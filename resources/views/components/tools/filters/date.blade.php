@@ -4,11 +4,12 @@
     $tableName = $component->getTableName();
 @endphp
 <div>
-    @if($filter->hasCustomFilterLabel())
-        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout, 'tableName' => $tableName])
-    @else
+    @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
+        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
+    @elseif(!$filter->hasCustomPosition())
         <x-livewire-tables::tools.filter-label :filter="$filter" :theme="$theme" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
+
     @if ($theme === 'tailwind')
         <div class="rounded-md shadow-sm">
             <input

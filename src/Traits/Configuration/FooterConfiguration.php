@@ -4,11 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait FooterConfiguration
 {
-    /**
-     * @param bool $status
-     *
-     * @return self
-     */
     public function setFooterStatus(bool $status): self
     {
         $this->footerStatus = $status;
@@ -16,9 +11,6 @@ trait FooterConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setFooterEnabled(): self
     {
         $this->setFooterStatus(true);
@@ -26,9 +18,6 @@ trait FooterConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setFooterDisabled(): self
     {
         $this->setFooterStatus(false);
@@ -36,11 +25,6 @@ trait FooterConfiguration
         return $this;
     }
 
-    /**
-     * @param bool $status
-     *
-     * @return self
-     */
     public function setUseHeaderAsFooterStatus(bool $status): self
     {
         $this->useHeaderAsFooterStatus = $status;
@@ -48,9 +32,6 @@ trait FooterConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setUseHeaderAsFooterEnabled(): self
     {
         $this->setUseHeaderAsFooterStatus(true);
@@ -58,9 +39,6 @@ trait FooterConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function setUseHeaderAsFooterDisabled(): self
     {
         $this->setUseHeaderAsFooterStatus(false);
@@ -68,11 +46,6 @@ trait FooterConfiguration
         return $this;
     }
 
-    /**
-     * @param callable $callback
-     *
-     * @return self
-     */
     public function setFooterTrAttributes(callable $callback): self
     {
         $this->footerTrAttributesCallback = $callback;
@@ -80,11 +53,6 @@ trait FooterConfiguration
         return $this;
     }
 
-    /**
-     * @param callable $callback
-     *
-     * @return self
-     */
     public function setFooterTdAttributes(callable $callback): self
     {
         $this->footerTdAttributesCallback = $callback;

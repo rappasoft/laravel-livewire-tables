@@ -11,10 +11,15 @@ trait WithReordering
         ReorderingHelpers;
 
     public bool $reorderStatus = false;
+
     public bool $currentlyReorderingStatus = false;
+
     public bool $hideReorderColumnUnlessReorderingStatus = false;
+
     public string $reorderMethod = 'reorder';
+
     public string $defaultReorderColumn = 'sort';
+
     public string $defaultReorderDirection = 'asc';
 
     public function setupReordering(): void

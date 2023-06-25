@@ -21,6 +21,14 @@ class TextFilter extends Filter
         return $value === '';
     }
 
+    /**
+     * Gets the Default Value for this Filter via the Component
+     */
+    public function getFilterDefaultValue(): ?string
+    {
+        return $this->filterDefaultValue ?? null;
+    }
+
     public function render(DataTableComponent $component)
     {
         return view('livewire-tables::components.tools.filters.text-field', [

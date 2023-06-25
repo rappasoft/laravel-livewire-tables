@@ -7,9 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 trait FilterConfiguration
 {
     /**
-     * @param array<mixed> $config
-     *
-     * @return Filter
+     * @param  array<mixed>  $config
      */
     public function config(array $config = []): Filter
     {
@@ -18,11 +16,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @param string $title
-     *
-     * @return self
-     */
     public function setFilterPillTitle(string $title): self
     {
         $this->filterPillTitle = $title;
@@ -31,9 +24,7 @@ trait FilterConfiguration
     }
 
     /**
-     * @param array<mixed> $values
-     *
-     * @return self
+     * @param  array<mixed>  $values
      */
     public function setFilterPillValues(array $values): self
     {
@@ -42,9 +33,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function hiddenFromMenus(): self
     {
         $this->hiddenFromMenus = true;
@@ -52,9 +40,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function hiddenFromPills(): self
     {
         $this->hiddenFromPills = true;
@@ -62,9 +47,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function hiddenFromFilterCount(): self
     {
         $this->hiddenFromFilterCount = true;
@@ -72,9 +54,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function hiddenFromAll(): self
     {
         $this->hiddenFromMenus = true;
@@ -84,9 +63,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function notResetByClearButton(): self
     {
         $this->resetByClearButton = false;
@@ -94,62 +70,51 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @param string $position
-     *
-     * @return self
-     */
     public function setFilterPosition(string $position): self
     {
         $this->filterPosition = $position;
 
         return $this;
     }
-     
-    /**
-     * @param string $filterCustomLabel
-     *
-     * @return self
-     */
+
     public function setCustomFilterLabel(string $filterCustomLabel): self
     {
         $this->filterCustomLabel = $filterCustomLabel;
 
         return $this;
     }
-    
-    /**
-     * @param string|int $filterSlidedownRow
-     *
-     * @return self
-     */
-    public function setFilterSlidedownRow(string|int $filterSlidedownRow): self
+
+    public function setFilterSlidedownRow(string $filterSlidedownRow): self
     {
-        $this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
+        //$this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
+        $this->filterSlidedownRow = intval($filterSlidedownRow);
 
         return $this;
     }
 
-    /**
-     * @param string|int $filterSlidedownColspan
-     *
-     * @return self
-     */
-    public function setFilterSlidedownColspan(string|int $filterSlidedownColspan): self
+    public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
     {
-        $this->filterSlidedownColspan = (is_int($filterSlidedownColspan) ? $filterSlidedownColspan : intval($filterSlidedownColspan));
-        
+        //$this->filterSlidedownColspan = (is_int($filterSlidedownColspan) ? $filterSlidedownColspan : intval($filterSlidedownColspan));
+        $this->filterSlidedownColspan = intval($filterSlidedownColspan);
+
         return $this;
     }
-    
-    /**
-     * @param string $blade
-     *
-     * @return self
-     */
+
     public function setFilterPillBlade(string $blade): self
     {
         $this->filterCustomPillBlade = $blade;
+
+        return $this;
+    }
+
+    /**
+     * Sets a Default Value via the Filter Component
+     *
+     * @param  mixed  $value
+     */
+    public function setFilterDefaultValue($value): self
+    {
+        $this->filterDefaultValue = $value;
 
         return $this;
     }

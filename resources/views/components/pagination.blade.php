@@ -6,7 +6,9 @@
 @endphp
 
 @if ($component->hasConfigurableAreaFor('before-pagination'))
-    @include($component->getConfigurableAreaFor('before-pagination'), $component->getParametersForConfigurableArea('before-pagination'))
+    @include(
+        $component->getConfigurableAreaFor('before-pagination'),
+        $component->getParametersForConfigurableArea('before-pagination'))
 @endif
 
 @if ($theme === 'tailwind')
@@ -21,7 +23,7 @@
                             <span>@lang('to')</span>
                             <span class="font-medium">{{ $rows->lastItem() }}</span>
                             <span>@lang('of')</span>
-                            <span class="font-medium">{{ $rows->total() }}</span>
+                            <span class="font-medium"><span x-text="paginationTotalItemCount"></span></span>
                             <span>@lang('results')</span>
                         </p>
                     @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('simple'))
@@ -47,7 +49,7 @@
         @endif
     </div>
 @elseif ($theme === 'bootstrap-4')
-    <div>
+    <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">
@@ -61,7 +63,7 @@
                         <span>@lang('to')</span>
                         <strong>{{ $rows->count() ? $rows->lastItem() : 0 }}</strong>
                         <span>@lang('of')</span>
-                        <strong>{{ $rows->total() }}</strong>
+                        <strong><span x-text="paginationTotalItemCount"></span></strong>
                         <span>@lang('results')</span>
                     </div>
                 </div>
@@ -90,7 +92,7 @@
         @endif
     </div>
 @elseif ($theme === 'bootstrap-5')
-    <div>
+    <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">
@@ -104,7 +106,7 @@
                         <span>@lang('to')</span>
                         <strong>{{ $rows->count() ? $rows->lastItem() : 0 }}</strong>
                         <span>@lang('of')</span>
-                        <strong>{{ $rows->total() }}</strong>
+                        <strong><span x-text="paginationTotalItemCount"></span></strong>
                         <span>@lang('results')</span>
                     </div>
                 </div>
@@ -135,5 +137,7 @@
 @endif
 
 @if ($component->hasConfigurableAreaFor('after-pagination'))
-    @include($component->getConfigurableAreaFor('after-pagination'), $component->getParametersForConfigurableArea('after-pagination'))
+    @include(
+        $component->getConfigurableAreaFor('after-pagination'),
+        $component->getParametersForConfigurableArea('after-pagination'))
 @endif

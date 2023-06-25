@@ -6,7 +6,7 @@ trait ComponentColumnConfiguration
 {
     public function component(string $component): self
     {
-        $this->componentView = 'components.' . $component;
+        $this->componentView = 'components.'.$component;
 
         return $this;
     }

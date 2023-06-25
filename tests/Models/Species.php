@@ -29,9 +29,6 @@ class Species extends Model
         'name',
     ];
 
-    /**
-     * @return HasMany
-     */
     public function pets(): HasMany
     {
         return $this->hasMany(Pet::class);

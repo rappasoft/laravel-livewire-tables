@@ -14,7 +14,7 @@ trait ButtonGroupColumnConfiguration
     public function attributes(callable $callback): self
     {
         $this->attributesCallback = $callback;
-        
+
         return $this;
     }
 }

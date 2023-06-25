@@ -16,7 +16,9 @@ class ComponentColumn extends Column
         ComponentColumnConfiguration;
 
     protected string $componentView;
+
     protected $attributesCallback;
+
     protected $slotCallback;
 
     public function __construct(string $title, string $from = null)

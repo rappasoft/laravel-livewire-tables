@@ -158,6 +158,24 @@ public function configure(): void
 }
 ```
 
+By default, this replaces the default classes on the th, if you would like to keep them, set the default flag to true.
+
+```php
+public function configure(): void
+{
+  $this->setThAttributes(function(Column $column) {
+    if ($column->isField('name')) {
+      return [
+        'default' => true,
+        'class' => 'bg-green-500',
+      ];
+    }
+
+    return ['default' => true];
+  });
+}
+```
+
 ### setThSortButtonAttributes
 
 Set a list of attributes to override on the th sort button elements
@@ -174,24 +192,6 @@ public function configure(): void
     }
 
     return [];
-  });
-}
-```
-
-By default, this replaces the default classes on the th, if you would like to keep them, set the default flag to true.
-
-```php
-public function configure(): void
-{
-  $this->setThAttributes(function(Column $column) {
-    if ($column->isField('name')) {
-      return [
-        'default' => true,
-        'class' => 'bg-green-500',
-      ];
-    }
-
-    return ['default' => true];
   });
 }
 ```

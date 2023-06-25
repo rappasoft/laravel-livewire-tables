@@ -73,7 +73,7 @@ final class DateFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->hasFilterCallback());
 
         self::$filterInstance->filter(function (Builder $builder, string $value) {
-            return $builder->whereDate('created_at', ">=", $value);
+            return $builder->whereDate('created_at', '>=', $value);
         });
 
         $this->assertTrue(self::$filterInstance->hasFilterCallback());

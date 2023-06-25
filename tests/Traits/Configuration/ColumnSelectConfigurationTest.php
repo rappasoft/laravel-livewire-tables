@@ -57,7 +57,6 @@ class ColumnSelectConfigurationTest extends TestCase
 
         $this->basicTable->deselectAllColumns();
 
-
         $this->assertSame([], $this->basicTable->selectedColumns);
     }
 }

@@ -62,7 +62,7 @@ class NumberFilterTest extends TestCase
 
         $filter = NumberFilter::make('Active')
             ->filter(function (Builder $builder, int $value) {
-                return $builder->where('breed_id', ">", $value);
+                return $builder->where('breed_id', '>', $value);
             });
 
         $this->assertTrue($filter->hasFilterCallback());
@@ -158,7 +158,7 @@ class NumberFilterTest extends TestCase
 
         $this->assertFalse($filter->isResetByClearButton());
     }
-    
+
     /** @test */
     public function can_not_set_number_filter_to_non_number(): void
     {

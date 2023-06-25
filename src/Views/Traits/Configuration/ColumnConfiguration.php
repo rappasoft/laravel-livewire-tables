@@ -7,11 +7,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnConfiguration
 {
-    /**
-     * @param DataTableComponent $component
-     *
-     * @return self
-     */
     public function setComponent(DataTableComponent $component): self
     {
         $this->component = $component;
@@ -19,11 +14,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param callable $callback
-     *
-     * @return self
-     */
     public function label(callable $callback): self
     {
         $this->from = null;
@@ -33,11 +23,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param callable|null $callback
-     *
-     * @return self
-     */
     public function sortable(callable $callback = null): self
     {
         $this->sortable = true;
@@ -47,11 +32,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param callable $callable
-     *
-     * @return Column
-     */
     public function format(callable $callable): Column
     {
         $this->formatCallback = $callable;
@@ -59,11 +39,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param callable|null $callback
-     *
-     * @return self
-     */
     public function searchable(callable $callback = null): self
     {
         $this->searchable = true;
@@ -73,9 +48,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function html(): self
     {
         $this->html = true;
@@ -83,11 +55,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param string $table
-     *
-     * @return self
-     */
     public function setTable(string $table): self
     {
         $this->table = $table;
@@ -95,11 +62,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param string $title
-     *
-     * @return self
-     */
     public function setSortingPillTitle(string $title): self
     {
         $this->sortingPillTitle = $title;
@@ -107,12 +69,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param string $asc
-     * @param string $desc
-     *
-     * @return self
-     */
     public function setSortingPillDirections(string $asc, string $desc): self
     {
         $this->sortingPillDirectionAsc = $asc;
@@ -121,9 +77,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function eagerLoadRelations(): self
     {
         $this->eagerLoadRelations = true;
@@ -132,9 +85,7 @@ trait ColumnConfiguration
     }
 
     /**
-     * @param mixed $condition
-     *
-     * @return self
+     * @param  mixed  $condition
      */
     public function hideIf($condition): self
     {
@@ -143,9 +94,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function excludeFromColumnSelect(): self
     {
         $this->selectable = false;
@@ -153,9 +101,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function deselected(): self
     {
         $this->selected = false;
@@ -165,8 +110,6 @@ trait ColumnConfiguration
 
     /**
      * @param  mixed  $callback
-     *
-     * @return self
      */
     public function secondaryHeader($callback = null): self
     {
@@ -177,11 +120,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param string $filterKey
-     *
-     * @return self
-     */
     public function secondaryHeaderFilter(string $filterKey): self
     {
         $this->secondaryHeader = true;
@@ -193,8 +131,6 @@ trait ColumnConfiguration
 
     /**
      * @param  mixed  $callback
-     *
-     * @return self
      */
     public function footer($callback = null): self
     {
@@ -205,11 +141,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param string $filterKey
-     *
-     * @return self
-     */
     public function footerFilter(string $filterKey): self
     {
         $this->footer = true;
@@ -219,9 +150,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function unclickable(): self
     {
         $this->clickable = false;
@@ -229,11 +157,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param string $customSlug
-     *
-     * @return self
-     */
     public function setCustomSlug(string $customSlug): self
     {
         $this->customSlug = $customSlug;

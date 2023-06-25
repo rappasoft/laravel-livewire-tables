@@ -35,25 +35,16 @@ class Pet extends Model
         'breed_id',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function species(): BelongsTo
     {
         return $this->belongsTo(Species::class);
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function breed(): BelongsTo
     {
         return $this->belongsTo(Breed::class);
     }
 
-    /**
-     * @return BelongsToMany
-     */
     public function veterinaries(): BelongsToMany
     {
         return $this->belongsToMany(Veterinary::class);

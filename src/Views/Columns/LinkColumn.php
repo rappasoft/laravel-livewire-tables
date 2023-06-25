@@ -14,8 +14,11 @@ class LinkColumn extends Column
         LinkColumnConfiguration;
 
     protected string $view = 'livewire-tables::includes.columns.link';
+
     protected $titleCallback;
+
     protected $locationCallback;
+
     protected $attributesCallback;
 
     public function __construct(string $title, string $from = null)

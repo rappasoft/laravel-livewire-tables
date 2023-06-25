@@ -26,7 +26,7 @@ class SelectFilter extends Filter
         return collect($this->getOptions())
             ->map(fn ($value, $key) => is_iterable($value) ? collect($value)->keys() : $key)
             ->flatten()
-            ->map(fn ($value) => (string)$value)
+            ->map(fn ($value) => (string) $value)
             ->filter(fn ($value) => strlen($value) > 0)
             ->values()
             ->toArray();
@@ -52,6 +52,14 @@ class SelectFilter extends Filter
     public function isEmpty($value): bool
     {
         return $value === '';
+    }
+
+    /**
+     * Gets the Default Value for this Filter via the Component
+     */
+    public function getFilterDefaultValue(): ?string
+    {
+        return $this->filterDefaultValue ?? null;
     }
 
     public function render(DataTableComponent $component)

@@ -25,7 +25,7 @@ class MultiSelectFilter extends Filter
     {
         return collect($this->getOptions())
             ->keys()
-            ->map(fn ($value) => (string)$value)
+            ->map(fn ($value) => (string) $value)
             ->filter(fn ($value) => strlen($value))
             ->values()
             ->toArray();
@@ -53,6 +53,16 @@ class MultiSelectFilter extends Filter
     public function getDefaultValue()
     {
         return [];
+    }
+
+    /**
+     * Gets the Default Value for this Filter via the Component
+     *
+     * @return array<mixed>
+     */
+    public function getFilterDefaultValue(): array
+    {
+        return $this->filterDefaultValue ?? [];
     }
 
     public function getFilterPillValue($value): ?string
