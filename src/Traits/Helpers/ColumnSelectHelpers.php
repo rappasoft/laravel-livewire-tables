@@ -72,9 +72,6 @@ trait ColumnSelectHelpers
         return $this->columnSelectHiddenOnTablet;
     }
 
-    /**
-    * @return self
-    */
     public function setColumnSelectHiddenOnTablet(): self
     {
         $this->columnSelectHiddenOnTablet = true;
