@@ -24,7 +24,7 @@ trait WithSorting
     public string $defaultSortDirection = 'asc';
 
     public ?array $defaultSortColumns = null;
-  
+
     public array $defaultSortDirections = ['asc'];
 
     public string $defaultSortingLabelAsc = 'A-Z';
@@ -63,9 +63,9 @@ trait WithSorting
 
             return $this->getBuilder();
         }
-        
+
         if ($this->hasDefaultSortColumns() && ! $this->hasSorts()) {
-            $sortColumns    = $this->getDefaultSortColumns();
+            $sortColumns = $this->getDefaultSortColumns();
             $sortDirections = $this->getDefaultSortDirections();
             foreach ($sortColumns as $index => $sortColumn) {
                 $this->setBuilder($this->getBuilder()->orderBy($sortColumn, $sortDirections[$index]));

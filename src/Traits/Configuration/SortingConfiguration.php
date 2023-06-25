@@ -61,13 +61,7 @@ trait SortingConfiguration
 
         return $this;
     }
-    
-    /**
-     * @param  array  $fields
-     * @param  array  $directions
-     *
-     * @return self
-     */
+
     public function setDefaultSortColumns(array $fields, array $directions = ['asc']): self
     {
         $this->defaultSortColumns = $fields;
@@ -80,9 +74,6 @@ trait SortingConfiguration
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function removeDefaultSortColumns(): self
     {
         $this->defaultSortColumns = null;
