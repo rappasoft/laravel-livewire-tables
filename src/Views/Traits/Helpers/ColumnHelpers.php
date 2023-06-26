@@ -61,7 +61,7 @@ trait ColumnHelpers
     {
         return $this->getColumnSelectName() === $name;
     }
-    
+
     public function isColumnBySlug(string $slug): bool
     {
         return $this->getSlug() === $slug;
