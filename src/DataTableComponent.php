@@ -139,7 +139,7 @@ abstract class DataTableComponent extends Component
         $this->setupSecondaryHeader();
         $this->setupFooter();
         $this->setupReordering();
-        session([$this->getDataTableFingerprint() ."-filters" => $this->{$this->tableName}['filters'] ?? []]);
+        session([$this->getDataTableFingerprint().'-filters' => $this->{$this->tableName}['filters'] ?? []]);
 
         return view('livewire-tables::datatable')
             ->with([

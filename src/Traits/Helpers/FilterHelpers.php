@@ -298,10 +298,9 @@ trait FilterHelpers
         $appliedFilters = $this->getAppliedFiltersWithValues();
         foreach ($this->getFilters() as $filter) {
             if (! isset($appliedFilters[$filter->getKey()])) {
-                if (!empty(session($this->getDataTableFingerprint() ."-filters")) && isset(session($this->getDataTableFingerprint() ."-filters")[$filter->getKey()]) && isset((session($this->getDataTableFingerprint() ."-filters")[$filter->getKey()]))) {
-                    $this->setFilter($filter->getKey(), session($this->getDataTableFingerprint() ."-filters")[$filter->getKey()]);
-                }
-                else if ($filter->hasFilterDefaultValue()) {
+                if (! empty(session($this->getDataTableFingerprint().'-filters')) && isset(session($this->getDataTableFingerprint().'-filters')[$filter->getKey()]) && isset((session($this->getDataTableFingerprint().'-filters')[$filter->getKey()]))) {
+                    $this->setFilter($filter->getKey(), session($this->getDataTableFingerprint().'-filters')[$filter->getKey()]);
+                } elseif ($filter->hasFilterDefaultValue()) {
                     $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
                 } else {
                     $this->resetFilter($filter);
