@@ -24,9 +24,7 @@ trait SortingHelpers
         $validSortKeys = collect($this->columns())
             ->filter(fn ($column) => $column instanceof Column)
             ->filter(fn (Column $column) => $column->isSortable())
-            ->map(function (Column $column) {
-                return $column->getColumnSelectName();
-            })
+            ->map(fn (Column $column) => $column->getColumnSelectName())
             ->toArray();
 
         return collect($this->{$this->getTableName()}['sorts'] ?? [])
