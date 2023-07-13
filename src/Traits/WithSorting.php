@@ -69,10 +69,6 @@ trait WithSorting
                 continue;
             }
 
-            if (! $column->isSortable()) {
-                continue;
-            }
-
             // TODO: Test
             if ($column->hasSortCallback()) {
                 $this->setBuilder(call_user_func($column->getSortCallback(), $this->getBuilder(), $direction));
