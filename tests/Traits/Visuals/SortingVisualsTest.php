@@ -77,6 +77,22 @@ class SortingVisualsTest extends TestCase
     }
 
     /** @test */
+    public function sorting_should_not_be_shown_for_non_existing_sort_columns(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->call('setSort', 'not_existing', 'asc')
+            ->assertDontSee('Applied Sorting:');
+    }
+
+    /** @test */
+    public function sorting_should_not_be_shown_for_non_sortable_sort_columns(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->call('setSort', 'age', 'asc')
+            ->assertDontSee('Applied Sorting:');
+    }
+
+    /** @test */
     public function sorting_pill_shows_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
