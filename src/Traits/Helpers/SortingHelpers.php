@@ -33,7 +33,7 @@ trait SortingHelpers
             ->toArray();
 
         return collect($this->{$this->getTableName()}['sorts'] ?? [])
-            ->reject(fn ($dir, $column) => !in_array($column, $sortableColumnNames, true))
+            ->reject(fn ($dir, $column) => ! in_array($column, $sortableColumnNames, true))
             ->toArray();
     }
 
