@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait SortingHelpers
@@ -16,19 +17,23 @@ trait SortingHelpers
         return $this->singleColumnSortingStatus;
     }
 
+    public function getSortableColumns(): Collection
+    {
+        return collect($this->getColumns())
+            ->filter(fn (Column $column) => $column->isSortable());
+    }
+
     /**
      * @return array<mixed>
      */
     public function getSorts(): array
     {
-        $validSortKeys = collect($this->columns())
-            ->filter(fn ($column) => $column instanceof Column)
-            ->filter(fn (Column $column) => $column->isSortable())
+        $sortableColumnNames = $this->getSortableColumns()
             ->map(fn (Column $column) => $column->getColumnSelectName())
             ->toArray();
 
         return collect($this->{$this->getTableName()}['sorts'] ?? [])
-            ->filter(fn ($value, $key) => in_array($key, $validSortKeys, true))
+            ->reject(fn ($dir, $column) => !in_array($column, $sortableColumnNames, true))
             ->toArray();
     }
 
