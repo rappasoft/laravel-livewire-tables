@@ -28,6 +28,9 @@ class Column
     // The underlying columns name: i.e. name
     protected ?string $field = null;
 
+    // The publicly known name
+    protected ?string $name = null;
+
     // The table of the columns or relationship
     protected ?string $table = null;
 
@@ -78,9 +81,10 @@ class Column
 
     protected ?string $customSlug = null;
 
-    public function __construct(string $title, string $from = null)
+    public function __construct(string $title, string $from = null, string $name = null)
     {
         $this->title = trim($title);
+        $this->name = $name ? trim($name) : null;
 
         if ($from) {
             $this->from = trim($from);

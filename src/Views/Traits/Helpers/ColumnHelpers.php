@@ -18,6 +18,16 @@ trait ColumnHelpers
         return $this->component;
     }
 
+    public function hasName(): bool
+    {
+        return $this->name !== null;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
     public function hasFrom(): bool
     {
         return $this->from !== null;
@@ -59,6 +69,9 @@ trait ColumnHelpers
 
     public function isColumnBySelectName(string $name): bool
     {
+        if ($this->name != null) {
+            return $this->name === $name;
+        }
         return $this->getColumnSelectName() === $name;
     }
 
@@ -82,13 +95,22 @@ trait ColumnHelpers
         return $this->getTable().'.'.$this->getField();
     }
 
-    public function getColumnSelectName(): ?string
+    public function getColumnSelectForQuery(): ?string
     {
         if ($this->isBaseColumn()) {
             return $this->getField();
         }
 
         return $this->getRelationString().'.'.$this->getField();
+    }
+
+    public function getColumnSelectName(): ?string
+    {
+        if ($this->name !== null) {
+            return $this->name;
+        }
+
+        return $this->getColumnSelectForQuery();
     }
 
     // TODO: Test

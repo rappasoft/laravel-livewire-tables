@@ -140,7 +140,7 @@ trait WithData
         }
 
         foreach ($this->getSelectableColumns() as $column) {
-            $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
+            $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectForQuery()));
         }
 
         return $this->getBuilder();
