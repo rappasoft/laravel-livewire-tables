@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Rappasoft\LaravelLivewireTables\Views\Column;
+
 trait SortingHelpers
 {
     public function getSortingStatus(): bool
@@ -19,7 +21,17 @@ trait SortingHelpers
      */
     public function getSorts(): array
     {
-        return $this->{$this->getTableName()}['sorts'] ?? [];
+        $validSortKeys = collect($this->columns())
+            ->filter(fn ($column) => $column instanceof Column)
+            ->filter(fn (Column $column) => $column->isSortable())
+            ->map(function (Column $column) {
+                return $column->getColumnSelectName();
+            })
+            ->toArray();
+
+        return collect($this->{$this->getTableName()}['sorts'] ?? [])
+            ->filter(fn ($value, $key) => in_array($key, $validSortKeys, true))
+            ->toArray();
     }
 
     /**

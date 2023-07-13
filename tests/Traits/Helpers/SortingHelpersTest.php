@@ -35,6 +35,25 @@ class SortingHelpersTest extends TestCase
     }
 
     /** @test */
+    public function can_not_get_sort_if_column_is_not_existing(): void
+    {
+        // "not_existing_column" does not exist on PetTable
+        // that sort shouldn't be returned
+        $this->basicTable->setSorts(['not_existing_column' => 'desc']);
+
+        $this->assertSame($this->basicTable->getSorts(), []);
+    }
+
+    /** @test */
+    public function can_not_get_sort_if_column_is_not_sortable(): void
+    {
+        // age exists in PetTable, but hasn't been set to "sortable()"
+        $this->basicTable->setSorts(['age' => 'asc']);
+
+        $this->assertSame($this->basicTable->getSorts(), []);
+    }
+
+    /** @test */
     public function can_get_sorts_array(): void
     {
         $this->basicTable->setSorts(['id' => 'asc', 'name' => 'desc']);
