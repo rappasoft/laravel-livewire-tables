@@ -17,6 +17,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
 class TestCase extends Orchestra
 {
     public PetsTable $basicTable;
+
     public PetsAliasedTable $basicTableWithAlias;
 
     /**

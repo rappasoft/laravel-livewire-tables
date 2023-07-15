@@ -63,7 +63,7 @@ class PetsAliasedTable extends DataTableComponent
                     return 'Count: '.$rows->count();
                 }),
 
-            LinkColumn::make('Link',null, 'my_link')
+            LinkColumn::make('Link', null, 'my_link')
                 ->title(fn ($row) => 'Edit')
                 ->location(fn ($row) => 'http://www.google.com')
                 ->attributes(fn ($row) => [
