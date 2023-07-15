@@ -28,7 +28,7 @@ class Column
     // The underlying columns name: i.e. name
     protected ?string $field = null;
 
-    // The publicly known name
+    // The publicly known alias
     protected ?string $alias = null;
 
     // The table of the columns or relationship

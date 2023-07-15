@@ -42,3 +42,29 @@ public function columns(): array
     ];
 }
 ```
+
+## Setting an alias
+
+When not supplying an alias, the field name is used in the query string and in other locations as the column identifier.
+You can change that behaviour by adding an alias which reflects in the SQL query, as well as the query string and other locations.
+
+```php
+public function columns(): array
+{
+    return [
+        Column::make('ID', 'id', 'my_id'),
+        Column::make('JSON field', 'data->user->id', 'user_id'),
+    ];
+}
+```
+
+The datatable will use the alias also in the SQL query:
+
+```sql
+select "id" as "my_id", "data"->'user'->>'id' as "user_id" from "table" order by "user_id" asc limit 10 offset 0
+```
+
+and in the URL:
+```
+?my-table[sorts][user_id]=asc
+```
