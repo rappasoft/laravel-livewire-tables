@@ -146,6 +146,9 @@ trait ColumnHelpers
     // TODO: Test
     public function getValue(Model $row)
     {
+        if ($this->alias != null) {
+            return $row->{$this->alias};
+        }
         if ($this->isBaseColumn()) {
             return $row->{$this->getField()};
         }
