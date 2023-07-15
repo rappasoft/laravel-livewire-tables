@@ -21,7 +21,8 @@ class ComponentColumnTest extends TestCase
     /** @test */
     public function can_set_the_column_alias(): void
     {
-        $column = ComponentColumn::make('Name', 'name', 'my_alias');
+        $column = ComponentColumn::make('Name', 'name')
+            ->setAlias('my_alias');
 
         $this->assertSame('my_alias', $column->getAlias());
     }

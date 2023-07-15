@@ -18,7 +18,8 @@ class ColumnTest extends TestCase
     /** @test */
     public function can_set_the_column_alias(): void
     {
-        $column = Column::make('Name', 'name', 'my_alias');
+        $column = Column::make('Name', 'name')
+            ->setAlias('my_alias');
 
         $this->assertSame('my_alias', $column->getAlias());
         $this->assertSame('name', $column->getField());

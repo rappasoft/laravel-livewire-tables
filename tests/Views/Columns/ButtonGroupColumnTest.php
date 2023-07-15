@@ -19,7 +19,8 @@ class ButtonGroupColumnTest extends TestCase
     /** @test */
     public function can_set_the_column_alias(): void
     {
-        $column = ButtonGroupColumn::make('Name', 'name', 'my_name');
+        $column = ButtonGroupColumn::make('Name', 'name')
+            ->setAlias('my_name');
 
         $this->assertSame('my_name', $column->getAlias());
     }

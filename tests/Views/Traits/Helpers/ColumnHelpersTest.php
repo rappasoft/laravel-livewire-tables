@@ -244,11 +244,13 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_column_select_name_with_alias(): void
     {
-        $column = Column::make('Name', 'name', 'my_alias');
+        $column = Column::make('Name', 'name')
+            ->setAlias('my_alias');
         $column->setTable('users');
         $this->assertSame('my_alias', $column->getColumnSelectName());
 
-        $column = Column::make('Address Group', 'address.group.name', 'my_alias');
+        $column = Column::make('Address Group', 'address.group.name')
+            ->setAlias('my_alias');
         $column->setTable('addresses');
         $this->assertSame('my_alias', $column->getColumnSelectName());
     }

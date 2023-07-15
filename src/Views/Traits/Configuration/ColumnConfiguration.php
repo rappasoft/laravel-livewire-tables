@@ -62,6 +62,13 @@ trait ColumnConfiguration
         return $this;
     }
 
+    public function setAlias(string $alias): self
+    {
+        $this->alias = trim($alias);
+
+        return $this;
+    }
+
     public function setSortingPillTitle(string $title): self
     {
         $this->sortingPillTitle = $title;

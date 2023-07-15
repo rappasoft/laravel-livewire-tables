@@ -20,7 +20,8 @@ class LinkColumnTest extends TestCase
     /** @test */
     public function can_set_the_column_alias(): void
     {
-        $column = LinkColumn::make('Name', 'name', 'my_name');
+        $column = LinkColumn::make('Name', 'name')
+            ->setAlias('my_name');
 
         $this->assertSame('my_name', $column->getAlias());
     }

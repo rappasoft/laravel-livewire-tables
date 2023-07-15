@@ -19,7 +19,8 @@ class BooleanColumnTest extends TestCase
     /** @test */
     public function can_set_the_column_alias(): void
     {
-        $column = BooleanColumn::make('Name', 'name', 'my_name');
+        $column = BooleanColumn::make('Name', 'name')
+            ->setAlias('my_name');
 
         $this->assertSame('my_name', $column->getAlias());
     }

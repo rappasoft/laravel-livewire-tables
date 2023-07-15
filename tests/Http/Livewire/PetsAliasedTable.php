@@ -21,22 +21,27 @@ class PetsAliasedTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id', 'my_id')
+            Column::make('ID', 'id')
+                ->setAlias('my_id')
                 ->sortable()
                 ->setSortingPillTitle('Key')
                 ->setSortingPillDirections('0-9', '9-0'),
-            Column::make('Sort', null, 'my_sort')
+            Column::make('Sort')
+                ->setAlias('my_sort')
                 ->sortable()
                 ->excludeFromColumnSelect(),
-            Column::make('Name', null, 'my_name')
+            Column::make('Name')
+                ->setAlias('my_name')
                 ->sortable()
                 ->secondaryHeader($this->getFilterByKey('pet_name_filter'))
                 ->footerFilter('pet_name_filter')
                 ->searchable(),
 
-            Column::make('Age', null, 'my_age'),
+            Column::make('Age', null, 'my_age')
+                ->setAlias('my_age'),
 
-            Column::make('Breed', 'breed.name', 'my_breed')
+            Column::make('Breed', 'breed.name')
+                ->setAlias('my_breed')
                 ->secondaryHeaderFilter('breed')
                 ->footer($this->getFilterByKey('breed'))
                 ->sortable(
@@ -46,7 +51,8 @@ class PetsAliasedTable extends DataTableComponent
                     fn (Builder $query, $searchTerm) => $query->orWhere('breeds.name', $searchTerm)
                 ),
 
-            Column::make('Other', null, 'my_other')
+            Column::make('Other')
+                ->setAlias('my_other')
                 ->label(function ($row, Column $column) {
                     return 'Other';
                 })
@@ -54,14 +60,16 @@ class PetsAliasedTable extends DataTableComponent
                     return 'Count: '.$rows->count();
                 }),
 
-            LinkColumn::make('Link', null, 'my_link')
+            LinkColumn::make('Link')
+                ->setAlias('my_link')
                 ->title(fn ($row) => 'Edit')
                 ->location(fn ($row) => 'http://www.google.com')
                 ->attributes(fn ($row) => [
                     'class' => 'rounded-full',
                     'alt' => $row->name.' Avatar',
                 ]),
-            ImageColumn::make('RowImg', null, 'my_image')
+            ImageColumn::make('RowImg')
+                ->setAlias('my_image')
                 ->location(fn ($row) => 'test'.$row->id)
                 ->attributes(fn ($row) => [
                     'class' => 'rounded-full',
