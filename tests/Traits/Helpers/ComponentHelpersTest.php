@@ -238,4 +238,40 @@ class ComponentHelpersTest extends TestCase
     {
         $this->assertSame($this->basicTable->getTableName(), $this->basicTable->getQueryStringAlias());
     }
+
+    /** @test */
+    public function can_check_if_filters_are_stored_in_session_default(): void
+    {
+        $this->assertFalse($this->basicTable->getStoreFiltersInSessionStatus());
+    }
+
+    /** @test */
+    public function can_enable_filters_stored_in_session(): void
+    {
+        $this->assertFalse($this->basicTable->getStoreFiltersInSessionStatus());
+        $this->basicTable->setStoreFiltersInSessionEnabled();
+        $this->assertTrue($this->basicTable->getStoreFiltersInSessionStatus());
+    }
+
+    /** @test */
+    public function can_disable_filters_stored_in_session(): void
+    {
+        $this->assertFalse($this->basicTable->getStoreFiltersInSessionStatus());
+        $this->basicTable->setStoreFiltersInSessionDisabled();
+        $this->assertFalse($this->basicTable->getStoreFiltersInSessionStatus());
+    }
+
+    /** @test */
+    public function can_disable_filters_stored_in_session_via_setStatus(): void
+    {
+        $this->assertFalse($this->basicTable->getStoreFiltersInSessionStatus());
+        $this->basicTable->setStoreFiltersInSessionStatus(false);
+        $this->assertFalse($this->basicTable->getStoreFiltersInSessionStatus());
+        $this->assertTrue($this->basicTable->getStoreFiltersInSessionIsDisabled());
+        $this->basicTable->setStoreFiltersInSessionStatus(true);
+        $this->assertTrue($this->basicTable->getStoreFiltersInSessionStatus());
+        $this->assertTrue($this->basicTable->getStoreFiltersInSessionIsEnabled());
+
+    }
+    
 }
