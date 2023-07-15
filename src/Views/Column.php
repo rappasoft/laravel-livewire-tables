@@ -29,7 +29,7 @@ class Column
     protected ?string $field = null;
 
     // The publicly known name
-    protected ?string $name = null;
+    protected ?string $alias = null;
 
     // The table of the columns or relationship
     protected ?string $table = null;
@@ -81,10 +81,10 @@ class Column
 
     protected ?string $customSlug = null;
 
-    public function __construct(string $title, string $from = null, string $name = null)
+    public function __construct(string $title, string $from = null, string $alias = null)
     {
         $this->title = trim($title);
-        $this->name = $name ? trim($name) : null;
+        $this->alias = $alias ? trim($alias) : null;
 
         if ($from) {
             $this->from = trim($from);
@@ -105,8 +105,8 @@ class Column
     /**
      * @return static
      */
-    public static function make(string $title, string $from = null, string $name = null): Column
+    public static function make(string $title, string $from = null, string $alias = null): Column
     {
-        return new static($title, $from, $name);
+        return new static($title, $from, $alias);
     }
 }

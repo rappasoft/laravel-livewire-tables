@@ -18,14 +18,14 @@ trait ColumnHelpers
         return $this->component;
     }
 
-    public function hasName(): bool
+    public function hasAlias(): bool
     {
-        return $this->name !== null;
+        return $this->alias !== null;
     }
 
-    public function getName(): ?string
+    public function getAlias(): ?string
     {
-        return $this->name;
+        return $this->alias;
     }
 
     public function hasFrom(): bool
@@ -103,8 +103,8 @@ trait ColumnHelpers
 
     public function getColumnSelectName(): ?string
     {
-        if ($this->name !== null) {
-            return $this->name;
+        if ($this->alias !== null) {
+            return $this->alias;
         }
 
         return $this->getColumnSelectForQuery();
