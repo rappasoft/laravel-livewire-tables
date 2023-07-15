@@ -52,8 +52,10 @@ You can change that behavior by adding an alias.
 public function columns(): array
 {
     return [
-        Column::make('ID', 'id', 'my_id'),
-        Column::make('JSON field', 'data->user->id', 'user_id'),
+        Column::make('ID', 'id')
+            ->setAlias('my_id'),
+        Column::make('JSON field', 'data->user->id')
+            ->setAlias('user_id'),
     ];
 }
 ```
