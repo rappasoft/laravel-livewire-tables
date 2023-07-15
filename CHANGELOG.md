@@ -2,12 +2,18 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [Unreleased]
-
-### Changed 
-- Enhancements
+## [Unreleased2]
     - Added new functionality to store the filter values.  This uses the dataTableFingerprint of the table.
 
+## [Unreleased]
+- Fixes
+    - Re-enable capability for configuring whether to Hide/Show Bulk Actions when empty - https://github.com/rappasoft/laravel-livewire-tables/pull/1240
+
+- Enhancements
+    - Allow Label Columns to be Sortable - https://github.com/rappasoft/laravel-livewire-tables/pull/1256
+    - Add Select All On Page Translations - https://github.com/rappasoft/laravel-livewire-tables/pull/1244
+    - Add Contributors Document to track Localisation contributors - https://github.com/rappasoft/laravel-livewire-tables/pull/1223
+    
 ## [2.14.0] - 2023-05-18
 
 ### Changed
