@@ -329,10 +329,9 @@ trait ComponentHelpers
     {
         return $this->getStoreFiltersInSessionStatus() === true;
     }
-    
+
     public function getStoreFiltersInSessionIsDisabled(): bool
     {
         return $this->getStoreFiltersInSessionStatus() === false;
     }
-    
 }
