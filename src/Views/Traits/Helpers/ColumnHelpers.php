@@ -94,8 +94,8 @@ trait ColumnHelpers
 
     public function getColumnSelectName(): ?string
     {
-        if ($this->alias !== null) {
-            return $this->alias;
+        if ($this->hasAlias()) {
+            return $this->getAlias();
         }
 
         if ($this->isBaseColumn()) {
@@ -146,8 +146,8 @@ trait ColumnHelpers
     // TODO: Test
     public function getValue(Model $row)
     {
-        if ($this->alias != null) {
-            return $row->{$this->alias};
+        if ($this->hasAlias()) {
+            return $row->{$this->getAlias()};
         }
         if ($this->isBaseColumn()) {
             return $row->{$this->getField()};
