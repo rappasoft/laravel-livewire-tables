@@ -2,9 +2,6 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [Unreleased2]
-    - Added new functionality to store the filter values.  This uses the dataTableFingerprint of the table.
-
 ## [Unreleased]
 - Fixes
     - Re-enable capability for configuring whether to Hide/Show Bulk Actions when empty - https://github.com/rappasoft/laravel-livewire-tables/pull/1240
