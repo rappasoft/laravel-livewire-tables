@@ -59,13 +59,24 @@ trait WithSorting
 
             return $this->getBuilder();
         }
+        $allCols = $this->getColumns();
 
         foreach ($this->getSorts() as $column => $direction) {
             if (! in_array($direction, ['asc', 'desc'])) {
                 $direction = 'asc';
             }
+            $tmpCol = $column;
+            $column = $this->getColumnBySelectName($tmpCol);
 
-            if (is_null($column = $this->getColumnBySelectName($column))) {
+            if (is_null($column)) {
+                foreach ($allCols as $cols) {
+                    if ($cols->getSlug() == $tmpCol && $cols->hasSortCallback()) {
+                        $this->setBuilder(call_user_func($cols->getSortCallback(), $this->getBuilder(), $direction));
+
+                        continue;
+                    }
+                }
+
                 continue;
             }
 

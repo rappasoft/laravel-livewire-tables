@@ -1,0 +1,32 @@
+name: Feature Request
+description: Request a New Feature
+title: "[Feature Request]: "
+labels: ["feature"]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              We're excited to hear any ideas for new features/improvements, please complete as much of the form below as possible
+    - type: textarea
+      id: overview
+      attributes:
+          label: Overview
+          description: What do you want to happen?
+          placeholder: I would like X type of Column or Filter
+      validations:
+          required: true
+    - type: textarea
+      id: details
+      attributes:
+          label: Detailed explanation
+          description: Give details of how you want this to work
+          placeholder: When I do X I want to see Y.
+      validations:
+          required: false
+    - type: textarea
+      id: notes
+      attributes:
+          label: Notes
+          description: Use this field to provide any other notes, screenshots or examples that you feel might be relevant to the request.
+      validations:
+          required: false

@@ -228,10 +228,10 @@ class ComponentHelpersTest extends TestCase
     }
 
     // Exists in DataTableComponentTest
-   // public function can_get_dataTable_fingerprint(): void
+    // public function can_get_dataTable_fingerprint(): void
     //{
-   //     $this->assertSame($this->defaultFingerPrintingAlgo($this->basicTable::class), $this->basicTable->getDataTableFingerprint());
-   // }
+    //     $this->assertSame($this->defaultFingerPrintingAlgo($this->basicTable::class), $this->basicTable->getDataTableFingerprint());
+    // }
 
     /** @test */
     public function can_get_query_string_alias_and_it_will_be_the_same_as_table_name_by_default(): void
