@@ -21,11 +21,6 @@ class ComponentColumn extends Column
 
     protected $slotCallback;
 
-    public function __construct(string $title, string $from = null)
-    {
-        parent::__construct($title, $from);
-    }
-
     public function getContents(Model $row)
     {
         if ($this->isLabel()) {
