@@ -132,6 +132,7 @@ class WithSortingTest extends TestCase
 
         $this->basicTableWithAlias->applySorting();
 
-        $this->assertStringContainsStringIgnoringCase('order by "id"', $this->basicTableWithAlias->getBuilder()->toSql());
+        $this->assertStringContainsStringIgnoringCase('order by "my_id"', $this->basicTableWithAlias->getBuilder()->toSql());
+        $this->assertStringContainsStringIgnoringCase('"pets"."id" as "my_id"', $this->basicTableWithAlias->getBuilder()->toSql());
     }
 }

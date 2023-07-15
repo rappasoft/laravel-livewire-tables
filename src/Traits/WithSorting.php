@@ -77,9 +77,9 @@ trait WithSorting
             if ($column->hasSortCallback()) {
                 $this->setBuilder(call_user_func($column->getSortCallback(), $this->getBuilder(), $direction));
             } elseif ($column->isBaseColumn()) {
-                $this->setBuilder($this->getBuilder()->orderBy($column->getColumnSelectForQuery(), $direction));
+                $this->setBuilder($this->getBuilder()->orderBy($column->getColumnSelectName(), $direction));
             } else {
-                $value = $this->getBuilder()->getGrammar()->wrap($column->getColumn().' as '.$column->getColumnSelectForQuery());
+                $value = $this->getBuilder()->getGrammar()->wrap($column->getColumn().' as '.$column->getColumnSelectName());
                 $segments = preg_split('/\s+as\s+/i', $value);
                 $this->setBuilder($this->getBuilder()->orderByRaw($segments[1].' '.$direction));
             }

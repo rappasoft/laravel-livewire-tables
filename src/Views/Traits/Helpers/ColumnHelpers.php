@@ -92,22 +92,17 @@ trait ColumnHelpers
         return $this->getTable().'.'.$this->getField();
     }
 
-    public function getColumnSelectForQuery(): ?string
-    {
-        if ($this->isBaseColumn()) {
-            return $this->getField();
-        }
-
-        return $this->getRelationString().'.'.$this->getField();
-    }
-
     public function getColumnSelectName(): ?string
     {
         if ($this->alias !== null) {
             return $this->alias;
         }
 
-        return $this->getColumnSelectForQuery();
+        if ($this->isBaseColumn()) {
+            return $this->getField();
+        }
+
+        return $this->getRelationString().'.'.$this->getField();
     }
 
     // TODO: Test
