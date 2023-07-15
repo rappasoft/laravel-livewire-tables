@@ -45,8 +45,8 @@ public function columns(): array
 
 ## Setting an alias
 
-When not supplying an alias, the field name is used in the query string and in other locations as the column identifier.
-You can change that behaviour by adding an alias which reflects in the SQL query, as well as the query string and other locations.
+When not supplying an alias, the field name is used in the query string and other locations as the column identifier.
+You can change that behavior by adding an alias.
 
 ```php
 public function columns(): array
