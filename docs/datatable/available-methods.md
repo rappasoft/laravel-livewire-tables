@@ -422,3 +422,33 @@ public function configure(): void
   $this->setEmptyMessage('No results found');
 }
 ```
+
+### setStoreFiltersInSessionStatus
+Enable/disable storing filter status within the session.  Default is false
+
+```php
+public function configure(): void
+{
+  $this->setStoreFiltersInSessionStatus(true);
+  // OR
+  $this->setStoreFiltersInSessionStatus(false);
+}
+```
+
+### setStoreFiltersInSessionEnabled
+Enable storing filter status within the session, this will persist filter values during the current session.
+```php
+public function configure(): void
+{
+  $this->setStoreFiltersInSessionEnabled();
+}
+```
+
+### setStoreFiltersInSessionDisabled
+Disable storing filter status within the session, this will prevent the persistence filter values during the current session, and is the default behaviour
+```php
+public function configure(): void
+{
+  $this->setStoreFiltersInSessionDisabled();
+}
+```

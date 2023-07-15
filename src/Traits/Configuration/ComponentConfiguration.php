@@ -275,4 +275,26 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    public function setStoreFiltersInSessionStatus(bool $storeFiltersInSession): self
+    {
+        $this->storeFiltersInSession = $storeFiltersInSession;
+
+        return $this;
+    }
+
+    public function setStoreFiltersInSessionEnabled(): self
+    {
+        $this->setStoreFiltersInSessionStatus(true);
+
+        return $this;
+    }
+    
+    public function setStoreFiltersInSessionDisabled(): self
+    {
+        $this->setStoreFiltersInSessionStatus(false);
+
+        return $this;
+    }
+
 }

@@ -319,4 +319,20 @@ trait ComponentHelpers
     {
         return $this->getHideConfigurableAreasWhenReorderingStatus() === false;
     }
+
+    public function getStoreFiltersInSessionStatus(): bool
+    {
+        return $this->storeFiltersInSession ?? false;
+    }
+
+    public function getStoreFiltersInSessionIsEnabled(): bool
+    {
+        return $this->getStoreFiltersInSessionStatus() === true;
+    }
+    
+    public function getStoreFiltersInSessionIsDisabled(): bool
+    {
+        return $this->getStoreFiltersInSessionStatus() === false;
+    }
+    
 }

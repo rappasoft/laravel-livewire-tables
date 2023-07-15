@@ -66,6 +66,8 @@ trait ComponentUtilities
 
     protected bool $hideConfigurableAreasWhenReorderingStatus = true;
 
+    protected bool $storeFiltersInSession = false;
+
     protected array $configurableAreas = [
         'before-tools' => null,
         'toolbar-left-start' => null,

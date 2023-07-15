@@ -4,6 +4,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+### Changed 
+- Enhancements
+    - Added new functionality to store the filter values.  This uses the dataTableFingerprint of the table.
+
 ## [2.14.0] - 2023-05-18
 
 ### Changed
