@@ -12,7 +12,7 @@ weight: 1
 
 Welcome to the [Laravel Livewire Tables](https://github.com/rappasoft/laravel-livewire-tables) documentation!
 
-I will do my best to document all features and configurations of this plugin.
+We will do our best to document all features and configurations of this plugin.
 
 Laravel Livewire Tables is a plugin built for Laravel Livewire that allows you to create simple or advanced dynamic datatables.
 

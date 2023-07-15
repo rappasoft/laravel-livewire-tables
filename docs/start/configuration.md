@@ -59,6 +59,16 @@ module.exports = {
 };
 ```
 
+## Tailwind Dark Mode
+If you find that the table is consistently displaying in Dark Mode, then you will need to add the following into your tailwind.config.js configuration, keeping in mind that this **could** impact other components using dark mode! 
+
+```js
+module.exports = {
+    darkMode: 'class', // This specifies that Tailwind should look at Class elements to determine dark mode
+...
+};
+```
+
 ## Alpine.js Cloak
 
 You must also make sure you have this Alpine style available globally:
