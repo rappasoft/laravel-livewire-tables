@@ -105,8 +105,8 @@ class Column
     /**
      * @return static
      */
-    public static function make(string $title, string $from = null): Column
+    public static function make(string $title, string $from = null, string $name = null): Column
     {
-        return new static($title, $from);
+        return new static($title, $from, $name);
     }
 }

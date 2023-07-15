@@ -69,9 +69,6 @@ trait ColumnHelpers
 
     public function isColumnBySelectName(string $name): bool
     {
-        if ($this->name != null) {
-            return $this->name === $name;
-        }
         return $this->getColumnSelectName() === $name;
     }
 
