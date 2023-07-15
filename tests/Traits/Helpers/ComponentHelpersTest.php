@@ -273,5 +273,4 @@ class ComponentHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->getStoreFiltersInSessionIsEnabled());
 
     }
-    
 }
