@@ -289,12 +289,11 @@ trait ComponentConfiguration
 
         return $this;
     }
-    
+
     public function setStoreFiltersInSessionDisabled(): self
     {
         $this->setStoreFiltersInSessionStatus(false);
 
         return $this;
     }
-
 }

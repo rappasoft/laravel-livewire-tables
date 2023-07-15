@@ -139,8 +139,7 @@ abstract class DataTableComponent extends Component
         $this->setupSecondaryHeader();
         $this->setupFooter();
         $this->setupReordering();
-        if ($this->getStoreFiltersInSessionIsEnabled())
-        {
+        if ($this->getStoreFiltersInSessionIsEnabled()) {
             session([$this->getDataTableFingerprint().'-filters' => $this->{$this->tableName}['filters'] ?? []]);
         }
 
