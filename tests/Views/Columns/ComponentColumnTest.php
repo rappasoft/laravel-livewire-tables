@@ -19,6 +19,14 @@ class ComponentColumnTest extends TestCase
     }
 
     /** @test */
+    public function can_set_the_column_alias(): void
+    {
+        $column = ComponentColumn::make('Name', 'name', 'my_alias');
+
+        $this->assertSame('my_alias', $column->getAlias());
+    }
+
+    /** @test */
     public function can_not_set_component_column_as_label(): void
     {
         $this->expectException(DataTableConfigurationException::class);

@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsAliasedTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
@@ -36,6 +37,14 @@ class SortingVisualsTest extends TestCase
             ->assertSeeHtml('<button
                 wire:click="sortBy(\'id\')"
                 class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400"');
+    }
+
+    /** @test */
+    public function th_headers_are_buttons_with_sorting_enabled_with_alias_use_the_alias(): void
+    {
+        Livewire::test(PetsAliasedTable::class)
+            ->assertDontSeeHtml('sortBy(\'id\')')
+            ->assertSeeHtml('sortBy(\'my_id\')');
     }
 
     /** @test */
@@ -81,6 +90,15 @@ class SortingVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->call('setSort', 'name', 'asc')
+            ->assertSee('Applied Sorting:');
+    }
+
+    /** @test */
+    public function sorting_pill_shows_when_enabled_with_aliased_column(): void
+    {
+        Livewire::test(PetsAliasedTable::class)
+            ->assertDontSee('Applied Sorting:')
+            ->call('setSort', 'my_name', 'asc')
             ->assertSee('Applied Sorting:');
     }
 

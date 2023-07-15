@@ -16,6 +16,15 @@ class ColumnTest extends TestCase
     }
 
     /** @test */
+    public function can_set_the_column_alias(): void
+    {
+        $column = Column::make('Name', 'name', 'my_alias');
+
+        $this->assertSame('my_alias', $column->getAlias());
+        $this->assertSame('name', $column->getField());
+    }
+
+    /** @test */
     public function can_infer_field_name_from_title_if_no_from(): void
     {
         $column = Column::make('My Title');

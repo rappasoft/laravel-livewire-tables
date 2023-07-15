@@ -17,6 +17,14 @@ class BooleanColumnTest extends TestCase
     }
 
     /** @test */
+    public function can_set_the_column_alias(): void
+    {
+        $column = BooleanColumn::make('Name', 'name', 'my_name');
+
+        $this->assertSame('my_name', $column->getAlias());
+    }
+
+    /** @test */
     public function can_render_field(): void
     {
         $column = BooleanColumn::make('Name')->getContents(Pet::find(1));

@@ -18,6 +18,14 @@ class ImageColumnTest extends TestCase
     }
 
     /** @test */
+    public function can_set_the_column_alias(): void
+    {
+        $column = ImageColumn::make('Name', 'name', 'my_name');
+
+        $this->assertSame('my_name', $column->getAlias());
+    }
+
+    /** @test */
     public function can_not_infer_field_name_from_title_if_no_from(): void
     {
         $column = ImageColumn::make('My Title');
