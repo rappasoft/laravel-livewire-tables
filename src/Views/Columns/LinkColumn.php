@@ -21,9 +21,9 @@ class LinkColumn extends Column
 
     protected $attributesCallback;
 
-    public function __construct(string $title, string $from = null, string $alias = null)
+    public function __construct(string $title, string $from = null)
     {
-        parent::__construct($title, $from, $alias);
+        parent::__construct($title, $from);
 
         $this->label(fn () => null);
     }
