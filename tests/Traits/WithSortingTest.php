@@ -83,6 +83,15 @@ class WithSortingTest extends TestCase
     }
 
     /** @test */
+    public function sort_callback_gets_applied_if_specified_on_aliased_column(): void
+    {
+        // TODO
+        $this->basicTableWithAlias->clearSorts();
+        $this->basicTableWithAlias->sortBy('my_breed');
+        $this->assertSame($this->basicTableWithAlias->getSorts(), ['my_breed' => 'asc']);
+    }
+
+    /** @test */
     public function cannot_set_sort_on_unsortable_column(): void
     {
         $this->basicTable->clearSorts();
@@ -97,6 +106,16 @@ class WithSortingTest extends TestCase
     }
 
     /** @test */
+    public function cannot_set_sort_using_from_name_when_using_alias(): void
+    {
+        $this->basicTableWithAlias->clearSorts();
+        $this->basicTableWithAlias->sortBy('age');
+        $this->basicTableWithAlias->applySorting();
+
+        $this->assertStringNotContainsStringIgnoringCase('order by', $this->basicTableWithAlias->getBuilder()->toSql());
+    }
+
+    /** @test */
     public function sort_applies_to_query(): void
     {
         $this->basicTable->sortBy('id');
@@ -104,5 +123,15 @@ class WithSortingTest extends TestCase
         $this->basicTable->applySorting();
 
         $this->assertStringContainsStringIgnoringCase('order by "id"', $this->basicTable->getBuilder()->toSql());
+    }
+
+    /** @test */
+    public function sort_applies_to_query_with_alias(): void
+    {
+        $this->basicTableWithAlias->sortBy('my_id');
+
+        $this->basicTableWithAlias->applySorting();
+
+        $this->assertStringContainsStringIgnoringCase('order by "id"', $this->basicTableWithAlias->getBuilder()->toSql());
     }
 }

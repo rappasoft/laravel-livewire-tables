@@ -40,7 +40,7 @@ class SortingVisualsTest extends TestCase
     }
 
     /** @test */
-    public function th_headers_are_buttons_with_sorting_enabled_with_alias_use_the_alias(): void
+    public function th_headers_with_sorting_enabled_with_alias_use_the_alias(): void
     {
         Livewire::test(PetsAliasedTable::class)
             ->assertDontSeeHtml('sortBy(\'id\')')

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsAliasedTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
@@ -16,6 +17,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
 class TestCase extends Orchestra
 {
     public PetsTable $basicTable;
+    public PetsAliasedTable $basicTableWithAlias;
 
     /**
      * Setup the test environment.
@@ -75,6 +77,11 @@ class TestCase extends Orchestra
         $this->basicTable->boot();
         $this->basicTable->booted();
         $this->basicTable->render();
+
+        $this->basicTableWithAlias = new PetsAliasedTable();
+        $this->basicTableWithAlias->boot();
+        $this->basicTableWithAlias->booted();
+        $this->basicTableWithAlias->render();
     }
 
     protected function getPackageProviders($app): array
