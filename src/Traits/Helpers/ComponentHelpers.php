@@ -81,7 +81,7 @@ trait ComponentHelpers
      */
     public function getComponentWrapperAttributes(): array
     {
-        return count($this->componentWrapperAttributes) ? $this->componentWrapperAttributes : ['id' => 'datatable-'.$this->id];
+        return count($this->componentWrapperAttributes) ? $this->componentWrapperAttributes : ['id' => 'datatable-'.$this->getId()];
     }
 
     /**
