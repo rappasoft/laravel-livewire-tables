@@ -22,7 +22,7 @@
                 >
                 <label for="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-select-all" class="dark:text-white">@lang('All')</label>
             </div>
-
+            
             @foreach($filter->getOptions() as $key => $value)
                 <div wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-multiselect-{{ $key }}">
                     <input
@@ -30,7 +30,7 @@
                         id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-{{ $loop->index }}"
                         value="{{ $key }}"
                         wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-{{ $loop->index }}"
-                        wire:model.stop="{{ $tableName }}.filters.{{ $filter->getKey() }}"
+                        wire:model.live.debounce.250ms="{{ $tableName }}.filters.{{ $filter->getKey() }}"
                         {{ count($component->getAppliedFilterWithValue($filter->getKey()) ?? []) === count($filter->getOptions()) ? 'disabled' : ''}}
                         :class="{'disabled:bg-gray-400 disabled:hover:bg-gray-400' : {{ count($component->getAppliedFilterWithValue($filter->getKey()) ?? []) === count($filter->getOptions()) ? 'true' : 'false' }}}"
                         class="text-indigo-600 rounded border-gray-300 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
@@ -59,7 +59,7 @@
                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-{{ $loop->index }}"
                     value="{{ $key }}"
                     wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-{{ $loop->index }}"
-                    wire:model.stop="{{ $tableName }}.filters.{{ $filter->getKey() }}"
+                    wire:model.live.debounce.250ms="{{ $tableName }}.filters.{{ $filter->getKey() }}"
                 >
                 <label class="form-check-label" for="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-{{ $loop->index }}">{{ $value }}</label>
             </div>

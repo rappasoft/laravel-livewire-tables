@@ -12,7 +12,7 @@
         @if ($theme === 'tailwind')
         <div class="rounded-md shadow-sm">
             <input
-                wire:model.stop="{{ $tableName }}.filters.{{ $filter->getKey() }}"
+                wire:model.live="{{ $tableName }}.filters.{{ $filter->getKey() }}"
                 wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 type="datetime-local"
@@ -24,7 +24,7 @@
     @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
         <div class="mb-3 mb-md-0 input-group">
             <input
-                wire:model.stop="{{ $tableName }}.filters.{{ $filter->getKey() }}"
+                wire:model.live="{{ $tableName }}.filters.{{ $filter->getKey() }}"
                 wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 type="datetime-local"
