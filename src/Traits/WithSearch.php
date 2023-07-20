@@ -13,8 +13,8 @@ trait WithSearch
         SearchHelpers;
 
     #[Url(history: true, as: 'search')]
-    public ?string $search = null;
-
+    public string $search = "";
+    
     public bool $searchStatus = true;
 
     public bool $searchVisibilityStatus = true;
