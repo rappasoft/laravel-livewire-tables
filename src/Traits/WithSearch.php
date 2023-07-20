@@ -3,15 +3,15 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Url;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
-use Livewire\Attributes\Url;
 
 trait WithSearch
 {
     use SearchConfiguration,
         SearchHelpers;
-        
+
     #[Url(history: true, as: 'search')]
     public ?string $search = null;
 

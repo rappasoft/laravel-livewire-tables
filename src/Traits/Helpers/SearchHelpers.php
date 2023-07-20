@@ -6,7 +6,7 @@ trait SearchHelpers
 {
     public function hasSearch(): bool
     {
-        return ($this->search != null);
+        return $this->search != null;
     }
 
     public function getSearch(): ?string
