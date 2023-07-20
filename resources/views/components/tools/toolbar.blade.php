@@ -230,7 +230,7 @@
                                                     class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait">
                                                     <input
                                                         class="text-indigo-600 rounded border-gray-300 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
-                                                        wire:model="selectedColumns" wire:target="selectedColumns"
+                                                        wire:model.live="selectedColumns" wire:target="selectedColumns"
                                                         wire:loading.attr="disabled" type="checkbox"
                                                         value="{{ $column->getSlug() }}" />
                                                     <span class="ml-2">{{ $column->getTitle() }}</span>
@@ -465,7 +465,7 @@
                                         wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}">
                                         <label wire:loading.attr="disabled" wire:target="selectedColumns"
                                             class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}">
-                                            <input wire:model="selectedColumns" wire:target="selectedColumns"
+                                            <input wire:model.live="selectedColumns" wire:target="selectedColumns"
                                                 wire:loading.attr="disabled" type="checkbox"
                                                 value="{{ $column->getSlug() }}" />
                                             <span class="ml-2">{{ $column->getTitle() }}</span>
@@ -687,7 +687,7 @@
                                 @if ($column->isVisible() && $column->isSelectable())
                                     <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}"
                                         class="form-check ms-2">
-                                        <input wire:model="selectedColumns" wire:target="selectedColumns"
+                                        <input wire:model.live="selectedColumns" wire:target="selectedColumns"
                                             wire:loading.attr="disabled" type="checkbox" class="form-check-input"
                                             value="{{ $column->getSlug() }}" />
                                         <label wire:loading.attr="disabled" wire:target="selectedColumns"
