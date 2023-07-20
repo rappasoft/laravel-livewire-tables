@@ -122,7 +122,6 @@ class SearchConfigurationTest extends TestCase
         $this->basicTable->setSearchDebounce(1000);
     }
 
-
     /** @test */
     public function can_set_search_live(): void
     {
@@ -142,5 +141,4 @@ class SearchConfigurationTest extends TestCase
         $this->basicTable->setSearchLive();
         $this->basicTable->setSearchDebounce(1000);
     }
-
 }
