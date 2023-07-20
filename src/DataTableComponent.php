@@ -64,7 +64,6 @@ abstract class DataTableComponent extends Component
     public function boot(): void
     {
         $this->{$this->tableName} = [
-            'sorts' => $this->{$this->tableName}['sorts'] ?? [],
             'filters' => $this->{$this->tableName}['filters'] ?? [],
             'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];

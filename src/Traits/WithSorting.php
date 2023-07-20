@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Url;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
 
@@ -11,6 +12,7 @@ trait WithSorting
     use SortingConfiguration,
         SortingHelpers;
 
+    #[Url(history: true, as: 'sorts')]
     public array $sorts = [];
 
     public bool $sortingStatus = true;
