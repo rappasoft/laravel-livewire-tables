@@ -7,11 +7,11 @@
 
 <div x-data="{
     @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
-    paginationCurrentCount: $wire.entangle('paginationCurrentCount'),
-    paginationTotalItemCount: $wire.entangle('paginationTotalItemCount'),
-    paginationCurrentItems: $wire.entangle('paginationCurrentItems'),
+    paginationCurrentCount: $wire.entangle('paginationCurrentCount').live,
+    paginationTotalItemCount: $wire.entangle('paginationTotalItemCount').live,
+    paginationCurrentItems: $wire.entangle('paginationCurrentItems').live,
     alwaysShowBulkActions: {{ $component->getHideBulkActionsWhenEmptyStatus() ? 'false' : 'true' }},
-    selectedItems: $wire.entangle('selected').defer,
+    selectedItems: $wire.entangle('selected'),
     @if ($component->showBulkActionsDropdownAlpine())
     toggleSelectAll() {
         if (this.paginationTotalItemCount == this.selectedItems.length) {
