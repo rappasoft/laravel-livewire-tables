@@ -6,12 +6,12 @@ trait SearchHelpers
 {
     public function hasSearch(): bool
     {
-        return ($this->{$this->getTableName()}['search'] ?? null) !== null;
+        return ($this->search != null);
     }
 
     public function getSearch(): ?string
     {
-        return $this->{$this->getTableName()}['search'] ?? null;
+        return $this->search ?? null;
     }
 
     /**
@@ -19,7 +19,7 @@ trait SearchHelpers
      */
     public function clearSearch(): void
     {
-        $this->{$this->getTableName()}['search'] = null;
+        $this->search == null;
     }
 
     public function getSearchStatus(): bool
@@ -72,6 +72,11 @@ trait SearchHelpers
         return $this->searchFilterLazy !== null;
     }
 
+    public function hasSearchLive(): bool
+    {
+        return $this->searchFilterLive !== null;
+    }
+
     public function getSearchOptions(): string
     {
         if ($this->hasSearchDebounce()) {
@@ -79,7 +84,11 @@ trait SearchHelpers
         }
 
         if ($this->hasSearchDefer()) {
-            return '.defer';
+            return '';
+        }
+
+        if ($this->hasSearchLive()) {
+            return '.live';
         }
 
         if ($this->hasSearchLazy()) {

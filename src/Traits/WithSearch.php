@@ -5,12 +5,14 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
+use Livewire\Attributes\Url;
 
 trait WithSearch
 {
     use SearchConfiguration,
         SearchHelpers;
-
+        
+    #[Url(history: true, as: 'search')]
     public ?string $search = null;
 
     public bool $searchStatus = true;
@@ -22,6 +24,8 @@ trait WithSearch
     public ?bool $searchFilterDefer = null;
 
     public ?bool $searchFilterLazy = null;
+
+    public ?bool $searchFilterLive = null;
 
     // TODO
     public function applySearch(): Builder

@@ -8,7 +8,7 @@ trait SearchConfiguration
 {
     public function setSearch(string $query): self
     {
-        $this->{$this->getTableName()}['search'] = $query;
+        $this->search = $query;
 
         return $this;
     }
@@ -63,7 +63,7 @@ trait SearchConfiguration
      */
     public function setSearchDebounce(int $milliseconds): self
     {
-        if ($this->hasSearchDefer() || $this->hasSearchLazy()) {
+        if ($this->hasSearchDefer() || $this->hasSearchLazy() || $this->hasSearchLive()) {
             throw new DataTableConfigurationException('You can only set one search filter option per table: debounce, defer, or lazy.');
         }
 
@@ -77,7 +77,7 @@ trait SearchConfiguration
      */
     public function setSearchDefer(): self
     {
-        if ($this->hasSearchDebounce() || $this->hasSearchLazy()) {
+        if ($this->hasSearchDebounce() || $this->hasSearchLazy() || $this->hasSearchLive()) {
             throw new DataTableConfigurationException('You can only set one search filter option per table: debounce, defer, or lazy.');
         }
 
@@ -89,9 +89,23 @@ trait SearchConfiguration
     /**
      * @throws DataTableConfigurationException
      */
+    public function setSearchLive(): self
+    {
+        if ($this->hasSearchDebounce() || $this->hasSearchLazy() || $this->hasSearchDefer()) {
+            throw new DataTableConfigurationException('You can only set one search filter option per table: debounce, defer, or lazy.');
+        }
+
+        $this->searchFilterLive = true;
+
+        return $this;
+    }
+
+    /**
+     * @throws DataTableConfigurationException
+     */
     public function setSearchLazy(): self
     {
-        if ($this->hasSearchDebounce() || $this->hasSearchDefer()) {
+        if ($this->hasSearchDebounce() || $this->hasSearchDefer() || $this->hasSearchLive()) {
             throw new DataTableConfigurationException('You can only set one search filter option per table: debounce, defer, or lazy.');
         }
 
