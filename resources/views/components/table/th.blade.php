@@ -2,7 +2,7 @@
 @props(['column', 'index'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => 'header-col-'.$index.'-'.$component->id]);
+    $attributes = $attributes->merge(['wire:key' => 'header-col-'.$index.'-'.$component->getId()]);
     $theme = $component->getTheme();
     $customAttributes = $component->getThAttributes($column);
     $customSortButtonAttributes = $component->getThSortButtonAttributes($column);

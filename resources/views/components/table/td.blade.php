@@ -2,7 +2,7 @@
 @props(['column', 'colIndex'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => 'cell-'.$rowIndex.'-'.$colIndex.'-'.$component->id]);
+    $attributes = $attributes->merge(['wire:key' => 'cell-'.$rowIndex.'-'.$colIndex.'-'.$component->getId()]);
     $theme = $component->getTheme();
     $customAttributes = $component->getTdAttributes($column, $row, $colIndex, $rowIndex)
 @endphp

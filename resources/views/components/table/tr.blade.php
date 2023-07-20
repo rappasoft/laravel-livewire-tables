@@ -2,7 +2,7 @@
 @props(['row', 'rowIndex'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => 'row-'.$rowIndex.'-'.$component->id]);
+    $attributes = $attributes->merge(['wire:key' => 'row-'.$rowIndex.'-'.$component->getId()]);
     $theme = $component->getTheme();
     $customAttributes = $this->getTrAttributes($row, $rowIndex);
 @endphp
