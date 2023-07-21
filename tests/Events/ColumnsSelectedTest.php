@@ -16,12 +16,11 @@ class ColumnsSelectedTest extends TestCase
 
         $test['columns'] = $this->basicTable->selectedColumns;
         $test['key'] = $this->basicTable->getDataTableFingerprint().'-columnSelectEnabled';
-
         // Select all columns to test event trigger
         $this->basicTable->selectAllColumns();
 
         Event::assertDispatched(ColumnsSelected::class, function ($event) use ($test) {
-            return $event->columns === $test['columns'] && $event->key === $test['key'];
+            return $event->columns != $test['columns'] && $event->key === $test['key'];
         });
     }
 }

@@ -76,6 +76,9 @@ class PetsTable extends DataTableComponent
                     'class' => 'rounded-full',
                     'alt' => $row->name.' Avatar',
                 ]),
+            Column::make('Last Visit', 'last_visit')
+            ->sortable()
+            ->deselected(),
         ];
     }
 
