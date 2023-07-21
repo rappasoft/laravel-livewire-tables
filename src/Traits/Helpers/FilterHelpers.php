@@ -116,7 +116,7 @@ trait FilterHelpers
      * @param  mixed  $value
      * @return mixed
      */
-    #[On('set-filter')] 
+    #[On('set-filter')]
     public function setFilter(string $filterKey, $value)
     {
         return $this->filterComponents = $value;
@@ -139,7 +139,7 @@ trait FilterHelpers
         $this->setFilter($filterKey, array_keys($filter->getOptions()));
     }
 
-    #[On('clear-filters')] 
+    #[On('clear-filters')]
     public function setFilterDefaults(): void
     {
         foreach ($this->getFilters() as $filter) {
