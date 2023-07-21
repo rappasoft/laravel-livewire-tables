@@ -74,5 +74,4 @@ class SearchVisualsTest extends TestCase
             ->call('setSearchLive')
             ->assertSeeHtml('wire:model.live="search"');
     }
-    
 }

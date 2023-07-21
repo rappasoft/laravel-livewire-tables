@@ -22,6 +22,7 @@ trait SortingConfiguration
     {
         $this->setSortingStatus(false);
         $this->sorts = [];
+
         return $this;
     }
 

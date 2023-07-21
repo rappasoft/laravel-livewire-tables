@@ -34,6 +34,7 @@ trait SearchConfiguration
     {
         $this->setSearchStatus(false);
         $this->search = '';
+
         return $this;
     }
 
