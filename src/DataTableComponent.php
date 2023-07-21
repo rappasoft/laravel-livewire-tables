@@ -65,7 +65,6 @@ abstract class DataTableComponent extends Component
     {
         $this->{$this->tableName} = [
             'filters' => $this->{$this->tableName}['filters'] ?? [],
-            'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];
 
     }

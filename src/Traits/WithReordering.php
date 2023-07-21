@@ -88,6 +88,9 @@ trait WithReordering
 
         session([$this->getReorderingBackupSessionKey() => [
             $this->getTableName() => $this->{$this->getTableName()},
+            'sorts' => $this->sorts,
+            'search' => $this->search,
+            'selectedColumns' => $this->selectedColumns,
             'sortingPillsStatus' => $this->getSortingPillsStatus(),
             'sortingStatus' => $this->getSortingStatus(),
             'paginationStatus' => $this->getPaginationStatus(),
@@ -113,6 +116,9 @@ trait WithReordering
         if (session()->has($this->getReorderingBackupSessionKey())) {
             $save = session()->get($this->getReorderingBackupSessionKey());
             $this->{$this->getTableName()} = $save[$this->getTableName()];
+            $this->sorts = $save['sorts'];
+            $this->search = $save['search'];
+            $this->selectedColumns = $save['selectedColumns'];
             $this->setSortingPillsStatus($save['sortingPillsStatus']);
             $this->setSortingStatus($save['sortingStatus']);
             $this->setPaginationStatus($save['paginationStatus']);

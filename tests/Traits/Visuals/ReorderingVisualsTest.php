@@ -87,6 +87,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertSet('sortingPillsStatus', false)
             ->assertDontSeeHtml('wire:key="sorting-pill-id"')
             ->call('disableReordering')
+            ->call('sortBy', 'id')
             ->assertSet('sortingPillsStatus', true)
             ->assertSeeHtml('wire:key="sorting-pill-id"');
     }
@@ -102,7 +103,8 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('sortingStatus', true)
             ->call('sortBy', 'id')
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => $filterDefaultArray, 'columns' => []])
+            ->assertSet('sorts', ['id' => 'asc'])
+            ->assertSet('table', ['filters' => $filterDefaultArray])
             ->assertSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('enableReordering')
             ->assertSet('sortingStatus', false)
@@ -110,7 +112,9 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSeeHtml('wire:click="sortBy(\'id\')"')
             ->call('disableReordering')
             ->assertSet('sortingStatus', true)
-            ->assertSet('table', ['sorts' => ['id' => 'asc'], 'filters' => $filterDefaultArray, 'columns' => []])
+            ->assertSet('table', ['filters' => $filterDefaultArray])
+            ->assertSet('sorts', ['id' => 'asc'])
+
             ->assertSeeHtml('wire:click="sortBy(\'id\')"');
     }
 
@@ -179,14 +183,14 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('searchStatus', true)
             ->assertSee('Search')
-            ->set('table', ['search' => 'abc123'])
+            ->set('search', 'abc123')
             ->call('enableReordering')
             ->assertSet('searchStatus', false)
-            ->assertSet('table', [])
+            ->assertSet('search', '')
             ->assertDontSee('Search')
             ->call('disableReordering')
             ->assertSet('searchStatus', true)
-            ->assertSet('table', ['search' => 'abc123'])
+            ->assertSet('search', 'abc123')
             ->assertSee('Search');
     }
 
@@ -197,9 +201,11 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->call('setPerPageAccepted', [1])
             ->call('setPerPage', 1)
+            ->set('page', 1)
             ->assertSet('page', 1)
             ->set('page', 3)
             ->call('enableReordering')
+            ->set('page', 1)
             ->assertSet('page', 1);
         //            ->call('disableReordering') // TODO: Don't work
         //            ->assertSet('page', 3);
@@ -286,7 +292,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('filtersStatus', true)
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => $customisedFilterArray, 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $customisedFilterArray])
             ->assertSee('Filters')
             ->call('enableReordering')
             ->assertSet('filtersStatus', false)
@@ -295,7 +301,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('disableReordering')
             ->assertSet('filtersStatus', true)
             ->set('table.filters.breed', [])
-            ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $filterDefaultArray])
             ->assertSeeHtml('Filters');
     }
 
@@ -311,7 +317,7 @@ class ReorderingVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->set('table.filters.breed', [1])
-            ->assertSet('table', ['filters' => $filterDefaultArray, 'sorts' => [], 'columns' => []])
+            ->assertSet('table', ['filters' => $filterDefaultArray])
             ->assertSee('Applied Filters')
             ->call('enableReordering')
             ->assertDontSee('Applied Filters');

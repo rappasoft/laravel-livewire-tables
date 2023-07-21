@@ -10,7 +10,7 @@ class SearchConfigurationTest extends TestCase
     /** @test */
     public function can_set_default_search_term(): void
     {
-        $this->assertNull($this->basicTable->getSearch());
+        $this->assertSame("",$this->basicTable->getSearch());
 
         $this->basicTable->setSearch('Anthony');
 

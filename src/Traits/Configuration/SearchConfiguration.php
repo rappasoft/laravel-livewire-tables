@@ -33,7 +33,7 @@ trait SearchConfiguration
     public function setSearchDisabled(): self
     {
         $this->setSearchStatus(false);
-
+        $this->search = '';
         return $this;
     }
 
