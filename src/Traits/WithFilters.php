@@ -25,6 +25,8 @@ trait WithFilters
 
     protected $filterCollection;
 
+    public array $filterComponents = [];
+
     public function filters(): array
     {
         return [];

@@ -119,7 +119,7 @@ trait FilterHelpers
     #[On('set-filter')] 
     public function setFilter(string $filterKey, $value)
     {
-        return $this->{$this->getTableName()}['filters'][$filterKey] = $value;
+        return $this->filterComponents = $value;
     }
 
     public function selectAllFilterOptions(string $filterKey): void
@@ -158,7 +158,7 @@ trait FilterHelpers
             ->map(fn (Filter $filter) => $filter->getKey())
             ->toArray();
 
-        return collect($this->{$this->getTableName()}['filters'] ?? [])
+        return collect($this->filterComponents ?? [])
             ->filter(fn ($value, $key) => in_array($key, $validFilterKeys, true))
             ->toArray();
     }
