@@ -11,6 +11,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 
 - Core Changes
+    - There are now two arrays relating to Filters.  There is the wireable one ($filterComponents), and an unwired one, which only keeps track of those filters that have a value ($appliedFilters).  This is what is bound to the query string, and populates the filters on mount if they are present in the query string.
 
     - Move sorts, search, selectedColumns out of the traditional __$this->{$this->getTableName()}['sorts']__ and instead place it directly within the component.  This:
         - Improves the query string behaviour

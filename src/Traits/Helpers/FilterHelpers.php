@@ -119,7 +119,7 @@ trait FilterHelpers
     #[On('set-filter')] 
     public function setFilter(string $filterKey, $value)
     {
-        return $this->filterComponents = $value;
+        return $this->filterComponents[$filterKey] = $value;
     }
 
     public function selectAllFilterOptions(string $filterKey): void
@@ -197,7 +197,7 @@ trait FilterHelpers
      */
     public function getAppliedFiltersWithValues(): array
     {
-        return array_filter($this->getAppliedFilters(), function ($item, $key) {
+        return $this->appliedFilters = array_filter($this->getAppliedFilters(), function ($item, $key) {
             return ! $this->getFilterByKey($key)->isEmpty($item) && (is_array($item) ? count($item) : $item !== null);
         }, ARRAY_FILTER_USE_BOTH);
     }
@@ -297,17 +297,17 @@ trait FilterHelpers
      */
     public function mountFilterHelpers()
     {
-        $appliedFilters = $this->getAppliedFiltersWithValues();
         foreach ($this->getFilters() as $filter) {
-            if (! isset($appliedFilters[$filter->getKey()])) {
+            if (! isset($this->appliedFilters[$filter->getKey()])) {
                 if ($filter->hasFilterDefaultValue()) {
                     $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
                 } else {
                     $this->resetFilter($filter);
                 }
             } else {
-                $this->setFilter($filter->getKey(), $appliedFilters[$filter->getKey()]);
+                $this->setFilter($filter->getKey(), $this->appliedFilters[$filter->getKey()]);
             }
         }
+
     }
 }

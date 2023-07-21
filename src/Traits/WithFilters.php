@@ -26,6 +26,9 @@ trait WithFilters
     protected $filterCollection;
 
     public array $filterComponents = [];
+    
+    #[Url(history: true, keep: false, as: 'filter')]
+    public array $appliedFilters = [];
 
     public function filters(): array
     {
