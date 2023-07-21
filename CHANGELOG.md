@@ -2,7 +2,12 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [Unreleased]
+## [Unreleased] - 3.x
+- Requirements Change
+    - Requires LiveWire 3.x
+    - Requires PHP 8.1+
+
+
 
 ## [2.15.0] - 2023-07-15
 
