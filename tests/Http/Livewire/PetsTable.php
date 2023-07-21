@@ -77,8 +77,8 @@ class PetsTable extends DataTableComponent
                     'alt' => $row->name.' Avatar',
                 ]),
             Column::make('Last Visit', 'last_visit')
-            ->sortable()
-            ->deselected(),
+                ->sortable()
+                ->deselected(),
         ];
     }
 
