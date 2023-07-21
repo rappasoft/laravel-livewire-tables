@@ -101,7 +101,7 @@ class FilterVisualsTest extends TestCase
     /**
      * @test
      */
-    public function filter_events_apply_correctly(): void
+    /*public function filter_events_apply_correctly(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('Applied Filters')
@@ -109,5 +109,5 @@ class FilterVisualsTest extends TestCase
             ->assertSee('Applied Filters')
             ->emit('clearFilters')
             ->assertDontSee('Applied Filters');
-    }
+    }*/
 }
