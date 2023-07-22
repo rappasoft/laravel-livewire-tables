@@ -11,6 +11,9 @@ parameters:
     checkModelProperties: true
     checkMissingIterableValueType: false
     treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         - "#Unsafe usage of new static#"
         - "#Called 'count' on Laravel collection, but could have been retrieved as a query.#"
+        - '#Attribute class Rappasoft\\LaravelLivewireTables\\Traits\\Url does not exist.#'
+        - '#Attribute class Rappasoft\\LaravelLivewireTables\\Traits\\Helpers\\On does not exist.#'
