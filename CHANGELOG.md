@@ -6,8 +6,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Requirements Change
     - Requires LiveWire 3.x
     - Requires PHP 8.1+
-    - Requires Laravel 9+
-    - I'm open to restoring PHP 8.0, but I think as Laravel8 is out of security support, it's not wise to encourage people!
+    - Requires Laravel 10+
 
 
 - Core Changes
