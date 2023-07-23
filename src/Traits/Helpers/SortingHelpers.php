@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\On;
+
 trait SortingHelpers
 {
     public function getSortingStatus(): bool
