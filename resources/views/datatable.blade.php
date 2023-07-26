@@ -31,7 +31,7 @@
         <x-livewire-tables::table.tr.bulk-actions :rows="$rows" />
 
         @forelse ($rows as $rowIndex => $row)
-            <x-livewire-tables::table.tr :row="$row" :rowIndex="$rowIndex">
+            <x-livewire-tables::table.tr wire:key="$rowIndex" :row="$row" :rowIndex="$rowIndex">
                 <x-livewire-tables::table.td.reorder />
                 <x-livewire-tables::table.td.bulk-actions :row="$row" />
                 <x-livewire-tables::table.td.row-contents :rowIndex="$rowIndex" />
@@ -41,7 +41,7 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
                     @continue($this->currentlyReorderingIsDisabled() && $column->isReorderColumn() && $this->hideReorderColumnUnlessReorderingIsEnabled())
 
-                    <x-livewire-tables::table.td :column="$column" :colIndex="$colIndex">
+                    <x-livewire-tables::table.td wire:key="$rowIndex . ' ' . $colIndex"  :column="$column" :colIndex="$colIndex">
                         {{ $column->renderContents($row) }}
                     </x-livewire-tables::table.td>
                 @endforeach
