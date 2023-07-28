@@ -20,6 +20,7 @@
     "require": {
         "php": "^8.1|^8.2",
         "illuminate/contracts": "^10.0",
+        "laravel/pint": "^1.10",
         "livewire/livewire": "dev-main"
     },
     "require-dev": {
