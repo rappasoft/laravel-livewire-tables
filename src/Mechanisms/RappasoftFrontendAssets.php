@@ -54,12 +54,12 @@ class RappasoftFrontendAssets
 
     public static function rappasoftScripts($expression)
     {
-        return '{!! \Rappasoft\LaravelLivewireTables\Mechanisms\FrontendAssets::scripts('.$expression.') !!}';
+        return '{!! \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets::scripts('.$expression.') !!}';
     }
 
     public static function rappasoftStyles($expression)
     {
-        return '{!! \Rappasoft\LaravelLivewireTables\Mechanisms\FrontendAssets::styles('.$expression.') !!}';
+        return '{!! \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets::styles('.$expression.') !!}';
     }
 
     public function returnJavaScriptAsFile()

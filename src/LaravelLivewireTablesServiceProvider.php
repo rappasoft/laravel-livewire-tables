@@ -10,7 +10,6 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        (new \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets)->boot($this);
 
         AboutCommand::add('Rappasoft Laravel Livewire Tables', fn () => ['Version' => '3.0.0']);
 
@@ -40,16 +39,19 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             ]);
 
         }
+        (new \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets)->boot($this);
 
     }
 
     public function register()
     {
-        (new \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets)->register($this);
-        app('livewire')->componentHook(\Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets::class);
-        \Livewire\ComponentHookRegistry::boot();
         $this->mergeConfigFrom(
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
+
+        (new \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets)->register($this);
+        app('livewire')->componentHook(\Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets::class);
+        \Livewire\ComponentHookRegistry::boot();
+
     }
 }
