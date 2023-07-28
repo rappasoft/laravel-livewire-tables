@@ -18,8 +18,8 @@
         'bg-white dark:bg-gray-700 dark:text-white' => $theme === 'tailwind' && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0,
         'bg-gray-50 dark:bg-gray-800 dark:text-white' => $theme === 'tailwind' && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0,
         'cursor-pointer' => $theme === 'tailwind' && $component->hasTableRowUrl(),
-        'bg-white' => ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0,
-        'bg-gray-700' => ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0,
+        'bg-white ' => ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') && $rowIndex % 2 === 0,
+        'bg-secondary' => ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') && $rowIndex % 2 !== 0,
 
     ])
 >

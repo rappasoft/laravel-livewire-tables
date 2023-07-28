@@ -57,10 +57,10 @@
         $attributes->merge($customAttributes['wrapper'])
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
-    }}>
+    }}  wire:key>
         <table {{
             $attributes->merge($customAttributes['table'])
-                ->class(['table table-striped' => $customAttributes['table']['default'] ?? true])
+                ->class(['table ' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
         }}>
             <thead {{
