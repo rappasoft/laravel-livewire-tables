@@ -298,12 +298,12 @@
     @endif
 @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
     <div @class([
-            'd-md-flex justify-content-between mb-3' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+            'd-md-flex justify-content-between mb-3' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
         ])
     >
         <div 
             @class([
-                'd-md-flex' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                'd-md-flex' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
             ])
         >
             @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
@@ -315,15 +315,15 @@
             @if ($component->reorderIsEnabled())
                 <div 
                     @class([
-                        'mr-0 mr-md-2 mb-3 mb-md-0' => $theme == 'bootstrap-4',
-                        'me-0 me-md-2 mb-3 mb-md-0' => $theme == 'bootstrap-5'
+                        'mr-0 mr-md-2 mb-3 mb-md-0' => $theme === 'bootstrap-4',
+                        'me-0 me-md-2 mb-3 mb-md-0' => $theme === 'bootstrap-5'
                     ])
                 >
                     <button
                         wire:click="{{ $component->currentlyReorderingIsEnabled() ? 'disableReordering' : 'enableReordering' }}"
                         type="button" 
                         @class([
-                            'btn btn-default d-block w-100 d-md-inline' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                            'btn btn-default d-block w-100 d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])
                     >
                         @if ($component->currentlyReorderingIsEnabled())
@@ -338,22 +338,26 @@
             @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
                 <div 
                     @class([
-                            'mb-3 mb-md-0 input-group' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                            'mb-3 mb-md-0 input-group' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                     ])
                 >
                     <input wire:model{{ $component->getSearchOptions() }}="search"
                         placeholder="{{ __('Search') }}" type="text" 
                         @class([
-                            'form-control' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                            'form-control' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])
                     >
 
                     @if ($component->hasSearch())
-                        <div class="input-group-append">
+                        <div 
+                            @class([
+                                'input-group-append' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
+                            ])
+                        >
                             <button wire:click="clearSearch" 
                                 type="button"
                                 @class([
-                                    'btn btn-outline-secondary' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                    'btn btn-outline-secondary' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                 ])
                             >
                                 <svg style="width:.75em;height:.75em" xmlns="http://www.w3.org/2000/svg"
@@ -370,22 +374,22 @@
             @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
                 <div 
                     @class([
-                        'ml-0 ml-md-2 mb-3 mb-md-0' => $theme == 'bootstrap-4',
-                        'ms-0 ms-md-2 mb-3 mb-md-0' => $theme == 'bootstrap-5' && $component->searchIsEnabled(),
-                        'mb-3 mb-md-0' => $theme == 'bootstrap-5' && !$component->searchIsEnabled(),
+                        'ml-0 ml-md-2 mb-3 mb-md-0' => $theme === 'bootstrap-4',
+                        'ms-0 ms-md-2 mb-3 mb-md-0' => $theme === 'bootstrap-5' && $component->searchIsEnabled(),
+                        'mb-3 mb-md-0' => $theme === 'bootstrap-5' && !$component->searchIsEnabled(),
                     ])
                 >
                     <div @if ($component->isFilterLayoutPopover()) x-data="{ open: false, childElementOpen: false  }"
                             x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
                             x-on:mousedown.away="if (!childElementOpen) { open = false }" @endif
                         @class([
-                                'btn-group d-block d-md-inline' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                'btn-group d-block d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])
                     >
                         <div>
                             <button type="button" 
                                 @class([
-                                    'btn dropdown-toggle d-block w-100 d-md-inline' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                    'btn dropdown-toggle d-block w-100 d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                 ])
                                 @if ($component->isFilterLayoutPopover()) x-on:click="open = !open"
                                     aria-haspopup="true"
@@ -397,7 +401,7 @@
                                 @if ($count = $component->getFilterBadgeCount())
                                     <span 
                                         @class([
-                                            'badge badge-info' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                            'badge badge-info' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                         ])
                                     >
                                         {{ $count }}
@@ -406,7 +410,7 @@
 
                                 <span                                         
                                     @class([
-                                        'caret' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                        'caret' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                     ])
                                 ></span>
                             </button>
@@ -415,15 +419,15 @@
                         @if ($component->isFilterLayoutPopover())
                             <ul x-cloak 
                                 @class([
-                                        'dropdown-menu w-100 mt-md-5' => $theme == 'bootstrap-4',
-                                        'dropdown-menu w-100' => $theme == 'bootstrap-5',
+                                        'dropdown-menu w-100 mt-md-5' => $theme === 'bootstrap-4',
+                                        'dropdown-menu w-100' => $theme === 'bootstrap-5',
                                 ])
                                 x-bind:class="{ 'show': open }"
                                 role="menu">
                                 @foreach ($component->getVisibleFilters() as $filter)
                                     <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
                                         @class([
-                                            'p-2' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                            'p-2' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                         ])
                                         id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper"
                                     >
@@ -434,14 +438,14 @@
                                 @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
                                     <div 
                                         @class([
-                                                'dropdown-divider' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                                'dropdown-divider' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                         ])
                                     ></div>
 
                                     <button wire:click.prevent="setFilterDefaults" x-on:click="open = false"
                                         @class([
                                             'dropdown-item btn text-center' => $theme == 'bootstrap-45',
-                                            'dropdown-item text-center' => $theme == 'bootstrap-5',
+                                            'dropdown-item text-center' => $theme === 'bootstrap-5',
                                         ])
                                     >
                                         @lang('Clear')
@@ -462,7 +466,7 @@
 
         <div 
             @class([
-                'd-md-flex' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                'd-md-flex' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
             ])
          >
             @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
@@ -474,17 +478,17 @@
             @if ($component->showBulkActionsDropdownAlpine())
                 <div x-cloak x-show="(selectedItems.length > 0 || alwaysShowBulkActions)"
                     @class([
-                        'mb-3 mb-md-0' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                        'mb-3 mb-md-0' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                     ])
                 >
                     <div 
                         @class([
-                            'dropdown d-block d-md-inline' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                            'dropdown d-block d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])
                     >
                         <button 
                             @class([
-                                'btn dropdown-toggle d-block w-100 d-md-inline' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                'btn dropdown-toggle d-block w-100 d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                             ])
                             type="button"
                             id="{{ $component->getTableName() }}-bulkActionsDropdown" data-toggle="dropdown"
@@ -494,15 +498,15 @@
 
                         <div 
                             @class([
-                                'dropdown-menu dropdown-menu-right w-100' => $theme == 'bootstrap-4',
-                                'dropdown-menu dropdown-menu-end w-100' => $theme == 'bootstrap-5',
+                                'dropdown-menu dropdown-menu-right w-100' => $theme === 'bootstrap-4',
+                                'dropdown-menu dropdown-menu-end w-100' => $theme === 'bootstrap-5',
                             ])
                             aria-labelledby="{{ $component->getTableName() }}-bulkActionsDropdown">
                             @foreach ($component->getBulkActions() as $action => $title)
                                 <a href="#" wire:click="{{ $action }}"
                                     wire:key="bulk-action-{{ $action }}-{{ $component->getTableName() }}"
                                     @class([
-                                        'dropdown-item' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                        'dropdown-item' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                     ])
                                 >
                                     {{ $title }}
@@ -516,21 +520,21 @@
             @if ($component->columnSelectIsEnabled())
                 <div
                     @class([
-                        'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $theme == 'bootstrap-4',
-                        'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $theme == 'bootstrap-4',
-                        'd-none d-sm-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $theme == 'bootstrap-5',
-                        'd-none d-md-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $theme == 'bootstrap-5',
+                        'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $theme === 'bootstrap-4',
+                        'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $theme === 'bootstrap-4',
+                        'd-none d-sm-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $theme === 'bootstrap-5',
+                        'd-none d-md-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $theme === 'bootstrap-5',
                     ])
                 >
                     <div x-data="{ open: false, childElementOpen: false }" x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
                         x-on:mousedown.away="if (!childElementOpen) { open = false }"
                         @class([
-                            'dropdown d-block d-md-inline' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                            'dropdown d-block d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])
                         wire:key="column-select-button-{{ $component->getTableName() }}">
                         <button x-on:click="open = !open" 
                             @class([
-                                'btn dropdown-toggle d-block w-100 d-md-inline' => $theme == 'bootstrap-4' || $theme == 'bootstrap-5',
+                                'btn dropdown-toggle d-block w-100 d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                             ])
                             type="button" id="columnSelect-{{ $component->getTableName() }}" aria-haspopup="true"
                             x-bind:aria-expanded="open">
@@ -539,8 +543,8 @@
 
                         <div 
                             @class([
-                                'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $theme == 'bootstrap-4',
-                                'dropdown-menu dropdown-menu-end w-100' => $theme == 'bootstrap-5',
+                                'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $theme === 'bootstrap-4',
+                                'dropdown-menu dropdown-menu-end w-100' => $theme === 'bootstrap-5',
                             ])
                             x-bind:class="{ 'show': open }"
                             aria-labelledby="columnSelect-{{ $component->getTableName() }}"
@@ -572,7 +576,7 @@
                                 @if ($column->isVisible() && $column->isSelectable())
                                     <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}"
                                         @class([
-                                            'form-check ms-2' => $theme == 'bootstrap-5',
+                                            'form-check ms-2' => $theme === 'bootstrap-5',
                                         ])
                                     >
                                         @if ($theme === 'bootstrap-4')
@@ -590,7 +594,6 @@
                                                 {{ $column->getTitle() }}
                                             </span>
                                         </label>
-
                                         @elseif($theme === 'bootstrap-5')
                                             <input 
                                                 wire:model.live="selectedColumns" 
@@ -619,14 +622,14 @@
             @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
                 <div 
                     @class([
-                        'ml-0 ml-md-2' => $theme == 'bootstrap-4',
-                        'ms-0 ms-md-2' => $theme == 'bootstrap-5',
+                        'ml-0 ml-md-2' => $theme === 'bootstrap-4',
+                        'ms-0 ms-md-2' => $theme === 'bootstrap-5',
                     ])
                 >
                     <select wire:model="perPage" id="perPage" 
                         @class([
-                            'form-control' => $theme == 'bootstrap-4',
-                            'form-select' => $theme == 'bootstrap-5',
+                            'form-control' => $theme === 'bootstrap-4',
+                            'form-select' => $theme === 'bootstrap-5',
                         ])
                     >
                         @foreach ($component->getPerPageAccepted() as $item)
@@ -652,9 +655,18 @@
             $component->hasVisibleFilters() &&
             $component->isFilterLayoutSlideDown())
         <div x-cloak x-show="filtersOpen">
-            <div class="container">
+            <div 
+                @class([
+                    'container' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
+                ])
+            >
                 @foreach ($component->getFiltersByRow() as $filterRowIndex => $filterRow)
-                    <div class="row col-12" row="{{ $filterRowIndex }}">
+                    <div 
+                        @class([
+                            'row col-12' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
+                        ])
+                        row="{{ $filterRowIndex }}"
+                    >
                         @foreach ($filterRow as $filter)
                             <div @class([
                                 'space-y-1 mb-4',
