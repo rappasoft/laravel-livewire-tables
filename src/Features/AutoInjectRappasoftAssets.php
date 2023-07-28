@@ -33,7 +33,9 @@ class AutoInjectRappasoftAssets extends ComponentHook
             if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) {
                 return;
             }
-            if (app(RappasoftFrontendAssets::class)->hasRenderedScripts) return;
+            if (app(RappasoftFrontendAssets::class)->hasRenderedScripts) {
+                return;
+            }
 
             $html = $handled->response->getContent();
 
