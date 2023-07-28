@@ -40,6 +40,8 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
 
         }
         (new \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets)->boot($this);
+        app('livewire')->componentHook(\Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets::class);
+        \Livewire\ComponentHookRegistry::boot();
 
     }
 
@@ -50,8 +52,6 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         );
 
         (new \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets)->register($this);
-        app('livewire')->componentHook(\Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets::class);
-        \Livewire\ComponentHookRegistry::boot();
 
     }
 }
