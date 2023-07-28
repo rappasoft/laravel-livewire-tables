@@ -543,8 +543,10 @@
                                 'dropdown-menu dropdown-menu-end w-100' => $theme == 'bootstrap-5',
                             ])
                             x-bind:class="{ 'show': open }"
-                            aria-labelledby="columnSelect-{{ $component->getTableName() }}">
-                            <!-- Paused Merging of Blades -->
+                            aria-labelledby="columnSelect-{{ $component->getTableName() }}"
+                        >
+                           
+                            @if($theme === 'bootstrap-4')
                             <div>
                                 <label wire:loading.attr="disabled" class="px-2 mb-1">
                                     <input
@@ -552,17 +554,60 @@
                                     <span class="ml-2">{{ __('All Columns') }}</span>
                                 </label>
                             </div>
+                            @elseif($theme === 'bootstrap-5')
+                            <div class="form-check ms-2">
+                                <input 
+                                    wire:loading.attr="disabled" 
+                                    type="checkbox" 
+                                    class="form-check-input" 
+                                    @if($component->allDefaultVisibleColumnsAreSelected()) checked wire:click="deselectAllColumns"  @else unchecked wire:click="selectAllColumns" @endif 
+                                />
+                                <label wire:loading.attr="disabled" class="form-check-label">
+                                    {{ __('All Columns') }}
+                                </label>
+                            </div>
+                            @endif
+
                             @foreach ($component->getColumns() as $column)
                                 @if ($column->isVisible() && $column->isSelectable())
-                                    <div
-                                        wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}">
-                                        <label wire:loading.attr="disabled" wire:target="selectedColumns"
-                                            class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}">
-                                            <input wire:model.live="selectedColumns" wire:target="selectedColumns"
+                                    <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}"
+                                        @class([
+                                            'form-check ms-2' => $theme == 'bootstrap-5',
+                                        ])
+                                    >
+                                        @if ($theme === 'bootstrap-4')
+                                        <label 
+                                            wire:loading.attr="disabled" 
+                                            wire:target="selectedColumns"
+                                            class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}"
+                                        >
+                                            <input wire:model.live="selectedColumns" 
+                                                wire:target="selectedColumns"
                                                 wire:loading.attr="disabled" type="checkbox"
-                                                value="{{ $column->getSlug() }}" />
-                                            <span class="ml-2">{{ $column->getTitle() }}</span>
+                                                value="{{ $column->getSlug() }}" 
+                                            />
+                                            <span class="ml-2">
+                                                {{ $column->getTitle() }}
+                                            </span>
                                         </label>
+
+                                        @elseif($theme === 'bootstrap-5')
+                                            <input 
+                                                wire:model.live="selectedColumns" 
+                                                wire:target="selectedColumns"
+                                                wire:loading.attr="disabled" 
+                                                type="checkbox" 
+                                                class="form-check-input"
+                                                value="{{ $column->getSlug() }}"
+                                             />
+                                            <label 
+                                                wire:loading.attr="disabled" 
+                                                wire:target="selectedColumns"
+                                                class="{{ $loop->last ? 'mb-0' : 'mb-1' }} form-check-label"
+                                            >
+                                                {{ $column->getTitle() }}
+                                            </label>
+                                        @endif
                                     </div>
                                 @endif
                             @endforeach
@@ -572,8 +617,18 @@
             @endif
 
             @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
-                <div class="ml-0 ml-md-2">
-                    <select wire:model="perPage" id="perPage" class="form-control">
+                <div 
+                    @class([
+                        'ml-0 ml-md-2' => $theme == 'bootstrap-4',
+                        'ms-0 ms-md-2' => $theme == 'bootstrap-5',
+                    ])
+                >
+                    <select wire:model="perPage" id="perPage" 
+                        @class([
+                            'form-control' => $theme == 'bootstrap-4',
+                            'form-select' => $theme == 'bootstrap-5',
+                        ])
+                    >
                         @foreach ($component->getPerPageAccepted() as $item)
                             <option value="{{ $item }}"
                                 wire:key="per-page-{{ $item }}-{{ $component->getTableName() }}">
