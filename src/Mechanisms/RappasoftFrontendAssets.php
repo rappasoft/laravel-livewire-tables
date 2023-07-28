@@ -86,7 +86,9 @@ class RappasoftFrontendAssets
         $html = <<<HTML
         <!-- Rappasoft Styles -->
         <style {$nonce}>
-            body { background-color: #000 !important; }
+            div.testIncludeRappasoftFrontendAssets {
+                background-color: #000 !important;
+            }
         </style>
         HTML;
 
