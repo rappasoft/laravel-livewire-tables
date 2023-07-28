@@ -2,16 +2,18 @@
 
 namespace Rappasoft\LaravelLivewireTables\Mechanisms;
 
-use Livewire\Drawer\Utils;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
+use Livewire\Drawer\Utils;
 
 class RappasoftFrontendAssets
 {
     public $hasRenderedRappsoftScripts = false;
+
     public $hasRenderedRappsoftStyles = false;
 
     public $rappasoftScriptRoute;
+
     public $rappasoftStylesRoute;
 
     public $rappasoftScriptTagAttributes = [];
@@ -31,25 +33,24 @@ class RappasoftFrontendAssets
         Blade::directive('rappasoftStyles', [static::class, 'rappasoftStyles']);
     }
 
-    function useRappasoftScriptTagAttributes($attributes)
+    public function useRappasoftScriptTagAttributes($attributes)
     {
         $this->rappasoftScriptTagAttributes = array_merge($this->rappasoftScriptTagAttributes, $attributes);
     }
 
-    function setRappaScriptRoute($callback)
+    public function setRappaScriptRoute($callback)
     {
         $route = $callback([self::class, 'returnJavaScriptAsFile']);
 
         $this->rappasoftScriptRoute = $route;
     }
 
-    function setStylesRoute($callback)
+    public function setStylesRoute($callback)
     {
         $route = $callback([self::class, 'returnStylesAsFile']);
 
         $this->rappasoftStylesRoute = $route;
     }
-
 
     public static function rappasoftScripts($expression)
     {

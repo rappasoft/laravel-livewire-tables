@@ -4,28 +4,35 @@ namespace Rappasoft\LaravelLivewireTables\Features;
 
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Livewire\ComponentHook;
-use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
-
 use function Livewire\on;
+use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 
 class AutoInjectRappasoftAssets extends ComponentHook
 {
-    static $hasRenderedAComponentThisRequest = false;
-    static $forceAssetInjection = false;
+    public static $hasRenderedAComponentThisRequest = false;
 
-    static function provide()
+    public static $forceAssetInjection = false;
+
+    public static function provide()
     {
         on('flush-state', function () {
             static::$hasRenderedAComponentThisRequest = false;
             static::$forceAssetInjection = false;
         });
-        if (config('livewire-tables.inject_assets', true) === false) return;
-
+        if (config('livewire-tables.inject_assets', true) === false) {
+            return;
+        }
 
         app('events')->listen(RequestHandled::class, function ($handled) {
-            if (! str($handled->response->headers->get('content-type'))->contains('text/html')) return;
-            if (! method_exists($handled->response, 'status') || $handled->response->status() !== 200) return;
-            if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) return;
+            if (! str($handled->response->headers->get('content-type'))->contains('text/html')) {
+                return;
+            }
+            if (! method_exists($handled->response, 'status') || $handled->response->status() !== 200) {
+                return;
+            }
+            if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) {
+                return;
+            }
             //if (app(FrontendAssets::class)->hasRenderedScripts) return;
 
             $html = $handled->response->getContent();
@@ -41,7 +48,7 @@ class AutoInjectRappasoftAssets extends ComponentHook
         static::$hasRenderedAComponentThisRequest = true;
     }
 
-    static function injectAssets($html)
+    public static function injectAssets($html)
     {
         $rappasoftStyles = RappasoftFrontendAssets::styles();
         $rappasoftScripts = RappasoftFrontendAssets::scripts();
