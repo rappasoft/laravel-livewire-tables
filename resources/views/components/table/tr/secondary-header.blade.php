@@ -1,4 +1,4 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 @props(['rows'])
 
 

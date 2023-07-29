@@ -1,2 +1,2 @@
-console.log('This was automatically injected');
-alert('This was automatically injected');
+// console.log('This was automatically injected');
+// alert('This was automatically injected');

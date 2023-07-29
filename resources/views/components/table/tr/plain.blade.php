@@ -1,7 +1,7 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 @props(['customAttributes' => []])
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <tr {{ $attributes
         ->merge($customAttributes)
         ->class(['bg-white dark:bg-gray-700 dark:text-white' => $customAttributes['default'] ?? true])
@@ -9,7 +9,7 @@
     }}>
         {{ $slot }}
     </tr>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
     <tr {{ $attributes
         ->merge($customAttributes)
         ->class(['' => $customAttributes['default'] ?? true])

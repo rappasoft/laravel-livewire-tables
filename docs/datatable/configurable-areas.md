@@ -89,9 +89,9 @@ public function configure(): void
 Example dropdown for the toolbar:
 
 ```html
-@aware(['component', 'theme'])
+@aware(['component'])
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <div class="w-full mb-4 md:w-auto md:mb-0">
         <div
             x-data="{ open: false }"
@@ -146,7 +146,7 @@ Example dropdown for the toolbar:
             </div>
         </div>
     </div>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
     <div><!-- Implement Other Themes if needed--></div>
 @endif
 ```

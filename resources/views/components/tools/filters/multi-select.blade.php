@@ -1,5 +1,3 @@
-@aware(['theme'])
-
 @php
     $filterLayout = $component->getFilterLayout();
     $tableName = $component->getTableName();
@@ -7,11 +5,11 @@
 
 <div>
     @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
-        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
+        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
     @elseif(!$filter->hasCustomPosition())
-        <x-livewire-tables::tools.filter-label :filter="$filter" :theme="$theme" :filterLayout="$filterLayout" :tableName="$tableName" />
+        <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
-    @if ($theme === 'tailwind')
+    @if ($component->isTailwind())
         <div class="rounded-md">
             <div>
                 <input
@@ -41,7 +39,7 @@
                 </div>
             @endforeach
         </div>
-    @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+    @elseif ($component->isBootstrap())
         <div class="form-check">
             <input
                 type="checkbox"

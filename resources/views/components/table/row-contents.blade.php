@@ -1,9 +1,8 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 @props(['row', 'rowIndex'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @php
-        $theme = $component->getTheme();
         $columns = collect([]);
 
         if ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) {
@@ -27,14 +26,14 @@
         x-data
         @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('hidden') : null"
         @class([
-            'hidden md:hidden bg-white dark:bg-gray-700 dark:text-white' => $theme === 'tailwind',
-            'd-none d-md-none' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5'
+            'hidden md:hidden bg-white dark:bg-gray-700 dark:text-white' => $component->isTailwind(),
+            'd-none d-md-none' => $component->isBootstrap()
         ])
     >
         <td
             @class([
-                'pt-4 pb-2 px-4' => $theme === 'tailwind',
-                'pt-3 p-2' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
+                'pt-4 pb-2 px-4' => $component->isTailwind(),
+                'pt-3 p-2' => $component->isBootstrap(),
             ])
             colspan="{{ $colspan }}">
             <div>
@@ -44,10 +43,10 @@
 
                     <p
                         @class([
-                            'block mb-2 sm:hidden' => $theme === 'tailwind' && $column->shouldCollapseOnMobile(),
-                            'block mb-2 md:hidden' => $theme === 'tailwind' && $column->shouldCollapseOnTablet(),
-                            'd-block mb-2 d-sm-none' => ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') && $column->shouldCollapseOnMobile(),
-                            'd-block mb-2 d-md-none' => ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') && $column->shouldCollapseOnTablet(),
+                            'block mb-2 sm:hidden' => $component->isTailwind() && $column->shouldCollapseOnMobile(),
+                            'block mb-2 md:hidden' => $component->isTailwind() && $column->shouldCollapseOnTablet(),
+                            'd-block mb-2 d-sm-none' => $component->isBootstrap() && $column->shouldCollapseOnMobile(),
+                            'd-block mb-2 d-md-none' => $component->isBootstrap() && $column->shouldCollapseOnTablet(),
                         ])
                     >
                         <strong>{{ $column->getTitle() }}</strong>: {{ $column->renderContents($row) }}

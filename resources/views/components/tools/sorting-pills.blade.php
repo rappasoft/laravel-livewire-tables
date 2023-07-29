@@ -1,6 +1,6 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-4 px-4 md:p-0">
@@ -45,7 +45,7 @@
             </div>
         @endif
     </div>
-@elseif ($theme === 'bootstrap-4')
+@elseif ($component->isBootstrap4())
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-3">
@@ -89,7 +89,7 @@
             </div>
         @endif
     </div>
-@elseif ($theme === 'bootstrap-5')
+@elseif ($component->isBootstrap5())
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-3">

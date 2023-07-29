@@ -1,8 +1,8 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 @props(['rowIndex', 'hidden' => false])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
-    @if ($theme === 'tailwind')
+    @if ($component->isTailwind())
         <td
             @if (! $hidden) x-data="{open:false}" @endif
             {{
@@ -30,7 +30,7 @@
                 </button>
             @endif
         </td>
-    @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+    @elseif ($component->isBootstrap())
         <td
             @if (! $hidden) x-data="{open:false}" @endif
             {{

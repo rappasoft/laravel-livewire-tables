@@ -76,6 +76,26 @@ trait ComponentHelpers
         return $this->theme ?? config('livewire-tables.theme', 'tailwind');
     }
 
+    public function isTailwind(): bool
+    {
+        return $this->getTheme() === 'tailwind';
+    }
+
+    public function isBootstrap(): bool
+    {
+        return $this->getTheme() === 'bootstrap-4' || $this->getTheme() === 'bootstrap-5';
+    }
+
+    public function isBootstrap4(): bool
+    {
+        return $this->getTheme() === 'bootstrap-4';
+    }
+
+    public function isBootstrap5(): bool
+    {
+        return $this->getTheme() === 'bootstrap-5';
+    }
+
     /**
      * @return array<mixed>
      */

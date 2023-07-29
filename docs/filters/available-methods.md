@@ -302,7 +302,7 @@ SelectFilter::make('Active')
 
 Example blade:
 ```php
-@aware(['component', 'theme'])
+@aware(['component'])
 @props(['filter'])
 
 <span wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
@@ -336,16 +336,16 @@ You will receive two properties to your blade, filter (the filter instance), and
 
 Example blade:
 ```php
-@aware(['component', 'theme'])
+@aware(['component'])
 @props(['filter'])
 
 <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" 
     @class([
-        'block text-sm font-large leading-5 text-red-700 dark:text-red-700' => $theme === 'tailwind',
-        'd-block' => $theme === 'bootstrap-4' && $component->isFilterLayoutSlideDown(),
-        'mb-2' => $theme === 'bootstrap-4' && $component->isFilterLayoutPopover(),
-        'd-block display-4' => $theme === 'bootstrap-5' && $component->isFilterLayoutSlideDown(),
-        'mb-2 display-4' => $theme === 'bootstrap-5' && $component->isFilterLayoutPopover(),
+        'block text-sm font-large leading-5 text-red-700 dark:text-red-700' => $component->isTailwind(),
+        'd-block' => $component->isBootstrap4() && $component->isFilterLayoutSlideDown(),
+        'mb-2' => $component->isBootstrap4() && $component->isFilterLayoutPopover(),
+        'd-block display-4' => $component->isBootstrap5() && $component->isFilterLayoutSlideDown(),
+        'mb-2 display-4' => $component->isBootstrap5() && $component->isFilterLayoutPopover(),
     ])
 >
     {{ $filter->getName() }}

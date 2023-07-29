@@ -1,7 +1,7 @@
-@aware(['component', 'theme', 'rowIndex', 'rowID'])
+@aware(['component', 'rowIndex', 'rowID'])
 @props(['column' => null, 'customAttributes' => []])
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <td {{ $attributes
         ->merge($customAttributes)
         ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $customAttributes['default'] ?? true])
@@ -19,7 +19,7 @@
     draggable="true"
 
     >{{ $slot }}</td>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
     <td {{ $attributes
         ->merge($customAttributes)
         ->class(['' => $customAttributes['default'] ?? true])

@@ -1,7 +1,7 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
-    @if ($theme === 'tailwind')
+    @if ($component->isTailwind())
         <th
             scope="col"
             {{
@@ -15,7 +15,7 @@
                     ->class(['sm:hidden' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
             }}
         ></th>
-    @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+    @elseif ($component->isBootstrap())
         <th
             scope="col"
             {{

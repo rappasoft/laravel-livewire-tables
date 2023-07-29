@@ -1,10 +1,10 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 
 @php
     $attributes = $attributes->merge(['wire:key' => 'empty-message-'.$component->getId()]);
 @endphp
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <tr {{ $attributes }}>
         <td colspan="{{ $component->getColspanCount() }}">
             <div class="flex justify-center items-center space-x-2 dark:bg-gray-800">
@@ -12,7 +12,7 @@
             </div>
         </td>
     </tr>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
      <tr {{ $attributes }}>
         <td colspan="{{ $component->getColspanCount() }}">
             {{ $component->getEmptyMessage() }}

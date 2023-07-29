@@ -1,22 +1,18 @@
-@aware(['component', 'theme'])
-
-@php
-    $theme = $component->getTheme();
-@endphp
+@aware(['component'])
 
 @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedVisibleFiltersForPills())
     <div>
         <div
             @class([
-                'mb-4 px-4 md:p-0' => $theme === 'tailwind',
-                'mb-3' => $theme === 'bootstrap-4',
-                'mb-3' => $theme === 'bootstrap-5',
+                'mb-4 px-4 md:p-0' => $component->isTailwind(),
+                'mb-3' => $component->isBootstrap4(),
+                'mb-3' => $component->isBootstrap5(),
             ])
         >
             <small @class([
-                    'text-gray-700 dark:text-white' => $theme === 'tailwind',
-                    '' =>  $theme === 'bootstrap-4',
-                    '' =>  $theme === 'bootstrap-5',
+                    'text-gray-700 dark:text-white' => $component->isTailwind(),
+                    '' =>  $component->isBootstrap4(),
+                    '' =>  $component->isBootstrap5(),
                 ])
             >
                 @lang('Applied Filters'):
@@ -35,13 +31,13 @@
                 <span
                     wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
                     @class([
-                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $theme ==='tailwind',
-                        'badge badge-pill badge-info d-inline-flex align-items-center' => $theme === 'bootstrap-4',
-                        'badge rounded-pill bg-info d-inline-flex align-items-center' => $theme === 'bootstrap-5',
+                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $component->isTailwind(),
+                        'badge badge-pill badge-info d-inline-flex align-items-center' => $component->isBootstrap4(),
+                        'badge rounded-pill bg-info d-inline-flex align-items-center' => $component->isBootstrap5(),
                     ])
                 >
                     {{ $filter->getFilterPillTitle() }}: {{ $filter->getFilterPillValue($value) }}
-                    @if ($theme === 'tailwind')
+                    @if ($component->isTailwind())
                         <button
                                 wire:click="resetFilter('{{ $filter->getKey() }}')"
                                 type="button"
@@ -58,12 +54,12 @@
                             href="#"
                             wire:click="resetFilter('{{ $filter->getKey() }}')"
                             @class([
-                                'text-white ml-2' => ($theme === 'bootstrap-4' || $theme === 'bootstrap-5'),
+                                'text-white ml-2' => ($component->isBootstrap()),
                             ])
                         >
                             <span @class([
-                                'sr-only' => $theme === 'bootstrap-4',
-                                'visually-hidden' => $theme === 'bootstrap-5',
+                                'sr-only' => $component->isBootstrap4(),
+                                'visually-hidden' => $component->isBootstrap5(),
                             ])
                             >
                                 @lang('Remove filter option')
@@ -76,7 +72,7 @@
                 </span>
                 @endif
             @endforeach
-            @if ($theme === 'tailwind')
+            @if ($component->isTailwind())
                 <button
                     wire:click.prevent="setFilterDefaults"
                     class="focus:outline-none active:outline-none"
@@ -90,8 +86,8 @@
                     href="#"
                     wire:click.prevent="setFilterDefaults"
                     @class([
-                        'badge badge-pill badge-light' => $theme === 'bootstrap-4',
-                        'badge rounded-pill bg-light text-dark text-decoration-none' => $theme === 'bootstrap-5',
+                        'badge badge-pill badge-light' => $component->isBootstrap4(),
+                        'badge rounded-pill bg-light text-dark text-decoration-none' => $component->isBootstrap5(),
                     ])
                 >
                     @lang('Clear')

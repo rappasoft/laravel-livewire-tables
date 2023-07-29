@@ -1,4 +1,4 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 @props(['column', 'index'])
 
 @php
@@ -8,7 +8,7 @@
     $direction = $column->hasField() ? $component->getSort($column->getColumnSelectName()) : $component->getSort($column->getSlug()) ?? null ;
 @endphp
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
@@ -55,7 +55,7 @@
             </button>
         @endunless
     </th>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['' => $customAttributes['default'] ?? true])

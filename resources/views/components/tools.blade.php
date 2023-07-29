@@ -1,8 +1,8 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 
 <div @class([
-        'flex-col' => $theme === 'tailwind',
-        'd-flex flex-column ' => ($theme === 'bootstrap-4' || $theme === 'bootstrap-5'),
+        'flex-col' => $component->isTailwind(),
+        'd-flex flex-column ' => ($component->isBootstrap()),
     ])
 >
 &nbsp

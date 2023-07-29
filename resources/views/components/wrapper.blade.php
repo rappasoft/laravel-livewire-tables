@@ -1,4 +1,4 @@
-@props(['component', 'theme'])
+@props(['component'])
 
 @php
     $refresh = $this->getRefreshStatus();

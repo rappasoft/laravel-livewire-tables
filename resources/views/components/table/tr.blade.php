@@ -1,4 +1,4 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -34,12 +34,12 @@
             x-on:dragleave.prevent="removing = false"
 
     @class([
-        'bg-white dark:bg-gray-700 dark:text-white' => ($theme === 'tailwind' &&
+        'bg-white dark:bg-gray-700 dark:text-white' => ($component->isTailwind() &&
         ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0),
-        'bg-gray-50 dark:bg-gray-800 dark:text-white' => ($theme === 'tailwind' && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0),
-        'cursor-pointer' => ($theme === 'tailwind' && $component->hasTableRowUrl()),
-        'bg-white ' => (($theme === 'bootstrap-4' || $theme === 'bootstrap-5') && $rowIndex % 2 === 0),
-        'bg-secondary' => (($theme === 'bootstrap-4' || $theme === 'bootstrap-5') && $rowIndex % 2 !== 0),
+        'bg-gray-50 dark:bg-gray-800 dark:text-white' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0),
+        'cursor-pointer' => ($component->isTailwind() && $component->hasTableRowUrl()),
+        'bg-white ' => ($component->isBootstrap() && $rowIndex % 2 === 0),
+        'bg-secondary' => ($component->isBootstrap() && $rowIndex % 2 !== 0),
     ])
 >
     {{ $slot }}

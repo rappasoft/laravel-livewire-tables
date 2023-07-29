@@ -1,4 +1,4 @@
-@aware(['component', 'theme', 'row', 'rowIndex'])
+@aware(['component', 'row', 'rowIndex'])
 @props(['column', 'colIndex'])
 
 @php
@@ -6,7 +6,7 @@
     $customAttributes = $component->getTdAttributes($column, $row, $colIndex, $rowIndex)
 @endphp
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <td
         @if ($column->isClickable())
             onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
@@ -22,7 +22,7 @@
     >
         {{ $slot }}
     </td>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
     <td
         @if ($column->isClickable())
             onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"

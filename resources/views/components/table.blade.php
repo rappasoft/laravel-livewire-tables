@@ -1,4 +1,4 @@
-@aware(['component', 'theme'])
+@aware(['component'])
 
 @php
     $customAttributes = [
@@ -9,7 +9,7 @@
     ];
 @endphp
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <div {{
         $attributes->merge($customAttributes['wrapper'])
             ->class(['shadow overflow-y-scroll border-b border-gray-200 dark:border-gray-700 sm:rounded-lg' => $customAttributes['wrapper']['default'] ?? true])
@@ -47,7 +47,7 @@
             @endif
         </table>
     </div>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
     <div {{
         $attributes->merge($customAttributes['wrapper'])
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
