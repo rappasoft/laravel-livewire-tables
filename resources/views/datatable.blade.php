@@ -32,7 +32,7 @@
 
         @forelse ($rows as $rowIndex => $row)
             <x-livewire-tables::table.tr wire:key="$rowIndex" :row="$row" :rowIndex="$rowIndex">
-                <x-livewire-tables::table.td.reorder />
+                <x-livewire-tables::table.td.reorder :rowID="$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
                 <x-livewire-tables::table.td.bulk-actions :row="$row" />
                 <x-livewire-tables::table.td.row-contents :rowIndex="$rowIndex" />
 

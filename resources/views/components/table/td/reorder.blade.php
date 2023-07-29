@@ -1,11 +1,11 @@
 @aware(['component'])
-
+@props(['rowID', 'rowIndex'])
 @php
     $theme = $component->getTheme();
 @endphp
 
 @if ($this->currentlyReorderingIsEnabled())
-<x-livewire-tables::table.td.plain wire:sortable.handle>
+<x-livewire-tables::table.td.plain >
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         @class([
             'inline w-4 h-4' => $theme === 'tailwind',

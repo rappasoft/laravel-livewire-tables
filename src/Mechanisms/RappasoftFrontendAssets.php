@@ -26,8 +26,7 @@ class RappasoftFrontendAssets
     public function boot()
     {
         app($this::class)->setRappaScriptRoute(function ($handle) {
-            $scriptPath = '/livewire/rappasoft-l2ive12.js';
-
+            $scriptPath = '/livewire/rappasoft-tables.js';
             return Route::get($scriptPath, $handle);
         });
 
@@ -124,6 +123,7 @@ class RappasoftFrontendAssets
 
         // Add the build manifest hash to it...
 
+
         $nonce = isset($options['nonce']) ? "nonce=\"{$options['nonce']}\"" : '';
 
         $extraAttributes = Utils::stringifyHtmlAttributes(
@@ -131,7 +131,7 @@ class RappasoftFrontendAssets
         );
 
         return <<<HTML
-        <script src="{$url}" defer {$nonce} {$extraAttributes}></script>
+        <script  src="{$url}"  {$nonce} {$extraAttributes}></script>
         HTML;
     }
 

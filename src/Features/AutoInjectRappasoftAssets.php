@@ -52,13 +52,13 @@ class AutoInjectRappasoftAssets extends ComponentHook
         if ($html->test('/<\s*head(?:\s|\s[^>])*>/i') && $html->test('/<\s*\/\s*body\s*>/i')) {
             return $html
                 ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.$rappasoftStyles)
-                ->replaceMatches('/(<\s*\/\s*body\s*>)/i', $rappasoftScripts.'$1')
+                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', $rappasoftScripts.'$1')
                 ->toString();
         }
 
         return $html
             ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.$rappasoftStyles)
-            ->replaceMatches('/(<\s*\/\s*html\s*>)/i', $rappasoftScripts.'$1')
+            ->replaceMatches('/(<\s*\/\s*head\s*>)/i', $rappasoftScripts.'$1')
             ->toString();
     }
 }

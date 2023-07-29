@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'rowIndex', 'rowID'])
 @props(['column' => null, 'customAttributes' => []])
 
 @php
@@ -12,7 +12,17 @@
         ->class(['hidden sm:table-cell' => $column && $column->shouldCollapseOnMobile()])
         ->class(['hidden md:table-cell' => $column && $column->shouldCollapseOnTablet()])
         ->except('default')
-    }}>{{ $slot }}</td>
+    }}
+    id='row-{{ $rowID }}-reorder'
+    x-on:dragstart.self="
+        dragging = true;
+        event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.setData('text/plain', event.target.id);
+    "
+    x-data="{ dragging: false }"
+    draggable="true"
+    
+    >{{ $slot }}</td>
 @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
     <td {{ $attributes
         ->merge($customAttributes)
@@ -20,5 +30,14 @@
         ->class(['d-none d-sm-table-cell' => $column && $column->shouldCollapseOnMobile()])
         ->class(['d-none d-md-table-cell' => $column && $column->shouldCollapseOnTablet()])
         ->except('default')
-    }}>{{ $slot }}</td>
+    }}
+    id='row-{{ $rowID }}-reorder'
+    x-on:dragstart.self="
+        dragging = true;
+        event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.setData('text/plain', event.target.id);
+    "
+    x-data="{ dragging: false }"
+    draggable="true"
+    >{{ $slot }}</td>
 @endif

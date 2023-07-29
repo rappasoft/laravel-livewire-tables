@@ -21,7 +21,7 @@
             $attributes->merge($customAttributes['table'])
                 ->class(['min-w-full divide-y divide-gray-200 dark:divide-none' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
-        }}>
+        }} x-data="{ adding: false, removing: false }">
             <thead {{
                 $attributes->merge($customAttributes['thead'])
                     ->class(['bg-gray-50' => $customAttributes['thead']['default'] ?? true])
@@ -31,10 +31,7 @@
                     {{ $thead }}
                 </tr>
             </thead>
-            <tbody
-                @if ($component->reorderIsEnabled())
-                    wire:sortable="{{ $component->getReorderMethod() }}"
-                @endif
+            <tbody id="tbodyID"
 
                 {{
                     $attributes->merge($customAttributes['tbody'])
@@ -73,7 +70,7 @@
                 </tr>
             </thead>
 
-            <tbody
+            <tbody id="tbodyID"
                 @if ($component->reorderIsEnabled())
                     wire:sortable="{{ $component->getReorderMethod() }}"
                 @endif
