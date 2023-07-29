@@ -1,9 +1,9 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['rows'])
 
 
-<x-livewire-tables::table.tr.plain 
-    :customAttributes="$this->getFooterTrAttributes($rows)" 
+<x-livewire-tables::table.tr.plain
+    :customAttributes="$this->getFooterTrAttributes($rows)"
     wire:key="footer-{{ $this->getTableName() }}"
 >
     @if ($this->currentlyReorderingIsEnabled())
@@ -26,5 +26,5 @@
         <x-livewire-tables::table.td.plain :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
             {{ $column->getFooterContents($rows) }}
         </x-livewire-tables::table.td.plain>
-    @endforeach    
+    @endforeach
 </x-livewire-tables::table.tr.plain>

@@ -302,11 +302,9 @@ SelectFilter::make('Active')
 
 Example blade:
 ```php
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['filter'])
-@php
-    $theme = $component->getTheme();
-@endphp
+
 <span wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
     class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900"
 >
@@ -338,11 +336,9 @@ You will receive two properties to your blade, filter (the filter instance), and
 
 Example blade:
 ```php
-@aware(['component'])
-@props(['filter','theme'])
-@php
-    $theme = $component->getTheme();
-@endphp
+@aware(['component', 'theme'])
+@props(['filter'])
+
 <label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" 
     @class([
         'block text-sm font-large leading-5 text-red-700 dark:text-red-700' => $theme === 'tailwind',

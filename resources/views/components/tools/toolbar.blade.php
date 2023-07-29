@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 
 @php
     $theme = $component->getTheme();
@@ -301,7 +301,7 @@
             'd-md-flex justify-content-between mb-3' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
         ])
     >
-        <div 
+        <div
             @class([
                 'd-md-flex' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
             ])
@@ -313,7 +313,7 @@
             @endif
 
             @if ($component->reorderIsEnabled())
-                <div 
+                <div
                     @class([
                         'mr-0 mr-md-2 mb-3 mb-md-0' => $theme === 'bootstrap-4',
                         'me-0 me-md-2 mb-3 mb-md-0' => $theme === 'bootstrap-5'
@@ -321,7 +321,7 @@
                 >
                     <button
                         wire:click="{{ $component->currentlyReorderingIsEnabled() ? 'disableReordering' : 'enableReordering' }}"
-                        type="button" 
+                        type="button"
                         @class([
                             'btn btn-default d-block w-100 d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])
@@ -336,25 +336,25 @@
             @endif
 
             @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
-                <div 
+                <div
                     @class([
                             'mb-3 mb-md-0 input-group' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                     ])
                 >
                     <input wire:model{{ $component->getSearchOptions() }}="search"
-                        placeholder="{{ __('Search') }}" type="text" 
+                        placeholder="{{ __('Search') }}" type="text"
                         @class([
                             'form-control' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])
                     >
 
                     @if ($component->hasSearch())
-                        <div 
+                        <div
                             @class([
                                 'input-group-append' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                             ])
                         >
-                            <button wire:click="clearSearch" 
+                            <button wire:click="clearSearch"
                                 type="button"
                                 @class([
                                     'btn btn-outline-secondary' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
@@ -372,7 +372,7 @@
             @endif
 
             @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
-                <div 
+                <div
                     @class([
                         'ml-0 ml-md-2 mb-3 mb-md-0' => $theme === 'bootstrap-4',
                         'ms-0 ms-md-2 mb-3 mb-md-0' => $theme === 'bootstrap-5' && $component->searchIsEnabled(),
@@ -387,7 +387,7 @@
                         ])
                     >
                         <div>
-                            <button type="button" 
+                            <button type="button"
                                 @class([
                                     'btn dropdown-toggle d-block w-100 d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                 ])
@@ -399,7 +399,7 @@
                                 @lang('Filters')
 
                                 @if ($count = $component->getFilterBadgeCount())
-                                    <span 
+                                    <span
                                         @class([
                                             'badge badge-info' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                         ])
@@ -408,7 +408,7 @@
                                     </span>
                                 @endif
 
-                                <span                                         
+                                <span
                                     @class([
                                         'caret' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                     ])
@@ -417,7 +417,7 @@
                         </div>
 
                         @if ($component->isFilterLayoutPopover())
-                            <ul x-cloak 
+                            <ul x-cloak
                                 @class([
                                         'dropdown-menu w-100 mt-md-5' => $theme === 'bootstrap-4',
                                         'dropdown-menu w-100' => $theme === 'bootstrap-5',
@@ -436,7 +436,7 @@
                                 @endforeach
 
                                 @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
-                                    <div 
+                                    <div
                                         @class([
                                                 'dropdown-divider' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                                         ])
@@ -464,7 +464,7 @@
             @endif
         </div>
 
-        <div 
+        <div
             @class([
                 'd-md-flex' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
             ])
@@ -481,12 +481,12 @@
                         'mb-3 mb-md-0' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                     ])
                 >
-                    <div 
+                    <div
                         @class([
                             'dropdown d-block d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])
                     >
-                        <button 
+                        <button
                             @class([
                                 'btn dropdown-toggle d-block w-100 d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                             ])
@@ -496,7 +496,7 @@
                             @lang('Bulk Actions')
                         </button>
 
-                        <div 
+                        <div
                             @class([
                                 'dropdown-menu dropdown-menu-right w-100' => $theme === 'bootstrap-4',
                                 'dropdown-menu dropdown-menu-end w-100' => $theme === 'bootstrap-5',
@@ -532,7 +532,7 @@
                             'dropdown d-block d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])
                         wire:key="column-select-button-{{ $component->getTableName() }}">
-                        <button x-on:click="open = !open" 
+                        <button x-on:click="open = !open"
                             @class([
                                 'btn dropdown-toggle d-block w-100 d-md-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                             ])
@@ -541,7 +541,7 @@
                             @lang('Columns')
                         </button>
 
-                        <div 
+                        <div
                             @class([
                                 'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $theme === 'bootstrap-4',
                                 'dropdown-menu dropdown-menu-end w-100' => $theme === 'bootstrap-5',
@@ -549,7 +549,7 @@
                             x-bind:class="{ 'show': open }"
                             aria-labelledby="columnSelect-{{ $component->getTableName() }}"
                         >
-                           
+
                             @if($theme === 'bootstrap-4')
                             <div>
                                 <label wire:loading.attr="disabled" class="px-2 mb-1">
@@ -560,11 +560,11 @@
                             </div>
                             @elseif($theme === 'bootstrap-5')
                             <div class="form-check ms-2">
-                                <input 
-                                    wire:loading.attr="disabled" 
-                                    type="checkbox" 
-                                    class="form-check-input" 
-                                    @if($component->allDefaultVisibleColumnsAreSelected()) checked wire:click="deselectAllColumns"  @else unchecked wire:click="selectAllColumns" @endif 
+                                <input
+                                    wire:loading.attr="disabled"
+                                    type="checkbox"
+                                    class="form-check-input"
+                                    @if($component->allDefaultVisibleColumnsAreSelected()) checked wire:click="deselectAllColumns"  @else unchecked wire:click="selectAllColumns" @endif
                                 />
                                 <label wire:loading.attr="disabled" class="form-check-label">
                                     {{ __('All Columns') }}
@@ -580,31 +580,31 @@
                                         ])
                                     >
                                         @if ($theme === 'bootstrap-4')
-                                        <label 
-                                            wire:loading.attr="disabled" 
+                                        <label
+                                            wire:loading.attr="disabled"
                                             wire:target="selectedColumns"
                                             class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}"
                                         >
-                                            <input wire:model.live="selectedColumns" 
+                                            <input wire:model.live="selectedColumns"
                                                 wire:target="selectedColumns"
                                                 wire:loading.attr="disabled" type="checkbox"
-                                                value="{{ $column->getSlug() }}" 
+                                                value="{{ $column->getSlug() }}"
                                             />
                                             <span class="ml-2">
                                                 {{ $column->getTitle() }}
                                             </span>
                                         </label>
                                         @elseif($theme === 'bootstrap-5')
-                                            <input 
-                                                wire:model.live="selectedColumns" 
+                                            <input
+                                                wire:model.live="selectedColumns"
                                                 wire:target="selectedColumns"
-                                                wire:loading.attr="disabled" 
-                                                type="checkbox" 
+                                                wire:loading.attr="disabled"
+                                                type="checkbox"
                                                 class="form-check-input"
                                                 value="{{ $column->getSlug() }}"
                                              />
-                                            <label 
-                                                wire:loading.attr="disabled" 
+                                            <label
+                                                wire:loading.attr="disabled"
                                                 wire:target="selectedColumns"
                                                 class="{{ $loop->last ? 'mb-0' : 'mb-1' }} form-check-label"
                                             >
@@ -620,13 +620,13 @@
             @endif
 
             @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
-                <div 
+                <div
                     @class([
                         'ml-0 ml-md-2' => $theme === 'bootstrap-4',
                         'ms-0 ms-md-2' => $theme === 'bootstrap-5',
                     ])
                 >
-                    <select wire:model="perPage" id="perPage" 
+                    <select wire:model="perPage" id="perPage"
                         @class([
                             'form-control' => $theme === 'bootstrap-4',
                             'form-select' => $theme === 'bootstrap-5',
@@ -655,13 +655,13 @@
             $component->hasVisibleFilters() &&
             $component->isFilterLayoutSlideDown())
         <div x-cloak x-show="filtersOpen">
-            <div 
+            <div
                 @class([
                     'container' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                 ])
             >
                 @foreach ($component->getFiltersByRow() as $filterRowIndex => $filterRow)
-                    <div 
+                    <div
                         @class([
                             'row col-12' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
                         ])

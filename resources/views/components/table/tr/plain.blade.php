@@ -1,9 +1,5 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['customAttributes' => []])
-
-@php
-    $theme = $component->getTheme();
-@endphp
 
 @if ($theme === 'tailwind')
     <tr {{ $attributes

@@ -1,8 +1,4 @@
-@aware(['component'])
-
-@php
-    $theme = $component->getTheme();
-@endphp
+@aware(['component', 'theme'])
 
 @if ($theme === 'tailwind')
     <div>

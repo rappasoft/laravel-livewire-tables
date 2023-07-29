@@ -1,8 +1,10 @@
+@aware(['theme'])
+
 @php
-    $theme = $component->getTheme();
     $filterLayout = $component->getFilterLayout();
     $tableName = $component->getTableName();
 @endphp
+
 <div>
     @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
         @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
@@ -24,7 +26,7 @@
                     'form-control' => $theme === 'bootstrap-4',
                     'form-select' => $theme === 'bootstrap-5',
                 ])
-        >   
+        >
             @foreach($filter->getOptions() as $key => $value)
                 @if (is_iterable($value))
                     <optgroup label="{{ $key }}">

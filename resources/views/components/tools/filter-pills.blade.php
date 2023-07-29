@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 
 @php
     $theme = $component->getTheme();
@@ -6,7 +6,7 @@
 
 @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedVisibleFiltersForPills())
     <div>
-        <div 
+        <div
             @class([
                 'mb-4 px-4 md:p-0' => $theme === 'tailwind',
                 'mb-3' => $theme === 'bootstrap-4',
@@ -64,7 +64,7 @@
                             <span @class([
                                 'sr-only' => $theme === 'bootstrap-4',
                                 'visually-hidden' => $theme === 'bootstrap-5',
-                            ]) 
+                            ])
                             >
                                 @lang('Remove filter option')
                             </span>

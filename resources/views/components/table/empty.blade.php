@@ -1,8 +1,7 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 
 @php
     $attributes = $attributes->merge(['wire:key' => 'empty-message-'.$component->getId()]);
-    $theme = $component->getTheme();
 @endphp
 
 @if ($theme === 'tailwind')

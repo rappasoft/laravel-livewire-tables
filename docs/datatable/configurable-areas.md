@@ -89,11 +89,7 @@ public function configure(): void
 Example dropdown for the toolbar:
 
 ```html
-@aware(['component'])
-
-@php
-    $theme = $component->getTheme();
-@endphp
+@aware(['component', 'theme'])
 
 @if ($theme === 'tailwind')
     <div class="w-full mb-4 md:w-auto md:mb-0">

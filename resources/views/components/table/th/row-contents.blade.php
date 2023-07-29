@@ -1,10 +1,6 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
-    @php
-        $theme = $component->getTheme();
-    @endphp
-
     @if ($theme === 'tailwind')
         <th
             scope="col"

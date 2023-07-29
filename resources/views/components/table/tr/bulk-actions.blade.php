@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['rows'])
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
@@ -11,9 +11,9 @@
     @endphp
 
     @if ($theme === 'tailwind')
-        <x-livewire-tables::table.tr.plain 
+        <x-livewire-tables::table.tr.plain
             wire:key="bulk-select-message-{{ $table }}"
-            class="bg-indigo-50 dark:bg-gray-900 dark:text-white" 
+            class="bg-indigo-50 dark:bg-gray-900 dark:text-white"
             x-cloak
             x-show="selectedItems.length > 0"
         >
@@ -76,7 +76,7 @@
             </x-livewire-tables::table.td.plain>
         </x-livewire-tables::table.tr.plain>
     @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
-        <x-livewire-tables::table.tr.plain 
+        <x-livewire-tables::table.tr.plain
             wire:key="bulk-select-message-{{ $table }}"
             x-cloak
             x-show="selectedItems.length > 0"

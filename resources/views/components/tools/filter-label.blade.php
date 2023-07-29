@@ -1,7 +1,7 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['filter', 'theme' => 'tailwind', 'filterLayout' => 'popover', 'tableName' => 'table'])
 
-<label for="{{ $tableName }}-filter-{{ $filter->getKey() }}" 
+<label for="{{ $tableName }}-filter-{{ $filter->getKey() }}"
     @class([
         'block text-sm font-medium leading-5 text-gray-700 dark:text-white' => $theme === 'tailwind',
         'd-block' => $theme === 'bootstrap-4' && $filterLayout == 'slide-down',

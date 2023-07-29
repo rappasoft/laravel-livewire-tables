@@ -1,8 +1,5 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['rowID', 'rowIndex'])
-@php
-    $theme = $component->getTheme();
-@endphp
 
 @if ($this->currentlyReorderingIsEnabled())
 <x-livewire-tables::table.td.plain >

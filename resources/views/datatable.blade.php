@@ -1,4 +1,4 @@
-<x-livewire-tables::wrapper :component="$this">
+<x-livewire-tables::wrapper :component="$this" :theme="$this->getTheme()">
     @if ($this->hasConfigurableAreaFor('before-tools'))
         @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
     @endif

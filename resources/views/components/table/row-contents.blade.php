@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['row', 'rowIndex'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
@@ -31,7 +31,7 @@
             'd-none d-md-none' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5'
         ])
     >
-        <td 
+        <td
             @class([
                 'pt-4 pb-2 px-4' => $theme === 'tailwind',
                 'pt-3 p-2' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
@@ -41,8 +41,8 @@
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-                    
-                    <p 
+
+                    <p
                         @class([
                             'block mb-2 sm:hidden' => $theme === 'tailwind' && $column->shouldCollapseOnMobile(),
                             'block mb-2 md:hidden' => $theme === 'tailwind' && $column->shouldCollapseOnTablet(),

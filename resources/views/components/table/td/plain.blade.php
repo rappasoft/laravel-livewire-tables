@@ -1,9 +1,5 @@
-@aware(['component', 'rowIndex', 'rowID'])
+@aware(['component', 'theme', 'rowIndex', 'rowID'])
 @props(['column' => null, 'customAttributes' => []])
-
-@php
-    $theme = $component->getTheme();
-@endphp
 
 @if ($theme === 'tailwind')
     <td {{ $attributes
@@ -21,7 +17,7 @@
     "
     x-data="{ dragging: false }"
     draggable="true"
-    
+
     >{{ $slot }}</td>
 @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
     <td {{ $attributes

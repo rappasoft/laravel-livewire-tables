@@ -1,9 +1,5 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['rows'])
-
-@php
-    $theme = $component->getTheme();
-@endphp
 
 @if ($component->hasConfigurableAreaFor('before-pagination'))
     @include(

@@ -1,6 +1,4 @@
-@php
-    $theme = $component->getTheme();
-@endphp
+@aware(['theme'])
 
 @if ($theme === 'tailwind')
     @if ($status)

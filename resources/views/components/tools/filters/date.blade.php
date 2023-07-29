@@ -1,8 +1,10 @@
+@aware(['theme'])
+
 @php
-    $theme = $component->getTheme();
     $filterLayout = $component->getFilterLayout();
     $tableName = $component->getTableName();
 @endphp
+
 <div>
     @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
         @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])

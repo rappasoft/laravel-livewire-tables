@@ -1,11 +1,7 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['rowIndex', 'hidden' => false])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
-    @php
-        $theme = $component->getTheme();
-    @endphp
-
     @if ($theme === 'tailwind')
         <td
             @if (! $hidden) x-data="{open:false}" @endif

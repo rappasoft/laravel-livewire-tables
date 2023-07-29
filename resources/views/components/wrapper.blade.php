@@ -1,8 +1,7 @@
-@props(['component'])
+@props(['component', 'theme'])
 
 @php
     $refresh = $this->getRefreshStatus();
-    $theme = $component->getTheme();
 @endphp
 
 <div x-data="{
@@ -12,8 +11,11 @@
     paginationCurrentItems: $wire.entangle('paginationCurrentItems').live,
     alwaysShowBulkActions: {{ $component->getHideBulkActionsWhenEmptyStatus() ? 'false' : 'true' }},
     selectedItems: $wire.entangle('selected'),
-    @if ($component->showBulkActionsDropdownAlpine())
     toggleSelectAll() {
+        @if (! $component->showBulkActionsDropdownAlpine())
+            return;
+        @endif
+
         if (this.paginationTotalItemCount == this.selectedItems.length) {
             this.clearSelected();
         } else {
@@ -21,12 +23,24 @@
         }
     },
     setAllSelected() {
+        @if (! $component->showBulkActionsDropdownAlpine())
+            return;
+        @endif
+
         $wire.setAllSelected();
     },
     clearSelected() {
+        @if (! $component->showBulkActionsDropdownAlpine())
+            return;
+        @endif
+
         $wire.clearSelected();
     },
     selectAllOnPage() {
+        @if (! $component->showBulkActionsDropdownAlpine())
+            return;
+        @endif
+
         let tempSelectedItems = this.selectedItems;
         const iterator = this.paginationCurrentItems.values();
         for (const value of iterator) {
@@ -34,21 +48,6 @@
         }
         this.selectedItems = [...new Set(tempSelectedItems)];
     },
-    @else
-    toggleSelectAll() {
-        return;
-    },
-    setAllSelected() {
-        return;
-    },
-    clearSelected() {
-        return;
-    },
-    selectAllOnPage() {
-        return;
-    },
-
-    @endif
 }">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif

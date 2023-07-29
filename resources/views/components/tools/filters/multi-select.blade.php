@@ -1,8 +1,10 @@
+@aware(['theme'])
+
 @php
-    $theme = $component->getTheme();
     $filterLayout = $component->getFilterLayout();
     $tableName = $component->getTableName();
 @endphp
+
 <div>
     @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
         @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
@@ -22,7 +24,7 @@
                 >
                 <label for="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-select-all" class="dark:text-white">@lang('All')</label>
             </div>
-            
+
             @foreach($filter->getOptions() as $key => $value)
                 <div wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-multiselect-{{ $key }}">
                     <input

@@ -1,11 +1,7 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['row'])
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
-    @php
-        $theme = $component->getTheme();
-    @endphp
-
     <x-livewire-tables::table.td.plain>
         <div @class([
             'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',

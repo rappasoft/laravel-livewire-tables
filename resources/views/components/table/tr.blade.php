@@ -1,14 +1,13 @@
-@aware(['component'])
+@aware(['component', 'theme'])
 @props(['row', 'rowIndex'])
 
 @php
     $attributes = $attributes->merge(['wire:key' => 'row-'.$rowIndex.'-'.$component->getId()]);
-    $theme = $component->getTheme();
     $customAttributes = $this->getTrAttributes($row, $rowIndex);
 @endphp
 
-<tr 
-    wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60" 
+<tr
+    wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
     id="{{ 'row-'.$row->{$this->getPrimaryKey()} }}"
             x-on:drop="removing = false"
             x-on:drop.prevent="
@@ -21,12 +20,12 @@
                 for (var i = 0, row; row = table.rows[i]; i++) {
                     if(i % 2 === 0)
                     {
-                        row.classList.remove('bg-white');                        
+                        row.classList.remove('bg-white');
                         row.classList.add('bg-gray-50');
                     }
                     else
                     {
-                        row.classList.remove('bg-gray-50');                        
+                        row.classList.remove('bg-gray-50');
                         row.classList.add('bg-white');
                     }
                 }
@@ -35,7 +34,7 @@
             x-on:dragleave.prevent="removing = false"
 
     @class([
-        'bg-white dark:bg-gray-700 dark:text-white' => ($theme === 'tailwind' && 
+        'bg-white dark:bg-gray-700 dark:text-white' => ($theme === 'tailwind' &&
         ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0),
         'bg-gray-50 dark:bg-gray-800 dark:text-white' => ($theme === 'tailwind' && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0),
         'cursor-pointer' => ($theme === 'tailwind' && $component->hasTableRowUrl()),
