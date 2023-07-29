@@ -48,7 +48,7 @@ abstract class DataTableComponent extends Component
     ];
 
     /**
-     * returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
+     * Returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
      */
     protected function generateDataTableFingerprint(): string
     {
@@ -63,7 +63,7 @@ abstract class DataTableComponent extends Component
      */
     public function boot(): void
     {
-
+        //
     }
 
     /**
@@ -73,14 +73,6 @@ abstract class DataTableComponent extends Component
     {
         // Call the configure() method
         $this->configure();
-
-        // Set the filter defaults based on the filter type
-        // Moved to Traits/Helpers/FilterHelpers - mountFilterHelpers
-        //$this->setFilterDefaults();
-
-        // Sets the Theme - tailwind/bootstrap
-        // Moved to Traits/ComponentUtilities - mountComponentUtilities
-        //$this->setTheme();
 
         //Sets up the Builder Instance
         $this->setBuilder($this->builder());

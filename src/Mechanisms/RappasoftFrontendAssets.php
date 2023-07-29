@@ -8,17 +8,17 @@ use Livewire\Drawer\Utils;
 
 class RappasoftFrontendAssets
 {
-    public $hasRenderedRappsoftScripts = false;
+    public bool $hasRenderedRappsoftScripts = false;
 
-    public $hasRenderedRappsoftStyles = false;
+    public bool $hasRenderedRappsoftStyles = false;
 
     public $rappasoftScriptRoute;
 
     public $rappasoftStylesRoute;
 
-    public $rappasoftScriptTagAttributes = [];
+    public array $rappasoftScriptTagAttributes = [];
 
-    public function register()
+    public function register(): void
     {
         app()->singleton($this::class);
     }
@@ -35,31 +35,31 @@ class RappasoftFrontendAssets
         Blade::directive('rappasoftStyles', [static::class, 'rappasoftStyles']);
     }
 
-    public function useRappasoftScriptTagAttributes($attributes)
+    public function useRappasoftScriptTagAttributes($attributes): void
     {
         $this->rappasoftScriptTagAttributes = array_merge($this->rappasoftScriptTagAttributes, $attributes);
     }
 
-    public function setRappaScriptRoute($callback)
+    public function setRappaScriptRoute($callback): void
     {
         $route = $callback([self::class, 'returnJavaScriptAsFile']);
 
         $this->rappasoftScriptRoute = $route;
     }
 
-    public function setStylesRoute($callback)
+    public function setStylesRoute($callback): void
     {
         $route = $callback([self::class, 'returnStylesAsFile']);
 
         $this->rappasoftStylesRoute = $route;
     }
 
-    public static function rappasoftScripts($expression)
+    public static function rappasoftScripts($expression): string
     {
         return '{!! \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets::scripts('.$expression.') !!}';
     }
 
-    public static function rappasoftStyles($expression)
+    public static function rappasoftStyles($expression): string
     {
         return '{!! \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets::styles('.$expression.') !!}';
     }
@@ -79,7 +79,7 @@ class RappasoftFrontendAssets
         return Utils::pretendResponseIsFile(__DIR__.'/../../../resources/js/test.js.map');
     }
 
-    public static function styles($options = [])
+    public static function styles($options = []): array|string|null
     {
         app(static::class)->hasRenderedRappsoftStyles = true;
 
@@ -97,7 +97,7 @@ class RappasoftFrontendAssets
         return static::minify($html);
     }
 
-    public static function scripts($options = [])
+    public static function scripts($options = []): string
     {
         app(static::class)->hasRenderedRappsoftScripts = true;
 
@@ -113,7 +113,7 @@ class RappasoftFrontendAssets
         return implode("\n", $html);
     }
 
-    public static function js($options)
+    public static function js($options): string
     {
         // Use the default endpoint...
         $url = app(static::class)->rappasoftScriptRoute->uri;
@@ -131,11 +131,11 @@ class RappasoftFrontendAssets
         );
 
         return <<<HTML
-        <script  src="{$url}"  {$nonce} {$extraAttributes}></script>
+        <script  src="{$url}" {$nonce} {$extraAttributes}></script>
         HTML;
     }
 
-    protected static function minify($subject)
+    protected static function minify($subject): array|string|null
     {
         return preg_replace('~(\v|\t|\s{2,})~m', '', $subject);
     }

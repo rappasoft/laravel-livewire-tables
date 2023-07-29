@@ -78,6 +78,15 @@ trait ComponentUtilities
         'after-pagination' => null,
     ];
 
+    // Sets the Theme If Not Already Set
+    public function mountComponentUtilities(): void
+    {
+        // Sets the Theme - tailwind/bootstrap
+        if (is_null($this->theme)) {
+            $this->setTheme();
+        }
+    }
+
     /**
      * Set the custom query string array for this specific table
      *
@@ -138,15 +147,5 @@ trait ComponentUtilities
     public function hydrate(): void
     {
         $this->restartReorderingIfNecessary();
-    }
-
-    // Sets the Theme If Not Already Set
-    public function mountComponentUtilities()
-    {
-        // Sets the Theme - tailwind/bootstrap
-        if (is_null($this->theme)) {
-            $this->setTheme();
-        }
-
     }
 }

@@ -9,16 +9,17 @@ use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 
 class AutoInjectRappasoftAssets extends ComponentHook
 {
-    public static $hasRenderedAComponentThisRequest = false;
+    public static bool $hasRenderedAComponentThisRequest = false;
 
-    public static $forceAssetInjection = false;
+    public static bool $forceAssetInjection = false;
 
-    public static function provide()
+    public static function provide(): void
     {
         on('flush-state', function () {
             static::$hasRenderedAComponentThisRequest = false;
             static::$forceAssetInjection = false;
         });
+
         if (config('livewire-tables.inject_assets', true) === false) {
             return;
         }
@@ -37,12 +38,12 @@ class AutoInjectRappasoftAssets extends ComponentHook
         });
     }
 
-    public function dehydrate()
+    public function dehydrate(): void
     {
         static::$hasRenderedAComponentThisRequest = true;
     }
 
-    public static function injectAssets($html)
+    public static function injectAssets($html): string
     {
         $rappasoftStyles = RappasoftFrontendAssets::styles();
         $rappasoftScripts = RappasoftFrontendAssets::scripts();

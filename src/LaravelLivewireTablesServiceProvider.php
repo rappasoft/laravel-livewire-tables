@@ -4,7 +4,10 @@ namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
+use Livewire\ComponentHookRegistry;
 use Rappasoft\LaravelLivewireTables\Commands\MakeCommand;
+use Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets;
+use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 
 class LaravelLivewireTablesServiceProvider extends ServiceProvider
 {
@@ -37,11 +40,11 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             $this->commands([
                 MakeCommand::class,
             ]);
-
         }
-        (new \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets)->boot($this);
-        app('livewire')->componentHook(\Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets::class);
-        \Livewire\ComponentHookRegistry::boot();
+
+        (new RappasoftFrontendAssets)->boot();
+        app('livewire')->componentHook(AutoInjectRappasoftAssets::class);
+        ComponentHookRegistry::boot();
 
     }
 
@@ -51,7 +54,6 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
 
-        (new \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets)->register($this);
-
+        (new RappasoftFrontendAssets)->register();
     }
 }
