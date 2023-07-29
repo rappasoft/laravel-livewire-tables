@@ -27,6 +27,7 @@ class RappasoftFrontendAssets
     {
         app($this::class)->setRappaScriptRoute(function ($handle) {
             $scriptPath = '/livewire/rappasoft-l2ive12.js';
+
             return Route::get($scriptPath, $handle);
         });
 
@@ -122,7 +123,6 @@ class RappasoftFrontendAssets
         $url = (string) str($url)->start('/');
 
         // Add the build manifest hash to it...
-
 
         $nonce = isset($options['nonce']) ? "nonce=\"{$options['nonce']}\"" : '';
 
