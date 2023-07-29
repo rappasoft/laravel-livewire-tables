@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Livewire\Attributes\Url;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
@@ -12,7 +11,6 @@ trait WithColumnSelect
     use ColumnSelectConfiguration,
         ColumnSelectHelpers;
 
-    #[Url(history: true, as: 'columns')]
     public array $selectedColumns = [];
 
     protected bool $columnSelectStatus = true;

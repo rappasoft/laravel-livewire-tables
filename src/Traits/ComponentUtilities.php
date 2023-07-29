@@ -88,6 +88,10 @@ trait ComponentUtilities
         if ($this->queryStringIsEnabled()) {
             return [
                 $this->getTableName() => ['except' => null, 'as' => $this->getQueryStringAlias()],
+                'appliedFilters' => ['except' => null, 'as' => $this->getQueryStringAlias().'-filters'],
+                'search' => ['except' => null, 'as' => $this->getQueryStringAlias().'-search'],
+                'columns' => ['except' => null, 'as' => $this->getQueryStringAlias().'-columns'],
+                'sorts' => ['except' => null, 'as' => $this->getQueryStringAlias().'-sorts'],
             ];
         }
 
@@ -99,7 +103,7 @@ trait ComponentUtilities
      */
     public function updated($name, $value): void
     {
-        if ($name === $this->getTableName().'.search') {
+        if ($name === 'search') {
             $this->resetComputedPage();
 
             // Clear bulk actions on search
@@ -111,7 +115,7 @@ trait ComponentUtilities
             }
         }
 
-        if (Str::contains($name, $this->getTableName().'.filters')) {
+        if (Str::contains($name, 'filterComponents')) {
             $this->resetComputedPage();
 
             // Clear bulk actions on filter
@@ -119,7 +123,7 @@ trait ComponentUtilities
             $this->setSelectAllDisabled();
 
             // Clear filters on empty value
-            $filterName = Str::after($name, $this->getTableName().'.filters.');
+            $filterName = Str::after($name, 'filterComponents.');
             $filter = $this->getFilterByKey($filterName);
 
             if ($filter && $filter->isEmpty($value)) {

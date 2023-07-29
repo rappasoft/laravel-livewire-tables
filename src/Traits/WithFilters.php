@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use Livewire\Attributes\Url;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
 
@@ -28,7 +27,6 @@ trait WithFilters
 
     public array $filterComponents = [];
 
-    #[Url(history: true, keep: false, as: 'filter')]
     public array $appliedFilters = [];
 
     public function filters(): array

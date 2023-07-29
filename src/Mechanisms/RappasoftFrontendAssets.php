@@ -26,7 +26,8 @@ class RappasoftFrontendAssets
     public function boot()
     {
         app($this::class)->setRappaScriptRoute(function ($handle) {
-            return Route::get('/livewire/rappa.js', $handle);
+            $scriptPath = '/livewire/rappasoft-l2ive12.js';
+            return Route::get($scriptPath, $handle);
         });
 
         Blade::directive('rappasoftScripts', [static::class, 'rappasoftScripts']);
@@ -122,20 +123,15 @@ class RappasoftFrontendAssets
 
         // Add the build manifest hash to it...
 
-        $token = app()->has('session.store') ? csrf_token() : '';
 
         $nonce = isset($options['nonce']) ? "nonce=\"{$options['nonce']}\"" : '';
-
-        $progressBar = config('livewire.navigate.show_progress_bar', true) ? '' : 'data-no-progress-bar';
-
-        $updateUri = app('livewire')->getUpdateUri();
 
         $extraAttributes = Utils::stringifyHtmlAttributes(
             app(static::class)->rappasoftScriptTagAttributes,
         );
 
         return <<<HTML
-        <script src="{$url}" {$nonce} {$progressBar} data-csrf="{$token}" data-uri="{$updateUri}" {$extraAttributes}></script>
+        <script src="{$url}" defer {$nonce} {$extraAttributes}></script>
         HTML;
     }
 

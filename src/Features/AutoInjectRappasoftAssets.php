@@ -24,15 +24,7 @@ class AutoInjectRappasoftAssets extends ComponentHook
         }
 
         app('events')->listen(RequestHandled::class, function ($handled) {
-            if (! str($handled->response->headers->get('content-type'))->contains('text/html')) {
-                return;
-            }
-            if (! method_exists($handled->response, 'status') || $handled->response->status() !== 200) {
-                return;
-            }
-            if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) {
-                return;
-            }
+
             if (app(RappasoftFrontendAssets::class)->hasRenderedRappsoftScripts) {
                 return;
             }
