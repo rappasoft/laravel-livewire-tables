@@ -1,14 +1,15 @@
 @props(['component'])
 @php($refresh = $this->getRefreshStatus())
 
-<div x-data="tableWrapper($wire, {{ $component->showBulkActionsDropdownAlpine() }}, '{{ $this->getTableAttributes()['id'] }}')">
+<div x-data="tableWrapper($wire, {{ $component->showBulkActionsDropdownAlpine() }})">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>
+        <div x-data="reorderFunction($wire, '{{ $this->getTableAttributes()['id'] }}')">
+            @include('livewire-tables::includes.debug')
+            @include('livewire-tables::includes.offline')
 
-        @include('livewire-tables::includes.debug')
-        @include('livewire-tables::includes.offline')
-
-        {{ $slot }}
+            {{ $slot }}
+        </div>
     </div>
 </div>
