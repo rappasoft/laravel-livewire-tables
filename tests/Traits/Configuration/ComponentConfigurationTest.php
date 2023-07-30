@@ -48,7 +48,6 @@ class ComponentConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'newTableID', 'this' => 'that']);
     }
-    
 
     /** @test */
     public function can_set_thead_attributes(): void
