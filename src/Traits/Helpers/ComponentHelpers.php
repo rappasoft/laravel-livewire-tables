@@ -109,7 +109,7 @@ trait ComponentHelpers
      */
     public function getTableWrapperAttributes(): array
     {
-        return count($this->tableWrapperAttributes) ? $this->tableWrapperAttributes : ['default' => true];
+        return count($this->tableWrapperAttributes) ? $this->tableWrapperAttributes : ['id' => 'table-'.$this->getTableName(), 'default' => true];
     }
 
     /**
