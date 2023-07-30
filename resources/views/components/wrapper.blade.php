@@ -5,6 +5,7 @@
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>
+        
         <div x-data="reorderFunction($wire, '{{ $component->getTableAttributes()['id'] }}')">
             @include('livewire-tables::includes.debug')
             @include('livewire-tables::includes.offline')
