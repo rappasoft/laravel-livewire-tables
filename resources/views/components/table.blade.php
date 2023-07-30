@@ -55,7 +55,7 @@
     }}  wire:key>
         <table {{
             $attributes->merge($customAttributes['table'])
-                ->class(['table ' => $customAttributes['table']['default'] ?? true])
+                ->class(['laravel-livewire-table table' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
         }}>
             <thead {{

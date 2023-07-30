@@ -26,7 +26,7 @@ class RappasoftFrontendAssets
     public function boot()
     {
         app($this::class)->setRappaScriptRoute(function ($handle) {
-            $scriptPath = '/livewire/rappasoft-laravel-livewire-tables.js';
+            $scriptPath = '/livewire/rappasoft-laravel-livewire-adfas43radftables.js';
 
             return Route::get($scriptPath, $handle);
         });
@@ -88,9 +88,15 @@ class RappasoftFrontendAssets
         $html = <<<HTML
         <!-- Rappasoft Styles -->
         <style {$nonce}>
-            div.testIncludeRappasoftFrontendAssets {
-                background-color: #000 !important;
+
+            table.laravel-livewire-table tr.bg-indigo {
+                background-color: indigo;
             }
+
+            table.laravel-livewire-table tr.bg-white {
+                background-color: white;
+            }
+
         </style>
         HTML;
 
