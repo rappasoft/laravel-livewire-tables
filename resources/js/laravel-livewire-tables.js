@@ -64,10 +64,17 @@ document.addEventListener('alpine:init', () => {
     }));
 
 
-    Alpine.data('reorderFunction', () => ({
+    Alpine.data('reorderFunction', (tableID) => ({
         dragging: false,
         sourceID: '',
         targetID: '',
+        evenRowClasses: '',
+        oddRowClasses: '',
+        evenRowClassArray: {},
+        oddRowClassArray: {},
+        evenNotInOdd: {},
+        oddNotInEven: {},
+        orderedRows: {},
         dragStart(event) {
             dragging = true;
             sourceID = event.target.id;
@@ -78,28 +85,37 @@ document.addEventListener('alpine:init', () => {
             removing = false
         },
         dropPreventEvent(event) {
-            const id = event.dataTransfer.getData('text/plain');
-            const target = event.target.closest('tr');
-            const parent = event.target.closest('tr').parentNode;
-            const element = document.getElementById(id).closest('tr');
-            parent.insertBefore(element, target.nextSibling);
-            var table = target.closest('table');
+            var id = event.dataTransfer.getData('text/plain');
+            var target = event.target.closest('tr');
+            var parent = event.target.closest('tr').parentNode;
+            var element = document.getElementById(id).closest('tr');
+            var table = document.getElementById(tableID);
+            event.target.closest('tr').parentNode.insertBefore(element, target.nextSibling);
+            var nextLoop = 'even';
             for (var i = 0, row; row = table.rows[i]; i++) {
-                if (i % 2 === 0) {
-                    row.classList.remove('dark:bg-gray-700');
-                    row.classList.remove('bg-white');
-                    row.classList.add('bg-gray-50');
-                    row.classList.add('dark:bg-gray-800');
-
+                if (!row.classList.contains('hidden')) {
+                    if (nextLoop == 'even') {
+                        row.classList.remove(...this.oddNotInEven);
+                        row.classList.add(...this.evenNotInOdd);
+                        nextLoop = 'odd';
+                    }
+                    else {
+                        row.classList.remove(...this.evenNotInOdd);
+                        row.classList.add(...this.oddNotInEven);
+                        nextLoop = 'even';
+                    }
                 }
-                else {
-                    row.classList.remove('dark:bg-gray-800');
-                    row.classList.remove('bg-gray-50');
-                    row.classList.add('bg-white');
-                    row.classList.add('dark:bg-gray-700');
 
-                }
+
             }
+        },
+        init() {
+            var table = document.getElementById(tableID);
+            var tbody = table.getElementsByTagName('tbody')[0];
+            const evenRowClassArray = Array.from(tbody.rows[4].classList);
+            const oddRowClassArray = Array.from(tbody.rows[6].classList);
+            this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
+            this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
 
         }
     }));

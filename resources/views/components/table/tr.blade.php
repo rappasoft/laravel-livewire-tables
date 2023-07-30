@@ -9,7 +9,7 @@
 <tr
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
         id="{{ 'row-'.$row->{$this->getPrimaryKey()} }}"
-        x-data="reorderFunction"
+        
         draggable="true"
         x-on:dragstart.self="dragStart(event)"
         x-on:drop="dropEvent"

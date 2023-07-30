@@ -19,7 +19,7 @@
             $attributes->merge($customAttributes['table'])
                 ->class(['min-w-full divide-y divide-gray-200 dark:divide-none' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
-        }} x-data="{ adding: false, removing: false }">
+        }} x-data="reorderFunction('{{ $this->getTableAttributes()['id'] }}')">
             <thead {{
                 $attributes->merge($customAttributes['thead'])
                     ->class(['bg-gray-50' => $customAttributes['thead']['default'] ?? true])
