@@ -2,7 +2,7 @@
 @php($theme = $component->getTheme())
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
-    <x-livewire-tables::table.th.plain>
+    <x-livewire-tables::table.th.plain x-show="reorderDisplayColumn !== true">
         <div
             x-data="{ newSelectCount: 0, indeterminateCheckbox: false, bulkActionHeaderChecked: false}"
             x-init="$watch('selectedItems', value => indeterminateCheckbox = (value.length > 0 && value.length < paginationTotalItemCount))"

@@ -7,6 +7,10 @@ document.addEventListener('alpine:init', () => {
         paginationCurrentItems: wire.entangle('paginationCurrentItems').live,
         selectedItems: wire.entangle('selected'),
         alwaysShowBulkActions: !wire.entangle('hideBulkActionsWhenEmpty'),
+        reorderStatus: wire.entangle('reorderStatus').live,
+        reorderCurrentStatus: wire.entangle('currentlyReorderingStatus'),
+        reorderHideColumnUnlessReordering: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
+        reorderDisplayColumn: false,
         toggleSelectAll() {
             if (!showBulkActionsAlpine) {
                 return;
@@ -43,8 +47,22 @@ document.addEventListener('alpine:init', () => {
                 tempSelectedItems.push(value.toString());
             }
             this.selectedItems = [...new Set(tempSelectedItems)];
+        },
+        reorderToggle() {
+            this.reorderCurrentStatus = !this.reorderCurrentStatus;
+            this.reorderDisplayColumn = !this.reorderDisplayColumn;
+        },
+        init() {
+            if (this.reorderCurrentStatus) {
+                this.reorderDisplayColumn = true;
+            }
+            else if (!this.reorderHideColumnUnlessReordering) {
+                this.reorderDisplayColumn = true;
+            }
         }
+
     }));
+
 
     Alpine.data('reorderFunction', () => ({
         dragging: false,
