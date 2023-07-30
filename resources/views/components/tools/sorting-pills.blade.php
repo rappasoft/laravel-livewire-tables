@@ -7,9 +7,7 @@
                 <small class="text-gray-700 dark:text-white">@lang('Applied Sorting'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
-                    @php
-                        $column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName);
-                    @endphp
+                    @php($column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
@@ -52,9 +50,7 @@
                 <small>@lang('Applied Sorting'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
-                    @php
-                        $column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName);
-                    @endphp
+                    @php($column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
@@ -96,9 +92,7 @@
                 <small>@lang('Applied Sorting'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
-                    @php
-                        $column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName);
-                    @endphp
+                    @php($column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
                     @continue($column->isHidden())

@@ -5,6 +5,5 @@
         'd-flex flex-column ' => ($component->isBootstrap()),
     ])
 >
-&nbsp
     {{ $slot }}
 </div>

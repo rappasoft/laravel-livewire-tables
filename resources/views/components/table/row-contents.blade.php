@@ -3,7 +3,7 @@
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @php
-        $columns = collect([]);
+        $columns = collect();
 
         if ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) {
             $columns->push($component->getCollapsedMobileColumns());

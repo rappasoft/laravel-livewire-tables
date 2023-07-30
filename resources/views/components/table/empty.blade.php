@@ -1,8 +1,5 @@
 @aware(['component'])
-
-@php
-    $attributes = $attributes->merge(['wire:key' => 'empty-message-'.$component->getId()]);
-@endphp
+@php($attributes = $attributes->merge(['wire:key' => 'empty-message-'.$component->getId()]))
 
 @if ($component->isTailwind())
     <tr {{ $attributes }}>

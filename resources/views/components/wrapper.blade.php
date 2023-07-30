@@ -1,8 +1,5 @@
 @props(['component'])
-
-@php
-    $refresh = $this->getRefreshStatus();
-@endphp
+@php($refresh = $this->getRefreshStatus())
 
 <div x-data="tableWrapper($wire, {{ $component->showBulkActionsDropdownAlpine() }})">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}

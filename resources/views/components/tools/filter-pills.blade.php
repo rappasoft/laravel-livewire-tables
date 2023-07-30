@@ -19,9 +19,7 @@
             </small>
 
             @foreach($component->getAppliedFiltersWithValues() as $filterSelectName => $value)
-                @php
-                    $filter = $component->getFilterByKey($filterSelectName);
-                @endphp
+                @php($filter = $component->getFilterByKey($filterSelectName))
 
                 @continue(is_null($filter))
                 @continue($filter->isHiddenFromPills())
