@@ -1,6 +1,6 @@
 
 document.addEventListener('alpine:init', () => {
-    Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
+    Alpine.data('tableWrapper', (wire, showBulkActionsAlpine, tableID) => ({
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
         paginationCurrentCount: wire.entangle('paginationCurrentCount').live,
         paginationTotalItemCount: wire.entangle('paginationTotalItemCount').live,
@@ -11,6 +11,17 @@ document.addEventListener('alpine:init', () => {
         reorderCurrentStatus: wire.entangle('currentlyReorderingStatus'),
         reorderHideColumnUnlessReordering: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: false,
+        dragging: false,
+        sourceID: '',
+        targetID: '',
+        evenRowClasses: '',
+        oddRowClasses: '',
+        evenRowClassArray: {},
+        oddRowClassArray: {},
+        evenNotInOdd: {},
+        oddNotInEven: {},
+        orderedRows: {},
+
         toggleSelectAll() {
             if (!showBulkActionsAlpine) {
                 return;
@@ -52,29 +63,6 @@ document.addEventListener('alpine:init', () => {
             this.reorderCurrentStatus = !this.reorderCurrentStatus;
             this.reorderDisplayColumn = !this.reorderDisplayColumn;
         },
-        init() {
-            if (this.reorderCurrentStatus) {
-                this.reorderDisplayColumn = true;
-            }
-            else if (!this.reorderHideColumnUnlessReordering) {
-                this.reorderDisplayColumn = true;
-            }
-        }
-
-    }));
-
-
-    Alpine.data('reorderFunction', (tableID) => ({
-        dragging: false,
-        sourceID: '',
-        targetID: '',
-        evenRowClasses: '',
-        oddRowClasses: '',
-        evenRowClassArray: {},
-        oddRowClassArray: {},
-        evenNotInOdd: {},
-        oddNotInEven: {},
-        orderedRows: {},
         dragStart(event) {
             dragging = true;
             sourceID = event.target.id;
@@ -116,6 +104,13 @@ document.addEventListener('alpine:init', () => {
             }
         },
         init() {
+            if (this.reorderCurrentStatus) {
+                this.reorderDisplayColumn = true;
+            }
+            else if (!this.reorderHideColumnUnlessReordering) {
+                this.reorderDisplayColumn = true;
+            }
+
             var table = document.getElementById(tableID);
             var tbody = table.getElementsByTagName('tbody')[0];
             const evenRowClassArray = Array.from(tbody.rows[4].classList);
@@ -125,5 +120,6 @@ document.addEventListener('alpine:init', () => {
 
         }
     }));
+
 
 });

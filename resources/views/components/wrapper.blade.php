@@ -1,7 +1,7 @@
 @props(['component'])
 @php($refresh = $this->getRefreshStatus())
 
-<div x-data="tableWrapper($wire, {{ $component->showBulkActionsDropdownAlpine() }})">
+<div x-data="tableWrapper($wire, {{ $component->showBulkActionsDropdownAlpine() }}, '{{ $this->getTableAttributes()['id'] }}')">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>
