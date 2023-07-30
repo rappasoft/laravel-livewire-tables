@@ -89,10 +89,16 @@ document.addEventListener('alpine:init', () => {
             var target = event.target.closest('tr');
             var parent = event.target.closest('tr').parentNode;
             var element = document.getElementById(id).closest('tr');
+            var originalPosition = element.rowIndex;
+            var newPosition = target.rowIndex;
             var table = document.getElementById(tableID);
-            event.target.closest('tr').parentNode.insertBefore(element, target.nextSibling);
+            var loopStart = originalPosition;
+            if (newPosition < originalPosition) {
+                loopStart = newPosition;
+            }
+            parent.insertBefore(element, target.nextSibling);
             var nextLoop = 'even';
-            for (var i = 0, row; row = table.rows[i]; i++) {
+            for (var i = 2, row; row = table.rows[i]; i++) {
                 if (!row.classList.contains('hidden')) {
                     if (nextLoop == 'even') {
                         row.classList.remove(...this.oddNotInEven);
