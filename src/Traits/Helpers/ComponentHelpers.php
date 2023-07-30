@@ -117,7 +117,7 @@ trait ComponentHelpers
      */
     public function getTableAttributes(): array
     {
-        return count($this->tableAttributes) ? $this->tableAttributes : ['default' => true];
+        return count($this->tableAttributes) ? $this->tableAttributes : ['id' => 'table-'.$this->getTableName(), 'default' => true];
     }
 
     /**

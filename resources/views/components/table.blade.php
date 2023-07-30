@@ -19,7 +19,7 @@
             $attributes->merge($customAttributes['table'])
                 ->class(['min-w-full divide-y divide-gray-200 dark:divide-none' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
-        }} x-data="{ adding: false, removing: false }">
+        }} ">
             <thead {{
                 $attributes->merge($customAttributes['thead'])
                     ->class(['bg-gray-50' => $customAttributes['thead']['default'] ?? true])
@@ -55,7 +55,7 @@
     }}  wire:key>
         <table {{
             $attributes->merge($customAttributes['table'])
-                ->class(['table ' => $customAttributes['table']['default'] ?? true])
+                ->class(['laravel-livewire-table table' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
         }}>
             <thead {{

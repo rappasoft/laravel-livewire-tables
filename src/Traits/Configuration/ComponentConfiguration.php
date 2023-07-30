@@ -43,7 +43,7 @@ trait ComponentConfiguration
      */
     public function setTableAttributes(array $attributes = []): self
     {
-        $this->tableAttributes = $attributes;
+        $this->tableAttributes = array_merge(['id' => 'table-'.$this->getTableName()], $attributes);
 
         return $this;
     }

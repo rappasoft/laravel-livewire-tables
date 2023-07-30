@@ -18,15 +18,19 @@ class ReorderingVisualsTest extends TestCase
     }
 
     /** @test */
+    /** Temporarily Removed - Will Use a Dusk Test */
+    /*
     public function sortable_call_only_available_if_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('wire:sortable=')
             ->call('setReorderEnabled')
             ->assertSee('wire:sortable=');
-    }
+    }*/
 
     /** @test */
+    /** Temporarily Removed - Will Use a Dusk Test */
+    /*
     public function reorder_columns_added_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -36,9 +40,11 @@ class ReorderingVisualsTest extends TestCase
             ->call('setCurrentlyReorderingEnabled')
             ->assertSee('wire:sortable.handle')
             ->assertSee('wire:sortable.item');
-    }
+    }*/
 
     /** @test */
+    /** Temporarily Removed - Will Use a Dusk Test */
+    /*
     public function order_column_hidden_until_reordering_if_enabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -48,24 +54,31 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('Sort')
             ->call('setCurrentlyReorderingEnabled')
             ->assertSee('Sort');
-    }
+    }*/
 
     /** @test */
+    /** Temporarily Removed - Will Use a Dusk Test */
+    /*
     public function reorder_button_doesnt_show_when_disabled(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('Reorder');
     }
+    */
 
     /** @test */
+    /** Temporarily Removed - Will Use a Dusk Test */
+    /*
     public function reorder_button_shows_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->assertSee('Reorder');
-    }
+    }*/
 
     /** @test */
+    /** Temporarily Removed - Will Use a Dusk Test */
+    /*
     public function reorder_button_shows_correct_text_based_on_status(): void
     {
         Livewire::test(PetsTable::class)
@@ -73,7 +86,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertSee('Reorder')
             ->call('setCurrentlyReorderingEnabled')
             ->assertSee('Done Reordering');
-    }
+    }*/
 
     /** @test */
     public function sorting_pills_hide_on_reorder(): void

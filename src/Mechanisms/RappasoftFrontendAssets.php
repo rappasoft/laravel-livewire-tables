@@ -66,7 +66,7 @@ class RappasoftFrontendAssets
 
     public function returnJavaScriptAsFile()
     {
-        return Utils::pretendResponseIsFile(__DIR__.'/../../resources/js/laravel-livewire-tables.js');
+        return Utils::pretendResponseIsFile(__DIR__.'/../../resources/js/laravel-livewire-tables.min.js');
     }
 
     public function returnStylesAsFile()
@@ -76,7 +76,7 @@ class RappasoftFrontendAssets
 
     public function maps()
     {
-        return Utils::pretendResponseIsFile(__DIR__.'/../../../resources/js/laravel-livewire-tables.js.map');
+        return Utils::pretendResponseIsFile(__DIR__.'/../../../resources/js/laravel-livewire-tables.min.js.map');
     }
 
     public static function styles($options = []): array|string|null
@@ -88,9 +88,15 @@ class RappasoftFrontendAssets
         $html = <<<HTML
         <!-- Rappasoft Styles -->
         <style {$nonce}>
-            div.testIncludeRappasoftFrontendAssets {
-                background-color: #000 !important;
+
+            table.laravel-livewire-table tr.bg-indigo {
+                background-color: indigo;
             }
+
+            table.laravel-livewire-table tr.bg-white {
+                background-color: white;
+            }
+
         </style>
         HTML;
 
@@ -131,7 +137,7 @@ class RappasoftFrontendAssets
         );
 
         return <<<HTML
-        <script  src="{$url}" {$nonce} {$extraAttributes}></script>
+        <script  src="{$url}"  {$nonce} {$extraAttributes}></script>
         HTML;
     }
 

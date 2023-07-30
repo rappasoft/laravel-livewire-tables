@@ -32,11 +32,21 @@ class ComponentConfigurationTest extends TestCase
     /** @test */
     public function can_set_table_attributes(): void
     {
-        $this->assertSame($this->basicTable->getTableAttributes(), ['default' => true]);
+        $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'default' => true]);
 
         $this->basicTable->setTableAttributes(['this' => 'that']);
 
-        $this->assertSame($this->basicTable->getTableAttributes(), ['this' => 'that']);
+        $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'this' => 'that']);
+    }
+
+    /** @test */
+    public function can_override_table_default_id(): void
+    {
+        $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'default' => true]);
+
+        $this->basicTable->setTableAttributes(['id' => 'newTableID', 'this' => 'that']);
+
+        $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'newTableID', 'this' => 'that']);
     }
 
     /** @test */

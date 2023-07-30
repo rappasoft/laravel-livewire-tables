@@ -6,8 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Livewire\Commands\ComponentParser;
-use Livewire\Commands\MakeCommand as LivewireMakeCommand;
+use Livewire\Features\SupportConsoleCommands\Commands\ComponentParser;
+use Livewire\Features\SupportConsoleCommands\Commands\MakeCommand as LivewireMakeCommand;
 
 /**
  * Class MakeCommand
