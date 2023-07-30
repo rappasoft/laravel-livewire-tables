@@ -26,7 +26,7 @@ class RappasoftFrontendAssets
     public function boot()
     {
         app($this::class)->setRappaScriptRoute(function ($handle) {
-            $scriptPath = '/livewire/rappasoft-laravel-livewire-adfas43radftables.js';
+            $scriptPath = '/livewire/rappasoft-laravel-livewire-tables.js';
 
             return Route::get($scriptPath, $handle);
         });
