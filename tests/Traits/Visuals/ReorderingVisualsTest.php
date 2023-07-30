@@ -29,7 +29,7 @@ class ReorderingVisualsTest extends TestCase
     }*/
 
     /** @test */
-        /** Temporarily Removed - Will Use a Dusk Test */
+    /** Temporarily Removed - Will Use a Dusk Test */
     /*
     public function reorder_columns_added_when_enabled(): void
     {
@@ -43,7 +43,7 @@ class ReorderingVisualsTest extends TestCase
     }*/
 
     /** @test */
-     /** Temporarily Removed - Will Use a Dusk Test */
+    /** Temporarily Removed - Will Use a Dusk Test */
     /*
     public function order_column_hidden_until_reordering_if_enabled(): void
     {
@@ -67,7 +67,7 @@ class ReorderingVisualsTest extends TestCase
     */
 
     /** @test */
-        /** Temporarily Removed - Will Use a Dusk Test */
+    /** Temporarily Removed - Will Use a Dusk Test */
     /*
     public function reorder_button_shows_when_enabled(): void
     {
