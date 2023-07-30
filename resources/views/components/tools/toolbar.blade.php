@@ -239,7 +239,7 @@
 
             @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
                 <div>
-                    <select wire:model="perPage" id="perPage"
+                    <select wire:model.live="perPage" id="perPage"
                         class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600">
                         @foreach ($component->getPerPageAccepted() as $item)
                             <option value="{{ $item }}"
@@ -623,7 +623,7 @@
                         'ms-0 ms-md-2' => $component->isBootstrap5(),
                     ])
                 >
-                    <select wire:model="perPage" id="perPage"
+                    <select wire:model.live="perPage" id="perPage"
                         @class([
                             'form-control' => $component->isBootstrap4(),
                             'form-select' => $component->isBootstrap5(),
