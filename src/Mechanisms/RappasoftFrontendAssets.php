@@ -26,7 +26,7 @@ class RappasoftFrontendAssets
     public function boot()
     {
         app($this::class)->setRappaScriptRoute(function ($handle) {
-            $scriptPath = '/livewire/rappasoft-laravel-livewsq1232iq11re-tables.js';
+            $scriptPath = '/livewire/rappasoft-laravel-livewire-tables.js';
 
             return Route::get($scriptPath, $handle);
         });
@@ -66,7 +66,7 @@ class RappasoftFrontendAssets
 
     public function returnJavaScriptAsFile()
     {
-        return Utils::pretendResponseIsFile(__DIR__.'/../../resources/js/laravel-livewire-tables.js');
+        return Utils::pretendResponseIsFile(__DIR__.'/../../resources/js/laravel-livewire-tables.min.js');
     }
 
     public function returnStylesAsFile()
@@ -76,7 +76,7 @@ class RappasoftFrontendAssets
 
     public function maps()
     {
-        return Utils::pretendResponseIsFile(__DIR__.'/../../../resources/js/laravel-livewire-tables.js.map');
+        return Utils::pretendResponseIsFile(__DIR__.'/../../../resources/js/laravel-livewire-tables.min.js.map');
     }
 
     public static function styles($options = []): array|string|null
