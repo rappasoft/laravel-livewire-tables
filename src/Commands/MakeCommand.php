@@ -145,7 +145,7 @@ class MakeCommand extends Command
         $getFillable = [
             ...[$model->getKeyName()],
             ...$model->getFillable(),
-            ...['created_at', 'updated_at']
+            ...['created_at', 'updated_at'],
         ];
 
         $columns = "[\n";
