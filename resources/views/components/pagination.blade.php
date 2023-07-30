@@ -1,17 +1,13 @@
 @aware(['component'])
 @props(['rows'])
 
-@php
-    $theme = $component->getTheme();
-@endphp
-
 @if ($component->hasConfigurableAreaFor('before-pagination'))
     @include(
         $component->getConfigurableAreaFor('before-pagination'),
         $component->getParametersForConfigurableArea('before-pagination'))
 @endif
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <div>
         @if ($component->paginationVisibilityIsEnabled())
             <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">
@@ -48,7 +44,7 @@
             </div>
         @endif
     </div>
-@elseif ($theme === 'bootstrap-4')
+@elseif ($component->isBootstrap4())
     <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
@@ -91,7 +87,7 @@
             @endif
         @endif
     </div>
-@elseif ($theme === 'bootstrap-5')
+@elseif ($component->isBootstrap5())
     <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)

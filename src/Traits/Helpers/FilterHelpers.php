@@ -4,12 +4,31 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 trait FilterHelpers
 {
+    /**
+     * Sets Filter Default Values
+     */
+    public function mountFilterHelpers(): void
+    {
+        foreach ($this->getFilters() as $filter) {
+            if (! isset($this->appliedFilters[$filter->getKey()])) {
+                if ($filter->hasFilterDefaultValue()) {
+                    $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
+                } else {
+                    $this->resetFilter($filter);
+                }
+            } else {
+                $this->setFilter($filter->getKey(), $this->appliedFilters[$filter->getKey()]);
+            }
+        }
+    }
+
     public function getFiltersStatus(): bool
     {
         return $this->filtersStatus;
@@ -116,9 +135,10 @@ trait FilterHelpers
      * @param  mixed  $value
      * @return mixed
      */
+    #[On('set-filter')]
     public function setFilter(string $filterKey, $value)
     {
-        return $this->{$this->getTableName()}['filters'][$filterKey] = $value;
+        return $this->filterComponents[$filterKey] = $value;
     }
 
     public function selectAllFilterOptions(string $filterKey): void
@@ -138,6 +158,7 @@ trait FilterHelpers
         $this->setFilter($filterKey, array_keys($filter->getOptions()));
     }
 
+    #[On('clear-filters')]
     public function setFilterDefaults(): void
     {
         foreach ($this->getFilters() as $filter) {
@@ -156,7 +177,7 @@ trait FilterHelpers
             ->map(fn (Filter $filter) => $filter->getKey())
             ->toArray();
 
-        return collect($this->{$this->getTableName()}['filters'] ?? [])
+        return collect($this->filterComponents ?? [])
             ->filter(fn ($value, $key) => in_array($key, $validFilterKeys, true))
             ->toArray();
     }
@@ -195,7 +216,7 @@ trait FilterHelpers
      */
     public function getAppliedFiltersWithValues(): array
     {
-        return array_filter($this->getAppliedFilters(), function ($item, $key) {
+        return $this->appliedFilters = array_filter($this->getAppliedFilters(), function ($item, $key) {
             return ! $this->getFilterByKey($key)->isEmpty($item) && (is_array($item) ? count($item) : $item !== null);
         }, ARRAY_FILTER_USE_BOTH);
     }
@@ -288,24 +309,5 @@ trait FilterHelpers
         ksort($orderedFilters);
 
         return $orderedFilters;
-    }
-
-    /**
-     * Sets Filter Default Values
-     */
-    public function mountFilterHelpers()
-    {
-        $appliedFilters = $this->getAppliedFiltersWithValues();
-        foreach ($this->getFilters() as $filter) {
-            if (! isset($appliedFilters[$filter->getKey()])) {
-                if ($filter->hasFilterDefaultValue()) {
-                    $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
-                } else {
-                    $this->resetFilter($filter);
-                }
-            } else {
-                $this->setFilter($filter->getKey(), $appliedFilters[$filter->getKey()]);
-            }
-        }
     }
 }

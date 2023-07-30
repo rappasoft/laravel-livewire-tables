@@ -1,19 +1,13 @@
 @aware(['component'])
 
-@php
-    $theme = $component->getTheme();
-@endphp
-
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-4 px-4 md:p-0">
                 <small class="text-gray-700 dark:text-white">@lang('Applied Sorting'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
-                    @php
-                        $column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName);
-                    @endphp
+                    @php($column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
@@ -49,16 +43,14 @@
             </div>
         @endif
     </div>
-@elseif ($theme === 'bootstrap-4')
+@elseif ($component->isBootstrap4())
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-3">
                 <small>@lang('Applied Sorting'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
-                    @php
-                        $column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName);
-                    @endphp
+                    @php($column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
@@ -93,16 +85,14 @@
             </div>
         @endif
     </div>
-@elseif ($theme === 'bootstrap-5')
+@elseif ($component->isBootstrap5())
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-3">
                 <small>@lang('Applied Sorting'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
-                    @php
-                        $column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName);
-                    @endphp
+                    @php($column = $component->getColumnBySelectName($columnSelectName) ?? $component->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
                     @continue($column->isHidden())

@@ -1,18 +1,18 @@
 @php
-    $theme = $component->getTheme();
     $filterLayout = $component->getFilterLayout();
     $tableName = $component->getTableName();
 @endphp
+
 <div>
     @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
-        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'theme' => $theme, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
+        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
     @elseif(!$filter->hasCustomPosition())
-        <x-livewire-tables::tools.filter-label :filter="$filter" :theme="$theme" :filterLayout="$filterLayout" :tableName="$tableName" />
+        <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
-        @if ($theme === 'tailwind')
+        @if ($component->isTailwind())
         <div class="rounded-md shadow-sm">
             <select multiple
-                wire:model.stop="{{ $tableName }}.filters.{{ $filter->getKey() }}"
+                wire:model.live.debounce.250ms="filterComponents.{{ $filter->getKey() }}"
                 wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 class="block w-full transition duration-150 ease-in-out border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600"
@@ -33,12 +33,12 @@
                 @endforeach
             </select>
         </div>
-    @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+    @elseif ($component->isBootstrap())
         <select multiple
-            wire:model.stop="{{ $tableName }}.filters.{{ $filter->getKey() }}"
+            wire:model.live.debounce.250ms="filterComponents.{{ $filter->getKey() }}"
             wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
-            class="{{ $theme === 'bootstrap-4' ? 'form-control' : 'form-select' }}"
+            class="{{ $component->isBootstrap4() ? 'form-control' : 'form-select' }}"
         >
         @if ($filter->getFirstOption() != "")
             <option @if($filter->isEmpty($this)) selected @endif value="all">{{ $filter->getFirstOption()}}</option>

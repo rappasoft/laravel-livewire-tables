@@ -19,8 +19,8 @@ class ComponentVisualsTest extends TestCase
     public function empty_message_shows_with_no_results(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('table.search', 'sdfsdfsdf')
-            ->assertSee('No items found. Try to broaden your search.');
+            ->set('search', 'sdfsdfsdfadsfasdfasdd')
+            ->assertSee('No items found');
     }
 
     /** @test */

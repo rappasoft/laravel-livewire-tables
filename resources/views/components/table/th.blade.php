@@ -2,14 +2,13 @@
 @props(['column', 'index'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => 'header-col-'.$index.'-'.$component->id]);
-    $theme = $component->getTheme();
+    $attributes = $attributes->merge(['wire:key' => 'header-col-'.$index.'-'.$component->getId()]);
     $customAttributes = $component->getThAttributes($column);
     $customSortButtonAttributes = $component->getThSortButtonAttributes($column);
     $direction = $column->hasField() ? $component->getSort($column->getColumnSelectName()) : $component->getSort($column->getSlug()) ?? null ;
 @endphp
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
@@ -22,7 +21,7 @@
         @else
             <button
                 wire:click="sortBy('{{ ($column->isSortable() ? $column->getColumnSelectName() : $column->getSlug()) }}')"
-                {{ 
+                {{
                     $attributes->merge($customSortButtonAttributes)
                         ->class(['flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])
                         ->except(['default', 'wire:key'])
@@ -56,7 +55,7 @@
             </button>
         @endunless
     </th>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['' => $customAttributes['default'] ?? true])
@@ -67,7 +66,7 @@
         @unless ($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
             {{ $column->getTitle() }}
         @else
-            <div 
+            <div
                 class="d-flex align-items-center"
                 wire:click="sortBy('{{ ($column->isSortable() ? $column->getColumnSelectName() : $column->getSlug()) }}')"
                 style="cursor:pointer;"

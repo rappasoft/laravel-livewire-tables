@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\On;
+
 trait SortingHelpers
 {
     public function getSortingStatus(): bool
@@ -19,7 +21,7 @@ trait SortingHelpers
      */
     public function getSorts(): array
     {
-        return $this->{$this->getTableName()}['sorts'] ?? [];
+        return $this->sorts ?? [];
     }
 
     /**
@@ -28,17 +30,18 @@ trait SortingHelpers
      */
     public function setSorts(array $sorts): array
     {
-        return $this->{$this->getTableName()}['sorts'] = $sorts;
+        return $this->sorts = $sorts;
     }
 
     public function getSort(string $field): ?string
     {
-        return $this->{$this->getTableName()}['sorts'][$field] ?? null;
+        return $this->sorts[$field] ?? null;
     }
 
+    #[On('set-sort')]
     public function setSort(string $field, string $direction): string
     {
-        return $this->{$this->getTableName()}['sorts'][$field] = $direction;
+        return $this->sorts[$field] = $direction;
     }
 
     public function hasSorts(): bool
@@ -54,14 +57,15 @@ trait SortingHelpers
     /**
      * Clear the sorts array
      */
+    #[On('clearsorts')]
     public function clearSorts(): void
     {
-        $this->{$this->getTableName()}['sorts'] = [];
+        $this->sorts = [];
     }
 
     public function clearSort(string $field): void
     {
-        unset($this->{$this->getTableName()}['sorts'][$field]);
+        unset($this->sorts[$field]);
     }
 
     public function setSortAsc(string $field): string

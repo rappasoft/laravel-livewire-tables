@@ -1,8 +1,4 @@
-@php
-    $theme = $component->getTheme();
-@endphp
-
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     @if ($status)
         @if ($type === 'icons')
             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-5 w-5 @if ($successValue === true) text-green-500 @else text-red-500 @endif" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +24,7 @@
             @endif
         @endif
     @endif
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
     @if ($status)
         @if ($type === 'icons')
             <svg xmlns="http://www.w3.org/2000/svg" style="width:1.2em;height:1.2em;" class="d-inline-block @if ($successValue === true) text-success @else text-danger @endif" fill="none" viewBox="0 0 24 24" stroke="currentColor">

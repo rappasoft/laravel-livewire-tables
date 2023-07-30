@@ -12,7 +12,7 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_column_list(): void
     {
-        $this->assertCount(8, $this->basicTable->getColumns()->toArray());
+        $this->assertCount(9, $this->basicTable->getColumns()->toArray());
     }
 
     /** @test */
@@ -34,7 +34,7 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_column_count(): void
     {
-        $this->assertSame(8, $this->basicTable->getColumnCount());
+        $this->assertSame(9, $this->basicTable->getColumnCount());
     }
 
     /** @test */
@@ -89,12 +89,12 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_mobile_columns(): void
     {
-        $this->assertCount(8, $this->basicTable->getVisibleMobileColumns());
+        $this->assertCount(9, $this->basicTable->getVisibleMobileColumns());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
 
-        $this->assertCount(6, $this->basicTable->getVisibleMobileColumns());
+        $this->assertCount(7, $this->basicTable->getVisibleMobileColumns());
         $this->assertSame('Sort', $this->basicTable->getVisibleMobileColumns()->values()[0]->getTitle());
         $this->assertSame('Age', $this->basicTable->getVisibleMobileColumns()->values()[1]->getTitle());
         $this->assertSame('Breed', $this->basicTable->getVisibleMobileColumns()->values()[2]->getTitle());
@@ -104,12 +104,12 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_mobile_columns_count(): void
     {
-        $this->assertSame(8, $this->basicTable->getVisibleMobileColumnsCount());
+        $this->assertSame(9, $this->basicTable->getVisibleMobileColumnsCount());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
 
-        $this->assertSame(6, $this->basicTable->getVisibleMobileColumnsCount());
+        $this->assertSame(7, $this->basicTable->getVisibleMobileColumnsCount());
     }
 
     /** @test */
@@ -149,12 +149,12 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_tablet_columns(): void
     {
-        $this->assertCount(8, $this->basicTable->getVisibleTabletColumns());
+        $this->assertCount(9, $this->basicTable->getVisibleTabletColumns());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
         $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
 
-        $this->assertCount(6, $this->basicTable->getVisibleTabletColumns());
+        $this->assertCount(7, $this->basicTable->getVisibleTabletColumns());
         $this->assertSame('Sort', $this->basicTable->getVisibleTabletColumns()->values()[0]->getTitle());
         $this->assertSame('Age', $this->basicTable->getVisibleTabletColumns()->values()[1]->getTitle());
         $this->assertSame('Breed', $this->basicTable->getVisibleTabletColumns()->values()[2]->getTitle());
@@ -164,12 +164,12 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_tablet_columns_count(): void
     {
-        $this->assertSame(8, $this->basicTable->getVisibleTabletColumnsCount());
+        $this->assertSame(9, $this->basicTable->getVisibleTabletColumnsCount());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
         $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
 
-        $this->assertSame(6, $this->basicTable->getVisibleTabletColumnsCount());
+        $this->assertSame(7, $this->basicTable->getVisibleTabletColumnsCount());
     }
 
     /** @test */
@@ -179,7 +179,7 @@ class ColumnHelpersTest extends TestCase
             ->map(fn (Column $column) => $column->getColumnSelectName())
             ->toArray();
 
-        $this->assertSame(['id', 'sort', 'name', 'age', 'breed.name'], $selectable);
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed.name', 'last_visit'], $selectable);
     }
 
     /** @test */

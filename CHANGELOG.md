@@ -2,7 +2,37 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [Unreleased]
+## [Unreleased] - 3.x
+- Requirements Change
+    - Requires LiveWire 3.x
+    - Requires PHP 8.1+
+    - Requires Laravel 10+
+
+
+- Core Changes
+    - There are now two arrays relating to Filters.  There is the wireable one ($filterComponents), and an unwired one, which only keeps track of those filters that have a value ($appliedFilters).  This is what is bound to the query string, and populates the filters on mount if they are present in the query string.
+
+    - Move sorts, search, selectedColumns out of the traditional __$this->{$this->getTableName()}['sorts']__ and instead place it directly within the component.  This:
+        - Improves the query string behaviour
+        - Reduces the need to repeatedly set up that main array
+        [Commit 1 Here](https://github.com/LowerRockLabs/laravel-livewire-tables-v3/commit/d7ccabfc8adefeb4bddcbac64831ef1a688527a8)
+        [Commit 2 Here](https://github.com/LowerRockLabs/laravel-livewire-tables-v3/commit/0d8d98546b6a8051c4197804cc33b515faa02b07)
+
+    - Migrated any $component->id reference to $component->getId()
+
+    - Added SetSearchLive to allow for the search to be "live", with tests
+
+    - Removed Spatie Package Tools and replaced with a generic service provider
+
+- Test Changes
+    - Temporarily removed the sort_events_apply_correctly and filter_events_apply_correctly due to LW3 not using Emit anymore.
+
+    - Added extra clumn to the PetsTable -> last_visit and associated test changes to make the counts work.  This column is deselected() by default to allow for testing on those methods.
+
+- Doc Changes
+    - Slowly begun updating the docs with the relevant new features, dependencies etc.
+
+
 
 ## [2.15.0] - 2023-07-15
 

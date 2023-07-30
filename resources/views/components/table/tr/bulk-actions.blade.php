@@ -4,16 +4,15 @@
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
     @php
         $table = $component->getTableName();
-        $theme = $component->getTheme();
         $colspan = $component->getColspanCount();
         $selectAll = $component->selectAllIsEnabled();
         $simplePagination = $component->paginationMethod == 'simple' ? true : false;
     @endphp
 
-    @if ($theme === 'tailwind')
-        <x-livewire-tables::table.tr.plain 
+    @if ($component->isTailwind())
+        <x-livewire-tables::table.tr.plain
             wire:key="bulk-select-message-{{ $table }}"
-            class="bg-indigo-50 dark:bg-gray-900 dark:text-white" 
+            class="bg-indigo-50 dark:bg-gray-900 dark:text-white"
             x-cloak
             x-show="selectedItems.length > 0"
         >
@@ -75,8 +74,8 @@
                 </template>
             </x-livewire-tables::table.td.plain>
         </x-livewire-tables::table.tr.plain>
-    @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
-        <x-livewire-tables::table.tr.plain 
+    @elseif ($component->isBootstrap())
+        <x-livewire-tables::table.tr.plain
             wire:key="bulk-select-message-{{ $table }}"
             x-cloak
             x-show="selectedItems.length > 0"

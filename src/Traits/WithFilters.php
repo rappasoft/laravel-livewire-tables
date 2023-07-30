@@ -25,6 +25,10 @@ trait WithFilters
 
     protected $filterCollection;
 
+    public array $filterComponents = [];
+
+    public array $appliedFilters = [];
+
     public function filters(): array
     {
         return [];

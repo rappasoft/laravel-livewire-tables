@@ -1,8 +1,6 @@
 @aware(['component'])
 
 @php
-    $theme = $component->getTheme();
-
     $customAttributes = [
         'wrapper' => $this->getTableWrapperAttributes(),
         'table' => $this->getTableAttributes(),
@@ -11,7 +9,7 @@
     ];
 @endphp
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <div {{
         $attributes->merge($customAttributes['wrapper'])
             ->class(['shadow overflow-y-scroll border-b border-gray-200 dark:border-gray-700 sm:rounded-lg' => $customAttributes['wrapper']['default'] ?? true])
@@ -21,7 +19,7 @@
             $attributes->merge($customAttributes['table'])
                 ->class(['min-w-full divide-y divide-gray-200 dark:divide-none' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
-        }}>
+        }} x-data="{ adding: false, removing: false }">
             <thead {{
                 $attributes->merge($customAttributes['thead'])
                     ->class(['bg-gray-50' => $customAttributes['thead']['default'] ?? true])
@@ -31,10 +29,7 @@
                     {{ $thead }}
                 </tr>
             </thead>
-            <tbody
-                @if ($component->reorderIsEnabled())
-                    wire:sortable="{{ $component->getReorderMethod() }}"
-                @endif
+            <tbody id="tbodyID"
 
                 {{
                     $attributes->merge($customAttributes['tbody'])
@@ -52,15 +47,15 @@
             @endif
         </table>
     </div>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
-    <div {{ 
+@elseif ($component->isBootstrap())
+    <div {{
         $attributes->merge($customAttributes['wrapper'])
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
-    }}>
+    }}  wire:key>
         <table {{
             $attributes->merge($customAttributes['table'])
-                ->class(['table table-striped' => $customAttributes['table']['default'] ?? true])
+                ->class(['table ' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
         }}>
             <thead {{
@@ -73,7 +68,7 @@
                 </tr>
             </thead>
 
-            <tbody
+            <tbody id="tbodyID"
                 @if ($component->reorderIsEnabled())
                     wire:sortable="{{ $component->getReorderMethod() }}"
                 @endif

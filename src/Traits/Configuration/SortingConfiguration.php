@@ -21,6 +21,7 @@ trait SortingConfiguration
     public function setSortingDisabled(): self
     {
         $this->setSortingStatus(false);
+        $this->sorts = [];
 
         return $this;
     }

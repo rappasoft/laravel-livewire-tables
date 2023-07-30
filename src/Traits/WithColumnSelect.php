@@ -37,8 +37,8 @@ trait WithColumnSelect
         $columns = $this->getDefaultVisibleColumns();
 
         // Set to either the default set or what is stored in the session
-        $this->selectedColumns = (isset($this->{$this->tableName}['columns']) && count($this->{$this->tableName}['columns']) > 0) ?
-            $this->{$this->tableName}['columns'] :
+        $this->selectedColumns = (isset($this->selectedColumns) && count($this->selectedColumns) > 0) ?
+            $this->selectedColumns :
             session()->get($this->getColumnSelectSessionKey(), $columns);
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them
@@ -63,14 +63,13 @@ trait WithColumnSelect
 
     public function selectAllColumns()
     {
-        $this->{$this->tableName}['columns'] = [];
+        $this->selectedColumns = [];
         $this->forgetColumnSelectSession();
         event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
     }
 
     public function deselectAllColumns()
     {
-        $this->{$this->tableName}['columns'] = [];
         $this->selectedColumns = [];
         session([$this->getColumnSelectSessionKey() => []]);
         event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
@@ -82,8 +81,7 @@ trait WithColumnSelect
         if ($this->allDefaultVisibleColumnsAreSelected() && $this->allSelectedColumnsAreVisibleByDefault()) {
             $this->selectAllColumns();
         } else {
-            $this->{$this->tableName}['columns'] = $this->selectedColumns;
-            session([$this->getColumnSelectSessionKey() => $this->{$this->tableName}['columns']]);
+            session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
             event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
         }
     }

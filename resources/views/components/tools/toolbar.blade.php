@@ -1,16 +1,12 @@
 @aware(['component'])
 
-@php
-    $theme = $component->getTheme();
-@endphp
-
 @if ($component->hasConfigurableAreaFor('before-toolbar'))
     @include(
         $component->getConfigurableAreaFor('before-toolbar'),
         $component->getParametersForConfigurableArea('before-toolbar'))
 @endif
 
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <div class="md:flex md:justify-between mb-4 px-4 md:p-0">
         <div class="w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2">
             @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
@@ -34,12 +30,12 @@
 
             @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
                 <div class="flex rounded-md shadow-sm">
-                    <input wire:model{{ $component->getSearchOptions() }}="{{ $component->getTableName() }}.search"
+                    <input wire:model{{ $component->getSearchOptions() }}="search"
                         placeholder="{{ __('Search') }}" type="text"
                         class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if ($component->hasSearch()) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif" />
 
                     @if ($component->hasSearch())
-                        <span wire:click.prevent="clearSearch"
+                        <span wire:click="clearSearch"
                             class="inline-flex items-center px-3 text-gray-500 bg-gray-50 rounded-r-md border border-l-0 border-gray-300 cursor-pointer sm:text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -213,13 +209,8 @@
                                             class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait">
                                             <input
                                                 class="text-indigo-600 transition duration-150 ease-in-out border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
-                                                @if ($component->allDefaultVisibleColumnsAreSelected()) checked
-                                                    wire:click="deselectAllColumns"
-                                                @else
-                                                    unchecked
-                                                    wire:click="selectAllColumns" @endif
-                                                wire:loading.attr="disabled" type="checkbox" />
-                                            <span class="ml-2">{{ __('All Columns') }}</span>
+                                                wire:loading.attr="disabled" type="checkbox" @if($component->allDefaultVisibleColumnsAreSelected()) checked wire:click="deselectAllColumns"  @else unchecked wire:click="selectAllColumns" @endif>
+                                                <span class="ml-2">{{ __('All Columns') }}</span>
                                         </label>
                                     </div>
                                     @foreach ($component->getColumns() as $column)
@@ -230,7 +221,7 @@
                                                     class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait">
                                                     <input
                                                         class="text-indigo-600 rounded border-gray-300 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
-                                                        wire:model="selectedColumns" wire:target="selectedColumns"
+                                                        wire:model.live="selectedColumns" wire:target="selectedColumns"
                                                         wire:loading.attr="disabled" type="checkbox"
                                                         value="{{ $column->getSlug() }}" />
                                                     <span class="ml-2">{{ $column->getTitle() }}</span>
@@ -301,9 +292,16 @@
             @endforeach
         </div>
     @endif
-@elseif ($theme === 'bootstrap-4')
-    <div class="d-md-flex justify-content-between mb-3">
-        <div class="d-md-flex">
+@elseif ($component->isBootstrap())
+    <div @class([
+            'd-md-flex justify-content-between mb-3' => $component->isBootstrap(),
+        ])
+    >
+        <div
+            @class([
+                'd-md-flex' => $component->isBootstrap(),
+            ])
+        >
             @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
                 @include(
                     $component->getConfigurableAreaFor('toolbar-left-start'),
@@ -311,10 +309,19 @@
             @endif
 
             @if ($component->reorderIsEnabled())
-                <div class="mr-0 mr-md-2 mb-3 mb-md-0">
+                <div
+                    @class([
+                        'mr-0 mr-md-2 mb-3 mb-md-0' => $component->isBootstrap4(),
+                        'me-0 me-md-2 mb-3 mb-md-0' => $component->isBootstrap5()
+                    ])
+                >
                     <button
                         wire:click="{{ $component->currentlyReorderingIsEnabled() ? 'disableReordering' : 'enableReordering' }}"
-                        type="button" class="btn btn-default d-block w-100 d-md-inline">
+                        type="button"
+                        @class([
+                            'btn btn-default d-block w-100 d-md-inline' => $component->isBootstrap(),
+                        ])
+                    >
                         @if ($component->currentlyReorderingIsEnabled())
                             @lang('Done Reordering')
                         @else
@@ -325,14 +332,30 @@
             @endif
 
             @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
-                <div class="mb-3 mb-md-0 input-group">
-                    <input wire:model{{ $component->getSearchOptions() }}="{{ $component->getTableName() }}.search"
-                        placeholder="{{ __('Search') }}" type="text" class="form-control">
+                <div
+                    @class([
+                            'mb-3 mb-md-0 input-group' => $component->isBootstrap(),
+                    ])
+                >
+                    <input wire:model{{ $component->getSearchOptions() }}="search"
+                        placeholder="{{ __('Search') }}" type="text"
+                        @class([
+                            'form-control' => $component->isBootstrap(),
+                        ])
+                    >
 
                     @if ($component->hasSearch())
-                        <div class="input-group-append">
-                            <button wire:click.prevent="clearSearch" class="btn btn-outline-secondary"
-                                type="button">
+                        <div
+                            @class([
+                                'input-group-append' => $component->isBootstrap(),
+                            ])
+                        >
+                            <button wire:click="clearSearch"
+                                type="button"
+                                @class([
+                                    'btn btn-outline-secondary' => $component->isBootstrap(),
+                                ])
+                            >
                                 <svg style="width:.75em;height:.75em" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -345,13 +368,25 @@
             @endif
 
             @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
-                <div class="ml-0 ml-md-2 mb-3 mb-md-0">
+                <div
+                    @class([
+                        'ml-0 ml-md-2 mb-3 mb-md-0' => $component->isBootstrap4(),
+                        'ms-0 ms-md-2 mb-3 mb-md-0' => $component->isBootstrap5() && $component->searchIsEnabled(),
+                        'mb-3 mb-md-0' => $component->isBootstrap5() && !$component->searchIsEnabled(),
+                    ])
+                >
                     <div @if ($component->isFilterLayoutPopover()) x-data="{ open: false, childElementOpen: false  }"
                             x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
                             x-on:mousedown.away="if (!childElementOpen) { open = false }" @endif
-                        class="btn-group d-block d-md-inline">
+                        @class([
+                                'btn-group d-block d-md-inline' => $component->isBootstrap(),
+                        ])
+                    >
                         <div>
-                            <button type="button" class="btn dropdown-toggle d-block w-100 d-md-inline"
+                            <button type="button"
+                                @class([
+                                    'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
+                                ])
                                 @if ($component->isFilterLayoutPopover()) x-on:click="open = !open"
                                     aria-haspopup="true"
                                     x-bind:aria-expanded="open"
@@ -360,31 +395,55 @@
                                 @lang('Filters')
 
                                 @if ($count = $component->getFilterBadgeCount())
-                                    <span class="badge badge-info">
+                                    <span
+                                        @class([
+                                            'badge badge-info' => $component->isBootstrap(),
+                                        ])
+                                    >
                                         {{ $count }}
                                     </span>
                                 @endif
 
-                                <span class="caret"></span>
+                                <span
+                                    @class([
+                                        'caret' => $component->isBootstrap(),
+                                    ])
+                                ></span>
                             </button>
                         </div>
 
                         @if ($component->isFilterLayoutPopover())
-                            <ul x-cloak class="dropdown-menu w-100 mt-md-5" x-bind:class="{ 'show': open }"
+                            <ul x-cloak
+                                @class([
+                                        'dropdown-menu w-100 mt-md-5' => $component->isBootstrap4(),
+                                        'dropdown-menu w-100' => $component->isBootstrap5(),
+                                ])
+                                x-bind:class="{ 'show': open }"
                                 role="menu">
                                 @foreach ($component->getVisibleFilters() as $filter)
                                     <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                        class="p-2"
-                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
+                                        @class([
+                                            'p-2' => $component->isBootstrap(),
+                                        ])
+                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper"
+                                    >
                                         {{ $filter->render($component) }}
                                     </div>
                                 @endforeach
 
                                 @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
-                                    <div class="dropdown-divider"></div>
+                                    <div
+                                        @class([
+                                                'dropdown-divider' => $component->isBootstrap(),
+                                        ])
+                                    ></div>
 
                                     <button wire:click.prevent="setFilterDefaults" x-on:click="open = false"
-                                        class="dropdown-item btn text-center">
+                                        @class([
+                                            'dropdown-item btn text-center' => $component->isBootstrap4(),
+                                            'dropdown-item text-center' => $component->isBootstrap5(),
+                                        ])
+                                    >
                                         @lang('Clear')
                                     </button>
                                 @endif
@@ -401,7 +460,11 @@
             @endif
         </div>
 
-        <div class="d-md-flex">
+        <div
+            @class([
+                'd-md-flex' => $component->isBootstrap(),
+            ])
+         >
             @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
                 @include(
                     $component->getConfigurableAreaFor('toolbar-right-start'),
@@ -409,20 +472,39 @@
             @endif
 
             @if ($component->showBulkActionsDropdownAlpine())
-                <div x-cloak x-show="(selectedItems.length > 0 || alwaysShowBulkActions)" class="mb-3 mb-md-0">
-                    <div class="dropdown d-block d-md-inline">
-                        <button class="btn dropdown-toggle d-block w-100 d-md-inline" type="button"
+                <div x-cloak x-show="(selectedItems.length > 0 || alwaysShowBulkActions)"
+                    @class([
+                        'mb-3 mb-md-0' => $component->isBootstrap(),
+                    ])
+                >
+                    <div
+                        @class([
+                            'dropdown d-block d-md-inline' => $component->isBootstrap(),
+                        ])
+                    >
+                        <button
+                            @class([
+                                'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
+                            ])
+                            type="button"
                             id="{{ $component->getTableName() }}-bulkActionsDropdown" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             @lang('Bulk Actions')
                         </button>
 
-                        <div class="dropdown-menu dropdown-menu-right w-100"
+                        <div
+                            @class([
+                                'dropdown-menu dropdown-menu-right w-100' => $component->isBootstrap4(),
+                                'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5(),
+                            ])
                             aria-labelledby="{{ $component->getTableName() }}-bulkActionsDropdown">
                             @foreach ($component->getBulkActions() as $action => $title)
                                 <a href="#" wire:click="{{ $action }}"
                                     wire:key="bulk-action-{{ $action }}-{{ $component->getTableName() }}"
-                                    class="dropdown-item">
+                                    @class([
+                                        'dropdown-item' => $component->isBootstrap(),
+                                    ])
+                                >
                                     {{ $title }}
                                 </a>
                             @endforeach
@@ -433,43 +515,98 @@
 
             @if ($component->columnSelectIsEnabled())
                 <div
-                    class="@if ($component->getColumnSelectIsHiddenOnMobile()) d-none d-sm-block @elseif ($component->getColumnSelectIsHiddenOnTablet()) d-none d-md-block @endif mb-3 mb-md-0 pl-0 pl-md-2">
+                    @class([
+                        'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $component->isBootstrap4(),
+                        'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $component->isBootstrap4(),
+                        'd-none d-sm-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $component->isBootstrap5(),
+                        'd-none d-md-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $component->isBootstrap5(),
+                    ])
+                >
                     <div x-data="{ open: false, childElementOpen: false }" x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
                         x-on:mousedown.away="if (!childElementOpen) { open = false }"
-                        class="dropdown d-block d-md-inline"
+                        @class([
+                            'dropdown d-block d-md-inline' => $component->isBootstrap(),
+                        ])
                         wire:key="column-select-button-{{ $component->getTableName() }}">
-                        <button x-on:click="open = !open" class="btn dropdown-toggle d-block w-100 d-md-inline"
+                        <button x-on:click="open = !open"
+                            @class([
+                                'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
+                            ])
                             type="button" id="columnSelect-{{ $component->getTableName() }}" aria-haspopup="true"
                             x-bind:aria-expanded="open">
                             @lang('Columns')
                         </button>
 
-                        <div class="dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3"
+                        <div
+                            @class([
+                                'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $component->isBootstrap4(),
+                                'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5(),
+                            ])
                             x-bind:class="{ 'show': open }"
-                            aria-labelledby="columnSelect-{{ $component->getTableName() }}">
+                            aria-labelledby="columnSelect-{{ $component->getTableName() }}"
+                        >
+
+                            @if($component->isBootstrap4())
                             <div>
                                 <label wire:loading.attr="disabled" class="px-2 mb-1">
                                     <input
-                                        @if ($component->allDefaultVisibleColumnsAreSelected()) checked
-                                            wire:click="deselectAllColumns"
-                                        @else
-                                            unchecked
-                                            wire:click="selectAllColumns" @endif
-                                        wire:loading.attr="disabled" type="checkbox" />
+                                        wire:loading.attr="disabled" type="checkbox" @if($component->allDefaultVisibleColumnsAreSelected()) checked wire:click="deselectAllColumns"  @else unchecked wire:click="selectAllColumns" @endif />
                                     <span class="ml-2">{{ __('All Columns') }}</span>
                                 </label>
                             </div>
+                            @elseif($component->isBootstrap5())
+                            <div class="form-check ms-2">
+                                <input
+                                    wire:loading.attr="disabled"
+                                    type="checkbox"
+                                    class="form-check-input"
+                                    @if($component->allDefaultVisibleColumnsAreSelected()) checked wire:click="deselectAllColumns"  @else unchecked wire:click="selectAllColumns" @endif
+                                />
+                                <label wire:loading.attr="disabled" class="form-check-label">
+                                    {{ __('All Columns') }}
+                                </label>
+                            </div>
+                            @endif
+
                             @foreach ($component->getColumns() as $column)
                                 @if ($column->isVisible() && $column->isSelectable())
-                                    <div
-                                        wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}">
-                                        <label wire:loading.attr="disabled" wire:target="selectedColumns"
-                                            class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}">
-                                            <input wire:model="selectedColumns" wire:target="selectedColumns"
+                                    <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}"
+                                        @class([
+                                            'form-check ms-2' => $component->isBootstrap5(),
+                                        ])
+                                    >
+                                        @if ($component->isBootstrap4())
+                                        <label
+                                            wire:loading.attr="disabled"
+                                            wire:target="selectedColumns"
+                                            class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}"
+                                        >
+                                            <input wire:model.live="selectedColumns"
+                                                wire:target="selectedColumns"
                                                 wire:loading.attr="disabled" type="checkbox"
-                                                value="{{ $column->getSlug() }}" />
-                                            <span class="ml-2">{{ $column->getTitle() }}</span>
+                                                value="{{ $column->getSlug() }}"
+                                            />
+                                            <span class="ml-2">
+                                                {{ $column->getTitle() }}
+                                            </span>
                                         </label>
+                                        @elseif($component->isBootstrap5())
+                                            <input
+                                                wire:model.live="selectedColumns"
+                                                wire:target="selectedColumns"
+                                                wire:loading.attr="disabled"
+                                                type="checkbox"
+                                                class="form-check-input"
+                                                value="{{ $column->getSlug() }}"
+                                             />
+                                            <label
+                                                wire:loading.attr="disabled"
+                                                wire:target="selectedColumns"
+                                                class="{{ $loop->last ? 'mb-0' : 'mb-1' }} form-check-label"
+                                            >
+                                                {{ $column->getTitle() }}
+                                            </label>
+                                        @endif
                                     </div>
                                 @endif
                             @endforeach
@@ -479,8 +616,18 @@
             @endif
 
             @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
-                <div class="ml-0 ml-md-2">
-                    <select wire:model="perPage" id="perPage" class="form-control">
+                <div
+                    @class([
+                        'ml-0 ml-md-2' => $component->isBootstrap4(),
+                        'ms-0 ms-md-2' => $component->isBootstrap5(),
+                    ])
+                >
+                    <select wire:model="perPage" id="perPage"
+                        @class([
+                            'form-control' => $component->isBootstrap4(),
+                            'form-select' => $component->isBootstrap5(),
+                        ])
+                    >
                         @foreach ($component->getPerPageAccepted() as $item)
                             <option value="{{ $item }}"
                                 wire:key="per-page-{{ $item }}-{{ $component->getTableName() }}">
@@ -504,9 +651,18 @@
             $component->hasVisibleFilters() &&
             $component->isFilterLayoutSlideDown())
         <div x-cloak x-show="filtersOpen">
-            <div class="container">
+            <div
+                @class([
+                    'container' => $component->isBootstrap(),
+                ])
+            >
                 @foreach ($component->getFiltersByRow() as $filterRowIndex => $filterRow)
-                    <div class="row col-12" row="{{ $filterRowIndex }}">
+                    <div
+                        @class([
+                            'row col-12' => $component->isBootstrap(),
+                        ])
+                        row="{{ $filterRowIndex }}"
+                    >
                         @foreach ($filterRow as $filter)
                             <div @class([
                                 'space-y-1 mb-4',
@@ -524,232 +680,6 @@
                                 id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
                                 {{ $filter->render($component) }}
                             </div>
-                        @endforeach
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endif
-@elseif ($theme === 'bootstrap-5')
-    <div class="d-md-flex justify-content-between mb-3">
-        <div class="d-md-flex">
-            @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
-                @include(
-                    $component->getConfigurableAreaFor('toolbar-left-start'),
-                    $component->getParametersForConfigurableArea('toolbar-left-start'))
-            @endif
-
-            @if ($component->reorderIsEnabled())
-                <div class="me-0 me-md-2 mb-3 mb-md-0">
-                    <button
-                        wire:click="{{ $component->currentlyReorderingIsEnabled() ? 'disableReordering' : 'enableReordering' }}"
-                        type="button" class="btn btn-default d-block w-100 d-md-inline">
-                        @if ($component->currentlyReorderingIsEnabled())
-                            @lang('Done Reordering')
-                        @else
-                            @lang('Reorder')
-                        @endif
-                    </button>
-                </div>
-            @endif
-
-            @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
-                <div class="mb-3 mb-md-0 input-group">
-                    <input wire:model{{ $component->getSearchOptions() }}="{{ $component->getTableName() }}.search"
-                        placeholder="{{ __('Search') }}" type="text" class="form-control">
-
-                    @if ($component->hasSearch())
-                        <button wire:click.prevent="clearSearch" class="btn btn-outline-secondary" type="button">
-                            <svg style="width:.75em;height:.75em" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    @endif
-                </div>
-            @endif
-
-            @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
-                <div class="{{ $component->searchIsEnabled() ? 'ms-0 ms-md-2' : '' }} mb-3 mb-md-0">
-                    <div @if ($component->isFilterLayoutPopover()) x-data="{ open: false, childElementOpen: false  }"
-                            x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
-                            x-on:mousedown.away="if (!childElementOpen) { open = false }" @endif
-                        class="btn-group d-block d-md-inline">
-                        <div>
-                            <button type="button" class="btn dropdown-toggle d-block w-100 d-md-inline"
-                                @if ($component->isFilterLayoutPopover()) x-on:click="open = !open"
-                                    aria-haspopup="true"
-                                    x-bind:aria-expanded="open"
-                                    aria-expanded="true" @endif
-                                @if ($component->isFilterLayoutSlideDown()) x-on:click="filtersOpen = !filtersOpen" @endif>
-                                @lang('Filters')
-
-                                @if ($count = $component->getFilterBadgeCount())
-                                    <span class="badge bg-info">
-                                        {{ $count }}
-                                    </span>
-                                @endif
-
-                                <span class="caret"></span>
-                            </button>
-                        </div>
-
-                        @if ($component->isFilterLayoutPopover())
-                            <ul x-cloak class="dropdown-menu w-100" x-bind:class="{ 'show': open }" role="menu">
-                                @foreach ($component->getVisibleFilters() as $filter)
-                                    <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
-                                        class="p-2"
-                                        id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
-                                        {{ $filter->render($component) }}
-                                    </div>
-                                @endforeach
-
-                                @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
-                                    <div class="dropdown-divider"></div>
-
-                                    <button wire:click.prevent="setFilterDefaults" x-on:click="open = false"
-                                        class="dropdown-item text-center">
-                                        @lang('Clear')
-                                    </button>
-                                @endif
-                            </ul>
-                        @endif
-                    </div>
-                </div>
-            @endif
-
-            @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
-                @include(
-                    $component->getConfigurableAreaFor('toolbar-left-end'),
-                    $component->getParametersForConfigurableArea('toolbar-left-end'))
-            @endif
-        </div>
-
-        <div class="d-md-flex">
-            @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
-                @include(
-                    $component->getConfigurableAreaFor('toolbar-right-start'),
-                    $component->getParametersForConfigurableArea('toolbar-right-start'))
-            @endif
-
-            @if ($component->showBulkActionsDropdownAlpine())
-                <div x-cloak x-show="(selectedItems.length > 0 || alwaysShowBulkActions)" class="mb-3 mb-md-0">
-                    <div class="dropdown d-block d-md-inline">
-                        <button class="btn dropdown-toggle d-block w-100 d-md-inline" type="button"
-                            id="{{ $component->getTableName() }}-bulkActionsDropdown" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            @lang('Bulk Actions')
-                        </button>
-
-                        <div class="dropdown-menu dropdown-menu-end w-100"
-                            aria-labelledby="{{ $component->getTableName() }}-bulkActionsDropdown">
-                            @foreach ($component->getBulkActions() as $action => $title)
-                                <a href="#" wire:click.prevent="{{ $action }}"
-                                    wire:key="bulk-action-{{ $action }}-{{ $component->getTableName() }}"
-                                    class="dropdown-item">
-                                    {{ $title }}
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            @if ($component->columnSelectIsEnabled())
-                <div
-                    class="@if ($component->getColumnSelectIsHiddenOnMobile()) d-none d-sm-block @elseif ($component->getColumnSelectIsHiddenOnTablet()) d-none d-md-block @endif mb-3 mb-md-0 md-0 ms-md-2">
-                    <div x-data="{ open: false, childElementOpen: false }" x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
-                        x-on:mousedown.away="if (!childElementOpen) { open = false }"
-                        class="dropdown d-block d-md-inline"
-                        wire:key="column-select-button-{{ $component->getTableName() }}">
-                        <button x-on:click="open = !open" class="btn dropdown-toggle d-block w-100 d-md-inline"
-                            type="button" id="columnSelect-{{ $component->getTableName() }}" aria-haspopup="true"
-                            x-bind:aria-expanded="open">
-                            @lang('Columns')
-                        </button>
-
-                        <div class="dropdown-menu dropdown-menu-end w-100" x-bind:class="{ 'show': open }"
-                            aria-labelledby="columnSelect-{{ $component->getTableName() }}">
-                            <div class="form-check ms-2">
-                                <input
-                                    @if ($component->allDefaultVisibleColumnsAreSelected()) checked
-                                    wire:click="deselectAllColumns"
-                                    @else
-                                        unchecked
-                                    wire:click="selectAllColumns" @endif
-                                    wire:loading.attr="disabled" type="checkbox" class="form-check-input" />
-                                <label wire:loading.attr="disabled" class="form-check-label">
-                                    {{ __('All Columns') }}
-                                </label>
-                            </div>
-                            @foreach ($component->getColumns() as $column)
-                                @if ($column->isVisible() && $column->isSelectable())
-                                    <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}"
-                                        class="form-check ms-2">
-                                        <input wire:model="selectedColumns" wire:target="selectedColumns"
-                                            wire:loading.attr="disabled" type="checkbox" class="form-check-input"
-                                            value="{{ $column->getSlug() }}" />
-                                        <label wire:loading.attr="disabled" wire:target="selectedColumns"
-                                            class="{{ $loop->last ? 'mb-0' : 'mb-1' }} form-check-label">{{ $column->getTitle() }}</label>
-
-                                        </label>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
-                <div class="ms-0 ms-md-2">
-                    <select wire:model="perPage" id="perPage" class="form-select">
-                        @foreach ($component->getPerPageAccepted() as $item)
-                            <option value="{{ $item }}"
-                                wire:key="per-page-{{ $item }}-{{ $component->getTableName() }}">
-                                {{ $item === -1 ? __('All') : $item }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            @endif
-
-            @if ($component->hasConfigurableAreaFor('toolbar-right-end'))
-                @include(
-                    $component->getConfigurableAreaFor('toolbar-right-end'),
-                    $component->getParametersForConfigurableArea('toolbar-right-end'))
-            @endif
-        </div>
-    </div>
-
-    @if (
-        $component->filtersAreEnabled() &&
-            $component->filtersVisibilityIsEnabled() &&
-            $component->hasVisibleFilters() &&
-            $component->isFilterLayoutSlideDown())
-        <div x-cloak x-show="filtersOpen">
-            <div class="container">
-                @foreach ($component->getFiltersByRow() as $filterRow)
-                    <div class="row">
-                        @foreach ($filterRow as $filter)
-                            @if ($filter->isVisibleInMenus())
-                                <div @class([
-                                    'space-y-1 col-12 col-span-1 mb-4',
-                                    'col-sm-6 col-md-4 col-lg-3' => !$filter->hasFilterSlidedownColspan(),
-                                    'col-sm-6 col-md-6 col-lg-6' =>
-                                        $filter->hasFilterSlidedownColspan() &&
-                                        $filter->getFilterSlidedownColspan() == 2,
-                                    'col-sm-9 col-md-9 col-lg-9' =>
-                                        $filter->hasFilterSlidedownColspan() &&
-                                        $filter->getFilterSlidedownColspan() == 3,
-                                    'col-sm-12 col-md-12 col-lg-12' =>
-                                        $filter->hasFilterSlidedownColspan() &&
-                                        $filter->getFilterSlidedownColspan() == 4,
-                                ])
-                                    id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
-                                    {{ $filter->render($component) }}
-                                </div>
-                            @endif
                         @endforeach
                     </div>
                 @endforeach

@@ -10,7 +10,7 @@ class SearchConfigurationTest extends TestCase
     /** @test */
     public function can_set_default_search_term(): void
     {
-        $this->assertNull($this->basicTable->getSearch());
+        $this->assertSame('', $this->basicTable->getSearch());
 
         $this->basicTable->setSearch('Anthony');
 
@@ -90,7 +90,7 @@ class SearchConfigurationTest extends TestCase
         $this->basicTable->setSearchDefer();
 
         $this->assertTrue($this->basicTable->hasSearchDefer());
-        $this->assertSame('.defer', $this->basicTable->getSearchOptions());
+        $this->assertSame('', $this->basicTable->getSearchOptions());
     }
 
     /** @test */
@@ -119,6 +119,26 @@ class SearchConfigurationTest extends TestCase
         $this->expectException(DataTableConfigurationException::class);
 
         $this->basicTable->setSearchLazy();
+        $this->basicTable->setSearchDebounce(1000);
+    }
+
+    /** @test */
+    public function can_set_search_live(): void
+    {
+        $this->assertFalse($this->basicTable->hasSearchLive());
+
+        $this->basicTable->setSearchLive();
+
+        $this->assertTrue($this->basicTable->hasSearchLive());
+        $this->assertSame('.live', $this->basicTable->getSearchOptions());
+    }
+
+    /** @test */
+    public function cant_set_search_live_with_other_search_modifiers(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $this->basicTable->setSearchLive();
         $this->basicTable->setSearchDebounce(1000);
     }
 }

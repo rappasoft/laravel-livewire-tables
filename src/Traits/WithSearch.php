@@ -11,7 +11,7 @@ trait WithSearch
     use SearchConfiguration,
         SearchHelpers;
 
-    public ?string $search = null;
+    public string $search = '';
 
     public bool $searchStatus = true;
 
@@ -22,6 +22,8 @@ trait WithSearch
     public ?bool $searchFilterDefer = null;
 
     public ?bool $searchFilterLazy = null;
+
+    public ?bool $searchFilterLive = null;
 
     // TODO
     public function applySearch(): Builder
