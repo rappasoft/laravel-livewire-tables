@@ -9,7 +9,7 @@ class ColumnSelectConfigurationTest extends TestCase
     /** @test */
     public function variables_are_correct_types(): void
     {
-        $this->assertIsArray($this->basicTable->columnSelectselectedColumns);
+        $this->assertIsArray($this->basicTable->selectedColumns);
     }
 
     /** @test */
