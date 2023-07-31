@@ -15,7 +15,7 @@ class BulkActionsConfigurationTest extends TestCase
         $this->assertIsArray($this->basicTable->bulkActions);
         $this->assertIsArray($this->basicTable->selected);
     }
-    
+
     /** @test */
     public function can_set_bulk_actions_status(): void
     {
