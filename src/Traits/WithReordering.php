@@ -16,6 +16,8 @@ trait WithReordering
 
     public bool $hideReorderColumnUnlessReorderingStatus = false;
 
+    public bool $reorderCurrentPageOnly = false;
+
     public string $reorderMethod = 'reorder';
 
     public string $defaultReorderColumn = 'sort';
