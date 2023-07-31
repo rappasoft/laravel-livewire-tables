@@ -11,8 +11,7 @@
     @endif
     <div @class([
             'rounded-md shadow-sm' => $component->isTailwind(),
-            'inline' => $component->isBootstrap4(),
-            'inline' => $component->isBootstrap5(),
+            'inline' => $component->isBootstrap(),
         ])
     >
         <select

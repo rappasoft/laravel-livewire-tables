@@ -1,7 +1,6 @@
 @aware(['component'])
 @props(['rows'])
 
-
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getFooterTrAttributes($rows)"
     wire:key="footer-{{ $this->getTableName() }}"

@@ -9,6 +9,7 @@
     @elseif(!$filter->hasCustomPosition())
         <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
+
     @if ($component->isTailwind())
         <div class="rounded-md">
             <div>
@@ -17,7 +18,6 @@
                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-select-all"
                     wire:input="selectAllFilterOptions('{{ $filter->getKey() }}')"
                     {{ count($component->getAppliedFilterWithValue($filter->getKey()) ?? []) === count($filter->getOptions()) ? 'checked' : ''}}
-
                     class="text-indigo-600 rounded border-gray-300 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
                 >
                 <label for="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif-select-all" class="dark:text-white">@lang('All')</label>

@@ -7,15 +7,14 @@
 @endphp
 
 <tr
+    x-on:dragstart.self="dragStart(event)"
+    x-on:drop="dropEvent"
+    x-on:drop.prevent="dropPreventEvent"
+    x-on:dragover.prevent="removing = true"
+    x-on:dragleave.prevent="removing = false"
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
-        id="{{ $component->getTableName() .'-row-'.$row->{$this->getPrimaryKey()} }}"
-        
-        draggable="true"
-        x-on:dragstart.self="dragStart(event)"
-        x-on:drop="dropEvent"
-        x-on:drop.prevent="dropPreventEvent"
-        x-on:dragover.prevent="removing = true"
-        x-on:dragleave.prevent="removing = false"
+    id="{{ $component->getTableName() .'-row-'.$row->{$this->getPrimaryKey()} }}"
+    draggable="true"
 
     @class([
         'bg-white dark:bg-gray-700 dark:text-white' => ($component->isTailwind() &&
