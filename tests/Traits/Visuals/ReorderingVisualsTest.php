@@ -95,14 +95,14 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('sortingPillsStatus', true)
             ->call('sortBy', 'id')
-            ->assertSeeHtml('wire:key="sorting-pill-id"')
+            ->assertSeeHtml('wire:key="sorting-pill-id-table"')
             ->call('enableReordering')
             ->assertSet('sortingPillsStatus', false)
-            ->assertDontSeeHtml('wire:key="sorting-pill-id"')
+            ->assertDontSeeHtml('wire:key="sorting-pill-id-table"')
             ->call('disableReordering')
             ->call('sortBy', 'id')
             ->assertSet('sortingPillsStatus', true)
-            ->assertSeeHtml('wire:key="sorting-pill-id"');
+            ->assertSeeHtml('wire:key="sorting-pill-id-table"');
     }
 
     /**
