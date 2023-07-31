@@ -5,14 +5,12 @@
         <div
             @class([
                 'mb-4 px-4 md:p-0' => $component->isTailwind(),
-                'mb-3' => $component->isBootstrap4(),
-                'mb-3' => $component->isBootstrap5(),
+                'mb-3' => $component->isBootstrap(),
             ])
         >
             <small @class([
                     'text-gray-700 dark:text-white' => $component->isTailwind(),
-                    '' =>  $component->isBootstrap4(),
-                    '' =>  $component->isBootstrap5(),
+                    '' =>  $component->isBootstrap(),
                 ])
             >
                 @lang('Applied Filters'):
@@ -23,9 +21,11 @@
 
                 @continue(is_null($filter))
                 @continue($filter->isHiddenFromPills())
+
                 @if ($filter->hasCustomPillBlade())
                     @include($filter->getCustomPillBlade(), ['filter' => $filter])
                 @else
+
                 <span
                     wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
                     @class([
@@ -46,7 +46,6 @@
                                     <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
                                 </svg>
                         </button>
-
                     @else
                         <a
                             href="#"
@@ -70,6 +69,7 @@
                 </span>
                 @endif
             @endforeach
+
             @if ($component->isTailwind())
                 <button
                     wire:click.prevent="setFilterDefaults"

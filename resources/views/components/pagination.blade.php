@@ -2,9 +2,7 @@
 @props(['rows'])
 
 @if ($component->hasConfigurableAreaFor('before-pagination'))
-    @include(
-        $component->getConfigurableAreaFor('before-pagination'),
-        $component->getParametersForConfigurableArea('before-pagination'))
+    @include($component->getConfigurableAreaFor('before-pagination'), $component->getParametersForConfigurableArea('before-pagination'))
 @endif
 
 @if ($component->isTailwind())
@@ -133,7 +131,5 @@
 @endif
 
 @if ($component->hasConfigurableAreaFor('after-pagination'))
-    @include(
-        $component->getConfigurableAreaFor('after-pagination'),
-        $component->getParametersForConfigurableArea('after-pagination'))
+    @include($component->getConfigurableAreaFor('after-pagination'), $component->getParametersForConfigurableArea('after-pagination'))
 @endif

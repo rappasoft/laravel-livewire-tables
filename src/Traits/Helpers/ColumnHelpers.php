@@ -165,23 +165,6 @@ trait ColumnHelpers
 
     public function getColspanCount(): int
     {
-        $all = $this->getColumnCount();
-
-        // If Reordering is enabled, but we're hiding the sort column
-        if ($this->reorderIsEnabled() && $this->hideReorderColumnUnlessReorderingIsEnabled()) {
-            $all--;
-        }
-
-        // If reordering is enabled, and we are currently reordering, account for the drag and drop handle
-        if ($this->reorderIsEnabled() && $this->currentlyReorderingIsEnabled()) {
-            $all++;
-        }
-
-        // If bulk actions are enabled, account for the checkbox column
-        if ($this->bulkActionsAreEnabled() && $this->hasBulkActions()) {
-            $all++;
-        }
-
-        return $all;
+        return 100;
     }
 }

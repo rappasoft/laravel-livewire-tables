@@ -9,7 +9,8 @@
     @elseif(!$filter->hasCustomPosition())
         <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
-        @if ($component->isTailwind())
+
+    @if ($component->isTailwind())
         <div class="rounded-md shadow-sm">
             <select multiple
                 wire:model.live.debounce.250ms="filterComponents.{{ $filter->getKey() }}"
