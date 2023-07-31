@@ -67,7 +67,7 @@
                 </tr>
             </thead>
 
-            <tbody wire:key="{{ $component->getTableName() }}-tbody"
+            <tbody id="{{ $component->getTableName() }}-tbody"
                 {{
                     $attributes->merge($customAttributes['tbody'])
                         ->class(['' => $customAttributes['tbody']['default'] ?? true])
