@@ -97,6 +97,10 @@ class RappasoftFrontendAssets
                 background-color: white;
             }
 
+            .laravel-livewire-table-dragging {
+                opacity: 0.5 !important;
+            }
+
         </style>
         HTML;
 
