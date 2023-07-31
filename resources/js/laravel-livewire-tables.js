@@ -93,10 +93,15 @@ document.addEventListener('alpine:init', () => {
             var newPosition = target.rowIndex;
             var table = document.getElementById(tableID);
             var loopStart = originalPosition;
+            if (event.offsetY > (target.getBoundingClientRect().height / 2)) {
+                parent.insertBefore(element, target.nextSibling);
+            }
+            else {
+                parent.insertBefore(element, target);
+            }
             if (newPosition < originalPosition) {
                 loopStart = newPosition;
             }
-            parent.insertBefore(element, target.nextSibling);
             var nextLoop = 'even';
             this.orderedRows = [];
             for (var i = 2, row; row = table.rows[i]; i++) {
