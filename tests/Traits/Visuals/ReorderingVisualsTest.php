@@ -154,13 +154,13 @@ class ReorderingVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->assertSet('perPageVisibilityStatus', true)
-            ->assertSeeHtml('wire:model="perPage"')
+            ->assertSeeHtml('wire:model.live="perPage"')
             ->call('enableReordering')
             ->assertSet('perPageVisibilityStatus', false)
-            ->assertDontSeeHtml('wire:model="perPage"')
+            ->assertDontSeeHtml('wire:model.live="perPage"')
             ->call('disableReordering')
             ->assertSet('perPageVisibilityStatus', true)
-            ->assertSeeHtml('wire:model="perPage"');
+            ->assertSeeHtml('wire:model.live="perPage"');
     }
 
     /** @test */
