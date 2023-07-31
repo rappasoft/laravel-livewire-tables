@@ -7,6 +7,16 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 class BulkActionsConfigurationTest extends TestCase
 {
     /** @test */
+    public function variables_are_correct_types(): void
+    {
+        $this->assertIsBool($this->basicTable->bulkActionsStatus);
+        $this->assertIsBool($this->basicTable->selectAll);
+        $this->assertIsBool($this->basicTable->hideBulkActionsWhenEmpty);
+        $this->assertIsArray($this->basicTable->bulkActions);
+        $this->assertIsArray($this->basicTable->selected);
+    }
+
+    /** @test */
     public function can_set_bulk_actions_status(): void
     {
         $this->assertTrue($this->basicTable->getBulkActionsStatus());

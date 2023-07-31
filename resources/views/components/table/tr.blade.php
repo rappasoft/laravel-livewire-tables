@@ -8,11 +8,11 @@
 
 <tr
     rowpk='{{ $row->{$this->getPrimaryKey()} }}'
-    x-on:dragstart.self="dragStart(event)"
-    x-on:drop="dropEvent(event)"
+    x-on:dragstart.self="reorderCurrentStatus && dragStart(event)"
+    x-on:drop="reorderCurrentStatus && dropEvent(event)"
     x-on:drop.prevent="dropPreventEvent(event)"
-    x-on:dragover.prevent="removing = true"
-    x-on:dragleave.prevent="removing = false"
+    x-on:dragover.prevent="reorderCurrentStatus && dragOverEvent(event)"
+    x-on:dragleave.prevent="reorderCurrentStatus && dragLeaveEvent(event)"
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
     id="{{ $component->getTableName() .'-row-'.$row->{$this->getPrimaryKey()} }}"
     draggable="true"

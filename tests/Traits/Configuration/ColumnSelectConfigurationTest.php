@@ -7,6 +7,19 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 class ColumnSelectConfigurationTest extends TestCase
 {
     /** @test */
+    public function variables_are_correct_types(): void
+    {
+        $this->assertIsArray($this->basicTable->selectedColumns);
+    }
+
+    /** @test */
+    public function check_protected_fields_columnSelectStatus(): void
+    {
+        $this->expectException(\Livewire\Exceptions\PropertyNotFoundException::class);
+        $this->assertIsBool($this->basicTable->columnSelectStatus);
+    }
+
+    /** @test */
     public function can_set_column_select_status(): void
     {
         $this->assertTrue($this->basicTable->getColumnSelectStatus());

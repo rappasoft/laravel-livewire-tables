@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
@@ -16,7 +17,7 @@ document.addEventListener('alpine:init', () => {
                 return;
             }
 
-            if (this.paginationTotalItemCount == this.selectedItems.length) {
+            if (this.paginationTotalItemCount === this.selectedItems.length) {
                 this.clearSelected();
             } else {
                 this.setAllSelected();
@@ -64,38 +65,47 @@ document.addEventListener('alpine:init', () => {
     }));
 
 
-    Alpine.data('reorderFunction', (wire, tableID) => ({
+    Alpine.data('reorderFunction', (wire, tableID, primaryKeyName) => ({
         dragging: false,
+        reorderEnabled: false,
         sourceID: '',
         targetID: '',
         evenRowClasses: '',
         oddRowClasses: '',
+        currentlyHighlightedElement: {},
         evenRowClassArray: {},
         oddRowClassArray: {},
         evenNotInOdd: {},
         oddNotInEven: {},
         orderedRows: [],
+        defaultReorderColumn: wire.entangle('defaultReorderColumn'),
         dragStart(event) {
-            dragging = true;
-            sourceID = event.target.id;
+
+            this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
-            event.target.classList.add("laravel-livewire-table-dragging");
-
+            event.target.classList.add("laravel-livewire-tables-dragging");
+        },
+        dragOverEvent(event) {
+            this.currentlyHighlightedElement = event.target.closest('tr');
+            event.target.closest('tr').classList.add('laravel-livewire-tables-highlight');
+        },
+        dragLeaveEvent(event) {
+            event.target.closest('tr').classList.remove('laravel-livewire-tables-highlight');
         },
         dropEvent(event) {
-            removing = false;
+
         },
         dropPreventEvent(event) {
-            var id = event.dataTransfer.getData('text/plain');
-            var target = event.target.closest('tr');
-            var parent = event.target.closest('tr').parentNode;
-            var element = document.getElementById(id).closest('tr');
+            this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight');
+            let target = event.target.closest('tr');
+            let parent = event.target.closest('tr').parentNode;
+            let element = document.getElementById(this.sourceID).closest('tr');
             element.classList.remove("laravel-livewire-table-dragging");
-            var originalPosition = element.rowIndex;
-            var newPosition = target.rowIndex;
-            var table = document.getElementById(tableID);
-            var loopStart = originalPosition;
+            let originalPosition = element.rowIndex;
+            let newPosition = target.rowIndex;
+            let table = document.getElementById(tableID);
+            let loopStart = originalPosition;
             if (event.offsetY > (target.getBoundingClientRect().height / 2)) {
                 parent.insertBefore(element, target.nextSibling);
             }
@@ -105,12 +115,12 @@ document.addEventListener('alpine:init', () => {
             if (newPosition < originalPosition) {
                 loopStart = newPosition;
             }
-            var nextLoop = 'even';
+            let nextLoop = 'even';
             this.orderedRows = [];
-            for (var i = 2, row; row = table.rows[i]; i++) {
+            for (let i = 2, row; row = table.rows[i]; i++) {
                 if (!row.classList.contains('hidden')) {
-                    this.orderedRows.push(row.getAttribute('rowpk'));
-                    if (nextLoop == 'even') {
+                    this.orderedRows.push({ [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
+                    if (nextLoop === 'even') {
                         row.classList.remove(...this.oddNotInEven);
                         row.classList.add(...this.evenNotInOdd);
                         nextLoop = 'odd';
@@ -127,13 +137,12 @@ document.addEventListener('alpine:init', () => {
             wire.set('orderedItems', this.orderedRows);
         },
         init() {
-            var table = document.getElementById(tableID);
-            var tbody = table.getElementsByTagName('tbody')[0];
+            let table = document.getElementById(tableID);
+            let tbody = table.getElementsByTagName('tbody')[0];
             const evenRowClassArray = Array.from(tbody.rows[4].classList);
             const oddRowClassArray = Array.from(tbody.rows[6].classList);
             this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
             this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
-
         }
     }));
 
