@@ -60,6 +60,10 @@ trait WithData
             if ($this->isPaginationMethod('simple')) {
                 return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
             }
+
+            if ($this->isPaginationMethod('cursor')) {
+                return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+            }
         }
 
         return $this->getBuilder()->get();

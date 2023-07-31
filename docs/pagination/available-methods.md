@@ -173,6 +173,15 @@ public function configure(): void
 }
 ```
 
+You may specify `cursorPaginate` like so:
+
+```php
+public function configure(): void
+{
+    $this->setPaginationMethod('cursor');
+}
+```
+
 ## getPerPageDisplayedItemIds
 
 Returns the Primary Key for the currently visible rows in an array.  This should be used in a blade to ensure accuracy.
