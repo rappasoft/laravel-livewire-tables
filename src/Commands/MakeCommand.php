@@ -142,11 +142,11 @@ class MakeCommand extends Command
             throw new \Exception('Invalid model given.');
         }
 
-        $getFillable = array_merge(
-            [$model->getKeyName()],
-            $model->getFillable(),
-            ['created_at', 'updated_at']
-        );
+        $getFillable = [
+            ...[$model->getKeyName()],
+            ...$model->getFillable(),
+            ...['created_at', 'updated_at'],
+        ];
 
         $columns = "[\n";
 

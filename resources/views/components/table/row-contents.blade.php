@@ -21,7 +21,7 @@
     @endphp
 
     <tr
-        wire:key="row-{{ $rowIndex }}-collapsed-contents"
+        wire:key="{{ $component->getTableName() }}-row-{{ $rowIndex }}-collapsed-contents"
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
         x-data
         @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('hidden') : null"

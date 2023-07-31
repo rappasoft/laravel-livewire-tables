@@ -95,14 +95,14 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('sortingPillsStatus', true)
             ->call('sortBy', 'id')
-            ->assertSeeHtml('wire:key="sorting-pill-id"')
+            ->assertSeeHtml('wire:key="sorting-pill-id-table"')
             ->call('enableReordering')
             ->assertSet('sortingPillsStatus', false)
-            ->assertDontSeeHtml('wire:key="sorting-pill-id"')
+            ->assertDontSeeHtml('wire:key="sorting-pill-id-table"')
             ->call('disableReordering')
             ->call('sortBy', 'id')
             ->assertSet('sortingPillsStatus', true)
-            ->assertSeeHtml('wire:key="sorting-pill-id"');
+            ->assertSeeHtml('wire:key="sorting-pill-id-table"');
     }
 
     /**
@@ -154,13 +154,13 @@ class ReorderingVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->assertSet('perPageVisibilityStatus', true)
-            ->assertSeeHtml('wire:model="perPage"')
+            ->assertSeeHtml('wire:model.live="perPage"')
             ->call('enableReordering')
             ->assertSet('perPageVisibilityStatus', false)
-            ->assertDontSeeHtml('wire:model="perPage"')
+            ->assertDontSeeHtml('wire:model.live="perPage"')
             ->call('disableReordering')
             ->assertSet('perPageVisibilityStatus', true)
-            ->assertSeeHtml('wire:model="perPage"');
+            ->assertSeeHtml('wire:model.live="perPage"');
     }
 
     /** @test */

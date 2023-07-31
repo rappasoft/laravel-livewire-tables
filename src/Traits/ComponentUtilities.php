@@ -92,15 +92,15 @@ trait ComponentUtilities
      *
      * @return array<mixed>
      */
-    public function queryString(): array
+    protected function queryString(): array
     {
         if ($this->queryStringIsEnabled()) {
             return [
-                $this->getTableName() => ['except' => null, 'as' => $this->getQueryStringAlias()],
-                'appliedFilters' => ['except' => null, 'as' => $this->getQueryStringAlias().'-filters'],
-                'search' => ['except' => null, 'as' => $this->getQueryStringAlias().'-search'],
-                'columns' => ['except' => null, 'as' => $this->getQueryStringAlias().'-columns'],
-                'sorts' => ['except' => null, 'as' => $this->getQueryStringAlias().'-sorts'],
+                $this->getTableName() => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias()],
+                'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
+                'search' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-search'],
+                'columns' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-columns'],
+                'sorts' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-sorts'],
             ];
         }
 

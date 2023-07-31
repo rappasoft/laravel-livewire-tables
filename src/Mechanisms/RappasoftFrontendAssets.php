@@ -37,7 +37,7 @@ class RappasoftFrontendAssets
 
     public function useRappasoftScriptTagAttributes($attributes): void
     {
-        $this->rappasoftScriptTagAttributes = array_merge($this->rappasoftScriptTagAttributes, $attributes);
+        $this->rappasoftScriptTagAttributes = [...$this->rappasoftScriptTagAttributes, ...$attributes];
     }
 
     public function setRappaScriptRoute($callback): void
