@@ -22,7 +22,7 @@ class PaginationVisualsTest extends TestCase
     public function per_page_shows_by_default(): void
     {
         Livewire::test(PetsTable::class)
-            ->assertSeeHtml('wire:model="perPage"');
+            ->assertSeeHtml('wire:model.live="perPage"');
     }
 
     /** @test */
@@ -50,7 +50,7 @@ class PaginationVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->call('setPerPageVisibilityDisabled')
-            ->assertDontSeeHtml('wire:model="perPage"');
+            ->assertDontSeeHtml('wire:model.live="perPage"');
 
     }
 
@@ -59,7 +59,7 @@ class PaginationVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->call('setPaginationDisabled')
-            ->assertDontSeeHtml('wire:model="perPage"');
+            ->assertDontSeeHtml('wire:model.live="perPage"');
     }
 
     /** @test */
