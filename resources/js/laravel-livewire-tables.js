@@ -80,15 +80,18 @@ document.addEventListener('alpine:init', () => {
             sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
+            event.target.classList.add("laravel-livewire-table-dragging");
+
         },
-        dropEvent() {
-            removing = false
+        dropEvent(event) {
+            removing = false;
         },
         dropPreventEvent(event) {
             var id = event.dataTransfer.getData('text/plain');
             var target = event.target.closest('tr');
             var parent = event.target.closest('tr').parentNode;
             var element = document.getElementById(id).closest('tr');
+            element.classList.remove("laravel-livewire-table-dragging");
             var originalPosition = element.rowIndex;
             var newPosition = target.rowIndex;
             var table = document.getElementById(tableID);

@@ -9,8 +9,8 @@
 <tr
     rowpk='{{ $row->{$this->getPrimaryKey()} }}'
     x-on:dragstart.self="dragStart(event)"
-    x-on:drop="dropEvent"
-    x-on:drop.prevent="dropPreventEvent"
+    x-on:drop="dropEvent(event)"
+    x-on:drop.prevent="dropPreventEvent(event)"
     x-on:dragover.prevent="removing = true"
     x-on:dragleave.prevent="removing = false"
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
