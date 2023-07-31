@@ -64,7 +64,7 @@ document.addEventListener('alpine:init', () => {
     }));
 
 
-    Alpine.data('reorderFunction', (wire, tableID) => ({
+    Alpine.data('reorderFunction', (wire, tableID, primaryKeyName) => ({
         dragging: false,
         sourceID: '',
         targetID: '',
@@ -75,6 +75,7 @@ document.addEventListener('alpine:init', () => {
         evenNotInOdd: {},
         oddNotInEven: {},
         orderedRows: [],
+        defaultReorderColumn: wire.entangle('defaultReorderColumn'),
         dragStart(event) {
             dragging = true;
             sourceID = event.target.id;
@@ -109,7 +110,7 @@ document.addEventListener('alpine:init', () => {
             this.orderedRows = [];
             for (var i = 2, row; row = table.rows[i]; i++) {
                 if (!row.classList.contains('hidden')) {
-                    this.orderedRows.push(row.getAttribute('rowpk'));
+                    this.orderedRows.push({ [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
                     if (nextLoop == 'even') {
                         row.classList.remove(...this.oddNotInEven);
                         row.classList.add(...this.evenNotInOdd);
@@ -133,7 +134,6 @@ document.addEventListener('alpine:init', () => {
             const oddRowClassArray = Array.from(tbody.rows[6].classList);
             this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
             this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
-
         }
     }));
 
