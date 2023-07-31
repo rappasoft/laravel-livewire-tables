@@ -27,6 +27,7 @@
                             <span>@lang('to')</span>
                             <span class="font-medium">{{ $rows->lastItem() }}</span>
                         </p>
+                    @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('cursor'))
                     @else
                         <p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
                             @lang('Showing')
@@ -37,7 +38,7 @@
                 </div>
 
                 @if ($component->paginationIsEnabled())
-                    {{ $rows->links('livewire-tables::specific.tailwind.pagination') }}
+                    {{ $rows->links('livewire-tables::specific.tailwind.'.(!$component->isPaginationMethod('standard') ? 'simple-' : '').'pagination') }}
                 @endif
             </div>
         @endif
@@ -64,7 +65,7 @@
             @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('simple'))
                 <div class="row mt-3">
                     <div class="col-12 col-md-6 overflow-auto">
-                        {{ $rows->links('livewire-tables::specific.bootstrap-4.pagination') }}
+                        {{ $rows->links('livewire-tables::specific.bootstrap-4.simple-pagination') }}
                     </div>
 
                     <div class="col-12 col-md-6 text-center text-md-right text-muted">
@@ -72,6 +73,12 @@
                         <strong>{{ $rows->count() ? $rows->firstItem() : 0 }}</strong>
                         <span>@lang('to')</span>
                         <strong>{{ $rows->count() ? $rows->lastItem() : 0 }}</strong>
+                    </div>
+                </div>
+            @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('cursor'))
+                <div class="row mt-3">
+                    <div class="col-12 col-md-6 overflow-auto">
+                        {{ $rows->links('livewire-tables::specific.bootstrap-4.simple-pagination') }}
                     </div>
                 </div>
             @else
@@ -107,7 +114,7 @@
             @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('simple'))
                 <div class="row mt-3">
                     <div class="col-12 col-md-6 overflow-auto">
-                        {{ $rows->links('livewire-tables::specific.bootstrap-4.pagination') }}
+                        {{ $rows->links('livewire-tables::specific.bootstrap-4.simple-pagination') }}
                     </div>
 
                     <div class="col-12 col-md-6 text-center text-md-end text-muted">
@@ -115,6 +122,12 @@
                         <strong>{{ $rows->count() ? $rows->firstItem() : 0 }}</strong>
                         <span>@lang('to')</span>
                         <strong>{{ $rows->count() ? $rows->lastItem() : 0 }}</strong>
+                    </div>
+                </div>
+            @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('cursor'))
+                <div class="row mt-3">
+                    <div class="col-12 col-md-6 overflow-auto">
+                        {{ $rows->links('livewire-tables::specific.bootstrap-4.simple-pagination') }}
                     </div>
                 </div>
             @else
