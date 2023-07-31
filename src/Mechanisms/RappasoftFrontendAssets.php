@@ -89,6 +89,12 @@ class RappasoftFrontendAssets
         <!-- Rappasoft Styles -->
         <style {$nonce}>
 
+            .laravel-livewire-tables-highlight {
+                border-style: solid !important;
+                border-width: 2px !important;
+                border-color: rgb(255 255 255) !important;
+            }
+
             table.laravel-livewire-table tr.bg-indigo {
                 background-color: indigo;
             }

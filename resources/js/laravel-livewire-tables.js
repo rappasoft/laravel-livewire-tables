@@ -66,10 +66,12 @@ document.addEventListener('alpine:init', () => {
 
     Alpine.data('reorderFunction', (wire, tableID, primaryKeyName) => ({
         dragging: false,
+        reorderEnabled: false,
         sourceID: '',
         targetID: '',
         evenRowClasses: '',
         oddRowClasses: '',
+        currentlyHighlightedElement: {},
         evenRowClassArray: {},
         oddRowClassArray: {},
         evenNotInOdd: {},
@@ -78,20 +80,26 @@ document.addEventListener('alpine:init', () => {
         defaultReorderColumn: wire.entangle('defaultReorderColumn'),
         dragStart(event) {
             dragging = true;
-            sourceID = event.target.id;
+            this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
             event.target.classList.add("laravel-livewire-table-dragging");
-
+        },
+        dragOverEvent(event) {
+            this.currentlyHighlightedElement = event.target.closest('tr');
+            event.target.closest('tr').classList.add('laravel-livewire-tables-highlight');
+        },
+        dragLeaveEvent(event) {
+            event.target.closest('tr').classList.remove('laravel-livewire-tables-highlight');
         },
         dropEvent(event) {
             removing = false;
         },
         dropPreventEvent(event) {
-            var id = event.dataTransfer.getData('text/plain');
+            this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight');
             var target = event.target.closest('tr');
             var parent = event.target.closest('tr').parentNode;
-            var element = document.getElementById(id).closest('tr');
+            var element = document.getElementById(this.sourceID).closest('tr');
             element.classList.remove("laravel-livewire-table-dragging");
             var originalPosition = element.rowIndex;
             var newPosition = target.rowIndex;
