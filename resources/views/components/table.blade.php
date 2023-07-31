@@ -29,8 +29,7 @@
                     {{ $thead }}
                 </tr>
             </thead>
-            <tbody id="tbodyID"
-
+            <tbody id="{{ $component->getTableName() }}-tbody"
                 {{
                     $attributes->merge($customAttributes['tbody'])
                         ->class(['bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-none' => $customAttributes['tbody']['default'] ?? true])
@@ -53,7 +52,7 @@
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
     }}  wire:key>
-        <table {{
+        <table wire:key="{{ $component->getTableName() }}-table" {{
             $attributes->merge($customAttributes['table'])
                 ->class(['laravel-livewire-table table' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
@@ -68,11 +67,7 @@
                 </tr>
             </thead>
 
-            <tbody id="tbodyID"
-                @if ($component->reorderIsEnabled())
-                    wire:sortable="{{ $component->getReorderMethod() }}"
-                @endif
-
+            <tbody wire:key="{{ $component->getTableName() }}-tbody"
                 {{
                     $attributes->merge($customAttributes['tbody'])
                         ->class(['' => $customAttributes['tbody']['default'] ?? true])
