@@ -22,6 +22,8 @@ trait WithReordering
 
     public string $defaultReorderDirection = 'asc';
 
+    public array $orderedItems = [];
+
     public function setupReordering(): void
     {
         if ($this->reorderIsDisabled()) {

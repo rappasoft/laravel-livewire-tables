@@ -7,6 +7,7 @@
 @endphp
 
 <tr
+    rowpk='{{ $row->{$this->getPrimaryKey()} }}'
     x-on:dragstart.self="dragStart(event)"
     x-on:drop="dropEvent"
     x-on:drop.prevent="dropPreventEvent"
