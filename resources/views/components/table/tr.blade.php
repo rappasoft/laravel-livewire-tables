@@ -7,7 +7,7 @@
 @endphp
 
 <tr
-    wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
+    wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60" rowpk='{{ $row->{$this->getPrimaryKey()} }}'
         id="{{ $component->getTableName() .'-row-'.$row->{$this->getPrimaryKey()} }}"
         
         draggable="true"

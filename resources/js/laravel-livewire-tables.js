@@ -74,7 +74,7 @@ document.addEventListener('alpine:init', () => {
         oddRowClassArray: {},
         evenNotInOdd: {},
         oddNotInEven: {},
-        orderedRows: {},
+        orderedRows: [],
         dragStart(event) {
             dragging = true;
             sourceID = event.target.id;
@@ -98,8 +98,10 @@ document.addEventListener('alpine:init', () => {
             }
             parent.insertBefore(element, target.nextSibling);
             var nextLoop = 'even';
+            this.orderedRows = [];
             for (var i = 2, row; row = table.rows[i]; i++) {
                 if (!row.classList.contains('hidden')) {
+                    this.orderedRows.push(row.getAttribute('rowpk'));
                     if (nextLoop == 'even') {
                         row.classList.remove(...this.oddNotInEven);
                         row.classList.add(...this.evenNotInOdd);
@@ -111,9 +113,10 @@ document.addEventListener('alpine:init', () => {
                         nextLoop = 'even';
                     }
                 }
-
-
             }
+        },
+        updateOrderedItems() {
+            wire.set('orderedItems', this.orderedRows);
         },
         init() {
             var table = document.getElementById(tableID);

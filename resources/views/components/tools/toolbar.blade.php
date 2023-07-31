@@ -25,7 +25,9 @@
                     <span x-show="reorderCurrentStatus !== true">
                     @lang('Reorder')
                     </span>
-
+                </button>
+                <button x-show="reorderCurrentStatus" x-on:click="updateOrderedItems()">
+                    @lang('Save Order')
                 </button>
             </div>
 
