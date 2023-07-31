@@ -19,7 +19,6 @@ class ColumnSelectConfigurationTest extends TestCase
         $this->assertIsBool($this->basicTable->columnSelectStatus);
     }
 
-        
     /** @test */
     public function can_set_column_select_status(): void
     {
