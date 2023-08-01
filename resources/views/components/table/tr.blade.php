@@ -10,12 +10,12 @@
     rowpk='{{ $row->{$this->getPrimaryKey()} }}'
     x-on:dragstart.self="reorderCurrentStatus && dragStart(event)"
     x-on:drop="reorderCurrentStatus && dropEvent(event)"
-    x-on:drop.prevent="dropPreventEvent(event)"
+    x-on:drop.prevent="reorderCurrentStatus && dropPreventEvent(event)"
     x-on:dragover.prevent="reorderCurrentStatus && dragOverEvent(event)"
     x-on:dragleave.prevent="reorderCurrentStatus && dragLeaveEvent(event)"
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
     id="{{ $component->getTableName() .'-row-'.$row->{$this->getPrimaryKey()} }}"
-    draggable="true"
+    :draggable="reorderCurrentStatus"
 
     @class([
         'bg-white dark:bg-gray-700 dark:text-white' => ($component->isTailwind() &&
