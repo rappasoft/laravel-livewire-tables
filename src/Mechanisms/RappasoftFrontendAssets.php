@@ -74,7 +74,7 @@ class RappasoftFrontendAssets
 
     public function returnJavaScriptAsFile()
     {
-        return Utils::pretendResponseIsFile(__DIR__.'/../../resources/js/laravel-livewire-tables.js');
+        return $this->pretendResponseIsJs(__DIR__.'/../../resources/js/laravel-livewire-tables.js');
     }
 
     public function returnStylesAsFile()
@@ -82,16 +82,36 @@ class RappasoftFrontendAssets
         return $this->pretendResponseIsCSS(__DIR__.'/../../resources/css/laravel-livewire-tables.css');
     }
 
-    public function pretendResponseIsCSS($file)
+    protected function pretendResponseIsCSS($file)
     {
-        $expires = strtotime('+1 second');
+        $expires = strtotime('+1 minute');
         $lastModified = filemtime($file);
-        $cacheControl = 'public, max-age=3';
+        $cacheControl = 'public, max-age=30';
 
         $headers = [
-            'Content-Type' => 'text/css; charset=utf-8',
-            'Last-Modified' => now(),
+            'Content-Type' => "text/css; charset=utf-8",
+            'Expires' => Utils::httpDate($expires),
+            'Cache-Control' => $cacheControl,
+            'Last-Modified' => Utils::httpDate($lastModified),
         ];
+
+        return response()->file($file, $headers);
+    }
+
+    protected function pretendResponseIsJs($file)
+    {
+        $expires = strtotime('+1 minute');
+        $lastModified = filemtime($file);
+        $cacheControl = 'public, max-age=30';
+
+
+        $headers = [
+            'Content-Type' => "application/javascript; charset=utf-8",
+            'Expires' => Utils::httpDate($expires),
+            'Cache-Control' => $cacheControl,
+            'Last-Modified' => Utils::httpDate($lastModified),
+        ];
+
 
         return response()->file($file, $headers);
     }
@@ -108,6 +128,7 @@ class RappasoftFrontendAssets
         $debug = config('app.debug');
 
         $styles = static::css($options);
+
 
         // HTML Label.
         $html = $debug ? ['<!-- Rappasoft Styles -->'] : [];
