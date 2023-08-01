@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class NumberFilter extends Filter

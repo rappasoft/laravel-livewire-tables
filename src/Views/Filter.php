@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
 
@@ -65,5 +64,5 @@ abstract class Filter
 
     abstract public function isEmpty(string $value): bool;
 
-    abstract public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5 );
+    abstract public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5);
 }

@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use DateTime;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class DateTimeFilter extends Filter
