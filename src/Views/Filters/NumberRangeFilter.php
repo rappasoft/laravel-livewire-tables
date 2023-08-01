@@ -56,12 +56,10 @@ class NumberRangeFilter extends Filter
 
     public function validate(array $values): array|bool
     {
-        if (!isset($values['min']) || !is_numeric($values['min']) || $values['min'] < intval($this->getConfig('minRange')) || $values['min'] > intval($this->getConfig('maxRange')))
-        {
+        if (! isset($values['min']) || ! is_numeric($values['min']) || $values['min'] < intval($this->getConfig('minRange')) || $values['min'] > intval($this->getConfig('maxRange'))) {
             $values['min'] = intval($this->getConfig('minRange'));
         }
-        if (!isset($values['max']) || !is_numeric($values['max']) || $values['max'] > intval($this->getConfig('maxRange')) || $values['max'] < intval($this->getConfig('minRange')))
-        {
+        if (! isset($values['max']) || ! is_numeric($values['max']) || $values['max'] > intval($this->getConfig('maxRange')) || $values['max'] < intval($this->getConfig('minRange'))) {
             $values['max'] = intval($this->getConfig('maxRange'));
         }
 
