@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use DateTime;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class DateFilter extends Filter
@@ -30,10 +29,15 @@ class DateFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(DataTableComponent $component)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5)
     {
         return view('livewire-tables::components.tools.filters.date', [
-            'component' => $component,
+            'filterLayout' => $filterLayout,
+            'tableName' => $tableName,
+            'isTailwind' => $isTailwind,
+            'isBootstrap' => ($isBootstrap4 || $isBootstrap5),
+            'isBootstrap4' => $isBootstrap4,
+            'isBootstrap5' => $isBootstrap5,
             'filter' => $this,
         ]);
     }

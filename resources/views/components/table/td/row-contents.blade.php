@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 @props(['rowIndex', 'hidden' => false])
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @if ($component->isTailwind())

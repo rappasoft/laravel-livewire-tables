@@ -95,7 +95,7 @@
                                 <div class="py-1" role="none">
                                     <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem"
                                          id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper">
-                                        {{ $filter->render($component) }}
+                                        {{ $filter->render($component->filterLayout, $tableName, $component->isTailwind(), $component->isBootstrap4(), $component->isBootstrap5()) }}
                                     </div>
                                 </div>
                             @endforeach
@@ -292,7 +292,7 @@
                                 $filter->getFilterSlidedownColspan() == 3,
                         ])
                              id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper">
-                            {{ $filter->render($component) }}
+                             {{ $filter->render($component->filterLayout, $tableName, $component->isTailwind(), $component->isBootstrap4(), $component->isBootstrap5()) }}
                         </div>
                     @endforeach
                 </div>
@@ -429,13 +429,13 @@
                                 x-bind:class="{ 'show': open }"
                                 role="menu">
                                 @foreach ($component->getVisibleFilters() as $filter)
-                                    <div wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}"
+                                    <div wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar"
                                          @class([
                                              'p-2' => $component->isBootstrap(),
                                          ])
                                          id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                                     >
-                                        {{ $filter->render($component) }}
+                                    {{ $filter->render($component->filterLayout, $tableName, $component->isTailwind(), $component->isBootstrap4(), $component->isBootstrap5()) }}
                                     </div>
                                 @endforeach
 
@@ -691,7 +691,7 @@
                                         $filter->getFilterSlidedownColspan() == 4,
                                 ])
                                      id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper">
-                                    {{ $filter->render($component) }}
+                                     {{ $filter->render($component->filterLayout, $tableName, $component->isTailwind(), $component->isBootstrap4(), $component->isBootstrap5()) }}
                                 </div>
                             @endforeach
                         </div>

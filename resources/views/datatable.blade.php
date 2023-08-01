@@ -15,7 +15,7 @@ $tableName = $this->getTableName();
     <x-livewire-tables::table>
         <x-slot name="thead">
             <x-livewire-tables::table.th.reorder />
-            <x-livewire-tables::table.th.bulk-actions />
+            <x-livewire-tables::table.th.bulk-actions x-show="!currentlyReorderingStatus" />
             <x-livewire-tables::table.th.row-contents />
 
             @foreach($columns as $index => $column)
@@ -34,24 +34,24 @@ $tableName = $this->getTableName();
             <x-livewire-tables::table.tr.secondary-header :rows="$rows" />
         @endif
 
-        <x-livewire-tables::table.tr.bulk-actions :rows="$rows" />
+        <x-livewire-tables::table.tr.bulk-actions :rows="$rows" x-show="!currentlyReorderingStatus" />
 
         @forelse ($rows as $rowIndex => $row)
-            <x-livewire-tables::table.tr wire:key="{{ $tableName }}-rowwrap-{{ $rowIndex }}" :row="$row" :rowIndex="$rowIndex">
-                <x-livewire-tables::table.td.reorder :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
-                <x-livewire-tables::table.td.bulk-actions :row="$row" />
-                <x-livewire-tables::table.td.row-contents :rowIndex="$rowIndex" />
+            <x-livewire-tables::table.tr wire:key="{{ $tableName }}-rowwrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
+                <x-livewire-tables::table.td.reorder wire:key="{{ $tableName }}-rowreorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
+                <x-livewire-tables::table.td.bulk-actions x-show="!currentlyReorderingStatus" wire:key="{{ $tableName }}-rowbulk-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" />
+                <x-livewire-tables::table.td.row-contents wire:key="{{ $tableName }}-rowcollapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
 
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     @if($column->isReorderColumn())
-                        <x-livewire-tables::table.td x-show="currentlyReorderingStatus || !hideReorderColumnUnlessReorderingStatus"  wire:key="{{ $tableName . '-' . $rowIndex . '-' . $colIndex }}"  :column="$column" :colIndex="$colIndex">
+                        <x-livewire-tables::table.td x-show="currentlyReorderingStatus || !hideReorderColumnUnlessReorderingStatus"  wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatablereorder-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
                             {{ $column->renderContents($row) }}
                         </x-livewire-tables::table.td>
                     @else
-                        <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-' . $colIndex }}"  :column="$column" :colIndex="$colIndex">
+                        <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
                             {{ $column->renderContents($row) }}
                         </x-livewire-tables::table.td>
                     @endif
