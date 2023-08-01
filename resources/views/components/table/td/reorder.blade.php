@@ -3,8 +3,8 @@
 
 @php($theme = $component->getTheme())
 
-<x-livewire-tables::table.td.plain wire:key="{{ $tableName }}-tbody-reorder-{{ $rowID }}" x-show="currentlyReorderingStatus">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+<x-livewire-tables::table.td.plain wire:key="{{ $tableName }}-tbody-reorder-{{ $rowID }}" :displayMinimisedOnReorder="false" >
+    <svg x-show="currentlyReorderingStatus" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         @class([
             'inline w-4 h-4' => $theme === 'tailwind',
             'd-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',

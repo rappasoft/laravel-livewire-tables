@@ -24,6 +24,9 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
     - Removed Spatie Package Tools and replaced with a generic service provider
     - Added support for cursor pagination
+    - Added Numeric Range filter
+    - Added capability for external CSS file
+    
 
 - Test Changes
     - Temporarily removed the sort_events_apply_correctly and filter_events_apply_correctly due to LW3 not using Emit anymore.
