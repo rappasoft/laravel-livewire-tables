@@ -1,4 +1,4 @@
-@props(['component'])
+@props(['component', 'tableName'])
 
 @php($refresh = $this->getRefreshStatus())
 @php($random = rand(8999,48839))
