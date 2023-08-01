@@ -1,9 +1,8 @@
 @aware(['component'])
 @props(['rowIndex', 'hidden' => false])
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
-<template x-if="!reorderCurrentStatus">
     @if ($component->isTailwind())
-        <td
+        <td x-show="!currentlyReorderingStatus"
             @if (! $hidden) x-data="{open:false}" @endif
             {{
                 $attributes
@@ -31,7 +30,7 @@
             @endif
         </td>
     @elseif ($component->isBootstrap())
-        <td
+        <td x-show="!currentlyReorderingStatus"
             @if (! $hidden) x-data="{open:false}" @endif
             {{
                 $attributes
@@ -60,5 +59,4 @@
             @endif
         </td>
     @endif
-</template>
 @endif

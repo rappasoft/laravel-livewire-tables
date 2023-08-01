@@ -20,7 +20,7 @@
                 @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                 @if($column->isReorderColumn())
-                    <x-livewire-tables::table.th :key="$this->getTableName().'-tablehead-'.$index" x-show="reorderDisplayColumn"  :column="$column" :index="$index" />
+                    <x-livewire-tables::table.th :key="$this->getTableName().'-tablehead-'.$index" x-show="currentlyReorderingStatus || !hideReorderColumnUnlessReorderingStatus"  :column="$column" :index="$index" />
                 @else
                     <x-livewire-tables::table.th :key="$this->getTableName().'-tablehead-'.$index" :column="$column" :index="$index" />
                 @endif
@@ -44,11 +44,11 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     @if($column->isReorderColumn())
-                        <x-livewire-tables::table.td x-show="reorderDisplayColumn"  wire:key="{{ $this->getTableName() . '-' . $rowIndex . '-' . $colIndex }}"  :column="$column" :colIndex="$colIndex">
+                        <x-livewire-tables::table.td x-show="currentlyReorderingStatus || !hideReorderColumnUnlessReorderingStatus"  :key="$this->getTableName() . '-' . $rowIndex . '-' . $colIndex"  :column="$column" :colIndex="$colIndex">
                             {{ $column->renderContents($row) }}
                         </x-livewire-tables::table.td>
                     @else
-                        <x-livewire-tables::table.td  wire:key="{{ $this->getTableName() . '-' . $rowIndex . '-' . $colIndex }}"  :column="$column" :colIndex="$colIndex">
+                        <x-livewire-tables::table.td :key="$this->getTableName() . '-' . $rowIndex . '-' . $colIndex"  :column="$column" :colIndex="$colIndex">
                             {{ $column->renderContents($row) }}
                         </x-livewire-tables::table.td>
                     @endif
