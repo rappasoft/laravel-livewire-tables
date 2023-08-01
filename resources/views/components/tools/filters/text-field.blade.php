@@ -1,15 +1,14 @@
 <div>
     @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
-        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
+        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName])
     @elseif(!$filter->hasCustomPosition())
-        <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName"  />
+        <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
 
     <div @class([
-            "rounded-md shadow-sm" => $isTailwind,
-            "mb-3 mb-md-0 input-group" => $isBootstrap,
-        ])
-    >
+        "rounded-md shadow-sm" => $isTailwind,
+        "mb-3 mb-md-0 input-group" => $isBootstrap,
+    ])>
         <input
             wire:model.blur="filterComponents.{{ $filter->getKey() }}"
             wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"

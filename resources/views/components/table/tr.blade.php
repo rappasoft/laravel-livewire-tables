@@ -2,7 +2,6 @@
 @props(['row', 'rowIndex'])
 
 @php
-    
     $customAttributes = $this->getTrAttributes($row, $rowIndex);
 @endphp
 

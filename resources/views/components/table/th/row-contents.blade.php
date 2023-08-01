@@ -2,7 +2,11 @@
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @if ($component->isTailwind())
-        <x-livewire-tables::table.th.plain wire:key="{{ $tableName }}-thead-collapsed" x-show="currentlyReorderingStatus" />
+        <x-livewire-tables::table.th.plain
+            wire:key="{{ $tableName }}-thead-collapsed"
+            x-show="currentlyReorderingStatus"
+        />
+
         <th x-show="!currentlyReorderingStatus"
             scope="col"
             {{

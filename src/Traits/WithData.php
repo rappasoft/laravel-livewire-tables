@@ -167,9 +167,4 @@ trait WithData
 
         return $table;
     }
-
-    protected function getQuerySql(): string
-    {
-        return (clone $this->getBuilder())->toSql();
-    }
 }

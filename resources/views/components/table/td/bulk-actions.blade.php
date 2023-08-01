@@ -4,9 +4,15 @@
 @php($theme = $component->getTheme())
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
-    <x-livewire-tables::table.td.plain wire:key="{{ $tableName }}-tbody-td-bulkactions-{{ $row->{$this->getPrimaryKey()} }}-hidden" x-show="currentlyReorderingStatus" />
+    <x-livewire-tables::table.td.plain
+        x-show="currentlyReorderingStatus"
+        wire:key="{{ $tableName }}-tbody-td-bulk-actions-{{ $row->{$this->getPrimaryKey()} }}-hidden"
+    />
 
-    <x-livewire-tables::table.td.plain wire:key="{{ $tableName }}-tbody-td-bulkactions-{{ $row->{$this->getPrimaryKey()} }}-shown" x-show="!currentlyReorderingStatus">
+    <x-livewire-tables::table.td.plain
+        x-show="!currentlyReorderingStatus"
+        wire:key="{{ $tableName }}-tbody-td-bulk-actions-{{ $row->{$this->getPrimaryKey()} }}-shown"
+    >
         <div @class([
             'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',
             'form-check' => $theme === 'bootstrap-5',
