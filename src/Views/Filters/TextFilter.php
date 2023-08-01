@@ -32,7 +32,10 @@ class TextFilter extends Filter
     public function render(DataTableComponent $component)
     {
         return view('livewire-tables::components.tools.filters.text-field', [
-            'component' => $component,
+            'filterLayout' => $component->getFilterLayout(),
+            'tableName' => $component->getTableName(),
+            'isTailwind' => $component->isTailwind(),
+            'isBootstrap' => $component->isBootstrap(),
             'filter' => $this,
         ]);
     }
