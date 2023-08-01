@@ -1,8 +1,8 @@
-@props(['component'])
+@props(['component', 'tableName'])
 @php($refresh = $this->getRefreshStatus())
 @php($random = rand(8999,48839))
 
-<div wire:key="{{ $component->getTableName() }}-wrapper" x-data="tableWrapper($wire, {{ $component->showBulkActionsDropdownAlpine() }})">
+<div wire:key="{{ $tableName }}-wrapper" x-data="tableWrapper($wire, {{ $component->showBulkActionsDropdownAlpine() }})">
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($component->hasRefresh()) wire:poll{{ $component->getRefreshOptions() }} @endif
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>

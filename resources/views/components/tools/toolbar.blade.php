@@ -546,7 +546,7 @@
                                 @class([
                                     'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
                                 ])
-                                type="button" id="columnSelect-{{ $component->getTableName() }}" aria-haspopup="true"
+                                type="button" id="{{ $component->getTableName() }}-columnSelect" aria-haspopup="true"
                                 x-bind:aria-expanded="open">
                             @lang('Columns')
                         </button>

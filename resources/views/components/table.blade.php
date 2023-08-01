@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 
 @php
     $customAttributes = [
@@ -15,7 +15,7 @@
             ->class(['shadow overflow-y-scroll border-b border-gray-200 dark:border-gray-700 sm:rounded-lg' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
     }}>
-        <table {{
+        <table wire:key="{{ $tableName }}-table"  {{
             $attributes->merge($customAttributes['table'])
                 ->class(['min-w-full divide-y divide-gray-200 dark:divide-none' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
@@ -29,7 +29,7 @@
                     {{ $thead }}
                 </tr>
             </thead>
-            <tbody id="{{ $component->getTableName() }}-tbody"
+            <tbody id="{{ $tableName }}-tbody"
                 {{
                     $attributes->merge($customAttributes['tbody'])
                         ->class(['bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-none' => $customAttributes['tbody']['default'] ?? true])
@@ -52,7 +52,7 @@
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
     }}  wire:key>
-        <table wire:key="{{ $component->getTableName() }}-table" {{
+        <table wire:key="{{ $tableName }}-table" {{
             $attributes->merge($customAttributes['table'])
                 ->class(['laravel-livewire-table table' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
@@ -67,7 +67,7 @@
                 </tr>
             </thead>
 
-            <tbody id="{{ $component->getTableName() }}-tbody"
+            <tbody id="{{ $tableName }}-tbody"
                 {{
                     $attributes->merge($customAttributes['tbody'])
                         ->class(['' => $customAttributes['tbody']['default'] ?? true])
