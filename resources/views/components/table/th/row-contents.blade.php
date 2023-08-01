@@ -1,6 +1,7 @@
 @aware(['component'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
+<template x-if="!reorderCurrentStatus">
     @if ($component->isTailwind())
         <th
             scope="col"
@@ -30,4 +31,5 @@
             }}
         ></th>
     @endif
+        </template>
 @endif

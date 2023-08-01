@@ -1,5 +1,5 @@
 @aware(['component'])
 
-<template x-if="reorderDisplayColumn">
-    <x-livewire-tables::table.th.plain  x-show="reorderDisplayColumn"/>
+<template x-if="reorderCurrentStatus">
+    <x-livewire-tables::table.th.plain />
 </template>

@@ -51,7 +51,12 @@ document.addEventListener('alpine:init', () => {
         },
         reorderToggle() {
             this.reorderCurrentStatus = !this.reorderCurrentStatus;
-            this.reorderDisplayColumn = !this.reorderDisplayColumn;
+            if (this.reorderHideColumnUnlessReordering && !this.reorderCurrentStatus) {
+                this.reorderDisplayColumn = false;
+            }
+            else {
+                this.reorderDisplayColumn = true;
+            }
         },
         init() {
             if (this.reorderCurrentStatus) {
