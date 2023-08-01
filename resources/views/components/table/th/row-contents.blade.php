@@ -1,9 +1,9 @@
 @aware(['component'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
-<template x-if="!reorderCurrentStatus">
     @if ($component->isTailwind())
-        <th
+        <x-livewire-tables::table.th.plain x-show="currentlyReorderingStatus" />
+        <th x-show="!currentlyReorderingStatus"
             scope="col"
             {{
                 $attributes
@@ -17,7 +17,7 @@
             }}
         ></th>
     @elseif ($component->isBootstrap())
-        <th
+        <th x-show="!currentlyReorderingStatus"
             scope="col"
             {{
                 $attributes
@@ -31,5 +31,4 @@
             }}
         ></th>
     @endif
-        </template>
 @endif

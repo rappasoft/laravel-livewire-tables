@@ -4,7 +4,9 @@
 @php($theme = $component->getTheme())
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
-    <x-livewire-tables::table.td.plain x-show="!reorderCurrentStatus">
+    <x-livewire-tables::table.td.plain x-show="currentlyReorderingStatus" />
+
+    <x-livewire-tables::table.td.plain x-show="!currentlyReorderingStatus">
         <div @class([
             'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',
             'form-check' => $theme === 'bootstrap-5',

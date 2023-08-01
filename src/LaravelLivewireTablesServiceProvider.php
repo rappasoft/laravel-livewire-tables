@@ -37,14 +37,18 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
                 __DIR__.'/../resources/views' => resource_path('views/vendor/rappasoft/livewire-tables'),
             ], 'livewire-tables-views');
 
+            $this->publishes([
+                __DIR__.'/../public' => public_path('vendor/rappasoft/livewire-tables'),
+            ], 'livewire-tables-public');
+
             $this->commands([
                 MakeCommand::class,
             ]);
         }
-
         (new RappasoftFrontendAssets)->boot();
         app('livewire')->componentHook(AutoInjectRappasoftAssets::class);
         ComponentHookRegistry::boot();
+    
 
     }
 
@@ -53,7 +57,6 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
-
         (new RappasoftFrontendAssets)->register();
     }
 }

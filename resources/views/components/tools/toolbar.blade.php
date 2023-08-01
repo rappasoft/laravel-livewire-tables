@@ -7,7 +7,7 @@
 @if ($component->isTailwind())
     <div class="md:flex md:justify-between mb-4 px-4 md:p-0">
         <div class="w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2">
-            <div x-show="!reorderCurrentStatus">
+            <div x-show="!currentlyReorderingStatus">
                 @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
                     @include($component->getConfigurableAreaFor('toolbar-left-start'), $component->getParametersForConfigurableArea('toolbar-left-start'))
                 @endif
@@ -17,23 +17,23 @@
                     x-on:click="reorderToggle"
                     type="button"
                     class="inline-flex justify-center items-center w-full md:w-auto px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600">
-                    <span x-show="reorderCurrentStatus">
+                    <span x-show="currentlyReorderingStatus">
                         @lang('Cancel')
                     </span>
-                    <span x-show="!reorderCurrentStatus">
+                    <span x-show="!currentlyReorderingStatus">
                         @lang('Reorder')
                     </span>
                 </button>
                 <button
                     type="button"
                     class="inline-flex justify-center items-center w-full md:w-auto px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
-                    x-show="reorderCurrentStatus" x-on:click="updateOrderedItems">
+                    x-show="currentlyReorderingStatus" x-on:click="updateOrderedItems">
                     @lang('Save')
                 </button>
             </div>
 
             @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
-                <div x-show="!reorderCurrentStatus" class="flex rounded-md shadow-sm">
+                <div x-show="!currentlyReorderingStatus" class="flex rounded-md shadow-sm">
                     <input wire:model{{ $component->getSearchOptions() }}="search"
                            placeholder="{{ __('Search') }}" type="text"
                            class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if ($component->hasSearch()) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif" />
@@ -52,7 +52,7 @@
             @endif
 
             @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
-                <div x-show="!reorderCurrentStatus" @if ($component->isFilterLayoutPopover()) x-data="{ open: false, childElementOpen: false }"
+                <div x-show="!currentlyReorderingStatus" @if ($component->isFilterLayoutPopover()) x-data="{ open: false, childElementOpen: false }"
                      x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
                      x-on:mousedown.away="if (!childElementOpen) { open = false }" @endif
                      class="relative block md:inline-block text-left"
@@ -115,7 +115,7 @@
             @endif
 
             @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
-                <div x-show="!reorderCurrentStatus">
+                <div x-show="!currentlyReorderingStatus">
                     @include(
                         $component->getConfigurableAreaFor('toolbar-left-end'),
                         $component->getParametersForConfigurableArea('toolbar-left-end'))
@@ -123,7 +123,7 @@
             @endif
         </div>
 
-        <div x-show="!reorderCurrentStatus" class="md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2">
+        <div x-show="!currentlyReorderingStatus" class="md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2">
             @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
                 @include(
                     $component->getConfigurableAreaFor('toolbar-right-start'),
@@ -310,7 +310,7 @@
             ])
         >
             @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
-                <div x-show="!reorderCurrentStatus">
+                <div x-show="!currentlyReorderingStatus">
                     @include(
                         $component->getConfigurableAreaFor('toolbar-left-start'),
                         $component->getParametersForConfigurableArea('toolbar-left-start'))
@@ -330,17 +330,17 @@
                         'btn btn-default d-block w-100 d-md-inline' => $component->isBootstrap(),
                     ])
                 >
-                    <span x-show="reorderCurrentStatus">
+                    <span x-show="currentlyReorderingStatus">
                         @lang('Done Reordering')
                     </span>
-                    <span x-show="reorderCurrentStatus !== true">
+                    <span x-show="currentlyReorderingStatus !== true">
                         @lang('Reorder')
                     </span>
                 </button>
             </div>
 
             @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
-                <div x-show="!reorderCurrentStatus"
+                <div x-show="!currentlyReorderingStatus"
                     @class([
                             'mb-3 mb-md-0 input-group' => $component->isBootstrap(),
                     ])
@@ -376,7 +376,7 @@
             @endif
 
             @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
-                <div x-show="!reorderCurrentStatus"
+                <div x-show="!currentlyReorderingStatus"
                     @class([
                         'ml-0 ml-md-2 mb-3 mb-md-0' => $component->isBootstrap4(),
                         'ms-0 ms-md-2 mb-3 mb-md-0' => $component->isBootstrap5() && $component->searchIsEnabled(),
@@ -462,7 +462,7 @@
             @endif
 
             @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
-                <div x-show="!reorderCurrentStatus">
+                <div x-show="!currentlyReorderingStatus">
                     @include(
                         $component->getConfigurableAreaFor('toolbar-left-end'),
                         $component->getParametersForConfigurableArea('toolbar-left-end'))
@@ -470,7 +470,7 @@
             @endif
         </div>
 
-        <div x-show="!reorderCurrentStatus"
+        <div x-show="!currentlyReorderingStatus"
             @class([
                 'd-md-flex' => $component->isBootstrap(),
             ])
@@ -648,7 +648,7 @@
             @endif
 
             @if ($component->hasConfigurableAreaFor('toolbar-right-end'))
-                <div x-show="!reorderCurrentStatus">
+                <div x-show="!currentlyReorderingStatus">
                     @include(
                         $component->getConfigurableAreaFor('toolbar-right-end'),
                         $component->getParametersForConfigurableArea('toolbar-right-end'))
@@ -662,7 +662,7 @@
             $component->filtersVisibilityIsEnabled() &&
             $component->hasVisibleFilters() &&
             $component->isFilterLayoutSlideDown())
-        <div x-show="!reorderCurrentStatus">
+        <div x-show="!currentlyReorderingStatus">
             <div x-cloak x-show="filtersOpen">
                 <div
                     @class([
@@ -703,7 +703,7 @@
 @endif
 
 @if ($component->hasConfigurableAreaFor('after-toolbar'))
-    <div x-show="!reorderCurrentStatus" >
+    <div x-show="!currentlyReorderingStatus" >
         @include(
             $component->getConfigurableAreaFor('after-toolbar'),
             $component->getParametersForConfigurableArea('after-toolbar'))

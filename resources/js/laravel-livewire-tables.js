@@ -8,11 +8,6 @@ document.addEventListener('alpine:init', () => {
         paginationCurrentItems: wire.entangle('paginationCurrentItems').live,
         selectedItems: wire.entangle('selected'),
         alwaysShowBulkActions: !wire.entangle('hideBulkActionsWhenEmpty'),
-        reorderStatus: wire.entangle('reorderStatus').live,
-        reorderCurrentStatus: wire.entangle('currentlyReorderingStatus'),
-        reorderHideColumnUnlessReordering: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
-        reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
-        reorderCurrentPageOnly: wire.entangle('reorderCurrentPageOnly'),
         toggleSelectAll() {
             if (!showBulkActionsAlpine) {
                 return;
@@ -49,39 +44,6 @@ document.addEventListener('alpine:init', () => {
                 tempSelectedItems.push(value.toString());
             }
             this.selectedItems = [...new Set(tempSelectedItems)];
-        },
-        reorderToggle() {
-            if (this.reorderCurrentStatus) {
-                this.cancelReorder();
-            }
-            else {
-                this.reorderCurrentStatus = true;
-                if (this.reorderHideColumnUnlessReordering) {
-                    this.reorderDisplayColumn = true;
-                }
-                if (!this.reorderCurrentPageOnly) {
-                    wire.enableReordering();
-                }
-            }
-        },
-        cancelReorder() {
-            this.reorderCurrentStatus = false;
-            if (this.reorderHideColumnUnlessReordering) {
-                this.reorderDisplayColumn = false;
-            }
-            if (!this.reorderCurrentPageOnly) {
-                wire.disableReordering();
-            }
-        },
-        updateOrderedItems() {
-            this.reorderCurrentStatus = false;
-            if (this.reorderHideColumnUnlessReordering) {
-                this.reorderDisplayColumn = false;
-            }
-            wire.set('orderedItems', this.orderedRows);
-            if (!this.reorderCurrentPageOnly) {
-                wire.disableReordering();
-            }
         }
     }));
 
@@ -99,6 +61,11 @@ document.addEventListener('alpine:init', () => {
         oddNotInEven: {},
         orderedRows: [],
         defaultReorderColumn: wire.entangle('defaultReorderColumn'),
+        reorderStatus: wire.entangle('reorderStatus').live,
+        currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
+        hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
+        reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
+        reorderCurrentPageOnly: wire.entangle('reorderCurrentPageOnly'),
         dragStart(event) {
             this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
@@ -159,6 +126,39 @@ document.addEventListener('alpine:init', () => {
                         nextLoop = 'even';
                     }
                 }
+            }
+        },
+        reorderToggle() {
+            if (this.currentlyReorderingStatus) {
+                this.cancelReorder();
+            }
+            else {
+                this.currentlyReorderingStatus = true;
+                if (this.hideReorderColumnUnlessReorderingStatus) {
+                    this.reorderDisplayColumn = true;
+                }
+                if (!this.reorderCurrentPageOnly) {
+                    wire.enableReordering();
+                }
+            }
+        },
+        cancelReorder() {
+            this.currentlyReorderingStatus = false;
+            if (this.hideReorderColumnUnlessReorderingStatus) {
+                this.reorderDisplayColumn = false;
+            }
+            if (!this.reorderCurrentPageOnly) {
+                wire.disableReordering();
+            }
+        },
+        updateOrderedItems() {
+            this.currentlyReorderingStatus = false;
+            if (this.hideReorderColumnUnlessReorderingStatus) {
+                this.reorderDisplayColumn = false;
+            }
+            wire.set('orderedItems', this.orderedRows);
+            if (!this.reorderCurrentPageOnly) {
+                wire.disableReordering();
             }
         },
         init() {
