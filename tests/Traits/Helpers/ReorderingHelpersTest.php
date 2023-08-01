@@ -43,7 +43,7 @@ class ReorderingHelpersTest extends TestCase
     /** @test */
     public function can_get_hide_reorder_column_unless_reordering_status(): void
     {
-        $this->assertTrue($this->basicTable->hideReorderColumnUnlessReorderingIsDisabled());
+        $this->assertFalse($this->basicTable->hideReorderColumnUnlessReorderingIsDisabled());
 
         $this->basicTable->setHideReorderColumnUnlessReorderingEnabled();
 
