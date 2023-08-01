@@ -1,5 +1,5 @@
 @aware(['component'])
 
-@if ($this->currentlyReorderingIsEnabled())
+<template x-if="reorderDisplayColumn">
     <x-livewire-tables::table.th.plain  x-show="reorderDisplayColumn"/>
-@endif
+</template>
