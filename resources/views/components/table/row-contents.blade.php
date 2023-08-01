@@ -21,7 +21,7 @@
     <tr
         x-data
         @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('hidden') : null"
-        wire:key="{{ $tableName }}-row-{{ $rowIndex }}-collapsed-contents"
+        wire:key="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}-collapsed-contents"
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
 
         @class([
@@ -41,7 +41,7 @@
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
-                    <p
+                    <p wire:key="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}-collapsed-contents-{{ $colIndex }}"
                         @class([
                             'block mb-2 sm:hidden' => $component->isTailwind() && $column->shouldCollapseOnMobile(),
                             'block mb-2 md:hidden' => $component->isTailwind() && $column->shouldCollapseOnTablet(),

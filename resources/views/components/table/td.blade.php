@@ -1,13 +1,12 @@
-@aware(['component', 'row', 'rowIndex'])
+@aware(['component', 'row', 'rowIndex', 'tableName'])
 @props(['column', 'colIndex'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => 'cell-'.$rowIndex.'-'.$colIndex.'-'.$component->getId()]);
     $customAttributes = $component->getTdAttributes($column, $row, $colIndex, $rowIndex)
 @endphp
 
 @if ($component->isTailwind())
-    <td
+    <td wire:key="{{ $tableName . '-tabletd-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug() }}"
         @if ($column->isClickable())
             onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
         @endif
@@ -23,7 +22,7 @@
         {{ $slot }}
     </td>
 @elseif ($component->isBootstrap())
-    <td
+    <td wire:key="{{ $tableName . '-tabletd-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug() }}"
         @if ($column->isClickable())
             onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
             style="cursor:pointer"

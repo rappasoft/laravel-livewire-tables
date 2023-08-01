@@ -429,7 +429,7 @@
                                 x-bind:class="{ 'show': open }"
                                 role="menu">
                                 @foreach ($component->getVisibleFilters() as $filter)
-                                    <div wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}"
+                                    <div wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar"
                                          @class([
                                              'p-2' => $component->isBootstrap(),
                                          ])

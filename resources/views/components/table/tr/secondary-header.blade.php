@@ -21,12 +21,12 @@
         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
         @if($column->isReorderColumn())
-            <x-livewire-tables::table.td.plain :column="$column" x-show="currentlyReorderingStatus || !hideReorderColumnUnlessReorderingStatus" wire:key="{{ $tableName .'-secondaryheader-reorder-show' }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)" />                
+            <x-livewire-tables::table.td.plain :column="$column" x-show="currentlyReorderingStatus || !hideReorderColumnUnlessReorderingStatus" wire:key="{{ $tableName .'-secondaryheader-reorder-show' . $column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)" />                
         @else
-            <x-livewire-tables::table.td.plain :column="$column" x-show="!currentlyReorderingStatus" wire:key="{{ $tableName .'-secondaryheader-show-'.$colIndex }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)">
+            <x-livewire-tables::table.td.plain :column="$column" x-show="!currentlyReorderingStatus" wire:key="{{ $tableName .'-secondaryheader-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)">
                 {{ $column->getSecondaryHeaderContents($rows) }}
             </x-livewire-tables::table.td.plain>
-            <x-livewire-tables::table.td.plain :column="$column" x-show="currentlyReorderingStatus" wire:key="{{ $tableName .'-secondaryheader-blank-'.$colIndex }}" />                
+            <x-livewire-tables::table.td.plain :column="$column" x-show="currentlyReorderingStatus" wire:key="{{ $tableName .'-secondaryheader-blank-'.$column->getSlug() }}" />                
 
         @endif
     @endforeach

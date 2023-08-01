@@ -61,7 +61,7 @@ document.addEventListener('alpine:init', () => {
         oddNotInEven: {},
         orderedRows: [],
         defaultReorderColumn: wire.entangle('defaultReorderColumn'),
-        reorderStatus: wire.entangle('reorderStatus').live,
+        reorderStatus: wire.entangle('reorderStatus'),
         currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),

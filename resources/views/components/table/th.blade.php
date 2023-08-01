@@ -1,8 +1,8 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 @props(['column', 'index'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => 'header-col-'.$index.'-'.$component->getId()]);
+    $attributes = $attributes->merge(['wire:key' => $tableName . '-header-col-'.$column->getSlug()]);
     $customAttributes = $component->getThAttributes($column);
     $customSortButtonAttributes = $component->getThSortButtonAttributes($column);
     $direction = $column->hasField() ? $component->getSort($column->getColumnSelectName()) : $component->getSort($column->getSlug()) ?? null ;
