@@ -61,9 +61,7 @@ document.addEventListener('alpine:init', () => {
                 this.reorderDisplayColumn = true;
             }
         }
-
     }));
-
 
     Alpine.data('reorderFunction', (wire, tableID, primaryKeyName) => ({
         dragging: false,
@@ -80,7 +78,6 @@ document.addEventListener('alpine:init', () => {
         orderedRows: [],
         defaultReorderColumn: wire.entangle('defaultReorderColumn'),
         dragStart(event) {
-
             this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
@@ -147,5 +144,4 @@ document.addEventListener('alpine:init', () => {
             this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
         }
     }));
-
 });

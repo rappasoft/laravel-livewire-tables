@@ -18,12 +18,12 @@
             @foreach($columns as $index => $column)
                 @continue($column->isHidden())
                 @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+
                 @if($column->isReorderColumn())
                     <x-livewire-tables::table.th x-show="reorderDisplayColumn"  :column="$column" :index="$index" />
                 @else
                     <x-livewire-tables::table.th :column="$column" :index="$index" />
                 @endif
-                
             @endforeach
         </x-slot>
 
@@ -44,16 +44,14 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     @if($column->isReorderColumn())
-                    <x-livewire-tables::table.td x-show="reorderDisplayColumn"  wire:key="{{ $this->getTableName() . '-' . $rowIndex . '-' . $colIndex }}"  :column="$column" :colIndex="$colIndex">
-                        {{ $column->renderContents($row) }}
-                    </x-livewire-tables::table.td>
+                        <x-livewire-tables::table.td x-show="reorderDisplayColumn"  wire:key="{{ $this->getTableName() . '-' . $rowIndex . '-' . $colIndex }}"  :column="$column" :colIndex="$colIndex">
+                            {{ $column->renderContents($row) }}
+                        </x-livewire-tables::table.td>
                     @else
                         <x-livewire-tables::table.td  wire:key="{{ $this->getTableName() . '-' . $rowIndex . '-' . $colIndex }}"  :column="$column" :colIndex="$colIndex">
                             {{ $column->renderContents($row) }}
                         </x-livewire-tables::table.td>
                     @endif
-
-
                 @endforeach
             </x-livewire-tables::table.tr>
 

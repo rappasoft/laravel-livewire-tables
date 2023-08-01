@@ -9,6 +9,7 @@
     @elseif(!$filter->hasCustomPosition())
         <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
+
     <div @class([
             "rounded-md shadow-sm" => $component->isTailwind(),
             "mb-3 mb-md-0 input-group" => $component->isBootstrap(),

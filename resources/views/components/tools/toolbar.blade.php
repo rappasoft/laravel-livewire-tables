@@ -1,9 +1,7 @@
 @aware(['component'])
 
 @if ($component->hasConfigurableAreaFor('before-toolbar'))
-    @include(
-        $component->getConfigurableAreaFor('before-toolbar'),
-        $component->getParametersForConfigurableArea('before-toolbar'))
+    @include($component->getConfigurableAreaFor('before-toolbar'), $component->getParametersForConfigurableArea('before-toolbar'))
 @endif
 
 @if ($component->isTailwind())
@@ -11,9 +9,7 @@
         <div class="w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2">
             <div x-show="!reorderCurrentStatus">
                 @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
-                    @include(
-                        $component->getConfigurableAreaFor('toolbar-left-start'),
-                        $component->getParametersForConfigurableArea('toolbar-left-start'))
+                    @include($component->getConfigurableAreaFor('toolbar-left-start'), $component->getParametersForConfigurableArea('toolbar-left-start'))
                 @endif
             </div>
             <div x-show="reorderStatus">
