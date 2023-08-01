@@ -2,7 +2,7 @@
 @props(['row', 'rowIndex'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => 'row-'.$rowIndex.'-'.$component->getId()]);
+    
     $customAttributes = $this->getTrAttributes($row, $rowIndex);
 @endphp
 
@@ -14,7 +14,7 @@
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
     id="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}"
     :draggable="currentlyReorderingStatus"
-
+    wire:key="{{ $attributes['wire:key'] }}"
     @class([
         'bg-white dark:bg-gray-700 dark:text-white' => ($component->isTailwind() &&
         ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0),

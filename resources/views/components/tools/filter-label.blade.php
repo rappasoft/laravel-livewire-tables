@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 @props(['filter', 'filterLayout' => 'popover', 'tableName' => 'table'])
 
 <label for="{{ $tableName }}-filter-{{ $filter->getKey() }}"

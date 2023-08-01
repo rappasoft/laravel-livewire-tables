@@ -1,18 +1,13 @@
-@php
-    $filterLayout = $component->getFilterLayout();
-    $tableName = $component->getTableName();
-@endphp
-
 <div>
     @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
         @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
     @elseif(!$filter->hasCustomPosition())
-        <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
+        <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName"  />
     @endif
 
     <div @class([
-            "rounded-md shadow-sm" => $component->isTailwind(),
-            "mb-3 mb-md-0 input-group" => $component->isBootstrap(),
+            "rounded-md shadow-sm" => $isTailwind,
+            "mb-3 mb-md-0 input-group" => $isBootstrap,
         ])
     >
         <input
@@ -23,8 +18,8 @@
             @if($filter->hasConfig('placeholder')) placeholder="{{ $filter->getConfig('placeholder') }}" @endif
             @if($filter->hasConfig('maxlength')) maxlength="{{ $filter->getConfig('maxlength') }}" @endif
             @class([
-                "block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600" => $component->isTailwind(),
-                "form-control" => $component->isBootstrap(),
+                "block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600" => $isTailwind,
+                "form-control" => $isBootstrap,
             ])
         />
     </div>

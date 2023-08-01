@@ -15,7 +15,7 @@
             ->class(['shadow overflow-y-scroll border-b border-gray-200 dark:border-gray-700 sm:rounded-lg' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
     }}>
-        <table wire:key="{{ $component->getTableName() }}-table" {{
+        <table wire:key="{{ $tableName }}-table" {{
             $attributes->merge($customAttributes['table'])
                 ->class(['min-w-full divide-y divide-gray-200 dark:divide-none' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
@@ -52,7 +52,7 @@
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
     }}>
-        <table wire:key="{{ $component->getTableName() }}-table" {{
+        <table wire:key="{{ $tableName }}-table" {{
             $attributes->merge($customAttributes['table'])
                 ->class(['laravel-livewire-table table' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
