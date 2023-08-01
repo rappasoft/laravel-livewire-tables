@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 
 @php
     $customAttributes = [
@@ -29,7 +29,7 @@
                     {{ $thead }}
                 </tr>
             </thead>
-            <tbody id="{{ $component->getTableName() }}-tbody"
+            <tbody id="{{ $tableName }}-tbody"
                 {{
                     $attributes->merge($customAttributes['tbody'])
                         ->class(['bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-none' => $customAttributes['tbody']['default'] ?? true])
@@ -67,7 +67,7 @@
                 </tr>
             </thead>
 
-            <tbody id="{{ $component->getTableName() }}-tbody"
+            <tbody id="{{ $tableName }}-tbody"
                 {{
                     $attributes->merge($customAttributes['tbody'])
                         ->class(['' => $customAttributes['tbody']['default'] ?? true])

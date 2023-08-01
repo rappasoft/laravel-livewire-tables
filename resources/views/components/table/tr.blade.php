@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -12,7 +12,7 @@
     x-on:drop.prevent="reorderCurrentStatus && dropEvent(event)"
     x-on:dragover.prevent.throttle.250ms="reorderCurrentStatus && dragOverEvent(event)"
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
-    id="{{ $component->getTableName() .'-row-'.$row->{$this->getPrimaryKey()} }}"
+    id="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}"
     :draggable="reorderCurrentStatus"
 
     @class([
