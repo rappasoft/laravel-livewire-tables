@@ -18,6 +18,8 @@ trait WithReordering
 
     public bool $reorderCurrentPageOnly = false;
 
+    public bool $reorderDisplayColumn = false;
+
     public string $reorderMethod = 'reorder';
 
     public string $defaultReorderColumn = 'sort';

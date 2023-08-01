@@ -11,7 +11,8 @@ document.addEventListener('alpine:init', () => {
         reorderStatus: wire.entangle('reorderStatus').live,
         reorderCurrentStatus: wire.entangle('currentlyReorderingStatus'),
         reorderHideColumnUnlessReordering: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
-        reorderDisplayColumn: false,
+        reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
+        reorderCurrentPageOnly: wire.entangle('reorderCurrentPageOnly'),
         toggleSelectAll() {
             if (!showBulkActionsAlpine) {
                 return;
@@ -50,12 +51,18 @@ document.addEventListener('alpine:init', () => {
             this.selectedItems = [...new Set(tempSelectedItems)];
         },
         reorderToggle() {
-            this.reorderCurrentStatus = !this.reorderCurrentStatus;
-            if (this.reorderHideColumnUnlessReordering && !this.reorderCurrentStatus) {
-                this.reorderDisplayColumn = false;
+            if (this.reorderCurrentPageOnly) {
+                this.reorderCurrentStatus = !this.reorderCurrentStatus;
+                if (this.reorderHideColumnUnlessReordering && !this.reorderCurrentStatus) {
+                    this.reorderDisplayColumn = false;
+                }
+                else {
+                    this.reorderDisplayColumn = true;
+                }
             }
             else {
                 this.reorderDisplayColumn = true;
+                wire.enableReordering();
             }
         },
         init() {
@@ -77,7 +84,7 @@ document.addEventListener('alpine:init', () => {
         targetID: '',
         evenRowClasses: '',
         oddRowClasses: '',
-        currentlyHighlightedElement: {},
+        currentlyHighlightedElement: '',
         evenRowClassArray: {},
         oddRowClassArray: {},
         evenNotInOdd: {},
@@ -85,24 +92,29 @@ document.addEventListener('alpine:init', () => {
         orderedRows: [],
         defaultReorderColumn: wire.entangle('defaultReorderColumn'),
         dragStart(event) {
-
             this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
             event.target.classList.add("laravel-livewire-tables-dragging");
         },
         dragOverEvent(event) {
-            this.currentlyHighlightedElement = event.target.closest('tr');
-            event.target.closest('tr').classList.add('laravel-livewire-tables-highlight');
-        },
-        dragLeaveEvent(event) {
-            event.target.closest('tr').classList.remove('laravel-livewire-tables-highlight');
+            if (typeof this.currentlyHighlightedElement == 'object') {
+                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
+            }
+            let target = event.target.closest('tr');
+            this.currentlyHighlightedElement = target;
+
+            if (event.offsetY < (target.getBoundingClientRect().height / 2)) {
+                target.classList.add('laravel-livewire-tables-highlight-top');
+                target.classList.remove('laravel-livewire-tables-highlight-bottom');
+            }
+            else {
+                target.classList.remove('laravel-livewire-tables-highlight-top');
+                target.classList.add('laravel-livewire-tables-highlight-bottom');
+            }
         },
         dropEvent(event) {
-
-        },
-        dropPreventEvent(event) {
-            if (this.currentlyHighlightedElement !== undefined) {
+            if (typeof this.currentlyHighlightedElement == 'object') {
                 this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight');
             }
             let target = event.target.closest('tr');
