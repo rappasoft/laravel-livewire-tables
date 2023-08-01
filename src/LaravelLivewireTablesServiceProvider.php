@@ -48,7 +48,6 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         (new RappasoftFrontendAssets)->boot();
         app('livewire')->componentHook(AutoInjectRappasoftAssets::class);
         ComponentHookRegistry::boot();
-    
 
     }
 
