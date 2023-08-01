@@ -110,8 +110,6 @@ class ComponentHelpersTest extends TestCase
     /** @test */
     public function can_get_eager_load_relations_status(): void
     {
-        $this->assertFalse($this->basicTable->getHideReorderColumnUnlessReorderingStatus());
-
         $this->assertFalse($this->basicTable->eagerLoadAllRelationsIsEnabled());
 
         $this->basicTable->setEagerLoadAllRelationsEnabled();

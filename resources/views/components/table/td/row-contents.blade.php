@@ -1,7 +1,7 @@
 @aware(['component'])
 @props(['rowIndex', 'hidden' => false])
-
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
+<template x-if="!reorderCurrentStatus">
     @if ($component->isTailwind())
         <td
             @if (! $hidden) x-data="{open:false}" @endif
@@ -60,4 +60,5 @@
             @endif
         </td>
     @endif
+</template>
 @endif

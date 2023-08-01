@@ -91,10 +91,22 @@ class RappasoftFrontendAssets
 
             .laravel-livewire-tables-highlight {
                 border-style: solid !important;
-                border-width: 2px !important;
+                border-top-width: 2px !important;
+                border-bottom-width: 2px !important;
                 border-color: rgb(255 255 255) !important;
             }
-
+            .laravel-livewire-tables-highlight-top {
+                border-style: solid !important;
+                border-top-width: 2px !important;
+                border-bottom-width: 0px !important;
+                border-color: rgb(255 255 255) !important;
+            }
+            .laravel-livewire-tables-highlight-bottom {
+                border-style: solid !important;
+                border-top-width: 0px !important;
+                border-bottom-width: 2px !important;
+                border-color: rgb(255 255 255) !important;
+            }
             table.laravel-livewire-table tr.bg-indigo {
                 background-color: indigo;
             }
