@@ -89,13 +89,12 @@ class RappasoftFrontendAssets
         $cacheControl = 'public, max-age=3';
 
         $headers = [
-            'Content-Type' => "text/css; charset=utf-8",
+            'Content-Type' => 'text/css; charset=utf-8',
             'Last-Modified' => now(),
         ];
 
         return response()->file($file, $headers);
     }
-
 
     public function maps()
     {
@@ -109,7 +108,6 @@ class RappasoftFrontendAssets
         $debug = config('app.debug');
 
         $styles = static::css($options);
-
 
         // HTML Label.
         $html = $debug ? ['<!-- Rappasoft Styles -->'] : [];
