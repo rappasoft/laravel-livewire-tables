@@ -52,61 +52,35 @@ document.addEventListener('alpine:init', () => {
         },
         reorderToggle() {
             if (this.reorderCurrentStatus) {
-                this.reorderCurrentStatus = false;
-                if (this.reorderCurrentPageOnly) {
-                    if (!this.reorderHideColumnUnlessReordering) {
-                        this.reorderDisplayColumn = true;
-                    }
-                    else {
-                        this.reorderDisplayColumn = false;
-                    }
-                }
-                else {
-                    this.reorderDisplayColumn = false;
-                    wire.disableReordering();
-                }
+                this.cancelReorder();
             }
             else {
                 this.reorderCurrentStatus = true;
-                if (this.reorderCurrentPageOnly) {
-                    if (this.reorderHideColumnUnlessReordering && !this.reorderCurrentStatus) {
-                        this.reorderDisplayColumn = false;
-                    }
-                    else {
-                        this.reorderDisplayColumn = true;
-                    }
-                }
-                else {
+                if (this.reorderHideColumnUnlessReordering) {
                     this.reorderDisplayColumn = true;
+                }
+                if (!this.reorderCurrentPageOnly) {
                     wire.enableReordering();
                 }
             }
         },
         cancelReorder() {
             this.reorderCurrentStatus = false;
-            if (this.reorderCurrentPageOnly) {
-                if (this.reorderHideColumnUnlessReordering && !this.reorderCurrentStatus) {
-                    this.reorderDisplayColumn = false;
-                }
-                else {
-                    this.reorderDisplayColumn = true;
-                }
-
+            if (this.reorderHideColumnUnlessReordering) {
+                this.reorderDisplayColumn = false;
             }
-            else {
+            if (!this.reorderCurrentPageOnly) {
                 wire.disableReordering();
             }
         },
-        init() {
-            if (this.reorderCurrentStatus) {
-                this.reorderDisplayColumn = true;
-            }
-            else if (!this.reorderHideColumnUnlessReordering) {
-                this.reorderDisplayColumn = true;
-            }
-            else {
+        updateOrderedItems() {
+            this.reorderCurrentStatus = false;
+            if (this.reorderHideColumnUnlessReordering) {
                 this.reorderDisplayColumn = false;
-
+            }
+            wire.set('orderedItems', this.orderedRows);
+            if (!this.reorderCurrentPageOnly) {
+                wire.disableReordering();
             }
         }
 
@@ -188,9 +162,6 @@ document.addEventListener('alpine:init', () => {
                     }
                 }
             }
-        },
-        updateOrderedItems() {
-            wire.set('orderedItems', this.orderedRows);
         },
         init() {
             let table = document.getElementById(tableID);

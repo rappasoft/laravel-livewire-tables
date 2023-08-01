@@ -4,14 +4,14 @@
 @php($theme = $component->getTheme())
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
-<template x-if="!reorderCurrentStatus">
-    <x-livewire-tables::table.td.plain>
+    <x-livewire-tables::table.td.plain x-show="!reorderCurrentStatus">
         <div @class([
             'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',
             'form-check' => $theme === 'bootstrap-5',
         ])>
             <input
                 x-model="selectedItems"
+                wire:key="'selectedItems-'.$component->getTableName().'-'.$row->{$this->getPrimaryKey()}"
                 wire:loading.attr.delay="disabled"
                 value="{{ $row->{$this->getPrimaryKey()} }}"
                 type="checkbox"
@@ -22,5 +22,4 @@
             />
         </div>
     </x-livewire-tables::table.td.plain>
-</template>
 @endif

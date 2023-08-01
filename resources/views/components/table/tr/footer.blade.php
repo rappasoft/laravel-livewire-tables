@@ -3,33 +3,28 @@
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getFooterTrAttributes($rows)"
-    wire:key="footer-{{ $this->getTableName() }}"
+    :key="'footer-'.$this->getTableName()"
 
 >
-    <template x-if="reorderDisplayColumn">
-        <x-livewire-tables::table.td.plain />
-    </template>
+<x-livewire-tables::table.td.plain x-show="!reorderCurrentStatus" :key="'footer-'.$this->getTableName().'-hidden-test'"  />
 
     @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
-        <template x-if="!reorderCurrentStatus">
-            <x-livewire-tables::table.td.row-contents  rowIndex="-1" :hidden="true" />
-        </template>
-
-
+            <x-livewire-tables::table.td.row-contents x-show="!reorderCurrentStatus" rowIndex="-1" :hidden="true" :key="'footer-'.$this->getTableName().'-collapse'" />
     @endif
 
     @foreach($this->getColumns() as $colIndex => $column)
         @continue($column->isHidden())
         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+        @if($column->isReorderColumn())
+            <x-livewire-tables::table.td.plain :column="$column" x-show="reorderDisplayColumn" :key="'footer-reorder'.$this->getTableName().'-'.$colIndex"  :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)" />                
+        @else
 
-        <template x-if="!reorderCurrentStatus">
-
-            <x-livewire-tables::table.td.plain :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
+            <x-livewire-tables::table.td.plain x-show="!reorderCurrentStatus" :key="'footer-'.$this->getTableName().'-shown-'.$colIndex" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
                 {{ $column->getFooterContents($rows) }}
             </x-livewire-tables::table.td.plain>
-        </template>
-        <template x-if="reorderCurrentStatus">
-        <x-livewire-tables::table.td.plain />
-        </template>
+            <x-livewire-tables::table.td.plain x-show="reorderCurrentStatus" :key="'footer-'.$this->getTableName().'-hidden-'.$colIndex"  />
+        @endif
+
+
     @endforeach
 </x-livewire-tables::table.tr.plain>
