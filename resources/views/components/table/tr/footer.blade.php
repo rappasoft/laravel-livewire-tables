@@ -6,23 +6,30 @@
     wire:key="footer-{{ $this->getTableName() }}"
 
 >
-    <x-livewire-tables::table.td.plain x-show="reorderCurrentStatus" />
+    <template x-if="reorderCurrentStatus">
+        <x-livewire-tables::table.td.plain  />
+    </template>
 
-    @if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
-        <x-livewire-tables::table.td.plain x-show="!reorderCurrentStatus" />
-    @endif
 
     @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
-        <x-livewire-tables::table.td.row-contents x-show="!reorderCurrentStatus" rowIndex="-1" :hidden="true" />
+        <template x-if="!reorderCurrentStatus">
+            <x-livewire-tables::table.td.row-contents  rowIndex="-1" :hidden="true" />
+        </template>
+
     @endif
 
     @foreach($this->getColumns() as $colIndex => $column)
         @continue($column->isHidden())
         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-        <x-livewire-tables::table.td.plain x-show="reorderCurrentStatus" />
+        <template x-if="reorderCurrentStatus">
+            <x-livewire-tables::table.td.plain  />
+        </template>
+        <template x-if="!reorderCurrentStatus">
 
-        <x-livewire-tables::table.td.plain x-show="!reorderCurrentStatus" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
-            {{ $column->getFooterContents($rows) }}
-        </x-livewire-tables::table.td.plain>
+            <x-livewire-tables::table.td.plain :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
+                {{ $column->getFooterContents($rows) }}
+            </x-livewire-tables::table.td.plain>
+        </template>
+
     @endforeach
 </x-livewire-tables::table.tr.plain>

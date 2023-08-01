@@ -97,7 +97,9 @@ document.addEventListener('alpine:init', () => {
 
         },
         dropPreventEvent(event) {
-            this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight');
+            if (this.currentlyHighlightedElement !== undefined) {
+                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight');
+            }
             let target = event.target.closest('tr');
             let parent = event.target.closest('tr').parentNode;
             let element = document.getElementById(this.sourceID).closest('tr');
