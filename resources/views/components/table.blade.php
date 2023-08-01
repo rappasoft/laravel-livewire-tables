@@ -52,7 +52,7 @@
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
     }}  wire:key>
-        <table wire:key="{{ $tableName }}-table" {{
+        <table wire:key="{{ $component->getTableName() }}-table" {{
             $attributes->merge($customAttributes['table'])
                 ->class(['laravel-livewire-table table' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
