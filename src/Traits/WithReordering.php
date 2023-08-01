@@ -14,7 +14,7 @@ trait WithReordering
 
     public bool $currentlyReorderingStatus = false;
 
-    public bool $hideReorderColumnUnlessReorderingStatus = false;
+    public bool $hideReorderColumnUnlessReorderingStatus = true;
 
     public bool $reorderCurrentPageOnly = false;
 
