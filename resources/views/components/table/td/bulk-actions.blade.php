@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 @props(['row'])
 
 @php($theme = $component->getTheme())
@@ -13,7 +13,7 @@
         ])>
             <input
                 x-model="selectedItems"
-                wire:key="'selectedItems-'.$component->getTableName().'-'.$row->{$this->getPrimaryKey()}"
+                wire:key="$tableName . 'selectedItems-'.$row->{$this->getPrimaryKey()}"
                 wire:loading.attr.delay="disabled"
                 value="{{ $row->{$this->getPrimaryKey()} }}"
                 type="checkbox"
