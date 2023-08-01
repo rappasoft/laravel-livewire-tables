@@ -51,18 +51,50 @@ document.addEventListener('alpine:init', () => {
             this.selectedItems = [...new Set(tempSelectedItems)];
         },
         reorderToggle() {
+            if (this.reorderCurrentStatus) {
+                this.reorderCurrentStatus = false;
+                if (this.reorderCurrentPageOnly) {
+                    if (!this.reorderHideColumnUnlessReordering) {
+                        this.reorderDisplayColumn = true;
+                    }
+                    else {
+                        this.reorderDisplayColumn = false;
+                    }
+                }
+                else {
+                    this.reorderDisplayColumn = false;
+                    wire.disableReordering();
+                }
+            }
+            else {
+                this.reorderCurrentStatus = true;
+                if (this.reorderCurrentPageOnly) {
+                    if (this.reorderHideColumnUnlessReordering && !this.reorderCurrentStatus) {
+                        this.reorderDisplayColumn = false;
+                    }
+                    else {
+                        this.reorderDisplayColumn = true;
+                    }
+                }
+                else {
+                    this.reorderDisplayColumn = true;
+                    wire.enableReordering();
+                }
+            }
+        },
+        cancelReorder() {
+            this.reorderCurrentStatus = false;
             if (this.reorderCurrentPageOnly) {
-                this.reorderCurrentStatus = !this.reorderCurrentStatus;
                 if (this.reorderHideColumnUnlessReordering && !this.reorderCurrentStatus) {
                     this.reorderDisplayColumn = false;
                 }
                 else {
                     this.reorderDisplayColumn = true;
                 }
+
             }
             else {
-                this.reorderDisplayColumn = true;
-                wire.enableReordering();
+                wire.disableReordering();
             }
         },
         init() {
@@ -71,6 +103,10 @@ document.addEventListener('alpine:init', () => {
             }
             else if (!this.reorderHideColumnUnlessReordering) {
                 this.reorderDisplayColumn = true;
+            }
+            else {
+                this.reorderDisplayColumn = false;
+
             }
         }
     }));
@@ -113,8 +149,9 @@ document.addEventListener('alpine:init', () => {
         },
         dropEvent(event) {
             if (typeof this.currentlyHighlightedElement == 'object') {
-                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight');
+                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
             }
+
             let target = event.target.closest('tr');
             let parent = event.target.closest('tr').parentNode;
             let element = document.getElementById(this.sourceID).closest('tr');
