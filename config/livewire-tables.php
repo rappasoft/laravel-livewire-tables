@@ -11,7 +11,6 @@ return [
      */
     'inject_assets' => true,
 
-
     'numberRange' => [
         'defaults' => [
             'min' => '0', // A Default Minimum Value

@@ -2,9 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-
 
 class NumberRangeFilter extends Filter
 {
@@ -149,7 +147,7 @@ class NumberRangeFilter extends Filter
     public function getFilterPillValue($values): ?string
     {
         if ($this->validate($values)) {
-            return __('Min:') . $values['min'] . ', ' . __('Max:') . $values['max'];
+            return __('Min:').$values['min'].', '.__('Max:').$values['max'];
         }
 
         return '';
@@ -170,7 +168,6 @@ class NumberRangeFilter extends Filter
             'isBootstrap5' => $isBootstrap5,
             'filter' => $this,
         ]);
-
 
     }
 }
