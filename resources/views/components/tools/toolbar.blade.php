@@ -163,7 +163,7 @@
                                 <div class="py-1" role="menu" aria-orientation="vertical">
                                     @foreach ($component->getBulkActions() as $action => $title)
                                         <button wire:click="{{ $action }}"
-                                                wire:key="bulk-action-{{ $action }}-{{ $component->getTableName() }}"
+                                                wire:key="{{ $component->getTableName() }}-bulk-action-{{ $action }}"
                                                 type="button"
                                                 class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 flex items-center space-x-2 dark:text-white dark:hover:bg-gray-600"
                                                 role="menuitem">
@@ -183,7 +183,7 @@
                     <div x-data="{ open: false, childElementOpen: false }" @keydown.window.escape="if (!childElementOpen) { open = false }"
                          x-on:click.away="if (!childElementOpen) { open = false }"
                          class="inline-block relative w-full text-left md:w-auto"
-                         wire:key="column-select-button-{{ $component->getTableName() }}">
+                         wire:key="{{ $component->getTableName() }}-column-select-button">
                         <div>
                             <span class="rounded-md shadow-sm">
                                 <button x-on:click="open = !open" type="button"
@@ -223,7 +223,7 @@
                                     @foreach ($component->getColumns() as $column)
                                         @if ($column->isVisible() && $column->isSelectable())
                                             <div
-                                                wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}">
+                                                wire:key="{{ $component->getTableName() }}-columnSelect-{{ $loop->index }}">
                                                 <label wire:loading.attr="disabled" wire:target="selectedColumns"
                                                        class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait">
                                                     <input
@@ -249,7 +249,7 @@
                             class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600">
                         @foreach ($component->getPerPageAccepted() as $item)
                             <option value="{{ $item }}"
-                                    wire:key="per-page-{{ $item }}-{{ $component->getTableName() }}">
+                                    wire:key="{{ $component->getTableName() }}-per-page-{{ $item }}">
                                 {{ $item === -1 ? __('All') : $item }}</option>
                         @endforeach
                     </select>
@@ -510,7 +510,7 @@
                             aria-labelledby="{{ $component->getTableName() }}-bulkActionsDropdown">
                             @foreach ($component->getBulkActions() as $action => $title)
                                 <a href="#" wire:click="{{ $action }}"
-                                   wire:key="bulk-action-{{ $action }}-{{ $component->getTableName() }}"
+                                   wire:key="{{ $component->getTableName() }}-bulk-action-{{ $action }}"
                                     @class([
                                         'dropdown-item' => $component->isBootstrap(),
                                     ])
@@ -537,7 +537,7 @@
                          @class([
                              'dropdown d-block d-md-inline' => $component->isBootstrap(),
                          ])
-                         wire:key="column-select-button-{{ $component->getTableName() }}">
+                         wire:key="{{ $component->getTableName() }}-column-select-button">
                         <button x-on:click="open = !open"
                                 @class([
                                     'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
@@ -580,7 +580,7 @@
 
                             @foreach ($component->getColumns() as $column)
                                 @if ($column->isVisible() && $column->isSelectable())
-                                    <div wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}"
+                                    <div wire:key="{{ $component->getTableName() }}-columnSelect-{{ $loop->index }}"
                                         @class([
                                             'form-check ms-2' => $component->isBootstrap5(),
                                         ])
@@ -640,7 +640,7 @@
                     >
                         @foreach ($component->getPerPageAccepted() as $item)
                             <option value="{{ $item }}"
-                                    wire:key="per-page-{{ $item }}-{{ $component->getTableName() }}">
+                                    wire:key="{{ $component->getTableName() }}-per-page-{{ $item }}">
                                 {{ $item === -1 ? __('All') : $item }}</option>
                         @endforeach
                     </select>

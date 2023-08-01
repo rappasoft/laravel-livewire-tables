@@ -3,14 +3,14 @@
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getFooterTrAttributes($rows)"
-    :key="'footer-'.$this->getTableName()"
+    :key="$this->getTableName().'-footer'"
 
 >
-<x-livewire-tables::table.td.plain  :key="'footer-'.$this->getTableName().'-hidden-test'"  />
+<x-livewire-tables::table.td.plain  :key="$this->getTableName().'-footer-hidden-test'"  />
 
     @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
-            <x-livewire-tables::table.td.row-contents x-show="!currentlyReorderingStatus" rowIndex="-1" :hidden="true" :key="'footer-'.$this->getTableName().'-collapse'" />
-            <x-livewire-tables::table.td.plain x-show="currentlyReorderingStatus" :key="'footer-'.$this->getTableName().'-collapse-reorder'"  />
+            <x-livewire-tables::table.td.row-contents x-show="!currentlyReorderingStatus" rowIndex="-1" :hidden="true" :key="$this->getTableName().'-footer-collapse'" />
+            <x-livewire-tables::table.td.plain x-show="currentlyReorderingStatus" :key="$this->getTableName().'-footer-collapse-reorder'"  />
     @endif
 
     @foreach($this->getColumns() as $colIndex => $column)
@@ -21,10 +21,10 @@
 
         @else
 
-            <x-livewire-tables::table.td.plain x-show="!currentlyReorderingStatus" :key="'footer-'.$this->getTableName().'-shown-'.$colIndex" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
+            <x-livewire-tables::table.td.plain x-show="!currentlyReorderingStatus" :key="$this->getTableName().'-footer-shown-'.$colIndex" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
                 {{ $column->getFooterContents($rows) }}
             </x-livewire-tables::table.td.plain>
-            <x-livewire-tables::table.td.plain x-show="currentlyReorderingStatus" :key="'footer-'.$this->getTableName().'-hidden-'.$colIndex"  />
+            <x-livewire-tables::table.td.plain x-show="currentlyReorderingStatus" :key="$this->getTableName().'-footer-hidden-'.$colIndex"  />
         @endif
 
 

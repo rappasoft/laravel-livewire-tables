@@ -14,7 +14,7 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
-                        wire:key="sorting-pill-{{ $columnSelectName }}-{{ $component->getTableName() }}"
+                        wire:key="{{ $component->getTableName() }}-sorting-pill-{{ $columnSelectName }}"
                         class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900"
                     >
                         {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirection($component, $direction) }}
@@ -99,7 +99,7 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
-                        wire:key="sorting-pill-{{ $columnSelectName }}"
+                        wire:key="{{ $component->getTableName() }}-sorting-pill-{{ $columnSelectName }}"
                         class="badge rounded-pill bg-info d-inline-flex align-items-center"
                     >
                         {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirection($component, $direction) }}
