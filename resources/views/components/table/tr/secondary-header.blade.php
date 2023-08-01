@@ -6,7 +6,7 @@
     wire:key="{{ $tableName .'-secondary-header' }}"
     
 >        
-<x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-test' }}" />
+<x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" :hideUntilReorder="true" wire:key="{{ $tableName .'-reorder-icon' }}" />
 
     @if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
         <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-hasBulkActions' }}" />

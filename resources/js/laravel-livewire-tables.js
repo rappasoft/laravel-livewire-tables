@@ -110,6 +110,13 @@ document.addEventListener('alpine:init', () => {
             if (newPosition < originalPosition) {
                 loopStart = newPosition;
             }
+
+            /* 
+            let evenList = parentNode.querySelectorAll("table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(even of tr.rappasoft-striped-row) ").forEach(function (elem) {
+                elem.classList.remove(...this.oddNotInEven);
+                row.classList.add(...this.evenNotInOdd);
+            });
+            */
             let nextLoop = 'even';
             this.orderedRows = [];
             for (let i = 2, row; row = table.rows[i]; i++) {

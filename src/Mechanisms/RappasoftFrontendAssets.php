@@ -86,7 +86,7 @@ class RappasoftFrontendAssets
     {
         $expires = strtotime('+1 minute');
         $lastModified = filemtime($file);
-        $cacheControl = 'public, max-age=30';
+        $cacheControl = 'public, max-age=60';
 
         $headers = [
             'Content-Type' => 'text/css; charset=utf-8',

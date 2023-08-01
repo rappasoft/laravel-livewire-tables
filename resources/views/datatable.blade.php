@@ -39,7 +39,7 @@ $tableName = $this->getTableName();
         @forelse ($rows as $rowIndex => $row)
             <x-livewire-tables::table.tr wire:key="{{ $tableName }}-rowwrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
                 <x-livewire-tables::table.td.reorder wire:key="{{ $tableName }}-rowreorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
-                <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-rowbulkact-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex"/>
+                <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-rowbulkact-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex" :displayMinimisedOnReorder="true"/>
                 <x-livewire-tables::table.td.row-contents wire:key="{{ $tableName }}-rowcollapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
 
                 @foreach($columns as $colIndex => $column)

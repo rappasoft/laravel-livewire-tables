@@ -6,7 +6,7 @@
     wire:key="{{ $tableName .'-footer' }}"
 
 >
-<x-livewire-tables::table.td.plain  wire:key="{{ $tableName . '-footer-hidden-test' }}"  />
+    <x-livewire-tables::table.td.plain  wire:key="{{ $tableName . '-footer-reorder-icon' }}" :hideUntilReorder="true"  />
 
     @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
             <x-livewire-tables::table.td.row-contents :displayMinimisedOnReorder="true" rowIndex="-1" :hidden="true" wire:key="{{ $tableName.'-footer-collapse' }}" />
