@@ -1,8 +1,3 @@
-@php
-    $filterLayout = $component->getFilterLayout();
-    $tableName = $component->getTableName();
-@endphp
-
 <div>
     @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
         @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
@@ -10,7 +5,7 @@
         <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName"  />
     @endif
 
-    @if ($component->isTailwind())
+    @if ($isTailwind)
         <div class="rounded-md shadow-sm">
             <select multiple
                 wire:model.live.debounce.250ms="filterComponents.{{ $filter->getKey() }}"
@@ -34,12 +29,12 @@
                 @endforeach
             </select>
         </div>
-    @elseif ($component->isBootstrap())
+    @elseif ($isBootstrap)
         <select multiple
             wire:model.live.debounce.250ms="filterComponents.{{ $filter->getKey() }}"
             wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
-            class="{{ $component->isBootstrap4() ? 'form-control' : 'form-select' }}"
+            class="{{ $isBootstrap4 ? 'form-control' : 'form-select' }}"
         >
         @if ($filter->getFirstOption() != "")
             <option @if($filter->isEmpty($this)) selected @endif value="all">{{ $filter->getFirstOption()}}</option>

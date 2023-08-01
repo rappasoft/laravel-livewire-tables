@@ -65,5 +65,5 @@ abstract class Filter
 
     abstract public function isEmpty(string $value): bool;
 
-    abstract public function render(DataTableComponent $component);
+    abstract public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5 );
 }

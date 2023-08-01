@@ -341,17 +341,16 @@ trait ColumnHelpers
         if ($this->hasSecondaryHeaderCallback()) {
             if (is_callable($callback)) {
                 $value = call_user_func($callback, $rows);
-
                 if ($this->isHtml()) {
                     return new HtmlString($value);
                 }
             } elseif ($callback instanceof Filter) {
-                return $callback->setFilterPosition('header')->render($this->getComponent());
+                return $callback->setFilterPosition('header')->render($this->getComponent()->filterLayout, $this->getComponent()->getTableName(), $this->getComponent()->isTailwind(), $this->getComponent()->isBootstrap4(), $this->getComponent()->isBootstrap5());
             } elseif (is_string($callback)) {
                 $filter = $this->getComponent()->getFilterByKey($callback);
 
                 if ($filter instanceof Filter) {
-                    return $filter->setFilterPosition('header')->render($this->getComponent());
+                    return $filter->setFilterPosition('header')->render($this->getComponent()->filterLayout, $this->getComponent()->getTableName(), $this->getComponent()->isTailwind(), $this->getComponent()->isBootstrap4(), $this->getComponent()->isBootstrap5());
                 }
             } else {
                 throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
@@ -396,12 +395,12 @@ trait ColumnHelpers
                     return new HtmlString($value);
                 }
             } elseif ($callback instanceof Filter) {
-                return $callback->setFilterPosition('footer')->render($this->getComponent());
+                return $callback->setFilterPosition('footer')->render($this->getComponent()->filterLayout, $this->getComponent()->getTableName(), $this->getComponent()->isTailwind(), $this->getComponent()->isBootstrap4(), $this->getComponent()->isBootstrap5());
             } elseif (is_string($callback)) {
                 $filter = $this->getComponent()->getFilterByKey($callback);
 
                 if ($filter instanceof Filter) {
-                    return $filter->setFilterPosition('footer')->render($this->getComponent());
+                    return $filter->setFilterPosition('footer')->render($this->getComponent()->filterLayout, $this->getComponent()->getTableName(), $this->getComponent()->isTailwind(), $this->getComponent()->isBootstrap4(), $this->getComponent()->isBootstrap5());
                 }
             } else {
                 throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');

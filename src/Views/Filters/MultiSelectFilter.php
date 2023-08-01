@@ -85,10 +85,15 @@ class MultiSelectFilter extends Filter
         return ! is_array($value);
     }
 
-    public function render(DataTableComponent $component)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5)
     {
         return view('livewire-tables::components.tools.filters.multi-select', [
-            'component' => $component,
+            'filterLayout' => $filterLayout,
+            'tableName' => $tableName,
+            'isTailwind' => $isTailwind,
+            'isBootstrap' => ($isBootstrap4 || $isBootstrap5),
+            'isBootstrap4' => $isBootstrap4,
+            'isBootstrap5' => $isBootstrap5,
             'filter' => $this,
         ]);
     }
