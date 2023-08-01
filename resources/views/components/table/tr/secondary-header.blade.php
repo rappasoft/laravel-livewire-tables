@@ -5,7 +5,7 @@
     :customAttributes="$this->getSecondaryHeaderTrAttributes($rows)"
     wire:key="secondary-header-{{ $this->getTableName() }}"
 >        
-    <template x-if="reorderDisplayColumn && reorderCurrentStatus">
+    <template x-if="reorderCurrentStatus">
         <x-livewire-tables::table.td.plain />
     </template>
 
