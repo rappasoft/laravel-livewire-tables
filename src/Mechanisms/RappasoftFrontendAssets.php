@@ -89,7 +89,7 @@ class RappasoftFrontendAssets
         $cacheControl = 'public, max-age=30';
 
         $headers = [
-            'Content-Type' => "text/css; charset=utf-8",
+            'Content-Type' => 'text/css; charset=utf-8',
             'Expires' => Utils::httpDate($expires),
             'Cache-Control' => $cacheControl,
             'Last-Modified' => Utils::httpDate($lastModified),
@@ -104,14 +104,12 @@ class RappasoftFrontendAssets
         $lastModified = filemtime($file);
         $cacheControl = 'public, max-age=30';
 
-
         $headers = [
-            'Content-Type' => "application/javascript; charset=utf-8",
+            'Content-Type' => 'application/javascript; charset=utf-8',
             'Expires' => Utils::httpDate($expires),
             'Cache-Control' => $cacheControl,
             'Last-Modified' => Utils::httpDate($lastModified),
         ];
-
 
         return response()->file($file, $headers);
     }
@@ -128,7 +126,6 @@ class RappasoftFrontendAssets
         $debug = config('app.debug');
 
         $styles = static::css($options);
-
 
         // HTML Label.
         $html = $debug ? ['<!-- Rappasoft Styles -->'] : [];
