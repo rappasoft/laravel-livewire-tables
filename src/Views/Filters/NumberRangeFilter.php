@@ -54,57 +54,21 @@ class NumberRangeFilter extends Filter
         return $this;
     }
 
-    /**
-     * @param  array<mixed>|string  $values
-     * @return array<mixed>|bool
-     */
-    public function validate($values)
+    public function validate(array $values): array|bool
     {
-        if (! is_array($values)) {
-            $tmp = explode(',', $values);
-            asort($tmp);
-
-            $values = [];
-            $values['min'] = (isset($tmp[0]) ? $tmp[0] : $this->getConfig('minRange'));
-            $values['max'] = (isset($tmp[1]) ? $tmp[1] : $this->getConfig('maxRange'));
+        if (!isset($values['min']) || !is_numeric($values['min']) || $values['min'] < intval($this->getConfig('minRange')) || $values['min'] > intval($this->getConfig('maxRange')))
+        {
+            $values['min'] = intval($this->getConfig('minRange'));
+        }
+        if (!isset($values['max']) || !is_numeric($values['max']) || $values['max'] > intval($this->getConfig('maxRange')) || $values['max'] < intval($this->getConfig('minRange')))
+        {
+            $values['max'] = intval($this->getConfig('maxRange'));
         }
 
-        if (! isset($values['min']) || ! isset($values['max'])) {
-            return false;
-        }
-
-        if ($values['min'] == $this->getConfig('minRange') && $values['max'] == $this->getConfig('maxRange')) {
-            return false;
-        }
-
-        if (is_null($values['max']) || is_null($values['min']) || $values['min'] == '' || $values['max'] == '') {
-            return false;
-        }
-
-        if (is_string($values['min']) && ! ctype_digit($values['min'])) {
-            return false;
-        }
-
-        if (is_string($values['max']) && ! ctype_digit($values['max'])) {
-            return false;
-        }
-
-        $min = intval($values['min']);
-        $max = intval($values['max']);
-
-        $minRange = intval($this->getConfig('minRange'));
-        $maxRange = intval($this->getConfig('maxRange'));
-
-        if ($max < $min) {
-            $newMin = $values['max'];
-            $values['max'] = $newMax = $values['min'];
-            $values['min'] = $newMin;
-            $min = intval($newMin);
-            $max = intval($newMax);
-        }
-
-        if (($min == $minRange && $max == $maxRange) || ($min == $minRange && $max == $minRange) || ($min == $maxRange && $max == $maxRange) || $min < $minRange || $min > $maxRange || $max < $minRange || $max > $maxRange) {
-            return false;
+        if ($values['max'] < $values['min']) {
+            $tmpMin = $values['min'];
+            $values['min'] = $values['max'];
+            $values['max'] = $tmpMin;
         }
 
         return ['min' => $values['min'], 'max' => $values['max']];

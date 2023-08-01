@@ -67,40 +67,13 @@ table.laravel-livewire-table tr.bg-white {
 }
 
 .range-slider {
-    --primary-color: {
-            {
-            $filterStyling['primaryColor']
-        }
-    }
-
-    ;
+    --primary-color: #0366d6;
+    --value-active-color: #FFFFFF;
     --value-offset-y: var(--ticks-gap);
-
-    --value-active-color: {
-            {
-            $filterStyling['activeColor']
-        }
-    }
-
-    ;
     --value-background: transparent;
-
-    --value-background-hover: {
-            {
-            $filterStyling['valueBgHover']
-        }
-    }
-
-    ;
+    --value-background-hover: #0366d6;
     --value-font: 700 12px/1 Arial;
-
-    --fill-color: {
-            {
-            $filterStyling['fillColor']
-        }
-    }
-
-    ;
+    --fill-color: #0366d6;
     --progress-background: #eee;
     --progress-radius: 20px;
     --track-height: calc(var(--thumb-size) / 2);
@@ -110,38 +83,38 @@ table.laravel-livewire-table tr.bg-white {
     --thumb-size: 22px;
     --thumb-color: white;
     --thumb-shadow: 0 0 3px rgba(0, 0, 0, 0.4),
-    0 0 1px rgba(0, 0, 0, 0.5) inset,
-    0 0 0 99px var(--thumb-color) inset;
+        0 0 1px rgba(0, 0, 0, 0.5) inset,
+        0 0 0 99px var(--thumb-color) inset;
     --thumb-shadow-active: 0 0 0 calc(var(--thumb-size) / 4) inset var(--thumb-color),
-    0 0 0 99px var(--primary-color) inset,
-    0 0 3px rgba(0, 0, 0, 0.4);
+        0 0 0 99px var(--primary-color) inset,
+        0 0 3px rgba(0, 0, 0, 0.4);
     --thumb-shadow-hover: var(--thumb-shadow);
     --ticks-thickness: 1px;
     --ticks-height: 5px;
     --ticks-gap: var(--ticks-height,
-        0);
+            0);
     --ticks-color: silver;
     --step: 1;
     --ticks-count: Calc(var(--max) - var(--min)) / var(--step);
     --maxTicksAllowed: 30;
     --too-many-ticks: Min(1, Max(var(--ticks-count) - var(--maxTicksAllowed), 0));
     --x-step: Max(var(--step),
-        var(--too-many-ticks) * (var(--max) - var(--min)));
+            var(--too-many-ticks) * (var(--max) - var(--min)));
     --tickInterval: 100/ ((var(--max) - var(--min)) / var(--step)) * var(--tickEvery, 1);
     --tickIntervalPerc: calc((100% - var(--thumb-size)) / ((var(--max) - var(--min)) / var(--x-step)) * var(--tickEvery, 1));
     --value-a: Clamp(var(--min),
-        var(--value, 0),
-        var(--max));
+            var(--value, 0),
+            var(--max));
     --value-b: var(--value, 0);
     --text-value-a: var(--text-value, "");
     --completed-a: calc((var(--value-a) - var(--min)) / (var(--max) - var(--min)) * 100);
     --completed-b: calc((var(--value-b) - var(--min)) / (var(--max) - var(--min)) * 100);
     --ca: Min(var(--completed-a),
-        var(--completed-b));
+            var(--completed-b));
     --cb: Max(var(--completed-a), var(--completed-b));
     --thumbs-too-close: Clamp(-1, 1000 * (Min(1, Max(var(--cb) - var(--ca) - 5, -1)) + 0.001), 1);
     --thumb-close-to-min: Min(1, Max(var(--ca) - 2,
-            0));
+                0));
     --thumb-close-to-max: Min(1, Max(98 - var(--cb), 0));
     display: inline-block;
     height: max(var(--track-height), var(--thumb-size));
