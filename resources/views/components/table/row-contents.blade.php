@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 @props(['row', 'rowIndex'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
@@ -21,7 +21,7 @@
     <tr
         x-data
         @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('hidden') : null"
-        wire:key="{{ $component->getTableName() }}-row-{{ $rowIndex }}-collapsed-contents"
+        wire:key="{{ $tableName }}-row-{{ $rowIndex }}-collapsed-contents"
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
 
         @class([

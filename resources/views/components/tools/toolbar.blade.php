@@ -1,4 +1,4 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 
 @if ($component->hasConfigurableAreaFor('before-toolbar'))
     @include($component->getConfigurableAreaFor('before-toolbar'), $component->getParametersForConfigurableArea('before-toolbar'))
@@ -94,7 +94,7 @@
                             @foreach ($component->getVisibleFilters() as $filter)
                                 <div class="py-1" role="none">
                                     <div class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem"
-                                         id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
+                                         id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper">
                                         {{ $filter->render($component) }}
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@
                                 <div class="py-1" role="menu" aria-orientation="vertical">
                                     @foreach ($component->getBulkActions() as $action => $title)
                                         <button wire:click="{{ $action }}"
-                                                wire:key="{{ $component->getTableName() }}-bulk-action-{{ $action }}"
+                                                wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
                                                 type="button"
                                                 class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 flex items-center space-x-2 dark:text-white dark:hover:bg-gray-600"
                                                 role="menuitem">
@@ -183,7 +183,7 @@
                     <div x-data="{ open: false, childElementOpen: false }" @keydown.window.escape="if (!childElementOpen) { open = false }"
                          x-on:click.away="if (!childElementOpen) { open = false }"
                          class="inline-block relative w-full text-left md:w-auto"
-                         wire:key="{{ $component->getTableName() }}-column-select-button">
+                         wire:key="{{ $tableName }}-column-select-button">
                         <div>
                             <span class="rounded-md shadow-sm">
                                 <button x-on:click="open = !open" type="button"
@@ -223,7 +223,7 @@
                                     @foreach ($component->getColumns() as $column)
                                         @if ($column->isVisible() && $column->isSelectable())
                                             <div
-                                                wire:key="{{ $component->getTableName() }}-columnSelect-{{ $loop->index }}">
+                                                wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}">
                                                 <label wire:loading.attr="disabled" wire:target="selectedColumns"
                                                        class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait">
                                                     <input
@@ -245,11 +245,11 @@
 
             @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
                 <div>
-                    <select wire:model.live="perPage" id="{{ $component->getTableName() }}-perPage"
+                    <select wire:model.live="perPage" id="{{ $tableName }}-perPage"
                             class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600">
                         @foreach ($component->getPerPageAccepted() as $item)
                             <option value="{{ $item }}"
-                                    wire:key="{{ $component->getTableName() }}-per-page-{{ $item }}">
+                                    wire:key="{{ $tableName }}-per-page-{{ $item }}">
                                 {{ $item === -1 ? __('All') : $item }}</option>
                         @endforeach
                     </select>
@@ -291,7 +291,7 @@
                                 $filter->hasFilterSlidedownColspan() &&
                                 $filter->getFilterSlidedownColspan() == 3,
                         ])
-                             id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
+                             id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper">
                             {{ $filter->render($component) }}
                         </div>
                     @endforeach
@@ -429,11 +429,11 @@
                                 x-bind:class="{ 'show': open }"
                                 role="menu">
                                 @foreach ($component->getVisibleFilters() as $filter)
-                                    <div wire:key="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}"
+                                    <div wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}"
                                          @class([
                                              'p-2' => $component->isBootstrap(),
                                          ])
-                                         id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper"
+                                         id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                                     >
                                         {{ $filter->render($component) }}
                                     </div>
@@ -497,7 +497,7 @@
                                 'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
                             ])
                             type="button"
-                            id="{{ $component->getTableName() }}-bulkActionsDropdown" data-toggle="dropdown"
+                            id="{{ $tableName }}-bulkActionsDropdown" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             @lang('Bulk Actions')
                         </button>
@@ -507,10 +507,10 @@
                                 'dropdown-menu dropdown-menu-right w-100' => $component->isBootstrap4(),
                                 'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5(),
                             ])
-                            aria-labelledby="{{ $component->getTableName() }}-bulkActionsDropdown">
+                            aria-labelledby="{{ $tableName }}-bulkActionsDropdown">
                             @foreach ($component->getBulkActions() as $action => $title)
                                 <a href="#" wire:click="{{ $action }}"
-                                   wire:key="{{ $component->getTableName() }}-bulk-action-{{ $action }}"
+                                   wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
                                     @class([
                                         'dropdown-item' => $component->isBootstrap(),
                                     ])
@@ -537,12 +537,12 @@
                          @class([
                              'dropdown d-block d-md-inline' => $component->isBootstrap(),
                          ])
-                         wire:key="{{ $component->getTableName() }}-column-select-button">
+                         wire:key="{{ $tableName }}-column-select-button">
                         <button x-on:click="open = !open"
                                 @class([
                                     'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
                                 ])
-                                type="button" id="{{ $component->getTableName() }}-columnSelect" aria-haspopup="true"
+                                type="button" id="{{ $tableName }}-columnSelect" aria-haspopup="true"
                                 x-bind:aria-expanded="open">
                             @lang('Columns')
                         </button>
@@ -553,7 +553,7 @@
                                 'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5(),
                             ])
                             x-bind:class="{ 'show': open }"
-                            aria-labelledby="columnSelect-{{ $component->getTableName() }}"
+                            aria-labelledby="columnSelect-{{ $tableName }}"
                         >
 
                             @if($component->isBootstrap4())
@@ -580,7 +580,7 @@
 
                             @foreach ($component->getColumns() as $column)
                                 @if ($column->isVisible() && $column->isSelectable())
-                                    <div wire:key="{{ $component->getTableName() }}-columnSelect-{{ $loop->index }}"
+                                    <div wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}"
                                         @class([
                                             'form-check ms-2' => $component->isBootstrap5(),
                                         ])
@@ -632,7 +632,7 @@
                         'ms-0 ms-md-2' => $component->isBootstrap5(),
                     ])
                 >
-                    <select wire:model.live="perPage" id="{{ $component->getTableName() }}-perPage"
+                    <select wire:model.live="perPage" id="{{ $tableName }}-perPage"
                         @class([
                             'form-control' => $component->isBootstrap4(),
                             'form-select' => $component->isBootstrap5(),
@@ -640,7 +640,7 @@
                     >
                         @foreach ($component->getPerPageAccepted() as $item)
                             <option value="{{ $item }}"
-                                    wire:key="{{ $component->getTableName() }}-per-page-{{ $item }}">
+                                    wire:key="{{ $tableName }}-per-page-{{ $item }}">
                                 {{ $item === -1 ? __('All') : $item }}</option>
                         @endforeach
                     </select>
@@ -690,7 +690,7 @@
                                         $filter->hasFilterSlidedownColspan() &&
                                         $filter->getFilterSlidedownColspan() == 4,
                                 ])
-                                     id="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}-wrapper">
+                                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper">
                                     {{ $filter->render($component) }}
                                 </div>
                             @endforeach
