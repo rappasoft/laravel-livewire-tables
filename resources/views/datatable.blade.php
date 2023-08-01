@@ -20,9 +20,9 @@
                 @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                 @if($column->isReorderColumn())
-                    <x-livewire-tables::table.th x-show="reorderDisplayColumn"  :column="$column" :index="$index" />
+                    <x-livewire-tables::table.th :key="$this->getTableName().'-tablehead-'.$index" x-show="reorderDisplayColumn"  :column="$column" :index="$index" />
                 @else
-                    <x-livewire-tables::table.th :column="$column" :index="$index" />
+                    <x-livewire-tables::table.th :key="$this->getTableName().'-tablehead-'.$index" :column="$column" :index="$index" />
                 @endif
             @endforeach
         </x-slot>
