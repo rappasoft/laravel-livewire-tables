@@ -1,8 +1,8 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 @php($theme = $component->getTheme())
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
-        <x-livewire-tables::table.th.plain x-show="!currentlyReorderingStatus">
+    <x-livewire-tables::table.th.plain wire:key="{{ $tableName }}-thead-bulkactions" x-show="currentlyReorderingStatus !== true">
             <div
                 x-data="{newSelectCount: 0, indeterminateCheckbox: false, bulkActionHeaderChecked: false}"
                 x-init="$watch('selectedItems', value => indeterminateCheckbox = (value.length > 0 && value.length < paginationTotalItemCount))"
