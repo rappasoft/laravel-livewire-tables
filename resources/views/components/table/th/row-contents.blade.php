@@ -2,12 +2,11 @@
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @if ($component->isTailwind())
-        <x-livewire-tables::table.th.plain wire:key="{{ $tableName }}-thead-collapsed" x-show="currentlyReorderingStatus" />
-        <th x-show="!currentlyReorderingStatus"
+        <th 
             scope="col"
             {{
                 $attributes
-                    ->merge(['class' => 'table-cell dark:bg-gray-800'])
+                    ->merge(['class' => 'table-cell dark:bg-gray-800 laravel-livewire-tables-reorderingMinimised'])
                     ->class([
                         'md:hidden' =>
                             (($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
@@ -15,13 +14,15 @@
                     ])
                     ->class(['sm:hidden' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
             }}
+            :class="{ 'laravel-livewire-tables-reorderingMinimised': ! currentlyReorderingStatus }"
+
         ></th>
     @elseif ($component->isBootstrap())
-        <th x-show="!currentlyReorderingStatus"
+        <th 
             scope="col"
             {{
                 $attributes
-                    ->merge(['class' => 'd-table-cell'])
+                    ->merge(['class' => 'd-table-cell laravel-livewire-tables-reorderingMinimised'])
                     ->class([
                         'd-md-none' =>
                             (($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
@@ -29,6 +30,8 @@
                     ])
                     ->class(['d-sm-none' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
             }}
+            :class="{ 'laravel-livewire-tables-reorderingMinimised': ! currentlyReorderingStatus }"
+
         ></th>
     @endif
 @endif
