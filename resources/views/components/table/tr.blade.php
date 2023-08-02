@@ -9,7 +9,8 @@
     rowpk='{{ $row->{$this->getPrimaryKey()} }}'
     x-on:dragstart.self="currentlyReorderingStatus && dragStart(event)"
     x-on:drop.prevent="currentlyReorderingStatus && dropEvent(event)"
-    x-on:dragover.prevent.throttle.250ms="currentlyReorderingStatus && dragOverEvent(event)"
+    x-on:dragover.prevent.throttle.500ms="currentlyReorderingStatus && dragOverEvent(event)"
+    x-on:dragleave.prevent.throttle.500ms="currentlyReorderingStatus && dragLeaveEvent(event)"
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
     id="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}"
     :draggable="currentlyReorderingStatus"

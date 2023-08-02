@@ -88,6 +88,10 @@ document.addEventListener('alpine:init', () => {
                 target.classList.add('laravel-livewire-tables-highlight-bottom');
             }
         },
+        dragLeaveEvent(event) {
+            event.target.closest('tr').classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
+
+        },
         dropEvent(event) {
             if (typeof this.currentlyHighlightedElement == 'object') {
                 this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
@@ -143,9 +147,7 @@ document.addEventListener('alpine:init', () => {
                 this.currentlyReorderingStatus = true;
                 if (this.hideReorderColumnUnlessReorderingStatus) {
                     this.reorderDisplayColumn = true;
-                }
-                if (!this.reorderCurrentPageOnly) {
-                    wire.enableReordering();
+                    wire.enablePaginatedReordering();
                 }
             }
         },
@@ -154,9 +156,7 @@ document.addEventListener('alpine:init', () => {
             if (this.hideReorderColumnUnlessReorderingStatus) {
                 this.reorderDisplayColumn = false;
             }
-            if (!this.reorderCurrentPageOnly) {
-                wire.disableReordering();
-            }
+
         },
         updateOrderedItems() {
             this.currentlyReorderingStatus = false;
