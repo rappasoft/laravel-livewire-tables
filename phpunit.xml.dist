@@ -5,8 +5,7 @@
       <directory>tests</directory>
     </testsuite>
   </testsuites>
-      <coverage cacheDirectory=".phpunit.cache/code-coverage"
-            processUncoveredFiles="true">
+    <coverage>
       <include>
           <directory suffix=".php">src</directory>
       </include>
