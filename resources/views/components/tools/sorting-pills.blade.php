@@ -25,9 +25,7 @@
                             class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
                         >
                             <span class="sr-only">@lang('Remove sort option')</span>
-                            <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
-                                <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
-                            </svg>
+                            <x-heroicon-m-x-mark class="h-3 w-3" />
                         </button>
                     </span>
                 @endforeach
@@ -68,9 +66,7 @@
                             class="text-white ml-2"
                         >
                             <span class="sr-only">@lang('Remove sort option')</span>
-                            <svg style="width:.5em;height:.5em" stroke="currentColor" fill="none" viewBox="0 0 8 8">
-                                <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
-                            </svg>
+                            <x-heroicon-m-x-mark style="width:1em;height:1em" />
                         </a>
                     </span>
                 @endforeach
@@ -110,9 +106,7 @@
                             class="text-white ms-2"
                         >
                             <span class="visually-hidden">@lang('Remove sort option')</span>
-                            <svg style="width:.5em;height:.5em" stroke="currentColor" fill="none" viewBox="0 0 8 8">
-                                <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
-                            </svg>
+                            <x-heroicon-m-x-mark style="width:1em;height:1em" />
                         </a>
                     </span>
                 @endforeach

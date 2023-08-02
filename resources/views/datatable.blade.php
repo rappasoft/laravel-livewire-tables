@@ -1,6 +1,5 @@
-@php
-$tableName = $this->getTableName();
-@endphp
+@php($tableName = $this->getTableName())
+
 <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
     @if ($this->hasConfigurableAreaFor('before-tools'))
         @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
@@ -15,7 +14,7 @@ $tableName = $this->getTableName();
     <x-livewire-tables::table>
         <x-slot name="thead">
             <x-livewire-tables::table.th.reorder />
-            <x-livewire-tables::table.th.bulk-actions :displayMinimisedOnReorder="true"  />
+            <x-livewire-tables::table.th.bulk-actions :displayMinimisedOnReorder="true" />
             <x-livewire-tables::table.th.row-contents />
 
             @foreach($columns as $index => $column)
@@ -23,9 +22,9 @@ $tableName = $this->getTableName();
                 @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                 @if($column->isReorderColumn())
-                    <x-livewire-tables::table.th wire:key="{{ $tableName.'-tablehead-'.$index }}" :displayMinimisedOnReorder="true"  :column="$column" :index="$index" />
+                    <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :displayMinimisedOnReorder="true" :column="$column" :index="$index" />
                 @else
-                    <x-livewire-tables::table.th wire:key="{{ $tableName.'-tablehead-'.$index }}" :column="$column" :index="$index" />
+                    <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :column="$column" :index="$index" />
                 @endif
             @endforeach
         </x-slot>
@@ -37,17 +36,17 @@ $tableName = $this->getTableName();
         <x-livewire-tables::table.tr.bulk-actions :rows="$rows" :displayMinimisedOnReorder="true" />
 
         @forelse ($rows as $rowIndex => $row)
-            <x-livewire-tables::table.tr wire:key="{{ $tableName }}-rowwrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
-                <x-livewire-tables::table.td.reorder wire:key="{{ $tableName }}-rowreorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
-                <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-rowbulkact-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex"/>
-                <x-livewire-tables::table.td.row-contents wire:key="{{ $tableName }}-rowcollapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
+            <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
+                <x-livewire-tables::table.td.reorder wire:key="{{ $tableName }}-row-reorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
+                <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex"/>
+                <x-livewire-tables::table.td.row-contents wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
 
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     @if($column->isReorderColumn())
-                        <x-livewire-tables::table.td :displayMinimisedOnReorder="true"  wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatablereorder-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
+                        <x-livewire-tables::table.td :displayMinimisedOnReorder="true"  wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatable-reorder-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
                             {{ $column->renderContents($row) }}
                         </x-livewire-tables::table.td>
                     @else
@@ -76,7 +75,5 @@ $tableName = $this->getTableName();
 
     <x-livewire-tables::pagination :rows="$rows" />
 
-    @isset($customView)
-        @include($customView)
-    @endisset
+    @includeIf($customView)
 </x-livewire-tables::wrapper>

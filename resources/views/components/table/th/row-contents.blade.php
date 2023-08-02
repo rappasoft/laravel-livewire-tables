@@ -2,7 +2,7 @@
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @if ($component->isTailwind())
-        <th 
+        <th
             scope="col"
             {{
                 $attributes
@@ -15,10 +15,9 @@
                     ->class(['sm:hidden' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
             }}
             :class="{ 'laravel-livewire-tables-reorderingMinimised': ! currentlyReorderingStatus }"
-
         ></th>
     @elseif ($component->isBootstrap())
-        <th 
+        <th
             scope="col"
             {{
                 $attributes
@@ -31,7 +30,6 @@
                     ->class(['d-sm-none' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
             }}
             :class="{ 'laravel-livewire-tables-reorderingMinimised': ! currentlyReorderingStatus }"
-
         ></th>
     @endif
 @endif

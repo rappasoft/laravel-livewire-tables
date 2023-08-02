@@ -6,7 +6,7 @@
 @endphp
 
 @if ($component->isTailwind())
-    <td wire:key="{{ $tableName . '-tabletd-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug() }}"
+    <td wire:key="{{ $tableName . '-table-td-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug() }}"
         @if ($column->isClickable())
             onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
         @endif
@@ -22,7 +22,7 @@
         {{ $slot }}
     </td>
 @elseif ($component->isBootstrap())
-    <td wire:key="{{ $tableName . '-tabletd-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug() }}"
+    <td wire:key="{{ $tableName . '-table-td-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug() }}"
         @if ($column->isClickable())
             onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
             style="cursor:pointer"
