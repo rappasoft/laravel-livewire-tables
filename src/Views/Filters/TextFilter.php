@@ -20,7 +20,6 @@ class TextFilter extends Filter
         return $value === '';
     }
 
-
     public function getFilterDefaultValue(): ?string
     {
         return $this->filterDefaultValue ?? null;

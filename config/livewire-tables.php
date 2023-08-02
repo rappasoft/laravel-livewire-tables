@@ -12,13 +12,13 @@ return [
     'inject_assets' => true,
 
     'numberRange' => [
-        'defaultOptions' => [ 
-            'min' => '0',  
+        'defaultOptions' => [
+            'min' => '0',
             'max' => '100',
-        ], 
+        ],
         'defaultConfig' => [
-            'minRange' => 0, 
-            'maxRange' => 100, 
+            'minRange' => 0,
+            'maxRange' => 100,
             'suffix' => '',
         ],
     ],

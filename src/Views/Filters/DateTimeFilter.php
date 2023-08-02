@@ -11,7 +11,7 @@ class DateTimeFilter extends Filter
 
     public function options(array $options = []): DateTimeFilter
     {
-        $this->options =  [...$this->options, ...$options];
+        $this->options = [...$this->options, ...$options];
 
         return $this;
     }
@@ -29,7 +29,6 @@ class DateTimeFilter extends Filter
     {
         return $value === '';
     }
-
 
     public function getFilterDefaultValue(): ?string
     {

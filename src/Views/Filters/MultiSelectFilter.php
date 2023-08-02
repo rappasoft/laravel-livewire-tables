@@ -10,7 +10,7 @@ class MultiSelectFilter extends Filter
 
     public function options(array $options = []): MultiSelectFilter
     {
-        $this->options =  [...$this->options, ...$options];
+        $this->options = [...$this->options, ...$options];
 
         return $this;
     }
@@ -39,20 +39,17 @@ class MultiSelectFilter extends Filter
                     unset($value[$index]);
                 }
             }
-        }
-        else
-        {
+        } else {
             return false;
         }
+
         return $value;
     }
-
 
     public function getDefaultValue(): array
     {
         return [];
     }
-
 
     public function getFilterDefaultValue(): array
     {

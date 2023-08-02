@@ -10,7 +10,7 @@ class SelectFilter extends Filter
 
     public function options(array $options = []): SelectFilter
     {
-        $this->options =  [...$this->options, ...$options];
+        $this->options = [...$this->options, ...$options];
 
         return $this;
     }
@@ -52,7 +52,6 @@ class SelectFilter extends Filter
     {
         return $value === '';
     }
-
 
     public function getFilterDefaultValue(): ?string
     {

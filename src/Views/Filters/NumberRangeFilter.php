@@ -12,7 +12,7 @@ class NumberRangeFilter extends Filter
 
     public function options(array $options = []): NumberRangeFilter
     {
-        $this->options =  [...$this->options, ...$options];
+        $this->options = [...$this->options, ...$options];
         /*\Illuminate\Support\Arr::map(\Illuminate\Support\Arr::dot($options), function (string $value, string $key) {
             \Illuminate\Support\Arr::set($this->options, $key, $value);
 
@@ -22,12 +22,10 @@ class NumberRangeFilter extends Filter
         return $this;
     }
 
-
     public function getOptions(): array
     {
         return $this->options;
     }
-
 
     public function config(array $config = []): NumberRangeFilter
     {
@@ -53,7 +51,6 @@ class NumberRangeFilter extends Filter
 
         return ['min' => $values['min'], 'max' => $values['max']];
     }
-
 
     public function isEmpty(array|string $value): bool
     {
@@ -85,7 +82,6 @@ class NumberRangeFilter extends Filter
 
         return '';
     }
-
 
     public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): \Illuminate\View\View|\Illuminate\View\Factory
     {
