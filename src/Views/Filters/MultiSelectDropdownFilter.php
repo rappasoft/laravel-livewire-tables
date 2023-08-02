@@ -12,7 +12,7 @@ class MultiSelectDropdownFilter extends Filter
 
     public function options(array $options = []): MultiSelectDropdownFilter
     {
-        $this->options = $options;
+        $this->options =  [...$this->options, ...$options];
 
         return $this;
     }
@@ -58,21 +58,11 @@ class MultiSelectDropdownFilter extends Filter
         return $value;
     }
 
-    /**
-     * Get the filter default options.
-     *
-     * @return array<mixed>
-     */
-    public function getDefaultValue()
+    public function getDefaultValue(): array
     {
         return [];
     }
 
-    /**
-     * Gets the Default Value for this Filter via the Component
-     *
-     * @return array<mixed>
-     */
     public function getFilterDefaultValue(): array
     {
         return $this->filterDefaultValue ?? [];
@@ -107,7 +97,7 @@ class MultiSelectDropdownFilter extends Filter
         return false;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): \Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.multi-select-dropdown', [
             'filterLayout' => $filterLayout,

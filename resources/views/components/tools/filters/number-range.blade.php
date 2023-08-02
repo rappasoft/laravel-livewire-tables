@@ -1,12 +1,7 @@
 @php
     $filterKey = $filter->getKey();
-
     $currentMin = $minRange = $filter->getConfig('minRange');
     $currentMax = $maxRange = $filter->getConfig('maxRange');
-
-    $lightStyling = $filter->getConfig('styling')['light'];
-    $darkStyling = $filter->getConfig('styling')['dark'];
-
 @endphp
 <div id="{{ $tableName }}-numberRange-{{ $filterKey }}" x-data="numberRangeFilter($wire,'{{ $filterKey }}', '{{ $tableName }}-numberRange-{{ $filterKey }}-wrapper', @js($filter->getConfigs()))" x-on:mousedown.away.throttle.2000ms="updateWireable" x-on:touchstart.away.throttle.2000ms="updateWireable" x-on:mouseleave.throttle.2000ms="updateWireable">
     @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())

@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class TextFilter extends Filter
 {
-    public function validate($value)
+    public function validate($value): string|bool
     {
         if ($this->hasConfig('maxlength')) {
             return strlen($value) <= $this->getConfig('maxlength') ? $value : false;
@@ -20,15 +20,13 @@ class TextFilter extends Filter
         return $value === '';
     }
 
-    /**
-     * Gets the Default Value for this Filter via the Component
-     */
+
     public function getFilterDefaultValue(): ?string
     {
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): \Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.text-field', [
             'filterLayout' => $filterLayout,

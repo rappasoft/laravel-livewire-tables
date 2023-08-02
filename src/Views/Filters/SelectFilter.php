@@ -10,7 +10,7 @@ class SelectFilter extends Filter
 
     public function options(array $options = []): SelectFilter
     {
-        $this->options = $options;
+        $this->options =  [...$this->options, ...$options];
 
         return $this;
     }
@@ -31,7 +31,7 @@ class SelectFilter extends Filter
             ->toArray();
     }
 
-    public function validate($value)
+    public function validate($value): bool|string
     {
         if (! in_array($value, $this->getKeys())) {
             return false;
@@ -53,15 +53,13 @@ class SelectFilter extends Filter
         return $value === '';
     }
 
-    /**
-     * Gets the Default Value for this Filter via the Component
-     */
+
     public function getFilterDefaultValue(): ?string
     {
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): \Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.select', [
             'filterLayout' => $filterLayout,

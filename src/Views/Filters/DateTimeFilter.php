@@ -7,9 +7,18 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class DateTimeFilter extends Filter
 {
-    public function validate($value)
+    protected array $options = ['dateFormat' => 'Y-m-d\TH:i'];
+
+    public function options(array $options = []): DateTimeFilter
     {
-        if (DateTime::createFromFormat('Y-m-d\TH:i', $value) === false) {
+        $this->options =  [...$this->options, ...$options];
+
+        return $this;
+    }
+
+    public function validate($value): bool|string
+    {
+        if (DateTime::createFromFormat($this->options['dateFormat'], $value) === false) {
             return false;
         }
 
@@ -21,15 +30,13 @@ class DateTimeFilter extends Filter
         return $value === '';
     }
 
-    /**
-     * Gets the Default Value for this Filter via the Component
-     */
+
     public function getFilterDefaultValue(): ?string
     {
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): \Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.datetime', [
             'filterLayout' => $filterLayout,
