@@ -2,16 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-
 
 class DateRangeFilter extends Filter
 {
-
     protected array $options = [];
+
     protected array $config = [];
-    
+
     public function config(array $config = []): DateRangeFilter
     {
         $this->config = [...['earliestDate' => null, 'latestDate' => null, 'allowInput' => true, 'altFormat' => 'F j, Y', 'ariaDateFormat' => 'F j, Y', 'dateFormat' => 'Y-m-d'], ...$config];
@@ -36,8 +34,7 @@ class DateRangeFilter extends Filter
         return $this->options;
     }
 
-
-    public function validate(array|string $values):array|bool
+    public function validate(array|string $values): array|bool
     {
         $returnedValues = ['minDate' => '', 'maxDate' => ''];
         if (is_array($values)) {
@@ -66,8 +63,8 @@ class DateRangeFilter extends Filter
         $dateFormat = $this->getConfigs()['dateFormat'];
 
         $validator = \Illuminate\Support\Facades\Validator::make($returnedValues, [
-            'minDate' => 'required|date_format:' . $dateFormat,
-            'maxDate' => 'required|date_format:' . $dateFormat,
+            'minDate' => 'required|date_format:'.$dateFormat,
+            'maxDate' => 'required|date_format:'.$dateFormat,
         ]);
         if ($validator->fails()) {
             return false;
@@ -88,8 +85,8 @@ class DateRangeFilter extends Filter
         if ($earliestDateString != '' && ! is_null($earliestDateString) && $latestDateString != '' && ! is_null($latestDateString)) {
             $dateLimits = ['earliest' => $earliestDateString, 'latest' => $latestDateString];
             $earlyLateValidator = \Illuminate\Support\Facades\Validator::make($dateLimits, [
-                'earliest' => 'date_format:' . $dateFormat,
-                'latest' => 'date_format:' . $dateFormat,
+                'earliest' => 'date_format:'.$dateFormat,
+                'latest' => 'date_format:'.$dateFormat,
             ]);
             if (! $earlyLateValidator->fails()) {
                 $earliestDate = \Carbon\Carbon::createFromFormat($dateFormat, $earliestDateString);
@@ -111,12 +108,10 @@ class DateRangeFilter extends Filter
         return $returnedValues;
     }
 
-
     public function getDefaultValue(): array
     {
         return [];
     }
-
 
     public function getFilterPillValue($value): ?string
     {
@@ -133,13 +128,12 @@ class DateRangeFilter extends Filter
                 $minDate = $minDateCarbon->format($ariaDateFormat);
                 $maxDate = $maxDateCarbon->format($ariaDateFormat);
 
-                return $minDate . ' ' . __('to') . ' ' . $maxDate;
+                return $minDate.' '.__('to').' '.$maxDate;
             }
         }
 
         return '';
     }
-
 
     public function isEmpty(array|string $value): bool
     {
@@ -180,5 +174,4 @@ class DateRangeFilter extends Filter
             'filter' => $this,
         ]);
     }
-
 }
