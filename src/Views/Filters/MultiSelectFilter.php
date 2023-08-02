@@ -39,9 +39,7 @@ class MultiSelectFilter extends Filter
                     unset($value[$index]);
                 }
             }
-        } else {
-            return false;
-        }
+        } 
 
         return $value;
     }
