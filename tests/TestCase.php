@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
+use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
+use BladeUI\Icons\BladeIconsServiceProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
@@ -82,6 +84,8 @@ class TestCase extends Orchestra
         return [
             LivewireServiceProvider::class,
             LaravelLivewireTablesServiceProvider::class,
+            BladeIconsServiceProvider::class,
+            BladeHeroiconsServiceProvider::class,
         ];
     }
 
