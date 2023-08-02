@@ -1,11 +1,6 @@
 name: run-tests-pcov
 
-on:
-  push:
-    branches-ignore:
-      - master
-      - main
-      - master2
+on: [pull_request,push]
 
 jobs:
   test:
