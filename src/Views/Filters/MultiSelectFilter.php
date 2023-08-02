@@ -10,7 +10,7 @@ class MultiSelectFilter extends Filter
 
     public function options(array $options = []): MultiSelectFilter
     {
-        $this->options = [...$this->options, ...$options];
+        $this->options = $options;
 
         return $this;
     }
@@ -44,11 +44,21 @@ class MultiSelectFilter extends Filter
         return $value;
     }
 
-    public function getDefaultValue(): array
+    /**
+     * Get the filter default options.
+     *
+     * @return array<mixed>
+     */
+    public function getDefaultValue()
     {
         return [];
     }
 
+    /**
+     * Gets the Default Value for this Filter via the Component
+     *
+     * @return array<mixed>
+     */
     public function getFilterDefaultValue(): array
     {
         return $this->filterDefaultValue ?? [];
@@ -74,7 +84,7 @@ class MultiSelectFilter extends Filter
         return ! is_array($value);
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): \Illuminate\View\View|\Illuminate\View\Factory
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5)
     {
         return view('livewire-tables::components.tools.filters.multi-select', [
             'filterLayout' => $filterLayout,
