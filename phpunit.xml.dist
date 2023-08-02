@@ -29,6 +29,4 @@
     <text outputFile="coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/>
     <xml outputDirectory="xml-coverage"/>
     </report>
-      <coverage includeUncoveredFiles="true" disableCodeCoverageIgnore="true" cacheDirectory=".phpunit.cache/code-coverage">
-  </coverage>
 </phpunit>
