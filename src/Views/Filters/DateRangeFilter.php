@@ -29,6 +29,15 @@ class DateRangeFilter extends Filter
         return $this;
     }
 
+    public function getConfigs(): array
+    {
+        if (empty($this->config)) {
+            $this->config();
+        }
+
+        return $this->config;
+    }
+
     public function getOptions(): array
     {
         return $this->options;
@@ -36,6 +45,9 @@ class DateRangeFilter extends Filter
 
     public function validate(array|string $values): array|bool
     {
+        if (empty($this->config)) {
+            $this->config();
+        }
         $returnedValues = ['minDate' => '', 'maxDate' => ''];
         if (is_array($values)) {
             if (! isset($values['minDate']) || ! isset($values['maxDate'])) {
@@ -60,6 +72,7 @@ class DateRangeFilter extends Filter
         if ($returnedValues['minDate'] == '' || $returnedValues['maxDate'] == '') {
             return false;
         }
+
         $dateFormat = $this->getConfigs()['dateFormat'];
 
         $validator = \Illuminate\Support\Facades\Validator::make($returnedValues, [
@@ -118,8 +131,8 @@ class DateRangeFilter extends Filter
         $validatedValue = $this->validate($value);
 
         if (is_array($validatedValue)) {
-            $dateFormat = $this->getConfigs()['dateFormat'] ?? $this->getConfigs['dateFormat'];
-            $ariaDateFormat = $this->getConfigs()['ariaDateFormat'] ?? $this->getConfigs['ariaDateFormat'];
+            $dateFormat = $this->getConfigs()['dateFormat'] ?? $this->getConfigs()['dateFormat'];
+            $ariaDateFormat = $this->getConfigs()['ariaDateFormat'] ?? $this->getConfigs()['ariaDateFormat'];
 
             $minDateCarbon = \Carbon\Carbon::createFromFormat($dateFormat, $validatedValue['minDate']);
             $maxDateCarbon = \Carbon\Carbon::createFromFormat($dateFormat, $validatedValue['maxDate']);
@@ -163,6 +176,9 @@ class DateRangeFilter extends Filter
 
     public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): \Illuminate\View\View|\Illuminate\View\Factory
     {
+        if (empty($this->getConfigs())) {
+            $this->config();
+        }
 
         return view('livewire-tables::components.tools.filters.date-range', [
             'filterLayout' => $filterLayout,

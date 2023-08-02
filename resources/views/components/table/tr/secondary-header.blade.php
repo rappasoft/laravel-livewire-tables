@@ -6,7 +6,7 @@
     wire:key="{{ $tableName .'-secondary-header' }}"
 >
     {{-- TODO: Remove --}}
-    <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-test' }}" />
+    <x-livewire-tables::table.td.plain x-cloak x-show="currentlyReorderingStatus" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-test' }}" />
 
     @if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
         <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-hasBulkActions' }}" />

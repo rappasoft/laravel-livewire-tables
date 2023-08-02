@@ -13,7 +13,7 @@
 
     <x-livewire-tables::table>
         <x-slot name="thead">
-            <x-livewire-tables::table.th.reorder />
+            <x-livewire-tables::table.th.reorder x-cloak x-show="currentlyReorderingStatus" />
             <x-livewire-tables::table.th.bulk-actions :displayMinimisedOnReorder="true" />
             <x-livewire-tables::table.th.row-contents />
 
@@ -37,7 +37,7 @@
 
         @forelse ($rows as $rowIndex => $row)
             <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
-                <x-livewire-tables::table.td.reorder wire:key="{{ $tableName }}-row-reorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
+                <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
                 <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex"/>
                 <x-livewire-tables::table.td.row-contents wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
 
