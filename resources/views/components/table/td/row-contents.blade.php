@@ -4,7 +4,6 @@
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @if ($component->isTailwind())
         <td
-            x-show="!currentlyReorderingStatus"
             @if (! $hidden) x-data="{open:false}" @endif
             {{
                 $attributes
@@ -16,9 +15,11 @@
                     ])
                     ->class(['sm:hidden' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
             }}
+            :class="currentlyReorderingStatus ? 'laravel-livewire-tables-reorderingMinimised' : ''"
         >
             @if (! $hidden)
                 <button
+                    x-show="!currentlyReorderingStatus"
                     x-on:click.prevent="$dispatch('toggle-row-content', {'row': {{ $rowIndex }}});open = !open"
                 >
                     <x-heroicon-o-plus-circle x-show="!open" class="text-green-600 h-6 w-6" />
@@ -27,7 +28,7 @@
             @endif
         </td>
     @elseif ($component->isBootstrap())
-        <td x-show="!currentlyReorderingStatus"
+        <td :class="currentlyReorderingStatus ? 'laravel-livewire-tables-reorderingMinimised' : ''"
             @if (! $hidden) x-data="{open:false}" @endif
             {{
                 $attributes
@@ -41,6 +42,7 @@
         >
             @if (! $hidden)
                 <button
+                    x-show="!currentlyReorderingStatus"
                     x-on:click.prevent="$dispatch('toggle-row-content', {'row': {{ $rowIndex }}});open = !open"
                     class="p-0"
                     style="background:none;border:none;"

@@ -18,6 +18,8 @@ class RappasoftFrontendAssets
 
     public array $rappasoftScriptTagAttributes = [];
 
+    public array $rappasoftStyleTagAttributes = [];
+
     public function register(): void
     {
         app()->singleton($this::class);
@@ -29,6 +31,12 @@ class RappasoftFrontendAssets
             $scriptPath = '/livewire/rappasoft-laravel-livewire-tables.js';
 
             return Route::get($scriptPath, $handle);
+        });
+
+        app($this::class)->setRappaStylesRoute(function ($handle) {
+            $stylesPath = '/livewire/rappasoft-laravel-livewire-tables.css';
+
+            return Route::get($stylesPath, $handle);
         });
 
         Blade::directive('rappasoftScripts', [static::class, 'rappasoftScripts']);
@@ -47,7 +55,7 @@ class RappasoftFrontendAssets
         $this->rappasoftScriptRoute = $route;
     }
 
-    public function setStylesRoute($callback): void
+    public function setRappaStylesRoute($callback): void
     {
         $route = $callback([self::class, 'returnStylesAsFile']);
 
@@ -66,12 +74,44 @@ class RappasoftFrontendAssets
 
     public function returnJavaScriptAsFile()
     {
-        return Utils::pretendResponseIsFile(__DIR__.'/../../resources/js/laravel-livewire-tables.js');
+        return $this->pretendResponseIsJs(__DIR__.'/../../resources/js/laravel-livewire-tables.js');
     }
 
     public function returnStylesAsFile()
     {
-        return Utils::pretendResponseIsFile(__DIR__.'/../../resources/css/test.css');
+        return $this->pretendResponseIsCSS(__DIR__.'/../../resources/css/laravel-livewire-tables.css');
+    }
+
+    protected function pretendResponseIsCSS($file)
+    {
+        $expires = strtotime('+1 minute');
+        $lastModified = filemtime($file);
+        $cacheControl = 'public, max-age=30';
+
+        $headers = [
+            'Content-Type' => 'text/css; charset=utf-8',
+            'Expires' => Utils::httpDate($expires),
+            'Cache-Control' => $cacheControl,
+            'Last-Modified' => Utils::httpDate($lastModified),
+        ];
+
+        return response()->file($file, $headers);
+    }
+
+    protected function pretendResponseIsJs($file)
+    {
+        $expires = strtotime('+1 minute');
+        $lastModified = filemtime($file);
+        $cacheControl = 'public, max-age=30';
+
+        $headers = [
+            'Content-Type' => 'application/javascript; charset=utf-8',
+            'Expires' => Utils::httpDate($expires),
+            'Cache-Control' => $cacheControl,
+            'Last-Modified' => Utils::httpDate($lastModified),
+        ];
+
+        return response()->file($file, $headers);
     }
 
     public function maps()
@@ -83,46 +123,17 @@ class RappasoftFrontendAssets
     {
         app(static::class)->hasRenderedRappsoftStyles = true;
 
-        $nonce = isset($options['nonce']) ? "nonce=\"{$options['nonce']}\"" : '';
+        $debug = config('app.debug');
 
-        $html = <<<HTML
-        <!-- Rappasoft Styles -->
-        <style {$nonce}>
+        $styles = static::css($options);
 
-            .laravel-livewire-tables-highlight {
-                border-style: solid !important;
-                border-top-width: 2px !important;
-                border-bottom-width: 2px !important;
-                border-color: rgb(255 255 255) !important;
-            }
-            .laravel-livewire-tables-highlight-top {
-                border-style: solid !important;
-                border-top-width: 2px !important;
-                border-bottom-width: 0px !important;
-                border-color: rgb(255 255 255) !important;
-            }
-            .laravel-livewire-tables-highlight-bottom {
-                border-style: solid !important;
-                border-top-width: 0px !important;
-                border-bottom-width: 2px !important;
-                border-color: rgb(255 255 255) !important;
-            }
-            table.laravel-livewire-table tr.bg-indigo {
-                background-color: indigo;
-            }
+        // HTML Label.
+        $html = $debug ? ['<!-- Rappasoft Styles -->'] : [];
 
-            table.laravel-livewire-table tr.bg-white {
-                background-color: white;
-            }
+        $html[] = $styles;
 
-            .laravel-livewire-table-dragging {
-                opacity: 0.5 !important;
-            }
+        return implode("\n", $html);
 
-        </style>
-        HTML;
-
-        return static::minify($html);
     }
 
     public static function scripts($options = []): string
@@ -139,6 +150,18 @@ class RappasoftFrontendAssets
         $html[] = $scripts;
 
         return implode("\n", $html);
+    }
+
+    public static function css($options): string
+    {
+        $styleUrl = app(static::class)->rappasoftStylesRoute->uri;
+        $styleUrl = rtrim($styleUrl, '/');
+
+        $styleUrl = (string) str($styleUrl)->start('/');
+
+        return <<<HTML
+            <link href="{$styleUrl}" rel="stylesheet" />
+        HTML;
     }
 
     public static function js($options): string
