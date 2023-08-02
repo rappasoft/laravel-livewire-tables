@@ -4,7 +4,6 @@
          bootstrap="vendor/autoload.php"
          colors="false"
          cacheResult="false" 
-         colors="false" 
          executionOrder="random" 
          failOnWarning="false" 
          failOnRisky="false" 
