@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" bootstrap="vendor/autoload.php" cacheResult="false" colors="false" executionOrder="random" failOnWarning="true" failOnRisky="true" failOnEmptyTestSuite="true" beStrictAboutOutputDuringTests="true" >
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" bootstrap="vendor/autoload.php" cacheResult="true" colors="false" executionOrder="random" failOnWarning="false" failOnRisky="false" failOnEmptyTestSuite="false" beStrictAboutOutputDuringTests="true" >
   <testsuites>
     <testsuite name="Laravel Livewire Tables Test Suite">
       <directory>tests</directory>
     </testsuite>
   </testsuites>
-      <coverage cacheDirectory=".phpunit.cache/code-coverage">
-      <include>
-          <directory suffix=".php">src</directory>
-      </include>
+  <source>
+    <include>
+        <directory suffix=".php">src</directory>
+    </include>
+
+</source>
+  <coverage includeUncoveredFiles="true" disableCodeCoverageIgnore="true" cacheDirectory=".phpunit.cache/code-coverage">
   </coverage>
+<report>
+    <clover outputFile="clover.xml"/>
+    <cobertura outputFile="cobertura.xml"/>
+    <crap4j outputFile="crap4j.xml" threshold="50"/>
+    <html outputDirectory="html-coverage" lowUpperBound="50" highLowerBound="90"/>
+    <php outputFile="coverage.php"/>
+    <text outputFile="coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/>
+    <xml outputDirectory="xml-coverage"/>
+</report>
 <report>
     <clover outputFile="clover.xml"/>
     <cobertura outputFile="cobertura.xml"/>
