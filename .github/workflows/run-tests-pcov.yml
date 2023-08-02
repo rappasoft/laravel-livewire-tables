@@ -65,7 +65,7 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
-        run: php ./vendor/bin/paratest --configuration ./phpunit.xml --coverage-clover ./coverage.xml --processes=4
+        run: php ./vendor/bin/paratest --configuration --coverage-clover ./coverage.xml --processes=4
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
