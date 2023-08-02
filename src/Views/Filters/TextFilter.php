@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class TextFilter extends Filter
 {
-    public function validate($value): string|bool
+    public function validate($value)
     {
         if ($this->hasConfig('maxlength')) {
             return strlen($value) <= $this->getConfig('maxlength') ? $value : false;
