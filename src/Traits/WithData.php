@@ -87,26 +87,34 @@ trait WithData
         }
 
         $table = false;
+        $tableAlias = false;
         $foreign = false;
         $other = false;
+        $lastAlias = false;
         $lastQuery = clone $this->getBuilder();
 
-        foreach ($column->getRelations() as $relationPart) {
+        foreach ($column->getRelations() as $i => $relationPart) {
             $model = $lastQuery->getRelation($relationPart);
+            $tableAlias = $this->getTableAlias($tableAlias, $relationPart);
 
             switch (true) {
                 case $model instanceof MorphOne:
                 case $model instanceof HasOne:
-                    $table = $model->getRelated()->getTable();
-                    $foreign = $model->getQualifiedForeignKeyName();
-                    $other = $model->getQualifiedParentKeyName();
+                    $table = "{$model->getRelated()->getTable()} AS $tableAlias";
+                    $foreign = "$tableAlias.{$model->getForeignKeyName()}";
+                    $other = $i === 0
+                        ? $model->getQualifiedParentKeyName()
+                        : $lastAlias.'.'.$model->getLocalKeyName();
 
                     break;
 
                 case $model instanceof BelongsTo:
-                    $table = $model->getRelated()->getTable();
-                    $foreign = $model->getQualifiedForeignKeyName();
-                    $other = $model->getQualifiedOwnerKeyName();
+                    $table = "{$model->getRelated()->getTable()} AS $tableAlias";
+                    $foreign = $i === 0
+                        ? $model->getQualifiedForeignKeyName()
+                        : $lastAlias.'.'.$model->getForeignKeyName();
+
+                    $other = "$tableAlias.{$model->getOwnerKeyName()}";
 
                     break;
             }
@@ -115,6 +123,7 @@ trait WithData
                 $this->setBuilder($this->performJoin($table, $foreign, $other));
             }
 
+            $lastAlias = $tableAlias;
             $lastQuery = $model->getQuery();
         }
 
@@ -159,12 +168,21 @@ trait WithData
             $model = $lastQuery->getRelation($relationPart);
 
             if ($model instanceof HasOne || $model instanceof BelongsTo || $model instanceof MorphOne) {
-                $table = $model->getRelated()->getTable();
+                 $table = $this->getTableAlias($table, $relationPart);
             }
 
             $lastQuery = $model->getQuery();
         }
 
         return $table;
+    }
+
+    protected function getTableAlias(?string $currentTableAlias, string $relationPart): string
+    {
+        if (! $currentTableAlias) {
+            return $relationPart;
+        }
+
+        return $currentTableAlias.'_'.$relationPart;
     }
 }
