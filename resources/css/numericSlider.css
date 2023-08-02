@@ -56,14 +56,7 @@
     ;
     --value-font: 700 12px/1 Arial;
 
-    --fill-color: {
-            {
-            $filterStyling['fillColor']
-        }
-    }
-
-    ;
-    --progress-background: #eee;
+    --fill-color: --progress-background: #eee;
     --progress-radius: 20px;
     --track-height: calc(var(--thumb-size) / 2);
     --min-max-font: 12px Arial;
@@ -363,4 +356,13 @@ body>.range-slider,
 label[dir=rtl] .range-slider {
     width: clamp(300px, 50vw, 800px);
     min-width: 200px;
+}
+
+
+table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(even of tr.rappasoft-striped-row) {
+    background-color: var(--rappasoft-table-striped-bgcolor-even, indigo) !important;
+}
+
+table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(odd of tr.rappasoft-striped-row) {
+    background-color: var(--rappasoft-table-striped-bgcolor-odd, white) !important;
 }

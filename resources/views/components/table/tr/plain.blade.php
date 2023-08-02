@@ -8,7 +8,7 @@
         ->class(['laravel-livewire-tables-reorderingMinimised'])
         ->except('default')
     }}
-    :class="{ 'laravel-livewire-tables-reorderingMinimised': ! displayMinimisedOnReorder }"
+    
 
     >
         {{ $slot }}
@@ -20,7 +20,7 @@
         ->class(['laravel-livewire-tables-reorderingMinimised'])
         ->except('default')
     }}
-    :class="{ 'laravel-livewire-tables-reorderingMinimised': ! displayMinimisedOnReorder }"
+    
     >
         {{ $slot }}
     </tr>

@@ -110,6 +110,13 @@ document.addEventListener('alpine:init', () => {
             if (newPosition < originalPosition) {
                 loopStart = newPosition;
             }
+
+            /* 
+            let evenList = parentNode.querySelectorAll("table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(even of tr.rappasoft-striped-row) ").forEach(function (elem) {
+                elem.classList.remove(...this.oddNotInEven);
+                row.classList.add(...this.evenNotInOdd);
+            });
+            */
             let nextLoop = 'even';
             this.orderedRows = [];
             for (let i = 2, row; row = table.rows[i]; i++) {
@@ -169,5 +176,67 @@ document.addEventListener('alpine:init', () => {
             this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
             this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
         }
+    }));
+
+    Alpine.data('numberRangeFilter', (wire, filterKey, parentElementPath, filterConfig) => ({
+        allFilters: wire.entangle('filterComponents', true),
+        originalMin: 0,
+        originalMax: 100,
+        filterMin: 0,
+        filterMax: 100,
+        currentMin: 0,
+        currentMax: 100,
+        hasUpdate: false,
+        wireValues: wire.entangle('filterComponents.' + filterKey, true),
+        defaultMin: filterConfig['minRange'],
+        defaultMax: filterConfig['maxRange'],
+        restrictUpdates: false,
+        updateStyles() {
+            let numRangeFilterContainer = document.getElementById(parentElementPath);
+            numRangeFilterContainer.style.setProperty('--value-a', this.filterMin);
+            numRangeFilterContainer.style.setProperty('--text-value-a', JSON.stringify(this.filterMin));
+            numRangeFilterContainer.style.setProperty('--value-b', this.filterMax);
+            numRangeFilterContainer.style.setProperty('--text-value-b', JSON.stringify(this.filterMax));
+        },
+        setupWire() {
+            if (this.wireValues !== undefined) {
+                this.filterMin = this.originalMin = (this.wireValues['min'] !== undefined) ? this.wireValues['min'] : this.defaultMin;
+                this.filterMax = this.originalMax = (this.wireValues['max'] !== undefined) ? this.wireValues['max'] : this.defaultMax;
+            } else {
+                this.filterMin = this.originalMin = this.defaultMin;
+                this.filterMax = this.originalMax = this.defaultMax;
+            }
+            this.updateStyles();
+        },
+        allowUpdates() {
+            this.updateWire();
+        },
+        updateWire() {
+            this.filterMin = parseInt(this.filterMin);
+            this.filterMax = parseInt(this.filterMax);
+
+            if (this.filterMin != this.originalMin || this.filterMax != this.originalMax) {
+                if (this.filterMax < this.filterMin) {
+                    let tempMin = this.filterMin;
+                    this.filterMin = this.filterMax;
+                    this.filterMax = tempMin;
+                }
+                this.hasUpdate = true;
+                this.originalMin = this.filterMin;
+                this.originalMax = this.filterMax;
+                this.updateStyles();
+            }
+        },
+        updateWireable() {
+            if (this.hasUpdate) {
+                this.hasUpdate = false;
+                this.wireValues = { 'min': this.filterMin, 'max': this.filterMax };
+            }
+
+        },
+        init() {
+            this.setupWire();
+            this.$watch('allFilters', value => this.setupWire());
+        },
     }));
 });

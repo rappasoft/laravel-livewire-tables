@@ -4,7 +4,6 @@
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getSecondaryHeaderTrAttributes($rows)"
     wire:key="{{ $tableName .'-secondary-header' }}"
-
 >
     {{-- TODO: Remove --}}
     <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-test' }}" />
