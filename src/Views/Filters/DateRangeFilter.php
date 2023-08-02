@@ -31,7 +31,10 @@ class DateRangeFilter extends Filter
 
     public function getConfigs(): array
     {
-        if (empty($this->config)) { $this->config(); }
+        if (empty($this->config)) {
+            $this->config();
+        }
+
         return $this->config;
     }
 
@@ -42,7 +45,9 @@ class DateRangeFilter extends Filter
 
     public function validate(array|string $values): array|bool
     {
-        if (empty($this->config)) { $this->config(); }
+        if (empty($this->config)) {
+            $this->config();
+        }
         $returnedValues = ['minDate' => '', 'maxDate' => ''];
         if (is_array($values)) {
             if (! isset($values['minDate']) || ! isset($values['maxDate'])) {
@@ -171,10 +176,10 @@ class DateRangeFilter extends Filter
 
     public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): \Illuminate\View\View|\Illuminate\View\Factory
     {
-        if (empty($this->getConfigs()))
-        {
+        if (empty($this->getConfigs())) {
             $this->config();
         }
+
         return view('livewire-tables::components.tools.filters.date-range', [
             'filterLayout' => $filterLayout,
             'tableName' => $tableName,

@@ -46,7 +46,7 @@ trait WithReordering
     {
 
     }
-    
+
     public function enableReordering(): void
     {
         $this->setReorderingSession();

@@ -168,7 +168,7 @@ trait WithData
             $model = $lastQuery->getRelation($relationPart);
 
             if ($model instanceof HasOne || $model instanceof BelongsTo || $model instanceof MorphOne) {
-                 $table = $this->getTableAlias($table, $relationPart);
+                $table = $this->getTableAlias($table, $relationPart);
             }
 
             $lastQuery = $model->getQuery();

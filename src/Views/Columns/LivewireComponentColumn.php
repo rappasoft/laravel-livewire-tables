@@ -5,11 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ComponentColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ComponentColumnHelpers;
-use Illuminate\Support\Str;
 
 class LivewireComponentColumn extends Column
 {
@@ -34,7 +34,7 @@ class LivewireComponentColumn extends Column
         if ($this->isLabel()) {
             throw new DataTableConfigurationException('You can not use a label column with a component column');
         }
-        
+
         $attributes = [];
         $value = $this->getValue($row);
 
@@ -47,11 +47,11 @@ class LivewireComponentColumn extends Column
         }
 
         $implodedAttributes = collect($attributes)->map(function ($value, $key) {
-            return ':' . $key . '="$' . $key . '"';
+            return ':'.$key.'="$'.$key.'"';
         })->implode(' ');
 
         return new HtmlString(Blade::render(
-            '<livewire:dynamic-component :component="$component" ' . $implodedAttributes . ' :wire:key="'. $row->id . '" />',
+            '<livewire:dynamic-component :component="$component" '.$implodedAttributes.' :wire:key="'.$row->id.'" />',
             [
                 'component' => $this->livewireComponent,
                 ...$attributes,

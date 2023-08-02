@@ -64,7 +64,6 @@ class DateRangeFilterTest extends FilterTestCase
             'dateFormat' => 'Y-m-d',
             'foo' => 'bar'], $filter->getConfigs());
 
-
     }
 
     /** @test */
@@ -247,7 +246,7 @@ class DateRangeFilterTest extends FilterTestCase
         $filter = DateRangeFilter::make('Active')
             ->filter(function (Builder $builder, array $values) {
                 return $builder->where('last_visit', '>=', $values['minDate'])
-                ->where('last_visit', '<=', $values['maxDate']);
+                    ->where('last_visit', '<=', $values['maxDate']);
             });
 
         $this->assertTrue($filter->hasFilterCallback());
@@ -309,7 +308,6 @@ class DateRangeFilterTest extends FilterTestCase
         $filter->config(['foo' => 'bar']);
 
         $this->assertTrue($filter->hasConfigs());
-
 
     }
 
