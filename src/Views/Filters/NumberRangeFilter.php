@@ -6,9 +6,9 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class NumberRangeFilter extends Filter
 {
-    protected array $options;
+    public array $options = [];
 
-    protected array $config;
+    public array $config = [];
 
     public function options(array $options = []): NumberRangeFilter
     {
@@ -19,7 +19,7 @@ class NumberRangeFilter extends Filter
 
     public function getOptions(): array
     {
-        return $this->options ?? $this->options = config('livewire-tables.numberRange.defaultOptions');
+        return !empty($this->options) ? $this->options : $this->options = config('livewire-tables.numberRange.defaultOptions');
     }
 
     public function config(array $config = []): NumberRangeFilter
@@ -31,20 +31,16 @@ class NumberRangeFilter extends Filter
 
     public function getConfigs(): array
     {
-        return $this->config ?? $this->config = config('livewire-tables.numberRange.defaultConfig');
+        return  !empty($this->config) ? $this->config : $this->config =  config('livewire-tables.numberRange.defaultConfig');
     }
 
     public function validate(array $values): array|bool
     {
-        if (empty($this->config)) {
-            $this->getConfigs();
-        }
+        if (empty($this->config)) { $this->getConfigs(); }
 
         $values['min'] = isset($values['min']) ? intval($values['min']) : null;
         $values['max'] = isset($values['max']) ? intval($values['max']) : null;
-        if ($values['min'] == 0 && $values['max'] == 0) {
-            return false;
-        }
+        if ($values['min'] == 0 && $values['max'] == 0) { return false; }
         if ($values['max'] < $values['min']) {
             $tmpMin = $values['min'];
             $values['min'] = $values['max'];
@@ -57,6 +53,7 @@ class NumberRangeFilter extends Filter
         if (! isset($values['max']) || ! is_numeric($values['max']) || $values['max'] > intval($this->getConfig('maxRange')) || $values['max'] < intval($this->getConfig('minRange'))) {
             return false;
         }
+
 
         return ['min' => $values['min'], 'max' => $values['max']];
     }

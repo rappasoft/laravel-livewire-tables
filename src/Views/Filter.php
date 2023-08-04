@@ -25,7 +25,7 @@ abstract class Filter
 
     protected $filterCallback = null;
 
-    protected array $config = [];
+    public array $config = [];
 
     protected ?string $filterPillTitle = null;
 
