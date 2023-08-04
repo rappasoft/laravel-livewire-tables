@@ -13,8 +13,8 @@ return [
 
     'numberRange' => [
         'defaultOptions' => [
-            'min' => '0',
-            'max' => '100',
+            'min' => 0,
+            'max' => 100,
         ],
         'defaultConfig' => [
             'minRange' => 0,

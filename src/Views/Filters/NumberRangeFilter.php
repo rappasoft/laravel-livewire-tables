@@ -19,7 +19,7 @@ class NumberRangeFilter extends Filter
 
     public function getOptions(): array
     {
-        return $this->options ?? config('livewire-tables.numberRange.defaultOptions');
+        return $this->options ?? $this->options = config('livewire-tables.numberRange.defaultOptions');
     }
 
     public function config(array $config = []): NumberRangeFilter
@@ -31,23 +31,29 @@ class NumberRangeFilter extends Filter
 
     public function getConfigs(): array
     {
-        return $this->config ?? config('livewire-tables.numberRange.defaultConfig');
+        return $this->config ?? $this->config =  config('livewire-tables.numberRange.defaultConfig');
     }
 
     public function validate(array $values): array|bool
     {
-        if (! isset($values['min']) || ! is_numeric($values['min']) || $values['min'] < intval($this->getConfig('minRange')) || $values['min'] > intval($this->getConfig('maxRange'))) {
-            $values['min'] = intval($this->getConfig('minRange'));
-        }
-        if (! isset($values['max']) || ! is_numeric($values['max']) || $values['max'] > intval($this->getConfig('maxRange')) || $values['max'] < intval($this->getConfig('minRange'))) {
-            $values['max'] = intval($this->getConfig('maxRange'));
-        }
+        if (empty($this->config)) { $this->getConfigs(); }
 
+        $values['min'] = isset($values['min']) ? intval($values['min']) : null;
+        $values['max'] = isset($values['max']) ? intval($values['max']) : null;
+        if ($values['min'] == 0 && $values['max'] == 0) { return false; }
         if ($values['max'] < $values['min']) {
             $tmpMin = $values['min'];
             $values['min'] = $values['max'];
             $values['max'] = $tmpMin;
         }
+
+        if (! isset($values['min']) || ! is_numeric($values['min']) || $values['min'] < intval($this->getConfig('minRange')) || $values['min'] > intval($this->getConfig('maxRange'))) {
+            return false;
+        }
+        if (! isset($values['max']) || ! is_numeric($values['max']) || $values['max'] > intval($this->getConfig('maxRange')) || $values['max'] < intval($this->getConfig('minRange'))) {
+            return false;
+        }
+
 
         return ['min' => $values['min'], 'max' => $values['max']];
     }
