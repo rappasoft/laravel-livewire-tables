@@ -224,7 +224,7 @@ class NumberRangeFilterTest extends TestCase
         $filter = NumberRangeFilter::make('Active')
             ->filter(function (Builder $builder, array $values) {
                 return $builder->where('breed_id', '>', $values['min'])
-                ->where('breed_id', '<', $values['max']);
+                    ->where('breed_id', '<', $values['max']);
             });
 
         $this->assertTrue($filter->hasFilterCallback());
