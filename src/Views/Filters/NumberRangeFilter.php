@@ -31,16 +31,20 @@ class NumberRangeFilter extends Filter
 
     public function getConfigs(): array
     {
-        return $this->config ?? $this->config =  config('livewire-tables.numberRange.defaultConfig');
+        return $this->config ?? $this->config = config('livewire-tables.numberRange.defaultConfig');
     }
 
     public function validate(array $values): array|bool
     {
-        if (empty($this->config)) { $this->getConfigs(); }
+        if (empty($this->config)) {
+            $this->getConfigs();
+        }
 
         $values['min'] = isset($values['min']) ? intval($values['min']) : null;
         $values['max'] = isset($values['max']) ? intval($values['max']) : null;
-        if ($values['min'] == 0 && $values['max'] == 0) { return false; }
+        if ($values['min'] == 0 && $values['max'] == 0) {
+            return false;
+        }
         if ($values['max'] < $values['min']) {
             $tmpMin = $values['min'];
             $values['min'] = $values['max'];
@@ -53,7 +57,6 @@ class NumberRangeFilter extends Filter
         if (! isset($values['max']) || ! is_numeric($values['max']) || $values['max'] > intval($this->getConfig('maxRange')) || $values['max'] < intval($this->getConfig('minRange'))) {
             return false;
         }
-
 
         return ['min' => $values['min'], 'max' => $values['max']];
     }
