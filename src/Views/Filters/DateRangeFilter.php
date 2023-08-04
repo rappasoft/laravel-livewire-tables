@@ -19,7 +19,7 @@ class DateRangeFilter extends Filter
 
     public function getConfigs(): array
     {
-        return !empty($this->config) ? $this->config : $this->config = config('livewire-tables.dateRange.defaultConfig');
+        return ! empty($this->config) ? $this->config : $this->config = config('livewire-tables.dateRange.defaultConfig');
 
     }
 
