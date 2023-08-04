@@ -26,12 +26,12 @@ return [
     'dateRange' => [
         'defaultOptions' => [],
         'defaultConfig' => [
-            'earliestDate' => null, 
-            'latestDate' => null, 
-            'allowInput' => true, 
-            'altFormat' => 'F j, Y', 
-            'ariaDateFormat' => 'F j, Y', 
-            'dateFormat' => 'Y-m-d'
+            'earliestDate' => null,
+            'latestDate' => null,
+            'allowInput' => true,
+            'altFormat' => 'F j, Y',
+            'ariaDateFormat' => 'F j, Y',
+            'dateFormat' => 'Y-m-d',
         ],
     ],
 ];
