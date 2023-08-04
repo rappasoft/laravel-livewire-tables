@@ -13,18 +13,13 @@ class NumberRangeFilter extends Filter
     public function options(array $options = []): NumberRangeFilter
     {
         $this->options = [...config('livewire-tables.numberRange.defaultOptions'), ...$options];
-        /*\Illuminate\Support\Arr::map(\Illuminate\Support\Arr::dot($options), function (string $value, string $key) {
-            \Illuminate\Support\Arr::set($this->options, $key, $value);
-
-            return true;
-        });*/
 
         return $this;
     }
 
     public function getOptions(): array
     {
-        return $this->options;
+        return $this->options ?? config('livewire-tables.numberRange.defaultOptions');
     }
 
     public function config(array $config = []): NumberRangeFilter
@@ -32,6 +27,11 @@ class NumberRangeFilter extends Filter
         $this->config = [...config('livewire-tables.numberRange.defaultConfig'), ...$config];
 
         return $this;
+    }
+
+    public function getConfigs(): array
+    {
+        return $this->config ?? config('livewire-tables.numberRange.defaultConfig');
     }
 
     public function validate(array $values): array|bool

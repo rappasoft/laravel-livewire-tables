@@ -12,14 +12,14 @@ class DateRangeFilter extends Filter
 
     public function config(array $config = []): DateRangeFilter
     {
-        $this->config = [...['earliestDate' => null, 'latestDate' => null, 'allowInput' => true, 'altFormat' => 'F j, Y', 'ariaDateFormat' => 'F j, Y', 'dateFormat' => 'Y-m-d'], ...$config];
+        $this->config = [...config('livewire-tables.dateRange.defaultConfig'), ...$config];
 
         return $this;
     }
 
-    public function getKeys(): array
+    public function getConfigs(): array
     {
-        return ['minDate' => '', 'maxDate' => ''];
+        return $this->config ?? config('livewire-tables.dateRange.defaultConfig');
     }
 
     public function options(array $options = []): DateRangeFilter
@@ -29,18 +29,14 @@ class DateRangeFilter extends Filter
         return $this;
     }
 
-    public function getConfigs(): array
-    {
-        if (empty($this->config)) {
-            $this->config();
-        }
-
-        return $this->config;
-    }
-
     public function getOptions(): array
     {
-        return $this->options;
+        return $this->options ?? config('livewire-tables.dateRange.defaultOptions');
+    }
+
+    public function getKeys(): array
+    {
+        return ['minDate' => '', 'maxDate' => ''];
     }
 
     public function validate(array|string $values): array|bool
