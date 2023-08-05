@@ -25,7 +25,9 @@
 
 @endphp
 
-<div x-cloak id="{{ $tableName }}-dateRangeFilter-{{ $filterKey }}" x-data="flatpickrFilter($wire, '{{ $filterKey }}', @js($filter->getConfigs()), $refs.dateRangeInput{{ $filterKey }}, '{{ App::currentLocale() }}')" >
+<div x-cloak id="{{ $tableName }}-dateRangeFilter-{{ $filterKey }}" x-data="flatpickrFilter($wire, '{{ $filterKey }}', @js($filter->getConfigs()), $refs.dateRangeInput, '{{ App::currentLocale() }}')" >
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <div>
         @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
@@ -42,7 +44,7 @@
             >
                 <input 
                     type="text" 
-                    x-ref="dateRangeInput{{ $filterKey }}" 
+                    x-ref="dateRangeInput" 
                     x-on:click="init"
                     value="{{ $dateString }}" 
                     wire:key="{{ $tableName }}-filter-dateRange-{{ $filterKey }}" 

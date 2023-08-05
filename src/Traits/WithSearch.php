@@ -25,6 +25,8 @@ trait WithSearch
 
     public ?bool $searchFilterLive = null;
 
+    public ?string $searchPlaceholder = null;
+
     // TODO
     public function applySearch(): Builder
     {

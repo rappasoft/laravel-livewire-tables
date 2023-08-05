@@ -8,23 +8,19 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ComponentColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ComponentColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\LivewireComponentColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\LivewireComponentColumnHelpers;
 
 class LivewireComponentColumn extends Column
 {
-    use ComponentColumnHelpers,
-        ComponentColumnConfiguration;
+    use LivewireComponentColumnHelpers,
+        LivewireComponentColumnConfiguration;
 
     protected string $livewireComponent;
 
     public function component(string $livewireComponent): self
     {
-        if (Str::startsWith($livewireComponent, 'livewire:')) {
-            $livewireComponent = substr($livewireComponent, 9);
-        }
-
-        $this->livewireComponent = $livewireComponent;
+        $this->livewireComponent = (Str::startsWith($livewireComponent, 'livewire:')) ? substr($livewireComponent, 9) : $livewireComponent;
 
         return $this;
     }
@@ -51,7 +47,7 @@ class LivewireComponentColumn extends Column
         })->implode(' ');
 
         return new HtmlString(Blade::render(
-            '<livewire:dynamic-component :component="$component" '.$implodedAttributes.' :wire:key="'.$row->id.'" />',
+            '<livewire:dynamic-component :component="$component" '.$implodedAttributes.' :wire:key="'.$row->{$row->getKeyName()}.'" />',
             [
                 'component' => $this->livewireComponent,
                 ...$attributes,

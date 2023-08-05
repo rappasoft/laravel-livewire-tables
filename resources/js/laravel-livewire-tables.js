@@ -239,4 +239,37 @@ document.addEventListener('alpine:init', () => {
             this.$watch('allFilters', value => this.setupWire());
         },
     }));
+
+    Alpine.data('flatpickrFilter', (wire, filterKey, filterConfig, refLocation, locale) => ({
+        flatpickrInstance: flatpickr(refLocation, {
+            mode: 'range',
+            clickOpens: true,
+            allowInvalidPreload: true,
+            defaultDate: [refLocation.value.split(' ')[0], refLocation.value.split(' ')[2]],
+            ariaDateFormat: filterConfig['ariaDateFormat'],
+            allowInput: filterConfig['allowInput'],
+            altFormat: filterConfig['altFormat'],
+            altInput: filterConfig['altInput'],
+            dateFormat: filterConfig['dateFormat'],
+            locale: 'en',
+            minDate: filterConfig['earliestDate'],
+            maxDate: filterConfig['latestDate'],
+            onOpen: function () {
+                childElementOpen = true;
+            },
+            onChange: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length > 1) {
+                    var startDate = dateStr.split(' ')[0];
+                    var endDate = dateStr.split(' ')[2];
+                    var wireDateArray = {};
+                    wireDateArray = { 'minDate': startDate, 'maxDate': endDate };
+                    wire.set('filterComponents.' + filterKey, wireDateArray);
+                }
+            }
+        })
+
+
+    }));
+
+
 });

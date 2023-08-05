@@ -14,13 +14,13 @@ trait ComponentUtilities
 
     public array $table = [];
 
-    public $theme = null;
+    public ?string $theme = null;
 
     protected Builder $builder;
 
     protected $model;
 
-    protected $primaryKey;
+    protected ?string $primaryKey;
 
     protected array $relationships = [];
 
@@ -58,7 +58,7 @@ trait ComponentUtilities
 
     protected $tdAttributesCallback;
 
-    protected $collapsingColumnsStatus = true;
+    protected bool $collapsingColumnsStatus = true;
 
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
 

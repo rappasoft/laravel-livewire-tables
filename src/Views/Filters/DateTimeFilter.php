@@ -7,9 +7,23 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class DateTimeFilter extends Filter
 {
+    public array $options = [];
+
+    public function options(array $options = []): DateTimeFilter
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
+
     public function validate($value)
     {
-        if (DateTime::createFromFormat('Y-m-d\TH:i', $value) === false) {
+        if (DateTime::createFromFormat($this->getOptions()['dateFormat'] ?? 'Y-m-d\TH:i', $value) === false) {
             return false;
         }
 

@@ -36,11 +36,11 @@ class Column
 
     protected bool $sortable = false;
 
-    protected $sortCallback;
+    protected mixed $sortCallback = null;
 
     protected bool $searchable = false;
 
-    protected $searchCallback;
+    protected mixed $searchCallback = null;
 
     protected bool $collapseOnMobile = false;
 
@@ -54,11 +54,11 @@ class Column
 
     protected bool $eagerLoadRelations = false;
 
-    protected $formatCallback;
+    protected mixed $formatCallback = null;
 
     protected bool $html = false;
 
-    protected $labelCallback;
+    protected mixed $labelCallback = null;
 
     protected bool $hidden = false;
 
@@ -68,11 +68,11 @@ class Column
 
     protected bool $secondaryHeader = false;
 
-    protected $secondaryHeaderCallback;
+    protected mixed $secondaryHeaderCallback = null;
 
     protected bool $footer = false;
 
-    protected $footerCallback;
+    protected mixed $footerCallback = null;
 
     protected bool $clickable = true;
 
