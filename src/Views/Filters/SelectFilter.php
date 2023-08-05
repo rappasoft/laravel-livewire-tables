@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class SelectFilter extends Filter
 {
-    protected array $options = [];
+    public array $options = [];
 
     public function options(array $options = []): SelectFilter
     {

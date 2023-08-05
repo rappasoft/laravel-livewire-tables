@@ -6,20 +6,21 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class DateRangeFilter extends Filter
 {
-    protected array $options = [];
+    public array $options = [];
 
-    protected array $config = [];
+    public array $config = [];
 
     public function config(array $config = []): DateRangeFilter
     {
-        $this->config = [...['earliestDate' => null, 'latestDate' => null, 'allowInput' => true, 'altFormat' => 'F j, Y', 'ariaDateFormat' => 'F j, Y', 'dateFormat' => 'Y-m-d'], ...$config];
+        $this->config = [...config('livewire-tables.dateRange.defaultConfig'), ...$config];
 
         return $this;
     }
 
-    public function getKeys(): array
+    public function getConfigs(): array
     {
-        return ['minDate' => '', 'maxDate' => ''];
+        return ! empty($this->config) ? $this->config : $this->config = config('livewire-tables.dateRange.defaultConfig');
+
     }
 
     public function options(array $options = []): DateRangeFilter
@@ -29,25 +30,22 @@ class DateRangeFilter extends Filter
         return $this;
     }
 
-    public function getConfigs(): array
-    {
-        if (empty($this->config)) {
-            $this->config();
-        }
-
-        return $this->config;
-    }
-
     public function getOptions(): array
     {
-        return $this->options;
+        return $this->options ?? $this->options = config('livewire-tables.dateRange.defaultOptions');
+
+    }
+
+    public function getKeys(): array
+    {
+        return ['minDate' => '', 'maxDate' => ''];
     }
 
     public function validate(array|string $values): array|bool
     {
-        if (empty($this->config)) {
-            $this->config();
-        }
+        $this->getOptions();
+        $this->getConfigs();
+
         $returnedValues = ['minDate' => '', 'maxDate' => ''];
         if (is_array($values)) {
             if (! isset($values['minDate']) || ! isset($values['maxDate'])) {
@@ -92,8 +90,8 @@ class DateRangeFilter extends Filter
             return false;
         }
 
-        $earliestDateString = ($this->getConfigs()['earliestDate'] != '') ? $this->getConfigs()['earliestDate'] : null;
-        $latestDateString = ($this->getConfigs()['latestDate'] != '') ? $this->getConfigs()['latestDate'] : null;
+        $earliestDateString = ($this->getConfig('earliestDate') != '') ? $this->getConfig('earliestDate') : null;
+        $latestDateString = ($this->getConfig('latestDate') != '') ? $this->getConfig('latestDate') : null;
 
         if ($earliestDateString != '' && ! is_null($earliestDateString) && $latestDateString != '' && ! is_null($latestDateString)) {
             $dateLimits = ['earliest' => $earliestDateString, 'latest' => $latestDateString];
@@ -131,8 +129,8 @@ class DateRangeFilter extends Filter
         $validatedValue = $this->validate($value);
 
         if (is_array($validatedValue)) {
-            $dateFormat = $this->getConfigs()['dateFormat'] ?? $this->getConfigs()['dateFormat'];
-            $ariaDateFormat = $this->getConfigs()['ariaDateFormat'] ?? $this->getConfigs()['ariaDateFormat'];
+            $dateFormat = $this->getConfig('dateFormat');
+            $ariaDateFormat = $this->getConfig('ariaDateFormat');
 
             $minDateCarbon = \Carbon\Carbon::createFromFormat($dateFormat, $validatedValue['minDate']);
             $maxDateCarbon = \Carbon\Carbon::createFromFormat($dateFormat, $validatedValue['maxDate']);
@@ -176,9 +174,8 @@ class DateRangeFilter extends Filter
 
     public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): \Illuminate\View\View|\Illuminate\View\Factory
     {
-        if (empty($this->getConfigs())) {
-            $this->config();
-        }
+        $this->getOptions();
+        $this->getConfigs();
 
         return view('livewire-tables::components.tools.filters.date-range', [
             'filterLayout' => $filterLayout,
