@@ -14,7 +14,7 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\LivewireComponentColumn
 class LivewireComponentColumn extends Column
 {
     use LivewireComponentColumnHelpers,
-    LivewireComponentColumnConfiguration;
+        LivewireComponentColumnConfiguration;
 
     protected string $livewireComponent;
 
@@ -55,5 +55,4 @@ class LivewireComponentColumn extends Column
         ));
 
     }
-
 }

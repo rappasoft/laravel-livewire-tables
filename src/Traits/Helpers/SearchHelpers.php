@@ -98,12 +98,13 @@ trait SearchHelpers
         return '';
     }
 
-    public function getSearchPlaceholder(): string {
+    public function getSearchPlaceholder(): string
+    {
         return $this->hasSearchPlaceholder() ? $this->searchPlaceholder : __('Search');
     }
 
-    public function hasSearchPlaceholder(): bool {
+    public function hasSearchPlaceholder(): bool
+    {
         return $this->searchPlaceholder !== null;
     }
-
 }
