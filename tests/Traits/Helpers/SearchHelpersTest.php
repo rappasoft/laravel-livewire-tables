@@ -93,4 +93,14 @@ class SearchHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasSearchLazy());
     }
+
+    /** @test */
+    public function can_check_if_has_search_placeholder(): void
+    {
+        $this->assertFalse($this->basicTable->hasSearchPlaceholder());
+
+        $this->basicTable->setSearchPlaceholder('Test');
+
+        $this->assertTrue($this->basicTable->hasSearchPlaceholder());
+    }
 }

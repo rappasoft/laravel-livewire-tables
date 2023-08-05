@@ -43,7 +43,8 @@
             >
                 <input
                     wire:model{{ $component->getSearchOptions() }}="search"
-                    placeholder="{{ __('Search') }}" type="text"
+                    placeholder="{{ $component->getSearchPlaceholder() }}"
+                    type="text"
                     @class([
                         'form-control' => $component->isBootstrap(),
                     ])

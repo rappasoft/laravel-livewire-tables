@@ -114,4 +114,12 @@ trait SearchConfiguration
 
         return $this;
     }
+
+    public function setSearchPlaceholder(string $placeholder): self 
+    {
+        $this->searchPlaceholder = $placeholder;
+
+        return $this;
+    }
+
 }
