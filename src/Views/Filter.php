@@ -23,7 +23,7 @@ abstract class Filter
 
     protected bool $resetByClearButton = true;
 
-    protected $filterCallback = null;
+    protected mixed $filterCallback = null;
 
     public array $config = [];
 
@@ -41,7 +41,7 @@ abstract class Filter
 
     protected ?string $filterCustomPillBlade = null;
 
-    protected $filterDefaultValue;
+    protected mixed $filterDefaultValue = null;
 
     public function __construct(string $name, string $key = null)
     {

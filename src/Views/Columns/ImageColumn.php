@@ -15,9 +15,9 @@ class ImageColumn extends Column
 
     protected string $view = 'livewire-tables::includes.columns.image';
 
-    protected $locationCallback;
+    protected mixed $locationCallback = null;
 
-    protected $attributesCallback;
+    protected mixed $attributesCallback = null;
 
     public function __construct(string $title, string $from = null)
     {

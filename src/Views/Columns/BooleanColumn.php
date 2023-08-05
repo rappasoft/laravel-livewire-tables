@@ -19,7 +19,7 @@ class BooleanColumn extends Column
 
     protected string $view = 'livewire-tables::includes.columns.boolean';
 
-    protected $callback;
+    protected mixed $callback = null;
 
     public function getContents(Model $row)
     {
