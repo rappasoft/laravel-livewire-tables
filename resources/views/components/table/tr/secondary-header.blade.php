@@ -13,7 +13,7 @@
     @endif
 
     @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
-        <x-livewire-tables::table.td.row-contents :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'header-collapsed-hide' }}" rowIndex="-1"  />
+        <x-livewire-tables::table.td.row-contents :hidden=true :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'header-collapsed-hide' }}" rowIndex="-1"  />
     @endif
 
     @foreach($this->getColumns() as $colIndex => $column)
