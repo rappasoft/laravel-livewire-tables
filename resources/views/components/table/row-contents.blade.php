@@ -20,7 +20,8 @@
 
     <tr
         x-data
-        @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('hidden') : null"
+        @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('{{ $component->isBootstrap() ? 'd-none' : 'hidden' }}') : null"
+
         wire:key="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}-collapsed-contents"
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
 
