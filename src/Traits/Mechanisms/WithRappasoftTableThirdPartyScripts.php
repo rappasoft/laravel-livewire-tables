@@ -43,7 +43,7 @@ trait WithRappasoftTableThirdPartyScripts
 
     public function returnRappasoftTableThirdPartyJavaScriptAsFile(): \Symfony\Component\HttpFoundation\Response
     {
-        return $this->pretendResponseIsJs(__DIR__.'/../..//../resources/js/laravel-livewire-tables-thirdparty.js');
+        return $this->pretendResponseIsJs(__DIR__.'/../../../resources/js/laravel-livewire-tables-thirdparty.js');
     }
 
     /**
