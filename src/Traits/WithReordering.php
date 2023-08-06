@@ -61,9 +61,9 @@ trait WithReordering
     {
         $this->currentlyReorderingStatus = $this->reorderDisplayColumn = false;
 
-         $this->forgetReorderingSession();
-         $this->setCurrentlyReorderingDisabled();
-         $this->getReorderingBackup();
+        $this->forgetReorderingSession();
+        $this->setCurrentlyReorderingDisabled();
+        $this->getReorderingBackup();
 
     }
 
