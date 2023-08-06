@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
-use Livewire\Drawer\Utils;
 
 trait WithRappasoftTableThirdPartyStyles
 {
@@ -28,10 +27,8 @@ trait WithRappasoftTableThirdPartyStyles
 
     }
 
-    /** 
-     * 
+    /**
      *  Used If Injection is Enabled
-     * 
      */
     public function setRappasoftTableThirdPartyStylesRoute(callable $callback): void
     {
@@ -45,10 +42,8 @@ trait WithRappasoftTableThirdPartyStyles
         return $this->pretendResponseIsCSS(__DIR__.'/../..//../resources/css/laravel-livewire-tables-thirdparty.css');
     }
 
-    /** 
-     * 
+    /**
      *  Used If Injection is Disabled
-     * 
      */
     public static function rappasoftTableThirdPartyStyles(mixed $expression): string
     {
@@ -83,6 +78,4 @@ trait WithRappasoftTableThirdPartyStyles
             <link href="{$styleUrl}" rel="stylesheet" />
         HTML;
     }
-
-
 }

@@ -28,14 +28,11 @@ trait WithRappasoftTableThirdPartyScripts
 
     }
 
-    
-    /** 
-     * 
-     * Rappasoft Third Party Scripts 
-     * 
+    /**
+     * Rappasoft Third Party Scripts
      */
-    /** 
-     * Used if Injection Is Used 
+    /**
+     * Used if Injection Is Used
      */
     public function setRappasoftTableThirdPartyScriptRoute(callable $callback): void
     {
@@ -49,7 +46,7 @@ trait WithRappasoftTableThirdPartyScripts
         return $this->pretendResponseIsJs(__DIR__.'/../..//../resources/js/laravel-livewire-tables-thirdparty.js');
     }
 
-    /** 
+    /**
      *  Used If Injection is Disabled
      */
     public static function rappasoftTableThirdPartyScripts(mixed $expression): string

@@ -41,8 +41,7 @@ class RappasoftFrontendAssets
         });
 
         Blade::directive('rappasoftTableScripts', [static::class, 'rappasoftTableScripts']);
-        
-        
+
     }
 
     protected function pretendResponseIsJs(string $file): \Symfony\Component\HttpFoundation\Response
@@ -76,7 +75,6 @@ class RappasoftFrontendAssets
 
         return response()->file($file, $headers);
     }
-
 
     public function maps(): \Symfony\Component\HttpFoundation\Response
     {

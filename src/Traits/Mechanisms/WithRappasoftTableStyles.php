@@ -2,10 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Route;
-use Livewire\Drawer\Utils;
-
 trait WithRappasoftTableStyles
 {
     /** Rappasoft Styles */
@@ -15,11 +11,8 @@ trait WithRappasoftTableStyles
 
     public array $rappasoftTableStyleTagAttributes = [];
 
-
-    /** 
-     * 
+    /**
      *  Used If Injection is Enabled
-     * 
      */
     public function setRappasoftTableStylesRoute(callable $callback): void
     {
@@ -33,10 +26,8 @@ trait WithRappasoftTableStyles
         return $this->pretendResponseIsCSS(__DIR__.'/../../../resources/css/laravel-livewire-tables.css');
     }
 
-    /** 
-     * 
+    /**
      *  Used If Injection is Disabled
-     * 
      */
     public static function rappasoftTableStyles(mixed $expression): string
     {
@@ -71,5 +62,4 @@ trait WithRappasoftTableStyles
             <link href="{$styleUrl}" rel="stylesheet" />
         HTML;
     }
-
 }

@@ -2,13 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Route;
 use Livewire\Drawer\Utils;
 
 trait WithRappasoftTableScripts
 {
-    
     /** Rappasoft Scripts */
     public bool $hasRenderedRappsoftTableScripts = false;
 
@@ -21,10 +18,8 @@ trait WithRappasoftTableScripts
         $this->rappasoftTableScriptTagAttributes = [...$this->rappasoftTableScriptTagAttributes, ...$attributes];
     }
 
-    /** 
-     * 
+    /**
      *  Used If Injection is Enabled
-     * 
      */
     public function setRappasoftTableScriptRoute(callable $callback): void
     {
@@ -38,11 +33,8 @@ trait WithRappasoftTableScripts
         return $this->pretendResponseIsJs(__DIR__.'/../..//../resources/js/laravel-livewire-tables.js');
     }
 
-
     /**
-     * 
      *  Used if Injection is disabled
-     * 
      */
     public static function rappasoftTableScripts(mixed $expression): string
     {
