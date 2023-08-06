@@ -152,7 +152,7 @@ class RappasoftFrontendAssets
         return implode("\n", $html);
     }
 
-    public static function css(array $options= []): ?string
+    public static function css(array $options = []): ?string
     {
         $styleUrl = app(static::class)->rappasoftStylesRoute->uri;
         $styleUrl = rtrim($styleUrl, '/');
@@ -164,7 +164,7 @@ class RappasoftFrontendAssets
         HTML;
     }
 
-    public static function js(array $options= []): string
+    public static function js(array $options = []): string
     {
         // Use the default endpoint...
         $url = app(static::class)->rappasoftScriptRoute->uri;

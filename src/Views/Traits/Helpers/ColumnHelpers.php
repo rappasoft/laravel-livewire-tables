@@ -97,7 +97,7 @@ trait ColumnHelpers
     }
 
     // TODO: Test
-    public function renderContents(Model $row): null|string|\Illuminate\Support\HtmlString|\Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function renderContents(Model $row): null|string|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if ($this->shouldCollapseOnMobile() && $this->shouldCollapseOnTablet()) {
             throw new DataTableConfigurationException('You should only specify a columns should collapse on mobile OR tablet, not both.');
@@ -107,7 +107,7 @@ trait ColumnHelpers
     }
 
     // TODO: Test
-    public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|\Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if ($this->isLabel()) {
             $value = call_user_func($this->getLabelCallback(), $row, $this);

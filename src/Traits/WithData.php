@@ -35,7 +35,7 @@ trait WithData
         $this->setBuilder($this->applyFilters());
 
         return $this->getBuilder();
-        
+
     }
 
     protected function executeQuery()
@@ -58,6 +58,7 @@ trait WithData
             if ($this->isPaginationMethod('simple')) {
 
                 $this->paginationTotalItemCount = $this->getBuilder()->count();
+
                 return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
 
             }
@@ -65,6 +66,7 @@ trait WithData
             if ($this->isPaginationMethod('cursor')) {
 
                 $this->paginationTotalItemCount = $this->getBuilder()->count();
+
                 return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
             }
         }
