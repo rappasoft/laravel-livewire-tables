@@ -16,12 +16,12 @@ trait SortingHelpers
         return $this->singleColumnSortingStatus;
     }
 
-    /**
-     * @return array<mixed>
-     */
+
     public function getSorts(): array
     {
-        return $this->sorts ?? [];
+        return collect($this->sorts ?? [])
+            ->reject(fn ($dir, $column) => ! in_array($column, $this->getSortableColumns()->toArray(), true))
+            ->toArray();
     }
 
     /**
@@ -30,7 +30,10 @@ trait SortingHelpers
      */
     public function setSorts(array $sorts): array
     {
-        return $this->sorts = $sorts;
+
+        return $this->sorts = collect($sorts ?? [])
+            ->reject(fn ($dir, $column) => ! in_array($column, $this->getSortableColumns()->toArray(), true))
+            ->toArray();
     }
 
     public function getSort(string $field): ?string
