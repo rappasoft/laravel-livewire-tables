@@ -97,10 +97,10 @@ trait ColumnHelpers
 
     public function getSortableColumns(): Collection
     {
-        return (isset($this->sortableColumns) ? $this->sortableColumns : $this->sortableColumns = $this->getColumns()
-        ->filter(fn (Column $column) => ($column->isSortable() || $column->hasSortCallback()))
-        ->map(fn (Column $column) => $column->getColumnSelectName() ?? $column->getSlug())
-        ->values());
+        return isset($this->sortableColumns) ? $this->sortableColumns : $this->sortableColumns = $this->getColumns()
+            ->filter(fn (Column $column) => ($column->isSortable() || $column->hasSortCallback()))
+            ->map(fn (Column $column) => $column->getColumnSelectName() ?? $column->getSlug())
+            ->values();
     }
 
     public function getColumnCount(): int

@@ -47,17 +47,17 @@ trait WithSorting
 
         if (! $this->hasSort($columnSelectName)) {
             $this->resetComputedPage();
+
             return $this->setSortAsc($columnSelectName);
         }
 
         if ($this->isSortAsc($columnSelectName)) {
             $this->resetComputedPage();
+
             return $this->setSortDesc($columnSelectName);
         }
 
         $this->clearSort($columnSelectName);
-
-
 
         return null;
     }

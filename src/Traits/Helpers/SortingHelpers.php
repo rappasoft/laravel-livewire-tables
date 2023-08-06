@@ -16,7 +16,6 @@ trait SortingHelpers
         return $this->singleColumnSortingStatus;
     }
 
-
     public function getSorts(): array
     {
         return collect($this->sorts ?? [])
