@@ -43,7 +43,7 @@ class DateTimeFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.datetime', [
             'filterLayout' => $filterLayout,

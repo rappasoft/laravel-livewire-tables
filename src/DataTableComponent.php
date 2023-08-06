@@ -116,10 +116,7 @@ abstract class DataTableComponent extends Component
         return 'livewire-tables::stubs.custom';
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function render()
+    public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $this->setupColumnSelect();
         $this->setupPagination();

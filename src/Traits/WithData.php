@@ -30,23 +30,21 @@ trait WithData
     {
         $this->setBuilder($this->joinRelations());
 
-        $this->setBuilder($this->selectFields());
-
         $this->setBuilder($this->applySearch());
 
         $this->setBuilder($this->applyFilters());
 
-        if ($this->currentlyReorderingIsEnabled()) {
-            $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultReorderColumn(), $this->getDefaultReorderDirection()));
-
-            return $this->getBuilder();
-        }
-
-        return $this->applySorting();
+        return $this->getBuilder();
+        
     }
 
     protected function executeQuery()
     {
+        // Moved these from baseQuery to here to avoid pulling all fields when cloning baseQuery.
+        $this->setBuilder($this->selectFields());
+
+        $this->applySorting();
+
         if ($this->paginationIsEnabled()) {
             if ($this->isPaginationMethod('standard')) {
                 $paginatedResults = $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
@@ -58,11 +56,16 @@ trait WithData
             }
 
             if ($this->isPaginationMethod('simple')) {
-                return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+
+                $this->paginationTotalItemCount = $this->getBuilder()->count();
+                return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
+
             }
 
             if ($this->isPaginationMethod('cursor')) {
-                return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+
+                $this->paginationTotalItemCount = $this->getBuilder()->count();
+                return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
             }
         }
 

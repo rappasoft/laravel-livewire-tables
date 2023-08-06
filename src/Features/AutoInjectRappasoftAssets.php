@@ -43,7 +43,7 @@ class AutoInjectRappasoftAssets extends ComponentHook
         static::$hasRenderedAComponentThisRequest = true;
     }
 
-    public static function injectAssets($html): string
+    public static function injectAssets(mixed $html): string
     {
         $rappasoftStyles = RappasoftFrontendAssets::styles();
         $rappasoftScripts = RappasoftFrontendAssets::scripts();

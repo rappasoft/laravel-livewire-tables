@@ -24,10 +24,7 @@ trait ComponentColumnHelpers
         return $this->slotCallback !== null;
     }
 
-    /**
-     * Get the value of componentView
-     */
-    public function getComponentView()
+    public function getComponentView(): string
     {
         return $this->componentView;
     }

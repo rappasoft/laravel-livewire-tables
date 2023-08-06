@@ -12,9 +12,9 @@ class RappasoftFrontendAssets
 
     public bool $hasRenderedRappsoftStyles = false;
 
-    public $rappasoftScriptRoute;
+    public mixed $rappasoftScriptRoute;
 
-    public $rappasoftStylesRoute;
+    public mixed $rappasoftStylesRoute;
 
     public array $rappasoftScriptTagAttributes = [];
 
@@ -25,7 +25,7 @@ class RappasoftFrontendAssets
         app()->singleton($this::class);
     }
 
-    public function boot()
+    public function boot(): void
     {
         app($this::class)->setRappaScriptRoute(function ($handle) {
             $scriptPath = '/livewire/rappasoft-laravel-livewire-tables.js';
@@ -43,46 +43,46 @@ class RappasoftFrontendAssets
         Blade::directive('rappasoftStyles', [static::class, 'rappasoftStyles']);
     }
 
-    public function useRappasoftScriptTagAttributes($attributes): void
+    public function useRappasoftScriptTagAttributes(array $attributes): void
     {
         $this->rappasoftScriptTagAttributes = [...$this->rappasoftScriptTagAttributes, ...$attributes];
     }
 
-    public function setRappaScriptRoute($callback): void
+    public function setRappaScriptRoute(callable $callback): void
     {
         $route = $callback([self::class, 'returnJavaScriptAsFile']);
 
         $this->rappasoftScriptRoute = $route;
     }
 
-    public function setRappaStylesRoute($callback): void
+    public function setRappaStylesRoute(callable $callback): void
     {
         $route = $callback([self::class, 'returnStylesAsFile']);
 
         $this->rappasoftStylesRoute = $route;
     }
 
-    public static function rappasoftScripts($expression): string
+    public static function rappasoftScripts(mixed $expression): string
     {
         return '{!! \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets::scripts('.$expression.') !!}';
     }
 
-    public static function rappasoftStyles($expression): string
+    public static function rappasoftStyles(mixed $expression): string
     {
         return '{!! \Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets::styles('.$expression.') !!}';
     }
 
-    public function returnJavaScriptAsFile()
+    public function returnJavaScriptAsFile(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->pretendResponseIsJs(__DIR__.'/../../resources/js/laravel-livewire-tables.js');
     }
 
-    public function returnStylesAsFile()
+    public function returnStylesAsFile(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->pretendResponseIsCSS(__DIR__.'/../../resources/css/laravel-livewire-tables.css');
     }
 
-    protected function pretendResponseIsCSS($file)
+    protected function pretendResponseIsCSS(string $file): \Symfony\Component\HttpFoundation\Response
     {
         $expires = strtotime('+1 minute');
         $lastModified = filemtime($file);
@@ -98,7 +98,7 @@ class RappasoftFrontendAssets
         return response()->file($file, $headers);
     }
 
-    protected function pretendResponseIsJs($file)
+    protected function pretendResponseIsJs(string $file): \Symfony\Component\HttpFoundation\Response
     {
         $expires = strtotime('+1 minute');
         $lastModified = filemtime($file);
@@ -114,12 +114,12 @@ class RappasoftFrontendAssets
         return response()->file($file, $headers);
     }
 
-    public function maps()
+    public function maps(): \Symfony\Component\HttpFoundation\Response
     {
         return Utils::pretendResponseIsFile(__DIR__.'/../../../resources/js/laravel-livewire-tables.min.js.map');
     }
 
-    public static function styles($options = []): array|string|null
+    public static function styles(array $options = []): array|string|null
     {
         app(static::class)->hasRenderedRappsoftStyles = true;
 
@@ -136,7 +136,7 @@ class RappasoftFrontendAssets
 
     }
 
-    public static function scripts($options = []): string
+    public static function scripts(array $options = []): ?string
     {
         app(static::class)->hasRenderedRappsoftScripts = true;
 
@@ -152,7 +152,7 @@ class RappasoftFrontendAssets
         return implode("\n", $html);
     }
 
-    public static function css($options): string
+    public static function css(array $options= []): ?string
     {
         $styleUrl = app(static::class)->rappasoftStylesRoute->uri;
         $styleUrl = rtrim($styleUrl, '/');
@@ -164,7 +164,7 @@ class RappasoftFrontendAssets
         HTML;
     }
 
-    public static function js($options): string
+    public static function js(array $options= []): string
     {
         // Use the default endpoint...
         $url = app(static::class)->rappasoftScriptRoute->uri;
@@ -186,7 +186,7 @@ class RappasoftFrontendAssets
         HTML;
     }
 
-    protected static function minify($subject): array|string|null
+    protected static function minify(string $subject): array|string|null
     {
         return preg_replace('~(\v|\t|\s{2,})~m', '', $subject);
     }

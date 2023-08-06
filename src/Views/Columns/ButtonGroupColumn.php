@@ -25,7 +25,7 @@ class ButtonGroupColumn extends Column
         $this->label(fn () => null);
     }
 
-    public function getContents(Model $row)
+    public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|\Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view($this->getView())
             ->withColumn($this)
