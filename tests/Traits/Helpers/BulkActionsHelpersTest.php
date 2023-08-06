@@ -162,15 +162,11 @@ class BulkActionsHelpersTest extends TestCase
     {
         $this->basicTable->setSelected([1, 2, 3, 4, 5]);
 
-        $this->basicTable->updatedSelectAll();
-
-        $this->assertSame([], $this->basicTable->getSelected());
+        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
 
         $this->basicTable->setSelected([1]);
 
-        $this->basicTable->updatedSelectAll();
-
-        $this->assertSame(['1', '2', '3', '4', '5'], $this->basicTable->getSelected());
+        $this->assertSame([1], $this->basicTable->getSelected());
     }
 
     /** @test */

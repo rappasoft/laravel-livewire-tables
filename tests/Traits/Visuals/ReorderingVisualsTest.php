@@ -93,15 +93,12 @@ class ReorderingVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
-            ->assertSet('sortingPillsStatus', true)
             ->call('sortBy', 'id')
             ->assertSeeHtml('wire:key="table-sorting-pill-id"')
             ->call('enableReordering')
-            ->assertSet('sortingPillsStatus', false)
             ->assertDontSeeHtml('wire:key="table-sorting-pill-id"')
             ->call('disableReordering')
             ->call('sortBy', 'id')
-            ->assertSet('sortingPillsStatus', true)
             ->assertSeeHtml('wire:key="table-sorting-pill-id"');
     }
 

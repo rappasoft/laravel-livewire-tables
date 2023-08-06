@@ -49,18 +49,21 @@ trait WithReordering
 
     public function enableReordering(): void
     {
-        $this->enablePaginatedReordering();
-        //$this->setReorderingSession();
-        //$this->setCurrentlyReorderingEnabled();
-        //$this->setReorderingBackup();
-        //$this->resetReorderFields();
+        //$this->enablePaginatedReordering();
+        $this->reorderStatus = $this->currentlyReorderingStatus = $this->reorderCurrentPageOnly = $this->reorderDisplayColumn = true;
+
+        $this->setReorderingSession();
+        $this->setReorderingBackup();
+        $this->resetReorderFields();
     }
 
     public function disableReordering(): void
     {
-        //$this->forgetReorderingSession();
-        //$this->setCurrentlyReorderingDisabled();
-        //$this->getReorderingBackup();
+        $this->currentlyReorderingStatus = $this->reorderDisplayColumn = false;
+
+         $this->forgetReorderingSession();
+         $this->setCurrentlyReorderingDisabled();
+         $this->getReorderingBackup();
 
     }
 
