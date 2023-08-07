@@ -35,7 +35,7 @@ trait ColumnSelectHelpers
     {
         return $this->getRememberColumnSelectionStatus() === false;
     }
-    
+
     public function columnSelectIsEnabledForColumn(mixed $column): bool
     {
         return in_array($column instanceof Column ? $column->getSlug() : $column, $this->selectedColumns, true);

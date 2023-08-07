@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Pagination\CursorPaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait WithData
 {
