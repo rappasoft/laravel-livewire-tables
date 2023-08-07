@@ -16,6 +16,9 @@ return [
      */
     'inject_third_party_assets' => true,
 
+    /**
+     * Configuration options for NumberRangeFilter
+     */
     'numberRange' => [
         'defaultOptions' => [
             'min' => 0,
