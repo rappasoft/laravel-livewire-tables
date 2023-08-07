@@ -31,7 +31,7 @@ class SelectFilter extends Filter
             ->toArray();
     }
 
-    public function validate($value)
+    public function validate(string $value): array|string|bool
     {
         if (! in_array($value, $this->getKeys())) {
             return false;
