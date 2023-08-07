@@ -14,7 +14,7 @@ trait WithRappasoftTableThirdPartyStyles
 
     public array $rappasoftTableThirdPartyStyleTagAttributes = [];
 
-    public function bootWithRappasoftTableThirdPartyStyles()
+    public function bootWithRappasoftTableThirdPartyStyles(): void
     {
         // Set the CSS route for the third party CSS
         app($this::class)->setRappasoftTableThirdPartyStyleRoute(function ($handle) {

@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Pagination\CursorPaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Collection;
 
 trait WithData
 {
     // TODO: Test
-    public function getRows()
+    public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
         $this->baseQuery();
 
@@ -38,7 +42,7 @@ trait WithData
 
     }
 
-    protected function executeQuery()
+    protected function executeQuery(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
         // Moved these from baseQuery to here to avoid pulling all fields when cloning baseQuery.
         $this->setBuilder($this->selectFields());
