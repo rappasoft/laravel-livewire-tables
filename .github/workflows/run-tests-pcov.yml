@@ -5,6 +5,8 @@ on: [pull_request,push]
 jobs:
   test:
     runs-on: self-hosted
+    env:
+      runner: self-hosted
     strategy:
       fail-fast: false
       matrix:
@@ -18,7 +20,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-          
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -32,10 +34,14 @@ jobs:
           runner: self-hosted
 
       - name: Setup problem matchers for PHP
+        env:
+          runner: self-hosted
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
       - name: Get composer cache directory
         id: composer-cache
+                env:
+          runner: self-hosted
         run: |
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
