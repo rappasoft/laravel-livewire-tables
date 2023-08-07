@@ -78,7 +78,7 @@ class NumberRangeFilter extends Filter
         return false;
     }
 
-    public function getDefaultValue(): array
+    public function getDefaultValue(): array|string
     {
         return [];
     }

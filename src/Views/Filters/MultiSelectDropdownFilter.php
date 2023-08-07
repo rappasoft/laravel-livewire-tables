@@ -44,7 +44,7 @@ class MultiSelectDropdownFilter extends Filter
             ->toArray();
     }
 
-    public function validate(int|string|array $value): array|int|tring|bool
+    public function validate(int|string|array $value): array|int|string|bool
     {
         if (is_array($value)) {
             foreach ($value as $index => $val) {
@@ -53,25 +53,22 @@ class MultiSelectDropdownFilter extends Filter
                     unset($value[$index]);
                 }
             }
+            return $value;
         }
 
-        return $value;
+        return (is_string($value) || is_numeric($value)) ? $value : false;
     }
 
     /**
      * Get the filter default options.
-     *
-     * @return array<mixed>
      */
-    public function getDefaultValue()
+    public function getDefaultValue(): array
     {
         return [];
     }
 
     /**
      * Gets the Default Value for this Filter via the Component
-     *
-     * @return array<mixed>
      */
     public function getFilterDefaultValue(): array
     {

@@ -21,7 +21,7 @@ class DateFilter extends Filter
         return $this->options;
     }
 
-    public function validate(string $value): array|string|bool
+    public function validate(string $value): string|bool
     {
         if (DateTime::createFromFormat($this->getOptions()['dateFormat'] ?? 'Y-m-d', $value) === false) {
             return false;
