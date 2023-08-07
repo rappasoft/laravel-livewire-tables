@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class NumberFilter extends Filter
 {
-    public function validate(int|string $value): array|string|bool
+    public function validate(int|string $value): int|string|bool
     {
         return is_numeric($value) ? $value : false;
     }

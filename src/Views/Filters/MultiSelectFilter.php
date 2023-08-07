@@ -30,7 +30,7 @@ class MultiSelectFilter extends Filter
             ->toArray();
     }
 
-    public function validate(int|string|array $value): array|string|bool
+    public function validate(int|string|array $value): array|int|string|bool
     {
         if (is_array($value)) {
             foreach ($value as $index => $val) {
