@@ -46,7 +46,6 @@ class MultiSelectFilter extends Filter
 
     /**
      * Get the filter default options.
-     *
      */
     public function getDefaultValue(): array
     {
@@ -55,7 +54,6 @@ class MultiSelectFilter extends Filter
 
     /**
      * Gets the Default Value for this Filter via the Component
-     *
      */
     public function getFilterDefaultValue(): array
     {

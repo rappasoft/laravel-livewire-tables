@@ -53,6 +53,7 @@ class MultiSelectDropdownFilter extends Filter
                     unset($value[$index]);
                 }
             }
+
             return $value;
         }
 
