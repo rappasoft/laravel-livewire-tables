@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-22.04]
         php: [8.2]
         laravel: [10]
         stability: [prefer-dist]
@@ -29,6 +29,7 @@ jobs:
           coverage: pcov
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          runner: self-hosted
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
@@ -66,6 +67,7 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          runner: self-hosted
         with:
           token: ${{ secrets.CODE_COV_TOKEN }}
           files: ./coverage.xml
