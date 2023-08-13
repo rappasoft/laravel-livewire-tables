@@ -4,6 +4,16 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.15.0] - 2023-07-15
+
+- Fixes
+    - Re-enable capability for configuring whether to Hide/Show Bulk Actions when empty - https://github.com/rappasoft/laravel-livewire-tables/pull/1240
+
+- Enhancements
+    - Allow Label Columns to be Sortable - https://github.com/rappasoft/laravel-livewire-tables/pull/1256
+    - Add Select All On Page Translations - https://github.com/rappasoft/laravel-livewire-tables/pull/1244
+    - Add Contributors Document to track Localisation contributors - https://github.com/rappasoft/laravel-livewire-tables/pull/1223
+    
 ## [2.14.0] - 2023-05-18
 
 ### Changed
@@ -827,7 +837,8 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.14.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.15.0...development
+[2.15.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.15.0...v2.14.0
 [2.14.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.14.0...v2.13.1
 [2.13.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.13.0...v2.13.1
 [2.13.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.12.0...v2.13.0
