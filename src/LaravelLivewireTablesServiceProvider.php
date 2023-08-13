@@ -11,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 
 class LaravelLivewireTablesServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
 
         AboutCommand::add('Rappasoft Laravel Livewire Tables', fn () => ['Version' => '3.0.0']);
@@ -51,7 +51,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
 
     }
 
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
