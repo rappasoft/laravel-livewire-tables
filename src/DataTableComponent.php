@@ -39,7 +39,7 @@ abstract class DataTableComponent extends Component
         WithSearch,
         WithSorting;
 
-    @phpstan-ignore-next-line
+	/** @phpstan-ignore-next-line */
     protected $listeners = [
         'refreshDatatable' => '$refresh',
         'setSort' => 'setSortEvent',
