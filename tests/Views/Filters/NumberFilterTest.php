@@ -172,7 +172,7 @@ class NumberFilterTest extends TestCase
     {
         $filter = NumberFilter::make('BreedID');
         $this->assertSame(123, $filter->validate(123));
-        $this->assertSame('123', $filter->validate('123'));
+        $this->assertSame(123, $filter->validate('123'));
     }
 
     /** @test */

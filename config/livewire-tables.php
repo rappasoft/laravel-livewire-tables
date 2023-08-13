@@ -11,6 +11,14 @@ return [
      */
     'inject_assets' => true,
 
+    /**
+     * Enable or Disable automatic injection of third-party assets
+     */
+    'inject_third_party_assets' => true,
+
+    /**
+     * Configuration options for NumberRangeFilter
+     */
     'numberRange' => [
         'defaultOptions' => [
             'min' => 0,

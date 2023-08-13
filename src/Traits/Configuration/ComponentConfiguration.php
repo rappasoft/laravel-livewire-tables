@@ -220,7 +220,7 @@ trait ComponentConfiguration
         return $this;
     }
 
-    public function setAdditionalSelects($selects): self
+    public function setAdditionalSelects(string|array $selects): self
     {
         if (! is_array($selects)) {
             $selects = [$selects];

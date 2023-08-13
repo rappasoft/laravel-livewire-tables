@@ -141,13 +141,14 @@ document.addEventListener('alpine:init', () => {
         },
         reorderToggle() {
             if (this.currentlyReorderingStatus) {
-                this.cancelReorder();
+                wire.disableReordering();
+
             }
             else {
                 this.currentlyReorderingStatus = true;
                 if (this.hideReorderColumnUnlessReorderingStatus) {
                     this.reorderDisplayColumn = true;
-                    wire.enablePaginatedReordering();
+                    wire.enableReordering();
                 }
             }
         },

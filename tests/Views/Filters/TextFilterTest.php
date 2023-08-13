@@ -40,7 +40,7 @@ final class TextFilterTest extends FilterTestCase
     public function can_set_text_filter_to_number(): void
     {
         $filter = TextFilter::make('BreedID');
-        $this->assertSame(123, $filter->validate(123));
+        $this->assertSame('123', $filter->validate(123));
         $this->assertSame('123', $filter->validate('123'));
     }
 

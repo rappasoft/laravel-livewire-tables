@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
 
@@ -12,6 +13,8 @@ trait WithSorting
         SortingHelpers;
 
     public array $sorts = [];
+
+    public Collection $sortableColumns;
 
     public bool $sortingStatus = true;
 
@@ -29,6 +32,7 @@ trait WithSorting
 
     public function sortBy(string $columnSelectName): ?string
     {
+
         if ($this->sortingIsDisabled()) {
             return null;
         }
@@ -37,13 +41,19 @@ trait WithSorting
         // then clear all the sorts
         if ($this->singleSortingIsEnabled() && $this->hasSorts() && ! $this->hasSort($columnSelectName)) {
             $this->clearSorts();
+            $this->resetComputedPage();
+
         }
 
         if (! $this->hasSort($columnSelectName)) {
+            $this->resetComputedPage();
+
             return $this->setSortAsc($columnSelectName);
         }
 
         if ($this->isSortAsc($columnSelectName)) {
+            $this->resetComputedPage();
+
             return $this->setSortDesc($columnSelectName);
         }
 

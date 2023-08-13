@@ -21,7 +21,7 @@ class DateTimeFilter extends Filter
         return $this->options;
     }
 
-    public function validate($value)
+    public function validate(string $value): string|bool
     {
         if (DateTime::createFromFormat($this->getOptions()['dateFormat'] ?? 'Y-m-d\TH:i', $value) === false) {
             return false;
@@ -43,7 +43,7 @@ class DateTimeFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.datetime', [
             'filterLayout' => $filterLayout,

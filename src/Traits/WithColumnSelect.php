@@ -61,14 +61,14 @@ trait WithColumnSelect
             ->toArray();
     }
 
-    public function selectAllColumns()
+    public function selectAllColumns(): void
     {
         $this->selectedColumns = [];
         $this->forgetColumnSelectSession();
         event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
     }
 
-    public function deselectAllColumns()
+    public function deselectAllColumns(): void
     {
         $this->selectedColumns = [];
         session([$this->getColumnSelectSessionKey() => []]);

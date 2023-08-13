@@ -36,26 +36,17 @@ trait ColumnSelectHelpers
         return $this->getRememberColumnSelectionStatus() === false;
     }
 
-    /**
-     * @param  mixed  $column
-     */
-    public function columnSelectIsEnabledForColumn($column): bool
+    public function columnSelectIsEnabledForColumn(mixed $column): bool
     {
         return in_array($column instanceof Column ? $column->getSlug() : $column, $this->selectedColumns, true);
     }
 
-    /**
-     * @return void
-     */
-    protected function forgetColumnSelectSession()
+    protected function forgetColumnSelectSession(): void
     {
         session()->forget($this->getColumnSelectSessionKey());
     }
 
-    /**
-     * @return string
-     */
-    protected function getColumnSelectSessionKey()
+    protected function getColumnSelectSessionKey(): string
     {
         return $this->getDataTableFingerprint().'-columnSelectEnabled';
     }

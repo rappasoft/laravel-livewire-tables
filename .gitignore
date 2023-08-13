@@ -18,3 +18,5 @@ phpunit.xml.dist.dev
 .history/*
 .env
 phpunit.xml.bak
+src/Views/Filters/DateTimeFilter.php
+phpstan.txt

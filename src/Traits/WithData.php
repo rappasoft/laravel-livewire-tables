@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Pagination\CursorPaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait WithData
 {
     // TODO: Test
-    public function getRows()
+    public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
         $this->baseQuery();
 
@@ -21,7 +25,7 @@ trait WithData
         $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
 
         // Get Count of Items in Current Page
-        $this->paginationCurrentCount = $executedQuery->count() ?? 0;
+        $this->paginationCurrentCount = $executedQuery->count();
 
         return $executedQuery;
     }
@@ -30,23 +34,21 @@ trait WithData
     {
         $this->setBuilder($this->joinRelations());
 
-        $this->setBuilder($this->selectFields());
-
         $this->setBuilder($this->applySearch());
 
         $this->setBuilder($this->applyFilters());
 
-        if ($this->currentlyReorderingIsEnabled()) {
-            $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultReorderColumn(), $this->getDefaultReorderDirection()));
+        return $this->getBuilder();
 
-            return $this->getBuilder();
-        }
-
-        return $this->applySorting();
     }
 
-    protected function executeQuery()
+    protected function executeQuery(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
+        // Moved these from baseQuery to here to avoid pulling all fields when cloning baseQuery.
+        $this->setBuilder($this->selectFields());
+
+        $this->applySorting();
+
         if ($this->paginationIsEnabled()) {
             if ($this->isPaginationMethod('standard')) {
                 $paginatedResults = $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
@@ -58,11 +60,18 @@ trait WithData
             }
 
             if ($this->isPaginationMethod('simple')) {
-                return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+
+                $this->paginationTotalItemCount = $this->getBuilder()->count();
+
+                return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
+
             }
 
             if ($this->isPaginationMethod('cursor')) {
-                return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+
+                $this->paginationTotalItemCount = $this->getBuilder()->count();
+
+                return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
             }
         }
 

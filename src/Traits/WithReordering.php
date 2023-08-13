@@ -16,7 +16,7 @@ trait WithReordering
 
     public bool $hideReorderColumnUnlessReorderingStatus = false;
 
-    public bool $reorderCurrentPageOnly = false;
+    public bool $reorderCurrentPageOnly = true;
 
     public bool $reorderDisplayColumn = false;
 
@@ -49,17 +49,22 @@ trait WithReordering
 
     public function enableReordering(): void
     {
+        //$this->enablePaginatedReordering();
+        $this->reorderStatus = $this->currentlyReorderingStatus = $this->reorderCurrentPageOnly = $this->reorderDisplayColumn = true;
+
         $this->setReorderingSession();
-        $this->setCurrentlyReorderingEnabled();
         $this->setReorderingBackup();
         $this->resetReorderFields();
     }
 
     public function disableReordering(): void
     {
+        $this->currentlyReorderingStatus = $this->reorderDisplayColumn = false;
+
         $this->forgetReorderingSession();
         $this->setCurrentlyReorderingDisabled();
         $this->getReorderingBackup();
+
     }
 
     private function restartReorderingIfNecessary(): void
@@ -96,8 +101,12 @@ trait WithReordering
         if (session()->has($this->getReorderingBackupSessionKey())) {
             session()->forget($this->getReorderingBackupSessionKey());
         }
+        session([$this->getReorderingBackupSessionKey() => $this->getTableStateToArray()]);
+    }
 
-        session([$this->getReorderingBackupSessionKey() => [
+    protected function getTableStateToArray(): array
+    {
+        return [
             $this->getTableName() => $this->{$this->getTableName()},
             'sorts' => $this->sorts,
             'search' => $this->search,
@@ -117,7 +126,31 @@ trait WithReordering
             'secondaryHeaderStatus' => $this->getSecondaryHeaderStatus(),
             'footerStatus' => $this->getFooterStatus(),
             'collapsingColumnsStatus' => $this->hasCollapsingColumns(),
-        ]]);
+        ];
+    }
+
+    protected function restoreStateFromArray(array $tableState): void
+    {
+        $this->{$this->getTableName()} = $tableState[$this->getTableName()];
+        $this->sorts = $tableState['sorts'];
+        $this->search = $tableState['search'];
+        $this->selectedColumns = $tableState['selectedColumns'];
+        $this->setSortingPillsStatus($tableState['sortingPillsStatus']);
+        $this->setSortingStatus($tableState['sortingStatus']);
+        $this->setPaginationStatus($tableState['paginationStatus']);
+        $this->setPerPageVisibilityStatus($tableState['perPageVisibilityStatus']);
+        $this->setPerPageAccepted($tableState['perPageAccepted']);
+        $this->setPerPage($tableState['perPage']);
+        $this->setPage($tableState['page'], $this->getComputedPageName());
+        $this->setSearchStatus($tableState['searchStatus']);
+        $this->setBulkActionsStatus($tableState['bulkActionsStatus']);
+        $this->setSelected($tableState['selected']);
+        $this->setSelectAllStatus($tableState['selectAllStatus']);
+        $this->setFiltersStatus($tableState['filtersStatus']);
+        $this->setSecondaryHeaderStatus($tableState['secondaryHeaderStatus']);
+        $this->setFooterStatus($tableState['footerStatus']);
+        $this->setCollapsingColumnsStatus($tableState['collapsingColumnsStatus']);
+
     }
 
     private function getReorderingBackup(): void
@@ -125,26 +158,7 @@ trait WithReordering
         // TODO: Why won't secondary header and footer come back?
 
         if (session()->has($this->getReorderingBackupSessionKey())) {
-            $save = session()->get($this->getReorderingBackupSessionKey());
-            $this->{$this->getTableName()} = $save[$this->getTableName()];
-            $this->sorts = $save['sorts'];
-            $this->search = $save['search'];
-            $this->selectedColumns = $save['selectedColumns'];
-            $this->setSortingPillsStatus($save['sortingPillsStatus']);
-            $this->setSortingStatus($save['sortingStatus']);
-            $this->setPaginationStatus($save['paginationStatus']);
-            $this->setPerPageVisibilityStatus($save['perPageVisibilityStatus']);
-            $this->setPerPageAccepted($save['perPageAccepted']);
-            $this->setPerPage($save['perPage']);
-            $this->setPage($save['page'], $this->getComputedPageName());
-            $this->setSearchStatus($save['searchStatus']);
-            $this->setBulkActionsStatus($save['bulkActionsStatus']);
-            $this->setSelected($save['selected']);
-            $this->setSelectAllStatus($save['selectAllStatus']);
-            $this->setFiltersStatus($save['filtersStatus']);
-            $this->setSecondaryHeaderStatus($save['secondaryHeaderStatus']);
-            $this->setFooterStatus($save['footerStatus']);
-            $this->setCollapsingColumnsStatus($save['collapsingColumnsStatus']);
+            $this->restoreStateFromArray(session()->get($this->getReorderingBackupSessionKey()));
             session()->forget($this->getReorderingBackupSessionKey());
         }
     }
