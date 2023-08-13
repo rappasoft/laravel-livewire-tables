@@ -2,6 +2,7 @@
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
+        childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
         paginationCurrentCount: wire.entangle('paginationCurrentCount').live,
         paginationTotalItemCount: wire.entangle('paginationTotalItemCount').live,
@@ -256,13 +257,17 @@ document.addEventListener('alpine:init', () => {
             minDate: filterConfig['earliestDate'],
             maxDate: filterConfig['latestDate'],
             onOpen: function () {
-                childElementOpen = true;
+                window.childElementOpen = true;
             },
             onChange: function (selectedDates, dateStr, instance) {
                 if (selectedDates.length > 1) {
                     var startDate = dateStr.split(' ')[0];
                     var endDate = dateStr.split(' ')[2];
                     var wireDateArray = {};
+                    window.childElementOpen = false;
+                    window.filterPopoverOpen = false;
+
+
                     wireDateArray = { 'minDate': startDate, 'maxDate': endDate };
                     wire.set('filterComponents.' + filterKey, wireDateArray);
                 }

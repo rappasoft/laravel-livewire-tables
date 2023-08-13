@@ -12,9 +12,15 @@ return [
     'inject_assets' => true,
 
     /**
-     * Enable or Disable automatic injection of third-party assets
+     * Enable or Disable inclusion of published third-party assets
      */
-    'inject_third_party_assets' => true,
+    'published_third_party_assets' => true,
+
+    /**
+     * Enable or Disable remote third-party assets
+     */
+    'remote_third_party_assets' => false,
+
 
     /**
      * Configuration options for NumberRangeFilter

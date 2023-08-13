@@ -52,18 +52,18 @@
         @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
             <div
                 x-show="!currentlyReorderingStatus" @if ($component->isFilterLayoutPopover())
-                x-data="{ open: false, childElementOpen: false }"
-                x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
-                x-on:mousedown.away="if (!childElementOpen) { open = false }" @endif
+                x-data="{ filterPopoverOpen: false }"
+                x-on:keydown.escape.stop="if (!window.childElementOpen) { filterPopoverOpen = false }"
+                x-on:mousedown.away="if (!window.childElementOpen) { filterPopoverOpen = false }" @endif
                 class="relative block md:inline-block text-left"
             >
                 <div>
                     <button
                         type="button"
                         class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
-                        @if ($component->isFilterLayoutPopover()) x-on:click="open = !open"
+                        @if ($component->isFilterLayoutPopover()) x-on:click="filterPopoverOpen = !filterPopoverOpen"
                         aria-haspopup="true"
-                        x-bind:aria-expanded="open"
+                        x-bind:aria-expanded="filterPopoverOpen"
                         aria-expanded="true" @endif
                         @if ($component->isFilterLayoutSlideDown()) x-on:click="filtersOpen = !filtersOpen" @endif
                     >
@@ -83,7 +83,7 @@
                 @if ($component->isFilterLayoutPopover())
                     <div
                         x-cloak
-                        x-show="open"
+                        x-show="filterPopoverOpen"
                         x-transition:enter="transition ease-out duration-100"
                         x-transition:enter-start="transform opacity-0 scale-95"
                         x-transition:enter-end="transform opacity-100 scale-100"
@@ -110,7 +110,7 @@
                         @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
                             <div class="block px-4 py-3 text-sm text-gray-700 dark:text-white" role="menuitem">
                                 <button
-                                    x-on:click="open = false"
+                                    x-on:click="filterPopoverOpen = false"
                                     wire:click.prevent="setFilterDefaults"
                                     type="button"
                                     class="w-full inline-flex items-center justify-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:hover:border-gray-500"

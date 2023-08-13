@@ -47,21 +47,23 @@ class AutoInjectRappasoftAssets extends ComponentHook
     {
         $rappasoftTableStyles = RappasoftFrontendAssets::tableStyles();
         $rappasoftTableScripts = RappasoftFrontendAssets::tableScripts();
-        $rappasoftTableThirdPartyStyles = (config('livewire-tables.inject_third_party_assets', true) === false) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '';
-        $rappasoftTableThirdPartyScripts = (config('livewire-tables.inject_third_party_assets', true) === false) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '';
+       // $rappasoftTableThirdPartyStyles = (config('livewire-tables.inject_third_party_assets', true) === false) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '';
+       $rappasoftTableThirdPartyStyles = '';
+       // $rappasoftTableThirdPartyScripts = (config('livewire-tables.inject_third_party_assets', true) !== false) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '';
+       $rappasoftTableThirdPartyScripts = '';
 
         $html = str($html);
 
         if ($html->test('/<\s*head(?:\s|\s[^>])*>/i') && $html->test('/<\s*\/\s*body\s*>/i')) {
             return $html
-                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.$rappasoftTableStyles.'\n'.$rappasoftTableThirdPartyStyles)
-                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', $rappasoftTableScripts.'\n'.$rappasoftTableThirdPartyStyles.'$1')
+                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.($rappasoftTableStyles.'\n'.$rappasoftTableThirdPartyStyles))
+                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ($rappasoftTableScripts.'\n'.$rappasoftTableThirdPartyScripts).'$1')
                 ->toString();
         }
 
         return $html
-            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.$rappasoftTableStyles.'\n'.$rappasoftTableThirdPartyStyles)
-            ->replaceMatches('/(<\s*\/\s*head\s*>)/i', $rappasoftTableScripts.'\n'.$rappasoftTableThirdPartyStyles.'$1')
+            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.($rappasoftTableStyles.'\n'.$rappasoftTableThirdPartyStyles))
+            ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ($rappasoftTableScripts.'\n'.$rappasoftTableThirdPartyScripts).'$1')
             ->toString();
     }
 }
