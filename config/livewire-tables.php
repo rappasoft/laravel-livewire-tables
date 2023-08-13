@@ -21,7 +21,6 @@ return [
      */
     'remote_third_party_assets' => false,
 
-
     /**
      * Configuration options for NumberRangeFilter
      */

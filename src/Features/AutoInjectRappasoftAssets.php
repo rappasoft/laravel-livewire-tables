@@ -47,10 +47,10 @@ class AutoInjectRappasoftAssets extends ComponentHook
     {
         $rappasoftTableStyles = RappasoftFrontendAssets::tableStyles();
         $rappasoftTableScripts = RappasoftFrontendAssets::tableScripts();
-       // $rappasoftTableThirdPartyStyles = (config('livewire-tables.inject_third_party_assets', true) === false) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '';
-       $rappasoftTableThirdPartyStyles = '';
-       // $rappasoftTableThirdPartyScripts = (config('livewire-tables.inject_third_party_assets', true) !== false) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '';
-       $rappasoftTableThirdPartyScripts = '';
+        // $rappasoftTableThirdPartyStyles = (config('livewire-tables.inject_third_party_assets', true) === false) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '';
+        $rappasoftTableThirdPartyStyles = '';
+        // $rappasoftTableThirdPartyScripts = (config('livewire-tables.inject_third_party_assets', true) !== false) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '';
+        $rappasoftTableThirdPartyScripts = '';
 
         $html = str($html);
 
