@@ -14,12 +14,13 @@ return [
     /**
      * Enable or Disable inclusion of published third-party assets
      */
-    'published_third_party_assets' => true,
+    'published_third_party_assets' => false,
 
     /**
      * Enable or Disable remote third-party assets
      */
-    'remote_third_party_assets' => false,
+    'remote_third_party_assets' => true,
+
 
     /**
      * Configuration options for NumberRangeFilter
