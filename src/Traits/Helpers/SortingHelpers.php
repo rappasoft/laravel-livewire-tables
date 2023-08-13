@@ -27,10 +27,10 @@ trait SortingHelpers
      * @param  array<mixed>  $sorts
      * @return array<mixed>
      */
-    public function setSorts(array $sorts): array
+    public function setSorts(array $sorts = []): array
     {
 
-        return $this->sorts = collect($sorts ?? [])
+        return $this->sorts = collect($sorts)
             ->reject(fn ($dir, $column) => ! in_array($column, $this->getSortableColumns()->toArray(), true))
             ->toArray();
     }

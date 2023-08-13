@@ -54,13 +54,13 @@ class AutoInjectRappasoftAssets extends ComponentHook
 
         if ($html->test('/<\s*head(?:\s|\s[^>])*>/i') && $html->test('/<\s*\/\s*body\s*>/i')) {
             return $html
-                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.$rappasoftTableStyles.' '.$rappasoftTableThirdPartyStyles)
+                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.$rappasoftTableStyles.'\n'.$rappasoftTableThirdPartyStyles)
                 ->replaceMatches('/(<\s*\/\s*head\s*>)/i', $rappasoftTableScripts.'\n'.$rappasoftTableThirdPartyStyles.'$1')
                 ->toString();
         }
 
         return $html
-            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.$rappasoftTableStyles).' '.$rappasoftTableThirdPartyStyles
+            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.$rappasoftTableStyles.'\n'.$rappasoftTableThirdPartyStyles)
             ->replaceMatches('/(<\s*\/\s*head\s*>)/i', $rappasoftTableScripts.'\n'.$rappasoftTableThirdPartyStyles.'$1')
             ->toString();
     }

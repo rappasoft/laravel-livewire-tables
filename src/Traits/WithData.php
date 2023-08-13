@@ -25,7 +25,7 @@ trait WithData
         $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
 
         // Get Count of Items in Current Page
-        $this->paginationCurrentCount = $executedQuery->count() ?? 0;
+        $this->paginationCurrentCount = $executedQuery->count();
 
         return $executedQuery;
     }
