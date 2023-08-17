@@ -15,6 +15,9 @@ php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLi
 php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-views
 
 php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-translations
+
+php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-public
+
 ```
 
 The default frontend framework is Tailwind, but you also have the option to use Bootstrap 4 or Bootstrap 5 by specifying in the config file.
@@ -71,10 +74,23 @@ module.exports = {
 
 ## Alpine.js Cloak
 
-You must also make sure you have this Alpine style available globally:
+You must also make sure you have this Alpine style available globally. Note that this is configured by default by Livewire after 3.x
 
 ```css
 <style>
     [x-cloak] { display: none !important; }
 </style>
+```
+
+## Package Specific Code
+
+This package now makes use of two external files, one for AlpineJS methods, and one for Custom Styling.  There are two options available to you:
+
+### Injection (Default)
+The package will automatically inject the relevant two files into your layout as part of the render process.  This is the default behaviour, and mimics that of Livewire 3.0
+
+### Build Include (Not Recommended)
+If you wish to disable the injection, you may include the following file in your app.js, which will provide the relevant functionality and styling for the package to function.
+```
+import '../../vendor/rappasoft/laravel-livewire-tables-v3/resources/laravel-livewire-tables'
 ```

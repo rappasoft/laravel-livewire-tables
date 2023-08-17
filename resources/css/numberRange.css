@@ -1,11 +1,11 @@
 .range-slider.grad {
     --progress-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) inset;
     --progress-flll-shadow: var(--progress-shadow);
-    --fill-color: linear-gradient(to right, LightCyan, var(--primary-color, #0366d6));
+    --fill-color: linear-gradient(to right, LightCyan, var(--primary-color));
     --thumb-shadow: 0 0 4px rgba(0, 0, 0, 0.3),
         -3px 9px 9px rgba(255, 241, 241, 0.33) inset,
         -1px 3px 2px rgba(255, 255, 255, 0.33) inset,
-        0 0 0 99px var(--primary-color, #0366d6) inset;
+        0 0 0 99px var(--primary-color) inset;
 }
 
 .range-slider.grad input:hover {
@@ -22,65 +22,85 @@
     --track-height: calc(var(--thumb-size) / 3);
     --progress-shadow: none;
     --progress-flll-shadow: none;
-    --thumb-shadow: 0 0 0 7px var(--primary-color, #0366d6) inset, 0 0 0 99px white inset;
-    --thumb-shadow-hover: 0 0 0 9px var(--primary-color, #0366d6) inset,
+    --thumb-shadow: 0 0 0 7px var(--primary-color) inset, 0 0 0 99px white inset;
+    --thumb-shadow-hover: 0 0 0 9px var(--primary-color) inset,
         0 0 0 99px white inset;
-    --thumb-shadow-active: 0 0 0 13px var(--primary-color, #0366d6) inset;
+    --thumb-shadow-active: 0 0 0 13px var(--primary-color) inset;
 }
 
 .range-slider {
-    --primary-color;
-    --value-active-color;
+    --primary-color: {
+            {
+            $filterStyling['primaryColor']
+        }
+    }
+
+    ;
     --value-offset-y: var(--ticks-gap);
+
+    --value-active-color: {
+            {
+            $filterStyling['activeColor']
+        }
+    }
+
+    ;
     --value-background: transparent;
-    --value-background-hover;
+
+    --value-background-hover: {
+            {
+            $filterStyling['valueBgHover']
+        }
+    }
+
+    ;
     --value-font: 700 12px/1 Arial;
-    --fill-color;
-    --progress-background;
+
+    --fill-color: --progress-background: #eee;
     --progress-radius: 20px;
     --track-height: calc(var(--thumb-size) / 2);
-    --min-max-font;
+    --min-max-font: 12px Arial;
     --min-max-opacity: 1;
     --min-max-x-offset: 10%;
     --thumb-size: 22px;
-    --thumb-color;
+    --thumb-color: white;
     --thumb-shadow: 0 0 3px rgba(0, 0, 0, 0.4),
-        0 0 1px rgba(0, 0, 0, 0.5) inset,
-        0 0 0 99px var(--thumb-color, white) inset;
-    --thumb-shadow-active: 0 0 0 calc(var(--thumb-size) / 4) inset var(--thumb-color, white),
-        0 0 0 99px var(--primary-color, #0366d6) inset,
-        0 0 3px rgba(0, 0, 0, 0.4);
+    0 0 1px rgba(0, 0, 0, 0.5) inset,
+    0 0 0 99px var(--thumb-color) inset;
+    --thumb-shadow-active: 0 0 0 calc(var(--thumb-size) / 4) inset var(--thumb-color),
+    0 0 0 99px var(--primary-color) inset,
+    0 0 3px rgba(0, 0, 0, 0.4);
     --thumb-shadow-hover: var(--thumb-shadow);
     --ticks-thickness: 1px;
     --ticks-height: 5px;
     --ticks-gap: var(--ticks-height,
-            0);
-    --ticks-color;
+        0);
+    --ticks-color: silver;
     --step: 1;
     --ticks-count: Calc(var(--max) - var(--min)) / var(--step);
     --maxTicksAllowed: 30;
     --too-many-ticks: Min(1, Max(var(--ticks-count) - var(--maxTicksAllowed), 0));
     --x-step: Max(var(--step),
-            var(--too-many-ticks) * (var(--max) - var(--min)));
+        var(--too-many-ticks) * (var(--max) - var(--min)));
     --tickInterval: 100/ ((var(--max) - var(--min)) / var(--step)) * var(--tickEvery, 1);
     --tickIntervalPerc: calc((100% - var(--thumb-size)) / ((var(--max) - var(--min)) / var(--x-step)) * var(--tickEvery, 1));
     --value-a: Clamp(var(--min),
-            var(--value, 0),
-            var(--max));
+        var(--value, 0),
+        var(--max));
     --value-b: var(--value, 0);
     --text-value-a: var(--text-value, "");
     --completed-a: calc((var(--value-a) - var(--min)) / (var(--max) - var(--min)) * 100);
     --completed-b: calc((var(--value-b) - var(--min)) / (var(--max) - var(--min)) * 100);
     --ca: Min(var(--completed-a),
-            var(--completed-b));
+        var(--completed-b));
     --cb: Max(var(--completed-a), var(--completed-b));
     --thumbs-too-close: Clamp(-1, 1000 * (Min(1, Max(var(--cb) - var(--ca) - 5, -1)) + 0.001), 1);
     --thumb-close-to-min: Min(1, Max(var(--ca) - 2,
-                0));
+            0));
     --thumb-close-to-max: Min(1, Max(98 - var(--cb), 0));
     display: inline-block;
     height: max(var(--track-height), var(--thumb-size));
-    background: linear-gradient(to right, var(--ticks-color, silver) var(--ticks-thickness), transparent 1px) repeat-x;
+    background: linear-gradient(to right, var(--ticks-color) var(--ticks-thickness), transparent 1px) repeat-x;
     background-size: var(--tickIntervalPerc) var(--ticks-height);
     background-position-x: calc(var(--thumb-size) / 2 - var(--ticks-thickness) / 2);
     background-position-y: var(--flip-y, bottom);
@@ -96,7 +116,7 @@
     content: counter(x);
     display:
         var(--show-min-max, block);
-    font: var(--min-max-font, 12px Arial);
+    font: var(--min-max-font);
     position: absolute;
     bottom: var(--flip-y, -2.5ch);
     top: calc(-2.5ch * var(--flip-y));
@@ -157,7 +177,8 @@
     background: var(--progress-background, #eee);
     pointer-events: none;
     z-index: -1;
-    border-radius: var(--progress-radius);
+    border-radius:
+        var(--progress-radius);
 }
 
 .range-slider__progress::before {
@@ -169,7 +190,8 @@
     clip-path: var(--clip);
     top: 0;
     bottom: 0;
-    background: var(--fill-color, #0366d6);
+    background:
+        var(--fill-color, black);
     box-shadow: var(--progress-flll-shadow);
     z-index: 1;
     border-radius: inherit;
@@ -213,7 +235,7 @@
     width: var(--thumb-size);
     transform: var(--thumb-transform);
     border-radius: var(--thumb-radius, 50%);
-    background: var(--thumb-color, white);
+    background: var(--thumb-color);
     box-shadow: var(--thumb-shadow);
     border: none;
     pointer-events: auto;
@@ -228,7 +250,7 @@
     width: var(--thumb-size);
     transform: var(--thumb-transform);
     border-radius: var(--thumb-radius, 50%);
-    background: var(--thumb-color, white);
+    background: var(--thumb-color);
     box-shadow: var(--thumb-shadow);
     border: none;
     pointer-events: auto;
@@ -242,7 +264,7 @@
     width: var(--thumb-size);
     transform: var(--thumb-transform);
     border-radius: var(--thumb-radius, 50%);
-    background: var(--thumb-color, white);
+    background: var(--thumb-color);
     box-shadow: var(--thumb-shadow);
     border: none;
     pointer-events: auto;
@@ -255,9 +277,9 @@
 }
 
 .range-slider>input:hover+output {
-    --value-background: var(--value-background-hover, #0366d6);
+    --value-background: var(--value-background-hover);
     --y-offset: -5px;
-    color: var(--value-active-color, #FFFFFF);
+    color: var(--value-active-color);
     box-shadow: 0 0 0 3px var(--value-background);
 }
 
@@ -334,4 +356,13 @@ body>.range-slider,
 label[dir=rtl] .range-slider {
     width: clamp(300px, 50vw, 800px);
     min-width: 200px;
+}
+
+
+table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(even of tr.rappasoft-striped-row) {
+    background-color: var(--rappasoft-table-striped-bgcolor-even, indigo) !important;
+}
+
+table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(odd of tr.rappasoft-striped-row) {
+    background-color: var(--rappasoft-table-striped-bgcolor-odd, white) !important;
 }

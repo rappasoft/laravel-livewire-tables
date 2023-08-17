@@ -42,6 +42,15 @@ class RappasoftFrontendAssets
 
         Blade::directive('rappasoftTableScripts', [static::class, 'rappasoftTableScripts']);
 
+        // Set the JS route for the core tables JS
+        app($this::class)->setRappasoftTableThirdPartyScriptRoute(function ($handle) {
+            $thirdPartyScriptPath = '/livewire/rappasoft-laravel-livewire-tables-thirdparty.js';
+
+            return Route::get($thirdPartyScriptPath, $handle);
+        });
+
+        Blade::directive('rappasoftTableThirdPartyScripts', [static::class, 'rappasoftTableThirdPartyScripts']);
+
     }
 
     protected function pretendResponseIsJs(string $file): \Symfony\Component\HttpFoundation\Response

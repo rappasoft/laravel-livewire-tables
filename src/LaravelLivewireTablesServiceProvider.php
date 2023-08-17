@@ -45,9 +45,13 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
                 MakeCommand::class,
             ]);
         }
-        (new RappasoftFrontendAssets)->boot();
-        app('livewire')->componentHook(AutoInjectRappasoftAssets::class);
-        ComponentHookRegistry::boot();
+
+        if (config('livewire-tables.inject_assets', true) === true) {
+
+            (new RappasoftFrontendAssets)->boot();
+            app('livewire')->componentHook(AutoInjectRappasoftAssets::class);
+            ComponentHookRegistry::boot();
+        }
 
     }
 
@@ -56,6 +60,9 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
-        (new RappasoftFrontendAssets)->register();
+        if (config('livewire-tables.inject_assets', true) === true) {
+
+            (new RappasoftFrontendAssets)->register();
+        }
     }
 }
