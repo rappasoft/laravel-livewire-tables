@@ -4,8 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Features;
 
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Livewire\ComponentHook;
-use function Livewire\on;
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
+
+use function Livewire\on;
 
 class AutoInjectRappasoftAssets extends ComponentHook
 {
