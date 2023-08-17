@@ -180,7 +180,7 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 
-    Alpine.data('numberRangeFilter', (wire, filterKey, parentElementPath, filterConfig) => ({
+    Alpine.data('numberRangeFilter', (wire, filterKey, parentElementPath, filterConfig, childElementRoot) => ({
         allFilters: wire.entangle('filterComponents', true),
         originalMin: 0,
         originalMax: 100,
@@ -195,10 +195,12 @@ document.addEventListener('alpine:init', () => {
         restrictUpdates: false,
         updateStyles() {
             let numRangeFilterContainer = document.getElementById(parentElementPath);
-            numRangeFilterContainer.style.setProperty('--value-a', this.filterMin);
-            numRangeFilterContainer.style.setProperty('--text-value-a', JSON.stringify(this.filterMin));
-            numRangeFilterContainer.style.setProperty('--value-b', this.filterMax);
-            numRangeFilterContainer.style.setProperty('--text-value-b', JSON.stringify(this.filterMax));
+            let currentFilterMin = document.getElementById(childElementRoot + "-min");
+            let currentFilterMax = document.getElementById(childElementRoot + "-max");
+            numRangeFilterContainer.style.setProperty('--value-a', currentFilterMin.value);
+            numRangeFilterContainer.style.setProperty('--text-value-a', JSON.stringify(currentFilterMin.value));
+            numRangeFilterContainer.style.setProperty('--value-b', currentFilterMax.value);
+            numRangeFilterContainer.style.setProperty('--text-value-b', JSON.stringify(currentFilterMax.value));
         },
         setupWire() {
             if (this.wireValues !== undefined) {
@@ -214,20 +216,19 @@ document.addEventListener('alpine:init', () => {
             this.updateWire();
         },
         updateWire() {
-            this.filterMin = parseInt(this.filterMin);
-            this.filterMax = parseInt(this.filterMax);
+            let tmpFilterMin = parseInt(this.filterMin);
+            let tmpFilterMax = parseInt(this.filterMax);
 
-            if (this.filterMin != this.originalMin || this.filterMax != this.originalMax) {
-                if (this.filterMax < this.filterMin) {
-                    let tempMin = this.filterMin;
-                    this.filterMin = this.filterMax;
-                    this.filterMax = tempMin;
+            if (tmpFilterMin != this.originalMin || tmpFilterMax != this.originalMax) {
+                if (tmpFilterMax < tmpFilterMin) {
+                    this.filterMin = tmpFilterMax;
+                    this.filterMax = tmpFilterMin;
                 }
                 this.hasUpdate = true;
-                this.originalMin = this.filterMin;
-                this.originalMax = this.filterMax;
-                this.updateStyles();
+                this.originalMin = tmpFilterMin;
+                this.originalMax = tmpFilterMax;
             }
+            this.updateStyles();
         },
         updateWireable() {
             if (this.hasUpdate) {

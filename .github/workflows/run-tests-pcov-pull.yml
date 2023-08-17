@@ -1,13 +1,10 @@
 name: run-tests-pcov-pull
 
-on:
-  pull_request:
-    branches:
-      - 'filterTidy'
+on: [pull_request]
 
 jobs:
   test:
-    runs-on: ghrun
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:

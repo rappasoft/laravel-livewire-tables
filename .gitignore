@@ -20,3 +20,4 @@ phpunit.xml.dist.dev
 phpunit.xml.bak
 src/Views/Filters/DateTimeFilter.php
 phpstan.txt
+resources/css/numberRange copy.css

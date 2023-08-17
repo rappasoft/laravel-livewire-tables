@@ -1,15 +1,10 @@
 name: run-tests
 
-on:
-  push:
-    branches-ignore:
-      - master
-      - main
-      - master2
+on: [push]
 
 jobs:
   test:
-    runs-on: ghrun
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
