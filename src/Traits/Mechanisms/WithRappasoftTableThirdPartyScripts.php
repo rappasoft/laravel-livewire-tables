@@ -19,7 +19,7 @@ trait WithRappasoftTableThirdPartyScripts
     {
         // Set the JS route for the third party JS
         app($this::class)->setRappasoftTableThirdPartyScriptRoute(function ($handle) {
-            $scriptPath = '/livewire/rappasoft-laravel-livewire-tables-thirdparty.js';
+            $scriptPath = '/rappasoft/laravel-livewire-tables/thirdparty.min.js';
 
             return Route::get($scriptPath, $handle);
         });
@@ -43,7 +43,7 @@ trait WithRappasoftTableThirdPartyScripts
 
     public function returnRappasoftTableThirdPartyJavaScriptAsFile(): \Symfony\Component\HttpFoundation\Response
     {
-        return $this->pretendResponseIsJs(__DIR__.'/../../../resources/js/laravel-livewire-tables-thirdparty.js');
+        return $this->pretendResponseIsJs(__DIR__.'/../../../resources/js/laravel-livewire-tables-thirdparty.min.js');
     }
 
     /**

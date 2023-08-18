@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 use Livewire\Drawer\Utils;
 
 trait WithRappasoftTableScripts
@@ -12,6 +14,7 @@ trait WithRappasoftTableScripts
     public mixed $rappasoftTableScriptRoute;
 
     public array $rappasoftTableScriptTagAttributes = [];
+
 
     public function useRappasoftTableScriptTagAttributes(array $attributes): void
     {
@@ -30,7 +33,7 @@ trait WithRappasoftTableScripts
 
     public function returnRappasoftTableJavaScriptAsFile(): \Symfony\Component\HttpFoundation\Response
     {
-        return $this->pretendResponseIsJs(__DIR__.'/../..//../resources/js/laravel-livewire-tables.js');
+        return $this->pretendResponseIsJs(__DIR__.'/../../../resources/js/laravel-livewire-tables.min.js');
     }
 
     /**

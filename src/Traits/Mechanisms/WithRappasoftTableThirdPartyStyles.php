@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
+use Livewire\Drawer\Utils;
 
 trait WithRappasoftTableThirdPartyStyles
 {
@@ -18,7 +19,7 @@ trait WithRappasoftTableThirdPartyStyles
     {
         // Set the CSS route for the third party CSS
         app($this::class)->setRappasoftTableThirdPartyStyleRoute(function ($handle) {
-            $stylesPath = '/livewire/rappasoft-laravel-livewire-tables-thirdparty.css';
+            $stylesPath = '/rappasoft/laravel-livewire-tables/thirdparty.css';
 
             return Route::get($stylesPath, $handle);
         });
