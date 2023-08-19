@@ -15,18 +15,6 @@ trait WithRappasoftTableThirdPartyScripts
 
     public array $rappasoftTableScriptThirdPartyTagAttributes = [];
 
-    public function bootWithRappasoftTableThirdPartyScripts()
-    {
-        // Set the JS route for the third party JS
-        app($this::class)->setRappasoftTableThirdPartyScriptRoute(function ($handle) {
-            $scriptPath = '/rappasoft/laravel-livewire-tables/thirdparty.min.js';
-
-            return Route::get($scriptPath, $handle);
-        });
-
-        Blade::directive('rappasoftTableThirdPartyScripts', [static::class, 'rappasoftTableThirdPartyScripts']);
-
-    }
 
     /**
      * Rappasoft Third Party Scripts

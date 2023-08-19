@@ -26,7 +26,7 @@ class RappasoftFrontendAssets
     {
         // Set the JS route for the core tables JS
         app($this::class)->setRappasoftTableScriptRoute(function ($handle) {
-            $scriptPath = '/rappasoft/laravel-livewire-tables/core.min.js';
+            $scriptPath = '/rappasoft/laravel-livewire-tables/core1.min.js';
 
             return Route::get($scriptPath, $handle);
         });
@@ -41,6 +41,24 @@ class RappasoftFrontendAssets
         });
 
         Blade::directive('rappasoftTableStyles', [static::class, 'rappasoftTableStyles']);
+
+        // Set the JS route for the third party JS
+        app($this::class)->setRappasoftTableThirdPartyScriptRoute(function ($handle) {
+            $scriptPath = '/rappasoft/laravel-livewire-tables/thirdparty.min.js';
+
+            return Route::get($scriptPath, $handle);
+        });
+
+        Blade::directive('rappasoftTableThirdPartyScripts', [static::class, 'rappasoftTableThirdPartyScripts']);
+
+        // Set the CSS route for the third party CSS
+        app($this::class)->setRappasoftTableThirdPartyStylesRoute(function ($handle) {
+            $stylesPath = '/rappasoft/laravel-livewire-tables/thirdparty.css';
+
+            return Route::get($stylesPath, $handle);
+        });
+
+        Blade::directive('rappasoftTableThirdPartyStyles', [static::class, 'rappasoftTableThirdPartyStyles']);
 
     }
 

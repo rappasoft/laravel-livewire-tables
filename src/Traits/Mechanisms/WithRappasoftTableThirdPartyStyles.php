@@ -14,18 +14,6 @@ trait WithRappasoftTableThirdPartyStyles
 
     public array $rappasoftTableThirdPartyStyleTagAttributes = [];
 
-    public function bootWithRappasoftTableThirdPartyStyles(): void
-    {
-        // Set the CSS route for the third party CSS
-        app($this::class)->setRappasoftTableThirdPartyStyleRoute(function ($handle) {
-            $stylesPath = '/rappasoft/laravel-livewire-tables/thirdparty.css';
-
-            return Route::get($stylesPath, $handle);
-        });
-
-        Blade::directive('rappasoftTableThirdPartyStyles', [static::class, 'rappasoftTableThirdPartyStyles']);
-
-    }
 
     /**
      *  Used If Injection is Enabled
