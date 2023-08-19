@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Route;
 use Livewire\Drawer\Utils;
 
 trait WithRappasoftTableThirdPartyScripts
@@ -14,7 +12,6 @@ trait WithRappasoftTableThirdPartyScripts
     public mixed $rappasoftTableScriptThirdPartyRoute;
 
     public array $rappasoftTableScriptThirdPartyTagAttributes = [];
-
 
     /**
      * Rappasoft Third Party Scripts

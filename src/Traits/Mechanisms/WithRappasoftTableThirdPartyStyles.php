@@ -2,9 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Route;
-
 trait WithRappasoftTableThirdPartyStyles
 {
     /** Rappasoft Third Party Styles */
@@ -13,7 +10,6 @@ trait WithRappasoftTableThirdPartyStyles
     public mixed $rappasoftTableThirdPartyStyleRoute;
 
     public array $rappasoftTableThirdPartyStyleTagAttributes = [];
-
 
     /**
      *  Used If Injection is Enabled
