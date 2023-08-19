@@ -26,7 +26,7 @@ class RappasoftFrontendAssets
     {
         // Set the JS route for the core tables JS
         app($this::class)->setRappasoftTableScriptRoute(function ($handle) {
-            $scriptPath = '/rappasoft/laravel-livewire-tables/core1.min.js';
+            $scriptPath = '/rappasoft/laravel-livewire-tables/core.min.js';
 
             return Route::get($scriptPath, $handle);
         });
