@@ -18,9 +18,7 @@ trait SortingHelpers
 
     public function getSorts(): array
     {
-        return collect($this->sorts ?? [])
-            ->reject(fn ($dir, $column) => ! in_array($column, $this->getSortableColumns()->toArray(), true))
-            ->toArray();
+        return $this->sorts;
     }
 
     /**
