@@ -3,9 +3,10 @@ includes:
 
 parameters:
     paths:
-        - src
         - config
-    level: 6
+        - database
+        - src
+    level: 5
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true

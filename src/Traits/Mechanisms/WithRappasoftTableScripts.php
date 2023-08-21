@@ -30,7 +30,7 @@ trait WithRappasoftTableScripts
 
     public function returnRappasoftTableJavaScriptAsFile(): \Symfony\Component\HttpFoundation\Response
     {
-        return $this->pretendResponseIsJs(__DIR__.'/../..//../resources/js/laravel-livewire-tables.js');
+        return $this->pretendResponseIsJs(__DIR__.'/../../../resources/js/laravel-livewire-tables.min.js');
     }
 
     /**

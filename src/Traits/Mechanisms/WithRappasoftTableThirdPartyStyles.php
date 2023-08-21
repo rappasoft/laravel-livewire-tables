@@ -2,9 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Route;
-
 trait WithRappasoftTableThirdPartyStyles
 {
     /** Rappasoft Third Party Styles */
@@ -13,19 +10,6 @@ trait WithRappasoftTableThirdPartyStyles
     public mixed $rappasoftTableThirdPartyStyleRoute;
 
     public array $rappasoftTableThirdPartyStyleTagAttributes = [];
-
-    public function bootWithRappasoftTableThirdPartyStyles(): void
-    {
-        // Set the CSS route for the third party CSS
-        app($this::class)->setRappasoftTableThirdPartyStyleRoute(function ($handle) {
-            $stylesPath = '/livewire/rappasoft-laravel-livewire-tables-thirdparty.css';
-
-            return Route::get($stylesPath, $handle);
-        });
-
-        Blade::directive('rappasoftTableThirdPartyStyles', [static::class, 'rappasoftTableThirdPartyStyles']);
-
-    }
 
     /**
      *  Used If Injection is Enabled

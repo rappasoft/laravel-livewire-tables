@@ -72,6 +72,10 @@ document.addEventListener('alpine:init', () => {
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
             event.target.classList.add("laravel-livewire-tables-dragging");
+
+            if (this.evenNotInOdd.length == 0 || this.oddNotInEven.length == 0) {
+                this.setupEvenOddClasses();
+            }
         },
         dragOverEvent(event) {
             if (typeof this.currentlyHighlightedElement == 'object') {
@@ -124,7 +128,7 @@ document.addEventListener('alpine:init', () => {
             */
             let nextLoop = 'even';
             this.orderedRows = [];
-            for (let i = 2, row; row = table.rows[i]; i++) {
+            for (let i = 1, row; row = table.rows[i]; i++) {
                 if (!row.classList.contains('hidden')) {
                     this.orderedRows.push({ [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
                     if (nextLoop === 'even') {
@@ -170,13 +174,26 @@ document.addEventListener('alpine:init', () => {
                 wire.disableReordering();
             }
         },
-        init() {
+        setupEvenOddClasses() {
             let table = document.getElementById(tableID);
             let tbody = table.getElementsByTagName('tbody')[0];
-            const evenRowClassArray = Array.from(tbody.rows[4].classList);
-            const oddRowClassArray = Array.from(tbody.rows[6].classList);
+            let evenRowClassArray = [];
+            let oddRowClassArray = [];
+
+            if (tbody.rows[2] !== undefined) {
+                evenRowClassArray = Array.from(tbody.rows[2].classList);
+            }
+
+            if (tbody.rows[3] !== undefined) {
+                oddRowClassArray = Array.from(tbody.rows[3].classList);
+            }
+
             this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
             this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
+
+        },
+        init() {
+            this.setupEvenOddClasses();
         }
     }));
 
