@@ -34,10 +34,6 @@ class NumberRangeFilter extends Filter
 
     public function validate(array $values): array|bool
     {
-        if (empty($this->config)) {
-            $this->getConfigs();
-        }
-
         $values['min'] = isset($values['min']) ? intval($values['min']) : null;
         $values['max'] = isset($values['max']) ? intval($values['max']) : null;
         if ($values['min'] == 0 && $values['max'] == 0) {
