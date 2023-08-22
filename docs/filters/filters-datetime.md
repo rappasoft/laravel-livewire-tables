@@ -18,7 +18,7 @@ public function filters(): array
 }
 ```
 
-DateTime filters have options to set min and max:
+DateTime filters have configs to set min and max, and to set the format for the Filter Pills
 
 ```php
 public function filters(): array
@@ -28,6 +28,7 @@ public function filters(): array
             ->config([
                 'min' => '2022-11-31 00:00:00',
                 'max' => '2022-12-31 05:00:00',
+                'pillFormat' => 'd M Y - H:i',
             ])
     ];
 }

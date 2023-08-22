@@ -7,25 +7,11 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class DateTimeFilter extends Filter
 {
-    public array $options = [];
-
     public function config(array $config = []): DateTimeFilter
     {
         $this->config = [...config('livewire-tables.dateTimeFilter.defaultConfig'), ...$config];
 
         return $this;
-    }
-
-    public function options(array $options = []): DateTimeFilter
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
     }
 
     public function validate(string $value): string|bool
