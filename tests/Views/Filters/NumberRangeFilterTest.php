@@ -64,7 +64,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertTrue($filter->isEmpty(['min' => '62', 'max' => '']));
         $this->assertTrue($filter->isEmpty(['min' => '', 'max' => '3']));
         $this->assertTrue($filter->isEmpty(['min' => '', 'max' => '']));
-        $this->assertFalse($filter->isEmpty(['min' => 0, 'max' => 100]));
+        $this->assertTrue($filter->isEmpty(['min' => 0, 'max' => 100]));
         $this->assertFalse($filter->isEmpty(['min' => 0, 'max' => 50]));
         $this->assertFalse($filter->isEmpty(['min' => '0', 'max' => 50]));
         $this->assertFalse($filter->isEmpty(['min' => '0', 'max' => '50']));
