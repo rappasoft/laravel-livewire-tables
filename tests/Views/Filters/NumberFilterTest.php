@@ -194,6 +194,6 @@ class NumberFilterTest extends TestCase
 
         $filter->setFilterDefaultValue(123);
 
-        $this->assertSame(123, $filter->getFilterDefaultValue());
+        $this->assertSame('123', $filter->getFilterDefaultValue());
     }
 }
