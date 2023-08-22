@@ -236,7 +236,7 @@ class MultiSelectDropdownFilterTest extends TestCase
      *
      * @depends testArraySetup
      */
-    public function test_can_check_if_can_set_default_value(): void
+    public function test_can_check_if_can_set_default_value(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
 
