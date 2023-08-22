@@ -34,7 +34,6 @@ class MultiSelectDropdownFilter extends Filter
         return $this->options;
     }
 
-
     public function getKeys(): array
     {
         return collect($this->getOptions())

@@ -21,7 +21,7 @@ class MultiSelectFilter extends Filter
     {
         return $this->firstOption;
     }
-    
+
     public function options(array $options = []): MultiSelectFilter
     {
         $this->options = $options;

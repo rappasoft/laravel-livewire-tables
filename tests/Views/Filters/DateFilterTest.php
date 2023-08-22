@@ -67,7 +67,6 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }
 
-
     /**
      * @test
      */
@@ -95,8 +94,6 @@ final class DateFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->validate('2014/01/01'));
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }*/
-
-
 
     /** @test */
     public function can_get_filter_callback(): void

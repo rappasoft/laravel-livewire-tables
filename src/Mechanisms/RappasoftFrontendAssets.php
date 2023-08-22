@@ -64,10 +64,10 @@ class RappasoftFrontendAssets
 
     protected function pretendResponseIsJs(string $file): \Symfony\Component\HttpFoundation\Response
     {
-        
-        $expires = strtotime((config('livewire-tables.cache_assets', false) ? "+1 second" : "+1 hour"));
+
+        $expires = strtotime((config('livewire-tables.cache_assets', false) ? '+1 second' : '+1 hour'));
         $lastModified = (config('livewire-tables.cache_assets', false) ? strtotime(now()) : filemtime($file));
-        $cacheControl = (config('livewire-tables.cache_assets', false) ? "public, max-age=1" : 'public, max-age=3600');
+        $cacheControl = (config('livewire-tables.cache_assets', false) ? 'public, max-age=1' : 'public, max-age=3600');
 
         $headers = [
             'Content-Type' => 'application/javascript; charset=utf-8',
@@ -81,9 +81,9 @@ class RappasoftFrontendAssets
 
     protected function pretendResponseIsCSS(string $file): \Symfony\Component\HttpFoundation\Response
     {
-        $expires = strtotime((config('livewire-tables.cache_assets', false) ? "+1 second" : "+1 hour"));
+        $expires = strtotime((config('livewire-tables.cache_assets', false) ? '+1 second' : '+1 hour'));
         $lastModified = (config('livewire-tables.cache_assets', false) ? strtotime(now()) : filemtime($file));
-        $cacheControl = (config('livewire-tables.cache_assets', false) ? "public, max-age=1" : 'public, max-age=3600');
+        $cacheControl = (config('livewire-tables.cache_assets', false) ? 'public, max-age=1' : 'public, max-age=3600');
 
         $headers = [
             'Content-Type' => 'text/css; charset=utf-8',

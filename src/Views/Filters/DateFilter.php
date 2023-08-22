@@ -41,7 +41,6 @@ class DateFilter extends Filter
     {
         return $value === '';
     }
-    
 
     public function getFilterPillValue($value): ?string
     {

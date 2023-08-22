@@ -5,7 +5,7 @@ return [
      * Options: tailwind | bootstrap-4 | bootstrap-5.
      */
     'theme' => 'tailwind',
-    
+
     'cache_assets' => true,
     /**
      * Enable or Disable automatic injection of assets
