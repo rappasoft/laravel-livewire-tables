@@ -8,8 +8,6 @@ class DateRangeFilter extends Filter
 {
     public array $options = [];
 
-    public array $config = [];
-
     public function config(array $config = []): DateRangeFilter
     {
         $this->config = [...config('livewire-tables.dateRange.defaultConfig'), ...$config];

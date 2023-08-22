@@ -52,6 +52,7 @@ abstract class Filter
         } else {
             $this->key = Str::snake($name);
         }
+        $this->config([]);
     }
 
     /**

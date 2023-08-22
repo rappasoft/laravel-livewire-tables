@@ -8,8 +8,6 @@ class NumberRangeFilter extends Filter
 {
     public array $options = [];
 
-    public array $config = [];
-
     public function options(array $options = []): NumberRangeFilter
     {
         $this->options = [...config('livewire-tables.numberRange.defaultOptions'), ...$options];
