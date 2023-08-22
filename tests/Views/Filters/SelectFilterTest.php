@@ -69,4 +69,16 @@ final class SelectFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->isEmpty('123'));
         $this->assertFalse(self::$filterInstance->isEmpty('test'));
     }
+
+    /**
+     * @test
+     */
+    public function test_can_check_if_can_set_default_value(): void
+    {
+        $this->assertNull(self::$filterInstance->getFilterDefaultValue());
+
+        self::$filterInstance->setFilterDefaultValue('1');
+
+        $this->assertSame('1', self::$filterInstance->getFilterDefaultValue());
+    }
 }
