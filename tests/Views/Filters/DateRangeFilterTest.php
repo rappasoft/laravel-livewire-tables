@@ -32,7 +32,7 @@ class DateRangeFilterTest extends FilterTestCase
             'allowInput' => true, 
             'altFormat' => 'F j, Y', 
             'ariaDateFormat' => 'F j, Y', 
-            'dateFormat' => 'Y-m-d'
+            'dateFormat' => 'Y-m-d',
             'earliestDate' => null, 
             'latestDate' => null, 
         ];
@@ -53,7 +53,7 @@ class DateRangeFilterTest extends FilterTestCase
             'allowInput' => true, 
             'altFormat' => 'F j, Y', 
             'ariaDateFormat' => 'F j, Y', 
-            'dateFormat' => 'Y-m-d'
+            'dateFormat' => 'Y-m-d',
             'earliestDate' => null, 
             'latestDate' => null, 
         ], $filter->getConfigs());
@@ -65,7 +65,7 @@ class DateRangeFilterTest extends FilterTestCase
             'allowInput' => true, 
             'altFormat' => 'F j, Y', 
             'ariaDateFormat' => 'F j, Y', 
-            'dateFormat' => 'Y-m-d'
+            'dateFormat' => 'Y-m-d',
             'earliestDate' => null, 
             'latestDate' => null, 
             'foo' => 'bar'], $filter->getConfigs());
