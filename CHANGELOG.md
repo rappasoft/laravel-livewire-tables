@@ -35,7 +35,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
             - Bootstrap striping is now fully working
 
         - Filters
-            - Filter Construct calls config([]) by default to set configuration defaults.
+            - Filter Construct calls config([]) by default to set configuration defaults, to avoid errors
             - Added Numeric Range filter
             - Added Date Range filter
             - DateFilter & DateTimeFilter have customisable Pills Date Format
