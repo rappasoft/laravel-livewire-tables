@@ -28,7 +28,7 @@ return [
     'dateFilter' => [
         'defaultConfig' => [
             'format' => 'Y-m-d',
-            'pillFormat' => 'd M Y',
+            'pillFormat' => 'd M Y', // Used to display in the Filter Pills
         ],
     ],
 
@@ -38,7 +38,22 @@ return [
     'dateTimeFilter' => [
         'defaultConfig' => [
             'format' => 'Y-m-d\TH:i',
-            'pillFormat' => 'd M Y - H:i',
+            'pillFormat' => 'd M Y - H:i', // Used to display in the Filter Pills
+        ],
+    ],
+
+    /**
+     * Configuration options for DateRangeFilter
+     */
+    'dateRange' => [
+        'defaultOptions' => [],
+        'defaultConfig' => [
+            'allowInput' => true,   // Allow manual input of dates
+            'altFormat' => 'F j, Y', // Date format that will be displayed once selected
+            'ariaDateFormat' => 'F j, Y', // An aria-friendly date format
+            'dateFormat' => 'Y-m-d', // Date format that will be received by the filter
+            'earliestDate' => null, // The earliest acceptable date
+            'latestDate' => null, // The latest acceptable date
         ],
     ],
 
@@ -47,28 +62,14 @@ return [
      */
     'numberRange' => [
         'defaultOptions' => [
-            'min' => 0,
-            'max' => 100,
+            'min' => 0, // The default start value
+            'max' => 100, // The default end value
         ],
         'defaultConfig' => [
-            'minRange' => 0,
-            'maxRange' => 100,
-            'suffix' => '',
+            'minRange' => 0, // The minimum possible value
+            'maxRange' => 100, // The maximum possible value
+            'suffix' => '', // A suffix to append to the values when displayed
         ],
     ],
 
-    /**
-     * Configuration options for NumberRangeFilter
-     */
-    'dateRange' => [
-        'defaultOptions' => [],
-        'defaultConfig' => [
-            'earliestDate' => null,
-            'latestDate' => null,
-            'allowInput' => true,
-            'altFormat' => 'F j, Y',
-            'ariaDateFormat' => 'F j, Y',
-            'dateFormat' => 'Y-m-d',
-        ],
-    ],
 ];

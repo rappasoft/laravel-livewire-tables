@@ -18,7 +18,7 @@ public function filters(): array
 }
 ```
 
-Date filters have options to set min and max:
+Date filters have configs to set min and max, and to set the format for the Filter Pills
 
 ```php
 public function filters(): array
@@ -28,6 +28,7 @@ public function filters(): array
             ->config([
                 'min' => '2020-01-01',
                 'max' => '2021-12-31',
+                'pillFormat' => 'd M Y',
             ])
     ];
 }
