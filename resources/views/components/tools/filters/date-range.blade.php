@@ -1,27 +1,23 @@
 @php
+
     $filterKey = $filter->getKey();
     $filterConfigs = $filter->getConfigs();
-
+    $dateString = '';
     $dateInput = isset($this->filters[$filterKey]) ? $this->filters[$filterKey] : '';
     if ($dateInput != '') {
         if (is_array($dateInput)) {
             $startDate = isset($dateInput['minDate']) ? $dateInput['minDate'] : (isset($dateInput[1]) ? $dateInput[1] : date('Y-m-d'));
             $endDate = isset($dateInput['maxDate']) ? $dateInput['maxDate'] : (isset($dateInput[0]) ? $dateInput[0] : date('Y-m-d'));
+            $dateString = $startDate . ' to ' . $endDate;
         } else {
             $dateArray = explode(',', $dateInput);
             $startDate = isset($dateArray[0]) ? $dateArray[0] : date('Y-m-d');
             $endDate = isset($dateArray[2]) ? $dateArray[2] : date('Y-m-d');
+            $dateString = $startDate . ' to ' . $endDate;
         }
-    } else {
-        $startDate = date('Y-m-d');
-        $endDate = date('Y-m-d');
-    }
+    } 
 
-    $startDate = strlen($startDate) > 2 ? $startDate : date('Y-m-d', strtotime('-1 days'));
 
-    $endDate = strlen($endDate) > 2 ? $endDate : date('Y-m-d');
-
-    $dateString = $startDate . ' to ' . $endDate;
 
 @endphp
 

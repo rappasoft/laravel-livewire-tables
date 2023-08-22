@@ -5,7 +5,8 @@ return [
      * Options: tailwind | bootstrap-4 | bootstrap-5.
      */
     'theme' => 'tailwind',
-
+    
+    'cache_assets' => true,
     /**
      * Enable or Disable automatic injection of assets
      */
@@ -22,6 +23,26 @@ return [
     'remote_third_party_assets' => true,
 
     /**
+     * Configuration options for DateFilter
+     */
+    'dateFilter' => [
+        'defaultConfig' => [
+            'format' => 'Y-m-d',
+            'pillFormat' => 'd M Y',
+        ],
+    ],
+
+    /**
+     * Configuration options for DateTimeFilter
+     */
+    'dateTimeFilter' => [
+        'defaultConfig' => [
+            'format' => 'Y-m-d\TH:i',
+            'pillFormat' => 'd M Y - H:i',
+        ],
+    ],
+
+    /**
      * Configuration options for NumberRangeFilter
      */
     'numberRange' => [
@@ -36,6 +57,9 @@ return [
         ],
     ],
 
+    /**
+     * Configuration options for NumberRangeFilter
+     */
     'dateRange' => [
         'defaultOptions' => [],
         'defaultConfig' => [

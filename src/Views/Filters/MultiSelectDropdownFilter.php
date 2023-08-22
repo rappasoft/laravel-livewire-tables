@@ -10,6 +10,18 @@ class MultiSelectDropdownFilter extends Filter
 
     protected string $firstOption = '';
 
+    public function setFirstOption(string $firstOption): MultiSelectDropdownFilter
+    {
+        $this->firstOption = $firstOption;
+
+        return $this;
+    }
+
+    public function getFirstOption(): string
+    {
+        return $this->firstOption;
+    }
+
     public function options(array $options = []): MultiSelectDropdownFilter
     {
         $this->options = $options;
@@ -22,17 +34,6 @@ class MultiSelectDropdownFilter extends Filter
         return $this->options;
     }
 
-    public function setFirstOption(string $firstOption): MultiSelectDropdownFilter
-    {
-        $this->firstOption = $firstOption;
-
-        return $this;
-    }
-
-    public function getFirstOption(): string
-    {
-        return $this->firstOption;
-    }
 
     public function getKeys(): array
     {

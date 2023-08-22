@@ -10,7 +10,6 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 
 - Core Changes
-    - There are now two arrays relating to Filters.  There is the wireable one ($filterComponents), and an unwired one, which only keeps track of those filters that have a value ($appliedFilters).  This is what is bound to the query string, and populates the filters on mount if they are present in the query string.
 
     - Move sorts, search, selectedColumns out of the traditional __$this->{$this->getTableName()}['sorts']__ and instead place it directly within the component.  This:
         - Improves the query string behaviour
@@ -18,20 +17,42 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
         [Commit 1 Here](https://github.com/LowerRockLabs/laravel-livewire-tables-v3/commit/d7ccabfc8adefeb4bddcbac64831ef1a688527a8)
         [Commit 2 Here](https://github.com/LowerRockLabs/laravel-livewire-tables-v3/commit/0d8d98546b6a8051c4197804cc33b515faa02b07)
 
-    - Migrated any $component->id reference to $component->getId()
+    - Tidying
+        - Removed Spatie Package Tools and replaced with a generic service provider
+        - Significant reduction in blade/view sizes, and repetition of code across Tailwind/Bootstrap 4/Bootstrap 5 themes
+        - Uses HeroIcons instead of hard-coded SVGs for icons
+        - Several variables are now inherited instead of being passed (e.g. Table Name)
+        - Change to how Filters are rendered (no longer receives $component)
+        - Wire keys and IDs now all conform to a format
 
-    - Added SetSearchLive to allow for the search to be "live", with tests
+    - Features
+        - General
+            - Added support for cursor pagination
+            - Cursor & Simple pagination both include a "Total Item Count" stored in $paginationTotalItemCount
+            - Added support for multiple relations on a single table (e.g. user has a "mother user" and a "father user")
+            - Replaced dependency on unsupported Sortable JS libraries.
+            - Option for a Search Placeholder to be set
+            - Bootstrap striping is now fully working
 
-    - Removed Spatie Package Tools and replaced with a generic service provider
-    - Added support for cursor pagination
-    - Added Numeric Range filter
-    - Added capability for external CSS file
-    
+        - Filters
+            - Added Numeric Range filter
+            - Added Date Range filter
+            - DateFilter & DateTimeFilter have customisable Pills Date Format
+            - MultiSelectFilter & MultiSelectDropdownFilter both support setFirstOption()
+            - There are now two arrays relating to Filters:
+                - A wireable one ($filterComponents)
+                - An unwired one - only keeps track of those filters that have a value ($appliedFilters).  This is what is bound to the query string, and populates the filters on mount if they are present in the query string.
+        
+        - Livewire 3 Specific
+            - Migrated any $component->id reference to $component->getId()
+            - Added SetSearchLive to allow for the search to be "live", with tests
+            - Added capability for external CSS file
+            - Custom CSS/JS and Alpine components are now stored in an external file, which has configurable injection options
 
 - Test Changes
     - Temporarily removed the sort_events_apply_correctly and filter_events_apply_correctly due to LW3 not using Emit anymore.
 
-    - Added extra clumn to the PetsTable -> last_visit and associated test changes to make the counts work.  This column is deselected() by default to allow for testing on those methods.
+    - Added extra column to the PetsTable -> last_visit and associated test changes to make the counts work.  This column is deselected() by default to allow for testing on those methods.
 
 - Doc Changes
     - Slowly begun updating the docs with the relevant new features, dependencies etc.

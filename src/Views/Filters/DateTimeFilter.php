@@ -9,6 +9,13 @@ class DateTimeFilter extends Filter
 {
     public array $options = [];
 
+    public function config(array $config = []): DateTimeFilter
+    {
+        $this->config = [...config('livewire-tables.dateTimeFilter.defaultConfig'), ...$config];
+
+        return $this;
+    }
+
     public function options(array $options = []): DateTimeFilter
     {
         $this->options = $options;
@@ -23,7 +30,7 @@ class DateTimeFilter extends Filter
 
     public function validate(string $value): string|bool
     {
-        if (DateTime::createFromFormat($this->getOptions()['dateFormat'] ?? 'Y-m-d\TH:i', $value) === false) {
+        if (DateTime::createFromFormat('Y-m-d\TH:i', $value) === false) {
             return false;
         }
 
@@ -33,6 +40,15 @@ class DateTimeFilter extends Filter
     public function isEmpty($value): bool
     {
         return $value === '';
+    }
+
+    public function getFilterPillValue($value): ?string
+    {
+        if ($this->validate($value)) {
+            return DateTime::createFromFormat('Y-m-d\TH:i', $value)->format($this->getConfig('pillFormat'));
+        }
+
+        return null;
     }
 
     /**

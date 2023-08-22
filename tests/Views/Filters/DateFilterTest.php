@@ -67,6 +67,37 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }
 
+
+    /**
+     * @test
+     */
+    public function test_can_check_if_can_set_dateformat(): void
+    {
+        $this->assertSame('Y-m-d', self::$filterInstance->getConfig('format'));
+
+        self::$filterInstance->config(['format' => 'd-m-Y']);
+
+        $this->assertSame('d-m-Y', self::$filterInstance->getConfig('format'));
+
+    }
+
+    /**
+     * @test
+     */
+    /*public function test_validate_respects_config_dateformat(): void
+    {
+        $this->assertFalse(self::$filterInstance->validate('123'));
+        $this->assertFalse(self::$filterInstance->validate('Test'));
+        $this->assertFalse(self::$filterInstance->validate('12/01/2001'));
+        $this->assertFalse(self::$filterInstance->validate('12/01/201'));
+        $this->assertFalse(self::$filterInstance->validate('12-01-201'));
+        $this->assertFalse(self::$filterInstance->validate('12-01-2014'));
+        $this->assertFalse(self::$filterInstance->validate('2014/01/01'));
+        $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
+    }*/
+
+
+
     /** @test */
     public function can_get_filter_callback(): void
     {
