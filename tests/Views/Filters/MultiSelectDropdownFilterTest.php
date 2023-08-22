@@ -240,7 +240,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
 
-        $this->assertNull($filter->getFilterDefaultValue());
+        $this->assertSame([], $filter->getFilterDefaultValue());
 
         $filter->setFilterDefaultValue(['1', '3']);
 
