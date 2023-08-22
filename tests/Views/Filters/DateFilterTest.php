@@ -134,4 +134,16 @@ final class DateFilterTest extends FilterTestCase
         $this->assertTrue(self::$filterInstance->hasFilterCallback());
         $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
+
+    /**
+     * @test
+     */
+    public function test_can_check_if_can_set_default_values(): void
+    {
+        $this->assertNull(self::$filterInstance->getFilterDefaultValue());
+
+        self::$filterInstance->setFilterDefaultValue('2023-03-01');
+
+        $this->assertSame('2023-03-01', self::$filterInstance->getFilterDefaultValue());
+    }
 }

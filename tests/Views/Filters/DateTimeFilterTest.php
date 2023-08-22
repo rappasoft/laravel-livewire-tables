@@ -113,4 +113,16 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('d-M-Y - H:i', self::$filterInstance->getConfig('pillFormat'));
 
     }
+
+    /**
+     * @test
+     */
+    public function test_can_check_if_can_set_default_values(): void
+    {
+        $this->assertNull(self::$filterInstance->getFilterDefaultValue());
+
+        self::$filterInstance->setFilterDefaultValue('2023-01-01T10:00');
+
+        $this->assertSame('2023-01-01T10:00', self::$filterInstance->getFilterDefaultValue());
+    }
 }
