@@ -230,4 +230,20 @@ class MultiSelectDropdownFilterTest extends TestCase
         $filter->setFirstOption('all');
         $this->assertSame('all', $filter->getFirstOption());
     }
+
+    /**
+     * @test
+     *
+     * @depends testArraySetup
+     */
+    public function test_can_check_if_can_set_default_value(array $optionsArray): void
+    {
+        $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
+
+        $this->assertSame([], $filter->getFilterDefaultValue());
+
+        $filter->setFilterDefaultValue(['1', '3']);
+
+        $this->assertSame(['1', '3'], $filter->getFilterDefaultValue());
+    }
 }
