@@ -27,4 +27,15 @@ class ComponentColumnTest extends TestCase
         $column = ComponentColumn::make('Name')->label(fn ($row, Column $column) => 'Test');
         $column->getContents($row);
     }
+
+    /** @test */
+    public function can_not_be_both_collapsible_on_mobile_and_on_tablet(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+        $column = ComponentColumn::make('Name', 'name')->collapseOnMobile()->collapseOnTablet();
+        $row = Pet::find(1);
+        $column->getContents($row);
+
+    }
+    
 }
