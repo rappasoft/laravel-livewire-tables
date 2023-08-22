@@ -37,5 +37,4 @@ class ComponentColumnTest extends TestCase
         $column->getContents($row);
 
     }
-    
 }
