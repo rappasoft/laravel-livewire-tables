@@ -39,6 +39,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
             - Added Numeric Range filter
             - Added Date Range filter
             - DateFilter & DateTimeFilter have customisable Pills Date Format
+            - DateFilter & DateTimeFilter fully support setFilterDefaultValue
             - MultiSelectFilter & MultiSelectDropdownFilter both support setFirstOption()
             - There are now two arrays relating to Filters:
                 - A wireable one ($filterComponents)
