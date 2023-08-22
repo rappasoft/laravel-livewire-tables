@@ -33,3 +33,20 @@ public function filters(): array
     ];
 }
 ```
+
+Date filters also support the setFilterDefaultValue() method, which must be a valid date in the "Y-m-d" format.  This will apply as a default until removed.
+```php
+public function filters(): array
+{
+    return [
+        DateFilter::make('Verified From')
+            ->config([
+                'min' => '2020-01-01',
+                'max' => '2023-12-31',
+                'pillFormat' => 'd M Y',
+            ])->setFilterDefaultValue('2023-08-01')
+    ];
+}
+```
+                    
+
