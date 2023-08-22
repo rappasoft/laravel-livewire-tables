@@ -29,12 +29,12 @@ class DateRangeFilterTest extends FilterTestCase
         $filter = DateRangeFilter::make('Active');
 
         $defaultConfig = [
-            'allowInput' => true, 
-            'altFormat' => 'F j, Y', 
-            'ariaDateFormat' => 'F j, Y', 
+            'allowInput' => true,
+            'altFormat' => 'F j, Y',
+            'ariaDateFormat' => 'F j, Y',
             'dateFormat' => 'Y-m-d',
-            'earliestDate' => null, 
-            'latestDate' => null, 
+            'earliestDate' => null,
+            'latestDate' => null,
         ];
 
         $this->assertSame($defaultConfig, $filter->getConfigs());
@@ -50,24 +50,24 @@ class DateRangeFilterTest extends FilterTestCase
         $filter = DateRangeFilter::make('Active');
 
         $this->assertSame([
-            'allowInput' => true, 
-            'altFormat' => 'F j, Y', 
-            'ariaDateFormat' => 'F j, Y', 
+            'allowInput' => true,
+            'altFormat' => 'F j, Y',
+            'ariaDateFormat' => 'F j, Y',
             'dateFormat' => 'Y-m-d',
-            'earliestDate' => null, 
-            'latestDate' => null, 
+            'earliestDate' => null,
+            'latestDate' => null,
         ], $filter->getConfigs());
 
         $filter->config(['foo' => 'bar']);
 
         $this->assertSame('bar', $filter->getConfig('foo'));
         $this->assertSame([
-            'allowInput' => true, 
-            'altFormat' => 'F j, Y', 
-            'ariaDateFormat' => 'F j, Y', 
+            'allowInput' => true,
+            'altFormat' => 'F j, Y',
+            'ariaDateFormat' => 'F j, Y',
             'dateFormat' => 'Y-m-d',
-            'earliestDate' => null, 
-            'latestDate' => null, 
+            'earliestDate' => null,
+            'latestDate' => null,
             'foo' => 'bar'], $filter->getConfigs());
 
     }
