@@ -25,8 +25,6 @@ abstract class FilterTestCase extends TestCase
         $this->assertSame('active', self::$filterInstance->getKey());
     }
 
-
-
     /** @test */
     public function get_a_single_filter_config(): void
     {
@@ -50,7 +48,6 @@ abstract class FilterTestCase extends TestCase
 
         $this->assertSame('User Date', self::$filterInstance->getFilterPillTitle());
     }
-
 
     /** @test */
     public function can_check_filter_config_by_name(): void

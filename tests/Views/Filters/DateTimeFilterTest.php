@@ -81,10 +81,10 @@ final class DateTimeFilterTest extends FilterTestCase
     {
 
         $this->assertSame(['format' => 'Y-m-d\TH:i', 'pillFormat' => 'd M Y - H:i'], self::$filterInstance->getConfigs());
-        
+
         self::$filterInstance->config(['foo' => 'bar']);
 
-        $this->assertSame(['format' => 'Y-m-d\TH:i', 'pillFormat' => 'd M Y - H:i','foo' => 'bar'], self::$filterInstance->getConfigs());
+        $this->assertSame(['format' => 'Y-m-d\TH:i', 'pillFormat' => 'd M Y - H:i', 'foo' => 'bar'], self::$filterInstance->getConfigs());
     }
 
     /** @test */
@@ -113,5 +113,4 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('d-M-Y - H:i', self::$filterInstance->getConfig('pillFormat'));
 
     }
-
 }

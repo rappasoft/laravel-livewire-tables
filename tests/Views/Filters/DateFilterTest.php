@@ -67,7 +67,6 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }
 
-
     /**
      * @test
      */
@@ -103,13 +102,12 @@ final class DateFilterTest extends FilterTestCase
         self::$filterInstance->config([]);
 
         $this->assertSame(['format' => 'Y-m-d',
-        'pillFormat' => 'd M Y'], self::$filterInstance->getConfigs());
-        
+            'pillFormat' => 'd M Y'], self::$filterInstance->getConfigs());
 
         self::$filterInstance->config(['foo' => 'bar']);
 
         $this->assertSame(['format' => 'Y-m-d',
-        'pillFormat' => 'd M Y', 'foo' => 'bar'], self::$filterInstance->getConfigs());
+            'pillFormat' => 'd M Y', 'foo' => 'bar'], self::$filterInstance->getConfigs());
     }
 
     /** @test */
@@ -123,7 +121,6 @@ final class DateFilterTest extends FilterTestCase
 
         $this->assertTrue(self::$filterInstance->hasConfigs());
     }
-
 
     /** @test */
     public function can_get_filter_callback(): void
