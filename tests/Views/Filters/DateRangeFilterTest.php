@@ -28,7 +28,14 @@ class DateRangeFilterTest extends FilterTestCase
     {
         $filter = DateRangeFilter::make('Active');
 
-        $defaultConfig = ['earliestDate' => null, 'latestDate' => null, 'allowInput' => true, 'altFormat' => 'F j, Y', 'ariaDateFormat' => 'F j, Y', 'dateFormat' => 'Y-m-d'];
+        $defaultConfig = [
+            'allowInput' => true, 
+            'altFormat' => 'F j, Y', 
+            'ariaDateFormat' => 'F j, Y', 
+            'dateFormat' => 'Y-m-d'
+            'earliestDate' => null, 
+            'latestDate' => null, 
+        ];
 
         $this->assertSame($defaultConfig, $filter->getConfigs());
 
@@ -42,26 +49,25 @@ class DateRangeFilterTest extends FilterTestCase
     {
         $filter = DateRangeFilter::make('Active');
 
-        $this->assertSame(['earliestDate' => null, 'latestDate' => null, 'allowInput' => true, 'altFormat' => 'F j, Y', 'ariaDateFormat' => 'F j, Y', 'dateFormat' => 'Y-m-d'], $filter->getConfigs());
-
         $this->assertSame([
-            'earliestDate' => null,
-            'latestDate' => null,
-            'allowInput' => true,
-            'altFormat' => 'F j, Y',
-            'ariaDateFormat' => 'F j, Y',
-            'dateFormat' => 'Y-m-d'], $filter->getConfigs());
+            'allowInput' => true, 
+            'altFormat' => 'F j, Y', 
+            'ariaDateFormat' => 'F j, Y', 
+            'dateFormat' => 'Y-m-d'
+            'earliestDate' => null, 
+            'latestDate' => null, 
+        ], $filter->getConfigs());
 
         $filter->config(['foo' => 'bar']);
 
         $this->assertSame('bar', $filter->getConfig('foo'));
         $this->assertSame([
-            'earliestDate' => null,
-            'latestDate' => null,
-            'allowInput' => true,
-            'altFormat' => 'F j, Y',
-            'ariaDateFormat' => 'F j, Y',
-            'dateFormat' => 'Y-m-d',
+            'allowInput' => true, 
+            'altFormat' => 'F j, Y', 
+            'ariaDateFormat' => 'F j, Y', 
+            'dateFormat' => 'Y-m-d'
+            'earliestDate' => null, 
+            'latestDate' => null, 
             'foo' => 'bar'], $filter->getConfigs());
 
     }
