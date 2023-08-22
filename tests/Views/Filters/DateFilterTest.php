@@ -140,10 +140,10 @@ final class DateFilterTest extends FilterTestCase
      */
     public function test_can_check_if_can_set_default_values(): void
     {
-        $this->assertNull(self::$filterInstance->getDefaultValue());
+        $this->assertNull(self::$filterInstance->getFilterDefaultValue());
 
         self::$filterInstance->setFilterDefaultValue('2023-03-01');
 
-        $this->assertSame('2023-03-01', self::$filterInstance->getDefaultValue());
+        $this->assertSame('2023-03-01', self::$filterInstance->getFilterDefaultValue());
     }
 }
