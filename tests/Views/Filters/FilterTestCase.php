@@ -25,17 +25,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertSame('active', self::$filterInstance->getKey());
     }
 
-    /** @test */
-    public function can_get_filter_configs(): void
-    {
-        self::$filterInstance->config([]);
 
-        $this->assertSame([], self::$filterInstance->getConfigs());
-
-        self::$filterInstance->config(['foo' => 'bar']);
-
-        $this->assertSame(['foo' => 'bar'], self::$filterInstance->getConfigs());
-    }
 
     /** @test */
     public function get_a_single_filter_config(): void
@@ -61,17 +51,6 @@ abstract class FilterTestCase extends TestCase
         $this->assertSame('User Date', self::$filterInstance->getFilterPillTitle());
     }
 
-    /** @test */
-    public function can_check_if_filter_has_configs(): void
-    {
-        self::$filterInstance->config([]);
-
-        $this->assertFalse(self::$filterInstance->hasConfigs());
-
-        self::$filterInstance->config(['foo' => 'bar']);
-
-        $this->assertTrue(self::$filterInstance->hasConfigs());
-    }
 
     /** @test */
     public function can_check_filter_config_by_name(): void

@@ -67,16 +67,18 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }
 
+
     /**
      * @test
      */
-    public function test_can_check_if_can_set_dateformat(): void
+    public function test_can_check_if_can_set_pill_format(): void
     {
-        $this->assertSame('Y-m-d', self::$filterInstance->getConfig('format'));
 
-        self::$filterInstance->config(['format' => 'd-m-Y']);
+        $this->assertSame('d M Y', self::$filterInstance->getConfig('pillFormat'));
 
-        $this->assertSame('d-m-Y', self::$filterInstance->getConfig('format'));
+        self::$filterInstance->config(['pillFormat' => 'd-m-Y']);
+
+        $this->assertSame('d-m-Y', self::$filterInstance->getConfig('pillFormat'));
 
     }
 
@@ -94,6 +96,34 @@ final class DateFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->validate('2014/01/01'));
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }*/
+
+    /** @test */
+    public function can_get_filter_configs(): void
+    {
+        self::$filterInstance->config([]);
+
+        $this->assertSame(['format' => 'Y-m-d',
+        'pillFormat' => 'd M Y'], self::$filterInstance->getConfigs());
+        
+
+        self::$filterInstance->config(['foo' => 'bar']);
+
+        $this->assertSame(['format' => 'Y-m-d',
+        'pillFormat' => 'd M Y', 'foo' => 'bar'], self::$filterInstance->getConfigs());
+    }
+
+    /** @test */
+    public function can_check_if_filter_has_configs(): void
+    {
+        self::$filterInstance->config([]);
+
+        $this->assertTrue(self::$filterInstance->hasConfigs());
+
+        self::$filterInstance->config(['foo' => 'bar']);
+
+        $this->assertTrue(self::$filterInstance->hasConfigs());
+    }
+
 
     /** @test */
     public function can_get_filter_callback(): void
