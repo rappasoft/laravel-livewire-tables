@@ -1,7 +1,7 @@
 @aware(['component'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => 'empty-message-'.$component->id]);
+    $attributes = $attributes->merge(['wire:key' => 'empty-message-'.$component->getId()]);
     $theme = $component->getTheme();
 @endphp
 

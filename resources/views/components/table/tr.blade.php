@@ -2,7 +2,7 @@
 @props(['row', 'rowIndex'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => 'row-'.$rowIndex.'-'.$component->id]);
+    $attributes = $attributes->merge(['wire:key' => 'row-'.$rowIndex.'-'.$component->getId()]);
     $theme = $component->getTheme();
     $customAttributes = $this->getTrAttributes($row, $rowIndex);
 @endphp
@@ -28,7 +28,7 @@
 @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
     <tr
         wire:loading.class.delay=""
-        
+
         @if ($component->reorderIsEnabled() && $component->currentlyReorderingIsEnabled())
             wire:sortable.item="{{ $row->getKey() }}"
         @endif
