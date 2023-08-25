@@ -238,11 +238,11 @@ class SortingVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->assertSeeInOrder($this->default10)
-            ->emit('setSort', 'name', 'desc')
+            ->dispatch('setSort', 'name', 'desc')
             ->assertSeeInOrder($this->rsortNames)
-            ->emit('clearSorts')
+            ->dispatch('clearSorts')
             ->assertSeeInOrder($this->default10)
-            ->emit('setSort', 'name', 'ugkugkuh')
+            ->dispatch('setSort', 'name', 'ugkugkuh')
             ->assertSeeInOrder($this->asortNames);
     }
 }

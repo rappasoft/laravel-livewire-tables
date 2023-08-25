@@ -12,7 +12,7 @@ class ComponentConfigurationTest extends TestCase
     /** @test */
     public function initial_wrapper_attributes_get_set(): void
     {
-        $this->assertSame(['id' => 'datatable-'.$this->basicTable->id], $this->basicTable->getComponentWrapperAttributes());
+        $this->assertSame(['id' => 'datatable-'.$this->basicTable->getId()], $this->basicTable->getComponentWrapperAttributes());
 
         $this->basicTable->setComponentWrapperAttributes(['this' => 'that']);
 

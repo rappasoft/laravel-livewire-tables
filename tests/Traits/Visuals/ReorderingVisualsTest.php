@@ -193,14 +193,14 @@ class ReorderingVisualsTest extends TestCase
     /** @test */
     public function current_page_gets_reset_on_reorder(): void
     {
-        Livewire::test(PetsTable::class)
+        $component = Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->call('setPerPageAccepted', [1])
             ->call('setPerPage', 1)
-            ->assertSet('page', 1)
-            ->set('page', 3)
+            ->assertSet('paginators.page', 1)
+            ->call('setPage', 3)
             ->call('enableReordering')
-            ->assertSet('page', 1);
+            ->assertSet('paginators.page', 1);
         //            ->call('disableReordering') // TODO: Don't work
         //            ->assertSet('page', 3);
     }

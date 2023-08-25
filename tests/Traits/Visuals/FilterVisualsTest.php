@@ -105,9 +105,9 @@ class FilterVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('Applied Filters')
-            ->emit('setFilter', 'breed', [1])
+            ->dispatch('setFilter', 'breed', [1])
             ->assertSee('Applied Filters')
-            ->emit('clearFilters')
+            ->dispatch('clearFilters')
             ->assertDontSee('Applied Filters');
     }
 }
