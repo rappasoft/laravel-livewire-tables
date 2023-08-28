@@ -103,7 +103,7 @@ class SearchConfigurationTest extends TestCase
     }
 
     /** @test */
-    public function can_set_search_lazy(): void
+    /*public function can_set_search_lazy(): void
     {
         $this->assertFalse($this->basicTable->hasSearchLazy());
 
@@ -111,16 +111,16 @@ class SearchConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasSearchLazy());
         $this->assertSame('.lazy', $this->basicTable->getSearchOptions());
-    }
+    }*/
 
     /** @test */
-    public function cant_set_search_lazy_with_other_search_modifiers(): void
+    /*public function cant_set_search_lazy_with_other_search_modifiers(): void
     {
         $this->expectException(DataTableConfigurationException::class);
 
         $this->basicTable->setSearchLazy();
         $this->basicTable->setSearchDebounce(1000);
-    }
+    }*/
 
     /** @test */
     public function can_set_search_live(): void

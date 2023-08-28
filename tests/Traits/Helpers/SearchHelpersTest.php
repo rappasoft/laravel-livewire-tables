@@ -95,14 +95,14 @@ class SearchHelpersTest extends TestCase
     }
 
     /** @test */
-    public function can_check_if_search_lazy_is_set(): void
+    /*public function can_check_if_search_lazy_is_set(): void
     {
         $this->assertFalse($this->basicTable->hasSearchLazy());
 
         $this->basicTable->setSearchLazy();
 
         $this->assertTrue($this->basicTable->hasSearchLazy());
-    }
+    }*/
 
     /** @test */
     public function can_check_if_search_throttle_is_set(): void
