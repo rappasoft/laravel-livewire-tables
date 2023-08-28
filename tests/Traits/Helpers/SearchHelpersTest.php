@@ -85,13 +85,33 @@ class SearchHelpersTest extends TestCase
     }
 
     /** @test */
-    public function can_check_if_search_lazy_is_set(): void
+    public function can_check_if_search_blur_is_set(): void
+    {
+        $this->assertFalse($this->basicTable->hasSearchBlur());
+
+        $this->basicTable->setSearchBlur();
+
+        $this->assertTrue($this->basicTable->hasSearchBlur());
+    }
+
+    /** @test */
+    /*public function can_check_if_search_lazy_is_set(): void
     {
         $this->assertFalse($this->basicTable->hasSearchLazy());
 
         $this->basicTable->setSearchLazy();
 
         $this->assertTrue($this->basicTable->hasSearchLazy());
+    }*/
+
+    /** @test */
+    public function can_check_if_search_throttle_is_set(): void
+    {
+        $this->assertFalse($this->basicTable->hasSearchThrottle());
+
+        $this->basicTable->setSearchThrottle(180);
+
+        $this->assertSame(180, $this->basicTable->getSearchThrottle());
     }
 
     /** @test */

@@ -46,9 +46,27 @@ class SearchVisualsTest extends TestCase
     public function search_debounce_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)
-            ->assertDontSeeHtml('wire:model.debounce.1000ms="search"')
+            ->assertDontSeeHtml('wire:model.live.debounce.1000ms="search"')
             ->call('setSearchDebounce', 1000)
-            ->assertSeeHtml('wire:model.debounce.1000ms="search"');
+            ->assertSeeHtml('wire:model.live.debounce.1000ms="search"');
+    }
+
+    /** @test */
+    public function search_throttle_filter_is_applied(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->assertDontSeeHtml('wire:model.live.throttle.1000ms="search"')
+            ->call('setSearchThrottle', 1000)
+            ->assertSeeHtml('wire:model.live.throttle.1000ms="search"');
+    }
+
+    /** @test */
+    public function search_blur_filter_is_applied(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->assertDontSeeHtml('wire:model.blur="search"')
+            ->call('setSearchBlur')
+            ->assertSeeHtml('wire:model.blur="search"');
     }
 
     /** @test */
@@ -57,15 +75,6 @@ class SearchVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setSearchDefer')
             ->assertSeeHtml('wire:model="search"');
-    }
-
-    /** @test */
-    public function search_lazy_filter_is_applied(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->assertDontSeeHtml('wire:model.lazy="search"')
-            ->call('setSearchLazy')
-            ->assertSeeHtml('wire:model.lazy="search"');
     }
 
     /** @test */

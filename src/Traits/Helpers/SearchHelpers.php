@@ -77,10 +77,25 @@ trait SearchHelpers
         return $this->searchFilterLive !== null;
     }
 
+    public function hasSearchThrottle(): bool
+    {
+        return $this->searchFilterThrottle !== null;
+    }
+
+    public function getSearchThrottle(): ?int
+    {
+        return $this->searchFilterThrottle;
+    }
+
+    public function hasSearchBlur(): bool
+    {
+        return $this->searchFilterBlur !== null;
+    }
+
     public function getSearchOptions(): string
     {
         if ($this->hasSearchDebounce()) {
-            return '.debounce.'.$this->getSearchDebounce().'ms';
+            return '.live.debounce.'.$this->getSearchDebounce().'ms';
         }
 
         if ($this->hasSearchDefer()) {
@@ -91,8 +106,16 @@ trait SearchHelpers
             return '.live';
         }
 
+        if ($this->hasSearchBlur()) {
+            return '.blur';
+        }
+
         if ($this->hasSearchLazy()) {
-            return '.lazy';
+            return '.live.lazy';
+        }
+
+        if ($this->hasSearchThrottle()) {
+            return '.live.throttle.'.$this->getSearchThrottle().'ms';
         }
 
         return '';
