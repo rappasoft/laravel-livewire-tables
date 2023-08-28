@@ -77,7 +77,6 @@ class SearchVisualsTest extends TestCase
             ->assertSeeHtml('wire:model="search"');
     }
 
-
     /** @test */
     public function search_live_filter_is_applied(): void
     {
