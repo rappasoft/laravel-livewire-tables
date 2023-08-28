@@ -17,6 +17,8 @@ trait WithSearch
 
     public bool $searchVisibilityStatus = true;
 
+    public ?bool $searchFilterBlur = null;
+
     public ?int $searchFilterDebounce = null;
 
     public ?bool $searchFilterDefer = null;
@@ -24,6 +26,8 @@ trait WithSearch
     public ?bool $searchFilterLazy = null;
 
     public ?bool $searchFilterLive = null;
+
+    public ?int $searchFilterThrottle = null;
 
     public ?string $searchPlaceholder = null;
 

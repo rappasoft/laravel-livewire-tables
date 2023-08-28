@@ -70,7 +70,7 @@ class SearchConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasSearchDebounce());
         $this->assertSame(1000, $this->basicTable->getSearchDebounce());
-        $this->assertSame('.debounce.1000ms', $this->basicTable->getSearchOptions());
+        $this->assertSame('.live.debounce.1000ms', $this->basicTable->getSearchOptions());
     }
 
     /** @test */
@@ -140,6 +140,47 @@ class SearchConfigurationTest extends TestCase
 
         $this->basicTable->setSearchLive();
         $this->basicTable->setSearchDebounce(1000);
+    }
+
+    /** @test */
+    public function can_set_search_blur(): void
+    {
+        $this->assertFalse($this->basicTable->hasSearchBlur());
+
+        $this->basicTable->setSearchBlur();
+
+        $this->assertTrue($this->basicTable->hasSearchBlur());
+        $this->assertSame('.blur', $this->basicTable->getSearchOptions());
+    }
+
+    /** @test */
+    public function cant_set_search_blur_with_other_search_modifiers(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $this->basicTable->setSearchBlur();
+        $this->basicTable->setSearchDefer();
+    }
+
+    /** @test */
+    public function can_set_search_throttle(): void
+    {
+        $this->assertFalse($this->basicTable->hasSearchThrottle());
+
+        $this->basicTable->setSearchThrottle(1000);
+
+        $this->assertTrue($this->basicTable->hasSearchThrottle());
+        $this->assertSame(1000, $this->basicTable->getSearchThrottle());
+        $this->assertSame('.live.throttle.1000ms', $this->basicTable->getSearchOptions());
+    }
+
+    /** @test */
+    public function cant_set_search_throttle_with_other_search_modifiers(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $this->basicTable->setSearchThrottle(1000);
+        $this->basicTable->setSearchDefer();
     }
 
     /** @test */

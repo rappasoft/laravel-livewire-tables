@@ -50,6 +50,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
             - Added SetSearchLive to allow for the search to be "live", with tests
             - Added capability for external CSS file
             - Custom CSS/JS and Alpine components are now stored in an external file, which has configurable injection options
+            - Added setSearchLive(), setSearchThrottle(int $milliseconds) and setSearchBlur() options for Search behaviour
 
 - Test Changes
     - Temporarily removed the sort_events_apply_correctly and filter_events_apply_correctly due to LW3 not using Emit anymore.
