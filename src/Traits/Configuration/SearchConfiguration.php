@@ -92,7 +92,7 @@ trait SearchConfiguration
      */
     public function setSearchLive(): self
     {
-        if ($this->hasSearchBlur() || $this->hasSearchDebounce()  || $this->hasSearchDefer() || $this->hasSearchLazy() || $this->hasSearchThrottle()) {
+        if ($this->hasSearchBlur() || $this->hasSearchDebounce() || $this->hasSearchDefer() || $this->hasSearchLazy() || $this->hasSearchThrottle()) {
             throw new DataTableConfigurationException('You can only set one search filter option per table: live, blur, throttle, debounce, defer, or lazy.');
         }
 
