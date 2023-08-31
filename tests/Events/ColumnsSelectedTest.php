@@ -14,9 +14,7 @@ class ColumnsSelectedTest extends TestCase
             ColumnsSelected::class,
         ]);
 
-        $test['columns'] = $this->basicTable->getColumns()->map(function ($column) {
-            return $column->getSlug();
-        })->toArray();
+        $test['columns'] = $this->basicTable->selectedColumns;
         $test['key'] = $this->basicTable->getDataTableFingerprint().'-columnSelectEnabled';
         // Select all columns to test event trigger
         $this->basicTable->selectAllColumns();
