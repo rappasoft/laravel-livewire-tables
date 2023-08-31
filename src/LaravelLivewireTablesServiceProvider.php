@@ -20,9 +20,9 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
-
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'livewire-tables');
+        
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -34,7 +34,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             ], 'livewire-tables-config');
 
             $this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/rappasoft/livewire-tables'),
+                __DIR__.'/../resources/views' => resource_path('views/vendor/livewire-tables'),
             ], 'livewire-tables-views');
 
             $this->publishes([
