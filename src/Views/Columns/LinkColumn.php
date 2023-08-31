@@ -10,8 +10,8 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\LinkColumnHelpers;
 
 class LinkColumn extends Column
 {
-    use LinkColumnHelpers,
-        LinkColumnConfiguration;
+    use LinkColumnConfiguration,
+        LinkColumnHelpers;
 
     protected string $view = 'livewire-tables::includes.columns.link';
 

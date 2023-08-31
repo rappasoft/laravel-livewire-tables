@@ -10,8 +10,8 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ImageColumnHelpers;
 
 class ImageColumn extends Column
 {
-    use ImageColumnHelpers,
-        ImageColumnConfiguration;
+    use ImageColumnConfiguration,
+        ImageColumnHelpers;
 
     protected string $view = 'livewire-tables::includes.columns.image';
 
