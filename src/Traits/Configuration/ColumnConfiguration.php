@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
-use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnConfiguration

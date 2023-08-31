@@ -23,7 +23,7 @@ class ColumnHelpersTest extends TestCase
         $this->basicTable->setAppendedColumns([Column::make('IDLabel')->label(function ($row) {
             return 'Test';
         })]);
-        
+
         $this->basicTable->setColumns();
 
         $this->assertCount(10, $this->basicTable->getColumns()->toArray());
@@ -38,7 +38,7 @@ class ColumnHelpersTest extends TestCase
         $this->basicTable->setPrependedColumns([Column::make('IDLabel')->label(function ($row) {
             return 'Test';
         })]);
-        
+
         $this->basicTable->setColumns();
 
         $this->assertCount(10, $this->basicTable->getColumns()->toArray());

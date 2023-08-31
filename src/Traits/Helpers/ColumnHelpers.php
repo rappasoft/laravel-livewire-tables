@@ -180,7 +180,6 @@ trait ColumnHelpers
         return 100;
     }
 
-
     public function getPrependedColumns(): Collection
     {
         return collect($this->prependedColumns ?? $this->prependColumns())
