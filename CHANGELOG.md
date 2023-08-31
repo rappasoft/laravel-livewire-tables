@@ -2,7 +2,15 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [Unreleased] - 3.x
+## [Unreleased] - 3.x - Beta Fixes (beta-1)
+- Removal of setSearchLazy
+- Fix for setSearchDebounce
+- Add setSearchBlur()
+- Add setSearchThrottle()
+- Fix publishing of views
+- Add publish translations
+
+## [Unreleased] - 3.x (beta-0)
 - Requirements Change
     - Requires LiveWire 3.x
     - Requires PHP 8.1+
@@ -10,7 +18,6 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 
 - Core Changes
-
     - Move sorts, search, selectedColumns out of the traditional __$this->{$this->getTableName()}['sorts']__ and instead place it directly within the component.  This:
         - Improves the query string behaviour
         - Reduces the need to repeatedly set up that main array
