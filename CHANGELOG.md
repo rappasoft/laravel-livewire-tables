@@ -9,6 +9,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Add setSearchThrottle()
 - Fix publishing of views
 - Add publish translations
+- Add prependColumns() and appendColumns() functions
 
 ## [Unreleased] - 3.x (beta-0)
 - Requirements Change

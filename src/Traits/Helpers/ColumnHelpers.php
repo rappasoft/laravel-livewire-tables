@@ -12,23 +12,27 @@ trait ColumnHelpers
      */
     public function setColumns(): void
     {
+        $prependedColumns = $this->getPrependedColumns();
+
         $columns = collect($this->columns())
-            ->filter(fn ($column) => $column instanceof Column)
-            ->map(function (Column $column) {
-                $column->setComponent($this);
+                    ->filter(fn ($column) => $column instanceof Column)
+                    ->map(function (Column $column) {
+                        $column->setComponent($this);
 
-                if ($column->hasField()) {
-                    if ($column->isBaseColumn()) {
-                        $column->setTable($this->getBuilder()->getModel()->getTable());
-                    } else {
-                        $column->setTable($this->getTableForColumn($column));
-                    }
-                }
+                        if ($column->hasField()) {
+                            if ($column->isBaseColumn()) {
+                                $column->setTable($this->getBuilder()->getModel()->getTable());
+                            } else {
+                                $column->setTable($this->getTableForColumn($column));
+                            }
+                        }
 
-                return $column;
-            });
+                        return $column;
+                    });
+        
+        $appendedColumns = $this->getAppendedColumns();
 
-        $this->columns = $columns;
+        $this->columns = collect([...$prependedColumns, ...$columns, ...$appendedColumns]);
     }
 
     public function getColumns(): Collection
@@ -174,5 +178,43 @@ trait ColumnHelpers
     public function getColspanCount(): int
     {
         return 100;
+    }
+
+    public function getPrependedColumns(): Collection
+    {
+        return collect($this->prependColumns())
+        ->filter(fn ($column) => $column instanceof Column)
+        ->map(function (Column $column) {
+            $column->setComponent($this);
+
+            if ($column->hasField()) {
+                if ($column->isBaseColumn()) {
+                    $column->setTable($this->getBuilder()->getModel()->getTable());
+                } else {
+                    $column->setTable($this->getTableForColumn($column));
+                }
+            }
+
+            return $column;
+        });
+    }
+
+    public function getAppendedColumns(): Collection
+    {
+        return collect($this->appendColumns())
+                            ->filter(fn ($column) => $column instanceof Column)
+                            ->map(function (Column $column) {
+                                $column->setComponent($this);
+
+                                if ($column->hasField()) {
+                                    if ($column->isBaseColumn()) {
+                                        $column->setTable($this->getBuilder()->getModel()->getTable());
+                                    } else {
+                                        $column->setTable($this->getTableForColumn($column));
+                                    }
+                                }
+
+                                return $column;
+                            });
     }
 }

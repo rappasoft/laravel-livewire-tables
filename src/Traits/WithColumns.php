@@ -15,4 +15,23 @@ trait WithColumns
     {
         $this->columns = collect();
     }
+
+    /**
+     * Prepend columns.
+     */
+    public function prependColumns(): array
+    {
+        return [];
+    }
+
+    /**
+     * Append columns.
+     */
+    public function appendColumns(): array
+    {
+        return [];
+    }
+
+
+
 }
