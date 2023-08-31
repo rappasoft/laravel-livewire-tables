@@ -12,6 +12,8 @@ trait ColumnHelpers
      */
     public function setColumns(): void
     {
+        $this->prependedColumns = $this->getPrependedColumns();
+
         $columns = collect($this->columns())
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
@@ -28,7 +30,9 @@ trait ColumnHelpers
                 return $column;
             });
 
-        $this->columns = $columns;
+        $this->appendedColumns = $this->getAppendedColumns();
+
+        $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
     }
 
     public function getColumns(): Collection
@@ -174,5 +178,44 @@ trait ColumnHelpers
     public function getColspanCount(): int
     {
         return 100;
+    }
+
+    public function getPrependedColumns(): Collection
+    {
+        return collect($this->prependedColumns ?? $this->prependColumns())
+            ->filter(fn ($column) => $column instanceof Column)
+            ->map(function (Column $column) {
+                $column->setComponent($this);
+
+                if ($column->hasField()) {
+                    if ($column->isBaseColumn()) {
+                        $column->setTable($this->getBuilder()->getModel()->getTable());
+                    } else {
+                        $column->setTable($this->getTableForColumn($column));
+                    }
+                }
+
+                return $column;
+            });
+    }
+
+    public function getAppendedColumns(): Collection
+    {
+        return collect($this->appendedColumns ?? $this->appendColumns())
+            ->filter(fn ($column) => $column instanceof Column)
+            ->map(function (Column $column) {
+                $column->setComponent($this);
+
+                if ($column->hasField()) {
+                    if ($column->isBaseColumn()) {
+                        $column->setTable($this->getBuilder()->getModel()->getTable());
+                    } else {
+                        $column->setTable($this->getTableForColumn($column));
+                    }
+                }
+
+                return $column;
+            });
+
     }
 }

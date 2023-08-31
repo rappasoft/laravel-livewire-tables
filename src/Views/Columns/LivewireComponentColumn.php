@@ -13,8 +13,8 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\LivewireComponentColumn
 
 class LivewireComponentColumn extends Column
 {
-    use LivewireComponentColumnHelpers,
-        LivewireComponentColumnConfiguration;
+    use LivewireComponentColumnConfiguration,
+        LivewireComponentColumnHelpers;
 
     protected string $livewireComponent;
 
