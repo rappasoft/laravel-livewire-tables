@@ -12,7 +12,7 @@ trait ColumnHelpers
      */
     public function setColumns(): void
     {
-        $prependedColumns = $this->getPrependedColumns();
+        $this->prependedColumns = $this->getPrependedColumns();
 
         $columns = collect($this->columns())
             ->filter(fn ($column) => $column instanceof Column)
@@ -30,9 +30,9 @@ trait ColumnHelpers
                 return $column;
             });
 
-        $appendedColumns = $this->getAppendedColumns();
+        $this->appendedColumns = $this->getAppendedColumns();
 
-        $this->columns = collect([...$prependedColumns, ...$columns, ...$appendedColumns]);
+        $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
     }
 
     public function getColumns(): Collection
@@ -180,9 +180,10 @@ trait ColumnHelpers
         return 100;
     }
 
+
     public function getPrependedColumns(): Collection
     {
-        return collect($this->prependColumns())
+        return collect($this->prependedColumns ?? $this->prependColumns())
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
@@ -201,7 +202,7 @@ trait ColumnHelpers
 
     public function getAppendedColumns(): Collection
     {
-        return collect($this->appendColumns())
+        return collect($this->appendedColumns ?? $this->appendColumns())
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
@@ -216,5 +217,6 @@ trait ColumnHelpers
 
                 return $column;
             });
+
     }
 }
