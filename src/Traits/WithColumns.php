@@ -31,7 +31,4 @@ trait WithColumns
     {
         return [];
     }
-
-
-
 }
