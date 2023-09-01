@@ -37,7 +37,6 @@ trait ColumnHelpers
         $this->appendedColumns = $this->getAppendedColumns();
 
         $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
-
     }
 
     public function getColumns(): Collection
