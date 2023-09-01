@@ -63,10 +63,7 @@ trait WithColumnSelect
 
     public function selectAllColumns(): void
     {
-        $this->selectedColumns = $this->getColumns()->map(function ($column) {
-            return $column->getSlug();
-        })->toArray();
-
+        $this->selectedColumns = [];
         $this->forgetColumnSelectSession();
         event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
     }

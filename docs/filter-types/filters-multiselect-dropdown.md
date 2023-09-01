@@ -1,6 +1,6 @@
 ---
 title: Multi-Select Dropdown Filters
-weight: 6
+weight: 5
 ---
 
 

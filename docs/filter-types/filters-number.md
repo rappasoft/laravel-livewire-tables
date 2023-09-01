@@ -1,6 +1,6 @@
 ---
 title: Number Filters
-weight: 6
+weight: 8
 ---
 
 ## Number Filters

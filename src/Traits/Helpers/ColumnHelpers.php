@@ -7,6 +7,10 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnHelpers
 {
+    public array $columnSelectStats2;
+
+    public $columnSelectStats3;
+
     /**
      * Set the user defined columns
      */
@@ -33,6 +37,8 @@ trait ColumnHelpers
         $this->appendedColumns = $this->getAppendedColumns();
 
         $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
+ 
+
     }
 
     public function getColumns(): Collection
@@ -85,10 +91,43 @@ trait ColumnHelpers
             ->toArray();
     }
 
+    public function getCurrentlySelectedCols()
+    {
+
+        $this->columnSelectStats3 = [
+            'intersectSelectedCols-VisibleCols' => count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns())),
+            'defaultVisibleCols' => count($this->getDefaultVisibleColumns()),
+            'getReallySelectedColumns' => count($this->getReallySelectedColumns()),
+            'getCurrentlySelectedColumns' => count($this->getCurrentlySelectedColumns()),
+            'getSelectableColumns' =>  count($this->getSelectableColumns()),
+            'allDefaultVisibleColumnsAreSelected' => $this->allDefaultVisibleColumnsAreSelected()
+        ];
+        return [1,2,3];
+
+    }
+
+    public function getReallySelectedColumns(): array
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isLabel())
+            ->reject(fn (Column $column) => !$column->isSelected())
+            ->values()
+            ->toArray();
+    }
+
     public function getSelectableColumns(): Collection
     {
         return $this->getColumns()
             ->reject(fn (Column $column) => $column->isLabel())
+            ->reject(fn (Column $column) => !$column->isSelectable())
+            ->values();
+    }
+
+    public function getCurrentlySelectedColumns(): Collection
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isLabel())
+            ->reject(fn (Column $column) => !$column->isSelectable())
             ->values();
     }
 
