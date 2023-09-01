@@ -12,8 +12,8 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ComponentColumnHelpers;
 
 class ComponentColumn extends Column
 {
-    use ComponentColumnHelpers,
-        ComponentColumnConfiguration;
+    use ComponentColumnConfiguration,
+        ComponentColumnHelpers;
 
     protected string $componentView;
 

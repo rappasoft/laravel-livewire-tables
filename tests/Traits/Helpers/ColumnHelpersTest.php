@@ -16,6 +16,35 @@ class ColumnHelpersTest extends TestCase
     }
 
     /** @test */
+    public function can_append_column(): void
+    {
+        $this->assertCount(9, $this->basicTable->getColumns()->toArray());
+
+        $this->basicTable->setAppendedColumns([Column::make('IDLabel')->label(function ($row) {
+            return 'Test';
+        })]);
+
+        $this->basicTable->setColumns();
+
+        $this->assertCount(10, $this->basicTable->getColumns()->toArray());
+
+    }
+
+    /** @test */
+    public function can_prepend_column(): void
+    {
+        $this->assertCount(9, $this->basicTable->getColumns()->toArray());
+
+        $this->basicTable->setPrependedColumns([Column::make('IDLabel')->label(function ($row) {
+            return 'Test';
+        })]);
+
+        $this->basicTable->setColumns();
+
+        $this->assertCount(10, $this->basicTable->getColumns()->toArray());
+    }
+
+    /** @test */
     public function can_get_column_by_column(): void
     {
         $column = $this->basicTable->getColumn('pets.id');
