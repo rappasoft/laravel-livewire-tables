@@ -92,6 +92,17 @@ public function configure(): void
     // Shorthand for $this->setSearchVisibilityStatus(false)
     $this->setSearchVisibilityDisabled();
 }
+
+```
+## setSearchPlaceholder
+
+Set a custom placeholder for the search box
+
+```php
+public function configure(): void
+{
+    $this->setSearchPlaceholder('Enter Search Term');
+}
 ```
 
 ---
