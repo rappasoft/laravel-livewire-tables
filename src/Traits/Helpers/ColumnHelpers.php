@@ -37,7 +37,6 @@ trait ColumnHelpers
         $this->appendedColumns = $this->getAppendedColumns();
 
         $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
- 
 
     }
 
@@ -99,10 +98,11 @@ trait ColumnHelpers
             'defaultVisibleCols' => count($this->getDefaultVisibleColumns()),
             'getReallySelectedColumns' => count($this->getReallySelectedColumns()),
             'getCurrentlySelectedColumns' => count($this->getCurrentlySelectedColumns()),
-            'getSelectableColumns' =>  count($this->getSelectableColumns()),
-            'allDefaultVisibleColumnsAreSelected' => $this->allDefaultVisibleColumnsAreSelected()
+            'getSelectableColumns' => count($this->getSelectableColumns()),
+            'allDefaultVisibleColumnsAreSelected' => $this->allDefaultVisibleColumnsAreSelected(),
         ];
-        return [1,2,3];
+
+        return [1, 2, 3];
 
     }
 
@@ -110,7 +110,7 @@ trait ColumnHelpers
     {
         return $this->getColumns()
             ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => !$column->isSelected())
+            ->reject(fn (Column $column) => ! $column->isSelected())
             ->values()
             ->toArray();
     }
@@ -119,7 +119,7 @@ trait ColumnHelpers
     {
         return $this->getColumns()
             ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => !$column->isSelectable())
+            ->reject(fn (Column $column) => ! $column->isSelectable())
             ->values();
     }
 
@@ -127,7 +127,7 @@ trait ColumnHelpers
     {
         return $this->getColumns()
             ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => !$column->isSelectable())
+            ->reject(fn (Column $column) => ! $column->isSelectable())
             ->values();
     }
 

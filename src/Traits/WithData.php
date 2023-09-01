@@ -38,6 +38,7 @@ trait WithData
 
         $this->setBuilder($this->applyFilters());
         $this->getCurrentlySelectedCols();
+
         return $this->getBuilder();
 
     }
