@@ -118,7 +118,7 @@ trait ColumnHelpers
     {
         return $this->getColumns()
             ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => !$column->isSelectable())
+            ->reject(fn (Column $column) => ! $column->isSelectable())
             ->values();
     }
 
