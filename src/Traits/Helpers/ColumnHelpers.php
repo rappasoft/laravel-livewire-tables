@@ -10,6 +10,7 @@ trait ColumnHelpers
     public array $columnSelectStats2;
 
     public int $defaultVisibleColumnCount;
+
     public int $visibleColumnCount;
 
     /**
@@ -92,10 +93,9 @@ trait ColumnHelpers
 
     public function getCurrentlySelectedCols()
     {
-        
+
         $this->defaultVisibleColumnCount = count($this->getDefaultVisibleColumns());
         $this->visibleColumnCount = count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns()));
-
 
     }
 
@@ -112,7 +112,7 @@ trait ColumnHelpers
     {
         return $this->getColumns()
             ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => !$column->isSelectable())
+            ->reject(fn (Column $column) => ! $column->isSelectable())
             ->values();
     }
 
