@@ -31,7 +31,7 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableScripts);
     }
 
-    /** @test */
+   /** @test */
     public function thirdPartystyles()
     {
         $assets = app(RappasoftFrontendAssets::class);
