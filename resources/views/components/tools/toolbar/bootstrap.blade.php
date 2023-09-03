@@ -260,7 +260,7 @@
                         aria-labelledby="columnSelect-{{ $tableName }}"
                     >
                         @if($component->isBootstrap4())
-                            <div>
+                            <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                                 <label wire:loading.attr="disabled" class="px-2 mb-1">
                                     <input
                                         wire:loading.attr="disabled"
@@ -272,7 +272,7 @@
                                 </label>
                             </div>
                         @elseif($component->isBootstrap5())
-                            <div class="form-check ms-2">
+                            <div class="form-check ms-2" wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                                 <input
                                     wire:loading.attr="disabled"
                                     type="checkbox"

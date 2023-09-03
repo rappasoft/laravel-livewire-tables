@@ -238,15 +238,16 @@
                         <div class="bg-white rounded-md shadow-xs dark:bg-gray-700 dark:text-white">
                             <div class="p-2" role="menu" aria-orientation="vertical"
                                  aria-labelledby="column-select-menu">
-                                <div>
+                                <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                                     <label
                                         wire:loading.attr="disabled"
                                         class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait"
                                     >
                                         <input
                                             class="text-indigo-600 transition duration-150 ease-in-out border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
-                                            wire:loading.attr="disabled" type="checkbox"
-                                            @checked($component->visibleColumnCount >= $component->defaultVisibleColumnCount)
+                                            wire:loading.attr="disabled" 
+                                            type="checkbox"
+                                            @checked($component->visibleColumnCount == $component->defaultVisibleColumnCount)
                                             @if($component->visibleColumnCount >= $component->defaultVisibleColumnCount)  wire:click="deselectAllColumns" @else wire:click="selectAllColumns" @endif
                                         >
                                         <span class="ml-2">{{ __('All Columns') }}</span>
