@@ -22,7 +22,7 @@ trait WithSearch
     public ?bool $searchFilterDefer = null;
 
     public ?bool $searchFilterLazy = null;
-    
+
     public ?string $searchPlaceholder = null;
 
     // TODO

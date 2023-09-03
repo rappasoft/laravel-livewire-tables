@@ -103,5 +103,4 @@ class SearchHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasSearchPlaceholder());
     }
-
 }

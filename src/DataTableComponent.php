@@ -32,11 +32,11 @@ abstract class DataTableComponent extends Component
         WithEvents,
         WithFilters,
         WithFooter,
-        WithSecondaryHeader,
         WithPagination,
         WithRefresh,
         WithReordering,
         WithSearch,
+        WithSecondaryHeader,
         WithSorting;
 
     protected $listeners = [

@@ -132,5 +132,4 @@ class SearchConfigurationTest extends TestCase
         $this->assertSame('Anthony', $this->basicTable->getSearchPlaceholder());
 
     }
-    
 }

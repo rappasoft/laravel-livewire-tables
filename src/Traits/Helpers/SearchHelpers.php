@@ -98,5 +98,4 @@ trait SearchHelpers
     {
         return $this->searchPlaceholder !== null;
     }
-
 }
