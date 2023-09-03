@@ -193,7 +193,7 @@
                             'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
                         ])
                         type="button"
-                        id="{{ $tableName }}-bulkActionsDropdown" data-toggle="dropdown"
+                        id="{{ $tableName }}-bulkActionsDropdown" data-toggle="dropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         @lang('Bulk Actions')
                     </button>
