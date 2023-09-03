@@ -1,6 +1,6 @@
 ---
 title: Date Filters
-weight: 6
+weight: 2
 ---
 
 ## Date Filters

@@ -1,6 +1,6 @@
 ---
 title: Text Filters
-weight: 6
+weight: 10
 ---
 
 ## Text Filters

@@ -37,6 +37,7 @@ trait WithData
         $this->setBuilder($this->applySearch());
 
         $this->setBuilder($this->applyFilters());
+        $this->getCurrentlySelectedCols();
 
         return $this->getBuilder();
 
