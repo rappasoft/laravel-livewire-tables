@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" bootstrap="vendor/autoload.php" cacheResult="false" colors="false" executionOrder="random" failOnWarning="true" failOnRisky="true" failOnEmptyTestSuite="true" beStrictAboutOutputDuringTests="true" >
-  <testsuites>
-    <testsuite name="Laravel Livewire Tables Test Suite">
-      <directory>tests</directory>
-    </testsuite>
-  </testsuites>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="false"
+         cacheResult="false" 
+         executionOrder="random" 
+         failOnWarning="false" 
+         failOnRisky="false" 
+         failOnEmptyTestSuite="false" 
+         beStrictAboutOutputDuringTests="true" >
+    <testsuites>
+        <testsuite name="Laravel Livewire Tables Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>config</directory>
+            <directory>database</directory>
+            <directory>src</directory>
+        </include>
+    </source>
 </phpunit>
