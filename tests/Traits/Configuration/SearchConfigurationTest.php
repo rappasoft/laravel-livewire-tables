@@ -121,4 +121,15 @@ class SearchConfigurationTest extends TestCase
         $this->basicTable->setSearchLazy();
         $this->basicTable->setSearchDebounce(1000);
     }
+
+    /** @test */
+    public function can_set_search_placeholder(): void
+    {
+        $this->assertSame(__('Search'), $this->basicTable->getSearchPlaceholder());
+
+        $this->basicTable->setSearchPlaceholder('Anthony');
+
+        $this->assertSame('Anthony', $this->basicTable->getSearchPlaceholder());
+
+    }
 }

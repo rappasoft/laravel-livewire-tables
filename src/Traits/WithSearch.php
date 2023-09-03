@@ -23,6 +23,8 @@ trait WithSearch
 
     public ?bool $searchFilterLazy = null;
 
+    public ?string $searchPlaceholder = null;
+
     // TODO
     public function applySearch(): Builder
     {

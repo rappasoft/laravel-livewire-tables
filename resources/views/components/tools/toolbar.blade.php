@@ -35,7 +35,8 @@
             @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
                 <div class="flex rounded-md shadow-sm">
                     <input wire:model{{ $component->getSearchOptions() }}="{{ $component->getTableName() }}.search"
-                        placeholder="{{ __('Search') }}" type="text"
+                        placeholder="{{ $component->getSearchPlaceholder() }}"
+                        type="text"
                         class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if ($component->hasSearch()) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif" />
 
                     @if ($component->hasSearch())
@@ -327,7 +328,8 @@
             @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
                 <div class="mb-3 mb-md-0 input-group">
                     <input wire:model{{ $component->getSearchOptions() }}="{{ $component->getTableName() }}.search"
-                        placeholder="{{ __('Search') }}" type="text" class="form-control">
+                        placeholder="{{ $component->getSearchPlaceholder() }}"
+                        type="text" class="form-control">
 
                     @if ($component->hasSearch())
                         <div class="input-group-append">
@@ -556,7 +558,8 @@
             @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
                 <div class="mb-3 mb-md-0 input-group">
                     <input wire:model{{ $component->getSearchOptions() }}="{{ $component->getTableName() }}.search"
-                        placeholder="{{ __('Search') }}" type="text" class="form-control">
+                        placeholder="{{ $component->getSearchPlaceholder() }}"
+                        type="text" class="form-control">
 
                     @if ($component->hasSearch())
                         <button wire:click.prevent="clearSearch" class="btn btn-outline-secondary" type="button">
