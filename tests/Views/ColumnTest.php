@@ -56,7 +56,7 @@ class ColumnTest extends TestCase
         $this->assertSame('Cartman', $rows->first()->name);
         $this->assertSame('Norwegian Forest', $rows->first()['breed.name']);
     }
-    
+
     /** @test */
     public function can_get_column_formatted_contents(): void
     {
@@ -73,8 +73,6 @@ class ColumnTest extends TestCase
 
         $this->assertSame(strtoupper($rows->first()->name), $column->getContents($rows->first()));
     }
-
-
 
     /** @test */
     public function column_table_gets_set_for_base_and_relationship_columns(): void
