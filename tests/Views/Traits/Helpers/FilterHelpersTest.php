@@ -343,4 +343,15 @@ class FilterHelpersTest extends TestCase
         $filter->setFilterDefaultValue('foo');
         $this->assertTrue($filter->hasFilterDefaultValue());
     }
+
+    /** @test */
+    public function can_get_filter_custom_filter_pills_blade(): void
+    {
+        $filter = TextFilter::make('Active');
+        $this->assertFalse($filter->hasCustomPillBlade());
+        $filter->setFilterPillBlade('foo');
+        $this->assertTrue($filter->hasCustomPillBlade());
+        $this->assertSame('foo', $filter->getCustomPillBlade());
+    }
+    
 }
