@@ -353,5 +353,4 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($filter->hasCustomPillBlade());
         $this->assertSame('foo', $filter->getCustomPillBlade());
     }
-    
 }
