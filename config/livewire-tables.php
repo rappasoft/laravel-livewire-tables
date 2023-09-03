@@ -15,7 +15,7 @@ return [
     /**
      * Enable or Disable automatic injection of assets
      */
-    'inject_third_party_assets' => true,
+    'inject_third_party_assets' => false,
 
     /**
      * Enable or Disable inclusion of published third-party assets
@@ -25,7 +25,7 @@ return [
     /**
      * Enable or Disable remote third-party assets
      */
-    'remote_third_party_assets' => false,
+    'remote_third_party_assets' => true,
 
     /**
      * Configuration options for DateFilter
