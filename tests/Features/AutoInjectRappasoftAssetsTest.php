@@ -2,12 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Features;
 
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class AutoInjectRappasoftAssetsTest extends TestCase
 {
-
     /** @test */
     public function shouldInjectRappasoftAndThirdParty()
     {
@@ -17,7 +16,7 @@ class AutoInjectRappasoftAssetsTest extends TestCase
         config()->set('livewire-tables.remote_third_party_assets', false);
         $this->assertEquals('<html><head>    <link href="/rappasoft/laravel-livewire-tables/core.min.css" rel="stylesheet" />     <link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" /><script src="/rappasoft/laravel-livewire-tables/core.min.js"  ></script> <script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  type="module"  ></script></head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
     }
-    
+
     /** @test */
     public function shouldNotInjectRappasoftOrThirdParty()
     {
@@ -38,7 +37,7 @@ class AutoInjectRappasoftAssetsTest extends TestCase
 
         $this->assertEquals('<html><head>     <link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" /> <script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  type="module"  ></script></head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
     }
-    
+
     /** @test */
     public function shouldOnlyInjectRappasoft()
     {
@@ -49,5 +48,4 @@ class AutoInjectRappasoftAssetsTest extends TestCase
 
         $this->assertEquals('<html><head>    <link href="/rappasoft/laravel-livewire-tables/core.min.css" rel="stylesheet" /> <script src="/rappasoft/laravel-livewire-tables/core.min.js"  ></script> </head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
     }
-
 }
