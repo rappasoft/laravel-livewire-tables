@@ -77,6 +77,7 @@ trait WithColumnSelect
 
     public function updatedSelectedColumns(): void
     {
+        $this->getCurrentlySelectedCols();
         // The query string isn't needed if it's the same as the default
         if ($this->allDefaultVisibleColumnsAreSelected() && $this->allSelectedColumnsAreVisibleByDefault()) {
             $this->selectAllColumns();
