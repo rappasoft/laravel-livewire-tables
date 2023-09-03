@@ -5,7 +5,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ## [Unreleased]
 - Enhancements
     - Add customisable Search Placeholder - setSearchPlaceholder()
-
+    - Add CodeCov workflows
+    
 ## [2.15.0] - 2023-07-15
 
 - Fixes
