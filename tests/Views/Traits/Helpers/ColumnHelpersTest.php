@@ -307,6 +307,18 @@ class ColumnHelpersTest extends TestCase
     }
 
     /** @test */
+    public function can_get_column_formatted_contents(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertFalse($column->hasFormatter());
+        $this->assertNull($column->getFormatCallback());
+
+        $column->format(fn ($value = 'test') => ucfirst($value));
+        $this->assertSame('Test', $column->getContents());
+    }
+
+    /** @test */
     public function can_check_if_column_has_secondary_header(): void
     {
         $column = Column::make('ID', 'id');
