@@ -30,4 +30,28 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         $this->assertTrue($assets->hasRenderedRappsoftTableScripts);
     }
+
+    /** @test */
+    public function thirdPartystyles()
+    {
+        $assets = app(RappasoftFrontendAssets::class);
+
+        $this->assertFalse($assets->hasRenderedRappsoftTableThirdPartyStyles);
+
+        $this->assertStringStartsWith('<link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" />', ltrim($assets->tableThirdPartyStyles()));
+
+        $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyStyles);
+    }
+
+    /** @test */
+    public function thirdPartyscripts()
+    {
+        $assets = app(RappasoftFrontendAssets::class);
+
+        $this->assertFalse($assets->hasRenderedRappsoftTableThirdPartyScripts);
+
+        $this->assertStringStartsWith('<script src="', $assets->tableThirdPartyScripts());
+
+        $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyScripts);
+    }
 }
