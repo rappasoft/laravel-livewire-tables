@@ -12,6 +12,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Add prependColumns() and appendColumns() functions
 - Add documentation for setSearchPlaceholder()
 - Fix for Bulk Actions dropdown not working in Bootstrap
+- Fix for Column Select "Select All" not consistently updating
 
 ## [Unreleased] - 3.x (beta-0)
 - Requirements Change
