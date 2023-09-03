@@ -94,6 +94,17 @@ public function configure(): void
 }
 ```
 
+## setSearchPlaceholder
+
+Set a custom placeholder for the search box
+
+```php
+public function configure(): void
+{
+    $this->setSearchPlaceholder('Enter Search Term');
+}
+```
+
 ---
 
 You can only set one of the follow search modifiers:
