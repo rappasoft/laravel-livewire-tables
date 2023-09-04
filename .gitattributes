@@ -22,3 +22,5 @@
 /psalm.xml                  export-ignore
 /psalm.xml.dist             export-ignore
 /testbench.yaml             export-ignore
+/codecov.yml                export-ignore
+/coverage.xml               export-ignore

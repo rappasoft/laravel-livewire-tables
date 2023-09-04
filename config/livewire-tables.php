@@ -13,6 +13,11 @@ return [
     'inject_assets' => true,
 
     /**
+     * Enable or Disable automatic injection of assets
+     */
+    'inject_third_party_assets' => false,
+
+    /**
      * Enable or Disable inclusion of published third-party assets
      */
     'published_third_party_assets' => false,
