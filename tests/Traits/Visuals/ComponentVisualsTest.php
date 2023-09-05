@@ -9,7 +9,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 class ComponentVisualsTest extends TestCase
 {
     private $testErrors;
-    
+
     /** @test */
     public function empty_message_does_not_show_with_results(): void
     {
@@ -48,19 +48,14 @@ class ComponentVisualsTest extends TestCase
 
         try {
             Livewire::test(NoPrimaryKeyTable::class);
-        }
-        catch (DataTableConfigurationException $DataTableConfigurationException)
-        {
+        } catch (DataTableConfigurationException $DataTableConfigurationException) {
             $this->testErrors = true;
-            $this->assertSame("You must set a primary key using setPrimaryKey in the configure method.", substr($DataTableConfigurationException->getMessage(),0,71));
-        }
-        catch (ViewException $ViewException)
-        {
+            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($DataTableConfigurationException->getMessage(), 0, 71));
+        } catch (ViewException $ViewException) {
             $this->testErrors = true;
-            $this->assertSame("You must set a primary key using setPrimaryKey in the configure method.", substr($ViewException->getMessage(),0,71));
+            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($ViewException->getMessage(), 0, 71));
         }
-        if (!$this->testErrors)
-        {
+        if (! $this->testErrors) {
             $this->fail('Did Not Throw Error - Missing PK');
         }
     }
@@ -71,22 +66,16 @@ class ComponentVisualsTest extends TestCase
         $this->testErrors = false;
         try {
             $test = Livewire::test(NoBuildMethodTable::class);
-        }
-        catch (DataTableConfigurationException $DataTableConfigurationException)
-        {
+        } catch (DataTableConfigurationException $DataTableConfigurationException) {
             $this->testErrors = true;
-            $this->assertSame("You must either specify a model or implement the builder method.", substr($DataTableConfigurationException->getMessage(),0,64));
+            $this->assertSame('You must either specify a model or implement the builder method.', substr($DataTableConfigurationException->getMessage(), 0, 64));
 
-        }
-        catch (ViewException $ViewException)
-        {
+        } catch (ViewException $ViewException) {
             $this->testErrors = true;
-            $this->assertSame("You must either specify a model or implement the builder method.", substr($ViewException->getMessage(),0,64));
+            $this->assertSame('You must either specify a model or implement the builder method.', substr($ViewException->getMessage(), 0, 64));
         }
-        if (!$this->testErrors)
-        {
+        if (! $this->testErrors) {
             $this->fail('Did Not Throw Error - Missing Model/Builder');
         }
     }
-
 }

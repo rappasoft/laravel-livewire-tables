@@ -21,7 +21,7 @@ trait ComponentUtilities
     protected $model;
 
     protected ?string $primaryKey = null;
-    
+
     protected array $relationships = [];
 
     protected string $tableName = 'table';
