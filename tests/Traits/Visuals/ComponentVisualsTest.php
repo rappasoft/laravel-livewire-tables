@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BrokenTables\{NoBuildMethodTable,NoPrimaryKeyTable};
 
 class ComponentVisualsTest extends TestCase
 {
