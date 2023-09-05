@@ -133,5 +133,4 @@ class FilterConfigurationTest extends TestCase
         $this->assertSame(['class' => 'bg-blue-500', 'style' => 'font-size: 5em;'], $this->basicTable->getFilterPopoverAttributes());
 
     }
-    
 }

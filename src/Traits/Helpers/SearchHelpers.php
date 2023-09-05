@@ -135,5 +135,4 @@ trait SearchHelpers
     {
         return count($this->searchFieldAttributes) ? $this->searchFieldAttributes : ['default' => true];
     }
-
 }

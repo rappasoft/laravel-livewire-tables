@@ -41,7 +41,7 @@ trait WithFilters
         if ($this->filtersAreEnabled() && $this->hasFilters() && $this->hasAppliedFiltersWithValues()) {
             foreach ($this->getFilters() as $filter) {
                 foreach ($this->getAppliedFiltersWithValues() as $key => $value) {
-                    if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
+                    if ($key === $filter->getKey() && $filter->hasFilterCallback()) {
                         // Let the filter class validate the value
                         $value = $filter->validate($value);
 

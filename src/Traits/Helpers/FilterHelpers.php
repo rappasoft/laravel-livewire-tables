@@ -127,7 +127,7 @@ trait FilterHelpers
     public function getFilterByKey(string $key)
     {
         return $this->getFilters()->first(function ($filter) use ($key) {
-            return $filter->getKey() === $key;
+            return $key === $filter->getKey();
         });
     }
 
@@ -315,5 +315,4 @@ trait FilterHelpers
     {
         return count($this->filterPopoverAttributes) ? $this->filterPopoverAttributes : ['default' => true];
     }
-
 }

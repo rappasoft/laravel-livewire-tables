@@ -49,22 +49,22 @@ trait ColumnHelpers
 
     public function isField(string $field): bool
     {
-        return $this->getField() === $field;
+        return $field === $this->getField();
     }
 
     public function isColumn(string $column): bool
     {
-        return $this->getColumn() === $column;
+        return $column === $this->getColumn();
     }
 
     public function isColumnBySelectName(string $name): bool
     {
-        return $this->getColumnSelectName() === $name;
+        return $name === $this->getColumnSelectName();
     }
 
     public function isColumnBySlug(string $slug): bool
     {
-        return $this->getSlug() === $slug;
+        return $slug === $this->getSlug();
     }
 
     public function hasField(): bool

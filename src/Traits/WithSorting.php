@@ -80,7 +80,7 @@ trait WithSorting
 
             if (is_null($column)) {
                 foreach ($allCols as $cols) {
-                    if ($cols->getSlug() == $tmpCol && $cols->hasSortCallback()) {
+                    if ($tmpCol == $cols->getSlug() && $cols->hasSortCallback()) {
                         $this->setBuilder(call_user_func($cols->getSortCallback(), $this->getBuilder(), $direction));
 
                         continue;
