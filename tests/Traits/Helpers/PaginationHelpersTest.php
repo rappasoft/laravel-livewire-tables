@@ -97,7 +97,7 @@ class PaginationHelpersTest extends TestCase
 
     /** @test */
     public function can_check_per_page_displayed_items(): void
-    {  
+    {
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getPerPageDisplayedItemIds());
 
     }
