@@ -3,9 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BrokenTables\NoBuildMethodTable;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BrokenTables\NoPrimaryKeyTable;
+use Illuminate\View\ViewException;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BrokenTables\{NoBuildMethodTable,NoPrimaryKeyTable};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ComponentVisualsTest extends TestCase
@@ -47,7 +48,6 @@ class ComponentVisualsTest extends TestCase
     public function fails_when_table_has_no_pk(): void
     {
         $this->testErrors = false;
-
         try {
             Livewire::test(NoPrimaryKeyTable::class);
         } catch (DataTableConfigurationException $DataTableConfigurationException) {
@@ -58,7 +58,7 @@ class ComponentVisualsTest extends TestCase
             $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($ViewException->getMessage(), 0, 71));
         }
         if (! $this->testErrors) {
-            $this->fail('Did Not Throw Error - Missing PK');
+            $this->fail('Did Not Throw Error - Missing Primary Key');
         }
     }
 
