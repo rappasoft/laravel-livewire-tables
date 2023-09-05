@@ -39,7 +39,7 @@ trait WithRappasoftTableThirdPartyStyles
         app(static::class)->hasRenderedRappsoftTableThirdPartyStyles = true;
 
         // HTML Label.
-        $html = config('app.debug')? ['<!-- Rappasoft Table Third Party Styles -->'] : [];
+        $html = config('app.debug') ? ['<!-- Rappasoft Table Third Party Styles -->'] : [];
 
         $html[] = static::tableThirdPartyCss($options);
 

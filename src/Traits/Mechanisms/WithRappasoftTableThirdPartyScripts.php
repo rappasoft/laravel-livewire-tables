@@ -54,7 +54,7 @@ trait WithRappasoftTableThirdPartyScripts
     public static function tableThirdpartyJs(array $options = []): string
     {
         // Use the default endpoint...
-        $url = rtrim(app(static::class)->rappasoftTableScriptThirdPartyRoute->uri,'/');
+        $url = rtrim(app(static::class)->rappasoftTableScriptThirdPartyRoute->uri, '/');
 
         $url = (string) str($url)->start('/');
 
