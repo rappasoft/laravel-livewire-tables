@@ -126,7 +126,7 @@ class FilterConfigurationTest extends TestCase
     /** @test */
     public function can_set_filter_popover_attributes(): void
     {
-        $this->assertSame([], $this->basicTable->getFilterPopoverAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getFilterPopoverAttributes());
 
         $this->basicTable->setFilterPopoverAttributes(['class' => 'bg-blue-500', 'style' => 'font-size: 5em;']);
 
