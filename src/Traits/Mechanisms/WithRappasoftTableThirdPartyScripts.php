@@ -43,14 +43,10 @@ trait WithRappasoftTableThirdPartyScripts
     {
         app(static::class)->hasRenderedRappsoftTableThirdPartyScripts = true;
 
-        $debug = config('app.debug');
-
-        $scripts = static::tableThirdpartyJs($options);
-
         // HTML Label.
-        $html = $debug ? ['<!-- Rappasoft Third Party Scripts -->'] : [];
+        $html = config('app.debug') ? ['<!-- Rappasoft Third Party Scripts -->'] : [];
 
-        $html[] = $scripts;
+        $html[] = static::tableThirdpartyJs($options);
 
         return implode("\n", $html);
     }
@@ -58,22 +54,20 @@ trait WithRappasoftTableThirdPartyScripts
     public static function tableThirdpartyJs(array $options = []): string
     {
         // Use the default endpoint...
-        $url = app(static::class)->rappasoftTableScriptThirdPartyRoute->uri;
-
-        $url = rtrim($url, '/');
+        $url = rtrim(app(static::class)->rappasoftTableScriptThirdPartyRoute->uri,'/');
 
         $url = (string) str($url)->start('/');
 
         // Add the build manifest hash to it...
 
-        $nonce = isset($options['nonce']) ? "nonce=\"{$options['nonce']}\"" : '';
+        $nonce = isset($options['nonce']) ? " nonce=\"{$options['nonce']}\" " : '';
 
         $extraAttributes = Utils::stringifyHtmlAttributes(
             app(static::class)->rappasoftTableScriptTagAttributes,
         );
 
         return <<<HTML
-        <script src="{$url}"  type="module" {$nonce} {$extraAttributes}></script>
+        <script src="{$url}" type="module"{$nonce}{$extraAttributes}></script>
         HTML;
     }
 }

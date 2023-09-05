@@ -38,14 +38,10 @@ trait WithRappasoftTableThirdPartyStyles
     {
         app(static::class)->hasRenderedRappsoftTableThirdPartyStyles = true;
 
-        $debug = config('app.debug');
-
-        $styles = static::tableThirdPartyCss($options);
-
         // HTML Label.
-        $html = $debug ? ['<!-- Rappasoft Table Third Party Styles -->'] : [];
+        $html = config('app.debug')? ['<!-- Rappasoft Table Third Party Styles -->'] : [];
 
-        $html[] = $styles;
+        $html[] = static::tableThirdPartyCss($options);
 
         return implode("\n", $html);
 
@@ -53,8 +49,7 @@ trait WithRappasoftTableThirdPartyStyles
 
     public static function tableThirdPartyCss(array $options = []): ?string
     {
-        $styleUrl = app(static::class)->rappasoftTableThirdPartyStyleRoute->uri;
-        $styleUrl = rtrim($styleUrl, '/');
+        $styleUrl = rtrim(app(static::class)->rappasoftTableThirdPartyStyleRoute->uri, '/');
 
         $styleUrl = (string) str($styleUrl)->start('/');
 

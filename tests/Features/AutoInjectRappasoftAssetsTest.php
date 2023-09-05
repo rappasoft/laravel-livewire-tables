@@ -14,7 +14,7 @@ class AutoInjectRappasoftAssetsTest extends TestCase
         config()->set('livewire-tables.inject_third_party_assets', true);
         config()->set('livewire-tables.published_third_party_assets', false);
         config()->set('livewire-tables.remote_third_party_assets', false);
-        $this->assertEquals('<html><head>    <link href="/rappasoft/laravel-livewire-tables/core.min.css" rel="stylesheet" />     <link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" /><script src="/rappasoft/laravel-livewire-tables/core.min.js"   ></script> <script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  type="module"  ></script></head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
+        $this->assertEquals('<html><head>    <link href="/rappasoft/laravel-livewire-tables/core.min.css" rel="stylesheet" />     <link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" /><script src="/rappasoft/laravel-livewire-tables/core.min.js"></script> <script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js" type="module"></script></head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
     }
 
     /** @test */
@@ -35,7 +35,7 @@ class AutoInjectRappasoftAssetsTest extends TestCase
         config()->set('livewire-tables.published_third_party_assets', false);
         config()->set('livewire-tables.remote_third_party_assets', false);
 
-        $this->assertEquals('<html><head>     <link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" /> <script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  type="module"  ></script></head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
+        $this->assertEquals('<html><head>     <link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" /> <script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js" type="module"></script></head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
     }
 
     /** @test */
@@ -46,6 +46,6 @@ class AutoInjectRappasoftAssetsTest extends TestCase
         config()->set('livewire-tables.published_third_party_assets', false);
         config()->set('livewire-tables.remote_third_party_assets', false);
 
-        $this->assertEquals('<html><head>    <link href="/rappasoft/laravel-livewire-tables/core.min.css" rel="stylesheet" /> <script src="/rappasoft/laravel-livewire-tables/core.min.js"   ></script> </head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
+        $this->assertEquals('<html><head>    <link href="/rappasoft/laravel-livewire-tables/core.min.css" rel="stylesheet" /> <script src="/rappasoft/laravel-livewire-tables/core.min.js"></script> </head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
     }
 }

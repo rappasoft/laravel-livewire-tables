@@ -45,14 +45,10 @@ trait WithRappasoftTableScripts
     {
         app(static::class)->hasRenderedRappsoftTableScripts = true;
 
-        $debug = config('app.debug');
-
-        $scripts = static::tableJs($options);
-
         // HTML Label.
-        $html = $debug ? ['<!-- Rappasoft Table Scripts -->'] : [];
+        $html = config('app.debug') ? ['<!-- Rappasoft Table Scripts -->'] : [];
 
-        $html[] = $scripts;
+        $html[] = static::tableJs($options);
 
         return implode("\n", $html);
     }
@@ -60,22 +56,20 @@ trait WithRappasoftTableScripts
     public static function tableJs(array $options = []): string
     {
         // Use the default endpoint...
-        $url = app(static::class)->rappasoftTableScriptRoute->uri;
-
-        $url = rtrim($url, '/');
+        $url = rtrim(app(static::class)->rappasoftTableScriptRoute->uri, '/');
 
         $url = (string) str($url)->start('/');
 
         // Add the build manifest hash to it...
 
-        $nonce = isset($options['nonce']) ? "nonce=\"{$options['nonce']}\"" : '';
+        $nonce = isset($options['nonce']) ? " nonce=\"{$options['nonce']}\" " : '';
 
         $extraAttributes = Utils::stringifyHtmlAttributes(
             app(static::class)->rappasoftTableScriptTagAttributes,
         );
 
         return <<<HTML
-        <script src="{$url}"  {$nonce} {$extraAttributes}></script>
+        <script src="{$url}"{$nonce}{$extraAttributes}></script>
         HTML;
     }
 }

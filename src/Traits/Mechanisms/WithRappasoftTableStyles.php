@@ -38,14 +38,10 @@ trait WithRappasoftTableStyles
     {
         app(static::class)->hasRenderedRappsoftTableStyles = true;
 
-        $debug = config('app.debug');
-
-        $styles = static::tableCss($options);
-
         // HTML Label.
-        $html = $debug ? ['<!-- Rappasoft Table Styles -->'] : [];
+        $html = config('app.debug') ? ['<!-- Rappasoft Table Styles -->'] : [];
 
-        $html[] = $styles;
+        $html[] = static::tableCss($options);
 
         return implode("\n", $html);
 
@@ -53,8 +49,7 @@ trait WithRappasoftTableStyles
 
     public static function tableCss(array $options = []): ?string
     {
-        $styleUrl = app(static::class)->rappasoftTableStylesRoute->uri;
-        $styleUrl = rtrim($styleUrl, '/');
+        $styleUrl = rtrim(app(static::class)->rappasoftTableStylesRoute->uri, '/');
 
         $styleUrl = (string) str($styleUrl)->start('/');
 

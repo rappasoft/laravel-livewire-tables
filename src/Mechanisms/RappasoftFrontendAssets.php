@@ -62,37 +62,35 @@ class RappasoftFrontendAssets
 
     }
 
+    protected function setupJSHeaders(string $lastModified): array
+    {
+        return [
+            'Content-Type' => 'application/javascript; charset=utf-8',
+            'Expires' => Utils::httpDate(strtotime((config('livewire-tables.cache_assets', false) ? '+1 second' : '+1 hour'))),
+            'Cache-Control' => (config('livewire-tables.cache_assets', false) ? 'public, max-age=1' : 'public, max-age=3600'),
+            'Last-Modified' => Utils::httpDate((config('livewire-tables.cache_assets', false) ? strtotime(now()) : $lastModified)),
+        ];
+    }
+
     protected function pretendResponseIsJs(string $file): \Symfony\Component\HttpFoundation\Response
     {
+        return response()->file($file, $this->setupJSHeaders(filemtime($file)));
+    }
 
-        $expires = strtotime((config('livewire-tables.cache_assets', false) ? '+1 second' : '+1 hour'));
-        $lastModified = (config('livewire-tables.cache_assets', false) ? strtotime(now()) : filemtime($file));
-        $cacheControl = (config('livewire-tables.cache_assets', false) ? 'public, max-age=1' : 'public, max-age=3600');
-
-        $headers = [
-            'Content-Type' => 'application/javascript; charset=utf-8',
-            'Expires' => Utils::httpDate($expires),
-            'Cache-Control' => $cacheControl,
-            'Last-Modified' => Utils::httpDate($lastModified),
+    protected function setupCSSHeaders(string $lastModified): array
+    {
+        return [
+            'Content-Type' => 'text/css; charset=utf-8',
+            'Expires' => Utils::httpDate(strtotime((config('livewire-tables.cache_assets', false) ? '+1 second' : '+1 hour'))),
+            'Cache-Control' => (config('livewire-tables.cache_assets', false) ? 'public, max-age=1' : 'public, max-age=3600'),
+            'Last-Modified' => Utils::httpDate((config('livewire-tables.cache_assets', false) ? strtotime(now()) : $lastModified)),
         ];
-
-        return response()->file($file, $headers);
     }
 
     protected function pretendResponseIsCSS(string $file): \Symfony\Component\HttpFoundation\Response
     {
-        $expires = strtotime((config('livewire-tables.cache_assets', false) ? '+1 second' : '+1 hour'));
-        $lastModified = (config('livewire-tables.cache_assets', false) ? strtotime(now()) : filemtime($file));
-        $cacheControl = (config('livewire-tables.cache_assets', false) ? 'public, max-age=1' : 'public, max-age=3600');
 
-        $headers = [
-            'Content-Type' => 'text/css; charset=utf-8',
-            'Expires' => Utils::httpDate($expires),
-            'Cache-Control' => $cacheControl,
-            'Last-Modified' => Utils::httpDate($lastModified),
-        ];
-
-        return response()->file($file, $headers);
+        return response()->file($file, $this->setupCSSHeaders(filemtime($file)));
     }
 
     public function maps(): \Symfony\Component\HttpFoundation\Response
