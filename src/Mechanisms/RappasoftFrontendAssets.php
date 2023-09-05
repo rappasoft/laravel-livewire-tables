@@ -62,7 +62,7 @@ class RappasoftFrontendAssets
 
     }
 
-    protected function setupJSHeaders(int|false|string $lastModified): array
+    protected function setupJSHeaders(?int $lastModified): array
     {
         return [
             'Content-Type' => 'application/javascript; charset=utf-8',
@@ -77,7 +77,7 @@ class RappasoftFrontendAssets
         return response()->file($file, $this->setupJSHeaders(filemtime($file)));
     }
 
-    protected function setupCSSHeaders(int|false|string $lastModified): array
+    protected function setupCSSHeaders(?int $lastModified): array
     {
         return [
             'Content-Type' => 'text/css; charset=utf-8',
