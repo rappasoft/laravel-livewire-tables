@@ -130,4 +130,10 @@ trait SearchHelpers
     {
         return $this->searchPlaceholder !== null;
     }
+
+    public function getSearchFieldAttributes(): array
+    {
+        return count($this->searchFieldAttributes) ? $this->searchFieldAttributes : ['default' => true];
+    }
+
 }

@@ -122,4 +122,16 @@ class FilterConfigurationTest extends TestCase
 
         $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
     }
+
+    /** @test */
+    public function can_set_filter_popover_attributes(): void
+    {
+        $this->assertSame([], $this->basicTable->getFilterPopoverAttributes());
+
+        $this->basicTable->setFilterPopoverAttributes(['class' => 'bg-blue-500', 'style' => 'font-size: 5em;']);
+
+        $this->assertSame(['class' => 'bg-blue-500', 'style' => 'font-size: 5em;'], $this->basicTable->getFilterPopoverAttributes());
+
+    }
+    
 }

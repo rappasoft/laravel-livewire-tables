@@ -29,6 +29,8 @@ trait WithFilters
 
     public array $appliedFilters = [];
 
+    protected array $filterPopoverAttributes = [];
+
     public function filters(): array
     {
         return [];

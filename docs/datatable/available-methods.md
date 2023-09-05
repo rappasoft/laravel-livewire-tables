@@ -60,6 +60,57 @@ public function configure(): void
 }
 ```
 
+### setSearchFieldAttributes
+
+Set a list of attributes to override on the search field
+
+```php
+public function configure(): void
+{
+  $this->setSearchFieldAttributes([
+    'class' => 'this that',
+  ]);
+}
+```
+
+By default, this replaces the default classes on the search field, if you would like to keep them, set the default flag to true.
+
+```php
+public function configure(): void
+{
+  $this->setSearchFieldAttributes([
+    'default' => true,
+    'class' => 'added these classes',
+  ]);
+}
+```
+
+### setFilterPopoverAttributes
+
+Set a list of attributes to override on the filter popover menu
+
+```php
+public function configure(): void
+{
+  $this->setFilterPopoverAttributes([
+    'class' => 'this that',
+  ]);
+}
+```
+
+By default, this replaces the default classes on the filter popover menu, if you would like to keep them, set the default flag to true.
+
+```php
+public function configure(): void
+{
+  $this->setFilterPopoverAttributes([
+    'default' => true,
+    'class' => 'added these classes',
+  ]);
+}
+```
+
+
 ### setTableAttributes
 
 Set a list of attributes to override on the table element

@@ -27,6 +27,14 @@
     opacity: .5 !important
 }
 
+.llt-bs4-filterpopover-mw {
+    min-width: 15rem !important;
+}
+
+.llt-bs5-filterpopover-mw {
+    min-width: 15rem !important;
+}
+
 .range-slider.grad {
     --progress-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) inset;
     --progress-flll-shadow: var(--progress-shadow);

@@ -14,6 +14,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Fix for Bulk Actions dropdown not working in Bootstrap
 - Fix for Column Select "Select All" not consistently updating
 - Add Missing Tests
+- Fix Bootstrap - Popover Filter - Closing when clicking on Filter Content outside of initial width (e.g. DateRangeFilter)
+- Add two classes for Bootstrap popover filter - "llt-bs4-filterpopover-mw" and "llt-bs5-filterpopover-mw", sets a min-width of 15rem
+- Add setSearchFieldAttributes() and getSearchFieldAttributes()
+- Add setFilterPopoverAttributes() and getFilterPopoverAttributes()
 
 ## [Unreleased] - 3.x (beta-0)
 - Requirements Change

@@ -310,4 +310,10 @@ trait FilterHelpers
 
         return $orderedFilters;
     }
+
+    public function getFilterPopoverAttributes(): array
+    {
+        return count($this->filterPopoverAttributes) ? $this->filterPopoverAttributes : ['default' => true];
+    }
+
 }

@@ -149,4 +149,12 @@ trait SearchConfiguration
 
         return $this;
     }
+
+    public function setSearchFieldAttributes(array $attributes = []): self
+    {
+        $this->searchFieldAttributes = $attributes;
+
+        return $this;
+    }
+
 }

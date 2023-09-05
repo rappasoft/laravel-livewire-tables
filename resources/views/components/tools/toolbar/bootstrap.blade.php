@@ -45,9 +45,12 @@
                     wire:model{{ $component->getSearchOptions() }}="search"
                     placeholder="{{ $component->getSearchPlaceholder() }}"
                     type="text"
-                    @class([
-                        'form-control' => $component->isBootstrap(),
-                    ])
+                    {{ 
+                        $attributes->merge($component->getSearchFieldAttributes())
+                        ->class(['form-control' => $component->getSearchFieldAttributes()['default'] ?? true])
+                        ->except('default') 
+                    }}
+
                 >
 
                 @if ($component->hasSearch())
@@ -78,9 +81,9 @@
             >
                 <div
                     @if ($component->isFilterLayoutPopover())
-                        x-data="{ open: false, childElementOpen: false  }"
-                        x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
-                        x-on:mousedown.away="if (!childElementOpen) { open = false }"
+                        x-data="{ open: false }"
+                        x-on:keydown.escape.stop="if (!window.childElementOpen) { open = false }"
+                        x-on:mousedown.away="if (!window.childElementOpen) { open = false }"
                     @endif
                     @class([
                         'btn-group d-block d-md-inline' => $component->isBootstrap(),
@@ -118,10 +121,12 @@
                     @if ($component->isFilterLayoutPopover())
                         <ul
                             x-cloak
-                            @class([
-                                'dropdown-menu w-100 mt-md-5' => $component->isBootstrap4(),
-                                'dropdown-menu w-100' => $component->isBootstrap5(),
-                            ])
+                            {{ 
+                                $attributes->merge($component->getFilterPopoverAttributes())
+                                ->class(['dropdown-menu w-100 llt-bs4-filterpopover-mw' => $component->isBootstrap4() && $component->getFilterPopoverAttributes()['default'] ?? true])
+                                ->class(['dropdown-menu w-100 llt-bs5-filterpopover-mw' => $component->isBootstrap5() && $component->getFilterPopoverAttributes()['default'] ?? true])
+                                ->except('default') 
+                            }}
                             x-bind:class="{ 'show': open }"
                             role="menu"
                         >

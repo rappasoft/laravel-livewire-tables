@@ -17,8 +17,6 @@
         }
     } 
 
-
-
 @endphp
 
 <div x-cloak id="{{ $tableName }}-dateRangeFilter-{{ $filterKey }}" x-data="flatpickrFilter($wire, '{{ $filterKey }}', @js($filter->getConfigs()), $refs.dateRangeInput, '{{ App::currentLocale() }}')" >
@@ -34,8 +32,6 @@
     @endonce
 @endif
 
-
-@endphp
     <div>
         @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
             @include($filter->getCustomFilterLabel(), ['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName])
@@ -58,11 +54,12 @@
                     id="{{ $tableName }}-filter-dateRange-{{ $filterKey }}"
                     @class([
                         'w-full inline transition duration-150 ease-in-out border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600' => $isTailwind,
-                        'd-inline-block form-control w-100 pr-2 transition duration-150 ease-in-out border border-gray rounded-sm shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600' => $isBootstrap,
+                        'd-inline-block form-control pr-2 transition duration-150 ease-in-out border border-gray rounded-sm shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600' => $isBootstrap,
                     ])
+                    @style(['width: 85%;' => $isBootstrap]) 
                 />
 
-                <x-heroicon-o-calendar-days class="w-3 h-3 group-hover:opacity-0" />
+                <x-heroicon-o-calendar-days class="w-3 h-3 group-hover:opacity-0" @style(['width: 1.5em; display:inline-block' => $isBootstrap]) />
 
             </div>
 

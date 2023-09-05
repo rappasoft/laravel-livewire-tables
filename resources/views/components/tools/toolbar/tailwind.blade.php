@@ -35,7 +35,12 @@
                     wire:model{{ $component->getSearchOptions() }}="search"
                     placeholder="{{ $component->getSearchPlaceholder() }}"
                     type="text"
-                    class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if ($component->hasSearch()) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif"
+                    {{ 
+                        $attributes->merge($component->getSearchFieldAttributes())
+                        ->class(['block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if ($component->hasSearch()) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif' => $component->getSearchFieldAttributes()['default'] ?? true])
+                        ->except('default') 
+                    }}
+
                 />
 
                 @if ($component->hasSearch())
@@ -90,10 +95,15 @@
                         x-transition:leave="transition ease-in duration-75"
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-95"
-                        class="origin-top-left absolute left-0 mt-2 w-full md:w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50 dark:bg-gray-700 dark:text-white dark:divide-gray-600"
                         role="menu"
                         aria-orientation="vertical"
                         aria-labelledby="filters-menu"
+                        {{ 
+                                $attributes->merge($component->getFilterPopoverAttributes())
+                                ->class(['origin-top-left absolute left-0 mt-2 w-full md:w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50 dark:bg-gray-700 dark:text-white dark:divide-gray-600' => $component->isTailwind() && $component->getFilterPopoverAttributes()['default'] ?? true])
+                                ->except('default') 
+                        }}
+
                     >
                         @foreach ($component->getVisibleFilters() as $filter)
                             <div class="py-1" role="none">

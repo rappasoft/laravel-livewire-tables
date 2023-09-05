@@ -193,4 +193,15 @@ class SearchConfigurationTest extends TestCase
         $this->assertSame('Anthony', $this->basicTable->getSearchPlaceholder());
 
     }
+
+    /** @test */
+    public function can_set_search_field_attributes(): void
+    {
+        $this->assertSame([], $this->basicTable->getSearchFieldAttributes());
+
+        $this->basicTable->setSearchFieldAttributes(['class' => 'bg-blue', 'style' => 'font-size: 3em;']);
+
+        $this->assertSame(['class' => 'bg-blue', 'style' => 'font-size: 3em;'], $this->basicTable->getSearchFieldAttributes());
+
+    }
 }

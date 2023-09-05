@@ -114,4 +114,12 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    public function setFilterPopoverAttributes(array $attributes = []): self
+    {
+        $this->filterPopoverAttributes = $attributes;
+
+        return $this;
+    }
+
 }
