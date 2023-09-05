@@ -2,11 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
-use Livewire\Livewire;
 use Illuminate\View\ViewException;
+use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BrokenTables\NoBuildMethodTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BrokenTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BrokenTables\{NoBuildMethodTable,NoPrimaryKeyTable};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ComponentVisualsTest extends TestCase
