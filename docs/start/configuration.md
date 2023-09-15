@@ -89,8 +89,17 @@ This package now makes use of two external files, one for AlpineJS methods, and 
 ### Injection (Default)
 The package will automatically inject the relevant two files into your layout as part of the render process.  This is the default behaviour, and mimics that of Livewire 3.0
 
-### Build Include (Not Recommended)
+### Build Include
 If you wish to disable the injection, you may include the following file in your app.js, which will provide the relevant functionality and styling for the package to function.
+
+#### With Third Party Libraries
+Includes Flatpickr
 ```
-import '../../vendor/rappasoft/laravel-livewire-tables-v3/resources/laravel-livewire-tables'
+import '../../vendor/rappasoft/laravel-livewire-tables/resources/laravel-livewire-tables-with-tp.js';
 ```
+
+#### Without Third Party Libraries
+```
+import '../../vendor/rappasoft/laravel-livewire-tables/resources/laravel-livewire-tables.js';
+```
+
