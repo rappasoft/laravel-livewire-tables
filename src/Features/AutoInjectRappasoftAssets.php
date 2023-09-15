@@ -21,28 +21,28 @@ class AutoInjectRappasoftAssets extends ComponentHook
             static::$forceAssetInjection = false;
         });
 
-
         app('events')->listen(RequestHandled::class, function ($handled) {
-            if (!static::$forceAssetInjection && config('livewire-tables.inject_assets', true) === false) {
+            if (! static::$forceAssetInjection && config('livewire-tables.inject_assets', true) === false) {
                 return;
             }
-            if (! str($handled->response->headers->get('content-type'))->contains('text/html')) return;
-            if (! method_exists($handled->response, 'status') || $handled->response->status() !== 200) return;
-            if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) return;
+            if (! str($handled->response->headers->get('content-type'))->contains('text/html')) {
+                return;
+            }
+            if (! method_exists($handled->response, 'status') || $handled->response->status() !== 200) {
+                return;
+            }
+            if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) {
+                return;
+            }
 
-            if (config('livewire-tables.inject_assets', true) === false && config('livewire-tables.inject_third_party_assets', true) === false)
-            {
+            if (config('livewire-tables.inject_assets', true) === false && config('livewire-tables.inject_third_party_assets', true) === false) {
                 return;
             }
-            if (config('livewire-tables.inject_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts && config('livewire-tables.inject_third_party_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) 
-            {
+            if (config('livewire-tables.inject_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts && config('livewire-tables.inject_third_party_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
                 return;
-            }
-            else if (config('livewire-tables.inject_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts) {
+            } elseif (config('livewire-tables.inject_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts) {
                 return;
-            }
-            else if (config('livewire-tables.inject_third_party_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts)
-            {
+            } elseif (config('livewire-tables.inject_third_party_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
                 return;
             }
 
