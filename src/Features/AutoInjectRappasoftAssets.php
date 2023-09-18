@@ -45,13 +45,12 @@ class AutoInjectRappasoftAssets extends ComponentHook
             } elseif (config('livewire-tables.inject_third_party_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
                 return;
             }
-            if (!method_exists($handled->response, 'getContent') )
-            {
+            if (! method_exists($handled->response, 'getContent')) {
                 return;
             }
 
             $html = $handled->response->getContent();
-            
+
             if (str($html)->contains('</html>')) {
                 $handled->response->setContent(static::injectAssets($html));
             }
