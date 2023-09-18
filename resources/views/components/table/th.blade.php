@@ -15,7 +15,8 @@
             ->class(['hidden sm:table-cell' => $column->shouldCollapseOnMobile()])
             ->class(['hidden md:table-cell' => $column->shouldCollapseOnTablet()])
             ->except('default')
-    }}>
+        }}
+    >
         @unless ($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
             {{ $column->getTitle() }}
         @else
@@ -50,7 +51,8 @@
             ->class(['d-none d-sm-table-cell' => $column->shouldCollapseOnMobile()])
             ->class(['d-none d-md-table-cell' => $column->shouldCollapseOnTablet()])
             ->except('default')
-    }}>
+        }}
+    >
         @unless ($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
             {{ $column->getTitle() }}
         @else

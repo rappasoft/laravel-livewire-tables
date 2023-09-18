@@ -8,7 +8,7 @@
         ->class(['hidden sm:table-cell' => $column && $column->shouldCollapseOnMobile()])
         ->class(['hidden md:table-cell' => $column && $column->shouldCollapseOnTablet()])
         ->except('default')
-    }}     @if($hideUntilReorder) x-show="reorderDisplayColumn" @endif >
+    }} @if($hideUntilReorder) x-show="reorderDisplayColumn" @endif >
         {{ $slot }}
     </td>
 @elseif ($component->isBootstrap())

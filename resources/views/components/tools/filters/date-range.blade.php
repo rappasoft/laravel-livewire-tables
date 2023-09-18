@@ -15,7 +15,7 @@
             $endDate = isset($dateArray[2]) ? $dateArray[2] : date('Y-m-d');
             $dateString = $startDate . ' to ' . $endDate;
         }
-    } 
+    }
 
 
 
@@ -43,18 +43,18 @@
             <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
         @endif
 
-            <div 
+            <div
                 @class([
                     'w-full rounded-md shadow-sm text-right' => $isTailwind,
                     'd-inline-block w-100 mb-3 mb-md-0 input-group' => $isBootstrap,
                 ])
             >
-                <input 
-                    type="text" 
-                    x-ref="dateRangeInput" 
+                <input
+                    type="text"
+                    x-ref="dateRangeInput"
                     x-on:click="init"
-                    value="{{ $dateString }}" 
-                    wire:key="{{ $tableName }}-filter-dateRange-{{ $filterKey }}" 
+                    value="{{ $dateString }}"
+                    wire:key="{{ $tableName }}-filter-dateRange-{{ $filterKey }}"
                     id="{{ $tableName }}-filter-dateRange-{{ $filterKey }}"
                     @class([
                         'w-full inline transition duration-150 ease-in-out border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600' => $isTailwind,
