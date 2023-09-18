@@ -14,6 +14,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Fix for Bulk Actions dropdown not working in Bootstrap
 - Fix for Column Select "Select All" not consistently updating
 - Add more configuration options for injection/inclusion of assets
+- Add fix for lazy loading of table
 
 ## [Unreleased] - 3.x (beta-0)
 - Requirements Change

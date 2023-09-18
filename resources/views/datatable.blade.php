@@ -1,5 +1,5 @@
 @php($tableName = $this->getTableName())
-
+<div>
 <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
     @if ($this->hasConfigurableAreaFor('before-tools'))
         @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
@@ -77,3 +77,4 @@
 
     @includeIf($customView)
 </x-livewire-tables::wrapper>
+</div>
