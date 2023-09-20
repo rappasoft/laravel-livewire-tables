@@ -265,7 +265,7 @@
                                     <input
                                         wire:loading.attr="disabled"
                                         type="checkbox"
-                                        @if($component->selectedColumns == $component->getDefaultVisibleColumns()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
+                                        @if(count($component->selectedColumns) == count($component->getDefaultVisibleColumns())) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                                     />
 
                                     <span class="ml-2">{{ __('All Columns') }}</span>
@@ -277,7 +277,7 @@
                                     wire:loading.attr="disabled"
                                     type="checkbox"
                                     class="form-check-input"
-                                    @if($component->selectedColumns == $component->getDefaultVisibleColumns()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
+                                    @if(count($component->selectedColumns) == count($component->getDefaultVisibleColumns())) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                                 />
 
                                 <label wire:loading.attr="disabled" class="form-check-label">
