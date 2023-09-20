@@ -23,13 +23,12 @@ trait WithColumnSelect
     protected bool $columnSelectHiddenOnMobile = false;
 
     protected bool $columnSelectHiddenOnTablet = false;
-    
+
     protected bool $excludeDeselectedColumnsFromQuery = false;
 
     public function setupColumnSelect(): void
     {
-        if (empty($this->selectableColumns))
-        {
+        if (empty($this->selectableColumns)) {
             $this->selectableColumns = $this->getColumnsForColumnSelect();
         }
 
@@ -59,8 +58,6 @@ trait WithColumnSelect
         }
         $this->visibleColumnCount = count($this->selectedColumns);
     }
-
-
 
     public function selectAllColumns(): void
     {

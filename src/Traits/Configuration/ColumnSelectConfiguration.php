@@ -66,20 +66,18 @@ trait ColumnSelectConfiguration
 
         return $this;
     }
-    
+
     public function setColumnSelectHiddenOnMobile(): self
     {
         $this->columnSelectHiddenOnMobile = true;
 
         return $this;
     }
+
     public function setColumnSelectHiddenOnTablet(): self
     {
         $this->columnSelectHiddenOnTablet = true;
 
         return $this;
     }
-
-
-
 }

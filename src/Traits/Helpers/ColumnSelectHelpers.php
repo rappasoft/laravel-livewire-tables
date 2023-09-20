@@ -57,7 +57,6 @@ trait ColumnSelectHelpers
         return $this->columnSelectHiddenOnTablet;
     }
 
-
     public function getExcludeDeselectedColumnsFromQuery(): bool
     {
         return $this->excludeDeselectedColumnsFromQuery;
@@ -88,25 +87,25 @@ trait ColumnSelectHelpers
         $selectableCols = $this->getSelectableColumns();
         $unSelectableCols = $this->getUnSelectableColumns();
 
-        return  $selectableCols->merge($unSelectableCols);
+        return $selectableCols->merge($unSelectableCols);
     }
 
     public function getUnSelectableColumns(): Collection
     {
         return $this->getColumns()
-        ->reject(fn (Column $column) => $column->isHidden())
-        ->reject(fn (Column $column) => $column->isSelectable())
-        ->values();
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => $column->isSelectable())
+            ->values();
     }
 
     public function getSelectedColumnsForQuery()
     {
         return $this->getColumns()
-        ->reject(fn (Column $column) => $column->isLabel())
-        ->reject(fn (Column $column) => $column->isHidden())
-        ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column) ))
-        ->values()
-        ->toArray();
+            ->reject(fn (Column $column) => $column->isLabel())
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
+            ->values()
+            ->toArray();
     }
 
     public function getColumnsForColumnSelect(): array
@@ -121,15 +120,13 @@ trait ColumnSelectHelpers
             ->toArray();
     }
 
-
     public function getDefaultVisibleColumns(): array
     {
         return collect($this->getColumns()
-                    ->reject(fn (Column $column) => $column->isHidden())
-                )
-                ->map(fn ($column) => $column->getSlug())
-                ->values()
-                ->toArray();
+            ->reject(fn (Column $column) => $column->isHidden())
+        )
+            ->map(fn ($column) => $column->getSlug())
+            ->values()
+            ->toArray();
     }
-
 }
