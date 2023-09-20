@@ -80,24 +80,20 @@ trait WithData
 
     protected function joinRelations(): Builder
     {
-        if ($this->getExcludeDeselectedColumnsFromQuery())
-        {
+        if ($this->getExcludeDeselectedColumnsFromQuery()) {
             foreach ($this->getSelectedColumnsForQuery() as $column) {
                 if ($column->hasRelations()) {
                     $this->setBuilder($this->joinRelation($column));
                 }
             }
 
-        }
-        else
-        {
+        } else {
             foreach ($this->getColumns()->reject(fn (Column $column) => $column->isLabel()) as $column) {
                 if ($column->hasRelations()) {
                     $this->setBuilder($this->joinRelation($column));
                 }
             }
         }
-
 
         return $this->getBuilder();
     }
@@ -174,14 +170,11 @@ trait WithData
             $this->setBuilder($this->getBuilder()->addSelect($select));
         }
 
-        if ($this->getExcludeDeselectedColumnsFromQuery())
-        {
+        if ($this->getExcludeDeselectedColumnsFromQuery()) {
             foreach ($this->getSelectedColumnsForQuery() as $column) {
                 $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
             }
-        }
-        else
-        {
+        } else {
             foreach ($this->getColumns()->reject(fn (Column $column) => $column->isLabel()) as $column) {
                 $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
             }
