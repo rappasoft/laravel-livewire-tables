@@ -98,6 +98,11 @@ trait ColumnSelectHelpers
             ->values();
     }
 
+    public function getSelectedColumns()
+    {
+        return $this->selectedColumns ?? [];
+    }
+
     public function getSelectedColumnsForQuery()
     {
         return $this->getColumns()
@@ -128,5 +133,12 @@ trait ColumnSelectHelpers
             ->map(fn ($column) => $column->getSlug())
             ->values()
             ->toArray();
+    }
+
+    public function getAllColumnsAreSelected(): bool
+    {
+        $selectedColCount = count($this->getSelectedColumns() ?? []);
+        $defaultVisCols = count($this->getDefaultVisibleColumns() ?? []);
+        return $selectedColCount === $defaultVisCols;
     }
 }
