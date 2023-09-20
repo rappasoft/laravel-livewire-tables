@@ -37,7 +37,6 @@ trait WithData
         $this->setBuilder($this->applySearch());
 
         $this->setBuilder($this->applyFilters());
-        $this->getCurrentlySelectedCols();
 
         return $this->getBuilder();
 
@@ -81,7 +80,7 @@ trait WithData
 
     protected function joinRelations(): Builder
     {
-        foreach ($this->getSelectableColumns() as $column) {
+        foreach ($this->getSelectedColumnsForQuery() as $column) {
             if ($column->hasRelations()) {
                 $this->setBuilder($this->joinRelation($column));
             }
@@ -162,7 +161,7 @@ trait WithData
             $this->setBuilder($this->getBuilder()->addSelect($select));
         }
 
-        foreach ($this->getSelectableColumns() as $column) {
+        foreach ($this->getSelectedColumnsForQuery() as $column) {
             $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
         }
 
