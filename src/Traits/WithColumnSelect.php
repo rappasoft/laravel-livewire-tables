@@ -24,10 +24,17 @@ trait WithColumnSelect
 
     protected bool $columnSelectHiddenOnTablet = false;
 
-    protected bool $excludeDeselectedColumnsFromQuery = false;
+    public bool $excludeDeselectedColumnsFromQuery = false;
 
     public function setupColumnSelect(): void
     {
+
+        // If the column select is off, make sure to clear the session
+        if ($this->columnSelectIsDisabled() && session()->has($this->getColumnSelectSessionKey())) {
+            session()->forget($this->getColumnSelectSessionKey());
+            return;
+        }
+
         if (empty($this->selectableColumns)) {
             $this->selectableColumns = $this->getColumnsForColumnSelect();
         }
@@ -39,22 +46,17 @@ trait WithColumnSelect
             $this->forgetColumnSelectSession();
         }
 
-        // If the column select is off, make sure to clear the session
-        if ($this->columnSelectIsDisabled() && session()->has($this->getColumnSelectSessionKey())) {
-            session()->forget($this->getColumnSelectSessionKey());
-        }
-
         // Set to either the default set or what is stored in the session
-        $this->selectedColumns = (isset($this->selectedColumns) && count($this->selectedColumns) > 0) ?
+        $this->selectedColumns = (count($this->selectedColumns) > 1) ?
             $this->selectedColumns :
-            session()->get($this->getColumnSelectSessionKey(), $this->getDefaultVisibleColumns()) ?? [];
+            session()->get($this->getColumnSelectSessionKey(), $this->getDefaultVisibleColumns());
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them
         foreach ($this->getColumns() as $column) {
-            if (! $column->isSelectable() && ! in_array($column->getSlug(), $this->selectedColumns, true)) {
-                $this->selectedColumns[] = $column->getSlug();
-                session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
-            }
+           if (! $column->isSelectable() && ! in_array($column->getSlug(), $this->selectedColumns, true)) {
+               $this->selectedColumns[] = $column->getSlug();
+               session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
+           }
         }
         $this->visibleColumnCount = count($this->selectedColumns);
     }
@@ -76,8 +78,8 @@ trait WithColumnSelect
     public function updatedSelectedColumns(): void
     {
         // The query string isn't needed if it's the same as the default
-        session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
-        event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
+       //session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
+        //event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
     }
 
     public function allVisibleColumnsAreSelected(): bool
