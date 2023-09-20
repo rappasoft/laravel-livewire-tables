@@ -139,6 +139,7 @@ trait ColumnSelectHelpers
     {
         $selectedColCount = count($this->getSelectedColumns() ?? []);
         $defaultVisCols = count($this->getDefaultVisibleColumns() ?? []);
+
         return $selectedColCount === $defaultVisCols;
     }
 }
