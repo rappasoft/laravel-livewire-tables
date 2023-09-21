@@ -30,6 +30,8 @@ trait WithSearch
     public ?int $searchFilterThrottle = null;
 
     public ?string $searchPlaceholder = null;
+    
+    protected array $searchFieldAttributes = [];
 
     // TODO
     public function applySearch(): Builder

@@ -45,9 +45,11 @@
                     wire:model{{ $component->getSearchOptions() }}="search"
                     placeholder="{{ $component->getSearchPlaceholder() }}"
                     type="text"
-                    @class([
-                        'form-control' => $component->isBootstrap(),
-                    ])
+                    {{ 
+                        $attributes->merge($component->getSearchFieldAttributes())
+                        ->class(['form-control' => $component->getSearchFieldAttributes()['default'] ?? true])
+                        ->except('default') 
+                    }}
                 >
 
                 @if ($component->hasSearch())

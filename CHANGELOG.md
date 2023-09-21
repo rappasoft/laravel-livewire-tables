@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [Unreleased] - 3.x - setSearchFieldAttributes
+- Add setSearchFieldAttributes() and getSearchFieldAttributes()
+
 ## [Unreleased] - 3.x - Beta Fixes (beta-1)
 - Removal of setSearchLazy
 - Fix for setSearchDebounce
