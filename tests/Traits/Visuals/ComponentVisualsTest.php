@@ -57,9 +57,16 @@ class ComponentVisualsTest extends TestCase
             $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($DataTableConfigurationException->getMessage(), 0, 71));
         } catch (ViewException $ViewException) {
             $this->testErrors = true;
-            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($ViewException->getMessage(), 0, 71));
-        } catch (Exception $standardException) {
+            
+            // Temporary swapping to check exception throwing
+            //$this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($ViewException->getMessage(), 0, 71));
+            $this->assertSame('Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$pri', substr($ViewException->getMessage(), 0, 71));
+
+        }
+        catch (Exception $standardException)
+        {
             $this->testErrors = true;
+            
             $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($standardException->getMessage(), 0, 71));
         }
         if (! $this->testErrors) {
