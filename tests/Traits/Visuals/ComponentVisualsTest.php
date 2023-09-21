@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
-use Illuminate\View\ViewException;
 use Exception;
+use Illuminate\View\ViewException;
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoBuildMethodTable;
@@ -58,9 +58,7 @@ class ComponentVisualsTest extends TestCase
         } catch (ViewException $ViewException) {
             $this->testErrors = true;
             $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($ViewException->getMessage(), 0, 71));
-        }
-        catch (Exception $standardException)
-        {
+        } catch (Exception $standardException) {
             $this->testErrors = true;
             $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($standardException->getMessage(), 0, 71));
         }
@@ -82,9 +80,7 @@ class ComponentVisualsTest extends TestCase
         } catch (ViewException $ViewException) {
             $this->testErrors = true;
             $this->assertSame('You must either specify a model or implement the builder method.', substr($ViewException->getMessage(), 0, 64));
-        }
-        catch (Exception $standardException)
-        {
+        } catch (Exception $standardException) {
             $this->testErrors = true;
             $this->assertSame('You must either specify a model or implement the builder method.', substr($standardException->getMessage(), 0, 64));
         }
