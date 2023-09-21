@@ -72,4 +72,22 @@ class ColumnSelectConfigurationTest extends TestCase
 
         $this->assertSame([], $this->basicTable->selectedColumns);
     }
+
+    /** @test  */
+    public function can_exclude_deselected_columns_from_query_enabled(): void
+    {
+        $this->basicTable->setExcludeDeselectedColumnsFromQueryEnabled();
+
+        $this->assertTrue($this->basicTable->getExcludeDeselectedColumnsFromQuery());
+
+        $this->basicTable->setExcludeDeselectedColumnsFromQueryDisabled();
+
+        $this->assertFalse($this->basicTable->getExcludeDeselectedColumnsFromQuery());
+
+        $this->basicTable->setExcludeDeselectedColumnsFromQuery(true);
+
+        $this->assertTrue($this->basicTable->getExcludeDeselectedColumnsFromQuery());
+
+    }
+    
 }
