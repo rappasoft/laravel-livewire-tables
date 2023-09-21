@@ -79,8 +79,8 @@ trait WithColumnSelect
     public function updatedSelectedColumns(): void
     {
         // The query string isn't needed if it's the same as the default
-        //session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
-        //event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
+        session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
+        event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
     }
 
     public function allVisibleColumnsAreSelected(): bool
