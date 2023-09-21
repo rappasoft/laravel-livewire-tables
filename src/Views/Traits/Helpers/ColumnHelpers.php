@@ -35,7 +35,7 @@ trait ColumnHelpers
 
     public function getSlug(): string
     {
-        return Str::slug($this->hasCustomSlug() ? $this->getCustomSlug() : $this->getTitle() ?? '');
+        return Str::slug($this->hasCustomSlug() ? $this->getCustomSlug() : $this->getTitle());
     }
 
     public function getField(): ?string
