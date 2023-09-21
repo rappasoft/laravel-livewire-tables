@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [Unreleased] - 3.x - Missing pagination tests
+- Add missing pagination tests
+
 ## [Unreleased] - 3.x - Beta Fixes (beta-1)
 - Removal of setSearchLazy
 - Fix for setSearchDebounce
