@@ -105,7 +105,7 @@ class ColumnSelectConfigurationTest extends TestCase
 
     public function check_get_selected_columns()
     {
-        
+
         $this->basicTable->deselectAllColumns();
 
         $this->assertSame([], $this->basicTable->getSelectedColumns());
@@ -114,8 +114,5 @@ class ColumnSelectConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->selectedColumns, $this->basicTable->getSelectedColumns());
 
-        
     }
-    
-    
 }
