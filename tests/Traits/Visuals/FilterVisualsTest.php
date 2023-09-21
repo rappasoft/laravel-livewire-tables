@@ -3,8 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableNoFilters;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableNoFilters};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class FilterVisualsTest extends TestCase
