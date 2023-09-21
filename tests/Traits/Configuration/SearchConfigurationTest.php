@@ -204,5 +204,4 @@ class SearchConfigurationTest extends TestCase
         $this->assertSame(['class' => 'bg-blue', 'style' => 'font-size: 3em;'], $this->basicTable->getSearchFieldAttributes());
 
     }
-    
 }
