@@ -89,4 +89,33 @@ class ColumnSelectConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getExcludeDeselectedColumnsFromQuery());
 
     }
+
+    /** @test  */
+    public function can_check_all_columns_get_selected(): void
+    {
+        $this->basicTable->deselectAllColumns();
+
+        $this->assertFalse($this->basicTable->getAllColumnsAreSelected());
+
+        $this->basicTable->selectAllColumns();
+
+        $this->assertTrue($this->basicTable->getAllColumnsAreSelected());
+
+    }
+
+    public function check_get_selected_columns()
+    {
+        
+        $this->basicTable->deselectAllColumns();
+
+        $this->assertSame([], $this->basicTable->getSelectedColumns());
+
+        $this->basicTable->selectAllColumns();
+
+        $this->assertSame($this->basicTable->selectedColumns, $this->basicTable->getSelectedColumns());
+
+        
+    }
+    
+    
 }
