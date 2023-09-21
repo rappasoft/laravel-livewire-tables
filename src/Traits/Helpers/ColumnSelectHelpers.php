@@ -76,7 +76,7 @@ trait ColumnSelectHelpers
             ->values();
     }
 
-    public function getCurrentlySelectedCols()
+    public function getCurrentlySelectedCols(): void
     {
         $this->defaultVisibleColumnCount = count($this->getDefaultVisibleColumns());
         $this->visibleColumnCount = count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns()));
@@ -98,12 +98,12 @@ trait ColumnSelectHelpers
             ->values();
     }
 
-    public function getSelectedColumns()
+    public function getSelectedColumns(): array
     {
         return $this->selectedColumns ?? [];
     }
 
-    public function getSelectedColumnsForQuery()
+    public function getSelectedColumnsForQuery(): array
     {
         return $this->getColumns()
             ->reject(fn (Column $column) => $column->isLabel())
@@ -137,6 +137,6 @@ trait ColumnSelectHelpers
 
     public function getAllColumnsAreSelected(): bool
     {
-        return count($this->getSelectedColumns() ?? []) === count($this->getDefaultVisibleColumns() ?? []);
+        return count($this->getSelectedColumns()) === count($this->getDefaultVisibleColumns());
     }
 }
