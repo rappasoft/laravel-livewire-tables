@@ -89,5 +89,4 @@ class ColumnSelectConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getExcludeDeselectedColumnsFromQuery());
 
     }
-    
 }
