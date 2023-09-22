@@ -32,7 +32,84 @@ return [
      * Options: tailwind | bootstrap-4 | bootstrap-5.
      */
     'theme' => 'tailwind',
+
+    /** Enable or Disable caching of assets
+     * 
+     */
+    'cache_assets' => true,
+
+    /**
+     * Enable or Disable automatic injection of assets
+     */
+    'inject_assets' => true,
+
+    /**
+     * Enable or Disable automatic injection of assets
+     */
+    'inject_third_party_assets' => false,
+
+    /**
+     * Enable or Disable inclusion of published third-party assets
+     */
+    'published_third_party_assets' => false,
+
+    /**
+     * Enable or Disable remote third-party assets
+     */
+    'remote_third_party_assets' => true,
+
+    /**
+     * Configuration options for DateFilter
+     */
+    'dateFilter' => [
+        'defaultConfig' => [
+            'format' => 'Y-m-d', // Used when passing a string to the DateFilter
+            'pillFormat' => 'd M Y', // Used to display in the Filter Pills
+        ],
+    ],
+
+    /**
+     * Configuration options for DateTimeFilter
+     */
+    'dateTimeFilter' => [
+        'defaultConfig' => [
+            'format' => 'Y-m-d\TH:i', // Used when passing a string to the DateFilter
+            'pillFormat' => 'd M Y - H:i', // Used to display in the Filter Pills
+        ],
+    ],
+
+    /**
+     * Configuration options for DateRangeFilter
+     */
+    'dateRange' => [
+        'defaultOptions' => [],
+        'defaultConfig' => [
+            'allowInput' => true,   // Allow manual input of dates
+            'altFormat' => 'F j, Y', // Date format that will be displayed once selected
+            'ariaDateFormat' => 'F j, Y', // An aria-friendly date format
+            'dateFormat' => 'Y-m-d', // Date format that will be received by the filter
+            'earliestDate' => null, // The earliest acceptable date
+            'latestDate' => null, // The latest acceptable date
+        ],
+    ],
+
+    /**
+     * Configuration options for NumberRangeFilter
+     */
+    'numberRange' => [
+        'defaultOptions' => [
+            'min' => 0, // The default start value
+            'max' => 100, // The default end value
+        ],
+        'defaultConfig' => [
+            'minRange' => 0, // The minimum possible value
+            'maxRange' => 100, // The maximum possible value
+            'suffix' => '', // A suffix to append to the values when displayed
+        ],
+    ],
+
 ];
+
 ```
 
 ## Tailwind Purge
@@ -74,26 +151,24 @@ module.exports = {
 
 ## Alpine.js Cloak
 
-You must also make sure you have this Alpine style available globally. Note that this is configured by default by Livewire after 3.x
-
-```css
-<style>
-    [x-cloak] { display: none !important; }
-</style>
-```
+This is configured by default by Livewire after 3.x.
 
 ## Package Specific Code
 
-This package now makes use of two external files, one for AlpineJS methods, and one for Custom Styling.  There are two options available to you:
+This package makes use of both external JS and external CSS files.  These are used for core functionality of both the Table Component, and some Filters.  To include these, there are two options available to you.  In addition, please ensure to read the related "Optional Packages" article
 
-### Injection (Default)
-The package will automatically inject the relevant two files into your layout as part of the render process.  This is the default behaviour, and mimics that of Livewire 3.0
+### Core Injection (Default)
+The package will automatically inject the relevant files into your layout as part of the render process.  This is the default behaviour, and mimics that of Livewire 3.0
+To use this approach, you should set the following in your configuration file:
+```
+    'inject_assets' => true,
+```
 
 ### Build Include
 If you wish to disable the injection, you may include the following file in your app.js, which will provide the relevant functionality and styling for the package to function.
 
 #### With Third Party Libraries
-Includes Flatpickr
+Includes required libraries (including Flatpickr)
 ```
 import '../../vendor/rappasoft/laravel-livewire-tables/resources/laravel-livewire-tables-with-tp.js';
 ```
