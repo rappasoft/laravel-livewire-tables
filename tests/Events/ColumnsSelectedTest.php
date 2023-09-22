@@ -7,6 +7,13 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ColumnsSelectedTest extends TestCase
 {
+    
+    /** @test */
+    public function test_example()
+    {
+        $this->assertTrue(true);
+    }
+
     /** @test */
     /* Temporary Removal - Suitable Replacement Inbound */
     /*
