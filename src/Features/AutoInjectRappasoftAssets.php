@@ -31,7 +31,7 @@ class AutoInjectRappasoftAssets extends ComponentHook
             if (! method_exists($handled->response, 'status') || $handled->response->status() !== 200) {
                 return;
             }
-            
+
             if (! method_exists($handled->response, 'getContent') || ! method_exists($handled->response, 'setContent')) {
                 return;
             }
