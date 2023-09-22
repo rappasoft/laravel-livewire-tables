@@ -31,6 +31,11 @@ class AutoInjectRappasoftAssets extends ComponentHook
             if (! method_exists($handled->response, 'status') || $handled->response->status() !== 200) {
                 return;
             }
+            
+            if (! method_exists($handled->response, 'getContent') || ! method_exists($handled->response, 'setContent')) {
+                return;
+            }
+
             if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) {
                 return;
             }
@@ -43,9 +48,6 @@ class AutoInjectRappasoftAssets extends ComponentHook
             } elseif (config('livewire-tables.inject_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts) {
                 return;
             } elseif (config('livewire-tables.inject_third_party_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
-                return;
-            }
-            if (! method_exists($handled->response, 'getContent')) {
                 return;
             }
 
