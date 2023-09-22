@@ -70,10 +70,18 @@ trait ColumnSelectHelpers
     public function getSelectableColumns(): Collection
     {
         return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => $column->isHidden())
-            ->reject(fn (Column $column) => ! $column->isSelectable())
-            ->values();
+        ->reject(fn (Column $column) => $column->isHidden())
+        ->reject(fn (Column $column) => !$column->isSelectable())
+        ->values();
+    }
+
+    public function getSelectableSelectedColumns(): Collection
+    {
+        return $this->getColumns()
+        ->reject(fn (Column $column) => $column->isHidden())
+        ->reject(fn (Column $column) => !$column->isSelectable())
+        ->reject(fn (Column $column) => !$this->columnSelectIsEnabledForColumn($column))
+        ->values();
     }
 
     public function getCurrentlySelectedCols(): void
@@ -129,6 +137,8 @@ trait ColumnSelectHelpers
     {
         return collect($this->getColumns()
             ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => $column->isSelectable() && !$column->isSelected())
+
         )
             ->map(fn ($column) => $column->getSlug())
             ->values()

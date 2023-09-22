@@ -12,10 +12,16 @@ trait WithColumnSelect
     use ColumnSelectConfiguration,
         ColumnSelectHelpers;
 
+    public array $columnSelectColumns = ['setupRun' => false, 'selected' => [], 'deselected' => [], 'defaultdeselected' => []];
+
     public array $selectedColumns = [];
+
+    public array $deselectedColumns = [];
 
     public array $selectableColumns = [];
 
+    public array $defaultDeselectedColumns = [];
+    
     protected bool $columnSelectStatus = true;
 
     protected bool $rememberColumnSelectionStatus = true;
@@ -25,6 +31,8 @@ trait WithColumnSelect
     protected bool $columnSelectHiddenOnTablet = false;
 
     public bool $excludeDeselectedColumnsFromQuery = false;
+
+    public bool $defaultDeselectedColumnsSetup = false;
 
     public function setupColumnSelect(): void
     {
@@ -39,6 +47,7 @@ trait WithColumnSelect
         if (empty($this->selectableColumns)) {
             $this->selectableColumns = $this->getColumnsForColumnSelect();
         }
+        $this->setupFirstColumnSelectRun();
 
         $this->defaultVisibleColumnCount = count($this->selectableColumns);
 
@@ -62,9 +71,22 @@ trait WithColumnSelect
         $this->visibleColumnCount = count($this->selectedColumns);
     }
 
+    protected function setupFirstColumnSelectRun()
+    {
+        if (!$this->columnSelectColumns['setupRun'])
+        {
+            $this->columnSelectColumns['deselected'] = $this->columnSelectColumns['defaultdeselected'] = $this->setDefaultDeselectedColumns();
+            $this->columnSelectColumns['setupRun'] = true;
+        }
+
+    }
+
     public function selectAllColumns(): void
     {
-        $this->selectedColumns = $this->getDefaultVisibleColumns();
+        $this->selectedColumns = [];
+        foreach ($this->getColumns() as $column) {
+                $this->selectedColumns[] = $column->getSlug();
+        }
         $this->forgetColumnSelectSession();
         event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
     }
