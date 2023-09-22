@@ -222,7 +222,7 @@ trait FilterHelpers
             $filter = $this->getFilterByKey($filter);
         }
 
-        $this->setFilter($filter->getKey(), $filter->getDefaultValue());
+        $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
     }
 
     public function getFilterLayout(): string
