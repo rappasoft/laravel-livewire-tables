@@ -89,11 +89,10 @@ trait ColumnSelectConfiguration
             ->reject(fn (Column $column) => ! $column->isSelectable())
             ->reject(fn (Column $column) => $column->isSelectable() && $column->isSelected())
         )
-        ->keyBy(function (Column $column, int $key) {
-            return $column->getSlug();
-        })
-        ->map(fn ($column) => $column->getTitle())
-        ->toArray();
+            ->keyBy(function (Column $column, int $key) {
+                return $column->getSlug();
+            })
+            ->map(fn ($column) => $column->getTitle())
+            ->toArray();
     }
-
 }

@@ -21,7 +21,7 @@ trait WithColumnSelect
     public array $selectableColumns = [];
 
     public array $defaultDeselectedColumns = [];
-    
+
     protected bool $columnSelectStatus = true;
 
     protected bool $rememberColumnSelectionStatus = true;
@@ -73,8 +73,7 @@ trait WithColumnSelect
 
     protected function setupFirstColumnSelectRun()
     {
-        if (!$this->columnSelectColumns['setupRun'])
-        {
+        if (! $this->columnSelectColumns['setupRun']) {
             $this->columnSelectColumns['deselected'] = $this->columnSelectColumns['defaultdeselected'] = $this->setDefaultDeselectedColumns();
             $this->columnSelectColumns['setupRun'] = true;
         }
@@ -85,7 +84,7 @@ trait WithColumnSelect
     {
         $this->selectedColumns = [];
         foreach ($this->getColumns() as $column) {
-                $this->selectedColumns[] = $column->getSlug();
+            $this->selectedColumns[] = $column->getSlug();
         }
         $this->forgetColumnSelectSession();
         event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
