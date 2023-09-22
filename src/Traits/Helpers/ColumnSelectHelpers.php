@@ -149,5 +149,4 @@ trait ColumnSelectHelpers
     {
         return $this->getSelectableSelectedColumns()->count() === $this->getSelectableColumns()->count();
     }
-
 }
