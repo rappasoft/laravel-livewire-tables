@@ -31,6 +31,8 @@ trait WithSearch
 
     public ?string $searchPlaceholder = null;
 
+    protected array $searchFieldAttributes = [];
+
     // TODO
     public function applySearch(): Builder
     {
