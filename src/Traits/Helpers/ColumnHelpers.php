@@ -91,39 +91,6 @@ trait ColumnHelpers
             ->toArray();
     }
 
-    public function getCurrentlySelectedCols()
-    {
-
-        $this->defaultVisibleColumnCount = count($this->getDefaultVisibleColumns());
-        $this->visibleColumnCount = count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns()));
-
-    }
-
-    public function getReallySelectedColumns(): array
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => ! $column->isSelected())
-            ->values()
-            ->toArray();
-    }
-
-    public function getSelectableColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => ! $column->isSelectable())
-            ->values();
-    }
-
-    public function getCurrentlySelectedColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => ! $column->isSelectable())
-            ->values();
-    }
-
     public function getSearchableColumns(): Collection
     {
         return $this->getColumns()

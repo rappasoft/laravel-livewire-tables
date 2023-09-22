@@ -22,6 +22,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Fix for Bulk Actions dropdown not working in Bootstrap
 - Fix for Column Select "Select All" not consistently updating
 - Add fix for lazy loading of table
+- Fix for ColumnSelect falling out of sync, displaying unselectable colums, or persisting cols in query that are not selected
+- Add setExcludeDeselectedColumnsFromQueryEnabled and setExcludeDeselectedColumnsFromQueryDisabled methods to configure()
 
 ## [Unreleased] - 3.x (beta-0)
 - Requirements Change
