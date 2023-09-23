@@ -49,8 +49,6 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         if (config('livewire-tables.inject_assets', true) === true) {
 
             (new RappasoftFrontendAssets)->boot();
-            app('livewire')->componentHook(AutoInjectRappasoftAssets::class);
-            ComponentHookRegistry::boot();
         }
 
     }
@@ -63,6 +61,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         if (config('livewire-tables.inject_assets', true) === true) {
 
             (new RappasoftFrontendAssets)->register();
+            ComponentHookRegistry::register(AutoInjectRappasoftAssets::class);
         }
     }
 }
