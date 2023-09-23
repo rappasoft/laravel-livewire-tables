@@ -27,10 +27,33 @@ class AutoInjectRappasoftAssets extends ComponentHook
 
         app('events')->listen(RequestHandled::class, function ($handled) {
 
-            if (app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
+            if (! static::$forceAssetInjection && config('livewire-tables.inject_assets', true) === false) {
+                return;
+            }
+            if (! str($handled->response->headers->get('content-type'))->contains('text/html')) {
+                return;
+            }
+            if (! method_exists($handled->response, 'status') || $handled->response->status() !== 200) {
                 return;
             }
 
+            if (! method_exists($handled->response, 'getContent') || ! method_exists($handled->response, 'setContent')) {
+                return;
+            }
+
+            if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) {
+                return;
+            }
+            if (config('livewire-tables.inject_assets', true) === false && config('livewire-tables.inject_third_party_assets', true) === false) {
+                return;
+            }
+            if (config('livewire-tables.inject_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts && config('livewire-tables.inject_third_party_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
+                return;
+            } elseif (config('livewire-tables.inject_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts) {
+                return;
+            } elseif (config('livewire-tables.inject_third_party_assets', true) === true && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
+                return;
+            }
             $html = $handled->response->getContent();
 
             if (str($html)->contains('</html>')) {
