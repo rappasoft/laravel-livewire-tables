@@ -40,6 +40,10 @@ class AutoInjectRappasoftAssets extends ComponentHook
             if (! method_exists($handled->response, 'getContent') || ! method_exists($handled->response, 'setContent')) {
                 return;
             }
+            
+            if (! property_exists($handled->response, 'original')) {
+                return;
+            }
 
             if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) {
                 return;
