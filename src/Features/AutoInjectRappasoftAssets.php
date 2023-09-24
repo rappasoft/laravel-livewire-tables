@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Features;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Livewire\ComponentHook;
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
+use Illuminate\Support\Facades\Log;
 
 use function Livewire\on;
 
@@ -25,25 +26,24 @@ class AutoInjectRappasoftAssets extends ComponentHook
             return;
         }
 
-        app('events')->listen(RequestHandled::class, function ($handled) {
-
+        app('events')->listen(RequestHandled::class, function (RequestHandled $handled) {
+            
             if (! static::$forceAssetInjection && config('livewire-tables.inject_assets', true) === false) {
                 return;
             }
+            
             if (! str($handled->response->headers->get('content-type'))->contains('text/html')) {
                 return;
             }
-            if (! method_exists($handled->response, 'status') || $handled->response->status() !== 200) {
+
+            if (! method_exists($handled->response, 'status') || ! method_exists($handled->response, 'getContent') || ! method_exists($handled->response, 'setContent') || ! method_exists($handled->response, 'getOriginalContent') || ! property_exists($handled->response, 'original')) {
                 return;
             }
 
-            if (! method_exists($handled->response, 'getContent') || ! method_exists($handled->response, 'setContent')) {
+            if ($handled->response->status() !== 200) {
                 return;
             }
 
-            if (! property_exists($handled->response, 'original')) {
-                return;
-            }
 
             if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) {
                 return;
@@ -61,7 +61,7 @@ class AutoInjectRappasoftAssets extends ComponentHook
             $html = $handled->response->getContent();
 
             if (str($html)->contains('</html>')) {
-                $original = $handled->response->original;
+                $original = $handled->response->getOriginalContent();
                 $handled->response->setContent(static::injectAssets($html));
                 $handled->response->original = $original;
             }
@@ -75,25 +75,19 @@ class AutoInjectRappasoftAssets extends ComponentHook
 
     public static function injectAssets(mixed $html): string
     {
-        $rappasoftTableStyles = config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableStyles() : '';
-        $rappasoftTableScripts = config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableScripts() : '';
-        $rappasoftTableThirdPartyStyles = config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '';
-        //$rappasoftTableThirdPartyStyles = '';
-        $rappasoftTableThirdPartyScripts = config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '';
-        //$rappasoftTableThirdPartyScripts = '';
 
         $html = str($html);
 
         if ($html->test('/<\s*head(?:\s|\s[^>])*>/i') && $html->test('/<\s*\/\s*body\s*>/i')) {
             return $html
-                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.($rappasoftTableStyles.' '.$rappasoftTableThirdPartyStyles))
-                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ($rappasoftTableScripts.' '.$rappasoftTableThirdPartyScripts).'$1')
+                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.((config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableStyles() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '')))
+                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableScripts() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '')).'$1')
                 ->toString();
         }
 
         return $html
-            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.($rappasoftTableStyles.' '.$rappasoftTableThirdPartyStyles))
-            ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ($rappasoftTableScripts.' '.$rappasoftTableThirdPartyScripts).'$1')
+            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.((config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableStyles() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '')))
+            ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableScripts() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '')).'$1')
             ->toString();
     }
 }
