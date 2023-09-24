@@ -57,7 +57,9 @@ class AutoInjectRappasoftAssets extends ComponentHook
             $html = $handled->response->getContent();
 
             if (str($html)->contains('</html>')) {
+                $original = $handled->response->original;
                 $handled->response->setContent(static::injectAssets($html));
+                $handled->response->original = $original;
             }
         });
     }
