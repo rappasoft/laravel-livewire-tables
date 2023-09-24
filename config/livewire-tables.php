@@ -6,7 +6,7 @@ return [
      */
     'theme' => 'tailwind',
 
-    /** 
+    /**
      * Cache Rappasoft Frontend Assets (For 1 hour)
      */
     'cache_assets' => false,

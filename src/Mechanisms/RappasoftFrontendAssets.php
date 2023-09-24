@@ -31,7 +31,6 @@ class RappasoftFrontendAssets
             return Route::get($scriptPath, $handle);
         });
 
-
         // Set the CSS route for the core tables CSS
         app($this::class)->setRappasoftTableStylesRoute(function ($handle) {
             $stylesPath = '/rappasoft/laravel-livewire-tables/core.min.css';
@@ -39,14 +38,12 @@ class RappasoftFrontendAssets
             return Route::get($stylesPath, $handle);
         });
 
-
         // Set the JS route for the third party JS
         app($this::class)->setRappasoftTableThirdPartyScriptRoute(function ($handle) {
             $scriptPath = '/rappasoft/laravel-livewire-tables/thirdparty.min.js';
 
             return Route::get($scriptPath, $handle);
         });
-
 
         // Set the CSS route for the third party CSS
         app($this::class)->setRappasoftTableThirdPartyStylesRoute(function ($handle) {
