@@ -5,7 +5,6 @@ namespace Rappasoft\LaravelLivewireTables\Features;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Livewire\ComponentHook;
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
-use Illuminate\Support\Facades\Log;
 
 use function Livewire\on;
 
@@ -27,11 +26,11 @@ class AutoInjectRappasoftAssets extends ComponentHook
         }
 
         app('events')->listen(RequestHandled::class, function (RequestHandled $handled) {
-            
+
             if (! static::$forceAssetInjection && config('livewire-tables.inject_assets', true) === false) {
                 return;
             }
-            
+
             if (! str($handled->response->headers->get('content-type'))->contains('text/html')) {
                 return;
             }
@@ -43,7 +42,6 @@ class AutoInjectRappasoftAssets extends ComponentHook
             if ($handled->response->status() !== 200) {
                 return;
             }
-
 
             if ((! static::$hasRenderedAComponentThisRequest) && (! static::$forceAssetInjection)) {
                 return;
