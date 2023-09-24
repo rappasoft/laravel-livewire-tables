@@ -44,11 +44,10 @@ class AutoInjectRappasoftAssets extends ComponentHook
                 return;
             }
 
-            if (!static::shouldInjectAssets())
-            {
+            if (! static::shouldInjectAssets()) {
                 return;
             }
-            
+
             $html = $handled->response->getContent();
 
             if (str($html)->contains('</html>')) {
@@ -62,21 +61,20 @@ class AutoInjectRappasoftAssets extends ComponentHook
     public static function shouldInjectAssets(): bool
     {
         // If Neither Core nor Third Party Assets are injectable
-        if (config('livewire-tables.inject_assets', true) === false && config('livewire-tables.inject_third_party_assets', true) === false ) {
+        if (config('livewire-tables.inject_assets', true) === false && config('livewire-tables.inject_third_party_assets', true) === false) {
             return false;
         }
-        
+
         // If Core Assets are Injectable, BUT have not been
-        if (config('livewire-tables.inject_assets', true) === true && !app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts)
-        {
+        if (config('livewire-tables.inject_assets', true) === true && ! app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts) {
             return true;
         }
 
         // If Third Party Assets are Injectable, BUT have not been
-        if (config('livewire-tables.inject_third_party_assets', true) === true && !app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
+        if (config('livewire-tables.inject_third_party_assets', true) === true && ! app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
             return true;
         }
-        
+
         // Fall Back to Not Injecting
         return false;
     }
