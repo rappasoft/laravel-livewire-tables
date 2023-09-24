@@ -31,7 +31,6 @@ class RappasoftFrontendAssets
             return Route::get($scriptPath, $handle);
         });
 
-        Blade::directive('rappasoftTableScripts', [static::class, 'rappasoftTableScripts']);
 
         // Set the CSS route for the core tables CSS
         app($this::class)->setRappasoftTableStylesRoute(function ($handle) {
@@ -40,7 +39,6 @@ class RappasoftFrontendAssets
             return Route::get($stylesPath, $handle);
         });
 
-        Blade::directive('rappasoftTableStyles', [static::class, 'rappasoftTableStyles']);
 
         // Set the JS route for the third party JS
         app($this::class)->setRappasoftTableThirdPartyScriptRoute(function ($handle) {
@@ -49,7 +47,6 @@ class RappasoftFrontendAssets
             return Route::get($scriptPath, $handle);
         });
 
-        Blade::directive('rappasoftTableThirdPartyScripts', [static::class, 'rappasoftTableThirdPartyScripts']);
 
         // Set the CSS route for the third party CSS
         app($this::class)->setRappasoftTableThirdPartyStylesRoute(function ($handle) {
@@ -58,8 +55,15 @@ class RappasoftFrontendAssets
             return Route::get($stylesPath, $handle);
         });
 
-        Blade::directive('rappasoftTableThirdPartyStyles', [static::class, 'rappasoftTableThirdPartyStyles']);
+        static::registerBladeDirectives();
+    }
 
+    protected function registerBladeDirectives()
+    {
+        Blade::directive('rappasoftTableScripts', [static::class, 'rappasoftTableScripts']);
+        Blade::directive('rappasoftTableStyles', [static::class, 'rappasoftTableStyles']);
+        Blade::directive('rappasoftTableThirdPartyScripts', [static::class, 'rappasoftTableThirdPartyScripts']);
+        Blade::directive('rappasoftTableThirdPartyStyles', [static::class, 'rappasoftTableThirdPartyStyles']);
     }
 
     protected function pretendResponseIsJs(string $file): \Symfony\Component\HttpFoundation\Response

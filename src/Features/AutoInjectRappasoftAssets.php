@@ -78,14 +78,14 @@ class AutoInjectRappasoftAssets extends ComponentHook
 
         if ($html->test('/<\s*head(?:\s|\s[^>])*>/i') && $html->test('/<\s*\/\s*body\s*>/i')) {
             return $html
-                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.((config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableStyles() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '')))
-                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableScripts() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '')).'$1')
+                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.((config('livewire-tables.inject_assets', true) ? app(RappasoftFrontendAssets::class)->tableStyles() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? app(RappasoftFrontendAssets::class)->tableThirdPartyStyles() : '')))
+                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((config('livewire-tables.inject_assets', true) ? app(RappasoftFrontendAssets::class)->tableScripts() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? app(RappasoftFrontendAssets::class)->tableThirdPartyScripts() : '')).'$1')
                 ->toString();
         }
 
         return $html
-            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.((config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableStyles() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '')))
-            ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((config('livewire-tables.inject_assets', true) ? RappasoftFrontendAssets::tableScripts() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '')).'$1')
+            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.((config('livewire-tables.inject_assets', true) ? app(RappasoftFrontendAssets::class)->tableStyles() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? app(RappasoftFrontendAssets::class)->tableThirdPartyStyles() : '')))
+            ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((config('livewire-tables.inject_assets', true) ? app(RappasoftFrontendAssets::class)->tableScripts() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? app(RappasoftFrontendAssets::class)->tableThirdPartyScripts() : '')).'$1')
             ->toString();
     }
 }

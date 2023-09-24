@@ -46,8 +46,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             ]);
         }
 
-        if (config('livewire-tables.inject_assets', true) === true) {
-
+        if (config('livewire-tables.use_bundler', false) === true) {
             (new RappasoftFrontendAssets)->boot();
         }
 
@@ -58,10 +57,11 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
-        if (config('livewire-tables.inject_assets', true) === true) {
+        if (config('livewire-tables.use_bundler', false) === true) {
 
             (new RappasoftFrontendAssets)->register();
             ComponentHookRegistry::register(AutoInjectRappasoftAssets::class);
         }
+
     }
 }
