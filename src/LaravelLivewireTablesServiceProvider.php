@@ -46,8 +46,8 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             ]);
         }
 
-        if (config('livewire-tables.inject_core_assets_enabled', true) === true 
-            || config('livewire-tables.inject_third_party_assets_enabled', true) === true 
+        if (config('livewire-tables.inject_core_assets_enabled', true) === true
+            || config('livewire-tables.inject_third_party_assets_enabled', true) === true
             || config('livewire-tables.enable_blade_directives', false) === true
         ) {
             (new RappasoftFrontendAssets)->boot();
@@ -60,8 +60,8 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
-        if (config('livewire-tables.inject_core_assets_enabled', true) === true 
-            || config('livewire-tables.inject_third_party_assets_enabled', true) === true 
+        if (config('livewire-tables.inject_core_assets_enabled', true) === true
+            || config('livewire-tables.inject_third_party_assets_enabled', true) === true
             || config('livewire-tables.enable_blade_directives', false) === true
         ) {
             (new RappasoftFrontendAssets)->register();

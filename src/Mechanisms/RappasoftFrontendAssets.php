@@ -53,7 +53,7 @@ class RappasoftFrontendAssets
         });
 
         static::registerBladeDirectives();
-        
+
     }
 
     protected function registerBladeDirectives()
