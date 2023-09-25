@@ -14,6 +14,10 @@ class AutoInjectRappasoftAssets extends ComponentHook
 
     public static bool $forceAssetInjection = false;
 
+    public ?bool $shouldInjectRappasoftThirdPartyAssets = null;
+
+    public ?bool $shouldInjectRappasoftAssets = null;
+
     public static function provide(): void
     {
         on('flush-state', function () {
@@ -22,13 +26,16 @@ class AutoInjectRappasoftAssets extends ComponentHook
         });
 
         // If config use_bundler is true - abort injection of assets
-        if (config('livewire-tables.use_bundler', false) === true) {
+        if (config('livewire-tables.inject_core_assets_enabled', true) === false 
+            && config('livewire-tables.inject_third_party_assets_enabled', true) === false 
+            && config('livewire-tables.enable_blade_directives', false) === false
+        ) {
             return;
         }
 
         app('events')->listen(RequestHandled::class, function (RequestHandled $handled) {
 
-            if (! static::$forceAssetInjection && (config('livewire-tables.use_bundler', false) === true || ! static::$hasRenderedAComponentThisRequest)) {
+            if (! static::$forceAssetInjection && (config('livewire-tables.inject_core_assets_enabled', false) === false || ! static::$hasRenderedAComponentThisRequest)) {
                 return;
             }
 
@@ -58,22 +65,47 @@ class AutoInjectRappasoftAssets extends ComponentHook
         });
     }
 
+    public static function setShouldInjectRappasoftAssets(bool $shouldInject = false): void
+    {
+        static::$shouldInjectRappasoftAssets = $shouldInject;
+    }
+
+    public static function setShouldInjectRappsoftTableThirdPartyAssets(bool $shouldInject = false): void
+    {
+        static::$shouldInjectRappasoftThirdPartyAssets = $shouldInject;
+    }
+
+
     public static function shouldInjectAssets(): bool
     {
+        if (!isset(static::$shouldInjectRappasoftAssets))
+        {
+            static::setShouldInjectRappasoftAssets(config('livewire-tables.inject_core_assets_enabled', true));
+        }
+        if (!isset(static::$shouldInjectRappasoftThirdPartyAssets))
+        {
+            static::setShouldInjectRappsoftTableThirdPartyAssets(config('livewire-tables.inject_third_party_assets_enabled', true));
+        }
+
+        
         // If Neither Core nor Third Party Assets are injectable
-        if (config('livewire-tables.inject_assets', true) === false && config('livewire-tables.inject_third_party_assets', true) === false) {
+        if (!static::$shouldInjectRappasoftAssets && !static::$shouldInjectRappasoftThirdPartyAssets)
+        {
             return false;
         }
 
-        // If Core Assets are Injectable, BUT have not been
-        if (config('livewire-tables.inject_assets', true) === true && ! app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts) {
+        if (static::$shouldInjectRappasoftAssets && !app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts)
+        {
             return true;
         }
 
-        // If Third Party Assets are Injectable, BUT have not been
-        if (config('livewire-tables.inject_third_party_assets', true) === true && ! app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts) {
+
+        if (static::$shouldInjectRappasoftThirdPartyAssets && !app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts)
+        {
             return true;
         }
+
+        
 
         // Fall Back to Not Injecting
         return false;
@@ -91,14 +123,14 @@ class AutoInjectRappasoftAssets extends ComponentHook
 
         if ($html->test('/<\s*head(?:\s|\s[^>])*>/i') && $html->test('/<\s*\/\s*body\s*>/i')) {
             return $html
-                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.((config('livewire-tables.inject_assets', true) ? app(RappasoftFrontendAssets::class)->tableStyles() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? app(RappasoftFrontendAssets::class)->tableThirdPartyStyles() : '')))
-                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((config('livewire-tables.inject_assets', true) ? app(RappasoftFrontendAssets::class)->tableScripts() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? app(RappasoftFrontendAssets::class)->tableThirdPartyScripts() : '')).'$1')
+                ->replaceMatches('/(<\s*head(?:\s|\s[^>])*>)/i', '$1'.((static::$shouldInjectRappasoftAssets ? app(RappasoftFrontendAssets::class)->tableStyles() : '').' '.(static::$shouldInjectRappasoftThirdPartyAssets ? app(RappasoftFrontendAssets::class)->tableThirdPartyStyles() : '')))
+                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((static::$shouldInjectRappasoftAssets ? app(RappasoftFrontendAssets::class)->tableScripts() : '').' '.(static::$shouldInjectRappasoftThirdPartyAssets ? app(RappasoftFrontendAssets::class)->tableThirdPartyScripts() : '')).'$1')
                 ->toString();
         }
 
         return $html
-            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.((config('livewire-tables.inject_assets', true) ? app(RappasoftFrontendAssets::class)->tableStyles() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? app(RappasoftFrontendAssets::class)->tableThirdPartyStyles() : '')))
-            ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((config('livewire-tables.inject_assets', true) ? app(RappasoftFrontendAssets::class)->tableScripts() : '').' '.(config('livewire-tables.inject_third_party_assets', true) ? app(RappasoftFrontendAssets::class)->tableThirdPartyScripts() : '')).'$1')
+            ->replaceMatches('/(<\s*html(?:\s[^>])*>)/i', '$1'.((static::$shouldInjectRappasoftAssets ? app(RappasoftFrontendAssets::class)->tableStyles() : '').' '.(static::$shouldInjectRappasoftThirdPartyAssets? app(RappasoftFrontendAssets::class)->tableThirdPartyStyles() : '')))
+            ->replaceMatches('/(<\s*\/\s*head\s*>)/i', ((static::$shouldInjectRappasoftAssets ? app(RappasoftFrontendAssets::class)->tableScripts() : '') . ' '. (static::$shouldInjectRappasoftThirdPartyAssets ? app(RappasoftFrontendAssets::class)->tableThirdPartyScripts() : '')).'$1')
             ->toString();
     }
 }

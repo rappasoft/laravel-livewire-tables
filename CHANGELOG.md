@@ -3,7 +3,6 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased] - 3.x - Updates to Injection Methods
-- Add use_bundler option to configuration (disables all FrontendAsset methods)
 - Amend AutoInjection/FrontendAsset to ensure it returns the original content correctly
 - Remove errant disabling of Blade Directives when disabling auto-injection
 - Amended in-line config documentation

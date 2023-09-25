@@ -7,83 +7,85 @@ return [
     'theme' => 'tailwind',
 
     /**
-     * Cache Rappasoft Frontend Assets (For 1 hour)
+     * 
+     * Filter Frontend Asset Options
+     * 
      */
-    'cache_assets' => false,
+    
+        /**
+         * Cache Rappasoft Frontend Assets
+         */
+        'cache_assets' => false,
 
-    /**
-     * Enable or Disable automatic injection of assets
-     */
-    'inject_assets' => true,
+        /**
+         * Enable or Disable automatic injection of core assets
+         */
+        'inject_core_assets_enabled' => true,
 
-    /**
-     * Enable or Disable automatic injection of assets
-     */
-    'inject_third_party_assets' => true,
+        /**
+         * Enable or Disable automatic injection of third-party assets
+         */
+        'inject_third_party_assets_enabled' => true,
 
-    /**
-     * Enable or Disable inclusion of published third-party assets
-     */
-    'published_third_party_assets' => false,
+        /**
+         * Enable Blade Directives (Not required if automatically injecting or using bundler approaches)
+         */
+        'enable_blade_directives ' => false,
 
-    /**
-     * Enable or Disable remote third-party assets
-     */
-    'remote_third_party_assets' => false,
+    /** 
+     * 
+     * Filter Default Configuration Options 
+     * 
+     * */
 
-    /**
-     * Enable if using a bundler instead of injecting assets/scripts or using blade directives
-     */
-    'use_bundler' => false,
-
-    /**
-     * Configuration options for DateFilter
-     */
-    'dateFilter' => [
-        'defaultConfig' => [
-            'format' => 'Y-m-d',
-            'pillFormat' => 'd M Y', // Used to display in the Filter Pills
+        /**
+         * Configuration options for DateFilter
+         */
+        'dateFilter' => [
+            'defaultConfig' => [
+                'format' => 'Y-m-d',
+                'pillFormat' => 'd M Y', // Used to display in the Filter Pills
+            ],
         ],
-    ],
 
-    /**
-     * Configuration options for DateTimeFilter
-     */
-    'dateTimeFilter' => [
-        'defaultConfig' => [
-            'format' => 'Y-m-d\TH:i',
-            'pillFormat' => 'd M Y - H:i', // Used to display in the Filter Pills
+        /**
+         * Configuration options for DateTimeFilter
+         */
+        'dateTimeFilter' => [
+            'defaultConfig' => [
+                'format' => 'Y-m-d\TH:i',
+                'pillFormat' => 'd M Y - H:i', // Used to display in the Filter Pills
+            ],
         ],
-    ],
 
-    /**
-     * Configuration options for DateRangeFilter
-     */
-    'dateRange' => [
-        'defaultOptions' => [],
-        'defaultConfig' => [
-            'allowInput' => true,   // Allow manual input of dates
-            'altFormat' => 'F j, Y', // Date format that will be displayed once selected
-            'ariaDateFormat' => 'F j, Y', // An aria-friendly date format
-            'dateFormat' => 'Y-m-d', // Date format that will be received by the filter
-            'earliestDate' => null, // The earliest acceptable date
-            'latestDate' => null, // The latest acceptable date
+        /**
+         * Configuration options for DateRangeFilter
+         */
+        'dateRange' => [
+            'defaultOptions' => [],
+            'defaultConfig' => [
+                'allowInput' => true,   // Allow manual input of dates
+                'altFormat' => 'F j, Y', // Date format that will be displayed once selected
+                'ariaDateFormat' => 'F j, Y', // An aria-friendly date format
+                'dateFormat' => 'Y-m-d', // Date format that will be received by the filter
+                'earliestDate' => null, // The earliest acceptable date
+                'latestDate' => null, // The latest acceptable date
+            ],
         ],
-    ],
 
-    /**
-     * Configuration options for NumberRangeFilter
-     */
-    'numberRange' => [
-        'defaultOptions' => [
-            'min' => 0, // The default start value
-            'max' => 100, // The default end value
+        /**
+         * Configuration options for NumberRangeFilter
+         */
+        'numberRange' => [
+            'defaultOptions' => [
+                'min' => 0, // The default start value
+                'max' => 100, // The default end value
+            ],
+            'defaultConfig' => [
+                'minRange' => 0, // The minimum possible value
+                'maxRange' => 100, // The maximum possible value
+                'suffix' => '', // A suffix to append to the values when displayed
+            ],
         ],
-        'defaultConfig' => [
-            'minRange' => 0, // The minimum possible value
-            'maxRange' => 100, // The maximum possible value
-            'suffix' => '', // A suffix to append to the values when displayed
-        ],
-    ],
 
 ];

@@ -73,7 +73,7 @@ trait WithRappasoftTableThirdPartyScripts
         );
 
         return <<<HTML
-        <script src="{$url}"  type="module" {$nonce} {$extraAttributes}></script>
+        <script src="{$url}" {$nonce} {$extraAttributes}></script>
         HTML;
     }
 }
