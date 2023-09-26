@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\DataTransferObjects;
+namespace Rappasoft\LaravelLivewireTables\Tests\DataTransferObjects;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
@@ -19,7 +19,7 @@ class DebuggableDataTest extends TestCase
     }
 
     /** @test */
-    public function check_all_default_dto_elements()
+    public function test_check_all_default_dto_elements()
     {
         $debuggableDTO = new DebuggableData($this->basicTable);
         $debuggableArray = $debuggableDTO->toArray();
@@ -34,7 +34,7 @@ class DebuggableDataTest extends TestCase
     }
 
     /** @test */
-    public function check_dto_returns_filters_correctly()
+    public function test_check_dto_returns_filters_correctly()
     {
         $debuggableDTO = new DebuggableData($this->basicTable);
         $debuggableArray = $debuggableDTO->toArray();
