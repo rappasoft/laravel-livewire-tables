@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\DataTransferObjects;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\DebuggableData;
 
 class DebuggableDataTest extends TestCase
 {
