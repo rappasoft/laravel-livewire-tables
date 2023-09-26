@@ -67,14 +67,11 @@ class RappasoftFrontendAssets
     protected function pretendResponseIsJs(string $file): \Symfony\Component\HttpFoundation\Response
     {
 
-        if (config('livewire-tables.cache_assets', false) === true)
-        {
+        if (config('livewire-tables.cache_assets', false) === true) {
             $expires = strtotime('+1 hour');
             $lastModified = filemtime($file);
             $cacheControl = 'public, max-age=3600';
-        }
-        else
-        {
+        } else {
             $expires = strtotime('+1 second');
             $lastModified = \Carbon\Carbon::now()->timestamp;
             $cacheControl = 'public, max-age=1';
@@ -92,19 +89,16 @@ class RappasoftFrontendAssets
 
     protected function pretendResponseIsCSS(string $file): \Symfony\Component\HttpFoundation\Response
     {
-        if (config('livewire-tables.cache_assets', false) === true)
-        {
+        if (config('livewire-tables.cache_assets', false) === true) {
             $expires = strtotime('+1 hour');
             $lastModified = filemtime($file);
             $cacheControl = 'public, max-age=3600';
-        }
-        else
-        {
+        } else {
             $expires = strtotime('+1 second');
             $lastModified = \Carbon\Carbon::now()->timestamp;
             $cacheControl = 'public, max-age=1';
         }
-        
+
         $headers = [
             'Content-Type' => 'text/css; charset=utf-8',
             'Expires' => Utils::httpDate($expires),

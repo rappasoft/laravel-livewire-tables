@@ -7,8 +7,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class RappasoftFrontendAssetsTest extends TestCase
 {
-
-/**
+    /**
      * @test
      */
     public function jsResponseSetupCacheDisabled(): array
@@ -24,6 +23,7 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
+
     /**
      * @test
      */
@@ -37,9 +37,9 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
         $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
+
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
-
 
     /**
      * @test
@@ -49,13 +49,14 @@ class RappasoftFrontendAssetsTest extends TestCase
         config()->set('livewire-tables.cache_assets', false);
 
         $date = date_create();
-        
+
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableStylesAsFile();
         $this->assertIsObject($response);
         $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
         $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
+
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
@@ -76,7 +77,6 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => $lastModified, 'responseHeaders' => $response->headers->all()];
     }
 
-    
     /** @test */
     public function styles()
     {
@@ -134,7 +134,6 @@ class RappasoftFrontendAssetsTest extends TestCase
     {
         $this->assertSame('max-age=3600, public', $jsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
-    
 
     /**
      * @test
@@ -146,8 +145,6 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertSame('application/javascript; charset=utf-8', $jsResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    
-
     /**
      * @test
      *
@@ -157,7 +154,6 @@ class RappasoftFrontendAssetsTest extends TestCase
     {
         $this->assertSame('max-age=1, public', $jsResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
-    
 
     /**
      * @test
@@ -178,7 +174,6 @@ class RappasoftFrontendAssetsTest extends TestCase
     {
         $this->assertSame('max-age=3600, public', $cssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
-    
 
     /**
      * @test
@@ -190,8 +185,6 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertSame('text/css; charset=utf-8', $cssResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-
-
     /**
      * @test
      *
@@ -201,7 +194,6 @@ class RappasoftFrontendAssetsTest extends TestCase
     {
         $this->assertSame('max-age=1, public', $cssResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
-    
 
     /**
      * @test
@@ -212,5 +204,4 @@ class RappasoftFrontendAssetsTest extends TestCase
     {
         $this->assertSame('text/css; charset=utf-8', $cssResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
-
 }
