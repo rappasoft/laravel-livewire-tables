@@ -14,7 +14,7 @@ class AutoInjectRappasoftAssetsTest extends TestCase
         config()->set('livewire-tables.inject_third_party_assets_enabled', true);
 
         $injectionReturn = AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>');
-        
+
         $this->assertStringContainsStringIgnoringCase('<link href="/rappasoft/laravel-livewire-tables/core.min.css" rel="stylesheet" />', $injectionReturn);
         $this->assertStringContainsStringIgnoringCase('<script src="/rappasoft/laravel-livewire-tables/core.min.js"  ></script>', $injectionReturn);
         $this->assertStringContainsStringIgnoringCase('<link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" />', $injectionReturn);
@@ -39,7 +39,6 @@ class AutoInjectRappasoftAssetsTest extends TestCase
         config()->set('livewire-tables.inject_third_party_assets_enabled', true);
 
         $injectionReturn = AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>');
-        
 
         $this->assertStringContainsStringIgnoringCase('<link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" />', $injectionReturn);
         $this->assertStringContainsStringIgnoringCase('<script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  ></script>', $injectionReturn);
