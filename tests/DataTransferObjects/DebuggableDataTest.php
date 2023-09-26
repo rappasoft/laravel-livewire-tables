@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\DataTransferObjects;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use Rappasoft\LaravelLivewireTables\DataTransferObjects\DebuggableData;
 
 class DebuggableDataTest extends TestCase
 {
@@ -24,7 +23,7 @@ class DebuggableDataTest extends TestCase
     {
         $debuggableDTO = new DebuggableData($this->basicTable);
         $debuggableArray = $debuggableDTO->toArray();
-        
+
         $defaultQuery = 'select "pets"."id" as "id", "pets"."sort" as "sort", "pets"."name" as "name", "pets"."age" as "age", "breed"."name" as "breed.name", "pets"."last_visit" as "last_visit" from "pets" left join "breeds" as "breed" on "pets"."breed_id" = "breed"."id" limit 10 offset 0';
         $this->assertSame($debuggableArray['query'], $defaultQuery);
         $this->assertSame($debuggableArray['filters'], []);
@@ -47,5 +46,4 @@ class DebuggableDataTest extends TestCase
         $this->assertSame($debuggableArray['filters'], ['breed' => ['1']]);
 
     }
-
 }
