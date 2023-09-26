@@ -61,8 +61,8 @@ document.addEventListener('alpine:init', () => {
         evenNotInOdd: {},
         oddNotInEven: {},
         orderedRows: [],
-        defaultReorderColumn: wire.get('defaultReorderColumn'),
-        reorderStatus: wire.get('reorderStatus'),
+        defaultReorderColumn: wire.entangle('defaultReorderColumn'),
+        reorderStatus: wire.entangle('reorderStatus'),
         currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
@@ -139,22 +139,13 @@ document.addEventListener('alpine:init', () => {
         reorderToggle() {
             if (this.currentlyReorderingStatus) {
                 wire.disableReordering();
-
             }
             else {
-                if (this.hideReorderColumnUnlessReorderingStatus) {
-                    this.reorderDisplayColumn = true;
-                }
                 wire.enableReordering();
-
             }
         },
         cancelReorder() {
-            if (this.hideReorderColumnUnlessReorderingStatus) {
-                this.reorderDisplayColumn = false;
-            }
             wire.disableReordering();
-
         },
         updateOrderedItems() {
             let table = document.getElementById(tableID);
@@ -168,20 +159,24 @@ document.addEventListener('alpine:init', () => {
             if (this.currentlyReorderingStatus === true) {
 
                 let tbody = document.getElementById(tableID).getElementsByTagName('tbody')[0];
-                let evenRowClassArray = [];
                 let oddRowClassArray = [];
+                let evenRowClassArray = [];
 
-                if (tbody.rows[0] !== undefined && tbody.rows[1] !== undefined) {
-                    evenRowClassArray = Array.from(tbody.rows[0].classList);
-                    oddRowClassArray = Array.from(tbody.rows[1].classList);
-                    this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
-                    this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
-                    evenRowClassArray = []
-                    oddRowClassArray = []
+                if (tbody.rows[0] !== undefined)
+                {
+                    oddRowClassArray = Array.from(tbody.rows[0].classList);
+                } 
+                
+                if (tbody.rows[1] !== undefined) {
+                    evenRowClassArray = Array.from(tbody.rows[1].classList);    
                 }
+
+                this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
+                this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
             }
         },
         init() {
+            this.setupEvenOddClasses();
             this.$watch('currentlyReorderingStatus', value => this.setupEvenOddClasses());
 
         }
