@@ -16,8 +16,6 @@ trait WithReordering
 
     public bool $hideReorderColumnUnlessReorderingStatus = false;
 
-    public bool $reorderCurrentPageOnly = true;
-
     public bool $reorderDisplayColumn = false;
 
     public string $reorderMethod = 'reorder';
@@ -50,20 +48,21 @@ trait WithReordering
     public function enableReordering(): void
     {
         //$this->enablePaginatedReordering();
-        $this->reorderStatus = $this->currentlyReorderingStatus = $this->reorderCurrentPageOnly = $this->reorderDisplayColumn = true;
 
         $this->setReorderingSession();
         $this->setReorderingBackup();
         $this->resetReorderFields();
+        $this->reorderStatus = $this->currentlyReorderingStatus = $this->reorderDisplayColumn = true;
+
     }
 
     public function disableReordering(): void
     {
-        $this->currentlyReorderingStatus = $this->reorderDisplayColumn = false;
 
         $this->forgetReorderingSession();
         $this->setCurrentlyReorderingDisabled();
         $this->getReorderingBackup();
+        $this->currentlyReorderingStatus = $this->reorderDisplayColumn = false;
 
     }
 
@@ -156,10 +155,18 @@ trait WithReordering
     private function getReorderingBackup(): void
     {
         // TODO: Why won't secondary header and footer come back?
-
         if (session()->has($this->getReorderingBackupSessionKey())) {
             $this->restoreStateFromArray(session()->get($this->getReorderingBackupSessionKey()));
             session()->forget($this->getReorderingBackupSessionKey());
         }
+        $this->currentlyReorderingStatus = $this->reorderDisplayColumn = false;
+
+    }
+
+    public function storeReorder(array $rows = [])
+    {
+        $this->{$this->getReorderMethod()}($rows);
+        $this->forgetReorderingSession();
+        $this->getReorderingBackup();
     }
 }
