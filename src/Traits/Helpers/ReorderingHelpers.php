@@ -88,5 +88,4 @@ trait ReorderingHelpers
     {
         return $this->getTableName().'-reordering-backup';
     }
-
 }

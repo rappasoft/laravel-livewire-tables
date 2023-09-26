@@ -162,7 +162,7 @@ trait WithReordering
         $this->currentlyReorderingStatus = $this->reorderDisplayColumn = false;
 
     }
-    
+
     public function storeReorder(array $rows = [])
     {
         $this->{$this->getReorderMethod()}($rows);
