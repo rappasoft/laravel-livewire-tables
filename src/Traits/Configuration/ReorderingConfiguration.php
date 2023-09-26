@@ -82,10 +82,4 @@ trait ReorderingConfiguration
         return $this;
     }
 
-    public function setReorderCurrentPageOnly(bool $reorderCurrentPageOnly): self
-    {
-        $this->reorderCurrentPageOnly = $reorderCurrentPageOnly;
-
-        return $this;
-    }
 }
