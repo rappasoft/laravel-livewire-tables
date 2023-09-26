@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [Unreleased] - 3.x - Updates to Injection Methods
+- Amend AutoInjection/FrontendAsset to ensure it returns the original content correctly
+- Remove errant disabling of Blade Directives when disabling auto-injection
+- Amended in-line config documentation
+
 ## [Unreleased] - 3.x - setSearchFieldAttributes
 - Add setSearchFieldAttributes() and getSearchFieldAttributes()
 
