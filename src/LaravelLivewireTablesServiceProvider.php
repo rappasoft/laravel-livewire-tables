@@ -62,7 +62,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         );
 
         (new RappasoftFrontendAssets)->register();
-        
+
         ComponentHookRegistry::register(AutoInjectRappasoftAssets::class);
 
     }

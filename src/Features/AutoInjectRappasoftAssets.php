@@ -28,28 +28,25 @@ class AutoInjectRappasoftAssets extends ComponentHook
             static::$forceAssetInjection = false;
         });
 
-        if (static::$shouldInjectRappasoftAssets || static::$shouldInjectRappasoftThirdPartyAssets)
-        {
+        if (static::$shouldInjectRappasoftAssets || static::$shouldInjectRappasoftThirdPartyAssets) {
 
             app('events')->listen(RequestHandled::class, function (RequestHandled $handled) {
 
-                if (!static::$shouldInjectRappasoftAssets && !static::$shouldInjectRappasoftThirdPartyAssets)
-                {
+                if (! static::$shouldInjectRappasoftAssets && ! static::$shouldInjectRappasoftThirdPartyAssets) {
                     return;
                 }
-                
+
                 // If All Scripts Have Been Rendered - Return
                 if (
                     (
-                        !static::$shouldInjectRappasoftAssets || 
+                        ! static::$shouldInjectRappasoftAssets ||
                         (static::$shouldInjectRappasoftAssets && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts)
                     ) &&
                     (
-                        !static::$shouldInjectRappasoftThirdPartyAssets || 
+                        ! static::$shouldInjectRappasoftThirdPartyAssets ||
                         (static::$shouldInjectRappasoftThirdPartyAssets && app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts)
                     )
-                )
-                {
+                ) {
                     return;
                 }
 
@@ -63,7 +60,7 @@ class AutoInjectRappasoftAssets extends ComponentHook
 
                 if ($handled->response->status() !== 200) {
                     return;
-                }    
+                }
 
                 $html = $handled->response->getContent();
 
@@ -76,7 +73,6 @@ class AutoInjectRappasoftAssets extends ComponentHook
         }
     }
 
-
     public function dehydrate(): void
     {
         static::$hasRenderedAComponentThisRequest = true;
@@ -86,9 +82,8 @@ class AutoInjectRappasoftAssets extends ComponentHook
     {
 
         $html = str($html);
-        $rappaStyles = ((static::$shouldInjectRappasoftAssets === true) ? RappasoftFrontendAssets::tableStyles() : '') . ' ' . ((static::$shouldInjectRappasoftThirdPartyAssets === true) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '');
-        $rappaScripts = ((static::$shouldInjectRappasoftAssets === true) ? RappasoftFrontendAssets::tableScripts() : '') . ' ' . ((static::$shouldInjectRappasoftThirdPartyAssets === true) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '');
-
+        $rappaStyles = ((static::$shouldInjectRappasoftAssets === true) ? RappasoftFrontendAssets::tableStyles() : '').' '.((static::$shouldInjectRappasoftThirdPartyAssets === true) ? RappasoftFrontendAssets::tableThirdPartyStyles() : '');
+        $rappaScripts = ((static::$shouldInjectRappasoftAssets === true) ? RappasoftFrontendAssets::tableScripts() : '').' '.((static::$shouldInjectRappasoftThirdPartyAssets === true) ? RappasoftFrontendAssets::tableThirdPartyScripts() : '');
 
         if ($html->test('/<\s*head(?:\s|\s[^>])*>/i') && $html->test('/<\s*\/\s*body\s*>/i')) {
             static::$shouldInjectRappasoftAssets = static::$shouldInjectRappasoftThirdPartyAssets = false;
@@ -105,5 +100,4 @@ class AutoInjectRappasoftAssets extends ComponentHook
             ->replaceMatches('/(<\s*\/\s*head\s*>)/i', $rappaScripts.'$1')
             ->toString();
     }
-
 }
