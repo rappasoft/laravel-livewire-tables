@@ -39,10 +39,10 @@ class AutoInjectRappasoftAssets extends ComponentHook
                 // If All Scripts Have Been Rendered - Return
                 if (
                     (
-                        ! static::$shouldInjectRappasoftAssets || app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts)
+                        ! static::$shouldInjectRappasoftAssets || app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableScripts
                     ) &&
                     (
-                        ! static::$shouldInjectRappasoftThirdPartyAssets || app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts)
+                        ! static::$shouldInjectRappasoftThirdPartyAssets || app(RappasoftFrontendAssets::class)->hasRenderedRappsoftTableThirdPartyScripts
                     )
                 ) {
                     return;
