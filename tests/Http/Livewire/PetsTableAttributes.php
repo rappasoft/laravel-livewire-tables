@@ -25,29 +25,29 @@ class PetsTableAttributes extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id')
-        ->setTrAttributes(function($row, $index) {
-            if ($index === 0) {
-                return [
-                    'testTrAttribute' => 'testTrAttributeValueForTestSuiteIndex0',
-                    'default' => false,
-                ];
-            }
-            if ($index === 1) {
-                return [
-                    'testTrAttribute' => 'testTrAttributeValueForTestSuiteIndex1',
-                    'default' => false,
-                ];
-            }
-            if ($index === 500) {
-                return [
-                    'testTrAttribute' => 'testTrAttributeValueForTestSuiteNotSeen',
-                    'default' => false,
-                ];
-            }
-    
-            return [];
-        });
-      
+            ->setTrAttributes(function ($row, $index) {
+                if ($index === 0) {
+                    return [
+                        'testTrAttribute' => 'testTrAttributeValueForTestSuiteIndex0',
+                        'default' => false,
+                    ];
+                }
+                if ($index === 1) {
+                    return [
+                        'testTrAttribute' => 'testTrAttributeValueForTestSuiteIndex1',
+                        'default' => false,
+                    ];
+                }
+                if ($index === 500) {
+                    return [
+                        'testTrAttribute' => 'testTrAttributeValueForTestSuiteNotSeen',
+                        'default' => false,
+                    ];
+                }
+
+                return [];
+            });
+
     }
 
     public function columns(): array
