@@ -9,6 +9,7 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoBuildMethodTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableAttributes;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ComponentVisualsTest extends TestCase
@@ -93,5 +94,21 @@ class ComponentVisualsTest extends TestCase
         if (! $this->testErrors) {
             $this->fail('Did Not Throw Error - Missing Model/Builder');
         }
+    }
+
+    /** @test */
+    public function can_see_valid_tr_attributes_html(): void
+    {
+        Livewire::test(PetsTableAttributes::class)
+            ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex0"')
+            ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex1"');
+    }
+
+    /** @test */
+    public function cannot_see_invalid_tr_attributes_html(): void
+    {
+        Livewire::test(PetsTableAttributes::class)
+            ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex0"')
+            ->assertDontSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteNotSeen"');
     }
 }

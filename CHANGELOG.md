@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [Unreleased] - 3.x setTrAttributes
+- Adding capabilities & tests for setTrAttributes
+
 ## [Unreleased] - 3.x Fixes for reordering striping
 - Force calculation of even/odd only once in reorder mode
 - Call internal method for reordering, and pass to configured method to process
