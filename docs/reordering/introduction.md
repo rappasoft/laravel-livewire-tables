@@ -7,6 +7,8 @@ The previous iteration utilised third-party Sortable plugins, which are not requ
 
 ## An update about reordering
 
-Version 2.0 returned all rows for sorting.  In version 3.0, you will be able to sort with the items on the currently visible page, which allows for sorting on larger tables.  
-
 If you have a large data set to sort, then it is recommended that you create a minimal table instance with only the required columns for performance reasons.
+
+The field keys used in the reorder() function have been updated, and allow for easier upserting/reuse of reorder code.
+
+The reorder will not be saved until you click the "Save" button.
