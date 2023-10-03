@@ -2,39 +2,29 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [Unreleased] - 3.x setTrAttributes
+## [Unreleased] - 3.x Amends
+- Amending Documentation for Reordering
 - Adding capabilities & tests for setTrAttributes
-
-## [Unreleased] - 3.x Fixes for reordering striping
 - Force calculation of even/odd only once in reorder mode
 - Call internal method for reordering, and pass to configured method to process
-
-## [Unreleased] - 3.x - Updates to Injection Methods
 - Amend AutoInjection/FrontendAsset to ensure it returns the original content correctly
 - Remove errant disabling of Blade Directives when disabling auto-injection
 - Amended in-line config documentation
-
-## [Unreleased] - 3.x - setSearchFieldAttributes
 - Add setSearchFieldAttributes() and getSearchFieldAttributes()
-
-## [Unreleased] - 3.x - Missing Tests
-
-## [Unreleased] - 3.x - Missing pagination tests
 - Add missing pagination tests
-
-## [Unreleased] - 3.x - Beta Fixes (beta-1)
 - Removal of setSearchLazy
 - Fix for setSearchDebounce
+- Fix publishing of views
+- Fix for Bulk Actions dropdown not working in Bootstrap
+- Fix for Column Select "Select All" not consistently updating
+- Fix for lazy loading of table
+- Fix for ColumnSelect falling out of sync, displaying unselectable colums, or persisting cols in query that are not selected
 - Add setSearchBlur()
 - Add setSearchThrottle()
-- Fix publishing of views
 - Add publish translations
 - Add prependColumns() and appendColumns() functions
 - Add documentation for setSearchPlaceholder()
-- Fix for Bulk Actions dropdown not working in Bootstrap
-- Fix for Column Select "Select All" not consistently updating
-- Add fix for lazy loading of table
-- Fix for ColumnSelect falling out of sync, displaying unselectable colums, or persisting cols in query that are not selected
+
 - Add setExcludeDeselectedColumnsFromQueryEnabled and setExcludeDeselectedColumnsFromQueryDisabled methods to configure()
 
 ## [Unreleased] - 3.x (beta-0)
