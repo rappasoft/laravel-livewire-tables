@@ -123,7 +123,7 @@ public function configure(): void
 
 ## setReorderMethod
 
-Set the method that will be called when a row is moved. (Default is `reorder`.)
+Set the method that will be called when the "Save" button is clicked. (Default is `reorder`.)
 
 ```php
 public function configure(): void
