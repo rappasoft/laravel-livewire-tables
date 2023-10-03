@@ -34,6 +34,7 @@
                         </button>
                     </div>
                 </template>
+
                 <template x-if="selectedItems.length !== paginationTotalItemCount">
                     <div wire:key="{{ $tableName }}-some-selected">
                         <span>
@@ -98,6 +99,7 @@
                         </button>
                     </div>
                 </template>
+
                 <template x-if="selectedItems.length !== paginationTotalItemCount">
                     <div wire:key="{{ $tableName }}-some-selected">
                         <span>

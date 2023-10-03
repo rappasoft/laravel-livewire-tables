@@ -16,14 +16,16 @@
     :draggable="currentlyReorderingStatus"
     wire:key="{{ $tableName }}-tablerow-tr-{{ $row->{$this->getPrimaryKey()} }}"
     loopType="{{ ($rowIndex % 2 === 0) ? 'even' : 'odd' }}"
+    {{
+        $attributes->merge($customAttributes)
+                ->class(['bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
+                ->class(['bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
+                ->class(['cursor-pointer' => ($component->isTailwind() && $component->hasTableRowUrl() && ($customAttributes['default'] ?? true))])
+                ->class(['bg-light rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
+                ->class(['bg-white rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
+                ->except(['default'])
+    }}
 
-    @class([
-        'bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0),
-        'bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0),
-        'cursor-pointer' => ($component->isTailwind() && $component->hasTableRowUrl()),
-        'bg-light rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 === 0),
-        'bg-white rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 !== 0),
-    ])
 >
     {{ $slot }}
 </tr>

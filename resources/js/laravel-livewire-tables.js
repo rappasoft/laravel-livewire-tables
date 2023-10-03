@@ -61,21 +61,16 @@ document.addEventListener('alpine:init', () => {
         evenNotInOdd: {},
         oddNotInEven: {},
         orderedRows: [],
-        defaultReorderColumn: wire.entangle('defaultReorderColumn'),
-        reorderStatus: wire.entangle('reorderStatus'),
+        defaultReorderColumn: wire.get('defaultReorderColumn'),
+        reorderStatus: wire.get('reorderStatus'),
         currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
-        reorderCurrentPageOnly: wire.entangle('reorderCurrentPageOnly'),
         dragStart(event) {
             this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
             event.target.classList.add("laravel-livewire-tables-dragging");
-
-            if (this.evenNotInOdd.length == 0 || this.oddNotInEven.length == 0) {
-                this.setupEvenOddClasses();
-            }
         },
         dragOverEvent(event) {
             if (typeof this.currentlyHighlightedElement == 'object') {
@@ -95,7 +90,6 @@ document.addEventListener('alpine:init', () => {
         },
         dragLeaveEvent(event) {
             event.target.closest('tr').classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
-
         },
         dropEvent(event) {
             if (typeof this.currentlyHighlightedElement == 'object') {
@@ -127,10 +121,8 @@ document.addEventListener('alpine:init', () => {
             });
             */
             let nextLoop = 'even';
-            this.orderedRows = [];
             for (let i = 1, row; row = table.rows[i]; i++) {
-                if (!row.classList.contains('hidden')) {
-                    this.orderedRows.push({ [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
+                if (!row.classList.contains('hidden') && !row.classList.contains('md:hidden') ) {
                     if (nextLoop === 'even') {
                         row.classList.remove(...this.oddNotInEven);
                         row.classList.add(...this.evenNotInOdd);
@@ -150,50 +142,48 @@ document.addEventListener('alpine:init', () => {
 
             }
             else {
-                this.currentlyReorderingStatus = true;
                 if (this.hideReorderColumnUnlessReorderingStatus) {
                     this.reorderDisplayColumn = true;
-                    wire.enableReordering();
                 }
+                wire.enableReordering();
+
             }
         },
         cancelReorder() {
-            this.currentlyReorderingStatus = false;
             if (this.hideReorderColumnUnlessReorderingStatus) {
                 this.reorderDisplayColumn = false;
             }
+            wire.disableReordering();
 
         },
         updateOrderedItems() {
-            this.currentlyReorderingStatus = false;
-            if (this.hideReorderColumnUnlessReorderingStatus) {
-                this.reorderDisplayColumn = false;
+            let table = document.getElementById(tableID);
+            let orderedRows = [];
+            for (let i = 1, row; row = table.rows[i]; i++) {
+               orderedRows.push({ [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
             }
-            wire.set('orderedItems', this.orderedRows);
-            if (!this.reorderCurrentPageOnly) {
-                wire.disableReordering();
-            }
+            wire.storeReorder(orderedRows);
         },
         setupEvenOddClasses() {
-            let table = document.getElementById(tableID);
-            let tbody = table.getElementsByTagName('tbody')[0];
-            let evenRowClassArray = [];
-            let oddRowClassArray = [];
+            if (this.currentlyReorderingStatus === true) {
 
-            if (tbody.rows[2] !== undefined) {
-                evenRowClassArray = Array.from(tbody.rows[2].classList);
+                let tbody = document.getElementById(tableID).getElementsByTagName('tbody')[0];
+                let evenRowClassArray = [];
+                let oddRowClassArray = [];
+
+                if (tbody.rows[0] !== undefined && tbody.rows[1] !== undefined) {
+                    evenRowClassArray = Array.from(tbody.rows[0].classList);
+                    oddRowClassArray = Array.from(tbody.rows[1].classList);
+                    this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
+                    this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
+                    evenRowClassArray = []
+                    oddRowClassArray = []
+                }
             }
-
-            if (tbody.rows[3] !== undefined) {
-                oddRowClassArray = Array.from(tbody.rows[3].classList);
-            }
-
-            this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
-            this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
-
         },
         init() {
-            this.setupEvenOddClasses();
+            this.$watch('currentlyReorderingStatus', value => this.setupEvenOddClasses());
+
         }
     }));
 

@@ -80,9 +80,18 @@ trait WithData
 
     protected function joinRelations(): Builder
     {
-        foreach ($this->getSelectableColumns() as $column) {
-            if ($column->hasRelations()) {
-                $this->setBuilder($this->joinRelation($column));
+        if ($this->getExcludeDeselectedColumnsFromQuery()) {
+            foreach ($this->getSelectedColumnsForQuery() as $column) {
+                if ($column->hasRelations()) {
+                    $this->setBuilder($this->joinRelation($column));
+                }
+            }
+
+        } else {
+            foreach ($this->getColumns()->reject(fn (Column $column) => $column->isLabel()) as $column) {
+                if ($column->hasRelations()) {
+                    $this->setBuilder($this->joinRelation($column));
+                }
             }
         }
 
@@ -161,8 +170,14 @@ trait WithData
             $this->setBuilder($this->getBuilder()->addSelect($select));
         }
 
-        foreach ($this->getSelectableColumns() as $column) {
-            $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
+        if ($this->getExcludeDeselectedColumnsFromQuery()) {
+            foreach ($this->getSelectedColumnsForQuery() as $column) {
+                $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
+            }
+        } else {
+            foreach ($this->getColumns()->reject(fn (Column $column) => $column->isLabel()) as $column) {
+                $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
+            }
         }
 
         return $this->getBuilder();

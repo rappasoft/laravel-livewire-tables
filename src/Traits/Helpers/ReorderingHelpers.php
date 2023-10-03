@@ -88,9 +88,4 @@ trait ReorderingHelpers
     {
         return $this->getTableName().'-reordering-backup';
     }
-
-    public function getReorderCurrentPageOnly(): bool
-    {
-        return $this->reorderCurrentPageOnly;
-    }
 }

@@ -7,6 +7,12 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnHelpers
 {
+    public array $columnSelectStats2;
+
+    public int $defaultVisibleColumnCount;
+
+    public int $visibleColumnCount;
+
     /**
      * Set the user defined columns
      */
@@ -83,13 +89,6 @@ trait ColumnHelpers
             ->map(fn (Column $column) => $column->getRelationString())
             ->values()
             ->toArray();
-    }
-
-    public function getSelectableColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isLabel())
-            ->values();
     }
 
     public function getSearchableColumns(): Collection

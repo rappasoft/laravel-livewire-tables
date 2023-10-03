@@ -87,4 +87,18 @@ class PaginationHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->isPaginationMethod('standard'));
     }
+
+    /** @test */
+    public function can_check_per_page_displayed_item_count(): void
+    {
+        $this->assertSame(5, $this->basicTable->getPerPageDisplayedItemCount());
+
+    }
+
+    /** @test */
+    public function can_check_per_page_displayed_items(): void
+    {
+        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getPerPageDisplayedItemIds());
+
+    }
 }

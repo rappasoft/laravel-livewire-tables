@@ -43,7 +43,7 @@ trait WithRappasoftTableStyles
         $styles = static::tableCss($options);
 
         // HTML Label.
-        $html = $debug ? ['<!-- Rappasoft Table Styles -->'] : [];
+        $html = $debug ? ['<!-- Rappasoft Core Table Styles -->'] : [];
 
         $html[] = $styles;
 

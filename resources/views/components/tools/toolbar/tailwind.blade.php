@@ -35,7 +35,12 @@
                     wire:model{{ $component->getSearchOptions() }}="search"
                     placeholder="{{ $component->getSearchPlaceholder() }}"
                     type="text"
-                    class="block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if ($component->hasSearch()) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif"
+                    {{ 
+                        $attributes->merge($component->getSearchFieldAttributes())
+                        ->class(['block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 @if ($component->hasSearch()) rounded-none rounded-l-md focus:ring-0 focus:border-gray-300 @else focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md @endif' => $component->getSearchFieldAttributes()['default'] ?? true])
+                        ->except('default') 
+                    }}
+
                 />
 
                 @if ($component->hasSearch())
@@ -238,22 +243,23 @@
                         <div class="bg-white rounded-md shadow-xs dark:bg-gray-700 dark:text-white">
                             <div class="p-2" role="menu" aria-orientation="vertical"
                                  aria-labelledby="column-select-menu">
-                                <div>
+                                <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                                     <label
                                         wire:loading.attr="disabled"
                                         class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait"
                                     >
                                         <input
                                             class="text-indigo-600 transition duration-150 ease-in-out border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
-                                            wire:loading.attr="disabled" type="checkbox"
-                                            @if($component->allDefaultVisibleColumnsAreSelected()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
+                                            wire:loading.attr="disabled" 
+                                            type="checkbox"
+                                            @checked($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count())
+                                            @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count())  wire:click="deselectAllColumns" @else wire:click="selectAllColumns" @endif
                                         >
                                         <span class="ml-2">{{ __('All Columns') }}</span>
                                     </label>
                                 </div>
 
-                                @foreach ($component->getColumns() as $column)
-                                    @if ($column->isVisible() && $column->isSelectable())
+                                @foreach ($component->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
                                         <div
                                             wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}"
                                         >
@@ -266,11 +272,10 @@
                                                     class="text-indigo-600 rounded border-gray-300 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
                                                     wire:model.live="selectedColumns" wire:target="selectedColumns"
                                                     wire:loading.attr="disabled" type="checkbox"
-                                                    value="{{ $column->getSlug() }}" />
-                                                <span class="ml-2">{{ $column->getTitle() }}</span>
+                                                    value="{{ $columnSlug }}" />
+                                                <span class="ml-2">{{ $columnTitle }}</span>
                                             </label>
                                         </div>
-                                    @endif
                                 @endforeach
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 ---
 title: DateRange Filters
-weight: 7
+weight: 3
 ---
 
 ## DateRange Filters

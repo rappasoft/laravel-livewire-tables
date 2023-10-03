@@ -31,16 +31,12 @@ class RappasoftFrontendAssets
             return Route::get($scriptPath, $handle);
         });
 
-        Blade::directive('rappasoftTableScripts', [static::class, 'rappasoftTableScripts']);
-
         // Set the CSS route for the core tables CSS
         app($this::class)->setRappasoftTableStylesRoute(function ($handle) {
             $stylesPath = '/rappasoft/laravel-livewire-tables/core.min.css';
 
             return Route::get($stylesPath, $handle);
         });
-
-        Blade::directive('rappasoftTableStyles', [static::class, 'rappasoftTableStyles']);
 
         // Set the JS route for the third party JS
         app($this::class)->setRappasoftTableThirdPartyScriptRoute(function ($handle) {
@@ -49,8 +45,6 @@ class RappasoftFrontendAssets
             return Route::get($scriptPath, $handle);
         });
 
-        Blade::directive('rappasoftTableThirdPartyScripts', [static::class, 'rappasoftTableThirdPartyScripts']);
-
         // Set the CSS route for the third party CSS
         app($this::class)->setRappasoftTableThirdPartyStylesRoute(function ($handle) {
             $stylesPath = '/rappasoft/laravel-livewire-tables/thirdparty.css';
@@ -58,16 +52,30 @@ class RappasoftFrontendAssets
             return Route::get($stylesPath, $handle);
         });
 
-        Blade::directive('rappasoftTableThirdPartyStyles', [static::class, 'rappasoftTableThirdPartyStyles']);
+        static::registerBladeDirectives();
 
+    }
+
+    protected function registerBladeDirectives()
+    {
+        Blade::directive('rappasoftTableScripts', [static::class, 'rappasoftTableScripts']);
+        Blade::directive('rappasoftTableStyles', [static::class, 'rappasoftTableStyles']);
+        Blade::directive('rappasoftTableThirdPartyScripts', [static::class, 'rappasoftTableThirdPartyScripts']);
+        Blade::directive('rappasoftTableThirdPartyStyles', [static::class, 'rappasoftTableThirdPartyStyles']);
     }
 
     protected function pretendResponseIsJs(string $file): \Symfony\Component\HttpFoundation\Response
     {
 
-        $expires = strtotime((config('livewire-tables.cache_assets', false) ? '+1 second' : '+1 hour'));
-        $lastModified = (config('livewire-tables.cache_assets', false) ? strtotime(now()) : filemtime($file));
-        $cacheControl = (config('livewire-tables.cache_assets', false) ? 'public, max-age=1' : 'public, max-age=3600');
+        if (config('livewire-tables.cache_assets', false) === true) {
+            $expires = strtotime('+1 hour');
+            $lastModified = filemtime($file);
+            $cacheControl = 'public, max-age=3600';
+        } else {
+            $expires = strtotime('+1 second');
+            $lastModified = \Carbon\Carbon::now()->timestamp;
+            $cacheControl = 'public, max-age=1';
+        }
 
         $headers = [
             'Content-Type' => 'application/javascript; charset=utf-8',
@@ -81,9 +89,15 @@ class RappasoftFrontendAssets
 
     protected function pretendResponseIsCSS(string $file): \Symfony\Component\HttpFoundation\Response
     {
-        $expires = strtotime((config('livewire-tables.cache_assets', false) ? '+1 second' : '+1 hour'));
-        $lastModified = (config('livewire-tables.cache_assets', false) ? strtotime(now()) : filemtime($file));
-        $cacheControl = (config('livewire-tables.cache_assets', false) ? 'public, max-age=1' : 'public, max-age=3600');
+        if (config('livewire-tables.cache_assets', false) === true) {
+            $expires = strtotime('+1 hour');
+            $lastModified = filemtime($file);
+            $cacheControl = 'public, max-age=3600';
+        } else {
+            $expires = strtotime('+1 second');
+            $lastModified = \Carbon\Carbon::now()->timestamp;
+            $cacheControl = 'public, max-age=1';
+        }
 
         $headers = [
             'Content-Type' => 'text/css; charset=utf-8',

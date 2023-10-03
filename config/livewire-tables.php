@@ -6,21 +6,34 @@ return [
      */
     'theme' => 'tailwind',
 
-    'cache_assets' => true,
     /**
-     * Enable or Disable automatic injection of assets
+     * Filter Frontend Asset Options
      */
-    'inject_assets' => true,
 
     /**
-     * Enable or Disable inclusion of published third-party assets
+     * Cache Rappasoft Frontend Assets
      */
-    'published_third_party_assets' => false,
+    'cache_assets' => false,
 
     /**
-     * Enable or Disable remote third-party assets
+     * Enable or Disable automatic injection of core assets
      */
-    'remote_third_party_assets' => true,
+    'inject_core_assets_enabled' => true,
+
+    /**
+     * Enable or Disable automatic injection of third-party assets
+     */
+    'inject_third_party_assets_enabled' => true,
+
+    /**
+     * Enable Blade Directives (Not required if automatically injecting or using bundler approaches)
+     */
+    'enable_blade_directives ' => false,
+
+    /**
+     * Filter Default Configuration Options
+     *
+     * */
 
     /**
      * Configuration options for DateFilter

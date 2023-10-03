@@ -45,9 +45,11 @@
                     wire:model{{ $component->getSearchOptions() }}="search"
                     placeholder="{{ $component->getSearchPlaceholder() }}"
                     type="text"
-                    @class([
-                        'form-control' => $component->isBootstrap(),
-                    ])
+                    {{ 
+                        $attributes->merge($component->getSearchFieldAttributes())
+                        ->class(['form-control' => $component->getSearchFieldAttributes()['default'] ?? true])
+                        ->except('default') 
+                    }}
                 >
 
                 @if ($component->hasSearch())
@@ -193,7 +195,7 @@
                             'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
                         ])
                         type="button"
-                        id="{{ $tableName }}-bulkActionsDropdown" data-toggle="dropdown"
+                        id="{{ $tableName }}-bulkActionsDropdown" data-toggle="dropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         @lang('Bulk Actions')
                     </button>
@@ -260,24 +262,24 @@
                         aria-labelledby="columnSelect-{{ $tableName }}"
                     >
                         @if($component->isBootstrap4())
-                            <div>
+                            <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                                 <label wire:loading.attr="disabled" class="px-2 mb-1">
                                     <input
                                         wire:loading.attr="disabled"
                                         type="checkbox"
-                                        @if($component->allDefaultVisibleColumnsAreSelected()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
+                                        @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                                     />
 
                                     <span class="ml-2">{{ __('All Columns') }}</span>
                                 </label>
                             </div>
                         @elseif($component->isBootstrap5())
-                            <div class="form-check ms-2">
+                            <div class="form-check ms-2" wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                                 <input
                                     wire:loading.attr="disabled"
                                     type="checkbox"
                                     class="form-check-input"
-                                    @if($component->allDefaultVisibleColumnsAreSelected()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
+                                    @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                                 />
 
                                 <label wire:loading.attr="disabled" class="form-check-label">
@@ -286,8 +288,7 @@
                             </div>
                         @endif
 
-                        @foreach ($component->getColumns() as $column)
-                            @if ($column->isVisible() && $column->isSelectable())
+                        @foreach ($component->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
                                 <div
                                     wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}"
                                     @class([
@@ -304,10 +305,10 @@
                                                 wire:model.live="selectedColumns"
                                                 wire:target="selectedColumns"
                                                 wire:loading.attr="disabled" type="checkbox"
-                                                value="{{ $column->getSlug() }}"
+                                                value="{{ $columnSlug }}"
                                             />
                                             <span class="ml-2">
-                                                {{ $column->getTitle() }}
+                                                {{ $columnTitle }}
                                             </span>
                                         </label>
                                     @elseif($component->isBootstrap5())
@@ -317,18 +318,17 @@
                                             wire:loading.attr="disabled"
                                             type="checkbox"
                                             class="form-check-input"
-                                            value="{{ $column->getSlug() }}"
+                                            value="{{ $columnSlug }}"
                                         />
                                         <label
                                             wire:loading.attr="disabled"
                                             wire:target="selectedColumns"
                                             class="{{ $loop->last ? 'mb-0' : 'mb-1' }} form-check-label"
                                         >
-                                            {{ $column->getTitle() }}
+                                            {{ $columnTitle }}
                                         </label>
                                     @endif
                                 </div>
-                            @endif
                         @endforeach
                     </div>
                 </div>
