@@ -111,6 +111,7 @@ abstract class DataTableComponent extends Component
 
     /**
      * The base query.
+     * @throws DataTableConfigurationException
      */
     public function builder(): Builder
     {
