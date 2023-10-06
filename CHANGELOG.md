@@ -2,7 +2,11 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [Unreleased] - 3.x Amends
+## [3.0.0-beta.2] - Removing superfluous item from blade
+- Removes superfluous @endphp from the DateRangeFilter blade
+- Removes reference to remote/published 3rd party assets
+
+## [3.0.0-beta.1] - 3.x Amends
 - Amending Documentation for Reordering
 - Adding capabilities & tests for setTrAttributes
 - Force calculation of even/odd only once in reorder mode
@@ -27,7 +31,6 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 - Add setExcludeDeselectedColumnsFromQueryEnabled and setExcludeDeselectedColumnsFromQueryDisabled methods to configure()
 
-## [Unreleased] - 3.x (beta-0)
 - Requirements Change
     - Requires LiveWire 3.x
     - Requires PHP 8.1+
