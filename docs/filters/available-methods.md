@@ -352,6 +352,21 @@ Example blade:
 </label>
 ```
 
+### setFilterLabelAttributes
+Set custom attributes for a Filter Label.  At present it is recommended to only use this for "class" and "style" attributes to avoid conflicts.
+
+By default, this replaces the default classes on the Filter Label wrapper, if you would like to keep them, set the default flag to true.
+
+```php
+TextFilter::make('Name')
+    ->setFilterLabelAttributes(
+        [
+            'class' => 'text-xl', 
+            'default' => true,
+        ]
+    ),
+```
+
 ### Config
 
 If the filter takes any config options, you can set them with the `config` method:

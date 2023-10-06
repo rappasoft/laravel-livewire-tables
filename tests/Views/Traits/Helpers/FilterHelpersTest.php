@@ -353,4 +353,26 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($filter->hasCustomPillBlade());
         $this->assertSame('foo', $filter->getCustomPillBlade());
     }
+
+    /** @test */
+    public function can_get_filter_label_attributes(): void
+    {
+        $filter1 = TextFilter::make('Filter1');
+        $filter2 = TextFilter::make('Filter2')->setFilterLabelAttributes(
+            ['class' => 'text-xl', 'default' => true]
+        );
+        $filter3 = TextFilter::make('Filter3')->setFilterLabelAttributes(
+            ['class' => 'text-2xl', 'default' => false]
+        );
+
+        $this->assertFalse($filter1->hasFilterLabelAttributes());
+        $this->assertTrue($filter2->hasFilterLabelAttributes());
+        $this->assertTrue($filter3->hasFilterLabelAttributes());
+
+        $this->assertSame($filter1->getFilterLabelAttributes(), ['default' => true]);
+        $this->assertSame($filter2->getFilterLabelAttributes(), ['class' => 'text-xl', 'default' => true]);
+        $this->assertSame($filter3->getFilterLabelAttributes(), ['class' => 'text-2xl', 'default' => false]);
+
+
+    }
 }
