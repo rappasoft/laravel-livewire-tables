@@ -373,6 +373,5 @@ class FilterHelpersTest extends TestCase
         $this->assertSame($filter2->getFilterLabelAttributes(), ['class' => 'text-xl', 'default' => true]);
         $this->assertSame($filter3->getFilterLabelAttributes(), ['class' => 'text-2xl', 'default' => false]);
 
-
     }
 }
