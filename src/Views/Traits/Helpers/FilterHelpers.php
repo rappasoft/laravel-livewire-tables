@@ -241,6 +241,7 @@ trait FilterHelpers
         return ! is_null($this->filterDefaultValue);
     }
 
+
     public function getFilterLabelAttributes(): array
     {
         return [...['default' => true], ...$this->filterLabelAttributes];
@@ -248,6 +249,7 @@ trait FilterHelpers
 
     public function hasFilterLabelAttributes(): bool
     {
-        return ! ($this->filterLabelAttributes != ['default' => true] && $this->filterLabelAttributes != ['default' => false]);
+        return ($this->getFilterLabelAttributes() != ['default' => true] && $this->getFilterLabelAttributes() != ['default' => false]);
     }
+
 }
