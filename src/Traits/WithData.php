@@ -49,9 +49,7 @@ trait WithData
 
         if ($this->currentlyReorderingIsEnabled()) {
             $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultReorderColumn(), $this->getDefaultReorderDirection()));
-        }
-        else
-        {
+        } else {
             $this->applySorting();
 
         }
