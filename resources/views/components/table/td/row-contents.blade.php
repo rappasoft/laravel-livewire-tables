@@ -7,15 +7,10 @@
             @if (! $hidden) x-data="{open:false}" @endif
             {{
                 $attributes
-                    ->merge(['class' => 'p-3 table-cell text-center'])
-                    ->class([
-                        'md:hidden' =>
-                            !$component->shouldCollapseAlways() && (
-                            ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
-                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile())
-                            )
-                    ])
-                    ->class(['sm:hidden' => !$component->shouldCollapseAlways() &&  $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
+                    ->merge(['class' => 'p-3 table-cell text-center '])
+                    ->class(['sm:hidden' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet()])
+                    ->class(['md:hidden' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet() && $component->shouldCollapseOnMobile()])
+                    ->class(['lg:hidden' => !$component->shouldCollapseAlways() && ($component->shouldCollapseOnTablet() || $component->shouldCollapseOnMobile())])
             }}
             :class="currentlyReorderingStatus ? 'laravel-livewire-tables-reorderingMinimised' : ''"
         >
@@ -34,6 +29,7 @@
             @if (! $hidden) x-data="{open:false}" @endif
             {{
                 $attributes
+                    ->class(['d-none' => !$component->shouldCollapseAlways()])
                     ->class([
                         'd-md-none' => !$component->shouldCollapseAlways() && (
                             ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||

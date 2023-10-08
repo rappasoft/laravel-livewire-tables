@@ -30,8 +30,8 @@
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
 
         @class([
-            'hidden md:hidden bg-white dark:bg-gray-700 dark:text-white' => $component->isTailwind(),
-            'd-none d-md-none' => $component->isBootstrap()
+            'hidden bg-white dark:bg-gray-700 dark:text-white' => $component->isTailwind(),
+            'd-none' => $component->isBootstrap()
         ])
     >
         <td
@@ -47,10 +47,13 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <p wire:key="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}-collapsed-contents-{{ $colIndex }}"
+                    
                         @class([
                             'block mb-2' => $component->isTailwind() && $column->shouldCollapseAlways(),
-                            'block mb-2 sm:hidden' => $component->isTailwind() && $column->shouldCollapseOnMobile(),
-                            'block mb-2 md:hidden' => $component->isTailwind() && $column->shouldCollapseOnTablet(),
+                            'block mb-2 sm:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
+                            'block mb-2 md:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
+                            'block mb-2 lg:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
+
                             'd-block mb-2' => $component->isBootstrap() && $column->shouldCollapseAlways(),
                             'd-block mb-2 d-sm-none' => $component->isBootstrap() && $column->shouldCollapseOnMobile(),
                             'd-block mb-2 d-md-none' => $component->isBootstrap() && $column->shouldCollapseOnTablet(),
