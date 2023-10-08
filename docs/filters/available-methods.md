@@ -332,21 +332,31 @@ SelectFilter::make('Active')
     ->setCustomFilterLabel('path.to.blade')
 ```
 
-You will receive two properties to your blade, filter (the filter instance), and theme (your chosen theme).  You may access the filter layout as shown below
+You will receive several properties to your blade, explained here:
+- $filter (the filter instance)
+- $filterLayout ('slide-down' or 'popover')
+- $tableName (the table name)
+- $isTailwind (bool - is theme Tailwind)
+- $isBootstrap (bool - is theme Bootstrap 4 or Bootstrap 5)
+- $isBootstrap4 (bool - is theme Bootstrap 4)
+- $isBootstrap5 (bool - is theme Bootstrap 5)
+- $customLabelAttributes (array -> any customLabel attributes set using setFilterLabelAttributes())
 
-Example blade:
+Example label blade:
 ```php
-@aware(['component'])
-@props(['filter'])
+@props(['filter', 'filterLayout' => 'popover', 'tableName' => 'table', 'isTailwind' => false, 'isBootstrap' => false, 'isBootstrap4' => false, 'isBootstrap5' => false, 'customLabelAttributes' => [])
 
-<label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" 
-    @class([
-        'block text-sm font-large leading-5 text-red-700 dark:text-red-700' => $component->isTailwind(),
-        'd-block' => $component->isBootstrap4() && $component->isFilterLayoutSlideDown(),
-        'mb-2' => $component->isBootstrap4() && $component->isFilterLayoutPopover(),
-        'd-block display-4' => $component->isBootstrap5() && $component->isFilterLayoutSlideDown(),
-        'mb-2 display-4' => $component->isBootstrap5() && $component->isFilterLayoutPopover(),
-    ])
+
+<label for="{{ $tableName }}-filter-{{ $filter->getKey() }}"
+
+    {{
+        $attributes->merge($customLabelAttributes)
+            ->class(['block text-sm font-medium leading-5 text-gray-700 dark:text-white' => $isTailwind && $customLabelAttributes['default'] ?? true])
+            ->class(['d-block' => $isBootstrap && $filterLayout == 'slide-down' && $customLabelAttributes['default'] ?? true])
+            ->class(['mb-2' => $isBootstrap && $filterLayout == 'popover' && $customLabelAttributes['default'] ?? true])
+            ->except('default')
+    }}
+
 >
     {{ $filter->getName() }}
 </label>
@@ -366,6 +376,7 @@ TextFilter::make('Name')
         ]
     ),
 ```
+
 
 ### Config
 

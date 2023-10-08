@@ -124,6 +124,5 @@ trait FilterConfiguration
         $this->filterLabelAttributes = [...['default' => false], ...$filterLabelAttributes];
 
         return $this;
-
     }
 }
