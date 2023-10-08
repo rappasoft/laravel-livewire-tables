@@ -17,6 +17,18 @@ trait WithColumns
 
     protected Collection $appendedColumns;
 
+    protected ?bool $shouldAlwaysCollapse;
+
+    protected ?bool $shouldMobileCollapse;
+
+    protected ?bool $shouldTabletCollapse;
+    
+    public array $columnSelectStats2;
+
+    public int $defaultVisibleColumnCount;
+
+    public int $visibleColumnCount;
+    
     public function bootWithColumns(): void
     {
         $this->columns = collect();
