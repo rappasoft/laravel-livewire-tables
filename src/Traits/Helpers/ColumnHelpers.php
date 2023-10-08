@@ -119,14 +119,13 @@ trait ColumnHelpers
 
     public function hasCollapsedColumns(): bool
     {
-        return ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways());
+        return $this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways();
     }
 
     public function shouldCollapseOnMobile(): bool
     {
 
-        if (!isset($this->shouldMobileCollapse))
-        {
+        if (! isset($this->shouldMobileCollapse)) {
             $this->shouldMobileCollapse = ($this->getCollapsedMobileColumnsCount() > 0);
         }
 
@@ -162,8 +161,7 @@ trait ColumnHelpers
 
     public function shouldCollapseOnTablet(): bool
     {
-        if (!isset($this->shouldTabletCollapse))
-        {
+        if (! isset($this->shouldTabletCollapse)) {
             $this->shouldTabletCollapse = ($this->getCollapsedTabletColumnsCount() > 0);
         }
 
@@ -241,7 +239,6 @@ trait ColumnHelpers
 
     }
 
-
     public function getCollapsedAlwaysColumns(): Collection
     {
         return $this->getColumns()
@@ -256,16 +253,12 @@ trait ColumnHelpers
         return $this->getCollapsedAlwaysColumns()->count();
     }
 
-
     public function shouldCollapseAlways(): bool
     {
-        if (!isset($this->shouldAlwaysCollapse))
-        {
+        if (! isset($this->shouldAlwaysCollapse)) {
             $this->shouldAlwaysCollapse = ($this->getCollapsedAlwaysColumnsCount() > 0);
         }
 
         return $this->shouldAlwaysCollapse;
     }
-
-
 }

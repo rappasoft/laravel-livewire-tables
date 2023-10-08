@@ -46,7 +46,7 @@ class Column
 
     protected bool $collapseOnTablet = false;
 
-    protected bool $collapseAlways = false;  
+    protected bool $collapseAlways = false;
 
     protected ?string $sortingPillTitle = null;
 
