@@ -1,9 +1,5 @@
 <div>
-    @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
-        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName])
-    @elseif(!$filter->hasCustomPosition())
-        <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName"  />
-    @endif
+    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
 
     <div @class([
         'rounded-md shadow-sm' => $isTailwind,

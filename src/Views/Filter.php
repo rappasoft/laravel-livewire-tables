@@ -35,6 +35,8 @@ abstract class Filter
 
     protected ?string $filterCustomLabel = null;
 
+    protected array $filterLabelAttributes = [];
+
     protected ?int $filterSlidedownRow = null;
 
     protected ?int $filterSlidedownColspan = null;
