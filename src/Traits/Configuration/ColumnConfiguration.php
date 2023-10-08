@@ -50,5 +50,4 @@ trait ColumnConfiguration
         unset($this->shouldMobileCollapse);
         unset($this->shouldTabletCollapse);
     }
-
 }
