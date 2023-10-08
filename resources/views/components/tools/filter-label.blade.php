@@ -6,7 +6,7 @@
 @endphp
 
 @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
-    @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName, 'isTailwind' => $isTailwind, 'isBootstrap' => $isBootstrap, 'isBootstrap4' => $isBootstrap4, 'isBootstrap5' => $isBootstrap5, 'customAttributes' => $customAttributes])
+    @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName, 'isTailwind' => $isTailwind, 'isBootstrap' => $isBootstrap, 'isBootstrap4' => $isBootstrap4, 'isBootstrap5' => $isBootstrap5, 'customLabelAttributes' => $customLabelAttributes])
 @elseif(!$filter->hasCustomPosition())
     <label for="{{ $tableName }}-filter-{{ $filter->getKey() }}"
 
