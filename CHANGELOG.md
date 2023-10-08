@@ -2,12 +2,12 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [UNRELEASED]
+## [3.0.0-beta.1] - 2023-10-08
 - Removes superfluous @endphp from the DateRangeFilter blade
 - Removes reference to remote/published 3rd party assets
 - Add setFilterLabelAttributes Capability Per-Filter
 
-## [3.0.0-beta.1] - 3.x Amends
+## [3.0.0-beta.0] - 3.x Initial Release
 - Amending Documentation for Reordering
 - Adding capabilities & tests for setTrAttributes
 - Force calculation of even/odd only once in reorder mode
