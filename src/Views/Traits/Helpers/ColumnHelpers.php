@@ -197,6 +197,18 @@ trait ColumnHelpers
         return $this->collapseOnTablet;
     }
 
+    public function collapseAlways(): self
+    {
+        $this->collapseAlways = true;
+
+        return $this;
+    }
+
+    public function shouldCollapseAlways(): bool
+    {
+        return $this->collapseAlways;
+    }
+
     public function getSortingPillTitle(): string
     {
         if ($this->hasCustomSortingPillTitle()) {
