@@ -29,14 +29,9 @@
             @if (! $hidden) x-data="{open:false}" @endif
             {{
                 $attributes
-                    ->class(['d-none' => !$component->shouldCollapseAlways()])
-                    ->class([
-                        'd-md-none' => !$component->shouldCollapseAlways() && (
-                            ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
-                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile())
-                        )
-                    ])
-                    ->class(['d-sm-none' => !$component->shouldCollapseAlways() && $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
+                    ->class(['d-sm-none' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet()])
+                    ->class(['d-md-none' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet() && $component->shouldCollapseOnMobile()])
+                    ->class(['d-lg-none' => !$component->shouldCollapseAlways() && ($component->shouldCollapseOnTablet() || $component->shouldCollapseOnMobile())])
             }}
         >
             @if (! $hidden)

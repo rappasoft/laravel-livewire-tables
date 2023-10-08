@@ -53,10 +53,12 @@
                             'block mb-2 sm:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
                             'block mb-2 md:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
                             'block mb-2 lg:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
+                            
+                            'd-block mb-2' => $component->isTailwind() && $column->shouldCollapseAlways(),
+                            'd-block mb-2 d-sm-none' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
+                            'd-block mb-2 d-md-none' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
+                            'd-block mb-2 d-lg-none' => $component->isTailwind() && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
 
-                            'd-block mb-2' => $component->isBootstrap() && $column->shouldCollapseAlways(),
-                            'd-block mb-2 d-sm-none' => $component->isBootstrap() && $column->shouldCollapseOnMobile(),
-                            'd-block mb-2 d-md-none' => $component->isBootstrap() && $column->shouldCollapseOnTablet(),
                         ])
                     >
                         <strong>{{ $column->getTitle() }}</strong>: {{ $column->renderContents($row) }}
