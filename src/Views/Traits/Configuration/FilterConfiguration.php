@@ -125,5 +125,4 @@ trait FilterConfiguration
 
         return $this;
     }
-
 }

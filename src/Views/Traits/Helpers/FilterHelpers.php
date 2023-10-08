@@ -250,5 +250,4 @@ trait FilterHelpers
     {
         return $this->getFilterLabelAttributes() != ['default' => true] && $this->getFilterLabelAttributes() != ['default' => false];
     }
-
 }
