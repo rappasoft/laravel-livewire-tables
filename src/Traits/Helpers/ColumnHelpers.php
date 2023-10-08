@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnHelpers
 {
-
     /**
      * Set the user defined columns
      */
@@ -108,10 +107,10 @@ trait ColumnHelpers
 
     public function hasCollapsedColumns(): bool
     {
-        if ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways())
-        {
+        if ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways()) {
             return true;
         }
+
         return false;
     }
 
@@ -254,5 +253,4 @@ trait ColumnHelpers
 
         return $this->shouldAlwaysCollapse;
     }
-
 }

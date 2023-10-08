@@ -116,7 +116,7 @@ class ColumnHelpersTest extends TestCase
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
-        
+
         $this->basicTable->unsetCollapsedStatuses();
 
         $this->assertSame(2, $this->basicTable->getCollapsedMobileColumnsCount());
@@ -220,12 +220,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame(7, $this->basicTable->getVisibleTabletColumnsCount());
     }
 
-
-
-
-
-/// *** ** //
-
+    /// *** ** //
 
     public function can_tell_if_columns_should_collapse_always(): void
     {
@@ -265,8 +260,6 @@ class ColumnHelpersTest extends TestCase
 
         $this->assertSame(2, $this->basicTable->getCollapsedAlwaysColumnsCount());
     }
-
-
 
     /** @test */
     /*public function can_get_selectable_columns(): void

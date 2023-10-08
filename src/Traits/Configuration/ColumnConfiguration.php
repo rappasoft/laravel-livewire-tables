@@ -44,7 +44,6 @@ trait ColumnConfiguration
             });
     }
 
-    
     public function unsetCollapsedStatuses(): void
     {
         unset($this->shouldAlwaysCollapse);
