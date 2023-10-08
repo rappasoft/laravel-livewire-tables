@@ -18,6 +18,7 @@
     @foreach($this->getColumns() as $colIndex => $column)
         @continue($column->isHidden())
         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+        @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus())
 
         @if($column->isReorderColumn())
             <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="false"  wire:key="{{ $tableName .'-footer-'.$colIndex.'-show' }}"   :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)" />

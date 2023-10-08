@@ -10,10 +10,12 @@
                     ->merge(['class' => 'p-3 table-cell text-center'])
                     ->class([
                         'md:hidden' =>
-                            (($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
-                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile()))
+                            !$component->shouldCollapseAlways() && (
+                            ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
+                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile())
+                            )
                     ])
-                    ->class(['sm:hidden' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
+                    ->class(['sm:hidden' => !$component->shouldCollapseAlways() &&  $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
             }}
             :class="currentlyReorderingStatus ? 'laravel-livewire-tables-reorderingMinimised' : ''"
         >
@@ -33,11 +35,12 @@
             {{
                 $attributes
                     ->class([
-                        'd-md-none' =>
-                            (($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
-                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile()))
+                        'd-md-none' => !$component->shouldCollapseAlways() && (
+                            ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) ||
+                            ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile())
+                        )
                     ])
-                    ->class(['d-sm-none' => $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
+                    ->class(['d-sm-none' => !$component->shouldCollapseAlways() && $component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()])
             }}
         >
             @if (! $hidden)

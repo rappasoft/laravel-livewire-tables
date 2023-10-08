@@ -21,12 +21,9 @@
                 @foreach($columns as $index => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                    @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus())
 
-                    @if($column->isReorderColumn())
-                        <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :displayMinimisedOnReorder="true" :column="$column" :index="$index" />
-                    @else
-                        <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :column="$column" :index="$index" />
-                    @endif
+                    <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :column="$column" :index="$index" />
                 @endforeach
             </x-slot>
 
@@ -45,16 +42,12 @@
                     @foreach($columns as $colIndex => $column)
                         @continue($column->isHidden())
                         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                        @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus())
 
-                        @if($column->isReorderColumn())
-                            <x-livewire-tables::table.td :displayMinimisedOnReorder="true"  wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatable-reorder-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
-                                {{ $column->renderContents($row) }}
-                            </x-livewire-tables::table.td>
-                        @else
-                            <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
-                                {{ $column->renderContents($row) }}
-                            </x-livewire-tables::table.td>
-                        @endif
+                        <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
+                            {{ $column->renderContents($row) }}
+                        </x-livewire-tables::table.td>
+
                     @endforeach
                 </x-livewire-tables::table.tr>
 
