@@ -47,7 +47,14 @@ trait WithData
         // Moved these from baseQuery to here to avoid pulling all fields when cloning baseQuery.
         $this->setBuilder($this->selectFields());
 
-        $this->applySorting();
+        if ($this->currentlyReorderingIsEnabled()) {
+            $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultReorderColumn(), $this->getDefaultReorderDirection()));
+        }
+        else
+        {
+            $this->applySorting();
+
+        }
 
         if ($this->paginationIsEnabled()) {
             if ($this->isPaginationMethod('standard')) {
