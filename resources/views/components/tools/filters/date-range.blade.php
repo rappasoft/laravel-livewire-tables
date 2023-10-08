@@ -17,31 +17,14 @@
         }
     }
 
-
-
 @endphp
 
 <div x-cloak id="{{ $tableName }}-dateRangeFilter-{{ $filterKey }}" x-data="flatpickrFilter($wire, '{{ $filterKey }}', @js($filter->getConfigs()), $refs.dateRangeInput, '{{ App::currentLocale() }}')" >
-@if(config('livewire-tables.remote_third_party_assets'))
-    @once
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    @endonce
-@elseif(config('livewire-tables.published_third_party_assets'))
-    @once
-    <script src="/vendor/rappasoft/livewire-tables/js/flatpickr.min.js"></script>
-    <link rel="stylesheet" href="/vendor/rappasoft/livewire-tables/css/flatpickr.css">
-    @endonce
-@endif
 
 
-@endphp
     <div>
-        @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
-            @include($filter->getCustomFilterLabel(), ['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName])
-        @elseif(!$filter->hasCustomPosition())
-            <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
-        @endif
+        <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
+
 
             <div
                 @class([

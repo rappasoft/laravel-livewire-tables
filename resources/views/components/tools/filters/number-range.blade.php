@@ -4,11 +4,8 @@
     $currentMax = $maxRange = $filter->getConfig('maxRange');
 @endphp
 <div id="{{ $tableName }}-numberRange-{{ $filterKey }}" x-data="numberRangeFilter($wire,'{{ $filterKey }}', '{{ $tableName }}-numberRange-{{ $filterKey }}-wrapper', @js($filter->getConfigs()), '{{ $tableName }}-numberRange-{{ $filterKey }}')" x-on:mousedown.away.throttle.2000ms="updateWireable" x-on:touchstart.away.throttle.2000ms="updateWireable" x-on:mouseleave.throttle.2000ms="updateWireable">
-    @if($filter->hasCustomFilterLabel() && !$filter->hasCustomPosition())
-        @include($filter->getCustomFilterLabel(),['filter' => $filter, 'filterLayout' => $filterLayout, 'tableName' => $tableName  ])
-    @elseif(!$filter->hasCustomPosition())
-        <x-livewire-tables::tools.filter-label :filter="$filter" :filterLayout="$filterLayout" :tableName="$tableName" />
-    @endif
+    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
+
 
         <div @class([
             'mt-4 h-22 pt-8 pb-4 grid gap-10' => $isTailwind,
