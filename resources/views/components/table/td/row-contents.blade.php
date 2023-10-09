@@ -3,8 +3,7 @@
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @if ($component->isTailwind())
-        <td
-            @if (! $hidden) x-data="{open:false}" @endif
+        <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}"
             {{
                 $attributes
                     ->merge(['class' => 'p-3 table-cell text-center '])
@@ -17,7 +16,7 @@
             @if (! $hidden)
                 <button
                     x-show="!currentlyReorderingStatus"
-                    x-on:click.prevent="$dispatch('toggle-row-content', {'row': {{ $rowIndex }}});open = !open"
+                    x-on:click.prevent="$dispatch('toggle-row-content', {'row': {{ $rowIndex }}}); open = !open"
                 >
                     <x-heroicon-o-plus-circle x-show="!open" class="text-green-600 h-6 w-6" />
                     <x-heroicon-o-minus-circle x-cloak x-show="open" class="text-yellow-600 h-6 w-6" />
@@ -25,14 +24,14 @@
             @endif
         </td>
     @elseif ($component->isBootstrap())
-        <td :class="currentlyReorderingStatus ? 'laravel-livewire-tables-reorderingMinimised' : ''"
-            @if (! $hidden) x-data="{open:false}" @endif
+        <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}" 
             {{
                 $attributes
                     ->class(['d-sm-none' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet()])
                     ->class(['d-md-none' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet() && $component->shouldCollapseOnMobile()])
                     ->class(['d-lg-none' => !$component->shouldCollapseAlways() && ($component->shouldCollapseOnTablet() || $component->shouldCollapseOnMobile())])
             }}
+            :class="currentlyReorderingStatus ? 'laravel-livewire-tables-reorderingMinimised' : ''"
         >
             @if (! $hidden)
                 <button
