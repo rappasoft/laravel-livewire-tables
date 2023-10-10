@@ -5,6 +5,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ## [UNRELEASED]
 - Fix for Livewire ^3.0.6 where the table loading causes an additional lifecycle
 - Add unminified files to .gitattributes export-ignore
+- Increase cached time to 1 day from 1 hour if cache is enabled
 
 ## [3.0.0-beta.2] - 2023-10-08
 - Removes superfluous @endphp from the DateRangeFilter blade

@@ -68,9 +68,9 @@ class RappasoftFrontendAssets
     {
 
         if (config('livewire-tables.cache_assets', false) === true) {
-            $expires = strtotime('+1 hour');
+            $expires = strtotime('+1 day');
             $lastModified = filemtime($file);
-            $cacheControl = 'public, max-age=3600';
+            $cacheControl = 'public, max-age=86400';
         } else {
             $expires = strtotime('+1 second');
             $lastModified = \Carbon\Carbon::now()->timestamp;
@@ -90,9 +90,9 @@ class RappasoftFrontendAssets
     protected function pretendResponseIsCSS(string $file): \Symfony\Component\HttpFoundation\Response
     {
         if (config('livewire-tables.cache_assets', false) === true) {
-            $expires = strtotime('+1 hour');
+            $expires = strtotime('+1 day');
             $lastModified = filemtime($file);
-            $cacheControl = 'public, max-age=3600';
+            $cacheControl = 'public, max-age=86400';
         } else {
             $expires = strtotime('+1 second');
             $lastModified = \Carbon\Carbon::now()->timestamp;
