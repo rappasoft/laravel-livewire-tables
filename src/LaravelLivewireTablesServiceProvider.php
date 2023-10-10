@@ -25,8 +25,11 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
 
         $this->consoleCommands();
-
-        (new RappasoftFrontendAssets)->boot();
+        
+        if (config('livewire-tables.inject_core_assets_enabled') || config('livewire-tables.inject_third_party_assets_enabled') || config('livewire-tables.enable_blade_directives'))
+        {
+            (new RappasoftFrontendAssets)->boot();
+        }
 
     }
 
@@ -46,7 +49,8 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             ], 'livewire-tables-views');
 
             $this->publishes([
-                __DIR__.'/../public' => public_path('vendor/rappasoft/livewire-tables'),
+                __DIR__.'/../resources/js' => public_path('vendor/rappasoft/livewire-tables/js'),
+                __DIR__.'/../resources/css' => public_path('vendor/rappasoft/livewire-tables/css'),
             ], 'livewire-tables-public');
 
             $this->commands([
@@ -60,10 +64,10 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
-
-        (new RappasoftFrontendAssets)->register();
-
-        ComponentHookRegistry::register(AutoInjectRappasoftAssets::class);
-
+        if (config('livewire-tables.inject_core_assets_enabled') || config('livewire-tables.inject_third_party_assets_enabled') || config('livewire-tables.enable_blade_directives'))
+        {
+            (new RappasoftFrontendAssets)->register();
+            ComponentHookRegistry::register(AutoInjectRappasoftAssets::class);
+        }
     }
 }

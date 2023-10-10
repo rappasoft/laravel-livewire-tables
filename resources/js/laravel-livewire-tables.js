@@ -4,9 +4,9 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
-        paginationCurrentCount: wire.entangle('paginationCurrentCount').live,
-        paginationTotalItemCount: wire.entangle('paginationTotalItemCount').live,
-        paginationCurrentItems: wire.entangle('paginationCurrentItems').live,
+        paginationCurrentCount: wire.entangle('paginationCurrentCount'),
+        paginationTotalItemCount: wire.entangle('paginationTotalItemCount'),
+        paginationCurrentItems: wire.entangle('paginationCurrentItems'),
         selectedItems: wire.entangle('selected'),
         alwaysShowBulkActions: !wire.entangle('hideBulkActionsWhenEmpty'),
         toggleSelectAll() {

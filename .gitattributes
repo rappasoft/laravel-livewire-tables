@@ -19,8 +19,17 @@
 /phpunit.result.cache       export-ignore
 /phpstan.neon               export-ignore
 /phpunit.xml.dist           export-ignore
-/psalm.xml                  export-ignore
-/psalm.xml.dist             export-ignore
-/testbench.yaml             export-ignore
-/codecov.yml                export-ignore
-/coverage.xml               export-ignore
+/psalm.xml                                                 export-ignore
+/psalm.xml.dist                                         export-ignore
+/testbench.yaml                                         export-ignore
+/codecov.yml                                            export-ignore
+/coverage.xml                                           export-ignore
+
+# Exclude unminified versions of files
+/resources/js/laravel-livewire-tables-thirdparty.js     export-ignore
+/resources/js/laravel-livewire-tables.js                export-ignore
+/resources/css/laravel-livewire-tables-thirdparty.css   export-ignore
+/resources/css/laravel-livewire-tables.css              export-ignore
+/resources/css/numberRange.css                          export-ignore
+/resources/css/numericSlider.css                        export-ignore
+/resources/css/flatpickr.css                            export-ignore
