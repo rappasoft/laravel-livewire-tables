@@ -1,2 +1,2 @@
-import './css/laravel-livewire-tables.css'
+import './css/laravel-livewire-tables.min.css'
 import './js/laravel-livewire-tables.js'
