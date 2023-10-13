@@ -7,12 +7,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnHelpers
 {
-    public array $columnSelectStats2;
-
-    public int $defaultVisibleColumnCount;
-
-    public int $visibleColumnCount;
-
     /**
      * Set the user defined columns
      */
@@ -113,17 +107,29 @@ trait ColumnHelpers
 
     public function hasCollapsedColumns(): bool
     {
-        return ($this->shouldCollapseOnMobile() + $this->shouldCollapseOnTablet()) > 0;
+        if ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways()) {
+            return true;
+        }
+
+        return false;
     }
 
     public function shouldCollapseOnMobile(): bool
     {
-        return $this->getCollapsedMobileColumnsCount() > 0;
+
+        if (! isset($this->shouldMobileCollapse)) {
+            $this->shouldMobileCollapse = ($this->getCollapsedMobileColumnsCount() > 0);
+        }
+
+        return $this->shouldMobileCollapse;
+
     }
 
     public function getCollapsedMobileColumns(): Collection
     {
         return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
             ->filter(fn (Column $column) => $column->shouldCollapseOnMobile())
             ->values();
     }
@@ -147,12 +153,19 @@ trait ColumnHelpers
 
     public function shouldCollapseOnTablet(): bool
     {
-        return $this->getCollapsedTabletColumnsCount() > 0;
+        if (! isset($this->shouldTabletCollapse)) {
+            $this->shouldTabletCollapse = ($this->getCollapsedTabletColumnsCount() > 0);
+        }
+
+        return $this->shouldTabletCollapse;
+
     }
 
     public function getCollapsedTabletColumns(): Collection
     {
         return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
             ->filter(fn (Column $column) => $column->shouldCollapseOnTablet())
             ->values();
     }
@@ -216,5 +229,28 @@ trait ColumnHelpers
                 return $column;
             });
 
+    }
+
+    public function getCollapsedAlwaysColumns(): Collection
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
+            ->filter(fn (Column $column) => $column->shouldCollapseAlways())
+            ->values();
+    }
+
+    public function getCollapsedAlwaysColumnsCount(): int
+    {
+        return $this->getCollapsedAlwaysColumns()->count();
+    }
+
+    public function shouldCollapseAlways(): bool
+    {
+        if (! isset($this->shouldAlwaysCollapse)) {
+            $this->shouldAlwaysCollapse = ($this->getCollapsedAlwaysColumnsCount() > 0);
+        }
+
+        return $this->shouldAlwaysCollapse;
     }
 }

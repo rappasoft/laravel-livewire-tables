@@ -204,7 +204,7 @@ class RappasoftFrontendAssetsTest extends TestCase
      */
     public function check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $jsResponseSetupCacheEnabled)
     {
-        $this->assertSame('max-age=3600, public', $jsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
+        $this->assertSame('max-age=86400, public', $jsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
     /**
@@ -244,7 +244,7 @@ class RappasoftFrontendAssetsTest extends TestCase
      */
     public function check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $cssResponseSetupCacheEnabled)
     {
-        $this->assertSame('max-age=3600, public', $cssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
+        $this->assertSame('max-age=86400, public', $cssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
     /**
@@ -284,7 +284,7 @@ class RappasoftFrontendAssetsTest extends TestCase
      */
     public function tp_check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $thirdPartyCssResponseSetupCacheEnabled)
     {
-        $this->assertSame('max-age=3600, public', $thirdPartyCssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
+        $this->assertSame('max-age=86400, public', $thirdPartyCssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
     /**
@@ -324,7 +324,7 @@ class RappasoftFrontendAssetsTest extends TestCase
      */
     public function tp_check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $thirdPartyJsResponseSetupCacheEnabled)
     {
-        $this->assertSame('max-age=3600, public', $thirdPartyJsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
+        $this->assertSame('max-age=86400, public', $thirdPartyJsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
     /**
