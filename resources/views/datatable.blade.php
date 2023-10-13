@@ -21,7 +21,7 @@
                 @foreach($columns as $index => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-                    @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus())
+                    @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())
 
                     <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :column="$column" :index="$index" />
                 @endforeach
@@ -42,7 +42,7 @@
                     @foreach($columns as $colIndex => $column)
                         @continue($column->isHidden())
                         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-                        @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus())
+                        @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())
 
                         <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
                             {{ $column->renderContents($row) }}

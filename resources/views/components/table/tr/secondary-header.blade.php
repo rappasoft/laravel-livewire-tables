@@ -19,7 +19,7 @@
     @foreach($this->getColumns() as $colIndex => $column)
         @continue($column->isHidden())
         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-        @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus())
+        @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())
 
         <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)">
             {{ $column->getSecondaryHeaderContents($rows) }}
