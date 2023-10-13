@@ -23,7 +23,7 @@ trait WithRappasoftTableThirdPartyStyles
 
     public function returnRappasoftTableThirdPartyStylesAsFile(): \Symfony\Component\HttpFoundation\Response
     {
-        return $this->pretendResponseIsCSS(__DIR__.'/../../../resources/css/laravel-livewire-tables-thirdparty.css');
+        return $this->pretendResponseIsCSS(__DIR__.'/../../../resources/css/laravel-livewire-tables-thirdparty.min.css');
     }
 
     /**
