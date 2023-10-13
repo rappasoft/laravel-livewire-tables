@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [UNRELEASED]
+## [3.0.0-beta.3] - 2023-10-13
 - Fix for Livewire ^3.0.6 where the table loading causes an additional lifecycle
 - Add unminified files to .gitattributes export-ignore
 - Increase cached time to 1 day from 1 hour if cache is enabled
