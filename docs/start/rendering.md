@@ -7,7 +7,7 @@ weight: 5
 
 You render components the same way you [render](https://laravel-livewire.com/docs/2.x/rendering-components) any Livewire component.
 
-Your component at `App\Http\Livewire\UsersTable.php`
+Your component at `App\Livewire\UsersTable.php`
 
 ```html
 <livewire:users-table />
@@ -24,7 +24,7 @@ By default, all components will use the theme in the config file. But if for som
 
 ## Using sub-folders
 
-If your component does not live in `App\Http\Livewire`, you can specify a different sub-folder. For example if your component lives in `App\Http\Livewire\Backend\Users` you would use the following:
+If your component does not live in `App\Livewire`, you can specify a different sub-folder. For example if your component lives in `App\Livewire\Backend\Users` you would use the following:
 
 ```html
 <livewire:backend.users.users-table />
