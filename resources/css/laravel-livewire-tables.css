@@ -363,14 +363,14 @@ label[dir=rtl] .range-slider {
     display: none;
 }
 
-.lds-hourglass {
+.table-loader-hourglass {
     display: inline-block;
     position: relative;
     width: 80px;
     height: 80px;
   }
 
-.lds-hourglass:after {
+.table-loader-hourglass:after {
     content: " ";
     display: block;
     border-radius: 50%;
@@ -380,10 +380,10 @@ label[dir=rtl] .range-slider {
     box-sizing: border-box;
     border: 32px solid #fff;
     border-color: #fff transparent #fff transparent;
-    animation: lds-hourglass 1.2s infinite;
+    animation: table-loader-hourglass 1.2s infinite;
 }
 
-@keyframes lds-hourglass {
+@keyframes table-loader-hourglass {
 0% {
     transform: rotate(0);
     animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
