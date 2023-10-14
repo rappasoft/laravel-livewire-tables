@@ -6,7 +6,7 @@ trait LoadingHelpers
 {
     public function hasDisplayLoadingPlaceholder(): bool
     {
-        return $this->displayLoadingPlaceholder;
+        return $this->getDisplayLoadingPlaceholder();
     }
 
     public function getDisplayLoadingPlaceholder(): bool
@@ -14,9 +14,20 @@ trait LoadingHelpers
         return $this->displayLoadingPlaceholder;
     }
 
+    public function hasLoadingPlaceholderContent(): bool
+    {
+        return !is_null($this->getLoadingPlaceholderContent());
+    }
+
+    public function getLoadingPlaceholderContent(): string
+    {
+        return $this->loadingPlaceholderContent;
+    }
+
+
     public function hasLoadingPlaceholderAttributes(): bool
     {
-        return ! empty($this->loadingPlaceHolderAttributes);
+        return !empty($this->getLoadingPlaceholderAttributes());
     }
 
     public function getLoadingPlaceholderAttributes(): array
@@ -26,7 +37,7 @@ trait LoadingHelpers
 
     public function hasPlaceHolderIconAttributes(): bool
     {
-        return ! empty($this->loadingPlaceHolderIconAttributes);
+        return !empty($this->getPlaceHolderIconAttributes());
     }
 
     public function getPlaceHolderIconAttributes(): array
