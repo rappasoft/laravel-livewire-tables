@@ -16,7 +16,7 @@ trait LoadingHelpers
 
     public function hasLoadingPlaceholderContent(): bool
     {
-        return !is_null($this->getLoadingPlaceholderContent());
+        return ! is_null($this->getLoadingPlaceholderContent());
     }
 
     public function getLoadingPlaceholderContent(): string
@@ -24,10 +24,9 @@ trait LoadingHelpers
         return $this->loadingPlaceholderContent;
     }
 
-
     public function hasLoadingPlaceholderAttributes(): bool
     {
-        return !empty($this->getLoadingPlaceholderAttributes());
+        return ! empty($this->getLoadingPlaceholderAttributes());
     }
 
     public function getLoadingPlaceholderAttributes(): array
@@ -37,7 +36,7 @@ trait LoadingHelpers
 
     public function hasPlaceHolderIconAttributes(): bool
     {
-        return !empty($this->getPlaceHolderIconAttributes());
+        return ! empty($this->getPlaceHolderIconAttributes());
     }
 
     public function getPlaceHolderIconAttributes(): array
