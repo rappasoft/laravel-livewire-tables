@@ -30,6 +30,9 @@
             @if($this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader())
                 <x-livewire-tables::table.tr.secondary-header :rows="$rows" />
             @endif
+            @if($this->hasDisplayLoadingPlaceholder())
+            <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
+            @endif
 
             <x-livewire-tables::table.tr.bulk-actions :rows="$rows" :displayMinimisedOnReorder="true" />
 
