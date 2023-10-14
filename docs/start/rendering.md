@@ -5,7 +5,7 @@ weight: 5
 
 ## Rendering Components
 
-You render components the same way you [render](https://laravel-livewire.com/docs/2.x/rendering-components) any Livewire component.
+You render components the same way you [render](https://livewire.laravel.com/docs/components#rendering-components) any Livewire component.
 
 Your component at `App\Livewire\UsersTable.php`
 
