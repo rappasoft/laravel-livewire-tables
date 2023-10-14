@@ -7,4 +7,4 @@ The following are required to use this package regardless of what theme you choo
 
 - PHP 8.1+
 - [Laravel 10.x](https://laravel.com)
-- [Laravel Livewire 3.x](https://laravel-livewire.com)
+- [Laravel Livewire 3.x](https://livewire.laravel.com)

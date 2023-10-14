@@ -6,7 +6,7 @@ weight: 2
 ```php
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\{Tag,User};
 use Illuminate\Database\Eloquent\Builder;
