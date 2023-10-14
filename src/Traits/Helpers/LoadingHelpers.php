@@ -16,22 +16,21 @@ trait LoadingHelpers
 
     public function hasLoadingPlaceholderAttributes(): bool
     {
-        return !empty($this->loadingPlaceHolderAttributes);
+        return ! empty($this->loadingPlaceHolderAttributes);
     }
 
     public function getLoadingPlaceholderAttributes(): array
     {
         return $this->loadingPlaceHolderAttributes;
     }
-    
+
     public function hasPlaceHolderIconAttributes(): bool
     {
-        return !empty($this->loadingPlaceHolderIconAttributes);
+        return ! empty($this->loadingPlaceHolderIconAttributes);
     }
 
     public function getPlaceHolderIconAttributes(): array
     {
         return $this->loadingPlaceHolderIconAttributes;
     }
-
 }

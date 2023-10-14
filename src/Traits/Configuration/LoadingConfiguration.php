@@ -30,8 +30,7 @@ trait LoadingConfiguration
         $this->loadingPlaceholderContent = $content;
 
         return $this;
-    }  
-
+    }
 
     public function setLoadingPlaceHolderAttributes(array $attributes): self
     {
@@ -46,5 +45,4 @@ trait LoadingConfiguration
 
         return $this;
     }
-
 }

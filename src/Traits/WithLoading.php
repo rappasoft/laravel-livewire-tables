@@ -8,14 +8,13 @@ use Rappasoft\LaravelLivewireTables\Traits\Helpers\LoadingHelpers;
 trait WithLoading
 {
     use LoadingConfiguration,
-    LoadingHelpers;
+        LoadingHelpers;
 
     protected bool $displayLoadingPlaceholder = false;
 
-    protected string $loadingPlaceholderContent = "Loading";
-    
-    protected array $loadingPlaceHolderAttributes = [];
-    
-    protected array $loadingPlaceHolderIconAttributes = [];
+    protected string $loadingPlaceholderContent = 'Loading';
 
+    protected array $loadingPlaceHolderAttributes = [];
+
+    protected array $loadingPlaceHolderIconAttributes = [];
 }
