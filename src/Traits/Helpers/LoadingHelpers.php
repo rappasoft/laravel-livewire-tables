@@ -33,5 +33,4 @@ trait LoadingHelpers
     {
         return $this->loadingPlaceHolderWrapperAttributes ?? ['class' => 'hidden d-none', 'default' => false];
     }
-
 }

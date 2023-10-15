@@ -19,5 +19,4 @@ trait WithLoading
     protected array $loadingPlaceHolderIconAttributes = [];
 
     protected array $loadingPlaceHolderWrapperAttributes = [];
-
 }
