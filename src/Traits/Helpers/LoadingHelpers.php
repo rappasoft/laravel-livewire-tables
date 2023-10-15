@@ -26,7 +26,7 @@ trait LoadingHelpers
 
     public function getLoadingPlaceHolderIconAttributes(): array
     {
-        return $this->loadingPlaceHolderIconAttributes ?? ['class' => 'lds-hourglass', default => false];
+        return $this->loadingPlaceHolderIconAttributes ?? ['class' => 'lds-hourglass', 'default' => false];
     }
 
     public function getLoadingPlaceHolderWrapperAttributes(): array
