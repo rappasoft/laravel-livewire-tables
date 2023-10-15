@@ -43,5 +43,4 @@ trait LoadingHelpers
     {
         return $this->loadingPlaceholderBlade;
     }
-
 }
