@@ -26,11 +26,11 @@ trait LoadingHelpers
 
     public function getLoadingPlaceHolderIconAttributes(): array
     {
-        return $this->loadingPlaceHolderIconAttributes ?? ['class' => 'lds-hourglass', 'default' => false];
+        return $this->loadingPlaceHolderIconAttributes ?? ['default' => true];
     }
 
     public function getLoadingPlaceHolderWrapperAttributes(): array
     {
-        return $this->loadingPlaceHolderWrapperAttributes ?? ['class' => 'hidden d-none', 'default' => false];
+        return $this->loadingPlaceHolderWrapperAttributes ?? ['default' => true];
     }
 }
