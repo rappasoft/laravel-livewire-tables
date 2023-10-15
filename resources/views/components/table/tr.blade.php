@@ -2,19 +2,23 @@
 @props(['row', 'rowIndex'])
 
 @php
-    $customAttributes = $this->getTrAttributes($row, $rowIndex);
+    $customAttributes = $component->getTrAttributes($row, $rowIndex);
 @endphp
 
 <tr
-    rowpk='{{ $row->{$this->getPrimaryKey()} }}'
+    rowpk='{{ $row->{$component->getPrimaryKey()} }}'
     x-on:dragstart.self="currentlyReorderingStatus && dragStart(event)"
     x-on:drop.prevent="currentlyReorderingStatus && dropEvent(event)"
     x-on:dragover.prevent.throttle.500ms="currentlyReorderingStatus && dragOverEvent(event)"
     x-on:dragleave.prevent.throttle.500ms="currentlyReorderingStatus && dragLeaveEvent(event)"
+    @if($component->hasDisplayLoadingPlaceholder()) 
+    wire:loading.remove
+    @else
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
-    id="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}"
+    @endif
+    id="{{ $tableName }}-row-{{ $row->{$component->getPrimaryKey()} }}"
     :draggable="currentlyReorderingStatus"
-    wire:key="{{ $tableName }}-tablerow-tr-{{ $row->{$this->getPrimaryKey()} }}"
+    wire:key="{{ $tableName }}-tablerow-tr-{{ $row->{$component->getPrimaryKey()} }}"
     loopType="{{ ($rowIndex % 2 === 0) ? 'even' : 'odd' }}"
     {{
         $attributes->merge($customAttributes)

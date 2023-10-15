@@ -21,7 +21,7 @@ trait LoadingHelpers
 
     public function getLoadingPlaceholderContent(): string
     {
-        return $this->loadingPlaceholderContent;
+        return $this->loadingPlaceholderContent ?? __('livewire-tables:loading');
     }
 
     public function hasLoadingPlaceholderAttributes(): bool
@@ -34,12 +34,12 @@ trait LoadingHelpers
         return $this->loadingPlaceHolderAttributes;
     }
 
-    public function hasPlaceHolderIconAttributes(): bool
+    public function hasLoadingPlaceHolderIconAttributes(): bool
     {
         return ! empty($this->getPlaceHolderIconAttributes());
     }
 
-    public function getPlaceHolderIconAttributes(): array
+    public function getLoadingPlaceHolderIconAttributes(): array
     {
         return $this->loadingPlaceHolderIconAttributes;
     }
