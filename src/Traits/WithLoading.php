@@ -13,10 +13,13 @@ trait WithLoading
     protected bool $displayLoadingPlaceholder = false;
 
     protected string $loadingPlaceholderContent = 'Loading';
+    
+    protected ?string $loadingPlaceholderBlade = null;
 
     protected array $loadingPlaceHolderAttributes = [];
 
     protected array $loadingPlaceHolderIconAttributes = [];
 
     protected array $loadingPlaceHolderWrapperAttributes = [];
+
 }

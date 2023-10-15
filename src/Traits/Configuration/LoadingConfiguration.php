@@ -52,4 +52,11 @@ trait LoadingConfiguration
 
         return $this;
     }
+
+    public function setLoadingPlaceholderBlade(string $customBlade): self
+    {
+        $this->loadingPlaceholderBlade = $customBlade;
+
+        return $this;
+    }
 }

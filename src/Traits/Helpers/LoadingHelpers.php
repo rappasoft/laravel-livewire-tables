@@ -33,4 +33,15 @@ trait LoadingHelpers
     {
         return $this->loadingPlaceHolderWrapperAttributes ?? ['default' => true];
     }
+
+    public function hasLoadingPlaceholderBlade(): bool
+    {
+        return is_null($this->getLoadingPlaceHolderBlade());
+    }
+
+    public function getLoadingPlaceHolderBlade(): ?string
+    {
+        return $this->loadingPlaceholderBlade;
+    }
+
 }
