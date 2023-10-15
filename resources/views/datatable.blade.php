@@ -34,7 +34,7 @@
             <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
             @endif
 
-            <x-livewire-tables::table.tr.bulk-actions :rows="$rows" :displayMinimisedOnReorder="true" />
+            <x-livewire-tables::table.tr.bulk-actions :rows="$rows"  @if($this->hasDisplayLoadingPlaceholder()) :wire:loading.remove @endif :displayMinimisedOnReorder="true" />
 
             @forelse ($rows as $rowIndex => $row)
                 <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
