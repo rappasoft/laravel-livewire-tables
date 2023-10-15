@@ -45,4 +45,11 @@ trait LoadingConfiguration
 
         return $this;
     }
+
+    public function setLoadingPlaceHolderWrapperAttributes(array $attributes): self
+    {
+        $this->loadingPlaceHolderWrapperAttributes = $attributes;
+
+        return $this;
+    }
 }

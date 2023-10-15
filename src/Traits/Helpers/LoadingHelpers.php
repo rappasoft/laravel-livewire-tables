@@ -14,19 +14,9 @@ trait LoadingHelpers
         return $this->displayLoadingPlaceholder;
     }
 
-    public function hasLoadingPlaceholderContent(): bool
-    {
-        return ! is_null($this->getLoadingPlaceholderContent());
-    }
-
     public function getLoadingPlaceholderContent(): string
     {
         return $this->loadingPlaceholderContent ?? __('livewire-tables:loading');
-    }
-
-    public function hasLoadingPlaceholderAttributes(): bool
-    {
-        return ! empty($this->getLoadingPlaceholderAttributes());
     }
 
     public function getLoadingPlaceholderAttributes(): array
@@ -34,13 +24,14 @@ trait LoadingHelpers
         return $this->loadingPlaceHolderAttributes;
     }
 
-    public function hasLoadingPlaceHolderIconAttributes(): bool
-    {
-        return ! empty($this->getPlaceHolderIconAttributes());
-    }
-
     public function getLoadingPlaceHolderIconAttributes(): array
     {
-        return $this->loadingPlaceHolderIconAttributes;
+        return $this->loadingPlaceHolderIconAttributes ?? ['class' => 'lds-hourglass', default => false];
     }
+
+    public function getLoadingPlaceHolderWrapperAttributes(): array
+    {
+        return $this->loadingPlaceHolderWrapperAttributes ?? ['class' => 'hidden d-none', 'default' => false];
+    }
+
 }

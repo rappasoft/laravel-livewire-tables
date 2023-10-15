@@ -2,7 +2,7 @@
 @props(['colCount' => 1])
 
 @php
-$customAttributes['loader-wrapper'] = ['class' => 'hidden d-none', 'default' => false];
+$customAttributes['loader-wrapper'] = $component->getLoadingPlaceHolderWrapperAttributes();
 $customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttributes();
 
 @endphp
