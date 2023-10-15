@@ -15,7 +15,7 @@ $customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttribut
             ->class(['w-full text-center h-screen place-items-center align-middle' => $isTailwind && ($customAttributes['loader-wrapper']['default'] ?? true)])
             ->class(['w-100 text-center h-100 align-items-center' => $isBootstrap && ($customAttributes['loader-wrapper']['default'] ?? true)]);
     }}
-    wire:loading.class.remove="hidden"
+    wire:loading.class.remove="d-none hidden"
     >
         <td colspan="{{ $colCount }}">
             <div class="h-min self-center align-middle text-center">
