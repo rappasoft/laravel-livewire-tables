@@ -3,6 +3,8 @@
 
 @php
 $customAttributes['loader-wrapper'] = ['class' => 'hidden d-none', 'default' => false];
+$customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttributes();
+
 @endphp
 <tr
 {{
@@ -16,11 +18,11 @@ wire:key="{{ $tableName }}-loader" wire:loading.class.remove="hidden"
  >
     <td colspan="{{ $colCount }}">
         <div class="h-min self-center align-middle text-center">
-            <div 
+            <div class="lds-hourglass"
             {{
-                    $attributes->merge($component->getLoadingPlaceHolderIconAttributes())
-                        ->class(['lds-hourglass' => $isTailwind])
-                        ->class(['lds-hourglass' => $isBootstrap])
+                    $attributes->merge($customAttributes['loader-icon'])
+                        ->class(['lds-hourglass' => $isTailwind && ($customAttributes['loader-icon']['default'] ?? true)])
+                        ->class(['lds-hourglass' => $isBootstrap && ($customAttributes['loader-icon']['default'] ?? true)])
                         ->except('default');
             }}
             ></div>
