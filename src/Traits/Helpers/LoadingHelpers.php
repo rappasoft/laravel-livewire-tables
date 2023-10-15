@@ -36,7 +36,7 @@ trait LoadingHelpers
 
     public function hasLoadingPlaceholderBlade(): bool
     {
-        return is_null($this->getLoadingPlaceHolderBlade());
+        return !is_null($this->getLoadingPlaceHolderBlade());
     }
 
     public function getLoadingPlaceHolderBlade(): ?string
