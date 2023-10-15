@@ -377,10 +377,16 @@ label[dir=rtl] .range-slider {
     height: 0;
     margin: 8px;
     box-sizing: border-box;
-    border: 32px solid #fff;
+    border: 32px solid #000;
     border-color: #fff transparent #fff transparent;
     animation: lds-hourglass 1.2s infinite;
   }
+  .dark .lds-hourglass:after {
+    border: 32px solid #FFF;
+
+  }
+
+
   @keyframes lds-hourglass {
     0% {
       transform: rotate(0);
