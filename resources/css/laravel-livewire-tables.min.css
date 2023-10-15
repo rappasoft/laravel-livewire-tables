@@ -378,8 +378,13 @@ label[dir=rtl] .range-slider {
     margin: 8px;
     box-sizing: border-box;
     border: 32px solid #000;
-    border-color: #000 transparent;
+    border-color: #000 transparent #fff transparent;
     animation: lds-hourglass 1.2s infinite;
+  }
+  .dark .lds-hourglass:after {
+    border: 32px solid #FFF;
+    border-color: #FFF transparent #000 transparent;
+
   }
 
 
