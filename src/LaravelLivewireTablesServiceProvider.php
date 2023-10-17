@@ -20,7 +20,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
 
-        // Load Default Translations   
+        // Load Default Translations
         $this->loadJsonTranslationsFrom(
             __DIR__.'/../resources/lang'
         );
@@ -60,7 +60,6 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
                 __DIR__.'/../resources/js' => public_path('vendor/rappasoft/livewire-tables/js'),
                 __DIR__.'/../resources/css' => public_path('vendor/rappasoft/livewire-tables/css'),
             ], 'livewire-tables-public');
-
 
             $this->commands([
                 MakeCommand::class,
