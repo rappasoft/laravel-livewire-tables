@@ -25,8 +25,8 @@ class PetsTableLoadingPlaceholder extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id')
-        ->setLoadingPlaceholderEnabled()
-        ->setLoadingPlaceholderContent('TestLoadingPlaceholderContentTestTest');
+            ->setLoadingPlaceholderEnabled()
+            ->setLoadingPlaceholderContent('TestLoadingPlaceholderContentTestTest');
     }
 
     public function columns(): array
