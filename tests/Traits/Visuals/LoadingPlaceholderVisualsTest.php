@@ -3,17 +3,52 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableLoadingPlaceholder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class LoadingPlaceholderVisualsTest extends TestCase
 {
     /** @test */
-    public function can_see_placeholder_text(): void
+    public function can_see_placeholder_section(): void
     {
-        Livewire::test(PetsTable::class)
-            ->call('setPerPageAccepted', [1])
-            ->call('setPerPage', 1)
-            ->assertSeeHtml('<nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">');
+        Livewire::test(PetsTableLoadingPlaceholder::class)
+            ->call('setPerPageAccepted', [1,5,10])
+            ->assertSeeHtml('tr wire:key="table-loader" class="hidden d-none"')
+            ->call('setPerPage', 5);
     }
+
+        /** @test */
+        public function can_see_placeholder_custom_text(): void
+        {
+            Livewire::test(PetsTableLoadingPlaceholder::class)
+                ->call('setPerPageAccepted', [1,5,10])
+                ->assertSeeHtmlInOrder([
+                    '<tr wire:key="table-loader" class="hidden d-none"',
+                    '<td colspan="',
+                    '<div class="h-min self-center align-middle text-center"',
+                    '<div class="lds-hourglass"',
+                    '<div>TestLoadingPlaceholderContentTestTest</div>'
+                ])
+                ->call('setPerPage', 5);
+        }
+
+        /** @test */
+        public function can_see_correct_placeholder_text_visually(): void
+        {
+            Livewire::test(PetsTableLoadingPlaceholder::class)
+                ->call('setPerPageAccepted', [1,5,10])
+                ->assertSee('TestLoadingPlaceholderContentTestTest')
+                ->call('setPerPage', 5);
+        }
+
+        /** @test */
+        public function cannot_see_incorrect_placeholder_text_visually(): void
+        {
+            Livewire::test(PetsTableLoadingPlaceholder::class)
+                ->call('setPerPageAccepted', [1,5,10])
+                ->assertDontSee('TestLoadingPlaceholderContentTestTest22')
+                ->call('setPerPage', 5);
+        }
+        
+    
 }
