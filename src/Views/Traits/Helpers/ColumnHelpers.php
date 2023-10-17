@@ -449,4 +449,9 @@ trait ColumnHelpers
     {
         return $this->customSlug !== null;
     }
+
+    public function isLabelHidden(): bool
+    {
+        return $this->labelIsHidden;
+    }
 }

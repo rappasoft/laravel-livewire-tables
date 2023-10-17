@@ -255,3 +255,22 @@ If you are using non-latin characters as the Column Title, you should set a lati
 Column::make('地址', 'address.address')
     ->setCustomSlug('Address')
 ```
+
+### Hiding Column Label
+
+Labels are visible by default, but should you wish to hide the label from the table header, without impacting on wider table behaviour, you may implement the following method:
+```php
+Column::make('Name')
+    ->hideColumnLabel()
+```
+
+### Displaying Column Label
+
+Labels are visible by default, but should you wish to override a previous "hideColumnLabel()", you may implement the below method:
+
+```php
+Column::make('Name')
+    ->showColumnLabel()
+```
+
+

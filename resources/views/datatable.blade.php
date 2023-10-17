@@ -20,6 +20,7 @@
 
                 @foreach($columns as $index => $column)
                     @continue($column->isHidden())
+                    @continue($column->isLabelHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
                     @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())
 

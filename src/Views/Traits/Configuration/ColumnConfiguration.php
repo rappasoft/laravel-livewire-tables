@@ -163,4 +163,19 @@ trait ColumnConfiguration
 
         return $this;
     }
+
+    public function hideColumnLabel(): self
+    {
+        $this->labelIsHidden = true;
+
+        return $this;
+    }
+
+    public function showColumnLabel(): self
+    {
+        $this->labelIsHidden = false;
+
+        return $this;
+    }
+
 }
