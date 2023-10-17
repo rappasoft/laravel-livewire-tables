@@ -85,7 +85,6 @@ class LoadingPlaceholderConfigurationTest extends TestCase
         $this->assertSame(['class' => 'test1234567-wrapper'], $this->basicTable->getLoadingPlaceHolderWrapperAttributes());
     }
 
-    
     /** @test */
     public function can_set_loading_placeholder_custom_blade(): void
     {
