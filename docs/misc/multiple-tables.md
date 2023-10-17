@@ -1,6 +1,6 @@
 ---
 title: Multiple Tables Same Page
-weight: 2
+weight: 3
 ---
 
 This feature works for mutiple tables on the same page that are **different** components.

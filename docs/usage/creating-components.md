@@ -10,7 +10,7 @@ This is what a bare bones component looks like before your customization:
 ```php
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\User;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
