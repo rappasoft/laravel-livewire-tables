@@ -1,6 +1,6 @@
 ---
 title: Saving Table State
-weight: 5
+weight: 6
 ---
 
 There may be occasions that you'd like to save the table state, for example if you have a complex set of filters, search parameters, or simply to remember which page you were on!
