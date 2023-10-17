@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
@@ -17,5 +16,4 @@ class LoadingPlaceholderVisualsTest extends TestCase
             ->call('setPerPage', 1)
             ->assertSeeHtml('<nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">');
     }
-
 }
