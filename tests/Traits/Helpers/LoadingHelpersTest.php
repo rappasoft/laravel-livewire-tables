@@ -14,10 +14,8 @@ class LoadingHelpersTest extends TestCase
         $this->basicTable->setLoadingPlaceholderEnabled();
 
         $this->assertTrue($this->basicTable->getDisplayLoadingPlaceholder());
-        
+
         $this->assertTrue($this->basicTable->hasDisplayLoadingPlaceholder());
 
     }
-
-
 }

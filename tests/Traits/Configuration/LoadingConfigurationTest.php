@@ -31,5 +31,4 @@ class LoadingConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->hasDisplayLoadingPlaceholder());
 
     }
-
 }
