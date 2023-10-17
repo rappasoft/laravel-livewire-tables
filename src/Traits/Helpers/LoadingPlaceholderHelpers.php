@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-trait LoadingHelpers
+trait LoadingPlaceholderHelpers
 {
     public function hasDisplayLoadingPlaceholder(): bool
     {
@@ -21,17 +21,18 @@ trait LoadingHelpers
 
     public function getLoadingPlaceholderAttributes(): array
     {
-        return $this->loadingPlaceHolderAttributes;
+        return count($this->loadingPlaceHolderAttributes) ? $this->loadingPlaceHolderAttributes : ['default' => true];
+
     }
 
     public function getLoadingPlaceHolderIconAttributes(): array
     {
-        return $this->loadingPlaceHolderIconAttributes ?? ['default' => true];
+        return count($this->loadingPlaceHolderIconAttributes) ? $this->loadingPlaceHolderIconAttributes : ['default' => true];
     }
 
     public function getLoadingPlaceHolderWrapperAttributes(): array
     {
-        return $this->loadingPlaceHolderWrapperAttributes ?? ['default' => true];
+        return count($this->loadingPlaceHolderWrapperAttributes) ? $this->loadingPlaceHolderWrapperAttributes : ['default' => true];
     }
 
     public function hasLoadingPlaceholderBlade(): bool

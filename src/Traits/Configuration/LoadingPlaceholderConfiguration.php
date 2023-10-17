@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
-trait LoadingConfiguration
+trait LoadingPlaceholderConfiguration
 {
     public function setLoadingPlaceholderStatus(bool $status): self
     {

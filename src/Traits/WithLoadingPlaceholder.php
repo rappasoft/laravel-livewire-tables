@@ -2,13 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Rappasoft\LaravelLivewireTables\Traits\Configuration\LoadingConfiguration;
-use Rappasoft\LaravelLivewireTables\Traits\Helpers\LoadingHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Configuration\LoadingPlaceholderConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Helpers\LoadingPlaceholderHelpers;
 
-trait WithLoading
+trait WithLoadingPlaceholder
 {
-    use LoadingConfiguration,
-        LoadingHelpers;
+    use LoadingPlaceholderConfiguration,
+        LoadingPlaceholderHelpers;
 
     protected bool $displayLoadingPlaceholder = false;
 
