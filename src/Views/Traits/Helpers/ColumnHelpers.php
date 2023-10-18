@@ -454,5 +454,4 @@ trait ColumnHelpers
     {
         return $this->displayColumnLabel ?? true;
     }
-
 }
