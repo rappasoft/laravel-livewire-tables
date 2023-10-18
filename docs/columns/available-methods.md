@@ -261,7 +261,7 @@ Column::make('地址', 'address.address')
 Labels are visible by default, but should you wish to hide the label from the table header, without impacting on wider table behaviour, you may implement the following method:
 ```php
 Column::make('Name')
-    ->hideColumnLabel()
+    ->setColumnLabelStatusDisabled()
 ```
 
 ### Displaying Column Label
@@ -270,7 +270,7 @@ Labels are visible by default, but should you wish to override a previous "hideC
 
 ```php
 Column::make('Name')
-    ->showColumnLabel()
+    ->setColumnLabelStatusEnabled()
 ```
 
 

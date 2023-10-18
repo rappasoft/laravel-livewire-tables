@@ -34,6 +34,7 @@ class PetsTable extends DataTableComponent
                 ->sortable()
                 ->setSortingPillTitle('Key')
                 ->setSortingPillDirections('0-9', '9-0'),
+                
             Column::make('Sort')
                 ->sortable()
                 ->excludeFromColumnSelect(),

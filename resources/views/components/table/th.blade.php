@@ -18,8 +18,8 @@
             ->except('default')
         }}
     >
-        @if(!$column->isLabelHidden())
-            @unless (($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback())))
+        @if($column->getColumnLabelStatus())
+            @unless ($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
                     {{ $column->getTitle() }}
             @else
                 <button
@@ -57,7 +57,7 @@
             ->except('default')
         }}
     >
-        @if(!$column->isLabelHidden())
+        @if($column->getColumnLabelStatus())
             @unless ($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
                     {{ $column->getTitle() }}
             @else

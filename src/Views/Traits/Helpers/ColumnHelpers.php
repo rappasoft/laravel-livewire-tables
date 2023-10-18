@@ -450,8 +450,9 @@ trait ColumnHelpers
         return $this->customSlug !== null;
     }
 
-    public function isLabelHidden(): bool
+    public function getColumnLabelStatus(): bool
     {
-        return $this->labelIsHidden;
+        return $this->displayColumnLabel ?? true;
     }
+
 }
