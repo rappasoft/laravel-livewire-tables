@@ -339,4 +339,25 @@ class ColumnHelpersTest extends TestCase
         $this->assertIsCallable($column->getFooterCallback());
         $this->assertSame('Hi', $column->getFooterContents([]));
     }
+
+    /** @test */
+    public function can_check_if_column_label_should_be_shown(): void
+    {
+        $column = Column::make('ID', 'id');
+
+        $this->assertTrue($column->getColumnLabelStatus());
+
+        $column2 = Column::make('ID', 'id')
+            ->setColumnLabelStatusDisabled()
+            ->footer(fn ($rows) => 'Hi');
+
+        $this->assertFalse($column2->getColumnLabelStatus());
+
+        $column3 = Column::make('ID', 'id')
+        ->setColumnLabelStatusEnabled()
+        ->footer(fn ($rows) => 'Hi');
+
+        $this->assertTrue($column3->getColumnLabelStatus());
+        $this->assertFalse($column2->getColumnLabelStatus());
+    }
 }
