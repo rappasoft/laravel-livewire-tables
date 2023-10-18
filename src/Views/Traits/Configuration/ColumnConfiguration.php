@@ -178,7 +178,7 @@ trait ColumnConfiguration
         return $this;
     }
 
-    public function setColumnLabelStatus(bool $status): self
+    public function setColumnLabelStatus(bool $status): void
     {
         $this->displayColumnLabel = $status;
     }
