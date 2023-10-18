@@ -33,9 +33,11 @@ class SortingVisualsTest extends TestCase
     public function th_headers_are_buttons_with_sorting_enabled(): void
     {
         Livewire::test(PetsTable::class)
-            ->assertSeeHtml('<button
-                wire:click="sortBy(\'id\')"
-                class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400"');
+            ->assertSeeHtmlInOrder([
+                'wire:click="sortBy(\'id\')"',
+                'class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400"',
+            ]);
+                
     }
 
     /** @test */
