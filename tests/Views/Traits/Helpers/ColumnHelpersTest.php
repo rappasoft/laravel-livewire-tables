@@ -354,8 +354,8 @@ class ColumnHelpersTest extends TestCase
         $this->assertFalse($column2->getColumnLabelStatus());
 
         $column3 = Column::make('ID', 'id')
-        ->setColumnLabelStatusEnabled()
-        ->footer(fn ($rows) => 'Hi');
+            ->setColumnLabelStatusEnabled()
+            ->footer(fn ($rows) => 'Hi');
 
         $this->assertTrue($column3->getColumnLabelStatus());
         $this->assertFalse($column2->getColumnLabelStatus());
