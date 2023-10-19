@@ -54,6 +54,14 @@ trait ComponentUtilities
 
     protected $tdAttributesCallback;
 
+    protected string $layout;
+
+    protected string $slot;
+
+    protected string $extends;
+
+    protected string $section;
+
     protected bool $collapsingColumnsStatus = true;
 
     protected string $emptyMessage = 'No items found. Try to broaden your search.';

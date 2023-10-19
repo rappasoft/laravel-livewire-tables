@@ -57,6 +57,26 @@ trait ComponentHelpers
         return $this->model;
     }
 
+    public function getExtends()
+    {
+        return $this->extends;
+    }
+
+    public function getSection()
+    {
+        return $this->section;
+    }
+
+    public function getSlot()
+    {
+        return $this->slot;
+    }
+
+    public function getLayout()
+    {
+        return $this->layout;
+    }
+
     public function setTheme(): void
     {
         $theme = $this->getTheme();

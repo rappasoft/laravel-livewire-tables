@@ -129,11 +129,30 @@ abstract class DataTableComponent extends Component
         $this->setupFooter();
         $this->setupReordering();
 
-        return view('livewire-tables::datatable')
-            ->with([
-                'columns' => $this->getColumns(),
-                'rows' => $this->getRows(),
-                'customView' => $this->customView(),
-            ]);
+        $view = view('livewire-tables::datatable');
+
+        if (isset($this->layout)){
+            $view->layout($this->layout);
+        }
+
+        if (isset($this->extends)){
+            $view->extends($this->extends);
+        }
+
+        if (isset($this->section)){
+            $view->section($this->section);
+        }
+
+        if (isset($this->slot)){
+            $view->section($this->slot);
+        }
+
+        $view->with([
+            'columns' => $this->getColumns(),
+            'rows' => $this->getRows(),
+            'customView' => $this->customView(),
+        ]);
+
+        return $view;
     }
 }
