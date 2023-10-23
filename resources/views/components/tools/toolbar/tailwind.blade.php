@@ -15,7 +15,7 @@
         @endif
 
         @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
-            <x-livewire-tables::tools.toolbar.items.tw.filter-button />
+            <x-livewire-tables::tools.toolbar.items.filter-button />
         @endif
 
         @if ($component->hasConfigurableAreaFor('toolbar-left-end'))

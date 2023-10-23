@@ -21,7 +21,7 @@
 
 
         @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
-        <x-livewire-tables::tools.toolbar.items.bs.filter-button />
+        <x-livewire-tables::tools.toolbar.items.filter-button />
 
         @endif
 

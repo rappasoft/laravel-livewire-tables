@@ -5,7 +5,7 @@
                                 'dropdown-menu w-100 mt-md-5' => $component->isBootstrap4(),
                                 'dropdown-menu w-100' => $component->isBootstrap5(),
                             ])
-                            x-bind:class="{ 'show': open }"
+                            x-bind:class="{ 'show': filterPopoverOpen }"
                             role="menu"
                         >
                             @foreach ($component->getVisibleFilters() as $filter)
@@ -28,7 +28,7 @@
                                 ></div>
 
                                 <button
-                                    wire:click.prevent="setFilterDefaults" x-on:click="open = false"
+                                    wire:click.prevent="setFilterDefaults" x-on:click="filterPopoverOpen = false"
                                     @class([
                                         'dropdown-item btn text-center' => $component->isBootstrap4(),
                                         'dropdown-item text-center' => $component->isBootstrap5(),
