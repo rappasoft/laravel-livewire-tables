@@ -1,5 +1,6 @@
 @aware(['component', 'tableName'])
 <div
+    x-data="{ open: false, childElementOpen: false, isTailwind: @js($component->isTailwind()), isBootstrap: @js($component->isBootstrap()) }"
     x-cloak
     x-show="(selectedItems.length > 0 || alwaysShowBulkActions)"
     @class([
@@ -14,25 +15,30 @@
     >
         <button
             @class([
-                'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
+                'btn dropdown-toggle d-block d-md-inline' => $component->isBootstrap(),
                 'inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $component->isTailwind(),
             ])
             type="button"
-            id="{{ $tableName }}-bulkActionsDropdown" data-toggle="dropdown" data-bs-toggle="dropdown"
+            id="{{ $tableName }}-bulkActionsDropdown" 
+            
+                        
+            @if($component->isTailwind())
+                        x-on:click="open = !open"
+                        @else
+                        data-toggle="dropdown" data-bs-toggle="dropdown"
+                        @endif
             aria-haspopup="true" aria-expanded="false">
 
             @lang('Bulk Actions')
-
-            <x-heroicon-m-chevron-down 
-                @class([
-                    '-mr-1 ml-2 h-5 w-5' => $component->isTailwind()
-                ])
-                />
-
+            @if($component->isTailwind())
+                <x-heroicon-m-chevron-down class="-mr-1 ml-2 h-5 w-5" />
+            @endif
         </button>
         
         @if($component->isTailwind())
             <div
+                x-on:click.away="if (!childElementOpen) { open = false }"
+                @keydown.window.escape="if (!childElementOpen) { open = false }"
                 x-cloak
                 x-show="open"
                 x-transition:enter="transition ease-out duration-100"
