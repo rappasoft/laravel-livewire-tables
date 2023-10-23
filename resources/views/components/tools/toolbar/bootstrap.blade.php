@@ -43,7 +43,7 @@
         @endif
 
         @if ($component->showBulkActionsDropdownAlpine())
-        <x-livewire-tables::tools.toolbar.items.bs.bulk-actions />
+        <x-livewire-tables::tools.toolbar.items.bulk-actions />
         @endif
 
 
@@ -72,5 +72,5 @@
     $component->hasVisibleFilters() &&
     $component->isFilterLayoutSlideDown()
 )
-    <x-livewire-tables::tools.toolbar.items.bs.filter-slidedown /> 
+    <x-livewire-tables::tools.toolbar.items.filter-slidedown /> 
 @endif
