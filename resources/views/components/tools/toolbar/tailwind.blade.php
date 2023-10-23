@@ -7,11 +7,11 @@
         </div>
         
         @if ($component->reorderIsEnabled())
-            <x-livewire-tables::tools.toolbar.items.tw.reorder />
+            <x-livewire-tables::tools.toolbar.items.reorder-buttons />
         @endif
         
         @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
-            <x-livewire-tables::tools.toolbar.items.tw.search />
+            <x-livewire-tables::tools.toolbar.items.search-field />
         @endif
 
         @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
@@ -39,7 +39,7 @@
         @endif
 
         @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
-        <x-livewire-tables::tools.toolbar.items.tw.pagination-perpage /> 
+        <x-livewire-tables::tools.toolbar.items.pagination-dropdown /> 
         @endif
 
         @if ($component->hasConfigurableAreaFor('toolbar-right-end'))

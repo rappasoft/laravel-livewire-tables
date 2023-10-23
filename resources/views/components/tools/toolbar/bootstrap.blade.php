@@ -11,12 +11,12 @@
         @endif
 
         @if ($component->reorderIsEnabled())
-            <x-livewire-tables::tools.toolbar.items.bs.reorder />
+            <x-livewire-tables::tools.toolbar.items.reorder-buttons />
         @endif
 
 
         @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
-            <x-livewire-tables::tools.toolbar.items.bs.search />
+            <x-livewire-tables::tools.toolbar.items.search-field />
         @endif
 
 
@@ -53,7 +53,7 @@
 
 
         @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
-        <x-livewire-tables::tools.toolbar.items.bs.pagination-perpage /> 
+        <x-livewire-tables::tools.toolbar.items.pagination-dropdown /> 
         @endif
 
 
