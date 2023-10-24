@@ -24,6 +24,6 @@ trait WithBulkActions
 
     public function bulkActions(): array
     {
-        return (property_exists($this, 'bulkActions') ? $this->bulkActions : []);
+        return property_exists($this, 'bulkActions') ? $this->bulkActions : [];
     }
 }
