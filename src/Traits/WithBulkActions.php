@@ -15,6 +15,8 @@ trait WithBulkActions
     public bool $selectAll = false;
 
     public array $bulkActions = [];
+    
+    public array $bulkActionConfirms = [];
 
     public array $selected = [];
 

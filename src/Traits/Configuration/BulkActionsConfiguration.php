@@ -76,4 +76,18 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    public function setBulkActionConfirms(array $bulkActionConfirms): self
+    {
+        $this->bulkActionConfirms = $bulkActionConfirms;
+
+        return $this;
+    }
+
+    public function setBulkActionConfirmMessage(string $action, string $confirmationMessage): self
+    {
+        $this->bulkActionConfirms[$action] = $confirmationMessage;
+
+        return $this;
+    }
 }

@@ -154,4 +154,14 @@ trait BulkActionsHelpers
     {
         return $this->bulkActionsAreEnabled() && $this->hasBulkActions();
     }
+    
+    public function getBulkActionConfirms(): array
+    {
+        return array_keys($this->bulkActionConfirms) ?? [];
+    }
+
+    public function getBulkActionConfirmMessage($confirm_key): string
+    {
+        return $this->bulkActionConfirms[$confirm_key] ?? 'Are you sure?';
+    }
 }
