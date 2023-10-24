@@ -101,7 +101,6 @@ class BulkActionsConfigurationTest extends TestCase
 
         $this->assertSame(['deactivate', 'delete'], $this->basicTable->getBulkActionConfirms());
 
-
     }
 
     /** @test */
@@ -115,7 +114,6 @@ class BulkActionsConfigurationTest extends TestCase
 
         $this->assertSame('do you want to deactivate?', $this->basicTable->getBulkActionConfirmMessage('deactivate'));
     }
-
 
     /** @test */
     public function can_set_bulk_action_custom_messages(): void
@@ -132,11 +130,10 @@ class BulkActionsConfigurationTest extends TestCase
             'purge' => 'Are you sure you want to purge these items?',
             'reassign' => 'This will reassign selected items, are you sure?',
         ]);
-    
+
         $this->assertSame('Are you sure you want to delete these items?', $this->basicTable->getBulkActionConfirmMessage('delete'));
         $this->assertSame('This will reassign selected items, are you sure?', $this->basicTable->getBulkActionConfirmMessage('reassign'));
         $this->assertSame('Are you sure?', $this->basicTable->getBulkActionConfirmMessage('deactivate'));
         $this->assertSame('Are you sure you want to purge these items?', $this->basicTable->getBulkActionConfirmMessage('purge'));
     }
-    
 }

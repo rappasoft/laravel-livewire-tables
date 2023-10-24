@@ -193,5 +193,4 @@ class BulkActionsHelpersTest extends TestCase
     {
         $this->assertSame('Are you sure?', $this->basicTable->getBulkActionConfirmMessage('test'));
     }
-    
 }
