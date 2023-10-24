@@ -157,7 +157,7 @@ trait BulkActionsHelpers
 
     public function getBulkActionConfirms(): array
     {
-        return array_keys($this->bulkActionConfirms) ?? [];
+        return array_keys($this->bulkActionConfirms ?? []);
     }
 
     public function getBulkActionConfirmMessage($confirm_key): string
