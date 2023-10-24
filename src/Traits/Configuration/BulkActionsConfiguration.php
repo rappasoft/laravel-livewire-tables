@@ -79,10 +79,8 @@ trait BulkActionsConfiguration
 
     public function setBulkActionConfirms(array $bulkActionConfirms): self
     {
-        foreach ($bulkActionConfirms as $bulkAction)
-        {
-            if (!isset($this->bulkActionConfirms[$bulkAction]))
-            {
+        foreach ($bulkActionConfirms as $bulkAction) {
+            if (! isset($this->bulkActionConfirms[$bulkAction])) {
                 $this->bulkActionConfirms[$bulkAction] = 'Are you sure?';
             }
         }
