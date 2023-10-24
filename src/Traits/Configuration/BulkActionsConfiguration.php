@@ -90,4 +90,15 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    public function setBulkActionConfirmMessages(array $bulkActionMessages): self
+    {
+        foreach ($bulkActionMessages as $bulkAction => $confirmationMessage)
+        {
+            $this->setBulkActionConfirmMessage($bulkAction, $confirmationMessage);
+        }
+
+        return $this;
+    }
+
 }
