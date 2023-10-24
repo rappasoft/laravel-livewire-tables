@@ -3,10 +3,12 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
+- Fix Return Type hinting for Column Rendering to allow Enum columns
 - Add Bulk Action Confirmations, using wire:confirm
   - setBulkActionConfirms
   - setBulkActionConfirmMessage
   - setBulkActionConfirmMessages 
+
 
 ## [3.0.0-beta.4] - 2023-10-17
 - Introduction of Loading Placeholder
