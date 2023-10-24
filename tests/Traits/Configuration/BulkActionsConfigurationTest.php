@@ -91,4 +91,52 @@ class BulkActionsConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasBulkActions());
     }
+
+    /** @test */
+    public function can_set_bulk_action_confirms(): void
+    {
+        $this->assertSame([], $this->basicTable->getBulkActionConfirms());
+
+        $this->basicTable->setBulkActionConfirms(['deactivate', 'delete']);
+
+        $this->assertSame(['deactivate', 'delete'], $this->basicTable->getBulkActionConfirms());
+
+
+    }
+
+    /** @test */
+    public function can_set_bulk_action_custom_message(): void
+    {
+        $this->basicTable->setBulkActionConfirms(['deactivate', 'delete']);
+
+        $this->assertSame('Are you sure?', $this->basicTable->getBulkActionConfirmMessage('deactivate'));
+
+        $this->basicTable->setBulkActionConfirmMessage('deactivate', 'do you want to deactivate?')
+
+        $this->assertSame('do you want to deactivate?', $this->basicTable->getBulkActionConfirmMessage('deactivate'));
+    }
+
+
+    /** @test */
+    public function can_set_bulk_action_custom_messages(): void
+    {
+        $this->basicTable->setBulkActionConfirms(['purge', 'delete', 'reassign', 'deactivate']);
+
+        $this->assertSame('Are you sure?', $this->basicTable->getBulkActionConfirmMessage('deactivate'));
+        $this->assertSame('Are you sure?', $this->basicTable->getBulkActionConfirmMessage('reassign'));
+        $this->assertSame('Are you sure?', $this->basicTable->getBulkActionConfirmMessage('delete'));
+        $this->assertSame('Are you sure?', $this->basicTable->getBulkActionConfirmMessage('purge'));
+
+        $this->basicTable->setBulkActionConfirmMessages([
+            'delete' => 'Are you sure you want to delete these items?',
+            'purge' => 'Are you sure you want to purge these items?',
+            'reassign' => 'This will reassign selected items, are you sure?',
+        ]);
+    
+        $this->assertSame('Are you sure you want to delete these items?', $this->basicTable->getBulkActionConfirmMessage('delete'));
+        $this->assertSame('This will reassign selected items, are you sure?', $this->basicTable->getBulkActionConfirmMessage('reassign'));
+        $this->assertSame('Are you sure?', $this->basicTable->getBulkActionConfirmMessage('deactivate'));
+        $this->assertSame('Are you sure you want to purge these items?', $this->basicTable->getBulkActionConfirmMessage('purge'));
+    }
+    
 }
