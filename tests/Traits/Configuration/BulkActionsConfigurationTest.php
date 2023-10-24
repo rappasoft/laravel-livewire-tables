@@ -111,7 +111,7 @@ class BulkActionsConfigurationTest extends TestCase
 
         $this->assertSame('Are you sure?', $this->basicTable->getBulkActionConfirmMessage('deactivate'));
 
-        $this->basicTable->setBulkActionConfirmMessage('deactivate', 'do you want to deactivate?')
+        $this->basicTable->setBulkActionConfirmMessage('deactivate', 'do you want to deactivate?');
 
         $this->assertSame('do you want to deactivate?', $this->basicTable->getBulkActionConfirmMessage('deactivate'));
     }
