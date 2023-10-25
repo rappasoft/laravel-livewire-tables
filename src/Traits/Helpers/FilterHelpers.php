@@ -138,7 +138,7 @@ trait FilterHelpers
     #[On('set-filter')]
     public function setFilter(string $filterKey, $value)
     {
-        return $this->filterComponents[$filterKey] = $value;
+        return $this->appliedFilters[$filterKey] = $this->filterComponents[$filterKey] = $value;
     }
 
     public function selectAllFilterOptions(string $filterKey): void
