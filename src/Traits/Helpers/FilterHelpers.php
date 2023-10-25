@@ -132,14 +132,16 @@ trait FilterHelpers
     }
 
     /**
-     * @param  mixed  $value
-     * @return mixed
+     * @param  string $filterKey
+     * @param  mixed $value
+     * @return void
      */
     #[On('set-filter')]
-    public function setFilter(string $filterKey, $value)
+    public function setFilter(string $filterKey, mixed $value): void
     {
-        return $this->appliedFilters[$filterKey] = $this->filterComponents[$filterKey] = $value;
+        $this->appliedFilters[$filterKey] = $this->filterComponents[$filterKey] = $value;
     }
+
 
     public function selectAllFilterOptions(string $filterKey): void
     {
