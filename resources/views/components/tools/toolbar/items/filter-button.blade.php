@@ -8,9 +8,9 @@
             >
                 <div
                     @if ($component->isFilterLayoutPopover())
-                        x-data="{ filterPopoverOpen: false, childElementOpen: false  }"
-                        x-on:keydown.escape.stop="if (!childElementOpen) { filterPopoverOpen = false }"
-                        x-on:mousedown.away="if (!childElementOpen) { filterPopoverOpen = false }"
+                        x-data="{ filterPopoverOpen: false }"
+                        x-on:keydown.escape.stop="if (!this.childElementOpen) { filterPopoverOpen = false }"
+                        x-on:mousedown.away="if (!this.childElementOpen) { filterPopoverOpen = false }"
                     @endif
                     @class([
                         'btn-group d-block d-md-inline' => $component->isBootstrap(),
