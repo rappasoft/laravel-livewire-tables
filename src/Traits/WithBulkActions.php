@@ -22,6 +22,8 @@ trait WithBulkActions
 
     public bool $hideBulkActionsWhenEmpty = false;
 
+    public string $bulkActionConfirmDefaultMessage = trans('Bulk Actions Confirm');
+
     public function bulkActions(): array
     {
         return property_exists($this, 'bulkActions') ? $this->bulkActions : [];

@@ -158,8 +158,19 @@ trait BulkActionsHelpers
         return array_keys($this->bulkActionConfirms);
     }
 
-    public function getBulkActionConfirmMessage($confirm_key): string
+    public function hasConfirmationMessage(string $bulkAction): bool
     {
-        return $this->bulkActionConfirms[$confirm_key] ?? 'Are you sure?';
+        return isset($this->bulkActionConfirms[$bulkAction]);
     }
+
+    public function getBulkActionConfirmMessage(string $bulkAction): string
+    {
+        return $this->bulkActionConfirms[$bulkAction] ?? $this->getBulkActionDefaultConfirmationMessage();
+    }
+
+    public function getBulkActionDefaultConfirmationMessage(): string
+    {
+        return $this->bulkActionConfirmDefaultMessage;
+    }
+
 }

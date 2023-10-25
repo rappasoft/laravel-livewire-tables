@@ -8,6 +8,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
   - setBulkActionConfirms
   - setBulkActionConfirmMessage
   - setBulkActionConfirmMessages 
+  - setBulkActionDefaultConfirmationMessage
+  - Localisation for confirmation message
 
 
 ## [3.0.0-beta.4] - 2023-10-17

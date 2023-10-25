@@ -186,8 +186,8 @@
                                 @foreach ($component->getBulkActions() as $action => $title)
                                     <button
                                         wire:click="{{ $action }}"
-                                        @if(in_array($action, $component->getBulkActionConfirms()))
-                                        wire:confirm="{{ $component->getBulkActionConfirmMessage($action) }}"
+                                        @if($component->hasConfirmationMessage($action))
+                                            wire:confirm="{{ $component->getBulkActionConfirmMessage($action) }}"
                                         @endif
                                         wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
                                         type="button"
