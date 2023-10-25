@@ -22,7 +22,7 @@ trait WithBulkActions
 
     public bool $hideBulkActionsWhenEmpty = false;
 
-    public string $bulkActionConfirmDefaultMessage = trans('Bulk Actions Confirm');
+    public string $bulkActionConfirmDefaultMessage = 'Bulk Actions Confirm';
 
     public function bulkActions(): array
     {
