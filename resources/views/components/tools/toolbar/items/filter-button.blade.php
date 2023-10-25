@@ -53,13 +53,8 @@
                         </button>
                     </div>
 
-                    @if ($component->isFilterLayoutPopover() &&  $component->isBootstrap() )
-                    <x-livewire-tables::tools.toolbar.items.bs.filter-popover />
-
-                    @endif
-                    @if ($component->isFilterLayoutPopover() && $component->isTailwind())
-                <x-livewire-tables::tools.toolbar.items.tw.filter-popover />
-
+                @if ($component->isFilterLayoutPopover())
+                    <x-livewire-tables::tools.toolbar.items.filter-popover />
                 @endif
 
                 </div>
