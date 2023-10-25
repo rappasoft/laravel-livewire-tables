@@ -13,7 +13,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
   - setBulkActionConfirmMessages 
   - setBulkActionDefaultConfirmationMessage
   - Localisation for confirmation message
-  - 
+
 ## [3.0.0-beta.4] - 2023-10-17
 - Introduction of Loading Placeholder
 - Docs livewire namespace fix [Here](https://github.com/rappasoft/laravel-livewire-tables/pull/1420)
