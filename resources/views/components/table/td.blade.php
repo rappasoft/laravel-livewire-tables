@@ -8,7 +8,12 @@
 @if ($component->isTailwind())
     <td wire:key="{{ $tableName . '-table-td-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug() }}"
         @if ($column->isClickable())
-            onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
+            @if($component->getTableRowUrlTarget($row) === "navigate")
+                wire:navigate
+                href="{{ $component->getTableRowUrl($row) }}"
+            @else
+                onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
+            @endif
         @endif
 
         {{
@@ -25,9 +30,16 @@
 @elseif ($component->isBootstrap())
     <td wire:key="{{ $tableName . '-table-td-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug() }}"
         @if ($column->isClickable())
-            onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
+            @if($component->getTableRowUrlTarget($row) === "navigate")
+                wire:navigate
+                href="{{ $component->getTableRowUrl($row) }}"
+            @else
+                onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
+            @endif
+
             style="cursor:pointer"
         @endif
+
 
         {{
             $attributes->merge($customAttributes)

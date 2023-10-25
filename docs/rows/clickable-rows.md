@@ -30,3 +30,26 @@ Column::make('Name')
 ```
 
 **Note:** LinkColumns are not clickable by default to preserve the intended behavior of the link.
+
+## Using wire:navigate
+
+To use wire:navigate, you should return "navigate" as the target for setTableRowUrlTarget
+
+```php
+public function configure(): void
+{
+    $this->setPrimaryKey('id')
+        ->setTableRowUrl(function($row) {
+            return route('admin.users.show', $row);
+        })
+        ->setTableRowUrlTarget(function($row) {
+            if ($row->isExternal()) {
+                return '_blank';
+            }
+
+            return 'navigate';
+        });
+}
+
+```
+
