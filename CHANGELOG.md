@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+- Add wire:navigate option for clickable rows
+
 ## [3.0.0-beta.6] - 2023-10-25
 - Fix for collapsing column header shift
 
