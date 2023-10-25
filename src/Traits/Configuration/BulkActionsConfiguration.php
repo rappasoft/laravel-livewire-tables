@@ -76,4 +76,38 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    public function setBulkActionConfirms(array $bulkActionConfirms): self
+    {
+        foreach ($bulkActionConfirms as $bulkAction) {
+            if (! $this->hasConfirmationMessage($bulkAction)) {
+                $this->setBulkActionConfirmMessage($bulkAction, $this->getBulkActionDefaultConfirmationMessage());
+            }
+        }
+
+        return $this;
+    }
+
+    public function setBulkActionConfirmMessage(string $action, string $confirmationMessage): self
+    {
+        $this->bulkActionConfirms[$action] = $confirmationMessage;
+
+        return $this;
+    }
+
+    public function setBulkActionConfirmMessages(array $bulkActionMessages): self
+    {
+        foreach ($bulkActionMessages as $bulkAction => $confirmationMessage) {
+            $this->setBulkActionConfirmMessage($bulkAction, $confirmationMessage);
+        }
+
+        return $this;
+    }
+
+    public function setBulkActionDefaultConfirmationMessage(string $defaultConfirmationMessage): self
+    {
+        $this->bulkActionConfirmDefaultMessage = $defaultConfirmationMessage;
+
+        return $this;
+    }
 }

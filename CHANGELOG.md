@@ -2,7 +2,14 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [3.0.0-beta.4] - 2023-10-17
+## [3.0.0-beta.4] - 2023-10-25
+- Fix Return Type hinting for Column Rendering to allow Enum columns
+- Add Bulk Action Confirmations, using wire:confirm
+  - setBulkActionConfirms
+  - setBulkActionConfirmMessage
+  - setBulkActionConfirmMessages 
+  - setBulkActionDefaultConfirmationMessage
+  - Localisation for confirmation message
 - Introduction of Loading Placeholder
 - Docs livewire namespace fix [Here](https://github.com/rappasoft/laravel-livewire-tables/pull/1420)
 - Add CollapseAlways capability for Columns

@@ -220,6 +220,9 @@
                             <a
                                 href="#"
                                 wire:click="{{ $action }}"
+                                @if($component->hasConfirmationMessage($action))
+                                    wire:confirm="{{ $component->getBulkActionConfirmMessage($action) }}"
+                                @endif
                                 wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
                                 @class([
                                     'dropdown-item' => $component->isBootstrap(),
