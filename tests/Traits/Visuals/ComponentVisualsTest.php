@@ -115,33 +115,31 @@ class ComponentVisualsTest extends TestCase
     /** @test */
     public function can_see_correct_html_for_clickable_row(): void
     {
-        Livewire::test(new class extends PetsTable {
+        Livewire::test(new class extends PetsTable
+        {
             public function configure(): void
             {
                 $this->setPrimaryKey('id')
-                ->setTableRowUrl(function($row) {
-                    return 'test';
-                })    
-                ->setTableRowUrlTarget(function ($row) {
-                    if ($row->id == 2)
-                    {
-                        return 'navigate';
-                    }
-                    return '_blank';
-                });
-        
-            }
-        
-        })->assertSeeHtml("onclick=\"window.open('test', '_blank')")
-        ->assertSeeHtmlInOrder([
-            'wire:key="table-table-td-2-age"', 
-            'wire:navigate', 
-            'href="test"',
-            'wire:key="table-table-td-5-age"',
-            'onclick="window.open(\'test\', \'_blank\')"',
-        ]);
-        
-    }
+                    ->setTableRowUrl(function ($row) {
+                        return 'test';
+                    })
+                    ->setTableRowUrlTarget(function ($row) {
+                        if ($row->id == 2) {
+                            return 'navigate';
+                        }
 
-    
+                        return '_blank';
+                    });
+
+            }
+        })->assertSeeHtml("onclick=\"window.open('test', '_blank')")
+            ->assertSeeHtmlInOrder([
+                'wire:key="table-table-td-2-age"',
+                'wire:navigate',
+                'href="test"',
+                'wire:key="table-table-td-5-age"',
+                'onclick="window.open(\'test\', \'_blank\')"',
+            ]);
+
+    }
 }

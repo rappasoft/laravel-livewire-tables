@@ -256,10 +256,10 @@ class ComponentConfigurationTest extends TestCase
         $this->assertNull($this->basicTable->getTableRowUrl(2));
 
         $this->basicTable->setTableRowUrl(function ($row) {
-            if ($row == 2)
-            {
+            if ($row == 2) {
                 return 'https://example2.com';
             }
+
             return 'https://example.com';
 
         });
@@ -280,7 +280,6 @@ class ComponentConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '_blank');
 
-        
     }
 
     /** @test */
@@ -288,12 +287,12 @@ class ComponentConfigurationTest extends TestCase
     {
         $this->assertNull($this->basicTable->getTableRowUrl(1));
         $this->assertNull($this->basicTable->getTableRowUrl(2));
-        
+
         $this->basicTable->setTableRowUrlTarget(function ($row) {
-            if ($row == 2)
-            {
+            if ($row == 2) {
                 return 'navigate';
             }
+
             return '_blank';
         });
 
