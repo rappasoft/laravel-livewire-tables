@@ -170,6 +170,6 @@ trait BulkActionsHelpers
 
     public function getBulkActionDefaultConfirmationMessage(): string
     {
-        return (isset($this->bulkActionConfirmDefaultMessage) ? $this->bulkActionConfirmDefaultMessage : __('Bulk Actions Confirm'));
+        return isset($this->bulkActionConfirmDefaultMessage) ? $this->bulkActionConfirmDefaultMessage : __('Bulk Actions Confirm');
     }
 }
