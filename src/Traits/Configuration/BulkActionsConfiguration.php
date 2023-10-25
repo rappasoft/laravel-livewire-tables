@@ -80,7 +80,7 @@ trait BulkActionsConfiguration
     public function setBulkActionConfirms(array $bulkActionConfirms): self
     {
         foreach ($bulkActionConfirms as $bulkAction) {
-            if (!$this->hasConfirmationMessage($bulkAction)) {
+            if (! $this->hasConfirmationMessage($bulkAction)) {
                 $this->setBulkActionConfirmMessage($bulkAction, $this->getBulkActionDefaultConfirmationMessage());
             }
         }
@@ -110,5 +110,4 @@ trait BulkActionsConfiguration
 
         return $this;
     }
-
 }

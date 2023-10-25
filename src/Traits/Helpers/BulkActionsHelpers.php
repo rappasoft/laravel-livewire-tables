@@ -172,5 +172,4 @@ trait BulkActionsHelpers
     {
         return $this->bulkActionConfirmDefaultMessage;
     }
-
 }
