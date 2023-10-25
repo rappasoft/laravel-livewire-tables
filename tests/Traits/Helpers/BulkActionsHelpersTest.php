@@ -180,4 +180,28 @@ class BulkActionsHelpersTest extends TestCase
 
         $this->assertSame(['1', '2', '3', '4', '5'], $this->basicTable->getSelected());
     }
+
+    /** @test */
+    public function can_get_bulk_action_confirms(): void
+    {
+        $this->assertSame([], $this->basicTable->getBulkActionConfirms());
+    }
+
+    /** @test */
+    public function can_find_if_bulk_action_has_confirm_message(): void
+    {
+        $this->assertFalse($this->basicTable->hasConfirmationMessage('test123'));
+    }
+
+    /** @test */
+    public function bulk_action_confirm_returns_default_message_if_not_set(): void
+    {
+        $this->assertSame($this->basicTable->getBulkActionDefaultConfirmationMessage(), $this->basicTable->getBulkActionConfirmMessage('test'));
+    }
+
+    /** @test */
+    public function can_get_bulk_action_default_confirmation_message(): void
+    {
+        $this->assertSame('Are you sure?', $this->basicTable->getBulkActionDefaultConfirmationMessage());
+    }
 }
