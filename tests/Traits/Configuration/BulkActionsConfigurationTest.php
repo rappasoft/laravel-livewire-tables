@@ -150,5 +150,4 @@ class BulkActionsConfigurationTest extends TestCase
         $this->assertSame('Test Default Message', $this->basicTable->getBulkActionDefaultConfirmationMessage());
 
     }
-    
 }

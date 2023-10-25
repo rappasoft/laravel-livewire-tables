@@ -192,7 +192,6 @@ class BulkActionsHelpersTest extends TestCase
     {
         $this->assertFalse($this->basicTable->hasConfirmationMessage('test123'));
     }
-    
 
     /** @test */
     public function bulk_action_confirm_returns_default_message_if_not_set(): void
@@ -205,5 +204,4 @@ class BulkActionsHelpersTest extends TestCase
     {
         $this->assertSame('Are you sure?', $this->basicTable->getBulkActionDefaultConfirmationMessage());
     }
-
 }
