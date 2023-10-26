@@ -12,9 +12,9 @@
 
         {{
             $attributes->merge($customLabelAttributes)
-                ->class(['block text-sm font-medium leading-5 text-gray-700 dark:text-white' => $isTailwind && $customLabelAttributes['default'] ?? true])
-                ->class(['d-block' => $isBootstrap && $filterLayout == 'slide-down' && $customLabelAttributes['default'] ?? true])
-                ->class(['mb-2' => $isBootstrap && $filterLayout == 'popover' && $customLabelAttributes['default'] ?? true])
+                ->class(['block text-sm font-medium leading-5 text-gray-700 dark:text-white' => $isTailwind && ($customLabelAttributes['default'] ?? true)])
+                ->class(['d-block' => $isBootstrap && $filterLayout == 'slide-down' && ($customLabelAttributes['default'] ?? true)])
+                ->class(['mb-2' => $isBootstrap && $filterLayout == 'popover' && ($customLabelAttributes['default'] ?? true)])
                 ->except('default')
         }}
 
