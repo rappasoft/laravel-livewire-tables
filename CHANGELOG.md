@@ -4,6 +4,22 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
 - Changes to toolbar blade structure
+- Fix for setFilter (allowing setFilter at boot/mount)
+
+## [3.0.0-beta.7] - 2023-10-25
+- Add wire:navigate option for clickable rows
+
+## [3.0.0-beta.6] - 2023-10-25
+- Fix for collapsing column header shift
+
+## [3.0.0-beta.5] - 2023-10-25
+- Fix Return Type hinting for Column Rendering to allow Enum columns
+- Add Bulk Action Confirmations, using wire:confirm
+  - setBulkActionConfirms
+  - setBulkActionConfirmMessage
+  - setBulkActionConfirmMessages 
+  - setBulkActionDefaultConfirmationMessage
+  - Localisation for confirmation message
 
 ## [3.0.0-beta.4] - 2023-10-17
 - Introduction of Loading Placeholder
