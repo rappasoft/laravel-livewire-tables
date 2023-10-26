@@ -41,9 +41,9 @@
         @endif
 
         @if ($component->columnSelectIsEnabled()  && $component->isTailwind())
-            <x-livewire-tables::tools.toolbar.items.tw.column-select /> 
+            <x-livewire-tables::tools.toolbar.items.column-select /> 
         @elseif($component->columnSelectIsEnabled() && $component->isBootstrap())
-            <x-livewire-tables::tools.toolbar.items.bs.column-select /> 
+            <x-livewire-tables::tools.toolbar.items.column-select /> 
         @endif
 
         @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
