@@ -14,7 +14,7 @@ trait WithQueryString
     protected ?string $queryStringAlias;
 
     #[Locked]
-    public bool $queryStringStatus = true;
+    public ?bool $queryStringStatus;
 
     /**
      * Set the custom query string array for this specific table
