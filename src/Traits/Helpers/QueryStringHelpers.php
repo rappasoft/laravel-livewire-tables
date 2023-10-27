@@ -26,7 +26,7 @@ trait QueryStringHelpers
         return $this->getQueryStringStatus() === false;
     }
 
-    public function hasQueryStringAlias(): string
+    public function hasQueryStringAlias(): bool
     {
         return isset($this->queryStringAlias);
     }
