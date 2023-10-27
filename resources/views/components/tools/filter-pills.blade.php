@@ -5,7 +5,7 @@
         <div @class([
             'mb-4 px-4 md:p-0' => $component->isTailwind(),
             'mb-3' => $component->isBootstrap(),
-        ]) x-show="!currentlyReorderingStatus">
+        ]) x-cloak x-show="!currentlyReorderingStatus">
             <small @class([
                 'text-gray-700 dark:text-white' => $component->isTailwind(),
                 '' =>  $component->isBootstrap(),

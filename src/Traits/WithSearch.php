@@ -33,6 +33,17 @@ trait WithSearch
 
     protected array $searchFieldAttributes = [];
 
+    protected function queryStringWithSearch()
+    {
+        if ($this->queryStringIsEnabled() && $this->searchIsEnabled()) {
+            return [
+                'search' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-search'],
+            ];
+        }
+
+        return [];
+    }
+
     // TODO
     public function applySearch(): Builder
     {

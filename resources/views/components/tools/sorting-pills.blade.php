@@ -3,7 +3,7 @@
 @if ($component->isTailwind())
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
-            <div class="mb-4 px-4 md:p-0" x-show="!currentlyReorderingStatus">
+            <div class="mb-4 px-4 md:p-0" x-cloak x-show="!currentlyReorderingStatus">
                 <small class="text-gray-700 dark:text-white">@lang('Applied Sorting'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
@@ -44,7 +44,7 @@
 @elseif ($component->isBootstrap4())
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
-            <div class="mb-3" x-show="!currentlyReorderingStatus">
+            <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">
                 <small>@lang('Applied Sorting'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
@@ -84,7 +84,7 @@
 @elseif ($component->isBootstrap5())
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
-            <div class="mb-3" x-show="!currentlyReorderingStatus">
+            <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">
                 <small>@lang('Applied Sorting'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)

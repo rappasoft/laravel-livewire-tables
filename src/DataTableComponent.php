@@ -16,6 +16,7 @@ use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
 use Rappasoft\LaravelLivewireTables\Traits\WithFooter;
 use Rappasoft\LaravelLivewireTables\Traits\WithLoadingPlaceholder;
 use Rappasoft\LaravelLivewireTables\Traits\WithPagination;
+use Rappasoft\LaravelLivewireTables\Traits\WithQueryString;
 use Rappasoft\LaravelLivewireTables\Traits\WithRefresh;
 use Rappasoft\LaravelLivewireTables\Traits\WithReordering;
 use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
@@ -35,6 +36,7 @@ abstract class DataTableComponent extends Component
         WithFooter,
         WithLoadingPlaceholder,
         WithPagination,
+        WithQueryString,
         WithRefresh,
         WithReordering,
         WithSearch,
