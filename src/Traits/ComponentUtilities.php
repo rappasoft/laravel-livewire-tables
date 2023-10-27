@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
 
@@ -30,7 +31,8 @@ trait ComponentUtilities
 
     protected ?string $queryStringAlias;
 
-    protected bool $queryStringStatus = true;
+    #[Locked] 
+    public bool $queryStringStatus = true;
 
     protected bool $offlineIndicatorStatus = true;
 
