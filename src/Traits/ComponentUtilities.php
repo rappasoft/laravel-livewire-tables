@@ -31,7 +31,7 @@ trait ComponentUtilities
 
     protected ?string $queryStringAlias;
 
-    #[Locked] 
+    #[Locked]
     public bool $queryStringStatus = true;
 
     protected bool $offlineIndicatorStatus = true;
