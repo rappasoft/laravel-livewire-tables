@@ -97,10 +97,6 @@ trait ComponentUtilities
         if ($this->queryStringIsEnabled()) {
             return [
                 $this->getTableName() => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias()],
-                'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
-                'search' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-search'],
-                'columns' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-columns'],
-                'sorts' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-sorts'],
             ];
         }
 

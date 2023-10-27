@@ -34,6 +34,15 @@ trait WithColumnSelect
 
     public bool $defaultDeselectedColumnsSetup = false;
 
+    protected function queryStringWithColumnSelect()
+    {
+        if ($this->queryStringIsEnabled() && $this->columnSelectIsEnabled()) {
+            return [
+                'columns' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-columns'],
+            ];
+        }
+    }
+
     public function setupColumnSelect(): void
     {
 
