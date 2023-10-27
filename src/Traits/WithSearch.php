@@ -33,7 +33,6 @@ trait WithSearch
 
     protected array $searchFieldAttributes = [];
 
-
     protected function queryStringWithSearch()
     {
         if ($this->queryStringIsEnabled() && $this->searchIsEnabled()) {
@@ -42,7 +41,6 @@ trait WithSearch
             ];
         }
     }
-
 
     // TODO
     public function applySearch(): Builder

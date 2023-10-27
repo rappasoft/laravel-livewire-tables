@@ -32,8 +32,8 @@ trait WithFilters
     public function filters(): array
     {
         return [];
-    }   
-    
+    }
+
     protected function queryStringWithFilters()
     {
         if ($this->queryStringIsEnabled() && $this->filtersAreEnabled()) {
@@ -42,7 +42,6 @@ trait WithFilters
             ];
         }
     }
-
 
     public function applyFilters(): Builder
     {
