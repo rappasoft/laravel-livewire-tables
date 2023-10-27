@@ -28,10 +28,6 @@ trait ComponentUtilities
 
     protected ?string $dataTableFingerprint;
 
-    protected ?string $queryStringAlias;
-
-    protected bool $queryStringStatus = true;
-
     protected bool $offlineIndicatorStatus = true;
 
     protected bool $eagerLoadAllRelationsStatus = false;
@@ -85,26 +81,6 @@ trait ComponentUtilities
         if (is_null($this->theme)) {
             $this->setTheme();
         }
-    }
-
-    /**
-     * Set the custom query string array for this specific table
-     *
-     * @return array<mixed>
-     */
-    protected function queryString(): array
-    {
-        if ($this->queryStringIsEnabled()) {
-            return [
-                $this->getTableName() => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias()],
-                'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
-                'search' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-search'],
-                'columns' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-columns'],
-                'sorts' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-sorts'],
-            ];
-        }
-
-        return [];
     }
 
     /**

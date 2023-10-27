@@ -34,6 +34,17 @@ trait WithFilters
         return [];
     }
 
+    protected function queryStringWithFilters()
+    {
+        if ($this->queryStringIsEnabled() && $this->filtersAreEnabled()) {
+            return [
+                'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
+            ];
+        }
+
+        return [];
+    }
+
     public function applyFilters(): Builder
     {
         if ($this->filtersAreEnabled() && $this->hasFilters() && $this->hasAppliedFiltersWithValues()) {

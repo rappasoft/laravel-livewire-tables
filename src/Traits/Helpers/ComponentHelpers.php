@@ -13,11 +13,6 @@ trait ComponentHelpers
         return $this->dataTableFingerprint ?? $this->generateDataTableFingerprint();
     }
 
-    public function getQueryStringAlias(): string
-    {
-        return $this->queryStringAlias ?? $this->getTableName();
-    }
-
     public function setBuilder(Builder $builder): void
     {
         $this->builder = $builder;
@@ -189,21 +184,6 @@ trait ComponentHelpers
     public function offlineIndicatorIsDisabled(): bool
     {
         return $this->getOfflineIndicatorStatus() === false;
-    }
-
-    public function getQueryStringStatus(): bool
-    {
-        return $this->queryStringStatus;
-    }
-
-    public function queryStringIsEnabled(): bool
-    {
-        return $this->getQueryStringStatus() === true;
-    }
-
-    public function queryStringIsDisabled(): bool
-    {
-        return $this->getQueryStringStatus() === false;
     }
 
     public function setTableName(string $name): string
