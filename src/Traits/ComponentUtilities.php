@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
-use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
 
@@ -28,11 +27,6 @@ trait ComponentUtilities
     protected string $tableName = 'table';
 
     protected ?string $dataTableFingerprint;
-
-    protected ?string $queryStringAlias;
-
-    #[Locked]
-    public bool $queryStringStatus = true;
 
     protected bool $offlineIndicatorStatus = true;
 
@@ -89,21 +83,6 @@ trait ComponentUtilities
         }
     }
 
-    /**
-     * Set the custom query string array for this specific table
-     *
-     * @return array<mixed>
-     */
-    protected function queryString(): array
-    {
-        if ($this->queryStringIsEnabled()) {
-            return [
-                $this->getTableName() => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias()],
-            ];
-        }
-
-        return [];
-    }
 
     /**
      * Keep track of any properties on the custom query string key for this specific table
