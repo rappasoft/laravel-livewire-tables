@@ -2,9 +2,17 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## UNRELEASED
-- Changes to toolbar blade structure
-- Fix for setFilter (allowing setFilter at boot/mount)
+## [3.0.0-beta.10] - 2023-10-27
+- Changes to toolbar blade structure by @lrljoe in #[1454](https://github.com/rappasoft/laravel-livewire-tables/pull/1454) 
+- Fix queryStringEnabled by @lrljoe in #[1465](https://github.com/rappasoft/laravel-livewire-tables/pull/1465) 
+- Add missing x-cloak by @lrljoe in #[1463](https://github.com/rappasoft/laravel-livewire-tables/pull/1463) 
+
+## [3.0.0-beta.9] - 2023-10-27
+- Fixes for missing default behaviour by @lrljoe in #[1455](https://github.com/rappasoft/laravel-livewire-tables/pull/1455)
+
+## [3.0.0-beta.8] - 2023-10-26
+- Fix for setFilter - allows setting values at mount/boot (#1451) by @lrljoe in #[1452](https://github.com/rappasoft/laravel-livewire-tables/pull/1452)
+
 
 ## [3.0.0-beta.7] - 2023-10-25
 - Add wire:navigate option for clickable rows
