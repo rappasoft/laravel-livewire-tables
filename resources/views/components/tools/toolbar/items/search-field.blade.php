@@ -1,6 +1,6 @@
 @aware(['component', 'tableName'])
 
-<div x-show="!currentlyReorderingStatus"
+<div x-cloak x-show="!currentlyReorderingStatus"
     @class([
         'mb-3 mb-md-0 input-group' => $component->isBootstrap(),
         'flex rounded-md shadow-sm' => $component->isTailwind(),

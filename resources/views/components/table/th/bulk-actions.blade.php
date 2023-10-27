@@ -6,7 +6,7 @@
         <div
             x-data="{newSelectCount: 0, indeterminateCheckbox: false, bulkActionHeaderChecked: false}"
             x-init="$watch('selectedItems', value => indeterminateCheckbox = (value.length > 0 && value.length < paginationTotalItemCount))"
-            x-show="currentlyReorderingStatus !== true"
+            x-cloak x-show="currentlyReorderingStatus !== true"
             @class([
                 'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',
                 'form-check' => $theme === 'bootstrap-5',
