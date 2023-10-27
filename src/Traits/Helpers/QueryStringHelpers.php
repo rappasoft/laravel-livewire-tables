@@ -2,10 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-
 trait QueryStringHelpers
 {
-    
     public function hasQueryStringStatus(): bool
     {
         return isset($this->queryStringStatus);
@@ -19,6 +17,7 @@ trait QueryStringHelpers
     public function queryStringIsEnabled(): bool
     {
         $this->setupQueryStringStatus();
+
         return $this->getQueryStringStatus() === true;
     }
 
@@ -36,5 +35,4 @@ trait QueryStringHelpers
     {
         return $this->queryStringAlias ?? $this->getTableName();
     }
-
 }

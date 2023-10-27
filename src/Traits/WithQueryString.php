@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Traits\Configuration\QueryStringConfiguratio
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\QueryStringHelpers;
 
 trait WithQueryString
-{    
+{
     use QueryStringConfiguration,
         QueryStringHelpers;
 

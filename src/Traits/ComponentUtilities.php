@@ -83,7 +83,6 @@ trait ComponentUtilities
         }
     }
 
-
     /**
      * Keep track of any properties on the custom query string key for this specific table
      */

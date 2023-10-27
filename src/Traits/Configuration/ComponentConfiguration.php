@@ -247,5 +247,4 @@ trait ComponentConfiguration
 
         return $this;
     }
-
 }

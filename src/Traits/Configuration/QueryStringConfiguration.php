@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait QueryStringConfiguration
 {
-    
     public function setQueryStringAlias(string $queryStringAlias): self
     {
         $this->queryStringAlias = $queryStringAlias;
@@ -14,16 +13,14 @@ trait QueryStringConfiguration
 
     public function setupQueryStringStatus(): void
     {
-        if (!$this->hasQueryStringStatus())
-        {
+        if (! $this->hasQueryStringStatus()) {
             $this->configure();
-            if (!$this->hasQueryStringStatus())
-            {
+            if (! $this->hasQueryStringStatus()) {
                 $this->setQueryStringEnabled();
-            }    
+            }
         }
-    } 
-    
+    }
+
     public function setQueryStringStatus(bool $status): self
     {
         $this->queryStringStatus = $status;
@@ -44,5 +41,4 @@ trait QueryStringConfiguration
 
         return $this;
     }
-
 }
