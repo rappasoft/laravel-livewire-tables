@@ -14,10 +14,10 @@ trait QueryStringConfiguration
 
     public function setupQueryStringStatus(): void
     {
-        if (!$this->hasQueryStringStatus()))
+        if (!$this->hasQueryStringStatus())
         {
             $this->configure();
-            if (!$this->hasQueryStringStatus()))
+            if (!$this->hasQueryStringStatus())
             {
                 $this->setQueryStringEnabled();
             }    
