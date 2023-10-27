@@ -26,7 +26,8 @@
                 @class([
                     'dropdown-divider' => $component->isBootstrap(),
                 ])
-            ></div>
+            >
+            </div>
 
             <button
                 wire:click.prevent="setFilterDefaults" x-on:click="filterPopoverOpen = false"

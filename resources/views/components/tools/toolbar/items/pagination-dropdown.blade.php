@@ -2,7 +2,8 @@
 <div @class([
         'ml-0 ml-md-2' => $component->isBootstrap4(),
         'ms-0 ms-md-2' => $component->isBootstrap5(),
-    ])>
+    ])
+>
     <select
         wire:model.live="perPage" id="{{ $tableName }}-perPage"
 
