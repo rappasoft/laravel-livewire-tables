@@ -11,7 +11,7 @@ trait QueryStringHelpers
 
     public function getQueryStringStatus(): bool
     {
-        return $this->queryStringStatus;
+        return $this->queryStringStatus ?? true;
     }
 
     public function queryStringIsEnabled(): bool
