@@ -10,7 +10,7 @@
             'form-check' => $theme === 'bootstrap-5',
         ])>
             <input
-                x-show="!currentlyReorderingStatus"
+                x-cloak x-show="!currentlyReorderingStatus"
                 x-model="selectedItems"
                 wire:key="{{ $tableName . 'selectedItems-'.$row->{$this->getPrimaryKey()} }}"
                 wire:loading.attr.delay="disabled"

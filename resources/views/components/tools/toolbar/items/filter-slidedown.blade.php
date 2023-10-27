@@ -1,6 +1,5 @@
 @aware(['component', 'tableName'])
-<div x-cloak 
-    x-show="!currentlyReorderingStatus && filtersOpen" 
+<div x-cloak x-show="!currentlyReorderingStatus && filtersOpen" 
     @class([
         'container' => $component->isBootstrap(),
     ])

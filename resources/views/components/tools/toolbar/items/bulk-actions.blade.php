@@ -1,8 +1,7 @@
 @aware(['component', 'tableName'])
 <div
     x-data="{ open: false, childElementOpen: false, isTailwind: @js($component->isTailwind()), isBootstrap: @js($component->isBootstrap()) }"
-    x-cloak
-    x-show="(selectedItems.length > 0 || alwaysShowBulkActions)"
+    x-cloak x-show="(selectedItems.length > 0 || alwaysShowBulkActions)"
     @class([
         'mb-3 mb-md-0' => $component->isBootstrap(),
         'w-full md:w-auto mb-4 md:mb-0' => $component->isTailwind(),
@@ -39,8 +38,7 @@
             <div
                 x-on:click.away="if (!childElementOpen) { open = false }"
                 @keydown.window.escape="if (!childElementOpen) { open = false }"
-                x-cloak
-                x-show="open"
+                x-cloak x-show="open"
                 x-transition:enter="transition ease-out duration-100"
                 x-transition:enter-start="transform opacity-0 scale-95"
                 x-transition:enter-end="transform opacity-100 scale-100"

@@ -10,8 +10,7 @@
 
     @if ($component->isTailwind())
         <x-livewire-tables::table.tr.plain
-            x-cloak
-            x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
+            x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
             wire:key="{{ $tableName }}-bulk-select-message"
             class="bg-indigo-50 dark:bg-gray-900 dark:text-white"
         >
@@ -76,8 +75,7 @@
         </x-livewire-tables::table.tr.plain>
     @elseif ($component->isBootstrap())
         <x-livewire-tables::table.tr.plain
-            x-cloak
-            x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
+            x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
             wire:key="{{ $tableName }}-bulk-select-message"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">

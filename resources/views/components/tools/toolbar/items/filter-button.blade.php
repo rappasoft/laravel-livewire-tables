@@ -1,5 +1,5 @@
 @aware(['component', 'tableName'])
-<div x-show="!currentlyReorderingStatus" 
+<div x-cloak x-show="!currentlyReorderingStatus" 
                 @class([
                     'ml-0 ml-md-2 mb-3 mb-md-0' => $component->isBootstrap4(),
                     'ms-0 ms-md-2 mb-3 mb-md-0' => $component->isBootstrap5() && $component->searchIsEnabled(),
