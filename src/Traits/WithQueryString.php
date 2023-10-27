@@ -8,7 +8,9 @@ use Rappasoft\LaravelLivewireTables\Traits\Helpers\QueryStringHelpers;
 
 trait WithQueryString
 {    
-    
+    use QueryStringConfiguration,
+        QueryStringHelpers;
+
     protected ?string $queryStringAlias;
 
     #[Locked]
