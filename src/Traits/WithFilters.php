@@ -41,6 +41,7 @@ trait WithFilters
                 'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
             ];
         }
+
         return [];
     }
 
