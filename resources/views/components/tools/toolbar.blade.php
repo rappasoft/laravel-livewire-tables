@@ -4,9 +4,17 @@
     @include($component->getConfigurableAreaFor('before-toolbar'), $component->getParametersForConfigurableArea('before-toolbar'))
 @endif
 
-<div class="md:flex md:justify-between mb-4 px-4 md:p-0">
-    <div class="w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2">
-        <div x-show="!currentlyReorderingStatus">
+<div @class([
+        'd-md-flex justify-content-between mb-3' => $component->isBootstrap(),
+        'md:flex md:justify-between mb-4 px-4 md:p-0' => $component->isTailwind(),
+    ])
+>
+    <div @class([
+            'd-md-flex' => $component->isBootstrap(),
+            'w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2' => $component->isTailwind(),
+        ])
+    >
+        <div x-cloak x-show="!currentlyReorderingStatus">
             @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
                 @include($component->getConfigurableAreaFor('toolbar-left-start'), $component->getParametersForConfigurableArea('toolbar-left-start'))
             @endif
@@ -25,13 +33,18 @@
         @endif
 
         @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
-            <div x-show="!currentlyReorderingStatus">
+            <div x-cloak x-show="!currentlyReorderingStatus">
                 @include($component->getConfigurableAreaFor('toolbar-left-end'), $component->getParametersForConfigurableArea('toolbar-left-end'))
             </div>
         @endif
     </div>
 
-    <div x-show="!currentlyReorderingStatus" class="md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2">
+    <div x-cloak x-show="!currentlyReorderingStatus"         
+        @class([
+            'd-md-flex' => $component->isBootstrap(),
+            'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => $component->isTailwind(),
+        ])
+    >
         @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
             @include($component->getConfigurableAreaFor('toolbar-right-start'), $component->getParametersForConfigurableArea('toolbar-right-start'))
         @endif
@@ -47,7 +60,7 @@
         @endif
 
         @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
-        <x-livewire-tables::tools.toolbar.items.pagination-dropdown /> 
+            <x-livewire-tables::tools.toolbar.items.pagination-dropdown /> 
         @endif
 
         @if ($component->hasConfigurableAreaFor('toolbar-right-end'))
@@ -66,7 +79,7 @@
 
 
 @if ($component->hasConfigurableAreaFor('after-toolbar'))
-    <div x-show="!currentlyReorderingStatus" >
+    <div x-cloak x-show="!currentlyReorderingStatus" >
         @include($component->getConfigurableAreaFor('after-toolbar'), $component->getParametersForConfigurableArea('after-toolbar'))
     </div>
 @endif
