@@ -3,6 +3,7 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
+- Changes to toolbar blade structure
 - Fix for setFilter (allowing setFilter at boot/mount)
 
 ## [3.0.0-beta.7] - 2023-10-25
