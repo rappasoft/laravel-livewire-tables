@@ -37,6 +37,7 @@ trait WithSorting
                 'sorts' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-sorts'],
             ];
         }
+        return [];
     }
 
     public function sortBy(string $columnSelectName): ?string

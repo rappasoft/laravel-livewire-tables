@@ -41,6 +41,7 @@ trait WithColumnSelect
                 'columns' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-columns'],
             ];
         }
+        return [];
     }
 
     public function setupColumnSelect(): void
