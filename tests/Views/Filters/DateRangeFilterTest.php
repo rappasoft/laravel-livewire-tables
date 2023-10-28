@@ -388,7 +388,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame('', $filter->getDateString(''));
         $this->assertSame('2020-01-01 to 2020-02-02', $filter->getDateString(['2020-02-02', '2020-01-01']));
         $this->assertSame('2021-03-03 to 2021-04-04', $filter->getDateString(['minDate' => '2021-03-03', 'maxDate' => '2021-04-04']));
-        $this->assertSame('2022-05-05 to 2022-06-06', $filter->getDateString('2022-05-05,to,2022-06-06']));
+        $this->assertSame('2022-05-05 to 2022-06-06', $filter->getDateString('2022-05-05,to,2022-06-06'));
 
     }
 }
