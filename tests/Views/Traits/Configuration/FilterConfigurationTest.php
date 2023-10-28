@@ -129,4 +129,15 @@ class FilterConfigurationTest extends TestCase
         $this->assertTrue($filter->isHiddenFromFilterCount());
         $this->assertTrue($filter->isResetByClearButton());
     }
+
+    /** @test */
+    public function can_set_custom_position(): void
+    {
+        $filter = SelectFilter::make('Active');
+        $this->assertFalse($filter->hasCustomPosition());
+        $filter->setFilterPosition("header");
+        $this->assertTrue($filter->hasCustomPosition());
+        $this->assertSame('header',$filter->getCustomPosition());
+    }
+    
 }

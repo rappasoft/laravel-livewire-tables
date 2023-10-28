@@ -380,4 +380,32 @@ class FilterHelpersTest extends TestCase
         $this->assertSame($filter1->getFilterLabelAttributes(), ['default' => false, 'class' => 'text-3xl']);
 
     }
+
+    /** @test */
+    public function can_get_filter_wire_key(): void
+    {
+        $filter1 = TextFilter::make('Filter1');
+        $tableName = 'test1';
+        $filterType = 'textfilter';
+        $filterKey = $filter1->getKey();
+        
+        $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName . "-filter-" . $filterType . "-" . $filterKey);
+    }
+    
+    /** @test */
+    public function can_get_filter_wire_key_custom_position(): void
+    {
+        $filter1 = TextFilter::make('Filter1');
+        $tableName = 'test1';
+        $filterType = 'textfilter';
+        $customPosition = 'header';
+
+        $filterKey = $filter1->getKey();
+        $filter1->setFilterPosition($customPosition);
+        $this->assertTrue($filter1->hasCustomPosition());
+
+        $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName . "-filter-" . $filterType . "-" . $filterKey . "-" . $customPosition);
+    }
+
+    
 }
