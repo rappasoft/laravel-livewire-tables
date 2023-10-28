@@ -388,10 +388,10 @@ class FilterHelpersTest extends TestCase
         $tableName = 'test1';
         $filterType = 'textfilter';
         $filterKey = $filter1->getKey();
-        
-        $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName . "-filter-" . $filterType . "-" . $filterKey);
+
+        $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName.'-filter-'.$filterType.'-'.$filterKey);
     }
-    
+
     /** @test */
     public function can_get_filter_wire_key_custom_position(): void
     {
@@ -404,8 +404,6 @@ class FilterHelpersTest extends TestCase
         $filter1->setFilterPosition($customPosition);
         $this->assertTrue($filter1->hasCustomPosition());
 
-        $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName . "-filter-" . $filterType . "-" . $filterKey . "-" . $customPosition);
+        $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName.'-filter-'.$filterType.'-'.$filterKey.'-'.$customPosition);
     }
-
-    
 }

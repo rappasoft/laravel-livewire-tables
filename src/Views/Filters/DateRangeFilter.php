@@ -169,7 +169,7 @@ class DateRangeFilter extends Filter
 
         return false;
     }
-    
+
     public function getDateString(string|array $dateInput): string
     {
         if ($dateInput != '') {
@@ -181,11 +181,13 @@ class DateRangeFilter extends Filter
                 $startDate = isset($dateArray[0]) ? $dateArray[0] : date('Y-m-d');
                 $endDate = isset($dateArray[2]) ? $dateArray[2] : date('Y-m-d');
             }
-            return $startDate . ' to ' . $endDate;
-    
+
+            return $startDate.' to '.$endDate;
+
         }
+
         return '';
-    
+
     }
 
     public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory

@@ -135,9 +135,8 @@ class FilterConfigurationTest extends TestCase
     {
         $filter = SelectFilter::make('Active');
         $this->assertFalse($filter->hasCustomPosition());
-        $filter->setFilterPosition("header");
+        $filter->setFilterPosition('header');
         $this->assertTrue($filter->hasCustomPosition());
-        $this->assertSame('header',$filter->getCustomPosition());
+        $this->assertSame('header', $filter->getCustomPosition());
     }
-    
 }

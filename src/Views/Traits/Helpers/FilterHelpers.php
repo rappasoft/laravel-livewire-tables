@@ -253,7 +253,6 @@ trait FilterHelpers
 
     public function generateWireKey(string $tableName, string $filterType, string $extraData = ''): string
     {
-        return $tableName . "-filter-" . $filterType . "-" . $this->getKey() . ($extraData != '' ? "-" . $extraData : '') . ($this->hasCustomPosition() ? '-' . $this->getCustomPosition() : '');
+        return $tableName.'-filter-'.$filterType.'-'.$this->getKey().($extraData != '' ? '-'.$extraData : '').($this->hasCustomPosition() ? '-'.$this->getCustomPosition() : '');
     }
-
 }
