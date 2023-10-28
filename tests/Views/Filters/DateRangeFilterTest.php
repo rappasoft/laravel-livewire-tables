@@ -380,4 +380,16 @@ class DateRangeFilterTest extends FilterTestCase
 
         $this->assertFalse($filter->isResetByClearButton());
     }
+
+    /** @test */
+    public function can_get_datestring(): void
+    {
+        $filter = DateRangeFilter::make('Active');
+
+        $this->assertSame('',$filter->getDateString(''));
+        $this->assertSame('2020-01-01 to 2020-02-02', $filter->getDateString(['2020-01-01', 'to', '2020-02-02']));
+        $this->assertSame('2021-03-03 to 2021-04-04', $filter->getDateString(['minDate' => '2021-03-03', 'maxDate' => '2021-04-04']));
+
+    }
+    
 }
