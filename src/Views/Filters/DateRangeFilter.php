@@ -170,6 +170,26 @@ class DateRangeFilter extends Filter
         return false;
     }
 
+    public function getDateString(string|array $dateInput): string
+    {
+        if ($dateInput != '') {
+            if (is_array($dateInput)) {
+                $startDate = isset($dateInput['minDate']) ? $dateInput['minDate'] : (isset($dateInput[1]) ? $dateInput[1] : date('Y-m-d'));
+                $endDate = isset($dateInput['maxDate']) ? $dateInput['maxDate'] : (isset($dateInput[0]) ? $dateInput[0] : date('Y-m-d'));
+            } else {
+                $dateArray = explode(',', $dateInput);
+                $startDate = isset($dateArray[0]) ? $dateArray[0] : date('Y-m-d');
+                $endDate = isset($dateArray[2]) ? $dateArray[2] : date('Y-m-d');
+            }
+
+            return $startDate.' to '.$endDate;
+
+        }
+
+        return '';
+
+    }
+
     public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         $this->getOptions();

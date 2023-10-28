@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+- Update Date Range Icon Styling
+- Migrate PHP from date-range blade into new DateRangeFilter method
+- Add FilterHelper method for generating filter wire:keys
+- Add Filter CustomPosition tests
+
 ## [3.0.0-beta.10] - 2023-10-27
 - Changes to toolbar blade structure by @lrljoe in #[1454](https://github.com/rappasoft/laravel-livewire-tables/pull/1454) 
 - Fix queryStringEnabled by @lrljoe in #[1465](https://github.com/rappasoft/laravel-livewire-tables/pull/1465) 

@@ -250,4 +250,9 @@ trait FilterHelpers
     {
         return $this->getFilterLabelAttributes() != ['default' => true] && $this->getFilterLabelAttributes() != ['default' => false];
     }
+
+    public function generateWireKey(string $tableName, string $filterType, string $extraData = ''): string
+    {
+        return $tableName.'-filter-'.$filterType.'-'.$this->getKey().($extraData != '' ? '-'.$extraData : '').($this->hasCustomPosition() ? '-'.$this->getCustomPosition() : '');
+    }
 }
