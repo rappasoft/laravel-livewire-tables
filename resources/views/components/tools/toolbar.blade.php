@@ -52,7 +52,7 @@
         @if ($component->showBulkActionsDropdownAlpine())
             <x-livewire-tables::tools.toolbar.items.bulk-actions />
         @endif
-
+        
         @if ($component->columnSelectIsEnabled())
             <x-livewire-tables::tools.toolbar.items.column-select /> 
         @endif
