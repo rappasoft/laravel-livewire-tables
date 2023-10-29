@@ -9,6 +9,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Add Filter CustomPosition tests
 - Add Placeholder config option for DateRangeFilter
 - Add Placeholder config option for DateFilter, DateTimeFilter, NumberFilter
+- Clean up classes on filters
 
 ## [3.0.0-beta.10] - 2023-10-27
 - Changes to toolbar blade structure by @lrljoe in #[1454](https://github.com/rappasoft/laravel-livewire-tables/pull/1454) 
