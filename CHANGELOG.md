@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+- Fix wire:confirm for BulkActions (removed in merge error)
+
 ## [3.0.0-beta.11] - 2023-10-29
 - Update Date Range Icon Styling
 - Migrate PHP from date-range blade into new DateRangeFilter method
