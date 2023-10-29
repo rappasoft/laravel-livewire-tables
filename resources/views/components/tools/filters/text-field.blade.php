@@ -7,7 +7,7 @@
     ])>
         <input
             wire:model.blur="filterComponents.{{ $filter->getKey() }}"
-            wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
+            wire:key="{{ $filter->generateWireKey($tableName, 'text') }}"
             id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             type="text"
             @if($filter->hasConfig('placeholder')) placeholder="{{ $filter->getConfig('placeholder') }}" @endif

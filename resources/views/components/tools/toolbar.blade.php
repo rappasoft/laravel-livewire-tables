@@ -52,10 +52,8 @@
         @if ($component->showBulkActionsDropdownAlpine())
             <x-livewire-tables::tools.toolbar.items.bulk-actions />
         @endif
-
-        @if ($component->columnSelectIsEnabled()  && $component->isTailwind())
-            <x-livewire-tables::tools.toolbar.items.column-select /> 
-        @elseif($component->columnSelectIsEnabled() && $component->isBootstrap())
+        
+        @if ($component->columnSelectIsEnabled())
             <x-livewire-tables::tools.toolbar.items.column-select /> 
         @endif
 

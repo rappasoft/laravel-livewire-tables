@@ -3,7 +3,7 @@
 
 
     @if ($isTailwind)
-        <div class="rounded-md">
+        <div class="rounded-md shadow-sm">
             <div>
                 <input
                     type="checkbox"

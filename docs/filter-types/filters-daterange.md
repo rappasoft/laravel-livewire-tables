@@ -18,7 +18,7 @@ public function filters(): array
 }
 ```
 
-DateRange filters have configs to set earliestDate and latestDate, to allow/disallow input, to set the input format, and display format, plus Filter Pills labels
+DateRange filters have configs to set earliestDate and latestDate, to allow/disallow input, to set the input format, to set a placeholder value,  display format, plus Filter Pills labels
 
 ```php
 public function filters(): array
@@ -32,6 +32,7 @@ public function filters(): array
             'dateFormat' => 'Y-m-d', // Date format that will be received by the filter
             'earliestDate' => '2020-01-01', // The earliest acceptable date
             'latestDate' => '2023-08-01', // The latest acceptable date
+            'placeholder' => 'Enter Date Range', // A placeholder value
         ])
         ->setFilterPillValues([0 => 'minDate', 1 => 'maxDate']) // The values that will be displayed for the Min/Max Date Values
         ->filter(function (Builder $builder, array $dateRange) { // Expects an array.
