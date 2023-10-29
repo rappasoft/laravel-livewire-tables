@@ -18,7 +18,7 @@ public function filters(): array
 }
 ```
 
-Date filters have configs to set min and max, and to set the format for the Filter Pills
+Date filters have configs to set min and max, to set the format for the Filter Pills, and to set a placeholder value
 
 ```php
 public function filters(): array
@@ -26,9 +26,10 @@ public function filters(): array
     return [
         DateFilter::make('Verified From')
             ->config([
-                'min' => '2020-01-01',
-                'max' => '2021-12-31',
-                'pillFormat' => 'd M Y',
+                'min' => '2020-01-01',  // Earliest Acceptable Date
+                'max' => '2021-12-31', // Latest Acceptable Date
+                'pillFormat' => 'd M Y', // Format for use in Filter Pills
+                'placeholder' => 'Enter Date', // A placeholder value
             ])
     ];
 }
