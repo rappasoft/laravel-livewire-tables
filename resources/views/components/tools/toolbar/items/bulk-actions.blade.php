@@ -52,6 +52,9 @@
                         @foreach ($component->getBulkActions() as $action => $title)
                             <button
                                 wire:click="{{ $action }}"
+                                @if($component->hasConfirmationMessage($action))
+                                    wire:confirm="{{ $component->getBulkActionConfirmMessage($action) }}"
+                                @endif
                                 wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
                                 type="button"
                                 class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 flex items-center space-x-2 dark:text-white dark:hover:bg-gray-600"
@@ -74,6 +77,9 @@
                 @foreach ($component->getBulkActions() as $action => $title)
                     <a
                         href="#"
+                        @if($component->hasConfirmationMessage($action))
+                            wire:confirm="{{ $component->getBulkActionConfirmMessage($action) }}"
+                        @endif
                         wire:click="{{ $action }}"
                         wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
                         @class([
