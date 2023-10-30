@@ -56,7 +56,7 @@
         </div>
 
         @if ($component->isFilterLayoutPopover())
-            <x-livewire-tables::tools.toolbar.items.filter-popover />
+            <x-livewire-tables::tools.toolbar.items.filter-popover :$filterGenericData />
         @endif
 
     </div>
