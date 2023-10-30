@@ -256,8 +256,14 @@ trait FilterHelpers
         return $tableName.'-filter-'.$filterType.'-'.$this->getKey().($extraData != '' ? '-'.$extraData : '').($this->hasCustomPosition() ? '-'.$this->getCustomPosition() : '');
     }
 
-    public function getGenericDisplayData()
+    public function getGenericDisplayData(): array
     {
         return $this->genericDisplayData;
     }
+
+    public function getFilterDisplayData(Filter $filterInstance): array
+    {
+        return array_merge($this->getGenericDisplayData(), ['filter' => $filterInstance]);
+    }
+
 }

@@ -183,26 +183,17 @@ class DateRangeFilter extends Filter
             }
 
             return $startDate.' to '.$endDate;
-
         }
 
         return '';
 
     }
 
-    public function render(array $filterGenericData): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         $this->getOptions();
         $this->getConfigs();
 
-        return view('livewire-tables::components.tools.filters.date-range', [
-            'filterLayout' => $filterGenericData['filterLayout'],
-            'tableName' => $filterGenericData['tableName'],
-            'isTailwind' => $filterGenericData['isTailwind'],
-            'isBootstrap' => ($filterGenericData['isBootstrap4'] || $filterGenericData['isBootstrap5']),
-            'isBootstrap4' => $filterGenericData['isBootstrap4'],
-            'isBootstrap5' => $filterGenericData['isBootstrap5'],
-            'filter' => $this,
-        ]);
+        return view('livewire-tables::components.tools.filters.date-range', $this->getFilterDisplayData($this));
     }
 }

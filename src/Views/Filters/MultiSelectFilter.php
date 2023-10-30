@@ -94,16 +94,8 @@ class MultiSelectFilter extends Filter
         return ! is_array($value);
     }
 
-    public function render(array $filterGenericData): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return view('livewire-tables::components.tools.filters.multi-select', [
-            'filterLayout' => $filterGenericData['filterLayout'],
-            'tableName' => $filterGenericData['tableName'],
-            'isTailwind' => $filterGenericData['isTailwind'],
-            'isBootstrap' => ($filterGenericData['isBootstrap4'] || $filterGenericData['isBootstrap5']),
-            'isBootstrap4' => $filterGenericData['isBootstrap4'],
-            'isBootstrap5' => $filterGenericData['isBootstrap5'],
-            'filter' => $this,
-        ]);
+        return view('livewire-tables::components.tools.filters.multi-select', $this->getFilterDisplayData($this));
     }
 }

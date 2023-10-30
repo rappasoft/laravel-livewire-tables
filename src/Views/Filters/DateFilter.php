@@ -45,10 +45,8 @@ class DateFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(array $filterGenericData): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        $filterGenericData = $this->getGenericDisplayData();
-
-        return view('livewire-tables::components.tools.filters.date', [...$this->getGenericDisplayData(), ['filter' => $this]]);
+        return view('livewire-tables::components.tools.filters.date', $this->getFilterDisplayData($this));
     }
 }
