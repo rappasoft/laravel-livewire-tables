@@ -30,6 +30,6 @@ class TextFilter extends Filter
 
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return view('livewire-tables::components.tools.filters.text-field', $this->getFilterDisplayData($this)));
+        return view('livewire-tables::components.tools.filters.text-field', $this->getFilterDisplayData($this));
     }
 }

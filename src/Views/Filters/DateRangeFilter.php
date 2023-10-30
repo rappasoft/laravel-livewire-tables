@@ -184,16 +184,12 @@ class DateRangeFilter extends Filter
 
             return $startDate.' to '.$endDate;
         }
-
         return '';
-
     }
+
 
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        $this->getOptions();
-        $this->getConfigs();
-
         return view('livewire-tables::components.tools.filters.date-range', $this->getFilterDisplayData($this));
     }
 }
