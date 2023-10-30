@@ -309,15 +309,15 @@ trait FilterHelpers
 
     public function hasFilterGenericData()
     {
-        return !empty($this->filterGenericData);
+        return ! empty($this->filterGenericData);
     }
 
     public function getFilterGenericData()
     {
-        if (!$this->hasFilterGenericData())
-        {
+        if (! $this->hasFilterGenericData()) {
             $this->setFilterGenericData($this->generateFilterGenericData());
         }
+
         return $this->filterGenericData;
     }
 }
