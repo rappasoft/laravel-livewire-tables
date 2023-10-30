@@ -353,12 +353,12 @@ trait ColumnHelpers
                     return new HtmlString($value);
                 }
             } elseif ($callback instanceof Filter) {
-                return $callback->setFilterPosition('header')->setFilterGenericData($filterGenericData)->render($filterGenericData);
+                return $callback->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render($filterGenericData);
             } elseif (is_string($callback)) {
                 $filter = $this->getComponent()->getFilterByKey($callback);
 
                 if ($filter instanceof Filter) {
-                    return $filter->setFilterPosition('header')->setFilterGenericData($filterGenericData)->render($filterGenericData);
+                    return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render($filterGenericData);
                 }
             } else {
                 throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
@@ -403,12 +403,12 @@ trait ColumnHelpers
                     return new HtmlString($value);
                 }
             } elseif ($callback instanceof Filter) {
-                return $callback->setFilterPosition('footer')->setFilterGenericData($filterGenericData)->render($filterGenericData);
+                return $callback->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render($filterGenericData);
             } elseif (is_string($callback)) {
                 $filter = $this->getComponent()->getFilterByKey($callback);
 
                 if ($filter instanceof Filter) {
-                    return $filter->setFilterPosition('footer')->setFilterGenericData($filterGenericData)->render($filterGenericData);
+                    return $filter->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render($filterGenericData);
                 }
             } else {
                 throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');

@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterGenericData};
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterGenericData;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait FilterConfiguration
