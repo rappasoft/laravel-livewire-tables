@@ -428,8 +428,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame($testGenericData['tableName'], $filter1->getFilterDisplayData()['tableName']);
         $this->assertSame($testGenericData['isTailwind'], $filter1->getFilterDisplayData()['isTailwind']);
         $this->assertSame($testGenericData['isBootstrap'], $filter1->getFilterDisplayData()['isBootstrap']);
-        $this->assertSame($testGenericData['isBootstrap4'], $filter1->getFilterDisplayData()['isTailwind']);
-        $this->assertSame($testGenericData['isBootstrap5'], $filter1->getFilterDisplayData()['isBootstrap5']);
+        $this->assertSame($testGenericData['isBootstrap4'], $filter1->getFilterDisplayData()['isBootstrap4']);
         $this->assertSame($testGenericData['isBootstrap5'], $filter1->getFilterDisplayData()['isBootstrap5']);
         // $this->assertSame($filter1, $filter1->getFilterDisplayData()['filter']);
 
