@@ -107,6 +107,6 @@ class MultiSelectDropdownFilter extends Filter
 
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return view('livewire-tables::components.tools.filters.multi-select-dropdown', $this->getFilterDisplayData($this));
+        return view('livewire-tables::components.tools.filters.multi-select-dropdown', $this->getFilterDisplayData());
     }
 }

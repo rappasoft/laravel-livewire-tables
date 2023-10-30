@@ -261,8 +261,8 @@ trait FilterHelpers
         return $this->genericDisplayData;
     }
 
-    public function getFilterDisplayData(Filter $filterInstance): array
+    public function getFilterDisplayData(): array
     {
-        return array_merge($this->getGenericDisplayData(), ['filter' => $filterInstance]);
+        return array_merge($this->getGenericDisplayData(), ['filter' => $this]);
     }
 }

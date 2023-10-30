@@ -406,4 +406,33 @@ class FilterHelpersTest extends TestCase
 
         $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName.'-filter-'.$filterType.'-'.$filterKey.'-'.$customPosition);
     }
+
+    /** @test */
+    public function can_get_filter_display_data(): void
+    {
+        $filter1 = TextFilter::make('Filter1');
+
+        $testGenericData = [
+            'filterLayout' => 'tailwind',
+            'tableName' => 'test123',
+            'isTailwind' => true,
+            'isBootstrap' => false,
+            'isBootstrap4' => false,
+            'isBootstrap5' => false,
+        ];
+
+        $filter1->setGenericDisplayData($testGenericData);
+
+        //$getGenericData = $filter1->getFilterDisplayData();
+        $this->assertSame($testGenericData['filterLayout'], $filter1->getFilterDisplayData()['filterLayout']);
+        $this->assertSame($testGenericData['tableName'], $filter1->getFilterDisplayData()['tableName']);
+        $this->assertSame($testGenericData['isTailwind'], $filter1->getFilterDisplayData()['isTailwind']);
+        $this->assertSame($testGenericData['isBootstrap'], $filter1->getFilterDisplayData()['isBootstrap']);
+        $this->assertSame($testGenericData['isBootstrap4'], $filter1->getFilterDisplayData()['isTailwind']);
+        $this->assertSame($testGenericData['isBootstrap5'], $filter1->getFilterDisplayData()['isBootstrap5']);
+        $this->assertSame($testGenericData['isBootstrap5'], $filter1->getFilterDisplayData()['isBootstrap5']);
+       // $this->assertSame($filter1, $filter1->getFilterDisplayData()['filter']);
+
+    }
+    
 }
