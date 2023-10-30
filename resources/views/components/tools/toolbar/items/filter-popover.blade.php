@@ -61,7 +61,7 @@
                     role="menuitem"
                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                 >
-                    {{ $filter->setGenericDisplayData($filterGenericData)->render($filterGenericData) }}
+                    {{ $filter->setGenericDisplayData($filterGenericData)->render() }}
                 </div>
             </div>
         @endforeach
