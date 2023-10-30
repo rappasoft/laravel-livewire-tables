@@ -320,7 +320,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->hasSecondaryHeader());
         $this->assertTrue($column->hasSecondaryHeaderCallback());
         $this->assertIsCallable($column->getSecondaryHeaderCallback());
-        $this->assertSame('Hi', $column->getSecondaryHeaderContents([],[]));
+        $this->assertSame('Hi', $column->getSecondaryHeaderContents([], []));
     }
 
     /** @test */
@@ -337,6 +337,6 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->hasFooter());
         $this->assertTrue($column->hasFooterCallback());
         $this->assertIsCallable($column->getFooterCallback());
-        $this->assertSame('Hi', $column->getFooterContents([],[]));
+        $this->assertSame('Hi', $column->getFooterContents([], []));
     }
 }
