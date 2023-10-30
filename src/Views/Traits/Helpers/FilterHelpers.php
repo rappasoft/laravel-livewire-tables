@@ -265,5 +265,4 @@ trait FilterHelpers
     {
         return array_merge($this->getGenericDisplayData(), ['filter' => $filterInstance]);
     }
-
 }

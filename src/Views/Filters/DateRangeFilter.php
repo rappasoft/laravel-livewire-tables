@@ -184,9 +184,9 @@ class DateRangeFilter extends Filter
 
             return $startDate.' to '.$endDate;
         }
+
         return '';
     }
-
 
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
