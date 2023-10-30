@@ -255,4 +255,9 @@ trait FilterHelpers
     {
         return $tableName.'-filter-'.$filterType.'-'.$this->getKey().($extraData != '' ? '-'.$extraData : '').($this->hasCustomPosition() ? '-'.$this->getCustomPosition() : '');
     }
+
+    public function getGenericDisplayData()
+    {
+        return $this->genericDisplayData;
+    }
 }

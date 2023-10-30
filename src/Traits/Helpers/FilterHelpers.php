@@ -306,4 +306,18 @@ trait FilterHelpers
 
         return $orderedFilters;
     }
+
+    public function hasFilterGenericData()
+    {
+        return !empty($this->filterGenericData);
+    }
+
+    public function getFilterGenericData()
+    {
+        if (!$this->hasFilterGenericData())
+        {
+            $this->setFilterGenericData($this->generateFilterGenericData());
+        }
+        return $this->filterGenericData;
+    }
 }

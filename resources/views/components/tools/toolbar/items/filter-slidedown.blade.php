@@ -1,4 +1,6 @@
 @aware(['component', 'tableName'])
+@props(['filterGenericData'])
+
 <div x-cloak x-show="!currentlyReorderingStatus && filtersOpen" 
     @class([
         'container' => $component->isBootstrap(),
@@ -56,7 +58,7 @@
                     ])
                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                 >
-                    {{ $filter->render($component->filterLayout, $tableName, $component->isTailwind(), $component->isBootstrap4(), $component->isBootstrap5()) }}
+                    {{ $filter->setFilterGenericData($filterGenericData)->render($filterGenericData) }}
                 </div>
             @endforeach
         </div>

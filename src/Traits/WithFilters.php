@@ -28,6 +28,8 @@ trait WithFilters
     public array $filterComponents = [];
 
     public array $appliedFilters = [];
+    
+    public array $filterGenericData = [];
 
     public function filters(): array
     {

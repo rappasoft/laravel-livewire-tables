@@ -1,5 +1,5 @@
 @aware(['component', 'tableName'])
-@props(['rows'])
+@props(['rows', 'filterGenericData'])
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getSecondaryHeaderTrAttributes($rows)"
@@ -22,7 +22,7 @@
         @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())
 
         <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)">
-            {{ $column->getSecondaryHeaderContents($rows) }}
+            {{ $column->getSecondaryHeaderContents($rows, $filterGenericData) }}
         </x-livewire-tables::table.td.plain>
     @endforeach
 </x-livewire-tables::table.tr.plain>

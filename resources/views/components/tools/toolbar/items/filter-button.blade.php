@@ -1,4 +1,6 @@
 @aware(['component', 'tableName'])
+@props(['filterGenericData'])
+
 <div x-cloak x-show="!currentlyReorderingStatus" 
                 @class([
                     'ml-0 ml-md-2 mb-3 mb-md-0' => $component->isBootstrap4(),

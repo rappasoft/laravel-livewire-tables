@@ -17,7 +17,7 @@
                 ])
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
             >
-                {{ $filter->render($component->filterLayout, $tableName, $component->isTailwind(), $component->isBootstrap4(), $component->isBootstrap5()) }}
+                {{ $filter->setFilterGenericData($filterGenericData)->render($filterGenericData) }}
             </div>
         @endforeach
 
@@ -61,7 +61,7 @@
                     role="menuitem"
                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                 >
-                    {{ $filter->render($component->filterLayout, $tableName, $component->isTailwind(), $component->isBootstrap4(), $component->isBootstrap5()) }}
+                    {{ $filter->setFilterGenericData($filterGenericData)->render($filterGenericData) }}
                 </div>
             </div>
         @endforeach

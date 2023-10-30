@@ -61,15 +61,15 @@ class SelectFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    public function render(array $filterGenericData): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.select', [
-            'filterLayout' => $filterLayout,
-            'tableName' => $tableName,
-            'isTailwind' => $isTailwind,
-            'isBootstrap' => ($isBootstrap4 || $isBootstrap5),
-            'isBootstrap4' => $isBootstrap4,
-            'isBootstrap5' => $isBootstrap5,
+            'filterLayout' => $filterGenericData['filterLayout'],
+            'tableName' => $filterGenericData['tableName'],
+            'isTailwind' => $filterGenericData['isTailwind'],
+            'isBootstrap' => ($filterGenericData['isBootstrap4'] || $filterGenericData['isBootstrap5']),
+            'isBootstrap4' => $filterGenericData['isBootstrap4'],
+            'isBootstrap5' => $filterGenericData['isBootstrap5'],
             'filter' => $this,
         ]);
     }
