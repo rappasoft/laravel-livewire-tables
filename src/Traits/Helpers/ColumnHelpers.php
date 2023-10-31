@@ -12,6 +12,8 @@ trait ColumnHelpers
      */
     public function setColumns(): void
     {
+        $this->prependedColumns = $this->getPrependedColumns();
+
         $columns = collect($this->columns())
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
@@ -28,7 +30,9 @@ trait ColumnHelpers
                 return $column;
             });
 
-        $this->columns = $columns;
+        $this->appendedColumns = $this->getAppendedColumns();
+
+        $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
     }
 
     public function getColumns(): Collection
@@ -81,17 +85,18 @@ trait ColumnHelpers
             ->toArray();
     }
 
-    public function getSelectableColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isLabel())
-            ->values();
-    }
-
     public function getSearchableColumns(): Collection
     {
         return $this->getColumns()
             ->filter(fn (Column $column) => $column->isSearchable() || $column->hasSearchCallback())
+            ->values();
+    }
+
+    public function getSortableColumns(): Collection
+    {
+        return isset($this->sortableColumns) ? $this->sortableColumns : $this->sortableColumns = $this->getColumns()
+            ->filter(fn (Column $column) => ($column->isSortable() || $column->hasSortCallback()))
+            ->map(fn (Column $column) => $column->getColumnSelectName() ?? $column->getSlug())
             ->values();
     }
 
@@ -102,17 +107,29 @@ trait ColumnHelpers
 
     public function hasCollapsedColumns(): bool
     {
-        return ($this->shouldCollapseOnMobile() + $this->shouldCollapseOnTablet()) > 0;
+        if ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways()) {
+            return true;
+        }
+
+        return false;
     }
 
     public function shouldCollapseOnMobile(): bool
     {
-        return $this->getCollapsedMobileColumnsCount() > 0;
+
+        if (! isset($this->shouldMobileCollapse)) {
+            $this->shouldMobileCollapse = ($this->getCollapsedMobileColumnsCount() > 0);
+        }
+
+        return $this->shouldMobileCollapse;
+
     }
 
     public function getCollapsedMobileColumns(): Collection
     {
         return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
             ->filter(fn (Column $column) => $column->shouldCollapseOnMobile())
             ->values();
     }
@@ -136,12 +153,19 @@ trait ColumnHelpers
 
     public function shouldCollapseOnTablet(): bool
     {
-        return $this->getCollapsedTabletColumnsCount() > 0;
+        if (! isset($this->shouldTabletCollapse)) {
+            $this->shouldTabletCollapse = ($this->getCollapsedTabletColumnsCount() > 0);
+        }
+
+        return $this->shouldTabletCollapse;
+
     }
 
     public function getCollapsedTabletColumns(): Collection
     {
         return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
             ->filter(fn (Column $column) => $column->shouldCollapseOnTablet())
             ->values();
     }
@@ -165,23 +189,68 @@ trait ColumnHelpers
 
     public function getColspanCount(): int
     {
-        $all = $this->getColumnCount();
+        return 100;
+    }
 
-        // If Reordering is enabled, but we're hiding the sort column
-        if ($this->reorderIsEnabled() && $this->hideReorderColumnUnlessReorderingIsEnabled()) {
-            $all--;
+    public function getPrependedColumns(): Collection
+    {
+        return collect($this->prependedColumns ?? $this->prependColumns())
+            ->filter(fn ($column) => $column instanceof Column)
+            ->map(function (Column $column) {
+                $column->setComponent($this);
+
+                if ($column->hasField()) {
+                    if ($column->isBaseColumn()) {
+                        $column->setTable($this->getBuilder()->getModel()->getTable());
+                    } else {
+                        $column->setTable($this->getTableForColumn($column));
+                    }
+                }
+
+                return $column;
+            });
+    }
+
+    public function getAppendedColumns(): Collection
+    {
+        return collect($this->appendedColumns ?? $this->appendColumns())
+            ->filter(fn ($column) => $column instanceof Column)
+            ->map(function (Column $column) {
+                $column->setComponent($this);
+
+                if ($column->hasField()) {
+                    if ($column->isBaseColumn()) {
+                        $column->setTable($this->getBuilder()->getModel()->getTable());
+                    } else {
+                        $column->setTable($this->getTableForColumn($column));
+                    }
+                }
+
+                return $column;
+            });
+
+    }
+
+    public function getCollapsedAlwaysColumns(): Collection
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
+            ->filter(fn (Column $column) => $column->shouldCollapseAlways())
+            ->values();
+    }
+
+    public function getCollapsedAlwaysColumnsCount(): int
+    {
+        return $this->getCollapsedAlwaysColumns()->count();
+    }
+
+    public function shouldCollapseAlways(): bool
+    {
+        if (! isset($this->shouldAlwaysCollapse)) {
+            $this->shouldAlwaysCollapse = ($this->getCollapsedAlwaysColumnsCount() > 0);
         }
 
-        // If reordering is enabled, and we are currently reordering, account for the drag and drop handle
-        if ($this->reorderIsEnabled() && $this->currentlyReorderingIsEnabled()) {
-            $all++;
-        }
-
-        // If bulk actions are enabled, account for the checkbox column
-        if ($this->bulkActionsAreEnabled() && $this->hasBulkActions()) {
-            $all++;
-        }
-
-        return $all;
+        return $this->shouldAlwaysCollapse;
     }
 }

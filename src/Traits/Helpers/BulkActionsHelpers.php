@@ -130,14 +130,14 @@ trait BulkActionsHelpers
     /**
      * Clear or select all depending on what's selected when select all is changed
      */
-    public function updatedSelectAll(): void
+    /*public function updatedSelectAll(): void
     {
         if (count($this->getSelected()) === (clone $this->baseQuery())->pluck($this->getPrimaryKey())->count()) {
             $this->clearSelected();
         } else {
             $this->setAllSelected();
         }
-    }
+    }*/
 
     /**
      * Set select all and get all ids for selected
@@ -145,11 +145,31 @@ trait BulkActionsHelpers
     public function setAllSelected(): void
     {
         $this->setSelectAllEnabled();
-        $this->setSelected((clone $this->baseQuery())->pluck($this->getPrimaryKey())->map(fn ($item) => (string) $item)->toArray());
+        $this->setSelected((clone $this->baseQuery())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => (string) $item)->toArray());
     }
 
     public function showBulkActionsDropdownAlpine(): bool
     {
         return $this->bulkActionsAreEnabled() && $this->hasBulkActions();
+    }
+
+    public function getBulkActionConfirms(): array
+    {
+        return array_keys($this->bulkActionConfirms);
+    }
+
+    public function hasConfirmationMessage(string $bulkAction): bool
+    {
+        return isset($this->bulkActionConfirms[$bulkAction]);
+    }
+
+    public function getBulkActionConfirmMessage(string $bulkAction): string
+    {
+        return $this->bulkActionConfirms[$bulkAction] ?? $this->getBulkActionDefaultConfirmationMessage();
+    }
+
+    public function getBulkActionDefaultConfirmationMessage(): string
+    {
+        return isset($this->bulkActionConfirmDefaultMessage) ? $this->bulkActionConfirmDefaultMessage : __('Bulk Actions Confirm');
     }
 }

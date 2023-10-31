@@ -16,7 +16,7 @@ class ButtonGroupColumn extends Column
 
     protected string $view = 'livewire-tables::includes.columns.button-group';
 
-    protected $attributesCallback;
+    protected mixed $attributesCallback = null;
 
     public function __construct(string $title, string $from = null)
     {
@@ -25,7 +25,7 @@ class ButtonGroupColumn extends Column
         $this->label(fn () => null);
     }
 
-    public function getContents(Model $row)
+    public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|\Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view($this->getView())
             ->withColumn($this)

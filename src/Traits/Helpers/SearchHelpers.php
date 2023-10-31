@@ -6,12 +6,12 @@ trait SearchHelpers
 {
     public function hasSearch(): bool
     {
-        return ($this->{$this->getTableName()}['search'] ?? null) !== null;
+        return $this->search != '';
     }
 
-    public function getSearch(): ?string
+    public function getSearch(): string
     {
-        return $this->{$this->getTableName()}['search'] ?? null;
+        return $this->search ?? '';
     }
 
     /**
@@ -19,7 +19,7 @@ trait SearchHelpers
      */
     public function clearSearch(): void
     {
-        $this->{$this->getTableName()}['search'] = null;
+        $this->search = '';
     }
 
     public function getSearchStatus(): bool
@@ -72,20 +72,67 @@ trait SearchHelpers
         return $this->searchFilterLazy !== null;
     }
 
+    public function hasSearchLive(): bool
+    {
+        return $this->searchFilterLive !== null;
+    }
+
+    public function hasSearchThrottle(): bool
+    {
+        return $this->searchFilterThrottle !== null;
+    }
+
+    public function getSearchThrottle(): ?int
+    {
+        return $this->searchFilterThrottle;
+    }
+
+    public function hasSearchBlur(): bool
+    {
+        return $this->searchFilterBlur !== null;
+    }
+
     public function getSearchOptions(): string
     {
         if ($this->hasSearchDebounce()) {
-            return '.debounce.'.$this->getSearchDebounce().'ms';
+            return '.live.debounce.'.$this->getSearchDebounce().'ms';
         }
 
         if ($this->hasSearchDefer()) {
-            return '.defer';
+            return '';
+        }
+
+        if ($this->hasSearchLive()) {
+            return '.live';
+        }
+
+        if ($this->hasSearchBlur()) {
+            return '.blur';
         }
 
         if ($this->hasSearchLazy()) {
-            return '.lazy';
+            return '.live.lazy';
+        }
+
+        if ($this->hasSearchThrottle()) {
+            return '.live.throttle.'.$this->getSearchThrottle().'ms';
         }
 
         return '';
+    }
+
+    public function getSearchPlaceholder(): string
+    {
+        return $this->hasSearchPlaceholder() ? $this->searchPlaceholder : __('Search');
+    }
+
+    public function hasSearchPlaceholder(): bool
+    {
+        return $this->searchPlaceholder !== null;
+    }
+
+    public function getSearchFieldAttributes(): array
+    {
+        return count($this->searchFieldAttributes) ? $this->searchFieldAttributes : ['default' => true];
     }
 }

@@ -304,9 +304,7 @@ Example blade:
 ```php
 @aware(['component'])
 @props(['filter'])
-@php
-    $theme = $component->getTheme();
-@endphp
+
 <span wire:key="{{ $component->getTableName() }}-filter-pill-{{ $filter->getKey() }}"
     class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900"
 >
@@ -334,27 +332,51 @@ SelectFilter::make('Active')
     ->setCustomFilterLabel('path.to.blade')
 ```
 
-You will receive two properties to your blade, filter (the filter instance), and theme (your chosen theme).  You may access the filter layout as shown below
+You will receive several properties to your blade, explained here:
+- $filter (the filter instance)
+- $filterLayout ('slide-down' or 'popover')
+- $tableName (the table name)
+- $isTailwind (bool - is theme Tailwind)
+- $isBootstrap (bool - is theme Bootstrap 4 or Bootstrap 5)
+- $isBootstrap4 (bool - is theme Bootstrap 4)
+- $isBootstrap5 (bool - is theme Bootstrap 5)
+- $customLabelAttributes (array -> any customLabel attributes set using setFilterLabelAttributes())
 
-Example blade:
+Example label blade:
 ```php
-@aware(['component'])
-@props(['filter','theme'])
-@php
-    $theme = $component->getTheme();
-@endphp
-<label for="{{ $component->getTableName() }}-filter-{{ $filter->getKey() }}" 
-    @class([
-        'block text-sm font-large leading-5 text-red-700 dark:text-red-700' => $theme === 'tailwind',
-        'd-block' => $theme === 'bootstrap-4' && $component->isFilterLayoutSlideDown(),
-        'mb-2' => $theme === 'bootstrap-4' && $component->isFilterLayoutPopover(),
-        'd-block display-4' => $theme === 'bootstrap-5' && $component->isFilterLayoutSlideDown(),
-        'mb-2 display-4' => $theme === 'bootstrap-5' && $component->isFilterLayoutPopover(),
-    ])
+@props(['filter', 'filterLayout' => 'popover', 'tableName' => 'table', 'isTailwind' => false, 'isBootstrap' => false, 'isBootstrap4' => false, 'isBootstrap5' => false, 'customLabelAttributes' => [])
+
+
+<label for="{{ $tableName }}-filter-{{ $filter->getKey() }}"
+
+    {{
+        $attributes->merge($customLabelAttributes)
+            ->class(['block text-sm font-medium leading-5 text-gray-700 dark:text-white' => $isTailwind && $customLabelAttributes['default'] ?? true])
+            ->class(['d-block' => $isBootstrap && $filterLayout == 'slide-down' && $customLabelAttributes['default'] ?? true])
+            ->class(['mb-2' => $isBootstrap && $filterLayout == 'popover' && $customLabelAttributes['default'] ?? true])
+            ->except('default')
+    }}
+
 >
     {{ $filter->getName() }}
 </label>
 ```
+
+### setFilterLabelAttributes
+Set custom attributes for a Filter Label.  At present it is recommended to only use this for "class" and "style" attributes to avoid conflicts.
+
+By default, this replaces the default classes on the Filter Label wrapper, if you would like to keep them, set the default flag to true.
+
+```php
+TextFilter::make('Name')
+    ->setFilterLabelAttributes(
+        [
+            'class' => 'text-xl', 
+            'default' => true,
+        ]
+    ),
+```
+
 
 ### Config
 

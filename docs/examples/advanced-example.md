@@ -6,18 +6,14 @@ weight: 2
 ```php
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
-use App\Models\Tag;
-use App\Models\User;
+use App\Models\{Tag,User};
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
+use Rappasoft\LaravelLivewireTables\Views\Columns\{BooleanColumn, ImageColumn};
+use Rappasoft\LaravelLivewireTables\Views\Filters\{DateFilter, MultiSelectFilter, SelectFilter};
 
 class UsersTable extends DataTableComponent
 {
@@ -231,7 +227,7 @@ class UsersTable extends DataTableComponent
     public function reorder($items): void
     {
         foreach ($items as $item) {
-            User::find((int)$item['value'])->update(['sort' => (int)$item['order']]);
+            User::find($item[$this->getPrimaryKey()])->update(['sort' => (int)$item[$this->getDefaultReorderColumn()]]);
         }
     }
 }

@@ -1,11 +1,15 @@
-@aware(['component'])
+@aware(['component', 'tableName'])
 @props(['row', 'rowIndex'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @php
-        $theme = $component->getTheme();
-        $columns = collect([]);
+        $colspan = $component->getColspanCount();
+        $columns = collect();
 
+        if($component->shouldCollapseAlways())
+        {
+            $columns->push($component->getCollapsedAlwaysColumns());
+        }
         if ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) {
             $columns->push($component->getCollapsedMobileColumns());
             $columns->push($component->getCollapsedTabletColumns());
@@ -16,51 +20,51 @@
         }
 
         $columns = $columns->collapse();
-
-        // TODO: Column count
-        $colspan = $columns->count() + 1;
     @endphp
 
-    @if ($theme === 'tailwind')
-        <tr
-            wire:key="row-{{ $rowIndex }}-collapsed-contents"
-            wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
-            x-data
-            @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('hidden') : null"
-            class="hidden md:hidden bg-white dark:bg-gray-700 dark:text-white"
+    <tr
+        x-data
+        @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('{{ $component->isBootstrap() ? 'd-none' : 'hidden' }}') : null"
+
+        wire:key="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}-collapsed-contents"
+        wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
+
+        @class([
+            'hidden bg-white dark:bg-gray-700 dark:text-white' => $component->isTailwind(),
+            'd-none' => $component->isBootstrap()
+        ])
+    >
+        <td
+            @class([
+                'pt-4 pb-2 px-4' => $component->isTailwind(),
+                'pt-3 p-2' => $component->isBootstrap(),
+            ])
+            colspan="{{ $colspan }}"
         >
-            <td class="pt-4 pb-2 px-4" colspan="{{ $colspan }}">
-                <div>
-                    @foreach($columns as $colIndex => $column)
-                        @continue($column->isHidden())
-                        @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-                        
-                        <p class="block mb-2 @if($column->shouldCollapseOnMobile()) sm:hidden @endif @if($column->shouldCollapseOnTablet()) md:hidden @endif">
-                            <strong>{{ $column->getTitle() }}</strong>: {{ $column->renderContents($row) }}
-                        </p>
-                    @endforeach
-                </div>
-            </td>
-        </tr>
-    @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
-        <tr
-            wire:key="row-{{ $rowIndex }}-collapsed-contents"
-            x-data
-            @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('d-none') : null"
-            class="d-none d-md-none"
-        >
-            <td class="pt-3 p-2" colspan="{{ $colspan }}">
-                <div>
-                    @foreach($columns as $colIndex => $column)
-                        @continue($column->isHidden())
-                        @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-                        
-                        <p class="d-block mb-2 @if($column->shouldCollapseOnMobile()) d-sm-none @endif @if($column->shouldCollapseOnTablet()) d-md-none @endif">
-                            <strong>{{ $column->getTitle() }}</strong>: {{ $column->renderContents($row) }}
-                        </p>
-                    @endforeach
-                </div>
-            </td>
-        </tr>
-    @endif
+            <div>
+                @foreach($columns as $colIndex => $column)
+                    @continue($column->isHidden())
+                    @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+
+                    <p wire:key="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}-collapsed-contents-{{ $colIndex }}"
+                    
+                        @class([
+                            'block mb-2' => $component->isTailwind() && $column->shouldCollapseAlways(),
+                            'block mb-2 sm:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
+                            'block mb-2 md:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
+                            'block mb-2 lg:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
+                            
+                            'd-block mb-2' => $component->isBootstrap() && $column->shouldCollapseAlways(),
+                            'd-block mb-2 d-sm-none' => $component->isBootstrap() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
+                            'd-block mb-2 d-md-none' => $component->isBootstrap() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
+                            'd-block mb-2 d-lg-none' => $component->isBootstrap() && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
+
+                        ])
+                    >
+                        <strong>{{ $column->getTitle() }}</strong>: {{ $column->renderContents($row) }}
+                    </p>
+                @endforeach
+            </div>
+        </td>
+    </tr>
 @endif

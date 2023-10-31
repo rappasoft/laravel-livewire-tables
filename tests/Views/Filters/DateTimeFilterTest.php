@@ -75,4 +75,54 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->validate('2014/01/01 12:00'));
         $this->assertSame('2020-02-01T12:00', self::$filterInstance->validate('2020-02-01T12:00'));
     }
+
+    /** @test */
+    public function can_get_filter_configs(): void
+    {
+
+        $this->assertSame(['format' => 'Y-m-d\TH:i', 'pillFormat' => 'd M Y - H:i'], self::$filterInstance->getConfigs());
+
+        self::$filterInstance->config(['foo' => 'bar']);
+
+        $this->assertSame(['format' => 'Y-m-d\TH:i', 'pillFormat' => 'd M Y - H:i', 'foo' => 'bar'], self::$filterInstance->getConfigs());
+    }
+
+    /** @test */
+    public function can_check_if_filter_has_configs(): void
+    {
+        self::$filterInstance->config([]);
+
+        $this->assertTrue(self::$filterInstance->hasConfigs());
+
+        self::$filterInstance->config(['foo' => 'bar']);
+
+        $this->assertTrue(self::$filterInstance->hasConfigs());
+    }
+
+    /**
+     * @test
+     */
+    public function test_can_check_if_can_set_pill_format(): void
+    {
+        self::$filterInstance->config([]);
+
+        $this->assertSame('d M Y - H:i', self::$filterInstance->getConfig('pillFormat'));
+
+        self::$filterInstance->config(['pillFormat' => 'd-M-Y - H:i']);
+
+        $this->assertSame('d-M-Y - H:i', self::$filterInstance->getConfig('pillFormat'));
+
+    }
+
+    /**
+     * @test
+     */
+    public function test_can_check_if_can_set_default_values(): void
+    {
+        $this->assertNull(self::$filterInstance->getFilterDefaultValue());
+
+        self::$filterInstance->setFilterDefaultValue('2023-01-01T10:00');
+
+        $this->assertSame('2023-01-01T10:00', self::$filterInstance->getFilterDefaultValue());
+    }
 }

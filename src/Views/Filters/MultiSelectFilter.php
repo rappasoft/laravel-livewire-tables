@@ -2,12 +2,25 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class MultiSelectFilter extends Filter
 {
-    protected array $options = [];
+    public array $options = [];
+
+    protected string $firstOption = '';
+
+    public function setFirstOption(string $firstOption): MultiSelectFilter
+    {
+        $this->firstOption = $firstOption;
+
+        return $this;
+    }
+
+    public function getFirstOption(): string
+    {
+        return $this->firstOption;
+    }
 
     public function options(array $options = []): MultiSelectFilter
     {
@@ -31,7 +44,7 @@ class MultiSelectFilter extends Filter
             ->toArray();
     }
 
-    public function validate($value)
+    public function validate(int|string|array $value): array|int|string|bool
     {
         if (is_array($value)) {
             foreach ($value as $index => $val) {
@@ -47,18 +60,14 @@ class MultiSelectFilter extends Filter
 
     /**
      * Get the filter default options.
-     *
-     * @return array<mixed>
      */
-    public function getDefaultValue()
+    public function getDefaultValue(): array
     {
         return [];
     }
 
     /**
      * Gets the Default Value for this Filter via the Component
-     *
-     * @return array<mixed>
      */
     public function getFilterDefaultValue(): array
     {
@@ -85,10 +94,15 @@ class MultiSelectFilter extends Filter
         return ! is_array($value);
     }
 
-    public function render(DataTableComponent $component)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.multi-select', [
-            'component' => $component,
+            'filterLayout' => $filterLayout,
+            'tableName' => $tableName,
+            'isTailwind' => $isTailwind,
+            'isBootstrap' => ($isBootstrap4 || $isBootstrap5),
+            'isBootstrap4' => $isBootstrap4,
+            'isBootstrap5' => $isBootstrap5,
             'filter' => $this,
         ]);
     }

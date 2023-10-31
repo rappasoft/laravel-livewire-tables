@@ -13,11 +13,6 @@ trait ComponentHelpers
         return $this->dataTableFingerprint ?? $this->generateDataTableFingerprint();
     }
 
-    public function getQueryStringAlias(): string
-    {
-        return $this->queryStringAlias ?? $this->getTableName();
-    }
-
     public function setBuilder(Builder $builder): void
     {
         $this->builder = $builder;
@@ -76,12 +71,32 @@ trait ComponentHelpers
         return $this->theme ?? config('livewire-tables.theme', 'tailwind');
     }
 
+    public function isTailwind(): bool
+    {
+        return $this->getTheme() === 'tailwind';
+    }
+
+    public function isBootstrap(): bool
+    {
+        return $this->getTheme() === 'bootstrap-4' || $this->getTheme() === 'bootstrap-5';
+    }
+
+    public function isBootstrap4(): bool
+    {
+        return $this->getTheme() === 'bootstrap-4';
+    }
+
+    public function isBootstrap5(): bool
+    {
+        return $this->getTheme() === 'bootstrap-5';
+    }
+
     /**
      * @return array<mixed>
      */
     public function getComponentWrapperAttributes(): array
     {
-        return count($this->componentWrapperAttributes) ? $this->componentWrapperAttributes : ['id' => 'datatable-'.$this->id];
+        return count($this->componentWrapperAttributes) ? $this->componentWrapperAttributes : ['id' => 'datatable-'.$this->getId()];
     }
 
     /**
@@ -97,7 +112,7 @@ trait ComponentHelpers
      */
     public function getTableAttributes(): array
     {
-        return count($this->tableAttributes) ? $this->tableAttributes : ['default' => true];
+        return count($this->tableAttributes) ? $this->tableAttributes : ['id' => 'table-'.$this->getTableName(), 'default' => true];
     }
 
     /**
@@ -169,21 +184,6 @@ trait ComponentHelpers
     public function offlineIndicatorIsDisabled(): bool
     {
         return $this->getOfflineIndicatorStatus() === false;
-    }
-
-    public function getQueryStringStatus(): bool
-    {
-        return $this->queryStringStatus;
-    }
-
-    public function queryStringIsEnabled(): bool
-    {
-        return $this->getQueryStringStatus() === true;
-    }
-
-    public function queryStringIsDisabled(): bool
-    {
-        return $this->getQueryStringStatus() === false;
     }
 
     public function setTableName(string $name): string

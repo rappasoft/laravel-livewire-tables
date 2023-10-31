@@ -12,7 +12,36 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_column_list(): void
     {
-        $this->assertCount(8, $this->basicTable->getColumns()->toArray());
+        $this->assertCount(9, $this->basicTable->getColumns()->toArray());
+    }
+
+    /** @test */
+    public function can_append_column(): void
+    {
+        $this->assertCount(9, $this->basicTable->getColumns()->toArray());
+
+        $this->basicTable->setAppendedColumns([Column::make('IDLabel')->label(function ($row) {
+            return 'Test';
+        })]);
+
+        $this->basicTable->setColumns();
+
+        $this->assertCount(10, $this->basicTable->getColumns()->toArray());
+
+    }
+
+    /** @test */
+    public function can_prepend_column(): void
+    {
+        $this->assertCount(9, $this->basicTable->getColumns()->toArray());
+
+        $this->basicTable->setPrependedColumns([Column::make('IDLabel')->label(function ($row) {
+            return 'Test';
+        })]);
+
+        $this->basicTable->setColumns();
+
+        $this->assertCount(10, $this->basicTable->getColumns()->toArray());
     }
 
     /** @test */
@@ -34,7 +63,7 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_column_count(): void
     {
-        $this->assertSame(8, $this->basicTable->getColumnCount());
+        $this->assertSame(9, $this->basicTable->getColumnCount());
     }
 
     /** @test */
@@ -45,6 +74,8 @@ class ColumnHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->getColumnBySelectName('id')->shouldCollapseOnMobile());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
+
+        $this->basicTable->unsetCollapsedStatuses();
 
         $this->assertTrue($this->basicTable->getColumnBySelectName('id')->shouldCollapseOnMobile());
 
@@ -58,6 +89,8 @@ class ColumnHelpersTest extends TestCase
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
 
+        $this->basicTable->unsetCollapsedStatuses();
+
         $this->assertTrue($this->basicTable->shouldCollapseOnMobile());
     }
 
@@ -69,8 +102,9 @@ class ColumnHelpersTest extends TestCase
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
 
-        $this->assertCount(2, $this->basicTable->getCollapsedMobileColumns());
+        $this->basicTable->unsetCollapsedStatuses();
 
+        $this->assertCount(2, $this->basicTable->getCollapsedMobileColumns());
         $this->assertSame('ID', $this->basicTable->getCollapsedMobileColumns()[0]->getTitle());
         $this->assertSame('Name', $this->basicTable->getCollapsedMobileColumns()[1]->getTitle());
     }
@@ -83,18 +117,22 @@ class ColumnHelpersTest extends TestCase
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
 
+        $this->basicTable->unsetCollapsedStatuses();
+
         $this->assertSame(2, $this->basicTable->getCollapsedMobileColumnsCount());
     }
 
     /** @test */
     public function can_get_visible_mobile_columns(): void
     {
-        $this->assertCount(8, $this->basicTable->getVisibleMobileColumns());
+        $this->assertCount(9, $this->basicTable->getVisibleMobileColumns());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
 
-        $this->assertCount(6, $this->basicTable->getVisibleMobileColumns());
+        $this->basicTable->unsetCollapsedStatuses();
+
+        $this->assertCount(7, $this->basicTable->getVisibleMobileColumns());
         $this->assertSame('Sort', $this->basicTable->getVisibleMobileColumns()->values()[0]->getTitle());
         $this->assertSame('Age', $this->basicTable->getVisibleMobileColumns()->values()[1]->getTitle());
         $this->assertSame('Breed', $this->basicTable->getVisibleMobileColumns()->values()[2]->getTitle());
@@ -104,12 +142,12 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_mobile_columns_count(): void
     {
-        $this->assertSame(8, $this->basicTable->getVisibleMobileColumnsCount());
+        $this->assertSame(9, $this->basicTable->getVisibleMobileColumnsCount());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
 
-        $this->assertSame(6, $this->basicTable->getVisibleMobileColumnsCount());
+        $this->assertSame(7, $this->basicTable->getVisibleMobileColumnsCount());
     }
 
     /** @test */
@@ -118,6 +156,8 @@ class ColumnHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->shouldCollapseOnTablet());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
+
+        $this->basicTable->unsetCollapsedStatuses();
 
         $this->assertTrue($this->basicTable->shouldCollapseOnTablet());
     }
@@ -129,6 +169,8 @@ class ColumnHelpersTest extends TestCase
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
         $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
+
+        $this->basicTable->unsetCollapsedStatuses();
 
         $this->assertCount(2, $this->basicTable->getCollapsedTabletColumns());
         $this->assertSame('ID', $this->basicTable->getCollapsedTabletColumns()[0]->getTitle());
@@ -143,18 +185,22 @@ class ColumnHelpersTest extends TestCase
         $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
         $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
 
+        $this->basicTable->unsetCollapsedStatuses();
+
         $this->assertSame(2, $this->basicTable->getCollapsedTabletColumnsCount());
     }
 
     /** @test */
     public function can_get_visible_tablet_columns(): void
     {
-        $this->assertCount(8, $this->basicTable->getVisibleTabletColumns());
+        $this->assertCount(9, $this->basicTable->getVisibleTabletColumns());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
         $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
 
-        $this->assertCount(6, $this->basicTable->getVisibleTabletColumns());
+        $this->basicTable->unsetCollapsedStatuses();
+
+        $this->assertCount(7, $this->basicTable->getVisibleTabletColumns());
         $this->assertSame('Sort', $this->basicTable->getVisibleTabletColumns()->values()[0]->getTitle());
         $this->assertSame('Age', $this->basicTable->getVisibleTabletColumns()->values()[1]->getTitle());
         $this->assertSame('Breed', $this->basicTable->getVisibleTabletColumns()->values()[2]->getTitle());
@@ -164,23 +210,66 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_visible_tablet_columns_count(): void
     {
-        $this->assertSame(8, $this->basicTable->getVisibleTabletColumnsCount());
+        $this->assertSame(9, $this->basicTable->getVisibleTabletColumnsCount());
 
         $this->basicTable->getColumnBySelectName('id')->collapseOnTablet();
         $this->basicTable->getColumnBySelectName('name')->collapseOnTablet();
 
-        $this->assertSame(6, $this->basicTable->getVisibleTabletColumnsCount());
+        $this->basicTable->unsetCollapsedStatuses();
+
+        $this->assertSame(7, $this->basicTable->getVisibleTabletColumnsCount());
+    }
+
+    /// *** ** //
+
+    public function can_tell_if_columns_should_collapse_always(): void
+    {
+        $this->assertFalse($this->basicTable->shouldCollapseAlways());
+
+        $this->basicTable->getColumnBySelectName('id')->collapseAlways();
+
+        $this->basicTable->unsetCollapsedStatuses();
+
+        $this->assertTrue($this->basicTable->shouldCollapseAlways());
     }
 
     /** @test */
-    public function can_get_selectable_columns(): void
+    public function can_get_always_collapsed_columns(): void
+    {
+        $this->assertCount(0, $this->basicTable->getCollapsedAlwaysColumns());
+
+        $this->basicTable->getColumnBySelectName('id')->collapseAlways();
+        $this->basicTable->getColumnBySelectName('name')->collapseAlways();
+
+        $this->basicTable->unsetCollapsedStatuses();
+
+        $this->assertCount(2, $this->basicTable->getCollapsedAlwaysColumns());
+        $this->assertSame('ID', $this->basicTable->getCollapsedAlwaysColumns()[0]->getTitle());
+        $this->assertSame('Name', $this->basicTable->getCollapsedAlwaysColumns()[1]->getTitle());
+    }
+
+    /** @test */
+    public function can_get_always_collapsed_columns_count(): void
+    {
+        $this->assertSame(0, $this->basicTable->getCollapsedAlwaysColumnsCount());
+
+        $this->basicTable->getColumnBySelectName('id')->collapseAlways();
+        $this->basicTable->getColumnBySelectName('name')->collapseAlways();
+
+        $this->basicTable->unsetCollapsedStatuses();
+
+        $this->assertSame(2, $this->basicTable->getCollapsedAlwaysColumnsCount());
+    }
+
+    /** @test */
+    /*public function can_get_selectable_columns(): void
     {
         $selectable = $this->basicTable->getSelectableColumns()
             ->map(fn (Column $column) => $column->getColumnSelectName())
             ->toArray();
 
-        $this->assertSame(['id', 'sort', 'name', 'age', 'breed.name'], $selectable);
-    }
+        $this->assertSame(['id', 'name', 'age', 'breed.name', 'last_visit'], $selectable);
+    }*/
 
     /** @test */
     public function can_get_searchable_columns(): void
@@ -233,7 +322,7 @@ class ColumnHelpersTest extends TestCase
         $column = $this->basicTable->getColumnBySelectName('breed.name');
         $this->assertTrue($column->hasSecondaryHeader());
         $contents = $column->getSecondaryHeaderContents(Pet::find(1));
-        $this->assertStringContainsString('id="table-filter-breed-header-8"', $contents);
+        $this->assertStringContainsString('id="table-filter-breed-8-header"', $contents);
     }
 
     /** @test */

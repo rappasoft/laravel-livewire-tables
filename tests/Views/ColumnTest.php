@@ -58,6 +58,23 @@ class ColumnTest extends TestCase
     }
 
     /** @test */
+    public function can_get_column_formatted_contents(): void
+    {
+        $column = $this->basicTable->getColumnBySelectName('name');
+        $rows = $this->basicTable->getRows();
+
+        $this->assertFalse($column->hasFormatter());
+        $this->assertNull($column->getFormatCallback());
+
+        $column->format(fn ($value) => strtoupper($value));
+
+        $this->assertTrue($column->hasFormatter());
+        $this->assertNotNull($column->getFormatCallback());
+
+        $this->assertSame(strtoupper($rows->first()->name), $column->getContents($rows->first()));
+    }
+
+    /** @test */
     public function column_table_gets_set_for_base_and_relationship_columns(): void
     {
         $column = $this->basicTable->getColumnBySelectName('name');
@@ -66,6 +83,6 @@ class ColumnTest extends TestCase
 
         $column = $this->basicTable->getColumnBySelectName('breed.name');
 
-        $this->assertSame('breeds', $column->getTable());
+        $this->assertSame('breed', $column->getTable());
     }
 }

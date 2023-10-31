@@ -9,11 +9,11 @@ class ColumnsSelected
 {
     use Dispatchable, SerializesModels;
 
-    public $columns;
+    public array $columns;
 
-    public $key;
+    public string $key;
 
-    public function __construct($key, $columns)
+    public function __construct(string $key, array $columns)
     {
         $this->key = $key;
         $this->columns = $columns;

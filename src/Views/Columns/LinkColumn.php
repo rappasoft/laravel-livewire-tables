@@ -10,16 +10,16 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\LinkColumnHelpers;
 
 class LinkColumn extends Column
 {
-    use LinkColumnHelpers,
-        LinkColumnConfiguration;
+    use LinkColumnConfiguration,
+        LinkColumnHelpers;
 
     protected string $view = 'livewire-tables::includes.columns.link';
 
-    protected $titleCallback;
+    protected mixed $titleCallback = null;
 
-    protected $locationCallback;
+    protected mixed $locationCallback = null;
 
-    protected $attributesCallback;
+    protected mixed $attributesCallback = null;
 
     public function __construct(string $title, string $from = null)
     {
@@ -28,7 +28,7 @@ class LinkColumn extends Column
         $this->label(fn () => null);
     }
 
-    public function getContents(Model $row)
+    public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if (! $this->hasTitleCallback()) {
             throw new DataTableConfigurationException('You must specify a title callback for an link column.');

@@ -2,7 +2,147 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [Unreleased]
+## [v3.1.0] - 2023-10-31
+- Restore wire:confirm for Bulk Actions
+- Stable Release of 3.1.0 Stable for Livewire v3 Support
+
+## [3.0.0-beta.11] - 2023-10-29
+- Update Date Range Icon Styling
+- Migrate PHP from date-range blade into new DateRangeFilter method
+- Add FilterHelper method for generating filter wire:keys
+- Add Filter CustomPosition tests
+- Add Placeholder config option for DateRangeFilter
+- Add Placeholder config option for DateFilter, DateTimeFilter, NumberFilter
+- Clean up classes on filters
+- Minor tweaks to toolbar/column select styling
+- Fix wire:confirm for BulkActions (removed in merge error)
+
+## [3.0.0-beta.10] - 2023-10-27
+- Changes to toolbar blade structure by @lrljoe in #[1454](https://github.com/rappasoft/laravel-livewire-tables/pull/1454) 
+- Fix queryStringEnabled by @lrljoe in #[1465](https://github.com/rappasoft/laravel-livewire-tables/pull/1465) 
+- Add missing x-cloak by @lrljoe in #[1463](https://github.com/rappasoft/laravel-livewire-tables/pull/1463) 
+
+## [3.0.0-beta.9] - 2023-10-27
+- Fixes for missing default behaviour by @lrljoe in #[1455](https://github.com/rappasoft/laravel-livewire-tables/pull/1455)
+
+## [3.0.0-beta.8] - 2023-10-26
+- Fix for setFilter - allows setting values at mount/boot (#1451) by @lrljoe in #[1452](https://github.com/rappasoft/laravel-livewire-tables/pull/1452)
+
+
+## [3.0.0-beta.7] - 2023-10-25
+- Add wire:navigate option for clickable rows
+
+## [3.0.0-beta.6] - 2023-10-25
+- Fix for collapsing column header shift
+
+## [3.0.0-beta.5] - 2023-10-25
+- Fix Return Type hinting for Column Rendering to allow Enum columns
+- Add Bulk Action Confirmations, using wire:confirm
+  - setBulkActionConfirms
+  - setBulkActionConfirmMessage
+  - setBulkActionConfirmMessages 
+  - setBulkActionDefaultConfirmationMessage
+  - Localisation for confirmation message
+
+## [3.0.0-beta.4] - 2023-10-17
+- Introduction of Loading Placeholder
+- Docs livewire namespace fix [Here](https://github.com/rappasoft/laravel-livewire-tables/pull/1420)
+- Add CollapseAlways capability for Columns
+- Fix localisation bug
+
+## [3.0.0-beta.3] - 2023-10-13
+- Fix for Livewire ^3.0.6 where the table loading causes an additional lifecycle
+- Add unminified files to .gitattributes export-ignore
+- Increase cached time to 1 day from 1 hour if cache is enabled
+
+## [3.0.0-beta.2] - 2023-10-08
+- Removes superfluous @endphp from the DateRangeFilter blade
+- Removes reference to remote/published 3rd party assets
+- Add setFilterLabelAttributes Capability Per-Filter
+- Fix for reorder sort not applying automatically
+
+## [3.0.0-beta.1] - 3.x Initial Release
+- Amending Documentation for Reordering
+- Adding capabilities & tests for setTrAttributes
+- Force calculation of even/odd only once in reorder mode
+- Call internal method for reordering, and pass to configured method to process
+- Amend AutoInjection/FrontendAsset to ensure it returns the original content correctly
+- Remove errant disabling of Blade Directives when disabling auto-injection
+- Amended in-line config documentation
+- Add setSearchFieldAttributes() and getSearchFieldAttributes()
+- Add missing pagination tests
+- Removal of setSearchLazy
+- Fix for setSearchDebounce
+- Fix publishing of views
+- Fix for Bulk Actions dropdown not working in Bootstrap
+- Fix for Column Select "Select All" not consistently updating
+- Fix for lazy loading of table
+- Fix for ColumnSelect falling out of sync, displaying unselectable colums, or persisting cols in query that are not selected
+- Add setSearchBlur()
+- Add setSearchThrottle()
+- Add publish translations
+- Add prependColumns() and appendColumns() functions
+- Add documentation for setSearchPlaceholder()
+
+- Add setExcludeDeselectedColumnsFromQueryEnabled and setExcludeDeselectedColumnsFromQueryDisabled methods to configure()
+
+- Requirements Change
+    - Requires LiveWire 3.x
+    - Requires PHP 8.1+
+    - Requires Laravel 10+
+
+
+- Core Changes
+    - Move sorts, search, selectedColumns out of the traditional __$this->{$this->getTableName()}['sorts']__ and instead place it directly within the component.  This:
+        - Improves the query string behaviour
+        - Reduces the need to repeatedly set up that main array
+        [Commit 1 Here](https://github.com/LowerRockLabs/laravel-livewire-tables-v3/commit/d7ccabfc8adefeb4bddcbac64831ef1a688527a8)
+        [Commit 2 Here](https://github.com/LowerRockLabs/laravel-livewire-tables-v3/commit/0d8d98546b6a8051c4197804cc33b515faa02b07)
+
+    - Tidying
+        - Removed Spatie Package Tools and replaced with a generic service provider
+        - Significant reduction in blade/view sizes, and repetition of code across Tailwind/Bootstrap 4/Bootstrap 5 themes
+        - Uses HeroIcons instead of hard-coded SVGs for icons
+        - Several variables are now inherited instead of being passed (e.g. Table Name)
+        - Change to how Filters are rendered (no longer receives $component)
+        - Wire keys and IDs now all conform to a format
+
+    - Features
+        - General
+            - Added support for cursor pagination
+            - Cursor & Simple pagination both include a "Total Item Count" stored in $paginationTotalItemCount
+            - Added support for multiple relations on a single table (e.g. user has a "mother user" and a "father user")
+            - Replaced dependency on unsupported Sortable JS libraries.
+            - Option for a Search Placeholder to be set
+            - Bootstrap striping is now fully working
+
+        - Filters
+            - Filter Construct calls config([]) by default to set configuration defaults, to avoid errors
+            - Added Numeric Range filter
+            - Added Date Range filter
+            - DateFilter & DateTimeFilter have customisable Pills Date Format
+            - DateFilter & DateTimeFilter fully support setFilterDefaultValue
+            - MultiSelectFilter & MultiSelectDropdownFilter both support setFirstOption()
+            - There are now two arrays relating to Filters:
+                - A wireable one ($filterComponents)
+                - An unwired one - only keeps track of those filters that have a value ($appliedFilters).  This is what is bound to the query string, and populates the filters on mount if they are present in the query string.
+        
+        - Livewire 3 Specific
+            - Migrated any $component->id reference to $component->getId()
+            - Added SetSearchLive to allow for the search to be "live", with tests
+            - Added capability for external CSS file
+            - Custom CSS/JS and Alpine components are now stored in an external file, which has configurable injection options
+            - Added setSearchLive(), setSearchThrottle(int $milliseconds) and setSearchBlur() options for Search behaviour
+
+- Test Changes
+    - Temporarily removed the sort_events_apply_correctly and filter_events_apply_correctly due to LW3 not using Emit anymore.
+
+    - Added extra column to the PetsTable -> last_visit and associated test changes to make the counts work.  This column is deselected() by default to allow for testing on those methods.
+
+- Doc Changes
+    - Slowly begun updating the docs with the relevant new features, dependencies etc.
+
+
 
 ## [2.15.0] - 2023-07-15
 

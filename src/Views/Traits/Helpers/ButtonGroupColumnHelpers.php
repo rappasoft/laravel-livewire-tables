@@ -18,12 +18,12 @@ trait ButtonGroupColumnHelpers
             ->toArray();
     }
 
-    public function getAttributesCallback()
+    public function getAttributesCallback(): ?callable
     {
         return $this->attributesCallback;
     }
 
-    public function hasAttributesCallback()
+    public function hasAttributesCallback(): bool
     {
         return $this->attributesCallback !== null;
     }

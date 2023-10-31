@@ -18,7 +18,7 @@ public function configure(): void
 
 ## Specify your reorder method
 
-By default the method that will be called when a row is moved is `reorder`.
+By default the method that will be called when the save button is clicked is `reorder`.
 
 If you want to change that:
 

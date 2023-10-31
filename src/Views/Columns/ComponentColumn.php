@@ -12,27 +12,27 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ComponentColumnHelpers;
 
 class ComponentColumn extends Column
 {
-    use ComponentColumnHelpers,
-        ComponentColumnConfiguration;
+    use ComponentColumnConfiguration,
+        ComponentColumnHelpers;
 
     protected string $componentView;
 
-    protected $attributesCallback;
+    protected mixed $attributesCallback = null;
 
-    protected $slotCallback;
+    protected mixed $slotCallback = null;
 
     public function __construct(string $title, string $from = null)
     {
         parent::__construct($title, $from);
     }
 
-    public function getContents(Model $row)
+    public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if ($this->isLabel()) {
             throw new DataTableConfigurationException('You can not use a label column with a component column');
         }
 
-        if (false === $this->hasComponentView()) {
+        if ($this->hasComponentView() === false) {
             throw new DataTableConfigurationException('You must specify a component view for a component column');
         }
 
