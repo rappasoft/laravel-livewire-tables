@@ -9,6 +9,7 @@ use Rappasoft\LaravelLivewireTables\Traits\ComponentUtilities;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumns;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
+use Rappasoft\LaravelLivewireTables\Traits\WithConfigurableAreas;
 use Rappasoft\LaravelLivewireTables\Traits\WithData;
 use Rappasoft\LaravelLivewireTables\Traits\WithDebugging;
 use Rappasoft\LaravelLivewireTables\Traits\WithEvents;
@@ -29,6 +30,7 @@ abstract class DataTableComponent extends Component
         WithBulkActions,
         WithColumns,
         WithColumnSelect,
+        WithConfigurableAreas,
         WithData,
         WithDebugging,
         WithEvents,
