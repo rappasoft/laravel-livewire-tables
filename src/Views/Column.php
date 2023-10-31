@@ -80,6 +80,8 @@ class Column
 
     protected ?string $customSlug = null;
 
+    protected bool $displayColumnLabel = true;
+    
     public function __construct(string $title, string $from = null)
     {
         $this->title = trim($title);

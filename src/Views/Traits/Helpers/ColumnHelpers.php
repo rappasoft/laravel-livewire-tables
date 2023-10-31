@@ -449,4 +449,10 @@ trait ColumnHelpers
     {
         return $this->customSlug !== null;
     }
+
+    public function getColumnLabelStatus(): bool
+    {
+        return $this->displayColumnLabel ?? true;
+    }
+
 }

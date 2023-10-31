@@ -3,6 +3,9 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
+- Add option to hide Column Header
+
+## UNRELEASED
 - Split ConfigurableArea into own Trait/Config/Helper Files
 
 ## [v3.1.0] - 2023-10-31
