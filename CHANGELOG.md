@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.1.0] - 2023-10-31
+- Restore wire:confirm for Bulk Actions
+- Stable Release of 3.1.0 Stable for Livewire v3 Support
+
 ## [3.0.0-beta.11] - 2023-10-29
 - Update Date Range Icon Styling
 - Migrate PHP from date-range blade into new DateRangeFilter method
