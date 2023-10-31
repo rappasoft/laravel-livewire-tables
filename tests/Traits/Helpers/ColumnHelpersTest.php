@@ -369,5 +369,4 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($column3->getColumnLabelStatus());
         $this->assertFalse($column2->getColumnLabelStatus());
     }
-    
 }
