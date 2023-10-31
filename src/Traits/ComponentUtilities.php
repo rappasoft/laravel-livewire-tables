@@ -60,7 +60,6 @@ trait ComponentUtilities
 
     protected array $additionalSelects = [];
 
-
     // Sets the Theme If Not Already Set
     public function mountComponentUtilities(): void
     {

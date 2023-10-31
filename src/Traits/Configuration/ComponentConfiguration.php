@@ -210,7 +210,6 @@ trait ComponentConfiguration
         return $this;
     }
 
-
     public function setDataTableFingerprint(string $dataTableFingerprint): self
     {
         $this->dataTableFingerprint = $dataTableFingerprint;

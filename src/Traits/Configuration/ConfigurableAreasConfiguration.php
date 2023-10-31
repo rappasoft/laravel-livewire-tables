@@ -34,5 +34,4 @@ trait ConfigurableAreasConfiguration
 
         return $this;
     }
-
 }

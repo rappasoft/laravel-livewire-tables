@@ -8,8 +8,8 @@ use Rappasoft\LaravelLivewireTables\Traits\Helpers\ConfigurableAreasHelpers;
 trait WithConfigurableAreas
 {
     use ConfigurableAreasConfiguration,
-    ConfigurableAreasHelpers;
-    
+        ConfigurableAreasHelpers;
+
     protected bool $hideConfigurableAreasWhenReorderingStatus = true;
 
     protected array $configurableAreas = [
@@ -23,5 +23,4 @@ trait WithConfigurableAreas
         'before-pagination' => null,
         'after-pagination' => null,
     ];
-
 }
