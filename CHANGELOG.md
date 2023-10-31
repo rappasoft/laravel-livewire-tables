@@ -3,7 +3,7 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
-- Non-Impacting - Modify Filters to use DTO for Generic Properties
+- Modify Filters to use DTO for Generic Property List
 
 ## [3.0.0-beta.11] - 2023-10-29
 - Update Date Range Icon Styling
