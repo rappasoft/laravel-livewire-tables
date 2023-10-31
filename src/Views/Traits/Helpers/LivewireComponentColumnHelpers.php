@@ -1,0 +1,8 @@
+<?php
+
+namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
+
+trait LivewireComponentColumnHelpers
+{
+    use ComponentColumnHelpers;
+}

@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
 
@@ -24,9 +23,9 @@ abstract class Filter
 
     protected bool $resetByClearButton = true;
 
-    protected $filterCallback = null;
+    protected mixed $filterCallback = null;
 
-    protected array $config = [];
+    public array $config = [];
 
     protected ?string $filterPillTitle = null;
 
@@ -36,13 +35,15 @@ abstract class Filter
 
     protected ?string $filterCustomLabel = null;
 
+    protected array $filterLabelAttributes = [];
+
     protected ?int $filterSlidedownRow = null;
 
     protected ?int $filterSlidedownColspan = null;
 
     protected ?string $filterCustomPillBlade = null;
 
-    protected $filterDefaultValue;
+    protected mixed $filterDefaultValue = null;
 
     public function __construct(string $name, string $key = null)
     {
@@ -53,6 +54,7 @@ abstract class Filter
         } else {
             $this->key = Str::snake($name);
         }
+        $this->config([]);
     }
 
     /**
@@ -65,5 +67,5 @@ abstract class Filter
 
     abstract public function isEmpty(string $value): bool;
 
-    abstract public function render(DataTableComponent $component);
+    abstract public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory;
 }

@@ -12,7 +12,7 @@ class ComponentConfigurationTest extends TestCase
     /** @test */
     public function initial_wrapper_attributes_get_set(): void
     {
-        $this->assertSame(['id' => 'datatable-'.$this->basicTable->id], $this->basicTable->getComponentWrapperAttributes());
+        $this->assertSame(['id' => 'datatable-'.$this->basicTable->getId()], $this->basicTable->getComponentWrapperAttributes());
 
         $this->basicTable->setComponentWrapperAttributes(['this' => 'that']);
 
@@ -32,11 +32,21 @@ class ComponentConfigurationTest extends TestCase
     /** @test */
     public function can_set_table_attributes(): void
     {
-        $this->assertSame($this->basicTable->getTableAttributes(), ['default' => true]);
+        $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'default' => true]);
 
         $this->basicTable->setTableAttributes(['this' => 'that']);
 
-        $this->assertSame($this->basicTable->getTableAttributes(), ['this' => 'that']);
+        $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'this' => 'that']);
+    }
+
+    /** @test */
+    public function can_override_table_default_id(): void
+    {
+        $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'default' => true]);
+
+        $this->basicTable->setTableAttributes(['id' => 'newTableID', 'this' => 'that']);
+
+        $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'newTableID', 'this' => 'that']);
     }
 
     /** @test */
@@ -240,6 +250,26 @@ class ComponentConfigurationTest extends TestCase
     }
 
     /** @test */
+    public function can_set_tr_url_advanced(): void
+    {
+        $this->assertNull($this->basicTable->getTableRowUrl(1));
+        $this->assertNull($this->basicTable->getTableRowUrl(2));
+
+        $this->basicTable->setTableRowUrl(function ($row) {
+            if ($row == 2) {
+                return 'https://example2.com';
+            }
+
+            return 'https://example.com';
+
+        });
+
+        $this->assertSame($this->basicTable->getTableRowUrl(1), 'https://example.com');
+        $this->assertSame($this->basicTable->getTableRowUrl(2), 'https://example2.com');
+
+    }
+
+    /** @test */
     public function can_set_tr_url_target(): void
     {
         $this->assertNull($this->basicTable->getTableRowUrlTarget(1));
@@ -249,6 +279,25 @@ class ComponentConfigurationTest extends TestCase
         });
 
         $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '_blank');
+
+    }
+
+    /** @test */
+    public function can_set_tr_url_target_advanced(): void
+    {
+        $this->assertNull($this->basicTable->getTableRowUrl(1));
+        $this->assertNull($this->basicTable->getTableRowUrl(2));
+
+        $this->basicTable->setTableRowUrlTarget(function ($row) {
+            if ($row == 2) {
+                return 'navigate';
+            }
+
+            return '_blank';
+        });
+
+        $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '_blank');
+        $this->assertSame($this->basicTable->getTableRowUrlTarget(2), 'navigate');
     }
 
     /** @test */

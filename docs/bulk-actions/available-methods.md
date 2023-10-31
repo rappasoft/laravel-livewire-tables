@@ -133,3 +133,54 @@ public function configure(): void
     $this->setHideBulkActionsWhenEmptyDisabled();
 }
 ```
+
+## setBulkActionConfirms
+
+When a bulk action is included in the array passed to setBulkActionConfirms, the default wire:confirm pop-up will appear prior to executing the bulk action.  The default message is: "Are you sure?".  This should only be used if you wish to use the default message.
+
+```php
+public function configure(): void
+{
+    $this->setBulkActionConfirms([
+        'delete',
+        'reset'
+    ]);
+}
+```
+## setBulkActionDefaultConfirmationMessage
+
+You may use this method to over-ride the default message.  To override the confirmation message for an individual Bulk Action, see the below setBulkActionConfirmMessage and setBulkActionConfirmMessages.  You may also use the language files to do this.
+
+```php
+public function configure(): void
+{
+    $this->setBulkActionDefaultConfirmationMessage('Are you certain?');
+}
+```
+
+## setBulkActionConfirmMessage
+
+You may use this method to specify a message other than the default message.
+
+```php
+public function configure(): void
+{
+    $this->setBulkActionConfirmMessage('delete', 'Do you want to delete these items?');
+}
+```
+
+## setBulkActionConfirmMessages
+
+You may pass an array to this method, to more effectively update the confirmation message for a larger quantity of bulk actions.  This expects an array keyed by the bulk action name, with the value being the message that will be displayed to the user.
+
+```php
+public function configure(): void
+{
+    $this->setBulkActionConfirmMessages([
+        'delete' => 'Are you sure you want to delete these items?',
+        'purge' => 'Are you sure you want to purge these items?',
+        'reassign' => 'This will reassign selected items, are you sure?',
+    ]);
+}
+```
+

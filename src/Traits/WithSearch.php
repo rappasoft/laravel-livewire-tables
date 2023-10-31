@@ -11,17 +11,38 @@ trait WithSearch
     use SearchConfiguration,
         SearchHelpers;
 
-    public ?string $search = null;
+    public string $search = '';
 
     public bool $searchStatus = true;
 
     public bool $searchVisibilityStatus = true;
+
+    public ?bool $searchFilterBlur = null;
 
     public ?int $searchFilterDebounce = null;
 
     public ?bool $searchFilterDefer = null;
 
     public ?bool $searchFilterLazy = null;
+
+    public ?bool $searchFilterLive = null;
+
+    public ?int $searchFilterThrottle = null;
+
+    public ?string $searchPlaceholder = null;
+
+    protected array $searchFieldAttributes = [];
+
+    protected function queryStringWithSearch()
+    {
+        if ($this->queryStringIsEnabled() && $this->searchIsEnabled()) {
+            return [
+                'search' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-search'],
+            ];
+        }
+
+        return [];
+    }
 
     // TODO
     public function applySearch(): Builder

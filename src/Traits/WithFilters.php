@@ -25,8 +25,23 @@ trait WithFilters
 
     protected $filterCollection;
 
+    public array $filterComponents = [];
+
+    public array $appliedFilters = [];
+
     public function filters(): array
     {
+        return [];
+    }
+
+    protected function queryStringWithFilters()
+    {
+        if ($this->queryStringIsEnabled() && $this->filtersAreEnabled()) {
+            return [
+                'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
+            ];
+        }
+
         return [];
     }
 

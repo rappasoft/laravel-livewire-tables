@@ -26,6 +26,7 @@ trait WithPagination
 
     public bool $perPageVisibilityStatus = true;
 
+    // standard, simple, cursor
     public string $paginationMethod = 'standard';
 
     public array $paginationCurrentItems = [];
@@ -33,6 +34,8 @@ trait WithPagination
     public int $paginationCurrentCount = 0;
 
     public ?int $paginationTotalItemCount = null;
+
+    public array $numberOfPaginatorsRendered = [];
 
     // TODO: Test
     public function setupPagination(): void

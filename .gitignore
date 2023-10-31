@@ -16,3 +16,6 @@ phpunit.xml.dist.bak
 phpunit.xml.dist.dev
 .github/workflows/code-cov.yml
 .history/*
+.env
+phpunit.xml.bak
+phpstan.txt

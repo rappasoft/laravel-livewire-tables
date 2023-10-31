@@ -6,7 +6,7 @@ weight: 1
 ```php
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\User;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;

@@ -2,26 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class MultiSelectDropdownFilter extends Filter
 {
-    protected array $options = [];
+    public array $options = [];
 
     protected string $firstOption = '';
-
-    public function options(array $options = []): MultiSelectDropdownFilter
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
 
     public function setFirstOption(string $firstOption): MultiSelectDropdownFilter
     {
@@ -35,6 +22,18 @@ class MultiSelectDropdownFilter extends Filter
         return $this->firstOption;
     }
 
+    public function options(array $options = []): MultiSelectDropdownFilter
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
+
     public function getKeys(): array
     {
         return collect($this->getOptions())
@@ -45,7 +44,7 @@ class MultiSelectDropdownFilter extends Filter
             ->toArray();
     }
 
-    public function validate($value)
+    public function validate(int|string|array $value): array|int|string|bool
     {
         if (is_array($value)) {
             foreach ($value as $index => $val) {
@@ -54,25 +53,23 @@ class MultiSelectDropdownFilter extends Filter
                     unset($value[$index]);
                 }
             }
+
+            return $value;
         }
 
-        return $value;
+        return (is_string($value) || is_numeric($value)) ? $value : false;
     }
 
     /**
      * Get the filter default options.
-     *
-     * @return array<mixed>
      */
-    public function getDefaultValue()
+    public function getDefaultValue(): array
     {
         return [];
     }
 
     /**
      * Gets the Default Value for this Filter via the Component
-     *
-     * @return array<mixed>
      */
     public function getFilterDefaultValue(): array
     {
@@ -108,10 +105,15 @@ class MultiSelectDropdownFilter extends Filter
         return false;
     }
 
-    public function render(DataTableComponent $component)
+    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.multi-select-dropdown', [
-            'component' => $component,
+            'filterLayout' => $filterLayout,
+            'tableName' => $tableName,
+            'isTailwind' => $isTailwind,
+            'isBootstrap' => ($isBootstrap4 || $isBootstrap5),
+            'isBootstrap4' => $isBootstrap4,
+            'isBootstrap5' => $isBootstrap5,
             'filter' => $this,
         ]);
     }

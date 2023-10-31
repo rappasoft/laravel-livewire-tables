@@ -1,6 +1,6 @@
 ---
 title: Configuration
-weight: 3
+weight: 4
 ---
 
 ## Publishing Assets
@@ -15,6 +15,9 @@ php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLi
 php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-views
 
 php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-translations
+
+php artisan vendor:publish --provider="Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider" --tag=livewire-tables-public
+
 ```
 
 The default frontend framework is Tailwind, but you also have the option to use Bootstrap 4 or Bootstrap 5 by specifying in the config file.
@@ -71,7 +74,7 @@ module.exports = {
 
 ## Alpine.js Cloak
 
-You must also make sure you have this Alpine style available globally:
+You must also make sure you have this Alpine style available globally. Note that this is configured by default by Livewire after 3.x
 
 ```css
 <style>

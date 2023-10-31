@@ -92,6 +92,17 @@ public function configure(): void
     // Shorthand for $this->setSearchVisibilityStatus(false)
     $this->setSearchVisibilityDisabled();
 }
+
+```
+## setSearchPlaceholder
+
+Set a custom placeholder for the search box
+
+```php
+public function configure(): void
+{
+    $this->setSearchPlaceholder('Enter Search Term');
+}
 ```
 
 ---
@@ -122,14 +133,38 @@ public function configure(): void
 }
 ```
 
-## setSearchLazy
+## setSearchLive
 
-Tell Livewire to use the `lazy` modifier.
+Tell Livewire to immediately update the search
 
 ```php
 public function configure(): void
 {
-    // Send the request when the user clicks away from the search box.
-    $this->setSearchLazy();
+    // Send the search request immediately
+    $this->setSearchLive();
+}
+```
+
+## setSearchBlur
+
+Tell Livewire to update the search when focus is changed from the text box.
+
+```php
+public function configure(): void
+{
+    // Send the search request once focus changes
+    $this->setSearchBlur();
+}
+```
+
+## setSearchThrottle
+
+Tell Livewire to throttle updates
+
+```php
+public function configure(): void
+{
+    // Search will throttle to every 1 second
+    $this->setSearchThrottle(1000);
 }
 ```

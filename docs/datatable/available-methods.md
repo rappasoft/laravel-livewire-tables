@@ -271,6 +271,31 @@ public function configure(): void
     return ['default' => true];
   });
 }
+
+```
+### setSearchFieldAttributes
+
+Set a list of attributes to override on the search field
+
+```php
+public function configure(): void
+{
+  $this->setSearchFieldAttributes([
+    'class' => 'this that',
+  ]);
+}
+```
+
+By default, this replaces the default classes on the search field, if you would like to keep them, set the default flag to true.
+
+```php
+public function configure(): void
+{
+  $this->setSearchFieldAttributes([
+    'default' => true,
+    'class' => 'added these classes',
+  ]);
+}
 ```
 
 ## Offline

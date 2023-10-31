@@ -10,7 +10,7 @@ class SearchConfigurationTest extends TestCase
     /** @test */
     public function can_set_default_search_term(): void
     {
-        $this->assertNull($this->basicTable->getSearch());
+        $this->assertSame('', $this->basicTable->getSearch());
 
         $this->basicTable->setSearch('Anthony');
 
@@ -70,7 +70,7 @@ class SearchConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasSearchDebounce());
         $this->assertSame(1000, $this->basicTable->getSearchDebounce());
-        $this->assertSame('.debounce.1000ms', $this->basicTable->getSearchOptions());
+        $this->assertSame('.live.debounce.1000ms', $this->basicTable->getSearchOptions());
     }
 
     /** @test */
@@ -90,7 +90,7 @@ class SearchConfigurationTest extends TestCase
         $this->basicTable->setSearchDefer();
 
         $this->assertTrue($this->basicTable->hasSearchDefer());
-        $this->assertSame('.defer', $this->basicTable->getSearchOptions());
+        $this->assertSame('', $this->basicTable->getSearchOptions());
     }
 
     /** @test */
@@ -103,7 +103,7 @@ class SearchConfigurationTest extends TestCase
     }
 
     /** @test */
-    public function can_set_search_lazy(): void
+    /*public function can_set_search_lazy(): void
     {
         $this->assertFalse($this->basicTable->hasSearchLazy());
 
@@ -111,14 +111,97 @@ class SearchConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasSearchLazy());
         $this->assertSame('.lazy', $this->basicTable->getSearchOptions());
-    }
+    }*/
 
     /** @test */
-    public function cant_set_search_lazy_with_other_search_modifiers(): void
+    /*public function cant_set_search_lazy_with_other_search_modifiers(): void
     {
         $this->expectException(DataTableConfigurationException::class);
 
         $this->basicTable->setSearchLazy();
         $this->basicTable->setSearchDebounce(1000);
+    }*/
+
+    /** @test */
+    public function can_set_search_live(): void
+    {
+        $this->assertFalse($this->basicTable->hasSearchLive());
+
+        $this->basicTable->setSearchLive();
+
+        $this->assertTrue($this->basicTable->hasSearchLive());
+        $this->assertSame('.live', $this->basicTable->getSearchOptions());
+    }
+
+    /** @test */
+    public function cant_set_search_live_with_other_search_modifiers(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $this->basicTable->setSearchLive();
+        $this->basicTable->setSearchDebounce(1000);
+    }
+
+    /** @test */
+    public function can_set_search_blur(): void
+    {
+        $this->assertFalse($this->basicTable->hasSearchBlur());
+
+        $this->basicTable->setSearchBlur();
+
+        $this->assertTrue($this->basicTable->hasSearchBlur());
+        $this->assertSame('.blur', $this->basicTable->getSearchOptions());
+    }
+
+    /** @test */
+    public function cant_set_search_blur_with_other_search_modifiers(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $this->basicTable->setSearchBlur();
+        $this->basicTable->setSearchDefer();
+    }
+
+    /** @test */
+    public function can_set_search_throttle(): void
+    {
+        $this->assertFalse($this->basicTable->hasSearchThrottle());
+
+        $this->basicTable->setSearchThrottle(1000);
+
+        $this->assertTrue($this->basicTable->hasSearchThrottle());
+        $this->assertSame(1000, $this->basicTable->getSearchThrottle());
+        $this->assertSame('.live.throttle.1000ms', $this->basicTable->getSearchOptions());
+    }
+
+    /** @test */
+    public function cant_set_search_throttle_with_other_search_modifiers(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $this->basicTable->setSearchThrottle(1000);
+        $this->basicTable->setSearchDefer();
+    }
+
+    /** @test */
+    public function can_set_search_placeholder(): void
+    {
+        $this->assertSame(__('Search'), $this->basicTable->getSearchPlaceholder());
+
+        $this->basicTable->setSearchPlaceholder('Anthony');
+
+        $this->assertSame('Anthony', $this->basicTable->getSearchPlaceholder());
+
+    }
+
+    /** @test */
+    public function can_set_search_field_attributes(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getSearchFieldAttributes());
+
+        $this->basicTable->setSearchFieldAttributes(['class' => 'bg-blue', 'style' => 'font-size: 3em;']);
+
+        $this->assertSame(['class' => 'bg-blue', 'style' => 'font-size: 3em;'], $this->basicTable->getSearchFieldAttributes());
+
     }
 }

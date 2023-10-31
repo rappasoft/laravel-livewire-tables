@@ -14,7 +14,9 @@ use Rappasoft\LaravelLivewireTables\Traits\WithDebugging;
 use Rappasoft\LaravelLivewireTables\Traits\WithEvents;
 use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
 use Rappasoft\LaravelLivewireTables\Traits\WithFooter;
+use Rappasoft\LaravelLivewireTables\Traits\WithLoadingPlaceholder;
 use Rappasoft\LaravelLivewireTables\Traits\WithPagination;
+use Rappasoft\LaravelLivewireTables\Traits\WithQueryString;
 use Rappasoft\LaravelLivewireTables\Traits\WithRefresh;
 use Rappasoft\LaravelLivewireTables\Traits\WithReordering;
 use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
@@ -32,13 +34,16 @@ abstract class DataTableComponent extends Component
         WithEvents,
         WithFilters,
         WithFooter,
-        WithSecondaryHeader,
+        WithLoadingPlaceholder,
         WithPagination,
+        WithQueryString,
         WithRefresh,
         WithReordering,
         WithSearch,
+        WithSecondaryHeader,
         WithSorting;
 
+    /** @phpstan-ignore-next-line */
     protected $listeners = [
         'refreshDatatable' => '$refresh',
         'setSort' => 'setSortEvent',
@@ -48,7 +53,7 @@ abstract class DataTableComponent extends Component
     ];
 
     /**
-     * returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
+     * Returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
      */
     protected function generateDataTableFingerprint(): string
     {
@@ -63,12 +68,7 @@ abstract class DataTableComponent extends Component
      */
     public function boot(): void
     {
-        $this->{$this->tableName} = [
-            'sorts' => $this->{$this->tableName}['sorts'] ?? [],
-            'filters' => $this->{$this->tableName}['filters'] ?? [],
-            'columns' => $this->{$this->tableName}['columns'] ?? [],
-        ];
-
+        //
     }
 
     /**
@@ -78,14 +78,6 @@ abstract class DataTableComponent extends Component
     {
         // Call the configure() method
         $this->configure();
-
-        // Set the filter defaults based on the filter type
-        // Moved to Traits/Helpers/FilterHelpers - mountFilterHelpers
-        //$this->setFilterDefaults();
-
-        // Sets the Theme - tailwind/bootstrap
-        // Moved to Traits/ComponentUtilities - mountComponentUtilities
-        //$this->setTheme();
 
         //Sets up the Builder Instance
         $this->setBuilder($this->builder());
@@ -129,10 +121,7 @@ abstract class DataTableComponent extends Component
         return 'livewire-tables::stubs.custom';
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function render()
+    public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $this->setupColumnSelect();
         $this->setupPagination();

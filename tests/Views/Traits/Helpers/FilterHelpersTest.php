@@ -343,4 +343,67 @@ class FilterHelpersTest extends TestCase
         $filter->setFilterDefaultValue('foo');
         $this->assertTrue($filter->hasFilterDefaultValue());
     }
+
+    /** @test */
+    public function can_get_filter_custom_filter_pills_blade(): void
+    {
+        $filter = TextFilter::make('Active');
+        $this->assertFalse($filter->hasCustomPillBlade());
+        $filter->setFilterPillBlade('foo');
+        $this->assertTrue($filter->hasCustomPillBlade());
+        $this->assertSame('foo', $filter->getCustomPillBlade());
+    }
+
+    /** @test */
+    public function can_get_filter_label_attributes(): void
+    {
+        $filter1 = TextFilter::make('Filter1');
+        $filter2 = TextFilter::make('Filter2')->setFilterLabelAttributes(
+            ['class' => 'text-xl', 'default' => true]
+        );
+        $filter3 = TextFilter::make('Filter3')->setFilterLabelAttributes(
+            ['class' => 'text-2xl', 'default' => false]
+        );
+
+        $this->assertFalse($filter1->hasFilterLabelAttributes());
+        $this->assertTrue($filter2->hasFilterLabelAttributes());
+        $this->assertTrue($filter3->hasFilterLabelAttributes());
+
+        $this->assertSame($filter1->getFilterLabelAttributes(), ['default' => true]);
+        $this->assertSame($filter2->getFilterLabelAttributes(), ['default' => true, 'class' => 'text-xl']);
+        $this->assertSame($filter3->getFilterLabelAttributes(), ['default' => false, 'class' => 'text-2xl']);
+
+        $filter1->setFilterLabelAttributes(
+            ['class' => 'text-3xl', 'default' => false]
+        );
+        $this->assertTrue($filter1->hasFilterLabelAttributes());
+        $this->assertSame($filter1->getFilterLabelAttributes(), ['default' => false, 'class' => 'text-3xl']);
+
+    }
+
+    /** @test */
+    public function can_get_filter_wire_key(): void
+    {
+        $filter1 = TextFilter::make('Filter1');
+        $tableName = 'test1';
+        $filterType = 'textfilter';
+        $filterKey = $filter1->getKey();
+
+        $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName.'-filter-'.$filterType.'-'.$filterKey);
+    }
+
+    /** @test */
+    public function can_get_filter_wire_key_custom_position(): void
+    {
+        $filter1 = TextFilter::make('Filter1');
+        $tableName = 'test1';
+        $filterType = 'textfilter';
+        $customPosition = 'header';
+
+        $filterKey = $filter1->getKey();
+        $filter1->setFilterPosition($customPosition);
+        $this->assertTrue($filter1->hasCustomPosition());
+
+        $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName.'-filter-'.$filterType.'-'.$filterKey.'-'.$customPosition);
+    }
 }

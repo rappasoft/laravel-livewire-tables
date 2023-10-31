@@ -10,14 +10,14 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ImageColumnHelpers;
 
 class ImageColumn extends Column
 {
-    use ImageColumnHelpers,
-        ImageColumnConfiguration;
+    use ImageColumnConfiguration,
+        ImageColumnHelpers;
 
     protected string $view = 'livewire-tables::includes.columns.image';
 
-    protected $locationCallback;
+    protected mixed $locationCallback = null;
 
-    protected $attributesCallback;
+    protected mixed $attributesCallback = null;
 
     public function __construct(string $title, string $from = null)
     {
@@ -26,7 +26,7 @@ class ImageColumn extends Column
         $this->label(fn () => null);
     }
 
-    public function getContents(Model $row)
+    public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if (! $this->hasLocationCallback()) {
             throw new DataTableConfigurationException('You must specify a location callback for an image column.');

@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
+use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
+use BladeUI\Icons\BladeIconsServiceProvider;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
@@ -82,6 +84,8 @@ class TestCase extends Orchestra
         return [
             LivewireServiceProvider::class,
             LaravelLivewireTablesServiceProvider::class,
+            BladeIconsServiceProvider::class,
+            BladeHeroiconsServiceProvider::class,
         ];
     }
 

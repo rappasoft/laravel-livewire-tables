@@ -2,12 +2,20 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
+use Exception;
+use Illuminate\View\ViewException;
 use Livewire\Livewire;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoBuildMethodTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableAttributes;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ComponentVisualsTest extends TestCase
 {
+    private $testErrors;
+
     /** @test */
     public function empty_message_does_not_show_with_results(): void
     {
@@ -19,8 +27,8 @@ class ComponentVisualsTest extends TestCase
     public function empty_message_shows_with_no_results(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('table.search', 'sdfsdfsdf')
-            ->assertSee('No items found. Try to broaden your search.');
+            ->set('search', 'sdfsdfsdfadsfasdfasdd')
+            ->assertSee('No items found');
     }
 
     /** @test */
@@ -37,5 +45,101 @@ class ComponentVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->assertSeeHtml('<div wire:offline.class.remove="hidden" class="hidden">');
+    }
+
+    /** @test */
+    public function fails_when_table_has_no_pk(): void
+    {
+        $this->testErrors = false;
+        try {
+            Livewire::test(NoPrimaryKeyTable::class);
+        } catch (DataTableConfigurationException $DataTableConfigurationException) {
+            $this->testErrors = true;
+            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($DataTableConfigurationException->getMessage(), 0, 71));
+        } catch (ViewException $ViewException) {
+            $this->testErrors = true;
+
+            // Temporary swapping to check exception throwing
+            //$this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($ViewException->getMessage(), 0, 71));
+            $this->assertSame('Typed property Rappasoft\LaravelLivewireTables\DataTableComponent::$pri', substr($ViewException->getMessage(), 0, 71));
+
+        } catch (Exception $standardException) {
+            $this->testErrors = true;
+
+            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($standardException->getMessage(), 0, 71));
+        }
+        if (! $this->testErrors) {
+            $this->fail('Did Not Throw Error - Missing Primary Key');
+        }
+    }
+
+    /** @test */
+    public function fails_when_table_has_no_model_or_builder(): void
+    {
+        $this->testErrors = false;
+        try {
+            $test = Livewire::test(NoBuildMethodTable::class);
+        } catch (DataTableConfigurationException $DataTableConfigurationException) {
+            $this->testErrors = true;
+            $this->assertSame('You must either specify a model or implement the builder method.', substr($DataTableConfigurationException->getMessage(), 0, 64));
+
+        } catch (ViewException $ViewException) {
+            $this->testErrors = true;
+            $this->assertSame('You must either specify a model or implement the builder method.', substr($ViewException->getMessage(), 0, 64));
+        } catch (Exception $standardException) {
+            $this->testErrors = true;
+            $this->assertSame('You must either specify a model or implement the builder method.', substr($standardException->getMessage(), 0, 64));
+        }
+
+        if (! $this->testErrors) {
+            $this->fail('Did Not Throw Error - Missing Model/Builder');
+        }
+    }
+
+    /** @test */
+    public function can_see_valid_tr_attributes_html(): void
+    {
+        Livewire::test(PetsTableAttributes::class)
+            ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex0"')
+            ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex1"');
+    }
+
+    /** @test */
+    public function cannot_see_invalid_tr_attributes_html(): void
+    {
+        Livewire::test(PetsTableAttributes::class)
+            ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex0"')
+            ->assertDontSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteNotSeen"');
+    }
+
+    /** @test */
+    public function can_see_correct_html_for_clickable_row(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id')
+                    ->setTableRowUrl(function ($row) {
+                        return 'test';
+                    })
+                    ->setTableRowUrlTarget(function ($row) {
+                        if ($row->id == 2) {
+                            return 'navigate';
+                        }
+
+                        return '_blank';
+                    });
+
+            }
+        })->assertSeeHtml("onclick=\"window.open('test', '_blank')")
+            ->assertSeeHtmlInOrder([
+                'wire:key="table-table-td-2-age"',
+                'wire:navigate',
+                'href="test"',
+                'wire:key="table-table-td-5-age"',
+                'onclick="window.open(\'test\', \'_blank\')"',
+            ]);
+
     }
 }

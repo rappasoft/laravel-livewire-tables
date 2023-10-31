@@ -172,7 +172,7 @@ class NumberFilterTest extends TestCase
     {
         $filter = NumberFilter::make('BreedID');
         $this->assertSame(123, $filter->validate(123));
-        $this->assertSame('123', $filter->validate('123'));
+        $this->assertSame(123, $filter->validate('123'));
     }
 
     /** @test */
@@ -181,5 +181,19 @@ class NumberFilterTest extends TestCase
         $filter = NumberFilter::make('Active');
         $this->assertTrue($filter->isEmpty(''));
         $this->assertFalse($filter->isEmpty('123'));
+    }
+
+    /**
+     * @test
+     */
+    public function test_can_check_if_can_set_default_value(): void
+    {
+        $filter = NumberFilter::make('Active');
+
+        $this->assertNull($filter->getFilterDefaultValue());
+
+        $filter->setFilterDefaultValue(123);
+
+        $this->assertSame('123', $filter->getFilterDefaultValue());
     }
 }

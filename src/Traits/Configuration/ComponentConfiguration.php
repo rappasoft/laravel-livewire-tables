@@ -43,7 +43,7 @@ trait ComponentConfiguration
      */
     public function setTableAttributes(array $attributes = []): self
     {
-        $this->tableAttributes = $attributes;
+        $this->tableAttributes = [...['id' => 'table-'.$this->getTableName()], ...$attributes];
 
         return $this;
     }
@@ -143,27 +143,6 @@ trait ComponentConfiguration
         return $this;
     }
 
-    public function setQueryStringStatus(bool $status): self
-    {
-        $this->queryStringStatus = $status;
-
-        return $this;
-    }
-
-    public function setQueryStringEnabled(): self
-    {
-        $this->setQueryStringStatus(true);
-
-        return $this;
-    }
-
-    public function setQueryStringDisabled(): self
-    {
-        $this->setQueryStringStatus(false);
-
-        return $this;
-    }
-
     public function setEagerLoadAllRelationsStatus(bool $status): self
     {
         $this->eagerLoadAllRelationsStatus = $status;
@@ -220,7 +199,7 @@ trait ComponentConfiguration
         return $this;
     }
 
-    public function setAdditionalSelects($selects): self
+    public function setAdditionalSelects(string|array $selects): self
     {
         if (! is_array($selects)) {
             $selects = [$selects];
@@ -265,13 +244,6 @@ trait ComponentConfiguration
     public function setDataTableFingerprint(string $dataTableFingerprint): self
     {
         $this->dataTableFingerprint = $dataTableFingerprint;
-
-        return $this;
-    }
-
-    public function setQueryStringAlias(string $queryStringAlias): self
-    {
-        $this->queryStringAlias = $queryStringAlias;
 
         return $this;
     }

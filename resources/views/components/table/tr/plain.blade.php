@@ -1,24 +1,24 @@
 @aware(['component'])
-@props(['customAttributes' => []])
+@props(['customAttributes' => [], 'displayMinimisedOnReorder' => true])
 
-@php
-    $theme = $component->getTheme();
-@endphp
-
-@if ($theme === 'tailwind')
+@if ($component->isTailwind())
     <tr {{ $attributes
-        ->merge($customAttributes)
-        ->class(['bg-white dark:bg-gray-700 dark:text-white' => $customAttributes['default'] ?? true])
-        ->except('default')
-    }}>
+            ->merge($customAttributes)
+            ->class(['bg-white dark:bg-gray-700 dark:text-white' => $customAttributes['default'] ?? true])
+            ->class(['laravel-livewire-tables-reorderingMinimised'])
+            ->except('default')
+        }}
+    >
         {{ $slot }}
     </tr>
-@elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+@elseif ($component->isBootstrap())
     <tr {{ $attributes
-        ->merge($customAttributes)
-        ->class(['' => $customAttributes['default'] ?? true])
-        ->except('default')
-    }}>
+            ->merge($customAttributes)
+            ->class(['' => $customAttributes['default'] ?? true])
+            ->class(['laravel-livewire-tables-reorderingMinimised'])
+            ->except('default')
+        }}
+    >
         {{ $slot }}
     </tr>
 @endif
