@@ -26,7 +26,6 @@ use Rappasoft\LaravelLivewireTables\Traits\WithSecondaryHeader;
 use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
 use Rappasoft\LaravelLivewireTables\Traits\WithTableAttributes;
 
-
 abstract class DataTableComponent extends Component
 {
     use ComponentUtilities,

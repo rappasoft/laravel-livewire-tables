@@ -105,7 +105,6 @@ trait TableAttributeConfiguration
         return $this;
     }
 
-
     public function setTableRowUrl(callable $callback): self
     {
         $this->trUrlCallback = $callback;
@@ -119,5 +118,4 @@ trait TableAttributeConfiguration
 
         return $this;
     }
-
 }

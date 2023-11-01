@@ -63,7 +63,6 @@ trait ComponentConfiguration
         return $this;
     }
 
-
     public function setAdditionalSelects(string|array $selects): self
     {
         if (! is_array($selects)) {

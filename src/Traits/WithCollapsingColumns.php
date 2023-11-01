@@ -9,7 +9,6 @@ trait WithCollapsingColumns
 {
     use CollapsingColumnConfiguration;
     use CollapsingColumnHelpers;
-    
-    protected bool $collapsingColumnsStatus = true;
 
+    protected bool $collapsingColumnsStatus = true;
 }

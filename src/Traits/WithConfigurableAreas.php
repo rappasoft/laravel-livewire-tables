@@ -2,14 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ConfigurableAreasConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ConfigurableAreasHelpers;
 
 trait WithConfigurableAreas
 {
     use ConfigurableAreasConfiguration,
-    ConfigurableAreasHelpers;
+        ConfigurableAreasHelpers;
 
     protected bool $hideConfigurableAreasWhenReorderingStatus = true;
 
@@ -24,6 +23,4 @@ trait WithConfigurableAreas
         'before-pagination' => null,
         'after-pagination' => null,
     ];
-
-
 }

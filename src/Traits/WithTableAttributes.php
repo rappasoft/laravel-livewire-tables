@@ -2,15 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\TableAttributeConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\TableAttributeHelpers;
 
 trait WithTableAttributes
 {
     use TableAttributeConfiguration,
-    TableAttributeHelpers;
+        TableAttributeHelpers;
 
     protected array $componentWrapperAttributes = [];
 
@@ -27,11 +25,10 @@ trait WithTableAttributes
     protected $thSortButtonAttributesCallback;
 
     protected $trAttributesCallback;
-    
+
     protected $tdAttributesCallback;
 
     protected $trUrlCallback;
 
     protected $trUrlTargetCallback;
-
 }

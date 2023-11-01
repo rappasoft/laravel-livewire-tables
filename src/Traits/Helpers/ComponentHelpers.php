@@ -3,8 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ComponentHelpers
 {

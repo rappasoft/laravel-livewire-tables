@@ -24,5 +24,4 @@ trait CollapsingColumnConfiguration
 
         return $this;
     }
-
 }
