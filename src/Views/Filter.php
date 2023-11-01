@@ -45,7 +45,7 @@ abstract class Filter
 
     protected mixed $filterDefaultValue = null;
 
-    public ?string $viewPath = null;
+    public string $viewPath;
 
     public array $genericDisplayData = [];
 

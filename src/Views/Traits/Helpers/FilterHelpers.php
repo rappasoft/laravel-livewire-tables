@@ -266,9 +266,9 @@ trait FilterHelpers
         return array_merge($this->getGenericDisplayData(), ['filter' => $this]);
     }
 
-
-    public function getViewPath():
+    public function getViewPath(): string
     {
         return $this->viewPath;
     }
+
 }
