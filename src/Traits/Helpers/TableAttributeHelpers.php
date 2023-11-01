@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Rappasoft\LaravelLivewireTables\Views\Column;
+
 trait TableAttributeHelpers
 {
     /**

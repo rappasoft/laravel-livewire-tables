@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
+use Rappasoft\LaravelLivewireTables\Views\Column;
+
 trait TableAttributeConfiguration
 {
     /**
