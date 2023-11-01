@@ -81,7 +81,7 @@ class SearchVisualsTest extends TestCase
     public function search_live_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)
-            ->assertDontSeeHtml('wire:model.live="search"')
+            ->assertDontSeeHtml('wire:model="search"')
             ->call('setSearchLive')
             ->assertSeeHtml('wire:model.live="search"');
     }
