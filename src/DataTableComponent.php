@@ -5,43 +5,11 @@ namespace Rappasoft\LaravelLivewireTables;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Traits\ComponentUtilities;
-use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
-use Rappasoft\LaravelLivewireTables\Traits\WithColumns;
-use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
-use Rappasoft\LaravelLivewireTables\Traits\WithData;
-use Rappasoft\LaravelLivewireTables\Traits\WithDebugging;
-use Rappasoft\LaravelLivewireTables\Traits\WithEvents;
-use Rappasoft\LaravelLivewireTables\Traits\WithFilters;
-use Rappasoft\LaravelLivewireTables\Traits\WithFooter;
-use Rappasoft\LaravelLivewireTables\Traits\WithLoadingPlaceholder;
-use Rappasoft\LaravelLivewireTables\Traits\WithPagination;
-use Rappasoft\LaravelLivewireTables\Traits\WithQueryString;
-use Rappasoft\LaravelLivewireTables\Traits\WithRefresh;
-use Rappasoft\LaravelLivewireTables\Traits\WithReordering;
-use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
-use Rappasoft\LaravelLivewireTables\Traits\WithSecondaryHeader;
-use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
+use Rappasoft\LaravelLivewireTables\Traits\HasAllTraits;
 
 abstract class DataTableComponent extends Component
 {
-    use ComponentUtilities,
-        WithBulkActions,
-        WithColumns,
-        WithColumnSelect,
-        WithData,
-        WithDebugging,
-        WithEvents,
-        WithFilters,
-        WithFooter,
-        WithLoadingPlaceholder,
-        WithPagination,
-        WithQueryString,
-        WithRefresh,
-        WithReordering,
-        WithSearch,
-        WithSecondaryHeader,
-        WithSorting;
+    use HasAllTraits;
 
     /** @phpstan-ignore-next-line */
     protected $listeners = [

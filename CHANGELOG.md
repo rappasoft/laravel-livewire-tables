@@ -3,7 +3,13 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
-- Modify Filters to use DTO for Generic Property List
+- Modify Filters to use DTO for Generic Property List by @lrljoe in [#1503](https://github.com/rappasoft/laravel-livewire-tables/pull/1503)
+- Split ConfigurableAreas, CollapsingColumns and  TableAttributes into own Traits/Config/Helper Files for Maintainability by @lrljoe in [#1514](https://github.com/rappasoft/laravel-livewire-tables/pull/1514)
+- Add "HasAllTraits" for Maintainability by @lrljoe in [#1514](https://github.com/rappasoft/laravel-livewire-tables/pull/1514)
+
+## [v3.1.0] - 2023-10-31
+- Restore wire:confirm for Bulk Actions
+- Stable Release of 3.1.0 Stable for Livewire v3 Support
 
 ## [3.0.0-beta.11] - 2023-10-29
 - Update Date Range Icon Styling
