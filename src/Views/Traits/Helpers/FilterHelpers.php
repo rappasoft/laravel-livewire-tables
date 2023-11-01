@@ -270,5 +270,4 @@ trait FilterHelpers
     {
         return $this->viewPath;
     }
-
 }

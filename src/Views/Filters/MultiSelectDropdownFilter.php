@@ -7,6 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class MultiSelectDropdownFilter extends Filter
 {
     public array $options = [];
+
     public string $viewPath = 'livewire-tables::components.tools.filters.multi-select-dropdown';
 
     protected string $firstOption = '';

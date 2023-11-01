@@ -7,6 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class DateRangeFilter extends Filter
 {
     public array $options = [];
+
     public string $viewPath = 'livewire-tables::components.tools.filters.date-range';
 
     public function config(array $config = []): DateRangeFilter

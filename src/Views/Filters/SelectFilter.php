@@ -7,6 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class SelectFilter extends Filter
 {
     public array $options = [];
+
     public string $viewPath = 'livewire-tables::components.tools.filters.select';
 
     public function options(array $options = []): SelectFilter
