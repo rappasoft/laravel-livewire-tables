@@ -32,30 +32,6 @@ trait ComponentUtilities
 
     protected bool $eagerLoadAllRelationsStatus = false;
 
-    protected array $componentWrapperAttributes = [];
-
-    protected array $tableWrapperAttributes = [];
-
-    protected array $tableAttributes = [];
-
-    protected array $theadAttributes = [];
-
-    protected array $tbodyAttributes = [];
-
-    protected $thAttributesCallback;
-
-    protected $thSortButtonAttributesCallback;
-
-    protected $trAttributesCallback;
-
-    protected $trUrlCallback;
-
-    protected $trUrlTargetCallback;
-
-    protected $tdAttributesCallback;
-
-    protected bool $collapsingColumnsStatus = true;
-
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
 
     protected array $additionalSelects = [];
