@@ -65,4 +65,3 @@ trait ConfigurableAreasHelpers
         return $this->getHideConfigurableAreasWhenReorderingStatus() === false;
     }
 }
-}

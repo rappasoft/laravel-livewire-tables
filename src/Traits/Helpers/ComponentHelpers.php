@@ -151,5 +151,4 @@ trait ComponentHelpers
     {
         return $this->additionalSelects;
     }
-
-
+}
