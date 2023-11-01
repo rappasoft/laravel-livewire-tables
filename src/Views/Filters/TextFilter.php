@@ -6,6 +6,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class TextFilter extends Filter
 {
+    public string $viewPath = 'livewire-tables::components.tools.filters.text-field';
+
     public function validate(string $value): string|bool
     {
         if ($this->hasConfig('maxlength')) {
@@ -30,6 +32,6 @@ class TextFilter extends Filter
 
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return view('livewire-tables::components.tools.filters.text-field', $this->getFilterDisplayData());
+        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

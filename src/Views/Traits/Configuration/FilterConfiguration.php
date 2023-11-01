@@ -139,4 +139,9 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    public function setViewPath(string $customView)
+    {
+        $this->viewPath = $customView;
+    }
 }
