@@ -12,7 +12,7 @@ class SearchVisualsTest extends TestCase
     public function search_shows_be_default(): void
     {
         Livewire::test(PetsTable::class)
-            ->assertSeeHtml('wire:model="search"');
+            ->assertSeeHtml('wire:model.live="search"');
     }
 
     /** @test */
