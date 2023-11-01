@@ -99,6 +99,7 @@ abstract class DataTableComponent extends Component
 
         return view('livewire-tables::datatable')
             ->with([
+                'filterGenericData' => $this->getFilterGenericData(),
                 'columns' => $this->getColumns(),
                 'rows' => $this->getRows(),
                 'customView' => $this->customView(),

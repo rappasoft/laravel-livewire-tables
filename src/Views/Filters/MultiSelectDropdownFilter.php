@@ -105,16 +105,8 @@ class MultiSelectDropdownFilter extends Filter
         return false;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return view('livewire-tables::components.tools.filters.multi-select-dropdown', [
-            'filterLayout' => $filterLayout,
-            'tableName' => $tableName,
-            'isTailwind' => $isTailwind,
-            'isBootstrap' => ($isBootstrap4 || $isBootstrap5),
-            'isBootstrap4' => $isBootstrap4,
-            'isBootstrap5' => $isBootstrap5,
-            'filter' => $this,
-        ]);
+        return view('livewire-tables::components.tools.filters.multi-select-dropdown', $this->getFilterDisplayData());
     }
 }

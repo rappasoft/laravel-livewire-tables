@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterGenericData;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait FilterConfiguration
@@ -113,5 +114,15 @@ trait FilterConfiguration
         $this->setFilterSlideDownDefaultStatus(true);
 
         return $this;
+    }
+
+    public function generateFilterGenericData(): array
+    {
+        return (new FilterGenericData($this))->toArray();
+    }
+
+    public function setFilterGenericData(array $filterGenericData = [])
+    {
+        $this->filterGenericData = $filterGenericData;
     }
 }

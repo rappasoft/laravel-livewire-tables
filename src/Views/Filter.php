@@ -45,6 +45,8 @@ abstract class Filter
 
     protected mixed $filterDefaultValue = null;
 
+    public array $genericDisplayData = [];
+
     public function __construct(string $name, string $key = null)
     {
         $this->name = $name;
@@ -67,5 +69,5 @@ abstract class Filter
 
     abstract public function isEmpty(string $value): bool;
 
-    abstract public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory;
+    abstract public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory;
 }

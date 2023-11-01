@@ -1,4 +1,5 @@
 @aware(['component', 'tableName'])
+@props(['filterGenericData'])
 
 @if ($component->hasConfigurableAreaFor('before-toolbar'))
     @include($component->getConfigurableAreaFor('before-toolbar'), $component->getParametersForConfigurableArea('before-toolbar'))
@@ -29,7 +30,7 @@
         @endif
 
         @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
-            <x-livewire-tables::tools.toolbar.items.filter-button />
+            <x-livewire-tables::tools.toolbar.items.filter-button :$filterGenericData />
         @endif
 
         @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
@@ -72,7 +73,7 @@
     $component->hasVisibleFilters() &&
     $component->isFilterLayoutSlideDown()
 )
-    <x-livewire-tables::tools.toolbar.items.filter-slidedown />
+    <x-livewire-tables::tools.toolbar.items.filter-slidedown :$filterGenericData />
 @endif
 
 
