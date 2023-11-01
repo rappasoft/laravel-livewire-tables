@@ -63,26 +63,6 @@ trait ComponentConfiguration
         return $this;
     }
 
-    public function setCollapsingColumnsStatus(bool $status): self
-    {
-        $this->collapsingColumnsStatus = $status;
-
-        return $this;
-    }
-
-    public function setCollapsingColumnsEnabled(): self
-    {
-        $this->setCollapsingColumnsStatus(true);
-
-        return $this;
-    }
-
-    public function setCollapsingColumnsDisabled(): self
-    {
-        $this->setCollapsingColumnsStatus(false);
-
-        return $this;
-    }
 
     public function setAdditionalSelects(string|array $selects): self
     {

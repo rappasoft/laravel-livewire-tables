@@ -7,6 +7,7 @@ use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Traits\ComponentUtilities;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
+use Rappasoft\LaravelLivewireTables\Traits\WithCollapsingColumns;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumns;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\WithConfigurableAreas;
@@ -30,6 +31,7 @@ abstract class DataTableComponent extends Component
 {
     use ComponentUtilities,
         WithBulkActions,
+        WithCollapsingColumns,
         WithColumns,
         WithColumnSelect,
         WithConfigurableAreas,

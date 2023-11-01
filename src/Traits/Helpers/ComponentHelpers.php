@@ -144,26 +144,6 @@ trait ComponentHelpers
         return $this->getEagerLoadAllRelationsStatus() === false;
     }
 
-    public function getCollapsingColumnsStatus(): bool
-    {
-        return $this->collapsingColumnsStatus;
-    }
-
-    public function hasCollapsingColumns(): bool
-    {
-        return $this->getCollapsingColumnsStatus() === true;
-    }
-
-    public function collapsingColumnsAreEnabled(): bool
-    {
-        return $this->getCollapsingColumnsStatus() === true;
-    }
-
-    public function collapsingColumnsAreDisabled(): bool
-    {
-        return $this->getCollapsingColumnsStatus() === false;
-    }
-
     /**
      * @return array<mixed>
      */

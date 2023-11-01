@@ -3,8 +3,7 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
-- Split ConfigurableArea into own Trait/Config/Helper Files for Maintainability
-- Split TableAttributes into own Trait/Config/Helper Files for Maintainability
+- Split ConfigurableAreas, CollapsingColumns and  TableAttributes into own Traits/Config/Helper Files for Maintainability
 
 ## [v3.1.0] - 2023-10-31
 - Restore wire:confirm for Bulk Actions

@@ -32,8 +32,6 @@ trait ComponentUtilities
 
     protected bool $eagerLoadAllRelationsStatus = false;
 
-    protected bool $collapsingColumnsStatus = true;
-
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
 
     protected array $additionalSelects = [];
