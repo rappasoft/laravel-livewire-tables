@@ -196,4 +196,15 @@ class NumberFilterTest extends TestCase
 
         $this->assertSame('123', $filter->getFilterDefaultValue());
     }
+
+    /**
+     * @test
+     */
+    public function can_set_custom_filter_view(): void
+    {
+        $filter = NumberFilter::make('Active');
+        $this->assertSame('livewire-tables::components.tools.filters.number', $filter->getViewPath());
+        $filter->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', $filter->getViewPath());
+    }
 }
