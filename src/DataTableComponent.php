@@ -9,6 +9,7 @@ use Rappasoft\LaravelLivewireTables\Traits\ComponentUtilities;
 use Rappasoft\LaravelLivewireTables\Traits\WithBulkActions;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumns;
 use Rappasoft\LaravelLivewireTables\Traits\WithColumnSelect;
+use Rappasoft\LaravelLivewireTables\Traits\WithConfigurableAreas;
 use Rappasoft\LaravelLivewireTables\Traits\WithData;
 use Rappasoft\LaravelLivewireTables\Traits\WithDebugging;
 use Rappasoft\LaravelLivewireTables\Traits\WithEvents;
@@ -22,6 +23,8 @@ use Rappasoft\LaravelLivewireTables\Traits\WithReordering;
 use Rappasoft\LaravelLivewireTables\Traits\WithSearch;
 use Rappasoft\LaravelLivewireTables\Traits\WithSecondaryHeader;
 use Rappasoft\LaravelLivewireTables\Traits\WithSorting;
+use Rappasoft\LaravelLivewireTables\Traits\WithTableAttributes;
+
 
 abstract class DataTableComponent extends Component
 {
@@ -29,6 +32,7 @@ abstract class DataTableComponent extends Component
         WithBulkActions,
         WithColumns,
         WithColumnSelect,
+        WithConfigurableAreas,
         WithData,
         WithDebugging,
         WithEvents,
@@ -41,7 +45,8 @@ abstract class DataTableComponent extends Component
         WithReordering,
         WithSearch,
         WithSecondaryHeader,
-        WithSorting;
+        WithSorting,
+        WithTableAttributes;
 
     /** @phpstan-ignore-next-line */
     protected $listeners = [
