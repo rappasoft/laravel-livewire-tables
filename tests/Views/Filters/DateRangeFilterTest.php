@@ -401,5 +401,4 @@ class DateRangeFilterTest extends FilterTestCase
         $filter->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', $filter->getViewPath());
     }
-
 }

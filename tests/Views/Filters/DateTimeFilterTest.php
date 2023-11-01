@@ -135,5 +135,4 @@ final class DateTimeFilterTest extends FilterTestCase
         self::$filterInstance->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
-
 }
