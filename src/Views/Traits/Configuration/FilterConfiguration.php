@@ -140,8 +140,10 @@ trait FilterConfiguration
         return $this;
     }
 
-    public function setViewPath(string $customView)
+    public function setCustomView(string $customView): self
     {
         $this->viewPath = $customView;
+
+        return $this;
     }
 }
