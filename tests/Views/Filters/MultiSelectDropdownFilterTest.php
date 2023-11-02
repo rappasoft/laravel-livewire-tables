@@ -246,4 +246,17 @@ class MultiSelectDropdownFilterTest extends TestCase
 
         $this->assertSame(['1', '3'], $filter->getFilterDefaultValue());
     }
+
+    /**
+     * @test
+     *
+     * @depends testArraySetup
+     */
+    public function can_set_custom_filter_view(array $optionsArray): void
+    {
+        $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
+        $this->assertSame('livewire-tables::components.tools.filters.multi-select-dropdown', $filter->getViewPath());
+        $filter->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', $filter->getViewPath());
+    }
 }

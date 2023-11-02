@@ -59,4 +59,16 @@ final class TextFilterTest extends FilterTestCase
         $this->assertFalse($filter->isEmpty('123'));
         $this->assertFalse($filter->isEmpty('test'));
     }
+
+    /**
+     * @test
+     */
+    public function can_set_custom_filter_view(): void
+    {
+        $filter = TextFilter::make('Active');
+
+        $this->assertSame('livewire-tables::components.tools.filters.text-field', $filter->getViewPath());
+        $filter->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', $filter->getViewPath());
+    }
 }

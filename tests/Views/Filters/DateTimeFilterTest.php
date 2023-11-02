@@ -125,4 +125,14 @@ final class DateTimeFilterTest extends FilterTestCase
 
         $this->assertSame('2023-01-01T10:00', self::$filterInstance->getFilterDefaultValue());
     }
+
+    /**
+     * @test
+     */
+    public function can_set_custom_filter_view(): void
+    {
+        $this->assertSame('livewire-tables::components.tools.filters.datetime', self::$filterInstance->getViewPath());
+        self::$filterInstance->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
+    }
 }

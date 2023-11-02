@@ -377,6 +377,15 @@ TextFilter::make('Name')
     ),
 ```
 
+### setCustomView
+Use a fully custom view for a filter.  This will utilise solely your view when rendering this filter.  Note that the following methods will no longer apply to a filter using this:
+- setCustomFilterLabel
+- setFilterLabelAttributes
+
+```php
+TextFilter::make('Name')
+    ->setCustomView('text-custom-view'),
+```
 
 ### Config
 

@@ -8,6 +8,8 @@ class MultiSelectFilter extends Filter
 {
     public array $options = [];
 
+    public string $viewPath = 'livewire-tables::components.tools.filters.multi-select';
+
     protected string $firstOption = '';
 
     public function setFirstOption(string $firstOption): MultiSelectFilter
@@ -96,6 +98,6 @@ class MultiSelectFilter extends Filter
 
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return view('livewire-tables::components.tools.filters.multi-select', $this->getFilterDisplayData());
+        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }
