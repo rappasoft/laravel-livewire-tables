@@ -7,6 +7,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class DateTimeFilter extends Filter
 {
+    public string $viewPath = 'livewire-tables::components.tools.filters.datetime';
+
     public function config(array $config = []): DateTimeFilter
     {
         $this->config = [...config('livewire-tables.dateTimeFilter.defaultConfig'), ...$config];
@@ -45,16 +47,8 @@ class DateTimeFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return view('livewire-tables::components.tools.filters.datetime', [
-            'filterLayout' => $filterLayout,
-            'tableName' => $tableName,
-            'isTailwind' => $isTailwind,
-            'isBootstrap' => ($isBootstrap4 || $isBootstrap5),
-            'isBootstrap4' => $isBootstrap4,
-            'isBootstrap5' => $isBootstrap5,
-            'filter' => $this,
-        ]);
+        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

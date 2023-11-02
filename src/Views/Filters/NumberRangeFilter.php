@@ -8,6 +8,8 @@ class NumberRangeFilter extends Filter
 {
     public array $options = [];
 
+    public string $viewPath = 'livewire-tables::components.tools.filters.number-range';
+
     public function options(array $options = []): NumberRangeFilter
     {
         $this->options = [...config('livewire-tables.numberRange.defaultOptions'), ...$options];
@@ -86,17 +88,8 @@ class NumberRangeFilter extends Filter
         return '';
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-
-        return view('livewire-tables::components.tools.filters.number-range', [
-            'filterLayout' => $filterLayout,
-            'tableName' => $tableName,
-            'isTailwind' => $isTailwind,
-            'isBootstrap' => ($isBootstrap4 || $isBootstrap5),
-            'isBootstrap4' => $isBootstrap4,
-            'isBootstrap5' => $isBootstrap5,
-            'filter' => $this,
-        ]);
+        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

@@ -81,4 +81,14 @@ final class SelectFilterTest extends FilterTestCase
 
         $this->assertSame('1', self::$filterInstance->getFilterDefaultValue());
     }
+
+    /**
+     * @test
+     */
+    public function can_set_custom_filter_view(): void
+    {
+        $this->assertSame('livewire-tables::components.tools.filters.select', self::$filterInstance->getViewPath());
+        self::$filterInstance->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
+    }
 }
