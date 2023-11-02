@@ -54,13 +54,13 @@ trait ComponentUtilities
 
     protected $tdAttributesCallback;
 
-    protected string $layout;
+    protected ?string $layout = null;
 
-    protected string $slot;
+    protected ?string $slot = null;
 
-    protected string $extends;
+    protected ?string $extends = null;
 
-    protected string $section;
+    protected ?string $section = null;
 
     protected bool $collapsingColumnsStatus = true;
 

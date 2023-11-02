@@ -131,20 +131,20 @@ abstract class DataTableComponent extends Component
 
         $view = view('livewire-tables::datatable');
 
-        if (isset($this->layout)){
+        if ($this->hasLayout()){
             $view->layout($this->layout);
         }
 
-        if (isset($this->extends)){
+        if ($this->hasExtends()){
             $view->extends($this->extends);
         }
 
-        if (isset($this->section)){
+        if ($this->hasSection()){
             $view->section($this->section);
         }
 
-        if (isset($this->slot)){
-            $view->section($this->slot);
+        if ($this->hasSlot()){
+            $view->slot($this->slot);
         }
 
         $view->with([
