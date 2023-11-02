@@ -9,7 +9,7 @@
     <x-livewire-tables::table.td.plain x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName . '-footer-hidden-test' }}" />
 
     @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
-        <x-livewire-tables::table.td.row-contents :displayMinimisedOnReorder="true" rowIndex="-1" :hidden="true" wire:key="{{ $tableName.'-footer-collapse' }}" />
+        <x-livewire-tables::table.td.collapsed-columns :displayMinimisedOnReorder="true" rowIndex="-1" :hidden="true" wire:key="{{ $tableName.'-footer-collapse' }}" />
     @endif
 
     {{-- TODO: Remove --}}
