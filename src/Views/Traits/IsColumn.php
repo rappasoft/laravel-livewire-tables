@@ -12,7 +12,7 @@ trait IsColumn
     use ColumnConfiguration,
         ColumnHelpers,
         RelationshipHelpers;
-    
+
     protected ?DataTableComponent $component = null;
 
     // What displays in the columns header
@@ -78,5 +78,4 @@ trait IsColumn
     protected bool $clickable = true;
 
     protected ?string $customSlug = null;
-
 }
