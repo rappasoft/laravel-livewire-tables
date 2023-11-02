@@ -23,5 +23,6 @@ trait HasAllTraits
         WithSearch,
         WithSecondaryHeader,
         WithSorting,
-        WithTableAttributes;
+        WithTableAttributes,
+        WithTableHooks;
 }
