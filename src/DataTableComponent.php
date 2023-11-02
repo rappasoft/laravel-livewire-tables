@@ -47,14 +47,13 @@ abstract class DataTableComponent extends Component
         // Fire hook for configuring
         $this->callHook('configuring');
         $this->callTraitHook('configuring');
-                
+
         // Call the configure() method
         $this->configure();
 
         // Fire hook for configured
         $this->callHook('configured');
         $this->callTraitHook('configured');
-
 
         //Sets up the Builder Instance
         $this->setBuilder($this->builder());
