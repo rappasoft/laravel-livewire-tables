@@ -55,7 +55,6 @@ abstract class DataTableComponent extends Component
         $this->callHook('configured');
         $this->callTraitHook('configured');
 
-
         //Sets up the Builder Instance
         $this->setBuilder($this->builder());
 
