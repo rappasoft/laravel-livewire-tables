@@ -79,8 +79,8 @@ trait WithPagination
     {
         return $this->tableName.'-perPage';
     }
-
-    public function renderingWithReordering()
+    
+    public function renderingWithPagination()
     {
         $this->setupPagination();
     }
