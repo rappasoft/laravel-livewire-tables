@@ -107,7 +107,7 @@ abstract class DataTableComponent extends Component
         return 'livewire-tables::stubs.custom';
     }
 
-    abstract public function rendering(): void;
+    public function rendering(): void;
 
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
@@ -125,5 +125,6 @@ abstract class DataTableComponent extends Component
             ]);
     }
 
-    abstract public function rendered(): void;
+    public function rendered(): void;
+
 }
