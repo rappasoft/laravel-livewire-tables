@@ -85,7 +85,6 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasCollapsedColumns());
     }
 
-
     /** @test */
     public function can_tell_if_column_should_collapse(): void
     {
