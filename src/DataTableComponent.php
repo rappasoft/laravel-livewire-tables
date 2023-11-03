@@ -99,11 +99,6 @@ abstract class DataTableComponent extends Component
 
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $this->setupColumnSelect();
-        $this->setupPagination();
-        $this->setupSecondaryHeader();
-        $this->setupFooter();
-        $this->setupReordering();
 
         return view('livewire-tables::datatable')
             ->with([
