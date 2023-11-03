@@ -77,6 +77,7 @@ class TestCase extends Orchestra
         $this->basicTable->boot();
         $this->basicTable->booted();
         $this->basicTable->callHook('rendering');
+        $this->basicTable->callTraitHook('rendering');
         $this->basicTable->render();
         $this->basicTable->callHook('rendered');
     }

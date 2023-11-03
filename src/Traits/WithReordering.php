@@ -169,4 +169,10 @@ trait WithReordering
         $this->forgetReorderingSession();
         $this->getReorderingBackup();
     }
+
+    public function renderingWithReordering()
+    {
+        $this->setupReordering();
+    }
+
 }
