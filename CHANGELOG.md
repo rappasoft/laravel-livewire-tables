@@ -7,6 +7,8 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
   - SettingColumns/ColumnsSet
 - Migrate methods for pre-render out of render by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
 - Update tests to reflect hooks by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+- Update tests to add invalid string tests for dates
+- Remove maps and minimise functions from FrontendAssets
 
 ## [v3.1.2] - 2023-11-03
 - Add Initial Lifecycle Hooks - Configuring/Configured by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1520

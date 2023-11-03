@@ -167,4 +167,15 @@ final class DateFilterTest extends FilterTestCase
 
         $this->assertSame($dateTime->format('d M Y'), self::$filterInstance->getFilterPillValue($dateTime->format('Y-m-d')));
     }
+
+    /**
+     * @test
+     */
+    public function test_can_not_get_filter_pills_invalid_value(): void
+    {
+        $dateTime = (new DateTime('now'));
+
+        $this->assertSame($dateTime->format('d M Y'), self::$filterInstance->getFilterPillValue('2022-1111'));
+    }
+
 }
