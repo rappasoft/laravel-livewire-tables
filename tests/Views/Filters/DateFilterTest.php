@@ -167,5 +167,4 @@ final class DateFilterTest extends FilterTestCase
 
         $this->assertSame($dateTime->format('d M Y'), self::$filterInstance->getFilterPillValue($dateTime->format('Y-m-d')));
     }
-
 }

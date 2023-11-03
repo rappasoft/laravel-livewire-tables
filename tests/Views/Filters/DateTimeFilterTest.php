@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use DateTime;
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
 
 final class DateTimeFilterTest extends FilterTestCase
@@ -146,5 +146,4 @@ final class DateTimeFilterTest extends FilterTestCase
 
         $this->assertSame($dateTime->format('d M Y - H:i'), self::$filterInstance->getFilterPillValue($dateTime->format('Y-m-d\TH:i')));
     }
-
 }
