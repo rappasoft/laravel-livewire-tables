@@ -174,5 +174,4 @@ trait WithReordering
     {
         $this->setupReordering();
     }
-
 }
