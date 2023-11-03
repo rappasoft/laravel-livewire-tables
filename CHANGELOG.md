@@ -9,6 +9,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [v3.1.1] - 2023-11-02
 ### New Features
+- Add First Lifecycle Hooks
+  - Configuring/Configured
+
+## [v3.1.1] - 2023-11-02
+### New Features
 - Add setCustomView for Filters
 
 ### Bug Fixes
