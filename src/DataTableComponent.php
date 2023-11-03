@@ -44,22 +44,32 @@ abstract class DataTableComponent extends Component
      */
     public function booted(): void
     {
-        // Fire hook for configuring
-        $this->callHook('configuring');
-        $this->callTraitHook('configuring');
+        // Configuring
+            // Fire hook for configuring
+            $this->callHook('configuring');
+            $this->callTraitHook('configuring');
 
-        // Call the configure() method
-        $this->configure();
+            // Call the configure() method
+            $this->configure();
 
-        // Fire hook for configured
-        $this->callHook('configured');
-        $this->callTraitHook('configured');
+            // Fire hook for configured
+            $this->callHook('configured');
+            $this->callTraitHook('configured');
 
         //Sets up the Builder Instance
         $this->setBuilder($this->builder());
 
         // Sets Columns
-        $this->setColumns();
+            // Fire hook for settingColumns
+            $this->callHook('settingColumns');
+            $this->callTraitHook('settingColumns');
+
+            // Set Columns
+            $this->setColumns();
+
+            // Fire hook for columnsSet
+            $this->callHook('columnsSet');
+            $this->callTraitHook('columnsSet');
 
         // Make sure a primary key is set
         if (! $this->hasPrimaryKey()) {
@@ -99,7 +109,6 @@ abstract class DataTableComponent extends Component
 
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $this->setupColumnSelect();
         $this->setupPagination();
         $this->setupSecondaryHeader();
         $this->setupFooter();
