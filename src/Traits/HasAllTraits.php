@@ -15,6 +15,7 @@ trait HasAllTraits
         WithEvents,
         WithFilters,
         WithFooter,
+        WithFullPageComponent,
         WithLoadingPlaceholder,
         WithPagination,
         WithQueryString,

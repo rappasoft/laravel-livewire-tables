@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+- Add Full Page Component capability by @amshehzad in https://github.com/rappasoft/laravel-livewire-tables/pull/1430
+
 ## [v3.1.3] - 2023-11-03
 - Add additional Lifecycle Hook by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
   - SettingColumns/ColumnsSet

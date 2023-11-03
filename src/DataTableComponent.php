@@ -109,8 +109,25 @@ abstract class DataTableComponent extends Component
 
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view('livewire-tables::datatable')
-            ->with([
+        $view = view('livewire-tables::datatable');
+
+        if ($this->hasLayout()){
+            $view->layout($this->layout);
+        }
+
+        if ($this->hasExtends()){
+            $view->extends($this->extends);
+        }
+
+        if ($this->hasSection()){
+            $view->section($this->section);
+        }
+
+        if ($this->hasSlot()){
+            $view->slot($this->slot);
+        }
+
+        return $view->with([
                 'filterGenericData' => $this->getFilterGenericData(),
                 'columns' => $this->getColumns(),
                 'rows' => $this->getRows(),
