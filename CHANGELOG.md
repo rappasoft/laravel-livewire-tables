@@ -2,15 +2,11 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## UNRELEASED
-## [v3.1.2] - 2023-11-02
-- Add First Lifecycle Hooks
+## [v3.1.2] - 2023-11-03
+- Add Initial Lifecycle Hooks - Configuring/Configured by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1520
   - Configuring/Configured
+- Add missing tests for DateFilter and DateTimeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1527
 
-## [v3.1.1] - 2023-11-02
-### New Features
-- Add First Lifecycle Hooks
-  - Configuring/Configured
 
 ## [v3.1.1] - 2023-11-02
 ### New Features
