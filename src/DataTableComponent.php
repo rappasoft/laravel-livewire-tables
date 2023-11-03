@@ -124,7 +124,6 @@ abstract class DataTableComponent extends Component
                 'customView' => $this->customView(),
             ]);
     }
-    
-    abstract public function rendered(): void;
 
+    abstract public function rendered(): void;
 }
