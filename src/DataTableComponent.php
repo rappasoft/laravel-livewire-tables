@@ -21,17 +21,6 @@ abstract class DataTableComponent extends Component
     ];
 
     /**
-     * Returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
-     */
-    protected function generateDataTableFingerprint(): string
-    {
-        $className = str_split(static::class);
-        $crc32 = sprintf('%u', crc32(serialize($className)));
-
-        return base_convert($crc32, 10, 36);
-    }
-
-    /**
      * Runs on every request, immediately after the component is instantiated, but before any other lifecycle methods are called
      */
     public function boot(): void
@@ -99,12 +88,6 @@ abstract class DataTableComponent extends Component
 
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $this->setupColumnSelect();
-        $this->setupPagination();
-        $this->setupSecondaryHeader();
-        $this->setupFooter();
-        $this->setupReordering();
-
         return view('livewire-tables::datatable')
             ->with([
                 'filterGenericData' => $this->getFilterGenericData(),

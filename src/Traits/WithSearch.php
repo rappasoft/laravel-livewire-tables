@@ -33,6 +33,25 @@ trait WithSearch
 
     protected array $searchFieldAttributes = [];
 
+
+    /**
+     * Keep track of any properties on the custom query string key for this specific table
+     */
+    public function updatedSearch(string $name, string $value): void
+    {
+        $this->resetComputedPage();
+
+        // Clear bulk actions on search
+        $this->clearSelected();
+        $this->setSelectAllDisabled();
+
+        if ($value === '') {
+            $this->clearSearch();
+        }
+    }
+
+
+
     protected function queryStringWithSearch()
     {
         if ($this->queryStringIsEnabled() && $this->searchIsEnabled()) {

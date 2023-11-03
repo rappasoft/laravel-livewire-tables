@@ -44,23 +44,12 @@ trait ComponentUtilities
             $this->setTheme();
         }
     }
-
+    
     /**
      * Keep track of any properties on the custom query string key for this specific table
      */
     public function updated(string $name, string|array $value): void
     {
-        if ($name === 'search') {
-            $this->resetComputedPage();
-
-            // Clear bulk actions on search
-            $this->clearSelected();
-            $this->setSelectAllDisabled();
-
-            if ($value === '') {
-                $this->clearSearch();
-            }
-        }
 
         if (Str::contains($name, 'filterComponents')) {
             $this->resetComputedPage();

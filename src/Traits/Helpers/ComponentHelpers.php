@@ -6,9 +6,18 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait ComponentHelpers
 {
+    public function hasDataTableFingerprint(): bool
+    {
+        return !is_null($this->dataTableFingerprint);
+    }
+
     public function getDataTableFingerprint(): string
     {
-        return $this->dataTableFingerprint ?? $this->generateDataTableFingerprint();
+        if (!$this->hasDataTableFingerprint())
+        {
+            $this->setDataTableFingerprint($this->generateDataTableFingerprint());
+        }
+        return $this->dataTableFingerprint;
     }
 
     public function setBuilder(Builder $builder): void

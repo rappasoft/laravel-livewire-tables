@@ -214,4 +214,13 @@ trait WithData
 
         return $currentTableAlias.'_'.$relationPart;
     }
+
+    public function renderingWithData()
+    {
+        $this->setupColumnSelect();
+        $this->setupPagination();
+        $this->setupSecondaryHeader();
+        $this->setupFooter();
+        $this->setupReordering();
+    }
 }

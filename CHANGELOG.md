@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+- Adjust DataTableFingerprint Behaviour
+- Move Core Methods from render() into Traits
+- Move Search Updated Listener into Trait
+
 ## [v3.1.2] - 2023-11-03
 - Add Initial Lifecycle Hooks - Configuring/Configured by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1520
   - Configuring/Configured
