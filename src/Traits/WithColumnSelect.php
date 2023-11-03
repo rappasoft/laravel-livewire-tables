@@ -124,5 +124,4 @@ trait WithColumnSelect
     {
         return count($this->selectedColumns) === count($this->getDefaultVisibleColumns());
     }
-
 }

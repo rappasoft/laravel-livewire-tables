@@ -127,6 +127,4 @@ abstract class DataTableComponent extends Component
                 'customView' => $this->customView(),
             ]);
     }
-
-
 }
