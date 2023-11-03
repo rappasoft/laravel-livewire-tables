@@ -78,7 +78,6 @@ class TestCase extends Orchestra
         $this->basicTable->booted();
         $this->basicTable->rendering();
         $this->basicTable->render();
-        $this->basicTable->rendered();
     }
 
     protected function getPackageProviders($app): array
