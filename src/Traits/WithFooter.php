@@ -28,4 +28,10 @@ trait WithFooter
             }
         }
     }
+
+    public function renderingWithFooter()
+    {
+        $this->setupFooter();
+    }
+
 }

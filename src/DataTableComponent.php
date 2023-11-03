@@ -107,12 +107,6 @@ abstract class DataTableComponent extends Component
         return 'livewire-tables::stubs.custom';
     }
 
-    public function rendering()
-    {
-        $this->setupPagination();
-        $this->setupSecondaryHeader();
-        $this->setupFooter();
-    }
 
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {

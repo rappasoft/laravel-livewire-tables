@@ -26,4 +26,10 @@ trait WithSecondaryHeader
             }
         }
     }
+
+    public function renderingWithSecondaryHeader()
+    {
+        $this->setupSecondaryHeader();
+    }
+
 }
