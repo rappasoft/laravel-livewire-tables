@@ -223,5 +223,4 @@ trait WithData
         $this->setupFooter();
         $this->setupReordering();
     }
-
 }
