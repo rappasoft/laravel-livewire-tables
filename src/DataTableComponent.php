@@ -114,7 +114,6 @@ abstract class DataTableComponent extends Component
         $this->setupFooter();
         $this->setupReordering();
         $this->setupColumnSelect();
-
     }
 
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

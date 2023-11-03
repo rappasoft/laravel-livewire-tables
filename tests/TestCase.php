@@ -10,10 +10,7 @@ use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
+use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed,Pet,Species,Veterinary};
 
 class TestCase extends Orchestra
 {
@@ -76,8 +73,9 @@ class TestCase extends Orchestra
         $this->basicTable = new PetsTable();
         $this->basicTable->boot();
         $this->basicTable->booted();
-        $this->basicTable->rendering();
+        $this->basicTable->callHook('rendering');
         $this->basicTable->render();
+        $this->basicTable->callHook('rendered');
     }
 
     protected function getPackageProviders($app): array
