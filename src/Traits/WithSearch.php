@@ -36,7 +36,7 @@ trait WithSearch
     /**
      * Keep track of any properties on the custom query string key for this specific table
      */
-    public function updatedSearch(string $name, string $value): void
+    public function updatedSearch(string $value): void
     {
         $this->resetComputedPage();
 
