@@ -107,15 +107,18 @@ abstract class DataTableComponent extends Component
         return 'livewire-tables::stubs.custom';
     }
 
-    public function rendering(): void;
-
-    public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function rendering()
     {
         $this->setupPagination();
         $this->setupSecondaryHeader();
         $this->setupFooter();
         $this->setupReordering();
+        $this->setupColumnSelect();
 
+    }
+
+    public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    {
         return view('livewire-tables::datatable')
             ->with([
                 'filterGenericData' => $this->getFilterGenericData(),
@@ -125,6 +128,5 @@ abstract class DataTableComponent extends Component
             ]);
     }
 
-    public function rendered(): void;
 
 }
