@@ -101,7 +101,7 @@ class ColumnHelpersTest extends TestCase
     /** @test */
     public function can_get_collapsed_mobile_columns(): void
     {
-        
+
         $this->basicTable->unsetCollapsedStatuses();
 
         $this->assertCount(0, $this->basicTable->getCollapsedMobileColumns());
