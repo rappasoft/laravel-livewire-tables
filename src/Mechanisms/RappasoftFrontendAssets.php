@@ -109,6 +109,7 @@ class RappasoftFrontendAssets
         return response()->file($file, $headers);
     }
 
+    /*
     public function maps(): \Symfony\Component\HttpFoundation\Response
     {
         return Utils::pretendResponseIsFile(__DIR__.'/../../../resources/js/laravel-livewire-tables.min.js.map');
@@ -117,5 +118,5 @@ class RappasoftFrontendAssets
     protected static function minify(string $subject): array|string|null
     {
         return preg_replace('~(\v|\t|\s{2,})~m', '', $subject);
-    }
+    }*/
 }
