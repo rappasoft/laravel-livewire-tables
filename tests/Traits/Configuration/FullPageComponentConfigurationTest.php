@@ -3,11 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class FullPageComponentConfigurationTest extends TestCase
 {
-
     /** @test */
     public function can_set_extends(): void
     {
@@ -35,5 +33,4 @@ class FullPageComponentConfigurationTest extends TestCase
         $this->basicTable->setSlot('my_slot');
         $this->assertEquals('my_slot', $this->basicTable->getSlot());
     }
-
 }
