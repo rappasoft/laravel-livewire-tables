@@ -76,7 +76,9 @@ class TestCase extends Orchestra
         $this->basicTable = new PetsTable();
         $this->basicTable->boot();
         $this->basicTable->booted();
+        $this->basicTable->rendering();
         $this->basicTable->render();
+        $this->basicTable->rendered();
     }
 
     protected function getPackageProviders($app): array
