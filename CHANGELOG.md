@@ -3,7 +3,7 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
-### New Features
+## [v3.1.2] - 2023-11-02
 - Add First Lifecycle Hooks
   - Configuring/Configured
 
