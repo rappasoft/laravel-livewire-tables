@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait ComponentConfiguration
 {
-   
     public function setPrimaryKey(?string $key): self
     {
         $this->primaryKey = $key;

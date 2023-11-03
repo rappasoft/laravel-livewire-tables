@@ -8,15 +8,15 @@ trait ComponentHelpers
 {
     public function hasDataTableFingerprint(): bool
     {
-        return !is_null($this->dataTableFingerprint);
+        return ! is_null($this->dataTableFingerprint);
     }
 
     public function getDataTableFingerprint(): string
     {
-        if (!$this->hasDataTableFingerprint())
-        {
+        if (! $this->hasDataTableFingerprint()) {
             $this->setDataTableFingerprint($this->generateDataTableFingerprint());
         }
+
         return $this->dataTableFingerprint;
     }
 

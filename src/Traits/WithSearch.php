@@ -33,7 +33,6 @@ trait WithSearch
 
     protected array $searchFieldAttributes = [];
 
-
     /**
      * Keep track of any properties on the custom query string key for this specific table
      */
@@ -49,8 +48,6 @@ trait WithSearch
             $this->clearSearch();
         }
     }
-
-
 
     protected function queryStringWithSearch()
     {

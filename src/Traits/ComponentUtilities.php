@@ -44,7 +44,7 @@ trait ComponentUtilities
             $this->setTheme();
         }
     }
-    
+
     /**
      * Keep track of any properties on the custom query string key for this specific table
      */
