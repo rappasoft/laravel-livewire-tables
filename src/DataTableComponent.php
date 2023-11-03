@@ -44,6 +44,7 @@ abstract class DataTableComponent extends Component
      */
     public function booted(): void
     {
+        // Configuring
         // Fire hook for configuring
         $this->callHook('configuring');
         $this->callTraitHook('configuring');
@@ -59,7 +60,16 @@ abstract class DataTableComponent extends Component
         $this->setBuilder($this->builder());
 
         // Sets Columns
+        // Fire hook for settingColumns
+        $this->callHook('settingColumns');
+        $this->callTraitHook('settingColumns');
+
+        // Set Columns
         $this->setColumns();
+
+        // Fire hook for columnsSet
+        $this->callHook('columnsSet');
+        $this->callTraitHook('columnsSet');
 
         // Make sure a primary key is set
         if (! $this->hasPrimaryKey()) {
@@ -99,12 +109,6 @@ abstract class DataTableComponent extends Component
 
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $this->setupColumnSelect();
-        $this->setupPagination();
-        $this->setupSecondaryHeader();
-        $this->setupFooter();
-        $this->setupReordering();
-
         return view('livewire-tables::datatable')
             ->with([
                 'filterGenericData' => $this->getFilterGenericData(),

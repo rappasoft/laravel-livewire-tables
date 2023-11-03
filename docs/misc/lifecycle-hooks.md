@@ -10,3 +10,9 @@ This is called immediately prior to the configure() method being called
 
 ## configured
 This is called immediately after the configure() method is called
+
+## settingColumns
+This is called prior to setting up the available Columns via the columns() method
+
+## columnsSet
+This is called immediately after the Columns are set up
