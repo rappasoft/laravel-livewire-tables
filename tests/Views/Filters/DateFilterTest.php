@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use DateTime;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 
 final class DateFilterTest extends FilterTestCase
 {
@@ -158,14 +158,13 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
 
-        /**
+    /**
      * @test
      */
     public function test_can_get_filter_pills_value(): void
     {
         $dateTime = (new DateTime('now'));
-       
+
         $this->assertSame($dateTime->format('d M Y'), self::$filterInstance->getFilterPillValue($dateTime->format('Y-m-d')));
     }
-
 }
