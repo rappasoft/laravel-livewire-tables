@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 trait FullPageComponentHelpers
 {
-
     public function hasExtends()
     {
         return $this->extends !== null;
@@ -44,5 +43,4 @@ trait FullPageComponentHelpers
     {
         return $this->layout;
     }
-
 }

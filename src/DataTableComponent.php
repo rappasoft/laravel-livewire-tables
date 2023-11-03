@@ -111,27 +111,27 @@ abstract class DataTableComponent extends Component
     {
         $view = view('livewire-tables::datatable');
 
-        if ($this->hasLayout()){
+        if ($this->hasLayout()) {
             $view->layout($this->layout);
         }
 
-        if ($this->hasExtends()){
+        if ($this->hasExtends()) {
             $view->extends($this->extends);
         }
 
-        if ($this->hasSection()){
+        if ($this->hasSection()) {
             $view->section($this->section);
         }
 
-        if ($this->hasSlot()){
+        if ($this->hasSlot()) {
             $view->slot($this->slot);
         }
 
         return $view->with([
-                'filterGenericData' => $this->getFilterGenericData(),
-                'columns' => $this->getColumns(),
-                'rows' => $this->getRows(),
-                'customView' => $this->customView(),
-            ]);
+            'filterGenericData' => $this->getFilterGenericData(),
+            'columns' => $this->getColumns(),
+            'rows' => $this->getRows(),
+            'customView' => $this->customView(),
+        ]);
     }
 }

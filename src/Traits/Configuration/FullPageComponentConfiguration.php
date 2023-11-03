@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait FullPageComponentConfiguration
 {
-    
     public function setLayout(string $layout): self
     {
         $this->layout = $layout;
@@ -32,5 +31,4 @@ trait FullPageComponentConfiguration
 
         return $this;
     }
-
 }
