@@ -67,7 +67,16 @@ class ColumnHelpersTest extends TestCase
     }
 
     /** @test */
-    public function can_tell_if_there_are_collapsable_columns(): void
+    public function can_tell_if_there_are_collapsable_columns_default(): void
+    {
+        $this->basicTable->unsetCollapsedStatuses();
+
+        $this->assertFalse($this->basicTable->hasCollapsedColumns());
+
+    }
+
+    /** @test */
+    public function can_tell_if_there_are_collapsable_columns_change(): void
     {
         $this->assertFalse($this->basicTable->hasCollapsedColumns());
 
@@ -75,6 +84,7 @@ class ColumnHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasCollapsedColumns());
     }
+
 
     /** @test */
     public function can_tell_if_column_should_collapse(): void
