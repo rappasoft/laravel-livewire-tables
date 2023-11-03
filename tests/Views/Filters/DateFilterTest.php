@@ -175,6 +175,6 @@ final class DateFilterTest extends FilterTestCase
     {
         $dateTime = (new DateTime('now'));
 
-        $this->assertNull($self::$filterInstance->getFilterPillValue('2022-2111'));
+        $this->assertNull(self::$filterInstance->getFilterPillValue('2022-2111'));
     }
 }
