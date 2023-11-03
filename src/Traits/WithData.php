@@ -214,5 +214,4 @@ trait WithData
 
         return $currentTableAlias.'_'.$relationPart;
     }
-
 }
