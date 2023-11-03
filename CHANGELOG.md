@@ -4,8 +4,15 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
 - Adjust DataTableFingerprint Behaviour
+  - Add HasDataTableFingerprint()
+  - Utilise setDataTableFingerprint()
 - Move Core Methods from render() into Traits
 - Move Search Updated Listener into Trait
+- Update ComponentHelpers
+  - Move the following into ComponentConfiguration to standardise
+    - setBuilder
+    - setTheme
+    - setTableName
 
 ## [v3.1.2] - 2023-11-03
 - Add Initial Lifecycle Hooks - Configuring/Configured by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1520

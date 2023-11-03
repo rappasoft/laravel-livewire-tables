@@ -20,11 +20,6 @@ trait ComponentHelpers
         return $this->dataTableFingerprint;
     }
 
-    public function setBuilder(Builder $builder): void
-    {
-        $this->builder = $builder;
-    }
-
     public function getBuilder(): Builder
     {
         return $this->builder;
@@ -62,15 +57,6 @@ trait ComponentHelpers
     public function getModel()
     {
         return $this->model;
-    }
-
-    public function setTheme(): void
-    {
-        $theme = $this->getTheme();
-
-        if ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') {
-            $this->setPaginationTheme('bootstrap');
-        }
     }
 
     public function getTheme(): string
@@ -119,11 +105,6 @@ trait ComponentHelpers
     public function offlineIndicatorIsDisabled(): bool
     {
         return $this->getOfflineIndicatorStatus() === false;
-    }
-
-    public function setTableName(string $name): string
-    {
-        return $this->tableName = $name;
     }
 
     public function getTableName(): string

@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait ComponentConfiguration
 {
     public function setPrimaryKey(?string $key): self
@@ -90,5 +92,27 @@ trait ComponentConfiguration
         $crc32 = sprintf('%u', crc32(serialize($className)));
 
         return base_convert($crc32, 10, 36);
+    }
+
+    public function setBuilder(Builder $builder): void
+    {
+        $this->builder = $builder;
+    }
+
+    public function setTheme(): void
+    {
+        $theme = $this->getTheme();
+
+        if ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') {
+            $this->setPaginationTheme('bootstrap');
+        }
+    }
+
+    public function setTableName(string $name): self
+    {
+        $this->tableName = $name;
+
+        return $this;
+
     }
 }
