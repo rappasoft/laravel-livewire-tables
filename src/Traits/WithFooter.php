@@ -33,5 +33,4 @@ trait WithFooter
     {
         $this->setupFooter();
     }
-
 }
