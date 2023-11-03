@@ -2,11 +2,18 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.1.3] - 2023-11-03
+- Add additional Lifecycle Hook by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+  - SettingColumns/ColumnsSet
+- Migrate methods for pre-render out of render by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+- Update tests to reflect hooks by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+- Update tests to add invalid string tests for dates by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+- Remove maps and minimise functions from FrontendAssets by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+
 ## [v3.1.2] - 2023-11-03
 - Add Initial Lifecycle Hooks - Configuring/Configured by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1520
   - Configuring/Configured
 - Add missing tests for DateFilter and DateTimeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1527
-
 
 ## [v3.1.1] - 2023-11-02
 ### New Features
