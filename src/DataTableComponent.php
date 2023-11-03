@@ -46,7 +46,7 @@ abstract class DataTableComponent extends Component
     {
         // Configuring
         // Fire hook for configuring
-        $this->callHook('configuring');
+        $this->clalHook('configuring');
         $this->callTraitHook('configuring');
 
         // Call the configure() method
@@ -107,6 +107,8 @@ abstract class DataTableComponent extends Component
         return 'livewire-tables::stubs.custom';
     }
 
+    abstract public function rendering(): void;
+
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $this->setupPagination();
@@ -122,4 +124,7 @@ abstract class DataTableComponent extends Component
                 'customView' => $this->customView(),
             ]);
     }
+    
+    abstract public function rendered(): void;
+
 }
