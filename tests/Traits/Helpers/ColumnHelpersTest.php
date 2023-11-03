@@ -102,8 +102,6 @@ class ColumnHelpersTest extends TestCase
         $this->basicTable->getColumnBySelectName('id')->collapseOnMobile();
         $this->basicTable->getColumnBySelectName('name')->collapseOnMobile();
 
-        $this->basicTable->unsetCollapsedStatuses();
-
         $this->assertCount(2, $this->basicTable->getCollapsedMobileColumns());
         $this->assertSame('ID', $this->basicTable->getCollapsedMobileColumns()[0]->getTitle());
         $this->assertSame('Name', $this->basicTable->getCollapsedMobileColumns()[1]->getTitle());
