@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
+use DateTime;
 
 final class DateTimeFilterTest extends FilterTestCase
 {
@@ -134,5 +135,15 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('livewire-tables::components.tools.filters.datetime', self::$filterInstance->getViewPath());
         self::$filterInstance->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
+    }
+
+    /**
+     * @test
+     */
+    public function test_can_get_filter_pills_value(): void
+    {
+        $dateTime = (new DateTime('now'));
+       
+        $this->assertSame($dateTime->format('d M Y - H:i'), self::$filterInstance->getFilterPillValue($dateTime->format('Y-m-d\TH:i')));
     }
 }

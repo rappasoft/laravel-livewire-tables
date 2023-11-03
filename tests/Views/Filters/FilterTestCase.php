@@ -109,7 +109,7 @@ abstract class FilterTestCase extends TestCase
      */
     public function can_set_custom_filter_view(): void
     {
-        $this->assertSame('livewire-tables::components.tools.filters.date', self::$filterInstance->getViewPath());
+        $this->assertSame('livewire-tables::components.tools.filters.datetime', self::$filterInstance->getViewPath());
         self::$filterInstance->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
