@@ -34,9 +34,13 @@ trait WithData
     {
         $this->setBuilder($this->joinRelations());
 
-        $this->setBuilder($this->applySearch());
+        if ($this->searchIsEnabled() && $this->hasSearch()) {
+            $this->setBuilder($this->applySearch());
+        }
 
-        $this->setBuilder($this->applyFilters());
+        if ($this->filtersAreEnabled() && $this->hasFilters() && $this->hasAppliedFiltersWithValues()) {
+            $this->setBuilder($this->applyFilters());
+        }
 
         return $this->getBuilder();
 
@@ -51,7 +55,6 @@ trait WithData
             $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultReorderColumn(), $this->getDefaultReorderDirection()));
         } else {
             $this->applySorting();
-
         }
 
         if ($this->paginationIsEnabled()) {

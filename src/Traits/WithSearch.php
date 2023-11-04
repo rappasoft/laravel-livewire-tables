@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
+use Rappasoft\LaravelLivewireTables\Exceptions\NoSearchableColumnsException;
 
 trait WithSearch
 {
@@ -47,20 +48,19 @@ trait WithSearch
     // TODO
     public function applySearch(): Builder
     {
-        if ($this->searchIsEnabled() && $this->hasSearch()) {
-            $searchableColumns = $this->getSearchableColumns();
 
-            if ($searchableColumns->count()) {
-                $this->setBuilder($this->getBuilder()->where(function ($query) use ($searchableColumns) {
-                    foreach ($searchableColumns as $index => $column) {
-                        if ($column->hasSearchCallback()) {
-                            ($column->getSearchCallback())($query, $this->getSearch());
-                        } else {
-                            $query->{$index === 0 ? 'where' : 'orWhere'}($column->getColumn(), 'like', '%'.$this->getSearch().'%');
-                        }
+        $searchableColumns = $this->getSearchableColumns();
+        
+        if ($searchableColumns->count()) {
+            $this->setBuilder($this->getBuilder()->where(function ($query) use ($searchableColumns) {
+                foreach ($searchableColumns as $index => $column) {
+                    if ($column->hasSearchCallback()) {
+                        ($column->getSearchCallback())($query, $this->getSearch());
+                    } else {
+                        $query->{$index === 0 ? 'where' : 'orWhere'}($column->getColumn(), 'like', '%'.$this->getSearch().'%');
                     }
-                }));
-            }
+                }
+            }));
         }
 
         return $this->getBuilder();
