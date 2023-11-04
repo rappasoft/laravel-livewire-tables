@@ -5,7 +5,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
-use Rappasoft\LaravelLivewireTables\Exceptions\NoSearchableColumnsException;
 
 trait WithSearch
 {
@@ -50,7 +49,7 @@ trait WithSearch
     {
 
         $searchableColumns = $this->getSearchableColumns();
-        
+
         if ($searchableColumns->count()) {
             $this->setBuilder($this->getBuilder()->where(function ($query) use ($searchableColumns) {
                 foreach ($searchableColumns as $index => $column) {
