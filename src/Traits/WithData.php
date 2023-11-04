@@ -27,6 +27,10 @@ trait WithData
         // Get Count of Items in Current Page
         $this->paginationCurrentCount = $executedQuery->count();
 
+        // Fire hook for rowsRetrieved
+        $this->callHook('rowsRetrieved', [$executedQuery]);
+        $this->callTraitHook('rowsRetrieved', [$executedQuery]);
+
         return $executedQuery;
     }
 
