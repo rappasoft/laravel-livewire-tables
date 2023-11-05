@@ -14,11 +14,13 @@ $iterator = Finder::create()
     ->exclude('Tests')
     ->in($dir);
 
-// generate documentation for all v2.0.* tags, the 2.0 branch, and the main one
+// generate documentation for all v3.0.* tags, the 2.0 branch, and the 1.0
 $versions = GitVersionCollection::create($dir)
     // In a non case-sensitive way, tags containing "PR", "RC", "BETA" and "ALPHA" will be filtered out
     // To change this, use: `$versions->setFilter(static function (string $version): bool { // ... });`
-    ->add('develop', '3.x branch');
+    ->addFromTags('v3.*')
+    ->addFromTags('v2.*')
+    ->addFromTags('v1.*');
 
 return new Doctum($iterator, [
     'versions' => $versions,
