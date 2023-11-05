@@ -7,7 +7,6 @@
 /build                                                  export-ignore
 /database/database.sqlite                               export-ignore
 /database/sqlite.database.                              export-ignore
-/doctum                                                 export-ignore
 /docs                                                   export-ignore
 /resources/views/tests                                  export-ignore
 /tests                                                  export-ignore
