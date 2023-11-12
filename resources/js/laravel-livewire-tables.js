@@ -1,8 +1,8 @@
 /*jshint esversion: 6 */
 
-import fpf from './partials/filter-date-range.js';
-import nrf from './partials/filter-number-range.js';
-import tableReorder from './partials/reorder.js';
+import fpf from './partials/filter-date-range.min.js';
+import nrf from './partials/filter-number-range.min.js';
+import tableReorder from './partials/reorder.min.js';
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({

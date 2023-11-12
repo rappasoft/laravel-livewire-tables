@@ -33,3 +33,6 @@
 /resources/css/numberRange.css                          export-ignore
 /resources/css/numericSlider.css                        export-ignore
 /resources/css/flatpickr.css                            export-ignore
+/resources/js/partials/filter-date-range.js             export-ignore
+/resources/js/partials/filter-number-range.js           export-ignore
+/resources/js/partials/reorder.js                       export-ignore
