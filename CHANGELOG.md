@@ -4,6 +4,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
 - Add capability to set a custom script path for the scripts/styles
+- Split custom JS into individual files
 
 ## [v3.1.3] - 2023-11-03
 - Add additional Lifecycle Hook by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
