@@ -26,29 +26,29 @@ class RappasoftFrontendAssets
     {
         // Set the JS route for the core tables JS
         app($this::class)->setRappasoftTableScriptRoute(function ($handle) {
-
-            $scriptPath = rtrim(config('script_base_path', '/rappasoft/laravel-livewire-tables'), '/').'/core.min.js';
+            
+            $scriptPath = rtrim(config('livewire-tables.script_base_path', '/rappasoft/laravel-livewire-tables'), "/") . '/core.min.js';
 
             return Route::get($scriptPath, $handle);
         });
 
         // Set the CSS route for the core tables CSS
         app($this::class)->setRappasoftTableStylesRoute(function ($handle) {
-            $stylesPath = rtrim(config('script_base_path', '/rappasoft/laravel-livewire-tables'), '/').'/core.min.css';
+            $stylesPath = rtrim(config('livewire-tables.script_base_path', '/rappasoft/laravel-livewire-tables'), "/") . '/core.min.css';
 
             return Route::get($stylesPath, $handle);
         });
 
         // Set the JS route for the third party JS
         app($this::class)->setRappasoftTableThirdPartyScriptRoute(function ($handle) {
-            $scriptPath = rtrim(config('script_base_path', '/rappasoft/laravel-livewire-tables'), '/').'/thirdparty.min.js';
+            $scriptPath = rtrim(config('livewire-tables.script_base_path', '/rappasoft/laravel-livewire-tables'), "/") . '/thirdparty.min.js';
 
             return Route::get($scriptPath, $handle);
         });
 
         // Set the CSS route for the third party CSS
         app($this::class)->setRappasoftTableThirdPartyStylesRoute(function ($handle) {
-            $stylesPath = rtrim(config('script_base_path', '/rappasoft/laravel-livewire-tables'), '/').'/thirdparty.css';
+            $stylesPath = rtrim(config('livewire-tables.script_base_path', '/rappasoft/laravel-livewire-tables'), "/") . '/thirdparty.css';
 
             return Route::get($stylesPath, $handle);
         });
