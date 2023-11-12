@@ -30,6 +30,11 @@ return [
      */
     'enable_blade_directives ' => false,
 
+    /** 
+     * Customise Script & Styles Paths
+     */
+    'script_base_path' => '/rappasoft/laravel-livewire-tables',
+
     /**
      * Filter Default Configuration Options
      *

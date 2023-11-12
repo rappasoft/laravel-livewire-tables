@@ -24,6 +24,13 @@ This is enabled by default, but to re-enable, enable the following options in th
      * Enable or Disable automatic injection of third-party assets
      */
     'inject_third_party_assets_enabled' => true,
+
+    /** 
+     * Customise Script & Styles Paths
+     */
+    'script_base_path' => '/rappasoft/laravel-livewire-tables',
+
+     
 ```
 
 ### Bundler Including
