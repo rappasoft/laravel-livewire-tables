@@ -24,7 +24,7 @@
         >
             <thead wire:key="{{ $tableName }}-thead"
                 {{ $attributes->merge($customAttributes['thead'])
-                    ->class(['' => $customAttributes['thead']['default'] ?? true])
+                    ->class(['bg-gray-50 dark:bg-gray-800' => $customAttributes['thead']['default'] ?? true])
                     ->except('default') }}
             >
                 <tr>
