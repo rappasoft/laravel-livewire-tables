@@ -163,4 +163,23 @@ trait ColumnConfiguration
 
         return $this;
     }
+
+    public function setColumnLabelStatusDisabled(): self
+    {
+        $this->setColumnLabelStatus(false);
+
+        return $this;
+    }
+
+    public function setColumnLabelStatusEnabled(): self
+    {
+        $this->setColumnLabelStatus(true);
+
+        return $this;
+    }
+
+    public function setColumnLabelStatus(bool $status): void
+    {
+        $this->displayColumnLabel = $status;
+    }
 }
