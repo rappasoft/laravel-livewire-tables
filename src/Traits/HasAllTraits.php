@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 trait HasAllTraits
 {
     use ComponentUtilities,
+        WithBladeManagement,
         WithBulkActions,
         WithCollapsingColumns,
         WithColumns,
