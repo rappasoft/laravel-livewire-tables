@@ -3,7 +3,7 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
-- Add capability to set a custom script path for the scripts/styles
+- Add capability to set a custom script path for the scripts/styles by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1557
 - Added missing tailwind background colour class for when hovering over the clear button in dark mode by @slakbal in https://github.com/rappasoft/laravel-livewire-tables/pull/1553
 
 
