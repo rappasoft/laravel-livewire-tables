@@ -3,10 +3,37 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
-- Add option to hide Column Header
+- Add capability to set a custom script path for the scripts/styles by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1557
+- Added missing tailwind background colour class for when hovering over the clear button in dark mode by @slakbal in https://github.com/rappasoft/laravel-livewire-tables/pull/1553
+- Add capability to hide Column Label by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1512
 
-## UNRELEASED
-- Split ConfigurableArea into own Trait/Config/Helper Files
+
+## [v3.1.3] - 2023-11-03
+- Add additional Lifecycle Hook by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+  - SettingColumns/ColumnsSet
+- Migrate methods for pre-render out of render by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+- Update tests to reflect hooks by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+- Update tests to add invalid string tests for dates by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+- Remove maps and minimise functions from FrontendAssets by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
+
+## [v3.1.2] - 2023-11-03
+- Add Initial Lifecycle Hooks - Configuring/Configured by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1520
+  - Configuring/Configured
+- Add missing tests for DateFilter and DateTimeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1527
+
+## [v3.1.1] - 2023-11-02
+### New Features
+- Add setCustomView for Filters
+
+### Bug Fixes
+- Default Search to "Live" rather than "Defer" to match v2
+
+### Tweaks
+- Modify Filters to use DTO for Generic Property List by @lrljoe in [#1503](https://github.com/rappasoft/laravel-livewire-tables/pull/1503)
+- Split ConfigurableAreas, CollapsingColumns and  TableAttributes into own Traits/Config/Helper Files for Maintainability by @lrljoe in [#1514](https://github.com/rappasoft/laravel-livewire-tables/pull/1514)
+- Add "HasAllTraits" for Maintainability by @lrljoe in [#1514](https://github.com/rappasoft/laravel-livewire-tables/pull/1514)
+- Rename row-contents to collapsed-columns
+- Add IsFilter and IsColumn Traits for Filter/Column Classes
 
 ## [v3.1.0] - 2023-10-31
 - Restore wire:confirm for Bulk Actions
