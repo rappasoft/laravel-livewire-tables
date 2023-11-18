@@ -8,6 +8,5 @@ use Rappasoft\LaravelLivewireTables\Traits\Helpers\BladeManagementHelpers;
 trait WithBladeManagement
 {
     use BladeManagementConfiguration,
-    BladeManagementHelpers;
-
+        BladeManagementHelpers;
 }
