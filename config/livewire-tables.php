@@ -29,7 +29,7 @@ return [
      * Enable Blade Directives (Not required if automatically injecting or using bundler approaches)
      */
     'enable_blade_directives ' => false,
-    
+
     /**
      * Customise Script & Styles Paths
      */
