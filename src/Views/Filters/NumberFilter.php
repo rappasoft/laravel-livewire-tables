@@ -6,6 +6,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class NumberFilter extends Filter
 {
+    public string $viewPath = 'livewire-tables::components.tools.filters.number';
+
     public function validate(mixed $value): int|bool
     {
         return is_numeric($value) ? $value : false;
@@ -24,16 +26,8 @@ class NumberFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return view('livewire-tables::components.tools.filters.number', [
-            'filterLayout' => $filterLayout,
-            'tableName' => $tableName,
-            'isTailwind' => $isTailwind,
-            'isBootstrap' => ($isBootstrap4 || $isBootstrap5),
-            'isBootstrap4' => $isBootstrap4,
-            'isBootstrap5' => $isBootstrap5,
-            'filter' => $this,
-        ]);
+        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

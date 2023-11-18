@@ -29,6 +29,8 @@ trait WithFilters
 
     public array $appliedFilters = [];
 
+    public array $filterGenericData = [];
+
     public function filters(): array
     {
         return [];

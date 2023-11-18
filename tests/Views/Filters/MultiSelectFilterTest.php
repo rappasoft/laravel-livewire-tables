@@ -204,4 +204,15 @@ class MultiSelectFilterTest extends TestCase
         $this->assertTrue($filter->isEmpty('test'));
         $this->assertFalse($filter->isEmpty([1]));
     }
+
+    /**
+     * @test
+     */
+    public function can_set_custom_filter_view(): void
+    {
+        $filter = MultiSelectFilter::make('Active');
+        $this->assertSame('livewire-tables::components.tools.filters.multi-select', $filter->getViewPath());
+        $filter->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', $filter->getViewPath());
+    }
 }

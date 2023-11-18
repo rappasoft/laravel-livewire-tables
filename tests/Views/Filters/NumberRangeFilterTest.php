@@ -352,4 +352,15 @@ class NumberRangeFilterTest extends TestCase
 
         $this->assertFalse($filter->isResetByClearButton());
     }
+
+    /**
+     * @test
+     */
+    public function can_set_custom_filter_view(): void
+    {
+        $filter = NumberRangeFilter::make('Active');
+        $this->assertSame('livewire-tables::components.tools.filters.number-range', $filter->getViewPath());
+        $filter->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', $filter->getViewPath());
+    }
 }

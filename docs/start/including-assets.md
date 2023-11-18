@@ -24,6 +24,18 @@ This is enabled by default, but to re-enable, enable the following options in th
      * Enable or Disable automatic injection of third-party assets
      */
     'inject_third_party_assets_enabled' => true,
+
+```
+
+#### Changing Script Path
+
+You can change the path used by customising the script_base_path option in the configuration file:
+
+```php
+    /** 
+     * Customise Script & Styles Paths
+     */
+    'script_base_path' => '/rappasoft/laravel-livewire-tables',
 ```
 
 ### Bundler Including
@@ -62,3 +74,4 @@ Update the following options in the livewire-tables configuration file, to disab
     'enable_blade_directives ' => false,
 
 ```
+

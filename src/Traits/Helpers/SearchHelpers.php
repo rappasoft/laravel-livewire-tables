@@ -118,7 +118,7 @@ trait SearchHelpers
             return '.live.throttle.'.$this->getSearchThrottle().'ms';
         }
 
-        return '';
+        return '.live';
     }
 
     public function getSearchPlaceholder(): string
