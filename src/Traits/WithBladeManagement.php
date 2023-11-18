@@ -8,8 +8,9 @@ use Rappasoft\LaravelLivewireTables\Traits\Helpers\BladeManagementHelpers;
 trait WithBladeManagement
 {
     use BladeManagementConfiguration,
-    BladeManagementHelpers;
+        BladeManagementHelpers;
 
     public string $offlineBladePath = 'livewire-tables::includes.offline';
+
     public string $debugBladePath = 'livewire-tables::includes.debug';
 }
