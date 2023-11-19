@@ -9,6 +9,8 @@ class Column
 {
     use IsColumn;
 
+    protected bool $displayColumnLabel = true;
+
     public function __construct(string $title, string $from = null)
     {
         $this->title = trim($title);
