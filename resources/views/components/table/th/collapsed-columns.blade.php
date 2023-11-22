@@ -1,4 +1,7 @@
 @aware(['component', 'tableName'])
+@php
+    $customAttributes = $component->getBulkActionsCheckboxAttributes();
+@endphp
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @if ($component->isTailwind())
