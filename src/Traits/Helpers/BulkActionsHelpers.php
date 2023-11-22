@@ -175,7 +175,7 @@ trait BulkActionsHelpers
 
     /**
      * Used to get attributes for the <th> for Bulk Actions
-     * 
+     *
      * @return array<mixed>
      */
     public function getBulkActionsThAttributes(): array
@@ -185,17 +185,17 @@ trait BulkActionsHelpers
 
     /**
      * Used to get attributes for the Checkbox for Bulk Actions TH
-     * 
+     *
      * @return array<mixed>
      */
     public function getBulkActionsThCheckboxAttributes(): array
     {
         return $this->bulkActionsThCheckboxAttributes ?? ['default' => true];
     }
-    
+
     /**
      * Used to get attributes for the Bulk Actions TD
-     * 
+     *
      * @return array<mixed>
      */
     public function getBulkActionsTdAttributes(): array
@@ -205,12 +205,11 @@ trait BulkActionsHelpers
 
     /**
      * Used to get attributes for the Bulk Actions TD
-     * 
+     *
      * @return array<mixed>
      */
     public function getBulkActionsTdCheckboxAttributes(): array
     {
         return $this->bulkActionsTdCheckboxAttributes ?? ['default' => true];
     }
-
 }

@@ -27,7 +27,7 @@ trait WithBulkActions
     protected array $bulkActionsCheckboxAttributes = [];
 
     protected array $bulkActionsThAttributes = [];
-    
+
     protected array $bulkActionsThCheckboxAttributes = [];
 
     protected array $bulkActionsTdAttributes = [];

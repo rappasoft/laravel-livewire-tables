@@ -113,7 +113,7 @@ trait BulkActionsConfiguration
 
     /**
      * Used to set attributes for the <th> for Bulk Actions
-    */
+     */
     public function setBulkActionsThAttributes(array $bulkActionsThAttributes): self
     {
         $this->bulkActionsThAttributes = $bulkActionsThAttributes;
@@ -123,7 +123,7 @@ trait BulkActionsConfiguration
 
     /**
      * Used to set attributes for the Bulk Actions Checkbox in the <th>
-    */
+     */
     public function setBulkActionsThCheckboxAttributes(array $bulkActionsThCheckboxAttributes): self
     {
         $this->bulkActionsThCheckboxAttributes = $bulkActionsThCheckboxAttributes;
@@ -133,7 +133,7 @@ trait BulkActionsConfiguration
 
     /**
      * Used to set attributes for the Bulk Actions TD in the Row
-    */
+     */
     public function setBulkActionsTdAttributes(array $bulkActionsTdAttributes): self
     {
         $this->bulkActionsTdAttributes = $bulkActionsTdAttributes;
@@ -141,15 +141,13 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-        /**
+    /**
      * Used to set attributes for the Bulk Actions Checkbox in the Row
-    */
+     */
     public function setBulkActionsTdCheckboxAttributes(array $bulkActionsTdCheckboxAttributes): self
     {
         $this->bulkActionsTdCheckboxAttributes = $bulkActionsTdCheckboxAttributes;
 
         return $this;
     }
-
-
 }
