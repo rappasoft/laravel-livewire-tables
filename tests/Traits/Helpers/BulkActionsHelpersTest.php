@@ -228,5 +228,4 @@ class BulkActionsHelpersTest extends TestCase
     {
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThCheckboxAttributes());
     }
-    
 }
