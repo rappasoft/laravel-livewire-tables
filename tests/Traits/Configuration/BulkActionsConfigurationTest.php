@@ -158,11 +158,11 @@ class BulkActionsConfigurationTest extends TestCase
 
         $this->basicTable->setBulkActionsTdAttributes(['class' => 'bg-blue-500']);
 
-        $this->assertSame(['class' => 'bg-blue-500', 'default' => true], $this->basicTable->getBulkActionsTdAttributes());
+        $this->assertSame(['default' => true, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsTdAttributes());
 
         $this->basicTable->setBulkActionsTdAttributes(['class' => 'bg-blue-500', 'default' => false]);
 
-        $this->assertSame(['class' => 'bg-blue-500', 'default' => false], $this->basicTable->getBulkActionsTdAttributes());
+        $this->assertSame(['default' => false, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsTdAttributes());
 
     }
 }
