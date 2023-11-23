@@ -26,13 +26,13 @@ trait WithBulkActions
 
     protected array $bulkActionsCheckboxAttributes = [];
 
-    protected array $bulkActionsThAttributes = [];
+    protected array $bulkActionsThAttributes = ['default' => true];
 
-    protected array $bulkActionsThCheckboxAttributes = [];
+    protected array $bulkActionsThCheckboxAttributes = ['default' => true];
 
-    protected array $bulkActionsTdAttributes = [];
+    protected array $bulkActionsTdAttributes = ['default' => true];
 
-    protected array $bulkActionsTdCheckboxAttributes = [];
+    protected array $bulkActionsTdCheckboxAttributes = ['default' => true];
 
     public function bulkActions(): array
     {

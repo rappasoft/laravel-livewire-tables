@@ -116,7 +116,7 @@ trait BulkActionsConfiguration
      */
     public function setBulkActionsThAttributes(array $bulkActionsThAttributes): self
     {
-        $this->bulkActionsThAttributes = $bulkActionsThAttributes;
+        $this->bulkActionsThAttributes = [...$this->bulkActionsThAttributes, ...$bulkActionsThAttributes];
 
         return $this;
     }
@@ -126,7 +126,7 @@ trait BulkActionsConfiguration
      */
     public function setBulkActionsThCheckboxAttributes(array $bulkActionsThCheckboxAttributes): self
     {
-        $this->bulkActionsThCheckboxAttributes = $bulkActionsThCheckboxAttributes;
+        $this->bulkActionsThCheckboxAttributes = [...$this->bulkActionsThCheckboxAttributes, ...$bulkActionsThCheckboxAttributes];
 
         return $this;
     }
@@ -136,7 +136,7 @@ trait BulkActionsConfiguration
      */
     public function setBulkActionsTdAttributes(array $bulkActionsTdAttributes): self
     {
-        $this->bulkActionsTdAttributes = $bulkActionsTdAttributes;
+        $this->bulkActionsTdAttributes = [...$this->bulkActionsTdAttributes, ...$bulkActionsTdAttributes];
 
         return $this;
     }
@@ -146,7 +146,7 @@ trait BulkActionsConfiguration
      */
     public function setBulkActionsTdCheckboxAttributes(array $bulkActionsTdCheckboxAttributes): self
     {
-        $this->bulkActionsTdCheckboxAttributes = $bulkActionsTdCheckboxAttributes;
+        $this->bulkActionsTdCheckboxAttributes = [...$this->bulkActionsTdCheckboxAttributes, ...$bulkActionsTdCheckboxAttributes];
 
         return $this;
     }
