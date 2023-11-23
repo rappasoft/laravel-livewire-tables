@@ -204,4 +204,29 @@ class BulkActionsHelpersTest extends TestCase
     {
         $this->assertSame('Are you sure?', $this->basicTable->getBulkActionDefaultConfirmationMessage());
     }
+
+    /** @test */
+    public function bulk_actions_td_attributes_returns_default_true_if_not_set(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsTdAttributes());
+    }
+
+    /** @test */
+    public function bulk_actions_td_checkbox_attributes_returns_default_true_if_not_set(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsTdCheckboxAttributes());
+    }
+
+    /** @test */
+    public function bulk_actions_th_attributes_returns_default_true_if_not_set(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThAttributes());
+    }
+
+    /** @test */
+    public function bulk_actions_th_checkbox_attributes_returns_default_true_if_not_set(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThCheckboxAttributes());
+    }
+    
 }
