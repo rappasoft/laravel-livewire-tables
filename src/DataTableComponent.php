@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Rappasoft\LaravelLivewireTables\Exceptions\{DataTableConfigurationException,NoColumnsException,NoSearchableColumnsException,NoSortableColumnsException};
 use Rappasoft\LaravelLivewireTables\Traits\HasAllTraits;
 
 abstract class DataTableComponent extends Component
