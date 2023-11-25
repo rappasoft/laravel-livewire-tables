@@ -53,8 +53,7 @@ trait WithColumns
     public function renderingWithColumns($view, $data)
     {
         $view = $view->with([
-                    'columns' => $this->getColumns(),
-                ]);
+            'columns' => $this->getColumns(),
+        ]);
     }
-
 }

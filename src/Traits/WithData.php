@@ -218,8 +218,8 @@ trait WithData
     public function renderingWithData($view, $data)
     {
         $view = $view->with([
-                    'filterGenericData' => $this->getFilterGenericData(),
-                    'rows' => $this->getRows(),
-                ]);
+            'filterGenericData' => $this->getFilterGenericData(),
+            'rows' => $this->getRows(),
+        ]);
     }
 }

@@ -21,8 +21,7 @@ trait WithCustomisations
     public function renderingWithCustomisations($view, $data)
     {
         $view = $view->with([
-                    'customView' => $this->customView(),
-                ]);
+            'customView' => $this->customView(),
+        ]);
     }
-
 }

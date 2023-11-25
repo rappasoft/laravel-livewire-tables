@@ -100,7 +100,6 @@ abstract class DataTableComponent extends Component
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
     }
 
-
     public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire-tables::datatable');
