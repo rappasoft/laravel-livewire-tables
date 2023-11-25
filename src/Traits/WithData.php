@@ -226,5 +226,4 @@ trait WithData
             ]
         );
     }
-
 }
