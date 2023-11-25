@@ -8,6 +8,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Add capability to hide Column Label by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1512
 - Revert previous splitting of JS Files
 - Create additional Exception Classes (NoColumnsException, NoSearchableColumnsException, NoSortableColumnsException)
+- Fix footer rendering issue with extra td displayed depending on bulk action statuses
 
 ## [v3.1.3] - 2023-11-03
 - Add additional Lifecycle Hook by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
