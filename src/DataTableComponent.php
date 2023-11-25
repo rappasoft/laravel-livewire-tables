@@ -88,14 +88,15 @@ abstract class DataTableComponent extends Component
     abstract public function columns(): array;
 
     /**
-     * The base query.
+     * The base query - typically overridden in child components
      */
     public function builder(): Builder
     {
         if ($this->hasModel()) {
             return $this->getModel()::query()->with($this->getRelationships());
         }
-
+        
+        // If model does not exist
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
     }
 
