@@ -217,13 +217,9 @@ trait WithData
 
     public function renderingWithData($view, $data)
     {
-        $view = $view->with(
-            [
-                'filterGenericData' => $this->getFilterGenericData(),
-                'columns' => $this->getColumns(),
-                'rows' => $this->getRows(),
-                'customView' => $this->customView(),
-            ]
-        );
+        $view = $view->with([
+                    'filterGenericData' => $this->getFilterGenericData(),
+                    'rows' => $this->getRows(),
+                ]);
     }
 }

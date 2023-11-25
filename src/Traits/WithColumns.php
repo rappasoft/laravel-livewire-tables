@@ -49,4 +49,12 @@ trait WithColumns
     {
         return [];
     }
+
+    public function renderingWithColumns($view, $data)
+    {
+        $view = $view->with([
+                    'columns' => $this->getColumns(),
+                ]);
+    }
+
 }

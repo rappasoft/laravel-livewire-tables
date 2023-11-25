@@ -10,6 +10,7 @@ trait HasAllTraits
         WithColumns,
         WithColumnSelect,
         WithConfigurableAreas,
+        WithCustomisations,
         WithData,
         WithDebugging,
         WithEvents,
