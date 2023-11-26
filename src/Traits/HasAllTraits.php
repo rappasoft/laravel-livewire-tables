@@ -5,14 +5,14 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 trait HasAllTraits
 {
     // Note Specific Order Below!
-    use ComponentUtilities,
-        WithBulkActions,
+    use ComponentUtilities;
+    use WithData;
+    use WithColumns;
+    use WithBulkActions,
         WithCollapsingColumns,
-        WithColumns,
         WithColumnSelect,
         WithConfigurableAreas,
         WithCustomisations,
-        WithData,
         WithDebugging,
         WithEvents,
         WithFilters,
