@@ -62,6 +62,7 @@ trait ComponentUtilities
         $this->callTraitHook('configured');
 
     }
+
     /**
      * Keep track of any properties on the custom query string key for this specific table
      */

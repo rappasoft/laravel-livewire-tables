@@ -39,7 +39,6 @@ abstract class DataTableComponent extends Component
         //
     }
 
-
     /**
      * Runs on every request, after the component is mounted or hydrated, but before any update methods are called
      */
@@ -50,7 +49,6 @@ abstract class DataTableComponent extends Component
             throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
         }
     }
-
 
     /**
      * Set any configuration options

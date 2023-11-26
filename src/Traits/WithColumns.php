@@ -50,7 +50,6 @@ trait WithColumns
 
     }
 
-
     /**
      * Prepend columns.
      */
