@@ -49,7 +49,7 @@ trait WithColumnSelect
     {
         $this->setupColumnSelect();
     }
-    
+
     public function setupColumnSelect(): void
     {
 
