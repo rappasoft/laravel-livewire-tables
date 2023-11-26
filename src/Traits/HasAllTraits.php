@@ -4,12 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 trait HasAllTraits
 {
-    // Note Specific Order Below!
-    use WithTableHooks;
-    use WithLoadingPlaceholder;
     use ComponentUtilities;
-    use WithData;
-    use WithColumns;
     use WithBulkActions,
         WithCollapsingColumns,
         WithColumnSelect,
@@ -27,4 +22,9 @@ trait HasAllTraits
         WithSecondaryHeader,
         WithSorting,
         WithTableAttributes;
+    use WithColumns;
+    use WithData;
+    use WithLoadingPlaceholder;
+    // Note Specific Order Below!
+    use WithTableHooks;
 }
