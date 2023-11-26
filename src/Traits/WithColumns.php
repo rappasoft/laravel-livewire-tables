@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 
 trait WithColumns
 {
@@ -22,8 +23,6 @@ trait WithColumns
     protected ?bool $shouldMobileCollapse;
 
     protected ?bool $shouldTabletCollapse;
-
-    public array $columnSelectStats2;
 
     public int $defaultVisibleColumnCount;
 
@@ -48,12 +47,22 @@ trait WithColumns
         $this->callHook('columnsSet');
         $this->callTraitHook('columnsSet');
 
+        if ($this->columns->count() == 0)
+        {
+            throw new NoColumnsException('You must have defined a minimum of one Column for the table to function');
+        }
+
     }
+
+    /**
+     * The array defining the columns of the table.
+     */
+    abstract public function columns(): array;
 
     /**
      * Prepend columns.
      */
-    public function prependColumns()
+    public function prependColumns(): array
     {
         return [];
     }

@@ -37,7 +37,14 @@ trait ComponentUtilities
 
     protected array $additionalSelects = [];
 
-    // Sets the Theme If Not Already Set
+    /**
+     * Set any configuration options
+     */
+    abstract public function configure(): void;
+
+    /**
+     * Sets the Theme if not set on first mount
+     */ 
     public function mountComponentUtilities(): void
     {
         // Sets the Theme - tailwind/bootstrap
@@ -47,7 +54,7 @@ trait ComponentUtilities
     }
 
     /**
-     * Runs configure() with Lifecycle Hooks
+     * Runs configure() with Lifecycle Hooks on each Lifecycle
      */
     public function bootComponentUtilities(): void
     {
@@ -67,6 +74,17 @@ trait ComponentUtilities
             throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
         }
 
+    }
+
+    /**
+     * Returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
+     */
+    protected function generateDataTableFingerprint(): string
+    {
+        $className = str_split(static::class);
+        $crc32 = sprintf('%u', crc32(serialize($className)));
+
+        return base_convert($crc32, 10, 36);
     }
 
     /**
@@ -110,4 +128,5 @@ trait ComponentUtilities
     {
         $this->restartReorderingIfNecessary();
     }
+    
 }

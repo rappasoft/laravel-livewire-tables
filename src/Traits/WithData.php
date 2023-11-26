@@ -3,13 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Pagination\CursorPaginator;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasOne, MorphOne};
+use Illuminate\Pagination\{CursorPaginator,LengthAwarePaginator,Paginator};
 use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait WithData
@@ -222,6 +219,19 @@ trait WithData
         }
 
         return $currentTableAlias.'_'.$relationPart;
+    }
+
+    /**
+     * The base query - typically overridden in child components
+     */
+    public function builder(): Builder
+    {
+        if ($this->hasModel()) {
+            return $this->getModel()::query()->with($this->getRelationships());
+        }
+
+        // If model does not exist
+        throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
     }
 
     public function renderingWithData($view, $data)
