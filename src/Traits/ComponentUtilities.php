@@ -44,7 +44,7 @@ trait ComponentUtilities
 
     /**
      * Sets the Theme if not set on first mount
-     */ 
+     */
     public function mountComponentUtilities(): void
     {
         // Sets the Theme - tailwind/bootstrap
@@ -128,5 +128,4 @@ trait ComponentUtilities
     {
         $this->restartReorderingIfNecessary();
     }
-    
 }

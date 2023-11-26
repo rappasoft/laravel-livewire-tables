@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 
 trait WithColumns
 {
@@ -47,8 +47,7 @@ trait WithColumns
         $this->callHook('columnsSet');
         $this->callTraitHook('columnsSet');
 
-        if ($this->columns->count() == 0)
-        {
+        if ($this->columns->count() == 0) {
             throw new NoColumnsException('You must have defined a minimum of one Column for the table to function');
         }
 
