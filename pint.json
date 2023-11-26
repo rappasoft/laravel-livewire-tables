@@ -1,6 +1,6 @@
 {
     "preset": "laravel",
-    "exclude": [
-        "src/Traits/HasAllTraits.php"
-    ]
+    "rules": {
+        "ordered_traits": false
+    }
 }
