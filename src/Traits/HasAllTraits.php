@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 trait HasAllTraits
 {
     // Note Specific Order Below!
+    use WithTableHooks;
     use ComponentUtilities;
     use WithData;
     use WithColumns;
@@ -25,6 +26,5 @@ trait HasAllTraits
         WithSearch,
         WithSecondaryHeader,
         WithSorting,
-        WithTableAttributes,
-        WithTableHooks;
+        WithTableAttributes;
 }
