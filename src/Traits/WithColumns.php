@@ -74,7 +74,10 @@ trait WithColumns
         return [];
     }
 
-    public function renderingWithColumns($view, $data)
+    /** 
+     * Add Columns to View
+     */
+    public function renderingWithColumns($view, $data): void
     {
         $view = $view->with([
             'columns' => $this->getColumns(),

@@ -18,7 +18,10 @@ trait WithCustomisations
         return 'livewire-tables::stubs.custom';
     }
 
-    public function renderingWithCustomisations($view, $data)
+    /** 
+     * Add customView to the View
+     */
+    public function renderingWithCustomisations($view, $data): void
     {
         $view = $view->with([
             'customView' => $this->customView(),

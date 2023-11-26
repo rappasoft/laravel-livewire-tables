@@ -36,7 +36,7 @@ trait WithFilters
         return [];
     }
 
-    protected function queryStringWithFilters()
+    protected function queryStringWithFilters(): array
     {
         if ($this->queryStringIsEnabled() && $this->filtersAreEnabled()) {
             return [

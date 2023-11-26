@@ -18,7 +18,7 @@ trait WithData
     /**
      * Sets up the Builder instance
      */
-    public function bootWithData()
+    public function bootWithData(): void
     {
         //Sets up the Builder Instance
         $this->setBuilder($this->builder());
@@ -238,7 +238,10 @@ trait WithData
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
     }
 
-    public function renderingWithData($view, $data)
+    /** 
+     * Add Rows And Generic Data to View
+     */
+    public function renderingWithData($view, $data): void
     {
         $view = $view->with([
             'filterGenericData' => $this->getFilterGenericData(),

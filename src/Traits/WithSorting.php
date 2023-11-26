@@ -30,7 +30,7 @@ trait WithSorting
 
     public string $defaultSortingLabelDesc = 'Z-A';
 
-    protected function queryStringWithSorting()
+    protected function queryStringWithSorting(): array
     {
         if ($this->queryStringIsEnabled() && $this->sortingIsEnabled()) {
             return [
