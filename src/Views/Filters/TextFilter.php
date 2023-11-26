@@ -17,9 +17,9 @@ class TextFilter extends Filter
         return strlen($value) ? $value : false;
     }
 
-    public function isEmpty($value): bool
+    public function isEmpty(?string $value): bool
     {
-        return $value === '';
+        return is_null($value) || $value === '';
     }
 
     /**

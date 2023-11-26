@@ -25,9 +25,9 @@ class DateTimeFilter extends Filter
         return $value;
     }
 
-    public function isEmpty($value): bool
+    public function isEmpty(?string $value): bool
     {
-        return $value === '';
+        return is_null($value) || $value === '';
     }
 
     public function getFilterPillValue($value): ?string
