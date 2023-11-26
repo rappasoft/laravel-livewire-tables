@@ -11,6 +11,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Fix footer rendering issue with extra td displayed depending on bulk action statuses
 - Create new WithCustomisations Trait
 - Move render data provision into Traits -> WithColumns, WithCustomisations, WithData
+- Add default pint.json with ignore for WithAllTraits
 
 ## [v3.1.3] - 2023-11-03
 - Add additional Lifecycle Hook by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
