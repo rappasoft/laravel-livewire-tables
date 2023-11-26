@@ -87,4 +87,5 @@ trait ComponentConfiguration
 
         return $this;
     }
+
 }
