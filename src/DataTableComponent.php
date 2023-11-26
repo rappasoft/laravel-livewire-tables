@@ -39,43 +39,18 @@ abstract class DataTableComponent extends Component
         //
     }
 
+
     /**
      * Runs on every request, after the component is mounted or hydrated, but before any update methods are called
      */
     public function booted(): void
     {
-        // Configuring
-        // Fire hook for configuring
-        $this->callHook('configuring');
-        $this->callTraitHook('configuring');
-
-        // Call the configure() method
-        $this->configure();
-
-        // Fire hook for configured
-        $this->callHook('configured');
-        $this->callTraitHook('configured');
-
-        //Sets up the Builder Instance
-        $this->setBuilder($this->builder());
-
-        // Sets Columns
-        // Fire hook for settingColumns
-        $this->callHook('settingColumns');
-        $this->callTraitHook('settingColumns');
-
-        // Set Columns
-        $this->setColumns();
-
-        // Fire hook for columnsSet
-        $this->callHook('columnsSet');
-        $this->callTraitHook('columnsSet');
-
         // Make sure a primary key is set
         if (! $this->hasPrimaryKey()) {
             throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
         }
     }
+
 
     /**
      * Set any configuration options

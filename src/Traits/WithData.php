@@ -14,6 +14,18 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait WithData
 {
+
+    /**
+     * Sets up the Builder instance
+     */
+    public function bootWithData()
+    {
+        //Sets up the Builder Instance
+        $this->setBuilder($this->builder());
+    }
+
+
+
     // TODO: Test
     public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {

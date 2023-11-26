@@ -29,10 +29,27 @@ trait WithColumns
 
     public int $visibleColumnCount;
 
+    /**
+     * Sets up Columns
+     */
     public function bootWithColumns(): void
     {
         $this->columns = collect();
+
+        // Sets Columns
+        // Fire Lifecycle Hooks for settingColumns
+        $this->callHook('settingColumns');
+        $this->callTraitHook('settingColumns');
+
+        // Set Columns
+        $this->setColumns();
+
+        // Fire Lifecycle Hooks for columnsSet
+        $this->callHook('columnsSet');
+        $this->callTraitHook('columnsSet');
+
     }
+
 
     /**
      * Prepend columns.

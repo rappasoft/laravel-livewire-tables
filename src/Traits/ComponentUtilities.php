@@ -46,6 +46,23 @@ trait ComponentUtilities
     }
 
     /**
+     * Runs configure() with Lifecycle Hooks
+     */
+    public function bootComponentUtilities(): void
+    {
+        // Fire Lifecycle Hooks for configuring
+        $this->callHook('configuring');
+        $this->callTraitHook('configuring');
+
+        // Call the configure() method
+        $this->configure();
+
+        // Fire Lifecycle Hooks for configured
+        $this->callHook('configured');
+        $this->callTraitHook('configured');
+
+    }
+    /**
      * Keep track of any properties on the custom query string key for this specific table
      */
     public function updated(string $name, string|array $value): void
