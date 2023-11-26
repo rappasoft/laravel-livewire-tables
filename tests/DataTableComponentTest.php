@@ -3,9 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
 class DataTableComponentTest extends TestCase
 {
@@ -34,7 +33,7 @@ class DataTableComponentTest extends TestCase
     {
         $this->expectException(\Illuminate\View\ViewException::class);
         Livewire::test(NoPrimaryKeyTable::class)
-        ->call('setSearch', 'abcd');
+            ->call('setSearch', 'abcd');
     }
 
     /** @test */

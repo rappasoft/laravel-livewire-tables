@@ -80,7 +80,7 @@ class TestCase extends Orchestra
         $view = view('livewire-tables::datatable');
         $this->basicTable = new PetsTable();
         $this->basicTable->bootComponentUtilities();
-        $this->basicTable->boot();       
+        $this->basicTable->boot();
         $this->basicTable->bootWithData();
         $this->basicTable->bootWithColumns();
         $this->basicTable->bootWithColumnSelect();

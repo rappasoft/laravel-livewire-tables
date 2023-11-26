@@ -4,9 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait ComponentUtilities
 {
@@ -66,7 +66,7 @@ trait ComponentUtilities
         if (! $this->hasPrimaryKey()) {
             throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
         }
-        
+
     }
 
     /**
