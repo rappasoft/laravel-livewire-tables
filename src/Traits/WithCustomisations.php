@@ -21,7 +21,7 @@ trait WithCustomisations
     /**
      * Add customView to the View
      */
-    public function renderingWithCustomisations($view, $data): void
+    public function renderingWithCustomisations(\Illuminate\View\View $view, array $data = []): void
     {
         $view = $view->with([
             'customView' => $this->customView(),

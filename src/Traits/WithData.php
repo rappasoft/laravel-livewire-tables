@@ -24,7 +24,9 @@ trait WithData
         $this->setBuilder($this->builder());
     }
 
-    // TODO: Test
+    /**
+     * Retrieves the rows for the executed query
+     */
     public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
         $this->baseQuery();
@@ -198,6 +200,9 @@ trait WithData
         return $this->getBuilder();
     }
 
+    /**
+     * Gets the table for a given Column
+     */
     protected function getTableForColumn(Column $column): ?string
     {
         $table = null;
@@ -216,6 +221,9 @@ trait WithData
         return $table;
     }
 
+    /**
+     * Retrieves table aliases
+     */
     protected function getTableAlias(?string $currentTableAlias, string $relationPart): string
     {
         if (! $currentTableAlias) {
@@ -241,7 +249,7 @@ trait WithData
     /**
      * Add Rows And Generic Data to View
      */
-    public function renderingWithData($view, $data): void
+    public function renderingWithData(\Illuminate\View\View $view, array $data = []): void
     {
         $view = $view->with([
             'filterGenericData' => $this->getFilterGenericData(),

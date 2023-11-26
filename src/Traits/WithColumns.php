@@ -77,7 +77,7 @@ trait WithColumns
     /**
      * Add Columns to View
      */
-    public function renderingWithColumns($view, $data): void
+    public function renderingWithColumns(\Illuminate\View\View $view,  array $data = []): void
     {
         $view = $view->with([
             'columns' => $this->getColumns(),
