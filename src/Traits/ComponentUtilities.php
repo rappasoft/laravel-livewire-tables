@@ -34,6 +34,8 @@ trait ComponentUtilities
 
     protected string $emptyMessage = 'No items found. Try to broaden your search.';
 
+    protected string $customEmptyView = '';
+
     protected array $additionalSelects = [];
 
     // Sets the Theme If Not Already Set

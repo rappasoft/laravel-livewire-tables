@@ -56,7 +56,7 @@
 
                 <x-livewire-tables::table.collapsed-columns :row="$row" :rowIndex="$rowIndex" />
             @empty
-                <x-livewire-tables::table.empty />
+                @includeFirst($this->getCustomEmptyView(), 'livewire-tables::table.empty')
             @endforelse
 
             @if ($this->footerIsEnabled() && $this->hasColumnsWithFooter())

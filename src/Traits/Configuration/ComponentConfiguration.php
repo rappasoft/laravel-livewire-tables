@@ -80,4 +80,12 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    public function setCustomEmptyView(string $customEmptyView): self
+    {
+        $this->customEmptyView = $customEmptyView;
+
+        return $this;
+    }
+
 }

@@ -149,4 +149,9 @@ trait ComponentHelpers
     {
         return $this->additionalSelects;
     }
+
+    public function getCustomEmptyView(): string
+    {
+        return $this->customEmptyView ?? '';
+    }
 }
