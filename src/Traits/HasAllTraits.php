@@ -7,9 +7,13 @@ trait HasAllTraits
     // Note Specific Order Below!
     use WithTableHooks;
     use WithLoadingPlaceholder;
-    use ComponentUtilities;
-    use WithData;
-    use WithColumns;
+    use ComponentUtilities,
+        WithData,
+        WithColumns,
+        WithSorting,
+        WithSearch,
+        WithPagination;
+
     use WithBulkActions,
         WithCollapsingColumns,
         WithColumnSelect,
@@ -19,12 +23,9 @@ trait HasAllTraits
         WithEvents,
         WithFilters,
         WithFooter,
-        WithPagination,
         WithQueryString,
         WithRefresh,
         WithReordering,
-        WithSearch,
         WithSecondaryHeader,
-        WithSorting,
         WithTableAttributes;
 }
