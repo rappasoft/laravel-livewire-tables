@@ -45,6 +45,11 @@ trait WithColumnSelect
         return [];
     }
 
+    public function bootWithColumnSelect()
+    {
+        $this->setupColumnSelect();
+    }
+    
     public function setupColumnSelect(): void
     {
 
@@ -123,10 +128,5 @@ trait WithColumnSelect
     public function allSelectedColumnsAreVisibleByDefault(): bool
     {
         return count($this->selectedColumns) === count($this->getDefaultVisibleColumns());
-    }
-
-    public function renderingWithColumnSelect()
-    {
-        $this->setupColumnSelect();
     }
 }
