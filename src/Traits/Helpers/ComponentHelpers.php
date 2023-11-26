@@ -154,5 +154,4 @@ trait ComponentHelpers
     {
         return $this->customEmptyView ?? '';
     }
-
 }
