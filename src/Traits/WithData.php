@@ -238,7 +238,7 @@ trait WithData
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
     }
 
-    /** 
+    /**
      * Add Rows And Generic Data to View
      */
     public function renderingWithData($view, $data): void

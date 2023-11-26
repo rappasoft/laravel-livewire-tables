@@ -74,7 +74,7 @@ trait WithColumns
         return [];
     }
 
-    /** 
+    /**
      * Add Columns to View
      */
     public function renderingWithColumns($view, $data): void
