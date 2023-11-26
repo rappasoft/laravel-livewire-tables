@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait ComponentUtilities
 {
@@ -61,6 +62,11 @@ trait ComponentUtilities
         $this->callHook('configured');
         $this->callTraitHook('configured');
 
+        // Make sure a primary key is set
+        if (! $this->hasPrimaryKey()) {
+            throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
+        }
+        
     }
 
     /**

@@ -44,10 +44,6 @@ abstract class DataTableComponent extends Component
      */
     public function booted(): void
     {
-        // Make sure a primary key is set
-        if (! $this->hasPrimaryKey()) {
-            throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
-        }
     }
 
     /**

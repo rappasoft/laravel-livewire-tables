@@ -72,10 +72,15 @@ class TestCase extends Orchestra
                 ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
             ]);
         }
+        $this->setupBasicTable();
+    }
+
+    protected function setupBasicTable()
+    {
         $view = view('livewire-tables::datatable');
         $this->basicTable = new PetsTable();
         $this->basicTable->bootComponentUtilities();
-        $this->basicTable->boot();
+        $this->basicTable->boot();       
         $this->basicTable->bootWithData();
         $this->basicTable->bootWithColumns();
         $this->basicTable->bootWithColumnSelect();
