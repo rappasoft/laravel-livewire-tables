@@ -7,7 +7,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Added missing tailwind background colour class for when hovering over the clear button in dark mode by @slakbal in https://github.com/rappasoft/laravel-livewire-tables/pull/1553
 - Add capability to hide Column Label by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1512
 - Revert previous splitting of JS Files
-- Add capability to customise Bulk Actions Styling
+- Add capability to customise Bulk Actions Styling with tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1564
   - TH Classes
   - TH Checkbox Classes
   - TD Classes
