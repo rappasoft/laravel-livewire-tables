@@ -17,15 +17,21 @@ trait WithData
     // TODO: Test
     public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
+        // Setup the Base Query
         $this->baseQuery();
 
+        // Execute the Query
         $executedQuery = $this->executeQuery();
 
         // Get All Currently Paginated Items Primary Keys
         $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
-
+        
         // Get Count of Items in Current Page
         $this->paginationCurrentCount = $executedQuery->count();
+
+        // Fire hook for rowsRetrieved
+        $this->callHook('rowsRetrieved', [$executedQuery]);
+        $this->callTraitHook('rowsRetrieved', [$executedQuery]);
 
         return $executedQuery;
     }
