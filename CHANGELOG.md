@@ -2,11 +2,26 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## UNRELEASED
-- Add capability to set a custom script path for the scripts/styles by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1557
-- Added missing tailwind background colour class for when hovering over the clear button in dark mode by @slakbal in https://github.com/rappasoft/laravel-livewire-tables/pull/1553
+## [v3.1.4] - 2023-12-04
+### New Features
 - Add capability to hide Column Label by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1512
+- Add capability to set a custom script path for the scripts/styles by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1557
+- Added rowsRetrieved Lifecycle Hook, expanded documentation for Lifecycle Hooks
+
+### Bug Fixes
+- Added missing tailwind background colour class for when hovering over the clear button in dark mode by @slakbal in https://github.com/rappasoft/laravel-livewire-tables/pull/1553
+- Fixed extraneous space in config.php by @viliusvsx in in https://github.com/rappasoft/laravel-livewire-tables/pull/1577
+- Changed table default vertical overflow to auto by @dmyers in https://github.com/rappasoft/laravel-livewire-tables/pull/1573
+- Fix footer rendering issue with extra td displayed depending on bulk action statuses
+
+### Tweaks
+- Create additional Exception Classes (NoColumnsException, NoSearchableColumnsException, NoSortableColumnsException)
 - Revert previous splitting of JS Files
+- Add capability to customise Bulk Actions Styling with tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1564
+  - TH Classes
+  - TH Checkbox Classes
+  - TD Classes
+  - TD Checkbox Classes
 
 ## [v3.1.3] - 2023-11-03
 - Add additional Lifecycle Hook by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
