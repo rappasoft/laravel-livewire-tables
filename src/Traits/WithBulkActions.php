@@ -24,6 +24,16 @@ trait WithBulkActions
 
     public ?string $bulkActionConfirmDefaultMessage;
 
+    protected array $bulkActionsCheckboxAttributes = [];
+
+    protected array $bulkActionsThAttributes = ['default' => true];
+
+    protected array $bulkActionsThCheckboxAttributes = ['default' => true];
+
+    protected array $bulkActionsTdAttributes = ['default' => true];
+
+    protected array $bulkActionsTdCheckboxAttributes = ['default' => true];
+
     public function bulkActions(): array
     {
         return property_exists($this, 'bulkActions') ? $this->bulkActions : [];

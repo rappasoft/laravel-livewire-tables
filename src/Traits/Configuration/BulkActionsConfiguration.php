@@ -110,4 +110,44 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    /**
+     * Used to set attributes for the <th> for Bulk Actions
+     */
+    public function setBulkActionsThAttributes(array $bulkActionsThAttributes): self
+    {
+        $this->bulkActionsThAttributes = [...$this->bulkActionsThAttributes, ...$bulkActionsThAttributes];
+
+        return $this;
+    }
+
+    /**
+     * Used to set attributes for the Bulk Actions Checkbox in the <th>
+     */
+    public function setBulkActionsThCheckboxAttributes(array $bulkActionsThCheckboxAttributes): self
+    {
+        $this->bulkActionsThCheckboxAttributes = [...$this->bulkActionsThCheckboxAttributes, ...$bulkActionsThCheckboxAttributes];
+
+        return $this;
+    }
+
+    /**
+     * Used to set attributes for the Bulk Actions TD in the Row
+     */
+    public function setBulkActionsTdAttributes(array $bulkActionsTdAttributes): self
+    {
+        $this->bulkActionsTdAttributes = [...$this->bulkActionsTdAttributes, ...$bulkActionsTdAttributes];
+
+        return $this;
+    }
+
+    /**
+     * Used to set attributes for the Bulk Actions Checkbox in the Row
+     */
+    public function setBulkActionsTdCheckboxAttributes(array $bulkActionsTdCheckboxAttributes): self
+    {
+        $this->bulkActionsTdCheckboxAttributes = [...$this->bulkActionsTdCheckboxAttributes, ...$bulkActionsTdCheckboxAttributes];
+
+        return $this;
+    }
 }

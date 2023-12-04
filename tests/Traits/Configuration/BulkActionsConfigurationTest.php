@@ -150,4 +150,60 @@ class BulkActionsConfigurationTest extends TestCase
         $this->assertSame('Test Default Message', $this->basicTable->getBulkActionDefaultConfirmationMessage());
 
     }
+
+    /** @test */
+    public function can_set_bulk_actions_td_attributes(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsTdAttributes());
+
+        $this->basicTable->setBulkActionsTdAttributes(['class' => 'bg-blue-500']);
+
+        $this->assertSame(['default' => true, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsTdAttributes());
+
+        $this->basicTable->setBulkActionsTdAttributes(['class' => 'bg-blue-500', 'default' => false]);
+
+        $this->assertSame(['default' => false, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsTdAttributes());
+    }
+
+    /** @test */
+    public function can_set_bulk_actions_td_checkbox_attributes(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsTdCheckboxAttributes());
+
+        $this->basicTable->setBulkActionsTdCheckboxAttributes(['class' => 'bg-gray-500']);
+
+        $this->assertSame(['default' => true, 'class' => 'bg-gray-500'], $this->basicTable->getBulkActionsTdCheckboxAttributes());
+
+        $this->basicTable->setBulkActionsTdCheckboxAttributes(['class' => 'bg-gray-500', 'default' => false]);
+
+        $this->assertSame(['default' => false, 'class' => 'bg-gray-500'], $this->basicTable->getBulkActionsTdCheckboxAttributes());
+    }
+
+    /** @test */
+    public function can_set_bulk_actions_th_attributes(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThAttributes());
+
+        $this->basicTable->setBulkActionsThAttributes(['class' => 'bg-red-500']);
+
+        $this->assertSame(['default' => true, 'class' => 'bg-red-500'], $this->basicTable->getBulkActionsThAttributes());
+
+        $this->basicTable->setBulkActionsThAttributes(['class' => 'bg-red-500', 'default' => false]);
+
+        $this->assertSame(['default' => false, 'class' => 'bg-red-500'], $this->basicTable->getBulkActionsThAttributes());
+    }
+
+    /** @test */
+    public function can_set_bulk_actions_th_checkbox_attributes(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThCheckboxAttributes());
+
+        $this->basicTable->setBulkActionsThCheckboxAttributes(['class' => 'bg-green-500']);
+
+        $this->assertSame(['default' => true, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsThCheckboxAttributes());
+
+        $this->basicTable->setBulkActionsThCheckboxAttributes(['class' => 'bg-green-500', 'default' => false]);
+
+        $this->assertSame(['default' => false, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsThCheckboxAttributes());
+    }
 }

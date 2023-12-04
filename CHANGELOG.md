@@ -17,6 +17,11 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Tweaks
 - Create additional Exception Classes (NoColumnsException, NoSearchableColumnsException, NoSortableColumnsException)
 - Revert previous splitting of JS Files
+- Add capability to customise Bulk Actions Styling with tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1564
+  - TH Classes
+  - TH Checkbox Classes
+  - TD Classes
+  - TD Checkbox Classes
 
 ## [v3.1.3] - 2023-11-03
 - Add additional Lifecycle Hook by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1534
