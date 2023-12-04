@@ -178,7 +178,6 @@ class BulkActionsConfigurationTest extends TestCase
 
         $this->assertSame(['default' => false, 'class' => 'bg-gray-500'], $this->basicTable->getBulkActionsTdCheckboxAttributes());
     }
-    
 
     /** @test */
     public function can_set_bulk_actions_th_attributes(): void
@@ -207,5 +206,4 @@ class BulkActionsConfigurationTest extends TestCase
 
         $this->assertSame(['default' => false, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsThCheckboxAttributes());
     }
-
 }
