@@ -461,7 +461,7 @@ public function configure(): void
 
 ### setCustomEmptyViewClasses
 
-When using a custom view, you may also set the classes that will apply to the td element wrapping your view:
+When using a custom view, you may also set the classes that will apply to the td element wrapping your view.  This will *replace* the default values, which are listed below.
 ```php
 public function configure(): void
 {
