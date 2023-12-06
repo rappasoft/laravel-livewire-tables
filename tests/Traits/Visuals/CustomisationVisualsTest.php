@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
-use Exception;
-use Illuminate\View\ViewException;
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableCustomEmpty;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
@@ -23,5 +21,4 @@ class CustomisationVisualsTest extends TestCase
             ->set('search', 'sdfsdfsdfadsfasdfasdd')
             ->assertSee('Test Custom Empty Message');
     }
-
 }
