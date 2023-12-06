@@ -5,6 +5,7 @@
          colors="false"
          cacheResult="false" 
          executionOrder="random" 
+         processIsolation="true"
          failOnWarning="false" 
          failOnRisky="false" 
          failOnEmptyTestSuite="false" 
