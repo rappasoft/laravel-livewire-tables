@@ -44,7 +44,7 @@ jobs:
           extensions: ${{ env.extensions }}
           tools: phpunit:latest
           ini-values: memory_limit=512M
-          coverage: none
+          coverage: pcov
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

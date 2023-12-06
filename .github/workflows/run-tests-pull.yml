@@ -9,7 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        php: [8.1, 8.2.12, 8.3]
+        php: [8.1, 8.2, 8.3]
         laravel: [10]
         stability: [prefer-dist]
 
@@ -44,7 +44,7 @@ jobs:
           extensions: ${{ env.extensions }}
           tools: phpunit:latest
           ini-values: memory_limit=512M
-          coverage: none
+          coverage: pcov
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -71,7 +71,7 @@ jobs:
         run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
 
       - name: Update dependencies
-        run: composer update --${{ matrix.stability }} --no-interaction --dev
+        run: composer update --${{ matrix.stability }} --no-interaction
 
       - name: Run Unit Tests
         run: php ./vendor/bin/paratest --no-coverage --processes=4
