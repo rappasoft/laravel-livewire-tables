@@ -13,6 +13,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Fixed extraneous space in config.php by @viliusvsx in in https://github.com/rappasoft/laravel-livewire-tables/pull/1577
 - Changed table default vertical overflow to auto by @dmyers in https://github.com/rappasoft/laravel-livewire-tables/pull/1573
 - Fix footer rendering issue with extra td displayed depending on bulk action statuses
+- Create new WithCustomisations Trait
+- Move render data provision into Traits -> WithColumns, WithCustomisations, WithData
+- Add default pint.json with ignore for WithAllTraits
+- Updated tests & test cases to cater for No Primary Key more efficiently
 
 ### Tweaks
 - Create additional Exception Classes (NoColumnsException, NoSearchableColumnsException, NoSortableColumnsException)

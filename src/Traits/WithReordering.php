@@ -163,14 +163,14 @@ trait WithReordering
 
     }
 
-    public function storeReorder(array $rows = [])
+    public function storeReorder(array $rows = []): void
     {
         $this->{$this->getReorderMethod()}($rows);
         $this->forgetReorderingSession();
         $this->getReorderingBackup();
     }
 
-    public function renderingWithReordering()
+    public function renderingWithReordering(): void
     {
         $this->setupReordering();
     }

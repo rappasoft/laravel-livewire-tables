@@ -23,7 +23,7 @@ trait ComponentHelpers
 
     public function hasPrimaryKey(): bool
     {
-        return $this->primaryKey !== null;
+        return isset($this->primaryKey) && $this->primaryKey !== null;
     }
 
     /**

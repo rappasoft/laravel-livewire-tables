@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
 
@@ -36,13 +37,54 @@ trait ComponentUtilities
 
     protected array $additionalSelects = [];
 
-    // Sets the Theme If Not Already Set
+    /**
+     * Set any configuration options
+     */
+    abstract public function configure(): void;
+
+    /**
+     * Sets the Theme if not set on first mount
+     */
     public function mountComponentUtilities(): void
     {
         // Sets the Theme - tailwind/bootstrap
         if (is_null($this->theme)) {
             $this->setTheme();
         }
+    }
+
+    /**
+     * Runs configure() with Lifecycle Hooks on each Lifecycle
+     */
+    public function bootComponentUtilities(): void
+    {
+        // Fire Lifecycle Hooks for configuring
+        $this->callHook('configuring');
+        $this->callTraitHook('configuring');
+
+        // Call the configure() method
+        $this->configure();
+
+        // Fire Lifecycle Hooks for configured
+        $this->callHook('configured');
+        $this->callTraitHook('configured');
+
+        // Make sure a primary key is set
+        if (! $this->hasPrimaryKey()) {
+            throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
+        }
+
+    }
+
+    /**
+     * Returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
+     */
+    protected function generateDataTableFingerprint(): string
+    {
+        $className = str_split(static::class);
+        $crc32 = sprintf('%u', crc32(serialize($className)));
+
+        return base_convert($crc32, 10, 36);
     }
 
     /**

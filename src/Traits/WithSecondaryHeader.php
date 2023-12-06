@@ -27,7 +27,7 @@ trait WithSecondaryHeader
         }
     }
 
-    public function renderingWithSecondaryHeader()
+    public function bootWithSecondaryHeader(): void
     {
         $this->setupSecondaryHeader();
     }
