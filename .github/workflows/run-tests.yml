@@ -9,7 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        php: [8.1, 8.2]
+        php: [8.1, 8.2, 8.3]
         laravel: [10]
         stability: [prefer-dist]
 
@@ -33,17 +33,6 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - name: Get composer cache directory
-        id: composer-cache
-        run: |
-          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-
-
       - name: Add token
         run: |
           composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
@@ -53,9 +42,6 @@ jobs:
 
       - name: Update dependencies
         run: composer update --${{ matrix.stability }} --no-interaction
-
-      - name: Setup problem matchers for PHPUnit
-        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
         run: php ./vendor/bin/paratest --no-coverage --processes=4
