@@ -23,7 +23,7 @@ trait ColumnConfiguration
         return $this;
     }
 
-    public function sortable(callable $callback = null): self
+    public function sortable(?callable $callback = null): self
     {
         $this->sortable = true;
 
@@ -39,7 +39,7 @@ trait ColumnConfiguration
         return $this;
     }
 
-    public function searchable(callable $callback = null): self
+    public function searchable(?callable $callback = null): self
     {
         $this->searchable = true;
 
