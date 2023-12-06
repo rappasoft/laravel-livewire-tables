@@ -8,16 +8,18 @@ trait HasAllTraits
     use WithTableHooks;
     use WithLoadingPlaceholder;
     use ComponentUtilities,
+        WithCustomisations,
         WithData,
         WithColumns,
         WithSorting,
         WithSearch,
-        WithPagination;
+        WithPagination,
+        WithTableAttributes;
+        
     use WithBulkActions,
         WithCollapsingColumns,
         WithColumnSelect,
         WithConfigurableAreas,
-        WithCustomisations,
         WithDebugging,
         WithEvents,
         WithFilters,
@@ -25,6 +27,5 @@ trait HasAllTraits
         WithQueryString,
         WithRefresh,
         WithReordering,
-        WithSecondaryHeader,
-        WithTableAttributes;
+        WithSecondaryHeader;
 }
