@@ -6,18 +6,17 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
-      max-parallel: 1
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        php: [8.1, 8.2, 8.3]
+        php: [8.1, 8.2.12, 8.3]
         laravel: [10]
         stability: [prefer-dist]
 
     name: STD TESTS - PULL - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
-      extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
       - name: Checkout code
@@ -29,7 +28,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.extensions }}
-          key: ${{ env.extensionKey }}
+          key: ${{ runner.os }}-${{ env.extensionKey }}
 
       - name: Cache extensions
         uses: actions/cache@v3
@@ -60,8 +59,8 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-STDPULL-PHP-${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-STDPULL-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-
+          key: ${{ runner.os }}-STDPULL-PHP-${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-STDPULL-PHP-${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |
@@ -72,11 +71,7 @@ jobs:
         run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
 
       - name: Update dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer update --${{ matrix.stability }} --no-interaction
-
-      - name: Setup problem matchers for PHPUnit
-        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
         run: php ./vendor/bin/paratest --no-coverage --processes=4
