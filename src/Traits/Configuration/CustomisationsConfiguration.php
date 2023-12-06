@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait CustomisationsConfiguration
 {
     /**
-     * Used to set a Custom Layout if using a Full Page Component approach
+     * Used to set a Custom Layout if using a Full Page Component approach.
      */
     public function setLayout(string $layout): self
     {
