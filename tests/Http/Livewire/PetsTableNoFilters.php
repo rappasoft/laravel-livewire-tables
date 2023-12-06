@@ -2,9 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
+use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed, Pet, Species};
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\{BooleanColumn, ButtonGroupColumn, ComponentColumn, ImageColumn, LinkColumn};
+use Rappasoft\LaravelLivewireTables\Views\Filters\{DateFilter, DateRangeFilter, DateTimeFilter, MultiSelectDropdownFilter, MultiSelectFilter, NumberFilter, NumberRangeFilter, SelectFilter, TextFilter};
 
 class PetsTableNoFilters extends DataTableComponent
 {
