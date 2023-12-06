@@ -6,8 +6,10 @@ use Exception;
 use Illuminate\View\ViewException;
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{NoBuildMethodTable, NoPrimaryKeyTable};
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable, PetsTableAttributes};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoBuildMethodTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableAttributes;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ComponentVisualsTest extends TestCase
