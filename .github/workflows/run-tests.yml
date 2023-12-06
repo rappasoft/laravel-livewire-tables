@@ -6,6 +6,7 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
+      max-parallel: 1
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
@@ -59,8 +60,8 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-PUSH-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-PUSH-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-
+          key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |
