@@ -16,7 +16,7 @@ jobs:
     name: STD TESTS - PULL - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
-      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
 
     steps:
       - name: Checkout code
@@ -44,7 +44,7 @@ jobs:
           extensions: ${{ env.extensions }}
           tools: phpunit:latest
           ini-values: memory_limit=512M
-          coverage: pcov
+          coverage: none
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
