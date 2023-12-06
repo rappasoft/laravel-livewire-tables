@@ -32,19 +32,19 @@ trait WithCustomisations
     public function renderingWithCustomisations(\Illuminate\View\View $view, array $data = []): void
     {
         if ($this->hasLayout()) {
-            $view->layout($this->layout);
+            $view->layout($this->getLayout());
         }
 
         if ($this->hasExtends()) {
-            $view->extends($this->extends);
+            $view->extends($this->getExtends());
         }
 
         if ($this->hasSection()) {
-            $view->section($this->section);
+            $view->section($this->getSection());
         }
 
         if ($this->hasSlot()) {
-            $view->slot($this->slot);
+            $view->slot($this->getSlot());
         }
 
         $view = $view->with([

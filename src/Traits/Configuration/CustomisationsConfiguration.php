@@ -27,9 +27,9 @@ trait CustomisationsConfiguration
     /**
      * Used to set a Custom Extends Layout if using a Full Page Component approach
      */
-    public function setExtends(string $layout): self
+    public function setExtends(string $extends): self
     {
-        $this->extends = $layout;
+        $this->extends = $extends;
 
         return $this;
     }
