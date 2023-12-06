@@ -7,8 +7,9 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Add capability to use as a Full Page Component
 
 ### Tweaks
-- Internal - modify GitHub workflows to improve caching, but use unique caches per workflow
+- Internal - modify GitHub workflows to improve caching, but use unique caches per workflow matrix
 - Internal - remove superfluous PHPStan ignoreErrors
+- Internal - update Test Suite to also test at PHP 8.3
 
 ## [v3.1.4] - 2023-12-04
 ### New Features
