@@ -8,6 +8,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Tweaks
 - Internal - modify GitHub workflows to improve caching, but use unique caches per workflow
+- Internal - remove superfluous PHPStan ignoreErrors
 
 ## [v3.1.4] - 2023-12-04
 ### New Features
