@@ -13,17 +13,35 @@ jobs:
         laravel: [10]
         stability: [prefer-dist]
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }} - PUSH
+    name: STD TESTS - PUSH - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+    env:
+      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-          
+        
+      - name: Setup cache environment
+        id: extcache
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.extensions }}
+          key: ${{ env.extensionKey }}
+
+      - name: Cache extensions
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.extcache.outputs.dir }}
+          key: ${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ steps.extcache.outputs.key }}
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, pcntl, pdo, sqlite, pdo_sqlite, bcmath, intl, iconv, fileinfo
+          extensions: ${{ env.extensions }}
           tools: phpunit:latest
           ini-values: memory_limit=512M
           coverage: none
@@ -41,8 +59,8 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-
+          key: ${{ runner.os }}-PUSH-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-PUSH-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |

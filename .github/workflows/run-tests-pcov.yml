@@ -9,11 +9,11 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        php: [8.2]
+        php: [8.3]
         laravel: [10]
         stability: [prefer-dist]
 
-    name: PCOV - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }} - PUSH
+    name: PCOV - PUSH - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
 
     steps:
       - name: Checkout code

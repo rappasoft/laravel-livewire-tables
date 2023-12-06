@@ -13,7 +13,10 @@ jobs:
         laravel: [10]
         stability: [prefer-dist]
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }} - PULL
+    name: STD TESTS - PULL - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+    env:
+      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
       - name: Checkout code
@@ -23,7 +26,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, pcntl, pdo, sqlite, pdo_sqlite, bcmath, intl, iconv, fileinfo
+          extensions: ${{ env.extensions }}
           tools: phpunit:latest
           ini-values: memory_limit=512M
           coverage: none
