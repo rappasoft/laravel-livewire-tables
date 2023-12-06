@@ -23,7 +23,7 @@
         "monolog/monolog": "*",
         "illuminate/contracts": "^10.0|^11.0",
         "illuminate/support": "^10.0|^11.0",
-        "livewire/livewire": "^3.0|dev-main"
+        "livewire/livewire": "^3.0"
     },
     "require-dev": {
         "ext-sqlite3": "*",
