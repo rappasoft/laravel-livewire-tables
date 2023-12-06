@@ -37,7 +37,7 @@ trait CustomisationsConfiguration
     /**
      * Used to set a Custom Layout Section if using a Full Page Component approach
      *
-     * @param  string  $layout
+     * @param  string  $section
      */
     public function setSection(string $section): self
     {
