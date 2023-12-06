@@ -15,7 +15,6 @@ trait HasAllTraits
         WithSearch,
         WithPagination,
         WithTableAttributes;
-        
     use WithBulkActions,
         WithCollapsingColumns,
         WithColumnSelect,
