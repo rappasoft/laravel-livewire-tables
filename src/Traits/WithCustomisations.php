@@ -19,10 +19,10 @@ trait WithCustomisations
 
     protected ?string $section = null;
 
-    #[Locked] 
+    #[Locked]
     public string $customEmptyView = '';
 
-    #[Locked] 
+    #[Locked]
     public string $customEmptyViewClasses = 'bg-light bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row';
 
     /**
