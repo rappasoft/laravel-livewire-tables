@@ -10,5 +10,4 @@ trait CustomisationsConfiguration
 
         return $this;
     }
-
 }

@@ -8,5 +8,4 @@ trait CustomisationsHelpers
     {
         return $this->customEmptyView ?? '';
     }
-
 }
