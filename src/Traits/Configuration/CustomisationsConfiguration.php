@@ -59,9 +59,8 @@ trait CustomisationsConfiguration
      */
     public function setCustomEmptyViewClasses(string $customEmptyViewClasses): self
     {
-
         $this->customEmptyViewClasses = $customEmptyViewClasses;
 
-        return self;
+        return $this;
     }
 }
