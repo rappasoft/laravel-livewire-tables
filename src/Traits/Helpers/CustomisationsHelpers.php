@@ -70,5 +70,4 @@ trait CustomisationsHelpers
     {
         return $this->customEmptyViewClasses;
     }
-
 }
