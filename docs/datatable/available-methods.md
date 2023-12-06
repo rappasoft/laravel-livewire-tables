@@ -447,3 +447,25 @@ public function configure(): void
   $this->setEmptyMessage('No results found');
 }
 ```
+
+### setCustomEmptyView
+
+Set a custom view to be used when there are no results, this will be wrapped in a full-width table column (td)
+
+```php
+public function configure(): void
+{
+    $this->setCustomEmptyView('empty-table-view');
+}
+```
+
+### setCustomEmptyViewClasses
+
+When using a custom view, you may also set the classes that will apply to the td element wrapping your view:
+```php
+public function configure(): void
+{
+    $this->setCustomEmptyView('empty-table-view')
+         ->setCustomEmptyViewClasses('bg-light bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row');
+}
+```

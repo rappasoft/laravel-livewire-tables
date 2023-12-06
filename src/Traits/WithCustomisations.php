@@ -18,6 +18,10 @@ trait WithCustomisations
 
     protected ?string $section = null;
 
+    protected string $customEmptyView = '';
+
+    protected string $customEmptyViewClasses = 'bg-light bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row';
+
     /**
      * The view to add any modals for the table, could also be used for any non-visible html
      */

@@ -43,4 +43,26 @@ trait CustomisationsConfiguration
 
         return $this;
     }
+
+    /**
+     * Used to set a Custom Empty View
+     */
+    public function setCustomEmptyView(string $customEmptyView): self
+    {
+        $this->customEmptyView = $customEmptyView;
+
+        return $this;
+    }
+
+    /**
+     * Used to set classes for the Custom Empty View TD
+     */
+    public function setCustomEmptyViewClasses(string $customEmptyViewClasses): self
+    {
+         
+         $this->customEmptyViewClasses = $customEmptyViewClasses;
+
+         return self;
+    }
+
 }
