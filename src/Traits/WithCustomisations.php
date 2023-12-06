@@ -10,6 +10,14 @@ trait WithCustomisations
     use CustomisationsConfiguration,
         CustomisationsHelpers;
 
+    protected ?string $layout = null;
+
+    protected ?string $slot = null;
+
+    protected ?string $extends = null;
+
+    protected ?string $section = null;
+    
     /**
      * The view to add any modals for the table, could also be used for any non-visible html
      */
@@ -23,6 +31,23 @@ trait WithCustomisations
      */
     public function renderingWithCustomisations(\Illuminate\View\View $view, array $data = []): void
     {
+        if ($this->hasLayout()){
+            $view->layout($this->layout);
+        }
+
+        if ($this->hasExtends()){
+            $view->extends($this->extends);
+        }
+
+        if ($this->hasSection()){
+            $view->section($this->section);
+        }
+
+        if ($this->hasSlot()){
+            $view->slot($this->slot);
+        }
+
+
         $view = $view->with([
             'customView' => $this->customView(),
         ]);

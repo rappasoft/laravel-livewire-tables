@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+### New Features
+- Add capability to use as a Full Page Component
+
 ## [v3.1.4] - 2023-12-04
 ### New Features
 - Add capability to hide Column Label by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1512
