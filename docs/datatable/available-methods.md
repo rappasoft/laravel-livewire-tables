@@ -447,3 +447,13 @@ public function configure(): void
   $this->setEmptyMessage('No results found');
 }
 ```
+
+### setCustomEmptyView
+
+Set a custom view to be used when there are no results, this will be wrapped in a full-width table column (td)
+
+```php
+public function configure(): void
+{
+    $this->setCustomEmptyView('empty-table-view');
+}
