@@ -4,13 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait CustomisationsConfiguration
 {
-
     /**
      * Used to set a Custom Layout if using a Full Page Component approach
-     * 
-     * @param string $layout
-     * 
-     * @return self
      */
     public function setLayout(string $layout): self
     {
@@ -21,10 +16,6 @@ trait CustomisationsConfiguration
 
     /**
      * Used to set a Custom Slot if using a Full Page Component approach
-     * 
-     * @param string $slot
-     * 
-     * @return self
      */
     public function setSlot(string $slot): self
     {
@@ -35,10 +26,6 @@ trait CustomisationsConfiguration
 
     /**
      * Used to set a Custom Extends Layout if using a Full Page Component approach
-     * 
-     * @param string $layout
-     * 
-     * @return self
      */
     public function setExtends(string $layout): self
     {
@@ -49,10 +36,8 @@ trait CustomisationsConfiguration
 
     /**
      * Used to set a Custom Layout Section if using a Full Page Component approach
-     * 
-     * @param string $layout
-     * 
-     * @return self
+     *
+     * @param  string  $layout
      */
     public function setSection(string $section): self
     {
@@ -60,5 +45,4 @@ trait CustomisationsConfiguration
 
         return $this;
     }
-
 }

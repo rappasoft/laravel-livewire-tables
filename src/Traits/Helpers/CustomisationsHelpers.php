@@ -4,11 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 trait CustomisationsHelpers
 {
-
     /**
      * Used to determine if a Layout Extends has been defined - used when using as a Full Page Component
-     * 
-     * @return bool
      */
     public function hasExtends(): bool
     {
@@ -22,8 +19,6 @@ trait CustomisationsHelpers
 
     /**
      * Used to determine if a Layout Section has been defined - used when using as a Full Page Component
-     * 
-     * @return bool
      */
     public function hasSection(): bool
     {
@@ -37,8 +32,6 @@ trait CustomisationsHelpers
 
     /**
      * Used to determine if a Layout Slot has been defined - used when using as a Full Page Component
-     * 
-     * @return bool
      */
     public function hasSlot(): bool
     {
@@ -52,8 +45,6 @@ trait CustomisationsHelpers
 
     /**
      * Used to determine if a $layout has been defined - used when using as a Full Page Component
-     * 
-     * @return bool
      */
     public function hasLayout(): bool
     {
