@@ -25,5 +25,4 @@ class CustomisationVisualsTest extends TestCase
             ->call('setCustomEmptyView', 'livewire-tables::tests.testCustomEmpty')
             ->assertSee('Test Custom Empty Message');
     }
-
 }
