@@ -49,11 +49,9 @@ jobs:
           composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
           
       - name: Install dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
 
       - name: Update dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer update --${{ matrix.stability }} --no-interaction
 
       - name: Setup problem matchers for PHPUnit
