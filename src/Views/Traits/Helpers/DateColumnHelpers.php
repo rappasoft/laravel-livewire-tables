@@ -4,8 +4,14 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 trait DateColumnHelpers
 {
-    public function getDateFormat(): string
+    public function getToFormat(): string
     {
-        return $this->dateFormat ?? 'Y-m-d';
+        return $this->toFormat ?? 'Y-m-d';
     }
+
+    public function getFromFormat(): ?string
+    {
+        return $this->fromFormat ?? null;
+    }
+
 }

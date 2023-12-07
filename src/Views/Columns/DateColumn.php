@@ -16,27 +16,32 @@ class DateColumn extends Column
     use DateColumnConfiguration,
         DateColumnHelpers;
 
-    protected string $dateFormat = 'Y-m-d';
+    public string $fromFormat = 'Y-m-d';
+
+    public string $toFormat = 'Y-m-d';
 
     protected string $view = 'livewire-tables::includes.columns.date';
 
-    protected mixed $callback = null;
-
     public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
+
         $dateTime = false;
         try {
             $dateTime = $this->getValue($row);
+            if (!($dateTime instanceof \DateTime))
+            {
+                $dateTime = \DateTime::createFromFormat($this->getFromFormat(), date($this->getFromFormat(), strtotime($this->getValue($row))));
+                if (!$dateTime)
+                {
+                    return '';
+                }
+            }
         } catch (\Exception $exception) {
             report($exception);
-
             return '';
         }
-        if ($dateTime != false) {
-            return $dateTime->format($this->getDateFormat());
-        }
+        return $dateTime->format($this->getToFormat());
 
-        return '';
 
     }
 }
