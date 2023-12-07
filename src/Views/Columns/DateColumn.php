@@ -3,14 +3,12 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\DateColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\DateColumnHelpers;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
-use \DateTime;
+use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
 
 class DateColumn extends Column
 {
@@ -29,18 +27,16 @@ class DateColumn extends Column
         $dateTime = false;
         try {
             $dateTime = $this->getValue($row);
-        }
-        catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             report($exception);
+
             return '';
         }
-        if ($dateTime != false)
-        {
+        if ($dateTime != false) {
             return $dateTime->format($this->getDateFormat());
         }
+
         return '';
 
-        
     }
 }
