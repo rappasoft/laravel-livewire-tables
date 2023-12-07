@@ -13,5 +13,4 @@ trait DateColumnHelpers
     {
         return $this->fromFormat ?? null;
     }
-
 }

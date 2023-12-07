@@ -28,20 +28,19 @@ class DateColumn extends Column
         $dateTime = false;
         try {
             $dateTime = $this->getValue($row);
-            if (!($dateTime instanceof \DateTime))
-            {
+            if (! ($dateTime instanceof \DateTime)) {
                 $dateTime = \DateTime::createFromFormat($this->getFromFormat(), date($this->getFromFormat(), strtotime($this->getValue($row))));
-                if (!$dateTime)
-                {
+                if (! $dateTime) {
                     return '';
                 }
             }
         } catch (\Exception $exception) {
             report($exception);
+
             return '';
         }
-        return $dateTime->format($this->getToFormat());
 
+        return $dateTime->format($this->getToFormat());
 
     }
 }
