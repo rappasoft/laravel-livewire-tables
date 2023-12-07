@@ -5,6 +5,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ## UNRELEASED
 ### New Features
 - Add capability to use as a Full Page Component
+- Add DateColumn
 
 ### Tweaks
 - Internal - modify GitHub workflows to improve caching, but use unique caches per workflow matrix
