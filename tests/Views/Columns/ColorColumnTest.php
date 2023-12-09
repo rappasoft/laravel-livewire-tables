@@ -42,13 +42,13 @@ class ColorColumnTest extends TestCase
     /** @test */
     public function can_get_column_formatted_contents(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color') ;
+        $column = ColorColumn::make('Favorite Color', 'favorite_color');
 
         $rows = $this->basicTable->getRows();
 
         $this->assertSame($rows->first()->favorite_color, $column->getValue($rows->first()));
         $this->assertSame($rows->last()->favorite_color, $column->getValue($rows->last()));
-        $this->assertSame($rows->slice(2,1)->first()->favorite_color, $column->getValue($rows->slice(2,1)->first()));
+        $this->assertSame($rows->slice(2, 1)->first()->favorite_color, $column->getValue($rows->slice(2, 1)->first()));
 
     }
 
@@ -57,16 +57,14 @@ class ColorColumnTest extends TestCase
     {
         $column = ColorColumn::make('Species Color')->color(
             function ($row) {
-                if ($row->species_id == 1)
-                {
+                if ($row->species_id == 1) {
                     return '#ff0000';
-                }
-                else if ($row->species_id == 2)
-                {
+                } elseif ($row->species_id == 2) {
                     return '#008000';
+                } else {
+                    return '#ffa500';
                 }
-                else return '#ffa500';
-                
+
             }
         );
 
@@ -74,8 +72,6 @@ class ColorColumnTest extends TestCase
 
         $this->assertSame('#ff0000', app()->call($column->getColorCallback(), ['row' => $rows->first()]));
         $this->assertSame('#ffa500', app()->call($column->getColorCallback(), ['row' => $rows->last()]));
-        $this->assertSame('#008000', app()->call($column->getColorCallback(), ['row' => $rows->slice(2,1)->first()]));
+        $this->assertSame('#008000', app()->call($column->getColorCallback(), ['row' => $rows->slice(2, 1)->first()]));
     }
-
-
 }
