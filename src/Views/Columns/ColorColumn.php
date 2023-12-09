@@ -43,7 +43,6 @@ class ColorColumn extends Column
     {
         $value = parent::getValue($row);
 
-        return !is_null($value) ? $value : $this->getDefaultValue();
+        return ! is_null($value) ? $value : $this->getDefaultValue();
     }
-
 }

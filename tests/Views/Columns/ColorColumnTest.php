@@ -83,8 +83,6 @@ class ColorColumnTest extends TestCase
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
         $this->assertFalse($column->hasAttributesCallback());
     }
-    
-
 
     /** @test */
     public function can_get_column_formatted_contents(): void
@@ -152,5 +150,4 @@ class ColorColumnTest extends TestCase
         $this->assertSame('#008000', $column->getColor($rows->slice(2, 1)->first()));
 
     }
-
 }
