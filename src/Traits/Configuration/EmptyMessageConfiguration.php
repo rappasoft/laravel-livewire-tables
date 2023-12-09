@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait EmptyMessageConfiguration
 {
-
     /**
      * Used to set a Custom Empty View
      */
@@ -35,7 +34,6 @@ trait EmptyMessageConfiguration
         return $this;
     }
 
-
     /**
      * Used to set classes for the Empty Column
      */
@@ -65,5 +63,4 @@ trait EmptyMessageConfiguration
 
         return $this;
     }
-
 }

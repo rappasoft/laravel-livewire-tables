@@ -55,5 +55,4 @@ trait CustomisationsHelpers
     {
         return $this->layout;
     }
-
 }

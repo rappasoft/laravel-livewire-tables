@@ -43,7 +43,7 @@ trait CustomisationsConfiguration
 
         return $this;
     }
-    
+
     /**
      * The view to add any modals for the table, could also be used for any non-visible html
      */
