@@ -75,3 +75,20 @@ Update the following options in the livewire-tables configuration file, to disab
 
 ```
 
+### Blade Directives
+
+There are several blade directives available, as defined below:
+
+```html
+    <!-- Adds the Core Table Styles -->
+    @rappasoftTableStyles
+    
+    <!-- Adds any relevant Third-Party Styles (Used for DateRangeFilter (Flatpickr) and NumberRangeFilter) -->
+    @rappasoftTableThirdPartyStyles
+
+    <!-- Adds the Core Table Scripts -->
+    @rappasoftTableScripts
+
+    <!-- Adds any relevant Third-Party Scripts (e.g. Flatpickr) -->
+    @rappasoftTableThirdPartyScripts
+```

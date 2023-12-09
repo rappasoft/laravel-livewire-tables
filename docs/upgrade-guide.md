@@ -37,7 +37,7 @@ You must add the following to your Tailwind Config file, for dark mode to use a 
 There a few key areas that have been changed, notably:
 
 ### Custom Assets
-The package uses a CSS and JS file, rather than relying on in-line code in the views, you may publish this, use the auto-injection capability (similar to Livewire), or bundle it into your production-ready CSS and JS files.
+The package uses a CSS and JS file, rather than relying on in-line code in the views, you may publish this, use blade directives, use the auto-injection capability (similar to Livewire), or bundle it into your production-ready CSS and JS files.
 Please see here [https://rappasoft.com/docs/laravel-livewire-tables/v3/start/including-assets](https://rappasoft.com/docs/laravel-livewire-tables/v3/start/including-assets) for more information on available approaches
 
 ### Reordering
