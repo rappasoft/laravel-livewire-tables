@@ -23,5 +23,4 @@ trait EmptyMessageHelpers
     {
         return $this->customEmptyViewClasses ?? '';
     }
-
 }

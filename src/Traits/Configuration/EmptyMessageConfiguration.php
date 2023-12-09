@@ -14,7 +14,6 @@ trait EmptyMessageConfiguration
         return $this;
     }
 
-    
     /**
      * Used to set classes for the Custom Empty View Classes
      */
@@ -24,7 +23,6 @@ trait EmptyMessageConfiguration
 
         return $this;
     }
-
 
     /**
      * Used to set classes for the Custom Empty View Classes
