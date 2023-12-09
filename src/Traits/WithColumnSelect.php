@@ -34,7 +34,7 @@ trait WithColumnSelect
 
     public bool $defaultDeselectedColumnsSetup = false;
 
-    protected function queryStringWithColumnSelect()
+    protected function queryStringWithColumnSelect(): array
     {
         if ($this->queryStringIsEnabled() && $this->columnSelectIsEnabled()) {
             return [
@@ -43,6 +43,11 @@ trait WithColumnSelect
         }
 
         return [];
+    }
+
+    public function bootWithColumnSelect(): void
+    {
+        $this->setupColumnSelect();
     }
 
     public function setupColumnSelect(): void
@@ -82,7 +87,7 @@ trait WithColumnSelect
         $this->visibleColumnCount = count($this->selectedColumns);
     }
 
-    protected function setupFirstColumnSelectRun()
+    protected function setupFirstColumnSelectRun(): void
     {
         if (! $this->columnSelectColumns['setupRun']) {
             $this->columnSelectColumns['deselected'] = $this->columnSelectColumns['defaultdeselected'] = $this->setDefaultDeselectedColumns();
@@ -123,10 +128,5 @@ trait WithColumnSelect
     public function allSelectedColumnsAreVisibleByDefault(): bool
     {
         return count($this->selectedColumns) === count($this->getDefaultVisibleColumns());
-    }
-
-    public function renderingWithColumnSelect()
-    {
-        $this->setupColumnSelect();
     }
 }

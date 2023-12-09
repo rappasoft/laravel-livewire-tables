@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
 class DataTableComponentTest extends TestCase
@@ -31,14 +31,9 @@ class DataTableComponentTest extends TestCase
     /** @test */
     public function primary_key_has_to_be_set(): void
     {
-        $this->assertTrue(true);
-
-        // TODO: Not working
-        //        $this->expectException(DataTableConfigurationException::class);
-        //
-        //        Livewire::test(PetsTable::class)
-        //            ->call('setPrimaryKey', null)
-        //            ->call('setSearch', 'abcd');
+        $this->expectException(\Illuminate\View\ViewException::class);
+        Livewire::test(NoPrimaryKeyTable::class)
+            ->call('setSearch', 'abcd');
     }
 
     /** @test */

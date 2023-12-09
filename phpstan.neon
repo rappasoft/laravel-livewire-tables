@@ -16,12 +16,8 @@ parameters:
     checkGenericClassInNonGenericObjectType: false
     ignoreErrors:
         - "#Unsafe usage of new static#"
-        - "#Called 'count' on Laravel collection, but could have been retrieved as a query.#"
-        - '#Attribute class Rappasoft\\LaravelLivewireTables\\Traits\\Url does not exist.#'
-        - '#Attribute class Rappasoft\\LaravelLivewireTables\\Traits\\Helpers\\On does not exist.#'
         - '#on array\<string, non-empty-array\<int\<0, max\>, mixed\>\> in empty\(\) does not exist.#'
         - '#on array<string, non-empty-array<int<0, max>, mixed>> in isset\(\) does not exist#'
-        - '#on array\<string, non-empty-array\<int\<0, max\>, mixed\>\> in isset\(\) does not exist#'
         - '#on non-empty-array<1|string, array<int<0, max>, mixed>> in isset\(\) does not exist.#'
         - '#\$callback of method Illuminate\\Support\\Collection<int,string>::filter\(\) expects \(callable\(string, int\): bool\)\|null, Closure\(mixed\): int<0, max> given.#'
         - '#Property Illuminate\\Database\\Query\\Builder\:\:\$joins \(array\) on left side of \?\? is not nullable.#'

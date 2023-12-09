@@ -9,7 +9,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        php: [8.2]
+        php: [8.3]
         laravel: [10]
         stability: [prefer-dist]
 

@@ -80,7 +80,7 @@ trait WithPagination
         return $this->tableName.'-perPage';
     }
 
-    public function renderingWithPagination()
+    public function renderingWithPagination(): void
     {
         $this->setupPagination();
     }

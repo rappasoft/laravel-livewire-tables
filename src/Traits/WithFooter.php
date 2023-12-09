@@ -29,7 +29,7 @@ trait WithFooter
         }
     }
 
-    public function renderingWithFooter()
+    public function renderingWithFooter(): void
     {
         $this->setupFooter();
     }

@@ -52,11 +52,11 @@ class TestCase extends Orchestra
             ]);
 
             Pet::insert([
-                ['id' => 1, 'name' => 'Cartman', 'age' => 22, 'species_id' => 1, 'breed_id' => 4],
-                ['id' => 2, 'name' => 'Tux', 'age' => 8, 'species_id' => 1, 'breed_id' => 4],
-                ['id' => 3, 'name' => 'May', 'age' => 2, 'species_id' => 2, 'breed_id' => 102],
-                ['id' => 4, 'name' => 'Ben', 'age' => 5, 'species_id' => 3, 'breed_id' => 200],
-                ['id' => 5, 'name' => 'Chico', 'age' => 7, 'species_id' => 3, 'breed_id' => 202],
+                ['id' => 1, 'name' => 'Cartman', 'age' => 22, 'species_id' => 1, 'breed_id' => 4, 'last_visit' => '2023-01-04', 'favorite_color' => '#000000'],
+                ['id' => 2, 'name' => 'Tux', 'age' => 8, 'species_id' => 1, 'breed_id' => 4, 'last_visit' => '2023-02-04', 'favorite_color' => '#FF0000'],
+                ['id' => 3, 'name' => 'May', 'age' => 2, 'species_id' => 2, 'breed_id' => 102, 'last_visit' => null, 'favorite_color' => '#00FF00'],
+                ['id' => 4, 'name' => 'Ben', 'age' => 5, 'species_id' => 3, 'breed_id' => 200, 'last_visit' => '2023-04-04', 'favorite_color' => '#0000FF'],
+                ['id' => 5, 'name' => 'Chico', 'age' => 7, 'species_id' => 3, 'breed_id' => 202, 'last_visit' => '2023-05-04', 'favorite_color' => '#FFFFFF'],
             ]);
 
             Veterinary::insert([
@@ -72,14 +72,23 @@ class TestCase extends Orchestra
                 ['id' => 4, 'pet_id' => 2, 'veterinary_id' => 3],
             ]);
         }
+        $this->setupBasicTable();
+    }
 
+    protected function setupBasicTable()
+    {
+        $view = view('livewire-tables::datatable');
         $this->basicTable = new PetsTable();
+        $this->basicTable->bootComponentUtilities();
         $this->basicTable->boot();
+        $this->basicTable->bootWithData();
+        $this->basicTable->bootWithColumns();
+        $this->basicTable->bootWithColumnSelect();
+        $this->basicTable->bootWithSecondaryHeader();
         $this->basicTable->booted();
-        $this->basicTable->callHook('rendering');
-        $this->basicTable->callTraitHook('rendering');
+        $this->basicTable->renderingWithData($view, []);
+        $this->basicTable->renderingWithPagination($view, []);
         $this->basicTable->render();
-        $this->basicTable->callHook('rendered');
     }
 
     protected function getPackageProviders($app): array

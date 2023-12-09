@@ -13,9 +13,9 @@ class NumberFilter extends Filter
         return is_numeric($value) ? $value : false;
     }
 
-    public function isEmpty($value): bool
+    public function isEmpty(?string $value): bool
     {
-        return $value === '';
+        return is_null($value) || $value === '';
     }
 
     /**
