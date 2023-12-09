@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColorColumnConfiguration;
@@ -16,22 +17,27 @@ class ColorColumn extends Column
         ColorColumnHelpers;
 
     public string $emptyValue = '';
-
-    public array $customClasses = [];
-
-    public array $attributes = [];
-
+    
     protected mixed $colorCallback = null;
+
+    protected mixed $attributesCallback = null;
 
     protected string $view = 'livewire-tables::includes.columns.color';
 
+    public function __construct(string $title, ?string $from = null)
+    {
+        parent::__construct($title, $from);
+        if (!isset($from) || $from === null)
+        {
+            $this->label(fn () => null);
+        }
+        
+    }
+
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $this->attributes['class'] = $this->getCustomClasses();
-
         return view($this->getView())
             ->withColor($this->hasColorCallback() ? app()->call($this->getColorCallback(), ['row' => $row]) : $this->getValue($row))
-            ->withCustomClasses($this->getCustomClasses())
-            ->withAttributes($this->attributes);
+            ->withAttributeBag(new \Illuminate\View\ComponentAttributeBag($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []));
     }
 }

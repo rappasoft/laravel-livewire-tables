@@ -4,13 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 trait ColorColumnHelpers
 {
-    /**
-     * Retrieve the Column Classes to use for the Column
-     */
-    public function getCustomClasses(): array
-    {
-        return $this->customClasses ?? ['class' => '', 'default' => false];
-    }
 
     public function getView(): string
     {
@@ -27,4 +20,16 @@ trait ColorColumnHelpers
     {
         return $this->colorCallback !== null;
     }
+
+    public function getAttributesCallback(): ?callable
+    {
+        return $this->attributesCallback;
+    }
+
+    public function hasAttributesCallback(): bool
+    {
+        return $this->attributesCallback !== null;
+    }
+
+
 }

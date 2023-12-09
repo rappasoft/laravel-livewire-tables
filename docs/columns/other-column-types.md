@@ -81,6 +81,33 @@ If you would like the BooleanColumn to display a plain Yes/No, you can set:
 BooleanColumn::make('Active')
     ->yesNo()
 ```
+## Color Columns
+
+Color columns provide an easy way to a Color in a Column
+
+You may pass either pass a CSS-compliant colour as a field
+```php
+ColorColumn::make('Favourite Colour', 'favourite_color'),
+```
+
+Or you may use a Callback
+```php
+ColorColumn::make('Favourite Colour')
+    ->color(
+            function ($row) {
+                if ($row->success_rate < 40)
+                {
+                    return '#ff0000';
+                }
+                else if ($row->success_rate > 90)
+                {
+                    return '#008000';
+                }
+                else return '#ffa500';
+                    
+            }
+        ),
+```
 
 ## Date Columns
 
