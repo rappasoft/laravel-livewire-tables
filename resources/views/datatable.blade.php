@@ -57,8 +57,8 @@
                 <x-livewire-tables::table.collapsed-columns :row="$row" :rowIndex="$rowIndex" />
             @empty
                 @if($this->hasCustomEmptyView())
-                    <x-livewire-tables::table.tr.plain class="livewire-tables-empty-row">
-                        <x-livewire-tables::table.td.plain colspan="100%" class="{{ $this->getCustomEmptyViewClasses() }}">
+                    <x-livewire-tables::table.tr.plain class="{{ $this->getCustomEmptyClasses()['row'] }}">
+                        <x-livewire-tables::table.td.plain colspan="100%" class="{{ $this->getCustomEmptyClasses()['col'] }}">
                             @include($this->getCustomEmptyView())
                         </x-livewire-tables::table.td.plain>
                     </x-livewire-tables::table.tr.plain>

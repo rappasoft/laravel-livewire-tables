@@ -14,8 +14,14 @@ trait EmptyMessageHelpers
         return $this->customEmptyView ?? '';
     }
 
-    public function getCustomEmptyViewClasses(): array
+    public function getCustomEmptyClasses(): array
     {
-        return $this->customEmptyClasses;
+        return $this->customEmptyClasses ?? ['view' => '', 'row' => 'livewire-tables-empty-row', 'col' => '', 'div' => '', 'span' => ''];
     }
+
+    public function getCustomEmptyViewClasses(): string
+    {
+        return $this->customEmptyViewClasses ?? '';
+    }
+
 }

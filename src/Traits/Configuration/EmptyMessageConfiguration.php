@@ -14,6 +14,18 @@ trait EmptyMessageConfiguration
         return $this;
     }
 
+    
+    /**
+     * Used to set classes for the Custom Empty View Classes
+     */
+    public function setCustomEmptyClasses(array $customEmptyClasses): self
+    {
+        $this->customEmptyClasses = [$this->customEmptyViewClasses, ...$customEmptyViewClasses];
+
+        return $this;
+    }
+
+
     /**
      * Used to set classes for the Custom Empty View Classes
      */
