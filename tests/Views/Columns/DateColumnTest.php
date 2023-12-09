@@ -68,14 +68,13 @@ class DateColumnTest extends TestCase
         $firstRow = $this->basicTable->getRows()->first();
         $firstRow->last_visit = '44-12-2023';
         $firstRow->save();
-        
+
         $this->assertSame('', $column->getContents($firstRow));
 
         $firstRow->last_visit = '04-01-2023';
         $firstRow->save();
 
         $this->assertSame('04-01-2023', $column->getContents($firstRow));
-
 
     }
 
@@ -84,13 +83,12 @@ class DateColumnTest extends TestCase
     {
         $column = DateColumn::make('Name', 'last_visit')->inputFormat('d-m-Y')->outputFormat('d-m-Y')->emptyValue('Not Found');
 
-        $thirdRow = $this->basicTable->getRows()->slice(3,1)->first();
-        
+        $thirdRow = $this->basicTable->getRows()->slice(3, 1)->first();
+
         $this->assertSame('Not Found', $column->getContents($thirdRow));
 
         $column->emptyValue('');
         $this->assertSame('', $column->getContents($thirdRow));
 
     }
-
 }

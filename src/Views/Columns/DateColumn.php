@@ -31,7 +31,7 @@ class DateColumn extends Column
         if (! ($dateTime instanceof \DateTime)) {
             try {
                 // Check if format matches what is expected
-                if (!\Carbon\Carbon::hasFormatWithModifiers($dateTime, $this->getInputFormat())) {
+                if (! \Carbon\Carbon::hasFormatWithModifiers($dateTime, $this->getInputFormat())) {
                     throw new \Exception('DateColumn Received Invalid Format');
                 }
 
@@ -39,10 +39,12 @@ class DateColumn extends Column
                 $dateTime = \DateTime::createFromFormat($this->getInputFormat(), $dateTime);
             } catch (\Exception $exception) {
                 report($exception);
+
                 // Return Null
                 return $this->getEmptyValue();
             }
         }
+
         // Return
         return $dateTime->format($this->getOutputFormat());
 

@@ -27,5 +27,4 @@ trait DateColumnHelpers
     {
         return $this->emptyValue;
     }
-
 }

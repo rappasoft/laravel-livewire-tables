@@ -33,5 +33,4 @@ trait DateColumnConfiguration
 
         return $this;
     }
-
 }
