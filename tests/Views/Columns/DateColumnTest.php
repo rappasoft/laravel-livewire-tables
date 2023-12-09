@@ -68,7 +68,7 @@ class DateColumnTest extends TestCase
         $firstRow = $this->basicTable->getRows()->first();
 
         $firstRow->last_visit = '44-12-2023';
-        
+
         $this->assertSame('', $column->getContents($firstRow));
 
         $firstRow->last_visit = '04-01-2023';
@@ -92,13 +92,12 @@ class DateColumnTest extends TestCase
         $column->emptyValue('Not Found');
         $this->assertSame('Not Found', $column->getEmptyValue());
 
-        $thirdRow = $this->basicTable->getRows()->slice(3,1)->first();
-        
+        $thirdRow = $this->basicTable->getRows()->slice(3, 1)->first();
+
         $this->assertSame('Not Found', $column->getContents($thirdRow));
 
         $column->emptyValue('');
         $this->assertSame('', $column->getContents($thirdRow));
 
     }
-
 }
