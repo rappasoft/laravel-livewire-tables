@@ -19,4 +19,13 @@ trait DateColumnHelpers
     {
         return $this->inputFormat ?? null;
     }
+
+    /**
+     * Retrieve the Empty Value to use for the Column
+     */
+    public function getEmptyValue(): string
+    {
+        return $this->emptyValue;
+    }
+
 }

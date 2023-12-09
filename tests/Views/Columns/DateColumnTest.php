@@ -46,8 +46,8 @@ class DateColumnTest extends TestCase
 
         $rows = $this->basicTable->getRows();
 
-        $this->assertSame($rows->first()->last_visit, $column->getContents($rows->first()));
-        $this->assertSame($rows->first()->last_visit, '2023-01-04');
+        $this->assertSame($rows->last()->last_visit, $column->getContents($rows->last()));
+        $this->assertSame($rows->last()->last_visit, '2023-05-04');
     }
 
     /** @test */
@@ -57,6 +57,40 @@ class DateColumnTest extends TestCase
 
         $rows = $this->basicTable->getRows();
 
-        $this->assertSame('04-01-2023', $column->getContents($rows->first()));
+        $this->assertSame('04-05-2023', $column->getContents($rows->last()));
     }
+
+    /** @test */
+    public function can_not_get_column_reformatted_contents_with_bad_values(): void
+    {
+        $column = DateColumn::make('Name', 'last_visit')->inputFormat('d-m-Y')->outputFormat('d-m-Y');
+
+        $firstRow = $this->basicTable->getRows()->first();
+        $firstRow->last_visit = '44-12-2023';
+        $firstRow->save();
+        
+        $this->assertSame('', $column->getContents($firstRow));
+
+        $firstRow->last_visit = '04-01-2023';
+        $firstRow->save();
+
+        $this->assertSame('04-01-2023', $column->getContents($firstRow));
+
+
+    }
+
+    /** @test */
+    public function can_set_column_empty_value(): void
+    {
+        $column = DateColumn::make('Name', 'last_visit')->inputFormat('d-m-Y')->outputFormat('d-m-Y')->emptyValue('Not Found');
+
+        $thirdRow = $this->basicTable->getRows()->slice(3,1)->first();
+        
+        $this->assertSame('Not Found', $column->getContents($thirdRow));
+
+        $column->emptyValue('');
+        $this->assertSame('', $column->getContents($thirdRow));
+
+    }
+
 }

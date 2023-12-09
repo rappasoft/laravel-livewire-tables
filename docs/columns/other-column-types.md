@@ -99,6 +99,13 @@ DateColumn::make('Last Charged', 'last_charged_at')
     ->outputFormat('Y-m-d'),
 ```
 
+You may also set an "emptyValue" to use when there is no value from the database:
+```php
+DateColumn::make('Last Charged', 'last_charged_at')
+    ->inputFormat('Y-m-d H:i:s')
+    ->outputFormat('Y-m-d')
+    ->emptyValue('Not Found'),
+```
 
 ## Image Columns
 
