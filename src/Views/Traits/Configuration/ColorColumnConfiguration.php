@@ -11,7 +11,7 @@ trait ColorColumnConfiguration
     {
         $this->customClasses = ['class' => $customClasses, 'default' => $append];
 
-       // $this->customClasses = ($append) ? $customClasses . ' ' . $this->customClasses . ' ' . $customClasses : $customClasses;
+        // $this->customClasses = ($append) ? $customClasses . ' ' . $this->customClasses . ' ' . $customClasses : $customClasses;
 
         return $this;
     }
@@ -22,5 +22,4 @@ trait ColorColumnConfiguration
 
         return $this;
     }
-
 }
