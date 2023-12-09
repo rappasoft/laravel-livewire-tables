@@ -14,7 +14,6 @@ trait EmptyMessageConfiguration
         return $this;
     }
 
-    
     /**
      * Used to set classes for the Custom Empty View Classes
      */
@@ -25,13 +24,12 @@ trait EmptyMessageConfiguration
         return $this;
     }
 
-
     /**
      * Used to set classes for the Custom Empty View Classes
      */
     public function setCustomEmptyViewClasses(string $customEmptyClasses, bool $append = false): self
     {
-        $this->customEmptyClasses['view'] = ($append) ? $this->customEmptyClasses['view'] . ' ' . $customEmptyClasses : $customEmptyClasses;
+        $this->customEmptyClasses['view'] = ($append) ? $this->customEmptyClasses['view'].' '.$customEmptyClasses : $customEmptyClasses;
 
         return $this;
     }
@@ -41,7 +39,7 @@ trait EmptyMessageConfiguration
      */
     public function setCustomEmptyRowClasses(string $customEmptyClasses, bool $append = false): self
     {
-        $this->customEmptyClasses['row'] = ($append) ? $this->customEmptyClasses['row'] . ' ' . $customEmptyClasses : $customEmptyClasses;
+        $this->customEmptyClasses['row'] = ($append) ? $this->customEmptyClasses['row'].' '.$customEmptyClasses : $customEmptyClasses;
 
         return $this;
     }
@@ -51,7 +49,7 @@ trait EmptyMessageConfiguration
      */
     public function setCustomEmptyColClasses(string $customEmptyClasses, bool $append = false): self
     {
-        $this->customEmptyClasses['col'] = ($append) ? $this->customEmptyClasses['col'] . ' ' . $customEmptyClasses : $customEmptyClasses;
+        $this->customEmptyClasses['col'] = ($append) ? $this->customEmptyClasses['col'].' '.$customEmptyClasses : $customEmptyClasses;
 
         return $this;
     }
@@ -61,7 +59,7 @@ trait EmptyMessageConfiguration
      */
     public function setCustomEmptyDivClasses(string $customEmptyClasses, bool $append = false): self
     {
-        $this->customEmptyClasses['div'] = ($append) ? $this->customEmptyClasses['div'] . ' ' . $customEmptyClasses : $customEmptyClasses;
+        $this->customEmptyClasses['div'] = ($append) ? $this->customEmptyClasses['div'].' '.$customEmptyClasses : $customEmptyClasses;
 
         return $this;
     }
@@ -71,7 +69,7 @@ trait EmptyMessageConfiguration
      */
     public function setCustomEmptySpanClasses(string $customEmptyClasses, bool $append = false): self
     {
-        $this->customEmptyClasses['span'] = ($append) ? $this->customEmptyClasses['span'] . ' ' . $customEmptyClasses : $customEmptyClasses;
+        $this->customEmptyClasses['span'] = ($append) ? $this->customEmptyClasses['span'].' '.$customEmptyClasses : $customEmptyClasses;
 
         return $this;
     }
