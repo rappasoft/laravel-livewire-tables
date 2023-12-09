@@ -56,18 +56,4 @@ trait CustomisationsHelpers
         return $this->layout;
     }
 
-    public function hasCustomEmptyView(): bool
-    {
-        return $this->customEmptyView != '';
-    }
-
-    public function getCustomEmptyView(): string
-    {
-        return $this->customEmptyView ?? '';
-    }
-
-    public function getCustomEmptyViewClasses(): string
-    {
-        return $this->customEmptyViewClasses;
-    }
 }

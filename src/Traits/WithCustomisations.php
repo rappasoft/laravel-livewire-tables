@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\CustomisationsConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\CustomisationsHelpers;
 
@@ -18,12 +17,6 @@ trait WithCustomisations
     protected ?string $extends = null;
 
     protected ?string $section = null;
-
-    #[Locked]
-    public string $customEmptyView = '';
-
-    #[Locked]
-    public string $customEmptyViewClasses = 'bg-light bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row';
 
     /**
      * Add customView to the View

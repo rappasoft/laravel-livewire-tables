@@ -12,7 +12,8 @@ trait HasAllTraits
         WithColumns,
         WithSorting,
         WithSearch,
-        WithPagination;
+        WithPagination,
+        WithEmptyMessage;
     use WithBulkActions,
         WithCollapsingColumns,
         WithColumnSelect,
