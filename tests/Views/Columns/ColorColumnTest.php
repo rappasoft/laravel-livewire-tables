@@ -84,6 +84,36 @@ class ColorColumnTest extends TestCase
         $this->assertFalse($column->hasAttributesCallback());
     }
 
+
+    /** @test */
+    public function can_set_attribute_callback(): void
+    {
+        $column = ColorColumn::make('Favorite Color', 'favorite_color');
+        $this->assertFalse($column->hasAttributesCallback());
+
+        $column->attributes(function ($row) {
+            return [
+                'class' => '!rounded-lg self-center',
+                'default' => true,
+            ];
+        });
+
+        $this->assertTrue($column->hasAttributesCallback());
+    }
+
+    /** @test */
+    public function can_get_attribute_callback(): void
+    {
+        $column = ColorColumn::make('Favorite Color', 'favorite_color')->attributes(function ($row) {
+            return [
+                'class' => '!rounded-lg self-center',
+                'default' => true,
+            ];
+        });
+        $rows = $this->basicTable->setAdditionalSelects(['pets.favorite_color as favorite_color'])->getRows();
+        $this->assertSame(['class' => '!rounded-lg self-center','default' => true], $column->getAttributeBag($rows->first())->getAttributes());
+    }
+
     /** @test */
     public function can_get_column_formatted_contents(): void
     {
