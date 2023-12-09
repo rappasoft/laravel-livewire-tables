@@ -28,7 +28,7 @@ trait ColorColumnHelpers
     {
         return $this->colorCallback;
     }
-    
+
     protected function hasColorCallback(): bool
     {
         return $this->colorCallback !== null;
@@ -44,6 +44,4 @@ trait ColorColumnHelpers
     {
         return $this->attributesCallback !== null;
     }
-
-
 }
