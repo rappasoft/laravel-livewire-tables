@@ -4,16 +4,22 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
 trait DateColumnConfiguration
 {
-    public function toFormat(string $toFormat): self
+    /**
+     * Define the outputFormat to use for the Column
+     */
+    public function outputFormat(string $outputFormat): self
     {
-        $this->toFormat = $toFormat;
+        $this->outputFormat = $outputFormat;
 
         return $this;
     }
 
-    public function fromFormat(string $fromFormat): self
+    /**
+     * Define the inputFormat to use for the Column
+     */
+    public function inputFormat(string $inputFormat): self
     {
-        $this->fromFormat = $fromFormat;
+        $this->inputFormat = $inputFormat;
 
         return $this;
     }

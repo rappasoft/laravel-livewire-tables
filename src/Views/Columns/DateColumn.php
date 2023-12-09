@@ -16,9 +16,9 @@ class DateColumn extends Column
     use DateColumnConfiguration,
         DateColumnHelpers;
 
-    public string $fromFormat = 'Y-m-d';
+    public string $inputFormat = 'Y-m-d';
 
-    public string $toFormat = 'Y-m-d';
+    public string $outputFormat = 'Y-m-d';
 
     protected string $view = 'livewire-tables::includes.columns.date';
 
@@ -29,7 +29,7 @@ class DateColumn extends Column
         try {
             $dateTime = $this->getValue($row);
             if (! ($dateTime instanceof \DateTime)) {
-                $dateTime = \DateTime::createFromFormat($this->getFromFormat(), date($this->getFromFormat(), strtotime($this->getValue($row))));
+                $dateTime = \DateTime::createFromFormat($this->getInputFormat(), date($this->getInputFormat(), strtotime($this->getValue($row))));
                 if (! $dateTime) {
                     return '';
                 }
@@ -40,7 +40,7 @@ class DateColumn extends Column
             return '';
         }
 
-        return $dateTime->format($this->getToFormat());
+        return $dateTime->format($this->getOutputFormat());
 
     }
 }
