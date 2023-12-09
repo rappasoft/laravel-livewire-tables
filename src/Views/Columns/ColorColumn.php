@@ -15,8 +15,6 @@ class ColorColumn extends Column
     use ColorColumnConfiguration,
         ColorColumnHelpers;
 
-    public string $emptyValue = '';
-
     protected ?object $colorCallback = null;
 
     protected ?object $attributesCallback = null;
@@ -35,7 +33,7 @@ class ColorColumn extends Column
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view($this->getView())
-            ->withColor($this->hasColorCallback() ? app()->call($this->getColorCallback(), ['row' => $row]) : $this->getValue($row))
-            ->withAttributeBag(new \Illuminate\View\ComponentAttributeBag($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []));
+            ->withColor($this->getColor($row))
+            ->withAttributeBag($this->getAttributeBag($row));
     }
 }

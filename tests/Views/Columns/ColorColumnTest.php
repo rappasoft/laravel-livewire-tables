@@ -16,6 +16,14 @@ class ColorColumnTest extends TestCase
     }
 
     /** @test */
+    public function can_get_the_column_view(): void
+    {
+        $column = ColorColumn::make('Favorite Color', 'favorite_color');
+
+        $this->assertSame('livewire-tables::includes.columns.color', $column->getView());
+    }
+
+    /** @test */
     public function can_infer_field_name_from_title_if_no_from(): void
     {
         $column = ColorColumn::make('Favorite Color');
@@ -43,6 +51,8 @@ class ColorColumnTest extends TestCase
     public function can_get_column_formatted_contents(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
+        $this->assertFalse($column->hasColorCallback());
+        $this->assertFalse($column->hasAttributesCallback());
 
         $rows = $this->basicTable->getRows();
 
@@ -67,6 +77,9 @@ class ColorColumnTest extends TestCase
 
             }
         );
+
+        $this->assertTrue($column->hasColorCallback());
+        $this->assertFalse($column->hasAttributesCallback());
 
         $rows = $this->basicTable->setAdditionalSelects(['pets.species_id as species_id'])->getRows();
 
