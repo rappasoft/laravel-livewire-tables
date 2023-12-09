@@ -4,9 +4,9 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
 ### New Features
-- Add capability to use as a Full Page Component
-- Add DateColumn
-- Add ColorColumn
+- Add capability to use as a Full Page Component by @amshehzad and @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1580
+- Add DateColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1589
+- Add ColorColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1590
 
 ### Tweaks
 - Internal - modify GitHub workflows to improve caching, but use unique caches per workflow matrix
