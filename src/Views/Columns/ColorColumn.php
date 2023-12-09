@@ -15,13 +15,13 @@ class ColorColumn extends Column
     use ColorColumnConfiguration,
         ColorColumnHelpers;
 
-    protected ?object $colorCallback = null;
+    public ?object $colorCallback = null;
 
-    protected ?object $attributesCallback = null;
+    public ?object $attributesCallback = null;
 
-    protected string $defaultValue = '';
+    public string $defaultValue = '';
 
-    protected string $view = 'livewire-tables::includes.columns.color';
+    public string $view = 'livewire-tables::includes.columns.color';
 
     public function __construct(string $title, ?string $from = null)
     {
@@ -38,4 +38,12 @@ class ColorColumn extends Column
             ->withColor($this->getColor($row))
             ->withAttributeBag($this->getAttributeBag($row));
     }
+
+    public function getValue(Model $row)
+    {
+        $value = parent::getValue($row);
+
+        return !is_null($value) ? $value : $this->getDefaultValue();
+    }
+
 }
