@@ -12,6 +12,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Internal - modify GitHub workflows to improve caching, but use unique caches per workflow matrix
 - Internal - remove superfluous PHPStan ignoreErrors
 - Internal - update Test Suite to also test at PHP 8.3
+- Internal - tidying Classes & Traits by @lrljoe
 - Docs - Update Anonymous Column documents to reference ability to use strings as well as views
 
 ## [v3.1.4] - 2023-12-04
