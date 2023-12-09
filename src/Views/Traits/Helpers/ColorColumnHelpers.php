@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 trait ColorColumnHelpers
 {
-
     public function getView(): string
     {
         return $this->view;
@@ -30,6 +29,4 @@ trait ColorColumnHelpers
     {
         return $this->attributesCallback !== null;
     }
-
-
 }

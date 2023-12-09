@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColorColumnConfiguration;
@@ -17,7 +16,7 @@ class ColorColumn extends Column
         ColorColumnHelpers;
 
     public string $emptyValue = '';
-    
+
     protected mixed $colorCallback = null;
 
     protected mixed $attributesCallback = null;
@@ -27,11 +26,10 @@ class ColorColumn extends Column
     public function __construct(string $title, ?string $from = null)
     {
         parent::__construct($title, $from);
-        if (!isset($from) || $from === null)
-        {
+        if (! isset($from) || $from === null) {
             $this->label(fn () => null);
         }
-        
+
     }
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
