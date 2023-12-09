@@ -17,9 +17,9 @@ class ColorColumn extends Column
 
     public string $emptyValue = '';
 
-    protected mixed $colorCallback = null;
+    protected ?object $colorCallback = null;
 
-    protected mixed $attributesCallback = null;
+    protected ?object $attributesCallback = null;
 
     protected string $view = 'livewire-tables::includes.columns.color';
 
