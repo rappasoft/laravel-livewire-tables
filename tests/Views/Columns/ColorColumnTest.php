@@ -84,7 +84,6 @@ class ColorColumnTest extends TestCase
         $this->assertFalse($column->hasAttributesCallback());
     }
 
-
     /** @test */
     public function can_set_attribute_callback(): void
     {
@@ -111,7 +110,7 @@ class ColorColumnTest extends TestCase
             ];
         });
         $rows = $this->basicTable->setAdditionalSelects(['pets.favorite_color as favorite_color'])->getRows();
-        $this->assertSame(['class' => '!rounded-lg self-center','default' => true], $column->getAttributeBag($rows->first())->getAttributes());
+        $this->assertSame(['class' => '!rounded-lg self-center', 'default' => true], $column->getAttributeBag($rows->first())->getAttributes());
     }
 
     /** @test */
