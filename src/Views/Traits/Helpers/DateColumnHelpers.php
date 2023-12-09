@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 trait DateColumnHelpers
 {
-     /**
+    /**
      * Retrieve the outputFormat to use for the Column
      */
     public function getOutputFormat(): string

@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
 class DateColumnTest extends TestCase
@@ -40,7 +39,6 @@ class DateColumnTest extends TestCase
         $this->assertSame('last_visit', $column->getField());
     }
 
-
     /** @test */
     public function can_get_column_formatted_contents(): void
     {
@@ -61,5 +59,4 @@ class DateColumnTest extends TestCase
 
         $this->assertSame('04-01-2023', $column->getContents($rows->first()));
     }
-
 }
