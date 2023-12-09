@@ -12,10 +12,15 @@ trait ColorColumnHelpers
         return $this->view;
     }
 
+    public function getDefaultValue(): string
+    {
+        return $this->defaultValue;
+    }
+
     // TODO: Test
     public function getColor($row): string
     {
-        return $this->hasColorCallback() ? app()->call($this->getColorCallback(), ['row' => $row]) : $this->getValue($row);
+        return $this->hasColorCallback() ? app()->call($this->getColorCallback(), ['row' => $row]) : $this->getValue($row) ?? $this->getDefaultValue();
     }
 
     // TODO: Test

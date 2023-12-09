@@ -17,4 +17,12 @@ trait ColorColumnConfiguration
 
         return $this;
     }
+
+    public function defaultValue(string $defaultValue): self
+    {
+        $this->defaultValue = $defaultValue;
+
+        return $this;
+    }
+
 }

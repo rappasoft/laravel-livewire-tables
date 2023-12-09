@@ -40,6 +40,14 @@ class ColorColumnTest extends TestCase
     }
 
     /** @test */
+    public function can_set_default_value(): void
+    {
+        $column = ColorColumn::make('Favorite Color', 'favorite_color')->defaultValue('#FEFEFE');
+
+        $this->assertSame('#FEFEFE', $column->getDefaultValue());
+    }
+
+    /** @test */
     public function can_set_relation_field_from_from(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
