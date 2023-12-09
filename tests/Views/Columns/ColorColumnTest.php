@@ -64,7 +64,6 @@ class ColorColumnTest extends TestCase
         $this->assertSame($rows->last()->favorite_color, $column->getColor($rows->last()));
         $this->assertSame($rows->slice(2, 1)->first()->favorite_color, $column->getColor($rows->slice(2, 1)->first()));
 
-
     }
 
     /** @test */
@@ -91,7 +90,7 @@ class ColorColumnTest extends TestCase
         $this->assertSame('#ff0000', app()->call($column->getColorCallback(), ['row' => $rows->first()]));
         $this->assertSame('#ffa500', app()->call($column->getColorCallback(), ['row' => $rows->last()]));
         $this->assertSame('#008000', app()->call($column->getColorCallback(), ['row' => $rows->slice(2, 1)->first()]));
-        
+
         $this->assertSame($rows->first()->favorite_color, $column->getColor($rows->first()));
         $this->assertSame($rows->last()->favorite_color, $column->getColor($rows->last()));
         $this->assertSame($rows->slice(2, 1)->first()->favorite_color, $column->getColor($rows->slice(2, 1)->first()));
