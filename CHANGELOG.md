@@ -4,14 +4,16 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
 ### New Features
-- Add capability to use as a Full Page Component
-- Add DateColumn
-- Add setCustomEmptyView and setCustomEmptyViewClasses
+- Add capability to use as a Full Page Component by @amshehzad and @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1580
+- Add DateColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1589
+- Add ColorColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1590
+- Add setCustomEmptyView and setCustomEmptyViewClasses by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1583
 
 ### Tweaks
 - Internal - modify GitHub workflows to improve caching, but use unique caches per workflow matrix
 - Internal - remove superfluous PHPStan ignoreErrors
 - Internal - update Test Suite to also test at PHP 8.3
+- Internal - tidying Classes & Traits by @lrljoe
 - Docs - Update Anonymous Column documents to reference ability to use strings as well as views
 
 ## [v3.1.4] - 2023-12-04
