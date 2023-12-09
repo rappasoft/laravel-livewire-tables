@@ -24,5 +24,4 @@ trait ColorColumnConfiguration
 
         return $this;
     }
-
 }
