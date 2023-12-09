@@ -109,6 +109,17 @@ ColorColumn::make('Favourite Colour')
         ),
 ```
 
+You may also specify attributes to use on the div displaying the color, to adjust the size or appearance, this receives the full row.  By default, this will replace the standard classes, to retain them, set "default" to true.  To then over-ride, you should prefix your classes with "!" to signify importance.
+```php
+    ColorColumn::make('Favourite Colour')
+            ->attributes(function ($row) {
+                return [
+                    'class' => '!rounded-lg self-center',
+                    'default' => true,
+                ];
+            }),
+```
+
 ## Date Columns
 
 Date columns provide an easy way to display dates in a given format, without having to use repetitive format() methods or partial views.
