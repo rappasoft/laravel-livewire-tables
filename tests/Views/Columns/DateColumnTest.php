@@ -66,29 +66,39 @@ class DateColumnTest extends TestCase
         $column = DateColumn::make('Name', 'last_visit')->inputFormat('d-m-Y')->outputFormat('d-m-Y');
 
         $firstRow = $this->basicTable->getRows()->first();
-        $firstRow->last_visit = '44-12-2023';
-        $firstRow->save();
 
+        $firstRow->last_visit = '44-12-2023';
+        
         $this->assertSame('', $column->getContents($firstRow));
 
         $firstRow->last_visit = '04-01-2023';
-        $firstRow->save();
 
         $this->assertSame('04-01-2023', $column->getContents($firstRow));
+
+        $this->assertSame('04-01-2023', $column->emptyValue('Unknown')->getContents($firstRow));
+
+        $firstRow->last_visit = '44-12-2023';
+
+        $this->assertSame('Unknown', $column->emptyValue('Unknown')->getContents($firstRow));
 
     }
 
     /** @test */
     public function can_set_column_empty_value(): void
     {
-        $column = DateColumn::make('Name', 'last_visit')->inputFormat('d-m-Y')->outputFormat('d-m-Y')->emptyValue('Not Found');
+        $column = DateColumn::make('Name', 'last_visit')->inputFormat('d-m-Y')->outputFormat('d-m-Y');
+        $this->assertSame('', $column->getEmptyValue());
 
-        $thirdRow = $this->basicTable->getRows()->slice(3, 1)->first();
+        $column->emptyValue('Not Found');
+        $this->assertSame('Not Found', $column->getEmptyValue());
 
+        $thirdRow = $this->basicTable->getRows()->slice(3,1)->first();
+        
         $this->assertSame('Not Found', $column->getContents($thirdRow));
 
         $column->emptyValue('');
         $this->assertSame('', $column->getContents($thirdRow));
 
     }
+
 }
