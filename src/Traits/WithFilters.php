@@ -56,14 +56,12 @@ trait WithFilters
 
             // For Each Filter
             foreach ($this->getFilters() as $filter) {
-                
+
                 // If Filter is Applied
-                if (isset($appliedFilters[$filter->getKey()]))
-                {
+                if (isset($appliedFilters[$filter->getKey()])) {
                     // Validate The Filter, Unsetting If It Fails Validation
                     $value = $this->validateFilter($filter, $appliedFilters[$filter->getKey()]);
-                    if ($value && $filter->hasFilterCallback())
-                    {
+                    if ($value && $filter->hasFilterCallback()) {
                         ($filter->getFilterCallback())($this->getBuilder(), $value);
                     }
                 }

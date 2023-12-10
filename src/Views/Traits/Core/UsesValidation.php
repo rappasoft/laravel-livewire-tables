@@ -19,7 +19,7 @@ trait UsesValidation
     {
         return $this->getValidationStatus();
     }
-    
+
     public function setValidation(bool $validationEnabled): self
     {
         $this->validationEnabled = $validationEnabled;

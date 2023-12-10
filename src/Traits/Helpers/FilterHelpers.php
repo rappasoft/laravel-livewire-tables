@@ -254,21 +254,21 @@ trait FilterHelpers
     public function validateFilter(Filter $filter, mixed $value): mixed
     {
         // Let the filter class validate the value
-        if ($filter->isValidationEnabled())
-        {
+        if ($filter->isValidationEnabled()) {
             $value = $filter->validate($value);
             if ($value === false) {
                 $this->clearFilter($filter);
+
                 return false;
-            }    
+            }
         }
-        
+
         // Run the user-specified validation callback if present
-        if ($filter->hasValidationCallback())
-        {
+        if ($filter->hasValidationCallback()) {
             $value = call_user_func($filter->getValidationCallback(), $value);
             if ($value === false) {
                 $this->clearFilter($filter);
+
                 return false;
             }
         }

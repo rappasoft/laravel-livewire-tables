@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\UsesValidation;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
 
 trait IsFilter
 {
