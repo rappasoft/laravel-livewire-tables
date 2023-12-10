@@ -3,6 +3,9 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
+- Add Filter Validation Methods - setValidationEnabled(), setValidationDisabled() and Custom Validation Callback validation() by @lrljoe
+
+## [v3.1.5] - 2023-12-04
 ### New Features
 - Add capability to use as a Full Page Component by @amshehzad and @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1580
 - Add DateColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1589

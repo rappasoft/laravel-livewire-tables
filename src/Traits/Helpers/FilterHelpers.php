@@ -242,6 +242,40 @@ trait FilterHelpers
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
     }
 
+    public function clearFilter(string|Filter $filter): void
+    {
+        if (! $filter instanceof Filter) {
+            $filter = $this->getFilterByKey($filter);
+        }
+
+        $this->setFilter($filter->getKey(), null);
+    }
+
+    public function validateFilter(Filter $filter, mixed $value): mixed
+    {
+        // Let the filter class validate the value
+        if ($filter->isValidationEnabled())
+        {
+            $value = $filter->validate($value);
+            if ($value === false) {
+                $this->clearFilter($filter);
+                return false;
+            }    
+        }
+        
+        // Run the user-specified validation callback if present
+        if ($filter->hasValidationCallback())
+        {
+            $value = call_user_func($filter->getValidationCallback(), $value);
+            if ($value === false) {
+                $this->clearFilter($filter);
+                return false;
+            }
+        }
+
+        return $value;
+    }
+
     public function getFilterLayout(): string
     {
         return $this->filterLayout;

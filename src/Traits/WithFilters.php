@@ -50,16 +50,20 @@ trait WithFilters
     public function applyFilters(): Builder
     {
         if ($this->filtersAreEnabled() && $this->hasFilters() && $this->hasAppliedFiltersWithValues()) {
+
+            // Get Applied Filters With Values
+            $appliedFilters = $this->getAppliedFiltersWithValues();
+
+            // For Each Filter
             foreach ($this->getFilters() as $filter) {
-                foreach ($this->getAppliedFiltersWithValues() as $key => $value) {
-                    if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
-                        // Let the filter class validate the value
-                        $value = $filter->validate($value);
-
-                        if ($value === false) {
-                            continue;
-                        }
-
+                
+                // If Filter is Applied
+                if (isset($appliedFilters[$filter->getKey()]))
+                {
+                    // Validate The Filter, Unsetting If It Fails Validation
+                    $value = $this->validateFilter($filter, $appliedFilters[$filter->getKey()]);
+                    if ($value && $filter->hasFilterCallback())
+                    {
                         ($filter->getFilterCallback())($this->getBuilder(), $value);
                     }
                 }
