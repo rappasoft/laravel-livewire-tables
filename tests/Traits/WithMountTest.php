@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableMount;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class WithMountTest extends TestCase
 {
@@ -66,5 +66,4 @@ class WithMountTest extends TestCase
         $this->assertNotSame(strtoupper($rows3->first()->name), 'MAY');
 
     }
-
 }
