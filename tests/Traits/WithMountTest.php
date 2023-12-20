@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableMount;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableMount;
 
 class WithMountTest extends TestCase
 {
@@ -14,7 +14,7 @@ class WithMountTest extends TestCase
 
         $table = new PetsTableMount();
         $table->boot();
-        $table->mount(4);
+        $table->mount(102);
         $table->bootedComponentUtilities();
         $table->bootedWithData();
         $table->bootedWithColumns();
@@ -26,8 +26,9 @@ class WithMountTest extends TestCase
         $table->render();
         $rows = $table->getRows();
 
-        $this->assertSame(strtoupper($rows->first()->name), 'CARTMAN');
+        $this->assertSame(strtoupper($rows->first()->name), 'MAY');
         $this->assertNotSame(strtoupper($rows->first()->name), 'CHICO');
+        $this->assertNotSame(strtoupper($rows->first()->name), 'CARTMAN');
 
         $table2 = new PetsTableMount();
         $table2->boot();
@@ -44,6 +45,26 @@ class WithMountTest extends TestCase
         $rows2 = $table2->getRows();
         $this->assertSame(strtoupper($rows2->first()->name), 'CHICO');
         $this->assertNotSame(strtoupper($rows2->first()->name), 'CARTMAN');
+        $this->assertNotSame(strtoupper($rows2->first()->name), 'MAY');
+
+        $table3 = new PetsTableMount();
+        $table3->boot();
+        $table3->mount();
+        $table3->bootedComponentUtilities();
+        $table3->bootedWithData();
+        $table3->bootedWithColumns();
+        $table3->bootedWithColumnSelect();
+        $table3->bootedWithSecondaryHeader();
+        $table3->booted();
+        $table3->renderingWithData($view, []);
+        $table3->renderingWithPagination($view, []);
+        $table3->render();
+        $rows3 = $table3->getRows();
+
+        $this->assertSame(strtoupper($rows3->first()->name), 'CARTMAN');
+        $this->assertNotSame(strtoupper($rows3->first()->name), 'CHICO');
+        $this->assertNotSame(strtoupper($rows3->first()->name), 'MAY');
 
     }
+
 }
