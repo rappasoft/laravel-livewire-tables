@@ -6,9 +6,8 @@ use Livewire\Attributes\Modelable;
 
 trait IsExternalFilter
 {
-    #[Modelable] 
+    #[Modelable]
     public $value = '';
 
     public $filterKey = '';
-
 }
