@@ -4,7 +4,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
 ### Bug Fixes
-- Ensure mount() is called prior to bundler() executing
+- Ensure mount() is called prior to bundler() executing by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1603
 
 ## [v3.1.5] - 2023-12-09
 ### New Features
