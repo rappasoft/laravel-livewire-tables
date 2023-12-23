@@ -15,6 +15,7 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     checkGenericClassInNonGenericObjectType: false
     ignoreErrors:
+        - '#Access to an undefined property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view#'
         - "#Unsafe usage of new static#"
         - '#on array\<string, non-empty-array\<int\<0, max\>, mixed\>\> in empty\(\) does not exist.#'
         - '#on array<string, non-empty-array<int<0, max>, mixed>> in isset\(\) does not exist#'
