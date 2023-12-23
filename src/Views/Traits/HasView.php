@@ -38,6 +38,6 @@ trait HasView
 
     public function getViewPath(): string
     {
-        return $this->view;
+        return $this->view ?? '';
     }
 }

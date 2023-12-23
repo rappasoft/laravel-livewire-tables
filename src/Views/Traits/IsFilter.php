@@ -3,19 +3,20 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\HasView;
+use Rappasoft\LaravelLivewireTables\Views\Traits\{HasConfig,HasView};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
 
 trait IsFilter
 {
     use FilterConfiguration,
         FilterHelpers,
+        HasConfig,
         HasView;
-
+        
     protected string $name;
 
     protected string $key;
-
+    
     protected bool $hiddenFromMenus = false;
 
     protected bool $hiddenFromPills = false;
@@ -25,8 +26,6 @@ trait IsFilter
     protected bool $resetByClearButton = true;
 
     protected mixed $filterCallback = null;
-
-    public array $config = [];
 
     protected ?string $filterPillTitle = null;
 

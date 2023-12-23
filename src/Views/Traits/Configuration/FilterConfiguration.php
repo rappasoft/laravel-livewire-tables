@@ -6,15 +6,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait FilterConfiguration
 {
-    /**
-     * @param  array<mixed>  $config
-     */
-    public function config(array $config = []): Filter
-    {
-        $this->config = $config;
-
-        return $this;
-    }
 
     public function setFilterPillTitle(string $title): self
     {
