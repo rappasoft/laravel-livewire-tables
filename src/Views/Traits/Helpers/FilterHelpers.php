@@ -88,7 +88,6 @@ trait FilterHelpers
         return $this->getCustomFilterPillValues()[$value] ?? null;
     }
 
-
     public function isHiddenFromMenus(): bool
     {
         return $this->hiddenFromMenus === true;

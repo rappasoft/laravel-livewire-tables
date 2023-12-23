@@ -19,7 +19,6 @@ trait HasConfig
         return $this;
     }
 
-
     /**
      * Get the filter configs.
      *
