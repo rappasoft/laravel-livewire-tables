@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class LivewireComponentFilter extends Filter
 {
-    public string $view = 'livewire-tables::components.tools.filters.livewire-component-filter';
+    protected string $view = 'livewire-tables::components.tools.filters.livewire-component-filter';
 
     public string $livewireComponent = '';
 

@@ -8,7 +8,7 @@ class NumberRangeFilter extends Filter
 {
     public array $options = [];
 
-    public string $view = 'livewire-tables::components.tools.filters.number-range';
+    protected string $view = 'livewire-tables::components.tools.filters.number-range';
 
     public function options(array $options = []): NumberRangeFilter
     {

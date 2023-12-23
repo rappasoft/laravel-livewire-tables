@@ -17,11 +17,9 @@ class ColorColumn extends Column
 
     public ?object $colorCallback = null;
 
-    public ?object $attributesCallback = null;
-
     public string $defaultValue = '';
 
-    public string $view = 'livewire-tables::includes.columns.color';
+    protected string $view = 'livewire-tables::includes.columns.color';
 
     public function __construct(string $title, ?string $from = null)
     {

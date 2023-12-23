@@ -18,11 +18,4 @@ trait LinkColumnConfiguration
 
         return $this;
     }
-
-    public function attributes(callable $callback): self
-    {
-        $this->attributesCallback = $callback;
-
-        return $this;
-    }
 }

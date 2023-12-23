@@ -418,20 +418,6 @@ trait ColumnHelpers
         return $value;
     }
 
-    /**
-     * @param  array<mixed>  $attributes
-     * @return mixed
-     */
-    public function arrayToAttributes(array $attributes)
-    {
-        return implode(' ', array_map(function ($key) use ($attributes) {
-            if (is_bool($attributes[$key])) {
-                return $attributes[$key] ? $key : '';
-            }
-
-            return $key.'="'.$attributes[$key].'"';
-        }, array_keys($attributes)));
-    }
 
     public function isClickable(): bool
     {

@@ -8,7 +8,7 @@ class MultiSelectDropdownFilter extends Filter
 {
     public array $options = [];
 
-    public string $view = 'livewire-tables::components.tools.filters.multi-select-dropdown';
+    protected string $view = 'livewire-tables::components.tools.filters.multi-select-dropdown';
 
     protected string $firstOption = '';
 

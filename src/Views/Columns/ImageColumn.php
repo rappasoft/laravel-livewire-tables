@@ -17,8 +17,6 @@ class ImageColumn extends Column
 
     protected mixed $locationCallback = null;
 
-    protected mixed $attributesCallback = null;
-
     public function __construct(string $title, ?string $from = null)
     {
         parent::__construct($title, $from);

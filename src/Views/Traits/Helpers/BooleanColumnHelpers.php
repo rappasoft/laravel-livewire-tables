@@ -21,10 +21,6 @@ trait BooleanColumnHelpers
         return $this->successValue;
     }
 
-    public function getView(): string
-    {
-        return $this->view;
-    }
 
     public function getType(): string
     {

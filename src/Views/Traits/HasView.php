@@ -3,10 +3,17 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait HasView
 {
-    public string $view = '';
+    protected function bootedHasView()
+    {
+        if (!property_exists($this, 'view') || !isset($this->view) || $this->view == null)
+        {
+            throw new DataTableConfigurationException('No View Defined');
+        }
+    }
 
     public function getView(): string
     {

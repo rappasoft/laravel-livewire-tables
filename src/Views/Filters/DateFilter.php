@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class DateFilter extends Filter
 {
-    public string $view = 'livewire-tables::components.tools.filters.date';
+    protected string $view = 'livewire-tables::components.tools.filters.date';
 
     public function config(array $config = []): DateFilter
     {

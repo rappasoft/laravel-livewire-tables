@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class TextFilter extends Filter
 {
-    public string $view = 'livewire-tables::components.tools.filters.text-field';
+    protected string $view = 'livewire-tables::components.tools.filters.text-field';
 
     public function validate(string $value): string|bool
     {

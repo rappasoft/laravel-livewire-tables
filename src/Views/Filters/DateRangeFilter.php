@@ -8,7 +8,7 @@ class DateRangeFilter extends Filter
 {
     public array $options = [];
 
-    public string $view = 'livewire-tables::components.tools.filters.date-range';
+    protected string $view = 'livewire-tables::components.tools.filters.date-range';
 
     public function config(array $config = []): DateRangeFilter
     {

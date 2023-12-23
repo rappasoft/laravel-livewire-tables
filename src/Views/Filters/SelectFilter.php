@@ -8,7 +8,7 @@ class SelectFilter extends Filter
 {
     public array $options = [];
 
-    public string $view = 'livewire-tables::components.tools.filters.select';
+    protected string $view = 'livewire-tables::components.tools.filters.select';
 
     public function options(array $options = []): SelectFilter
     {
