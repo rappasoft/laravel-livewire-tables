@@ -10,7 +10,7 @@ trait ComponentColumnConfiguration
 
         return $this;
     }
-    
+
     public function slot(callable $callback): self
     {
         $this->slotCallback = $callback;

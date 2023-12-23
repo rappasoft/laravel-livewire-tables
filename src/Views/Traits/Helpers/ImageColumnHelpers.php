@@ -14,5 +14,4 @@ trait ImageColumnHelpers
     {
         return $this->locationCallback !== null;
     }
-
 }

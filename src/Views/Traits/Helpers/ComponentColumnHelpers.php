@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 trait ComponentColumnHelpers
 {
-
     public function getSlotCallback(): ?callable
     {
         return $this->slotCallback;

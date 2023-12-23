@@ -2,15 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait HasView
 {
     protected function bootedHasView()
     {
-        if (!property_exists($this, 'view') || !isset($this->view) || $this->view == null)
-        {
+        if (! property_exists($this, 'view') || ! isset($this->view) || $this->view == null) {
             throw new DataTableConfigurationException('No View Defined');
         }
     }

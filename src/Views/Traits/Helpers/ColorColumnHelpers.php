@@ -6,7 +6,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 trait ColorColumnHelpers
 {
-
     public function getDefaultValue(): string
     {
         return $this->defaultValue;
@@ -27,5 +26,4 @@ trait ColorColumnHelpers
     {
         return isset($this->colorCallback);
     }
-
 }
