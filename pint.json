@@ -1,6 +1,8 @@
 {
     "preset": "laravel",
     "rules": {
+        "single_import_per_statement": false,
+        "no_unused_imports": false,       
         "ordered_traits": false
     }
 }

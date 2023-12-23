@@ -4,11 +4,13 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\HasView;
 
 trait IsFilter
 {
     use FilterConfiguration,
-        FilterHelpers;
+        FilterHelpers,
+        HasView;
 
     protected string $name;
 
@@ -43,8 +45,6 @@ trait IsFilter
     protected ?string $filterCustomPillBlade = null;
 
     protected mixed $filterDefaultValue = null;
-
-    public string $viewPath;
 
     public array $genericDisplayData = [];
 }

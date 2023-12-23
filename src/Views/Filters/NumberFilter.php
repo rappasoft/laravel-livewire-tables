@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class NumberFilter extends Filter
 {
-    public string $viewPath = 'livewire-tables::components.tools.filters.number';
+    public string $view = 'livewire-tables::components.tools.filters.number';
 
     public function validate(mixed $value): int|bool
     {
@@ -26,8 +26,4 @@ class NumberFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
-    }
 }

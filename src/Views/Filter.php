@@ -30,6 +30,4 @@ abstract class Filter
     }
 
     abstract public function isEmpty(string $value): bool;
-
-    abstract public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory;
 }

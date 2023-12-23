@@ -8,7 +8,7 @@ class MultiSelectDropdownFilter extends Filter
 {
     public array $options = [];
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.multi-select-dropdown';
+    public string $view = 'livewire-tables::components.tools.filters.multi-select-dropdown';
 
     protected string $firstOption = '';
 
@@ -107,8 +107,4 @@ class MultiSelectDropdownFilter extends Filter
         return false;
     }
 
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
-    }
 }

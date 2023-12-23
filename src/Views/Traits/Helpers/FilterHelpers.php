@@ -266,8 +266,8 @@ trait FilterHelpers
         return array_merge($this->getGenericDisplayData(), ['filter' => $this]);
     }
 
-    public function getViewPath(): string
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return $this->viewPath;
+        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

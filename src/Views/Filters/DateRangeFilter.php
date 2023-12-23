@@ -8,7 +8,7 @@ class DateRangeFilter extends Filter
 {
     public array $options = [];
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.date-range';
+    public string $view = 'livewire-tables::components.tools.filters.date-range';
 
     public function config(array $config = []): DateRangeFilter
     {
@@ -190,8 +190,4 @@ class DateRangeFilter extends Filter
         return '';
     }
 
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
-    }
 }

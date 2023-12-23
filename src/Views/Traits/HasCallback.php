@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Closure;
+use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait HasCallback
 {

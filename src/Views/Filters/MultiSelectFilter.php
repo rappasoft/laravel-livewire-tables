@@ -8,7 +8,7 @@ class MultiSelectFilter extends Filter
 {
     public array $options = [];
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.multi-select';
+    public string $view = 'livewire-tables::components.tools.filters.multi-select';
 
     protected string $firstOption = '';
 
@@ -94,10 +94,5 @@ class MultiSelectFilter extends Filter
     public function isEmpty($value): bool
     {
         return ! is_array($value);
-    }
-
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }
