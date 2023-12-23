@@ -12,7 +12,7 @@ class Column
     protected bool $displayColumnLabel = true;
 
     protected string $view = '';
-    
+
     public function __construct(string $title, ?string $from = null)
     {
         $this->title = trim($title);
