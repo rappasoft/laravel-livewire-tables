@@ -6,6 +6,8 @@ use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait HasView
 {
+    public string $view = '';
+    
     public function getView(): string
     {
         return $this->view;
