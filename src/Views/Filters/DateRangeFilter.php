@@ -189,5 +189,4 @@ class DateRangeFilter extends Filter
 
         return '';
     }
-
 }

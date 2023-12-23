@@ -106,5 +106,4 @@ class MultiSelectDropdownFilter extends Filter
 
         return false;
     }
-
 }

@@ -29,5 +29,4 @@ class TextFilter extends Filter
     {
         return $this->filterDefaultValue ?? null;
     }
-
 }

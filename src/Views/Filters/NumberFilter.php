@@ -25,5 +25,4 @@ class NumberFilter extends Filter
     {
         return $this->filterDefaultValue ?? null;
     }
-
 }

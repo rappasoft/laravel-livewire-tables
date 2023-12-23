@@ -46,5 +46,4 @@ class DateTimeFilter extends Filter
     {
         return $this->filterDefaultValue ?? null;
     }
-
 }

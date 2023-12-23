@@ -46,5 +46,4 @@ class DateFilter extends Filter
     {
         return $this->filterDefaultValue ?? null;
     }
-
 }
