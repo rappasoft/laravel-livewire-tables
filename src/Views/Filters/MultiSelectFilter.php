@@ -11,6 +11,7 @@ class MultiSelectFilter extends Filter
         IsArrayFilter;
 
     protected string $view = 'livewire-tables::components.tools.filters.multi-select';
+    protected string $configPath = 'livewire-tables.multiSelectFilter.defaultConfig';
 
     public function validate(int|string|array $value): array|int|string|bool
     {

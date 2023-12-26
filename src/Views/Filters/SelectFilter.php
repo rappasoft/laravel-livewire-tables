@@ -11,6 +11,7 @@ class SelectFilter extends Filter
         IsStringFilter;
 
     protected string $view = 'livewire-tables::components.tools.filters.select';
+    protected string $configPath = 'livewire-tables.selectFilter.defaultConfig';
 
     public function getKeys(): array
     {
