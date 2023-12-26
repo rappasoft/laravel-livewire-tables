@@ -14,14 +14,4 @@ trait LinkColumnHelpers
     {
         return $this->titleCallback !== null;
     }
-
-    public function getLocationCallback(): ?callable
-    {
-        return $this->locationCallback;
-    }
-
-    public function hasLocationCallback(): bool
-    {
-        return $this->locationCallback !== null;
-    }
 }

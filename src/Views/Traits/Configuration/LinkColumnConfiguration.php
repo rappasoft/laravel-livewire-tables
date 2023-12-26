@@ -12,10 +12,5 @@ trait LinkColumnConfiguration
         return $this;
     }
 
-    public function location(callable $callback): self
-    {
-        $this->locationCallback = $callback;
 
-        return $this;
-    }
 }

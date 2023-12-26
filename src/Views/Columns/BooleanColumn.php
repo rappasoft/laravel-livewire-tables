@@ -7,19 +7,19 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\BooleanColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\BooleanColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\HasCallback;
 
 class BooleanColumn extends Column
 {
     use BooleanColumnConfiguration,
-        BooleanColumnHelpers;
+        BooleanColumnHelpers,
+        HasCallback;
 
     protected string $type = 'icons';
 
     protected bool $successValue = true;
 
     protected string $view = 'livewire-tables::includes.columns.boolean';
-
-    protected mixed $callback = null;
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
