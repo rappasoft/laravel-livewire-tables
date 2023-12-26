@@ -108,47 +108,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param  mixed  $callback
-     */
-    public function secondaryHeader($callback = null): self
-    {
-        $this->secondaryHeader = true;
-
-        $this->secondaryHeaderCallback = $callback;
-
-        return $this;
-    }
-
-    public function secondaryHeaderFilter(string $filterKey): self
-    {
-        $this->secondaryHeader = true;
-
-        $this->secondaryHeaderCallback = $filterKey;
-
-        return $this;
-    }
-
-    /**
-     * @param  mixed  $callback
-     */
-    public function footer($callback = null): self
-    {
-        $this->footer = true;
-
-        $this->footerCallback = $callback;
-
-        return $this;
-    }
-
-    public function footerFilter(string $filterKey): self
-    {
-        $this->footer = true;
-
-        $this->footerCallback = $filterKey;
-
-        return $this;
-    }
 
     public function unclickable(): self
     {

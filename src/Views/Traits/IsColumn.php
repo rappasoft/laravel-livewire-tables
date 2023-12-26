@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes,HasView};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes,HasFooter,HasSecondaryHeader,HasView};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\{ColumnHelpers,RelationshipHelpers};
 
 trait IsColumn
@@ -13,6 +13,8 @@ trait IsColumn
         ColumnHelpers,
         RelationshipHelpers,
         HasAttributes,
+        HasFooter,
+        HasSecondaryHeader,
         HasView;
 
     protected ?DataTableComponent $component = null;
@@ -68,14 +70,6 @@ trait IsColumn
     protected bool $selectable = true;
 
     protected bool $selected = true;
-
-    protected bool $secondaryHeader = false;
-
-    protected mixed $secondaryHeaderCallback = null;
-
-    protected bool $footer = false;
-
-    protected mixed $footerCallback = null;
 
     protected bool $clickable = true;
 
