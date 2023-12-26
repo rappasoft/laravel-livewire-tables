@@ -8,10 +8,10 @@ With the migration to Livewire 3, there we are implementing several Lifecycle Ho
 You may use these either in your Table Component, or in a trait
 
 ## configuring
-This is called immediately prior to the configure() method being called
+This is called immediately prior to the configure() method being called.  This will be overridden by anything you define in configure()
 
 ## configured
-This is called immediately after the configure() method is called
+This is called immediately after the configure() method is called.  This will override anything you define in configure()
 
 ## settingColumns
 This is called prior to setting up the available Columns via the columns() method

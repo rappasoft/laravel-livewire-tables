@@ -18,6 +18,11 @@ trait WithSecondaryHeader
 
     protected $secondaryHeaderTdAttributesCallback;
 
+    public function bootedWithSecondaryHeader(): void
+    {
+        $this->setupSecondaryHeader();
+    }
+
     public function setupSecondaryHeader(): void
     {
         foreach ($this->getColumns() as $column) {
@@ -25,10 +30,5 @@ trait WithSecondaryHeader
                 $this->columnsWithSecondaryHeader = true;
             }
         }
-    }
-
-    public function bootWithSecondaryHeader(): void
-    {
-        $this->setupSecondaryHeader();
     }
 }

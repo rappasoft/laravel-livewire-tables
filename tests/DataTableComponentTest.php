@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
 use Livewire\Livewire;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoColumnsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
@@ -78,5 +79,23 @@ class DataTableComponentTest extends TestCase
         }
         // control
         $this->assertTrue(filter_var('http://[9/$].dev', FILTER_VALIDATE_URL) === false);
+    }
+
+    /** @test */
+    public function minimum_one_column_expected(): void
+    {
+        $this->expectException(\Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException::class);
+        $table = new NoColumnsTable();
+        $table->boot();
+        $table->bootedComponentUtilities();
+        $table->bootedWithData();
+        $table->bootedWithColumns();
+        $table->bootedWithColumnSelect();
+        $table->bootedWithSecondaryHeader();
+        $table->booted();
+        $table->renderingWithData($view, []);
+        $table->renderingWithPagination($view, []);
+        $table->render();
+
     }
 }

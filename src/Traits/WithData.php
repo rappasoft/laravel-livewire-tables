@@ -18,7 +18,7 @@ trait WithData
     /**
      * Sets up the Builder instance
      */
-    public function bootWithData(): void
+    public function bootedWithData(): void
     {
         //Sets up the Builder Instance
         $this->setBuilder($this->builder());
