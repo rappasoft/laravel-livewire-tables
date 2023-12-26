@@ -13,6 +13,7 @@ class SelectFilter extends Filter
     protected string $view = 'livewire-tables::components.tools.filters.select';
 
     protected string $configPath = 'livewire-tables.selectFilter.defaultConfig';
+    protected string $optionsPath = 'livewire-tables.selectFilter.defaultOptions';
 
     public function getKeys(): array
     {
