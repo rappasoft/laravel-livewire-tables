@@ -3,10 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{IsCollapsible, IsSearchable, IsSortable};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes,HasFooter,HasSecondaryHeader,HasView};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\{ColumnHelpers,RelationshipHelpers};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{IsCollapsible, IsSearchable, IsSortable};
 
 trait IsColumn
 {

@@ -24,8 +24,12 @@ trait IsArrayFilter
         return $this->filterDefaultValue ?? [];
     }
 
-    public function isEmpty(array $value): bool
+    public function isEmpty(mixed $value): bool
     {
-        return ! is_array($value) || empty($value);
+        if (!is_array($value))
+        {
+            return true;
+        }
+        return empty($value);
     }
 }
