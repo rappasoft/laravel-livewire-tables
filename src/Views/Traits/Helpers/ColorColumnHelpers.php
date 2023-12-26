@@ -6,11 +6,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 trait ColorColumnHelpers
 {
-    public function getDefaultValue(): string
-    {
-        return $this->defaultValue;
-    }
-
     // TODO: Test
     public function getColor($row): string
     {
