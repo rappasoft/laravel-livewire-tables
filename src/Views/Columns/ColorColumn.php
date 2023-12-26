@@ -8,16 +8,16 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColorColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ColorColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasDefaultStringValue;
 
 class ColorColumn extends Column
 {
     use IsColumn;
     use ColorColumnConfiguration,
         ColorColumnHelpers;
+    use HasDefaultStringValue;
 
     public ?object $colorCallback = null;
-
-    public string $defaultValue = '';
 
     protected string $view = 'livewire-tables::includes.columns.color';
 
@@ -39,7 +39,7 @@ class ColorColumn extends Column
             ->withAttributeBag($this->getAttributeBag($row));
     }
 
-    public function getValue(Model $row)
+    public function getValue(Model $row): string
     {
         return parent::getValue($row) ?? $this->getDefaultValue();
     }

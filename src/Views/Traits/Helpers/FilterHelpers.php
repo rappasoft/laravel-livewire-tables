@@ -35,7 +35,7 @@ trait FilterHelpers
     /**
      * Get the filter options.
      */
-    public function getDefaultValue()
+    public function getDefaultValue(): mixed
     {
         return null;
     }

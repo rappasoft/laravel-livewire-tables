@@ -24,7 +24,7 @@ trait IsArrayFilter
         return $this->filterDefaultValue ?? [];
     }
 
-    public function isEmpty($value): bool
+    public function isEmpty(array $value): bool
     {
         return ! is_array($value) || empty($value);
     }

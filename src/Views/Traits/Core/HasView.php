@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait HasView
 {
-    protected function bootedHasView()
+    protected function bootedHasView(): void
     {
         if (! property_exists($this, 'view') || ! isset($this->view) || $this->view == null) {
             throw new DataTableConfigurationException('No View Defined');

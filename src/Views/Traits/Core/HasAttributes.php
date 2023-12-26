@@ -28,7 +28,7 @@ trait HasAttributes
     }
 
     // TODO: Test
-    public function getAttributeBag($row)
+    public function getAttributeBag($row): ComponentAttributeBag
     {
         return new ComponentAttributeBag($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }
@@ -37,7 +37,7 @@ trait HasAttributes
      * @param  array<mixed>  $attributes
      * @return mixed
      */
-    public function arrayToAttributes(array $attributes)
+    public function arrayToAttributes(array $attributes): mixed
     {
         return implode(' ', array_map(function ($key) use ($attributes) {
             if (is_bool($attributes[$key])) {

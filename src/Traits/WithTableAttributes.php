@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Closure;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\TableAttributeConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\TableAttributeHelpers;
 
@@ -20,15 +21,15 @@ trait WithTableAttributes
 
     protected array $tbodyAttributes = [];
 
-    protected $thAttributesCallback;
+    protected ?Closure $thAttributesCallback;
 
-    protected $thSortButtonAttributesCallback;
+    protected ?Closure $thSortButtonAttributesCallback;
 
-    protected $trAttributesCallback;
+    protected ?Closure $trAttributesCallback;
 
-    protected $tdAttributesCallback;
+    protected ?Closure $tdAttributesCallback;
 
-    protected $trUrlCallback;
+    protected ?Closure $trUrlCallback;
 
-    protected $trUrlTargetCallback;
+    protected ?Closure $trUrlTargetCallback;
 }
