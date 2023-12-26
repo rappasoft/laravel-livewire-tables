@@ -23,7 +23,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-
     public function format(callable $callable): Column
     {
         $this->formatCallback = $callable;
@@ -44,7 +43,6 @@ trait ColumnConfiguration
 
         return $this;
     }
-
 
     public function eagerLoadRelations(): self
     {

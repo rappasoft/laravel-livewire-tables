@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait IsCollapsible
 {
-
     protected bool $collapseOnMobile = false;
 
     protected bool $collapseOnTablet = false;
@@ -53,5 +52,4 @@ trait IsCollapsible
     {
         return $this->collapseAlways;
     }
-
 }

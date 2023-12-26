@@ -102,6 +102,4 @@ trait IsSortable
 
         return $direction === 'asc' ? $component->getDefaultSortingLabelAsc() : $component->getDefaultSortingLabelDesc();
     }
-
-
 }

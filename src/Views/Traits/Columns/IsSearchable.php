@@ -12,7 +12,6 @@ trait IsSearchable
 
     protected mixed $searchCallback = null;
 
-    
     public function getSearchCallback(): ?callable
     {
         return $this->searchCallback;
