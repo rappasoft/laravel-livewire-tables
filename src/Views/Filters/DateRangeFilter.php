@@ -11,7 +11,9 @@ class DateRangeFilter extends Filter
         HasOptions;
 
     protected string $view = 'livewire-tables::components.tools.filters.date-range';
+
     protected string $configPath = 'livewire-tables.dateRange.defaultConfig';
+
     protected string $optionsPath = 'livewire-tables.dateRange.defaultOptions';
 
     public function getKeys(): array
