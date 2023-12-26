@@ -33,9 +33,9 @@ trait HasOptions
 
     public function getOptions(): array
     {
-        return $this->options;
+        return $this->options ?? $this->options = config($this->optionsPath, []);
     }
-
+    
     public function getKeys(): array
     {
         return collect($this->getOptions())
@@ -45,4 +45,5 @@ trait HasOptions
             ->values()
             ->toArray();
     }
+
 }

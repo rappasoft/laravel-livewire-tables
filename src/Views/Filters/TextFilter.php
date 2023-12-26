@@ -3,9 +3,12 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{IsStringFilter};
 
 class TextFilter extends Filter
 {
+    use IsStringFilter;
+
     protected string $view = 'livewire-tables::components.tools.filters.text-field';
 
     public function validate(string $value): string|bool
@@ -15,11 +18,6 @@ class TextFilter extends Filter
         }
 
         return strlen($value) ? $value : false;
-    }
-
-    public function isEmpty(?string $value): bool
-    {
-        return is_null($value) || $value === '';
     }
 
     /**
