@@ -4,17 +4,17 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use DateTime;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig, IsStringFilter};
 
 class DateFilter extends Filter
 {
+    use HasConfig,
+        IsStringFilter;
+
     protected string $view = 'livewire-tables::components.tools.filters.date';
 
-    public function config(array $config = []): DateFilter
-    {
-        $this->config = [...config('livewire-tables.dateFilter.defaultConfig'), ...$config];
+    protected string $configPath = 'livewire-tables.dateFilter.defaultConfig';
 
-        return $this;
-    }
 
     public function validate(string $value): string|bool
     {
@@ -23,11 +23,6 @@ class DateFilter extends Filter
         }
 
         return $value;
-    }
-
-    public function isEmpty(?string $value): bool
-    {
-        return is_null($value) || $value === '';
     }
 
     public function getFilterPillValue($value): ?string

@@ -199,7 +199,7 @@ class MultiSelectFilterTest extends TestCase
     {
         $filter = MultiSelectFilter::make('Active');
         $this->assertTrue($filter->isEmpty(''));
-        $this->assertFalse($filter->isEmpty([]));
+        $this->assertTrue($filter->isEmpty([]));
         $this->assertTrue($filter->isEmpty('123'));
         $this->assertTrue($filter->isEmpty('test'));
         $this->assertFalse($filter->isEmpty([1]));

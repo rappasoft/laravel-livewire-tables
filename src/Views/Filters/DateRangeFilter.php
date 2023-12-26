@@ -3,25 +3,15 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig,HasOptions};
 
 class DateRangeFilter extends Filter
 {
-    public array $options = [];
+    use HasConfig,
+        HasOptions;
 
     protected string $view = 'livewire-tables::components.tools.filters.date-range';
-
-    public function config(array $config = []): DateRangeFilter
-    {
-        $this->config = [...config('livewire-tables.dateRange.defaultConfig'), ...$config];
-
-        return $this;
-    }
-
-    public function getConfigs(): array
-    {
-        return ! empty($this->config) ? $this->config : $this->config = config('livewire-tables.dateRange.defaultConfig');
-
-    }
+    protected string $configPath = 'livewire-tables.dateRange.defaultConfig';
 
     public function options(array $options = []): DateRangeFilter
     {

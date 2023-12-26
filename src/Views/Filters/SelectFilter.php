@@ -3,24 +3,14 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsStringFilter};
 
 class SelectFilter extends Filter
 {
-    public array $options = [];
+    use HasOptions,
+        IsStringFilter;
 
     protected string $view = 'livewire-tables::components.tools.filters.select';
-
-    public function options(array $options = []): SelectFilter
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
 
     public function getKeys(): array
     {
@@ -50,16 +40,4 @@ class SelectFilter extends Filter
             ?? null;
     }
 
-    public function isEmpty($value): bool
-    {
-        return $value === '';
-    }
-
-    /**
-     * Gets the Default Value for this Filter via the Component
-     */
-    public function getFilterDefaultValue(): ?string
-    {
-        return $this->filterDefaultValue ?? null;
-    }
 }

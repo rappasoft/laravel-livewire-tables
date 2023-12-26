@@ -3,48 +3,14 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsArrayFilter};
 
 class MultiSelectFilter extends Filter
 {
-    public array $options = [];
+    use HasOptions,
+        IsArrayFilter;
 
     protected string $view = 'livewire-tables::components.tools.filters.multi-select';
-
-    protected string $firstOption = '';
-
-    public function setFirstOption(string $firstOption): MultiSelectFilter
-    {
-        $this->firstOption = $firstOption;
-
-        return $this;
-    }
-
-    public function getFirstOption(): string
-    {
-        return $this->firstOption;
-    }
-
-    public function options(array $options = []): MultiSelectFilter
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
-
-    public function getKeys(): array
-    {
-        return collect($this->getOptions())
-            ->keys()
-            ->map(fn ($value) => (string) $value)
-            ->filter(fn ($value) => strlen($value))
-            ->values()
-            ->toArray();
-    }
 
     public function validate(int|string|array $value): array|int|string|bool
     {
@@ -59,23 +25,7 @@ class MultiSelectFilter extends Filter
 
         return $value;
     }
-
-    /**
-     * Get the filter default options.
-     */
-    public function getDefaultValue(): array
-    {
-        return [];
-    }
-
-    /**
-     * Gets the Default Value for this Filter via the Component
-     */
-    public function getFilterDefaultValue(): array
-    {
-        return $this->filterDefaultValue ?? [];
-    }
-
+    
     public function getFilterPillValue($value): ?string
     {
         $values = [];
@@ -91,8 +41,5 @@ class MultiSelectFilter extends Filter
         return implode(', ', $values);
     }
 
-    public function isEmpty($value): bool
-    {
-        return ! is_array($value);
-    }
+
 }
