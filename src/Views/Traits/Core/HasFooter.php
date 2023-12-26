@@ -31,7 +31,7 @@ trait HasFooter
 
         return $this;
     }
-    
+
     public function hasFooter(): bool
     {
         return $this->footer === true;

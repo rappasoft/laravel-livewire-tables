@@ -33,7 +33,6 @@ trait HasSecondaryHeader
         return $this;
     }
 
-
     public function hasSecondaryHeader(): bool
     {
         return $this->secondaryHeader === true;

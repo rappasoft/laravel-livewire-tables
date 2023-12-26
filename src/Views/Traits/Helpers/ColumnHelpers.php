@@ -319,8 +319,6 @@ trait ColumnHelpers
         return $this->selected === true;
     }
 
-
-
     public function isClickable(): bool
     {
         return $this->clickable &&
