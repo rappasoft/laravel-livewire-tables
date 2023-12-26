@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ImageColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ImageColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\HasLocationCallback;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ImageColumnHelpers;
 
 class ImageColumn extends Column
 {

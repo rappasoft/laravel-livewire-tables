@@ -11,6 +11,4 @@ trait LinkColumnConfiguration
 
         return $this;
     }
-
-
 }
