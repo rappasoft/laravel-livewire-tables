@@ -9,16 +9,6 @@ trait BooleanColumnConfiguration
     /**
      * @return $this
      */
-    public function setCallback(Closure $callback): self
-    {
-        $this->callback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
     public function setSuccessValue(bool $value): self
     {
         $this->successValue = $value;

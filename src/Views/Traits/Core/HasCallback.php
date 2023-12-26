@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Views\Traits;
+namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 use Closure;
 use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};

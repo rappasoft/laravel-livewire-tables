@@ -6,15 +6,6 @@ use Closure;
 
 trait BooleanColumnHelpers
 {
-    public function hasCallback(): bool
-    {
-        return $this->callback !== null;
-    }
-
-    public function getCallback(): Closure
-    {
-        return $this->callback;
-    }
 
     public function getSuccessValue(): bool
     {

@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\{ColumnHelpers,RelationshipHelpers};
-use Rappasoft\LaravelLivewireTables\Views\Traits\{HasAttributes,HasView};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes,HasView};
 
 trait IsColumn
 {
