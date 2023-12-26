@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 use Closure;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
@@ -28,7 +29,7 @@ trait HasAttributes
     }
 
     // TODO: Test
-    public function getAttributeBag($row): ComponentAttributeBag
+    public function getAttributeBag(Model $row): ComponentAttributeBag
     {
         return new ComponentAttributeBag($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }
