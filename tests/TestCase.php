@@ -79,12 +79,12 @@ class TestCase extends Orchestra
     {
         $view = view('livewire-tables::datatable');
         $this->basicTable = new PetsTable();
-        $this->basicTable->bootComponentUtilities();
         $this->basicTable->boot();
-        $this->basicTable->bootWithData();
-        $this->basicTable->bootWithColumns();
-        $this->basicTable->bootWithColumnSelect();
-        $this->basicTable->bootWithSecondaryHeader();
+        $this->basicTable->bootedComponentUtilities();
+        $this->basicTable->bootedWithData();
+        $this->basicTable->bootedWithColumns();
+        $this->basicTable->bootedWithColumnSelect();
+        $this->basicTable->bootedWithSecondaryHeader();
         $this->basicTable->booted();
         $this->basicTable->renderingWithData($view, []);
         $this->basicTable->renderingWithPagination($view, []);
