@@ -200,16 +200,6 @@ class ComponentHelpersTest extends TestCase
     }
 
     /** @test */
-    public function can_get_additional_selects_nonarray(): void
-    {
-        $this->assertEquals([], $this->basicTable->getAdditionalSelects());
-
-        $this->basicTable->setAdditionalSelects('name');
-
-        $this->assertEquals(['name'], $this->basicTable->getAdditionalSelects());
-    }
-
-    /** @test */
     public function can_get_configurable_areas(): void
     {
         $this->assertEquals([

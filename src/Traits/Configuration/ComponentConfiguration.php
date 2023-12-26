@@ -85,7 +85,7 @@ trait ComponentConfiguration
         if (! is_array($selects)) {
             $selects = [$selects];
         }
-        $this->additionalSelects = [$this->additionalSelects, ...$selects];
+        $this->additionalSelects = [...$this->additionalSelects, ...$selects];
 
         return $this;
     }
