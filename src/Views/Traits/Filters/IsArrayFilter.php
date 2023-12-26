@@ -26,10 +26,10 @@ trait IsArrayFilter
 
     public function isEmpty(mixed $value): bool
     {
-        if (!is_array($value))
-        {
+        if (! is_array($value)) {
             return true;
         }
+
         return empty($value);
     }
 }

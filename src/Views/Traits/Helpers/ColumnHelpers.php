@@ -140,8 +140,6 @@ trait ColumnHelpers
         return $row->{$this->getRelationString().'.'.$this->getField()};
     }
 
-
-
     public function eagerLoadRelationsIsEnabled(): bool
     {
         return $this->eagerLoadRelations === true;
@@ -205,7 +203,6 @@ trait ColumnHelpers
     {
         return $this->selected === true;
     }
-
 
     public function isClickable(): bool
     {

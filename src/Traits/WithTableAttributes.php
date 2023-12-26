@@ -33,4 +33,3 @@ trait WithTableAttributes
 
     protected $trUrlTargetCallback;
 }
-
