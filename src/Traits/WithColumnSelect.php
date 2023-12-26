@@ -45,7 +45,7 @@ trait WithColumnSelect
         return [];
     }
 
-    public function bootWithColumnSelect(): void
+    public function bootedWithColumnSelect(): void
     {
         $this->setupColumnSelect();
     }

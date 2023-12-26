@@ -56,7 +56,7 @@ trait ComponentUtilities
     /**
      * Runs configure() with Lifecycle Hooks on each Lifecycle
      */
-    public function bootComponentUtilities(): void
+    public function bootedComponentUtilities(): void
     {
         // Fire Lifecycle Hooks for configuring
         $this->callHook('configuring');

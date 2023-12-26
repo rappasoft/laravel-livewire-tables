@@ -31,7 +31,7 @@ trait WithColumns
     /**
      * Sets up Columns
      */
-    public function bootWithColumns(): void
+    public function bootedWithColumns(): void
     {
         $this->columns = collect();
 
