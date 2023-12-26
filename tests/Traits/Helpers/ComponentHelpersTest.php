@@ -172,6 +172,46 @@ class ComponentHelpersTest extends TestCase
     }
 
     /** @test */
+    public function can_add_additional_selects(): void
+    {
+        $this->assertEquals([], $this->basicTable->getAdditionalSelects());
+
+        $this->basicTable->setAdditionalSelects(['id', 'name']);
+
+        $this->assertEquals(['id', 'name'], $this->basicTable->getAdditionalSelects());
+
+        $this->basicTable->addAdditionalSelects(['updated_at']);
+
+        $this->assertEquals(['id', 'name', 'updated_at'], $this->basicTable->getAdditionalSelects());
+    }
+
+    /** @test */
+    public function can_add_additional_selects_nonarray(): void
+    {
+        $this->assertEquals([], $this->basicTable->getAdditionalSelects());
+
+        $this->basicTable->setAdditionalSelects('name');
+
+        $this->assertEquals(['name'], $this->basicTable->getAdditionalSelects());
+
+        $this->basicTable->addAdditionalSelects('updated_at');
+
+        $this->assertEquals(['name', 'updated_at'], $this->basicTable->getAdditionalSelects());
+    }
+
+
+    /** @test */
+    public function can_get_additional_selects_nonarray(): void
+    {
+        $this->assertEquals([], $this->basicTable->getAdditionalSelects());
+
+        $this->basicTable->setAdditionalSelects('name');
+
+        $this->assertEquals(['name'], $this->basicTable->getAdditionalSelects());
+    }
+
+
+    /** @test */
     public function can_get_configurable_areas(): void
     {
         $this->assertEquals([
