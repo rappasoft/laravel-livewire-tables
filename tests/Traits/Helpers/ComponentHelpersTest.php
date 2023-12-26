@@ -199,7 +199,6 @@ class ComponentHelpersTest extends TestCase
         $this->assertEquals(['name', 'updated_at'], $this->basicTable->getAdditionalSelects());
     }
 
-
     /** @test */
     public function can_get_additional_selects_nonarray(): void
     {
@@ -209,7 +208,6 @@ class ComponentHelpersTest extends TestCase
 
         $this->assertEquals(['name'], $this->basicTable->getAdditionalSelects());
     }
-
 
     /** @test */
     public function can_get_configurable_areas(): void
