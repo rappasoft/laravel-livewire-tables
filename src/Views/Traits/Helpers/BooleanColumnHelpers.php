@@ -6,7 +6,6 @@ use Closure;
 
 trait BooleanColumnHelpers
 {
-
     public function getSuccessValue(): bool
     {
         return $this->successValue;
