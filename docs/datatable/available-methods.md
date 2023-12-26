@@ -424,6 +424,8 @@ public function configure(): void
 
 By default the only columns defined in the select statement are the ones defined via columns. If you need to define additional selects that you don't have a column for you may:
 
+Note - that you may only call this once, and it will override any existing additionalSelects in use.
+
 ```php
 public function configure(): void
 {
@@ -432,6 +434,19 @@ public function configure(): void
 ```
 
 Since you probably won't have an `ID` column defined, the ID will not be available on the model to use. In the case of an actions column where you have buttons specific to the row, you probably need that, so you can add the select statement to make it available on the model.
+
+### addAdditionalSelects
+
+By default the only columns defined in the select statement are the ones defined via columns. If you need to define additional selects that you don't have a column for you may:
+
+Note - that in contrast to setAdditionalSelects, you may call this multipole times, and it will append the additional selects.  Take care not to re-use the same field names!
+
+```php
+public function configure(): void
+{
+  $this->addAdditionalSelects(['users.id as id']);
+}
+```
 
 ## Misc.
 

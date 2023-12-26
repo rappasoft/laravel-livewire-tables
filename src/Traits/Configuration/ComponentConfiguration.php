@@ -63,6 +63,9 @@ trait ComponentConfiguration
         return $this;
     }
 
+    /**
+     * Allows adding a single set of additional selects to the query
+     */
     public function setAdditionalSelects(string|array $selects): self
     {
         if (! is_array($selects)) {
@@ -70,6 +73,19 @@ trait ComponentConfiguration
         }
 
         $this->additionalSelects = $selects;
+
+        return $this;
+    }
+
+    /**
+     * Allows appending more additional selects
+     */
+    public function addAdditionalSelects(string|array $selects): self
+    {
+        if (! is_array($selects)) {
+            $selects = [$selects];
+        }
+        $this->additionalSelects = [...$this->additionalSelects, ...$selects];
 
         return $this;
     }
