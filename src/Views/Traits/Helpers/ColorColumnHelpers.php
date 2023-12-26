@@ -9,7 +9,7 @@ trait ColorColumnHelpers
     // TODO: Test
     public function getColor($row): string
     {
-        return $this->hasColorCallback() ? app()->call($this->getColorCallback(), ['row' => $row]) : ($this->getValue($row) ?? $this->getDefaultValue());
+        return $this->hasColorCallback() ? app()->call($this->getColorCallback(), ['row' => $row]) : ($this->getValue($row));
     }
 
     public function getColorCallback(): ?callable
