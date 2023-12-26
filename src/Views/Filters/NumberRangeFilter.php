@@ -10,6 +10,7 @@ class NumberRangeFilter extends Filter
     use HasOptions;
 
     protected string $view = 'livewire-tables::components.tools.filters.number-range';
+
     protected string $configPath = 'livewire-tables.numberRange.defaultConfig';
 
     public function options(array $options = []): NumberRangeFilter

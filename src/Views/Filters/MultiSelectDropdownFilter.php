@@ -12,7 +12,6 @@ class MultiSelectDropdownFilter extends Filter
 
     protected string $view = 'livewire-tables::components.tools.filters.multi-select-dropdown';
 
-
     public function validate(int|string|array $value): array|int|string|bool
     {
         if (is_array($value)) {
@@ -28,7 +27,6 @@ class MultiSelectDropdownFilter extends Filter
 
         return (is_string($value) || is_numeric($value)) ? $value : false;
     }
-
 
     public function getFilterPillValue($value): ?string
     {

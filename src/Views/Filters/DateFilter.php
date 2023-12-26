@@ -15,7 +15,6 @@ class DateFilter extends Filter
 
     protected string $configPath = 'livewire-tables.dateFilter.defaultConfig';
 
-
     public function validate(string $value): string|bool
     {
         if (DateTime::createFromFormat('Y-m-d', $value) === false) {

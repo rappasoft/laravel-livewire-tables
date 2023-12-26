@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait IsStringFilter
 {
-
     public function isEmpty(?string $value): bool
     {
         return is_null($value) || $value === '';

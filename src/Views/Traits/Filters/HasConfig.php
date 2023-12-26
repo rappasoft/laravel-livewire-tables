@@ -19,6 +19,4 @@ trait HasConfig
     {
         return ! empty($this->config) ? $this->config : $this->config = config($this->configPath);
     }
-
-
 }

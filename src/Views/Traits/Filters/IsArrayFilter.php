@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait IsArrayFilter
 {
-
     /**
      * Get the filter default options.
      */

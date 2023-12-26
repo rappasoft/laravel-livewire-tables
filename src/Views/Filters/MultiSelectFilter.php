@@ -25,7 +25,7 @@ class MultiSelectFilter extends Filter
 
         return $value;
     }
-    
+
     public function getFilterPillValue($value): ?string
     {
         $values = [];
@@ -40,6 +40,4 @@ class MultiSelectFilter extends Filter
 
         return implode(', ', $values);
     }
-
-
 }

@@ -12,6 +12,7 @@ class DateTimeFilter extends Filter
         IsStringFilter;
 
     protected string $view = 'livewire-tables::components.tools.filters.datetime';
+
     protected string $configPath = 'livewire-tables.dateTimeFilter.defaultConfig';
 
     public function validate(string $value): string|bool
@@ -22,7 +23,6 @@ class DateTimeFilter extends Filter
 
         return $value;
     }
-
 
     public function getFilterPillValue($value): ?string
     {

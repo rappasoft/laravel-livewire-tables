@@ -39,5 +39,4 @@ class SelectFilter extends Filter
                 ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$value]
             ?? null;
     }
-
 }

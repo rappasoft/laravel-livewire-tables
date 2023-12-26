@@ -35,7 +35,7 @@ trait HasOptions
     {
         return $this->options;
     }
-    
+
     public function getKeys(): array
     {
         return collect($this->getOptions())
@@ -45,5 +45,4 @@ trait HasOptions
             ->values()
             ->toArray();
     }
-
 }
