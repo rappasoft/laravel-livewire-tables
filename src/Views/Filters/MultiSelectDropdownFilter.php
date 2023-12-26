@@ -11,6 +11,7 @@ class MultiSelectDropdownFilter extends Filter
         IsArrayFilter;
 
     protected string $view = 'livewire-tables::components.tools.filters.multi-select-dropdown';
+
     protected string $configPath = 'livewire-tables.multiSelectDropdownFilter.defaultConfig';
 
     public function validate(int|string|array $value): array|int|string|bool
