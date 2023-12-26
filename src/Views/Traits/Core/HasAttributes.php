@@ -35,7 +35,6 @@ trait HasAttributes
 
     /**
      * @param  array<mixed>  $attributes
-     * @return mixed
      */
     public function arrayToAttributes(array $attributes): mixed
     {
