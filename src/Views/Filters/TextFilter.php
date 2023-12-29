@@ -19,12 +19,4 @@ class TextFilter extends Filter
 
         return strlen($value) ? $value : false;
     }
-
-    /**
-     * Gets the Default Value for this Filter via the Component
-     */
-    public function getFilterDefaultValue(): ?string
-    {
-        return $this->filterDefaultValue ?? null;
-    }
 }

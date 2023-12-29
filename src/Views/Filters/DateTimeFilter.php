@@ -8,8 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig, IsStringFil
 
 class DateTimeFilter extends Filter
 {
-    use HasConfig,
-        IsStringFilter;
+    use IsStringFilter;
 
     protected string $view = 'livewire-tables::components.tools.filters.datetime';
 
@@ -31,13 +30,5 @@ class DateTimeFilter extends Filter
         }
 
         return null;
-    }
-
-    /**
-     * Gets the Default Value for this Filter via the Component
-     */
-    public function getFilterDefaultValue(): ?string
-    {
-        return $this->filterDefaultValue ?? null;
     }
 }
