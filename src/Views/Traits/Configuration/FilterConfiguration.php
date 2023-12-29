@@ -23,35 +23,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    public function hiddenFromMenus(): self
-    {
-        $this->hiddenFromMenus = true;
-
-        return $this;
-    }
-
-    public function hiddenFromPills(): self
-    {
-        $this->hiddenFromPills = true;
-
-        return $this;
-    }
-
-    public function hiddenFromFilterCount(): self
-    {
-        $this->hiddenFromFilterCount = true;
-
-        return $this;
-    }
-
-    public function hiddenFromAll(): self
-    {
-        $this->hiddenFromMenus = true;
-        $this->hiddenFromPills = true;
-        $this->hiddenFromFilterCount = true;
-
-        return $this;
-    }
 
     public function notResetByClearButton(): self
     {
@@ -60,32 +31,9 @@ trait FilterConfiguration
         return $this;
     }
 
-    public function setFilterPosition(string $position): self
-    {
-        $this->filterPosition = $position;
-
-        return $this;
-    }
-
     public function setCustomFilterLabel(string $filterCustomLabel): self
     {
         $this->filterCustomLabel = $filterCustomLabel;
-
-        return $this;
-    }
-
-    public function setFilterSlidedownRow(string $filterSlidedownRow): self
-    {
-        //$this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
-        $this->filterSlidedownRow = intval($filterSlidedownRow);
-
-        return $this;
-    }
-
-    public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
-    {
-        //$this->filterSlidedownColspan = (is_int($filterSlidedownColspan) ? $filterSlidedownColspan : intval($filterSlidedownColspan));
-        $this->filterSlidedownColspan = intval($filterSlidedownColspan);
 
         return $this;
     }
