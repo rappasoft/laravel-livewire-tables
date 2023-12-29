@@ -127,6 +127,4 @@ trait PaginationConfiguration
 
         return $this;
     }
-
-
 }
