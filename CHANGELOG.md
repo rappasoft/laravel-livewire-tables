@@ -6,6 +6,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Bug Fixes
 - Ensure mount() is called prior to bundler() executing by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1603
+- Fix published view path
 
 ### New Features
 - Add capability to call a new "addAdditionalSelects()" to append select table fields (without impacting setAdditionalSelect) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1609
