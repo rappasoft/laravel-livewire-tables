@@ -39,6 +39,15 @@ trait WithPagination
 
     protected bool $shouldShowPaginationDetails = true;
 
+    public function mountWithPagination(): void
+    {
+        $sessionPerPage = session()->get($this->getPerPagePaginationSessionKey(), $this->getPerPageAccepted()[0] ?? 10);
+        if (! in_array((int) $sessionPerPage, $this->getPerPageAccepted(), false)) {
+            $sessionPerPage = $this->getPerPageAccepted()[0] ?? 10;
+        }
+        $this->setPerPage($sessionPerPage);
+    }
+
     // TODO: Test
     public function updatedPerPage($value): void
     {
@@ -65,6 +74,7 @@ trait WithPagination
 
         return [];
     }
+
 
     public function renderingWithPagination(): void
     {
