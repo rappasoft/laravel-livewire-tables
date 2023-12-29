@@ -23,27 +23,9 @@ trait ColumnConfiguration
         return $this;
     }
 
-    public function sortable(?callable $callback = null): self
-    {
-        $this->sortable = true;
-
-        $this->sortCallback = $callback;
-
-        return $this;
-    }
-
     public function format(callable $callable): Column
     {
         $this->formatCallback = $callable;
-
-        return $this;
-    }
-
-    public function searchable(?callable $callback = null): self
-    {
-        $this->searchable = true;
-
-        $this->searchCallback = $callback;
 
         return $this;
     }
@@ -58,21 +40,6 @@ trait ColumnConfiguration
     public function setTable(string $table): self
     {
         $this->table = $table;
-
-        return $this;
-    }
-
-    public function setSortingPillTitle(string $title): self
-    {
-        $this->sortingPillTitle = $title;
-
-        return $this;
-    }
-
-    public function setSortingPillDirections(string $asc, string $desc): self
-    {
-        $this->sortingPillDirectionAsc = $asc;
-        $this->sortingPillDirectionDesc = $desc;
 
         return $this;
     }
@@ -104,48 +71,6 @@ trait ColumnConfiguration
     public function deselected(): self
     {
         $this->selected = false;
-
-        return $this;
-    }
-
-    /**
-     * @param  mixed  $callback
-     */
-    public function secondaryHeader($callback = null): self
-    {
-        $this->secondaryHeader = true;
-
-        $this->secondaryHeaderCallback = $callback;
-
-        return $this;
-    }
-
-    public function secondaryHeaderFilter(string $filterKey): self
-    {
-        $this->secondaryHeader = true;
-
-        $this->secondaryHeaderCallback = $filterKey;
-
-        return $this;
-    }
-
-    /**
-     * @param  mixed  $callback
-     */
-    public function footer($callback = null): self
-    {
-        $this->footer = true;
-
-        $this->footerCallback = $callback;
-
-        return $this;
-    }
-
-    public function footerFilter(string $filterKey): self
-    {
-        $this->footer = true;
-
-        $this->footerCallback = $filterKey;
 
         return $this;
     }

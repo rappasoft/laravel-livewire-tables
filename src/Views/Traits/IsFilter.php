@@ -3,12 +3,15 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasConfig,HasView};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
 
 trait IsFilter
 {
     use FilterConfiguration,
-        FilterHelpers;
+        FilterHelpers,
+        HasConfig,
+        HasView;
 
     protected string $name;
 
@@ -23,8 +26,6 @@ trait IsFilter
     protected bool $resetByClearButton = true;
 
     protected mixed $filterCallback = null;
-
-    public array $config = [];
 
     protected ?string $filterPillTitle = null;
 
@@ -43,8 +44,6 @@ trait IsFilter
     protected ?string $filterCustomPillBlade = null;
 
     protected mixed $filterDefaultValue = null;
-
-    public string $viewPath;
 
     public array $genericDisplayData = [];
 }

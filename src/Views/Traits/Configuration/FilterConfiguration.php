@@ -6,16 +6,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait FilterConfiguration
 {
-    /**
-     * @param  array<mixed>  $config
-     */
-    public function config(array $config = []): Filter
-    {
-        $this->config = $config;
-
-        return $this;
-    }
-
     public function setFilterPillTitle(string $title): self
     {
         $this->filterPillTitle = $title;
@@ -136,13 +126,6 @@ trait FilterConfiguration
             'isBootstrap4' => $genericDisplayData['isBootstrap4'],
             'isBootstrap5' => $genericDisplayData['isBootstrap5'],
         ];
-
-        return $this;
-    }
-
-    public function setCustomView(string $customView): self
-    {
-        $this->viewPath = $customView;
 
         return $this;
     }

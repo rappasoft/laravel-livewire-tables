@@ -8,7 +8,5 @@ trait LivewireComponentColumnConfiguration
 
     protected string $componentView;
 
-    protected mixed $attributesCallback;
-
     protected mixed $slotCallback;
 }

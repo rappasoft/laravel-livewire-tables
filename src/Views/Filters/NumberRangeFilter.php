@@ -3,12 +3,15 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions};
 
 class NumberRangeFilter extends Filter
 {
-    public array $options = [];
+    use HasOptions;
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.number-range';
+    protected string $view = 'livewire-tables::components.tools.filters.number-range';
+
+    protected string $configPath = 'livewire-tables.numberRange.defaultConfig';
 
     public function options(array $options = []): NumberRangeFilter
     {
@@ -86,10 +89,5 @@ class NumberRangeFilter extends Filter
         }
 
         return '';
-    }
-
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

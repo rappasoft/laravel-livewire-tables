@@ -3,48 +3,18 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsArrayFilter};
 
 class MultiSelectDropdownFilter extends Filter
 {
-    public array $options = [];
+    use HasOptions,
+        IsArrayFilter;
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.multi-select-dropdown';
+    protected string $view = 'livewire-tables::components.tools.filters.multi-select-dropdown';
 
-    protected string $firstOption = '';
+    protected string $configPath = 'livewire-tables.multiSelectDropdownFilter.defaultConfig';
 
-    public function setFirstOption(string $firstOption): MultiSelectDropdownFilter
-    {
-        $this->firstOption = $firstOption;
-
-        return $this;
-    }
-
-    public function getFirstOption(): string
-    {
-        return $this->firstOption;
-    }
-
-    public function options(array $options = []): MultiSelectDropdownFilter
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
-
-    public function getKeys(): array
-    {
-        return collect($this->getOptions())
-            ->keys()
-            ->map(fn ($value) => (string) $value)
-            ->filter(fn ($value) => strlen($value))
-            ->values()
-            ->toArray();
-    }
+    protected string $optionsPath = 'livewire-tables.multiSelectDropdownFilter.defaultOptions';
 
     public function validate(int|string|array $value): array|int|string|bool
     {
@@ -60,22 +30,6 @@ class MultiSelectDropdownFilter extends Filter
         }
 
         return (is_string($value) || is_numeric($value)) ? $value : false;
-    }
-
-    /**
-     * Get the filter default options.
-     */
-    public function getDefaultValue(): array
-    {
-        return [];
-    }
-
-    /**
-     * Gets the Default Value for this Filter via the Component
-     */
-    public function getFilterDefaultValue(): array
-    {
-        return $this->filterDefaultValue ?? [];
     }
 
     public function getFilterPillValue($value): ?string
@@ -105,10 +59,5 @@ class MultiSelectDropdownFilter extends Filter
         }
 
         return false;
-    }
-
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

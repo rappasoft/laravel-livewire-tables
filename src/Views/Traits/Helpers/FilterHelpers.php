@@ -23,26 +23,6 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter configs.
-     *
-     * @return array<mixed>
-     */
-    public function getConfigs(): array
-    {
-        return $this->config;
-    }
-
-    /**
-     * Get a single filter config.
-     *
-     * @return mixed
-     */
-    public function getConfig(string $key)
-    {
-        return $this->config[$key] ?? null;
-    }
-
-    /**
      * Get the filter keys.
      *
      * @return array<mixed>
@@ -55,7 +35,7 @@ trait FilterHelpers
     /**
      * Get the filter options.
      */
-    public function getDefaultValue()
+    public function getDefaultValue(): mixed
     {
         return null;
     }
@@ -106,16 +86,6 @@ trait FilterHelpers
     public function getCustomFilterPillValue(string $value): ?string
     {
         return $this->getCustomFilterPillValues()[$value] ?? null;
-    }
-
-    public function hasConfigs(): bool
-    {
-        return count($this->getConfigs()) > 0;
-    }
-
-    public function hasConfig(string $key): bool
-    {
-        return array_key_exists($key, $this->getConfigs()) && $this->getConfig($key) !== null;
     }
 
     public function isHiddenFromMenus(): bool
@@ -266,8 +236,8 @@ trait FilterHelpers
         return array_merge($this->getGenericDisplayData(), ['filter' => $this]);
     }
 
-    public function getViewPath(): string
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return $this->viewPath;
+        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

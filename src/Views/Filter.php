@@ -9,6 +9,8 @@ abstract class Filter
 {
     use IsFilter;
 
+    protected string $view = '';
+
     public function __construct(string $name, ?string $key = null)
     {
         $this->name = $name;
@@ -28,8 +30,4 @@ abstract class Filter
     {
         return new static($name, $key);
     }
-
-    abstract public function isEmpty(string $value): bool;
-
-    abstract public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory;
 }
