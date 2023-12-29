@@ -122,7 +122,7 @@ trait PaginationHelpers
     {
         $this->resetPage($this->getComputedPageName());
     }
-    
+
     // TODO: Test
     public function setupPagination(): void
     {
@@ -136,5 +136,4 @@ trait PaginationHelpers
             $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
         }
     }
-
 }

@@ -37,14 +37,13 @@ trait WithPagination
 
     public array $numberOfPaginatorsRendered = [];
 
-
     // TODO: Test
     public function updatedPerPage($value): void
     {
         if (! in_array((int) $value, $this->getPerPageAccepted(), false)) {
             $value = $this->getPerPageAccepted()[0] ?? 10;
         }
-        
+
         if (in_array(session($this->getPerPagePaginationSessionKey(), (int) $value), $this->getPerPageAccepted(), true)) {
             session()->put($this->getPerPagePaginationSessionKey(), (int) $value);
         } else {
@@ -60,7 +59,7 @@ trait WithPagination
 
         if ($this->queryStringIsEnabled()) {
             return [
-                'perPage' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias()."perPage"],
+                'perPage' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'perPage'],
             ];
         }
 
