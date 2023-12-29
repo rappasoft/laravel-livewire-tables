@@ -102,7 +102,6 @@ class PaginationHelpersTest extends TestCase
 
     }
 
-
     /** @test */
     public function can_enable_detailed_pagination(): void
     {
@@ -129,5 +128,4 @@ class PaginationHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->showPaginationDetails());
 
     }
-
 }
