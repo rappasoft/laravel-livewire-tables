@@ -37,47 +37,42 @@ trait WithPagination
 
     public array $numberOfPaginatorsRendered = [];
 
-    // TODO: Test
-    public function setupPagination(): void
-    {
-        if ($this->paginationIsDisabled()) {
-            return;
-        }
+    protected bool $shouldShowPaginationDetails = true;
 
-        if (in_array(session($this->getPerPagePaginationSessionKey(), $this->getPerPage()), $this->getPerPageAccepted(), true)) {
-            $this->setPerPage(session($this->getPerPagePaginationSessionKey(), $this->getPerPage()));
-        } else {
-            $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
+    public function mountWithPagination(): void
+    {
+        $sessionPerPage = session()->get($this->getPerPagePaginationSessionKey(), $this->getPerPageAccepted()[0] ?? 10);
+        if (! in_array((int) $sessionPerPage, $this->getPerPageAccepted(), false)) {
+            $sessionPerPage = $this->getPerPageAccepted()[0] ?? 10;
         }
+        $this->setPerPage($sessionPerPage);
     }
 
     // TODO: Test
     public function updatedPerPage($value): void
     {
-        if (! in_array($value, $this->getPerPageAccepted(), false)) {
-            $value = $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
+        if (! in_array((int) $value, $this->getPerPageAccepted(), false)) {
+            $value = $this->getPerPageAccepted()[0] ?? 10;
         }
 
-        if (in_array(session($this->getPerPagePaginationSessionKey(), $this->getPerPage()), $this->getPerPageAccepted(), true)) {
+        if (in_array(session($this->getPerPagePaginationSessionKey(), (int) $value), $this->getPerPageAccepted(), true)) {
             session()->put($this->getPerPagePaginationSessionKey(), (int) $value);
         } else {
             session()->put($this->getPerPagePaginationSessionKey(), $this->getPerPageAccepted()[0] ?? 10);
         }
-
-        $this->resetComputedPage();
+        $this->setPerPage($value);
     }
 
-    /**
-     * Reset the page using the custom page name
-     */
-    public function resetComputedPage(): void
+    protected function queryStringWithPagination(): array
     {
-        $this->resetPage($this->getComputedPageName());
-    }
 
-    private function getPerPagePaginationSessionKey(): string
-    {
-        return $this->tableName.'-perPage';
+        if ($this->queryStringIsEnabled()) {
+            return [
+                'perPage' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'perPage'],
+            ];
+        }
+
+        return [];
     }
 
     public function renderingWithPagination(): void

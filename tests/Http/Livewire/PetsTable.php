@@ -22,6 +22,28 @@ class PetsTable extends DataTableComponent
 {
     public $model = Pet::class;
 
+    public string $paginationTest = 'standard';
+
+    public function enableDetailedPagination(string $type = 'standard')
+    {
+        $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);
+        $this->setPaginationMethod($type);
+        $this->setDisplayPaginationDetailsEnabled();
+
+    }
+
+    public function disableDetailedPagination(string $type = 'standard')
+    {
+        $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);
+        $this->setPaginationMethod($type);
+        $this->setDisplayPaginationDetailsDisabled();
+    }
+
+    public function setPaginationTest(string $type)
+    {
+        $this->paginationTest = $type;
+    }
+
     public function configure(): void
     {
         $this->setPrimaryKey('id');
