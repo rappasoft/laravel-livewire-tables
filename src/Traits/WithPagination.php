@@ -75,7 +75,6 @@ trait WithPagination
         return [];
     }
 
-
     public function renderingWithPagination(): void
     {
         $this->setupPagination();
