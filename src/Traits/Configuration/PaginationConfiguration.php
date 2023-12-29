@@ -113,4 +113,20 @@ trait PaginationConfiguration
 
         return $this;
     }
+
+    public function displayPaginationDetails(): self
+    {
+        $this->shouldShowPaginationDetails = true;
+
+        return $this;
+    }
+
+    public function hidePaginationDetails(): self
+    {
+        $this->shouldShowPaginationDetails = false;
+
+        return $this;
+    }
+
+
 }
