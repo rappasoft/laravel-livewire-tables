@@ -109,4 +109,9 @@ trait PaginationHelpers
     {
         return $this->paginationCurrentCount;
     }
+
+    public function showPaginationDetails(): bool
+    {
+        return $this->shouldShowPaginationDetails === true;
+    }
 }
