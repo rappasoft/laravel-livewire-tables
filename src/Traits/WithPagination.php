@@ -37,8 +37,6 @@ trait WithPagination
 
     public array $numberOfPaginatorsRendered = [];
 
-    protected bool $shouldShowPaginationDetails = true;
-
     // TODO: Test
     public function updatedPerPage($value): void
     {

@@ -137,8 +137,4 @@ trait PaginationHelpers
         }
     }
 
-    public function showPaginationDetails(): bool
-    {
-        return $this->shouldShowPaginationDetails === true;
-    }
 }
