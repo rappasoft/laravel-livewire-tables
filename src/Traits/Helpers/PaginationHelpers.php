@@ -115,7 +115,6 @@ trait PaginationHelpers
         return $this->shouldShowPaginationDetails === true;
     }
 
-
     // TODO: Test
     public function setupPagination(): void
     {

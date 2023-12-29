@@ -39,7 +39,6 @@ trait WithPagination
 
     protected bool $shouldShowPaginationDetails = true;
 
-
     // TODO: Test
     public function updatedPerPage($value): void
     {
@@ -66,7 +65,6 @@ trait WithPagination
 
         return [];
     }
-
 
     public function renderingWithPagination(): void
     {
