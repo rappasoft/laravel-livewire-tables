@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.1.9] - 2023-12-29
+### Bug Fixes
+- Fix CHANGELOG.md missing release
+
 ## [v3.1.8] - 2023-12-29
 ### New Features
 - Add capability to show/hide Pagination Details (Rows x of y) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1618
