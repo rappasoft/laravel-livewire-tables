@@ -109,4 +109,32 @@ trait PaginationHelpers
     {
         return $this->paginationCurrentCount;
     }
+
+    protected function getPerPagePaginationSessionKey(): string
+    {
+        return $this->tableName.'-perPage';
+    }
+
+    /**
+     * Reset the page using the custom page name
+     */
+    public function resetComputedPage(): void
+    {
+        $this->resetPage($this->getComputedPageName());
+    }
+    
+    // TODO: Test
+    public function setupPagination(): void
+    {
+        if ($this->paginationIsDisabled()) {
+            return;
+        }
+
+        if (in_array(session($this->getPerPagePaginationSessionKey(), $this->getPerPage()), $this->getPerPageAccepted(), true)) {
+            $this->setPerPage(session($this->getPerPagePaginationSessionKey(), $this->getPerPage()));
+        } else {
+            $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
+        }
+    }
+
 }
