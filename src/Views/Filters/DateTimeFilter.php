@@ -8,7 +8,8 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig, IsStringFil
 
 class DateTimeFilter extends Filter
 {
-    use IsStringFilter;
+    use HasConfig,
+        IsStringFilter;
 
     protected string $view = 'livewire-tables::components.tools.filters.datetime';
 
@@ -31,4 +32,5 @@ class DateTimeFilter extends Filter
 
         return null;
     }
+
 }

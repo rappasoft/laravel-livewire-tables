@@ -7,7 +7,8 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig,HasOptions};
 
 class DateRangeFilter extends Filter
 {
-    use HasOptions;
+    use HasOptions,
+        HasConfig;
 
     protected string $view = 'livewire-tables::components.tools.filters.date-range';
 
