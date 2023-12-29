@@ -32,5 +32,4 @@ class DateTimeFilter extends Filter
 
         return null;
     }
-
 }
