@@ -27,7 +27,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
 
         // Override if Published
         $this->loadJsonTranslationsFrom(
-            $this->app->langPath('vendor/rappasoft/livewire-tables')
+            $this->app->langPath('vendor/livewire-tables')
         );
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
@@ -45,7 +45,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
             $this->publishes([
-                __DIR__.'/../resources/lang' => $this->app->langPath('vendor/rappasoft/livewire-tables'),
+                __DIR__.'/../resources/lang' => $this->app->langPath('vendor/livewire-tables'),
             ], 'livewire-tables-translations');
 
             $this->publishes([
@@ -53,7 +53,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             ], 'livewire-tables-config');
 
             $this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/rappasoft/livewire-tables'),
+                __DIR__.'/../resources/views' => resource_path('views/vendor/livewire-tables'),
             ], 'livewire-tables-views');
 
             $this->publishes([
