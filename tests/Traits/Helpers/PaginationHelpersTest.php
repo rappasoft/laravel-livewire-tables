@@ -101,4 +101,33 @@ class PaginationHelpersTest extends TestCase
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getPerPageDisplayedItemIds());
 
     }
+
+
+    /** @test */
+    public function can_enable_detailed_pagination(): void
+    {
+
+        $this->assertTrue($this->basicTable->showPaginationDetails());
+
+        $this->basicTable->setDisplayPaginationDetailsDisabled();
+
+        $this->assertFalse($this->basicTable->showPaginationDetails());
+
+        $this->basicTable->setDisplayPaginationDetailsEnabled();
+
+        $this->assertTrue($this->basicTable->showPaginationDetails());
+    }
+
+    /** @test */
+    public function can_disable_detailed_pagination(): void
+    {
+
+        $this->assertTrue($this->basicTable->showPaginationDetails());
+
+        $this->basicTable->setDisplayPaginationDetailsDisabled();
+
+        $this->assertFalse($this->basicTable->showPaginationDetails());
+
+    }
+
 }
