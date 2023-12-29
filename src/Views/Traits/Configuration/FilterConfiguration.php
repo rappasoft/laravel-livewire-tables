@@ -23,7 +23,6 @@ trait FilterConfiguration
         return $this;
     }
 
-
     public function notResetByClearButton(): self
     {
         $this->resetByClearButton = false;

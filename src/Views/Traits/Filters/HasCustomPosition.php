@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait HasCustomPosition
 {
-    
     public ?string $filterPosition = null;
 
     protected ?int $filterSlidedownRow = null;
@@ -29,14 +28,12 @@ trait HasCustomPosition
         return $this->filterPosition;
     }
 
-
     public function setFilterPosition(string $position): self
     {
         $this->filterPosition = $position;
 
         return $this;
     }
-
 
     /**
      * Get the filter slide down row.
@@ -70,7 +67,6 @@ trait HasCustomPosition
         return ! is_null($this->filterSlidedownColspan);
     }
 
-
     public function setFilterSlidedownRow(string $filterSlidedownRow): self
     {
         //$this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
@@ -86,7 +82,4 @@ trait HasCustomPosition
 
         return $this;
     }
-
-
-
 }
