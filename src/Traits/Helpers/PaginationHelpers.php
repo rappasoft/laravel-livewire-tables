@@ -136,5 +136,4 @@ trait PaginationHelpers
             $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
         }
     }
-
 }
