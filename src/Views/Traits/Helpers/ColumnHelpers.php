@@ -184,25 +184,6 @@ trait ColumnHelpers
         return $this;
     }
 
-    public function isVisible(): bool
-    {
-        return $this->hidden !== true;
-    }
-
-    public function isHidden(): bool
-    {
-        return $this->hidden === true;
-    }
-
-    public function isSelectable(): bool
-    {
-        return $this->selectable === true;
-    }
-
-    public function isSelected(): bool
-    {
-        return $this->selected === true;
-    }
 
     public function isClickable(): bool
     {

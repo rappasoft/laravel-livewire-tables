@@ -51,30 +51,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    /**
-     * @param  mixed  $condition
-     */
-    public function hideIf($condition): self
-    {
-        $this->hidden = $condition;
-
-        return $this;
-    }
-
-    public function excludeFromColumnSelect(): self
-    {
-        $this->selectable = false;
-
-        return $this;
-    }
-
-    public function deselected(): self
-    {
-        $this->selected = false;
-
-        return $this;
-    }
-
     public function unclickable(): self
     {
         $this->clickable = false;
