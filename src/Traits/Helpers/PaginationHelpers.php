@@ -123,6 +123,11 @@ trait PaginationHelpers
         $this->resetPage($this->getComputedPageName());
     }
 
+    public function showPaginationDetails(): bool
+    {
+        return $this->shouldShowPaginationDetails === true;
+    }
+    
     // TODO: Test
     public function setupPagination(): void
     {
@@ -137,8 +142,4 @@ trait PaginationHelpers
         }
     }
 
-    public function showPaginationDetails(): bool
-    {
-        return $this->shouldShowPaginationDetails === true;
-    }
 }
