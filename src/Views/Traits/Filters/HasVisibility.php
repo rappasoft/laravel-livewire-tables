@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasVisibility as HasCoreVisibility;
+use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait HasVisibility
 {
