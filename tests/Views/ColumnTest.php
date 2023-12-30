@@ -86,4 +86,21 @@ class ColumnTest extends TestCase
 
         $this->assertSame('breed', $column->getTable());
     }
+
+    /** @test */
+    public function can_check_ishtml_from_html_column(): void
+    {
+        $column = Column::make('Name', 'name')->html();
+
+        $this->assertTrue($column->isHtml());
+    }
+    
+    /** @test */
+    public function can_get_html_from_html_column(): void
+    {
+        $column = Column::make('Name', 'name')->label(fn () => '<strong>My Label</strong>')->html();
+        $rows = $this->basicTable->getRows();
+        $htmlString = new \Illuminate\Support\HtmlString('<strong>My Label</strong>');
+        $this->assertSame($htmlString->toHtml(), $column->getContents($rows->first())->toHtml());
+    }
 }
