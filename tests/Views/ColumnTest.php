@@ -116,4 +116,14 @@ class ColumnTest extends TestCase
 
         $this->assertSame($htmlString->toHtml(), $column->getContents($rows->first())->toHtml());
     }
+
+    /** @test */
+    public function cannot_collapse_on_tablet_and_mobile(): void
+    {
+        $rows = $this->basicTable->getRows();
+        $column = Column::make('Name', 'name')->label(fn () => '<strong>My Label</strong>')->collapseOnMobile()->collapseOnTablet()->html();
+        $this->expectException(DataTableConfigurationException::class);
+
+        $contents = $column->renderContents($rows->first());
+    }
 }
