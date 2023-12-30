@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\View\ViewException;
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{NoBuildMethodTable,NoPrimaryKeyTable,BrokenSecondaryHeaderTable};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{BrokenSecondaryHeaderTable, NoBuildMethodTable, NoPrimaryKeyTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableAttributes};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
@@ -156,6 +156,6 @@ class ComponentVisualsTest extends TestCase
         }
         if (! $this->testErrors) {
             $this->fail('Did Not Throw Error - Missing Primary Key');
-        }   
-     }
+        }
+    }
 }

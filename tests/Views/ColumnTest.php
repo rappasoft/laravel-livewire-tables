@@ -85,5 +85,5 @@ class ColumnTest extends TestCase
         $column = $this->basicTable->getColumnBySelectName('breed.name');
 
         $this->assertSame('breed', $column->getTable());
-    }    
+    }
 }
