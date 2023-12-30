@@ -136,4 +136,9 @@ trait PaginationHelpers
             $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
         }
     }
+
+    public function showPaginationDetails(): bool
+    {
+        return $this->shouldShowPaginationDetails === true;
+    }
 }
