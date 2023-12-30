@@ -31,7 +31,7 @@ trait HasView
 
     public function setCustomView(string $customView): self
     {
-        $this->view = $customView;
+        $this->setView($customView);
 
         return $this;
     }
