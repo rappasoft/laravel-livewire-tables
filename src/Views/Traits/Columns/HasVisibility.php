@@ -27,6 +27,4 @@ trait HasVisibility
 
         return $this;
     }
-
-
 }

@@ -8,11 +8,9 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait IsSelectable
 {
-
     protected bool $selectable = true;
 
     protected bool $selected = true;
-
 
     public function isSelectable(): bool
     {
@@ -24,7 +22,6 @@ trait IsSelectable
         return $this->selected === true;
     }
 
-    
     public function excludeFromColumnSelect(): self
     {
         $this->selectable = false;
@@ -38,5 +35,4 @@ trait IsSelectable
 
         return $this;
     }
-
 }

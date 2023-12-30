@@ -184,7 +184,6 @@ trait ColumnHelpers
         return $this;
     }
 
-
     public function isClickable(): bool
     {
         return $this->clickable &&
