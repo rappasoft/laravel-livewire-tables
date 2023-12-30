@@ -197,3 +197,23 @@ Returns the number of rows that are currently displayed.  This should be used in
 ```php
     $this->getPerPageDisplayedItemCount();
 ```
+
+## setDisplayPaginationDetailsEnabled
+Enables display of Pagination Details (e.g. Displaying Rows x of y) - default behaviour
+
+```php
+public function configure(): void
+{
+    $this->setDisplayPaginationDetailsEnabled();
+}
+```
+
+## setDisplayPaginationDetailsDisabled
+Disables display of Pagination Details (e.g. Displaying Rows x of y)
+
+```php
+public function configure(): void
+{
+    $this->setDisplayPaginationDetailsDisabled();
+}
+```
