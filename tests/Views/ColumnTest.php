@@ -94,7 +94,7 @@ class ColumnTest extends TestCase
 
         $this->assertTrue($column->isHtml());
     }
-    
+
     /** @test */
     public function can_get_html_from_html_column(): void
     {
