@@ -141,6 +141,4 @@ trait PaginationHelpers
     {
         return $this->tableName.'-perPage';
     }
-
-
 }
