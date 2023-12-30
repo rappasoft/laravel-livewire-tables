@@ -96,11 +96,25 @@ class ColumnTest extends TestCase
     }
 
     /** @test */
-    public function can_get_html_from_html_column(): void
+    public function can_get_html_from_html_label_column(): void
     {
         $column = Column::make('Name', 'name')->label(fn () => '<strong>My Label</strong>')->html();
         $rows = $this->basicTable->getRows();
         $htmlString = new \Illuminate\Support\HtmlString('<strong>My Label</strong>');
         $this->assertSame($htmlString->toHtml(), $column->getContents($rows->first())->toHtml());
     }
+
+    /** @test */
+    public function can_get_html_from_html_format_column(): void
+    {
+        $column = $this->basicTable->getColumnBySelectName('name');
+        $rows = $this->basicTable->getRows();
+
+        $column->format(fn ($value) => strtoupper($value))->html();
+
+        $htmlString = new \Illuminate\Support\HtmlString(strtoupper($rows->first()->name));
+
+        $this->assertSame($htmlString->toHtml(), $column->getContents($rows->first())->toHtml());
+    }
+
 }
