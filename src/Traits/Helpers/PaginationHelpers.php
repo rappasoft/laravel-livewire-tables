@@ -110,19 +110,6 @@ trait PaginationHelpers
         return $this->paginationCurrentCount;
     }
 
-    protected function getPerPagePaginationSessionKey(): string
-    {
-        return $this->tableName.'-perPage';
-    }
-
-    /**
-     * Reset the page using the custom page name
-     */
-    public function resetComputedPage(): void
-    {
-        $this->resetPage($this->getComputedPageName());
-    }
-
     public function showPaginationDetails(): bool
     {
         return $this->shouldShowPaginationDetails === true;
@@ -141,4 +128,19 @@ trait PaginationHelpers
             $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
         }
     }
+
+
+    protected function getPerPagePaginationSessionKey(): string
+    {
+        return $this->tableName.'-perPage';
+    }
+
+    /**
+     * Reset the page using the custom page name
+     */
+    public function resetComputedPage(): void
+    {
+        $this->resetPage($this->getComputedPageName());
+    }
+
 }
