@@ -74,6 +74,9 @@ trait HasSecondaryHeader
                 if ($filter instanceof Filter) {
                     return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
                 }
+                else {
+                    throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
+                }
             } else {
                 throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
             }

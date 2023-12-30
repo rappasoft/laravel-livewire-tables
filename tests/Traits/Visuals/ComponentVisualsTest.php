@@ -6,10 +6,8 @@ use Exception;
 use Illuminate\View\ViewException;
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoBuildMethodTable;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableAttributes;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{NoBuildMethodTable,NoPrimaryKeyTable,BrokenSecondaryHeaderTable};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableAttributes};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ComponentVisualsTest extends TestCase
@@ -63,7 +61,6 @@ class ComponentVisualsTest extends TestCase
 
         } catch (Exception $standardException) {
             $this->testErrors = true;
-
             $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($standardException->getMessage(), 0, 71));
         }
         if (! $this->testErrors) {
@@ -140,4 +137,25 @@ class ComponentVisualsTest extends TestCase
             ]);
 
     }
+
+    /** @test */
+    public function column_secondary_header_can_not_be_a_string(): void
+    {
+        $this->testErrors = false;
+        try {
+            Livewire::test(BrokenSecondaryHeaderTable::class);
+        } catch (DataTableConfigurationException $DataTableConfigurationException) {
+            $this->assertSame('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().', substr($DataTableConfigurationException->getMessage(), 0, 111));
+            $this->testErrors = true;
+        } catch (ViewException $ViewException) {
+            $this->assertSame('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().', substr($ViewException->getMessage(), 0, 111));
+            $this->testErrors = true;
+        } catch (Exception $standardException) {
+            $this->assertSame('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().', substr($standardException->getMessage(), 0, 111));
+            $this->testErrors = true;
+        }
+        if (! $this->testErrors) {
+            $this->fail('Did Not Throw Error - Missing Primary Key');
+        }   
+     }
 }
