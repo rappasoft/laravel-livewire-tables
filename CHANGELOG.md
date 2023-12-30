@@ -4,7 +4,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
 ### Tweaks
-- Migration to new Core Traits, de-duplication of code by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1623
+- Migration to new Core Traits, de-duplication of code by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1623 
 
 ## [v3.1.9] - 2023-12-29
 ### Bug Fixes
