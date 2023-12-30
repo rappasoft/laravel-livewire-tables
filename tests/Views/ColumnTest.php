@@ -116,5 +116,4 @@ class ColumnTest extends TestCase
 
         $this->assertSame($htmlString->toHtml(), $column->getContents($rows->first())->toHtml());
     }
-
 }
