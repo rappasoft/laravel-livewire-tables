@@ -129,11 +129,6 @@ trait PaginationHelpers
         }
     }
 
-    protected function getPerPagePaginationSessionKey(): string
-    {
-        return $this->tableName.'-perPage';
-    }
-
     /**
      * Reset the page using the custom page name
      */
@@ -141,4 +136,11 @@ trait PaginationHelpers
     {
         $this->resetPage($this->getComputedPageName());
     }
+
+    protected function getPerPagePaginationSessionKey(): string
+    {
+        return $this->tableName.'-perPage';
+    }
+
+
 }
