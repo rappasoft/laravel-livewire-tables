@@ -127,7 +127,7 @@ trait PaginationHelpers
     {
         return $this->shouldShowPaginationDetails === true;
     }
-    
+
     // TODO: Test
     public function setupPagination(): void
     {
@@ -141,5 +141,4 @@ trait PaginationHelpers
             $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
         }
     }
-
 }
