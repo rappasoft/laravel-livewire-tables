@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasVisibility;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{HasVisibility, IsCollapsible, IsSearchable, IsSelectable, IsSortable};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes,HasFooter,HasSecondaryHeader,HasView};
