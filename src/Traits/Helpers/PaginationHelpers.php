@@ -137,7 +137,7 @@ trait PaginationHelpers
         $this->resetPage($this->getComputedPageName());
     }
 
-    protected function getPerPagePaginationSessionKey(): string
+    private function getPerPagePaginationSessionKey(): string
     {
         return $this->tableName.'-perPage';
     }
