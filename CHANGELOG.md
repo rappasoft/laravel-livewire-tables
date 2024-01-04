@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `laravel-livewire-tables` will be documented in this file.
+All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [v3.2.0] - 2023-01-04
 ### Tweaks
