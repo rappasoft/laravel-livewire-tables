@@ -3,24 +3,18 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsStringFilter};
 
 class SelectFilter extends Filter
 {
-    public array $options = [];
+    use HasOptions,
+        IsStringFilter;
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.select';
+    protected string $view = 'livewire-tables::components.tools.filters.select';
 
-    public function options(array $options = []): SelectFilter
-    {
-        $this->options = $options;
+    protected string $configPath = 'livewire-tables.selectFilter.defaultConfig';
 
-        return $this;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
+    protected string $optionsPath = 'livewire-tables.selectFilter.defaultOptions';
 
     public function getKeys(): array
     {
@@ -48,23 +42,5 @@ class SelectFilter extends Filter
             ?? collect($this->getOptions())
                 ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$value]
             ?? null;
-    }
-
-    public function isEmpty($value): bool
-    {
-        return $value === '';
-    }
-
-    /**
-     * Gets the Default Value for this Filter via the Component
-     */
-    public function getFilterDefaultValue(): ?string
-    {
-        return $this->filterDefaultValue ?? null;
-    }
-
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

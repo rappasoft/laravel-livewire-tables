@@ -12,7 +12,7 @@ trait CustomisationsHelpers
         return isset($this->extends) && $this->extends !== null;
     }
 
-    public function getExtends()
+    public function getExtends(): ?string
     {
         return $this->extends;
     }
@@ -25,7 +25,7 @@ trait CustomisationsHelpers
         return isset($this->section) && $this->section !== null;
     }
 
-    public function getSection()
+    public function getSection(): ?string
     {
         return $this->section;
     }
@@ -38,7 +38,7 @@ trait CustomisationsHelpers
         return isset($this->slot) && $this->slot !== null;
     }
 
-    public function getSlot()
+    public function getSlot(): ?string
     {
         return $this->slot;
     }
@@ -51,7 +51,7 @@ trait CustomisationsHelpers
         return isset($this->layout) && $this->layout !== null;
     }
 
-    public function getLayout()
+    public function getLayout(): ?string
     {
         return $this->layout;
     }

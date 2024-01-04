@@ -203,7 +203,7 @@ class NumberRangeFilterTest extends TestCase
     {
         $filter = NumberRangeFilter::make('Active');
 
-        $this->assertSame([], $filter->getKeys());
+        $this->assertSame(['min', 'max'], $filter->getKeys());
     }
 
     /** @test */

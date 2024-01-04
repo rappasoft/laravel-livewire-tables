@@ -5,7 +5,7 @@
     @php
         $colspan = $component->getColspanCount();
         $selectAll = $component->selectAllIsEnabled();
-        $simplePagination = $component->paginationMethod === 'simple';
+        $simplePagination = $component->isPaginationMethod('simple');
     @endphp
 
     @if ($component->isTailwind())
