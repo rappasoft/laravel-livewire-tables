@@ -4,16 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 trait ComponentColumnHelpers
 {
-    public function getAttributesCallback(): ?callable
-    {
-        return $this->attributesCallback;
-    }
-
-    public function hasAttributesCallback(): bool
-    {
-        return $this->attributesCallback !== null;
-    }
-
     public function getSlotCallback(): ?callable
     {
         return $this->slotCallback;

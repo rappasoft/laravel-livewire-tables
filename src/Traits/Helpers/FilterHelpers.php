@@ -307,7 +307,7 @@ trait FilterHelpers
         return $orderedFilters;
     }
 
-    public function hasFilterGenericData()
+    public function hasFilterGenericData(): bool
     {
         return ! empty($this->filterGenericData);
     }

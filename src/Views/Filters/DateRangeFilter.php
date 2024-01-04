@@ -3,38 +3,18 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig,HasOptions};
 
 class DateRangeFilter extends Filter
 {
-    public array $options = [];
+    use HasOptions,
+        HasConfig;
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.date-range';
+    protected string $view = 'livewire-tables::components.tools.filters.date-range';
 
-    public function config(array $config = []): DateRangeFilter
-    {
-        $this->config = [...config('livewire-tables.dateRange.defaultConfig'), ...$config];
+    protected string $configPath = 'livewire-tables.dateRange.defaultConfig';
 
-        return $this;
-    }
-
-    public function getConfigs(): array
-    {
-        return ! empty($this->config) ? $this->config : $this->config = config('livewire-tables.dateRange.defaultConfig');
-
-    }
-
-    public function options(array $options = []): DateRangeFilter
-    {
-        $this->options = [...$this->options, ...$options];
-
-        return $this;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options ?? $this->options = config('livewire-tables.dateRange.defaultOptions');
-
-    }
+    protected string $optionsPath = 'livewire-tables.dateRange.defaultOptions';
 
     public function getKeys(): array
     {
@@ -188,10 +168,5 @@ class DateRangeFilter extends Filter
         }
 
         return '';
-    }
-
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
     }
 }

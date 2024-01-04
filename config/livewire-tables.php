@@ -89,5 +89,27 @@ return [
             'suffix' => '', // A suffix to append to the values when displayed
         ],
     ],
+    /**
+     * Configuration options for SelectFilter
+     */
+    'selectFilter' => [
+        'defaultOptions' => [],
+        'defaultConfig' => [],
+    ],
+    /**
+     * Configuration options for MultiSelectFilter
+     */
+    'multiSelectFilter' => [
+        'defaultOptions' => [],
+        'defaultConfig' => [],
+    ],
+
+    /**
+     * Configuration options for MultiSelectFilter
+     */
+    'multiSelectDropdownFilter' => [
+        'defaultOptions' => [],
+        'defaultConfig' => [],
+    ],
 
 ];

@@ -17,8 +17,6 @@ class ComponentColumn extends Column
 
     protected string $componentView;
 
-    protected mixed $attributesCallback = null;
-
     protected mixed $slotCallback = null;
 
     public function __construct(string $title, ?string $from = null)
