@@ -18,7 +18,7 @@ $customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttribut
     >
         <td colspan="{{ $colCount }}"
             {{
-                $attributes->merge($customAcomponent->getLoadingPlaceholderTdAttributes());
+                $attributes->merge($component->getLoadingPlaceholderTdAttributes());
             }}
         >
         @if($this->hasLoadingPlaceholderContentBlade())
