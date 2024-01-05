@@ -60,14 +60,12 @@ trait LoadingPlaceholderConfiguration
         return $this;
     }
 
-
     public function setLoadingPlaceHolderTrAttributes(array $attributes): self
     {
         $this->loadingPlaceHolderTrAttributes = array_merge(['default' => true], $attributes);
 
         return $this;
     }
-
 
     public function setLoadingPlaceHolderTdAttributes(array $attributes): self
     {
@@ -82,5 +80,4 @@ trait LoadingPlaceholderConfiguration
 
         return $this;
     }
-
 }
