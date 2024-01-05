@@ -4,7 +4,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
 ### New Features
-- Additional Loading Placeholder methods
+- Additional Loading Placeholder methods by @lrljoe
 
 ## [v3.2.0] - 2023-01-04
 ### Tweaks

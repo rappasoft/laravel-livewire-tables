@@ -37,6 +37,14 @@ Use this method to disable the loading placeholder:
     }
 ```
 
+### Content of Loading Placeholder
+
+There are several options to set the Loading Placeholder content for the Table.
+
+Option 1 - Define plain-text content to display in the loading table row using setLoadingPlaceholderContent()
+Option 2 - Replace content of the loading table row using setLoadingPlaceHolderContentBlade()
+Option 3 - Replace the loading table row using setLoadingPlaceHolderBlade()
+
 ### setLoadingPlaceholderContent
 
 You may use this method to set custom text for the placeholder:
@@ -63,7 +71,16 @@ You may use this method to set a custom content blade.  This will be wrapped in 
 
 As an alternative to the setLoadingPlaceholderContentBlade, you may over-ride the default content entirely, in which case you **must** begin and end your custom blade with a <tr></tr> element to avoid DOM issues.
 
-### setLoadingPlaceHolderWrapperAttributes (deprecated)
+```php
+    public function configure(): void
+    {
+        $this->setLoadingPlaceholderBlade('path-to-placeholder-blade');
+    }
+```
+
+### Styling & Customisation
+
+#### setLoadingPlaceHolderWrapperAttributes (deprecated)
 
 This method allows you to customise the attributes for the &lt;tr&gt; element used as a Placeholder when the table is loading.  Similar to other setAttribute methods, this accepts a range of attributes, and a boolean "default", which will enable/disable the default attributes.
 
@@ -77,7 +94,8 @@ This method allows you to customise the attributes for the &lt;tr&gt; element us
     }
 
 ```
-### setLoadingPlaceHolderTrAttributes
+
+#### setLoadingPlaceHolderTrAttributes
 This method allows you to customise the attributes for the &lt;tr&gt; element used as a Placeholder when the table is loading.  Similar to other setAttribute methods, this accepts a range of attributes, and a boolean "default", which will enable/disable the default attributes.
 ```php
     public function configure(): void
@@ -90,7 +108,7 @@ This method allows you to customise the attributes for the &lt;tr&gt; element us
 
 ```
 
-### setLoadingPlaceHolderTdAttributes
+#### setLoadingPlaceHolderTdAttributes
 This method allows you to customise the attributes for the &lt;td&gt; element used as a Placeholder when the table is loading.  Similar to other setAttribute methods, this accepts a range of attributes, and a boolean "default", which will enable/disable the default attributes.
 ```php
     public function configure(): void
@@ -103,7 +121,7 @@ This method allows you to customise the attributes for the &lt;td&gt; element us
 
 ```
 
-### setLoadingPlaceHolderIconAttributes
+#### setLoadingPlaceHolderIconAttributes
 
 This method allows you to customise the attributes for the &lt;div&gt; element that is used solely for the PlaceholderIcon.  Similar to other setAttribute methods, this accepts a range of attributes, and a boolean "default", which will enable/disable the default attributes.
 

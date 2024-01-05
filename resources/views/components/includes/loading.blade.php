@@ -3,7 +3,6 @@
 
 @php
 $customAttributes['loader-wrapper'] = $component->getLoadingPlaceholderTrAttributes();
-$customAttributes['loader-column'] = $component->getLoadingPlaceholderTdAttributes();
 $customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttributes();
 @endphp
 @if($this->hasLoadingPlaceholderBlade())
@@ -19,7 +18,7 @@ $customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttribut
     >
         <td colspan="{{ $colCount }}"
             {{
-                $attributes->merge($customAttributes['loader-column']);
+                $attributes->merge($customAcomponent->getLoadingPlaceholderTdAttributes());
             }}
         >
         @if($this->hasLoadingPlaceholderContentBlade())
