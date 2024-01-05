@@ -25,6 +25,16 @@ trait LoadingPlaceholderHelpers
 
     }
 
+    public function getLoadingPlaceholderTrAttributes(): array
+    {
+        return count($this->loadingPlaceHolderTrAttributes) ? $this->loadingPlaceHolderTrAttributes : ['default' => true];
+    }
+
+    public function getLoadingPlaceholderTdAttributes(): array
+    {
+        return count($this->loadingPlaceHolderTdAttributes) ? $this->loadingPlaceHolderTdAttributes : ['default' => true];
+    }
+
     public function getLoadingPlaceHolderIconAttributes(): array
     {
         return count($this->loadingPlaceHolderIconAttributes) ? $this->loadingPlaceHolderIconAttributes : ['default' => true];
@@ -32,7 +42,7 @@ trait LoadingPlaceholderHelpers
 
     public function getLoadingPlaceHolderWrapperAttributes(): array
     {
-        return count($this->loadingPlaceHolderWrapperAttributes) ? $this->loadingPlaceHolderWrapperAttributes : ['default' => true];
+        return count($this->loadingPlaceHolderTrAttributes) ? $this->loadingPlaceHolderTrAttributes : ['default' => true];
     }
 
     public function hasLoadingPlaceholderBlade(): bool
@@ -43,5 +53,15 @@ trait LoadingPlaceholderHelpers
     public function getLoadingPlaceHolderBlade(): ?string
     {
         return $this->loadingPlaceholderBlade;
+    }
+
+    public function hasLoadingPlaceholderContentBlade(): bool
+    {
+        return ! is_null($this->getLoadingPlaceHolderContentBlade());
+    }
+
+    public function getLoadingPlaceHolderContentBlade(): ?string
+    {
+        return $this->loadingPlaceholderContentBlade;
     }
 }

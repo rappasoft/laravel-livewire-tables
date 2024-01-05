@@ -2,13 +2,13 @@
 @props(['colCount' => 1])
 
 @php
-$customAttributes['loader-wrapper'] = $component->getLoadingPlaceHolderWrapperAttributes();
+$customAttributes['loader-wrapper'] = $component->getLoadingPlaceholderTrAttributes();
+$customAttributes['loader-column'] = $component->getLoadingPlaceholderTdAttributes();
 $customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttributes();
 @endphp
 @if($this->hasLoadingPlaceholderBlade())
     @include($this->getLoadingPlaceHolderBlade(), ['colCount' => $colCount])
 @else
-
     <tr wire:key="{{ $tableName }}-loader" class="hidden d-none"
     {{
         $attributes->merge($customAttributes['loader-wrapper'])
@@ -17,7 +17,14 @@ $customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttribut
     }}
     wire:loading.class.remove="hidden d-none"
     >
-        <td colspan="{{ $colCount }}">
+        <td colspan="{{ $colCount }}"
+            {{
+                $attributes->merge($customAttributes['loader-column']);
+            }}
+        >
+        @if($this->hasLoadingPlaceholderContentBlade())
+            @include($this->getLoadingPlaceHolderContentBlade(), ['colCount' => $colCount])
+        @else
             <div class="h-min self-center align-middle text-center">
                 <div class="lds-hourglass"
                 {{
@@ -27,9 +34,11 @@ $customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttribut
                             ->except('default');
                 }}
                 ></div>
-                <div>{{ $component->getLoadingPlaceholderContent() }}</div>
+                <div>
+                    {{ $component->getLoadingPlaceholderContent() }}
+                </div>
             </div>
+        @endif
         </td>
     </tr>
-
 @endif

@@ -48,7 +48,7 @@ trait LoadingPlaceholderConfiguration
 
     public function setLoadingPlaceHolderWrapperAttributes(array $attributes): self
     {
-        $this->loadingPlaceHolderWrapperAttributes = $attributes;
+        $this->loadingPlaceHolderTrAttributes = array_merge(['default' => true], $attributes);
 
         return $this;
     }
@@ -59,4 +59,28 @@ trait LoadingPlaceholderConfiguration
 
         return $this;
     }
+
+
+    public function setLoadingPlaceHolderTrAttributes(array $attributes): self
+    {
+        $this->loadingPlaceHolderTrAttributes = array_merge(['default' => true], $attributes);
+
+        return $this;
+    }
+
+
+    public function setLoadingPlaceHolderTdAttributes(array $attributes): self
+    {
+        $this->loadingPlaceHolderTdAttributes = array_merge(['default' => true], $attributes);
+
+        return $this;
+    }
+
+    public function setLoadingPlaceholderContentBlade(string $customBlade): self
+    {
+        $this->loadingPlaceholderContentBlade = $customBlade;
+
+        return $this;
+    }
+
 }

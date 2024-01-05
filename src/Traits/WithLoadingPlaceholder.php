@@ -16,9 +16,15 @@ trait WithLoadingPlaceholder
 
     protected ?string $loadingPlaceholderBlade = null;
 
+    protected ?string $loadingPlaceholderContentBlade = null;
+
     protected array $loadingPlaceHolderAttributes = [];
 
     protected array $loadingPlaceHolderIconAttributes = [];
 
     protected array $loadingPlaceHolderWrapperAttributes = [];
+
+    protected array $loadingPlaceHolderTrAttributes = [];
+
+    protected array $loadingPlaceHolderTdAttributes = [];
 }
