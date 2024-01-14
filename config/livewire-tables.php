@@ -112,4 +112,6 @@ return [
         'defaultConfig' => [],
     ],
 
+    'dir' => 'ltr'
+
 ];
