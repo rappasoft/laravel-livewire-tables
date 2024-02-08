@@ -29,7 +29,7 @@ trait ConfigurableAreasHelpers
         $area = $this->configurableAreas[$area] ?? null;
 
         if (is_array($area)) {
-            return $area[0];
+            return $area[0] ?? array_key_first($area);
         }
 
         return $area;
@@ -43,8 +43,8 @@ trait ConfigurableAreasHelpers
     {
         $area = $this->configurableAreas[$area] ?? null;
 
-        if (is_array($area) && isset($area[1]) && is_array($area[1])) {
-            return $area[1];
+        if (is_array($area) && is_array($conditions = head($area))) {
+            return $conditions;
         }
 
         return [];
