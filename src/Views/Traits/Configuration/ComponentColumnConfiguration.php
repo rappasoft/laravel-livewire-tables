@@ -4,11 +4,16 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
 trait ComponentColumnConfiguration
 {
-    public function component(string $component): self
+    public function setComponentView(string $component): self
     {
-        $this->componentView = 'components.'.$component;
+        $this->componentView = $component;
 
         return $this;
+    }
+    
+    public function component(string $component): self
+    {
+        return $this->setComponentView('components.'.$component);
     }
 
     public function slot(callable $callback): self
