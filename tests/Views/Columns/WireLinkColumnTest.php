@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\WireLinkColumn;
 
-class tests/Views/Columns/LinkColumnTest.php extends TestCase
+class WireLinkColumnTest extends TestCase
 {
     /** @test */
     public function can_set_the_column_title(): void
@@ -34,7 +34,7 @@ class tests/Views/Columns/LinkColumnTest.php extends TestCase
     }
 
     /** @test */
-    public function can_not_render_field_if_no_location_callback(): void
+    public function can_not_render_field_if_no_action_callback(): void
     {
         $this->expectException(DataTableConfigurationException::class);
 
@@ -42,10 +42,19 @@ class tests/Views/Columns/LinkColumnTest.php extends TestCase
     }
 
     /** @test */
-    public function can_render_field_if_title_and_location_callback(): void
+    public function can_render_field_if_title_and_action_callback(): void
     {
-        $column = LinkColumn::make('Name')->title(fn ($row) => 'Edit')->location(fn ($row) => 'test'.$row->id)->getContents(Pet::find(1));
+        $column = LinkColumn::make('Name')->title(fn ($row) => 'Edit')->action(fn($row) => 'delete("'.$row->id.'")')->getContents(Pet::find(1));
 
         $this->assertNotEmpty($column);
     }
+
+    /** @test */
+    public function can_render_field_if_confirm_set(): void
+    {
+        $column = LinkColumn::make('Name')->title(fn ($row) => 'Edit')->action(fn($row) => 'delete("'.$row->id.'")')->confirmMessage('Test')->getContents(Pet::find(1));
+
+        $this->assertNotEmpty($column);
+    }
+
 }
