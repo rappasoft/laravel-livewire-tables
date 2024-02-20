@@ -25,5 +25,4 @@ trait HasActionCallback
     {
         return $this->actionCallback !== null;
     }
-
 }
