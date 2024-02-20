@@ -44,7 +44,7 @@ class WireLinkColumnTest extends TestCase
     /** @test */
     public function can_render_field_if_title_and_action_callback(): void
     {
-        $column = LinkColumn::make('Name')->title(fn ($row) => 'Edit')->action(fn ($row) => 'delete("'.$row->id.'")')->getContents(Pet::find(1));
+        $column = WireLinkColumn::make('Name')->title(fn ($row) => 'Edit')->action(fn($row) => 'delete("'.$row->id.'")')->getContents(Pet::find(1));
 
         $this->assertNotEmpty($column);
     }
@@ -52,7 +52,7 @@ class WireLinkColumnTest extends TestCase
     /** @test */
     public function can_render_field_if_confirm_set(): void
     {
-        $column = LinkColumn::make('Name')->title(fn ($row) => 'Edit')->action(fn ($row) => 'delete("'.$row->id.'")')->confirmMessage('Test')->getContents(Pet::find(1));
+        $column = WireLinkColumn::make('Name')->title(fn ($row) => 'Edit')->action(fn($row) => 'delete("'.$row->id.'")')->confirmMessage('Test')->getContents(Pet::find(1));
 
         $this->assertNotEmpty($column);
     }
