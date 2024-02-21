@@ -90,7 +90,7 @@ trait ComponentUtilities
     /**
      * Keep track of any properties on the custom query string key for this specific table
      */
-    public function updated(string $name, string|array $value): void
+    public function updated(string $name, string|array|null $value): void
     {
         if ($name === 'search') {
             $this->resetComputedPage();
@@ -99,7 +99,7 @@ trait ComponentUtilities
             $this->clearSelected();
             $this->setSelectAllDisabled();
 
-            if ($value === '') {
+            if ($value === '' || is_null($value)) {
                 $this->clearSearch();
             }
         }
