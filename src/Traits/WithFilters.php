@@ -68,4 +68,20 @@ trait WithFilters
 
         return $this->getBuilder();
     }
+
+    public function updatedFilterComponents(string|array|null $value, string $filterName): void
+    {
+        $this->resetComputedPage();
+
+        // Clear bulk actions on filter
+        $this->clearSelected();
+        $this->setSelectAllDisabled();
+
+        // Clear filters on empty value
+        $filter = $this->getFilterByKey($filterName);
+
+        if ($filter && $filter->isEmpty($value)) {
+            $this->resetFilter($filterName);
+        }
+    }
 }
