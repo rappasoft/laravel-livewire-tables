@@ -84,5 +84,4 @@ trait WithFilters
             $this->resetFilter($filterName);
         }
     }
-
 }
