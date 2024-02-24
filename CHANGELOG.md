@@ -2,9 +2,9 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [v3.2.1] - 2023-02-19
+## [v3.2.1] - 2023-02-24
 ### Bug Fixes
-- Fix collapsing columns not collapsing correctly
+- Fix collapsing columns not respecting view point collapse points
 
 ## [v3.2.0] - 2023-01-04
 ### Tweaks
