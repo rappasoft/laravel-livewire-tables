@@ -6,6 +6,10 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Bug Fixes
 - Fix collapsing columns not respecting view point collapse points by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1665
 
+### Tweaks
+- Migrate "updated" Search and FilterComponents calls to WithSearch and WithFilters by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1666
+- Allow nullable search/filter values by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1666
+
 ## [v3.2.0] - 2024-01-04
 ### Tweaks
 - Migration to new Core Traits, and de-duplication of code by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1623 
