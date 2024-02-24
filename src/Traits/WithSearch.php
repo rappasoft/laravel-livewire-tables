@@ -65,4 +65,17 @@ trait WithSearch
 
         return $this->getBuilder();
     }
+
+    public function updatedSearch(string|array|null $value): void
+    {
+        $this->resetComputedPage();
+
+        // Clear bulk actions on search
+        $this->clearSelected();
+        $this->setSelectAllDisabled();
+
+        if (is_null($value) || $value === '') {
+            $this->clearSearch();
+        }
+    }
 }
