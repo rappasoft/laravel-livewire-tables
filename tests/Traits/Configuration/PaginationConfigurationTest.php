@@ -121,5 +121,4 @@ class PaginationConfigurationTest extends TestCase
         $this->basicTable->perPage = 25;
         $this->assertSame(25, $this->basicTable->getPerPage());
     }
-    
 }
