@@ -134,4 +134,17 @@ trait PaginationConfiguration
 
         return $this;
     }
+
+    /**
+     * Set a default per-page value (if not set already by session or querystring)
+     */
+    public function setDefaultPerPage(int $perPage): self
+    {
+        if (!isset($this->perPage))
+        {
+            $this->setPerPage($perPage);
+        }
+        return $this;
+    }
+
 }
