@@ -141,4 +141,10 @@ trait PaginationHelpers
     {
         return $this->tableName.'-perPage';
     }
+
+    protected function getDefaultPerPage(): int
+    {
+        return $this->defaultPerPage;
+    }
+
 }
