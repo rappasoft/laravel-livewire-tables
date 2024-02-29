@@ -16,8 +16,6 @@ trait WithPagination
 
     public int $perPage = 10;
 
-    public int $defaultPerPage = 10;
-
     public array $perPageAccepted = [10, 25, 50];
 
     public string $paginationTheme = 'tailwind';

@@ -140,9 +140,9 @@ trait PaginationConfiguration
      */
     public function setDefaultPerPage(int $perPage): self
     {
-        $this->defaultPerPage = $perPage;
+        $defaultPerPage = $perPage;
 
-        if (! isset($this->perPage)) {
+        if ($this->perPage == 10) {
             $this->setPerPage($perPage);
         }
 
