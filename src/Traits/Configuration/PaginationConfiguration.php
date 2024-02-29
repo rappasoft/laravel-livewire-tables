@@ -141,7 +141,7 @@ trait PaginationConfiguration
     public function setDefaultPerPage(int $perPage): self
     {
         $this->defaultPerPage = $perPage;
-        
+
         if (! isset($this->perPage)) {
             $this->setPerPage($perPage);
         }

@@ -146,5 +146,4 @@ trait PaginationHelpers
     {
         return $this->defaultPerPage;
     }
-
 }

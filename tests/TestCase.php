@@ -18,6 +18,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
 class TestCase extends Orchestra
 {
     public PetsTable $basicTable;
+
     public PetsTableUnpaginated $unpaginatedTable;
 
     /**
@@ -96,7 +97,7 @@ class TestCase extends Orchestra
 
     protected function setupUnpaginatedTable()
     {
-        
+
         $view = view('livewire-tables::datatable');
         $this->unpaginatedTable = new PetsTableUnpaginated();
         $this->unpaginatedTable->boot();
