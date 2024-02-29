@@ -149,12 +149,23 @@ public function configure(): void
 
 ## setPerPage
 
-Set the default selected option of the per page dropdown.
+Set the selected option of the per page dropdown.
 
 ```php
 public function configure(): void
 {
     $this->setPerPage(10);
+}
+```
+
+## setDefaultPerPage
+
+Set the default selected option of the per-page dropdown, will be over-ridden if set at Session or QueryString level.
+
+```php
+public function configure(): void
+{
+    $this->setDefaultPerPage(10);
 }
 ```
 
