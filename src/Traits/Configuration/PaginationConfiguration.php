@@ -148,4 +148,12 @@ trait PaginationConfiguration
 
         return $this;
     }
+
+    public function setPaginationFieldAttributes(array $attributes = []): self
+    {
+        $this->paginationFieldAttributes = [...['default' => true, 'default-styling' => true, 'default-colors' => true, 'class' => ''], ...$attributes];
+
+        return $this;
+    }
+
 }

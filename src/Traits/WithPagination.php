@@ -38,6 +38,8 @@ trait WithPagination
     public array $numberOfPaginatorsRendered = [];
 
     protected bool $shouldShowPaginationDetails = true;
+    
+    protected array $paginationFieldAttributes = ['default' => true, 'default-styling' => true, 'default-colors' => true, 'class' => ''];
 
     public function mountWithPagination(): void
     {

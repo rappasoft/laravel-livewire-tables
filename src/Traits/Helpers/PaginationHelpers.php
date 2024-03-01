@@ -141,4 +141,9 @@ trait PaginationHelpers
     {
         return $this->tableName.'-perPage';
     }
+
+    public function getPaginationFieldAttributes(): array
+    {
+        return count($this->paginationFieldAttributes) ? $this->paginationFieldAttributes : ['default' => true, 'default-styling' => true, 'default-colors' => true, 'class' => ''];
+    }
 }
