@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## UNRELEASED
+## [v3.2.3] - 2024-03-01
 ### New Features
 - Add capability to customise colors/styling on the Pagination Per-Page Dropdown by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1677
 
