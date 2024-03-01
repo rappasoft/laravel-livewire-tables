@@ -10,10 +10,10 @@
         {{ 
                 $attributes->merge($component->getPaginationFieldAttributes())
                 ->class([
-                'form-control' => $component->isBootstrap4(),
-                'form-select' => $component->isBootstrap5(),
-                'block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50' => $component->isTailwind() && ($component->getPaginationFieldAttributes()['default'] || $component->getPaginationFieldAttributes()['default-styling']),
-                'border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600' => $component->isTailwind() && ($component->getPaginationFieldAttributes()['default'] || $component->getPaginationFieldAttributes()['default-colors']),
+                'form-control' => $component->isBootstrap4() && $component->getPaginationFieldAttributes()['default-styling'],
+                'form-select' => $component->isBootstrap5() && $component->getPaginationFieldAttributes()['default-styling'],
+                'block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50' => $component->isTailwind() && $component->getPaginationFieldAttributes()['default-styling'],
+                'border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600' => $component->isTailwind() && $component->getPaginationFieldAttributes()['default-colors'],
 
             ])->except(['default','default-styling','default-colors']) 
         }}

@@ -144,6 +144,6 @@ trait PaginationHelpers
 
     public function getPaginationFieldAttributes(): array
     {
-        return count($this->paginationFieldAttributes) ? $this->paginationFieldAttributes : ['default' => true, 'default-styling' => true, 'default-colors' => true, 'class' => ''];
+        return count($this->paginationFieldAttributes) ? $this->paginationFieldAttributes : ['default-styling' => true, 'default-colors' => true, 'class' => ''];
     }
 }

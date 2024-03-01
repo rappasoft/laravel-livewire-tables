@@ -39,7 +39,7 @@ trait WithPagination
 
     protected bool $shouldShowPaginationDetails = true;
 
-    protected array $paginationFieldAttributes = ['default' => true, 'default-styling' => true, 'default-colors' => true, 'class' => ''];
+    protected array $paginationFieldAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
 
     public function mountWithPagination(): void
     {
