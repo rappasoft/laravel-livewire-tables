@@ -148,4 +148,11 @@ trait PaginationConfiguration
 
         return $this;
     }
+
+    public function setPerPageFieldAttributes(array $attributes = []): self
+    {
+        $this->perPageFieldAttributes = [...$this->perPageFieldAttributes, ...$attributes];
+
+        return $this;
+    }
 }
