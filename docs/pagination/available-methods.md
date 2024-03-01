@@ -232,7 +232,7 @@ public function configure(): void
 ## setPaginationFieldAttributes
 Allows for customisation of the appearance of the "Per Page" dropdown
 
-Note that this utilises a refreshed approach for attributes, and allows for appending to, or replacing the styles and colors independently, via the below:
+Note that this utilises a refreshed approach for attributes, and allows for appending to, or replacing the styles and colors independently, via the below methods.
 
 ### default-colors
 Setting to false will disable the default colors for the Per Page dropdown, the default colors are:
