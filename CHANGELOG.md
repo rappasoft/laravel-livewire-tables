@@ -2,6 +2,13 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.2.3] - 2024-03-01
+### New Features
+- Add capability to customise colors/styling on the Pagination Per-Page Dropdown by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1677
+
+### Docs
+- Amend Lifecycle Hooks document to use "public" rather than "protected" methods
+
 ## [v3.2.2] - 2024-02-29
 ### New Features
 - Add setDefaultPerPage by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1671

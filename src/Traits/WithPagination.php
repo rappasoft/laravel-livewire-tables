@@ -39,6 +39,8 @@ trait WithPagination
 
     protected bool $shouldShowPaginationDetails = true;
 
+    protected array $perPageFieldAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
+
     public function mountWithPagination(): void
     {
         $sessionPerPage = session()->get($this->getPerPagePaginationSessionKey(), $this->getPerPageAccepted()[0] ?? 10);
