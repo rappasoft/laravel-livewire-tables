@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\Computed;
+
 trait PaginationHelpers
 {
     public function getPageName(): ?string
@@ -141,9 +143,10 @@ trait PaginationHelpers
     {
         return $this->tableName.'-perPage';
     }
-
+    
+    #[Computed]
     public function getPaginationFieldAttributes(): array
     {
-        return count($this->paginationFieldAttributes) ? $this->paginationFieldAttributes : ['default-styling' => true, 'default-colors' => true, 'class' => ''];
+        return $this->paginationFieldAttributes;
     }
 }

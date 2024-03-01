@@ -4,9 +4,7 @@
         'ms-0 ms-md-2' => $component->isBootstrap5(),
     ])
 >
-    <select
-        wire:model.live="perPage" id="{{ $tableName }}-perPage"
-
+    <select wire:model.live="perPage" id="{{ $tableName }}-perPage"
         {{ 
             $attributes->merge($component->getPaginationFieldAttributes())
             ->class([
