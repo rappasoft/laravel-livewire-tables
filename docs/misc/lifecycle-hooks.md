@@ -23,20 +23,26 @@ This is called immediately after the Columns are set up
 This is called immediately after the query is executed, and is passed the result from the executed query.
 
 ## Use in Traits
-To use these in a trait, append the Lifecycle Hook with your trait name, e.g.
+To use these in a trait, allowing you to easily set defaults across multiple tables, you should ensure that you append the Lifecycle Hook with your trait name, e.g.
+
+You can then add the trait to your tables, allowing you to centralise your defaults, and avoid code duplication.
 
 ```php
 trait StandardTableMethods
 {
 
-    protected function configuringStandardTableMethods()
+    public function configuringStandardTableMethods()
     {
         // Your standard configure() options go here, anything set here will be over-ridden by the configure() method
+        // For Example
+        $this->setColumnSelectDisabled();
     }
 
-    protected function configuredStandardTableMethods()
+    public function configuredStandardTableMethods()
     {
         // Your standard configure() options go here, anything set here will override those set in the configure() method
+        // For Example
+        $this->setColumnSelectDisabled();
     }
 
 }

@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+### Docs
+- Amend Lifecycle Hooks document to use "public" rather than "protected" methods
+
 ## [v3.2.2] - 2024-02-29
 ### New Features
 - Add setDefaultPerPage by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1671
