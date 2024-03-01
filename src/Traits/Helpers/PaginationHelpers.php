@@ -143,7 +143,7 @@ trait PaginationHelpers
     {
         return $this->tableName.'-perPage';
     }
-    
+
     #[Computed]
     public function getPaginationFieldAttributes(): array
     {

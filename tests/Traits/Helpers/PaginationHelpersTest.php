@@ -152,7 +152,5 @@ class PaginationHelpersTest extends TestCase
 
         $this->assertSame(['default-styling' => false, 'default-colors' => true, 'class' => 'bg-blue-500 dark:bg-red-500'], $this->basicTable->getPaginationFieldAttributes());
 
-
     }
-
 }

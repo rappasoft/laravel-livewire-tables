@@ -300,7 +300,6 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<span>to</span>');
     }
 
-
     /** @test */
     public function pagination_field_can_set_colors(): void
     {
@@ -332,7 +331,7 @@ class PaginationVisualsTest extends TestCase
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 bg-gre-500 dark:bg-ba-500"',
             ]);
     }
-    
+
     /** @test */
     public function pagination_field_can_set_styling(): void
     {
@@ -390,5 +389,4 @@ class PaginationVisualsTest extends TestCase
                 'class="bg-gre-500 dark:bg-ba-500"',
             ]);
     }
-
 }
