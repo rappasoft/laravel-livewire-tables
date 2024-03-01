@@ -133,24 +133,24 @@ class PaginationHelpersTest extends TestCase
     public function can_get_pagination_field_attributes(): void
     {
 
-        $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => ''], $this->basicTable->getPaginationFieldAttributes());
+        $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => ''], $this->basicTable->getPerPageFieldAttributes());
 
-        $this->basicTable->setPaginationFieldAttributes(
+        $this->basicTable->setPerPageFieldAttributes(
             [
                 'class' => 'bg-blue-500 dark:bg-red-500',
                 'default-colors' => true,
             ]
         );
 
-        $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => 'bg-blue-500 dark:bg-red-500'], $this->basicTable->getPaginationFieldAttributes());
+        $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => 'bg-blue-500 dark:bg-red-500'], $this->basicTable->getPerPageFieldAttributes());
 
-        $this->basicTable->setPaginationFieldAttributes(
+        $this->basicTable->setPerPageFieldAttributes(
             [
                 'default-styling' => false,
             ]
         );
 
-        $this->assertSame(['default-styling' => false, 'default-colors' => true, 'class' => 'bg-blue-500 dark:bg-red-500'], $this->basicTable->getPaginationFieldAttributes());
+        $this->assertSame(['default-styling' => false, 'default-colors' => true, 'class' => 'bg-blue-500 dark:bg-red-500'], $this->basicTable->getPerPageFieldAttributes());
 
     }
 }
