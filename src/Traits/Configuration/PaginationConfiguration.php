@@ -149,9 +149,9 @@ trait PaginationConfiguration
         return $this;
     }
 
-    public function setPaginationFieldAttributes(array $attributes = []): self
+    public function setPerPageFieldAttributes(array $attributes = []): self
     {
-        $this->paginationFieldAttributes = [...$this->paginationFieldAttributes, ...$attributes];
+        $this->perPageFieldAttributes = [...$this->perPageFieldAttributes, ...$attributes];
 
         return $this;
     }

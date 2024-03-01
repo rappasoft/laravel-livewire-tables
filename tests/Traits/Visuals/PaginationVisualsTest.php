@@ -308,21 +308,21 @@ class PaginationVisualsTest extends TestCase
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"',
             ])
-            ->call('setPaginationFieldAttributes', [
+            ->call('setPerPageFieldAttributes', [
                 'default-colors' => true,
             ])
             ->assertSeeHtmlInOrder([
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"',
             ])
-            ->call('setPaginationFieldAttributes', [
+            ->call('setPerPageFieldAttributes', [
                 'class' => 'testclass1',
             ])
             ->assertSeeHtmlInOrder([
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 testclass1"',
             ])
-            ->call('setPaginationFieldAttributes', [
+            ->call('setPerPageFieldAttributes', [
                 'class' => 'bg-gre-500 dark:bg-ba-500',
                 'default-colors' => false,
             ])
@@ -340,28 +340,28 @@ class PaginationVisualsTest extends TestCase
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"',
             ])
-            ->call('setPaginationFieldAttributes', [
+            ->call('setPerPageFieldAttributes', [
                 'default-styling' => true,
             ])
             ->assertSeeHtmlInOrder([
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"',
             ])
-            ->call('setPaginationFieldAttributes', [
+            ->call('setPerPageFieldAttributes', [
                 'default-styling' => false,
             ])
             ->assertSeeHtmlInOrder([
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"',
             ])
-            ->call('setPaginationFieldAttributes', [
+            ->call('setPerPageFieldAttributes', [
                 'class' => 'testclass1',
             ])
             ->assertSeeHtmlInOrder([
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 testclass1"',
             ])
-            ->call('setPaginationFieldAttributes', [
+            ->call('setPerPageFieldAttributes', [
                 'class' => 'bg-gre-500 dark:bg-ba-500',
                 'default-styling' => false,
             ])
@@ -379,7 +379,7 @@ class PaginationVisualsTest extends TestCase
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"',
             ])
-            ->call('setPaginationFieldAttributes', [
+            ->call('setPerPageFieldAttributes', [
                 'class' => 'bg-gre-500 dark:bg-ba-500',
                 'default-styling' => false,
                 'default-colors' => false,

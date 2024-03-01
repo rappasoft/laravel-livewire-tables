@@ -6,12 +6,12 @@
 >
     <select wire:model.live="perPage" id="{{ $tableName }}-perPage"
         {{ 
-            $attributes->merge($component->getPaginationFieldAttributes())
+            $attributes->merge($component->getPerPageFieldAttributes())
             ->class([
-                'form-control' => $component->isBootstrap4() && $component->getPaginationFieldAttributes()['default-styling'],
-                'form-select' => $component->isBootstrap5() && $component->getPaginationFieldAttributes()['default-styling'],
-                'block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50' => $component->isTailwind() && $component->getPaginationFieldAttributes()['default-styling'],
-                'border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600' => $component->isTailwind() && $component->getPaginationFieldAttributes()['default-colors'],
+                'form-control' => $component->isBootstrap4() && $component->getPerPageFieldAttributes()['default-styling'],
+                'form-select' => $component->isBootstrap5() && $component->getPerPageFieldAttributes()['default-styling'],
+                'block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50' => $component->isTailwind() && $component->getPerPageFieldAttributes()['default-styling'],
+                'border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600' => $component->isTailwind() && $component->getPerPageFieldAttributes()['default-colors'],
             ])
             ->except(['default','default-styling','default-colors']) 
         }}

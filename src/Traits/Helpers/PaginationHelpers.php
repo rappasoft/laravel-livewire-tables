@@ -145,8 +145,8 @@ trait PaginationHelpers
     }
 
     #[Computed]
-    public function getPaginationFieldAttributes(): array
+    public function getPerPageFieldAttributes(): array
     {
-        return $this->paginationFieldAttributes;
+        return $this->perPageFieldAttributes;
     }
 }
