@@ -12,6 +12,7 @@ use Livewire\Features\SupportConsoleCommands\Commands\MakeCommand as LivewireMak
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
+
 use function Laravel\Prompts\suggest;
 use function Laravel\Prompts\text;
 
@@ -171,7 +172,6 @@ class MakeCommand extends Command implements PromptsForMissingInput
         return $columns;
     }
 
-
     protected function possibleModels()
     {
         $modelPath = is_dir(app_path('Models')) ? app_path('Models') : app_path();
@@ -191,7 +191,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
         }
 
         if (trim($this->argument('name')) === '') {
-            $name = text('What is the name of your Livewire class?', "TestTable");
+            $name = text('What is the name of your Livewire class?', 'TestTable');
 
             if ($name) {
                 $input->setArgument('name', $name);
@@ -202,7 +202,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
             $model = suggest(
                 'What is the name of the model you want to use in this table?',
                 $this->possibleModels(),
-                "Test"
+                'Test'
             );
 
             if ($model) {
@@ -212,7 +212,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
 
         if (trim($this->argument('modelpath')) === '' && ! in_array($this->argument('model'), $this->possibleModels())) {
 
-            $modelPath = text('What is the path to the model you want to use in this table?', "app/TestModels/");
+            $modelPath = text('What is the path to the model you want to use in this table?', 'app/TestModels/');
 
             if ($modelPath) {
                 $input->setArgument('modelpath', $modelPath);
