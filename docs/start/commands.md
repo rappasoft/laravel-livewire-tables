@@ -22,3 +22,11 @@ Create a new datatable component called `TestTable` in `App\Livewire` that uses 
 ```bash
 php artisan make:datatable TestTable example app/Domains/Test/Models/
 ```
+
+### Prompt for missing inputs
+
+If you only use the `make:datatable` command without any arguments, it will prompt you for the missing inputs.
+
+```bash
+php artisan make:datatable
+```
