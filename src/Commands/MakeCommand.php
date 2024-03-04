@@ -104,7 +104,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
         );
 
         if ($model) {
-            $input->setOption('model', $model);
+            $input->setArgument('model', $model);
         }
     }
 
