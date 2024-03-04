@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -12,7 +13,7 @@ use Livewire\Features\SupportConsoleCommands\Commands\MakeCommand as LivewireMak
 /**
  * Class MakeCommand
  */
-class MakeCommand extends Command
+class MakeCommand extends Command implements PromptsForMissingInput
 {
     protected ComponentParser $parser;
 
