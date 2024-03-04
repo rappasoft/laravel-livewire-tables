@@ -191,7 +191,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
         }
 
         if (trim($this->argument('name')) === '') {
-            $name = text('What is the name of your Livewire class?');
+            $name = text('What is the name of your Livewire class?', "TestTable");
 
             if ($name) {
                 $input->setArgument('name', $name);
@@ -202,6 +202,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
             $model = suggest(
                 'What is the name of the model you want to use in this table?',
                 $this->possibleModels(),
+                "Test"
             );
 
             if ($model) {
@@ -211,7 +212,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
 
         if(trim($this->argument('modelpath')) === '' && !in_array($this->argument('model'), $this->possibleModels())) {
 
-            $modelPath = text('What is the path to the model you want to use in this table?');
+            $modelPath = text('What is the path to the model you want to use in this table?', "app/TestModels/");
 
             if ($modelPath) {
                 $input->setArgument('modelpath', $modelPath);
