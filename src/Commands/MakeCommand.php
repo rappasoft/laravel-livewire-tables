@@ -11,6 +11,7 @@ use Livewire\Features\SupportConsoleCommands\Commands\ComponentParser;
 use Livewire\Features\SupportConsoleCommands\Commands\MakeCommand as LivewireMakeCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 use function Laravel\Prompts\suggest;
 use function Laravel\Prompts\text;
 
@@ -76,6 +77,17 @@ class MakeCommand extends Command implements PromptsForMissingInput
         $this->createClass($force);
 
         $this->info('Livewire Datatable Created: '.$this->parser->className());
+    }
+
+    protected function possibleModels()
+    {
+        $modelPath = is_dir(app_path('Models')) ? app_path('Models') : app_path();
+
+        return collect(Finder::create()->files()->depth(0)->in($modelPath))
+            ->map(fn ($file) => $file->getBasename('.php'))
+            ->sort()
+            ->values()
+            ->all();
     }
 
     protected function promptForMissingArguments(InputInterface $input, OutputInterface $output)
