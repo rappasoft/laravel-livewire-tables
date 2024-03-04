@@ -115,6 +115,15 @@ class MakeCommand extends Command implements PromptsForMissingInput
                 $input->setArgument('model', $model);
             }
         }
+
+        if(trim($this->argument('modelpath')) === '' && !in_array($this->argument('model'), $this->possibleModels())) {
+
+            $modelPath = text('What is the path to the model you want to use in this table?');
+
+            if ($modelPath) {
+                $input->setArgument('modelpath', $modelPath);
+            }
+        }
     }
 
     protected function createClass(bool $force = false): bool
