@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Livewire\Features\SupportConsoleCommands\Commands\ComponentParser;
 use Livewire\Features\SupportConsoleCommands\Commands\MakeCommand as LivewireMakeCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use function Laravel\Prompts\suggest;
+use function Laravel\Prompts\text;
 
 /**
  * Class MakeCommand
@@ -72,6 +76,24 @@ class MakeCommand extends Command implements PromptsForMissingInput
         $this->createClass($force);
 
         $this->info('Livewire Datatable Created: '.$this->parser->className());
+    }
+
+    protected function promptForMissingArguments(InputInterface $input, OutputInterface $output)
+    {
+        $name = text('What is the name of your Livewire class?');
+
+        if ($name) {
+            $input->setArgument('name', $name);
+        }
+
+        $model = suggest(
+            'What is the name of the model you want to use in this table?',
+            $this->possibleModels(),
+        );
+
+        if ($model) {
+            $input->setOption('model', $model);
+        }
     }
 
     protected function createClass(bool $force = false): bool
