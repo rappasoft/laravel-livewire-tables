@@ -92,19 +92,28 @@ class MakeCommand extends Command implements PromptsForMissingInput
 
     protected function promptForMissingArguments(InputInterface $input, OutputInterface $output)
     {
-        $name = text('What is the name of your Livewire class?');
 
-        if ($name) {
-            $input->setArgument('name', $name);
+        if ($this->didReceiveOptions($input)) {
+            return;
         }
 
-        $model = suggest(
-            'What is the name of the model you want to use in this table?',
-            $this->possibleModels(),
-        );
+        if (trim($this->argument('name')) === '') {
+            $name = text('What is the name of your Livewire class?');
 
-        if ($model) {
-            $input->setArgument('model', $model);
+            if ($name) {
+                $input->setArgument('name', $name);
+            }
+        }
+
+        if (trim($this->argument('model')) === '') {
+            $model = suggest(
+                'What is the name of the model you want to use in this table?',
+                $this->possibleModels(),
+            );
+
+            if ($model) {
+                $input->setArgument('model', $model);
+            }
         }
     }
 
