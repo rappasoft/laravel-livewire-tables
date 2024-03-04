@@ -79,53 +79,6 @@ class MakeCommand extends Command implements PromptsForMissingInput
         $this->info('Livewire Datatable Created: '.$this->parser->className());
     }
 
-    protected function possibleModels()
-    {
-        $modelPath = is_dir(app_path('Models')) ? app_path('Models') : app_path();
-
-        return collect(Finder::create()->files()->depth(0)->in($modelPath))
-            ->map(fn ($file) => $file->getBasename('.php'))
-            ->sort()
-            ->values()
-            ->all();
-    }
-
-    protected function promptForMissingArguments(InputInterface $input, OutputInterface $output)
-    {
-
-        if ($this->didReceiveOptions($input)) {
-            return;
-        }
-
-        if (trim($this->argument('name')) === '') {
-            $name = text('What is the name of your Livewire class?');
-
-            if ($name) {
-                $input->setArgument('name', $name);
-            }
-        }
-
-        if (trim($this->argument('model')) === '') {
-            $model = suggest(
-                'What is the name of the model you want to use in this table?',
-                $this->possibleModels(),
-            );
-
-            if ($model) {
-                $input->setArgument('model', $model);
-            }
-        }
-
-        if(trim($this->argument('modelpath')) === '' && !in_array($this->argument('model'), $this->possibleModels())) {
-
-            $modelPath = text('What is the path to the model you want to use in this table?');
-
-            if ($modelPath) {
-                $input->setArgument('modelpath', $modelPath);
-            }
-        }
-    }
-
     protected function createClass(bool $force = false): bool
     {
         $classPath = $this->parser->classPath();
@@ -216,5 +169,53 @@ class MakeCommand extends Command implements PromptsForMissingInput
         $columns .= '        ]';
 
         return $columns;
+    }
+
+
+    protected function possibleModels()
+    {
+        $modelPath = is_dir(app_path('Models')) ? app_path('Models') : app_path();
+
+        return collect(Finder::create()->files()->depth(0)->in($modelPath))
+            ->map(fn ($file) => $file->getBasename('.php'))
+            ->sort()
+            ->values()
+            ->all();
+    }
+
+    protected function promptForMissingArguments(InputInterface $input, OutputInterface $output)
+    {
+
+        if ($this->didReceiveOptions($input)) {
+            return;
+        }
+
+        if (trim($this->argument('name')) === '') {
+            $name = text('What is the name of your Livewire class?');
+
+            if ($name) {
+                $input->setArgument('name', $name);
+            }
+        }
+
+        if (trim($this->argument('model')) === '') {
+            $model = suggest(
+                'What is the name of the model you want to use in this table?',
+                $this->possibleModels(),
+            );
+
+            if ($model) {
+                $input->setArgument('model', $model);
+            }
+        }
+
+        if(trim($this->argument('modelpath')) === '' && !in_array($this->argument('model'), $this->possibleModels())) {
+
+            $modelPath = text('What is the path to the model you want to use in this table?');
+
+            if ($modelPath) {
+                $input->setArgument('modelpath', $modelPath);
+            }
+        }
     }
 }
