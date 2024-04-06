@@ -7,7 +7,7 @@
 | --- | --- |
 | Brazilian (BR_PT) | [irineujunior](https://github.com/irineujunior)|
 | Danish (DA) | [jeppeolesen](https://github.com/jeppeolesen) |
-| Dutch (NL) | [siebsie23](https://github.com/siebsie23) & [spekkie2002](https://github.com/spekkie2002)|
+| Dutch (NL) | [siebsie23](https://github.com/siebsie23) & [spekkie2002](https://github.com/spekkie2002) & [Jerimu](https://github.com/Jerimu) |
 | Finnish (FI) | [devmikromike](https://github.com/devmikromike) |
 | French (FR) | [dgillier](https://github.com/dgillier) |
 | Malay (MS) | [wanadri](https://github.com/wanadri) |
