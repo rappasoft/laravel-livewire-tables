@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## UNRELEASED
+## [v3.2.5] - UNRELEASED
 - Updated nl language in https://github.com/rappasoft/laravel-livewire-tables/pull/1695 by @Jerimu
 - Updated nl language in https://github.com/rappasoft/laravel-livewire-tables/pull/1694 by @Jerimu
 
