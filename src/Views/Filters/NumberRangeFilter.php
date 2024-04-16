@@ -4,10 +4,12 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 
 class NumberRangeFilter extends Filter
 {
     use HasOptions;
+    use HasWireables;
 
     protected string $view = 'livewire-tables::components.tools.filters.number-range';
 

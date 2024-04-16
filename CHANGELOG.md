@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+### New Features
+- Add capability to configure how Filters are wired
+
 ## [v3.2.4] - 2024-03-01
 ### Bug Fixes
 - Collapsing Columns fix when multiple tables are displayed on a page by @lrljoe

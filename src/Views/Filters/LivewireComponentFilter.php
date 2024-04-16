@@ -4,9 +4,12 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 
 class LivewireComponentFilter extends Filter
 {
+    use HasWireables;
+
     protected string $view = 'livewire-tables::components.tools.filters.livewire-component-filter';
 
     public string $livewireComponent = '';
