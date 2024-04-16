@@ -3,10 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 
-class MultiSelectDropdownFilterTest extends TestCase
+class MultiSelectDropdownFilterTest extends FilterTestCase
 {
     public array $optionsArray = [];
 
