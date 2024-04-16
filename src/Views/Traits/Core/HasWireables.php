@@ -6,10 +6,10 @@ trait HasWireables
 {
     protected function checkWireMethod(string $wireMethod): string
     {
-        if ($wireMethod == 'wireMethod' || $wireMethod == 'searchMethod')
-        {
+        if ($wireMethod == 'wireMethod' || $wireMethod == 'searchMethod') {
             return $wireMethod;
         }
+
         return 'wireMethod';
     }
 
@@ -17,7 +17,7 @@ trait HasWireables
     {
         $wireMethod = $this->checkWireMethod($wireMethod);
 
-        $this->{$wireMethod} =  "live.debounce.".$debouncePeriod."ms";
+        $this->{$wireMethod} = 'live.debounce.'.$debouncePeriod.'ms';
 
         return $this;
     }
@@ -26,7 +26,7 @@ trait HasWireables
     {
         $wireMethod = $this->checkWireMethod($wireMethod);
 
-        $this->{$wireMethod} = "blur";
+        $this->{$wireMethod} = 'blur';
 
         return $this;
     }
@@ -35,7 +35,7 @@ trait HasWireables
     {
         $wireMethod = $this->checkWireMethod($wireMethod);
 
-        $this->{$wireMethod} = "defer";
+        $this->{$wireMethod} = 'defer';
 
         return $this;
     }
@@ -44,7 +44,7 @@ trait HasWireables
     {
         $wireMethod = $this->checkWireMethod($wireMethod);
 
-        $this->{$wireMethod} = "live";
+        $this->{$wireMethod} = 'live';
 
         return $this;
     }
@@ -61,26 +61,25 @@ trait HasWireables
     public function getWireableMethod(string $wireMethod = 'wireMethod'): string
     {
         $wireMethod = $this->checkWireMethod($wireMethod);
-        
+
         return $this->{$wireMethod};
     }
 
     public function getWireMethod(string $wireableElement, string $wireMethod = 'wireMethod'): string
     {
         $wireMethod = $this->checkWireMethod($wireMethod);
-        
-        return $this->getWireMethodString($this->{$wireMethod} ?? 'blur', $wireableElement);   
+
+        return $this->getWireMethodString($this->{$wireMethod} ?? 'blur', $wireableElement);
     }
 
     public function getWireMethodString(string $wireMethod, string $wireableElement): string
     {
 
-        if ($wireMethod != 'defer')
-        {
-            return "wire:model.".$wireMethod."=".$wireableElement;
+        if ($wireMethod != 'defer') {
+            return 'wire:model.'.$wireMethod.'='.$wireableElement;
         }
-        return "wire:model=".$wireableElement;
+
+        return 'wire:model='.$wireableElement;
 
     }
-
 }
