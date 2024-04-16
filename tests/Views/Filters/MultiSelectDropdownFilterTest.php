@@ -278,7 +278,7 @@ class MultiSelectDropdownFilterTest extends TestCase
 
         $this->assertSame('blur', $filter->getWireableMethod());
         $this->assertSame('wire:model.blur=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
-        
+
         $filter->setWireLive();
 
         $this->assertSame('live', $filter->getWireableMethod());
