@@ -4,8 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use DateTime;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig, IsStringFilter};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig, IsStringFilter};
 
 class DateFilter extends Filter
 {

@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions};
 
 class NumberRangeFilter extends Filter
 {
