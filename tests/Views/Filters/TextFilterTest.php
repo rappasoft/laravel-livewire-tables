@@ -80,29 +80,28 @@ final class TextFilterTest extends FilterTestCase
         $filter = TextFilter::make('Active');
 
         $this->assertSame('blur', $filter->getWireableMethod());
-        
-        $this->assertSame('wire:model.blur=filterComponents.active', $filter->getWireMethod("filterComponents.".$filter->getKey()));
-        
+
+        $this->assertSame('wire:model.blur=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+
         $filter->setWireLive();
 
         $this->assertSame('live', $filter->getWireableMethod());
-        $this->assertSame('wire:model.live=filterComponents.active', $filter->getWireMethod("filterComponents.".$filter->getKey()));
+        $this->assertSame('wire:model.live=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireDefer();
 
         $this->assertSame('defer', $filter->getWireableMethod());
-        $this->assertSame('wire:model=filterComponents.active', $filter->getWireMethod("filterComponents.".$filter->getKey()));
+        $this->assertSame('wire:model=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireDebounce(250);
 
         $this->assertSame('live.debounce.250ms', $filter->getWireableMethod());
-        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', $filter->getWireMethod("filterComponents.".$filter->getKey()));
+        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireDebounce(500);
 
         $this->assertSame('live.debounce.500ms', $filter->getWireableMethod());
-        $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', $filter->getWireMethod("filterComponents.".$filter->getKey()));
+        $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
     }
-
 }
