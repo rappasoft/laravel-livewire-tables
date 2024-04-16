@@ -265,7 +265,7 @@ class MultiSelectDropdownFilterTest extends TestCase
      *
      * @depends testArraySetup
      */
-    public function test_can_set_select_filter_wireable_live(): void
+    public function test_can_set_select_filter_wireable_live(array $optionsArray): void
     {
 
         $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
