@@ -9,7 +9,7 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 class LivewireComponentFilter extends Filter
 {
     use HasWireables;
-    
+
     public string $wireMethod = 'blur';
 
     protected string $view = 'livewire-tables::components.tools.filters.livewire-component-filter';
