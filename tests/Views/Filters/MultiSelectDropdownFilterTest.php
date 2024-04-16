@@ -270,9 +270,9 @@ class MultiSelectDropdownFilterTest extends TestCase
 
         $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
 
-        $this->assertSame('live', $filter->getWireableMethod());
+        $this->assertSame('live.debounce.250ms', $filter->getWireableMethod());
 
-        $this->assertSame('wire:model.live=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireBlur();
 
