@@ -111,6 +111,11 @@ final class SelectFilterTest extends FilterTestCase
         $this->assertSame('defer', self::$filterInstance->getWireableMethod());
         $this->assertSame('wire:model=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
+        self::$filterInstance->setWireLive();
+        $this->assertSame('live', self::$filterInstance->getWireableMethod());
+
+        $this->assertSame('wire:model.live=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+
         self::$filterInstance->setWireDebounce(250);
 
         $this->assertSame('live.debounce.250ms', self::$filterInstance->getWireableMethod());

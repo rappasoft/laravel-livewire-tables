@@ -83,6 +83,7 @@ final class TextFilterTest extends FilterTestCase
 
         $this->assertSame('wire:model.blur=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
+
         $filter->setWireLive();
 
         $this->assertSame('live', $filter->getWireableMethod());
@@ -92,6 +93,12 @@ final class TextFilterTest extends FilterTestCase
 
         $this->assertSame('defer', $filter->getWireableMethod());
         $this->assertSame('wire:model=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        
+        $filter->setWireBlur();
+
+        $this->assertSame('blur', $filter->getWireableMethod());
+
+        $this->assertSame('wire:model.blur=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireDebounce(250);
 
