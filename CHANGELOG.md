@@ -4,7 +4,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## UNRELEASED
 ### New Features
-- Add capability to configure how Filters are wired
+- Add capability to configure how Filters are wire:modeled by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1699
 
 ## [v3.2.4] - 2024-03-01
 ### Bug Fixes
