@@ -163,7 +163,6 @@ final class DateTimeFilterTest extends FilterTestCase
     public function test_can_set_text_filter_wireable_live(): void
     {
 
-
         $this->assertSame('live', self::$filterInstance->getWireableMethod());
         $this->assertSame('wire:model.live=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
@@ -172,7 +171,7 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('blur', self::$filterInstance->getWireableMethod());
 
         $this->assertSame('wire:model.blur=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
-        
+
         self::$filterInstance->setWireLive();
 
         $this->assertSame('live', self::$filterInstance->getWireableMethod());
@@ -194,5 +193,4 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
     }
-
 }

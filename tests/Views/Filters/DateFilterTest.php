@@ -214,5 +214,4 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
     }
-
 }
