@@ -10,6 +10,8 @@ class NumberRangeFilter extends Filter
 {
     use HasOptions;
     use HasWireables;
+    
+    public string $wireMethod = 'blur';
 
     protected string $view = 'livewire-tables::components.tools.filters.number-range';
 

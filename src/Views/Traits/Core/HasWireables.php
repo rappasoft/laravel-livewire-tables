@@ -4,59 +4,77 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 trait HasWireables
 {
-    public function setWireDebounce(int $debouncePeriod): self
+    protected function checkWireMethod(string $wireMethod): string
     {
-        $this->wireMethod = 'live.debounce.'.$debouncePeriod.'ms';
+        if ($wireMethod == 'wireMethod' || $wireMethod == 'searchMethod')
+        {
+            return $wireMethod;
+        }
+        return 'wireMethod';
+    }
+
+    public function setWireDebounce(int $debouncePeriod = 500, string $wireMethod = 'wireMethod'): self
+    {
+        $wireMethod = $this->checkWireMethod($wireMethod);
+
+        $this->{$wireMethod} =  "live.debounce.".$debouncePeriod."ms";
 
         return $this;
     }
 
-    public function setWireBlur(): self
+    public function setWireBlur(string $wireMethod = 'wireMethod'): self
     {
-        $this->wireMethod = 'blur';
+        $wireMethod = $this->checkWireMethod($wireMethod);
+
+        $this->{$wireMethod} = "blur";
 
         return $this;
     }
 
-    public function setWireDefer(): self
+    public function setWireDefer(string $wireMethod = 'wireMethod'): self
     {
-        $this->wireMethod = 'defer';
+        $wireMethod = $this->checkWireMethod($wireMethod);
+
+        $this->{$wireMethod} = "defer";
 
         return $this;
     }
 
-    public function setWireLive(): self
+    public function setWireLive(string $wireMethod = 'wireMethod'): self
     {
-        $this->wireMethod = 'live';
+        $wireMethod = $this->checkWireMethod($wireMethod);
+
+        $this->{$wireMethod} = "live";
 
         return $this;
     }
 
-    public function setWireMethod(string $wireMethod): self
+    public function setWireMethod(string $definedWireMethod, string $wireMethod = 'wireMethod'): self
     {
-        $this->wireMethod = $wireMethod;
+        $wireMethod = $this->checkWireMethod($wireMethod);
+
+        $this->{$wireMethod} = $definedWireMethod;
 
         return $this;
     }
 
-    public function getWireMethod(string $wireableElement): string
+
+    public function getWireMethod(string $wireableElement, string $wireMethod = 'wireMethod'): string
     {
-        return $this->getWireMethodString($this->wireMethod ?? 'blur', $wireableElement);
+        $wireMethod = $this->checkWireMethod($wireMethod);
+        
+        return $this->getWireMethodString($this->{$wireMethod} ?? 'blur', $wireableElement);   
     }
 
     public function getWireMethodString(string $wireMethod, string $wireableElement): string
     {
 
-        if ($wireMethod != 'defer') {
-            return 'wire:model.'.$wireMethod.'='.$wireableElement;
+        if ($wireMethod != 'defer')
+        {
+            return "wire:model.".$wireMethod."=".$wireableElement;
         }
-
-        return 'wire:model='.$wireableElement;
+        return "wire:model=".$wireableElement;
 
     }
 
-    public function getWireMethodAppends(): int
-    {
-        return $this->wireMethodAppends;
-    }
 }
