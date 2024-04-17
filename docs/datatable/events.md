@@ -8,7 +8,7 @@ These are the available events on the datatable component that you can fire from
 ### refreshDatatable
 
 ```php
-$this->emit('refreshDatatable');
+$this->dispatch('refreshDatatable');
 ```
 
 Calls `$refresh` on the component. Good for updating from external sources or as an alternative to polling.
@@ -18,7 +18,7 @@ Calls `$refresh` on the component. Good for updating from external sources or as
 You can have the table sort a specific column:
 
 ```php
-$this->emit('setSort', 'name', 'asc');
+$this->dispatch('setSort', 'name', 'asc');
 ```
 
 ### clearSorts
@@ -26,7 +26,7 @@ $this->emit('setSort', 'name', 'asc');
 You can clear all the applied sorts:
 
 ```php
-$this->emit('clearSorts');
+$this->dispatch('clearSorts');
 ```
 
 ### setFilter
@@ -34,7 +34,7 @@ $this->emit('clearSorts');
 You can have the table run a specific filter:
 
 ```php
-$this->emit('setFilter', 'status', '1');
+$this->dispatch('setFilter', 'status', '1');
 ```
 
 ### clearFilters
@@ -42,5 +42,5 @@ $this->emit('setFilter', 'status', '1');
 You can have the table clear all filters:
 
 ```php
-$this->emit('clearFilters');
+$this->dispatch('clearFilters');
 ```
