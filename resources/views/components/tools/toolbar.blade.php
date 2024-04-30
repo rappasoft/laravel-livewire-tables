@@ -15,16 +15,19 @@
             'w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2' => $component->isTailwind(),
         ])
     >
-        <div x-cloak x-show="!currentlyReorderingStatus">
-            @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
+        @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
+            <div x-cloak x-show="!currentlyReorderingStatus" @class([
+                'mb-3 mb-md-0 input-group' => $component->isBootstrap(),
+                'flex rounded-md shadow-sm' => $component->isTailwind(),
+            ])>
                 @include($component->getConfigurableAreaFor('toolbar-left-start'), $component->getParametersForConfigurableArea('toolbar-left-start'))
-            @endif
-        </div>
-        
+            </div>
+        @endif
+
         @if ($component->reorderIsEnabled())
             <x-livewire-tables::tools.toolbar.items.reorder-buttons />
         @endif
-        
+
         @if ($component->searchIsEnabled() && $component->searchVisibilityIsEnabled())
             <x-livewire-tables::tools.toolbar.items.search-field />
         @endif
@@ -34,13 +37,16 @@
         @endif
 
         @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
-            <div x-cloak x-show="!currentlyReorderingStatus">
+            <div x-cloak x-show="!currentlyReorderingStatus" @class([
+                'mb-3 mb-md-0 input-group' => $component->isBootstrap(),
+                'flex rounded-md shadow-sm' => $component->isTailwind(),
+            ])>
                 @include($component->getConfigurableAreaFor('toolbar-left-end'), $component->getParametersForConfigurableArea('toolbar-left-end'))
             </div>
         @endif
     </div>
 
-    <div x-cloak x-show="!currentlyReorderingStatus"         
+    <div x-cloak x-show="!currentlyReorderingStatus"
         @class([
             'd-md-flex' => $component->isBootstrap(),
             'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => $component->isTailwind(),
@@ -53,13 +59,13 @@
         @if ($component->showBulkActionsDropdownAlpine())
             <x-livewire-tables::tools.toolbar.items.bulk-actions />
         @endif
-        
+
         @if ($component->columnSelectIsEnabled())
-            <x-livewire-tables::tools.toolbar.items.column-select /> 
+            <x-livewire-tables::tools.toolbar.items.column-select />
         @endif
 
         @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
-            <x-livewire-tables::tools.toolbar.items.pagination-dropdown /> 
+            <x-livewire-tables::tools.toolbar.items.pagination-dropdown />
         @endif
 
         @if ($component->hasConfigurableAreaFor('toolbar-right-end'))
