@@ -19,11 +19,9 @@ trait ConfigurableAreasConfiguration
      */
     public function setConfigurableArea(string $configurableArea, mixed $config): self
     {
-        if(array_key_exists($configurableArea, $this->configurableAreas))
-        {
+        if (array_key_exists($configurableArea, $this->configurableAreas)) {
             $this->configurableAreas[$configurableArea] = $config;
         }
-
 
         return $this;
     }
