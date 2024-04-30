@@ -259,4 +259,45 @@ class MultiSelectDropdownFilterTest extends TestCase
         $filter->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', $filter->getViewPath());
     }
+
+    /**
+     * @test
+     *
+     * @depends testArraySetup
+     */
+    public function test_can_set_select_filter_wireable_live(array $optionsArray): void
+    {
+
+        $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
+
+        $this->assertSame('live.debounce.250ms', $filter->getWireableMethod());
+
+        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+
+        $filter->setWireBlur();
+
+        $this->assertSame('blur', $filter->getWireableMethod());
+        $this->assertSame('wire:model.blur=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+
+        $filter->setWireLive();
+
+        $this->assertSame('live', $filter->getWireableMethod());
+        $this->assertSame('wire:model.live=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+
+        $filter->setWireDefer();
+
+        $this->assertSame('defer', $filter->getWireableMethod());
+        $this->assertSame('wire:model=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+
+        $filter->setWireDebounce(250);
+
+        $this->assertSame('live.debounce.250ms', $filter->getWireableMethod());
+        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+
+        $filter->setWireDebounce(500);
+
+        $this->assertSame('live.debounce.500ms', $filter->getWireableMethod());
+        $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+
+    }
 }

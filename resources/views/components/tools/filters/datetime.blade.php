@@ -6,7 +6,6 @@
         "mb-3 mb-md-0 input-group" => $isBootstrap,
     ])>
         <input
-            wire:model.live="filterComponents.{{ $filter->getKey() }}"
             wire:key="{{ $filter->generateWireKey($tableName, 'datetime') }}"
             id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             type="datetime-local"

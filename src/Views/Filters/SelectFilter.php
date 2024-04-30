@@ -3,12 +3,16 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsStringFilter};
 
 class SelectFilter extends Filter
 {
     use HasOptions,
         IsStringFilter;
+    use HasWireables;
+
+    public string $wireMethod = 'live';
 
     protected string $view = 'livewire-tables::components.tools.filters.select';
 
