@@ -15,7 +15,8 @@ trait ConfigurableAreasConfiguration
     }
 
     /**
-     * @param  array<mixed>  $areas
+     * @param  string  $configurableArea
+     * @param  mixed   $config
      */
     public function setConfigurableArea(string $configurableArea, mixed $config): self
     {
@@ -26,6 +27,9 @@ trait ConfigurableAreasConfiguration
         return $this;
     }
 
+    /**
+     * @param  bool  $status
+     */
     public function setHideConfigurableAreasWhenReorderingStatus(bool $status): self
     {
         $this->hideConfigurableAreasWhenReorderingStatus = $status;
