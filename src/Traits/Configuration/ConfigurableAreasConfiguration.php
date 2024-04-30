@@ -14,6 +14,20 @@ trait ConfigurableAreasConfiguration
         return $this;
     }
 
+    /**
+     * @param  array<mixed>  $areas
+     */
+    public function setConfigurableArea(string $configurableArea, mixed $config): self
+    {
+        if(array_key_exists($configurableArea, $this->configurableAreas))
+        {
+            $this->configurableAreas[$configurableArea] = $config;
+        }
+
+
+        return $this;
+    }
+
     public function setHideConfigurableAreasWhenReorderingStatus(bool $status): self
     {
         $this->hideConfigurableAreasWhenReorderingStatus = $status;
