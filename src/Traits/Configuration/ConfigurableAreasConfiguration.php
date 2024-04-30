@@ -14,10 +14,6 @@ trait ConfigurableAreasConfiguration
         return $this;
     }
 
-    /**
-     * @param  string  $configurableArea
-     * @param  mixed   $config
-     */
     public function setConfigurableArea(string $configurableArea, mixed $config): self
     {
         if (array_key_exists($configurableArea, $this->configurableAreas)) {
@@ -27,9 +23,6 @@ trait ConfigurableAreasConfiguration
         return $this;
     }
 
-    /**
-     * @param  bool  $status
-     */
     public function setHideConfigurableAreasWhenReorderingStatus(bool $status): self
     {
         $this->hideConfigurableAreasWhenReorderingStatus = $status;
