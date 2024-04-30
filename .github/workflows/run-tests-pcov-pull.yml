@@ -1,6 +1,10 @@
 name: run-tests-pcov-pull
 
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - 'develop'
+      - 'master'
 
 jobs:
   test:
@@ -40,6 +44,13 @@ jobs:
           coverage: pcov
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache extensions
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.extcache.outputs.dir }}
+          key: ${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ steps.extcache.outputs.key }}
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"

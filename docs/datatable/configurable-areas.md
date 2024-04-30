@@ -7,9 +7,20 @@ There are certain areas of the datatable as of `v2.3` where you can include your
 
 ## Available Methods
 
+### setConfigurableArea
+
+You can use the `setConfigurableArea` method to set an area that you want to configure.
+
+```php
+public function configure(): void
+{
+  $this->setConfigurableArea('before-tools', 'path.to.my.view');
+}
+```
+
 ### setConfigurableAreas
 
-You can use the `setConfigurableAreas` method to set the areas that you want to be configurable.
+You can use the `setConfigurableAreas` method to set multiple areas that you want to configure.
 
 ```php
 public function configure(): void

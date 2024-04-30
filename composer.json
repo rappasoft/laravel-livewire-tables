@@ -15,6 +15,11 @@
             "name": "Anthony Rappa",
             "email": "rappa819@gmail.com",
             "role": "Developer"
+        },
+        {
+            "name": "Joe McElwee",
+            "email": "joe@lowerrocklabs.com",
+            "role": "Developer"
         }
     ],
     "require": {
