@@ -2,9 +2,15 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## UNRELEASED
+## [v3.2.5] - UNRELEASED
 ### New Features
+- Add setConfigurableArea by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1706
 - Add capability to configure how Filters are wire:modeled by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1699
+
+### Tweaks
+- Adjust Workflow behaviour for PCOV by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1706
+- Updated nl language in https://github.com/rappasoft/laravel-livewire-tables/pull/1695 by @Jerimu
+- Updated nl language in https://github.com/rappasoft/laravel-livewire-tables/pull/1694 by @Jerimu
 
 ## [v3.2.4] - 2024-03-01
 ### Bug Fixes
