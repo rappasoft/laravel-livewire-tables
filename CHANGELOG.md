@@ -2,6 +2,13 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+### New Features
+- Add setConfigurableArea by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1706
+
+### Tweaks
+- Adjust Workflow behaviour for PCOV by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1706
+
 ## [v3.2.4] - 2024-03-01
 ### Bug Fixes
 - Collapsing Columns fix when multiple tables are displayed on a page by @lrljoe
