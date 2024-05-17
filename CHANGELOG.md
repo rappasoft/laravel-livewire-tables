@@ -2,6 +2,7 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+=======
 ## [v3.2.6] - UNRELEASED
 ### New Features
 - Add configurable wire:model for filters by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1699
