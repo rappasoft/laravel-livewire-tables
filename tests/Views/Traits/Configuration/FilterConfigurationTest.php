@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Configuration;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
-class FilterConfigurationTest extends TestCase
+final class FilterConfigurationTest extends TestCase
 {
 
     public function test_filter_config_can_be_set(): void

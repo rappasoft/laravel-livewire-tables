@@ -7,10 +7,10 @@ use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
 
-class ReorderingVisualsTest extends TestCase
+final class ReorderingVisualsTest extends TestCase
 {
 
-    public function testFilterArraySetup(): array
+    public function test_FilterArraySetup(): array
     {
         $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
         $this->assertNotEmpty($filterDefaultArray);
@@ -103,7 +103,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:key="table-sorting-pill-id"');
     }
 
-    #[Depends('testFilterArraySetup')]
+    #[Depends('test_FilterArraySetup')]
     public function test_sorting_is_disabled_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
@@ -181,7 +181,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertSet('perPage', 10);
     }
 
-    #[Depends('testFilterArraySetup')]
+    #[Depends('test_FilterArraySetup')]
     public function test_search_hides_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
@@ -284,7 +284,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('do you want to select all');
     }
 
-    #[Depends('testFilterArraySetup')]
+    #[Depends('test_FilterArraySetup')]
     public function test_filters_are_disabled_on_reorder(array $filterDefaultArray): void
     {
         $customisedFilterArray = $filterDefaultArray;
@@ -307,7 +307,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('Filters');
     }
 
-    #[Depends('testFilterArraySetup')]
+    #[Depends('test_FilterArraySetup')]
     public function test_filter_pills_hide_on_reorder(array $filterDefaultArray): void
     {
         $filterDefaultArray['breed'] = [1];

@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class ComponentHelpersTest extends TestCase
+final class ComponentHelpersTest extends TestCase
 {
 
     public function test_can_see_if_component_has_model(): void

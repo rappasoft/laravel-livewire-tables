@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class BulkActionsHelpersTest extends TestCase
+final class BulkActionsHelpersTest extends TestCase
 {
 
     public function test_can_get_bulk_actions_status(): void

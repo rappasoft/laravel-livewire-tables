@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class ColumnTest extends TestCase
+final class ColumnTest extends TestCase
 {
 
     public function test_can_set_the_column_title(): void

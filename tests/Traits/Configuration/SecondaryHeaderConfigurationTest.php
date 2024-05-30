@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class SecondaryHeaderConfigurationTest extends TestCase
+final class SecondaryHeaderConfigurationTest extends TestCase
 {
 
     public function test_can_set_secondary_header_status(): void

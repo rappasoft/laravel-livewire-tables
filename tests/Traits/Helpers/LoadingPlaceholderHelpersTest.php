@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class LoadingPlaceholderHelpersTest extends TestCase
+final class LoadingPlaceholderHelpersTest extends TestCase
 {
 
     public function test_can_get_loading_placeholder_status(): void

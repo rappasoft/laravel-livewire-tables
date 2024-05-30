@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
-class ComponentColumnTest extends TestCase
+final class ComponentColumnTest extends TestCase
 {
 
     public function test_component_column_attributes_callback_return_can_not_be_an_string()

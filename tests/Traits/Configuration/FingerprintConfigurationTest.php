@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class FingerprintConfigurationTest extends TestCase
+final class FingerprintConfigurationTest extends TestCase
 {
 
     public function test_can_set_fingerprint(): void

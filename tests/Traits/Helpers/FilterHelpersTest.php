@@ -10,7 +10,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
-class FilterHelpersTest extends TestCase
+final class FilterHelpersTest extends TestCase
 {
 
     public function test_can_get_filters_status(): void

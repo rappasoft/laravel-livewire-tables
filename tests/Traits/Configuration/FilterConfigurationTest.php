@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class FilterConfigurationTest extends TestCase
+final class FilterConfigurationTest extends TestCase
 {
 
     public function test_filters_status_can_be_set(): void

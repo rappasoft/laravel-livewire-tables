@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class ColumnHelpersTest extends TestCase
+final class ColumnHelpersTest extends TestCase
 {
 
     public function test_can_get_column_from(): void

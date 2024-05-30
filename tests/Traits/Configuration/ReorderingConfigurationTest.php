@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class ReorderingConfigurationTest extends TestCase
+final class ReorderingConfigurationTest extends TestCase
 {
 
     public function test_can_set_reorder_status(): void

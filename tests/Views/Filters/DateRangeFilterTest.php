@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
 
-class DateRangeFilterTest extends FilterTestCase
+final class DateRangeFilterTest extends FilterTestCase
 {
 
     public function test_can_get_filter_name(): void

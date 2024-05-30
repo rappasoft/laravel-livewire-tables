@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
 
-class ColumnSelectConfigurationTest extends TestCase
+final class ColumnSelectConfigurationTest extends TestCase
 {
 
     public function test_variables_are_correct_types(): void

@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
-class ColumnConfigurationTest extends TestCase
+final class ColumnConfigurationTest extends TestCase
 {
 
     public function test_can_set_column_to_eager_load_relations(): void

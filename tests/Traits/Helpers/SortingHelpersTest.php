@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class SortingHelpersTest extends TestCase
+final class SortingHelpersTest extends TestCase
 {
 
     public function test_can_get_sorting_status(): void

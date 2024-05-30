@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class RefreshConfigurationTest extends TestCase
+final class RefreshConfigurationTest extends TestCase
 {
 
     public function test_refresh_time_can_be_set(): void

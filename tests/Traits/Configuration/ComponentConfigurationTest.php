@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class ComponentConfigurationTest extends TestCase
+final class ComponentConfigurationTest extends TestCase
 {
 
     public function test_initial_wrapper_attributes_get_set(): void

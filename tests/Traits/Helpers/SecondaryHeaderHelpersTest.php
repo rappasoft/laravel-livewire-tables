@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class SecondaryHeaderHelpersTest extends TestCase
+final class SecondaryHeaderHelpersTest extends TestCase
 {
 
     public function test_can_get_secondary_header_status(): void

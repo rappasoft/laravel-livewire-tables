@@ -13,7 +13,7 @@ final class SelectFilterTest extends FilterTestCase
         self::$filterInstance = SelectFilter::make('Active')->options(['Cartman', 'Tux', 'May', 'Ben', 'Chico']);
     }
 
-    public function testArraySetup(): array
+    public function test_array_setup(): array
     {
         $optionsArray = ['Cartman', 'Tux', 'May', 'Ben', 'Chico'];
         $this->assertNotEmpty($optionsArray);

@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class PaginationHelpersTest extends TestCase
+final class PaginationHelpersTest extends TestCase
 {
 
     public function test_can_get_pagination_status(): void

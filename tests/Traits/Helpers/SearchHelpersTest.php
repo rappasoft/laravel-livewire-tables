@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class SearchHelpersTest extends TestCase
+final class SearchHelpersTest extends TestCase
 {
 
     public function test_can_see_if_there_is_a_search_term(): void

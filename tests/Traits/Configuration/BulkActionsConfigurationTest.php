@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class BulkActionsConfigurationTest extends TestCase
+final class BulkActionsConfigurationTest extends TestCase
 {
 
     public function test_variables_are_correct_types(): void

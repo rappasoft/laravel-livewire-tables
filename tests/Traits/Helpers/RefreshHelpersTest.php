@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class RefreshHelpersTest extends TestCase
+final class RefreshHelpersTest extends TestCase
 {
 
     public function test_can_check_if_refresh_is_set(): void

@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class PaginationVisualsTest extends TestCase
+final class PaginationVisualsTest extends TestCase
 {
 
     public function test_pagination_shows_by_default(): void

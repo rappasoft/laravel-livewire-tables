@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class PaginationConfigurationTest extends TestCase
+final class PaginationConfigurationTest extends TestCase
 {
 
     public function test_pagination_theme_can_be_set(): void

@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
-class LinkColumnTest extends TestCase
+final class LinkColumnTest extends TestCase
 {
 
     public function test_can_set_the_column_title(): void

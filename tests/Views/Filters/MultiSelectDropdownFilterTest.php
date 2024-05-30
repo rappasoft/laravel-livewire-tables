@@ -7,11 +7,11 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use PHPUnit\Framework\Attributes\Depends;
 
-class MultiSelectDropdownFilterTest extends TestCase
+final class MultiSelectDropdownFilterTest extends TestCase
 {
     public array $optionsArray = [];
 
-    public function testArraySetup(): array
+    public function test_array_setup(): array
     {
         $this->optionsArray = $optionsArray = array_values(['Cartman', 'Tux', 'May', 'Ben', 'Chico']);
         $this->assertNotEmpty($optionsArray);
@@ -93,7 +93,7 @@ class MultiSelectDropdownFilterTest extends TestCase
         $this->assertSame('User Status', $filter->getFilterPillTitle());
     }
 
-    #[Depends('testArraySetup')]
+    #[Depends('test_array_setup')]
     public function test_can_get_filter_pill_value(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
@@ -178,7 +178,7 @@ class MultiSelectDropdownFilterTest extends TestCase
         $this->assertFalse($filter->isResetByClearButton());
     }
 
-    #[Depends('testArraySetup')]
+    #[Depends('test_array_setup')]
     public function test_can_set_filter_to_number(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
@@ -186,7 +186,7 @@ class MultiSelectDropdownFilterTest extends TestCase
         $this->assertSame('123', $filter->validate('123'));
     }
 
-    #[Depends('testArraySetup')]
+    #[Depends('test_array_setup')]
     public function test_can_set_filter_to_valid_value(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
@@ -207,7 +207,7 @@ class MultiSelectDropdownFilterTest extends TestCase
         $this->assertFalse($filter->isEmpty([1]));
     }
 
-    #[Depends('testArraySetup')]
+    #[Depends('test_array_setup')]
     public function test_can_set_filter_first_option(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
@@ -216,7 +216,7 @@ class MultiSelectDropdownFilterTest extends TestCase
         $this->assertSame('all', $filter->getFirstOption());
     }
 
-    #[Depends('testArraySetup')]
+    #[Depends('test_array_setup')]
     public function test_can_check_if_can_set_default_value(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
@@ -228,7 +228,7 @@ class MultiSelectDropdownFilterTest extends TestCase
         $this->assertSame(['1', '3'], $filter->getFilterDefaultValue());
     }
 
-    #[Depends('testArraySetup')]
+    #[Depends('test_array_setup')]
     public function test_can_set_custom_filter_view(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
@@ -237,7 +237,7 @@ class MultiSelectDropdownFilterTest extends TestCase
         $this->assertSame('test-custom-filter-view', $filter->getViewPath());
     }
 
-    #[Depends('testArraySetup')]
+    #[Depends('test_array_setup')]
     public function test_can_set_select_filter_wireable_live(array $optionsArray): void
     {
 

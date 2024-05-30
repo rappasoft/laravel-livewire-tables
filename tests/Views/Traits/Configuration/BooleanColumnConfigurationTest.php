@@ -6,7 +6,7 @@ use Closure;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
-class BooleanColumnConfigurationTest extends TestCase
+final class BooleanColumnConfigurationTest extends TestCase
 {
 
     public function test_boolean_column_can_set_callback(): void

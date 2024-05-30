@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 
-class ButtonGroupColumnTest extends TestCase
+final class ButtonGroupColumnTest extends TestCase
 {
 
     public function test_can_set_the_column_title(): void

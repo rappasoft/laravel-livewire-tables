@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class SearchConfigurationTest extends TestCase
+final class SearchConfigurationTest extends TestCase
 {
 
     public function test_can_set_default_search_term(): void

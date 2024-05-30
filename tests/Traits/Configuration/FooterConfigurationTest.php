@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class FooterConfigurationTest extends TestCase
+final class FooterConfigurationTest extends TestCase
 {
 
     public function test_can_set_footer_status(): void

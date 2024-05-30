@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class LoadingPlaceholderConfigurationTest extends TestCase
+final class LoadingPlaceholderConfigurationTest extends TestCase
 {
 
     public function test_can_set_loading_placeholder_status_enabled(): void

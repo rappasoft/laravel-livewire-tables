@@ -10,7 +10,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{BrokenSec
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableAttributes};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class ComponentVisualsTest extends TestCase
+final class ComponentVisualsTest extends TestCase
 {
     private $testErrors;
 

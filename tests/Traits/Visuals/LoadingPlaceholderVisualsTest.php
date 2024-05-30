@@ -6,7 +6,7 @@ use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableLoadingPlaceholder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class LoadingPlaceholderVisualsTest extends TestCase
+final class LoadingPlaceholderVisualsTest extends TestCase
 {
 
     public function test_can_see_placeholder_section(): void

@@ -9,7 +9,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
-class FilterHelpersTest extends TestCase
+final class FilterHelpersTest extends TestCase
 {
 
     public function test_can_get_filter_name(): void

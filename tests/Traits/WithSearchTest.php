@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class WithSearchTest extends TestCase
+final class WithSearchTest extends TestCase
 {
 
     public function test_search_gets_applied_for_searchable_columns(): void

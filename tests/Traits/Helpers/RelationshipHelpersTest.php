@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class RelationshipHelpersTest extends TestCase
+final class RelationshipHelpersTest extends TestCase
 {
 
     public function test_can_check_if_base_column(): void

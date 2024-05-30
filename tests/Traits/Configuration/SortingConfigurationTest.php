@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class SortingConfigurationTest extends TestCase
+final class SortingConfigurationTest extends TestCase
 {
 
     public function test_can_set_sorting_status(): void

@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class CustomisationsConfigurationTest extends TestCase
+final class CustomisationsConfigurationTest extends TestCase
 {
 
     public function test_can_set_extends(): void

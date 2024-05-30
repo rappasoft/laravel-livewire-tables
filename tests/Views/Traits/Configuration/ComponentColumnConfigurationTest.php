@@ -6,7 +6,7 @@ use Closure;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
-class ComponentColumnConfigurationTest extends TestCase
+final class ComponentColumnConfigurationTest extends TestCase
 {
 
     public function test_component_column_can_set_slot_callback(): void

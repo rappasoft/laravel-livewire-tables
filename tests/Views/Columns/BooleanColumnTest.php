@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
-class BooleanColumnTest extends TestCase
+final class BooleanColumnTest extends TestCase
 {
 
     public function test_can_set_the_column_title(): void

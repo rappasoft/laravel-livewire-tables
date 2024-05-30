@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class DebugHelpersTest extends TestCase
+final class DebugHelpersTest extends TestCase
 {
 
     public function test_can_get_debug_status(): void

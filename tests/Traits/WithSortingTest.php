@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class WithSortingTest extends TestCase
+final class WithSortingTest extends TestCase
 {
 
     public function test_cannot_call_sortBy_if_sorting_is_disabled(): void

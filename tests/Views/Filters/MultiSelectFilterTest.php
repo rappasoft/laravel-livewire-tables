@@ -7,11 +7,11 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use PHPUnit\Framework\Attributes\Depends;
 
-class MultiSelectFilterTest extends TestCase
+final class MultiSelectFilterTest extends TestCase
 {
     public array $optionsArray = [];
 
-    public function testArraySetup(): array
+    public function test_array_setup(): array
     {
         $this->optionsArray = $optionsArray = array_values(['Cartman', 'Tux', 'May', 'Ben', 'Chico']);
         $this->assertNotEmpty($optionsArray);
@@ -170,7 +170,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertFalse($filter->isResetByClearButton());
     }
 
-    #[Depends('testArraySetup')]
+    #[Depends('test_array_setup')]
     public function test_can_set_filter_to_number(array $optionsArray): void
     {
         $filter = MultiSelectFilter::make('BreedID')->options($optionsArray);
@@ -178,7 +178,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertSame('123', $filter->validate('123'));
     }
 
-    #[Depends('testArraySetup')]
+    #[Depends('test_array_setup')]
     public function test_can_set_filter_to_valid_value(array $optionsArray): void
     {
         $filter = MultiSelectFilter::make('BreedID')->options($optionsArray);

@@ -6,7 +6,7 @@ use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class RefreshVisualsTest extends TestCase
+final class RefreshVisualsTest extends TestCase
 {
 
     public function test_refresh_shows_no_poll_by_default(): void

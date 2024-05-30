@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberRangeFilter;
 
-class NumberRangeFilterTest extends TestCase
+final class NumberRangeFilterTest extends TestCase
 {
 
     public function test_can_get_filter_name(): void

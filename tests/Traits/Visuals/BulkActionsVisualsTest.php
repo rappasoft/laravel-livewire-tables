@@ -6,7 +6,7 @@ use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class BulkActionsVisualsTest extends TestCase
+final class BulkActionsVisualsTest extends TestCase
 {
 
     public function test_bulk_dropdown_shows_when_necessary(): void

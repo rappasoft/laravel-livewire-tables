@@ -6,7 +6,7 @@ use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class SearchVisualsTest extends TestCase
+final class SearchVisualsTest extends TestCase
 {
 
     public function test_search_shows_be_default(): void

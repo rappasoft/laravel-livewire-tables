@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
 
-class ImageColumnTest extends TestCase
+final class ImageColumnTest extends TestCase
 {
 
     public function test_can_set_the_column_title(): void

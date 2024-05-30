@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class FooterHelpersTest extends TestCase
+final class FooterHelpersTest extends TestCase
 {
 
     public function test_can_get_footer_status(): void

@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class ColumnSelectHelpersTest extends TestCase
+final class ColumnSelectHelpersTest extends TestCase
 {
 
     public function test_can_get_column_select_status(): void

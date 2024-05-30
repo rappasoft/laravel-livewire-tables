@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableMount;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class WithMountTest extends TestCase
+final class WithMountTest extends TestCase
 {
 
     public function test_mounttable_gets_correct_first_item(): void

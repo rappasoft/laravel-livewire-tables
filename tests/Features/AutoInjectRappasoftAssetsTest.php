@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Features;
 use Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class AutoInjectRappasoftAssetsTest extends TestCase
+final class AutoInjectRappasoftAssetsTest extends TestCase
 {
 
     public function test_shouldInjectRappasoftAndThirdParty()
