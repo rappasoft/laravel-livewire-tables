@@ -30,9 +30,7 @@ class DateColumn extends Column
         $dateTime = $this->getValue($row);
         if ($dateTime instanceof \DateTime) {
             return $dateTime->format($this->getOutputFormat());
-        }
-        else
-        {
+        } else {
             try {
                 // Check if format matches what is expected
                 if (\Carbon\Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat())) {
