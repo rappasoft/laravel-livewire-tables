@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use PHPUnit\Framework\Attributes\Depends;
 
 final class MultiSelectFilterTest extends TestCase
 {
@@ -19,7 +19,6 @@ final class MultiSelectFilterTest extends TestCase
         return $optionsArray;
     }
 
-
     public function test_can_get_filter_name(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -27,14 +26,12 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertSame('Active', $filter->getName());
     }
 
-
     public function test_can_get_filter_key(): void
     {
         $filter = MultiSelectFilter::make('Active');
 
         $this->assertSame('active', $filter->getKey());
     }
-
 
     public function test_can_get_filter_configs(): void
     {
@@ -47,7 +44,6 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertSame(['foo' => 'bar'], $filter->getConfigs());
     }
 
-
     public function test_get_a_single_filter_config(): void
     {
         $filter = MultiSelectFilter::make('Active')
@@ -56,14 +52,12 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertSame('bar', $filter->getConfig('foo'));
     }
 
-
     public function test_can_get_filter_default_value(): void
     {
         $filter = MultiSelectFilter::make('Active');
 
         $this->assertSame([], $filter->getDefaultValue());
     }
-
 
     public function test_can_get_filter_callback(): void
     {
@@ -80,7 +74,6 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertIsCallable($filter->getFilterCallback());
     }
 
-
     public function test_can_get_filter_pill_title(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -92,7 +85,6 @@ final class MultiSelectFilterTest extends TestCase
 
         $this->assertSame('User Status', $filter->getFilterPillTitle());
     }
-
 
     public function test_can_check_if_filter_has_configs(): void
     {
@@ -106,7 +98,6 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertTrue($filter->hasConfigs());
     }
 
-
     public function test_can_check_filter_config_by_name(): void
     {
         $filter = MultiSelectFilter::make('Active')
@@ -115,7 +106,6 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertTrue($filter->hasConfig('foo'));
         $this->assertFalse($filter->hasConfig('bar'));
     }
-
 
     public function test_can_check_if_filter_is_hidden_from_menus(): void
     {
@@ -130,7 +120,6 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInMenus());
     }
 
-
     public function test_can_check_if_filter_is_hidden_from_pills(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -144,7 +133,6 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInPills());
     }
 
-
     public function test_can_check_if_filter_is_hidden_from_count(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -157,7 +145,6 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertTrue($filter->isHiddenFromFilterCount());
         $this->assertFalse($filter->isVisibleInFilterCount());
     }
-
 
     public function test_can_check_if_filter_is_reset_by_clear_button(): void
     {
@@ -187,7 +174,6 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertSame(['1', '3'], $filter->validate([0 => '1', 1 => '3', 2 => '99']));
     }
 
-
     public function test_can_get_if_filter_empty(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -198,7 +184,6 @@ final class MultiSelectFilterTest extends TestCase
         $this->assertFalse($filter->isEmpty([1]));
     }
 
-
     public function test_can_set_custom_filter_view(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -206,7 +191,6 @@ final class MultiSelectFilterTest extends TestCase
         $filter->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', $filter->getViewPath());
     }
-
 
     public function test_can_set_select_filter_wireable_live(): void
     {

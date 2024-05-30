@@ -9,14 +9,12 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 final class LinkColumnTest extends TestCase
 {
-
     public function test_can_set_the_column_title(): void
     {
         $column = LinkColumn::make('Name', 'name');
 
         $this->assertSame('Name', $column->getTitle());
     }
-
 
     public function test_can_not_infer_field_name_from_title_if_no_from(): void
     {
@@ -25,7 +23,6 @@ final class LinkColumnTest extends TestCase
         $this->assertNull($column->getField());
     }
 
-
     public function test_can_not_render_field_if_no_title_callback(): void
     {
         $this->expectException(DataTableConfigurationException::class);
@@ -33,14 +30,12 @@ final class LinkColumnTest extends TestCase
         LinkColumn::make('Name')->getContents(Pet::find(1));
     }
 
-
     public function test_can_not_render_field_if_no_location_callback(): void
     {
         $this->expectException(DataTableConfigurationException::class);
 
         LinkColumn::make('Name')->title(fn ($row) => 'Edit')->getContents(Pet::find(1));
     }
-
 
     public function test_can_render_field_if_title_and_location_callback(): void
     {

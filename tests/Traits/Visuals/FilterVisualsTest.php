@@ -9,13 +9,11 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class FilterVisualsTest extends TestCase
 {
-
     public function test_filters_button_shows_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->assertSee('Filters');
     }
-
 
     public function test_filters_button_shows_when_visible(): void
     {
@@ -24,14 +22,12 @@ final class FilterVisualsTest extends TestCase
             ->assertSee('Filters');
     }
 
-
     public function test_filters_button_doesnt_show_when_disabled(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setFiltersDisabled')
             ->assertDontSee('Filters');
     }
-
 
     public function test_filters_button_doesnt_show_when_hidden(): void
     {
@@ -40,13 +36,11 @@ final class FilterVisualsTest extends TestCase
             ->assertDontSee('Filters');
     }
 
-
     public function test_filters_button_dont_show_when_there_are_no_filters_defined(): void
     {
         Livewire::test(PetsTableNoFilters::class)
             ->assertDontSee('Filters');
     }
-
 
     public function test_filter_pills_show_when_enabled(): void
     {
@@ -54,7 +48,6 @@ final class FilterVisualsTest extends TestCase
             ->set('filterComponents.breed', [1])
             ->assertSee('Applied Filters');
     }
-
 
     public function test_filter_pills_show_when_visible(): void
     {
@@ -64,7 +57,6 @@ final class FilterVisualsTest extends TestCase
             ->assertSee('Applied Filters');
     }
 
-
     public function test_filter_pills_dont_show_when_disabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -72,7 +64,6 @@ final class FilterVisualsTest extends TestCase
             ->call('setFilterPillsDisabled')
             ->assertDontSee('Applied Filters');
     }
-
 
     public function test_filter_pills_dont_show_when_hidden(): void
     {
@@ -82,13 +73,11 @@ final class FilterVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
-
     public function test_filter_pills_dont_show_when_no_filters_are_applied(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('Applied Filters');
     }
-
 
     public function test_filters_with_invalid_key_dont_error(): void
     {
@@ -97,7 +86,6 @@ final class FilterVisualsTest extends TestCase
             ->assertHasNoErrors()
             ->assertDontSee('Applied Filters');
     }
-
 
     /*public function test_filter_events_apply_correctly(): void
     {

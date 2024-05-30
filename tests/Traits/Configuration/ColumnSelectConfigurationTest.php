@@ -2,24 +2,21 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class ColumnSelectConfigurationTest extends TestCase
 {
-
     public function test_variables_are_correct_types(): void
     {
         $this->assertIsArray($this->basicTable->selectedColumns);
     }
-
 
     public function test_check_protected_fields_columnSelectStatus(): void
     {
         $this->expectException(\Livewire\Exceptions\PropertyNotFoundException::class);
         $this->assertIsBool($this->basicTable->columnSelectStatus);
     }
-
 
     public function test_can_set_column_select_status(): void
     {
@@ -41,7 +38,6 @@ final class ColumnSelectConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->getColumnSelectStatus());
     }
-
 
     public function test_can_set_remember_column_selection_status(): void
     {

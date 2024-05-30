@@ -10,14 +10,12 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
 final class ComponentColumnTest extends TestCase
 {
-
     public function test_can_set_the_column_title(): void
     {
         $column = ComponentColumn::make('Name', 'name');
 
         $this->assertSame('Name', $column->getTitle());
     }
-
 
     public function test_can_not_set_component_column_as_label(): void
     {
@@ -27,7 +25,6 @@ final class ComponentColumnTest extends TestCase
         $column = ComponentColumn::make('Name')->label(fn ($row, Column $column) => 'Test');
         $column->getContents($row);
     }
-
 
     public function test_can_not_be_both_collapsible_on_mobile_and_on_tablet(): void
     {

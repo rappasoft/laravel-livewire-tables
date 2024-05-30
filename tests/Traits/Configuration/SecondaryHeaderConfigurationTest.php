@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 final class SecondaryHeaderConfigurationTest extends TestCase
 {
-
     public function test_can_set_secondary_header_status(): void
     {
         $this->assertTrue($this->basicTable->getSecondaryHeaderStatus());
@@ -29,7 +28,6 @@ final class SecondaryHeaderConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getSecondaryHeaderStatus());
     }
 
-
     public function test_can_set_secondary_header_tr_attributes(): void
     {
         $this->basicTable->setSecondaryHeaderTrAttributes(function ($rows) {
@@ -38,7 +36,6 @@ final class SecondaryHeaderConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->getSecondaryHeaderTrAttributes([]), ['default' => true, 'here' => 'there']);
     }
-
 
     public function test_can_set_secondary_header_td_attributes(): void
     {

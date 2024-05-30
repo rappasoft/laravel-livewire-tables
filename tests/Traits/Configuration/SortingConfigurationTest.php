@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class SortingConfigurationTest extends TestCase
 {
-
     public function test_can_set_sorting_status(): void
     {
         $this->assertTrue($this->basicTable->getSortingStatus());
@@ -27,7 +26,6 @@ final class SortingConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->getSortingStatus());
     }
-
 
     public function test_can_set_single_sorting_status(): void
     {
@@ -50,7 +48,6 @@ final class SortingConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getSingleSortingStatus());
     }
 
-
     public function test_can_set_default_sort(): void
     {
         $this->assertNull($this->basicTable->getDefaultSortColumn());
@@ -61,7 +58,6 @@ final class SortingConfigurationTest extends TestCase
         $this->assertSame('id', $this->basicTable->getDefaultSortColumn());
         $this->assertSame('desc', $this->basicTable->getDefaultSortDirection());
     }
-
 
     public function test_can_remove_default_sort(): void
     {
@@ -75,7 +71,6 @@ final class SortingConfigurationTest extends TestCase
         $this->assertNull($this->basicTable->getDefaultSortColumn());
         $this->assertSame('asc', $this->basicTable->getDefaultSortDirection());
     }
-
 
     public function test_can_set_sorting_pill_status(): void
     {

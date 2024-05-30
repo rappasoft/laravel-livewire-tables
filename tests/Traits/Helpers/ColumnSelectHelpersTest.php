@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class ColumnSelectHelpersTest extends TestCase
 {
-
     public function test_can_get_column_select_status(): void
     {
         $this->assertTrue($this->basicTable->columnSelectIsEnabled());
@@ -19,7 +18,6 @@ final class ColumnSelectHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->columnSelectIsEnabled());
     }
-
 
     public function test_can_get_remember_column_selection_status(): void
     {
@@ -34,7 +32,6 @@ final class ColumnSelectHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->rememberColumnSelectionIsEnabled());
     }
 
-
     public function test_can_set_column_select_hidden_on_mobile_status(): void
     {
         $this->assertFalse($this->basicTable->getColumnSelectIsHiddenOnMobile());
@@ -47,7 +44,6 @@ final class ColumnSelectHelpersTest extends TestCase
 
         $this->assertFalse($this->basicTable->getColumnSelectIsHiddenOnTablet());
     }
-
 
     public function test_can_set_column_select_hidden_on_tablet_status(): void
     {

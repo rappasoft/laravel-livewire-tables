@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class WithMountTest extends TestCase
 {
-
     public function test_mounttable_gets_correct_first_item(): void
     {
         $view = view('livewire-tables::datatable');

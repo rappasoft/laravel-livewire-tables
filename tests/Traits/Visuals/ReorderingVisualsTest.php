@@ -3,13 +3,12 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use PHPUnit\Framework\Attributes\Depends;
 
 final class ReorderingVisualsTest extends TestCase
 {
-
     public function test_FilterArraySetup(): array
     {
         $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
@@ -17,7 +16,6 @@ final class ReorderingVisualsTest extends TestCase
 
         return $filterDefaultArray;
     }
-
 
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
@@ -28,7 +26,6 @@ final class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSee('wire:sortable=');
     }*/
-
 
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
@@ -43,7 +40,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSee('wire:sortable.item');
     }*/
 
-
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
     public function test_order_column_hidden_until_reordering_if_enabled(): void
@@ -57,7 +53,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSee('Sort');
     }*/
 
-
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
     public function test_reorder_button_doesnt_show_when_disabled(): void
@@ -67,7 +62,6 @@ final class ReorderingVisualsTest extends TestCase
     }
     */
 
-
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
     public function test_reorder_button_shows_when_enabled(): void
@@ -76,7 +70,6 @@ final class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSee('Reorder');
     }*/
-
 
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
@@ -88,7 +81,6 @@ final class ReorderingVisualsTest extends TestCase
             ->call('setCurrentlyReorderingEnabled')
             ->assertSee('Done Reordering');
     }*/
-
 
     public function test_sorting_pills_hide_on_reorder(): void
     {
@@ -125,7 +117,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:click="sortBy(\'id\')"');
     }
 
-
     public function test_pagination_hides_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
@@ -142,7 +133,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('<span aria-current="page">');
     }
 
-
     public function test_per_page_hides_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
@@ -157,7 +147,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:model.live="perPage"');
     }
 
-
     public function test_per_page_accepted_gets_set_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
@@ -168,7 +157,6 @@ final class ReorderingVisualsTest extends TestCase
             ->call('disableReordering')
             ->assertSet('perPageAccepted', [10, 25, 50]);
     }
-
 
     public function test_per_page_gets_set_on_reorder(): void
     {
@@ -217,7 +205,6 @@ final class ReorderingVisualsTest extends TestCase
         //            ->assertSet('page', 3);
     }*/
 
-
     public function test_bulk_actions_dropdown_gets_hidden_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
@@ -229,7 +216,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSet('bulkActionsStatus', false)
             ->assertDontSee('Bulk Actions');
     }
-
 
     public function test_bulk_actions_header_gets_hidden_on_reorder(): void
     {
@@ -243,7 +229,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertDontSee('Select All');
     }
 
-
     public function test_bulk_actions_cell_gets_hidden_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
@@ -255,7 +240,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSet('bulkActionsStatus', false)
             ->assertDontSee('Select All');
     }
-
 
     public function test_bulk_actions_row_select_all_gets_hidden_on_reorder(): void
     {
@@ -269,7 +253,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSet('bulkActionsStatus', false)
             ->assertDontSee('You are currently selecting all');
     }
-
 
     public function test_bulk_actions_row_select_some_gets_hidden_on_reorder(): void
     {
@@ -321,7 +304,6 @@ final class ReorderingVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
-
     public function test_column_select_does_not_hide_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
@@ -331,20 +313,17 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSee('Columns');
     }
 
-
     public function test_collapsing_columns_hide_on_reorder(): void
     {
         // TODO
         $this->assertTrue(true);
     }
 
-
     public function test_secondary_header_hides_on_reorder(): void
     {
         // TODO
         $this->assertTrue(true);
     }
-
 
     public function test_footer_hides_on_reorder(): void
     {

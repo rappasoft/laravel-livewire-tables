@@ -13,19 +13,16 @@ final class DateFilterTest extends FilterTestCase
         self::$filterInstance = DateFilter::make('Active');
     }
 
-
     public function test_can_not_set_date_filter_to_non_number(): void
     {
         $this->assertFalse(self::$filterInstance->validate('test'));
     }
-
 
     public function test_can_not_set_date_filter_to_number(): void
     {
         $this->assertFalse(self::$filterInstance->validate(123));
         $this->assertFalse(self::$filterInstance->validate('123'));
     }
-
 
     public function test_can_not_set_date_filter_to_invalid_date(): void
     {
@@ -39,12 +36,10 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }
 
-
     public function test_can_get_if_date_filter_empty(): void
     {
         $this->assertTrue(self::$filterInstance->isEmpty(''));
     }
-
 
     public function test_can_not_set_date_filter_to_invalid_date_custom_format(): void
     {
@@ -58,7 +53,6 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }
 
-
     public function test_can_check_if_can_set_pill_format(): void
     {
 
@@ -69,7 +63,6 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('d-m-Y', self::$filterInstance->getConfig('pillFormat'));
 
     }
-
 
     /*public function test_validate_respects_config_dateformat(): void
     {
@@ -82,7 +75,6 @@ final class DateFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->validate('2014/01/01'));
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }*/
-
 
     public function test_can_get_filter_configs(): void
     {
@@ -97,7 +89,6 @@ final class DateFilterTest extends FilterTestCase
             'pillFormat' => 'd M Y', 'foo' => 'bar'], self::$filterInstance->getConfigs());
     }
 
-
     public function test_can_check_if_filter_has_configs(): void
     {
         self::$filterInstance->config([]);
@@ -108,7 +99,6 @@ final class DateFilterTest extends FilterTestCase
 
         $this->assertTrue(self::$filterInstance->hasConfigs());
     }
-
 
     public function test_can_get_filter_callback(): void
     {
@@ -122,7 +112,6 @@ final class DateFilterTest extends FilterTestCase
         $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
 
-
     public function test_can_check_if_can_set_default_values(): void
     {
         $this->assertNull(self::$filterInstance->getFilterDefaultValue());
@@ -132,14 +121,12 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2023-03-01', self::$filterInstance->getFilterDefaultValue());
     }
 
-
     public function test_can_set_custom_filter_view(): void
     {
         $this->assertSame('livewire-tables::components.tools.filters.date', self::$filterInstance->getViewPath());
         self::$filterInstance->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
-
 
     public function test_can_get_filter_pills_value(): void
     {
@@ -148,14 +135,12 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame($dateTime->format('d M Y'), self::$filterInstance->getFilterPillValue($dateTime->format('Y-m-d')));
     }
 
-
     public function test_can_not_get_filter_pills_invalid_value(): void
     {
         $dateTime = (new DateTime('now'));
 
         $this->assertNull(self::$filterInstance->getFilterPillValue('2022-2111'));
     }
-
 
     public function test_can_set_text_filter_wireable_live(): void
     {

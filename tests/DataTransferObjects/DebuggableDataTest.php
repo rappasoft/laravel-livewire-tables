@@ -7,18 +7,15 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class DebuggableDataTest extends TestCase
 {
-
     public function test_example()
     {
         $this->assertTrue(true);
     }
 
-
     public function test_example2()
     {
         $this->assertSame($this->basicTable->sortBy('id'), 'asc');
     }
-
 
     public function test_check_all_default_dto_elements()
     {
@@ -33,7 +30,6 @@ final class DebuggableDataTest extends TestCase
         $this->assertFalse($debuggableArray['select-all']);
         $this->assertSame($debuggableArray['selected'], []);
     }
-
 
     public function test_check_dto_returns_filters_correctly()
     {

@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 final class ColumnConfigurationTest extends TestCase
 {
-
     public function test_can_set_column_to_eager_load_relations(): void
     {
         $column = Column::make('Name');
@@ -19,7 +18,6 @@ final class ColumnConfigurationTest extends TestCase
 
         $this->assertTrue($column->eagerLoadRelationsIsEnabled());
     }
-
 
     public function test_can_set_component_on_column(): void
     {
@@ -32,7 +30,6 @@ final class ColumnConfigurationTest extends TestCase
         $this->assertSame($this->basicTable, $column->getComponent());
     }
 
-
     public function test_can_set_column_format(): void
     {
         $column = Column::make('Name');
@@ -44,7 +41,6 @@ final class ColumnConfigurationTest extends TestCase
         $this->assertTrue($column->hasFormatter());
     }
 
-
     public function test_can_set_column_wants_html(): void
     {
         $column = Column::make('Name');
@@ -55,7 +51,6 @@ final class ColumnConfigurationTest extends TestCase
 
         $this->assertTrue($column->isHtml());
     }
-
 
     public function test_can_hide_column(): void
     {
@@ -70,7 +65,6 @@ final class ColumnConfigurationTest extends TestCase
         $this->assertFalse($column->isVisible());
     }
 
-
     public function test_can_exclude_from_column_select(): void
     {
         $column = Column::make('Name');
@@ -81,7 +75,6 @@ final class ColumnConfigurationTest extends TestCase
 
         $this->assertFalse($column->isSelectable());
     }
-
 
     public function test_can_make_column_unclickable(): void
     {
@@ -98,7 +91,6 @@ final class ColumnConfigurationTest extends TestCase
         $this->assertFalse($column->isClickable());
     }
 
-
     public function test_can_deselect_column(): void
     {
         $column = Column::make('Name');
@@ -109,7 +101,6 @@ final class ColumnConfigurationTest extends TestCase
 
         $this->assertFalse($column->isSelected());
     }
-
 
     public function test_can_set_secondary_header_as_filter(): void
     {
@@ -122,7 +113,6 @@ final class ColumnConfigurationTest extends TestCase
         $this->assertTrue($column->hasSecondaryHeader());
         $this->assertInstanceOf(Filter::class, $column->getSecondaryHeaderCallback());
     }
-
 
     public function test_can_set_footer_as_filter(): void
     {

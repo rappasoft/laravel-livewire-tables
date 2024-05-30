@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 
 final class ButtonGroupColumnTest extends TestCase
 {
-
     public function test_can_set_the_column_title(): void
     {
         $column = ButtonGroupColumn::make('Name', 'name');
@@ -16,13 +15,11 @@ final class ButtonGroupColumnTest extends TestCase
         $this->assertSame('Name', $column->getTitle());
     }
 
-
     public function test_can_render_field(): void
     {
         $column = ButtonGroupColumn::make('Name')->getContents(Pet::find(1));
         $this->assertNotEmpty($column);
     }
-
 
     public function test_can_not_render_field_if_no_title(): void
     {
@@ -30,7 +27,6 @@ final class ButtonGroupColumnTest extends TestCase
 
         ButtonGroupColumn::make()->getContents(Pet::find(1));
     }
-
 
     public function test_can_render_field_if_title_callback(): void
     {

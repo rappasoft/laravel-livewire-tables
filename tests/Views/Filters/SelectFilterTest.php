@@ -21,7 +21,6 @@ final class SelectFilterTest extends FilterTestCase
         return $optionsArray;
     }
 
-
     public function test_can_get_filter_callback(): void
     {
         $this->assertFalse(self::$filterInstance->hasFilterCallback());
@@ -35,25 +34,21 @@ final class SelectFilterTest extends FilterTestCase
         $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
 
-
     public function test_can_not_set_filter_to_number(): void
     {
         $this->assertFalse(self::$filterInstance->validate(123));
         $this->assertFalse(self::$filterInstance->validate('123'));
     }
 
-
     public function test_can_not_set_filter_to_text(): void
     {
         $this->assertFalse(self::$filterInstance->validate('test'));
     }
 
-
     public function test_can_set_filter_to_valid(): void
     {
         $this->assertSame('1', self::$filterInstance->validate('1'));
     }
-
 
     public function test_can_get_if_filter_empty(): void
     {
@@ -61,7 +56,6 @@ final class SelectFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->isEmpty('123'));
         $this->assertFalse(self::$filterInstance->isEmpty('test'));
     }
-
 
     public function test_can_check_if_can_set_default_value(): void
     {
@@ -72,14 +66,12 @@ final class SelectFilterTest extends FilterTestCase
         $this->assertSame('1', self::$filterInstance->getFilterDefaultValue());
     }
 
-
     public function test_can_set_custom_filter_view(): void
     {
         $this->assertSame('livewire-tables::components.tools.filters.select', self::$filterInstance->getViewPath());
         self::$filterInstance->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
-
 
     public function test_can_set_select_filter_wireable_live(): void
     {

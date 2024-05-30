@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
 final class ComponentColumnConfigurationTest extends TestCase
 {
-
     public function test_component_column_can_set_slot_callback(): void
     {
         $column = ComponentColumn::make('Name');
@@ -21,7 +20,6 @@ final class ComponentColumnConfigurationTest extends TestCase
 
         $this->assertTrue($column->getSlotCallback() instanceof Closure);
     }
-
 
     public function test_component_column_can_set_attributes_callback(): void
     {

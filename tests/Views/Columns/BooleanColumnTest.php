@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
 final class BooleanColumnTest extends TestCase
 {
-
     public function test_can_set_the_column_title(): void
     {
         $column = BooleanColumn::make('Name', 'name');
@@ -16,13 +15,11 @@ final class BooleanColumnTest extends TestCase
         $this->assertSame('Name', $column->getTitle());
     }
 
-
     public function test_can_render_field(): void
     {
         $column = BooleanColumn::make('Name')->getContents(Pet::find(1));
         $this->assertNotEmpty($column);
     }
-
 
     public function test_can_not_render_field_if_no_title(): void
     {
@@ -31,14 +28,12 @@ final class BooleanColumnTest extends TestCase
         BooleanColumn::make()->getContents(Pet::find(1));
     }
 
-
     public function test_can_render_field_if_title_callback(): void
     {
         $column = BooleanColumn::make('Name')->getContents(Pet::find(1));
 
         $this->assertNotEmpty($column);
     }
-
 
     public function test_can_set_truthy_value(): void
     {
@@ -47,7 +42,6 @@ final class BooleanColumnTest extends TestCase
         $this->assertNotEmpty($column);
     }
 
-
     public function test_can_set_boolean_column_icons(): void
     {
         $column = BooleanColumn::make('Name')->setSuccessValue(false)->icons();
@@ -55,14 +49,12 @@ final class BooleanColumnTest extends TestCase
         $this->assertSame('icons', $column->getType());
     }
 
-
     public function test_can_set_boolean_column_yesno(): void
     {
         $column = BooleanColumn::make('Name')->setSuccessValue(false)->yesNo();
 
         $this->assertSame('yes-no', $column->getType());
     }
-
 
     public function test_can_return_status_true(): void
     {
@@ -74,7 +66,6 @@ final class BooleanColumnTest extends TestCase
         $curVal = $column->hasCallback() ? call_user_func($column->getCallback(), $value, $row) : (bool) $value === true;
         $this->assertSame($curVal, true);
     }
-
 
     public function test_can_return_status_false(): void
     {

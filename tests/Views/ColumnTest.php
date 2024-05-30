@@ -8,14 +8,12 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 final class ColumnTest extends TestCase
 {
-
     public function test_can_set_the_column_title(): void
     {
         $column = Column::make('Name', 'name');
 
         $this->assertSame('Name', $column->getTitle());
     }
-
 
     public function test_can_infer_field_name_from_title_if_no_from(): void
     {
@@ -24,7 +22,6 @@ final class ColumnTest extends TestCase
         $this->assertSame('my_title', $column->getField());
     }
 
-
     public function test_can_set_base_field_from_from(): void
     {
         $column = Column::make('Name', 'name');
@@ -32,14 +29,12 @@ final class ColumnTest extends TestCase
         $this->assertSame('name', $column->getField());
     }
 
-
     public function test_can_set_relation_field_from_from(): void
     {
         $column = Column::make('Name', 'address.group.name');
 
         $this->assertSame('name', $column->getField());
     }
-
 
     public function test_can_set_relations_from_from(): void
     {
@@ -49,7 +44,6 @@ final class ColumnTest extends TestCase
         $this->assertSame('address.group', $column->getRelationString());
     }
 
-
     public function test_can_get_contents_of_column(): void
     {
         // TODO: Figure out how to call getContents on a row object to verify that way
@@ -57,7 +51,6 @@ final class ColumnTest extends TestCase
         $this->assertSame('Cartman', $rows->first()->name);
         $this->assertSame('Norwegian Forest', $rows->first()['breed.name']);
     }
-
 
     public function test_can_get_column_formatted_contents(): void
     {
@@ -75,7 +68,6 @@ final class ColumnTest extends TestCase
         $this->assertSame(strtoupper($rows->first()->name), $column->getContents($rows->first()));
     }
 
-
     public function test_column_table_gets_set_for_base_and_relationship_columns(): void
     {
         $column = $this->basicTable->getColumnBySelectName('name');
@@ -87,14 +79,12 @@ final class ColumnTest extends TestCase
         $this->assertSame('breed', $column->getTable());
     }
 
-
     public function test_can_check_ishtml_from_html_column(): void
     {
         $column = Column::make('Name', 'name')->html();
 
         $this->assertTrue($column->isHtml());
     }
-
 
     public function test_can_get_html_from_html_label_column(): void
     {
@@ -103,7 +93,6 @@ final class ColumnTest extends TestCase
         $htmlString = new \Illuminate\Support\HtmlString('<strong>My Label</strong>');
         $this->assertSame($htmlString->toHtml(), $column->getContents($rows->first())->toHtml());
     }
-
 
     public function test_can_get_html_from_html_format_column(): void
     {
@@ -116,7 +105,6 @@ final class ColumnTest extends TestCase
 
         $this->assertSame($htmlString->toHtml(), $column->getContents($rows->first())->toHtml());
     }
-
 
     public function test_cannot_collapse_on_tablet_and_mobile(): void
     {

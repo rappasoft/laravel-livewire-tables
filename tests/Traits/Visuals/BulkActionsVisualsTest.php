@@ -8,13 +8,11 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class BulkActionsVisualsTest extends TestCase
 {
-
     public function test_bulk_dropdown_shows_when_necessary(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('No items found. Try to broaden your search.');
     }
-
 
     /*
     public function test_bulk_dropdown_shows_when_necessary(): void
@@ -33,7 +31,6 @@ final class BulkActionsVisualsTest extends TestCase
             ->assertSee('Bulk Actions');
     }*/
 
-
     /*
     public function test_select_all_header_shows_if_bulk_actions_enabled_and_available(): void
     {
@@ -45,7 +42,6 @@ final class BulkActionsVisualsTest extends TestCase
             ->call('setBulkActions', ['activate' => 'Activate'])
             ->assertDontSee('Select All');
     }*/
-
 
     /*
     public function test_select_cell_shows_if_bulk_actions_enabled_and_available(): void
@@ -59,7 +55,6 @@ final class BulkActionsVisualsTest extends TestCase
             ->assertDontSee('Select All');
     }*/
 
-
     /*public function test_bulk_actions_row_shows_if_bulk_actions_enabled_and_available_and_selected(): void
     {
         Livewire::test(PetsTable::class)
@@ -72,7 +67,6 @@ final class BulkActionsVisualsTest extends TestCase
             ->call('setSelected', [1, 2, 3])
             ->assertSeeHtml('wire:key="bulk-select-message-table"');
     }*/
-
 
     /*
     public function test_bulk_actions_row_shows_correct_for_select_some(): void

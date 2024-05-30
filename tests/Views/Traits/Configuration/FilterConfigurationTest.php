@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 final class FilterConfigurationTest extends TestCase
 {
-
     public function test_filter_config_can_be_set(): void
     {
         $filter = SelectFilter::make('Active');
@@ -23,7 +22,6 @@ final class FilterConfigurationTest extends TestCase
         $this->assertEquals('value', $filter->getConfig('key'));
     }
 
-
     public function test_filter_pill_title_can_be_set(): void
     {
         $filter = SelectFilter::make('Active');
@@ -34,7 +32,6 @@ final class FilterConfigurationTest extends TestCase
 
         $this->assertEquals('User Status', $filter->getFilterPillTitle());
     }
-
 
     public function test_filter_pill_values_can_be_set_for_select(): void
     {
@@ -64,7 +61,6 @@ final class FilterConfigurationTest extends TestCase
         $this->assertEquals('Inactive', $filter->getFilterPillValue('0'));
     }
 
-
     public function test_can_hide_filter_from_menus(): void
     {
         $filter = SelectFilter::make('Active');
@@ -75,7 +71,6 @@ final class FilterConfigurationTest extends TestCase
 
         $this->assertTrue($filter->isHiddenFromMenus());
     }
-
 
     public function test_can_hide_filter_from_pills(): void
     {
@@ -88,7 +83,6 @@ final class FilterConfigurationTest extends TestCase
         $this->assertTrue($filter->isHiddenFromPills());
     }
 
-
     public function test_can_hide_filter_from_filter_count(): void
     {
         $filter = SelectFilter::make('Active');
@@ -100,7 +94,6 @@ final class FilterConfigurationTest extends TestCase
         $this->assertTrue($filter->isHiddenFromFilterCount());
     }
 
-
     public function test_filter_is_not_reset_by_clear_button(): void
     {
         $filter = SelectFilter::make('Active');
@@ -111,7 +104,6 @@ final class FilterConfigurationTest extends TestCase
 
         $this->assertFalse($filter->isResetByClearButton());
     }
-
 
     public function test_can_be_hidden_from_all(): void
     {
@@ -129,7 +121,6 @@ final class FilterConfigurationTest extends TestCase
         $this->assertTrue($filter->isHiddenFromFilterCount());
         $this->assertTrue($filter->isResetByClearButton());
     }
-
 
     public function test_can_set_custom_position(): void
     {

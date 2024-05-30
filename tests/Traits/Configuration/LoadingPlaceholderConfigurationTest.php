@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class LoadingPlaceholderConfigurationTest extends TestCase
 {
-
     public function test_can_set_loading_placeholder_status_enabled(): void
     {
         $this->assertFalse($this->basicTable->hasDisplayLoadingPlaceholder());
@@ -16,7 +15,6 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->hasDisplayLoadingPlaceholder());
 
     }
-
 
     public function test_can_set_loading_placeholder_status_disabled(): void
     {
@@ -32,7 +30,6 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
 
     }
 
-
     public function test_can_set_loading_placeholder_content(): void
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
@@ -47,7 +44,6 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
 
     }
 
-
     public function test_can_set_loading_placeholder_attributes(): void
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
@@ -59,7 +55,6 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
         $this->assertSame(['class' => 'test12345'], $this->basicTable->getLoadingPlaceHolderAttributes());
 
     }
-
 
     public function test_can_set_loading_placeholder_icon_attributes(): void
     {
@@ -73,7 +68,6 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
 
     }
 
-
     public function test_can_set_loading_placeholder_wrapper_attributes(): void
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
@@ -84,7 +78,6 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
 
         $this->assertSame(['class' => 'test1234567-wrapper'], $this->basicTable->getLoadingPlaceHolderWrapperAttributes());
     }
-
 
     public function test_can_set_loading_placeholder_custom_blade(): void
     {

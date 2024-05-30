@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use PHPUnit\Framework\Attributes\Depends;
 
 final class SortingVisualsTest extends TestCase
 {
@@ -30,7 +30,6 @@ final class SortingVisualsTest extends TestCase
         return $petNames;
     }
 
-
     public function test_th_headers_are_buttons_with_sorting_enabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -39,7 +38,6 @@ final class SortingVisualsTest extends TestCase
                 'class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400"',
             ]);
     }
-
 
     public function test_th_headers_are_not_buttons_with_sorting_disabled(): void
     {
@@ -51,7 +49,6 @@ final class SortingVisualsTest extends TestCase
             >');
     }
 
-
     public function test_th_headers_are_not_buttons_unless_the_column_is_sortable(): void
     {
         Livewire::test(PetsTable::class)
@@ -60,7 +57,6 @@ final class SortingVisualsTest extends TestCase
                 class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400"
             >');
     }
-
 
     /** Needs updating for hero */
     /* public function test_th_header_icons_correct_based_on_sort_status(): void
@@ -79,14 +75,12 @@ final class SortingVisualsTest extends TestCase
              ]);
      }*/
 
-
     public function test_sorting_pill_shows_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setSort', 'name', 'asc')
             ->assertSee('Applied Sorting:');
     }
-
 
     public function test_sorting_pill_doesnt_shows_when_disabled(): void
     {
@@ -96,7 +90,6 @@ final class SortingVisualsTest extends TestCase
             ->assertDontSee('Applied Sorting:');
     }
 
-
     public function test_sorting_pills_only_show_if_there_are_sorts(): void
     {
         Livewire::test(PetsTable::class)
@@ -104,7 +97,6 @@ final class SortingVisualsTest extends TestCase
             ->call('setSort', 'name', 'asc')
             ->assertSee('Applied Sorting:');
     }
-
 
     public function test_only_one_sorting_pill_shows_with_single_column_on(): void
     {
@@ -116,7 +108,6 @@ final class SortingVisualsTest extends TestCase
             ->assertDontSee('Key: 0-9');
     }
 
-
     public function test_multiple_sorting_pill_shows_with_single_column_off(): void
     {
         Livewire::test(PetsTable::class)
@@ -126,7 +117,6 @@ final class SortingVisualsTest extends TestCase
             ->assertSee('Name: A-Z')
             ->assertSee('Key: 0-9');
     }
-
 
     public function test_sorting_pill_shows_correct_name_and_direction(): void
     {
@@ -140,7 +130,6 @@ final class SortingVisualsTest extends TestCase
             ->assertSee('9-0');
     }
 
-
     public function test_sorting_pills_clear_button_shows_and_functions(): void
     {
         Livewire::test(PetsTable::class)
@@ -149,7 +138,6 @@ final class SortingVisualsTest extends TestCase
             ->call('clearSort', 'name')
             ->assertDontSee('Name: A-Z');
     }
-
 
     public function test_sorting_pills_dont_show_for_unknown_columns(): void
     {

@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 final class ComponentConfigurationTest extends TestCase
 {
-
     public function test_initial_wrapper_attributes_get_set(): void
     {
         $this->assertSame(['id' => 'datatable-'.$this->basicTable->getId()], $this->basicTable->getComponentWrapperAttributes());
@@ -18,7 +17,6 @@ final class ComponentConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->getComponentWrapperAttributes(), ['this' => 'that']);
     }
-
 
     public function test_can_set_table_wrapper_attributes(): void
     {
@@ -29,7 +27,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableWrapperAttributes(), ['this' => 'that']);
     }
 
-
     public function test_can_set_table_attributes(): void
     {
         $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'default' => true]);
@@ -38,7 +35,6 @@ final class ComponentConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'this' => 'that']);
     }
-
 
     public function test_can_override_table_default_id(): void
     {
@@ -49,7 +45,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'newTableID', 'this' => 'that']);
     }
 
-
     public function test_can_set_thead_attributes(): void
     {
         $this->assertSame($this->basicTable->getTheadAttributes(), ['default' => true]);
@@ -59,7 +54,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTheadAttributes(), ['this' => 'that']);
     }
 
-
     public function test_can_set_tbody_attributes(): void
     {
         $this->assertSame($this->basicTable->getTbodyAttributes(), ['default' => true]);
@@ -68,7 +62,6 @@ final class ComponentConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->getTbodyAttributes(), ['this' => 'that']);
     }
-
 
     public function test_can_set_th_attributes(): void
     {
@@ -84,7 +77,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getThAttributes($this->basicTable->columns()[1]), ['default' => true, 'here' => 'there']);
     }
 
-
     public function test_can_set_th_sort_button_attributes(): void
     {
         $this->basicTable->setThSortButtonAttributes(function (Column $column) {
@@ -98,7 +90,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getThSortButtonAttributes($this->basicTable->columns()[0]), ['default' => false, 'this' => 'that']);
         $this->assertSame($this->basicTable->getThSortButtonAttributes($this->basicTable->columns()[1]), ['default' => true, 'here' => 'there']);
     }
-
 
     public function test_can_set_tr_attributes(): void
     {
@@ -114,7 +105,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTrAttributes(Pet::find(2), 1), ['default' => true, 'here' => 'there']);
     }
 
-
     public function test_can_set_td_attributes(): void
     {
         $this->basicTable->setTdAttributes(function (Column $column, Model $row, $index) {
@@ -129,14 +119,12 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[0], Pet::find(2), 1, 1), ['default' => false, 'this' => 'that']);
     }
 
-
     public function test_can_set_empty_message(): void
     {
         $this->basicTable->setEmptyMessage('My empty message');
 
         $this->assertEquals('My empty message', $this->basicTable->getEmptyMessage());
     }
-
 
     public function test_can_set_offline_indicator_status(): void
     {
@@ -159,7 +147,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->basicTable->setOfflineIndicatorStatus(true);
     }
 
-
     public function test_can_set_default_sorting_labels(): void
     {
         $this->assertSame('A-Z', $this->basicTable->getDefaultSortingLabelAsc());
@@ -170,7 +157,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame('1-2', $this->basicTable->getDefaultSortingLabelAsc());
         $this->assertSame('2-1', $this->basicTable->getDefaultSortingLabelDesc());
     }
-
 
     public function test_can_set_query_string_status(): void
     {
@@ -193,7 +179,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getQueryStringStatus());
     }
 
-
     public function test_can_set_eager_load_relations_status(): void
     {
         $this->assertFalse($this->basicTable->getEagerLoadAllRelationsStatus());
@@ -214,7 +199,6 @@ final class ComponentConfigurationTest extends TestCase
 
         $this->assertFalse($this->basicTable->getEagerLoadAllRelationsStatus());
     }
-
 
     public function test_can_set_collapsing_columns_status(): void
     {
@@ -237,7 +221,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getCollapsingColumnsStatus());
     }
 
-
     public function test_can_set_tr_url(): void
     {
         $this->assertNull($this->basicTable->getTableRowUrl(1));
@@ -248,7 +231,6 @@ final class ComponentConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->getTableRowUrl(1), 'https://example.com');
     }
-
 
     public function test_can_set_tr_url_advanced(): void
     {
@@ -269,7 +251,6 @@ final class ComponentConfigurationTest extends TestCase
 
     }
 
-
     public function test_can_set_tr_url_target(): void
     {
         $this->assertNull($this->basicTable->getTableRowUrlTarget(1));
@@ -281,7 +262,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '_blank');
 
     }
-
 
     public function test_can_set_tr_url_target_advanced(): void
     {
@@ -299,7 +279,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableRowUrlTarget(1), '_blank');
         $this->assertSame($this->basicTable->getTableRowUrlTarget(2), 'navigate');
     }
-
 
     public function test_can_set_hide_configurable_areas_when_reordering_status(): void
     {

@@ -13,7 +13,6 @@ final class TextFilterTest extends FilterTestCase
         self::$filterInstance = TextFilter::make('Active');
     }
 
-
     public function test_can_get_filter_callback(): void
     {
         $filter = TextFilter::make('Active');
@@ -29,13 +28,11 @@ final class TextFilterTest extends FilterTestCase
         $this->assertIsCallable($filter->getFilterCallback());
     }
 
-
     public function test_can_not_exceed_text_filter_max_length(): void
     {
         $filter = TextFilter::make('BreedID')->config(['maxlength' => 10]);
         $this->assertFalse($filter->validate('testtesttesttesttest'));
     }
-
 
     public function test_can_set_text_filter_to_number(): void
     {
@@ -44,13 +41,11 @@ final class TextFilterTest extends FilterTestCase
         $this->assertSame('123', $filter->validate('123'));
     }
 
-
     public function test_can_set_text_filter_to_text(): void
     {
         $filter = TextFilter::make('BreedID');
         $this->assertSame('test', $filter->validate('test'));
     }
-
 
     public function test_can_get_if_text_filter_empty(): void
     {
@@ -60,7 +55,6 @@ final class TextFilterTest extends FilterTestCase
         $this->assertFalse($filter->isEmpty('test'));
     }
 
-
     public function test_can_set_custom_filter_view(): void
     {
         $filter = TextFilter::make('Active');
@@ -69,7 +63,6 @@ final class TextFilterTest extends FilterTestCase
         $filter->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', $filter->getViewPath());
     }
-
 
     public function test_can_set_text_filter_wireable_live(): void
     {

@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class AutoInjectRappasoftAssetsTest extends TestCase
 {
-
     public function test_shouldInjectRappasoftAndThirdParty()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', true);
@@ -21,7 +20,6 @@ final class AutoInjectRappasoftAssetsTest extends TestCase
         $this->assertStringContainsStringIgnoringCase('<script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  ></script>', $injectionReturn);
     }
 
-
     public function test_shouldNotInjectRappasoftOrThirdParty()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', false);
@@ -31,7 +29,6 @@ final class AutoInjectRappasoftAssetsTest extends TestCase
 
         $this->assertEquals('<html><head>  </head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
     }
-
 
     public function test_shouldOnlyInjectThirdParty()
     {
@@ -43,7 +40,6 @@ final class AutoInjectRappasoftAssetsTest extends TestCase
         $this->assertStringContainsStringIgnoringCase('<link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" />', $injectionReturn);
         $this->assertStringContainsStringIgnoringCase('<script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  ></script>', $injectionReturn);
     }
-
 
     public function test_shouldOnlyInjectRappasoft()
     {

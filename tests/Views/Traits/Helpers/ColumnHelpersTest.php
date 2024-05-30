@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 final class ColumnHelpersTest extends TestCase
 {
-
     public function test_can_get_column_from(): void
     {
         $column = Column::make('Name');
@@ -20,7 +19,6 @@ final class ColumnHelpersTest extends TestCase
 
         $this->assertSame('name', $column->getFrom());
     }
-
 
     public function test_can_check_if_column_has_from(): void
     {
@@ -33,7 +31,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->hasFrom());
     }
 
-
     public function test_can_get_column_title(): void
     {
         $column = Column::make('Name');
@@ -41,14 +38,12 @@ final class ColumnHelpersTest extends TestCase
         $this->assertSame('Name', $column->getTitle());
     }
 
-
     public function test_can_get_column_field(): void
     {
         $column = Column::make('Name', 'name');
 
         $this->assertSame('name', $column->getField());
     }
-
 
     public function test_can_check_if_column_has_field(): void
     {
@@ -61,7 +56,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertFalse($column->hasField());
     }
 
-
     public function test_can_remove_field_with_label(): void
     {
         $column = Column::make('My Title', 'my_title')->label(fn () => 'My Label');
@@ -69,7 +63,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertNull($column->getFrom());
         $this->assertNull($column->getField());
     }
-
 
     public function test_can_check_if_column_is_label(): void
     {
@@ -82,7 +75,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->isLabel());
     }
 
-
     public function test_can_check_if_column_should_collapse_on_mobile(): void
     {
         $column = Column::make('My Title');
@@ -93,7 +85,6 @@ final class ColumnHelpersTest extends TestCase
 
         $this->assertTrue($column->shouldCollapseOnMobile());
     }
-
 
     public function test_can_check_if_column_should_collapse_on_tablet(): void
     {
@@ -106,7 +97,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->shouldCollapseOnTablet());
     }
 
-
     public function test_can_set_custom_sorting_pill_title(): void
     {
         $column = Column::make('My Title');
@@ -117,7 +107,6 @@ final class ColumnHelpersTest extends TestCase
 
         $this->assertSame('New Title', $column->getCustomSortingPillTitle());
     }
-
 
     public function test_can_set_custom_sorting_pill_directions(): void
     {
@@ -132,7 +121,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertSame('2-1', $column->getCustomSortingPillDirections('desc'));
     }
 
-
     public function test_can_check_if_field_is_relation(): void
     {
         $column = Column::make('My Title');
@@ -144,7 +132,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertCount(2, $column->getRelations());
     }
 
-
     public function test_can_check_if_column_is_same_by_field(): void
     {
         $column = Column::make('My Title');
@@ -152,7 +139,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->isField('my_title'));
         $this->assertFalse($column->isField('name'));
     }
-
 
     public function test_can_check_if_column_is_sortable(): void
     {
@@ -169,7 +155,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertFalse($column->isSortable());
     }
 
-
     public function test_can_check_if_column_has_a_sort_callback(): void
     {
         $column = Column::make('My Title')->sortable();
@@ -182,7 +167,6 @@ final class ColumnHelpersTest extends TestCase
 
         $this->assertTrue($column->hasSortCallback());
     }
-
 
     public function test_can_get_column_sort_callback(): void
     {
@@ -197,7 +181,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertIsCallable($column->getSortCallback());
     }
 
-
     public function test_can_get_column_table(): void
     {
         $column = Column::make('My Title');
@@ -208,7 +191,6 @@ final class ColumnHelpersTest extends TestCase
 
         $this->assertSame('users', $column->getTable());
     }
-
 
     public function test_can_get_full_column_name(): void
     {
@@ -225,7 +207,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertSame('addresses.name', $column->getColumn());
     }
 
-
     public function test_can_get_full_column_select_name(): void
     {
         $column = Column::make('Name', 'name');
@@ -240,7 +221,6 @@ final class ColumnHelpersTest extends TestCase
 
         $this->assertSame('address.group.name', $column->getColumnSelectName());
     }
-
 
     public function test_can_check_if_column_matches_column_name(): void
     {
@@ -257,7 +237,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertFalse($column->isColumn('address.group.name'));
     }
 
-
     public function test_can_check_if_column_matches_column_select(): void
     {
         $column = Column::make('Name', 'name');
@@ -273,7 +252,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertFalse($column->isColumnBySelectName('addresses.name'));
     }
 
-
     public function test_can_check_if_eager_loading_relations_is_enabled(): void
     {
         $column = Column::make('My Title');
@@ -285,14 +263,12 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->eagerLoadRelationsIsEnabled());
     }
 
-
     public function test_can_get_colspan_count(): void
     {
         $this->basicTable->setBulkActionsDisabled();
 
         $this->assertEquals(100, $this->basicTable->getColspanCount());
     }
-
 
     public function test_can_get_column_formatter(): void
     {
@@ -305,7 +281,6 @@ final class ColumnHelpersTest extends TestCase
 
         $this->assertInstanceOf(Closure::class, $column->getFormatCallback());
     }
-
 
     public function test_can_check_if_column_has_secondary_header(): void
     {
@@ -322,7 +297,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertIsCallable($column->getSecondaryHeaderCallback());
         $this->assertSame('Hi', $column->getSecondaryHeaderContents([], []));
     }
-
 
     public function test_can_check_if_column_has_footer(): void
     {

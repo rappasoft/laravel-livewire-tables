@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class DebuggingConfigurationTest extends TestCase
 {
-
     public function test_debug_status_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getDebugStatus());

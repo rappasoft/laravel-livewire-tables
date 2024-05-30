@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class WithSortingTest extends TestCase
 {
-
     public function test_cannot_call_sortBy_if_sorting_is_disabled(): void
     {
         $this->assertSame($this->basicTable->sortBy('id'), 'asc');
@@ -15,7 +14,6 @@ final class WithSortingTest extends TestCase
 
         $this->assertNull($this->basicTable->sortBy('id'));
     }
-
 
     public function test_clear_sorts_if_single_sorting_and_setting_not_current_field(): void
     {
@@ -39,7 +37,6 @@ final class WithSortingTest extends TestCase
         $this->assertSame($this->basicTable->getSorts(), ['name' => 'asc']);
     }
 
-
     public function test_set_sort_asc_if_not_set(): void
     {
         $this->assertFalse($this->basicTable->hasSort('id'));
@@ -48,7 +45,6 @@ final class WithSortingTest extends TestCase
 
         $this->assertSame($this->basicTable->getSorts(), ['id' => 'asc']);
     }
-
 
     public function test_set_sort_desc_if_currently_asc(): void
     {
@@ -61,7 +57,6 @@ final class WithSortingTest extends TestCase
         $this->assertSame($this->basicTable->getSorts(), ['id' => 'desc']);
     }
 
-
     public function test_remove_sort_if_currently_desc(): void
     {
         $this->basicTable->setSort('id', 'desc');
@@ -73,7 +68,6 @@ final class WithSortingTest extends TestCase
         $this->assertFalse($this->basicTable->hasSort('id'));
     }
 
-
     public function test_sort_callback_gets_applied_if_specified(): void
     {
         // TODO
@@ -81,7 +75,6 @@ final class WithSortingTest extends TestCase
         $this->basicTable->sortBy('breed.name');
         $this->assertSame($this->basicTable->getSorts(), ['breed.name' => 'asc']);
     }
-
 
     public function test_cannot_set_sort_on_unsortable_column(): void
     {
@@ -95,7 +88,6 @@ final class WithSortingTest extends TestCase
 
         $this->assertStringNotContainsStringIgnoringCase('order by', $this->basicTable->getBuilder()->toSql());
     }
-
 
     public function test_sort_applies_to_query(): void
     {

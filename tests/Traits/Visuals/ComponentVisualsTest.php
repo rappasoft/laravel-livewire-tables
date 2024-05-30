@@ -14,13 +14,11 @@ final class ComponentVisualsTest extends TestCase
 {
     private $testErrors;
 
-
     public function test_empty_message_does_not_show_with_results(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('No items found. Try to broaden your search.');
     }
-
 
     public function test_empty_message_shows_with_no_results(): void
     {
@@ -28,7 +26,6 @@ final class ComponentVisualsTest extends TestCase
             ->set('search', 'sdfsdfsdfadsfasdfasdd')
             ->assertSee('No items found');
     }
-
 
     public function test_debugging_shows_when_enabled(): void
     {
@@ -38,13 +35,11 @@ final class ComponentVisualsTest extends TestCase
             ->assertSee('Debugging Values');
     }
 
-
     public function test_offline_message_is_available_when_needed(): void
     {
         Livewire::test(PetsTable::class)
             ->assertSeeHtml('<div wire:offline.class.remove="hidden" class="hidden">');
     }
-
 
     public function test_fails_when_table_has_no_pk(): void
     {
@@ -68,7 +63,6 @@ final class ComponentVisualsTest extends TestCase
         }
     }
 
-
     public function test_fails_when_table_has_no_model_or_builder(): void
     {
         $this->testErrors = false;
@@ -91,7 +85,6 @@ final class ComponentVisualsTest extends TestCase
         }
     }
 
-
     public function test_can_see_valid_tr_attributes_html(): void
     {
         Livewire::test(PetsTableAttributes::class)
@@ -99,14 +92,12 @@ final class ComponentVisualsTest extends TestCase
             ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex1"');
     }
 
-
     public function test_cannot_see_invalid_tr_attributes_html(): void
     {
         Livewire::test(PetsTableAttributes::class)
             ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex0"')
             ->assertDontSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteNotSeen"');
     }
-
 
     public function test_can_see_correct_html_for_clickable_row(): void
     {
@@ -137,7 +128,6 @@ final class ComponentVisualsTest extends TestCase
             ]);
 
     }
-
 
     public function test_column_secondary_header_can_not_be_a_string(): void
     {

@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class BulkActionsConfigurationTest extends TestCase
 {
-
     public function test_variables_are_correct_types(): void
     {
         $this->assertIsBool($this->basicTable->bulkActionsStatus);
@@ -15,7 +14,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertIsArray($this->basicTable->bulkActions);
         $this->assertIsArray($this->basicTable->selected);
     }
-
 
     public function test_can_set_bulk_actions_status(): void
     {
@@ -38,7 +36,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getBulkActionsStatus());
     }
 
-
     public function test_can_set_select_all_status(): void
     {
         $this->assertFalse($this->basicTable->getSelectAllStatus());
@@ -59,7 +56,6 @@ final class BulkActionsConfigurationTest extends TestCase
 
         $this->assertFalse($this->basicTable->getSelectAllStatus());
     }
-
 
     public function test_can_set_hide_bulk_action_dropdown_status(): void
     {
@@ -82,7 +78,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getHideBulkActionsWhenEmptyStatus());
     }
 
-
     public function test_can_set_bulk_actions(): void
     {
         $this->assertFalse($this->basicTable->hasBulkActions());
@@ -91,7 +86,6 @@ final class BulkActionsConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasBulkActions());
     }
-
 
     public function test_can_set_bulk_action_confirms(): void
     {
@@ -102,7 +96,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame(['deactivate', 'delete'], $this->basicTable->getBulkActionConfirms());
 
     }
-
 
     public function test_can_set_bulk_action_custom_message(): void
     {
@@ -117,7 +110,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getBulkActionDefaultConfirmationMessage(), $this->basicTable->getBulkActionConfirmMessage('delete'));
 
     }
-
 
     public function test_can_set_bulk_action_custom_messages(): void
     {
@@ -140,7 +132,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame('Are you sure you want to purge these items?', $this->basicTable->getBulkActionConfirmMessage('purge'));
     }
 
-
     public function test_can_set_bulk_action_default_confirmation_message(): void
     {
         $this->assertSame('Are you sure?', $this->basicTable->getBulkActionDefaultConfirmationMessage());
@@ -150,7 +141,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame('Test Default Message', $this->basicTable->getBulkActionDefaultConfirmationMessage());
 
     }
-
 
     public function test_can_set_bulk_actions_td_attributes(): void
     {
@@ -165,7 +155,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame(['default' => false, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsTdAttributes());
     }
 
-
     public function test_can_set_bulk_actions_td_checkbox_attributes(): void
     {
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsTdCheckboxAttributes());
@@ -179,7 +168,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame(['default' => false, 'class' => 'bg-gray-500'], $this->basicTable->getBulkActionsTdCheckboxAttributes());
     }
 
-
     public function test_can_set_bulk_actions_th_attributes(): void
     {
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThAttributes());
@@ -192,7 +180,6 @@ final class BulkActionsConfigurationTest extends TestCase
 
         $this->assertSame(['default' => false, 'class' => 'bg-red-500'], $this->basicTable->getBulkActionsThAttributes());
     }
-
 
     public function test_can_set_bulk_actions_th_checkbox_attributes(): void
     {

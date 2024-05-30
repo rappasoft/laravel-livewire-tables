@@ -7,14 +7,12 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
 final class DateColumnTest extends TestCase
 {
-
     public function test_can_set_the_column_title(): void
     {
         $column = DateColumn::make('Last Visit', 'last_visit');
 
         $this->assertSame('Last Visit', $column->getTitle());
     }
-
 
     public function test_can_infer_field_name_from_title_if_no_from(): void
     {
@@ -23,7 +21,6 @@ final class DateColumnTest extends TestCase
         $this->assertSame('my_title', $column->getField());
     }
 
-
     public function test_can_set_base_field_from_from(): void
     {
         $column = DateColumn::make('Name', 'last_visit');
@@ -31,14 +28,12 @@ final class DateColumnTest extends TestCase
         $this->assertSame('last_visit', $column->getField());
     }
 
-
     public function test_can_set_relation_field_from_from(): void
     {
         $column = DateColumn::make('Name', 'last_visit');
 
         $this->assertSame('last_visit', $column->getField());
     }
-
 
     public function test_can_get_column_formatted_contents(): void
     {
@@ -50,7 +45,6 @@ final class DateColumnTest extends TestCase
         $this->assertSame($rows->last()->last_visit, '2023-05-04');
     }
 
-
     public function test_can_get_column_reformatted_contents(): void
     {
         $column = DateColumn::make('Name', 'last_visit')->inputFormat('Y-m-d')->outputFormat('d-m-Y');
@@ -59,7 +53,6 @@ final class DateColumnTest extends TestCase
 
         $this->assertSame('04-05-2023', $column->getContents($rows->last()));
     }
-
 
     public function test_can_not_get_column_reformatted_contents_with_bad_values(): void
     {
@@ -82,7 +75,6 @@ final class DateColumnTest extends TestCase
         $this->assertSame('Unknown', $column->emptyValue('Unknown')->getContents($firstRow));
 
     }
-
 
     public function test_can_set_column_empty_value(): void
     {

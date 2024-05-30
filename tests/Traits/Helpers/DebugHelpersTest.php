@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class DebugHelpersTest extends TestCase
 {
-
     public function test_can_get_debug_status(): void
     {
         $this->assertTrue($this->basicTable->debugIsDisabled());

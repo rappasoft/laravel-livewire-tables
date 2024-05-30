@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class FilterConfigurationTest extends TestCase
 {
-
     public function test_filters_status_can_be_set(): void
     {
         $this->assertTrue($this->basicTable->getFiltersStatus());
@@ -28,7 +27,6 @@ final class FilterConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->getFiltersStatus());
     }
-
 
     public function test_filters_visibility_status_can_be_set(): void
     {
@@ -51,7 +49,6 @@ final class FilterConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getFiltersVisibilityStatus());
     }
 
-
     public function test_filters_pills_status_can_be_set(): void
     {
         $this->assertTrue($this->basicTable->getFilterPillsStatus());
@@ -72,7 +69,6 @@ final class FilterConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->getFilterPillsStatus());
     }
-
 
     public function test_filters_layout_can_be_set(): void
     {
@@ -100,7 +96,6 @@ final class FilterConfigurationTest extends TestCase
 
         $this->basicTable->setFilterLayout('popover');
     }
-
 
     public function test_filters_layout_popover_default_can_be_set(): void
     {

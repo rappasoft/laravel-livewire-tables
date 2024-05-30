@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
 final class BooleanColumnConfigurationTest extends TestCase
 {
-
     public function test_boolean_column_can_set_callback(): void
     {
         $column = BooleanColumn::make('Name');
@@ -22,7 +21,6 @@ final class BooleanColumnConfigurationTest extends TestCase
         $this->assertTrue($column->getCallback() instanceof Closure);
     }
 
-
     public function test_boolean_column_can_set_success_value(): void
     {
         $column = BooleanColumn::make('Name');
@@ -33,7 +31,6 @@ final class BooleanColumnConfigurationTest extends TestCase
 
         $this->assertFalse($column->getSuccessValue());
     }
-
 
     public function test_boolean_column_can_set_view(): void
     {

@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
 final class ComponentColumnTest extends TestCase
 {
-
     public function test_component_column_attributes_callback_return_can_not_be_an_string()
     {
         $this->expectException(DataTableConfigurationException::class);
@@ -18,14 +17,12 @@ final class ComponentColumnTest extends TestCase
             ->attributes(fn () => 'string')->getContents(Pet::find(1));
     }
 
-
     public function test_component_column_component_has_to_be_an_string()
     {
         $column = ComponentColumn::make('Name')
             ->component('alert');
         $this->assertEquals('components.alert', $column->getComponentView());
     }
-
 
     public function test_component_column_component_view_has_to_be_set()
     {

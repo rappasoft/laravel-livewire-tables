@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class LoadingPlaceholderVisualsTest extends TestCase
 {
-
     public function test_can_see_placeholder_section(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
@@ -16,7 +15,6 @@ final class LoadingPlaceholderVisualsTest extends TestCase
             ->assertSeeHtml('tr wire:key="table-loader" class="hidden d-none"')
             ->call('setPerPage', 5);
     }
-
 
     public function test_can_see_placeholder_custom_text(): void
     {
@@ -32,7 +30,6 @@ final class LoadingPlaceholderVisualsTest extends TestCase
             ->call('setPerPage', 5);
     }
 
-
     public function test_can_see_correct_placeholder_text_visually(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
@@ -40,7 +37,6 @@ final class LoadingPlaceholderVisualsTest extends TestCase
             ->assertSee('TestLoadingPlaceholderContentTestTest')
             ->call('setPerPage', 5);
     }
-
 
     public function test_cannot_see_incorrect_placeholder_text_visually(): void
     {

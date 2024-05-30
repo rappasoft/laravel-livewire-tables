@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class CustomisationsConfigurationTest extends TestCase
 {
-
     public function test_can_set_extends(): void
     {
         $this->assertFalse($this->basicTable->hasExtends());
@@ -15,7 +14,6 @@ final class CustomisationsConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->hasExtends());
         $this->assertEquals('app.layout', $this->basicTable->getExtends());
     }
-
 
     public function test_can_set_layout(): void
     {
@@ -26,7 +24,6 @@ final class CustomisationsConfigurationTest extends TestCase
         $this->assertEquals('app.layout', $this->basicTable->getLayout());
     }
 
-
     public function test_can_set_section(): void
     {
         $this->assertNull($this->basicTable->getSection());
@@ -35,7 +32,6 @@ final class CustomisationsConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->hasSection());
         $this->assertEquals('content', $this->basicTable->getSection());
     }
-
 
     public function test_can_set_slot(): void
     {

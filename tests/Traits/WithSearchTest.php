@@ -6,20 +6,17 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class WithSearchTest extends TestCase
 {
-
     public function test_search_gets_applied_for_searchable_columns(): void
     {
         // TODO
         $this->assertTrue(true);
     }
 
-
     public function test_search_callback_gets_applied_where_necessary(): void
     {
         // TODO
         $this->assertTrue(true);
     }
-
 
     public function test_when_search_is_applied_bulk_actions_are_cleared(): void
     {

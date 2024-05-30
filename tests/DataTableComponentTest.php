@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
 class DataTableComponentTest extends TestCase
 {
-
     public function test_primary_key_can_be_set(): void
     {
         $this->assertSame('id', $this->basicTable->getPrimaryKey());
@@ -18,7 +17,6 @@ class DataTableComponentTest extends TestCase
 
         $this->assertSame('name', $this->basicTable->getPrimaryKey());
     }
-
 
     public function test_primary_key_can_be_checked_for_existence(): void
     {
@@ -29,14 +27,12 @@ class DataTableComponentTest extends TestCase
         $this->assertFalse($this->basicTable->hasPrimaryKey());
     }
 
-
     public function test_primary_key_has_to_be_set(): void
     {
         $this->expectException(\Illuminate\View\ViewException::class);
         Livewire::test(NoPrimaryKeyTable::class)
             ->call('setSearch', 'abcd');
     }
-
 
     public function test_default_fingerprint_will_always_be_the_same_for_same_datatable(): void
     {
@@ -57,7 +53,6 @@ class DataTableComponentTest extends TestCase
 
     }
 
-
     public function test_default_datatable_fingerprints_will_be_different_for_each_table(): void
     {
         $mockTable = new class() extends PetsTable
@@ -66,7 +61,6 @@ class DataTableComponentTest extends TestCase
 
         $this->assertNotSame($this->basicTable->getDataTableFingerprint(), $mockTable->getDataTableFingerprint());
     }
-
 
     public function test_default_fingerprint_will_be_url_friendy(): void
     {
@@ -80,7 +74,6 @@ class DataTableComponentTest extends TestCase
         // control
         $this->assertTrue(filter_var('http://[9/$].dev', FILTER_VALIDATE_URL) === false);
     }
-
 
     public function test_minimum_one_column_expected(): void
     {

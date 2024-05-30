@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 final class FooterConfigurationTest extends TestCase
 {
-
     public function test_can_set_footer_status(): void
     {
         $this->assertTrue($this->basicTable->getFooterStatus());
@@ -28,7 +27,6 @@ final class FooterConfigurationTest extends TestCase
 
         $this->assertTrue($this->basicTable->getFooterStatus());
     }
-
 
     public function test_can_set_use_header_as_footer_status(): void
     {
@@ -51,7 +49,6 @@ final class FooterConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getUseHeaderAsFooterStatus());
     }
 
-
     public function test_can_set_secondary_footer_tr_attributes(): void
     {
         $this->basicTable->setFooterTrAttributes(function ($rows) {
@@ -60,7 +57,6 @@ final class FooterConfigurationTest extends TestCase
 
         $this->assertSame($this->basicTable->getFooterTrAttributes([]), ['default' => true, 'here' => 'there']);
     }
-
 
     public function test_can_set_footer_td_attributes(): void
     {
