@@ -7,6 +7,9 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### New Features
 - Add configurable wire:model for filters by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1699
 
+### Bug Fixes
+- Fix error with DateColumn when empty
+
 ## [v3.2.5] - 2024-04-30
 ### New Features
 - Add setConfigurableArea by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1706
