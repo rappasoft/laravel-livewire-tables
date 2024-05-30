@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
@@ -9,8 +11,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\DateColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\DateColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
-use DateTime;
-use Carbon\Carbon;
 
 class DateColumn extends Column
 {
@@ -30,13 +30,11 @@ class DateColumn extends Column
     {
 
         $dateTime = $this->getValue($row);
-        
+
         if ($dateTime != '' && $dateTime != null) {
             if ($dateTime instanceof DateTime || $dateTime instanceof Carbon) {
                 return $dateTime->format($this->getOutputFormat());
-            }
-            else
-            {
+            } else {
                 try {
                     // Check if format matches what is expected
                     if (Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat())) {
@@ -44,11 +42,11 @@ class DateColumn extends Column
                     }
                 } catch (\Exception $exception) {
                     report($exception);
-    
+
                     // Return Null
                     return $this->getEmptyValue();
                 }
-    
+
             }
         }
 
