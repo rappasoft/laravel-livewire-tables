@@ -130,11 +130,12 @@ class MakeCommand extends Command implements PromptsForMissingInput
             $filename = rtrim($this->modelPath, '/').'/'.$this->model.'.php';
             if (File::exists($filename)) {
                 //In case the file has more than one class which is highly unlikely but still possible
-                $classes = array_filter($this->getClassesList($filename), function($class) {
-                    return substr($class,strrpos($class,'\\')+1) == $this->model;
+                $classes = array_filter($this->getClassesList($filename), function ($class) {
+                    return substr($class, strrpos($class, '\\') + 1) == $this->model;
                 });
-                if(count($classes) == 1)
+                if (count($classes) == 1) {
                     return $classes[0];
+                }
             }
         }
 
@@ -148,9 +149,9 @@ class MakeCommand extends Command implements PromptsForMissingInput
     */
     private function getClassesList($file): array
     {
-        $classes   = [];
+        $classes = [];
         $namespace = '';
-        $tokens    = \PhpToken::tokenize(file_get_contents($file));
+        $tokens = \PhpToken::tokenize(file_get_contents($file));
 
         for ($i = 0; $i < count($tokens); $i++) {
             if ($tokens[$i]->getTokenName() === 'T_NAMESPACE') {
@@ -169,13 +170,14 @@ class MakeCommand extends Command implements PromptsForMissingInput
                     }
 
                     if ($tokens[$j]->getTokenName() === 'T_STRING') {
-                        $classes[] = $namespace . '\\' . $tokens[$j]->text;
+                        $classes[] = $namespace.'\\'.$tokens[$j]->text;
                     } else {
                         break;
                     }
                 }
             }
         }
+
         return $classes;
     }
 
