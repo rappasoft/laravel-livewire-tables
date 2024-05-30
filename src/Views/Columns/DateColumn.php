@@ -32,7 +32,7 @@ class DateColumn extends Column
         $dateTime = $this->getValue($row);
 
         if ($dateTime != '' && $dateTime != null) {
-            if ($dateTime instanceof DateTime || $dateTime instanceof Carbon) {
+            if ($dateTime instanceof DateTime ) {
                 return $dateTime->format($this->getOutputFormat());
             } else {
                 try {
