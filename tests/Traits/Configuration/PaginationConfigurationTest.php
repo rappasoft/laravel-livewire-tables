@@ -4,10 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class PaginationConfigurationTest extends TestCase
+final class PaginationConfigurationTest extends TestCase
 {
-    /** @test */
-    public function pagination_theme_can_be_set(): void
+    public function test_pagination_theme_can_be_set(): void
     {
         $this->assertSame('tailwind', $this->basicTable->getPaginationTheme());
 
@@ -16,8 +15,7 @@ class PaginationConfigurationTest extends TestCase
         $this->assertSame('bootstrap', $this->basicTable->getPaginationTheme());
     }
 
-    /** @test */
-    public function can_set_pagination_status(): void
+    public function test_can_set_pagination_status(): void
     {
         $this->assertTrue($this->basicTable->getPaginationStatus());
 
@@ -38,8 +36,7 @@ class PaginationConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getPaginationStatus());
     }
 
-    /** @test */
-    public function can_set_pagination_visibility_status(): void
+    public function test_can_set_pagination_visibility_status(): void
     {
         $this->assertTrue($this->basicTable->getPaginationVisibilityStatus());
 
@@ -60,8 +57,7 @@ class PaginationConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getPaginationVisibilityStatus());
     }
 
-    /** @test */
-    public function can_set_per_page_visibility_status(): void
+    public function test_can_set_per_page_visibility_status(): void
     {
         $this->assertTrue($this->basicTable->getPerPageVisibilityStatus());
 
@@ -82,8 +78,7 @@ class PaginationConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getPerPageVisibilityStatus());
     }
 
-    /** @test */
-    public function can_set_per_page_selection(): void
+    public function test_can_set_per_page_selection(): void
     {
         $this->assertSame(10, $this->basicTable->getPerPage());
 
@@ -92,8 +87,7 @@ class PaginationConfigurationTest extends TestCase
         $this->assertSame(25, $this->basicTable->getPerPage());
     }
 
-    /** @test */
-    public function can_set_per_page_accepted_values(): void
+    public function test_can_set_per_page_accepted_values(): void
     {
         $this->assertSame([10, 25, 50], $this->basicTable->getPerPageAccepted());
 
@@ -102,8 +96,7 @@ class PaginationConfigurationTest extends TestCase
         $this->assertSame([10, 25, 50, -1], $this->basicTable->getPerPageAccepted());
     }
 
-    /** @test */
-    public function can_set_per_page_manually(): void
+    public function test_can_set_per_page_manually(): void
     {
         $this->assertSame(10, $this->basicTable->getPerPage());
 
@@ -112,8 +105,7 @@ class PaginationConfigurationTest extends TestCase
         $this->assertSame(25, $this->basicTable->getPerPage());
     }
 
-    /** @test */
-    public function can_set_default_per_page(): void
+    public function test_can_set_default_per_page(): void
     {
         $this->assertSame(10, $this->unpaginatedTable->getPerPage());
         $this->unpaginatedTable->setDefaultPerPage(50);

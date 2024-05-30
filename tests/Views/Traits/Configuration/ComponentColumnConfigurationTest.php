@@ -6,10 +6,9 @@ use Closure;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
-class ComponentColumnConfigurationTest extends TestCase
+final class ComponentColumnConfigurationTest extends TestCase
 {
-    /** @test */
-    public function component_column_can_set_slot_callback(): void
+    public function test_component_column_can_set_slot_callback(): void
     {
         $column = ComponentColumn::make('Name');
 
@@ -22,8 +21,7 @@ class ComponentColumnConfigurationTest extends TestCase
         $this->assertTrue($column->getSlotCallback() instanceof Closure);
     }
 
-    /** @test */
-    public function component_column_can_set_attributes_callback(): void
+    public function test_component_column_can_set_attributes_callback(): void
     {
         $column = ComponentColumn::make('Name');
 

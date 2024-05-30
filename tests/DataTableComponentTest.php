@@ -9,8 +9,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
 class DataTableComponentTest extends TestCase
 {
-    /** @test */
-    public function primary_key_can_be_set(): void
+    public function test_primary_key_can_be_set(): void
     {
         $this->assertSame('id', $this->basicTable->getPrimaryKey());
 
@@ -19,8 +18,7 @@ class DataTableComponentTest extends TestCase
         $this->assertSame('name', $this->basicTable->getPrimaryKey());
     }
 
-    /** @test */
-    public function primary_key_can_be_checked_for_existence(): void
+    public function test_primary_key_can_be_checked_for_existence(): void
     {
         $this->assertTrue($this->basicTable->hasPrimaryKey());
 
@@ -29,16 +27,14 @@ class DataTableComponentTest extends TestCase
         $this->assertFalse($this->basicTable->hasPrimaryKey());
     }
 
-    /** @test */
-    public function primary_key_has_to_be_set(): void
+    public function test_primary_key_has_to_be_set(): void
     {
         $this->expectException(\Illuminate\View\ViewException::class);
         Livewire::test(NoPrimaryKeyTable::class)
             ->call('setSearch', 'abcd');
     }
 
-    /** @test */
-    public function default_fingerprint_will_always_be_the_same_for_same_datatable(): void
+    public function test_default_fingerprint_will_always_be_the_same_for_same_datatable(): void
     {
         $this->assertSame(
             [
@@ -57,8 +53,7 @@ class DataTableComponentTest extends TestCase
 
     }
 
-    /** @test */
-    public function default_datatable_fingerprints_will_be_different_for_each_table(): void
+    public function test_default_datatable_fingerprints_will_be_different_for_each_table(): void
     {
         $mockTable = new class() extends PetsTable
         {
@@ -67,8 +62,7 @@ class DataTableComponentTest extends TestCase
         $this->assertNotSame($this->basicTable->getDataTableFingerprint(), $mockTable->getDataTableFingerprint());
     }
 
-    /** @test */
-    public function default_fingerprint_will_be_url_friendy(): void
+    public function test_default_fingerprint_will_be_url_friendy(): void
     {
         $mocks = [];
         for ($i = 0; $i < 9; $i++) {
@@ -81,8 +75,7 @@ class DataTableComponentTest extends TestCase
         $this->assertTrue(filter_var('http://[9/$].dev', FILTER_VALIDATE_URL) === false);
     }
 
-    /** @test */
-    public function minimum_one_column_expected(): void
+    public function test_minimum_one_column_expected(): void
     {
         $this->expectException(\Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException::class);
         $table = new NoColumnsTable();

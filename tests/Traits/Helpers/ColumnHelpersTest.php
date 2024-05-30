@@ -7,16 +7,14 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
-class ColumnHelpersTest extends TestCase
+final class ColumnHelpersTest extends TestCase
 {
-    /** @test */
-    public function can_get_column_list(): void
+    public function test_can_get_column_list(): void
     {
         $this->assertCount(9, $this->basicTable->getColumns()->toArray());
     }
 
-    /** @test */
-    public function can_append_column(): void
+    public function test_can_append_column(): void
     {
         $this->assertCount(9, $this->basicTable->getColumns()->toArray());
 
@@ -30,8 +28,7 @@ class ColumnHelpersTest extends TestCase
 
     }
 
-    /** @test */
-    public function can_prepend_column(): void
+    public function test_can_prepend_column(): void
     {
         $this->assertCount(9, $this->basicTable->getColumns()->toArray());
 
@@ -44,30 +41,26 @@ class ColumnHelpersTest extends TestCase
         $this->assertCount(10, $this->basicTable->getColumns()->toArray());
     }
 
-    /** @test */
-    public function can_get_column_by_column(): void
+    public function test_can_get_column_by_column(): void
     {
         $column = $this->basicTable->getColumn('pets.id');
 
         $this->assertSame('id', $column->getField());
     }
 
-    /** @test */
-    public function can_get_column_by_select_name(): void
+    public function test_can_get_column_by_select_name(): void
     {
         $column = $this->basicTable->getColumnBySelectName('id');
 
         $this->assertSame('id', $column->getField());
     }
 
-    /** @test */
-    public function can_get_column_count(): void
+    public function test_can_get_column_count(): void
     {
         $this->assertSame(9, $this->basicTable->getColumnCount());
     }
 
-    /** @test */
-    public function can_tell_if_there_are_collapsable_columns(): void
+    public function test_can_tell_if_there_are_collapsable_columns(): void
     {
         $this->assertFalse($this->basicTable->hasCollapsedColumns());
 
@@ -82,8 +75,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasCollapsedColumns());
     }
 
-    /** @test */
-    public function can_tell_if_columns_should_collapse_on_mobile(): void
+    public function test_can_tell_if_columns_should_collapse_on_mobile(): void
     {
         $this->assertFalse($this->basicTable->shouldCollapseOnMobile());
 
@@ -94,8 +86,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->shouldCollapseOnMobile());
     }
 
-    /** @test */
-    public function can_get_collapsed_mobile_columns(): void
+    public function test_can_get_collapsed_mobile_columns(): void
     {
         $this->assertCount(0, $this->basicTable->getCollapsedMobileColumns());
 
@@ -109,8 +100,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame('Name', $this->basicTable->getCollapsedMobileColumns()[1]->getTitle());
     }
 
-    /** @test */
-    public function can_get_collapsed_mobile_columns_count(): void
+    public function test_can_get_collapsed_mobile_columns_count(): void
     {
         $this->assertSame(0, $this->basicTable->getCollapsedMobileColumnsCount());
 
@@ -122,8 +112,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame(2, $this->basicTable->getCollapsedMobileColumnsCount());
     }
 
-    /** @test */
-    public function can_get_visible_mobile_columns(): void
+    public function test_can_get_visible_mobile_columns(): void
     {
         $this->assertCount(9, $this->basicTable->getVisibleMobileColumns());
 
@@ -139,8 +128,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame('Other', $this->basicTable->getVisibleMobileColumns()->values()[3]->getTitle());
     }
 
-    /** @test */
-    public function can_get_visible_mobile_columns_count(): void
+    public function test_can_get_visible_mobile_columns_count(): void
     {
         $this->assertSame(9, $this->basicTable->getVisibleMobileColumnsCount());
 
@@ -150,8 +138,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame(7, $this->basicTable->getVisibleMobileColumnsCount());
     }
 
-    /** @test */
-    public function can_tell_if_columns_should_collapse_on_tablet(): void
+    public function test_can_tell_if_columns_should_collapse_on_tablet(): void
     {
         $this->assertFalse($this->basicTable->shouldCollapseOnTablet());
 
@@ -162,8 +149,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->shouldCollapseOnTablet());
     }
 
-    /** @test */
-    public function can_get_collapsed_tablet_columns(): void
+    public function test_can_get_collapsed_tablet_columns(): void
     {
         $this->assertCount(0, $this->basicTable->getCollapsedTabletColumns());
 
@@ -177,8 +163,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame('Name', $this->basicTable->getCollapsedTabletColumns()[1]->getTitle());
     }
 
-    /** @test */
-    public function can_get_collapsed_tablet_columns_count(): void
+    public function test_can_get_collapsed_tablet_columns_count(): void
     {
         $this->assertSame(0, $this->basicTable->getCollapsedTabletColumnsCount());
 
@@ -190,8 +175,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame(2, $this->basicTable->getCollapsedTabletColumnsCount());
     }
 
-    /** @test */
-    public function can_get_visible_tablet_columns(): void
+    public function test_can_get_visible_tablet_columns(): void
     {
         $this->assertCount(9, $this->basicTable->getVisibleTabletColumns());
 
@@ -207,8 +191,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame('Other', $this->basicTable->getVisibleTabletColumns()->values()[3]->getTitle());
     }
 
-    /** @test */
-    public function can_get_visible_tablet_columns_count(): void
+    public function test_can_get_visible_tablet_columns_count(): void
     {
         $this->assertSame(9, $this->basicTable->getVisibleTabletColumnsCount());
 
@@ -222,7 +205,7 @@ class ColumnHelpersTest extends TestCase
 
     /// *** ** //
 
-    public function can_tell_if_columns_should_collapse_always(): void
+    public function test_can_tell_if_columns_should_collapse_always(): void
     {
         $this->assertFalse($this->basicTable->shouldCollapseAlways());
 
@@ -233,8 +216,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->shouldCollapseAlways());
     }
 
-    /** @test */
-    public function can_get_always_collapsed_columns(): void
+    public function test_can_get_always_collapsed_columns(): void
     {
         $this->assertCount(0, $this->basicTable->getCollapsedAlwaysColumns());
 
@@ -248,8 +230,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame('Name', $this->basicTable->getCollapsedAlwaysColumns()[1]->getTitle());
     }
 
-    /** @test */
-    public function can_get_always_collapsed_columns_count(): void
+    public function test_can_get_always_collapsed_columns_count(): void
     {
         $this->assertSame(0, $this->basicTable->getCollapsedAlwaysColumnsCount());
 
@@ -261,8 +242,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame(2, $this->basicTable->getCollapsedAlwaysColumnsCount());
     }
 
-    /** @test */
-    /*public function can_get_selectable_columns(): void
+    /*public function test_can_get_selectable_columns(): void
     {
         $selectable = $this->basicTable->getSelectableColumns()
             ->map(fn (Column $column) => $column->getColumnSelectName())
@@ -271,8 +251,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame(['id', 'name', 'age', 'breed.name', 'last_visit'], $selectable);
     }*/
 
-    /** @test */
-    public function can_get_searchable_columns(): void
+    public function test_can_get_searchable_columns(): void
     {
         $selectable = $this->basicTable->getSearchableColumns()
             ->map(fn (Column $column) => $column->getColumnSelectName())
@@ -281,20 +260,17 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame(['name', 'breed.name'], $selectable);
     }
 
-    /** @test */
-    public function can_get_a_list_of_column_relations(): void
+    public function test_can_get_a_list_of_column_relations(): void
     {
         $this->assertSame([['breed']], $this->basicTable->getColumnRelations());
     }
 
-    /** @test */
-    public function can_get_a_list_of_column_relation_strings(): void
+    public function test_can_get_a_list_of_column_relation_strings(): void
     {
         $this->assertSame(['breed'], $this->basicTable->getColumnRelationStrings());
     }
 
-    /** @test */
-    public function can_check_if_column_is_reorder_column(): void
+    public function test_can_check_if_column_is_reorder_column(): void
     {
         $column = Column::make('ID', 'id');
         $column->setComponent($this->basicTable);
@@ -307,8 +283,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->isReorderColumn());
     }
 
-    /** @test */
-    public function can_check_if_column_has_secondary_header(): void
+    public function test_can_check_if_column_has_secondary_header(): void
     {
         $column = $this->basicTable->getColumnBySelectName('name');
         $this->assertTrue($column->hasSecondaryHeaderCallback());
@@ -316,8 +291,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($callback instanceof TextFilter);
     }
 
-    /** @test */
-    public function can_check_if_column_has_secondary_header_filter(): void
+    public function test_can_check_if_column_has_secondary_header_filter(): void
     {
         $column = $this->basicTable->getColumnBySelectName('breed.name');
         $this->assertTrue($column->hasSecondaryHeader());
@@ -325,8 +299,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertStringContainsString('id="table-filter-breed-8-header"', $contents);
     }
 
-    /** @test */
-    public function can_check_if_column_has_custom_slug(): void
+    public function test_can_check_if_column_has_custom_slug(): void
     {
         $column = Column::make('Name');
 
@@ -337,8 +310,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->hasCustomSlug());
     }
 
-    /** @test */
-    public function can_column_custom_slug_returns(): void
+    public function test_can_column_custom_slug_returns(): void
     {
         $column = Column::make('Name');
 
@@ -349,8 +321,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame(\Illuminate\Support\Str::slug('test123'), $column->getSlug());
     }
 
-    /** @test */
-    public function can_check_if_column_label_should_be_shown(): void
+    public function test_can_check_if_column_label_should_be_shown(): void
     {
         $column = Column::make('ID', 'id');
 

@@ -4,10 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class PaginationHelpersTest extends TestCase
+final class PaginationHelpersTest extends TestCase
 {
-    /** @test */
-    public function can_get_pagination_status(): void
+    public function test_can_get_pagination_status(): void
     {
         $this->assertTrue($this->basicTable->paginationIsEnabled());
 
@@ -20,8 +19,7 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->paginationIsEnabled());
     }
 
-    /** @test */
-    public function can_get_pagination_visibility_status(): void
+    public function test_can_get_pagination_visibility_status(): void
     {
         $this->assertTrue($this->basicTable->paginationVisibilityIsEnabled());
 
@@ -34,8 +32,7 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->paginationVisibilityIsEnabled());
     }
 
-    /** @test */
-    public function can_get_computed_page_name(): void
+    public function test_can_get_computed_page_name(): void
     {
         $this->assertSame('page', $this->basicTable->getComputedPageName());
 
@@ -48,20 +45,17 @@ class PaginationHelpersTest extends TestCase
         $this->assertSame('newPage', $this->basicTable->getComputedPageName());
     }
 
-    /** @test */
-    public function can_get_per_page_selection(): void
+    public function test_can_get_per_page_selection(): void
     {
         $this->assertSame(10, $this->basicTable->getPerPage());
     }
 
-    /** @test */
-    public function can_get_per_page_accepted(): void
+    public function test_can_get_per_page_accepted(): void
     {
         $this->assertSame([10, 25, 50], $this->basicTable->getPerPageAccepted());
     }
 
-    /** @test */
-    public function can_get_per_page_visibility_status(): void
+    public function test_can_get_per_page_visibility_status(): void
     {
         $this->assertTrue($this->basicTable->perPageVisibilityIsEnabled());
 
@@ -74,8 +68,7 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->perPageVisibilityIsEnabled());
     }
 
-    /** @test */
-    public function can_check_and_set_pagination_method(): void
+    public function test_can_check_and_set_pagination_method(): void
     {
         $this->assertTrue($this->basicTable->isPaginationMethod('standard'));
 
@@ -88,22 +81,19 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->isPaginationMethod('standard'));
     }
 
-    /** @test */
-    public function can_check_per_page_displayed_item_count(): void
+    public function test_can_check_per_page_displayed_item_count(): void
     {
         $this->assertSame(5, $this->basicTable->getPerPageDisplayedItemCount());
 
     }
 
-    /** @test */
-    public function can_check_per_page_displayed_items(): void
+    public function test_can_check_per_page_displayed_items(): void
     {
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getPerPageDisplayedItemIds());
 
     }
 
-    /** @test */
-    public function can_enable_detailed_pagination(): void
+    public function test_can_enable_detailed_pagination(): void
     {
 
         $this->assertTrue($this->basicTable->showPaginationDetails());
@@ -117,8 +107,7 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->showPaginationDetails());
     }
 
-    /** @test */
-    public function can_disable_detailed_pagination(): void
+    public function test_can_disable_detailed_pagination(): void
     {
 
         $this->assertTrue($this->basicTable->showPaginationDetails());
@@ -129,8 +118,7 @@ class PaginationHelpersTest extends TestCase
 
     }
 
-    /** @test */
-    public function can_get_pagination_field_attributes(): void
+    public function test_can_get_pagination_field_attributes(): void
     {
 
         $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => ''], $this->basicTable->getPerPageFieldAttributes());

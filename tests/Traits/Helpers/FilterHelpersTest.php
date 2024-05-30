@@ -10,10 +10,9 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
-class FilterHelpersTest extends TestCase
+final class FilterHelpersTest extends TestCase
 {
-    /** @test */
-    public function can_get_filters_status(): void
+    public function test_can_get_filters_status(): void
     {
         $this->assertTrue($this->basicTable->filtersAreEnabled());
 
@@ -26,8 +25,7 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->filtersAreEnabled());
     }
 
-    /** @test */
-    public function can_get_filters_visibility_status(): void
+    public function test_can_get_filters_visibility_status(): void
     {
         $this->assertTrue($this->basicTable->filtersVisibilityIsEnabled());
 
@@ -40,8 +38,7 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->filtersVisibilityIsEnabled());
     }
 
-    /** @test */
-    public function can_get_filter_pills_status(): void
+    public function test_can_get_filter_pills_status(): void
     {
         $this->assertTrue($this->basicTable->filterPillsAreEnabled());
 
@@ -54,14 +51,12 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->filterPillsAreEnabled());
     }
 
-    /** @test */
-    public function can_check_if_component_has_filters(): void
+    public function test_can_check_if_component_has_filters(): void
     {
         $this->assertTrue($this->basicTable->hasFilters());
     }
 
-    /** @test */
-    public function can_get_component_filters(): void
+    public function test_can_get_component_filters(): void
     {
         $this->assertInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilters()[0]);
         $this->assertInstanceOf(NumberFilter::class, $this->basicTable->getFilters()[2]);
@@ -71,14 +66,12 @@ class FilterHelpersTest extends TestCase
         $this->assertInstanceOf(SelectFilter::class, $this->basicTable->getFilters()[6]);
     }
 
-    /** @test */
-    public function can_get_component_filter_count(): void
+    public function test_can_get_component_filter_count(): void
     {
         $this->assertEquals(7, $this->basicTable->getFiltersCount());
     }
 
-    /** @test */
-    public function can_get_component_filter_by_key(): void
+    public function test_can_get_component_filter_by_key(): void
     {
         $this->assertInstanceOf(MultiSelectFilter::class, $this->basicTable->getFilterByKey('breed'));
 
@@ -105,8 +98,7 @@ class FilterHelpersTest extends TestCase
         $this->assertNotInstanceOf(SelectFilter::class, $this->basicTable->getFilterByKey('last_visit_datetime_filter'));
     }
 
-    /** @test */
-    public function can_set_filter_value(): void
+    public function test_can_set_filter_value(): void
     {
         $this->basicTable->setFilter('breed', ['1']);
 
@@ -121,8 +113,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame('Test', $this->basicTable->getAppliedFilterWithValue('pet_name_filter'));
     }
 
-    /** @test */
-    public function can_select_all_filter_options(): void
+    public function test_can_select_all_filter_options(): void
     {
         $this->basicTable->selectAllFilterOptions('breed');
 
@@ -140,8 +131,7 @@ class FilterHelpersTest extends TestCase
         ], $this->basicTable->getAppliedFilterWithValue('breed'));
     }
 
-    /** @test */
-    public function can_set_filter_defaults(): void
+    public function test_can_set_filter_defaults(): void
     {
         $this->basicTable->setFilter('breed', ['1']);
 
@@ -152,8 +142,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame(['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null], $this->basicTable->getAppliedFilters());
     }
 
-    /** @test */
-    public function can_not_set_invalid_filter(): void
+    public function test_can_not_set_invalid_filter(): void
     {
         $this->basicTable->setFilter('invalid-filter', ['1']);
 
@@ -162,8 +151,7 @@ class FilterHelpersTest extends TestCase
         $this->assertArrayNotHasKey('invalid-filter', $this->basicTable->getAppliedFilters());
     }
 
-    /** @test */
-    public function can_see_if_filters_set_with_values(): void
+    public function test_can_see_if_filters_set_with_values(): void
     {
         $this->assertFalse($this->basicTable->hasAppliedFiltersWithValues());
 
@@ -172,16 +160,14 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasAppliedFiltersWithValues());
     }
 
-    /** @test */
-    public function can_get_all_applied_filters_with_values(): void
+    public function test_can_get_all_applied_filters_with_values(): void
     {
         $this->basicTable->setFilter('breed', ['1']);
 
         $this->assertSame(['breed' => ['1']], $this->basicTable->getAppliedFiltersWithValues());
     }
 
-    /** @test */
-    public function can_get_all_applied_filters_with_values_count(): void
+    public function test_can_get_all_applied_filters_with_values_count(): void
     {
         $this->assertSame(0, $this->basicTable->getAppliedFiltersWithValuesCount());
 
@@ -190,14 +176,12 @@ class FilterHelpersTest extends TestCase
         $this->assertSame(1, $this->basicTable->getAppliedFiltersWithValuesCount());
     }
 
-    /** @test */
-    public function can_check_if_filter_layout_is_popover(): void
+    public function test_can_check_if_filter_layout_is_popover(): void
     {
         $this->assertTrue($this->basicTable->isFilterLayoutPopover());
     }
 
-    /** @test */
-    public function can_check_if_filter_layout_is_slidedown(): void
+    public function test_can_check_if_filter_layout_is_slidedown(): void
     {
         $this->assertFalse($this->basicTable->isFilterLayoutSlideDown());
 
@@ -206,8 +190,7 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->isFilterLayoutSlideDown());
     }
 
-    /** @test */
-    public function can_check_if_filter_layout_slidedown_is_visible(): void
+    public function test_can_check_if_filter_layout_slidedown_is_visible(): void
     {
         $this->assertFalse($this->basicTable->getFilterSlideDownDefaultStatus());
 
@@ -216,8 +199,7 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->getFilterSlideDownDefaultStatus());
     }
 
-    /** @test */
-    public function can_check_if_filter_layout_slidedown_is_hidden(): void
+    public function test_can_check_if_filter_layout_slidedown_is_hidden(): void
     {
         $this->assertFalse($this->basicTable->getFilterSlideDownDefaultStatus());
 
