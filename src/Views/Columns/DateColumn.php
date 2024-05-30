@@ -28,26 +28,22 @@ class DateColumn extends Column
     {
 
         $dateTime = $this->getValue($row);
-        if ($dateTime != '' && $dateTime != null) {
-            if (! ($dateTime instanceof \DateTime)) {
-                try {
-                    // Check if format matches what is expected
-                    if (! \Carbon\Carbon::hasFormatWithModifiers($dateTime, $this->getInputFormat())) {
-                        throw new \Exception('DateColumn Received Invalid Format');
-                    }
-
-                    // Create DateTime Object
-                    $dateTime = \DateTime::createFromFormat($this->getInputFormat(), $dateTime);
-                } catch (\Exception $exception) {
-                    report($exception);
-
-                    // Return Null
-                    return $this->getEmptyValue();
-                }
-            }
-
-            // Return
+        if ($dateTime instanceof \DateTime) {
             return $dateTime->format($this->getOutputFormat());
+        }
+        else
+        {
+            try {
+                // Check if format matches what is expected
+                if (\Carbon\Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat())) {
+                    return \DateTime::createFromFormat($this->getInputFormat(), $dateTime)->format($this->getOutputFormat());
+                }
+            } catch (\Exception $exception) {
+                report($exception);
+
+                // Return Null
+                return $this->getEmptyValue();
+            }
 
         }
 
