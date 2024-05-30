@@ -7,14 +7,14 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class FingerprintConfigurationTest extends TestCase
 {
-    /** @test */
-    public function can_set_fingerprint(): void
+
+    public function test_can_set_fingerprint(): void
     {
         $this->assertSame('test', $this->basicTable->setDataTableFingerprint('test')->getDataTableFingerprint());
     }
 
-    /** @test */
-    public function can_set_fingerprint_in_configure_method(): void
+
+    public function test_can_set_fingerprint_in_configure_method(): void
     {
         $mock = new class extends PetsTable
         {

@@ -7,8 +7,8 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class RelationshipHelpersTest extends TestCase
 {
-    /** @test */
-    public function can_check_if_base_column(): void
+
+    public function test_can_check_if_base_column(): void
     {
         $column = Column::make('ID');
 
@@ -19,8 +19,8 @@ class RelationshipHelpersTest extends TestCase
         $this->assertFalse($column->isBaseColumn());
     }
 
-    /** @test */
-    public function can_check_if_column_has_relations(): void
+
+    public function test_can_check_if_column_has_relations(): void
     {
         $column = Column::make('ID');
 
@@ -31,8 +31,8 @@ class RelationshipHelpersTest extends TestCase
         $this->assertTrue($column->hasRelations());
     }
 
-    /** @test */
-    public function can_get_column_relations(): void
+
+    public function test_can_get_column_relations(): void
     {
         $column = Column::make('ID');
 
@@ -43,8 +43,8 @@ class RelationshipHelpersTest extends TestCase
         $this->assertSame(['pets', 'species'], $column->getRelations()->toArray());
     }
 
-    /** @test */
-    public function can_get_column_relation_string(): void
+
+    public function test_can_get_column_relation_string(): void
     {
         $column = Column::make('ID', 'pets.species.id');
 

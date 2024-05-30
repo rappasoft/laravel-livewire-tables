@@ -8,8 +8,8 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class LoadingPlaceholderVisualsTest extends TestCase
 {
-    /** @test */
-    public function can_see_placeholder_section(): void
+
+    public function test_can_see_placeholder_section(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
             ->call('setPerPageAccepted', [1, 5, 10])
@@ -17,8 +17,8 @@ class LoadingPlaceholderVisualsTest extends TestCase
             ->call('setPerPage', 5);
     }
 
-    /** @test */
-    public function can_see_placeholder_custom_text(): void
+
+    public function test_can_see_placeholder_custom_text(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
             ->call('setPerPageAccepted', [1, 5, 10])
@@ -32,8 +32,8 @@ class LoadingPlaceholderVisualsTest extends TestCase
             ->call('setPerPage', 5);
     }
 
-    /** @test */
-    public function can_see_correct_placeholder_text_visually(): void
+
+    public function test_can_see_correct_placeholder_text_visually(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
             ->call('setPerPageAccepted', [1, 5, 10])
@@ -41,8 +41,8 @@ class LoadingPlaceholderVisualsTest extends TestCase
             ->call('setPerPage', 5);
     }
 
-    /** @test */
-    public function cannot_see_incorrect_placeholder_text_visually(): void
+
+    public function test_cannot_see_incorrect_placeholder_text_visually(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
             ->call('setPerPageAccepted', [1, 5, 10])

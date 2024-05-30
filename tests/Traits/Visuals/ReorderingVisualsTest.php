@@ -5,10 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Depends;
 
 class ReorderingVisualsTest extends TestCase
 {
-    /** @test */
+
     public function testFilterArraySetup(): array
     {
         $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
@@ -17,10 +18,10 @@ class ReorderingVisualsTest extends TestCase
         return $filterDefaultArray;
     }
 
-    /** @test */
+
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
-    public function sortable_call_only_available_if_enabled(): void
+    public function test_sortable_call_only_available_if_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('wire:sortable=')
@@ -28,10 +29,10 @@ class ReorderingVisualsTest extends TestCase
             ->assertSee('wire:sortable=');
     }*/
 
-    /** @test */
+
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
-    public function reorder_columns_added_when_enabled(): void
+    public function test_reorder_columns_added_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -42,10 +43,10 @@ class ReorderingVisualsTest extends TestCase
             ->assertSee('wire:sortable.item');
     }*/
 
-    /** @test */
+
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
-    public function order_column_hidden_until_reordering_if_enabled(): void
+    public function test_order_column_hidden_until_reordering_if_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -56,30 +57,30 @@ class ReorderingVisualsTest extends TestCase
             ->assertSee('Sort');
     }*/
 
-    /** @test */
+
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
-    public function reorder_button_doesnt_show_when_disabled(): void
+    public function test_reorder_button_doesnt_show_when_disabled(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('Reorder');
     }
     */
 
-    /** @test */
+
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
-    public function reorder_button_shows_when_enabled(): void
+    public function test_reorder_button_shows_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
             ->assertSee('Reorder');
     }*/
 
-    /** @test */
+
     /** Temporarily Removed - Will Use a Dusk Test */
     /*
-    public function reorder_button_shows_correct_text_based_on_status(): void
+    public function test_reorder_button_shows_correct_text_based_on_status(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -88,8 +89,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSee('Done Reordering');
     }*/
 
-    /** @test */
-    public function sorting_pills_hide_on_reorder(): void
+
+    public function test_sorting_pills_hide_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -102,12 +103,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:key="table-sorting-pill-id"');
     }
 
-    /**
-     * @test
-     *
-     * @depends testFilterArraySetup
-     */
-    public function sorting_is_disabled_on_reorder(array $filterDefaultArray): void
+    #[Depends('testFilterArraySetup')]
+    public function test_sorting_is_disabled_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -128,8 +125,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:click="sortBy(\'id\')"');
     }
 
-    /** @test */
-    public function pagination_hides_on_reorder(): void
+
+    public function test_pagination_hides_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -145,8 +142,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('<span aria-current="page">');
     }
 
-    /** @test */
-    public function per_page_hides_on_reorder(): void
+
+    public function test_per_page_hides_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -160,8 +157,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:model.live="perPage"');
     }
 
-    /** @test */
-    public function per_page_accepted_gets_set_on_reorder(): void
+
+    public function test_per_page_accepted_gets_set_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -172,8 +169,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSet('perPageAccepted', [10, 25, 50]);
     }
 
-    /** @test */
-    public function per_page_gets_set_on_reorder(): void
+
+    public function test_per_page_gets_set_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -184,10 +181,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSet('perPage', 10);
     }
 
-    /** @test
-     * @depends testFilterArraySetup
-     */
-    public function search_hides_on_reorder(array $filterDefaultArray): void
+    #[Depends('testFilterArraySetup')]
+    public function test_search_hides_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -206,7 +201,7 @@ class ReorderingVisualsTest extends TestCase
 
     /** broken test **/
     /*
-    public function current_page_gets_reset_on_reorder(): void
+    public function test_current_page_gets_reset_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -222,8 +217,8 @@ class ReorderingVisualsTest extends TestCase
         //            ->assertSet('page', 3);
     }*/
 
-    /** @test */
-    public function bulk_actions_dropdown_gets_hidden_on_reorder(): void
+
+    public function test_bulk_actions_dropdown_gets_hidden_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -235,8 +230,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('Bulk Actions');
     }
 
-    /** @test */
-    public function bulk_actions_header_gets_hidden_on_reorder(): void
+
+    public function test_bulk_actions_header_gets_hidden_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -248,8 +243,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('Select All');
     }
 
-    /** @test */
-    public function bulk_actions_cell_gets_hidden_on_reorder(): void
+
+    public function test_bulk_actions_cell_gets_hidden_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -261,8 +256,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('Select All');
     }
 
-    /** @test */
-    public function bulk_actions_row_select_all_gets_hidden_on_reorder(): void
+
+    public function test_bulk_actions_row_select_all_gets_hidden_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -275,8 +270,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('You are currently selecting all');
     }
 
-    /** @test */
-    public function bulk_actions_row_select_some_gets_hidden_on_reorder(): void
+
+    public function test_bulk_actions_row_select_some_gets_hidden_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -289,12 +284,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('do you want to select all');
     }
 
-    /**
-     * @test
-     *
-     * @depends testFilterArraySetup
-     */
-    public function filters_are_disabled_on_reorder(array $filterDefaultArray): void
+    #[Depends('testFilterArraySetup')]
+    public function test_filters_are_disabled_on_reorder(array $filterDefaultArray): void
     {
         $customisedFilterArray = $filterDefaultArray;
         $customisedFilterArray['breed'] = [1];
@@ -316,12 +307,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('Filters');
     }
 
-    /**
-     * @test
-     *
-     * @depends testFilterArraySetup
-     */
-    public function filter_pills_hide_on_reorder(array $filterDefaultArray): void
+    #[Depends('testFilterArraySetup')]
+    public function test_filter_pills_hide_on_reorder(array $filterDefaultArray): void
     {
         $filterDefaultArray['breed'] = [1];
 
@@ -334,8 +321,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
-    /** @test */
-    public function column_select_does_not_hide_on_reorder(): void
+
+    public function test_column_select_does_not_hide_on_reorder(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setReorderEnabled')
@@ -344,22 +331,22 @@ class ReorderingVisualsTest extends TestCase
             ->assertSee('Columns');
     }
 
-    /** @test */
-    public function collapsing_columns_hide_on_reorder(): void
+
+    public function test_collapsing_columns_hide_on_reorder(): void
     {
         // TODO
         $this->assertTrue(true);
     }
 
-    /** @test */
-    public function secondary_header_hides_on_reorder(): void
+
+    public function test_secondary_header_hides_on_reorder(): void
     {
         // TODO
         $this->assertTrue(true);
     }
 
-    /** @test */
-    public function footer_hides_on_reorder(): void
+
+    public function test_footer_hides_on_reorder(): void
     {
         // TODO
         $this->assertTrue(true);

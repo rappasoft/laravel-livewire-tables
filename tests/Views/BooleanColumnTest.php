@@ -9,16 +9,16 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
 class BooleanColumnTest extends TestCase
 {
-    /** @test */
-    public function boolean_column_can_not_be_a_label(): void
+
+    public function test_boolean_column_can_not_be_a_label(): void
     {
         $this->expectException(DataTableConfigurationException::class);
 
         BooleanColumn::make('Name')->label(fn () => 'My Label')->getContents(Pet::find(1));
     }
 
-    /** @test */
-    public function boolean_column_can_be_yes_no(): void
+
+    public function test_boolean_column_can_be_yes_no(): void
     {
         $column = BooleanColumn::make('Name');
 

@@ -6,8 +6,8 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class RefreshConfigurationTest extends TestCase
 {
-    /** @test */
-    public function refresh_time_can_be_set(): void
+
+    public function test_refresh_time_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getRefreshStatus());
 
@@ -16,8 +16,8 @@ class RefreshConfigurationTest extends TestCase
         $this->assertSame('5000', $this->basicTable->getRefreshStatus());
     }
 
-    /** @test */
-    public function refresh_keep_alive_can_be_set(): void
+
+    public function test_refresh_keep_alive_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getRefreshStatus());
 
@@ -26,8 +26,8 @@ class RefreshConfigurationTest extends TestCase
         $this->assertSame('keep-alive', $this->basicTable->getRefreshStatus());
     }
 
-    /** @test */
-    public function refresh_visible_can_be_set(): void
+
+    public function test_refresh_visible_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getRefreshStatus());
 
@@ -36,8 +36,8 @@ class RefreshConfigurationTest extends TestCase
         $this->assertSame('visible', $this->basicTable->getRefreshStatus());
     }
 
-    /** @test */
-    public function refresh_method_can_be_set(): void
+
+    public function test_refresh_method_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getRefreshStatus());
 

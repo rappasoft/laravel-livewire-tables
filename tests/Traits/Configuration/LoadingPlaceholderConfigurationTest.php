@@ -6,8 +6,8 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class LoadingPlaceholderConfigurationTest extends TestCase
 {
-    /** @test */
-    public function can_set_loading_placeholder_status_enabled(): void
+
+    public function test_can_set_loading_placeholder_status_enabled(): void
     {
         $this->assertFalse($this->basicTable->hasDisplayLoadingPlaceholder());
 
@@ -17,8 +17,8 @@ class LoadingPlaceholderConfigurationTest extends TestCase
 
     }
 
-    /** @test */
-    public function can_set_loading_placeholder_status_disabled(): void
+
+    public function test_can_set_loading_placeholder_status_disabled(): void
     {
         $this->assertFalse($this->basicTable->hasDisplayLoadingPlaceholder());
 
@@ -32,8 +32,8 @@ class LoadingPlaceholderConfigurationTest extends TestCase
 
     }
 
-    /** @test */
-    public function can_set_loading_placeholder_content(): void
+
+    public function test_can_set_loading_placeholder_content(): void
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
 
@@ -47,8 +47,8 @@ class LoadingPlaceholderConfigurationTest extends TestCase
 
     }
 
-    /** @test */
-    public function can_set_loading_placeholder_attributes(): void
+
+    public function test_can_set_loading_placeholder_attributes(): void
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
 
@@ -60,8 +60,8 @@ class LoadingPlaceholderConfigurationTest extends TestCase
 
     }
 
-    /** @test */
-    public function can_set_loading_placeholder_icon_attributes(): void
+
+    public function test_can_set_loading_placeholder_icon_attributes(): void
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
 
@@ -73,8 +73,8 @@ class LoadingPlaceholderConfigurationTest extends TestCase
 
     }
 
-    /** @test */
-    public function can_set_loading_placeholder_wrapper_attributes(): void
+
+    public function test_can_set_loading_placeholder_wrapper_attributes(): void
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
 
@@ -85,8 +85,8 @@ class LoadingPlaceholderConfigurationTest extends TestCase
         $this->assertSame(['class' => 'test1234567-wrapper'], $this->basicTable->getLoadingPlaceHolderWrapperAttributes());
     }
 
-    /** @test */
-    public function can_set_loading_placeholder_custom_blade(): void
+
+    public function test_can_set_loading_placeholder_custom_blade(): void
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
 

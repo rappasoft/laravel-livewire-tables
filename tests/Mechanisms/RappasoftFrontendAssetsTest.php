@@ -4,13 +4,12 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Mechanisms;
 
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Depends;
 
 class RappasoftFrontendAssetsTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function jsResponseSetupCacheEnabled(): array
+
+    public function testJsResponseSetupCacheEnabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
         $lastModified = \Carbon\Carbon::now()->timestamp;
@@ -24,10 +23,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => $lastModified, 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function jsResponseSetupCacheDisabled(): array
+
+    public function testJsResponseSetupCacheDisabled(): array
     {
         config()->set('livewire-tables.cache_assets', false);
         $date = date_create();
@@ -41,10 +38,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function cssResponseSetupCacheEnabled(): array
+
+    public function testCssResponseSetupCacheEnabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
         $date = date_create();
@@ -58,10 +53,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function cssResponseSetupCacheDisabled(): array
+
+    public function testCssResponseSetupCacheDisabled(): array
     {
         config()->set('livewire-tables.cache_assets', false);
 
@@ -77,10 +70,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function thirdPartyCssResponseSetupCacheEnabled(): array
+
+    public function testThirdPartyCssResponseSetupCacheEnabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
 
@@ -96,10 +87,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function thirdPartyCssResponseSetupCacheDisabled(): array
+
+    public function testThirdPartyCssResponseSetupCacheDisabled(): array
     {
         config()->set('livewire-tables.cache_assets', false);
 
@@ -115,10 +104,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function thirdPartyJsResponseSetupCacheEnabled(): array
+
+    public function testThirdPartyJsResponseSetupCacheEnabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
         $lastModified = \Carbon\Carbon::now()->timestamp;
@@ -132,10 +119,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => $lastModified, 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function thirdPartyJsResponseSetupCacheDisabled(): array
+
+    public function testThirdPartyJsResponseSetupCacheDisabled(): array
     {
         config()->set('livewire-tables.cache_assets', false);
         $date = date_create();
@@ -149,8 +134,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /** @test */
-    public function styles()
+
+    public function test_styles()
     {
         $assets = app(RappasoftFrontendAssets::class);
 
@@ -161,8 +146,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableStyles);
     }
 
-    /** @test */
-    public function scripts()
+
+    public function test_scripts()
     {
         $assets = app(RappasoftFrontendAssets::class);
 
@@ -173,8 +158,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableScripts);
     }
 
-    /** @test */
-    public function thirdPartystyles()
+
+    public function test_thirdPartystyles()
     {
         $assets = app(RappasoftFrontendAssets::class);
 
@@ -185,8 +170,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyStyles);
     }
 
-    /** @test */
-    public function thirdPartyscripts()
+
+    public function test_thirdPartyscripts()
     {
         $assets = app(RappasoftFrontendAssets::class);
 
@@ -197,162 +182,98 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyScripts);
     }
 
-    /**
-     * @test
-     *
-     * @depends jsResponseSetupCacheEnabled
-     */
-    public function check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $jsResponseSetupCacheEnabled)
+    #[Depends('testJsResponseSetupCacheEnabled')]
+    public function test_check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $jsResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $jsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends jsResponseSetupCacheEnabled
-     */
-    public function check_pretend_response_is_js_returns_correct_content_type_cache_enabled(array $jsResponseSetupCacheEnabled)
+    #[Depends('testJsResponseSetupCacheEnabled')]
+    public function test_check_pretend_response_is_js_returns_correct_content_type_cache_enabled(array $jsResponseSetupCacheEnabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $jsResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends jsResponseSetupCacheDisabled
-     */
-    public function check_pretend_response_is_js_returns_correct_cache_control_cache_disabled(array $jsResponseSetupCacheDisabled)
+    #[Depends('testJsResponseSetupCacheDisabled')]
+    public function test_check_pretend_response_is_js_returns_correct_cache_control_cache_disabled(array $jsResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $jsResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends jsResponseSetupCacheDisabled
-     */
-    public function check_pretend_response_is_js_returns_correct_content_type_cache_disabled(array $jsResponseSetupCacheDisabled)
+    #[Depends('testJsResponseSetupCacheDisabled')]
+    public function test_check_pretend_response_is_js_returns_correct_content_type_cache_disabled(array $jsResponseSetupCacheDisabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $jsResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends cssResponseSetupCacheEnabled
-     */
-    public function check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $cssResponseSetupCacheEnabled)
+    #[Depends('testCssResponseSetupCacheEnabled')]
+    public function test_check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $cssResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $cssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends cssResponseSetupCacheEnabled
-     */
-    public function check_pretend_response_is_css_returns_correct_content_type_caching_enabled(array $cssResponseSetupCacheEnabled)
+    #[Depends('testCssResponseSetupCacheEnabled')]
+    public function test_check_pretend_response_is_css_returns_correct_content_type_caching_enabled(array $cssResponseSetupCacheEnabled)
     {
         $this->assertSame('text/css; charset=utf-8', $cssResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends cssResponseSetupCacheDisabled
-     */
-    public function check_pretend_response_is_css_returns_correct_cache_control_caching_disabled(array $cssResponseSetupCacheDisabled)
+    #[Depends('testCssResponseSetupCacheDisabled')]
+    public function test_check_pretend_response_is_css_returns_correct_cache_control_caching_disabled(array $cssResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $cssResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends cssResponseSetupCacheDisabled
-     */
-    public function check_pretend_response_is_css_returns_correct_content_type_caching_disabled(array $cssResponseSetupCacheDisabled)
+    #[Depends('testCssResponseSetupCacheDisabled')]
+    public function test_check_pretend_response_is_css_returns_correct_content_type_caching_disabled(array $cssResponseSetupCacheDisabled)
     {
         $this->assertSame('text/css; charset=utf-8', $cssResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyCssResponseSetupCacheEnabled
-     */
-    public function tp_check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $thirdPartyCssResponseSetupCacheEnabled)
+    #[Depends('testThirdPartyCssResponseSetupCacheEnabled')]
+    public function test_tp_check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $thirdPartyCssResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $thirdPartyCssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyCssResponseSetupCacheEnabled
-     */
-    public function tp_check_pretend_response_is_css_returns_correct_content_type_caching_enabled(array $thirdPartyCssResponseSetupCacheEnabled)
+    #[Depends('testThirdPartyCssResponseSetupCacheEnabled')]
+    public function test_tp_check_pretend_response_is_css_returns_correct_content_type_caching_enabled(array $thirdPartyCssResponseSetupCacheEnabled)
     {
         $this->assertSame('text/css; charset=utf-8', $thirdPartyCssResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyCssResponseSetupCacheDisabled
-     */
-    public function tp_check_pretend_response_is_css_returns_correct_cache_control_caching_disabled(array $thirdPartyCssResponseSetupCacheDisabled)
+    #[Depends('testThirdPartyCssResponseSetupCacheDisabled')]
+    public function test_tp_check_pretend_response_is_css_returns_correct_cache_control_caching_disabled(array $thirdPartyCssResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $thirdPartyCssResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyCssResponseSetupCacheDisabled
-     */
-    public function tp_check_pretend_response_is_css_returns_correct_content_type_caching_disabled(array $thirdPartyCssResponseSetupCacheDisabled)
+    #[Depends('testThirdPartyCssResponseSetupCacheDisabled')]
+    public function test_tp_check_pretend_response_is_css_returns_correct_content_type_caching_disabled(array $thirdPartyCssResponseSetupCacheDisabled)
     {
         $this->assertSame('text/css; charset=utf-8', $thirdPartyCssResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyJsResponseSetupCacheEnabled
-     */
-    public function tp_check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $thirdPartyJsResponseSetupCacheEnabled)
+    #[Depends('testThirdPartyJsResponseSetupCacheEnabled')]
+    public function test_tp_check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $thirdPartyJsResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $thirdPartyJsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyJsResponseSetupCacheEnabled
-     */
-    public function tp_check_pretend_response_is_js_returns_correct_content_type_cache_enabled(array $thirdPartyJsResponseSetupCacheEnabled)
+    #[Depends('testThirdPartyJsResponseSetupCacheEnabled')]
+    public function test_tp_check_pretend_response_is_js_returns_correct_content_type_cache_enabled(array $thirdPartyJsResponseSetupCacheEnabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $thirdPartyJsResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyJsResponseSetupCacheDisabled
-     */
-    public function tp_check_pretend_response_is_js_returns_correct_cache_control_cache_disabled(array $thirdPartyJsResponseSetupCacheDisabled)
+    #[Depends('testThirdPartyJsResponseSetupCacheDisabled')]
+    public function test_tp_check_pretend_response_is_js_returns_correct_cache_control_cache_disabled(array $thirdPartyJsResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $thirdPartyJsResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyJsResponseSetupCacheDisabled
-     */
-    public function tp_check_pretend_response_is_js_returns_correct_content_type_cache_disabled(array $thirdPartyJsResponseSetupCacheDisabled)
+    #[Depends('testThirdPartyJsResponseSetupCacheDisabled')]
+    public function test_tp_check_pretend_response_is_js_returns_correct_content_type_cache_disabled(array $thirdPartyJsResponseSetupCacheDisabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $thirdPartyJsResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
