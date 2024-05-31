@@ -96,6 +96,15 @@ Column::make('Name')
     ->html(),
 ```
 
+And this method is also available for the [LinkColumn](./other-column-types#content-link-columns)
+
+```php
+LinkColumn::make('Name', 'name')
+    ->title(fn ($row) => 'Title')
+    ->location(fn ($row) => "#$row->id")
+    ->html(),
+```
+
 ### Using a view
 
 If you would like to render a view for the cell:

@@ -48,4 +48,34 @@ class LinkColumnTest extends TestCase
 
         $this->assertNotEmpty($column);
     }
+
+    /** @test */
+    public function can_check_ishtml_from_html_column(): void
+    {
+        $column = LinkColumn::make('Name', 'name')
+            ->title(fn ($row) => 'Title')
+            ->location(fn ($row) => "#$row->id")
+            ->html();
+
+        $this->assertTrue($column->isHtml());
+    }
+
+    /** @test */
+    public function can_get_html_from_html_label_column(): void
+    {
+        $column = LinkColumn::make('Name', 'name')
+            ->title(fn ($row) => '<strong>My Label</strong>')
+            ->location(fn ($row) => "#$row->id")
+            ->html();
+
+        $rows = $this->basicTable->getRows();
+        $location = '#'.$rows->first()->id;
+        $htmlString = new \Illuminate\Support\HtmlString('<a href="'.$location.'"><strong>My Label</strong></a>');
+
+        // Removing every whitespace and line break for the comparison
+        $expectedHtml = preg_replace('/\s+/', '', $htmlString->toHtml());
+        $actualHtml = preg_replace('/\s+/', '', $column->getContents($rows->first())->toHtml());
+
+        $this->assertSame($expectedHtml, $actualHtml);
+    }
 }
