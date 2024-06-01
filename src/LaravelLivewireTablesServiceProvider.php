@@ -14,7 +14,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-        AboutCommand::add('Rappasoft Laravel Livewire Tables', fn () => ['Version' => '3.2.6']);
+        AboutCommand::add('Rappasoft Laravel Livewire Tables', fn () => ['Version' => '3.2.5']);
 
         $this->mergeConfigFrom(
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
