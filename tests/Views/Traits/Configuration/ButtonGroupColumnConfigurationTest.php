@@ -6,10 +6,9 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
-class ButtonGroupColumnConfigurationTest extends TestCase
+final class ButtonGroupColumnConfigurationTest extends TestCase
 {
-    /** @test */
-    public function button_group_column_can_set_buttons(): void
+    public function test_button_group_column_can_set_buttons(): void
     {
         $column = ButtonGroupColumn::make('Actions')
             ->attributes(function () {

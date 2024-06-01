@@ -9,26 +9,23 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
-class FilterHelpersTest extends TestCase
+final class FilterHelpersTest extends TestCase
 {
-    /** @test */
-    public function can_get_filter_name(): void
+    public function test_can_get_filter_name(): void
     {
         $filter = SelectFilter::make('Active');
 
         $this->assertSame('Active', $filter->getName());
     }
 
-    /** @test */
-    public function can_get_filter_key(): void
+    public function test_can_get_filter_key(): void
     {
         $filter = SelectFilter::make('Active');
 
         $this->assertSame('active', $filter->getKey());
     }
 
-    /** @test */
-    public function can_get_filter_configs(): void
+    public function test_can_get_filter_configs(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -39,8 +36,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame(['foo' => 'bar'], $filter->getConfigs());
     }
 
-    /** @test */
-    public function get_a_single_filter_config(): void
+    public function test_get_a_single_filter_config(): void
     {
         $filter = SelectFilter::make('Active')
             ->config(['foo' => 'bar']);
@@ -48,8 +44,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame('bar', $filter->getConfig('foo'));
     }
 
-    /** @test */
-    public function can_get_filter_keys(): void
+    public function test_can_get_filter_keys(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -60,8 +55,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame(['foo'], $filter->getKeys());
     }
 
-    /** @test */
-    public function can_get_nested_filter_keys(): void
+    public function test_can_get_nested_filter_keys(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -76,8 +70,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame(['bar'], $filter->getKeys());
     }
 
-    /** @test */
-    public function can_get_filter_default_value(): void
+    public function test_can_get_filter_default_value(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -92,8 +85,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame([], $filter->getDefaultValue());
     }
 
-    /** @test */
-    public function can_get_filter_callback(): void
+    public function test_can_get_filter_callback(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -108,8 +100,7 @@ class FilterHelpersTest extends TestCase
         $this->assertIsCallable($filter->getFilterCallback());
     }
 
-    /** @test */
-    public function can_get_filter_pill_title(): void
+    public function test_can_get_filter_pill_title(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -121,8 +112,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame('User Status', $filter->getFilterPillTitle());
     }
 
-    /** @test */
-    public function can_get_filter_pill_value(): void
+    public function test_can_get_filter_pill_value(): void
     {
         $filter = SelectFilter::make('Active')
             ->options(['foo' => 'bar']);
@@ -136,8 +126,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame('baz', $filter->getFilterPillValue('foo'));
     }
 
-    /** @test */
-    public function can_get_nested_filter_pill_value(): void
+    public function test_can_get_nested_filter_pill_value(): void
     {
         $filter = SelectFilter::make('Active')
             ->options(['foo' => ['bar' => 'baz']]);
@@ -151,8 +140,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame('etc', $filter->getFilterPillValue('bar'));
     }
 
-    /** @test */
-    public function can_check_if_filter_has_configs(): void
+    public function test_can_check_if_filter_has_configs(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -164,8 +152,7 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($filter->hasConfigs());
     }
 
-    /** @test */
-    public function can_check_filter_config_by_name(): void
+    public function test_can_check_filter_config_by_name(): void
     {
         $filter = SelectFilter::make('Active')
             ->config(['foo' => 'bar']);
@@ -174,8 +161,7 @@ class FilterHelpersTest extends TestCase
         $this->assertFalse($filter->hasConfig('bar'));
     }
 
-    /** @test */
-    public function can_check_if_filter_is_hidden_from_menus(): void
+    public function test_can_check_if_filter_is_hidden_from_menus(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -188,8 +174,7 @@ class FilterHelpersTest extends TestCase
         $this->assertFalse($filter->isVisibleInMenus());
     }
 
-    /** @test */
-    public function can_check_if_filter_is_hidden_from_pills(): void
+    public function test_can_check_if_filter_is_hidden_from_pills(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -202,8 +187,7 @@ class FilterHelpersTest extends TestCase
         $this->assertFalse($filter->isVisibleInPills());
     }
 
-    /** @test */
-    public function can_check_if_filter_is_hidden_from_count(): void
+    public function test_can_check_if_filter_is_hidden_from_count(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -216,8 +200,7 @@ class FilterHelpersTest extends TestCase
         $this->assertFalse($filter->isVisibleInFilterCount());
     }
 
-    /** @test */
-    public function can_check_if_filter_is_reset_by_clear_button(): void
+    public function test_can_check_if_filter_is_reset_by_clear_button(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -228,8 +211,7 @@ class FilterHelpersTest extends TestCase
         $this->assertFalse($filter->isResetByClearButton());
     }
 
-    /** @test */
-    public function can_check_if_filter_has_slidedown_row(): void
+    public function test_can_check_if_filter_has_slidedown_row(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -244,8 +226,7 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($filter->hasFilterSlidedownRow());
     }
 
-    /** @test */
-    public function filter_slidedown_row_returns_int(): void
+    public function test_filter_slidedown_row_returns_int(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -258,8 +239,7 @@ class FilterHelpersTest extends TestCase
         $this->assertIsInt($filter->getFilterSlidedownRow());
     }
 
-    /** @test */
-    public function can_get_filter_slidedown_row(): void
+    public function test_can_get_filter_slidedown_row(): void
     {
         $filter = SelectFilter::make('Active')->setFilterSlidedownRow('2');
 
@@ -270,8 +250,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame(3, $filter->getFilterSlidedownRow());
     }
 
-    /** @test */
-    public function can_check_if_filter_has_slidedown_colspan(): void
+    public function test_can_check_if_filter_has_slidedown_colspan(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -286,8 +265,7 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($filter->hasFilterSlidedownColspan());
     }
 
-    /** @test */
-    public function filter_slidedown_colspan_returns_int(): void
+    public function test_filter_slidedown_colspan_returns_int(): void
     {
         $filter = SelectFilter::make('Active');
 
@@ -300,8 +278,7 @@ class FilterHelpersTest extends TestCase
         $this->assertIsInt($filter->getFilterSlidedownColspan());
     }
 
-    /** @test */
-    public function can_get_filter_slidedown_colspan(): void
+    public function test_can_get_filter_slidedown_colspan(): void
     {
         $filter = SelectFilter::make('Active')->setFilterSlidedownColspan('2');
 
@@ -312,15 +289,13 @@ class FilterHelpersTest extends TestCase
         $this->assertSame(3, $filter->getFilterSlidedownColspan());
     }
 
-    /** @test */
-    public function can_get_filter_default_value_component_level_array(): void
+    public function test_can_get_filter_default_value_component_level_array(): void
     {
         $filter = MultiSelectFilter::make('Active')->options(['foo' => 'bar', 'lorem' => 'ipsum'])->setFilterDefaultValue(['lorem']);
         $this->assertSame(['lorem'], $filter->getFilterDefaultValue());
     }
 
-    /** @test */
-    public function can_get_filter_has_default_value_component_level_array(): void
+    public function test_can_get_filter_has_default_value_component_level_array(): void
     {
         $filter = MultiSelectFilter::make('Active')->options(['foo' => 'bar', 'lorem' => 'ipsum']);
         $this->assertFalse($filter->hasFilterDefaultValue());
@@ -328,15 +303,13 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($filter->hasFilterDefaultValue());
     }
 
-    /** @test */
-    public function can_get_filter_default_value_component_level_text(): void
+    public function test_can_get_filter_default_value_component_level_text(): void
     {
         $filter = TextFilter::make('Active')->setFilterDefaultValue('lorem');
         $this->assertSame('lorem', $filter->getFilterDefaultValue());
     }
 
-    /** @test */
-    public function can_get_filter_has_default_value_component_level_text(): void
+    public function test_can_get_filter_has_default_value_component_level_text(): void
     {
         $filter = TextFilter::make('Active');
         $this->assertFalse($filter->hasFilterDefaultValue());
@@ -344,8 +317,7 @@ class FilterHelpersTest extends TestCase
         $this->assertTrue($filter->hasFilterDefaultValue());
     }
 
-    /** @test */
-    public function can_get_filter_custom_filter_pills_blade(): void
+    public function test_can_get_filter_custom_filter_pills_blade(): void
     {
         $filter = TextFilter::make('Active');
         $this->assertFalse($filter->hasCustomPillBlade());
@@ -354,8 +326,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame('foo', $filter->getCustomPillBlade());
     }
 
-    /** @test */
-    public function can_get_filter_label_attributes(): void
+    public function test_can_get_filter_label_attributes(): void
     {
         $filter1 = TextFilter::make('Filter1');
         $filter2 = TextFilter::make('Filter2')->setFilterLabelAttributes(
@@ -381,8 +352,7 @@ class FilterHelpersTest extends TestCase
 
     }
 
-    /** @test */
-    public function can_get_filter_wire_key(): void
+    public function test_can_get_filter_wire_key(): void
     {
         $filter1 = TextFilter::make('Filter1');
         $tableName = 'test1';
@@ -392,8 +362,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName.'-filter-'.$filterType.'-'.$filterKey);
     }
 
-    /** @test */
-    public function can_get_filter_wire_key_custom_position(): void
+    public function test_can_get_filter_wire_key_custom_position(): void
     {
         $filter1 = TextFilter::make('Filter1');
         $tableName = 'test1';
@@ -407,8 +376,7 @@ class FilterHelpersTest extends TestCase
         $this->assertSame($filter1->generateWireKey($tableName, $filterType), $tableName.'-filter-'.$filterType.'-'.$filterKey.'-'.$customPosition);
     }
 
-    /** @test */
-    public function can_get_filter_display_data(): void
+    public function test_can_get_filter_display_data(): void
     {
         $filter1 = TextFilter::make('Filter1');
 

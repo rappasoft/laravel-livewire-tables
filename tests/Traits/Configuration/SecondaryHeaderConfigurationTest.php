@@ -5,10 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class SecondaryHeaderConfigurationTest extends TestCase
+final class SecondaryHeaderConfigurationTest extends TestCase
 {
-    /** @test */
-    public function can_set_secondary_header_status(): void
+    public function test_can_set_secondary_header_status(): void
     {
         $this->assertTrue($this->basicTable->getSecondaryHeaderStatus());
 
@@ -29,8 +28,7 @@ class SecondaryHeaderConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getSecondaryHeaderStatus());
     }
 
-    /** @test */
-    public function can_set_secondary_header_tr_attributes(): void
+    public function test_can_set_secondary_header_tr_attributes(): void
     {
         $this->basicTable->setSecondaryHeaderTrAttributes(function ($rows) {
             return ['default' => true, 'here' => 'there'];
@@ -39,8 +37,7 @@ class SecondaryHeaderConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getSecondaryHeaderTrAttributes([]), ['default' => true, 'here' => 'there']);
     }
 
-    /** @test */
-    public function can_set_secondary_header_td_attributes(): void
+    public function test_can_set_secondary_header_td_attributes(): void
     {
         $this->basicTable->setSecondaryHeaderTdAttributes(function (Column $column, $rows) {
             return ['default' => true, 'here' => 'there'];

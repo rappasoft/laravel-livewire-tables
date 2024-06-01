@@ -7,56 +7,49 @@ use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableNoFilters;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class FilterVisualsTest extends TestCase
+final class FilterVisualsTest extends TestCase
 {
-    /** @test */
-    public function filters_button_shows_when_enabled(): void
+    public function test_filters_button_shows_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->assertSee('Filters');
     }
 
-    /** @test */
-    public function filters_button_shows_when_visible(): void
+    public function test_filters_button_shows_when_visible(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setFiltersVisibilityEnabled')
             ->assertSee('Filters');
     }
 
-    /** @test */
-    public function filters_button_doesnt_show_when_disabled(): void
+    public function test_filters_button_doesnt_show_when_disabled(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setFiltersDisabled')
             ->assertDontSee('Filters');
     }
 
-    /** @test */
-    public function filters_button_doesnt_show_when_hidden(): void
+    public function test_filters_button_doesnt_show_when_hidden(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setFiltersVisibilityDisabled')
             ->assertDontSee('Filters');
     }
 
-    /** @test */
-    public function filters_button_dont_show_when_there_are_no_filters_defined(): void
+    public function test_filters_button_dont_show_when_there_are_no_filters_defined(): void
     {
         Livewire::test(PetsTableNoFilters::class)
             ->assertDontSee('Filters');
     }
 
-    /** @test */
-    public function filter_pills_show_when_enabled(): void
+    public function test_filter_pills_show_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->set('filterComponents.breed', [1])
             ->assertSee('Applied Filters');
     }
 
-    /** @test */
-    public function filter_pills_show_when_visible(): void
+    public function test_filter_pills_show_when_visible(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setFiltersVisibilityEnabled')
@@ -64,8 +57,7 @@ class FilterVisualsTest extends TestCase
             ->assertSee('Applied Filters');
     }
 
-    /** @test */
-    public function filter_pills_dont_show_when_disabled(): void
+    public function test_filter_pills_dont_show_when_disabled(): void
     {
         Livewire::test(PetsTable::class)
             ->set('filterComponents.breed', [1])
@@ -73,8 +65,7 @@ class FilterVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
-    /** @test */
-    public function filter_pills_dont_show_when_hidden(): void
+    public function test_filter_pills_dont_show_when_hidden(): void
     {
         Livewire::test(PetsTable::class)
             ->set('filterComponents.breed', [1])
@@ -82,15 +73,13 @@ class FilterVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
-    /** @test */
-    public function filter_pills_dont_show_when_no_filters_are_applied(): void
+    public function test_filter_pills_dont_show_when_no_filters_are_applied(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('Applied Filters');
     }
 
-    /** @test */
-    public function filters_with_invalid_key_dont_error(): void
+    public function test_filters_with_invalid_key_dont_error(): void
     {
         Livewire::test(PetsTable::class)
             ->set('filterComponents.invalid-filter', [1])
@@ -98,10 +87,7 @@ class FilterVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
-    /**
-     * @test
-     */
-    /*public function filter_events_apply_correctly(): void
+    /*public function test_filter_events_apply_correctly(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('Applied Filters')

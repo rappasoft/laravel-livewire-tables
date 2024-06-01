@@ -4,10 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class ReorderingConfigurationTest extends TestCase
+final class ReorderingConfigurationTest extends TestCase
 {
-    /** @test */
-    public function can_set_reorder_status(): void
+    public function test_can_set_reorder_status(): void
     {
         $this->assertFalse($this->basicTable->getReorderStatus());
 
@@ -28,8 +27,7 @@ class ReorderingConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getReorderStatus());
     }
 
-    /** @test */
-    public function can_set_currently_reordering_status(): void
+    public function test_can_set_currently_reordering_status(): void
     {
         $this->assertFalse($this->basicTable->getCurrentlyReorderingStatus());
 
@@ -50,8 +48,7 @@ class ReorderingConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getCurrentlyReorderingStatus());
     }
 
-    /** @test */
-    public function can_set_hide_reorder_column_unless_reordering_status(): void
+    public function test_can_set_hide_reorder_column_unless_reordering_status(): void
     {
         $this->assertFalse($this->basicTable->getHideReorderColumnUnlessReorderingStatus());
 
@@ -72,8 +69,7 @@ class ReorderingConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getHideReorderColumnUnlessReorderingStatus());
     }
 
-    /** @test */
-    public function can_set_reorder_method(): void
+    public function test_can_set_reorder_method(): void
     {
         $this->assertSame('reorder', $this->basicTable->getReorderMethod());
 
@@ -82,8 +78,7 @@ class ReorderingConfigurationTest extends TestCase
         $this->assertSame('reorderMe', $this->basicTable->getReorderMethod());
     }
 
-    /** @test */
-    public function can_set_default_reorder_column_and_direction(): void
+    public function test_can_set_default_reorder_column_and_direction(): void
     {
         $this->assertSame('sort', $this->basicTable->getDefaultReorderColumn());
         $this->assertSame('asc', $this->basicTable->getDefaultReorderDirection());

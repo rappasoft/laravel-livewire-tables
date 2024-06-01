@@ -3,12 +3,16 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsArrayFilter};
 
 class MultiSelectDropdownFilter extends Filter
 {
     use HasOptions,
         IsArrayFilter;
+    use HasWireables;
+
+    public string $wireMethod = 'live.debounce.250ms';
 
     protected string $view = 'livewire-tables::components.tools.filters.multi-select-dropdown';
 

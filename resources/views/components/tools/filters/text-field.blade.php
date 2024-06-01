@@ -5,8 +5,7 @@
         "rounded-md shadow-sm" => $isTailwind,
         "mb-3 mb-md-0 input-group" => $isBootstrap,
     ])>
-        <input
-            wire:model.blur="filterComponents.{{ $filter->getKey() }}"
+        <input {{ $filter->getWireMethod("filterComponents.".$filter->getKey()) }}
             wire:key="{{ $filter->generateWireKey($tableName, 'text') }}"
             id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             type="text"

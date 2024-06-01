@@ -4,10 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class WithSortingTest extends TestCase
+final class WithSortingTest extends TestCase
 {
-    /** @test */
-    public function cannot_call_sortBy_if_sorting_is_disabled(): void
+    public function test_cannot_call_sortBy_if_sorting_is_disabled(): void
     {
         $this->assertSame($this->basicTable->sortBy('id'), 'asc');
 
@@ -16,8 +15,7 @@ class WithSortingTest extends TestCase
         $this->assertNull($this->basicTable->sortBy('id'));
     }
 
-    /** @test */
-    public function clear_sorts_if_single_sorting_and_setting_not_current_field(): void
+    public function test_clear_sorts_if_single_sorting_and_setting_not_current_field(): void
     {
         $this->basicTable->setSingleSortingDisabled();
 
@@ -39,8 +37,7 @@ class WithSortingTest extends TestCase
         $this->assertSame($this->basicTable->getSorts(), ['name' => 'asc']);
     }
 
-    /** @test */
-    public function set_sort_asc_if_not_set(): void
+    public function test_set_sort_asc_if_not_set(): void
     {
         $this->assertFalse($this->basicTable->hasSort('id'));
 
@@ -49,8 +46,7 @@ class WithSortingTest extends TestCase
         $this->assertSame($this->basicTable->getSorts(), ['id' => 'asc']);
     }
 
-    /** @test */
-    public function set_sort_desc_if_currently_asc(): void
+    public function test_set_sort_desc_if_currently_asc(): void
     {
         $this->basicTable->setSort('id', 'asc');
 
@@ -61,8 +57,7 @@ class WithSortingTest extends TestCase
         $this->assertSame($this->basicTable->getSorts(), ['id' => 'desc']);
     }
 
-    /** @test */
-    public function remove_sort_if_currently_desc(): void
+    public function test_remove_sort_if_currently_desc(): void
     {
         $this->basicTable->setSort('id', 'desc');
 
@@ -73,8 +68,7 @@ class WithSortingTest extends TestCase
         $this->assertFalse($this->basicTable->hasSort('id'));
     }
 
-    /** @test */
-    public function sort_callback_gets_applied_if_specified(): void
+    public function test_sort_callback_gets_applied_if_specified(): void
     {
         // TODO
         $this->basicTable->clearSorts();
@@ -82,8 +76,7 @@ class WithSortingTest extends TestCase
         $this->assertSame($this->basicTable->getSorts(), ['breed.name' => 'asc']);
     }
 
-    /** @test */
-    public function cannot_set_sort_on_unsortable_column(): void
+    public function test_cannot_set_sort_on_unsortable_column(): void
     {
         $this->basicTable->clearSorts();
 
@@ -96,8 +89,7 @@ class WithSortingTest extends TestCase
         $this->assertStringNotContainsStringIgnoringCase('order by', $this->basicTable->getBuilder()->toSql());
     }
 
-    /** @test */
-    public function sort_applies_to_query(): void
+    public function test_sort_applies_to_query(): void
     {
         $this->basicTable->sortBy('id');
 

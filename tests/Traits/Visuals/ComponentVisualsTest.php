@@ -10,27 +10,24 @@ use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{BrokenSec
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableAttributes};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class ComponentVisualsTest extends TestCase
+final class ComponentVisualsTest extends TestCase
 {
     private $testErrors;
 
-    /** @test */
-    public function empty_message_does_not_show_with_results(): void
+    public function test_empty_message_does_not_show_with_results(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('No items found. Try to broaden your search.');
     }
 
-    /** @test */
-    public function empty_message_shows_with_no_results(): void
+    public function test_empty_message_shows_with_no_results(): void
     {
         Livewire::test(PetsTable::class)
             ->set('search', 'sdfsdfsdfadsfasdfasdd')
             ->assertSee('No items found');
     }
 
-    /** @test */
-    public function debugging_shows_when_enabled(): void
+    public function test_debugging_shows_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('Debugging Values')
@@ -38,15 +35,13 @@ class ComponentVisualsTest extends TestCase
             ->assertSee('Debugging Values');
     }
 
-    /** @test */
-    public function offline_message_is_available_when_needed(): void
+    public function test_offline_message_is_available_when_needed(): void
     {
         Livewire::test(PetsTable::class)
             ->assertSeeHtml('<div wire:offline.class.remove="hidden" class="hidden">');
     }
 
-    /** @test */
-    public function fails_when_table_has_no_pk(): void
+    public function test_fails_when_table_has_no_pk(): void
     {
         $this->testErrors = false;
         try {
@@ -68,8 +63,7 @@ class ComponentVisualsTest extends TestCase
         }
     }
 
-    /** @test */
-    public function fails_when_table_has_no_model_or_builder(): void
+    public function test_fails_when_table_has_no_model_or_builder(): void
     {
         $this->testErrors = false;
         try {
@@ -91,24 +85,21 @@ class ComponentVisualsTest extends TestCase
         }
     }
 
-    /** @test */
-    public function can_see_valid_tr_attributes_html(): void
+    public function test_can_see_valid_tr_attributes_html(): void
     {
         Livewire::test(PetsTableAttributes::class)
             ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex0"')
             ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex1"');
     }
 
-    /** @test */
-    public function cannot_see_invalid_tr_attributes_html(): void
+    public function test_cannot_see_invalid_tr_attributes_html(): void
     {
         Livewire::test(PetsTableAttributes::class)
             ->assertSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteIndex0"')
             ->assertDontSeeHtml('testTrAttribute="testTrAttributeValueForTestSuiteNotSeen"');
     }
 
-    /** @test */
-    public function can_see_correct_html_for_clickable_row(): void
+    public function test_can_see_correct_html_for_clickable_row(): void
     {
         Livewire::test(new class extends PetsTable
         {
@@ -138,8 +129,7 @@ class ComponentVisualsTest extends TestCase
 
     }
 
-    /** @test */
-    public function column_secondary_header_can_not_be_a_string(): void
+    public function test_column_secondary_header_can_not_be_a_string(): void
     {
         $this->testErrors = false;
         try {
