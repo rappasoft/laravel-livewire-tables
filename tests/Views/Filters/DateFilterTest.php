@@ -13,26 +13,17 @@ final class DateFilterTest extends FilterTestCase
         self::$filterInstance = DateFilter::make('Active');
     }
 
-    /**
-     * @test
-     */
     public function test_can_not_set_date_filter_to_non_number(): void
     {
         $this->assertFalse(self::$filterInstance->validate('test'));
     }
 
-    /**
-     * @test
-     */
     public function test_can_not_set_date_filter_to_number(): void
     {
         $this->assertFalse(self::$filterInstance->validate(123));
         $this->assertFalse(self::$filterInstance->validate('123'));
     }
 
-    /**
-     * @test
-     */
     public function test_can_not_set_date_filter_to_invalid_date(): void
     {
         $this->assertFalse(self::$filterInstance->validate('123'));
@@ -45,17 +36,11 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }
 
-    /**
-     * @test
-     */
     public function test_can_get_if_date_filter_empty(): void
     {
         $this->assertTrue(self::$filterInstance->isEmpty(''));
     }
 
-    /**
-     * @test
-     */
     public function test_can_not_set_date_filter_to_invalid_date_custom_format(): void
     {
         $this->assertFalse(self::$filterInstance->validate('123'));
@@ -68,9 +53,6 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }
 
-    /**
-     * @test
-     */
     public function test_can_check_if_can_set_pill_format(): void
     {
 
@@ -82,9 +64,6 @@ final class DateFilterTest extends FilterTestCase
 
     }
 
-    /**
-     * @test
-     */
     /*public function test_validate_respects_config_dateformat(): void
     {
         $this->assertFalse(self::$filterInstance->validate('123'));
@@ -97,8 +76,7 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }*/
 
-    /** @test */
-    public function can_get_filter_configs(): void
+    public function test_can_get_filter_configs(): void
     {
         self::$filterInstance->config([]);
 
@@ -111,8 +89,7 @@ final class DateFilterTest extends FilterTestCase
             'pillFormat' => 'd M Y', 'foo' => 'bar'], self::$filterInstance->getConfigs());
     }
 
-    /** @test */
-    public function can_check_if_filter_has_configs(): void
+    public function test_can_check_if_filter_has_configs(): void
     {
         self::$filterInstance->config([]);
 
@@ -123,8 +100,7 @@ final class DateFilterTest extends FilterTestCase
         $this->assertTrue(self::$filterInstance->hasConfigs());
     }
 
-    /** @test */
-    public function can_get_filter_callback(): void
+    public function test_can_get_filter_callback(): void
     {
         $this->assertFalse(self::$filterInstance->hasFilterCallback());
 
@@ -136,9 +112,6 @@ final class DateFilterTest extends FilterTestCase
         $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
 
-    /**
-     * @test
-     */
     public function test_can_check_if_can_set_default_values(): void
     {
         $this->assertNull(self::$filterInstance->getFilterDefaultValue());
@@ -148,19 +121,13 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2023-03-01', self::$filterInstance->getFilterDefaultValue());
     }
 
-    /**
-     * @test
-     */
-    public function can_set_custom_filter_view(): void
+    public function test_can_set_custom_filter_view(): void
     {
         $this->assertSame('livewire-tables::components.tools.filters.date', self::$filterInstance->getViewPath());
         self::$filterInstance->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
 
-    /**
-     * @test
-     */
     public function test_can_get_filter_pills_value(): void
     {
         $dateTime = (new DateTime('now'));
@@ -168,13 +135,44 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame($dateTime->format('d M Y'), self::$filterInstance->getFilterPillValue($dateTime->format('Y-m-d')));
     }
 
-    /**
-     * @test
-     */
     public function test_can_not_get_filter_pills_invalid_value(): void
     {
         $dateTime = (new DateTime('now'));
 
         $this->assertNull(self::$filterInstance->getFilterPillValue('2022-2111'));
+    }
+
+    public function test_can_set_text_filter_wireable_live(): void
+    {
+
+        $this->assertSame('live', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model.live=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+
+        self::$filterInstance->setWireBlur();
+
+        $this->assertSame('blur', self::$filterInstance->getWireableMethod());
+
+        $this->assertSame('wire:model.blur=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+
+        self::$filterInstance->setWireLive();
+
+        $this->assertSame('live', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model.live=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+
+        self::$filterInstance->setWireDefer();
+
+        $this->assertSame('defer', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+
+        self::$filterInstance->setWireDebounce(250);
+
+        $this->assertSame('live.debounce.250ms', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+
+        self::$filterInstance->setWireDebounce(500);
+
+        $this->assertSame('live.debounce.500ms', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+
     }
 }

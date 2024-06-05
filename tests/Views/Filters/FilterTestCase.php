@@ -13,34 +13,29 @@ abstract class FilterTestCase extends TestCase
         parent::setUp();
     }
 
-    /** @test */
-    public function can_get_filter_name(): void
+    public function test_can_get_filter_name(): void
     {
         $this->assertSame('Active', self::$filterInstance->getName());
     }
 
-    /** @test */
-    public function can_get_filter_key(): void
+    public function test_can_get_filter_key(): void
     {
         $this->assertSame('active', self::$filterInstance->getKey());
     }
 
-    /** @test */
-    public function get_a_single_filter_config(): void
+    public function test_get_a_single_filter_config(): void
     {
         self::$filterInstance->config(['foo' => 'bar']);
 
         $this->assertSame('bar', self::$filterInstance->getConfig('foo'));
     }
 
-    /** @test */
-    public function can_get_filter_default_value(): void
+    public function test_can_get_filter_default_value(): void
     {
         $this->assertNull(self::$filterInstance->getDefaultValue());
     }
 
-    /** @test */
-    public function can_get_filter_pill_title(): void
+    public function test_can_get_filter_pill_title(): void
     {
         $this->assertSame('Active', self::$filterInstance->getFilterPillTitle());
 
@@ -49,8 +44,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertSame('User Date', self::$filterInstance->getFilterPillTitle());
     }
 
-    /** @test */
-    public function can_check_filter_config_by_name(): void
+    public function test_can_check_filter_config_by_name(): void
     {
         self::$filterInstance->config(['foo' => 'bar']);
 
@@ -58,8 +52,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->hasConfig('bar'));
     }
 
-    /** @test */
-    public function can_check_if_filter_is_hidden_from_menus(): void
+    public function test_can_check_if_filter_is_hidden_from_menus(): void
     {
         $this->assertFalse(self::$filterInstance->isHiddenFromMenus());
         $this->assertTrue(self::$filterInstance->isVisibleInMenus());
@@ -70,8 +63,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->isVisibleInMenus());
     }
 
-    /** @test */
-    public function can_check_if_filter_is_hidden_from_pills(): void
+    public function test_can_check_if_filter_is_hidden_from_pills(): void
     {
         $this->assertFalse(self::$filterInstance->isHiddenFromPills());
         $this->assertTrue(self::$filterInstance->isVisibleInPills());
@@ -82,8 +74,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->isVisibleInPills());
     }
 
-    /** @test */
-    public function can_check_if_filter_is_hidden_from_count(): void
+    public function test_can_check_if_filter_is_hidden_from_count(): void
     {
         $this->assertFalse(self::$filterInstance->isHiddenFromFilterCount());
         $this->assertTrue(self::$filterInstance->isVisibleInFilterCount());
@@ -94,8 +85,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->isVisibleInFilterCount());
     }
 
-    /** @test */
-    public function can_check_if_filter_is_reset_by_clear_button(): void
+    public function test_can_check_if_filter_is_reset_by_clear_button(): void
     {
         $this->assertTrue(self::$filterInstance->isResetByClearButton());
 
@@ -104,10 +94,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->isResetByClearButton());
     }
 
-    /**
-     * @test
-     */
-    public function can_set_custom_filter_view(): void
+    public function test_can_set_custom_filter_view(): void
     {
         $this->assertSame('livewire-tables::components.tools.filters.datetime', self::$filterInstance->getViewPath());
         self::$filterInstance->setCustomView('test-custom-filter-view');

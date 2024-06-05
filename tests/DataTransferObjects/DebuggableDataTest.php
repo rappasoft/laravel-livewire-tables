@@ -5,21 +5,18 @@ namespace Rappasoft\LaravelLivewireTables\Tests\DataTransferObjects;
 use Rappasoft\LaravelLivewireTables\DataTransferObjects\DebuggableData;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class DebuggableDataTest extends TestCase
+final class DebuggableDataTest extends TestCase
 {
-    /** @test */
     public function test_example()
     {
         $this->assertTrue(true);
     }
 
-    /** @test */
     public function test_example2()
     {
         $this->assertSame($this->basicTable->sortBy('id'), 'asc');
     }
 
-    /** @test */
     public function test_check_all_default_dto_elements()
     {
         $debuggableDTO = new DebuggableData($this->basicTable);
@@ -34,7 +31,6 @@ class DebuggableDataTest extends TestCase
         $this->assertSame($debuggableArray['selected'], []);
     }
 
-    /** @test */
     public function test_check_dto_returns_filters_correctly()
     {
         $debuggableDTO = new DebuggableData($this->basicTable);

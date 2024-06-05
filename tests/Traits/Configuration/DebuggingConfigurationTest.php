@@ -4,10 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class DebuggingConfigurationTest extends TestCase
+final class DebuggingConfigurationTest extends TestCase
 {
-    /** @test */
-    public function debug_status_can_be_set(): void
+    public function test_debug_status_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getDebugStatus());
 

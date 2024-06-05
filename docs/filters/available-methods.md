@@ -398,3 +398,63 @@ If the filter takes any config options, you can set them with the `config` metho
         'max' => '2021-12-31',
     ])
 ```
+
+### Customising Wireable Behaviour
+
+For the following Filters, you may customise how the input is wire:model into the Table Component:
+
+- DateFilter (Defaults to Live)
+- DateTimeFilter (Defaults to Live)
+- MultiSelectDropdownFilter (Defaults to live.debounce.250ms)
+- MultiSelectFilter (Defaults to live.debounce.250ms)
+- NumberFilter (Defaults to Blur)
+- SelectFilter (Defaults to Live)
+- TextFilter (Defaults to Blur)
+
+You may override this using the following methods, on any of the above Filter types:
+
+#### setWireBlur()
+Forces the filter to use a wire:model.blur approach
+```
+    TextFilter::make('Name')
+    ->config([
+        'placeholder' => 'Search Name',
+        'maxlength' => '25',
+    ])
+    ->setWireBlur()
+```
+
+#### setWireDefer()
+Forces the filter to use a wire:model approach
+```
+    TextFilter::make('Name')
+    ->config([
+        'placeholder' => 'Search Name',
+        'maxlength' => '25',
+    ])
+    ->setWireDefer()
+```
+
+#### setWireLive()
+Forces the fitler to use a wire:model.live approach
+```
+    TextFilter::make('Name')
+    ->config([
+        'placeholder' => 'Search Name',
+        'maxlength' => '25',
+    ])
+    ->setWireLive()
+```
+
+#### setWireDebounce(int $debounceDelay)
+Allows you to pass a string to use a wire:model.live.debounce.Xms approach
+```
+```
+    TextFilter::make('Name')
+    ->config([
+        'placeholder' => 'Search Name',
+        'maxlength' => '25',
+    ])
+    ->setWireDebounce(50)
+```
+```

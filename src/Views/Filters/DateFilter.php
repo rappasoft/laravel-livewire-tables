@@ -4,12 +4,16 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use DateTime;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig, IsStringFilter};
 
 class DateFilter extends Filter
 {
     use HasConfig,
         IsStringFilter;
+    use HasWireables;
+
+    public string $wireMethod = 'live';
 
     protected string $view = 'livewire-tables::components.tools.filters.date';
 

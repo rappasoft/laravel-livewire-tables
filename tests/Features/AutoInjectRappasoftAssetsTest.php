@@ -5,10 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Features;
 use Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class AutoInjectRappasoftAssetsTest extends TestCase
+final class AutoInjectRappasoftAssetsTest extends TestCase
 {
-    /** @test */
-    public function shouldInjectRappasoftAndThirdParty()
+    public function test_shouldInjectRappasoftAndThirdParty()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', true);
         config()->set('livewire-tables.inject_third_party_assets_enabled', true);
@@ -21,8 +20,7 @@ class AutoInjectRappasoftAssetsTest extends TestCase
         $this->assertStringContainsStringIgnoringCase('<script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  ></script>', $injectionReturn);
     }
 
-    /** @test */
-    public function shouldNotInjectRappasoftOrThirdParty()
+    public function test_shouldNotInjectRappasoftOrThirdParty()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', false);
         config()->set('livewire-tables.inject_third_party_assets_enabled', false);
@@ -32,8 +30,7 @@ class AutoInjectRappasoftAssetsTest extends TestCase
         $this->assertEquals('<html><head>  </head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
     }
 
-    /** @test */
-    public function shouldOnlyInjectThirdParty()
+    public function test_shouldOnlyInjectThirdParty()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', false);
         config()->set('livewire-tables.inject_third_party_assets_enabled', true);
@@ -44,8 +41,7 @@ class AutoInjectRappasoftAssetsTest extends TestCase
         $this->assertStringContainsStringIgnoringCase('<script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  ></script>', $injectionReturn);
     }
 
-    /** @test */
-    public function shouldOnlyInjectRappasoft()
+    public function test_shouldOnlyInjectRappasoft()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', true);
         config()->set('livewire-tables.inject_third_party_assets_enabled', false);

@@ -6,18 +6,16 @@ use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-class BulkActionsVisualsTest extends TestCase
+final class BulkActionsVisualsTest extends TestCase
 {
-    /** @test */
-    public function bulk_dropdown_shows_when_necessary(): void
+    public function test_bulk_dropdown_shows_when_necessary(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('No items found. Try to broaden your search.');
     }
 
-    /** @test */
     /*
-    public function bulk_dropdown_shows_when_necessary(): void
+    public function test_bulk_dropdown_shows_when_necessary(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
@@ -33,9 +31,8 @@ class BulkActionsVisualsTest extends TestCase
             ->assertSee('Bulk Actions');
     }*/
 
-    /** @test */
     /*
-    public function select_all_header_shows_if_bulk_actions_enabled_and_available(): void
+    public function test_select_all_header_shows_if_bulk_actions_enabled_and_available(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
@@ -46,9 +43,8 @@ class BulkActionsVisualsTest extends TestCase
             ->assertDontSee('Select All');
     }*/
 
-    /** @test */
     /*
-    public function select_cell_shows_if_bulk_actions_enabled_and_available(): void
+    public function test_select_cell_shows_if_bulk_actions_enabled_and_available(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
@@ -59,8 +55,7 @@ class BulkActionsVisualsTest extends TestCase
             ->assertDontSee('Select All');
     }*/
 
-    /** @test */
-    /*public function bulk_actions_row_shows_if_bulk_actions_enabled_and_available_and_selected(): void
+    /*public function test_bulk_actions_row_shows_if_bulk_actions_enabled_and_available_and_selected(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
@@ -73,9 +68,8 @@ class BulkActionsVisualsTest extends TestCase
             ->assertSeeHtml('wire:key="bulk-select-message-table"');
     }*/
 
-    /** @test */
     /*
-    public function bulk_actions_row_shows_correct_for_select_some(): void
+    public function test_bulk_actions_row_shows_correct_for_select_some(): void
     {
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')

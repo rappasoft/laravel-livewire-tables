@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
@@ -28,25 +30,26 @@ class DateColumn extends Column
     {
 
         $dateTime = $this->getValue($row);
-        if (! ($dateTime instanceof \DateTime)) {
-            try {
-                // Check if format matches what is expected
-                if (! \Carbon\Carbon::hasFormatWithModifiers($dateTime, $this->getInputFormat())) {
-                    throw new \Exception('DateColumn Received Invalid Format');
+
+        if ($dateTime != '' && $dateTime != null) {
+            if ($dateTime instanceof DateTime) {
+                return $dateTime->format($this->getOutputFormat());
+            } else {
+                try {
+                    // Check if format matches what is expected
+                    if (Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat())) {
+                        return Carbon::createFromFormat($this->getInputFormat(), $dateTime)->format($this->getOutputFormat());
+                    }
+                } catch (\Exception $exception) {
+                    report($exception);
+
+                    // Return Null
+                    return $this->getEmptyValue();
                 }
 
-                // Create DateTime Object
-                $dateTime = \DateTime::createFromFormat($this->getInputFormat(), $dateTime);
-            } catch (\Exception $exception) {
-                report($exception);
-
-                // Return Null
-                return $this->getEmptyValue();
             }
         }
 
-        // Return
-        return $dateTime->format($this->getOutputFormat());
-
+        return $this->getEmptyValue();
     }
 }
