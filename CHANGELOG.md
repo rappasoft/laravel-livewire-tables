@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.2.6] - 2024-06-05
+### New Features
+- Add configurable wire:model for filters by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1699
+- Customisable Model paths for Make command by @marvoh in https://github.com/rappasoft/laravel-livewire-tables/pull/1714
+- Add HTML Support for LinkColumn by @codecreeper in https://github.com/rappasoft/laravel-livewire-tables/pull/1728
+
+### Bug Fixes
+- Fix error with DateColumn when empty by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1726
+
+### Tweaks
+- Migrate to PHPUnit Attributes rather than Doc Comments by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1727
+- Remove broken test by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1719
+
 ## [v3.2.5] - 2024-04-30
 ### New Features
 - Add setConfigurableArea by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1706
