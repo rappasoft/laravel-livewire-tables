@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Features;
 
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Livewire\ComponentHook;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 
 use function Livewire\on;
@@ -33,6 +34,10 @@ class AutoInjectRappasoftAssets extends ComponentHook
             app('events')->listen(RequestHandled::class, function (RequestHandled $handled) {
 
                 if (! static::$shouldInjectRappasoftAssets && ! static::$shouldInjectRappasoftThirdPartyAssets) {
+                    return;
+                }
+
+                if (! static::$hasRenderedAComponentThisRequest) {
                     return;
                 }
 
@@ -73,7 +78,9 @@ class AutoInjectRappasoftAssets extends ComponentHook
 
     public function dehydrate(): void
     {
-        static::$hasRenderedAComponentThisRequest = true;
+        if ($this->component instanceof DataTableComponent){
+            static::$hasRenderedAComponentThisRequest = true;
+        }
     }
 
     public static function injectAssets(mixed $html): string
