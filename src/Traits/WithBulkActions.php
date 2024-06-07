@@ -34,6 +34,12 @@ trait WithBulkActions
 
     protected array $bulkActionsTdCheckboxAttributes = ['default' => true];
 
+    protected array $bulkActionsButtonAttributes = ['default' => true];
+
+    protected array $bulkActionsMenuAttributes = ['default' => true];
+
+    protected array $bulkActionsMenuItemAttributes = ['default' => true];
+
     protected bool $alwaysHideBulkActionsDropdownOption = false;
 
     public function bulkActions(): array

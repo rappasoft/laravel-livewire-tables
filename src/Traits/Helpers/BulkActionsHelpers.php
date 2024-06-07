@@ -220,4 +220,23 @@ trait BulkActionsHelpers
     {
         return $this->alwaysHideBulkActionsDropdownOption ?? false;
     }
+
+    #[Computed]
+    public function getBulkActionsButtonAttributes(): array
+    {
+        return $this->$bulkActionsButtonAttributes ?? ['default' => true];
+    }
+
+    #[Computed]
+    public function getBulkActionsMenuAttributes(): array
+    {
+        return $this->$bulkActionsMenuAttributes ?? ['default' => true];
+    }
+
+    #[Computed]
+    public function getBulkActionsMenuItemAttributes(): array
+    {
+        return $this->$bulkActionsMenuItemAttributes ?? ['default' => true];
+    }
+
 }
