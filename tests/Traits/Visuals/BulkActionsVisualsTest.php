@@ -26,7 +26,6 @@ final class BulkActionsVisualsTest extends TestCase
             {
                 return $items;
             }
-            
         })->assertSee('Bulk Actions');
     }
 
@@ -37,7 +36,7 @@ final class BulkActionsVisualsTest extends TestCase
             public function configure(): void
             {
                 $this->setPrimaryKey('id')
-                ->setShouldAlwaysHideBulkActionsDropdownOption(false);
+                    ->setShouldAlwaysHideBulkActionsDropdownOption(false);
             }
 
             public function bulkActions(): array
@@ -49,7 +48,6 @@ final class BulkActionsVisualsTest extends TestCase
             {
                 return $items;
             }
-            
         })->assertSee('Bulk Actions');
     }
 
@@ -72,10 +70,8 @@ final class BulkActionsVisualsTest extends TestCase
             {
                 return $items;
             }
-            
         })->assertDontSee('Bulk Actions');
     }
-
 
     public function test_bulk_dropdown_shows_when_not_permanently_hidden_disabled(): void
     {
@@ -84,7 +80,7 @@ final class BulkActionsVisualsTest extends TestCase
             public function configure(): void
             {
                 $this->setPrimaryKey('id')
-                ->setShouldAlwaysHideBulkActionsDropdownOptionDisabled();
+                    ->setShouldAlwaysHideBulkActionsDropdownOptionDisabled();
             }
 
             public function bulkActions(): array
@@ -96,7 +92,6 @@ final class BulkActionsVisualsTest extends TestCase
             {
                 return $items;
             }
-            
         })->assertSee('Bulk Actions');
     }
 
@@ -119,7 +114,6 @@ final class BulkActionsVisualsTest extends TestCase
             {
                 return $items;
             }
-            
         })->assertDontSee('Bulk Actions');
     }
 
