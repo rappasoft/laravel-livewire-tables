@@ -52,7 +52,15 @@
                 x-transition:leave-end="transform opacity-0 scale-95"
                 class="origin-top-right absolute right-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50"
             >
-                <div class="rounded-md bg-white shadow-xs dark:bg-gray-700 dark:text-white">
+                <div
+                {{ 
+                    $attributes->merge($this->getBulkActionsMenuAttributes)
+                    ->class([
+                        'rounded-md bg-white shadow-xs dark:bg-gray-700 dark:text-white' => $component->isTailwind() && $this->getBulkActionsMenuAttributes['default'] ?? true,
+                    ])
+                    ->except('default') 
+                }}
+                >
                     <div class="py-1" role="menu" aria-orientation="vertical">
                         @foreach ($component->getBulkActions() as $action => $title)
                             <button
@@ -79,10 +87,15 @@
             </div>
         @else
             <div
-                @class([
-                    'dropdown-menu dropdown-menu-right w-100' => $component->isBootstrap4(),
-                    'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5(),
-                ])
+                {{ 
+                    $attributes->merge($this->getBulkActionsMenuAttributes)
+                    ->class([
+                        'dropdown-menu dropdown-menu-right w-100' => $component->isBootstrap4() && $this->getBulkActionsMenuAttributes['default'] ?? true,
+                        'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5() && $this->getBulkActionsMenuAttributes['default'] ?? true,
+                    ])
+                    ->except('default') 
+                }}
+
                 aria-labelledby="{{ $tableName }}-bulkActionsDropdown"
             >
                 @foreach ($component->getBulkActions() as $action => $title)
