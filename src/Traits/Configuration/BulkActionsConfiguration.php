@@ -168,8 +168,7 @@ trait BulkActionsConfiguration
     public function setShouldAlwaysHideBulkActionsDropdownOptionDisabled(): self
     {
         $this->setShouldAlwaysHideBulkActionsDropdownOption(false);
-        
+
         return $this;
     }
-
 }
