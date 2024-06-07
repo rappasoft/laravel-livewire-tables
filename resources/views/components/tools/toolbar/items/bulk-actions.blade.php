@@ -62,7 +62,13 @@
                                 @endif
                                 wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
                                 type="button"
-                                class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 flex items-center space-x-2 dark:text-white dark:hover:bg-gray-600"
+                                {{ 
+                                    $attributes->merge($this->getBulkActionsMenuItemAttributes)
+                                    ->class([
+                                        'block w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 flex items-center space-x-2 dark:text-white dark:hover:bg-gray-600' => $component->isTailwind(),
+                                    ])
+                                    ->except('default') 
+                                }}
                                 role="menuitem"
                             >
                                 <span>{{ $title }}</span>
@@ -87,9 +93,14 @@
                         @endif
                         wire:click="{{ $action }}"
                         wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
-                        @class([
-                            'dropdown-item' => $component->isBootstrap(),
-                        ])
+                        {{ 
+                            $attributes->merge($this->getBulkActionsMenuItemAttributes)
+                                ->class([
+                                    'dropdown-item' => $component->isBootstrap(),
+                                ])
+                                ->except('default') 
+                        }}
+
                     >
                         {{ $title }}
                     </a>
