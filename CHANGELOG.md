@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.2.8] - UNRELEASED
+### New Features
+- Add capability to always hide the Bulk Actions dropdown
+
 ## [v3.2.7] - 2024-06-05
 ### Bug Fixes
 - Ensure HTML Columns return HTML correctly by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1737

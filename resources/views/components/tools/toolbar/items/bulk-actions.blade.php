@@ -1,4 +1,5 @@
 @aware(['component', 'tableName'])
+@if($this->shouldAlwaysHideBulkActionsDropdownOption == false)
 <div
     x-data="{ open: false, childElementOpen: false, isTailwind: @js($component->isTailwind()), isBootstrap: @js($component->isBootstrap()) }"
     x-cloak x-show="(selectedItems.length > 0 || alwaysShowBulkActions)"
@@ -94,3 +95,4 @@
 
     </div>
 </div>
+@endif
