@@ -210,7 +210,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
     }
 
-
     public function test_can_set_bulk_actions_menu_attributes(): void
     {
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
@@ -244,11 +243,11 @@ final class BulkActionsConfigurationTest extends TestCase
 
     }
 
-/*
-    setShouldAlwaysHideBulkActionsDropdownOption
+    /*
+        setShouldAlwaysHideBulkActionsDropdownOption
 
-    setShouldAlwaysHideBulkActionsDropdownOptionEnabled
-    
-    setShouldAlwaysHideBulkActionsDropdownOptionDisabled
-*/
+        setShouldAlwaysHideBulkActionsDropdownOptionEnabled
+
+        setShouldAlwaysHideBulkActionsDropdownOptionDisabled
+    */
 }
