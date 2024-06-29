@@ -55,9 +55,7 @@ class DataTableComponentTest extends TestCase
 
     public function test_default_datatable_fingerprints_will_be_different_for_each_table(): void
     {
-        $mockTable = new class() extends PetsTable
-        {
-        };
+        $mockTable = new class() extends PetsTable {};
 
         $this->assertNotSame($this->basicTable->getDataTableFingerprint(), $mockTable->getDataTableFingerprint());
     }
@@ -66,9 +64,7 @@ class DataTableComponentTest extends TestCase
     {
         $mocks = [];
         for ($i = 0; $i < 9; $i++) {
-            $mocks[$i] = new class() extends PetsTable
-            {
-            };
+            $mocks[$i] = new class() extends PetsTable {};
             $this->assertFalse(filter_var('http://'.$mocks[$i]->getDataTableFingerprint().'.dev', FILTER_VALIDATE_URL) === false);
         }
         // control

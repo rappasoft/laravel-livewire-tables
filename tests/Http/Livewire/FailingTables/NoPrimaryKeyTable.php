@@ -22,9 +22,7 @@ class NoPrimaryKeyTable extends DataTableComponent
 {
     public $model = Pet::class;
 
-    public function configure(): void
-    {
-    }
+    public function configure(): void {}
 
     public function columns(): array
     {
