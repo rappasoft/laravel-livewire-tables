@@ -2,6 +2,4 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
-trait LinkColumnConfiguration
-{
-}
+trait LinkColumnConfiguration {}
