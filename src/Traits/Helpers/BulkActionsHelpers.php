@@ -220,5 +220,4 @@ trait BulkActionsHelpers
     {
         return $this->alwaysHideBulkActionsDropdownOption ?? false;
     }
-
 }

@@ -189,5 +189,4 @@ final class BulkActionsVisualsTest extends TestCase
             }
         })->assertDontSee('Bulk Actions');
     }
-
 }
