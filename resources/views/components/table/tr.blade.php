@@ -4,8 +4,10 @@
 @php
     $customAttributes = $component->getTrAttributes($row, $rowIndex);
     $loadingAttributes = $component->getTrLoadingAttributes($row, $rowIndex);
-
-    if ($loadingAttributes['class'] && isset($loadingAttributes['default']) && $loadingAttributes['default'] === true) {
+    
+    if (!isset($loadingAttributes['class'])) {
+        $loadingAttributes['class'] = 'opacity-50 dark:bg-gray-900 dark:opacity-60';
+    } elseif ($loadingAttributes['class'] && isset($loadingAttributes['default']) && $loadingAttributes['default'] === true) {
         $existingClasses = $loadingAttributes['class'] ?? '';
         $loadingAttributes['class'] = 'opacity-50 dark:bg-gray-900 dark:opacity-60 ' . $existingClasses;
     }
