@@ -86,11 +86,21 @@ trait TableAttributeConfiguration
     }
 
     /**
-     * Set a list of attributes to override on the td elements
+     * Set a list of attributes to override on the tr elements
      */
     public function setTrAttributes(callable $callback): self
     {
         $this->trAttributesCallback = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Set a list of attributes to override on the tr elements when loading
+     */
+    public function setTrLoadingAttributes(callable $callback): self
+    {
+        $this->trLoadingAttributesCallback = $callback;
 
         return $this;
     }

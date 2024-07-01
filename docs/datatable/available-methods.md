@@ -234,6 +234,36 @@ public function configure(): void
 }
 ```
 
+### setTrLoadingAttributes
+
+Set a list of attributes to override on the tr elements when they are in a loading state
+
+```php
+public function configure(): void
+{
+  // Takes a callback that gives you the current row and its index
+  $this->setTrLoadingAttributes(function($row, $index) {
+      return [
+          'class' => $index % 2 === 0 ? 'opacity-50' : 'opacity-25',
+      ];
+  });
+}
+```
+
+By default, this replaces the default classes on the tr when it's loading, if you would like to keep them, set the default flag to true.
+
+```php
+public function configure(): void
+{
+  $this->setTrLoadingAttributes(function($row, $index) {
+      return [
+          'class' => $index % 2 === 0 ? 'opacity-50' : 'opacity-25',
+          'default' => true,
+      ];
+  });
+}
+```
+
 ### setTdAttributes
 
 Set a list of attributes to override on the td elements

@@ -3,6 +3,12 @@
 
 @php
     $customAttributes = $component->getTrAttributes($row, $rowIndex);
+    $loadingAttributes = $component->getTrLoadingAttributes($row, $rowIndex);
+
+    if ($loadingAttributes['class'] && isset($loadingAttributes['default']) && $loadingAttributes['default'] === true) {
+        $existingClasses = $loadingAttributes['class'] ?? '';
+        $loadingAttributes['class'] = 'opacity-50 dark:bg-gray-900 dark:opacity-60 ' . $existingClasses;
+    }
 @endphp
 
 <tr
@@ -14,7 +20,7 @@
     @if($component->hasDisplayLoadingPlaceholder()) 
     wire:loading.remove
     @else
-    wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
+    wire:loading.class.delay="{{ $loadingAttributes['class'] }}"
     @endif
     id="{{ $tableName }}-row-{{ $row->{$component->getPrimaryKey()} }}"
     :draggable="currentlyReorderingStatus"
@@ -22,12 +28,12 @@
     loopType="{{ ($rowIndex % 2 === 0) ? 'even' : 'odd' }}"
     {{
         $attributes->merge($customAttributes)
-                ->class(['bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
-                ->class(['bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
-                ->class(['cursor-pointer' => ($component->isTailwind() && $component->hasTableRowUrl() && ($customAttributes['default'] ?? true))])
-                ->class(['bg-light rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
-                ->class(['bg-white rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
-                ->except(['default'])
+            ->class(['bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
+            ->class(['bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
+            ->class(['cursor-pointer' => ($component->isTailwind() && $component->hasTableRowUrl() && ($customAttributes['default'] ?? true))])
+            ->class(['bg-light rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
+            ->class(['bg-white rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
+            ->except(['default'])
     }}
 
 >
