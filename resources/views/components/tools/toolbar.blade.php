@@ -56,7 +56,7 @@
             @include($component->getConfigurableAreaFor('toolbar-right-start'), $component->getParametersForConfigurableArea('toolbar-right-start'))
         @endif
 
-        @if ($component->showBulkActionsDropdownAlpine())
+        @if ($component->showBulkActionsDropdownAlpine() && $this->shouldAlwaysHideBulkActionsDropdownOption != true)
             <x-livewire-tables::tools.toolbar.items.bulk-actions />
         @endif
 
