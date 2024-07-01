@@ -81,7 +81,7 @@ final class BulkActionsVisualsTest extends TestCase
             ->assertDontSee('You are currently selecting all');
     }*/
 
-    public function test_bulk_dropdown_shows_when_necessary(): void
+    public function test_bulk_dropdown_shows_when_necessary_extended(): void
     {
         Livewire::test(new class extends PetsTable
         {
