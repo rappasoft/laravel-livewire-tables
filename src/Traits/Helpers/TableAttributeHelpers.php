@@ -74,6 +74,14 @@ trait TableAttributeHelpers
     /**
      * @return array<mixed>
      */
+    public function getTrLoadingAttributes(Model $row, int $index): array
+    {
+        return $this->trLoadingAttributesCallback ? call_user_func($this->trLoadingAttributesCallback, $row, $index) : ['default' => true];
+    }
+
+    /**
+     * @return array<mixed>
+     */
     public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
     {
         return $this->tdAttributesCallback ? call_user_func($this->tdAttributesCallback, $column, $row, $colIndex, $rowIndex) : ['default' => true];

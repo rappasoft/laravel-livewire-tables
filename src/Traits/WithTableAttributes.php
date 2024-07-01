@@ -27,6 +27,8 @@ trait WithTableAttributes
 
     protected $trAttributesCallback;
 
+    protected $trLoadingAttributesCallback;
+
     protected $tdAttributesCallback;
 
     protected $trUrlCallback;
