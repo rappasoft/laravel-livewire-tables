@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.2.8] - UNRELEASED
+### Bug Fixes
+- Fix hide bulk actions when empty not reflecting in frontend by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1747
+- Apply cursor pointer only on clickable columns when using Bootstrap by @MP70 in https://github.com/rappasoft/laravel-livewire-tables/pull/1742
+
+### New Features
+- Always hide bulk actions option by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1752
+- Add ArrayColumn (BETA) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1751
+
+### Tweaks
+- TypeHint fixes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1750
+- Change Return Type for attributes() to static by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1749
+- Switch to using Composer\InstalledVersions for AboutCommand by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1748
+
 ## [v3.2.7] - 2024-06-05
 ### Bug Fixes
 - Ensure HTML Columns return HTML correctly by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1737
