@@ -10,6 +10,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### New Features
 - Always hide bulk actions option by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1752
 - Add ArrayColumn (BETA) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1751
+- Optionally disable total item count for simple pagination by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1755
 
 ### Tweaks
 - TypeHint fixes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1750
