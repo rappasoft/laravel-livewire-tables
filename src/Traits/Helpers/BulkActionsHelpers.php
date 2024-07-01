@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\Computed;
+
 trait BulkActionsHelpers
 {
     public function getBulkActionsStatus(): bool
@@ -212,4 +214,11 @@ trait BulkActionsHelpers
     {
         return $this->bulkActionsTdCheckboxAttributes ?? ['default' => true];
     }
+
+    #[Computed]
+    public function shouldAlwaysHideBulkActionsDropdownOption(): bool
+    {
+        return $this->alwaysHideBulkActionsDropdownOption ?? false;
+    }
+
 }

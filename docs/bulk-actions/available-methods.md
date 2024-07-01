@@ -239,3 +239,38 @@ public function configure(): void
     ]);
 }
 ```
+
+## setShouldAlwaysHideBulkActionsDropdownOption
+
+Allows hiding the Bulk Actions button & menu, regardless of whether there are any items selected, or hideBulkActionsWhenEmptyEnabled behaviour
+
+```php
+public function configure(): void
+{
+    $this->setShouldAlwaysHideBulkActionsDropdownOption(true);
+}
+```
+
+
+## setShouldAlwaysHideBulkActionsDropdownOptionEnabled
+
+Allows hiding the Bulk Actions button & menu, regardless of whether there are any items selected, or hideBulkActionsWhenEmptyEnabled behaviour
+
+```php
+public function configure(): void
+{
+    $this->setShouldAlwaysHideBulkActionsDropdownOptionEnabled();
+}
+```
+
+
+## setShouldAlwaysHideBulkActionsDropdownOptionDisabled
+
+Restores the Bulk Actions to default functionality, so it will respect the hideBulkActionsWhenEmptyEnabled behaviour
+
+```php
+public function configure(): void
+{
+    $this->setShouldAlwaysHideBulkActionsDropdownOptionDisabled();
+}
+```

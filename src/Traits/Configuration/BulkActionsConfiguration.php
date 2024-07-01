@@ -150,4 +150,26 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    public function setShouldAlwaysHideBulkActionsDropdownOption(bool $status = false): self
+    {
+        $this->alwaysHideBulkActionsDropdownOption = $status;
+
+        return $this;
+    }
+
+    public function setShouldAlwaysHideBulkActionsDropdownOptionEnabled(): self
+    {
+        $this->setShouldAlwaysHideBulkActionsDropdownOption(true);
+
+        return $this;
+    }
+
+    public function setShouldAlwaysHideBulkActionsDropdownOptionDisabled(): self
+    {
+        $this->setShouldAlwaysHideBulkActionsDropdownOption(false);
+
+        return $this;
+    }
+
 }
