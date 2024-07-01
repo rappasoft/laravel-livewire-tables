@@ -2,15 +2,15 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
-use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait ArrayColumnHelpers
 {
     public function hasSeparator(): bool
     {
-        return ($this->separator !== null && is_string($this->separator));
+        return $this->separator !== null && is_string($this->separator);
     }
 
     public function getSeparator(): string
@@ -25,7 +25,7 @@ trait ArrayColumnHelpers
 
     public function hasDataCallback(): bool
     {
-        return (isset($this->dataCallback ) && is_callable($this->dataCallback));
+        return isset($this->dataCallback) && is_callable($this->dataCallback);
     }
 
     public function getDataCallback(): ?callable
@@ -35,7 +35,7 @@ trait ArrayColumnHelpers
 
     public function hasOutputFormatCallback(): bool
     {
-        return (isset($this->outputFormat) && is_callable($this->outputFormat));
+        return isset($this->outputFormat) && is_callable($this->outputFormat);
     }
 
     public function getOutputFormatCallback(): ?callable
@@ -45,29 +45,25 @@ trait ArrayColumnHelpers
 
     public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $outputValues = array();
+        $outputValues = [];
         $value = $this->getValue($row);
 
-        if (!$this->hasSeparator())
-        {
+        if (! $this->hasSeparator()) {
             throw new DataTableConfigurationException('You must set a valid separator on an ArrayColumn');
         }
 
-        if (!$this->hasDataCallback())
-        {
+        if (! $this->hasDataCallback()) {
             throw new DataTableConfigurationException('You must set a data() method on an ArrayColumn');
         }
 
-        if (!$this->hasOutputFormatCallback())
-        {
+        if (! $this->hasOutputFormatCallback()) {
             throw new DataTableConfigurationException('You must set an outputFormat() method on an ArrayColumn');
         }
 
-        foreach(call_user_func($this->getDataCallback(), $value, $row) as $i => $v)
-        {
+        foreach (call_user_func($this->getDataCallback(), $value, $row) as $i => $v) {
             $outputValues[] = call_user_func($this->getOutputFormatCallback(), $i, $v);
         }
-    
-        return new HtmlString((!empty($outputValues) ? implode($this->getSeparator(), $outputValues) : $this->getEmptyValue()));
+
+        return new HtmlString((! empty($outputValues) ? implode($this->getSeparator(), $outputValues) : $this->getEmptyValue()));
     }
 }

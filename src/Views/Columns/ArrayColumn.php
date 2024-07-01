@@ -12,10 +12,13 @@ class ArrayColumn extends Column
     use IsColumn,
         ArrayColumnConfiguration,
         ArrayColumnHelpers { ArrayColumnHelpers::getContents insteadof IsColumn; }
-    
+
     public string $separator = '<br />';
+
     public string $emptyValue = '';
+
     protected mixed $dataCallback = null;
+
     protected mixed $outputFormat = null;
 
     public function __construct(string $title, ?string $from = null)
@@ -25,5 +28,4 @@ class ArrayColumn extends Column
             $this->label(fn () => null);
         }
     }
-
 }
