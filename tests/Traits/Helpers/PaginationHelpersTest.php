@@ -141,4 +141,34 @@ final class PaginationHelpersTest extends TestCase
         $this->assertSame(['default-styling' => false, 'default-colors' => true, 'class' => 'bg-blue-500 dark:bg-red-500'], $this->basicTable->getPerPageFieldAttributes());
 
     }
+
+    public function test_can_toggle_total_item_count_retrieval(): void
+    {
+
+        $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
+
+        $this->basicTable->setShouldRetrieveTotalItemCountDisabled();
+
+        $this->assertFalse($this->basicTable->getShouldRetrieveTotalItemCount());
+
+        $this->basicTable->setShouldRetrieveTotalItemCountEnabled();
+
+        $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
+
+    }
+
+    public function test_can_toggle_total_item_count_retrieval_via_status(): void
+    {
+
+        $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
+
+        $this->basicTable->setShouldRetrieveTotalItemCountStatus(false);
+
+        $this->assertFalse($this->basicTable->getShouldRetrieveTotalItemCount());
+
+        $this->basicTable->setShouldRetrieveTotalItemCountStatus(true);
+
+        $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
+
+    }
 }

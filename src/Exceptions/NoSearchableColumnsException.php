@@ -2,6 +2,4 @@
 
 namespace Rappasoft\LaravelLivewireTables\Exceptions;
 
-class NoSearchableColumnsException extends \Exception
-{
-}
+class NoSearchableColumnsException extends \Exception {}

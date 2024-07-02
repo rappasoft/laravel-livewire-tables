@@ -8,7 +8,7 @@ document.addEventListener('alpine:init', () => {
         paginationTotalItemCount: wire.entangle('paginationTotalItemCount'),
         paginationCurrentItems: wire.entangle('paginationCurrentItems'),
         selectedItems: wire.entangle('selected'),
-        alwaysShowBulkActions: !wire.entangle('hideBulkActionsWhenEmpty'),
+        hideBulkActionsWhenEmpty: wire.entangle('hideBulkActionsWhenEmpty'),
         toggleSelectAll() {
             if (!showBulkActionsAlpine) {
                 return;

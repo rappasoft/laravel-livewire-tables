@@ -1,7 +1,7 @@
 @aware(['component', 'tableName'])
 <div
     x-data="{ open: false, childElementOpen: false, isTailwind: @js($component->isTailwind()), isBootstrap: @js($component->isBootstrap()) }"
-    x-cloak x-show="(selectedItems.length > 0 || alwaysShowBulkActions)"
+    x-cloak x-show="(selectedItems.length > 0 || hideBulkActionsWhenEmpty == false)"
     @class([
         'mb-3 mb-md-0' => $component->isBootstrap(),
         'w-full md:w-auto mb-4 md:mb-0' => $component->isTailwind(),

@@ -34,6 +34,8 @@ trait WithBulkActions
 
     protected array $bulkActionsTdCheckboxAttributes = ['default' => true];
 
+    protected bool $alwaysHideBulkActionsDropdownOption = false;
+
     public function bulkActions(): array
     {
         return property_exists($this, 'bulkActions') ? $this->bulkActions : [];

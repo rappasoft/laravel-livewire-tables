@@ -80,4 +80,113 @@ final class BulkActionsVisualsTest extends TestCase
             ->assertSee('do you want to select all')
             ->assertDontSee('You are currently selecting all');
     }*/
+
+    public function test_bulk_dropdown_shows_when_necessary_extended(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        })->assertSee('Bulk Actions');
+    }
+
+    public function test_bulk_dropdown_shows_when_not_permanently_hidden(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id')
+                    ->setShouldAlwaysHideBulkActionsDropdownOption(false);
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        })->assertSee('Bulk Actions');
+    }
+
+    public function test_bulk_dropdown_hides_when_permanently_hidden(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id')
+                    ->setShouldAlwaysHideBulkActionsDropdownOption(true);
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        })->assertDontSee('Bulk Actions');
+    }
+
+    public function test_bulk_dropdown_shows_when_not_permanently_hidden_disabled(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id')
+                    ->setShouldAlwaysHideBulkActionsDropdownOptionDisabled();
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        })->assertSee('Bulk Actions');
+    }
+
+    public function test_bulk_dropdown_hides_when_permanently_hidden_enabled(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id')
+                    ->setShouldAlwaysHideBulkActionsDropdownOptionEnabled();
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        })->assertDontSee('Bulk Actions');
+    }
 }

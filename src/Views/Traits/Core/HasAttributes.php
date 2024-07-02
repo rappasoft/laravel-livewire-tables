@@ -11,7 +11,7 @@ trait HasAttributes
 {
     protected ?Closure $attributesCallback = null;
 
-    public function attributes(Closure $callback): self
+    public function attributes(Closure $callback): static
     {
         $this->attributesCallback = $callback;
 

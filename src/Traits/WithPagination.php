@@ -41,6 +41,8 @@ trait WithPagination
 
     protected array $perPageFieldAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
 
+    protected bool $shouldRetrieveTotalItemCount = true;
+
     public function mountWithPagination(): void
     {
         $sessionPerPage = session()->get($this->getPerPagePaginationSessionKey(), $this->getPerPageAccepted()[0] ?? 10);

@@ -44,8 +44,7 @@ final class LinkColumnTest extends TestCase
         $this->assertNotEmpty($column);
     }
 
-    /** @test */
-    public function can_check_ishtml_from_html_column(): void
+    public function test_can_check_ishtml_from_html_column(): void
     {
         $column = LinkColumn::make('Name', 'name')
             ->title(fn ($row) => 'Title')
@@ -55,8 +54,7 @@ final class LinkColumnTest extends TestCase
         $this->assertTrue($column->isHtml());
     }
 
-    /** @test */
-    public function can_get_html_from_html_label_column(): void
+    public function test_can_get_html_from_html_label_column(): void
     {
         $column = LinkColumn::make('Name', 'name')
             ->title(fn ($row) => '<strong>My Label</strong>')

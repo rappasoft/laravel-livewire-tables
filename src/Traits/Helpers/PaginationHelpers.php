@@ -149,4 +149,10 @@ trait PaginationHelpers
     {
         return $this->perPageFieldAttributes;
     }
+
+    #[Computed]
+    public function getShouldRetrieveTotalItemCount(): bool
+    {
+        return $this->shouldRetrieveTotalItemCount;
+    }
 }

@@ -155,4 +155,26 @@ trait PaginationConfiguration
 
         return $this;
     }
+
+    public function setShouldRetrieveTotalItemCountStatus(bool $status): self
+    {
+        $this->shouldRetrieveTotalItemCount = $status;
+
+        return $this;
+
+    }
+
+    public function setShouldRetrieveTotalItemCountEnabled(): self
+    {
+        $this->setShouldRetrieveTotalItemCountStatus(true);
+
+        return $this;
+    }
+
+    public function setShouldRetrieveTotalItemCountDisabled(): self
+    {
+        $this->setShouldRetrieveTotalItemCountStatus(false);
+
+        return $this;
+    }
 }
