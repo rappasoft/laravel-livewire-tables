@@ -171,4 +171,26 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    public function setClearSelectedOnSearch(bool $status): self
+    {
+        $this->clearSelectedOnSearch = $status;
+
+        return $this;
+    }
+
+    public function setClearSelectedOnSearchEnabled(): self
+    {
+        $this->setClearSelectedOnSearch(true);
+        
+        return $this;
+    }
+
+    public function setClearSelectedOnSearchDisabled(): self
+    {
+        $this->setClearSelectedOnSearch(false);
+        
+        return $this;
+    }
+
 }

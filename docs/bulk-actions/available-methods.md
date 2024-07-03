@@ -274,3 +274,39 @@ public function configure(): void
     $this->setShouldAlwaysHideBulkActionsDropdownOptionDisabled();
 }
 ```
+
+
+## setClearSelectedOnSearch
+
+By default, any selected items for Bulk Actions are cleared upon searching.  You may configure this behaviour here.
+
+```php
+public function configure(): void
+{
+    $this->setClearSelectedOnSearch(true);
+}
+```
+
+
+## setClearSelectedOnSearchEnabled
+
+By default, any selected items for Bulk Actions are cleared upon searching.  This enables this behaviour.
+
+```php
+public function configure(): void
+{
+    $this->setClearSelectedOnSearchEnabled();
+}
+```
+
+
+## setClearSelectedOnSearchDisabled
+
+By default, any selected items for Bulk Actions are cleared upon searching.  This disables this behaviour, ensuring that selected items are retained after searching.
+
+```php
+public function configure(): void
+{
+    $this->setClearSelectedOnSearchDisabled();
+}
+```

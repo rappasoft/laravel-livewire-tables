@@ -220,4 +220,9 @@ trait BulkActionsHelpers
     {
         return $this->alwaysHideBulkActionsDropdownOption ?? false;
     }
+
+    public function getClearSelectedOnSearch(): bool
+    {
+        return $this->clearSelectedOnSearch ?? false;
+    }
 }
