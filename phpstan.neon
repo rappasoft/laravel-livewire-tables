@@ -15,6 +15,7 @@ parameters:
     ignoreErrors:
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
+        - '#Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$model has no type specified#'
         - '#Unable to resolve the template type TMapWithKeysKey in call to method Illuminate\\Support\\Collection#'
         - '#Unable to resolve the template type TMapWithKeysValue in call to method Illuminate\\Support\\Collection#'
         - '#Access to an undefined property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view#'
