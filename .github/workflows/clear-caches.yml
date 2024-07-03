@@ -1,7 +1,10 @@
 name: Clear caches
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - 'returntypefixes'
+
 
 permissions:
   actions: write
