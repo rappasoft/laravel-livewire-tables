@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [v3.2.8] - UNRELEASED
+## [v3.2.8] - 2024-07-03
 ### Bug Fixes
 - Fix hide bulk actions when empty not reflecting in frontend by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1747
 - Apply cursor pointer only on clickable columns when using Bootstrap by @MP70 in https://github.com/rappasoft/laravel-livewire-tables/pull/1742
