@@ -263,3 +263,36 @@ public function configure(): void
     ]);
 }
 ```
+
+## setShouldRetrieveTotalItemCountStatus
+
+Used when "simple" pagination is being used, allows the enabling/disabling of the "total records" count.  This may be desirable to disable in larger data sets.  This is enabled by default.
+
+```php
+public function configure(): void
+{
+    $this->setShouldRetrieveTotalItemCountStatus(false);
+}
+```
+
+## setShouldRetrieveTotalItemCountEnabled
+
+Used when "simple" pagination is being used, enables the "total records" count.
+
+```php
+public function configure(): void
+{
+    $this->setShouldRetrieveTotalItemCountEnabled();
+}
+```
+
+## setShouldRetrieveTotalItemCountDisabled
+
+Used when "simple" pagination is being used, disables the "total records" count.
+
+```php
+public function configure(): void
+{
+    $this->setShouldRetrieveTotalItemCountDisabled();
+}
+```

@@ -56,7 +56,7 @@ class RappasoftFrontendAssets
 
     }
 
-    protected function registerBladeDirectives()
+    protected function registerBladeDirectives(): void
     {
         Blade::directive('rappasoftTableScripts', [static::class, 'rappasoftTableScripts']);
         Blade::directive('rappasoftTableStyles', [static::class, 'rappasoftTableStyles']);

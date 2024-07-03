@@ -312,7 +312,7 @@ trait FilterHelpers
         return ! empty($this->filterGenericData);
     }
 
-    public function getFilterGenericData()
+    public function getFilterGenericData(): array
     {
         if (! $this->hasFilterGenericData()) {
             $this->setFilterGenericData($this->generateFilterGenericData());

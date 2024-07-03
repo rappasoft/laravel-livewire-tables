@@ -32,7 +32,7 @@ trait SecondaryHeaderHelpers
      */
     public function getSecondaryHeaderTrAttributes($rows): array
     {
-        return $this->secondaryHeaderTrAttributesCallback ? call_user_func($this->secondaryHeaderTrAttributesCallback, $rows) : ['default' => true];
+        return isset($this->secondaryHeaderTrAttributesCallback) ? call_user_func($this->secondaryHeaderTrAttributesCallback, $rows) : ['default' => true];
     }
 
     /**
@@ -41,6 +41,6 @@ trait SecondaryHeaderHelpers
      */
     public function getSecondaryHeaderTdAttributes(Column $column, $rows, int $index): array
     {
-        return $this->secondaryHeaderTdAttributesCallback ? call_user_func($this->secondaryHeaderTdAttributesCallback, $column, $rows, $index) : ['default' => true];
+        return isset($this->secondaryHeaderTdAttributesCallback) ? call_user_func($this->secondaryHeaderTdAttributesCallback, $column, $rows, $index) : ['default' => true];
     }
 }

@@ -131,7 +131,7 @@ trait ColumnHelpers
     }
 
     // TODO: Test
-    public function getValue(Model $row)
+    public function getValue(Model $row): mixed
     {
         if ($this->isBaseColumn()) {
             return $row->{$this->getField()};

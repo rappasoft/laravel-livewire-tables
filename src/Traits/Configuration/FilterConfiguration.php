@@ -121,7 +121,7 @@ trait FilterConfiguration
         return (new FilterGenericData($this))->toArray();
     }
 
-    public function setFilterGenericData(array $filterGenericData = [])
+    public function setFilterGenericData(array $filterGenericData = []): void
     {
         $this->filterGenericData = $filterGenericData;
     }

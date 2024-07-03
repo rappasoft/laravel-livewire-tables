@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
 
@@ -23,7 +24,7 @@ trait WithFilters
 
     public int $filterCount;
 
-    protected $filterCollection;
+    protected ?Collection $filterCollection;
 
     public array $filterComponents = [];
 
