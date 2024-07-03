@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 trait WithEvents
 {
-    public function setSortEvent($field, $direction): void
+    public function setSortEvent(string $field, string $direction): void
     {
         $this->setSort($field, $direction);
     }
@@ -14,7 +14,7 @@ trait WithEvents
         $this->clearSorts();
     }
 
-    public function setFilterEvent($filter, $value): void
+    public function setFilterEvent(string $filter, string $value): void
     {
         $this->setFilter($filter, $value);
     }

@@ -3,11 +3,12 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 use Illuminate\View\ComponentAttributeBag;
+use Illuminate\Database\Eloquent\Model;
 
 trait ColorColumnHelpers
 {
     // TODO: Test
-    public function getColor($row): string
+    public function getColor(Model|int $row): string
     {
         return $this->hasColorCallback() ? app()->call($this->getColorCallback(), ['row' => $row]) : ($this->getValue($row));
     }

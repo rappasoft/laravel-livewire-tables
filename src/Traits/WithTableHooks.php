@@ -6,14 +6,14 @@ use function Livewire\wrap;
 
 trait WithTableHooks
 {
-    public function callHook($name, $params = [])
+    public function callHook(string $name, array $params = []): void
     {
         if (method_exists($this, $name)) {
             wrap($this)->__call($name, $params);
         }
     }
 
-    public function callTraitHook($name, $params = [])
+    public function callTraitHook(string $name, array $params = []): void
     {
         foreach (class_uses_recursive($this) as $trait) {
             $method = $name.class_basename($trait);

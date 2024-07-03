@@ -47,7 +47,7 @@ trait FooterHelpers
      */
     public function getFooterTrAttributes($rows): array
     {
-        return $this->footerTrAttributesCallback ? call_user_func($this->footerTrAttributesCallback, $rows) : ['default' => true];
+        return isset($this->footerTrAttributesCallback) ? call_user_func($this->footerTrAttributesCallback, $rows) : ['default' => true];
     }
 
     /**
@@ -56,6 +56,6 @@ trait FooterHelpers
      */
     public function getFooterTdAttributes(Column $column, $rows, int $index): array
     {
-        return $this->footerTdAttributesCallback ? call_user_func($this->footerTdAttributesCallback, $column, $rows, $index) : ['default' => true];
+        return isset($this->footerTdAttributesCallback) ? call_user_func($this->footerTdAttributesCallback, $column, $rows, $index) : ['default' => true];
     }
 }
