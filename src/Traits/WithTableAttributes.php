@@ -29,7 +29,7 @@ trait WithTableAttributes
 
     protected ?object $tdAttributesCallback;
 
-    protected $trUrlCallback;
+    protected ?object $trUrlCallback;
 
-    protected $trUrlTargetCallback;
+    protected ?object $trUrlTargetCallback;
 }

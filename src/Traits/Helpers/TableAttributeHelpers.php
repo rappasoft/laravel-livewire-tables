@@ -81,16 +81,16 @@ trait TableAttributeHelpers
 
     public function hasTableRowUrl(): bool
     {
-        return $this->trUrlCallback !== null;
+        return isset($this->trUrlCallback);
     }
 
     public function getTableRowUrl(int|Model $row): ?string
     {
-        return $this->trUrlCallback ? call_user_func($this->trUrlCallback, $row) : null;
+        return isset($this->trUrlCallback) ? call_user_func($this->trUrlCallback, $row) : null;
     }
 
     public function getTableRowUrlTarget(int|Model $row): ?string
     {
-        return $this->trUrlTargetCallback ? call_user_func($this->trUrlTargetCallback, $row) : null;
+        return isset($this->trUrlTargetCallback) ? call_user_func($this->trUrlTargetCallback, $row) : null;
     }
 }
