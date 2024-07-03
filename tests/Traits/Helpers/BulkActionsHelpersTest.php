@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class BulkActionsHelpersTest extends TestCase
 {
@@ -261,8 +261,5 @@ final class BulkActionsHelpersTest extends TestCase
 
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
 
-
     }
-
-
 }
