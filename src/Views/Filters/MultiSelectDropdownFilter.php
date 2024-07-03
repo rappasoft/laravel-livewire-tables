@@ -2,10 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsArrayFilter};
-use Illuminate\Support\Collection;
 
 class MultiSelectDropdownFilter extends Filter
 {
