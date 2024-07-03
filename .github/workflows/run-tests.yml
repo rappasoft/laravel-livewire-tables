@@ -9,159 +9,159 @@ on:
       - '!master'
 
 jobs:
-  test-l10:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      max-parallel: 2
-      matrix:
-        os: [ubuntu-latest]
-        php: [8.1, 8.2, 8.3]
-        laravel: 10.*
-        stability: [prefer-dist]
+  - test-l10:
+      runs-on: ${{ matrix.os }}
+      strategy:
+        fail-fast: false
+        max-parallel: 2
+        matrix:
+          os: [ubuntu-latest]
+          php: [8.1, 8.2, 8.3]
+          laravel: '10.*'
+          stability: [prefer-dist]
 
-    name: STD-PUSH - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
-    env:
-      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
-      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
+      name: STD-PUSH - ${{ matrix.os }} - P${{ matrix.php }} - L10 - ${{ matrix.stability }}
+      env:
+        extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Setup cache environment
-        id: extcache
-        uses: shivammathur/cache-extensions@v1
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: ${{ env.extensions }}
-          key: ${{ env.extensionKey }}
-
-      - name: Cache extensions
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.extcache.outputs.dir }}
-          key: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
-          restore-keys: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: ${{ env.extensions }}
-          tools: phpunit:latest
-          ini-values: memory_limit=512M
-          coverage: none
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup problem matchers for PHP
-        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-
-      - name: Get composer cache directory
-        id: composer-cache
-        run: |
-          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
-
-      - name: Add token
-        run: |
-          composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
           
-      - name: Install dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
+        - name: Setup cache environment
+          id: extcache
+          uses: shivammathur/cache-extensions@v1
+          with:
+            php-version: ${{ matrix.php }}
+            extensions: ${{ env.extensions }}
+            key: ${{ env.extensionKey }}
 
-      - name: Update dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer update --${{ matrix.stability }} --no-interaction
+        - name: Cache extensions
+          uses: actions/cache@v4
+          with:
+            path: ${{ steps.extcache.outputs.dir }}
+            key: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
+            restore-keys: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
 
-      - name: Setup problem matchers for PHPUnit
-        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: ${{ matrix.php }}
+            extensions: ${{ env.extensions }}
+            tools: phpunit:latest
+            ini-values: memory_limit=512M
+            coverage: none
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Unit Tests
-        run: php ./vendor/bin/paratest --no-coverage --processes=4
+        - name: Setup problem matchers for PHP
+          run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+        - name: Get composer cache directory
+          id: composer-cache
+          run: |
+            echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+        - uses: actions/cache@v4
+          with:
+            path: ${{ steps.composer-cache.outputs.dir }}
+            key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+            restore-keys: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+
+        - name: Add token
+          run: |
+            composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+            
+        - name: Install dependencies
+          if: steps.composer-cache.outputs.cache-hit != 'true'
+          run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
+
+        - name: Update dependencies
+          if: steps.composer-cache.outputs.cache-hit != 'true'
+          run: composer update --${{ matrix.stability }} --no-interaction
+
+        - name: Setup problem matchers for PHPUnit
+          run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+        - name: Run Unit Tests
+          run: php ./vendor/bin/paratest --no-coverage --processes=4
 
 
-  test-l11:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      max-parallel: 2
-      matrix:
-        os: [ubuntu-latest]
-        php: [8.2, 8.3]
-        laravel: 11.*
-        stability: [prefer-dist]
+  - test-l11:
+      runs-on: ${{ matrix.os }}
+      strategy:
+        fail-fast: false
+        max-parallel: 2
+        matrix:
+          os: [ubuntu-latest]
+          php: [8.2, 8.3]
+          laravel: '11.*'
+          stability: [prefer-dist]
 
-    name: STD-PUSH - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
-    env:
-      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
-      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
+      name: STD-PUSH - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+      env:
+        extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Setup cache environment
-        id: extcache
-        uses: shivammathur/cache-extensions@v1
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: ${{ env.extensions }}
-          key: ${{ env.extensionKey }}
-
-      - name: Cache extensions
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.extcache.outputs.dir }}
-          key: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
-          restore-keys: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: ${{ env.extensions }}
-          tools: phpunit:latest
-          ini-values: memory_limit=512M
-          coverage: none
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup problem matchers for PHP
-        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-
-      - name: Get composer cache directory
-        id: composer-cache
-        run: |
-          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
-
-      - name: Add token
-        run: |
-          composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
           
-      - name: Install dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
+        - name: Setup cache environment
+          id: extcache
+          uses: shivammathur/cache-extensions@v1
+          with:
+            php-version: ${{ matrix.php }}
+            extensions: ${{ env.extensions }}
+            key: ${{ env.extensionKey }}
 
-      - name: Update dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer update --${{ matrix.stability }} --no-interaction
+        - name: Cache extensions
+          uses: actions/cache@v4
+          with:
+            path: ${{ steps.extcache.outputs.dir }}
+            key: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
+            restore-keys: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
 
-      - name: Setup problem matchers for PHPUnit
-        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: ${{ matrix.php }}
+            extensions: ${{ env.extensions }}
+            tools: phpunit:latest
+            ini-values: memory_limit=512M
+            coverage: none
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Unit Tests
-        run: php ./vendor/bin/paratest --no-coverage --processes=4
+        - name: Setup problem matchers for PHP
+          run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+        - name: Get composer cache directory
+          id: composer-cache
+          run: |
+            echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+        - uses: actions/cache@v4
+          with:
+            path: ${{ steps.composer-cache.outputs.dir }}
+            key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+            restore-keys: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+
+        - name: Add token
+          run: |
+            composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+            
+        - name: Install dependencies
+          if: steps.composer-cache.outputs.cache-hit != 'true'
+          run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
+
+        - name: Update dependencies
+          if: steps.composer-cache.outputs.cache-hit != 'true'
+          run: composer update --${{ matrix.stability }} --no-interaction
+
+        - name: Setup problem matchers for PHPUnit
+          run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+        - name: Run Unit Tests
+          run: php ./vendor/bin/paratest --no-coverage --processes=4
