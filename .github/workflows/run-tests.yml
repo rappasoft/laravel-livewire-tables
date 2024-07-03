@@ -7,6 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
+      max-parallel: 2
       matrix:
         os: [ubuntu-latest]
         php: [8.1, 8.2, 8.3]
@@ -15,9 +16,6 @@ jobs:
         exclude:
           - laravel: 11.*
             php: 8.1
-    concurrency:
-      group: ${{ matrix.php }}
-      cancel-in-progress: false
 
     name: STD-PUSH - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
     env:
