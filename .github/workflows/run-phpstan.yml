@@ -1,6 +1,13 @@
 name: run-phpstan
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches:
+      - 'master'
+      - 'development'
+  push:
+    branches:
+      - '!master'
 
 jobs:
   test:
@@ -20,7 +27,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup cache environment
         id: extcache
@@ -31,7 +38,7 @@ jobs:
           key: ${{ env.extensionKey }}
 
       - name: Cache extensions
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.extcache.outputs.dir }}
           key: ${{ steps.extcache.outputs.key }}
@@ -55,7 +62,7 @@ jobs:
         run: |
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-PHPStan-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}

@@ -1,6 +1,9 @@
 name: run-tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - '!master'
 
 jobs:
   test:
@@ -60,7 +63,7 @@ jobs:
         run: |
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
