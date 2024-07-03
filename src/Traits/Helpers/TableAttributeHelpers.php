@@ -52,7 +52,7 @@ trait TableAttributeHelpers
      */
     public function getThAttributes(Column $column): array
     {
-        return $this->thAttributesCallback ? call_user_func($this->thAttributesCallback, $column) : ['default' => true];
+        return isset($this->thAttributesCallback) ? call_user_func($this->thAttributesCallback, $column) : ['default' => true];
     }
 
     /**
@@ -60,7 +60,7 @@ trait TableAttributeHelpers
      */
     public function getThSortButtonAttributes(Column $column): array
     {
-        return $this->thSortButtonAttributesCallback ? call_user_func($this->thSortButtonAttributesCallback, $column) : ['default' => true];
+        return isset($this->thSortButtonAttributesCallback) ? call_user_func($this->thSortButtonAttributesCallback, $column) : ['default' => true];
     }
 
     /**
@@ -68,7 +68,7 @@ trait TableAttributeHelpers
      */
     public function getTrAttributes(Model $row, int $index): array
     {
-        return $this->trAttributesCallback ? call_user_func($this->trAttributesCallback, $row, $index) : ['default' => true];
+        return isset($this->trAttributesCallback) ? call_user_func($this->trAttributesCallback, $row, $index) : ['default' => true];
     }
 
     /**
@@ -76,21 +76,21 @@ trait TableAttributeHelpers
      */
     public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
     {
-        return $this->tdAttributesCallback ? call_user_func($this->tdAttributesCallback, $column, $row, $colIndex, $rowIndex) : ['default' => true];
+        return isset($this->tdAttributesCallback) ? call_user_func($this->tdAttributesCallback, $column, $row, $colIndex, $rowIndex) : ['default' => true];
     }
 
     public function hasTableRowUrl(): bool
     {
-        return $this->trUrlCallback !== null;
+        return isset($this->trUrlCallback);
     }
 
     public function getTableRowUrl(int|Model $row): ?string
     {
-        return $this->trUrlCallback ? call_user_func($this->trUrlCallback, $row) : null;
+        return isset($this->trUrlCallback) ? call_user_func($this->trUrlCallback, $row) : null;
     }
 
     public function getTableRowUrlTarget(int|Model $row): ?string
     {
-        return $this->trUrlTargetCallback ? call_user_func($this->trUrlTargetCallback, $row) : null;
+        return isset($this->trUrlTargetCallback) ? call_user_func($this->trUrlTargetCallback, $row) : null;
     }
 }
