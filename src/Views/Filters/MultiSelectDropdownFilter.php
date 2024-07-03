@@ -55,7 +55,7 @@ class MultiSelectDropdownFilter extends Filter
         return implode(', ', $values);
     }
 
-    public function isEmpty($value): bool
+    public function isEmpty(mixed $value): bool
     {
         if (! is_array($value)) {
             return true;
