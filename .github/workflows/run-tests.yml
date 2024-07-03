@@ -13,14 +13,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 1
       matrix:
         os: [ubuntu-latest]
         php: [8.1, 8.2, 8.3]
         laravel: [10.*]
         stability: [prefer-dist]
 
-    name: STD-PUSH - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+    name: P${{ matrix.php }} - L10
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
@@ -92,14 +92,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 1
       matrix:
         os: [ubuntu-latest]
         php: [8.2, 8.3]
         laravel: [11.*]
         stability: [prefer-dist]
 
-    name: STD-PUSH - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+    name: P${{ matrix.php }} - L11
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
