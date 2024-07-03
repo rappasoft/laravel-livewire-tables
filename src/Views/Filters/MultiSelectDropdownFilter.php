@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsArrayFilter};
+use Illuminate\Support\Collection;
 
 class MultiSelectDropdownFilter extends Filter
 {
@@ -42,7 +43,7 @@ class MultiSelectDropdownFilter extends Filter
 
         foreach ($value as $item) {
             $found = $this->getCustomFilterPillValue($item)
-                        ?? collect($this->getOptions())
+                        ?? (new Collection($this->getOptions()))
                             ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$item]
                         ?? null;
 
