@@ -189,5 +189,4 @@ trait ComponentHelpers
     {
         return $this->extraWithAvgs;
     }
-
 }
