@@ -2,11 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
 use Illuminate\Database\Eloquent\{Builder, Model};
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\CountColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\CountColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\CountColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
 
 class CountColumn extends Column
 {
@@ -23,8 +23,4 @@ class CountColumn extends Column
             $this->label(fn () => null);
         }
     }
-
-
-
-
 }

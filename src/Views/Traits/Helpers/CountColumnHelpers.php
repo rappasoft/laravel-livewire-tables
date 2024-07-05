@@ -9,13 +9,12 @@ trait CountColumnHelpers
 {
     public function getCountSource(): string
     {
-        
+
         return $this->countSource;
     }
 
-    public function hasCountSource():bool
+    public function hasCountSource(): bool
     {
         return isset($this->countSource);
     }
-
 }

@@ -56,11 +56,9 @@ trait WithData
 
         $this->setBuilder($this->applyFilters());
 
-        if ($this->hasExtraWithCounts())
-        {
+        if ($this->hasExtraWithCounts()) {
             $this->setBuilder($this->getBuilder()->withCount($this->getExtraWithCounts()));
         }
-        
 
         return $this->getBuilder();
 
