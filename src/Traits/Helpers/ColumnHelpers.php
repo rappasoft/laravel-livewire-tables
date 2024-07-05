@@ -24,6 +24,8 @@ trait ColumnHelpers
                         $this->addExtraWithCount($column->getDataSource());
                     } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
                         $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
+                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
+                        $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
 
@@ -211,6 +213,8 @@ trait ColumnHelpers
                         $this->addExtraWithCount($column->getDataSource());
                     } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
                         $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
+                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
+                        $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
 
@@ -237,6 +241,8 @@ trait ColumnHelpers
                         $this->addExtraWithCount($column->getDataSource());
                     } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
                         $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
+                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
+                        $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
 

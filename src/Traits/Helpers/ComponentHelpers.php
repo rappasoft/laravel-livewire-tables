@@ -179,4 +179,15 @@ trait ComponentHelpers
     {
         return $this->extraWithSums;
     }
+
+    public function hasExtraWithAvgs(): bool
+    {
+        return ! empty($this->extraWithAvgs);
+    }
+
+    public function getExtraWithAvgs(): array
+    {
+        return $this->extraWithAvgs;
+    }
+
 }

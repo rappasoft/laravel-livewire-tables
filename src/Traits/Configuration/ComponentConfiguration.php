@@ -145,4 +145,12 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    public function addExtraWithAvg(string $extraWithAvg): self
+    {
+        $this->extraWithAvgs[] = $extraWithAvg;
+
+        return $this;
+    }
+
 }

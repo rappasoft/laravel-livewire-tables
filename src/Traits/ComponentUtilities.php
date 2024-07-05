@@ -43,6 +43,8 @@ trait ComponentUtilities
 
     protected array $extraWithSums = [];
 
+    protected array $extraWithAvgs = [];
+
     /**
      * Set any configuration options
      */
