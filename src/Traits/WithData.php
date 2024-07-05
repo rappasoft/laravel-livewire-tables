@@ -56,6 +56,12 @@ trait WithData
 
         $this->setBuilder($this->applyFilters());
 
+        if ($this->hasExtraWithCounts())
+        {
+            $this->setBuilder($this->getBuilder()->withCount($this->getExtraWithCounts()));
+        }
+        
+
         return $this->getBuilder();
 
     }
@@ -250,8 +256,7 @@ trait WithData
     {
         if ($this->hasModel()) {
             return $this->getModel()::query()
-                ->with([...$this->getExtraWiths(), ...$this->getRelationships()])
-                ->when($this->hasExtraWithCounts(), fn ($query) => $query->withCount($this->extraWithCounts));
+                ->with($this->getRelationships())
         }
 
         // If model does not exist
