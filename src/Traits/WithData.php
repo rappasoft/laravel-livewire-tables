@@ -56,20 +56,25 @@ trait WithData
 
         $this->setBuilder($this->applyFilters());
 
-        if ($this->hasExtraWiths()) {
-            //.    $builder = $this->getBuilder();
-            //    foreach($this->getExtraWiths() as $extraWith)
-            //   {
-            //        $builder->with($extraWith);
-            //    }
-            //    $this->setBuilder($builder);
-            $this->setBuilder($this->getBuilder()->with($this->getExtraWiths()));
+        $builder = $this->getBuilder();
 
+        if ($this->hasExtraWiths()) {
+            $builder->with($this->getExtraWiths());
+        }
+
+        if ($this->hasExtraWithSums()) {
+            foreach ($this->getExtraWithSums() as $relation => $column)
+            {
+                $builder->withSum($relation, $column);
+            }
         }
 
         if ($this->hasExtraWithCounts()) {
-            $this->setBuilder($this->getBuilder()->withCount($this->getExtraWithCounts()));
+            $builder->withCount($this->getExtraWithCounts());
         }
+        
+        $this->setBuilder($builder);
+
 
         return $this->getBuilder();
 

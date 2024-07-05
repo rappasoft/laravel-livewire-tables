@@ -7,10 +7,10 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait CountColumnConfiguration
 {
-    public function setCountSource(string $countSource): self
+    public function setDataSource(string $dataSource): self
     {
-        $this->countSource = $countSource;
-        $this->label(fn ($row, Column $column) => $row->{$countSource.'_count'});
+        $this->dataSource = $dataSource;
+        $this->label(fn ($row, Column $column) => $row->{$dataSource.'_count'});
 
         return $this;
     }
@@ -18,7 +18,7 @@ trait CountColumnConfiguration
     public function sortable(?callable $callback = null): self
     {
         $this->sortable = true;
-        $this->sortCallback = ($callback === null) ? fn (Builder $query, string $direction) => $query->orderBy($this->countSource.'_count', $direction) : $callback;
+        $this->sortCallback = ($callback === null) ? fn (Builder $query, string $direction) => $query->orderBy($this->dataSource.'_count', $direction) : $callback;
 
         return $this;
     }

@@ -13,7 +13,7 @@ class CountColumn extends Column
         CountColumnHelpers,
         CountColumnConfiguration { CountColumnConfiguration::sortable insteadof IsColumn; }
 
-    public ?string $countSource;
+    public ?string $dataSource;
 
     public function __construct(string $title, ?string $from = null)
     {

@@ -40,6 +40,8 @@ trait ComponentUtilities
     protected array $extraWiths = [];
 
     protected array $extraWithCounts = [];
+    
+    protected array $extraWithSums = [];
 
     /**
      * Set any configuration options

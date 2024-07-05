@@ -138,4 +138,12 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    public function addExtraWithSum(string $relationship, string $column): self
+    {
+        $this->extraWithSums[$relationship] = $column;
+
+        return $this;
+    }
+
 }

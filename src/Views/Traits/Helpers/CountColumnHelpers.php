@@ -7,14 +7,14 @@ use Illuminate\View\ComponentAttributeBag;
 
 trait CountColumnHelpers
 {
-    public function getCountSource(): string
+    public function getDataSource(): string
     {
 
-        return $this->countSource;
+        return $this->dataSource;
     }
 
-    public function hasCountSource(): bool
+    public function hasDataSource(): bool
     {
-        return isset($this->countSource);
+        return isset($this->dataSource);
     }
 }

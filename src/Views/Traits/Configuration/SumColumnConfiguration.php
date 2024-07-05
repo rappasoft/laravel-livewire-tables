@@ -7,10 +7,13 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait SumColumnConfiguration
 {
-    public function setDataSource(string $dataSource): self
+    public function setDataSource(string $dataSource, string $sumColumn): self
     {
+        $this->sumColumn = $sumColumn;
+
         $this->dataSource = $dataSource;
-        $this->label(fn ($row, Column $column) => $row->{$dataSource.'_'.$this->getAggregateMethod()});
+
+        $this->label(fn ($row, Column $column) => $row->{$dataSource.'_'.$this->getAggregateMethod()."_".$sumColumn});
 
         return $this;
     }
@@ -25,7 +28,7 @@ trait SumColumnConfiguration
     public function sortable(?callable $callback = null): self
     {
         $this->sortable = true;
-        $this->sortCallback = ($callback === null) ? fn (Builder $query, string $direction) => $query->orderBy($this->getDataSource().'_'.$this->getAggregateMethod(), $direction) : $callback;
+        $this->sortCallback = ($callback === null) ? fn (Builder $query, string $direction) => $query->orderBy($this->getDataSource().'_'.$this->getAggregateMethod()."_".$this->getSumColumn(), $direction) : $callback;
 
         return $this;
     }

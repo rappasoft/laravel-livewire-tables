@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\{CountColumn,SumColumn};
 
 trait ColumnHelpers
 {
@@ -20,8 +20,14 @@ trait ColumnHelpers
             ->map(function (Column $column) {
                 $column->setComponent($this);
                 if ($column instanceof CountColumn) {
-                    if ($column->hasCountSource()) {
-                        $this->addExtraWithCount($column->getCountSource());
+                    if ($column->hasDataSource()) {
+                        $this->addExtraWithCount($column->getDataSource());
+                    }
+                }
+
+                if ($column instanceof SumColumn) {
+                    if ($column->hasDataSource()) {
+                        $this->addExtraWithSum($column->getDataSource(), $column->getSumColumn());
                     }
                 }
 
@@ -205,8 +211,14 @@ trait ColumnHelpers
             ->map(function (Column $column) {
                 $column->setComponent($this);
                 if ($column instanceof CountColumn) {
-                    if ($column->hasCountSource()) {
-                        $this->addExtraWithCount($column->getCountSource());
+                    if ($column->hasDataSource()) {
+                        $this->addExtraWithCount($column->getDataSource());
+                    }
+                }
+
+                if ($column instanceof SumColumn) {
+                    if ($column->hasDataSource()) {
+                        $this->addExtraWithSum($column->getDataSource(), $column->getSumColumn());
                     }
                 }
 
@@ -229,8 +241,14 @@ trait ColumnHelpers
             ->map(function (Column $column) {
                 $column->setComponent($this);
                 if ($column instanceof CountColumn) {
-                    if ($column->hasCountSource()) {
-                        $this->addExtraWithCount($column->getCountSource());
+                    if ($column->hasDataSource()) {
+                        $this->addExtraWithCount($column->getDataSource());
+                    }
+                }
+
+                if ($column instanceof SumColumn) {
+                    if ($column->hasDataSource()) {
+                        $this->addExtraWithSum($column->getDataSource(), $column->getSumColumn());
                     }
                 }
 

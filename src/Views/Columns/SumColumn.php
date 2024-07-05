@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\sumColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\SumColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\SumColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
 
@@ -14,6 +14,8 @@ class SumColumn extends Column
         SumColumnConfiguration { SumColumnConfiguration::sortable insteadof IsColumn; }
 
     public ?string $dataSource;
+    
+    public ?string $sumColumn;
 
     public string $aggregateMethod = 'sum';
 

@@ -22,4 +22,10 @@ trait SumColumnHelpers
     {
         return $this->aggregateMethod;
     }
+
+    public function getSumColumn(): string
+    {
+        return $this->sumColumn;
+    }
+
 }

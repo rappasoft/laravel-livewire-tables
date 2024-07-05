@@ -169,4 +169,16 @@ trait ComponentHelpers
     {
         return $this->extraWithCounts;
     }
+
+    public function hasExtraWithSums(): bool
+    {
+        return ! empty($this->extraWithSums);
+    }
+
+    public function getExtraWithSums(): array
+    {
+        return $this->extraWithSums;
+    }
+
+
 }
