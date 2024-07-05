@@ -3,8 +3,6 @@ title: Boolean Columns
 weight: 3
 ---
 
-## Boolean Columns
-
 Boolean columns are good if you have a column type that is a true/false, or 0/1 value.
 
 For example:

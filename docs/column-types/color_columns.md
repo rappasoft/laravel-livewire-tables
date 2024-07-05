@@ -3,8 +3,6 @@ title: Color Columns
 weight: 5
 ---
 
-## Color Columns
-
 Color columns provide an easy way to a Color in a Column
 
 You may pass either pass a CSS-compliant colour as a field

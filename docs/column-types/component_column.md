@@ -2,7 +2,6 @@
 title: Component Columns
 weight: 6
 ---
-## Component Columns
 
 Component columns let you specify a component name and attributes and provides the column value to the slot.
 

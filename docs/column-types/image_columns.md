@@ -2,7 +2,6 @@
 title: Image Columns
 weight: 9
 ---
-## Image Columns
 
 Image columns provide a way to display images in your table without having to use `format()` or partial views:
 

@@ -3,8 +3,6 @@ title: Date Columns
 weight: 8
 ---
 
-## Date Columns
-
 Date columns provide an easy way to display dates in a given format, without having to use repetitive format() methods or partial views.
 
 You may pass either a DateTime object, in which you can define an "outputFormat"
