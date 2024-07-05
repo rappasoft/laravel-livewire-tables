@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\{CountColumn,SumColumn};
+use Rappasoft\LaravelLivewireTables\Views\Columns\{AggregateColumn,CountColumn,SumColumn};
 
 trait ColumnHelpers
 {
@@ -27,7 +27,7 @@ trait ColumnHelpers
 
                 if ($column instanceof SumColumn) {
                     if ($column->hasDataSource()) {
-                        $this->addExtraWithSum($column->getDataSource(), $column->getSumColumn());
+                        $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
 
@@ -218,7 +218,7 @@ trait ColumnHelpers
 
                 if ($column instanceof SumColumn) {
                     if ($column->hasDataSource()) {
-                        $this->addExtraWithSum($column->getDataSource(), $column->getSumColumn());
+                        $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
 
@@ -248,7 +248,7 @@ trait ColumnHelpers
 
                 if ($column instanceof SumColumn) {
                     if ($column->hasDataSource()) {
-                        $this->addExtraWithSum($column->getDataSource(), $column->getSumColumn());
+                        $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
 

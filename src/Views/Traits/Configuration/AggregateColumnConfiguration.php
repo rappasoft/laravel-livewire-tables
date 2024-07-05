@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait AggregateColumnConfiguration
 {
-    public function setDataSource(string $dataSource, ?string $foreignColumn): self
+    public function setDataSource(string $dataSource, ?string $foreignColumn = null): self
     {
         if (isset($foreignColumn)) {
             $this->foreignColumn = $foreignColumn;
