@@ -250,8 +250,8 @@ trait WithData
     {
         if ($this->hasModel()) {
             return $this->getModel()::query()
-            ->with([...$this->getExtraWiths(), ...$this->getRelationships()])
-            ->when($this->hasExtraWithCounts(), fn ($query) => $query->withCount($this->extraWithCounts));
+                ->with([...$this->getExtraWiths(), ...$this->getRelationships()])
+                ->when($this->hasExtraWithCounts(), fn ($query) => $query->withCount($this->extraWithCounts));
         }
 
         // If model does not exist

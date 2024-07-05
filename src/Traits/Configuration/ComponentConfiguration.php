@@ -118,7 +118,6 @@ trait ComponentConfiguration
         return $this;
     }
 
-
     public function setExtraWithCounts(array $extraWithCounts): self
     {
         $this->extraWithCounts = $extraWithCounts;
@@ -139,6 +138,4 @@ trait ComponentConfiguration
 
         return $this;
     }
-
-
 }

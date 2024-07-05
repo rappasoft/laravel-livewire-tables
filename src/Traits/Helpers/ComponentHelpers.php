@@ -152,7 +152,7 @@ trait ComponentHelpers
 
     public function hasExtraWiths(): bool
     {
-        return !empty($this->extraWiths);
+        return ! empty($this->extraWiths);
     }
 
     public function getExtraWiths(): array
@@ -160,12 +160,11 @@ trait ComponentHelpers
         return $this->extraWiths;
     }
 
-
     public function hasExtraWithCounts(): bool
     {
-        return !empty($this->extraWithCounts);
+        return ! empty($this->extraWithCounts);
     }
-    
+
     public function getExtraWithCounts(): array
     {
         return $this->extraWithCounts;
