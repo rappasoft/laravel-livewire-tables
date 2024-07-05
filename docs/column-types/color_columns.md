@@ -1,6 +1,6 @@
 ---
 title: Color Columns
-weight: 4
+weight: 5
 ---
 
 ## Color Columns

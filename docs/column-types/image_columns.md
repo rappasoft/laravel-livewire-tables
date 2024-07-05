@@ -1,6 +1,6 @@
 ---
 title: Image Columns
-weight: 4
+weight: 9
 ---
 ## Image Columns
 

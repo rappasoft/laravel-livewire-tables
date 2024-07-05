@@ -1,6 +1,6 @@
 ---
 title: Avg Columns
-weight: 4
+weight: 2
 ---
 
 ## Avg Columns

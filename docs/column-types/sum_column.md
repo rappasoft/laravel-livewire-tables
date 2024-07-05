@@ -1,6 +1,6 @@
 ---
 title: Sum Columns
-weight: 4
+weight: 12
 ---
 
 ## Sum Columns

@@ -1,6 +1,6 @@
 ---
 title: Livewire Component Columns (beta)
-weight: 4
+weight: 11
 ---
 
 ## Livewire Component Columns

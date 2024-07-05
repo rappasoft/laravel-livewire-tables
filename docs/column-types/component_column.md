@@ -1,6 +1,6 @@
 ---
 title: Component Columns
-weight: 4
+weight: 6
 ---
 ## Component Columns
 

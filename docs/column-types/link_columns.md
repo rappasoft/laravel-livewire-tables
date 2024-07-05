@@ -1,6 +1,6 @@
 ---
 title: Link Columns
-weight: 4
+weight: 10
 ---
 ## Link Columns
 

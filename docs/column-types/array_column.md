@@ -1,6 +1,6 @@
 ---
 title: Array Columns
-weight: 4
+weight: 1
 ---
 
 ## Array Columns

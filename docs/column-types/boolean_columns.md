@@ -1,6 +1,6 @@
 ---
 title: Boolean Columns
-weight: 4
+weight: 3
 ---
 
 ## Boolean Columns

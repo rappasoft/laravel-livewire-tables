@@ -1,6 +1,6 @@
 ---
 title: Count Columns
-weight: 4
+weight: 7
 ---
 
 ## Count Columns
