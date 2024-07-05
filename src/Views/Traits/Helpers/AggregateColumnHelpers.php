@@ -32,5 +32,4 @@ trait AggregateColumnHelpers
     {
         return $this->foreignColumn;
     }
-
 }

@@ -9,8 +9,7 @@ trait AggregateColumnConfiguration
 {
     public function setDataSource(string $dataSource, ?string $foreignColumn): self
     {
-        if (isset($foreignColumn))
-        {
+        if (isset($foreignColumn)) {
             $this->foreignColumn = $foreignColumn;
         }
 
@@ -39,12 +38,11 @@ trait AggregateColumnConfiguration
 
     public function setDefaultLabel()
     {
-        $this->label(function ($row, Column $column) 
-        {
-            if ($this->hasForeignColumn())
-            {
+        $this->label(function ($row, Column $column) {
+            if ($this->hasForeignColumn()) {
                 return $row->{$this->getDataSource().'_'.$this->getAggregateMethod().'_'.$this->getForeignColumn()};
             }
+
             return $row->{$this->getDataSource().'_'.$this->getAggregateMethod()};
         });
 
@@ -56,7 +54,6 @@ trait AggregateColumnConfiguration
 
         $this->sortCallback = ($callback === null) ? ($this->hasForeignColumn() ? fn (Builder $query, string $direction) => $query->orderBy($this->getDataSource().'_'.$this->getAggregateMethod().'_'.$this->getForeignColumn(), $direction) : fn (Builder $query, string $direction) => $query->orderBy($this->dataSource.'_count', $direction)) : $callback;
 
-        
         return $this;
     }
 }
