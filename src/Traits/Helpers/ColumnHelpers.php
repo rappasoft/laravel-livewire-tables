@@ -19,10 +19,8 @@ trait ColumnHelpers
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
-                if ($column instanceof CountColumn)
-                {
-                    if ($column->hasCountSource())
-                    {
+                if ($column instanceof CountColumn) {
+                    if ($column->hasCountSource()) {
                         $this->addExtraWithCount($column->getCountSource());
                     }
                 }
@@ -206,10 +204,8 @@ trait ColumnHelpers
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
-                if ($column instanceof CountColumn)
-                {
-                    if ($column->hasCountSource())
-                    {
+                if ($column instanceof CountColumn) {
+                    if ($column->hasCountSource()) {
                         $this->addExtraWithCount($column->getCountSource());
                     }
                 }
@@ -232,10 +228,8 @@ trait ColumnHelpers
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
-                if ($column instanceof CountColumn)
-                {
-                    if ($column->hasCountSource())
-                    {
+                if ($column instanceof CountColumn) {
+                    if ($column->hasCountSource()) {
                         $this->addExtraWithCount($column->getCountSource());
                     }
                 }
