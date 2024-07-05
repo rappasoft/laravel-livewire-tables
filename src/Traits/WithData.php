@@ -256,7 +256,7 @@ trait WithData
     {
         if ($this->hasModel()) {
             return $this->getModel()::query()
-                ->with($this->getRelationships())
+                ->with($this->getRelationships());
         }
 
         // If model does not exist
