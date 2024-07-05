@@ -63,8 +63,13 @@ trait WithData
         }
 
         if ($this->hasExtraWithSums()) {
-            foreach ($this->getExtraWithSums() as $relation => $column) {
-                $builder->withSum($relation, $column);
+            foreach ($this->getExtraWithSums() as $extraSum) {
+                $builder->withSum($extraSum['table'], $extraSum['field']);
+            }
+        }
+        if ($this->hasExtraWithAvgs()) {
+            foreach ($this->getExtraWithAvgs() as $extraAvg) {
+                $builder->withAvg($extraAvg['table'], $extraAvg['field']);
             }
         }
 

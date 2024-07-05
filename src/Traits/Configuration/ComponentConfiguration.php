@@ -141,15 +141,15 @@ trait ComponentConfiguration
 
     public function addExtraWithSum(string $relationship, string $column): self
     {
-        $this->extraWithSums[$relationship] = $column;
+        $this->extraWithSums[] = ['table' => $relationship, 'field' => $column];
 
         return $this;
     }
-
-    public function addExtraWithAvg(string $extraWithAvg): self
+    public function addExtraWithAvg(string $relationship, string $column): self
     {
-        $this->extraWithAvgs[] = $extraWithAvg;
+        $this->extraWithAvgs[] = ['table' => $relationship, 'field' => $column];
 
         return $this;
     }
+
 }
