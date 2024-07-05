@@ -63,8 +63,7 @@ trait WithData
         }
 
         if ($this->hasExtraWithSums()) {
-            foreach ($this->getExtraWithSums() as $relation => $column)
-            {
+            foreach ($this->getExtraWithSums() as $relation => $column) {
                 $builder->withSum($relation, $column);
             }
         }
@@ -72,9 +71,8 @@ trait WithData
         if ($this->hasExtraWithCounts()) {
             $builder->withCount($this->getExtraWithCounts());
         }
-        
-        $this->setBuilder($builder);
 
+        $this->setBuilder($builder);
 
         return $this->getBuilder();
 

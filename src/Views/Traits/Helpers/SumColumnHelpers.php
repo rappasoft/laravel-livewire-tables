@@ -27,5 +27,4 @@ trait SumColumnHelpers
     {
         return $this->sumColumn;
     }
-
 }

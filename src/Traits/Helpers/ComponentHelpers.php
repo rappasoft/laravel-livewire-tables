@@ -179,6 +179,4 @@ trait ComponentHelpers
     {
         return $this->extraWithSums;
     }
-
-
 }

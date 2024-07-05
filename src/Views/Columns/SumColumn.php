@@ -14,7 +14,7 @@ class SumColumn extends Column
         SumColumnConfiguration { SumColumnConfiguration::sortable insteadof IsColumn; }
 
     public ?string $dataSource;
-    
+
     public ?string $sumColumn;
 
     public string $aggregateMethod = 'sum';
