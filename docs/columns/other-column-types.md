@@ -247,3 +247,11 @@ ComponentColumn::make('E-mail', 'email')
         'dismissible' => true,
     ]),
 ```
+
+## Aggregate Columns
+
+### AvgColumn
+
+### CountColumn
+
+### SumColumn
