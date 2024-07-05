@@ -22,4 +22,15 @@ trait AggregateColumnHelpers
     {
         return $this->aggregateMethod;
     }
+
+    public function hasForeignColumn(): bool
+    {
+        return isset($this->foreignColumn);
+    }
+
+    public function getForeignColumn(): string
+    {
+        return $this->foreignColumn;
+    }
+
 }

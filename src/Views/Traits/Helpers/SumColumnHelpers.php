@@ -23,8 +23,13 @@ trait SumColumnHelpers
         return $this->aggregateMethod;
     }
 
-    public function getSumColumn(): string
+    public function hasForeignColumn(): bool
     {
-        return $this->sumColumn;
+        return isset($this->foreignColumn);
+    }
+
+    public function getForeignColumn(): string
+    {
+        return $this->foreignColumn;
     }
 }
