@@ -55,6 +55,17 @@ trait WithData
         $this->setBuilder($this->applySearch());
 
         $this->setBuilder($this->applyFilters());
+        
+        if ($this->hasExtraWiths()) {
+        //.    $builder = $this->getBuilder();
+        //    foreach($this->getExtraWiths() as $extraWith)
+         //   {
+        //        $builder->with($extraWith);
+        //    }
+        //    $this->setBuilder($builder);
+            $this->setBuilder($this->getBuilder()->with($this->getExtraWiths()));
+
+        }
 
         if ($this->hasExtraWithCounts()) {
             $this->setBuilder($this->getBuilder()->withCount($this->getExtraWithCounts()));
