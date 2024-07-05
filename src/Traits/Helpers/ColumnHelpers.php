@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\{AggregateColumn,CountColumn,SumColumn};
+use Rappasoft\LaravelLivewireTables\Views\Columns\AggregateColumn;
 
 trait ColumnHelpers
 {
@@ -19,14 +19,12 @@ trait ColumnHelpers
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
-                if ($column instanceof CountColumn) {
-                    if ($column->hasDataSource()) {
+                if ($column instanceof AggregateColumn) {
+                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
                     }
-                }
-
-                if ($column instanceof SumColumn) {
-                    if ($column->hasDataSource()) {
+                    elseif($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn())
+                    {
                         $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
@@ -210,17 +208,16 @@ trait ColumnHelpers
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
-                if ($column instanceof CountColumn) {
-                    if ($column->hasDataSource()) {
+                if ($column instanceof AggregateColumn) {
+                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
                     }
-                }
-
-                if ($column instanceof SumColumn) {
-                    if ($column->hasDataSource()) {
+                    elseif($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn())
+                    {
                         $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
+
 
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {
@@ -240,17 +237,16 @@ trait ColumnHelpers
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
-                if ($column instanceof CountColumn) {
-                    if ($column->hasDataSource()) {
+                if ($column instanceof AggregateColumn) {
+                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
                     }
-                }
-
-                if ($column instanceof SumColumn) {
-                    if ($column->hasDataSource()) {
+                    elseif($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn())
+                    {
                         $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
+
 
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {
