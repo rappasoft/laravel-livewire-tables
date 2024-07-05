@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 
 trait ColumnHelpers
 {
@@ -18,6 +19,13 @@ trait ColumnHelpers
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
+                if ($column instanceof CountColumn)
+                {
+                    if ($column->hasCountSource())
+                    {
+                        $this->addExtraWithCount($column->getCountSource());
+                    }
+                }
 
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {
@@ -198,6 +206,13 @@ trait ColumnHelpers
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
+                if ($column instanceof CountColumn)
+                {
+                    if ($column->hasCountSource())
+                    {
+                        $this->addExtraWithCount($column->getCountSource());
+                    }
+                }
 
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {
@@ -217,6 +232,13 @@ trait ColumnHelpers
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
+                if ($column instanceof CountColumn)
+                {
+                    if ($column->hasCountSource())
+                    {
+                        $this->addExtraWithCount($column->getCountSource());
+                    }
+                }
 
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {

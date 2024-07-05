@@ -2,6 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Database\Eloquent\{Builder, Model};
+
 trait CountColumnConfiguration
 {
     public function setCountSource(string $countSource): self

@@ -10,9 +10,9 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
 
 class CountColumn extends Column
 {
-    use IsColumn;
-    use CountColumnConfiguration;
-    use CountColumnHelpers;
+    use IsColumn,
+        CountColumnHelpers,
+        CountColumnConfiguration { CountColumnConfiguration::sortable insteadof IsColumn; }
 
     public ?string $countSource;
 
