@@ -3,27 +3,20 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\SumColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\SumColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\AggregateColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\AggregateColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
 
-class SumColumn extends Column
+class SumColumn extends AggregateColumn
 {
     use IsColumn,
-        SumColumnHelpers,
-        SumColumnConfiguration { SumColumnConfiguration::sortable insteadof IsColumn; }
-
-    public ?string $dataSource;
-
-    public ?string $sumColumn;
+        AggregateColumnHelpers,
+        AggregateColumnConfiguration { AggregateColumnConfiguration::sortable insteadof IsColumn; }
 
     public string $aggregateMethod = 'sum';
 
     public function __construct(string $title, ?string $from = null)
     {
         parent::__construct($title, $from);
-        if (! isset($from)) {
-            $this->label(fn () => null);
-        }
     }
 }
