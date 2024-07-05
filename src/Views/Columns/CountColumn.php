@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
-use Illuminate\Database\Eloquent\{Builder, Model};
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\CountColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\CountColumnHelpers;
