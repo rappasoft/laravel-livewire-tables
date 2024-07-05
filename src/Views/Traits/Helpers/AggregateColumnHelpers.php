@@ -22,5 +22,4 @@ trait AggregateColumnHelpers
     {
         return $this->aggregateMethod;
     }
-
 }
