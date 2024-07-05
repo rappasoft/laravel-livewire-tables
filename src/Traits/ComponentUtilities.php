@@ -37,6 +37,10 @@ trait ComponentUtilities
 
     protected array $additionalSelects = [];
 
+    protected array $extraWiths = [];
+
+    protected array $extraWithCounts = [];
+
     /**
      * Set any configuration options
      */

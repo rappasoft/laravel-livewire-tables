@@ -149,4 +149,25 @@ trait ComponentHelpers
     {
         return $this->additionalSelects;
     }
+
+    public function hasExtraWiths(): bool
+    {
+        return !empty($this->extraWiths);
+    }
+
+    public function getExtraWiths(): array
+    {
+        return $this->extraWiths;
+    }
+
+
+    public function hasExtraWithCounts(): bool
+    {
+        return !empty($this->extraWithCounts);
+    }
+    
+    public function getExtraWithCounts(): array
+    {
+        return $this->extraWithCounts;
+    }
 }
