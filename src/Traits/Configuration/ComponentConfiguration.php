@@ -145,11 +145,11 @@ trait ComponentConfiguration
 
         return $this;
     }
+
     public function addExtraWithAvg(string $relationship, string $column): self
     {
         $this->extraWithAvgs[] = ['table' => $relationship, 'field' => $column];
 
         return $this;
     }
-
 }
