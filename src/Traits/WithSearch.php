@@ -70,9 +70,11 @@ trait WithSearch
     {
         $this->resetComputedPage();
 
-        // Clear bulk actions on search
-        $this->clearSelected();
-        $this->setSelectAllDisabled();
+        // Clear bulk actions on search - if enabled
+        if ($this->getClearSelectedOnSearch()) {
+            $this->clearSelected();
+            $this->setSelectAllDisabled();
+        }
 
         if (is_null($value) || $value === '') {
             $this->clearSearch();
