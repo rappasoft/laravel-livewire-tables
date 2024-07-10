@@ -2,10 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ArrayColumn;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 final class ArrayColumnTest extends TestCase
 {
@@ -33,7 +33,7 @@ final class ArrayColumnTest extends TestCase
 
         $this->assertNull($column->getOutputFormatCallback());
         $this->assertFalse($column->hasOutputFormatCallback());
-        $column->outputFormat(fn($index, $value) => "<a href='".$value->id."'>".$value->name."</a>");
+        $column->outputFormat(fn ($index, $value) => "<a href='".$value->id."'>".$value->name.'</a>');
         $this->assertTrue($column->hasOutputFormatCallback());
     }
 
@@ -52,7 +52,7 @@ final class ArrayColumnTest extends TestCase
         $this->expectException(DataTableConfigurationException::class);
         $column = ArrayColumn::make('Average Age')
             ->separator('<br /><br />')
-            ->data(fn($value, $row) => ($row->pets))
+            ->data(fn ($value, $row) => ($row->pets))
             ->sortable();
         $this->assertNotNull($column->getDataCallback());
 
@@ -65,7 +65,7 @@ final class ArrayColumnTest extends TestCase
         $this->expectException(DataTableConfigurationException::class);
         $column = ArrayColumn::make('Average Age')
             ->separator('<br /><br />')
-            ->data(fn($value, $row) => ($row->pets))
+            ->data(fn ($value, $row) => ($row->pets))
             ->sortable();
 
         $contents = $column->getContents(Pet::find(1));
@@ -76,14 +76,12 @@ final class ArrayColumnTest extends TestCase
     {
         $column = ArrayColumn::make('Average Age')
             ->separator('<br /><br />')
-            ->data(fn($value, $row) => ($row->pets))
+            ->data(fn ($value, $row) => ($row->pets))
             ->sortable();
 
-        $this->assertSame('',$column->getEmptyValue());
+        $this->assertSame('', $column->getEmptyValue());
         $column->emptyValue('Unknown');
-        $this->assertSame('Unknown',$column->getEmptyValue());
+        $this->assertSame('Unknown', $column->getEmptyValue());
 
     }
-
-
-}    
+}

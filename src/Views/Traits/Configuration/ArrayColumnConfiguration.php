@@ -36,5 +36,4 @@ trait ArrayColumnConfiguration
 
         return $this;
     }
-
 }
