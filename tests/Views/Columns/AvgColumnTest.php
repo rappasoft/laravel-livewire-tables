@@ -71,7 +71,7 @@ final class AvgColumnTest extends TestCase
         $column->setForeignColumn('test');
         $this->assertTrue($column->hasForeignColumn());
         $this->assertSame('test', $column->getForeignColumn());
-        
+
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]

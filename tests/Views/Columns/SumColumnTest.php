@@ -38,8 +38,8 @@ final class SumColumnTest extends TestCase
         $contents = $column->getContents(Pet::find(1));
         $this->assertNull($contents);
 
-
     }
+
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_set_foreign_column(string $relation_name, string $foreign_field): void
     {
@@ -51,7 +51,7 @@ final class SumColumnTest extends TestCase
         $column->setForeignColumn('test');
         $this->assertTrue($column->hasForeignColumn());
         $this->assertSame('test', $column->getForeignColumn());
-        
+
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
