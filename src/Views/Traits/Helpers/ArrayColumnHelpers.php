@@ -48,10 +48,6 @@ trait ArrayColumnHelpers
         $outputValues = [];
         $value = $this->getValue($row);
 
-        if (! $this->hasSeparator()) {
-            throw new DataTableConfigurationException('You must set a valid separator on an ArrayColumn');
-        }
-
         if (! $this->hasDataCallback()) {
             throw new DataTableConfigurationException('You must set a data() method on an ArrayColumn');
         }
