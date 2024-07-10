@@ -20,3 +20,4 @@ phpunit.xml.dist.dev
 phpunit.xml.bak
 phpstan.txt
 coverage.xml
+./tmp/**
