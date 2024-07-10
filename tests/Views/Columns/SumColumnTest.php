@@ -102,12 +102,10 @@ final class SumColumnTest extends TestCase
     {
         $rows = $this->speciesTable->getRows();
         $column = SumColumn::make('Total Age')
-                    ->setDataSource('pets','age');
+            ->setDataSource('pets', 'age');
         $contents = $column->getContents($rows->first());
         $this->assertSame('30', $contents);
         $contents = $column->getContents($rows[2]);
         $this->assertSame('12', $contents);
     }
-
-
 }

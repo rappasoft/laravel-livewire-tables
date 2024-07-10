@@ -27,11 +27,11 @@ class SpeciesTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             AvgColumn::make('Average Age')
-                ->setDataSource('pets','age'),
+                ->setDataSource('pets', 'age'),
             CountColumn::make('Number of Pets')
                 ->setDataSource('pets'),
             SumColumn::make('Total Age')
-                ->setDataSource('pets','age'),
+                ->setDataSource('pets', 'age'),
 
         ];
     }

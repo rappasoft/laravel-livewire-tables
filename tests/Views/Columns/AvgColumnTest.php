@@ -102,11 +102,10 @@ final class AvgColumnTest extends TestCase
     {
         $rows = $this->speciesTable->getRows();
         $column = AvgColumn::make('Average Age')
-                    ->setDataSource('pets','age');
+            ->setDataSource('pets', 'age');
         $contents = $column->getContents($rows->first());
         $this->assertSame('15', $contents);
         $contents = $column->getContents($rows[2]);
         $this->assertSame('6', $contents);
     }
-
 }
