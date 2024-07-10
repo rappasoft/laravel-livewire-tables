@@ -341,9 +341,8 @@ final class ComponentConfigurationTest extends TestCase
     {
         $this->assertFalse($this->basicTable->hasExtraWithSums());
         $this->assertEmpty($this->basicTable->getExtraWithSums());
-        $this->basicTable->addExtraWithSum('users','age');
+        $this->basicTable->addExtraWithSum('users', 'age');
         $this->assertTrue($this->basicTable->hasExtraWithSums());
         $this->assertSame([['table' => 'users', 'field' => 'age']], $this->basicTable->getExtraWithSums());
     }
-
 }
