@@ -211,7 +211,6 @@ final class BulkActionsHelpersTest extends TestCase
     public function test_select_clears_by_default(): void
     {
         $this->basicTable->setSelected([1, 2, 3, 4, 5]);
-
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
 
         $this->basicTable->setSearch('Anthony');
@@ -225,9 +224,6 @@ final class BulkActionsHelpersTest extends TestCase
         $this->basicTable->setClearSelectedOnSearchDisabled();
 
         $this->basicTable->setSelected([1, 2, 3, 4, 5]);
-
-        $this->basicTable->setSelected([1, 2, 3, 4, 5]);
-
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
 
         $this->basicTable->setSearch('Anthony');
@@ -241,24 +237,12 @@ final class BulkActionsHelpersTest extends TestCase
         $this->basicTable->setClearSelectedOnSearchEnabled();
 
         $this->basicTable->setSelected([1, 2, 3, 4, 5]);
-
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
 
         $this->basicTable->setSearch('Anthony');
         $this->basicTable->updatedSearch('Anthony');
 
         $this->assertSame([], $this->basicTable->getSelected());
-
-        $this->basicTable->setSelected([1, 2, 3, 4, 5]);
-
-        $this->basicTable->setClearSelectedOnSearchDisabled();
-
-        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
-
-        $this->basicTable->setSearch('Anthony');
-        $this->basicTable->updatedSearch('Anthony');
-
-        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
 
     }
 
@@ -273,4 +257,25 @@ final class BulkActionsHelpersTest extends TestCase
 
         $this->assertSame([], $this->basicTable->getSelected());
     }
+
+    public function test_select_does_clear_when_filtering_when_enabled(): void
+    {
+        $this->basicTable->setSelected([1, 2, 3, 4, 5]);
+        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
+        $this->basicTable->setClearSelectedOnFilterEnabled();
+        $this->basicTable->setFilter('breed_id_filter', '2');
+        $this->basicTable->updatedFilterComponents('2', 'breed_id_filter');
+        $this->assertSame([], $this->basicTable->getSelected());
+    }
+
+    public function test_select_does_not_clear_when_filtering_when_disabled(): void
+    {
+        $this->basicTable->setSelected([1, 2, 3, 4, 5]);
+        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
+        $this->basicTable->setClearSelectedOnFilterDisabled();
+        $this->basicTable->setFilter('breed_id_filter', '2');
+        $this->basicTable->updatedFilterComponents('2', 'breed_id_filter');
+        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
+    }
+
 }
