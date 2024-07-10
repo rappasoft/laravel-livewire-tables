@@ -72,6 +72,7 @@ final class ArrayColumnTest extends TestCase
         $this->assertNull($contents);
     }
 
+    
     public function test_can_get_empty_value(): void
     {
         $column = ArrayColumn::make('Average Age')
