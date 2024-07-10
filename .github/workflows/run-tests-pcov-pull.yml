@@ -1,6 +1,11 @@
 name: run-tests-pcov-pull
 
 on:
+  push:
+    branches:
+      - 'develop'
+      - 'development'
+      - 'master'
   pull_request:
     branches:
       - 'develop'
@@ -18,7 +23,7 @@ jobs:
         laravel: [10]
         stability: [prefer-dist]
 
-    name: PCOV-PULL - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+    name: PCOV - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-withpcov
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pcov,pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
