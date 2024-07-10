@@ -24,5 +24,4 @@ class AggregateColumn extends Column
         parent::__construct($title, $from);
         $this->label(fn () => null);
     }
-
 }

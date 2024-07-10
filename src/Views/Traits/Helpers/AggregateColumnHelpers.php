@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\View\ComponentAttributeBag;
 use Illuminate\Support\HtmlString;
+use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait AggregateColumnHelpers
@@ -35,7 +35,6 @@ trait AggregateColumnHelpers
         return $this->foreignColumn;
     }
 
-    
     public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if (! isset($this->dataSource)) {
