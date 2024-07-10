@@ -9,11 +9,11 @@ trait AggregateColumnConfiguration
 {
     public function setDataSource(string $dataSource, ?string $foreignColumn = null): self
     {
-        if (isset($foreignColumn)) {
-            $this->foreignColumn = $foreignColumn;
-        }
-
         $this->dataSource = $dataSource;
+
+        if (isset($foreignColumn)) {
+            $this->setForeignColumn($foreignColumn);
+        }
 
         $this->setDefaultLabel();
 

@@ -61,6 +61,20 @@ final class AvgColumnTest extends TestCase
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
+    public function test_can_set_foreign_column(string $relation_name, string $foreign_field): void
+    {
+        $column = AvgColumn::make('Average Age')
+            ->setDataSource($relation_name, $foreign_field)
+            ->sortable();
+        $this->assertTrue($column->hasForeignColumn());
+        $this->assertSame($foreign_field, $column->getForeignColumn());
+        $column->setForeignColumn('test');
+        $this->assertTrue($column->hasForeignColumn());
+        $this->assertSame('test', $column->getForeignColumn());
+        
+    }
+
+    #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_get_data_source_fields(string $relation_name, string $foreign_field): void
     {
         $column = AvgColumn::make('Average Age')
