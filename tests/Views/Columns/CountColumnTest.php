@@ -19,8 +19,8 @@ final class CountColumnTest extends TestCase
     public function test_can_setup_column_correctly(): void
     {
         $column = CountColumn::make('Total Users')
-                ->setDataSource('users')
-                ->sortable();
+            ->setDataSource('users')
+            ->sortable();
 
         $this->assertNotEmpty($column);
     }
@@ -30,7 +30,7 @@ final class CountColumnTest extends TestCase
         $this->expectException(DataTableConfigurationException::class);
 
         $column = CountColumn::make('Total Users')
-                ->sortable();
+            ->sortable();
         $contents = $column->getContents(Pet::find(1));
         $this->assertNull($contents);
 

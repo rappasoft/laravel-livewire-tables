@@ -4,11 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\AggregateColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\AggregateColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 class AvgColumn extends AggregateColumn
 {
@@ -28,15 +28,11 @@ class AvgColumn extends AggregateColumn
 
     public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        if (!isset($this->dataSource))
-        {
+        if (! isset($this->dataSource)) {
             throw new DataTableConfigurationException('You must specify a data source');
-        }
-        else
-        {
+        } else {
             return parent::getContents($row);
         }
-        
-    }
 
+    }
 }
