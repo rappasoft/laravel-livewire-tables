@@ -27,7 +27,7 @@ class SpeciesTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             CountColumn::make('Pets')
-            ->setDataSource('pets'),
+                ->setDataSource('pets'),
         ];
     }
 }

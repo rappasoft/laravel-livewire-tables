@@ -41,10 +41,10 @@ final class CountColumnTest extends TestCase
         $rows = $this->speciesTable->getRows();
         $row1 = $rows->first();
         $column = CountColumn::make('Pets')
-                ->setDataSource('pets');
+            ->setDataSource('pets');
         $contents = $column->getContents($rows->first());
-        $this->assertSame('2',$contents);
+        $this->assertSame('2', $contents);
         $contents = $column->getContents($rows->last());
-        $this->assertSame('0',$contents);
+        $this->assertSame('0', $contents);
     }
 }
