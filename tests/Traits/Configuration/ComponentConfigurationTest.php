@@ -300,4 +300,50 @@ final class ComponentConfigurationTest extends TestCase
 
         $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(true);
     }
+
+    public function test_no_extra_withs_by_default(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWiths());
+        $this->assertEmpty($this->basicTable->getExtraWiths());
+    }
+
+    public function test_can_add_extra_with(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWiths());
+        $this->assertEmpty($this->basicTable->getExtraWiths());
+        $this->basicTable->addExtraWith('user');
+        $this->assertTrue($this->basicTable->hasExtraWiths());
+        $this->assertSame(['user'], $this->basicTable->getExtraWiths());
+    }
+
+    public function test_no_extra_with_counts_by_default(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithCounts());
+        $this->assertEmpty($this->basicTable->getExtraWithCounts());
+    }
+
+    public function test_can_add_extra_with_count(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithCounts());
+        $this->assertEmpty($this->basicTable->getExtraWithCounts());
+        $this->basicTable->addExtraWithCount('users');
+        $this->assertTrue($this->basicTable->hasExtraWithCounts());
+        $this->assertSame(['users'], $this->basicTable->getExtraWithCounts());
+    }
+
+    public function test_no_extra_with_sums_by_default(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithSums());
+        $this->assertEmpty($this->basicTable->getExtraWithSums());
+    }
+
+    public function test_can_add_extra_with_sum(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithSums());
+        $this->assertEmpty($this->basicTable->getExtraWithSums());
+        $this->basicTable->addExtraWithSum('users','age');
+        $this->assertTrue($this->basicTable->hasExtraWithSums());
+        $this->assertSame([['table' => 'users', 'field' => 'age']], $this->basicTable->getExtraWithSums());
+    }
+
 }

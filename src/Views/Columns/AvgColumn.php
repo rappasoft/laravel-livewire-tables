@@ -20,10 +20,8 @@ class AvgColumn extends AggregateColumn
 
     public function __construct(string $title, ?string $from = null)
     {
-        parent::__construct($title, $from);
-        if (! isset($from)) {
-            $this->label(fn () => null);
-        }
+        parent::__construct($title, null);
+        $this->label(fn () => null);
     }
 
     public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

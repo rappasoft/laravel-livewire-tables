@@ -36,7 +36,7 @@ trait AggregateColumnConfiguration
         return $this;
     }
 
-    public function setDefaultLabel()
+    public function setDefaultLabel(): void
     {
         $this->label(function ($row, Column $column) {
             if ($this->hasForeignColumn()) {
