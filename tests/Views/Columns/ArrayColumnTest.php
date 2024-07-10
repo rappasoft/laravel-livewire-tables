@@ -14,5 +14,4 @@ final class ArrayColumnTest extends TestCase
 
         $this->assertSame('Array Col', $column->getTitle());
     }
-
 }
