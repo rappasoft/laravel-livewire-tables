@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableUnpaginated};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableUnpaginated,SpeciesTable};
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
@@ -18,6 +18,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
 class TestCase extends Orchestra
 {
     public PetsTable $basicTable;
+    public SpeciesTable $speciesTable;
 
     public PetsTableUnpaginated $unpaginatedTable;
 
@@ -76,7 +77,7 @@ class TestCase extends Orchestra
         }
         $this->setupBasicTable();
         $this->setupUnpaginatedTable();
-
+        $this->setupSpeciesTable();
     }
 
     protected function setupBasicTable()
@@ -93,6 +94,22 @@ class TestCase extends Orchestra
         $this->basicTable->renderingWithData($view, []);
         $this->basicTable->renderingWithPagination($view, []);
         $this->basicTable->render();
+    }
+
+    protected function setupSpeciesTable()
+    {
+        $view = view('livewire-tables::datatable');
+        $this->speciesTable = new SpeciesTable();
+        $this->speciesTable->boot();
+        $this->speciesTable->bootedComponentUtilities();
+        $this->speciesTable->bootedWithData();
+        $this->speciesTable->bootedWithColumns();
+        $this->speciesTable->bootedWithColumnSelect();
+        $this->speciesTable->bootedWithSecondaryHeader();
+        $this->speciesTable->booted();
+        $this->speciesTable->renderingWithData($view, []);
+        $this->speciesTable->renderingWithPagination($view, []);
+        $this->speciesTable->render();
     }
 
     protected function setupUnpaginatedTable()

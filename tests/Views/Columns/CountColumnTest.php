@@ -29,10 +29,22 @@ final class CountColumnTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $column = CountColumn::make('Total Users')
+        $column = CountColumn::make('Average Age')
             ->sortable();
         $contents = $column->getContents(Pet::find(1));
         $this->assertNull($contents);
 
+    }
+
+    public function test_renders_correctly(): void
+    {
+        $rows = $this->speciesTable->getRows();
+        $row1 = $rows->first();
+        $column = CountColumn::make('Pets')
+                ->setDataSource('pets');
+        $contents = $column->getContents($rows->first());
+        $this->assertSame('2',$contents);
+        $contents = $column->getContents($rows->last());
+        $this->assertSame('0',$contents);
     }
 }
