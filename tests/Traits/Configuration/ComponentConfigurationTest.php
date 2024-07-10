@@ -387,4 +387,20 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->hasExtraWithSums());
         $this->assertSame([['table' => 'users', 'field' => 'age']], $this->basicTable->getExtraWithSums());
     }
+
+    public function test_no_extra_with_avgs_by_default(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWiths());
+        $this->assertEmpty($this->basicTable->getExtraWiths());
+    }
+
+    public function test_can_add_extra_with_avg(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithAvgs());
+        $this->assertEmpty($this->basicTable->getExtraWithAvgs());
+        $this->basicTable->addExtraWithAvg('user','age');
+        $this->assertTrue($this->basicTable->hasExtraWithAvgs());
+        $this->assertSame([['table' => 'user', 'field' => 'age']], $this->basicTable->getExtraWithAvgs());
+    }
+
 }
