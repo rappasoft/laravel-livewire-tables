@@ -9,7 +9,6 @@ class AggregateColumn extends Column
 {
     use IsAggregateColumn;
 
-
     public ?string $dataSource;
 
     public string $aggregateMethod = 'count';

@@ -9,7 +9,6 @@ trait IsAggregateColumn
 {
     use IsColumn,
         AggregateColumnHelpers,
-        AggregateColumnConfiguration { AggregateColumnHelpers::getContents insteadof IsColumn; AggregateColumnConfiguration::sortable insteadof IsColumn; }
-
-
+        AggregateColumnConfiguration { AggregateColumnHelpers::getContents insteadof IsColumn;
+            AggregateColumnConfiguration::sortable insteadof IsColumn; }
 }
