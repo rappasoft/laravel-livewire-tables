@@ -96,4 +96,17 @@ final class AvgColumnTest extends TestCase
         $column->setAggregateMethod('test_avg');
         $this->assertSame('test_avg', $column->getAggregateMethod());
     }
+
+    #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
+    public function test_renders_correctly(string $relation_name, string $foreign_field): void
+    {
+        $rows = $this->speciesTable->getRows();
+        $column = AvgColumn::make('Average Age')
+                    ->setDataSource('pets','age');
+        $contents = $column->getContents($rows->first());
+        $this->assertSame('15', $contents);
+        $contents = $column->getContents($rows[2]);
+        $this->assertSame('6', $contents);
+    }
+
 }

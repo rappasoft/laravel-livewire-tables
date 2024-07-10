@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\{AvgColumn,CountColumn,SumColumn};
 
 class SpeciesTable extends DataTableComponent
 {
@@ -26,8 +26,13 @@ class SpeciesTable extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            CountColumn::make('Pets')
+            AvgColumn::make('Average Age')
+                ->setDataSource('pets','age'),
+            CountColumn::make('Number of Pets')
                 ->setDataSource('pets'),
+            SumColumn::make('Total Age')
+                ->setDataSource('pets','age'),
+
         ];
     }
 }

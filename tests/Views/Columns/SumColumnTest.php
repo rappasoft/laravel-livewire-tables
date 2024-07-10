@@ -96,4 +96,18 @@ final class SumColumnTest extends TestCase
         $column->setAggregateMethod('test_sum');
         $this->assertSame('test_sum', $column->getAggregateMethod());
     }
+
+    #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
+    public function test_renders_correctly(string $relation_name, string $foreign_field): void
+    {
+        $rows = $this->speciesTable->getRows();
+        $column = SumColumn::make('Total Age')
+                    ->setDataSource('pets','age');
+        $contents = $column->getContents($rows->first());
+        $this->assertSame('30', $contents);
+        $contents = $column->getContents($rows[2]);
+        $this->assertSame('12', $contents);
+    }
+
+
 }
