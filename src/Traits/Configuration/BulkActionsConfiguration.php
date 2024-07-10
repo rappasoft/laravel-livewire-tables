@@ -193,7 +193,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-
     public function setClearSelectedOnFilter(bool $status): self
     {
         $this->clearSelectedOnFilter = $status;
@@ -214,5 +213,4 @@ trait BulkActionsConfiguration
 
         return $this;
     }
-
 }

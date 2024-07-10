@@ -226,10 +226,8 @@ trait BulkActionsHelpers
         return $this->clearSelectedOnSearch ?? true;
     }
 
-
     public function getClearSelectedOnFilter(): bool
     {
         return $this->clearSelectedOnFilter ?? true;
     }
-
 }

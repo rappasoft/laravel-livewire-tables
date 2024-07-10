@@ -269,10 +269,8 @@ final class BulkActionsHelpersTest extends TestCase
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelected());
 
         $this->basicTable->setFilter('breed_id_filter', '2');
-        $this->basicTable->updatedFilterComponents('2','breed_id_filter');
+        $this->basicTable->updatedFilterComponents('2', 'breed_id_filter');
 
         $this->assertSame([], $this->basicTable->getSelected());
     }
-
-
 }
