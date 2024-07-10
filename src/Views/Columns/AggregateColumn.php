@@ -3,15 +3,12 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\AggregateColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\AggregateColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
+use Rappasoft\LaravelLivewireTables\Views\Traits\IsAggregateColumn;
 
 class AggregateColumn extends Column
 {
-    use IsColumn,
-        AggregateColumnHelpers,
-        AggregateColumnConfiguration { AggregateColumnConfiguration::sortable insteadof IsColumn; }
+    use IsAggregateColumn;
+
 
     public ?string $dataSource;
 
