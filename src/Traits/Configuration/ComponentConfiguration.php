@@ -113,7 +113,7 @@ trait ComponentConfiguration
 
     public function addExtraWiths(array $extraWiths): self
     {
-        $this->extraWiths[] = [...$this->extraWiths, ...$extraWiths];
+        $this->extraWiths = [...$this->extraWiths, ...$extraWiths];
 
         return $this;
     }
@@ -134,7 +134,7 @@ trait ComponentConfiguration
 
     public function addExtraWithCounts(array $extraWithCounts): self
     {
-        $this->extraWithCounts[] = [...$this->extraWithCounts, ...$extraWithCounts];
+        $this->extraWithCounts = [...$this->extraWithCounts, ...$extraWithCounts];
 
         return $this;
     }
