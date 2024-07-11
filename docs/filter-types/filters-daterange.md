@@ -65,7 +65,7 @@ Then you should disable injection to avoid conflicts:
     'inject_third_party_assets_enabled' => false,
 ```
 
-Noting that should you require localisation, you should also include the localisation scripts:
+Noting that should you require localisation, you should also include the localisation scripts in your app.js file:
 ```
 import '../../vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
 ```
@@ -86,8 +86,7 @@ Should you wish to localise, you must include the Flatpickr locale files in your
 import '../../vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
 ```
 
-Or by including the specific locales that you require in your app.js
+Or by including the specific locales that you require in your app.js (requires adding the flatpickr library to your package.json by executing "npm i flatpickr")
 ```
 import { German } from "../imports/flatpickr/l10n/de.js";
 ```
-Noting that you should also add the "flatpickr" library to your package.json by executing "npm i flatpickr"
