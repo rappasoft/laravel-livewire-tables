@@ -71,6 +71,35 @@ final class DateRangeFilterTest extends FilterTestCase
 
     }
 
+    public function test_can_change_locale(): void
+    {
+        $filter = DateRangeFilter::make('Active');
+
+        $this->assertSame([
+            'allowInput' => true,
+            'altFormat' => 'F j, Y',
+            'ariaDateFormat' => 'F j, Y',
+            'dateFormat' => 'Y-m-d',
+            'earliestDate' => null,
+            'latestDate' => null,
+            'locale' => 'en',
+        ], $filter->getConfigs());
+
+        $filter->config(['locale' => 'fr']);
+
+        $this->assertSame([
+                'allowInput' => true,
+                'altFormat' => 'F j, Y',
+                'ariaDateFormat' => 'F j, Y',
+                'dateFormat' => 'Y-m-d',
+                'earliestDate' => null,
+                'latestDate' => null,
+                'locale' => 'fr'
+            ], 
+            $filter->getConfigs()
+        );
+    }
+
     public function test_can_get_filter_options(): void
     {
         $filter = DateRangeFilter::make('Active');
