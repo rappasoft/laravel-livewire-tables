@@ -1,0 +1,15 @@
+import { Arabic } from "flatpickr/dist/l10n/ar.js";
+import { Catalan } from "flatpickr/dist/l10n/cat.js";
+import { Danish } from "flatpickr/dist/l10n/da.js";
+import { German } from "flatpickr/dist/l10n/de.js";
+import { Spanish } from "flatpickr/dist/l10n/es.js";
+import { French } from "flatpickr/dist/l10n/fr.js";
+import { Indonesian } from "flatpickr/dist/l10n/id.js";
+import { Italian } from "flatpickr/dist/l10n/it.js";
+import { Malaysian } from "flatpickr/dist/l10n/ms.js";
+import { Dutch } from "flatpickr/dist/l10n/nl.js";
+import { Portuguese } from "flatpickr/dist/l10n/pt.js";
+import { Russian } from "flatpickr/dist/l10n/ru.js"
+import { Thai } from "flatpickr/dist/l10n/th.js"
+import { Turkish } from "flatpickr/dist/l10n/tr.js"
+import { Ukrainian } from "flatpickr/dist/l10n/uk.js"

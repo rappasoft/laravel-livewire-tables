@@ -44,7 +44,17 @@ public function filters(): array
 }
 ```
 
+## Localisation
+The default installation includes only the English (en) locale.
 
+Should you wish to localise, you must include the Flatpickr locale files in your build pipeline, for example by adding them to your app.js
+```
+import { French } from "flatpickr/dist/l10n/fr.js";
+import { Russian } from "flatpickr/dist/l10n/ru.js"
+```
+This would allow you to use "en", "fr" or "ru" as Locale options.
+
+All matched locales are included should you include "vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js" in your build process.
 
 ## Configuration
 By default, this filter will use a CDN to include the Flatpickr JS Library and CSS. However, you can customise this behaviour using the configuration file.
