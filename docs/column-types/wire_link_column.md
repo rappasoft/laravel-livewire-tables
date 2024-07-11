@@ -1,6 +1,6 @@
 ---
 title: Wire Link Column (beta)
-weight: 13
+weight: 14
 ---
 
 WireLink columns provide a way to display Wired Links in your table without having to use `format()` or partial views, with or without a Confirmation Message

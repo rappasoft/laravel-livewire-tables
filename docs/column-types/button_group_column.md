@@ -1,6 +1,6 @@
 ---
 title: Button Group Columns
-weight: 4
+weight: 5
 ---
 
 Button group columns let you provide an array of LinkColumns to display in a single cell.

@@ -1,6 +1,6 @@
 ---
 title: Count Columns (beta)
-weight: 7
+weight: 8
 ---
 
 Count columns provide an easy way to display the "Count" of a relation.

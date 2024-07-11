@@ -1,6 +1,6 @@
 ---
 title: Date Columns
-weight: 8
+weight: 9
 ---
 
 Date columns provide an easy way to display dates in a given format, without having to use repetitive format() methods or partial views.

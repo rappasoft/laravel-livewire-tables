@@ -1,5 +1,5 @@
 ---
 title: Livewire Component (beta)
-weight: 11
+weight: 12
 ---
 

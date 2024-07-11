@@ -1,6 +1,6 @@
 ---
 title: Color Columns
-weight: 5
+weight: 6
 ---
 
 Color columns provide an easy way to a Color in a Column
