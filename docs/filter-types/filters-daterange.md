@@ -33,6 +33,7 @@ public function filters(): array
             'earliestDate' => '2020-01-01', // The earliest acceptable date
             'latestDate' => '2023-08-01', // The latest acceptable date
             'placeholder' => 'Enter Date Range', // A placeholder value
+            'locale' => 'en',
         ])
         ->setFilterPillValues([0 => 'minDate', 1 => 'maxDate']) // The values that will be displayed for the Min/Max Date Values
         ->filter(function (Builder $builder, array $dateRange) { // Expects an array.
@@ -44,48 +45,49 @@ public function filters(): array
 }
 ```
 
-## Localisation
-The default installation includes only the English (en) locale.
+## Configuration
+By default, this filter will inject the Flatpickr JS Library and CSS. However, you can customise this behaviour using the configuration file.
 
-Should you wish to localise, you must include the Flatpickr locale files in your build pipeline, for example by adding them to your app.js
+### Option 1 - The default behaviour:
 ```
-import { French } from "flatpickr/dist/l10n/fr.js";
-import { Russian } from "flatpickr/dist/l10n/ru.js"
+    'inject_third_party_assets_enabled' => true,
 ```
-This would allow you to use "en", "fr" or "ru" as Locale options.
 
-All matched locales are included should you include the file:
-"vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js"
-to your build process, by for example adding the following to your app.js
+### Option 2 - Bundled
+If you choose to bundle the Tables JS/CSS (recommended) by adding the following to your build process:
+```
+import 'vendor/rappasoft/livewire-tables/resources/js/laravel-livewire-tables-thirdparty.min.js';
+```
+
+Then you should disable injection to avoid conflicts:
+
+```
+    'inject_third_party_assets_enabled' => false,
+```
+
+Noting that should you require localisation, you should also include the localisation scripts:
 ```
 import '../../vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
 ```
-Note that you should also ensure that you include flatpickr as a dependency in your package.json:
-"npm i flatpickr"
 
-## Configuration
-By default, this filter will use a CDN to include the Flatpickr JS Library and CSS. However, you can customise this behaviour using the configuration file.
-
-### Option 1 - The default CDN behaviour:
-```
-    'published_third_party_assets' => false,
-    'remote_third_party_assets' => true,
-```
-
-### Option 2 - Publish included version
-You may publish the included version of Flatpickr.  To do so, run:
-```
-php artisan vendor:publish --tag=livewire-tables-public
-```
-This will publish the tested version of Flatpickr to your public directory. You should then set
-```
-    'published_third_party_assets' => true,
-    'remote_third_party_assets' => false,
-```
 
 ### Option 3 - Locally Installed
-If you have a locally installed version of Flatpickr already, you can set both options to false, and your local version will be used instead.
+If you have a locally installed version of Flatpickr already, you can set injection to false, and your local version will be used instead.
 ```
-    'published_third_party_assets' => false,
-    'remote_third_party_assets' => false,
+    'inject_third_party_assets_enabled' => false,
 ```
+
+## Localisation
+The default installation includes only the English (en) locale.
+
+Should you wish to localise, you must include the Flatpickr locale files in your build pipeline, by including the 
+"vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js" to your build process, by for example adding the following to your app.js
+```
+import '../../vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
+```
+
+Or by including the specific locales that you require in your app.js
+```
+import { German } from "../imports/flatpickr/l10n/de.js";
+```
+Noting that you should also add the "flatpickr" library to your package.json by executing "npm i flatpickr"
