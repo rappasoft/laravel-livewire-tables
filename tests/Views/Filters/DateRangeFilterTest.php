@@ -32,6 +32,7 @@ final class DateRangeFilterTest extends FilterTestCase
             'dateFormat' => 'Y-m-d',
             'earliestDate' => null,
             'latestDate' => null,
+            'locale' => 'en',
         ];
 
         $this->assertSame($defaultConfig, $filter->getConfigs());
@@ -52,6 +53,7 @@ final class DateRangeFilterTest extends FilterTestCase
             'dateFormat' => 'Y-m-d',
             'earliestDate' => null,
             'latestDate' => null,
+            'locale' => 'en',
         ], $filter->getConfigs());
 
         $filter->config(['foo' => 'bar']);
@@ -64,6 +66,7 @@ final class DateRangeFilterTest extends FilterTestCase
             'dateFormat' => 'Y-m-d',
             'earliestDate' => null,
             'latestDate' => null,
+            'locale' => 'en',
             'foo' => 'bar'], $filter->getConfigs());
 
     }
