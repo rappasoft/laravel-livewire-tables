@@ -21,7 +21,7 @@ See also [secondary header component configuration](../secondary-header/availabl
 
 ## Using a filter as a secondary header
 
-As of version 2.7, you can use a filter as a header.
+You can use a filter as a header.
 
 ```php
 // Example filter

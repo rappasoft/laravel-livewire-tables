@@ -1,6 +1,6 @@
 ---
 title: Wire Link Column (beta)
-weight: 13
+weight: 14
 ---
 
 WireLink columns provide a way to display Wired Links in your table without having to use `format()` or partial views, with or without a Confirmation Message
@@ -35,3 +35,19 @@ And you may also pass an array of attributes, which will be applied to the "butt
             'class' => 'btn btn-danger',
         ]),
 ```
+
+Please also see the following for other available methods:
+<ul>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/available-methods">Available Methods</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/column-selection">Column Selection</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/secondary-header">Secondary Header</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/footer">Footer</a>
+    </li>
+</ul>

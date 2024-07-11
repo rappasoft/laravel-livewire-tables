@@ -1,6 +1,6 @@
 ---
 title: Image Columns
-weight: 9
+weight: 10
 ---
 
 Image columns provide a way to display images in your table without having to use `format()` or partial views:
@@ -24,3 +24,19 @@ ImageColumn::make('Avatar')
         'alt' => $row->name . ' Avatar',
     ]),
 ```
+
+Please also see the following for other available methods:
+<ul>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/available-methods">Available Methods</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/column-selection">Column Selection</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/secondary-header">Secondary Header</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/footer">Footer</a>
+    </li>
+</ul>

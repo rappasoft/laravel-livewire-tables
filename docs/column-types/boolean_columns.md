@@ -1,6 +1,6 @@
 ---
 title: Boolean Columns
-weight: 3
+weight: 4
 ---
 
 Boolean columns are good if you have a column type that is a true/false, or 0/1 value.
@@ -79,3 +79,19 @@ If you would like the BooleanColumn to display a plain Yes/No, you can set:
 BooleanColumn::make('Active')
     ->yesNo()
 ```
+
+Please also see the following for other available methods:
+<ul>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/available-methods">Available Methods</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/column-selection">Column Selection</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/secondary-header">Secondary Header</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/footer">Footer</a>
+    </li>
+</ul>
