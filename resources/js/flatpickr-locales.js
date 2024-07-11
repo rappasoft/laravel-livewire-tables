@@ -1,5 +1,5 @@
 import { Arabic } from "../imports/flatpickr/l10n/ar.js";
-import { Catalan } from "../imports/fatpickr/l10n/cat.js";
+import { Catalan } from "../imports/flatpickr/l10n/cat.js";
 import { Danish } from "../imports/flatpickr/l10n/da.js";
 import { German } from "../imports/flatpickr/l10n/de.js";
 import { Spanish } from "../imports/flatpickr/l10n/es.js";
