@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## UNRELEASED
+## [v3.3.0] - 2024-07-12
 ### New Features
 - Add new columns (ArrayColumn, AvgColumn, CountColumn, SumColumn) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1761
 
