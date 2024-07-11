@@ -61,7 +61,6 @@ class WireLinkColumnTest extends TestCase
 
         $this->assertTrue($column->hasConfirmMessage());
 
-        $this->assertSame('Test',$column->getConfirmMessage());
+        $this->assertSame('Test', $column->getConfirmMessage());
     }
-
 }
