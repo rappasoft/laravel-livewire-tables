@@ -40,7 +40,7 @@ trait WithBulkActions
 
     public bool $clearSelectedOnFilter = true;
 
-  public function bulkActions(): array
+    public function bulkActions(): array
     {
         return property_exists($this, 'bulkActions') ? $this->bulkActions : [];
     }
