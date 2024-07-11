@@ -36,6 +36,10 @@ trait WithBulkActions
 
     protected bool $alwaysHideBulkActionsDropdownOption = false;
 
+    public bool $clearSelectedOnSearch = true;
+
+    public bool $clearSelectedOnFilter = true;
+
     public function bulkActions(): array
     {
         return property_exists($this, 'bulkActions') ? $this->bulkActions : [];

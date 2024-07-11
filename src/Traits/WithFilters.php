@@ -74,9 +74,11 @@ trait WithFilters
     {
         $this->resetComputedPage();
 
-        // Clear bulk actions on filter
-        $this->clearSelected();
-        $this->setSelectAllDisabled();
+        // Clear bulk actions on filter - if enabled
+        if ($this->getClearSelectedOnFilter()) {
+            $this->clearSelected();
+            $this->setSelectAllDisabled();
+        }
 
         // Clear filters on empty value
         $filter = $this->getFilterByKey($filterName);

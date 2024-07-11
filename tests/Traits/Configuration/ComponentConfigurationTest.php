@@ -300,4 +300,106 @@ final class ComponentConfigurationTest extends TestCase
 
         $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(true);
     }
+
+    public function test_no_extra_withs_by_default(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWiths());
+        $this->assertEmpty($this->basicTable->getExtraWiths());
+    }
+
+    public function test_can_add_extra_with(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWiths());
+        $this->assertEmpty($this->basicTable->getExtraWiths());
+        $this->basicTable->addExtraWith('user');
+        $this->assertTrue($this->basicTable->hasExtraWiths());
+        $this->assertSame(['user'], $this->basicTable->getExtraWiths());
+    }
+
+    public function test_can_add_extra_withs(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWiths());
+        $this->assertEmpty($this->basicTable->getExtraWiths());
+        $this->basicTable->addExtraWiths(['user', 'pets']);
+        $this->assertTrue($this->basicTable->hasExtraWiths());
+        $this->assertSame(['user', 'pets'], $this->basicTable->getExtraWiths());
+    }
+
+    public function test_can_set_extra_withs(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWiths());
+        $this->assertEmpty($this->basicTable->getExtraWiths());
+        $this->basicTable->addExtraWith('test');
+        $this->assertSame(['test'], $this->basicTable->getExtraWiths());
+        $this->assertTrue($this->basicTable->hasExtraWiths());
+        $this->basicTable->setExtraWiths(['user', 'pets']);
+        $this->assertTrue($this->basicTable->hasExtraWiths());
+        $this->assertSame(['user', 'pets'], $this->basicTable->getExtraWiths());
+    }
+
+    public function test_no_extra_with_counts_by_default(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithCounts());
+        $this->assertEmpty($this->basicTable->getExtraWithCounts());
+    }
+
+    public function test_can_add_extra_with_count(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithCounts());
+        $this->assertEmpty($this->basicTable->getExtraWithCounts());
+        $this->basicTable->addExtraWithCount('users');
+        $this->assertTrue($this->basicTable->hasExtraWithCounts());
+        $this->assertSame(['users'], $this->basicTable->getExtraWithCounts());
+    }
+
+    public function test_can_add_extra_with_counts(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithCounts());
+        $this->assertEmpty($this->basicTable->getExtraWithCounts());
+        $this->basicTable->addExtraWithCounts(['user', 'pets']);
+        $this->assertTrue($this->basicTable->hasExtraWithCounts());
+        $this->assertSame(['user', 'pets'], $this->basicTable->getExtraWithCounts());
+    }
+
+    public function test_can_set_extra_with_counts(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithCounts());
+        $this->assertEmpty($this->basicTable->getExtraWithCounts());
+        $this->basicTable->addExtraWithCount('test');
+        $this->assertSame(['test'], $this->basicTable->getExtraWithCounts());
+        $this->assertTrue($this->basicTable->hasExtraWithCounts());
+        $this->basicTable->setExtraWithCounts(['user', 'pets']);
+        $this->assertTrue($this->basicTable->hasExtraWithCounts());
+        $this->assertSame(['user', 'pets'], $this->basicTable->getExtraWithCounts());
+    }
+
+    public function test_no_extra_with_sums_by_default(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithSums());
+        $this->assertEmpty($this->basicTable->getExtraWithSums());
+    }
+
+    public function test_can_add_extra_with_sum(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithSums());
+        $this->assertEmpty($this->basicTable->getExtraWithSums());
+        $this->basicTable->addExtraWithSum('users', 'age');
+        $this->assertTrue($this->basicTable->hasExtraWithSums());
+        $this->assertSame([['table' => 'users', 'field' => 'age']], $this->basicTable->getExtraWithSums());
+    }
+
+    public function test_no_extra_with_avgs_by_default(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWiths());
+        $this->assertEmpty($this->basicTable->getExtraWiths());
+    }
+
+    public function test_can_add_extra_with_avg(): void
+    {
+        $this->assertFalse($this->basicTable->hasExtraWithAvgs());
+        $this->assertEmpty($this->basicTable->getExtraWithAvgs());
+        $this->basicTable->addExtraWithAvg('user', 'age');
+        $this->assertTrue($this->basicTable->hasExtraWithAvgs());
+        $this->assertSame([['table' => 'user', 'field' => 'age']], $this->basicTable->getExtraWithAvgs());
+    }
 }

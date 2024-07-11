@@ -56,6 +56,29 @@ trait WithData
 
         $this->setBuilder($this->applyFilters());
 
+        $builder = $this->getBuilder();
+
+        if ($this->hasExtraWiths()) {
+            $builder->with($this->getExtraWiths());
+        }
+
+        if ($this->hasExtraWithSums()) {
+            foreach ($this->getExtraWithSums() as $extraSum) {
+                $builder->withSum($extraSum['table'], $extraSum['field']);
+            }
+        }
+        if ($this->hasExtraWithAvgs()) {
+            foreach ($this->getExtraWithAvgs() as $extraAvg) {
+                $builder->withAvg($extraAvg['table'], $extraAvg['field']);
+            }
+        }
+
+        if ($this->hasExtraWithCounts()) {
+            $builder->withCount($this->getExtraWithCounts());
+        }
+
+        $this->setBuilder($builder);
+
         return $this->getBuilder();
 
     }
@@ -249,7 +272,8 @@ trait WithData
     public function builder(): Builder
     {
         if ($this->hasModel()) {
-            return $this->getModel()::query()->with($this->getRelationships());
+            return $this->getModel()::query()
+                ->with($this->getRelationships());
         }
 
         // If model does not exist

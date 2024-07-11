@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.3.0] - 2024-07-12
+### New Features
+- Add new columns (ArrayColumn, AvgColumn, CountColumn, SumColumn) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1761
+
 ## [v3.2.8] - 2024-07-03
 ### Bug Fixes
 - Fix hide bulk actions when empty not reflecting in frontend by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1747

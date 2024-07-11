@@ -1,6 +1,11 @@
 name: run-tests-pcov-pull
 
 on:
+  push:
+    branches:
+      - 'develop'
+      - 'development'
+      - 'master'
   pull_request:
     branches:
       - 'develop'
@@ -18,7 +23,7 @@ jobs:
         laravel: [10]
         stability: [prefer-dist]
 
-    name: PCOV-PULL - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+    name: PCOV - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-withpcov
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pcov,pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
@@ -86,7 +91,7 @@ jobs:
         run: php ./vendor/bin/paratest --cache-directory=".phpunit.cache/code-coverage" --strict-coverage --coverage-clover ./coverage.xml --processes=4
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
