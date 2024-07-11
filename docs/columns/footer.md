@@ -21,7 +21,7 @@ See also [footer component configuration](../footer/available-methods).
 
 ## Using a filter as a footer
 
-As of version 2.7, you can use a filter as a footer.
+You can use a filter as a footer.
 
 ```php
 // Example filter
