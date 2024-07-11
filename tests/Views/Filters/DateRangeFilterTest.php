@@ -88,14 +88,14 @@ final class DateRangeFilterTest extends FilterTestCase
         $filter->config(['locale' => 'fr']);
 
         $this->assertSame([
-                'allowInput' => true,
-                'altFormat' => 'F j, Y',
-                'ariaDateFormat' => 'F j, Y',
-                'dateFormat' => 'Y-m-d',
-                'earliestDate' => null,
-                'latestDate' => null,
-                'locale' => 'fr'
-            ], 
+            'allowInput' => true,
+            'altFormat' => 'F j, Y',
+            'ariaDateFormat' => 'F j, Y',
+            'dateFormat' => 'Y-m-d',
+            'earliestDate' => null,
+            'latestDate' => null,
+            'locale' => 'fr',
+        ],
             $filter->getConfigs()
         );
     }
