@@ -36,9 +36,18 @@ And you may also pass an array of attributes, which will be applied to the "butt
         ]),
 ```
 
-
 Please also see the following for other available methods:
-- [https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/available-methods](Available Methods)
-- [https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/column-selection](Column Selection)
-- [https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/secondary-header](Secondary Header)
-- [https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/footer](Footer)
+<ul>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/available-methods">Available Methods</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/column-selection">Column Selection</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/secondary-header">Secondary Header</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/footer">Footer</a>
+    </li>
+</ul>
