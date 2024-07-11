@@ -79,3 +79,10 @@ If you would like the BooleanColumn to display a plain Yes/No, you can set:
 BooleanColumn::make('Active')
     ->yesNo()
 ```
+
+
+Please also see the following for other available methods:
+- [https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/available-methods](Available Methods)
+- [https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/column-selection](Column Selection)
+- [https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/secondary-header](Secondary Header)
+- [https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/footer](Footer)
