@@ -54,7 +54,14 @@ import { Russian } from "flatpickr/dist/l10n/ru.js"
 ```
 This would allow you to use "en", "fr" or "ru" as Locale options.
 
-All matched locales are included should you include "vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js" in your build process.
+All matched locales are included should you include the file:
+"vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js"
+to your build process, by for example adding the following to your app.js
+```
+import '../../vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
+```
+Note that you should also ensure that you include flatpickr as a dependency in your package.json:
+"npm i flatpickr"
 
 ## Configuration
 By default, this filter will use a CDN to include the Flatpickr JS Library and CSS. However, you can customise this behaviour using the configuration file.
