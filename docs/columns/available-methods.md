@@ -25,7 +25,7 @@ Column::make(__('Address'))
 
 ### [Multi-column sorting](../sorting/available-methods#setsinglesortingstatus)
 
-In v2, multi-column sorting is **disabled by default**. To enable it you can set the `setSingleSortingDisabled()` method on the component.
+Multi-column sorting is **disabled by default**. To enable it you can set the `setSingleSortingDisabled()` method on the component.
 
 ```php
 public function configure(): void

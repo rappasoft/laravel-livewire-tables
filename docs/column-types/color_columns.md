@@ -1,6 +1,6 @@
 ---
 title: Color Columns
-weight: 5
+weight: 6
 ---
 
 Color columns provide an easy way to a Color in a Column
@@ -39,3 +39,19 @@ You may also specify attributes to use on the div displaying the color, to adjus
                 ];
             }),
 ```
+
+Please also see the following for other available methods:
+<ul>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/available-methods">Available Methods</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/column-selection">Column Selection</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/secondary-header">Secondary Header</a>
+    </li>
+    <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/footer">Footer</a>
+    </li>
+</ul>
