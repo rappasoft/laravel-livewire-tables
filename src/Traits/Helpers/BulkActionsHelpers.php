@@ -240,18 +240,19 @@ trait BulkActionsHelpers
     #[Computed]
     public function getBulkActionsButtonAttributes(): array
     {
-        return $this->bulkActionsButtonAttributes ?? ['default' => true];
+        return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsButtonAttributes);
+
     }
 
     #[Computed]
     public function getBulkActionsMenuAttributes(): array
     {
-        return $this->bulkActionsMenuAttributes ?? ['default' => true];
+        return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsMenuAttributes);
     }
 
     #[Computed]
     public function getBulkActionsMenuItemAttributes(): array
     {
-        return $this->bulkActionsMenuItemAttributes ?? ['default' => true];
+        return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsMenuItemAttributes);
     }
 }

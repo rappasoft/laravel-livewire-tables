@@ -16,8 +16,10 @@
             {{ 
                 $attributes->merge($this->getBulkActionsButtonAttributes)
                 ->class([
-                    'btn dropdown-toggle d-block d-md-inline' => $component->isBootstrap() && $this->getBulkActionsButtonAttributes['default'] ?? true,
-                    'inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $component->isTailwind()  && $this->getBulkActionsButtonAttributes['default'] ?? true,
+                    'btn dropdown-toggle d-block d-md-inline' => $component->isBootstrap() && $this->getBulkActionsButtonAttributes['default-styling'] ?? true,
+                    'border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $component->isTailwind()  && $this->getBulkActionsButtonAttributes['default-colors'] ?? true,
+                    'inline-flex justify-center w-full rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50' => $component->isTailwind()  && $this->getBulkActionsButtonAttributes['default-styling'] ?? true,
+
                 ])
                 ->except('default') 
             }}
@@ -55,7 +57,8 @@
                     {{ 
                         $attributes->merge($this->getBulkActionsMenuAttributes)
                         ->class([
-                            'rounded-md bg-white shadow-xs dark:bg-gray-700 dark:text-white' => $component->isTailwind() && $this->getBulkActionsMenuAttributes['default'] ?? true,
+                            'bg-white dark:bg-gray-700 dark:text-white' => $component->isTailwind() && $this->getBulkActionsMenuAttributes['default-colors'] ?? true,
+                            'rounded-md shadow-xs' => $component->isTailwind() && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
                         ])
                         ->except('default') 
                     }}
@@ -73,7 +76,8 @@
                                 {{ 
                                     $attributes->merge($this->getBulkActionsMenuItemAttributes)
                                     ->class([
-                                        'block w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 flex items-center space-x-2 dark:text-white dark:hover:bg-gray-600' => $component->isTailwind() && $this->getBulkActionsMenuItemAttributes['default'] ?? true,
+                                        'text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 dark:text-white dark:hover:bg-gray-600' => $component->isTailwind() && $this->getBulkActionsMenuItemAttributes['default-colors'] ?? true,
+                                        'block w-full px-4 py-2 text-sm leading-5 focus:outline-none flex items-center space-x-2' => $component->isTailwind() && $this->getBulkActionsMenuItemAttributes['default-styling'] ?? true,
                                     ])
                                     ->except('default') 
                                 }}
@@ -89,8 +93,8 @@
                 {{ 
                     $attributes->merge($this->getBulkActionsMenuAttributes)
                     ->class([
-                        'dropdown-menu dropdown-menu-right w-100' => $component->isBootstrap4() && $this->getBulkActionsMenuAttributes['default'] ?? true,
-                        'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5() && $this->getBulkActionsMenuAttributes['default'] ?? true,
+                        'dropdown-menu dropdown-menu-right w-100' => $component->isBootstrap4() && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
+                        'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5() && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
                     ])
                     ->except('default') 
                 }}
@@ -107,7 +111,7 @@
                         {{ 
                             $attributes->merge($this->getBulkActionsMenuItemAttributes)
                                 ->class([
-                                    'dropdown-item' => $component->isBootstrap() && $this->getBulkActionsMenuItemAttributes['default'] ?? true,
+                                    'dropdown-item' => $component->isBootstrap() && $this->getBulkActionsMenuItemAttributes['default-styling'] ?? true,
                                 ])
                                 ->except('default') 
                         }}

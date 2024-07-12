@@ -40,11 +40,11 @@ trait WithBulkActions
 
     public bool $clearSelectedOnFilter = true;
 
-    protected array $bulkActionsButtonAttributes = ['default' => true];
+    protected array $bulkActionsButtonAttributes = ['default-colors' => true, 'default-styling' => true];
 
-    protected array $bulkActionsMenuAttributes = ['default' => true];
+    protected array $bulkActionsMenuAttributes = ['default-colors' => true, 'default-styling' => true];
 
-    protected array $bulkActionsMenuItemAttributes = ['default' => true];
+    protected array $bulkActionsMenuItemAttributes = ['default-colors' => true, 'default-styling' => true];
 
     public function bulkActions(): array
     {

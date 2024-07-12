@@ -356,7 +356,8 @@ public function configure(): void
 {
     $this->setBulkActionsButtonAttributes([
         'class' => 'bg-green-500',
-        'default' => true
+        'default-colors' => true,
+        'default-styling' => true,
     ]);
 }
 ```
@@ -370,7 +371,8 @@ public function configure(): void
 {
     $this->setBulkActionsMenuAttributes([
         'class' => 'bg-green-500',
-        'default' => true
+        'default-colors' => true,
+        'default-styling' => true,    
     ]);
 }
 ```
@@ -385,7 +387,8 @@ public function configure(): void
 {
     $this->setBulkActionsMenuItemAttributes([
         'class' => 'bg-green-500',
-        'default' => true
+        'default-colors' => true,
+        'default-styling' => true,    
     ]);
 }
 ```
