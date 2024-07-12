@@ -234,5 +234,4 @@ trait BulkActionsConfiguration
 
         return $this;
     }
-
 }
