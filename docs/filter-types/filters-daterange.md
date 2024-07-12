@@ -65,6 +65,7 @@ Then you should disable injection to avoid conflicts:
     'inject_third_party_assets_enabled' => false,
 ```
 
+#### BETA
 Noting that should you require localisation, you should also include the localisation scripts in your app.js file:
 ```
 import '../../vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
@@ -77,7 +78,7 @@ If you have a locally installed version of Flatpickr already, you can set inject
     'inject_third_party_assets_enabled' => false,
 ```
 
-## Localisation
+## Localisation (BETA)
 The default installation includes only the English (en) locale.
 
 Should you wish to localise, you must include the Flatpickr locale files in your build pipeline, by including the 
