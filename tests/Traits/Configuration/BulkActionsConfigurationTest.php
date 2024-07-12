@@ -236,7 +236,7 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame(['default-colors' => true, 'default-styling' => true, 'class' => 'bg-red-500'], $this->basicTable->getBulkActionsMenuItemAttributes());
         $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
 
-        $this->basicTable->setBulkActionsMenuItemAttributes(['class' => 'bg-amber-500', 'default' => false]);
+        $this->basicTable->setBulkActionsMenuItemAttributes(['class' => 'bg-amber-500', 'default-colors' => false]);
 
         $this->assertSame(['default-colors' => false, 'default-styling' => true, 'class' => 'bg-amber-500'], $this->basicTable->getBulkActionsMenuItemAttributes());
         $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
