@@ -232,12 +232,6 @@ trait BulkActionsHelpers
     }
 
     #[Computed]
-    public function shouldAlwaysHideBulkActionsDropdownOption(): bool
-    {
-        return $this->alwaysHideBulkActionsDropdownOption ?? false;
-    }
-
-    #[Computed]
     public function getBulkActionsButtonAttributes(): array
     {
         return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsButtonAttributes);
