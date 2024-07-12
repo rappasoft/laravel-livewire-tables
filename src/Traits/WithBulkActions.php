@@ -46,7 +46,6 @@ trait WithBulkActions
 
     protected array $bulkActionsMenuItemAttributes = ['default' => true];
 
-
     public function bulkActions(): array
     {
         return property_exists($this, 'bulkActions') ? $this->bulkActions : [];

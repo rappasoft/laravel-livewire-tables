@@ -242,5 +242,4 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
 
     }
-
 }

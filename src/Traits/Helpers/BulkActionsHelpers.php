@@ -254,5 +254,4 @@ trait BulkActionsHelpers
     {
         return $this->bulkActionsMenuItemAttributes ?? ['default' => true];
     }
-
 }
