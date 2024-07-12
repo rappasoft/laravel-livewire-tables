@@ -193,4 +193,54 @@ final class BulkActionsConfigurationTest extends TestCase
 
         $this->assertSame(['default' => false, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsThCheckboxAttributes());
     }
+
+    public function test_can_set_bulk_actions_button_attributes(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsButtonAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
+
+        $this->basicTable->setBulkActionsButtonAttributes(['class' => 'bg-green-500']);
+
+        $this->assertSame(['default' => true, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsButtonAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
+
+        $this->basicTable->setBulkActionsButtonAttributes(['class' => 'bg-green-500', 'default' => false]);
+
+        $this->assertSame(['default' => false, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsButtonAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
+    }
+
+    public function test_can_set_bulk_actions_menu_attributes(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsButtonAttributes());
+
+        $this->basicTable->setBulkActionsMenuAttributes(['class' => 'bg-blue-500']);
+
+        $this->assertSame(['default' => true, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsMenuAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsButtonAttributes());
+
+        $this->basicTable->setBulkActionsMenuAttributes(['class' => 'bg-blue-500', 'default' => false]);
+
+        $this->assertSame(['default' => false, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsMenuAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsButtonAttributes());
+    }
+
+    public function test_can_set_bulk_actions_menu_item_attributes(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuItemAttributes());
+
+        $this->basicTable->setBulkActionsMenuItemAttributes(['class' => 'bg-red-500']);
+
+        $this->assertSame(['default' => true, 'class' => 'bg-red-500'], $this->basicTable->getBulkActionsMenuItemAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
+
+        $this->basicTable->setBulkActionsMenuItemAttributes(['class' => 'bg-amber-500', 'default' => false]);
+
+        $this->assertSame(['default' => false, 'class' => 'bg-amber-500'], $this->basicTable->getBulkActionsMenuItemAttributes());
+        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsMenuAttributes());
+
+    }
+
 }

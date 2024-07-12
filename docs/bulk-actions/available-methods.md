@@ -346,3 +346,82 @@ public function configure(): void
     $this->setClearSelectedOnFilterDisabled();
 }
 ```
+
+## setBulkActionsButtonAttributes
+
+You may pass an array to this method, which allows you to pass Custom Attributes into the Bulk Actions Button in the Toolbar
+
+```php
+public function configure(): void
+{
+    $this->setBulkActionsButtonAttributes([
+        'class' => 'bg-green-500',
+        'default' => true
+    ]);
+}
+```
+
+## setBulkActionsMenuAttributes
+
+You may pass an array to this method, which allows you to pass Custom Attributes into the Bulk Actions Menu
+
+```php
+public function configure(): void
+{
+    $this->setBulkActionsMenuAttributes([
+        'class' => 'bg-green-500',
+        'default' => true
+    ]);
+}
+```
+
+
+## setBulkActionsMenuItemAttributes
+
+You may pass an array to this method, which allows you to pass Custom Attributes into Items on the Bulk Actions Menu
+
+```php
+public function configure(): void
+{
+    $this->setBulkActionsMenuItemAttributes([
+        'class' => 'bg-green-500',
+        'default' => true
+    ]);
+}
+```
+
+
+## setShouldAlwaysHideBulkActionsDropdownOption
+
+Allows hiding the Bulk Actions button & menu, regardless of whether there are any items selected, or hideBulkActionsWhenEmptyEnabled behaviour
+
+```php
+public function configure(): void
+{
+    $this->setShouldAlwaysHideBulkActionsDropdownOption(true);
+}
+```
+
+
+## setShouldAlwaysHideBulkActionsDropdownOptionEnabled
+
+Allows hiding the Bulk Actions button & menu, regardless of whether there are any items selected, or hideBulkActionsWhenEmptyEnabled behaviour
+
+```php
+public function configure(): void
+{
+    $this->setShouldAlwaysHideBulkActionsDropdownOptionEnabled();
+}
+```
+
+
+## setShouldAlwaysHideBulkActionsDropdownOptionDisabled
+
+Restores the Bulk Actions to default functionality, so it will respect the hideBulkActionsWhenEmptyEnabled behaviour
+
+```php
+public function configure(): void
+{
+    $this->setShouldAlwaysHideBulkActionsDropdownOptionDisabled();
+}
+```

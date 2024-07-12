@@ -230,4 +230,29 @@ trait BulkActionsHelpers
     {
         return $this->clearSelectedOnFilter ?? true;
     }
+
+    #[Computed]
+    public function shouldAlwaysHideBulkActionsDropdownOption(): bool
+    {
+        return $this->alwaysHideBulkActionsDropdownOption ?? false;
+    }
+
+    #[Computed]
+    public function getBulkActionsButtonAttributes(): array
+    {
+        return $this->bulkActionsButtonAttributes ?? ['default' => true];
+    }
+
+    #[Computed]
+    public function getBulkActionsMenuAttributes(): array
+    {
+        return $this->bulkActionsMenuAttributes ?? ['default' => true];
+    }
+
+    #[Computed]
+    public function getBulkActionsMenuItemAttributes(): array
+    {
+        return $this->bulkActionsMenuItemAttributes ?? ['default' => true];
+    }
+
 }

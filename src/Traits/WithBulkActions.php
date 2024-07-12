@@ -40,6 +40,13 @@ trait WithBulkActions
 
     public bool $clearSelectedOnFilter = true;
 
+    protected array $bulkActionsButtonAttributes = ['default' => true];
+
+    protected array $bulkActionsMenuAttributes = ['default' => true];
+
+    protected array $bulkActionsMenuItemAttributes = ['default' => true];
+
+
     public function bulkActions(): array
     {
         return property_exists($this, 'bulkActions') ? $this->bulkActions : [];
