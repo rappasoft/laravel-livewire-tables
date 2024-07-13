@@ -55,8 +55,15 @@ By default, this filter will inject the Flatpickr JS Library and CSS. However, y
 
 ### Option 2 - Bundled
 If you choose to bundle the Tables JS/CSS (recommended) by adding the following to your build process:
+
 ```
-import 'vendor/rappasoft/livewire-tables/resources/js/laravel-livewire-tables-thirdparty.min.js';
+'vendor/rappasoft/laravel-livewire-tables/resources/js/laravel-livewire-tables-thirdparty.min.js';
+```
+
+or in your app.js
+
+```
+import '../../vendor/rappasoft/livewire-tables/resources/js/laravel-livewire-tables-thirdparty.min.js';
 ```
 
 Then you should disable injection to avoid conflicts:
@@ -66,9 +73,15 @@ Then you should disable injection to avoid conflicts:
 ```
 
 #### BETA
-Noting that should you require localisation, you should also include the localisation scripts in your app.js file:
+Noting that should you require localisation, you should also include the localisation scripts in your build
+
 ```
-import '../../vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
+'vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
+```
+
+or in your app.js
+```
+import '../../vendor/rappasoft/livewire-tables/resources/js/flatpickr-locales.js';
 ```
 
 
@@ -82,9 +95,15 @@ If you have a locally installed version of Flatpickr already, you can set inject
 The default installation includes only the English (en) locale.
 
 Should you wish to localise, you must include the Flatpickr locale files in your build pipeline, by including the 
-"vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js" to your build process, by for example adding the following to your app.js
+"vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js" to your build process:
+
 ```
-import '../../vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
+'vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
+```
+
+or in your app.js
+```
+import '../../vendor/rappasoft/livewire-tables/resources/js/flatpickr-locales.js';
 ```
 
 Or by including the specific locales that you require in your app.js (requires adding the flatpickr library to your package.json by executing "npm i flatpickr")
