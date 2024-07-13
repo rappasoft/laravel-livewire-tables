@@ -42,7 +42,7 @@ class TestCase extends Orchestra
                 ['id' => 4, 'name' => 'Bird'],
             ]);
 
-            Breed::insert([ 
+            Breed::insert([
                 ['id' => 1, 'name' => 'American Shorthair', 'species_id' => 1],
                 ['id' => 2, 'name' => 'Maine Coon', 'species_id' => 1],
                 ['id' => 3, 'name' => 'Persian', 'species_id' => 1],

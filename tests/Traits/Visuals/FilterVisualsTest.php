@@ -87,7 +87,6 @@ final class FilterVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
-
     public function test_filters_pills_separator_is_customisable(): void
     {
         Livewire::test(new class extends PetsTable

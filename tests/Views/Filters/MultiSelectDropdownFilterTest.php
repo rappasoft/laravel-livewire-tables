@@ -264,8 +264,8 @@ final class MultiSelectDropdownFilterTest extends TestCase
     public function test_can_set_separator(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
-        $this->assertSame(", ",$filter->getPillsSeparator());
+        $this->assertSame(', ', $filter->getPillsSeparator());
         $filter->setPillsSeparator('<br />');
-        $this->assertSame("<br />",$filter->getPillsSeparator());
+        $this->assertSame('<br />', $filter->getPillsSeparator());
     }
 }

@@ -229,9 +229,8 @@ final class MultiSelectFilterTest extends TestCase
     public function test_can_set_separator(): void
     {
         $filter = MultiSelectFilter::make('Active');
-        $this->assertSame(", ",$filter->getPillsSeparator());
+        $this->assertSame(', ', $filter->getPillsSeparator());
         $filter->setPillsSeparator('<br />');
-        $this->assertSame("<br />",$filter->getPillsSeparator());
+        $this->assertSame('<br />', $filter->getPillsSeparator());
     }
-
 }
