@@ -3,8 +3,6 @@ title: DateTime Filters
 weight: 4
 ---
 
-## DateTime Filters
-
 DateTime filters are HTML datetime-local elements and act the same as date filters.
 
 ```php

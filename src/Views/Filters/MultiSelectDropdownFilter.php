@@ -37,7 +37,7 @@ class MultiSelectDropdownFilter extends Filter
         return (is_string($value) || is_numeric($value)) ? $value : false;
     }
 
-    public function getFilterPillValue($value): ?string
+    public function getFilterPillValue($value):  string|array|null
     {
         $values = [];
 
@@ -52,7 +52,7 @@ class MultiSelectDropdownFilter extends Filter
             }
         }
 
-        return implode(', ', $values);
+        return $values;
     }
 
     public function isEmpty(mixed $value): bool

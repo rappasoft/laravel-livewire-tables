@@ -30,7 +30,17 @@
                             'badge rounded-pill bg-info d-inline-flex align-items-center' => $component->isBootstrap5(),
                         ])
                     >
-                        {{ $filter->getFilterPillTitle() }}: {{ $filter->getFilterPillValue($value) }}
+                        {{ $filter->getFilterPillTitle() }}: 
+                        @php( $filterPillValue = $filter->getFilterPillValue($value))
+                        @php( $separator = method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ')
+
+                        @if(is_array($filterPillValue) && !empty($filterPillValue))
+                            @foreach($filterPillValue as $filterPillArrayValue)
+                                {{ $filterPillArrayValue }}{!! $separator !!}
+                            @endforeach
+                        @else
+                            {{ $filterPillValue }}
+                        @endif
 
                         @if ($component->isTailwind())
                             <button
