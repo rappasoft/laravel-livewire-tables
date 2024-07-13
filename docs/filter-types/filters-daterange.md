@@ -101,21 +101,23 @@ If you have a locally installed version of Flatpickr already, you can set inject
 The default installation includes only the English (en) locale.
 
 ### Bundling
-Should you wish to localise, you must include the Flatpickr locale files in your build pipeline, by including the 
-"vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js" to your build process:
-
+Should you wish to localise, you must include the Flatpickr locale files in your build pipeline.  This applies to only the specific locales that you require in your app.js (requires adding the flatpickr library to your package.json by executing "npm i flatpickr --save")
 ```
-'vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
-```
-
-or in your app.js
-```
-import '../../vendor/rappasoft/livewire-tables/resources/js/flatpickr-locales.js';
-```
-
-Or by including the specific locales that you require in your app.js (requires adding the flatpickr library to your package.json by executing "npm i flatpickr --save")
-```
+import { Arabic } from "../imports/flatpickr/l10n/ar.js";
+import { Catalan } from "../imports/flatpickr/l10n/cat.js";
+import { Danish } from "../imports/flatpickr/l10n/da.js";
 import { German } from "../imports/flatpickr/l10n/de.js";
+import { Spanish } from "../imports/flatpickr/l10n/es.js";
+import { French } from "../imports/flatpickr/l10n/fr.js";
+import { Indonesian } from "../imports/flatpickr/l10n/id.js";
+import { Italian } from "../imports/flatpickr/l10n/it.js";
+import { Malaysian } from "../imports/flatpickr/l10n/ms.js";
+import { Dutch } from "../imports/flatpickr/l10n/nl.js";
+import { Portuguese } from "../imports/flatpickr/l10n/pt.js";
+import { Russian } from "../imports/flatpickr/l10n/ru.js"
+import { Thai } from "../imports/flatpickr/l10n/th.js"
+import { Turkish } from "../imports/flatpickr/l10n/tr.js"
+import { Ukrainian } from "../imports/flatpickr/l10n/uk.js"
 ```
 
 ### CDN
