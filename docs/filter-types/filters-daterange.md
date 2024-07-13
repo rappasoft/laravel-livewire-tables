@@ -72,20 +72,26 @@ Then you should disable injection to avoid conflicts:
     'inject_third_party_assets_enabled' => false,
 ```
 
-#### BETA
-Noting that should you require localisation, you should also include the localisation scripts in your build
+### Option 3 - CDN
+You must ensure that Flatpickr is present PRIOR to the tables loading.  For example, to add Flatpickr with the Spanish locale, ensure that the following is present in your Layout head section.  Noting the "async" presence to ensure that the script is present before a page renders.
 
-```
-'vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js';
-```
+It is typically recommended not to utilise the CDN approach, as changes to core code may impact behaviour, and you may need to implement changes to your CSP if present.
 
-or in your app.js
+If using the CDN approach, ensure the following config matches:
 ```
-import '../../vendor/rappasoft/livewire-tables/resources/js/flatpickr-locales.js';
+    'inject_third_party_assets_enabled' => false,
 ```
 
+Then include the following in your layout:
+```
+// Flatpickr Core Script
+<script src="https://npmcdn.com/flatpickr" async></script>
 
-### Option 3 - Locally Installed
+// Flatpickr Core CSS
+<link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css">
+```
+
+### Option 4 - Locally Installed
 If you have a locally installed version of Flatpickr already, you can set injection to false, and your local version will be used instead.
 ```
     'inject_third_party_assets_enabled' => false,
@@ -115,7 +121,7 @@ import { German } from "../imports/flatpickr/l10n/de.js";
 ### CDN
 You can also add locales using the Flatpickr CDN, ensuring that these are loaded before the page renders.
 
-For example to add German (de), ensure that the following is in the "head" section of your layout:
+For example to add German (de), ensure that the following is in the "head" section of your layout, ideally before your app.js
 ```
 <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js" async></script>
 ```
