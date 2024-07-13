@@ -8,6 +8,8 @@ use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait IsArrayFilter
 {
+    public string $pillsSeparator = ', ';
+
     /**
      * Get the filter default options.
      */
@@ -31,5 +33,17 @@ trait IsArrayFilter
         }
 
         return empty($value);
+    }
+
+    public function getPillsSeparator(): string
+    {
+        return $this->pillsSeparator ?? ', ';
+    }
+
+    public function setPillsSeparator(string $pillsSeparator): self
+    {
+        $this->pillsSeparator = $pillsSeparator;
+
+        return $this;
     }
 }

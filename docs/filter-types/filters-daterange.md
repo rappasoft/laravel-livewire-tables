@@ -3,8 +3,6 @@ title: DateRange Filters
 weight: 3
 ---
 
-## DateRange Filters
-
 DateRange filters are Flatpickr based components, and simply filtering by a date range.  If you would like to more smoothly filter your query by a start and end date, you can use the DateRangeFilter:
 
 ```php

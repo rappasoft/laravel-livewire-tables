@@ -3,8 +3,6 @@ title: Date Filters
 weight: 2
 ---
 
-## Date Filters
-
 Date filters are HTML date elements.
 
 ```php

@@ -3,8 +3,6 @@ title: Select Filters
 weight: 9
 ---
 
-## Select Filters
-
 Select filters are a simple dropdown list. The user selects one choice from the list.
 
 ```php
