@@ -94,6 +94,7 @@ If you have a locally installed version of Flatpickr already, you can set inject
 ## Localisation (BETA)
 The default installation includes only the English (en) locale.
 
+### Bundling
 Should you wish to localise, you must include the Flatpickr locale files in your build pipeline, by including the 
 "vendor/rappasoft/laravel-livewire-tables/resources/js/flatpickr-locales.js" to your build process:
 
@@ -106,7 +107,15 @@ or in your app.js
 import '../../vendor/rappasoft/livewire-tables/resources/js/flatpickr-locales.js';
 ```
 
-Or by including the specific locales that you require in your app.js (requires adding the flatpickr library to your package.json by executing "npm i flatpickr")
+Or by including the specific locales that you require in your app.js (requires adding the flatpickr library to your package.json by executing "npm i flatpickr --save")
 ```
 import { German } from "../imports/flatpickr/l10n/de.js";
+```
+
+### CDN
+You can also add locales using the Flatpickr CDN, ensuring that these are loaded before the page renders.
+
+For example to add German (de), ensure that the following is in the "head" section of your layout:
+```
+<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js" async></script>
 ```
