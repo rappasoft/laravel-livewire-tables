@@ -148,13 +148,12 @@ final class FilterVisualsTest extends TestCase
                             return $builder->whereIn('species_id', $values);
                         })
                         ->setPillsSeparator('<br />'),
-        
+
                 ];
             }
-        
         })
-        ->set('filterComponents.species', [1,2])
-        ->assertDontSee('Bulk Actions');
+            ->set('filterComponents.species', [1, 2])
+            ->assertDontSee('Bulk Actions');
     }
 
     /*public function test_filter_events_apply_correctly(): void

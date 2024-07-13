@@ -86,7 +86,7 @@ class NumberRangeFilter extends Filter
         return [];
     }
 
-    public function getFilterPillValue($values):  string|array|null
+    public function getFilterPillValue($values): string|array|null
     {
         if ($this->validate($values)) {
             return __('Min:').$values['min'].', '.__('Max:').$values['max'];

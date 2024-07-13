@@ -46,5 +46,4 @@ trait IsArrayFilter
 
         return $this;
     }
-
 }
