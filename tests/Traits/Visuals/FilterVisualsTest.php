@@ -87,29 +87,6 @@ final class FilterVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
-    public function test_filters_pills_separator_is_customisable(): void
-    {
-        Livewire::test(new class extends PetsTable
-        {
-            public function configure(): void
-            {
-                $this->setPrimaryKey('id')
-                    ->setShouldAlwaysHideBulkActionsDropdownOptionEnabled();
-            }
-
-            public function bulkActions(): array
-            {
-                return ['exportBulk' => 'exportBulk'];
-            }
-
-            public function exportBulk($items)
-            {
-                return $items;
-            }
-        })->set('filterComponents.invalid-filter', [1])
-            ->assertHasNoErrors()
-            ->assertDontSee('Applied Filters');
-    }
 
     public function test_filters_pills_separator_is_customisable(): void
     {
@@ -123,29 +100,29 @@ final class FilterVisualsTest extends TestCase
             public function filters(): array
             {
                 return [
-                    MultiSelectFilter::make('Breed')
+                    \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter::make('Breed')
                         ->options(
-                            Breed::query()
+                            \Rappasoft\LaravelLivewireTables\Tests\Models\Breed::query()
                                 ->orderBy('name')
                                 ->get()
                                 ->keyBy('id')
                                 ->map(fn ($breed) => $breed->name)
                                 ->toArray()
                         )
-                        ->filter(function (Builder $builder, array $values) {
-                            return $builder->whereIn('breed_id', $values);
+                        ->filter(function (\Illuminate\Database\Eloquent\Builder $builder, array $values) {
+                            return $builder->whereIn('pets.breed_id', $values);
                         }),
-                    MultiSelectDropdownFilter::make('Species')
+                    \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter::make('Species')
                         ->options(
-                            Species::query()
+                            \Rappasoft\LaravelLivewireTables\Tests\Models\Species::query()
                                 ->orderBy('name')
                                 ->get()
                                 ->keyBy('id')
                                 ->map(fn ($species) => $species->name)
                                 ->toArray()
                         )
-                        ->filter(function (Builder $builder, array $values) {
-                            return $builder->whereIn('species_id', $values);
+                        ->filter(function (\Illuminate\Database\Eloquent\Builder $builder, array $values) {
+                            return $builder->whereIn('pets.species_id', $values);
                         })
                         ->setPillsSeparator('<br />'),
 
@@ -153,7 +130,19 @@ final class FilterVisualsTest extends TestCase
             }
         })
             ->set('filterComponents.species', [1, 2])
-            ->assertDontSee('Bulk Actions');
+            ->assertSeeHtmlInOrder([
+                'wire:key="table-filter-pill-species"',
+                'Cat',
+                '<br />',
+                'Dog',
+                '<br />',
+            ])
+            ->set('filterComponents.breed', [1, 2])
+            ->assertSeeHtmlInOrder([
+                'wire:key="table-filter-pill-breed"',
+                'American Shorthair,',
+                'Maine Coon',
+            ]);
     }
 
     /*public function test_filter_events_apply_correctly(): void

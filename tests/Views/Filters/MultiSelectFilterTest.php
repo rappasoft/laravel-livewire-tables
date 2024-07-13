@@ -224,6 +224,14 @@ final class MultiSelectFilterTest extends TestCase
 
         $this->assertSame('live.debounce.500ms', $filter->getWireableMethod());
         $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
-
     }
+
+    public function test_can_set_separator(): void
+    {
+        $filter = MultiSelectFilter::make('Active');
+        $this->assertSame(", ",$filter->getPillsSeparator());
+        $filter->setPillsSeparator('<br />');
+        $this->assertSame("<br />",$filter->getPillsSeparator());
+    }
+
 }

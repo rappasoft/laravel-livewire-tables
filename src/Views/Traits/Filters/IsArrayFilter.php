@@ -8,7 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait IsArrayFilter
 {
-    public string $pillsSeparator = ',';
+    public string $pillsSeparator = ', ';
 
     /**
      * Get the filter default options.
