@@ -87,6 +87,7 @@ return [
             'minRange' => 0, // The minimum possible value
             'maxRange' => 100, // The maximum possible value
             'suffix' => '', // A suffix to append to the values when displayed
+            'prefix' => '', // A prefix to prepend to the values when displayed
         ],
     ],
     /**
@@ -105,7 +106,7 @@ return [
     ],
 
     /**
-     * Configuration options for MultiSelectFilter
+     * Configuration options for MultiSelectDropdownFilter
      */
     'multiSelectDropdownFilter' => [
         'defaultOptions' => [],
