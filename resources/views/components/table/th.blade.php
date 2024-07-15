@@ -70,11 +70,11 @@
 
                     <span class="relative d-flex align-items-center">
                         @if ($direction === 'asc')
-                            <x-heroicon-o-chevron-up class="ml-1" style="width:1em;height:1em;" />
+                            <x-heroicon-o-chevron-up class="ms-1" style="width:1em;height:1em;" />
                         @elseif ($direction === 'desc')
-                            <x-heroicon-o-chevron-down class="ml-1" style="width:1em;height:1em;" />
+                            <x-heroicon-o-chevron-down class="ms-1" style="width:1em;height:1em;" />
                         @else
-                            <x-heroicon-o-chevron-up-down class="ml-1" style="width:1em;height:1em;" />
+                            <x-heroicon-o-chevron-up-down class="ms-1" style="width:1em;height:1em;" />
                         @endif
                     </span>
                 </div>
