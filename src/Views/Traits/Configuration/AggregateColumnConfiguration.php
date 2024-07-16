@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
 use Illuminate\Database\Eloquent\{Builder, Model};
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use Illuminate\Support\Str;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait AggregateColumnConfiguration
 {
