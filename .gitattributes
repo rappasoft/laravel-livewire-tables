@@ -29,11 +29,14 @@
 # Exclude unminified versions of files
 /resources/js/laravel-livewire-tables-thirdparty.js     export-ignore
 /resources/js/laravel-livewire-tables.js                export-ignore
+/resources/js/partials/filter-date-range.js             export-ignore
+/resources/js/partials/filter-number-range.js           export-ignore
+/resources/js/partials/reorder.js                       export-ignore
 /resources/css/laravel-livewire-tables-thirdparty.css   export-ignore
 /resources/css/laravel-livewire-tables.css              export-ignore
 /resources/css/numberRange.css                          export-ignore
 /resources/css/numericSlider.css                        export-ignore
 /resources/css/flatpickr.css                            export-ignore
-/resources/js/partials/filter-date-range.js             export-ignore
-/resources/js/partials/filter-number-range.js           export-ignore
-/resources/js/partials/reorder.js                       export-ignore
+/resources/css/number-range.css                         export-ignore
+/resources/css/loading.css                              export-ignore
+/resources/css/draggable.css                            export-ignore
