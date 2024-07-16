@@ -60,14 +60,20 @@ document.addEventListener('alpine:init', () => {
         defaultMin: filterConfig['minRange'],
         defaultMax: filterConfig['maxRange'],
         restrictUpdates: false,
-        updateStyles() {
+        initialiseStyles()
+        {
             let numRangeFilterContainer = document.getElementById(parentElementPath);
-            let currentFilterMin = document.getElementById(childElementRoot + "-min");
-            let currentFilterMax = document.getElementById(childElementRoot + "-max");
-            numRangeFilterContainer.style.setProperty('--value-a', currentFilterMin.value);
-            numRangeFilterContainer.style.setProperty('--text-value-a', JSON.stringify(currentFilterMin.value));
-            numRangeFilterContainer.style.setProperty('--value-b', currentFilterMax.value);
-            numRangeFilterContainer.style.setProperty('--text-value-b', JSON.stringify(currentFilterMax.value));
+            numRangeFilterContainer.style.setProperty('--value-a', this.wireValues['min'] ?? this.filterMin);
+            numRangeFilterContainer.style.setProperty('--text-value-a', JSON.stringify(this.wireValues['min'] ?? this.filterMin));
+            numRangeFilterContainer.style.setProperty('--value-b', this.wireValues['max'] ?? this.filterMax);
+            numRangeFilterContainer.style.setProperty('--text-value-b', JSON.stringify(this.wireValues['max'] ?? this.filterMax));
+        },
+        updateStyles(filterMin, filterMax) {
+            let numRangeFilterContainer = document.getElementById(parentElementPath);
+            numRangeFilterContainer.style.setProperty('--value-a', filterMin);
+            numRangeFilterContainer.style.setProperty('--text-value-a', JSON.stringify(filterMin));
+            numRangeFilterContainer.style.setProperty('--value-b', filterMax);
+            numRangeFilterContainer.style.setProperty('--text-value-b', JSON.stringify(filterMax));
         },
         setupWire() {
             if (this.wireValues !== undefined) {
@@ -77,7 +83,7 @@ document.addEventListener('alpine:init', () => {
                 this.filterMin = this.originalMin = this.defaultMin;
                 this.filterMax = this.originalMax = this.defaultMax;
             }
-            this.updateStyles();
+            this.updateStyles(this.filterMin, this.filterMax);
         },
         allowUpdates() {
             this.updateWire();
@@ -95,7 +101,7 @@ document.addEventListener('alpine:init', () => {
                 this.originalMin = tmpFilterMin;
                 this.originalMax = tmpFilterMax;
             }
-            this.updateStyles();
+            this.updateStyles(this.filterMin,this.filterMax);
         },
         updateWireable() {
             if (this.hasUpdate) {
@@ -103,9 +109,9 @@ document.addEventListener('alpine:init', () => {
                 this.wireValues = { 'min': this.filterMin, 'max': this.filterMax };
                 wire.set('filterComponents.' + filterKey, this.wireValues);
             }
-    
         },
         init() {
+            this.initialiseStyles();
             this.setupWire();
             this.$watch('allFilters', value => this.setupWire());
         },

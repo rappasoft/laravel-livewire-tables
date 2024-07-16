@@ -3,8 +3,6 @@ title: NumberRange Filters
 weight: 7
 ---
 
-## NumberRange Filters
-
 NumberRange filters allow for a minimum and maximum value to be input on a single slider.
 
 ```php
@@ -22,6 +20,7 @@ public function filters(): array
                 'minRange' => 0,
                 'maxRange' => 100,
                 'suffix' => '%',
+                'prefix' => '$',
             ])
             ->filter(function (Builder $builder, array $values) {
                 $builder->where('users.success_rate', '>=', intval($values['min']))
@@ -34,4 +33,6 @@ public function filters(): array
 
 The default values should be set in the options() method.
 
-You may also specify a minimum and maximum range in the config() options, and should you wish to use real values instead of a percentage, you can change the "suffix" to a metric of your choosing.
+You may also specify a minimum and maximum range in the config() options, and should you wish to use real values instead of a percentage.
+You can change the "suffix" to a metric of your choosing.
+You can change the "prefix" to an item of your choosing (e.g $/£/€)

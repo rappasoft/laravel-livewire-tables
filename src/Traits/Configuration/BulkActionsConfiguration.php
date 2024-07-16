@@ -213,4 +213,25 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    public function setBulkActionsButtonAttributes(array $bulkActionsButtonAttributes): self
+    {
+        $this->bulkActionsButtonAttributes = [...$this->bulkActionsButtonAttributes, ...$bulkActionsButtonAttributes];
+
+        return $this;
+    }
+
+    public function setBulkActionsMenuAttributes(array $bulkActionsMenuAttributes): self
+    {
+        $this->bulkActionsMenuAttributes = [...$this->bulkActionsMenuAttributes, ...$bulkActionsMenuAttributes];
+
+        return $this;
+    }
+
+    public function setBulkActionsMenuItemAttributes(array $bulkActionsMenuItemAttributes): self
+    {
+        $this->bulkActionsMenuItemAttributes = [...$this->bulkActionsMenuItemAttributes, ...$bulkActionsMenuItemAttributes];
+
+        return $this;
+    }
 }

@@ -28,7 +28,7 @@ class DateFilter extends Filter
         return $value;
     }
 
-    public function getFilterPillValue($value): ?string
+    public function getFilterPillValue($value): string|array|null
     {
         if ($this->validate($value)) {
             return DateTime::createFromFormat('Y-m-d', $value)->format($this->getConfig('pillFormat'));

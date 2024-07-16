@@ -3,8 +3,6 @@ title: Number Filters
 weight: 8
 ---
 
-## Number Filters
-
 Number filters are just HTML number inputs.
 
 ```php

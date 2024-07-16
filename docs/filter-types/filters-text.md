@@ -3,8 +3,6 @@ title: Text Filters
 weight: 10
 ---
 
-## Text Filters
-
 Text filters are just HTML text fields.
 
 ```php

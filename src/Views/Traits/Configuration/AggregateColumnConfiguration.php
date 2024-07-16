@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
 use Illuminate\Database\Eloquent\{Builder, Model};
+use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait AggregateColumnConfiguration
@@ -40,10 +41,10 @@ trait AggregateColumnConfiguration
     {
         $this->label(function ($row, Column $column) {
             if ($this->hasForeignColumn()) {
-                return $row->{$this->getDataSource().'_'.$this->getAggregateMethod().'_'.$this->getForeignColumn()};
+                return $row->{Str::snake($this->getDataSource()).'_'.$this->getAggregateMethod().'_'.$this->getForeignColumn()};
             }
 
-            return $row->{$this->getDataSource().'_'.$this->getAggregateMethod()};
+            return $row->{Str::snake($this->getDataSource()).'_'.$this->getAggregateMethod()};
         });
 
     }
