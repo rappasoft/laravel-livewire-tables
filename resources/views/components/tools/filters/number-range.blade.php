@@ -20,15 +20,15 @@
                 style='--min:{{ $minRange }};
                 --max:{{ $maxRange }};
                 --suffix:"{{ $filter->getConfig('suffix') }}";
-                ' x-init="updateStyles">
+                '>
 
                 <input type="range" min="{{ $minRange }}" max="{{ $maxRange }}" value="{{ $currentMin }}"
-                    id="{{ $tableName }}-numberRange-{{ $filterKey }}-min" x-model='filterMin' x-on:change="updateWire()" 
+                    id="{{ $tableName }}-numberRange-{{ $filterKey }}-min" x-model='filterMin' x-on:change="updateWire()"  
                     oninput="this.parentNode.style.setProperty('--value-a',this.value); this.parentNode.style.setProperty('--text-value-a', JSON.stringify(this.value))"
                     />
                 <output></output>
                 <input type="range" min="{{ $minRange }}" max="{{ $maxRange }}" value="{{ $currentMax }}"
-                    id="{{ $tableName }}-numberRange-{{ $filterKey }}-max" x-model='filterMax' x-on:change="updateWire()"
+                    id="{{ $tableName }}-numberRange-{{ $filterKey }}-max" x-model='filterMax' x-on:change="updateWire(); "
                     oninput="this.parentNode.style.setProperty('--value-b',this.value); this.parentNode.style.setProperty('--text-value-b', JSON.stringify(this.value))"
                     />
                 <output></output>
