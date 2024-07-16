@@ -7,7 +7,7 @@
         @endif
 
         <x-livewire-tables::tools>
-            @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
+            @if ($this->sortingPillsAreEnabled() && $this->hasSorts())
                 <x-livewire-tables::tools.sorting-pills />
             @endif
             @if($this->filtersAreEnabled() && $this->filterPillsAreEnabled())
