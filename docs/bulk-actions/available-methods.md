@@ -184,61 +184,6 @@ public function configure(): void
 }
 ```
 
-## setBulkActionsThAttributes
-
-You may pass an array to this method, which allows you to pass Custom Attributes into the table header
-
-```php
-public function configure(): void
-{
-    $this->setBulkActionsThAttributes([
-        'class' => 'bg-red-500',
-        'default' => false
-    ]);
-}
-```
-
-## setBulkActionsThCheckboxAttributes
-
-You may pass an array to this method, which allows you to pass Custom Attributes into the Select All/None checkbox in the Table Header
-
-```php
-public function configure(): void
-{
-    $this->setBulkActionsThCheckboxAttributes([
-        'class' => 'bg-blue-500',
-        'default' => false
-    ]);
-}
-```
-
-## setBulkActionsTdAttributes
-
-You may pass an array to this method, which allows you to pass Custom Attributes into the td containing the Bulk Actions Checkbox for the row
-
-```php
-public function configure(): void
-{
-    $this->setBulkActionsTdAttributes([
-        'class' => 'bg-green-500',
-        'default' => true
-    ]);
-}
-```
-
-## setBulkActionsTdCheckboxAttributes
-
-You may pass an array to this method, which allows you to pass Custom Attributes into the Bulk Actions Checkbox for the row
-
-```php
-public function configure(): void
-{
-    $this->setBulkActionsTdCheckboxAttributes([
-        'class' => 'bg-green-500',
-        'default' => true
-    ]);
-}
-```
 
 ## setShouldAlwaysHideBulkActionsDropdownOption
 

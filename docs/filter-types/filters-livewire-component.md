@@ -3,8 +3,6 @@ title: Livewire Custom Filter (Beta)
 weight: 11
 ---
 
-## Livewire Custom Filter
-
 **IN BETA**
 This feature is currently in beta, and use in production is not recommended.
 

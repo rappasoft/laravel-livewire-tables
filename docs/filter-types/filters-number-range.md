@@ -3,8 +3,6 @@ title: NumberRange Filters
 weight: 7
 ---
 
-## NumberRange Filters
-
 NumberRange filters allow for a minimum and maximum value to be input on a single slider.
 
 ```php

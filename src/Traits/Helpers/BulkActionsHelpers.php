@@ -230,4 +230,23 @@ trait BulkActionsHelpers
     {
         return $this->clearSelectedOnFilter ?? true;
     }
+
+    #[Computed]
+    public function getBulkActionsButtonAttributes(): array
+    {
+        return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsButtonAttributes);
+
+    }
+
+    #[Computed]
+    public function getBulkActionsMenuAttributes(): array
+    {
+        return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsMenuAttributes);
+    }
+
+    #[Computed]
+    public function getBulkActionsMenuItemAttributes(): array
+    {
+        return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsMenuItemAttributes);
+    }
 }
