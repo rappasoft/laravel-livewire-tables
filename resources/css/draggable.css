@@ -1,0 +1,24 @@
+.laravel-livewire-tables-highlight {
+    border-style: solid !important;
+    border-top-width: 2px !important;
+    border-bottom-width: 2px !important;
+    border-color: var(--rappasoft-table-highlight-color, rgb(255 255 255)) !important;
+}
+
+.laravel-livewire-tables-highlight-top {
+    border-style: solid !important;
+    border-top-width: 2px !important;
+    border-bottom-width: 0px !important;
+    border-color: var(--rappasoft-table-top-highlight-color, var(--rappasoft-table-highlight-color, rgb(255 255 255))) !important;
+}
+
+.laravel-livewire-tables-highlight-bottom {
+    border-style: solid !important;
+    border-top-width: 0px !important;
+    border-bottom-width: 2px !important;
+    border-color: var(--rappasoft-table-bottom-highlight-color, var(--rappasoft-table-highlight-color, rgb(255 255 255))) !important;
+}
+
+.laravel-livewire-table-dragging {
+    opacity: 0.5 !important;
+}
