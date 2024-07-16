@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.3.1] - 2024-07-16
+### Bug Fixes
+- Fix NumberRangeFilter initial state when loaded by querystring by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1774
+
+### New Features
+- Set a Prefix for NumberRangeFilter by @RenoLooijmans in https://github.com/rappasoft/laravel-livewire-tables/pull/1773
+- Add Separator customisation for Array Filters for FilterPills by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1772
+- Add bulk actions button/dropdown customisations by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1771
+
 ## [v3.3.0] - 2024-07-11
 ### New Features
 - Add new columns (ArrayColumn, AvgColumn, CountColumn, SumColumn) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1761
