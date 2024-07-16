@@ -5,6 +5,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ## [v3.3.1] - 2024-07-16
 ### Bug Fixes
 - Fix NumberRangeFilter initial state when loaded by querystring by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1774
+- Fix SnakeCase issue with snake-cased relations for AggregateColumn types (AvgColumn, CountColumn, SumColumn) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1777
 
 ### New Features
 - Set a Prefix for NumberRangeFilter by @RenoLooijmans in https://github.com/rappasoft/laravel-livewire-tables/pull/1773
