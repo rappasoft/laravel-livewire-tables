@@ -13,7 +13,7 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ViewComponentColumnHelp
 class ViewComponentColumn extends Column
 {
     use ViewComponentColumnConfiguration,
-    ViewComponentColumnHelpers;
+        ViewComponentColumnHelpers;
 
     protected string $componentView;
 
@@ -44,9 +44,10 @@ class ViewComponentColumn extends Column
                 throw new DataTableConfigurationException('The return type of callback must be an array');
             }
         }
+
         return \Illuminate\Support\Facades\Blade::render(
             '<div>
-                <x-'. $this->getComponentView() . ' ' . new ComponentAttributeBag($attributes).' />
+                <x-'.$this->getComponentView().' '.new ComponentAttributeBag($attributes).' />
             </div>');
     }
 }

@@ -10,5 +10,4 @@ trait ViewComponentColumnConfiguration
 
         return $this;
     }
-
 }
