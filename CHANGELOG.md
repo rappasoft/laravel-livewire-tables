@@ -17,6 +17,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Add new columns (ArrayColumn, AvgColumn, CountColumn, SumColumn) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1761
 - Add new column WireLinkColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1763
 - Add Option to Retain Selected when Searching/Filtering by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1762
+- Add Option to set locale and default date to DateRangeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1766
 
 ## [v3.2.8] - 2024-07-03
 ### Bug Fixes
