@@ -137,13 +137,11 @@
 
 .range-slider::before {
     --before: 1;
-    --at-edge: var(--thumb-close-to-min);
     counter-reset: x var(--min);
     left: var(--offset);
 }
 
 .range-slider::after {
-    --at-edge: var(--thumb-close-to-max);
     counter-reset: x var(--max);
     right: var(--offset);
 }
