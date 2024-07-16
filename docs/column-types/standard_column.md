@@ -29,4 +29,3 @@ A standard Column has a multitude of different options, making it simple for you
     </li>
 
 </ul>
-
