@@ -2,7 +2,8 @@
     $filterKey = $filter->getKey();
     $currentMin = $minRange = $filter->getConfig('minRange');
     $currentMax = $maxRange = $filter->getConfig('maxRange');
-    $suffix = $filter->getConfig('suffix');
+    $suffix = $filter->hasConfig('suffix') ? '--suffix:"'. $filter->getConfig('suffix') .'";' : '';
+    $prefix = $filter->hasConfig('prefix') ? '--prefix:"'.$filter->getConfig('prefix').'";' : '';
 @endphp
 <div id="{{ $tableName }}-numberRange-{{ $filterKey }}" x-data="numberRangeFilter($wire,'{{ $filterKey }}', '{{ $tableName }}-numberRange-{{ $filterKey }}-wrapper', @js($filter->getConfigs()), '{{ $tableName }}-numberRange-{{ $filterKey }}')" x-on:mousedown.away.throttle.2000ms="updateWireable" x-on:touchstart.away.throttle.2000ms="updateWireable" x-on:mouseleave.throttle.2000ms="updateWireable">
     <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
@@ -19,7 +20,7 @@
                 'range-slider flat' => $isTailwind,
                 'range-slider flat w-100' => $isBootstrap,
             ])
-            style=' --min:{{ $minRange }}; --max:{{ $maxRange }}; --suffix:"{{ $suffix }}";'
+            style=' --min:{{ $minRange }}; --max:{{ $maxRange }}; {{ $suffix . $prefix }}'
         >
             <input type="range" min="{{ $minRange }}" max="{{ $maxRange }}" value="{{ $currentMin }}"
                 id="{{ $tableName }}-numberRange-{{ $filterKey }}-min" x-model='filterMin' x-on:change="updateWire()"  
