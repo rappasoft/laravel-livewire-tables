@@ -441,5 +441,4 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame(['default-styling' => true, 'default-colors' => true], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
 
     }
-
 }
