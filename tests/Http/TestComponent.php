@@ -21,8 +21,7 @@ class TestComponent extends Component
     public function render(): View|Closure|string
     {
         return \Illuminate\Support\Facades\Blade::render(
-            "<div>". ($this->testItem ?? 'Unknown')."</div>");
+            '<div>'.($this->testItem ?? 'Unknown').'</div>');
 
     }
-
 }

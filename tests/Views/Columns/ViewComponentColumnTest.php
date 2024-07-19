@@ -20,10 +20,10 @@ final class ViewComponentColumnTest extends TestCase
     public function test_can_have_component_view(): void
     {
         $column = ViewComponentColumn::make('Age 2', 'age')
-                    ->component('test-component')
-                    ->attributes(fn ($value, $row, Column $column) => [
-                        'age' => $row->age
-                    ]);
+            ->component('test-component')
+            ->attributes(fn ($value, $row, Column $column) => [
+                'age' => $row->age,
+            ]);
         $this->assertTrue($column->hasComponentView());
     }
 
@@ -32,11 +32,11 @@ final class ViewComponentColumnTest extends TestCase
         $this->expectException(DataTableConfigurationException::class);
 
         $column = ViewComponentColumn::make('Age 2', 'age')
-                    ->attributes(fn ($value, $row, Column $column) => [
-                        'age' => $row->age
-                    ]);
+            ->attributes(fn ($value, $row, Column $column) => [
+                'age' => $row->age,
+            ]);
         $contents = $column->getContents(Pet::find(1));
-        $this->assertSame("<div>2420</div>", $contents);
+        $this->assertSame('<div>2420</div>', $contents);
 
     }
 
@@ -44,13 +44,12 @@ final class ViewComponentColumnTest extends TestCase
     {
 
         $column = ViewComponentColumn::make('Age 2', 'age')
-                    ->component('test-component')
-                    ->attributes(fn ($value, $row, Column $column) => [
-                        'age' => $row->age
-                    ]);
+            ->component('test-component')
+            ->attributes(fn ($value, $row, Column $column) => [
+                'age' => $row->age,
+            ]);
         $contents = $column->getContents(Pet::find(1));
-        $this->assertSame("<div>2420</div>", $contents);
+        $this->assertSame('<div>2420</div>', $contents);
 
     }
-
 }
