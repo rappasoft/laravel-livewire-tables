@@ -34,6 +34,7 @@ trait CollapsingColumnConfiguration
 
         return $this;
     }
+
     /**
      * Used to set attributes for the Collapsed Column Expand Button
      */
@@ -43,5 +44,4 @@ trait CollapsingColumnConfiguration
 
         return $this;
     }
-
 }

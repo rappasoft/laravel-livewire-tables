@@ -28,18 +28,18 @@ trait CollapsingColumnHelpers
 
     /**
      * Retrieves attributes for the Collapsed Column Collapse Button
-     * 
+     *
      * @return array<mixed>
      */
     #[Computed]
     public function getCollapsingColumnButtonCollapseAttributes(): array
     {
-        return [ ...['default-styling' => true, 'default-colors' => true], ...$this->collapsingColumnButtonCollapseAttributes];
+        return [...['default-styling' => true, 'default-colors' => true], ...$this->collapsingColumnButtonCollapseAttributes];
     }
 
     /**
      * Retrieves attributes for the Collapsed Column Expand Button
-     * 
+     *
      * @return array<mixed>
      */
     #[Computed]
@@ -47,5 +47,4 @@ trait CollapsingColumnHelpers
     {
         return [...['default-styling' => true, 'default-colors' => true], ...$this->collapsingColumnButtonExpandAttributes];
     }
-
 }

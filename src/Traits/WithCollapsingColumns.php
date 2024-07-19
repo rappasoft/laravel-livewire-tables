@@ -15,6 +15,4 @@ trait WithCollapsingColumns
     protected array $collapsingColumnButtonCollapseAttributes = ['default-styling' => true, 'default-colors' => true];
 
     protected array $collapsingColumnButtonExpandAttributes = ['default-styling' => true, 'default-colors' => true];
-
-
 }
