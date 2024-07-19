@@ -27,7 +27,7 @@ trait CollapsingColumnConfiguration
 
     /**
      * Used to set attributes for the Collapsed Column Collapse Button
-     * 
+     *
      * @param  array<mixed>  $collapsingColumnButtonCollapseAttributes
      */
     public function setCollapsingColumnButtonCollapseAttributes(array $collapsingColumnButtonCollapseAttributes): self
@@ -39,7 +39,7 @@ trait CollapsingColumnConfiguration
 
     /**
      * Used to set attributes for the Collapsed Column Expand Button
-     * 
+     *
      * @param  array<mixed>  $collapsingColumnButtonExpandAttributes
      */
     public function setCollapsingColumnButtonExpandAttributes(array $collapsingColumnButtonExpandAttributes): self
