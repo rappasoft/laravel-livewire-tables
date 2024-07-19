@@ -11,4 +11,10 @@ trait WithCollapsingColumns
     use CollapsingColumnHelpers;
 
     protected bool $collapsingColumnsStatus = true;
+
+    protected array $collapsingColumnButtonCollapseAttributes = ['default-styling' => true, 'default-colors' => true];
+
+    protected array $collapsingColumnButtonExpandAttributes = ['default-styling' => true, 'default-colors' => true];
+
+
 }

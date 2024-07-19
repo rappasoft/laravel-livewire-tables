@@ -24,4 +24,24 @@ trait CollapsingColumnConfiguration
 
         return $this;
     }
+
+    /**
+     * Used to set attributes for the Collapsed Column Collapse Button
+     */
+    public function setCollapsingColumnButtonCollapseAttributes(array $collapsingColumnButtonCollapseAttributes): self
+    {
+        $this->collapsingColumnButtonCollapseAttributes = [...$this->collapsingColumnButtonCollapseAttributes, ...$collapsingColumnButtonCollapseAttributes];
+
+        return $this;
+    }
+    /**
+     * Used to set attributes for the Collapsed Column Expand Button
+     */
+    public function setCollapsingColumnButtonExpandAttributes(array $collapsingColumnButtonExpandAttributes): self
+    {
+        $this->collapsingColumnButtonExpandAttributes = [...$this->collapsingColumnButtonExpandAttributes, ...$collapsingColumnButtonExpandAttributes];
+
+        return $this;
+    }
+
 }

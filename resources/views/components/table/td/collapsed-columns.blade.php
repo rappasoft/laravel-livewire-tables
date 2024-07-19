@@ -18,8 +18,26 @@
                     x-cloak x-show="!currentlyReorderingStatus"
                     x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $tableName }}', 'row': {{ $rowIndex }}}); open = !open"
                 >
-                    <x-heroicon-o-plus-circle x-cloak x-show="!open" class="text-green-600 h-6 w-6" />
-                    <x-heroicon-o-minus-circle x-cloak x-show="open" class="text-yellow-600 h-6 w-6" />
+                    <x-heroicon-o-plus-circle x-cloak x-show="!open" 
+                        {{ 
+                            $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
+                            ->class([
+                                'h-6 w-6' => $component->isBootstrap() && $this->getCollapsingColumnButtonExpandAttributes['default-styling'] ?? true,
+                                'text-green-600' => $component->isTailwind()  && $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                            ])
+                            ->except('default') 
+                        }}
+                     />
+                    <x-heroicon-o-minus-circle x-cloak x-show="open" 
+                        {{ 
+                                $attributes->merge($this->getCollapsingColumnButtonCollapseAttributes)
+                                ->class([
+                                    'h-6 w-6' => $component->isBootstrap() && $this->getCollapsingColumnButtonCollapseAttributes['default-styling'] ?? true,
+                                    'text-yellow-600' => $component->isTailwind()  && $this->getCollapsingColumnButtonCollapseAttributes['default-colors'] ?? true,
+                                ])
+                                ->except('default') 
+                        }}
+                    />
                 </button>
             @endif
         </td>
