@@ -30,7 +30,7 @@ trait CollapsingColumnConfiguration
      */
     public function setCollapsingColumnButtonCollapseAttributes(array $collapsingColumnButtonCollapseAttributes): self
     {
-        $this->collapsingColumnButtonCollapseAttributes = [...$this->collapsingColumnButtonCollapseAttributes, ...$collapsingColumnButtonCollapseAttributes];
+        $this->collapsingColumnButtonCollapseAttributes = [...['default-colors' => false, 'default-styling' => false], ...$collapsingColumnButtonCollapseAttributes];
 
         return $this;
     }
@@ -40,7 +40,7 @@ trait CollapsingColumnConfiguration
      */
     public function setCollapsingColumnButtonExpandAttributes(array $collapsingColumnButtonExpandAttributes): self
     {
-        $this->collapsingColumnButtonExpandAttributes = [...$this->collapsingColumnButtonExpandAttributes, ...$collapsingColumnButtonExpandAttributes];
+        $this->collapsingColumnButtonExpandAttributes = [...['default-colors' => false, 'default-styling' => false], ...$collapsingColumnButtonExpandAttributes];
 
         return $this;
     }

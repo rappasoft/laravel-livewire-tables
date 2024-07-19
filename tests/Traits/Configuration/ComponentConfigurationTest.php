@@ -402,4 +402,44 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->hasExtraWithAvgs());
         $this->assertSame([['table' => 'user', 'field' => 'age']], $this->basicTable->getExtraWithAvgs());
     }
+
+    public function test_can_set_collapsing_column_button_collapse_attributes(): void
+    {
+        $this->assertSame(['default-styling' => true, 'default-colors' => true], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
+
+        $this->basicTable->setCollapsingColumnButtonCollapseAttributes(['class' => 'text-blue-500']);
+        $this->assertSame(['default-styling' => false, 'default-colors' => false, 'class' => 'text-blue-500'], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
+
+        $this->basicTable->setCollapsingColumnButtonCollapseAttributes(['class' => 'text-blue-500', 'default-styling' => true]);
+        $this->assertSame(['default-styling' => true, 'default-colors' => false, 'class' => 'text-blue-500'], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
+
+        $this->basicTable->setCollapsingColumnButtonCollapseAttributes(['class' => 'text-red-500', 'default-colors' => true]);
+        $this->assertSame(['default-styling' => false, 'default-colors' => true, 'class' => 'text-red-500'], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
+
+        $this->basicTable->setCollapsingColumnButtonCollapseAttributes(['default-styling' => true, 'class' => 'text-green-500', 'default-colors' => true]);
+        $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => 'text-green-500'], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
+
+        $this->assertSame(['default-styling' => true, 'default-colors' => true], $this->basicTable->getCollapsingColumnButtonExpandAttributes());
+    }
+
+    public function test_can_set_collapsing_column_button_expand_attributes(): void
+    {
+        $this->assertSame(['default-styling' => true, 'default-colors' => true], $this->basicTable->getCollapsingColumnButtonExpandAttributes());
+
+        $this->basicTable->setCollapsingColumnButtonExpandAttributes(['class' => 'text-blue-500']);
+        $this->assertSame(['default-styling' => false, 'default-colors' => false, 'class' => 'text-blue-500'], $this->basicTable->getCollapsingColumnButtonExpandAttributes());
+
+        $this->basicTable->setCollapsingColumnButtonExpandAttributes(['class' => 'text-blue-500', 'default-styling' => true]);
+        $this->assertSame(['default-styling' => true, 'default-colors' => false, 'class' => 'text-blue-500'], $this->basicTable->getCollapsingColumnButtonExpandAttributes());
+
+        $this->basicTable->setCollapsingColumnButtonExpandAttributes(['class' => 'text-red-500', 'default-colors' => true]);
+        $this->assertSame(['default-styling' => false, 'default-colors' => true, 'class' => 'text-red-500'], $this->basicTable->getCollapsingColumnButtonExpandAttributes());
+
+        $this->basicTable->setCollapsingColumnButtonExpandAttributes(['default-styling' => true, 'class' => 'text-green-500', 'default-colors' => true]);
+        $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => 'text-green-500'], $this->basicTable->getCollapsingColumnButtonExpandAttributes());
+
+        $this->assertSame(['default-styling' => true, 'default-colors' => true], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
+
+    }
+
 }
