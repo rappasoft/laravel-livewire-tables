@@ -14,6 +14,8 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
+use Illuminate\Support\Facades\Blade;
+use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
 
 class TestCase extends Orchestra
 {
@@ -29,6 +31,8 @@ class TestCase extends Orchestra
     protected function setUp(): void
     {
         parent::setUp();
+
+        Blade::component('test-component', TestComponent::class);
 
         if (! Breed::where('id', 1)->get()) {
             include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';

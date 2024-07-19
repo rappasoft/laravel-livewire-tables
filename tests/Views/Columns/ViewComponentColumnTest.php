@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ViewComponentColumn;
 
 final class ViewComponentColumnTest extends TestCase
@@ -22,7 +23,7 @@ final class ViewComponentColumnTest extends TestCase
                     ->component('test-component')
                     ->attributes(fn ($value, $row, Column $column) => [
                         'age' => $row->age
-                    ]),
+                    ]);
         $this->assertTrue($column->hasComponentView());
     }
 
@@ -31,12 +32,24 @@ final class ViewComponentColumnTest extends TestCase
         $this->expectException(DataTableConfigurationException::class);
 
         $column = ViewComponentColumn::make('Age 2', 'age')
+                    ->attributes(fn ($value, $row, Column $column) => [
+                        'age' => $row->age
+                    ]);
+        $contents = $column->getContents(Pet::find(1));
+        $this->assertSame("<div>2420</div>", $contents);
+
+    }
+
+    public function test_can_render_component(): void
+    {
+
+        $column = ViewComponentColumn::make('Age 2', 'age')
                     ->component('test-component')
                     ->attributes(fn ($value, $row, Column $column) => [
                         'age' => $row->age
-                    ]),
+                    ]);
         $contents = $column->getContents(Pet::find(1));
-        $this->assertNull($contents);
+        $this->assertSame("<div>2420</div>", $contents);
 
     }
 

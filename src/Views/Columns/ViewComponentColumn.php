@@ -34,8 +34,8 @@ class ViewComponentColumn extends Column
             throw new DataTableConfigurationException('You must specify a component view for a component column');
         }
 
-        $attributes = [];
         $value = $this->getValue($row);
+        $attributes = ['value' => $value];
 
         if ($this->hasAttributesCallback()) {
             $attributes = call_user_func($this->getAttributesCallback(), $value, $row, $this);
@@ -46,8 +46,6 @@ class ViewComponentColumn extends Column
         }
 
         return \Illuminate\Support\Facades\Blade::render(
-            '<div>
-                <x-'.$this->getComponentView().' '.new ComponentAttributeBag($attributes).' />
-            </div>');
+            '<x-'.$this->getComponentView().' '.new ComponentAttributeBag($attributes).' />');
     }
 }
