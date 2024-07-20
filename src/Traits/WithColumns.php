@@ -80,6 +80,7 @@ trait WithColumns
     public function renderingWithColumns(\Illuminate\View\View $view, array $data = []): void
     {
         $view = $view->with([
+            'selectedVisibleColumns' => $this->getVisibleColumns(),
             'columns' => $this->getColumns(),
         ]);
     }
