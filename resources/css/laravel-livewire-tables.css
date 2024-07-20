@@ -8,6 +8,15 @@
 .laravel-livewire-tables-cursor {
     cursor:pointer;
 }
+
+.laravel-livewire-tables-noborder {
+    border:none;
+}
+
+.laravel-livewire-tables-nobg {
+    background:none;
+}
+
 .laravel-livewire-tables-tiny-btn {
     width:0.5em;
     height:0.5em;
