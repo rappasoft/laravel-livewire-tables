@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.3.2] - 2024-07-20
+### New Features
+- Add a new ViewComponentColumn that runs the construction for a View Component by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1786
+- Set Custom Classes for Collapsing Column - Collapse/Expand buttons by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1785
+
+### Bug Fixes
+- Fix DateTimeFilter by @RenoLooijmans in https://github.com/rappasoft/laravel-livewire-tables/pull/1784
+- Fix AggregateColumn SnakeCase issue by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1777
+
 ## [v3.3.1] - 2024-07-16
 ### Bug Fixes
 - Fix NumberRangeFilter initial state when loaded by querystring by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1774
