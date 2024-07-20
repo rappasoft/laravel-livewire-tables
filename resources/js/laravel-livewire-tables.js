@@ -187,6 +187,9 @@ document.addEventListener('alpine:init', () => {
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
         dragStart(event) {
+            this.setupEvenOddClasses();    
+            
+
             this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
@@ -257,6 +260,7 @@ document.addEventListener('alpine:init', () => {
             }
         },
         reorderToggle() {
+
             if (this.currentlyReorderingStatus) {
                 wire.disableReordering();
  
@@ -285,8 +289,8 @@ document.addEventListener('alpine:init', () => {
             wire.storeReorder(orderedRows);
         },
         setupEvenOddClasses() {
-            if (this.currentlyReorderingStatus === true) {
- 
+            if (this.evenNotInOdd.length === undefined || this.evenNotInOdd.length == 0 || this.oddNotInEven.length === undefined || this.oddNotInEven.length == 0)
+            {
                 let tbody = document.getElementById(tableID).getElementsByTagName('tbody')[0];
                 let evenRowClassArray = [];
                 let oddRowClassArray = [];
@@ -302,8 +306,6 @@ document.addEventListener('alpine:init', () => {
             }
         },
         init() {
-            this.$watch('currentlyReorderingStatus', value => this.setupEvenOddClasses());
- 
         }
     }));
  
