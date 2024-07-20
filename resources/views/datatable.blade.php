@@ -19,6 +19,7 @@
         <x-livewire-tables::table>
             @php($showBulkActions = ($this->bulkActionsAreEnabled() && $this->hasBulkActions()))
             @php($currentlyReordering = $this->getCurrentlyReorderingStatus())
+            @php($hasCollapsingColumns = $this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
 
             <x-slot name="thead">
                 @if($currentlyReordering)
@@ -27,7 +28,7 @@
                 @if($showBulkActions)
                     <x-livewire-tables::table.th.bulk-actions :displayMinimisedOnReorder="true" />
                 @endif
-                @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+                @if ($hasCollapsingColumns)
                     <x-livewire-tables::table.th.collapsed-columns />
                 @endif
 
@@ -38,7 +39,7 @@
             </x-slot>
 
             @if($this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader())
-                <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$filterGenericData :$selectedVisibleColumns />
+                <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$filterGenericData :$selectedVisibleColumns :$showBulkActions />
             @endif
             @if($this->hasDisplayLoadingPlaceholder())
                 <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
@@ -56,7 +57,7 @@
                     @if($showBulkActions)
                         <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex"/>
                     @endif
-                    @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+                    @if ($hasCollapsingColumns)
                         <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
                     @endif
 
@@ -72,7 +73,7 @@
                     @endforeach
                 </x-livewire-tables::table.tr>
 
-                @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+                @if ($hasCollapsingColumns)
                     <x-livewire-tables::table.collapsed-columns :row="$row" :rowIndex="$rowIndex" />
                 @endif
             @empty
