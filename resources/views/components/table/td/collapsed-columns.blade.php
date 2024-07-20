@@ -18,8 +18,26 @@
                     x-cloak x-show="!currentlyReorderingStatus"
                     x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $tableName }}', 'row': {{ $rowIndex }}}); open = !open"
                 >
-                    <x-heroicon-o-plus-circle x-cloak x-show="!open" class="text-green-600 h-6 w-6" />
-                    <x-heroicon-o-minus-circle x-cloak x-show="open" class="text-yellow-600 h-6 w-6" />
+                    <x-heroicon-o-plus-circle x-cloak x-show="!open" 
+                        {{ 
+                            $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
+                            ->class([
+                                'h-6 w-6' => $this->getCollapsingColumnButtonExpandAttributes['default-styling'] ?? true,
+                                'text-green-600' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                            ])
+                            ->except('default') 
+                        }}
+                     />
+                    <x-heroicon-o-minus-circle x-cloak x-show="open" 
+                        {{ 
+                            $attributes->merge($this->getCollapsingColumnButtonCollapseAttributes)
+                            ->class([
+                                'h-6 w-6' => $this->getCollapsingColumnButtonCollapseAttributes['default-styling'] ?? true,
+                                'text-yellow-600' => $this->getCollapsingColumnButtonCollapseAttributes['default-colors'] ?? true,
+                            ])
+                            ->except('default') 
+                        }}
+                    />
                 </button>
             @endif
         </td>
@@ -40,8 +58,24 @@
                     class="p-0"
                     style="background:none;border:none;"
                 >
-                    <x-heroicon-o-plus-circle x-cloak x-show="!open" class="text-success" style="width:1.4em;height:1.4em;" />
-                    <x-heroicon-o-minus-circle x-cloak x-show="open" class="text-warning" style="width:1.4em;height:1.4em;" />
+                    <x-heroicon-o-plus-circle x-cloak x-show="!open" style="width:1.4em;height:1.4em;" 
+                        {{ 
+                            $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
+                            ->class([
+                                'text-success' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                            ])
+                            ->except('default') 
+                        }}
+                    />
+                    <x-heroicon-o-minus-circle x-cloak x-show="open" style="width:1.4em;height:1.4em;" 
+                        {{ 
+                            $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
+                            ->class([
+                                'text-warning' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                            ])
+                            ->except('default') 
+                        }}
+                    />
                 </button>
             @endif
         </td>
