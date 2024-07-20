@@ -55,7 +55,7 @@
                 <button
                     x-cloak x-show="!currentlyReorderingStatus"
                     x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $tableName }}', 'row': {{ $rowIndex }}});open = !open"
-                    class="laravel-livewire-tables-noborder laravel-livewire-tables-nobg p-0"
+                    class="border-0 bg-transparent p-0"
                 >
                     <x-heroicon-o-plus-circle x-cloak x-show="!open"  
                         {{ 
