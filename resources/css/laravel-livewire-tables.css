@@ -5,9 +5,36 @@
     border-color: var(--rappasoft-table-highlight-color, rgb(255 255 255)) !important;
 }
 
+.laravel-livewire-tables-cursor {
+    cursor:pointer;
+}
+.laravel-livewire-tables-tiny-btn {
+    width:0.5em;
+    height:0.5em;
+}
 
+.laravel-livewire-tables-smallest-btn {
+    width:1em;
+    height:1em;
+}
 
+.laravel-livewire-tables-small-btn
+{
+    width:1.2em;
+    height:1.2em;
+}
 
+.laravel-livewire-tables-md-btn
+{
+    width:1.3em;
+    height:1.3em;
+}
+
+.laravel-livewire-tables-lg-btn
+{
+    width:1.4em;
+    height:1.4em;
+}
 
 .laravel-livewire-tables-highlight-top {
     border-style: solid !important;

@@ -58,20 +58,20 @@
                     class="p-0"
                     style="background:none;border:none;"
                 >
-                    <x-heroicon-o-plus-circle x-cloak x-show="!open" style="width:1.4em;height:1.4em;" 
+                    <x-heroicon-o-plus-circle x-cloak x-show="!open"  
                         {{ 
                             $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
                             ->class([
-                                'text-success' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                                'laravel-livewire-tables-lg-btn text-success' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
                             ])
                             ->except('default') 
                         }}
                     />
-                    <x-heroicon-o-minus-circle x-cloak x-show="open" style="width:1.4em;height:1.4em;" 
+                    <x-heroicon-o-minus-circle x-cloak x-show="open" 
                         {{ 
                             $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
                             ->class([
-                                'text-warning' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                                'laravel-livewire-tables-lg-btn text-warning' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
                             ])
                             ->except('default') 
                         }}

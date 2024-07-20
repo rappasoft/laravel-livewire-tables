@@ -36,7 +36,7 @@
                 @if($component->isTailwind())
                 <x-heroicon-m-x-mark class='w-4 h-4' />
                 @else
-                <x-heroicon-m-x-mark style='width:1em; height:1em;'  />
+                <x-heroicon-m-x-mark class="laravel-livewire-tables-smallest-btn" />
                 @endif
                     </div>
             </div>
