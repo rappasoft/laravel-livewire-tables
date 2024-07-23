@@ -17,7 +17,7 @@
     @elseif ($component->isBootstrap())
         <div wire:offline.class.remove="d-none" class="d-none">
             <div class="alert alert-danger d-flex align-items-center">
-                <x-heroicon-s-x-circle class="laravel-livewire-tables-md-btn" />
+                <x-heroicon-s-x-circle class="laravel-livewire-tables-btn-md" />
                 <span class="d-inline-block ml-2">@lang('You are not connected to the internet.')</span>
             </div>
         </div>

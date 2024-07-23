@@ -66,7 +66,7 @@
                             class="text-white ml-2"
                         >
                             <span class="sr-only">@lang('Remove sort option')</span>
-                            <x-heroicon-m-x-mark class="laravel-livewire-tables-smallest-btn" />
+                            <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-smaller" />
                         </a>
                     </span>
                 @endforeach
@@ -106,7 +106,7 @@
                             class="text-white ms-2"
                         >
                             <span class="visually-hidden">@lang('Remove sort option')</span>
-                            <x-heroicon-m-x-mark class="laravel-livewire-tables-smallest-btn" />
+                            <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-smaller" />
                         </a>
                     </span>
                 @endforeach

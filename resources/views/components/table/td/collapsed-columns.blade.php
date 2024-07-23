@@ -61,7 +61,7 @@
                         {{ 
                             $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
                             ->class([
-                                'laravel-livewire-tables-lg-btn text-success' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                                'laravel-livewire-tables-btn-lg text-success' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
                             ])
                             ->except('default') 
                         }}
@@ -70,7 +70,7 @@
                         {{ 
                             $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
                             ->class([
-                                'laravel-livewire-tables-lg-btn text-warning' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                                'laravel-livewire-tables-btn-lg text-warning' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
                             ])
                             ->except('default') 
                         }}

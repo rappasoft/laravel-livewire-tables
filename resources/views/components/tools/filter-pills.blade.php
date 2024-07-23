@@ -65,7 +65,7 @@
                                 ])>
                                     @lang('Remove filter option')
                                 </span>
-                                <x-heroicon-m-x-mark class="laravel-livewire-tables-tiny-btn"  />
+                                <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-tiny"  />
                             </a>
                         @endif
                     </span>

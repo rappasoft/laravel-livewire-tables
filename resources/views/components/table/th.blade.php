@@ -69,11 +69,11 @@
 
                     <span class="relative d-flex align-items-center">
                         @if ($direction === 'asc')
-                            <x-heroicon-o-chevron-up class="laravel-livewire-tables-smallest-btn ms-1 "  />
+                            <x-heroicon-o-chevron-up class="laravel-livewire-tables-btn-smaller ms-1 "  />
                         @elseif ($direction === 'desc')
-                            <x-heroicon-o-chevron-down class="laravel-livewire-tables-smallest-btn ms-1"  />
+                            <x-heroicon-o-chevron-down class="laravel-livewire-tables-btn-smaller ms-1"  />
                         @else
-                            <x-heroicon-o-chevron-up-down class="laravel-livewire-tables-smallest-btn ms-1" />
+                            <x-heroicon-o-chevron-up-down class="laravel-livewire-tables-btn-smaller ms-1" />
                         @endif
                     </span>
                 </div>
