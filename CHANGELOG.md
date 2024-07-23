@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.3.3] - 2024-07-20
+### New Features
+- Add additional DateRangeFilter options by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1793
+
 ## [v3.3.2] - 2024-07-20
 ### New Features
 - Add a new ViewComponentColumn that runs the construction for a View Component by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1786
