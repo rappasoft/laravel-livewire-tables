@@ -43,6 +43,30 @@ public function filters(): array
 }
 ```
 
+A full list of options is below, please see the Flatpickr documentation for reference as to purpose:
+| Config Option  | Type | Default | Description | 
+| ------------- | ------------- | ------------- | ------------- |
+| allowInput | Boolean | false | Allows the user to enter a date directly into the input field. By default, direct entry is disabled. | 
+| altFormat | String | "F j, Y" | Exactly the same as date format, but for the altInput field | 
+| altInput | Boolean | false | Show the user a readable date (as per altFormat), but return something totally different to the server. | 
+| ariaDateFormat | String | "F j, Y" | Defines how the date will be formatted in the aria-label for calendar days, using the same tokens as dateFormat. If you change this, you should choose a value that will make sense if a screen reader reads it out loud. | 
+| dateFormat | String | 'Y-m-d' | A string of characters which are used to define how the date will be displayed in the input box | 
+| defaultDate | String | null | Sets the initial selected date | 
+| defaultHour | Number | 12 | Initial value of the hour element. | 
+| defaultMinute | Number | 0 | Initial value of the minute element. | 
+| earliestDate | String/Date | null | The minimum date that a user can start picking from (inclusive) | 
+| enableTime | Boolean | false | Enables time picker | 
+| enableSeconds | Boolean | false | Enables seconds in the time picker. | 
+| hourIncrement | Integer | 1 | Adjusts the step for the hour input (incl. scrolling) | 
+| latestDate | String/Date | null | The maximum date that a user can pick to (inclusive) | 
+| locale | String | en | The locale used (see below) | 
+| minuteIncrement | Integer | 5 | Adjusts the step for the minute input (incl. scrolling) | 
+| placeholder | String | null | Set a placeholder value for the input field |
+| shorthandCurrentMonth | Boolean | false | Show the month using the shorthand version (ie, Sep instead of September). | 
+| time_24hr | Boolean | false | Displays time picker in 24 hour mode without AM/PM selection when enabled. | 
+| weekNumbers | Boolean | false | Enables display of week numbers in calendar. | 
+
+
 ## Configuration
 By default, this filter will inject the Flatpickr JS Library and CSS. However, you can customise this behaviour using the configuration file.
 
