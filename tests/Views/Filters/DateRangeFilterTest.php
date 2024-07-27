@@ -425,6 +425,6 @@ final class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->hasFilterDefaultValue());
         $filter->setFilterDefaultValue(['2024-06-04', '2024-07-04']);
         $this->assertTrue($filter->hasFilterDefaultValue());
-        $this->assertSame(['minDate' => '2024-08-04', 'maxDate' => '2024-07-04'], $filter->getFilterDefaultValue());
+        $this->assertSame(['minDate' => '2024-06-04', 'maxDate' => '2024-07-04'], $filter->getFilterDefaultValue());
     }
 }
