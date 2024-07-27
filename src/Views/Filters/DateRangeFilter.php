@@ -135,7 +135,7 @@ class DateRangeFilter extends Filter
             if (array_key_exists('maxDate', $value)) {
                 $maxDate = $value['maxDate'];
             } elseif (array_key_exists('max', $value)) {
-                $minDate = $value['max'];
+                $maxDate = $value['max'];
             } elseif (array_key_exists(1, $value)) {
                 $maxDate = $value[1];
             }
