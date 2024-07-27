@@ -21,7 +21,7 @@
                 ->class(['d-none' => $component->isBootstrap() && $column && $column->shouldCollapseAlways()])
                 ->class(['d-none d-md-table-cell' => $component->isBootstrap() && $column && $column->shouldCollapseOnMobile()])
                 ->class(['d-none d-lg-table-cell' => $component->isBootstrap() && $column && $column->shouldCollapseOnTablet()])
-                ->style(['cursor:pointer' => $component->isBootstrap() && $column && $column->isClickable()])
+                ->class(['laravel-livewire-tables-cursor' => $component->isBootstrap() && $column && $column->isClickable()])
                 ->except('default')
         }}
     >
