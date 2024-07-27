@@ -6,27 +6,53 @@ use Carbon\Carbon;
 
 trait HandlesDates
 {
-    use HasLocale;
+    use HasPillsLocale;
 
-    protected function createCarbon(?string $locale = null): Carbon
+    protected string $inputDateFormat;
+    protected string $outputDateFormat;
+    protected Carbon $carbonInstance;
+
+    protected function createCarbon()
     {
-        $carbon = new Carbon;
-        $carbon->setLocale($locale ?? $this->getLocale());
+        $this->carbonInstance = new Carbon;
+        $this->carbonInstance->setLocale($this->getPillsLocale());
 
-        return $carbon;
     }
 
-    protected function createCarbonFromFormat(string $format, string $value, ?string $locale = null): Carbon|bool
+    protected function createCarbonFromFormat(string $format, string $value): Carbon|bool
     {
-        $carbon = $this->createCarbon($locale);
+        $this->createCarbon();
 
-        return $carbon->createFromFormat($format, $value);
+        return $this->carbonInstance->createFromFormat($format, $value);
     }
 
-    protected function outputTranslatedDate(string $format, string $value, string $ariaDateFormat, ?string $locale = null): string
+    protected function createCarbonDate(string $value): Carbon|bool
     {
-        $carbon = $this->createCarbonFromFormat($format, $value, $locale);
+        $this->createCarbon();
 
-        return $carbon->translatedFormat($ariaDateFormat);
+        return $this->carbonInstance->createFromFormat($this->inputDateFormat, $value);
+    }
+    
+    protected function setInputDateFormat(string $inputDateFormat): self
+    {
+        $this->inputDateFormat = $inputDateFormat;
+
+        return $this;
+    }
+
+    protected function setOutputDateFormat(string $outputDateFormat): self
+    {
+        $this->outputDateFormat = $outputDateFormat;
+
+        return $this;
+    }
+
+    protected function outputTranslatedDate(?Carbon $carbon): string
+    {
+        if ($carbon instanceof Carbon)
+        {
+            return $carbon->translatedFormat($this->outputDateFormat);
+        }
+        return '';
     }
 }
