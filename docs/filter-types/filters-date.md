@@ -33,6 +33,7 @@ public function filters(): array
 }
 ```
 
+## setFilterDefaultValue
 Date filters also support the setFilterDefaultValue() method, which must be a valid date in the "Y-m-d" format.  This will apply as a default until removed.
 ```php
 public function filters(): array
@@ -47,5 +48,22 @@ public function filters(): array
     ];
 }
 ```
-                    
+
+## setPillsLocale        
+Date Filters also support the setPillsLocale method, which allows you to set a locale for use in generating the Filter Pills values
+```php
+public function filters(): array
+{
+    return [
+        DateFilter::make('Verified From')
+            ->setPillsLocale('fr ') // Use French localisation for the Filter Pills values
+            ->config([
+                'min' => '2020-01-01',  // Earliest Acceptable Date
+                'max' => '2021-12-31', // Latest Acceptable Date
+                'pillFormat' => 'd M Y', // Format for use in Filter Pills
+                'placeholder' => 'Enter Date', // A placeholder value
+            ])
+    ];
+}
+```
 
