@@ -60,7 +60,6 @@ class DateRangeFilter extends Filter
             return false;
         }
 
-
         $validator = Validator::make($returnedValues, [
             'minDate' => 'required|date_format:'.$dateFormat,
             'maxDate' => 'required|date_format:'.$dateFormat,
@@ -156,11 +155,10 @@ class DateRangeFilter extends Filter
         $validatedValue = $this->validate($value);
 
         if (is_array($validatedValue)) {
-            if($this->hasConfig('locale'))
-            {
+            if ($this->hasConfig('locale')) {
                 $this->setPillsLocale($this->getConfig('locale'));
             }
-            
+
             $minDate = $this->createCarbonDate($validatedValue['minDate']);
             $maxDate = $this->createCarbonDate($validatedValue['maxDate']);
 

@@ -9,7 +9,9 @@ trait HandlesDates
     use HasPillsLocale;
 
     protected string $inputDateFormat;
+
     protected string $outputDateFormat;
+
     protected Carbon $carbonInstance;
 
     protected function createCarbon()
@@ -32,7 +34,7 @@ trait HandlesDates
 
         return $this->carbonInstance->createFromFormat($this->inputDateFormat, $value);
     }
-    
+
     protected function setInputDateFormat(string $inputDateFormat): self
     {
         $this->inputDateFormat = $inputDateFormat;
@@ -49,10 +51,10 @@ trait HandlesDates
 
     protected function outputTranslatedDate(?Carbon $carbon): string
     {
-        if ($carbon instanceof Carbon)
-        {
+        if ($carbon instanceof Carbon) {
             return $carbon->translatedFormat($this->outputDateFormat);
         }
+
         return '';
     }
 }

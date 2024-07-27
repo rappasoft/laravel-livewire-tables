@@ -22,6 +22,7 @@ class DateFilter extends Filter
     public function validate(string $value): string|bool
     {
         $this->setInputDateFormat('Y-m-d')->setOutputDateFormat($this->getConfig('pillFormat'));
+
         return ($this->createCarbonDate($value) === false) ? false : $value;
     }
 
