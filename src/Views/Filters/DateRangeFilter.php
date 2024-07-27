@@ -112,7 +112,7 @@ class DateRangeFilter extends Filter
     {
         return $this->filterDefaultValue ?? [];
     }
-    
+
     public function hasFilterDefaultValue(): bool
     {
         return ! is_null($this->filterDefaultValue);
@@ -120,39 +120,27 @@ class DateRangeFilter extends Filter
 
     public function setFilterDefaultValue($value): self
     {
-        if (is_array($value))
-        {
+        if (is_array($value)) {
             $minDate = '';
             $maxDate = '';
-    
-            if(array_key_exists('minDate',$value))
-            {
+
+            if (array_key_exists('minDate', $value)) {
                 $minDate = $value['minDate'];
-            }
-            elseif(array_key_exists('min',$value))
-            {
+            } elseif (array_key_exists('min', $value)) {
                 $minDate = $value['min'];
-            }
-            elseif(array_key_exists(0,$value))
-            {
+            } elseif (array_key_exists(0, $value)) {
                 $minDate = $value[0];
             }
 
-            if(array_key_exists('maxDate',$value))
-            {
+            if (array_key_exists('maxDate', $value)) {
                 $maxDate = $value['maxDate'];
-            }
-            elseif(array_key_exists('max',$value))
-            {
+            } elseif (array_key_exists('max', $value)) {
                 $minDate = $value['max'];
-            }
-            elseif(array_key_exists(1,$value))
-            {
+            } elseif (array_key_exists(1, $value)) {
                 $maxDate = $value[1];
             }
             $this->filterDefaultValue = ['minDate' => $minDate, 'maxDate' => $maxDate];
-        }
-        else {
+        } else {
             $this->filterDefaultValue = ['minDate' => $value, 'maxDate' => $value];
         }
 
