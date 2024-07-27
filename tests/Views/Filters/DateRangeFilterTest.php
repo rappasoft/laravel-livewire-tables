@@ -7,24 +7,24 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
 
 final class DateRangeFilterTest extends FilterTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        self::$filterInstance = DateRangeFilter::make('Active');
+    }
+
     public function test_can_get_filter_name(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        // Matches
-        $this->assertSame('Active', $filter->getName());
+        $this->assertSame('Active', self::$filterInstance->getName());
     }
 
     public function test_can_get_filter_key(): void
     {
-        $filter = DateRangeFilter::make('Active');
-
-        $this->assertSame('active', $filter->getKey());
+        $this->assertSame('active', self::$filterInstance->getKey());
     }
 
     public function test_can_get_filter_configs(): void
     {
-        $filter = DateRangeFilter::make('Active');
-
         $defaultConfig = [
             'allowInput' => true,
             'altFormat' => 'F j, Y',
@@ -35,17 +35,15 @@ final class DateRangeFilterTest extends FilterTestCase
             'locale' => 'en',
         ];
 
-        $this->assertSame($defaultConfig, $filter->getConfigs());
+        $this->assertSame($defaultConfig, self::$filterInstance->getConfigs());
 
-        $filter->config(['foo' => 'bar']);
+        self::$filterInstance->config(['foo' => 'bar']);
 
-        $this->assertSame(array_merge($defaultConfig, ['foo' => 'bar']), $filter->getConfigs());
+        $this->assertSame(array_merge($defaultConfig, ['foo' => 'bar']), self::$filterInstance->getConfigs());
     }
 
     public function test_get_a_single_filter_config(): void
     {
-        $filter = DateRangeFilter::make('Active');
-
         $this->assertSame([
             'allowInput' => true,
             'altFormat' => 'F j, Y',
@@ -54,11 +52,11 @@ final class DateRangeFilterTest extends FilterTestCase
             'earliestDate' => null,
             'latestDate' => null,
             'locale' => 'en',
-        ], $filter->getConfigs());
+        ], self::$filterInstance->getConfigs());
 
-        $filter->config(['foo' => 'bar']);
+        self::$filterInstance->config(['foo' => 'bar']);
 
-        $this->assertSame('bar', $filter->getConfig('foo'));
+        $this->assertSame('bar', self::$filterInstance->getConfig('foo'));
         $this->assertSame([
             'allowInput' => true,
             'altFormat' => 'F j, Y',
@@ -67,14 +65,15 @@ final class DateRangeFilterTest extends FilterTestCase
             'earliestDate' => null,
             'latestDate' => null,
             'locale' => 'en',
-            'foo' => 'bar'], $filter->getConfigs());
+            'foo' => 'bar',
+        ],
+            self::$filterInstance->getConfigs()
+        );
 
     }
 
     public function test_can_change_locale(): void
     {
-        $filter = DateRangeFilter::make('Active');
-
         $this->assertSame([
             'allowInput' => true,
             'altFormat' => 'F j, Y',
@@ -83,9 +82,11 @@ final class DateRangeFilterTest extends FilterTestCase
             'earliestDate' => null,
             'latestDate' => null,
             'locale' => 'en',
-        ], $filter->getConfigs());
+        ],
+            self::$filterInstance->getConfigs()
+        );
 
-        $filter->config(['locale' => 'fr']);
+        self::$filterInstance->config(['locale' => 'fr']);
 
         $this->assertSame([
             'allowInput' => true,
@@ -96,161 +97,154 @@ final class DateRangeFilterTest extends FilterTestCase
             'latestDate' => null,
             'locale' => 'fr',
         ],
-            $filter->getConfigs()
+            self::$filterInstance->getConfigs()
         );
     }
 
     public function test_can_get_filter_options(): void
     {
-        $filter = DateRangeFilter::make('Active');
 
-        $this->assertSame([], $filter->getOptions());
+        $this->assertSame([], self::$filterInstance->getOptions());
 
-        $filter->options(['foo' => 'bar']);
+        self::$filterInstance->options(['foo' => 'bar']);
 
+        $this->assertSame(['foo' => 'bar'], self::$filterInstance->getOptions());
     }
 
     public function test_can_get_if_empty(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertTrue($filter->isEmpty(''));
-        $this->assertFalse($filter->isEmpty(['minDate' => '2020-01-01', 'maxDate' => '2020-02-02']));
-        $this->assertTrue($filter->isEmpty(['minDate' => '2020-01-01', 'maxDate' => null]));
-        $this->assertTrue($filter->isEmpty(['minDate' => null, 'maxDate' => '2020-02-02']));
-
-        $this->assertTrue($filter->isEmpty(['minDate' => '2020-01-01']));
-        $this->assertFalse($filter->isEmpty([0 => '2020-01-01', 1 => '2020-02-02']));
-        $this->assertFalse($filter->isEmpty(['2020-01-01', '2020-02-02']));
-        $this->assertTrue($filter->isEmpty('test'));
+        $this->assertTrue(self::$filterInstance->isEmpty(''));
+        $this->assertFalse(self::$filterInstance->isEmpty(['minDate' => '2020-01-01', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->isEmpty([0 => '2020-01-01', 1 => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->isEmpty(['2020-01-01', '2020-02-02']));
+        $this->assertTrue(self::$filterInstance->isEmpty(['minDate' => '2020-01-01', 'maxDate' => null]));
+        $this->assertTrue(self::$filterInstance->isEmpty(['minDate' => null, 'maxDate' => '2020-02-02']));
+        $this->assertTrue(self::$filterInstance->isEmpty(['minDate' => '2020-01-01']));
+        $this->assertTrue(self::$filterInstance->isEmpty('test'));
     }
 
     public function test_can_check_validation_accepts_valid_values_array(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertSame(['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'], $filter->validate(['2020-01-01', '2020-02-02']));
+        $this->assertSame(
+            ['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'],
+            self::$filterInstance->validate(['2020-01-01', '2020-02-02'])
+        );
     }
 
     public function test_can_check_validation_accepts_valid_values_string(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertSame(['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'], $filter->validate('2020-01-01 to 2020-02-02'));
-        $this->assertFalse($filter->validate('2020-01-01 to '));
-        $this->assertFalse($filter->validate(' to 2020-01-01'));
+        $this->assertSame(
+            ['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'],
+            self::$filterInstance->validate('2020-01-01 to 2020-02-02')
+        );
+        $this->assertFalse(self::$filterInstance->validate('2020-01-01 to '));
+        $this->assertFalse(self::$filterInstance->validate(' to 2020-01-01'));
     }
 
     public function test_can_check_validation_rejects_invalid_values(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertSame(['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'], $filter->validate(['minDate' => '2020-01-01', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-02-30']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-02-30', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => 'test', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-13-22']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-13-21', 'maxDate' => '2020-12-22']));
-        $this->assertFalse($filter->validate(['minDate' => '12020-13-21', 'maxDate' => '2020-12-22']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-02-22', 'maxDate' => '2020-02-21']));
+        $this->assertSame(['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'], self::$filterInstance->validate(['minDate' => '2020-01-01', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-02-30']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-30', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => 'test', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-13-22']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-13-21', 'maxDate' => '2020-12-22']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '12020-13-21', 'maxDate' => '2020-12-22']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-22', 'maxDate' => '2020-02-21']));
     }
 
     public function test_can_check_validation_rejects_invalid_earliest_latest_values(): void
     {
-        $filter = DateRangeFilter::make('Active')->options(['earliestDate' => '20214-0111-01']);
-        $this->assertFalse($filter->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-02-30']));
+        self::$filterInstance->options(['earliestDate' => '20214-0111-01']);
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-02-30']));
     }
 
     public function test_can_check_validation_rejects_invalid_latest_latest_values(): void
     {
-        $filter = DateRangeFilter::make('Active')->config(['latestDate' => '2191-111-11']);
-        $this->assertFalse($filter->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-02-30']));
+        self::$filterInstance->config(['latestDate' => '2191-111-11']);
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-02-30']));
     }
 
     public function test_can_check_validation_rejects_values_before_earliest_or_after_latest_with_dateformat(): void
     {
-        $filter = DateRangeFilter::make('Active')->config(['dateFormat' => 'Y-m-d', 'earliestDate' => '2020-01-01', 'latestDate' => '2020-10-10']);
-        $this->assertSame(['minDate' => '2020-01-02', 'maxDate' => '2020-02-02'], $filter->validate(['minDate' => '2020-01-02', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-04-05', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2019-01-05', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-01-05', 'maxDate' => '2021-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2021-01-05', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2019-01-05', 'maxDate' => '2019-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
+        self::$filterInstance->config(['dateFormat' => 'Y-m-d', 'earliestDate' => '2020-01-01', 'latestDate' => '2020-10-10']);
+        $this->assertSame(['minDate' => '2020-01-02', 'maxDate' => '2020-02-02'], self::$filterInstance->validate(['minDate' => '2020-01-02', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-04-05', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2019-01-05', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-01-05', 'maxDate' => '2021-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2021-01-05', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2019-01-05', 'maxDate' => '2019-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
     }
 
     public function test_can_check_validation_rejects_values_before_earliest_or_after_latest_default_dateformat(): void
     {
-        $filter = DateRangeFilter::make('Active')->config(['earliestDate' => '2020-01-01', 'latestDate' => '2020-10-10']);
-        $this->assertSame(['minDate' => '2020-01-02', 'maxDate' => '2020-02-02'], $filter->validate(['minDate' => '2020-01-02', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-04-05', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2019-01-05', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-01-05', 'maxDate' => '2021-02-02']));
-
-        $this->assertFalse($filter->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2021-01-05', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2019-01-05', 'maxDate' => '2019-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
+        self::$filterInstance->config(['earliestDate' => '2020-01-01', 'latestDate' => '2020-10-10']);
+        $this->assertSame(['minDate' => '2020-01-02', 'maxDate' => '2020-02-02'], self::$filterInstance->validate(['minDate' => '2020-01-02', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-04-05', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2019-01-05', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-01-05', 'maxDate' => '2021-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2021-01-05', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2019-01-05', 'maxDate' => '2019-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
     }
 
     public function test_can_check_validation_rejects_values_2_dateformat(): void
     {
-        $filter = DateRangeFilter::make('Active')->config(['earliestDate' => '2020-01-01', 'latestDate' => '2020-10-10']);
-        $this->assertSame(['minDate' => '2020-01-02', 'maxDate' => '2020-03-02'], $filter->validate(['minDate' => '2020-01-02', 'maxDate' => '2020-03-02']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-01-05', 'maxDate' => '2020-02-30']));
+        self::$filterInstance->config(['earliestDate' => '2020-01-01', 'latestDate' => '2020-10-10']);
+        $this->assertSame(['minDate' => '2020-01-02', 'maxDate' => '2020-03-02'], self::$filterInstance->validate(['minDate' => '2020-01-02', 'maxDate' => '2020-03-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-01-05', 'maxDate' => '2020-02-30']));
     }
 
     public function test_can_check_date_format_can_be_changed(): void
     {
-        $filter = DateRangeFilter::make('Active')->config(['dateFormat' => 'd-m-Y', 'earliestDate' => '01-01-2020', 'latestDate' => '12-10-2020']);
-        $this->assertSame(['minDate' => '02-01-2020', 'maxDate' => '02-03-2020'], $filter->validate(['minDate' => '02-01-2020', 'maxDate' => '02-03-2020']));
-        $this->assertFalse($filter->validate(['minDate' => '2020-04-05', 'maxDate' => '2020-02-02']));
-        $this->assertFalse($filter->validate(['minDate' => '10-12-2020', 'maxDate' => '12-12-2020']));
+        self::$filterInstance->config(['dateFormat' => 'd-m-Y', 'earliestDate' => '01-01-2020', 'latestDate' => '12-10-2020']);
+        $this->assertSame(['minDate' => '02-01-2020', 'maxDate' => '02-03-2020'], self::$filterInstance->validate(['minDate' => '02-01-2020', 'maxDate' => '02-03-2020']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-04-05', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '10-12-2020', 'maxDate' => '12-12-2020']));
     }
 
     public function test_filter_pill_values_can_be_set_for_daterange(): void
     {
-        $filter = DateRangeFilter::make('Active');
-
-        $this->assertEquals('February 2, 2020 to February 5, 2020', $filter->getFilterPillValue(['minDate' => '2020-02-02', 'maxDate' => '2020-02-05']));
-
-        $this->assertEquals('February 2, 2010 to February 5, 2020', $filter->getFilterPillValue(['minDate' => '2010-02-02', 'maxDate' => '2020-02-05']));
+        $this->assertEquals('February 2, 2020 to February 5, 2020', self::$filterInstance->getFilterPillValue(['minDate' => '2020-02-02', 'maxDate' => '2020-02-05']));
+        $this->assertEquals('February 2, 2010 to February 5, 2020', self::$filterInstance->getFilterPillValue(['minDate' => '2010-02-02', 'maxDate' => '2020-02-05']));
     }
 
     public function test_filter_pill_values_cannot_be_set_for_invalid_dates(): void
     {
-        $filter = DateRangeFilter::make('Active')->options(['dateFormat' => 'd-m-Y', 'earliestDate' => '01-01-2020', 'latestDate' => '1d-10-2020']);
+        self::$filterInstance->options(['dateFormat' => 'd-m-Y', 'earliestDate' => '01-01-2020', 'latestDate' => '1d-10-2020']);
 
-        $this->assertEquals('', $filter->getFilterPillValue(['minDate' => '20q0-02-02', 'maxDate' => '2020-02-05']));
-        $this->assertEquals('', $filter->getFilterPillValue(['minDate' => '2020-02-02', 'maxDate' => '2020-13-05']));
-        $this->assertEquals('February 2, 2010 to February 5, 2020', $filter->getFilterPillValue(['minDate' => '2010-02-02', 'maxDate' => '2020-02-05']));
+        $this->assertEquals('', self::$filterInstance->getFilterPillValue(['minDate' => '20q0-02-02', 'maxDate' => '2020-02-05']));
+        $this->assertEquals('', self::$filterInstance->getFilterPillValue(['minDate' => '2020-02-02', 'maxDate' => '2020-13-05']));
+        $this->assertEquals('February 2, 2010 to February 5, 2020', self::$filterInstance->getFilterPillValue(['minDate' => '2010-02-02', 'maxDate' => '2020-02-05']));
     }
 
     public function test_filter_pill_values_can_be_set_for_daterange_limits(): void
     {
-        $filter = DateRangeFilter::make('Active')->options(['ariaDateFormat' => 'F j, Y', 'earliestDate' => '2020-01-01', 'latestDate' => '2022-01-01']);
+        self::$filterInstance->options(['ariaDateFormat' => 'F j, Y', 'earliestDate' => '2020-01-01', 'latestDate' => '2022-01-01']);
 
-        $this->assertEquals('February 2, 2020 to February 5, 2020', $filter->getFilterPillValue(['minDate' => '2020-02-02', 'maxDate' => '2020-02-05']));
-        $this->assertEquals('February 2, 2010 to February 5, 2020', $filter->getFilterPillValue(['minDate' => '2010-02-02', 'maxDate' => '2020-02-05']));
+        $this->assertEquals('February 2, 2020 to February 5, 2020', self::$filterInstance->getFilterPillValue(['minDate' => '2020-02-02', 'maxDate' => '2020-02-05']));
+        $this->assertEquals('February 2, 2010 to February 5, 2020', self::$filterInstance->getFilterPillValue(['minDate' => '2010-02-02', 'maxDate' => '2020-02-05']));
     }
 
     public function test_filter_pill_values_can_be_set_for_daterange_customformat(): void
     {
-        $filter = DateRangeFilter::make('Active')->config(['ariaDateFormat' => 'Y', 'latestDate' => '2022-01-01']);
+        self::$filterInstance->config(['ariaDateFormat' => 'Y', 'latestDate' => '2022-01-01']);
 
-        $this->assertEquals('2020 to 2021', $filter->getFilterPillValue(['minDate' => '2020-02-02', 'maxDate' => '2021-02-05']));
-        $this->assertEquals('', $filter->getFilterPillValue(['minDate' => '20220-02-02', 'maxDate' => '2020-02-05']));
+        $this->assertEquals('2020 to 2021', self::$filterInstance->getFilterPillValue(['minDate' => '2020-02-02', 'maxDate' => '2021-02-05']));
+        $this->assertEquals('', self::$filterInstance->getFilterPillValue(['minDate' => '20220-02-02', 'maxDate' => '2020-02-05']));
     }
 
     public function test_can_get_filter_keys(): void
     {
-        $filter = DateRangeFilter::make('Active');
-
-        $this->assertSame(['minDate' => '', 'maxDate' => ''], $filter->getKeys());
+        $this->assertSame(['minDate' => '', 'maxDate' => ''], self::$filterInstance->getKeys());
     }
 
     public function test_can_get_filter_default_value(): void
     {
-        $filter = DateRangeFilter::make('Active');
-
-        $this->assertSame([], $filter->getDefaultValue());
+        $this->assertSame([], self::$filterInstance->getDefaultValue());
     }
 
     public function test_can_get_filter_callback(): void
@@ -271,14 +265,11 @@ final class DateRangeFilterTest extends FilterTestCase
 
     public function test_can_get_filter_pill_title(): void
     {
-        $filter = DateRangeFilter::make('Active');
+        $this->assertSame('Active', self::$filterInstance->getFilterPillTitle());
 
-        $this->assertSame('Active', $filter->getFilterPillTitle());
+        self::$filterInstance->setFilterPillTitle('User Status');
 
-        $filter = DateRangeFilter::make('Active')
-            ->setFilterPillTitle('User Status');
-
-        $this->assertSame('User Status', $filter->getFilterPillTitle());
+        $this->assertSame('User Status', self::$filterInstance->getFilterPillTitle());
     }
 
     /*
@@ -313,128 +304,130 @@ final class DateRangeFilterTest extends FilterTestCase
 
     public function test_can_check_if_filter_has_configs(): void
     {
-        $filter = DateRangeFilter::make('Active');
+        $this->assertTrue(self::$filterInstance->hasConfigs());
 
-        $this->assertTrue($filter->hasConfigs());
+        self::$filterInstance->config(['foo' => 'bar']);
 
-        $filter->config(['foo' => 'bar']);
-
-        $this->assertTrue($filter->hasConfigs());
+        $this->assertTrue(self::$filterInstance->hasConfigs());
 
     }
 
     public function test_can_check_filter_config_by_name(): void
     {
-        $filter = DateRangeFilter::make('Active')
-            ->config(['foo' => 'bar']);
+        self::$filterInstance->config(['foo' => 'bar']);
 
-        $this->assertTrue($filter->hasConfig('foo'));
-        $this->assertFalse($filter->hasConfig('bar'));
+        $this->assertTrue(self::$filterInstance->hasConfig('foo'));
+        $this->assertFalse(self::$filterInstance->hasConfig('bar'));
     }
 
     public function test_can_check_if_filter_is_hidden_from_menus(): void
     {
-        $filter = DateRangeFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->isHiddenFromMenus());
+        $this->assertTrue(self::$filterInstance->isVisibleInMenus());
 
-        $this->assertFalse($filter->isHiddenFromMenus());
-        $this->assertTrue($filter->isVisibleInMenus());
+        self::$filterInstance->hiddenFromMenus();
 
-        $filter->hiddenFromMenus();
-
-        $this->assertTrue($filter->isHiddenFromMenus());
-        $this->assertFalse($filter->isVisibleInMenus());
+        $this->assertTrue(self::$filterInstance->isHiddenFromMenus());
+        $this->assertFalse(self::$filterInstance->isVisibleInMenus());
     }
 
     public function test_can_check_if_filter_is_hidden_from_pills(): void
     {
-        $filter = DateRangeFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->isHiddenFromPills());
+        $this->assertTrue(self::$filterInstance->isVisibleInPills());
 
-        $this->assertFalse($filter->isHiddenFromPills());
-        $this->assertTrue($filter->isVisibleInPills());
+        self::$filterInstance->hiddenFromPills();
 
-        $filter->hiddenFromPills();
-
-        $this->assertTrue($filter->isHiddenFromPills());
-        $this->assertFalse($filter->isVisibleInPills());
+        $this->assertTrue(self::$filterInstance->isHiddenFromPills());
+        $this->assertFalse(self::$filterInstance->isVisibleInPills());
     }
 
     public function test_can_check_if_filter_is_hidden_from_count(): void
     {
-        $filter = DateRangeFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->isHiddenFromFilterCount());
+        $this->assertTrue(self::$filterInstance->isVisibleInFilterCount());
 
-        $this->assertFalse($filter->isHiddenFromFilterCount());
-        $this->assertTrue($filter->isVisibleInFilterCount());
+        self::$filterInstance->hiddenFromFilterCount();
 
-        $filter->hiddenFromFilterCount();
-
-        $this->assertTrue($filter->isHiddenFromFilterCount());
-        $this->assertFalse($filter->isVisibleInFilterCount());
+        $this->assertTrue(self::$filterInstance->isHiddenFromFilterCount());
+        $this->assertFalse(self::$filterInstance->isVisibleInFilterCount());
     }
 
     public function test_can_check_if_filter_is_reset_by_clear_button(): void
     {
-        $filter = DateRangeFilter::make('Active');
+        $this->assertTrue(self::$filterInstance->isResetByClearButton());
 
-        $this->assertTrue($filter->isResetByClearButton());
+        self::$filterInstance->notResetByClearButton();
 
-        $filter->notResetByClearButton();
-
-        $this->assertFalse($filter->isResetByClearButton());
+        $this->assertFalse(self::$filterInstance->isResetByClearButton());
     }
 
     public function test_can_get_datestring(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertSame('', $filter->getDateString(''));
-        $this->assertSame('2020-01-01 to 2020-02-02', $filter->getDateString(['2020-02-02', '2020-01-01']));
-        $this->assertSame('2021-03-03 to 2021-04-04', $filter->getDateString(['minDate' => '2021-03-03', 'maxDate' => '2021-04-04']));
-        $this->assertSame('2022-05-05 to 2022-06-06', $filter->getDateString('2022-05-05,to,2022-06-06'));
+        $this->assertSame('', self::$filterInstance->getDateString(''));
+        $this->assertSame('2020-01-01 to 2020-02-02', self::$filterInstance->getDateString(['2020-02-02', '2020-01-01']));
+        $this->assertSame('2021-03-03 to 2021-04-04', self::$filterInstance->getDateString(['minDate' => '2021-03-03', 'maxDate' => '2021-04-04']));
+        $this->assertSame('2022-05-05 to 2022-06-06', self::$filterInstance->getDateString('2022-05-05,to,2022-06-06'));
     }
 
     public function test_can_set_custom_filter_view(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertSame('livewire-tables::components.tools.filters.date-range', $filter->getViewPath());
-        $filter->setCustomView('test-custom-filter-view');
-        $this->assertSame('test-custom-filter-view', $filter->getViewPath());
+        $this->assertSame('livewire-tables::components.tools.filters.date-range', self::$filterInstance->getViewPath());
+        self::$filterInstance->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
 
     public function test_can_set_default_value_by_string(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertFalse($filter->hasFilterDefaultValue());
-        $filter->setFilterDefaultValue('2024-04-04');
-        $this->assertTrue($filter->hasFilterDefaultValue());
-        $this->assertSame(['minDate' => '2024-04-04', 'maxDate' => '2024-04-04'], $filter->getFilterDefaultValue());
+        $this->assertFalse(self::$filterInstance->hasFilterDefaultValue());
+        self::$filterInstance->setFilterDefaultValue('2024-04-04');
+        $this->assertTrue(self::$filterInstance->hasFilterDefaultValue());
+        $this->assertSame(['minDate' => '2024-04-04', 'maxDate' => '2024-04-04'], self::$filterInstance->getFilterDefaultValue());
 
     }
 
     public function test_can_set_default_value_by_named_array(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertFalse($filter->hasFilterDefaultValue());
-        $filter->setFilterDefaultValue(['minDate' => '2024-05-04', 'maxDate' => '2024-06-04']);
-        $this->assertTrue($filter->hasFilterDefaultValue());
-        $this->assertSame(['minDate' => '2024-05-04', 'maxDate' => '2024-06-04'], $filter->getFilterDefaultValue());
+        $this->assertFalse(self::$filterInstance->hasFilterDefaultValue());
+        self::$filterInstance->setFilterDefaultValue(['minDate' => '2024-05-04', 'maxDate' => '2024-06-04']);
+        $this->assertTrue(self::$filterInstance->hasFilterDefaultValue());
+        $this->assertSame(['minDate' => '2024-05-04', 'maxDate' => '2024-06-04'], self::$filterInstance->getFilterDefaultValue());
 
     }
 
     public function test_can_set_default_value_by_short_named_array(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertFalse($filter->hasFilterDefaultValue());
-        $filter->setFilterDefaultValue(['min' => '2024-05-04', 'max' => '2024-06-04']);
-        $this->assertTrue($filter->hasFilterDefaultValue());
-        $this->assertSame(['minDate' => '2024-05-04', 'maxDate' => '2024-06-04'], $filter->getFilterDefaultValue());
+        $this->assertFalse(self::$filterInstance->hasFilterDefaultValue());
+        self::$filterInstance->setFilterDefaultValue(['min' => '2024-05-04', 'max' => '2024-06-04']);
+        $this->assertTrue(self::$filterInstance->hasFilterDefaultValue());
+        $this->assertSame(['minDate' => '2024-05-04', 'maxDate' => '2024-06-04'], self::$filterInstance->getFilterDefaultValue());
 
     }
 
     public function test_can_set_default_value_by_numbered_array(): void
     {
-        $filter = DateRangeFilter::make('Active');
-        $this->assertFalse($filter->hasFilterDefaultValue());
-        $filter->setFilterDefaultValue(['2024-06-04', '2024-07-04']);
-        $this->assertTrue($filter->hasFilterDefaultValue());
-        $this->assertSame(['minDate' => '2024-06-04', 'maxDate' => '2024-07-04'], $filter->getFilterDefaultValue());
+        $this->assertFalse(self::$filterInstance->hasFilterDefaultValue());
+        self::$filterInstance->setFilterDefaultValue(['2024-06-04', '2024-07-04']);
+        $this->assertTrue(self::$filterInstance->hasFilterDefaultValue());
+        $this->assertSame(['minDate' => '2024-06-04', 'maxDate' => '2024-07-04'], self::$filterInstance->getFilterDefaultValue());
+    }
+
+    public function test_check_if_has_locale(): void
+    {
+        $this->assertFalse(self::$filterInstance->hasPillsLocale());
+        self::$filterInstance->setPillsLocale('fr');
+        $this->assertTrue(self::$filterInstance->hasPillsLocale());
+    }
+
+    public function test_check_if_can_get_locale(): void
+    {
+        $this->assertFalse(self::$filterInstance->hasPillsLocale());
+        $this->assertSame('en', self::$filterInstance->getPillsLocale());
+        self::$filterInstance->setPillsLocale('fr');
+        $this->assertTrue(self::$filterInstance->hasPillsLocale());
+        $this->assertSame('fr', self::$filterInstance->getPillsLocale());
+        self::$filterInstance->setPillsLocale('de');
+        $this->assertSame('de', self::$filterInstance->getPillsLocale());
+        $this->assertTrue(self::$filterInstance->hasPillsLocale());
     }
 }

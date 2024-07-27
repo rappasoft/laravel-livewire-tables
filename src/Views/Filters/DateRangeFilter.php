@@ -6,11 +6,12 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig,HasOptions};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HandlesDates, HasConfig,HasOptions};
 
 class DateRangeFilter extends Filter
 {
-    use HasOptions,
+    use HandlesDates,
+        HasOptions,
         HasConfig;
     use HasWireables;
 
@@ -31,6 +32,8 @@ class DateRangeFilter extends Filter
     {
         $this->getOptions();
         $this->getConfigs();
+        $this->setInputDateFormat($this->getConfig('dateFormat'))->setOutputDateFormat($this->getConfig('ariaDateFormat'));
+        $dateFormat = $this->getConfigs()['dateFormat'];
 
         $returnedValues = ['minDate' => '', 'maxDate' => ''];
         if (is_array($values)) {
@@ -57,8 +60,6 @@ class DateRangeFilter extends Filter
             return false;
         }
 
-        $dateFormat = $this->getConfigs()['dateFormat'];
-
         $validator = Validator::make($returnedValues, [
             'minDate' => 'required|date_format:'.$dateFormat,
             'maxDate' => 'required|date_format:'.$dateFormat,
@@ -66,8 +67,8 @@ class DateRangeFilter extends Filter
         if ($validator->fails()) {
             return false;
         }
-        $startDate = Carbon::createFromFormat($dateFormat, $returnedValues['minDate']);
-        $endDate = Carbon::createFromFormat($dateFormat, $returnedValues['maxDate']);
+        $startDate = $this->createCarbonDate($returnedValues['minDate']);
+        $endDate = $this->createCarbonDate($returnedValues['maxDate']);
 
         if (! ($startDate instanceof Carbon) || ! ($endDate instanceof Carbon)) {
             return false;
@@ -86,8 +87,8 @@ class DateRangeFilter extends Filter
                 'latest' => 'date_format:'.$dateFormat,
             ]);
             if (! $earlyLateValidator->fails()) {
-                $earliestDate = Carbon::createFromFormat($dateFormat, $earliestDateString);
-                $latestDate = Carbon::createFromFormat($dateFormat, $latestDateString);
+                $earliestDate = $this->createCarbonDate($earliestDateString);
+                $latestDate = $this->createCarbonDate($latestDateString);
 
                 if ($earliestDate instanceof Carbon) {
                     if ($startDate->lt($earliestDate)) {
@@ -154,20 +155,17 @@ class DateRangeFilter extends Filter
         $validatedValue = $this->validate($value);
 
         if (is_array($validatedValue)) {
-            $dateFormat = $this->getConfig('dateFormat');
-            $ariaDateFormat = $this->getConfig('ariaDateFormat');
-            $locale = $this->getConfig('locale') ?? config('app.locale', 'en');
+            if ($this->hasConfig('locale')) {
+                $this->setPillsLocale($this->getConfig('locale'));
+            }
 
-            $carbon = new Carbon;
-            $carbon->setLocale($locale);
-
-            $minDate = $carbon->createFromFormat($dateFormat, $validatedValue['minDate']);
-            $maxDate = $carbon->createFromFormat($dateFormat, $validatedValue['maxDate']);
+            $minDate = $this->createCarbonDate($validatedValue['minDate']);
+            $maxDate = $this->createCarbonDate($validatedValue['maxDate']);
 
             if (($minDate instanceof Carbon) && $maxDate instanceof Carbon) {
-                return $minDate->translatedFormat($ariaDateFormat)
+                return $this->outputTranslatedDate($minDate)
                         .' '.__('to').' '.
-                        $maxDate->translatedFormat($ariaDateFormat);
+                        $this->outputTranslatedDate($maxDate);
             }
         }
 
