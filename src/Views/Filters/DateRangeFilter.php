@@ -89,7 +89,7 @@ class DateRangeFilter extends Filter
             if (! $earlyLateValidator->fails()) {
                 $earliestDate = $this->createCarbonFromFormat($dateFormat, $earliestDateString);
                 $latestDate = $this->createCarbonFromFormat($dateFormat, $latestDateString);
-        
+
                 if ($earliestDate instanceof Carbon) {
                     if ($startDate->lt($earliestDate)) {
                         return false;
