@@ -7,13 +7,11 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
 
 final class DateRangeFilterTest extends FilterTestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();
         self::$filterInstance = DateRangeFilter::make('Active');
     }
-
 
     public function test_can_get_filter_name(): void
     {
@@ -60,15 +58,15 @@ final class DateRangeFilterTest extends FilterTestCase
 
         $this->assertSame('bar', self::$filterInstance->getConfig('foo'));
         $this->assertSame([
-                'allowInput' => true,
-                'altFormat' => 'F j, Y',
-                'ariaDateFormat' => 'F j, Y',
-                'dateFormat' => 'Y-m-d',
-                'earliestDate' => null,
-                'latestDate' => null,
-                'locale' => 'en',
-                'foo' => 'bar'
-            ], 
+            'allowInput' => true,
+            'altFormat' => 'F j, Y',
+            'ariaDateFormat' => 'F j, Y',
+            'dateFormat' => 'Y-m-d',
+            'earliestDate' => null,
+            'latestDate' => null,
+            'locale' => 'en',
+            'foo' => 'bar',
+        ],
             self::$filterInstance->getConfigs()
         );
 
@@ -77,28 +75,28 @@ final class DateRangeFilterTest extends FilterTestCase
     public function test_can_change_locale(): void
     {
         $this->assertSame([
-                'allowInput' => true,
-                'altFormat' => 'F j, Y',
-                'ariaDateFormat' => 'F j, Y',
-                'dateFormat' => 'Y-m-d',
-                'earliestDate' => null,
-                'latestDate' => null,
-                'locale' => 'en',
-            ], 
+            'allowInput' => true,
+            'altFormat' => 'F j, Y',
+            'ariaDateFormat' => 'F j, Y',
+            'dateFormat' => 'Y-m-d',
+            'earliestDate' => null,
+            'latestDate' => null,
+            'locale' => 'en',
+        ],
             self::$filterInstance->getConfigs()
         );
 
         self::$filterInstance->config(['locale' => 'fr']);
 
         $this->assertSame([
-                'allowInput' => true,
-                'altFormat' => 'F j, Y',
-                'ariaDateFormat' => 'F j, Y',
-                'dateFormat' => 'Y-m-d',
-                'earliestDate' => null,
-                'latestDate' => null,
-                'locale' => 'fr',
-            ],
+            'allowInput' => true,
+            'altFormat' => 'F j, Y',
+            'ariaDateFormat' => 'F j, Y',
+            'dateFormat' => 'Y-m-d',
+            'earliestDate' => null,
+            'latestDate' => null,
+            'locale' => 'fr',
+        ],
             self::$filterInstance->getConfigs()
         );
     }
@@ -128,7 +126,7 @@ final class DateRangeFilterTest extends FilterTestCase
     public function test_can_check_validation_accepts_valid_values_array(): void
     {
         $this->assertSame(
-            ['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'], 
+            ['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'],
             self::$filterInstance->validate(['2020-01-01', '2020-02-02'])
         );
     }
@@ -136,7 +134,7 @@ final class DateRangeFilterTest extends FilterTestCase
     public function test_can_check_validation_accepts_valid_values_string(): void
     {
         $this->assertSame(
-            ['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'], 
+            ['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'],
             self::$filterInstance->validate('2020-01-01 to 2020-02-02')
         );
         $this->assertFalse(self::$filterInstance->validate('2020-01-01 to '));
