@@ -75,7 +75,11 @@ You may use this to set a default value for the filter that will be applied on f
         ->setFilterDefaultValue(['minDate' => '2024-05-05', 'maxDate' => '2024-06-06'])
 ```
 or
-
+```
+    DateRangeFilter::make('EMail Verified Range')
+        ->setFilterDefaultValue(['min' => '2024-05-05', 'max' => '2024-06-06'])
+```
+or
 ```
     DateRangeFilter::make('EMail Verified Range')
         ->setFilterDefaultValue(['2024-05-05', '2024-06-06'])
