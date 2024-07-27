@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.3.4] - UNRELEASED
+### New Features
+- Added capability to setFilterDefaultValue for a DateRangeFilter by @lrljoe
+
 ## [v3.3.3] - 2024-07-23
 ### New Features
 - Add additional DateRangeFilter options by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1793

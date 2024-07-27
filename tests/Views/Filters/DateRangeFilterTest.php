@@ -398,4 +398,34 @@ final class DateRangeFilterTest extends FilterTestCase
         $filter->setCustomView('test-custom-filter-view');
         $this->assertSame('test-custom-filter-view', $filter->getViewPath());
     }
+
+    public function test_can_set_default_value_by_string(): void
+    {
+        $filter = DateRangeFilter::make('Active');
+        $this->assertFalse($filter->hasFilterDefaultValue());
+        $filter->setFilterDefaultValue('2024-04-04');
+        $this->assertTrue($filter->hasFilterDefaultValue());
+        $this->assertSame(['minDate' => '2024-04-04', 'maxDate' => '2024-04-04'], $filter->getFilterDefaultValue());
+
+    }
+
+    public function test_can_set_default_value_by_named_array(): void
+    {
+        $filter = DateRangeFilter::make('Active');
+        $this->assertFalse($filter->hasFilterDefaultValue());
+        $filter->setFilterDefaultValue(['minDate' => '2024-05-04', 'maxDate' => '2024-06-04']);
+        $this->assertTrue($filter->hasFilterDefaultValue());
+        $this->assertSame(['minDate' => '2024-05-04', 'maxDate' => '2024-06-04'], $filter->getFilterDefaultValue());
+
+    }
+
+    public function test_can_set_default_value_by_numbered_array(): void
+    {
+        $filter = DateRangeFilter::make('Active');
+        $this->assertFalse($filter->hasFilterDefaultValue());
+        $filter->setFilterDefaultValue(['2024-06-04', '2024-07-04']);
+        $this->assertTrue($filter->hasFilterDefaultValue());
+        $this->assertSame(['minDate' => '2024-08-04', 'maxDate' => '2024-07-04'], $filter->getFilterDefaultValue());
+    }
+
 }
