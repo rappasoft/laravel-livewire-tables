@@ -2,14 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use DateTime;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig, IsStringFilter};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HandlesDates, HasConfig, IsStringFilter};
 
 class DateTimeFilter extends Filter
 {
-    use HasConfig,
+    use HandlesDates,
+        HasConfig,
         IsStringFilter;
     use HasWireables;
 
@@ -21,7 +21,7 @@ class DateTimeFilter extends Filter
 
     public function validate(string $value): string|bool
     {
-        if (DateTime::createFromFormat('Y-m-d\TH:i', $value) === false) {
+        if ($this->createCarbonFromFormat('Y-m-d\TH:i', $value) === false) {
             return false;
         }
 
@@ -31,7 +31,8 @@ class DateTimeFilter extends Filter
     public function getFilterPillValue($value): string|array|null
     {
         if ($this->validate($value)) {
-            return DateTime::createFromFormat('Y-m-d\TH:i', $value)->format($this->getConfig('pillFormat'));
+
+            return $this->outputTranslatedDate('Y-m-d\TH:i', $value, $this->getConfig('pillFormat'));
         }
 
         return null;
