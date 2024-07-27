@@ -50,6 +50,9 @@ trait WithSearch
         if ($this->searchIsEnabled() && $this->hasSearch()) {
             $searchableColumns = $this->getSearchableColumns();
 
+            $this->callHook('searchUpdated', ['value' => $this->getSearch()]);
+            $this->callTraitHook('searchUpdated', ['value' => $this->getSearch()]);
+
             if ($searchableColumns->count()) {
                 $this->setBuilder($this->getBuilder()->where(function ($query) use ($searchableColumns) {
                     foreach ($searchableColumns as $index => $column) {

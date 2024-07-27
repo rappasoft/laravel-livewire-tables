@@ -2,13 +2,16 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig,HasOptions};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HandlesDates, HasConfig,HasOptions};
 
 class DateRangeFilter extends Filter
 {
-    use HasOptions,
+    use HandlesDates,
+        HasOptions,
         HasConfig;
     use HasWireables;
 
@@ -29,6 +32,8 @@ class DateRangeFilter extends Filter
     {
         $this->getOptions();
         $this->getConfigs();
+        $this->setInputDateFormat($this->getConfig('dateFormat'))->setOutputDateFormat($this->getConfig('ariaDateFormat'));
+        $dateFormat = $this->getConfigs()['dateFormat'];
 
         $returnedValues = ['minDate' => '', 'maxDate' => ''];
         if (is_array($values)) {
@@ -55,19 +60,17 @@ class DateRangeFilter extends Filter
             return false;
         }
 
-        $dateFormat = $this->getConfigs()['dateFormat'];
-
-        $validator = \Illuminate\Support\Facades\Validator::make($returnedValues, [
+        $validator = Validator::make($returnedValues, [
             'minDate' => 'required|date_format:'.$dateFormat,
             'maxDate' => 'required|date_format:'.$dateFormat,
         ]);
         if ($validator->fails()) {
             return false;
         }
-        $startDate = \Carbon\Carbon::createFromFormat($dateFormat, $returnedValues['minDate']);
-        $endDate = \Carbon\Carbon::createFromFormat($dateFormat, $returnedValues['maxDate']);
+        $startDate = $this->createCarbonDate($returnedValues['minDate']);
+        $endDate = $this->createCarbonDate($returnedValues['maxDate']);
 
-        if (! ($startDate instanceof \Carbon\Carbon) || ! ($endDate instanceof \Carbon\Carbon)) {
+        if (! ($startDate instanceof Carbon) || ! ($endDate instanceof Carbon)) {
             return false;
         }
         if ($startDate->gt($endDate)) {
@@ -79,20 +82,20 @@ class DateRangeFilter extends Filter
 
         if ($earliestDateString != '' && ! is_null($earliestDateString) && $latestDateString != '' && ! is_null($latestDateString)) {
             $dateLimits = ['earliest' => $earliestDateString, 'latest' => $latestDateString];
-            $earlyLateValidator = \Illuminate\Support\Facades\Validator::make($dateLimits, [
+            $earlyLateValidator = Validator::make($dateLimits, [
                 'earliest' => 'date_format:'.$dateFormat,
                 'latest' => 'date_format:'.$dateFormat,
             ]);
             if (! $earlyLateValidator->fails()) {
-                $earliestDate = \Carbon\Carbon::createFromFormat($dateFormat, $earliestDateString);
-                $latestDate = \Carbon\Carbon::createFromFormat($dateFormat, $latestDateString);
+                $earliestDate = $this->createCarbonDate($earliestDateString);
+                $latestDate = $this->createCarbonDate($latestDateString);
 
-                if ($earliestDate instanceof \Carbon\Carbon) {
+                if ($earliestDate instanceof Carbon) {
                     if ($startDate->lt($earliestDate)) {
                         return false;
                     }
                 }
-                if ($latestDate instanceof \Carbon\Carbon) {
+                if ($latestDate instanceof Carbon) {
                     if ($endDate->gt($latestDate)) {
                         return false;
                     }
@@ -108,22 +111,61 @@ class DateRangeFilter extends Filter
         return [];
     }
 
+    public function getFilterDefaultValue(): array
+    {
+        return $this->filterDefaultValue ?? [];
+    }
+
+    public function hasFilterDefaultValue(): bool
+    {
+        return ! is_null($this->filterDefaultValue);
+    }
+
+    public function setFilterDefaultValue($value): self
+    {
+        if (is_array($value)) {
+            $minDate = '';
+            $maxDate = '';
+
+            if (array_key_exists('minDate', $value)) {
+                $minDate = $value['minDate'];
+            } elseif (array_key_exists('min', $value)) {
+                $minDate = $value['min'];
+            } elseif (array_key_exists(0, $value)) {
+                $minDate = $value[0];
+            }
+
+            if (array_key_exists('maxDate', $value)) {
+                $maxDate = $value['maxDate'];
+            } elseif (array_key_exists('max', $value)) {
+                $maxDate = $value['max'];
+            } elseif (array_key_exists(1, $value)) {
+                $maxDate = $value[1];
+            }
+            $this->filterDefaultValue = ['minDate' => $minDate, 'maxDate' => $maxDate];
+        } else {
+            $this->filterDefaultValue = ['minDate' => $value, 'maxDate' => $value];
+        }
+
+        return $this;
+    }
+
     public function getFilterPillValue($value): string|array|null
     {
         $validatedValue = $this->validate($value);
 
         if (is_array($validatedValue)) {
-            $dateFormat = $this->getConfig('dateFormat');
-            $ariaDateFormat = $this->getConfig('ariaDateFormat');
+            if ($this->hasConfig('locale')) {
+                $this->setPillsLocale($this->getConfig('locale'));
+            }
 
-            $minDateCarbon = \Carbon\Carbon::createFromFormat($dateFormat, $validatedValue['minDate']);
-            $maxDateCarbon = \Carbon\Carbon::createFromFormat($dateFormat, $validatedValue['maxDate']);
+            $minDate = $this->createCarbonDate($validatedValue['minDate']);
+            $maxDate = $this->createCarbonDate($validatedValue['maxDate']);
 
-            if (($minDateCarbon instanceof \Carbon\Carbon) && $maxDateCarbon instanceof \Carbon\Carbon) {
-                $minDate = $minDateCarbon->format($ariaDateFormat);
-                $maxDate = $maxDateCarbon->format($ariaDateFormat);
-
-                return $minDate.' '.__('to').' '.$maxDate;
+            if (($minDate instanceof Carbon) && $maxDate instanceof Carbon) {
+                return $this->outputTranslatedDate($minDate)
+                        .' '.__('to').' '.
+                        $this->outputTranslatedDate($maxDate);
             }
         }
 

@@ -61,6 +61,9 @@ trait WithFilters
                             continue;
                         }
 
+                        $this->callHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);
+                        $this->callTraitHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);
+
                         ($filter->getFilterCallback())($this->getBuilder(), $value);
                     }
                 }
@@ -84,7 +87,14 @@ trait WithFilters
         $filter = $this->getFilterByKey($filterName);
 
         if ($filter && $filter->isEmpty($value)) {
+            $this->callHook('filterRemoved', ['filter' => $filter->getKey()]);
+            $this->callTraitHook('filterRemoved', ['filter' => $filter->getKey()]);
+
             $this->resetFilter($filterName);
+        } elseif ($filter) {
+            $this->callHook('filterUpdated', ['filter' => $filter->getKey(), 'value' => $value]);
+            $this->callTraitHook('filterUpdated', ['filter' => $filter->getKey(), 'value' => $value]);
+
         }
     }
 }

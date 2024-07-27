@@ -135,6 +135,10 @@ trait FilterHelpers
     public function setFilter(string $filterKey, mixed $value): void
     {
         $this->appliedFilters[$filterKey] = $this->filterComponents[$filterKey] = $value;
+
+        $this->callHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
+        $this->callTraitHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
+
     }
 
     public function selectAllFilterOptions(string $filterKey): void
@@ -238,6 +242,8 @@ trait FilterHelpers
         if (! $filter instanceof Filter) {
             $filter = $this->getFilterByKey($filter);
         }
+        $this->callHook('filterReset', ['filter' => $filter->getKey()]);
+        $this->callTraitHook('filterReset', ['filter' => $filter->getKey()]);
 
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
     }
