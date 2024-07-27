@@ -22,7 +22,7 @@ class DateTimeFilter extends Filter
     public function validate(string $value): string|bool
     {
         $this->setInputDateFormat('Y-m-d\TH:i')->setOutputDateFormat($this->getConfig('pillFormat'));
-        
+
         $carbonDate = $this->createCarbonDate($value);
 
         return ($carbonDate === false) ? false : $carbonDate->format('Y-m-d\TH:i');

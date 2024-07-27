@@ -34,11 +34,10 @@ trait HandlesDates
         $fromFormat = false;
         try {
             $fromFormat = $this->carbonInstance->createFromFormat($this->inputDateFormat, $value);
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             return false;
         }
+
         return $fromFormat;
     }
 
