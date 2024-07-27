@@ -184,5 +184,4 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('de', self::$filterInstance->getPillsLocale());
         $this->assertTrue(self::$filterInstance->hasPillsLocale());
     }
-
 }
