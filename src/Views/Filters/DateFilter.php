@@ -31,7 +31,7 @@ class DateFilter extends Filter
     public function getFilterPillValue($value): string|array|null
     {
         if ($this->validate($value)) {
-            
+
             return $this->outputTranslatedDate('Y-m-d', $value, $this->getConfig('pillFormat'));
         }
 

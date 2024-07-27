@@ -22,7 +22,7 @@ trait HandlesDates
 
         return $carbon->createFromFormat($format, $value);
     }
-    
+
     protected function outputTranslatedDate(string $format, string $value, string $ariaDateFormat): string
     {
         $carbon = $this->createFromFormat($format, $value);
