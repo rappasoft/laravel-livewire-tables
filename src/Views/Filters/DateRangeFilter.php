@@ -2,11 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasConfig,HasOptions};
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
 
 class DateRangeFilter extends Filter
 {
@@ -165,8 +165,8 @@ class DateRangeFilter extends Filter
             $maxDate = $carbon->createFromFormat($dateFormat, $validatedValue['maxDate']);
 
             if (($minDate instanceof Carbon) && $maxDate instanceof Carbon) {
-                return $minDate->translatedFormat($ariaDateFormat) 
-                        . ' ' . __('to') . ' ' . 
+                return $minDate->translatedFormat($ariaDateFormat)
+                        .' '.__('to').' '.
                         $maxDate->translatedFormat($ariaDateFormat);
             }
         }
