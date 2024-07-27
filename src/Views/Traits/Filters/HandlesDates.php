@@ -31,8 +31,15 @@ trait HandlesDates
     protected function createCarbonDate(string $value): Carbon|bool
     {
         $this->createCarbon();
-
-        return $this->carbonInstance->createFromFormat($this->inputDateFormat, $value);
+        $fromFormat = false;
+        try {
+            $fromFormat = $this->carbonInstance->createFromFormat($this->inputDateFormat, $value);
+        }
+        catch (\Exception $e)
+        {
+            return false;
+        }
+        return $fromFormat;
     }
 
     protected function setInputDateFormat(string $inputDateFormat): self
