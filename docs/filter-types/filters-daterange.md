@@ -85,7 +85,6 @@ or
         ->setFilterDefaultValue(['2024-05-05', '2024-06-06'])
 ```
 
-
 ## Configuration
 By default, this filter will inject the Flatpickr JS Library and CSS. However, you can customise this behaviour using the configuration file.
 
