@@ -419,6 +419,16 @@ final class DateRangeFilterTest extends FilterTestCase
 
     }
 
+    public function test_can_set_default_value_by_short_named_array(): void
+    {
+        $filter = DateRangeFilter::make('Active');
+        $this->assertFalse($filter->hasFilterDefaultValue());
+        $filter->setFilterDefaultValue(['min' => '2024-05-04', 'max' => '2024-06-04']);
+        $this->assertTrue($filter->hasFilterDefaultValue());
+        $this->assertSame(['minDate' => '2024-05-04', 'maxDate' => '2024-06-04'], $filter->getFilterDefaultValue());
+
+    }
+
     public function test_can_set_default_value_by_numbered_array(): void
     {
         $filter = DateRangeFilter::make('Active');
