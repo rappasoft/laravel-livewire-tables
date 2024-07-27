@@ -49,7 +49,7 @@ trait WithSearch
     {
         if ($this->searchIsEnabled() && $this->hasSearch()) {
             $searchableColumns = $this->getSearchableColumns();
-            
+
             $this->callHook('searchUpdated', ['value' => $this->getSearch()]);
             $this->callTraitHook('searchUpdated', ['value' => $this->getSearch()]);
 
