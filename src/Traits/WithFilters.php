@@ -63,12 +63,13 @@ trait WithFilters
 
                         $this->callHook('applyFilter', ['filter' => $filter->getKey(), 'value' => $value]);
                         $this->callTraitHook('applyFilter', ['filter' => $filter->getKey(), 'value' => $value]);
-                
+
                         ($filter->getFilterCallback())($this->getBuilder(), $value);
                     }
                 }
             }
         }
+
         return $this->getBuilder();
     }
 
@@ -90,9 +91,7 @@ trait WithFilters
             $this->callTraitHook('filterRemoved', ['filter' => $filter->getKey()]);
 
             $this->resetFilter($filterName);
-        }
-        elseif($filter)
-        {
+        } elseif ($filter) {
             $this->callHook('filterUpdated', ['filter' => $filter->getKey(), 'value' => $value]);
             $this->callTraitHook('filterUpdated', ['filter' => $filter->getKey(), 'value' => $value]);
 
