@@ -21,13 +21,6 @@ trait HandlesDates
 
     }
 
-    protected function createCarbonFromFormat(string $format, string $value): Carbon|bool
-    {
-        $this->createCarbon();
-
-        return $this->carbonInstance->createFromFormat($format, $value);
-    }
-
     protected function createCarbonDate(string $value): Carbon|bool
     {
         $this->createCarbon();
