@@ -5,6 +5,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ## [v3.3.4] - UNRELEASED
 ### New Features
 - Added capability to setFilterDefaultValue for a DateRangeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1796
+- Add localised pill values for DateFilter, DateTimeFilter, DateRangeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1797
 
 ### Tweaks
 - Migrating Carbon usage into Trait, Adding Filter/Search Lifecycle Hooks by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1798
