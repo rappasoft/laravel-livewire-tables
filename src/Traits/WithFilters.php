@@ -61,8 +61,8 @@ trait WithFilters
                             continue;
                         }
 
-                        $this->callHook('applyFilter', ['filter' => $filter->getKey(), 'value' => $value]);
-                        $this->callTraitHook('applyFilter', ['filter' => $filter->getKey(), 'value' => $value]);
+                        $this->callHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);
+                        $this->callTraitHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);
 
                         ($filter->getFilterCallback())($this->getBuilder(), $value);
                     }
