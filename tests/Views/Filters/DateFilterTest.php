@@ -175,4 +175,24 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
     }
+
+    public function test_check_if_has_locale(): void
+    {
+        $this->assertFalse(self::$filterInstance->hasPillsLocale());
+        self::$filterInstance->setPillsLocale('fr');
+        $this->assertTrue(self::$filterInstance->hasPillsLocale());
+    }
+
+    public function test_check_if_can_get_locale(): void
+    {
+        $this->assertFalse(self::$filterInstance->hasPillsLocale());
+        $this->assertSame('en', self::$filterInstance->getPillsLocale());
+        self::$filterInstance->setPillsLocale('fr');
+        $this->assertTrue(self::$filterInstance->hasPillsLocale());
+        $this->assertSame('fr', self::$filterInstance->getPillsLocale());
+        self::$filterInstance->setPillsLocale('de');
+        $this->assertSame('de', self::$filterInstance->getPillsLocale());
+        $this->assertTrue(self::$filterInstance->hasPillsLocale());
+    }
+
 }

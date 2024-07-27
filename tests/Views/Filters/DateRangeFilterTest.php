@@ -411,4 +411,24 @@ final class DateRangeFilterTest extends FilterTestCase
         $this->assertTrue(self::$filterInstance->hasFilterDefaultValue());
         $this->assertSame(['minDate' => '2024-06-04', 'maxDate' => '2024-07-04'], self::$filterInstance->getFilterDefaultValue());
     }
+
+    public function test_check_if_has_locale(): void
+    {
+        $this->assertFalse(self::$filterInstance->hasPillsLocale());
+        self::$filterInstance->setPillsLocale('fr');
+        $this->assertTrue(self::$filterInstance->hasPillsLocale());
+    }
+
+    public function test_check_if_can_get_locale(): void
+    {
+        $this->assertFalse(self::$filterInstance->hasPillsLocale());
+        $this->assertSame('en', self::$filterInstance->getPillsLocale());
+        self::$filterInstance->setPillsLocale('fr');
+        $this->assertTrue(self::$filterInstance->hasPillsLocale());
+        $this->assertSame('fr', self::$filterInstance->getPillsLocale());
+        self::$filterInstance->setPillsLocale('de');
+        $this->assertSame('de', self::$filterInstance->getPillsLocale());
+        $this->assertTrue(self::$filterInstance->hasPillsLocale());
+    }
+
 }
