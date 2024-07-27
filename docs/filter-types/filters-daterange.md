@@ -66,6 +66,25 @@ A full list of options is below, please see the Flatpickr documentation for refe
 | time_24hr | Boolean | false | Displays time picker in 24 hour mode without AM/PM selection when enabled. | 
 | weekNumbers | Boolean | false | Enables display of week numbers in calendar. | 
 
+## setFilterDefaultValue
+
+You may use this to set a default value for the filter that will be applied on first load (but may be cleared by the user).  This should be an array:
+
+```
+    DateRangeFilter::make('EMail Verified Range')
+        ->setFilterDefaultValue(['minDate' => '2024-05-05', 'maxDate' => '2024-06-06'])
+```
+or
+```
+    DateRangeFilter::make('EMail Verified Range')
+        ->setFilterDefaultValue(['min' => '2024-05-05', 'max' => '2024-06-06'])
+```
+or
+```
+    DateRangeFilter::make('EMail Verified Range')
+        ->setFilterDefaultValue(['2024-05-05', '2024-06-06'])
+```
+
 
 ## Configuration
 By default, this filter will inject the Flatpickr JS Library and CSS. However, you can customise this behaviour using the configuration file.

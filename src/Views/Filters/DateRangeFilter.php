@@ -108,6 +108,45 @@ class DateRangeFilter extends Filter
         return [];
     }
 
+    public function getFilterDefaultValue(): array
+    {
+        return $this->filterDefaultValue ?? [];
+    }
+
+    public function hasFilterDefaultValue(): bool
+    {
+        return ! is_null($this->filterDefaultValue);
+    }
+
+    public function setFilterDefaultValue($value): self
+    {
+        if (is_array($value)) {
+            $minDate = '';
+            $maxDate = '';
+
+            if (array_key_exists('minDate', $value)) {
+                $minDate = $value['minDate'];
+            } elseif (array_key_exists('min', $value)) {
+                $minDate = $value['min'];
+            } elseif (array_key_exists(0, $value)) {
+                $minDate = $value[0];
+            }
+
+            if (array_key_exists('maxDate', $value)) {
+                $maxDate = $value['maxDate'];
+            } elseif (array_key_exists('max', $value)) {
+                $maxDate = $value['max'];
+            } elseif (array_key_exists(1, $value)) {
+                $maxDate = $value[1];
+            }
+            $this->filterDefaultValue = ['minDate' => $minDate, 'maxDate' => $maxDate];
+        } else {
+            $this->filterDefaultValue = ['minDate' => $value, 'maxDate' => $value];
+        }
+
+        return $this;
+    }
+
     public function getFilterPillValue($value): string|array|null
     {
         $validatedValue = $this->validate($value);

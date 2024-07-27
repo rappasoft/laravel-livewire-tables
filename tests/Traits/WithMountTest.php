@@ -11,7 +11,7 @@ final class WithMountTest extends TestCase
     {
         $view = view('livewire-tables::datatable');
 
-        $table = new PetsTableMount();
+        $table = new PetsTableMount;
         $table->boot();
         $table->mount(102);
         $table->bootedComponentUtilities();
@@ -29,7 +29,7 @@ final class WithMountTest extends TestCase
         $this->assertNotSame(strtoupper($rows->first()->name), 'CHICO');
         $this->assertNotSame(strtoupper($rows->first()->name), 'CARTMAN');
 
-        $table2 = new PetsTableMount();
+        $table2 = new PetsTableMount;
         $table2->boot();
         $table2->mount(202);
         $table2->bootedComponentUtilities();
@@ -46,7 +46,7 @@ final class WithMountTest extends TestCase
         $this->assertNotSame(strtoupper($rows2->first()->name), 'CARTMAN');
         $this->assertNotSame(strtoupper($rows2->first()->name), 'MAY');
 
-        $table3 = new PetsTableMount();
+        $table3 = new PetsTableMount;
         $table3->boot();
         $table3->mount();
         $table3->bootedComponentUtilities();
