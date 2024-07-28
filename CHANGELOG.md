@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.3.5] - UNRELEASED
+### New Features
+- Add capability to toggle the Bulk Actions - Select All behaviour by @lrljoe in
+
 ## [v3.3.4] - 2024-07-27
 ### New Features
 - Added capability to setFilterDefaultValue for a DateRangeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1796
