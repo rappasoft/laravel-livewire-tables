@@ -202,7 +202,7 @@ trait WithData
     {
         $joins = [];
         $sqlJoins = $this->getBuilder()->getQuery()->joins;
-        foreach ((!empty($sqlJoins)) ? $sqlJoins : [] as $join) {
+        foreach ((! empty($sqlJoins)) ? $sqlJoins : [] as $join) {
             $joins[] = $join->table;
         }
 
