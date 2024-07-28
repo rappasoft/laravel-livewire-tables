@@ -201,8 +201,8 @@ trait WithData
     protected function performJoin(string $table, string $foreign, string $other, string $type = 'left'): Builder
     {
         $joins = [];
-
-        foreach ($this->getBuilder()->getQuery()->joins as $join) {
+        $sqlJoins = $this->getBuilder()->getQuery()->joins;
+        foreach ((!empty($sqlJoins)) ? $sqlJoins : [] as $join) {
             $joins[] = $join->table;
         }
 
