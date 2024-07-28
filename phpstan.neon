@@ -13,15 +13,5 @@ parameters:
     treatPhpDocTypesAsCertain: false
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
-        - identifier: missingType.generics
-        - identifier: missingType.iterableValue
-        - '#Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$model has no type specified#'
-        - '#Unable to resolve the template type TMapWithKeysKey in call to method Illuminate\\Support\\Collection#'
-        - '#Unable to resolve the template type TMapWithKeysValue in call to method Illuminate\\Support\\Collection#'
-        - '#Access to an undefined property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view#'
         - "#Unsafe usage of new static#"
-        - '#on array\<string, non-empty-array\<int\<0, max\>, mixed\>\> in empty\(\) does not exist.#'
-        - '#on array<string, non-empty-array<int<0, max>, mixed>> in isset\(\) does not exist#'
-        - '#on non-empty-array<1\|string, array<int<0, max>, mixed>> in isset\(\) does not exist.#'
         - '#\$callback of method Illuminate\\Support\\Collection<int,string>::filter\(\) expects \(callable\(string, int\): bool\)\|null, Closure\(mixed\): int<0, max> given.#'
-        - '#Property Illuminate\\Database\\Query\\Builder\:\:\$joins \(array\) on left side of \?\? is not nullable.#'
