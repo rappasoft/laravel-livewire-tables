@@ -14,7 +14,7 @@ trait WithEvents
         $this->clearSorts();
     }
 
-    public function setFilterEvent(string $filter, string $value): void
+    public function setFilterEvent(string $filter, mixed $value): void
     {
         $this->setFilter($filter, $value);
     }
