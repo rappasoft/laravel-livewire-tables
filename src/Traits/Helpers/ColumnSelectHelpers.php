@@ -85,8 +85,6 @@ trait ColumnSelectHelpers
             ->values();
     }
 
-
-
     public function getSelectedColumns(): array
     {
         return $this->selectedColumns ?? [];

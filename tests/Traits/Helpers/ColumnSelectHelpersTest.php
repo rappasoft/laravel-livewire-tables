@@ -57,5 +57,4 @@ final class ColumnSelectHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->getColumnSelectIsHiddenOnTablet());
     }
-
 }
