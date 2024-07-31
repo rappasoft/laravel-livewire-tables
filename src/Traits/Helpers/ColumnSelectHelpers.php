@@ -158,5 +158,4 @@ trait ColumnSelectHelpers
             ->values()
             ->toArray();
     }
-
 }

@@ -136,5 +136,4 @@ trait WithColumnSelect
             'selectedVisibleColumns' => $this->getVisibleColumns(),
         ]);
     }
-
 }
