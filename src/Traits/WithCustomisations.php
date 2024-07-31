@@ -18,7 +18,6 @@ trait WithCustomisations
 
     protected ?string $section = null;
 
-
     public function renderingWithCustomisations(\Illuminate\View\View $view, array $data = []): void
     {
         if ($this->hasLayout()) {
@@ -38,7 +37,7 @@ trait WithCustomisations
         }
 
         $view = $view->with([
-            'customView' => method_exists($this, "customView") ? $this->customView() : '',
+            'customView' => method_exists($this, 'customView') ? $this->customView() : '',
         ]);
 
     }

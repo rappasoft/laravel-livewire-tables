@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnSelectHelpers
 {
@@ -187,7 +187,6 @@ trait ColumnSelectHelpers
         return count($this->selectedColumns) === count($this->getDefaultVisibleColumns());
     }
 
-    
     public function setupColumnSelect(): void
     {
 
@@ -233,5 +232,4 @@ trait ColumnSelectHelpers
         }
 
     }
-
 }
