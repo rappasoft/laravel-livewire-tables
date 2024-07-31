@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Livewire\Attributes\On;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 
 trait SortingHelpers
 {
@@ -154,5 +154,4 @@ trait SortingHelpers
     {
         return $this->sortingPillsAreEnabled() && $this->hasSorts();
     }
-
 }

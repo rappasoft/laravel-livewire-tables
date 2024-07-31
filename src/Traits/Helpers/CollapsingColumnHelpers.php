@@ -6,7 +6,6 @@ use Livewire\Attributes\Computed;
 
 trait CollapsingColumnHelpers
 {
-
     public function getCollapsingColumnsStatus(): bool
     {
         return $this->collapsingColumnsStatus;
@@ -54,5 +53,4 @@ trait CollapsingColumnHelpers
     {
         return $this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns();
     }
-
 }
