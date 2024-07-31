@@ -123,5 +123,4 @@ final class ColumnSelectConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->allVisibleColumnsAreSelected());
 
     }
-
 }
