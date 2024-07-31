@@ -36,9 +36,8 @@ class DateRangeFilter extends Filter
         $dateFormat = $this->getConfigs()['dateFormat'];
 
         $returnedValues = $this->populateReturnedValues($values);
-       
-        if ($returnedValues['minDate'] == '' || $returnedValues['maxDate'] == '' || !$this->validateDateFormat($returnedValues,$dateFormat))
-        {
+
+        if ($returnedValues['minDate'] == '' || $returnedValues['maxDate'] == '' || ! $this->validateDateFormat($returnedValues, $dateFormat)) {
             return false;
         }
 
@@ -83,12 +82,13 @@ class DateRangeFilter extends Filter
             ]);
             if (! $earlyLateValidator->fails()) {
                 return [
-                    'earliest' => $this->createCarbonDate($earliestDateString), 
+                    'earliest' => $this->createCarbonDate($earliestDateString),
                     'latest' => $this->createCarbonDate($latestDateString),
                 ];
-        
+
             }
         }
+
         return [];
     }
 
@@ -114,6 +114,7 @@ class DateRangeFilter extends Filter
             $returnedValues['minDate'] = $valueArray[0];
             $returnedValues['maxDate'] = ((isset($valueArray[1]) && $valueArray[1] != 'to') ? $valueArray[1] : (isset($valueArray[2]) ? $valueArray[2] : ''));
         }
+
         return $returnedValues;
     }
 
@@ -126,6 +127,7 @@ class DateRangeFilter extends Filter
         if ($validator->fails()) {
             return false;
         }
+
         return true;
     }
 
