@@ -120,6 +120,7 @@ final class DateRangeFilterTest extends FilterTestCase
         $this->assertTrue(self::$filterInstance->isEmpty(['minDate' => '2020-01-01', 'maxDate' => null]));
         $this->assertTrue(self::$filterInstance->isEmpty(['minDate' => null, 'maxDate' => '2020-02-02']));
         $this->assertTrue(self::$filterInstance->isEmpty(['minDate' => '2020-01-01']));
+        $this->assertTrue(self::$filterInstance->isEmpty(['minDate' => '2020-01-01', '']));
         $this->assertTrue(self::$filterInstance->isEmpty('test'));
     }
 
