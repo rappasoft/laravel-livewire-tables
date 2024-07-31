@@ -1,0 +1,12 @@
+ParaTest v7.5.0 upon PHPUnit 11.2.9 by Sebastian Bergmann and contributors.
+
+Processes:     12
+Runtime:       PHP 8.3.9
+Configuration: /var/www/packages/rappasoft/BladeMinimisationForProduction/phpunit.xml.dist
+Random Seed:   1722458536
+
+.......                                                             7 / 7 (100%)
+
+Time: 00:01.319, Memory: 22.00 MB
+
+OK (7 tests, 22 assertions)
