@@ -19,9 +19,6 @@ trait WithCustomisations
     protected ?string $section = null;
 
 
-    /**
-     * Add customView to the View
-     */
     public function renderingWithCustomisations(\Illuminate\View\View $view, array $data = []): void
     {
         if ($this->hasLayout()) {
