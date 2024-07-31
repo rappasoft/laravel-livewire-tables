@@ -3,6 +3,10 @@ title: Available Methods
 weight: 3
 ---
 
+## Styling
+
+To change the CSS classes or other attributes assigned to a Column, use can use [setTdAttributes](../datatable/styling), which allows customising attributes based on column type, name or value.
+
 ## Sorting
 
 See also [component sorting configuration](../sorting/available-methods).
