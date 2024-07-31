@@ -18,13 +18,6 @@ trait WithCustomisations
 
     protected ?string $section = null;
 
-    /**
-     * The view to add any modals for the table, could also be used for any non-visible html
-     */
-    public function customView(): string
-    {
-        return 'livewire-tables::stubs.custom';
-    }
 
     /**
      * Add customView to the View
@@ -48,7 +41,8 @@ trait WithCustomisations
         }
 
         $view = $view->with([
-            'customView' => $this->customView(),
+            'customView' => method_exists($this, "customView") ? $this->customView() : '',
         ]);
+
     }
 }

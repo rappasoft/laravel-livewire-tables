@@ -10,7 +10,7 @@
             @if ($this->sortingPillsAreEnabled() && $this->hasSorts())
                 <x-livewire-tables::tools.sorting-pills />
             @endif
-            @if($this->filtersAreEnabled() && $this->filterPillsAreEnabled())
+            @if($this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
                 <x-livewire-tables::tools.filter-pills />
             @endif
             <x-livewire-tables::tools.toolbar :$filterGenericData />
