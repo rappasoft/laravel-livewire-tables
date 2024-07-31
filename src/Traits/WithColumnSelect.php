@@ -129,4 +129,12 @@ trait WithColumnSelect
     {
         return count($this->selectedColumns) === count($this->getDefaultVisibleColumns());
     }
+
+    public function renderingWithColumnSelect(\Illuminate\View\View $view, array $data = []): void
+    {
+        $view = $view->with([
+            'selectedVisibleColumns' => $this->getVisibleColumns(),
+        ]);
+    }
+
 }
