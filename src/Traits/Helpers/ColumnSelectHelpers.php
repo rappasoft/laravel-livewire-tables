@@ -85,27 +85,7 @@ trait ColumnSelectHelpers
             ->values();
     }
 
-    public function getCurrentlySelectedCols(): void
-    {
-        $this->defaultVisibleColumnCount = count($this->getDefaultVisibleColumns());
-        $this->visibleColumnCount = count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns()));
-    }
 
-    public function getColsForData(): Collection
-    {
-        $selectableCols = $this->getSelectableColumns();
-        $unSelectableCols = $this->getUnSelectableColumns();
-
-        return $selectableCols->merge($unSelectableCols);
-    }
-
-    public function getUnSelectableColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isHidden())
-            ->reject(fn (Column $column) => $column->isSelectable())
-            ->values();
-    }
 
     public function getSelectedColumns(): array
     {
