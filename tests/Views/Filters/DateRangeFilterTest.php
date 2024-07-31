@@ -154,6 +154,8 @@ final class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-13-21', 'maxDate' => '2020-12-22']));
         $this->assertFalse(self::$filterInstance->validate(['minDate' => '12020-13-21', 'maxDate' => '2020-12-22']));
         $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-22', 'maxDate' => '2020-02-21']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-22', 'maxDate' => 'test']));
+
     }
 
     public function test_can_check_validation_rejects_invalid_earliest_latest_values(): void
