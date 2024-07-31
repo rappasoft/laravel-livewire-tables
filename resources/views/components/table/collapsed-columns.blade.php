@@ -1,6 +1,10 @@
 @aware(['component', 'tableName'])
 @props(['row', 'rowIndex'])
 
+@php
+    $customAttributes = $component->getTrAttributes($row, $rowIndex);
+@endphp
+
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
     @php
         $colspan = $component->getColspanCount();
@@ -28,11 +32,15 @@
 
         wire:key="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}-collapsed-contents"
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
+        {{
+        $attributes->merge($customAttributes)
+                ->class(['hidden bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
+                ->class(['hidden bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($component->isTailwind() && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
+                ->class(['d-none bg-light rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
+                ->class(['d-none bg-white rappasoft-striped-row' => ($component->isBootstrap() && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
+                ->except(['default'])
+        }}
 
-        @class([
-            'hidden bg-white dark:bg-gray-700 dark:text-white' => $component->isTailwind(),
-            'd-none' => $component->isBootstrap()
-        ])
     >
         <td
             @class([
