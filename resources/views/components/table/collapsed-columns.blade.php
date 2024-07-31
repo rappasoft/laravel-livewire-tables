@@ -44,8 +44,8 @@
     >
         <td
             @class([
-                'pt-4 pb-2 px-4' => $component->isTailwind(),
-                'pt-3 p-2' => $component->isBootstrap(),
+                'text-left pt-4 pb-2 px-4' => $component->isTailwind(),
+                'text-start pt-3 p-2' => $component->isBootstrap(),
             ])
             colspan="{{ $colspan }}"
         >
