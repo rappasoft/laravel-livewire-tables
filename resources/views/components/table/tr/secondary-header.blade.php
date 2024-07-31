@@ -1,5 +1,5 @@
 @aware(['component', 'tableName'])
-@props(['rows', 'filterGenericData', 'selectedVisibleColumns', 'showBulkActions'])
+@props(['rows', 'filterGenericData', 'selectedVisibleColumns'])
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getSecondaryHeaderTrAttributes($rows)"
@@ -8,7 +8,7 @@
     {{-- TODO: Remove --}}
     <x-livewire-tables::table.td.plain x-cloak x-show="currentlyReorderingStatus" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-test' }}" />
 
-    @if ($showBulkActions)
+    @if ($this->showBulkActionsSections)
         <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-hasBulkActions' }}" />
     @endif
 

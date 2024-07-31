@@ -7,28 +7,25 @@
         @endif
 
         <x-livewire-tables::tools>
-            @if ($this->sortingPillsAreEnabled() && $this->hasSorts())
+            @if ($this->showSortPillsSection)
                 <x-livewire-tables::tools.sorting-pills />
             @endif
-            @if($this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
+            @if($this->showFilterPillsSection)
                 <x-livewire-tables::tools.filter-pills />
             @endif
             <x-livewire-tables::tools.toolbar :$filterGenericData />
         </x-livewire-tables::tools>
 
         <x-livewire-tables::table>
-            @php($showBulkActions = ($this->bulkActionsAreEnabled() && $this->hasBulkActions()))
-            @php($currentlyReordering = $this->getCurrentlyReorderingStatus())
-            @php($hasCollapsingColumns = $this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
-
+            
             <x-slot name="thead">
-                @if($currentlyReordering)
+                @if($this->getCurrentlyReorderingStatus)
                     <x-livewire-tables::table.th.reorder x-cloak x-show="currentlyReorderingStatus" />
                 @endif
-                @if($showBulkActions)
+                @if($this->showBulkActionsSections)
                     <x-livewire-tables::table.th.bulk-actions :displayMinimisedOnReorder="true" />
                 @endif
-                @if ($hasCollapsingColumns)
+                @if ($this->showCollapsingColumnSections)
                     <x-livewire-tables::table.th.collapsed-columns />
                 @endif
 
@@ -38,26 +35,26 @@
             </x-slot>
 
             @if($this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader())
-                <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$filterGenericData :$selectedVisibleColumns :$showBulkActions />
+                <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$filterGenericData :$selectedVisibleColumns  />
             @endif
             @if($this->hasDisplayLoadingPlaceholder())
                 <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
             @endif
 
 
-            @if($showBulkActions)
+            @if($this->showBulkActionsSections)
                 <x-livewire-tables::table.tr.bulk-actions :rows="$rows" :displayMinimisedOnReorder="true" />
             @endif
 
             @forelse ($rows as $rowIndex => $row)
                 <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
-                    @if($currentlyReordering)
+                    @if($this->getCurrentlyReorderingStatus)
                         <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
                     @endif
-                    @if($showBulkActions)
+                    @if($this->showBulkActionsSections)
                         <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex"/>
                     @endif
-                    @if ($hasCollapsingColumns)
+                    @if ($this->showCollapsingColumnSections)
                         <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
                     @endif
 
@@ -72,7 +69,7 @@
                     @endforeach
                 </x-livewire-tables::table.tr>
 
-                @if ($hasCollapsingColumns)
+                @if ($this->showCollapsingColumnSections)
                     <x-livewire-tables::table.collapsed-columns :row="$row" :rowIndex="$rowIndex" />
                 @endif
             @empty
@@ -82,7 +79,7 @@
             @if ($this->footerIsEnabled() && $this->hasColumnsWithFooter())
                 <x-slot name="tfoot">
                     @if ($this->useHeaderAsFooterIsEnabled())
-                        <x-livewire-tables::table.tr.secondary-header :$showBulkActions :rows="$rows" :$filterGenericData />
+                        <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$filterGenericData />
                     @else
                         <x-livewire-tables::table.tr.footer :rows="$rows"  :$filterGenericData />
                     @endif

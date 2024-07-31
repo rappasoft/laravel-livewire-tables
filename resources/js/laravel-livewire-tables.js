@@ -196,6 +196,9 @@ document.addEventListener('alpine:init', () => {
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
         dragStart(event) {
+            this.$nextTick(() => { this.setupEvenOddClasses() });
+
+
             this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
@@ -266,11 +269,13 @@ document.addEventListener('alpine:init', () => {
             }
         },
         reorderToggle() {
+            this.$nextTick(() => { this.setupEvenOddClasses() });
             if (this.currentlyReorderingStatus) {
                 wire.disableReordering();
  
             }
             else {
+                this.setupEvenOddClasses();
                 if (this.hideReorderColumnUnlessReorderingStatus) {
                     this.reorderDisplayColumn = true;
                 }
@@ -294,8 +299,8 @@ document.addEventListener('alpine:init', () => {
             wire.storeReorder(orderedRows);
         },
         setupEvenOddClasses() {
-            if (this.currentlyReorderingStatus === true) {
- 
+            if (this.evenNotInOdd.length === undefined || this.evenNotInOdd.length == 0 || this.oddNotInEven.length === undefined || this.oddNotInEven.length == 0)
+            {
                 let tbody = document.getElementById(tableID).getElementsByTagName('tbody')[0];
                 let evenRowClassArray = [];
                 let oddRowClassArray = [];
@@ -305,15 +310,15 @@ document.addEventListener('alpine:init', () => {
                     oddRowClassArray = Array.from(tbody.rows[1].classList);
                     this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
                     this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
+                    console.log("EvenNotInOdd:"+this.evenNotInOdd);
+                    console.log("oddNotInEven:"+this.oddNotInEven);
+
                     evenRowClassArray = []
                     oddRowClassArray = []
                 }
             }
         },
         init() {
-            this.$watch('currentlyReorderingStatus', value => this.setupEvenOddClasses());
- 
         }
     }));
- 
 });
