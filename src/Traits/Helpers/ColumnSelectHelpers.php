@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
-use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 
 trait ColumnSelectHelpers
 {
@@ -82,6 +82,21 @@ trait ColumnSelectHelpers
             ->reject(fn (Column $column) => $column->isHidden())
             ->reject(fn (Column $column) => ! $column->isSelectable())
             ->reject(fn (Column $column) => ! $this->columnSelectIsEnabledForColumn($column))
+            ->values();
+    }
+
+    public function getCurrentlySelectedCols(): void
+    {
+        $this->defaultVisibleColumnCount = count($this->getDefaultVisibleColumns());
+        $this->visibleColumnCount = count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns()));
+    }
+
+
+    public function getUnSelectableColumns(): Collection
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => $column->isSelectable())
             ->values();
     }
 
@@ -165,6 +180,7 @@ trait ColumnSelectHelpers
         return count($this->selectedColumns) === count($this->getDefaultVisibleColumns());
     }
 
+    
     public function setupColumnSelect(): void
     {
 
@@ -210,4 +226,5 @@ trait ColumnSelectHelpers
         }
 
     }
+
 }

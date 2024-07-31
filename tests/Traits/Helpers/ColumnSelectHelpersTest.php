@@ -57,4 +57,27 @@ final class ColumnSelectHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->getColumnSelectIsHiddenOnTablet());
     }
+
+    public function test_can_get_for_query(): void
+    {
+        $cols = [];
+        foreach ($this->basicTable->getSelectedColumnsForQuery() as $column) {
+            $cols[] = $column->getColumnSelectName();
+        }
+        
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed.name'],$cols);
+
+    }
+
+    public function test_can_get_unselectable_columns(): void
+    {
+        $cols = [];
+        foreach ($this->basicTable->getUnSelectableColumns() as $column) {
+            $cols[] = $column->getColumnSelectName();
+        }
+        
+        $this->assertSame(['sort'],$cols);
+
+    }
+
 }
