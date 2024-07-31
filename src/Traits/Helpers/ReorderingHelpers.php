@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\Computed;
+
 trait ReorderingHelpers
 {
     public function getReorderMethod(): string
@@ -24,6 +26,7 @@ trait ReorderingHelpers
         return $this->getReorderStatus() === false;
     }
 
+    #[Computed]
     public function getCurrentlyReorderingStatus(): bool
     {
         return $this->currentlyReorderingStatus;

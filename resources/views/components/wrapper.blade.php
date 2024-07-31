@@ -6,8 +6,12 @@
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>
 
         <div x-data="reorderFunction($wire, '{{ $component->getTableAttributes()['id'] }}', '{{ $component->getPrimaryKey() }}')">
+        @if ($component->debugIsEnabled())
             @include('livewire-tables::includes.debug')
+        @endif
+        @if ($component->offlineIndicatorIsEnabled())
             @include('livewire-tables::includes.offline')
+        @endif
 
             {{ $slot }}
         </div>

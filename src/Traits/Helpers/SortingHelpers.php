@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 
 trait SortingHelpers
@@ -146,5 +147,11 @@ trait SortingHelpers
     public function getDefaultSortingLabelDesc(): string
     {
         return $this->defaultSortingLabelDesc;
+    }
+
+    #[Computed]
+    public function showSortPillsSection(): bool
+    {
+        return $this->sortingPillsAreEnabled() && $this->hasSorts();
     }
 }

@@ -6,6 +6,12 @@ use Livewire\Attributes\Computed;
 
 trait BulkActionsHelpers
 {
+    #[Computed]
+    public function showBulkActionsSections(): bool
+    {
+        return $this->bulkActionsAreEnabled() && $this->hasBulkActions();
+    }
+
     public function getBulkActionsStatus(): bool
     {
         return $this->bulkActionsStatus;

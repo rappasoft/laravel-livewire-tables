@@ -35,6 +35,65 @@ class DateRangeFilter extends Filter
         $this->setInputDateFormat($this->getConfig('dateFormat'))->setOutputDateFormat($this->getConfig('ariaDateFormat'));
         $dateFormat = $this->getConfigs()['dateFormat'];
 
+        $returnedValues = $this->populateReturnedValues($values);
+
+        if ($returnedValues['minDate'] == '' || $returnedValues['maxDate'] == '' || ! $this->validateDateFormat($returnedValues, $dateFormat)) {
+            return false;
+        }
+
+        $startDate = $this->createCarbonDate($returnedValues['minDate']);
+        $endDate = $this->createCarbonDate($returnedValues['maxDate']);
+
+        if (! ($startDate instanceof Carbon) || ! ($endDate instanceof Carbon)) {
+            return false;
+        }
+        if ($startDate->gt($endDate)) {
+            return false;
+        }
+
+        $earlyLate = $this->setupEarlyLateDates($dateFormat);
+
+        $earliestDate = $earlyLate['earliest'] ?? null;
+        $latestDate = $earlyLate['latest'] ?? null;
+
+        if ($earliestDate instanceof Carbon) {
+            if ($startDate->lt($earliestDate)) {
+                return false;
+            }
+        }
+        if ($latestDate instanceof Carbon) {
+            if ($endDate->gt($latestDate)) {
+                return false;
+            }
+        }
+
+        return $returnedValues;
+    }
+
+    protected function setupEarlyLateDates(string $dateFormat)
+    {
+        $earliestDateString = ($this->getConfig('earliestDate') != '') ? $this->getConfig('earliestDate') : null;
+        $latestDateString = ($this->getConfig('latestDate') != '') ? $this->getConfig('latestDate') : null;
+        if ($earliestDateString != '' && ! is_null($earliestDateString) && $latestDateString != '' && ! is_null($latestDateString)) {
+            $dateLimits = ['earliest' => $earliestDateString, 'latest' => $latestDateString];
+            $earlyLateValidator = Validator::make($dateLimits, [
+                'earliest' => 'date_format:'.$dateFormat,
+                'latest' => 'date_format:'.$dateFormat,
+            ]);
+            if (! $earlyLateValidator->fails()) {
+                return [
+                    'earliest' => $this->createCarbonDate($earliestDateString),
+                    'latest' => $this->createCarbonDate($latestDateString),
+                ];
+
+            }
+        }
+
+        return [];
+    }
+
+    protected function populateReturnedValues(string|array $values)
+    {
         $returnedValues = ['minDate' => '', 'maxDate' => ''];
         if (is_array($values)) {
             if (! isset($values['minDate']) || ! isset($values['maxDate'])) {
@@ -56,10 +115,11 @@ class DateRangeFilter extends Filter
             $returnedValues['maxDate'] = ((isset($valueArray[1]) && $valueArray[1] != 'to') ? $valueArray[1] : (isset($valueArray[2]) ? $valueArray[2] : ''));
         }
 
-        if ($returnedValues['minDate'] == '' || $returnedValues['maxDate'] == '') {
-            return false;
-        }
+        return $returnedValues;
+    }
 
+    protected function validateDateFormat(array $returnedValues, string $dateFormat)
+    {
         $validator = Validator::make($returnedValues, [
             'minDate' => 'required|date_format:'.$dateFormat,
             'maxDate' => 'required|date_format:'.$dateFormat,
@@ -67,43 +127,8 @@ class DateRangeFilter extends Filter
         if ($validator->fails()) {
             return false;
         }
-        $startDate = $this->createCarbonDate($returnedValues['minDate']);
-        $endDate = $this->createCarbonDate($returnedValues['maxDate']);
 
-        if (! ($startDate instanceof Carbon) || ! ($endDate instanceof Carbon)) {
-            return false;
-        }
-        if ($startDate->gt($endDate)) {
-            return false;
-        }
-
-        $earliestDateString = ($this->getConfig('earliestDate') != '') ? $this->getConfig('earliestDate') : null;
-        $latestDateString = ($this->getConfig('latestDate') != '') ? $this->getConfig('latestDate') : null;
-
-        if ($earliestDateString != '' && ! is_null($earliestDateString) && $latestDateString != '' && ! is_null($latestDateString)) {
-            $dateLimits = ['earliest' => $earliestDateString, 'latest' => $latestDateString];
-            $earlyLateValidator = Validator::make($dateLimits, [
-                'earliest' => 'date_format:'.$dateFormat,
-                'latest' => 'date_format:'.$dateFormat,
-            ]);
-            if (! $earlyLateValidator->fails()) {
-                $earliestDate = $this->createCarbonDate($earliestDateString);
-                $latestDate = $this->createCarbonDate($latestDateString);
-
-                if ($earliestDate instanceof Carbon) {
-                    if ($startDate->lt($earliestDate)) {
-                        return false;
-                    }
-                }
-                if ($latestDate instanceof Carbon) {
-                    if ($endDate->gt($latestDate)) {
-                        return false;
-                    }
-                }
-            }
-        }
-
-        return $returnedValues;
+        return true;
     }
 
     public function getDefaultValue(): array

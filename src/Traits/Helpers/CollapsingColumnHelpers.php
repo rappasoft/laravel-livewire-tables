@@ -47,4 +47,10 @@ trait CollapsingColumnHelpers
     {
         return [...['default-styling' => true, 'default-colors' => true], ...$this->collapsingColumnButtonExpandAttributes];
     }
+
+    #[Computed]
+    public function showCollapsingColumnSections(): bool
+    {
+        return $this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns();
+    }
 }
