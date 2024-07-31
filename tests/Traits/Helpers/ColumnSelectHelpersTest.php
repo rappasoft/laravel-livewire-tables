@@ -64,8 +64,8 @@ final class ColumnSelectHelpersTest extends TestCase
         foreach ($this->basicTable->getSelectedColumnsForQuery() as $column) {
             $cols[] = $column->getColumnSelectName();
         }
-        
-        $this->assertSame(['id', 'sort', 'name', 'age', 'breed.name'],$cols);
+
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed.name'], $cols);
 
     }
 
@@ -75,9 +75,8 @@ final class ColumnSelectHelpersTest extends TestCase
         foreach ($this->basicTable->getUnSelectableColumns() as $column) {
             $cols[] = $column->getColumnSelectName();
         }
-        
-        $this->assertSame(['sort'],$cols);
+
+        $this->assertSame(['sort'], $cols);
 
     }
-
 }
