@@ -8,6 +8,8 @@ document.addEventListener('alpine:init', () => {
         paginationTotalItemCount: wire.entangle('paginationTotalItemCount'),
         paginationCurrentItems: wire.entangle('paginationCurrentItems'),
         selectedItems: wire.entangle('selected'),
+        selectAllStatus: wire.entangle('selectAll'),
+        delaySelectAll: wire.entangle('delaySelectAll'),
         hideBulkActionsWhenEmpty: wire.entangle('hideBulkActionsWhenEmpty'),
         toggleSelectAll() {
             if (!showBulkActionsAlpine) {
@@ -16,22 +18,44 @@ document.addEventListener('alpine:init', () => {
 
             if (this.paginationTotalItemCount === this.selectedItems.length) {
                 this.clearSelected();
+                this.selectAllStatus = false;
             } else {
-                this.setAllSelected();
+                if (this.delaySelectAll)
+                {   
+                    this.setAllItemsSelected();
+                }
+                else
+                {
+                    this.setAllSelected();
+                }
             }
+        },
+        setAllItemsSelected() {
+            if (!showBulkActionsAlpine) {
+                return;
+            }
+            this.selectAllStatus = true;
+            this.selectAllOnPage();
         },
         setAllSelected() {
             if (!showBulkActionsAlpine) {
                 return;
             }
-
-            wire.setAllSelected();
+            if (this.delaySelectAll)
+            {   
+                this.selectAllStatus = true;
+                this.selectAllOnPage();
+            }
+            else
+            {
+                wire.setAllSelected();
+            }
         },
         clearSelected() {
             if (!showBulkActionsAlpine) {
                 return;
             }
-
+            this.selectAllStatus = false;
             wire.clearSelected();
         },
         selectAllOnPage() {

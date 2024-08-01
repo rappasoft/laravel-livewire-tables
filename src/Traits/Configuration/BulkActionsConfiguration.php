@@ -234,4 +234,26 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    public function setDelaySelectAllStatus(bool $status): self
+    {
+        $this->delaySelectAll = $status;
+
+        return $this;
+    }
+
+    public function setDelaySelectAllEnabled(): self
+    {
+        $this->setDelaySelectAllStatus(true);
+
+        return $this;
+    }
+
+    public function setDelaySelectAllDisabled(): self
+    {
+        $this->setDelaySelectAllStatus(false);
+
+        return $this;
+    }
+
 }
