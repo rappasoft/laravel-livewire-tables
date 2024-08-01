@@ -242,7 +242,7 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
 
     }
-    
+
     public function test_can_set_bulk_actions_delay_select_all_status(): void
     {
         $this->assertFalse($this->basicTable->getDelaySelectAllStatus());
@@ -265,7 +265,7 @@ final class BulkActionsConfigurationTest extends TestCase
     {
         $this->basicTable->setDelaySelectAllDisabled();
 
-        $this->assertSame([],$this->basicTable->getSelectedRows());
+        $this->assertSame([], $this->basicTable->getSelectedRows());
 
         $this->basicTable->setSelected([1, 2, 3]);
         $this->basicTable->setSelectAllStatus(true);
@@ -277,7 +277,7 @@ final class BulkActionsConfigurationTest extends TestCase
     {
         $this->basicTable->setDelaySelectAllDisabled();
 
-        $this->assertSame([],$this->basicTable->getSelectedRows());
+        $this->assertSame([], $this->basicTable->getSelectedRows());
 
         $this->basicTable->setSelected([1, 2, 3]);
 
@@ -289,7 +289,5 @@ final class BulkActionsConfigurationTest extends TestCase
 
         $this->assertSame(['1', '2', '3', '4', '5'], $this->basicTable->getSelectedRows());
 
-
     }
-
 }
