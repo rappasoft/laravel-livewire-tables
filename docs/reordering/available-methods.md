@@ -142,3 +142,19 @@ public function configure(): void
     $this->setDefaultReorderSort('order', 'desc');
 }
 ```
+
+
+## setReorderThAttributes
+
+You may pass an array to this method, which allows you to pass Custom Attributes into the table header for the Reorder Column
+
+```php
+public function configure(): void
+{
+
+    $this->setReorderThAttributes([
+        'class' => 'bg-red-500',
+        'default' => false
+    ]);
+}
+```
