@@ -92,7 +92,6 @@ trait ReorderingHelpers
         return $this->getTableName().'-reordering-backup';
     }
 
-    
     /**
      * Used to get attributes for the <th> for Bulk Actions
      *
@@ -103,6 +102,4 @@ trait ReorderingHelpers
     {
         return $this->reorderThAttributes ?? ['default' => true];
     }
-
-
 }
