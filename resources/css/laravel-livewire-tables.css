@@ -409,7 +409,7 @@ label[dir=rtl] .range-slider {
   }
   .dark .lds-hourglass:after {
     border: 32px solid #FFF;
-
+    border-color: #000 transparent #000 transparent;
   }
 
 
