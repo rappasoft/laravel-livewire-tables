@@ -287,7 +287,7 @@ final class BulkActionsConfigurationTest extends TestCase
 
         $this->basicTable->setSelectAllStatus(true);
 
-        $this->assertSame(['1', '2', '3', '4', '5'], $this->basicTable->getSelectedRows());
+        $this->assertSame([1,2,3,4,5], $this->basicTable->getSelectedRows());
 
     }
 }

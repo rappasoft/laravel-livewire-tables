@@ -261,7 +261,7 @@ trait BulkActionsHelpers
     public function getSelectedRows(): array
     {
         if ($this->getDelaySelectAllStatus() && $this->selectAllIsEnabled()) {
-            return (clone $this->baseQuery())->select($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => (string) $item)->toArray();
+            return (clone $this->baseQuery())->select($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => $item)->toArray();
         } else {
             return $this->selected;
         }
