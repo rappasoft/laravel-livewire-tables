@@ -46,6 +46,8 @@ trait WithBulkActions
 
     protected array $bulkActionsMenuItemAttributes = ['default-colors' => true, 'default-styling' => true];
 
+    public bool $delaySelectAll = false;
+
     public function bulkActions(): array
     {
         return property_exists($this, 'bulkActions') ? $this->bulkActions : [];

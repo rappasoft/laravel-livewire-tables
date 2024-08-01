@@ -128,11 +128,13 @@ trait BulkActionsHelpers
     }
 
     /**
-     * Disable select all when the selected array is updated
+     * Disable select all when the selected array is updated - if DelaySelectAll is not enabled
      */
     public function updatedSelected(): void
     {
-        $this->setSelectAllDisabled();
+        if (! $this->getDelaySelectAllStatus()) {
+            $this->setSelectAllDisabled();
+        }
     }
 
     /**
@@ -254,5 +256,19 @@ trait BulkActionsHelpers
     public function getBulkActionsMenuItemAttributes(): array
     {
         return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsMenuItemAttributes);
+    }
+
+    public function getSelectedRows(): array
+    {
+        if ($this->getDelaySelectAllStatus() && $this->selectAllIsEnabled()) {
+            return (clone $this->baseQuery())->select($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => $item)->toArray();
+        } else {
+            return $this->selected;
+        }
+    }
+
+    public function getDelaySelectAllStatus(): bool
+    {
+        return $this->delaySelectAll ?? false;
     }
 }

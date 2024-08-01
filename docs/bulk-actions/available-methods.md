@@ -291,3 +291,25 @@ public function configure(): void
     $this->setClearSelectedOnFilterDisabled();
 }
 ```
+
+## setDelaySelectAllEnabled
+
+By default, using the "Select All", immediately makes a call to the backend to populate the "selected" array with the primary key of all resultant rows (based on Filter/Search).  This can be slow with large result sets, but gives a good user experience with smaller results, as it allows them to "Select All" and then deselect some rows.
+
+```php
+public function configure(): void
+{
+    $this->setDelaySelectAllEnabled();
+}
+```
+
+This prevents the default behaviour from firing, which improves performance when working with very large sets of data.  With this feature enabled, the backend update will not fire, however an indication that all result rows have been selected will be passed to the backend, and the frontend will behave as if all rows are selected.
+
+When running your Bulk Action, having used "Select All", you may then access the array of "all rows" based on your most recent search/filter results:
+```
+$rows = $this->getSelectedRows();
+```
+
+## setDelaySelectAllDisabled
+
+This is the default behaviour, see setDelaySelectEnabled for details on what enabling this does.

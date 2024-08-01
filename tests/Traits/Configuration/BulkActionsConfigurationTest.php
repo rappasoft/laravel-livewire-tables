@@ -242,4 +242,52 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
 
     }
+
+    public function test_can_set_bulk_actions_delay_select_all_status(): void
+    {
+        $this->assertFalse($this->basicTable->getDelaySelectAllStatus());
+
+        $this->basicTable->setDelaySelectAllEnabled();
+
+        $this->assertTrue($this->basicTable->getDelaySelectAllStatus());
+
+        $this->basicTable->setDelaySelectAllDisabled();
+
+        $this->assertFalse($this->basicTable->getDelaySelectAllStatus());
+
+        $this->basicTable->setDelaySelectAllStatus(true);
+
+        $this->assertTrue($this->basicTable->getDelaySelectAllStatus());
+
+    }
+
+    public function test_delay_select_all_disabled_not_impacts_return(): void
+    {
+        $this->basicTable->setDelaySelectAllDisabled();
+
+        $this->assertSame([], $this->basicTable->getSelectedRows());
+
+        $this->basicTable->setSelected([1, 2, 3]);
+        $this->basicTable->setSelectAllStatus(true);
+
+        $this->assertSame([1, 2, 3], $this->basicTable->getSelectedRows());
+    }
+
+    public function test_delay_select_all_enabled_impacts_return(): void
+    {
+        $this->basicTable->setDelaySelectAllDisabled();
+
+        $this->assertSame([], $this->basicTable->getSelectedRows());
+
+        $this->basicTable->setSelected([1, 2, 3]);
+
+        $this->assertSame([1, 2, 3], $this->basicTable->getSelectedRows());
+
+        $this->basicTable->setDelaySelectAllEnabled();
+
+        $this->basicTable->setSelectAllStatus(true);
+
+        $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getSelectedRows());
+
+    }
 }
