@@ -271,5 +271,4 @@ trait BulkActionsHelpers
     {
         return $this->delaySelectAll ?? false;
     }
-
 }
