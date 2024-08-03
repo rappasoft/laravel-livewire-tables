@@ -29,7 +29,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Persian')
-            ->set('filterComponents.name', 'Coon')
+            ->setFilter('name', 'Coon')
             ->assertDontSee('Persian')
             ->assertSee('Coon');
     }
@@ -54,7 +54,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Maine Coon')
-            ->set('filterComponents.name', 'Coon')
+            ->setFilter('name', 'Coon')
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
@@ -79,7 +79,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Persian')
-            ->set('filterComponents.name', 'Maine')
+            ->setFilter('name', 'Maine')
             ->assertDontSee('Persian')
             ->assertSee('Maine Coon');
     }
@@ -104,7 +104,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Maine Coon')
-            ->set('filterComponents.name', 'Maine')
+            ->setFilter('name', 'Maine')
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
@@ -129,7 +129,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Maine Coon')
-            ->set('filterComponents.name', 'ne')
+            ->setFilter('name', 'ne')
             ->assertSee('Maine Coon')
             ->assertDontSee('Persian');
     }
@@ -153,7 +153,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Maine Coon')
-            ->set('filterComponents.name', 'e C')
+            ->setFilter('name', 'e C')
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
