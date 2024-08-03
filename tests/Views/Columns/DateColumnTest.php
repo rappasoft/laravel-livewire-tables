@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 
 final class DateColumnTest extends TestCase
 {
@@ -86,10 +86,10 @@ final class DateColumnTest extends TestCase
         $column->emptyValue('Not Found');
         $this->assertSame('Not Found', $column->getEmptyValue());
 
-        $this->assertSame('Not Found', $column->getContents(Pet::where('id',3)->first()));
+        $this->assertSame('Not Found', $column->getContents(Pet::where('id', 3)->first()));
 
         $column->emptyValue('');
-        $this->assertSame('04-04-2023', $column->getContents(Pet::where('id',4)->first()));
+        $this->assertSame('04-04-2023', $column->getContents(Pet::where('id', 4)->first()));
 
     }
 }
