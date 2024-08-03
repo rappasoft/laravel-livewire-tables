@@ -83,6 +83,7 @@ class TestCase extends Orchestra
         $this->setupBasicTable();
         $this->setupUnpaginatedTable();
         $this->setupSpeciesTable();
+        $this->setupBreedsTable();
     }
 
     protected function setupBasicTable()
@@ -99,6 +100,22 @@ class TestCase extends Orchestra
         $this->basicTable->renderingWithData($view, []);
         $this->basicTable->renderingWithPagination($view, []);
         $this->basicTable->render();
+    }
+
+    protected function setupBreedsTable()
+    {
+        $view = view('livewire-tables::datatable');
+        $this->breedsTable = new BreedsTable;
+        $this->breedsTable->boot();
+        $this->breedsTable->bootedComponentUtilities();
+        $this->breedsTable->bootedWithData();
+        $this->breedsTable->bootedWithColumns();
+        $this->breedsTable->bootedWithColumnSelect();
+        $this->breedsTable->bootedWithSecondaryHeader();
+        $this->breedsTable->booted();
+        $this->breedsTable->renderingWithData($view, []);
+        $this->breedsTable->renderingWithPagination($view, []);
+        $this->breedsTable->render();
     }
 
     protected function setupSpeciesTable()
