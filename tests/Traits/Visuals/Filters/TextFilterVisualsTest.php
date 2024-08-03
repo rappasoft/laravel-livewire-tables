@@ -29,7 +29,7 @@ final class TextFilterVisualsTest extends TestCase
             {
                 return [
                     TextFilter::make('name')
-                        ->setField('name')
+                        ->setFieldName('name')
                         ->endsWith(),
                 ];
             }
@@ -78,7 +78,7 @@ final class TextFilterVisualsTest extends TestCase
             {
                 return [
                     TextFilter::make('name')
-                        ->setField('name')
+                        ->setFieldName('name')
                         ->notEndsWith(),
                 ];
             }
@@ -127,7 +127,7 @@ final class TextFilterVisualsTest extends TestCase
             {
                 return [
                     TextFilter::make('name')
-                        ->setField('name')
+                        ->setFieldName('name')
                         ->startsWith(),
                 ];
             }
@@ -176,7 +176,7 @@ final class TextFilterVisualsTest extends TestCase
             {
                 return [
                     TextFilter::make('name')
-                        ->setField('name')
+                        ->setFieldName('name')
                         ->notStartsWith(),
                 ];
             }
@@ -225,7 +225,7 @@ final class TextFilterVisualsTest extends TestCase
             {
                 return [
                     TextFilter::make('name')
-                        ->setField('name')
+                        ->setFieldName('name')
                         ->contains(),
                 ];
             }
@@ -274,7 +274,7 @@ final class TextFilterVisualsTest extends TestCase
             {
                 return [
                     TextFilter::make('name')
-                        ->setField('name')
+                        ->setFieldName('name')
                         ->notContains(),
                 ];
             }

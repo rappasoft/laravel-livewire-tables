@@ -4,24 +4,24 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
 trait HandlesFieldName
 {
-    protected ?string $field_name;
+    protected ?string $fieldName;
 
-    public function setField(string $field_name): self
+    public function setFieldName(string $fieldName): self
     {
-        $this->field_name = $field_name;
+        $this->fieldName = $fieldName;
 
         return $this;
     }
 
-    public function hasField(): bool
+    public function hasFieldName(): bool
     {
-        return isset($this->field_name);
+        return isset($this->fieldName);
 
     }
 
-    public function getField(): string
+    public function getFieldName(): string
     {
-        return $this->field_name;
+        return $this->fieldName;
 
     }
 }

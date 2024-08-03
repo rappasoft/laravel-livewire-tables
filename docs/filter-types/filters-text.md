@@ -3,7 +3,7 @@ title: Text Filters
 weight: 10
 ---
 
-Text filters are just simple text fields.
+Text filters are just simple text filters, allowing you to pass a string value into a builder query.
 
 ```php
 public function filters(): array
@@ -133,7 +133,7 @@ public function filters(): array
 }
 ```
 
-#### setField
+#### setFieldName
 An optional method for setting the field to use when filtering, if used, you may omit the field from the above methods, for example:
 
 ```php
@@ -145,7 +145,7 @@ public function filters(): array
                 'placeholder' => 'Search Name',
                 'maxlength' => '25',
             ])
-            ->setField('users.name')
+            ->setFieldName('users.name')
             ->contains(),
     ];
 }
