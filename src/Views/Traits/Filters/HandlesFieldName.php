@@ -24,5 +24,4 @@ trait HandlesFieldName
         return $this->field_name;
 
     }
-
 }

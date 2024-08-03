@@ -114,11 +114,9 @@ final class TextFilterTest extends FilterTestCase
     {
         $filter = TextFilter::make('BreedID');
         $this->assertFalse($filter->hasField());
-        
+
         $filter->setField('breed_id');
         $this->assertTrue($filter->hasField());
         $this->assertSame('breed_id', $filter->getField());
     }
-
-
 }

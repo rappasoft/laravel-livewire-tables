@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 trait HandlesWildcardStrings
 {
     use HandlesFieldName;
-    
+
     protected bool $hasRun = false;
 
     public function contains(?string $field = null): self
@@ -15,14 +15,12 @@ trait HandlesWildcardStrings
         if (isset($field)) {
             $this->setField($field);
         }
-        if (!$this->hasRun)
-        {
+        if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
                 $builder->whereLike($this->field_name, '%'.$value.'%');
             });
             $this->hasRun = true;
         }
-
 
         return $this;
     }
@@ -32,8 +30,7 @@ trait HandlesWildcardStrings
         if (isset($field)) {
             $this->setField($field);
         }
-        if (!$this->hasRun)
-        {
+        if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
                 $builder->whereNotLike($this->field_name, '%'.$value.'%');
             });
@@ -48,8 +45,7 @@ trait HandlesWildcardStrings
         if (isset($field)) {
             $this->setField($field);
         }
-        if (!$this->hasRun)
-        {
+        if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
                 $builder->whereLike($this->field_name, $value.'%');
             });
@@ -64,8 +60,7 @@ trait HandlesWildcardStrings
         if (isset($field)) {
             $this->setField($field);
         }
-        if (!$this->hasRun)
-        {
+        if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
                 $builder->whereNotLike($this->field_name, $value.'%');
             });
@@ -80,8 +75,7 @@ trait HandlesWildcardStrings
         if (isset($field)) {
             $this->setField($field);
         }
-        if (!$this->hasRun)
-        {
+        if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
                 $builder->whereLike($this->field_name, '%'.$value);
             });
@@ -96,8 +90,7 @@ trait HandlesWildcardStrings
         if (isset($field)) {
             $this->setField($field);
         }
-        if (!$this->hasRun)
-        {
+        if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
                 $builder->whereNotLike($this->field_name, '%'.$value);
             });

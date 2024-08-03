@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BreedsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableNoFilters;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
@@ -169,15 +169,15 @@ final class FilterVisualsTest extends TestCase
             {
                 return [
                     \Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter::make('name')
-                    ->setField('name')
-                    ->endsWith()
+                        ->setField('name')
+                        ->endsWith(),
                 ];
             }
         })
-        ->assertSee('Persian')
-        ->set('filterComponents.name', "Coon")
-        ->assertDontSee('Persian')
-        ->assertSee('Coon');
+            ->assertSee('Persian')
+            ->set('filterComponents.name', 'Coon')
+            ->assertDontSee('Persian')
+            ->assertSee('Coon');
     }
 
     public function test_can_use_notendswith_method(): void
@@ -194,15 +194,15 @@ final class FilterVisualsTest extends TestCase
             {
                 return [
                     \Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter::make('name')
-                    ->setField('name')
-                    ->notEndsWith()
+                        ->setField('name')
+                        ->notEndsWith(),
                 ];
             }
         })
-        ->assertSee('Maine Coon')
-        ->set('filterComponents.name', "Coon")
-        ->assertDontSee('Maine Coon')
-        ->assertSee('Persian');
+            ->assertSee('Maine Coon')
+            ->set('filterComponents.name', 'Coon')
+            ->assertDontSee('Maine Coon')
+            ->assertSee('Persian');
     }
 
     public function test_can_use_startswith_method(): void
@@ -219,15 +219,15 @@ final class FilterVisualsTest extends TestCase
             {
                 return [
                     \Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter::make('name')
-                    ->setField('name')
-                    ->startsWith()
+                        ->setField('name')
+                        ->startsWith(),
                 ];
             }
         })
-        ->assertSee('Persian')
-        ->set('filterComponents.name', "Maine")
-        ->assertDontSee('Persian')
-        ->assertSee('Maine Coon');
+            ->assertSee('Persian')
+            ->set('filterComponents.name', 'Maine')
+            ->assertDontSee('Persian')
+            ->assertSee('Maine Coon');
     }
 
     public function test_can_use_notstartswith_method(): void
@@ -244,14 +244,14 @@ final class FilterVisualsTest extends TestCase
             {
                 return [
                     \Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter::make('name')
-                    ->setField('name')
-                    ->notStartsWith()
+                        ->setField('name')
+                        ->notStartsWith(),
                 ];
             }
         })
-        ->assertSee('Maine Coon')
-        ->set('filterComponents.name', "Maine")
-        ->assertDontSee('Maine Coon')
-        ->assertSee('Persian');
+            ->assertSee('Maine Coon')
+            ->set('filterComponents.name', 'Maine')
+            ->assertDontSee('Maine Coon')
+            ->assertSee('Persian');
     }
 }
