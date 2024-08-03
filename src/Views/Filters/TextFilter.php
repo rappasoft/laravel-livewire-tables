@@ -4,13 +4,13 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HandlesWildcards, IsStringFilter};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HandlesWildcardStrings, IsStringFilter};
 
 class TextFilter extends Filter
 {
     use IsStringFilter;
     use HasWireables;
-    use HandlesWildcards;
+    use HandlesWildcardStrings;
 
     public string $wireMethod = 'blur';
 

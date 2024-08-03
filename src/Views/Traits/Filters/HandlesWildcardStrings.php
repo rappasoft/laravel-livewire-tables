@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-trait HandlesWildcards
+trait HandlesWildcardStrings
 {
     use HandlesFieldName;
 
