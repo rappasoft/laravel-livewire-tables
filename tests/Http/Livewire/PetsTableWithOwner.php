@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Owner;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Owner;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
@@ -101,7 +101,7 @@ class PetsTableWithOwner extends DataTableComponent
             Column::make('Last Visit', 'last_visit')
                 ->sortable()
                 ->deselected(),
-            DateColumn::make('Owner DoB', 'owner.date_of_birth')->inputFormat('Y-m-d')->outputFormat('d-m-Y')
+            DateColumn::make('Owner DoB', 'owner.date_of_birth')->inputFormat('Y-m-d')->outputFormat('d-m-Y'),
         ];
     }
 
