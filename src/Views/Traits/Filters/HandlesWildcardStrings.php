@@ -15,6 +15,7 @@ trait HandlesWildcardStrings
                 $builder->where($this->getFieldName(), 'like', '%'.$value.'%');
             });
         }
+
         return $this;
     }
 

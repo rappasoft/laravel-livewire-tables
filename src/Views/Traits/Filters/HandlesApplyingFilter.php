@@ -13,19 +13,16 @@ trait HandlesApplyingFilter
         if (isset($fieldName)) {
             $this->setFieldName($fieldName);
         }
-        if ($this->hasFieldName())
-        {
-            if (! $this->hasAppliedFilterAlready)
-            {
+        if ($this->hasFieldName()) {
+            if (! $this->hasAppliedFilterAlready) {
                 $this->hasAppliedFilterAlready = true;
+
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
+
         return false;
     }
-
 }
