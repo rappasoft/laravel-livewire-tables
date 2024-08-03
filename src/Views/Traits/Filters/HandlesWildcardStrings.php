@@ -6,95 +6,69 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait HandlesWildcardStrings
 {
-    use HandlesFieldName;
+    use HandlesApplyingFilter;
 
-    protected bool $hasRun = false;
-
-    public function contains(?string $field = null): self
+    public function contains(?string $fieldName = null): self
     {
-        if (isset($field)) {
-            $this->setField($field);
-        }
-        if (! $this->hasRun) {
+        if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->where($this->field_name, 'like', '%'.$value.'%');
+                $builder->where($this->getFieldName(), 'like', '%'.$value.'%');
             });
-            $this->hasRun = true;
         }
 
         return $this;
     }
 
-    public function notContains(?string $field = null): self
+    public function notContains(?string $fieldName = null): self
     {
-        if (isset($field)) {
-            $this->setField($field);
-        }
-        if (! $this->hasRun) {
+        if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereNot($this->field_name, 'like', '%'.$value.'%');
+                $builder->whereNot($this->getFieldName(), 'like', '%'.$value.'%');
             });
-            $this->hasRun = true;
         }
 
         return $this;
     }
 
-    public function startsWith(?string $field = null): self
+    public function startsWith(?string $fieldName = null): self
     {
-        if (isset($field)) {
-            $this->setField($field);
-        }
-        if (! $this->hasRun) {
+        if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->where($this->field_name, 'like', $value.'%');
+                $builder->where($this->getFieldName(), 'like', $value.'%');
             });
-            $this->hasRun = true;
         }
 
         return $this;
     }
 
-    public function notStartsWith(?string $field = null): self
+    public function notStartsWith(?string $fieldName = null): self
     {
-        if (isset($field)) {
-            $this->setField($field);
-        }
-        if (! $this->hasRun) {
+        if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereNot($this->field_name, 'like', $value.'%');
+                $builder->whereNot($this->getFieldName(), 'like', $value.'%');
             });
-            $this->hasRun = true;
         }
 
         return $this;
     }
 
-    public function endsWith(?string $field = null): self
+    public function endsWith(?string $fieldName = null): self
     {
-        if (isset($field)) {
-            $this->setField($field);
-        }
-        if (! $this->hasRun) {
+        if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->where($this->field_name, 'like', '%'.$value);
+                $builder->where($this->getFieldName(), 'like', '%'.$value);
             });
-            $this->hasRun = true;
         }
 
         return $this;
     }
 
-    public function notEndsWith(?string $field = null): self
+    public function notEndsWith(?string $fieldName = null): self
     {
-        if (isset($field)) {
-            $this->setField($field);
-        }
-        if (! $this->hasRun) {
+        if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereNot($this->field_name, 'like', '%'.$value);
+                $builder->whereNot($this->getFieldName(), 'like', '%'.$value);
             });
-            $this->hasRun = true;
         }
 
         return $this;
