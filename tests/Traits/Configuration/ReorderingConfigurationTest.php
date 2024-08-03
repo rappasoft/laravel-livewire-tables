@@ -106,5 +106,4 @@ final class ReorderingConfigurationTest extends TestCase
         $this->assertSame(['default' => true, 'class' => 'bg-red-500', 'style' => 'font:black'], $this->basicTable->getReorderThAttributes());
 
     }
-
 }
