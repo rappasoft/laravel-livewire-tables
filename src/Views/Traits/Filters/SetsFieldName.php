@@ -12,4 +12,17 @@ trait SetsFieldName
 
         return $this;
     }
+
+    public function hasField(): bool
+    {
+        return isset($this->field_name);
+
+    }
+
+    public function getField(): string
+    {
+        return $this->field_name;
+
+    }
+
 }

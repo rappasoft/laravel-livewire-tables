@@ -99,4 +99,25 @@ final class TextFilterTest extends FilterTestCase
         $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
     }
+
+    public function test_has_field_name(): void
+    {
+        $filter = TextFilter::make('BreedID');
+        $this->assertFalse($filter->hasField();
+
+        $filter->setField('breed_id');
+        $this->assertTrue($filter->hasField();
+
+    }
+
+    public function test_get_field_name(): void
+    {
+        $filter = TextFilter::make('BreedID');
+        $this->assertFalse($filter->hasField();
+        
+        $filter->setField('breed_id');
+        $this->assertTrue($filter->hasField();
+        $this->assertSame('breed_id', $filter->getField());
+    }
+
 }
