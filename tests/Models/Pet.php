@@ -33,6 +33,7 @@ class Pet extends Model
         'last_visit',
         'species_id',
         'breed_id',
+        'owner_id',
     ];
 
     protected $casts = [
@@ -52,5 +53,10 @@ class Pet extends Model
     public function veterinaries(): BelongsToMany
     {
         return $this->belongsToMany(Veterinary::class);
+    }
+
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(Owner::class);
     }
 }
