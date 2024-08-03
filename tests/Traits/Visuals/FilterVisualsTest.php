@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BreedsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableNoFilters;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;

@@ -9,6 +9,12 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 
 final class CountColumnTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        parent::setupSpeciesTable();
+    }
+
     public function test_can_set_the_column_title(): void
     {
         $column = CountColumn::make('Total Users');

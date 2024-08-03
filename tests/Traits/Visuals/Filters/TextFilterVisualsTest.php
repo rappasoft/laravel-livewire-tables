@@ -9,6 +9,12 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 final class TextFilterVisualsTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        parent::setupBreedsTable();
+    }
+
     public function test_can_use_endswith_method(): void
     {
 
@@ -57,6 +63,7 @@ final class TextFilterVisualsTest extends TestCase
             ->assertDontSee('Persian')
             ->assertSee('Coon');
     }
+
 
     public function test_can_use_not_ends_with_method(): void
     {
@@ -107,6 +114,7 @@ final class TextFilterVisualsTest extends TestCase
             ->assertSee('Persian');
     }
 
+
     public function test_can_use_starts_with_method(): void
     {
 
@@ -155,6 +163,7 @@ final class TextFilterVisualsTest extends TestCase
             ->assertDontSee('Persian')
             ->assertSee('Maine Coon');
     }
+
 
     public function test_can_use_not_starts_with_method(): void
     {
@@ -205,6 +214,7 @@ final class TextFilterVisualsTest extends TestCase
             ->assertSee('Persian');
     }
 
+
     public function test_can_use_contains_method(): void
     {
 
@@ -254,6 +264,7 @@ final class TextFilterVisualsTest extends TestCase
             ->assertDontSee('Persian');
     }
 
+
     public function test_can_use_not_contains_method(): void
     {
 
@@ -302,4 +313,5 @@ final class TextFilterVisualsTest extends TestCase
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
+
 }

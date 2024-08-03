@@ -6,6 +6,12 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class PaginationConfigurationTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        parent::setupUnpaginatedTable();
+    }
+
     public function test_pagination_theme_can_be_set(): void
     {
         $this->assertSame('tailwind', $this->basicTable->getPaginationTheme());
