@@ -43,12 +43,17 @@ class DateColumn extends Column
                         report($exception);
 
                         // Return Null
-                        return $this->getEmptyValue();
+                        return $exception->getMessage();
                     }
 
                 }
             }
-        } catch (\Exception $exception) {
+        } catch (\Carbon\Exceptions\InvalidFormatException $exception)
+        {
+            report($exception);
+            return $this->getEmptyValue();
+
+        }catch (\Exception $exception) {
             report($exception);
 
             return $this->getEmptyValue();

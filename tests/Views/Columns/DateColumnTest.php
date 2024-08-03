@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
+use Illuminate\Support\Facades\Exceptions;
 
 final class DateColumnTest extends TestCase
 {
@@ -79,8 +80,14 @@ final class DateColumnTest extends TestCase
         $this->assertSame('04-01-2023', $column->emptyValue('Unknown')->getContents($firstRow));
 
         $firstRow->last_visit = '44-12-2023';
+        
+        Exceptions::fake();
 
         $this->assertSame('Unknown', $column->emptyValue('Unknown')->getContents($firstRow));
+        
+        Exceptions::assertReported(function (\Carbon\Exceptions\InvalidFormatException $e): bool {
+            return $e->getMessage() === "Could not parse '44-12-2023': Failed to parse time string (44-12-2023) at position 8 (2): Unexpected character";
+        });
 
     }
 
