@@ -13,10 +13,10 @@ use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableUnpaginated,SpeciesTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Owner;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Owner;
 
 class TestCase extends Orchestra
 {

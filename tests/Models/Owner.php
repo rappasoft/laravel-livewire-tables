@@ -30,6 +30,6 @@ class Owner extends Model
     ];
 
     protected $casts = [
-        'date_of_birth' => 'datetime:Y-m-d'
+        'date_of_birth' => 'datetime:Y-m-d',
     ];
 }
