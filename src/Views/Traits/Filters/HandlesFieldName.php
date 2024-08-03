@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
-trait SetsFieldName
+trait HandlesFieldName
 {
     protected ?string $field_name;
 

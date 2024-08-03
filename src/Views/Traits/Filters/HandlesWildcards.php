@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait HandlesWildcards
 {
-    use SetsFieldName;
+    use HandlesFieldName;
 
     public function contains(?string $field = null): self
     {
