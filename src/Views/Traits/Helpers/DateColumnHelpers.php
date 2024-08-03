@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use DateTime;
+use Illuminate\Database\Eloquent\Model;
 
 trait DateColumnHelpers
 {
