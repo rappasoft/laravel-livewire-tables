@@ -17,7 +17,7 @@ trait HandlesWildcardStrings
         }
         if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereLike($this->field_name, '%'.$value.'%');
+                $builder->where($this->field_name, 'like', '%'.$value.'%');
             });
             $this->hasRun = true;
         }
@@ -32,7 +32,7 @@ trait HandlesWildcardStrings
         }
         if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereNotLike($this->field_name, '%'.$value.'%');
+                $builder->whereNot($this->field_name, 'like', '%'.$value.'%');
             });
             $this->hasRun = true;
         }
@@ -47,7 +47,7 @@ trait HandlesWildcardStrings
         }
         if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereLike($this->field_name, $value.'%');
+                $builder->where($this->field_name, 'like', $value.'%');
             });
             $this->hasRun = true;
         }
@@ -62,7 +62,7 @@ trait HandlesWildcardStrings
         }
         if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereNotLike($this->field_name, $value.'%');
+                $builder->whereNot($this->field_name, 'like', $value.'%');
             });
             $this->hasRun = true;
         }
@@ -77,7 +77,7 @@ trait HandlesWildcardStrings
         }
         if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereLike($this->field_name, '%'.$value);
+                $builder->where($this->field_name, 'like', '%'.$value);
             });
             $this->hasRun = true;
         }
@@ -92,7 +92,7 @@ trait HandlesWildcardStrings
         }
         if (! $this->hasRun) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereNotLike($this->field_name, '%'.$value);
+                $builder->whereNot($this->field_name, 'like', '%'.$value);
             });
             $this->hasRun = true;
         }
