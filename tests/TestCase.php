@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{BreedsTable,PetsTable,PetsTableUnpaginated,SpeciesTable};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{BreedsTable,PetsTable,PetsTableUnpaginated,PetsTableWithOwner,SpeciesTable};
+use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Owner;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
@@ -24,6 +26,8 @@ class TestCase extends Orchestra
     public PetsTableUnpaginated $unpaginatedTable;
 
     public BreedsTable $breedsTable;
+  
+    public PetsTableWithOwner $petOwnerTable;
 
     /**
      * Setup the test environment.
@@ -36,6 +40,13 @@ class TestCase extends Orchestra
             include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
             (new \CreateTestTables)->down();
             (new \CreateTestTables)->up();
+
+            Owner::insert([
+                ['id' => 1, 'name' => 'Ben', 'date_of_birth' => '1982-04-07'],
+                ['id' => 2, 'name' => 'Tom', 'date_of_birth' => '1985-08-22'],
+                ['id' => 3, 'name' => 'Mark', 'date_of_birth' => '1991-03-26'],
+                ['id' => 4, 'name' => 'Jake', 'date_of_birth' => '1985-11-12'],
+            ]);
 
             Species::insert([
                 ['id' => 1, 'name' => 'Cat'],
@@ -58,11 +69,11 @@ class TestCase extends Orchestra
             ]);
 
             Pet::insert([
-                ['id' => 1, 'name' => 'Cartman', 'age' => 22, 'species_id' => 1, 'breed_id' => 4, 'last_visit' => '2023-01-04', 'favorite_color' => '#000000'],
-                ['id' => 2, 'name' => 'Tux', 'age' => 8, 'species_id' => 1, 'breed_id' => 4, 'last_visit' => '2023-02-04', 'favorite_color' => '#FF0000'],
-                ['id' => 3, 'name' => 'May', 'age' => 2, 'species_id' => 2, 'breed_id' => 102, 'last_visit' => null, 'favorite_color' => '#00FF00'],
-                ['id' => 4, 'name' => 'Ben', 'age' => 5, 'species_id' => 3, 'breed_id' => 200, 'last_visit' => '2023-04-04', 'favorite_color' => '#0000FF'],
-                ['id' => 5, 'name' => 'Chico', 'age' => 7, 'species_id' => 3, 'breed_id' => 202, 'last_visit' => '2023-05-04', 'favorite_color' => '#FFFFFF'],
+                ['id' => 1, 'name' => 'Cartman', 'age' => 22, 'species_id' => 1, 'breed_id' => 4, 'last_visit' => '2023-01-04', 'favorite_color' => '#000000', 'owner_id' => 1],
+                ['id' => 2, 'name' => 'Tux', 'age' => 8, 'species_id' => 1, 'breed_id' => 4, 'last_visit' => '2023-02-04', 'favorite_color' => '#FF0000', 'owner_id' => 3],
+                ['id' => 3, 'name' => 'May', 'age' => 2, 'species_id' => 2, 'breed_id' => 102, 'last_visit' => null, 'favorite_color' => '#00FF00', 'owner_id' => 4],
+                ['id' => 4, 'name' => 'Ben', 'age' => 5, 'species_id' => 3, 'breed_id' => 200, 'last_visit' => '2023-04-04', 'favorite_color' => '#0000FF', 'owner_id' => 1],
+                ['id' => 5, 'name' => 'Chico', 'age' => 7, 'species_id' => 3, 'breed_id' => 202, 'last_visit' => '2023-05-04', 'favorite_color' => '#FFFFFF', 'owner_id' => 2],
             ]);
 
             Veterinary::insert([
@@ -111,6 +122,22 @@ class TestCase extends Orchestra
         $this->breedsTable->renderingWithData($view, []);
         $this->breedsTable->renderingWithPagination($view, []);
         $this->breedsTable->render();
+    }
+  
+    protected function setupPetOwnerTable()
+    {
+        $view = view('livewire-tables::datatable');
+        $this->petOwnerTable = new PetsTableWithOwner;
+        $this->petOwnerTable->boot();
+        $this->petOwnerTable->bootedComponentUtilities();
+        $this->petOwnerTable->bootedWithData();
+        $this->petOwnerTable->bootedWithColumns();
+        $this->petOwnerTable->bootedWithColumnSelect();
+        $this->petOwnerTable->bootedWithSecondaryHeader();
+        $this->petOwnerTable->booted();
+        $this->petOwnerTable->renderingWithData($view, []);
+        $this->petOwnerTable->renderingWithPagination($view, []);
+        $this->petOwnerTable->render();
     }
 
     protected function setupSpeciesTable()
