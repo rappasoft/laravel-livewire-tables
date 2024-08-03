@@ -25,7 +25,6 @@ class TestCase extends Orchestra
 
     public BreedsTable $breedsTable;
 
-
     /**
      * Setup the test environment.
      */
