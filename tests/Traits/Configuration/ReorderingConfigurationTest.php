@@ -88,4 +88,22 @@ final class ReorderingConfigurationTest extends TestCase
         $this->assertSame('sort2', $this->basicTable->getDefaultReorderColumn());
         $this->assertSame('desc', $this->basicTable->getDefaultReorderDirection());
     }
+
+    public function test_can_set_reorder_th_attributes(): void
+    {
+        $this->assertSame(['default' => true], $this->basicTable->getReorderThAttributes());
+
+        $this->basicTable->setReorderThAttributes(['class' => 'bg-blue-500']);
+
+        $this->assertSame(['default' => true, 'class' => 'bg-blue-500'], $this->basicTable->getReorderThAttributes());
+
+        $this->basicTable->setReorderThAttributes(['class' => 'bg-red-500', 'default' => false]);
+
+        $this->assertSame(['default' => false, 'class' => 'bg-red-500'], $this->basicTable->getReorderThAttributes());
+
+        $this->basicTable->setReorderThAttributes(['style' => 'font:black', 'default' => true]);
+
+        $this->assertSame(['default' => true, 'class' => 'bg-red-500', 'style' => 'font:black'], $this->basicTable->getReorderThAttributes());
+
+    }
 }

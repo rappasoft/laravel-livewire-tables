@@ -26,6 +26,8 @@ trait WithReordering
 
     public array $orderedItems = [];
 
+    protected array $reorderThAttributes = ['default' => true];
+
     public function setupReordering(): void
     {
         if ($this->reorderIsDisabled()) {
