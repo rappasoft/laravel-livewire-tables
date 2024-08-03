@@ -58,7 +58,6 @@ final class TextFilterVisualsTest extends TestCase
             ->assertSee('Coon');
     }
 
-
     public function test_can_use_not_ends_with_method(): void
     {
 
@@ -107,7 +106,6 @@ final class TextFilterVisualsTest extends TestCase
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
-
 
     public function test_can_use_starts_with_method(): void
     {
@@ -158,7 +156,6 @@ final class TextFilterVisualsTest extends TestCase
             ->assertSee('Maine Coon');
     }
 
-
     public function test_can_use_not_starts_with_method(): void
     {
 
@@ -207,7 +204,6 @@ final class TextFilterVisualsTest extends TestCase
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
-
 
     public function test_can_use_contains_method(): void
     {
@@ -258,7 +254,6 @@ final class TextFilterVisualsTest extends TestCase
             ->assertDontSee('Persian');
     }
 
-
     public function test_can_use_not_contains_method(): void
     {
 
@@ -307,5 +302,4 @@ final class TextFilterVisualsTest extends TestCase
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
-
 }
