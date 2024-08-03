@@ -34,31 +34,13 @@ class DateColumn extends Column
                 if ($dateTime instanceof DateTime) {
                     return $dateTime->format($this->getOutputFormat());
                 } else {
-                    try {
-                        // Check if format matches what is expected
-                        if (Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat())) {
-                            return Carbon::createFromFormat($this->getInputFormat(), $dateTime)->format($this->getOutputFormat());
-                        }
-                    } catch (\Exception $exception) {
-                        report($exception);
-
-                        // Return Null
-                        return $exception->getMessage();
-                    }
-
+                    // Check if format matches what is expected and return Carbon instance if so, otherwise emptyValue
+                    return Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat()) ? Carbon::createFromFormat($this->getInputFormat(), $dateTime)->format($this->getOutputFormat()) : $this->getEmptyValue();
                 }
             }
-        } catch (\Carbon\Exceptions\InvalidFormatException $exception) {
-            report($exception);
-
-            return $this->getEmptyValue();
-
         } catch (\Exception $exception) {
-            report($exception);
-
             return $this->getEmptyValue();
         }
-
         return $this->getEmptyValue();
     }
 }
