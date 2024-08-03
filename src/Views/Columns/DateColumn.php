@@ -16,7 +16,7 @@ class DateColumn extends Column
 {
     use IsColumn;
     use DateColumnConfiguration,
-        DateColumnHelpers;
+        DateColumnHelpers { DateColumnHelpers::getValue insteadof IsColumn; }
 
     public string $inputFormat = 'Y-m-d';
 
