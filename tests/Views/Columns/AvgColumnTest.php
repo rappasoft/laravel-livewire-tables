@@ -11,6 +11,12 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\AvgColumn;
 
 final class AvgColumnTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        parent::setupSpeciesTable();
+    }
+
     public function test_can_set_the_column_title(): void
     {
         $column = AvgColumn::make('Average Age');

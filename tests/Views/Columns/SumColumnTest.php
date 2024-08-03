@@ -11,6 +11,12 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\SumColumn;
 
 final class SumColumnTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        parent::setupSpeciesTable();
+    }
+
     public function test_can_set_the_column_title(): void
     {
         $column = SumColumn::make('Sum User Age');

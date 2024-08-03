@@ -2,7 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 
+use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -10,6 +12,12 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ViewComponentColumn;
 
 final class ViewComponentColumnTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Blade::component('test-component', TestComponent::class);
+    }
+
     public function test_can_set_the_column_title(): void
     {
         $column = ViewComponentColumn::make('Total Users');

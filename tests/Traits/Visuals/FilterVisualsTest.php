@@ -153,4 +153,5 @@ final class FilterVisualsTest extends TestCase
             ->emit('clearFilters')
             ->assertDontSee('Applied Filters');
     }*/
+
 }

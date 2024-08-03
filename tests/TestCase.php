@@ -5,12 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests;
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Illuminate\Encryption\Encrypter;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableUnpaginated,PetsTableWithOwner,SpeciesTable};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{BreedsTable,PetsTable,PetsTableUnpaginated,PetsTableWithOwner,SpeciesTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Owner;
@@ -26,14 +25,16 @@ class TestCase extends Orchestra
 
     public PetsTableUnpaginated $unpaginatedTable;
 
+    public BreedsTable $breedsTable;
+
+    public PetsTableWithOwner $petOwnerTable;
+
     /**
      * Setup the test environment.
      */
     protected function setUp(): void
     {
         parent::setUp();
-
-        Blade::component('test-component', TestComponent::class);
 
         if (! Breed::where('id', 1)->get()) {
             include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
@@ -89,8 +90,6 @@ class TestCase extends Orchestra
             ]);
         }
         $this->setupBasicTable();
-        $this->setupUnpaginatedTable();
-        $this->setupSpeciesTable();
     }
 
     protected function setupBasicTable()
@@ -109,6 +108,22 @@ class TestCase extends Orchestra
         $this->basicTable->render();
     }
 
+    protected function setupBreedsTable()
+    {
+        $view = view('livewire-tables::datatable');
+        $this->breedsTable = new BreedsTable;
+        $this->breedsTable->boot();
+        $this->breedsTable->bootedComponentUtilities();
+        $this->breedsTable->bootedWithData();
+        $this->breedsTable->bootedWithColumns();
+        $this->breedsTable->bootedWithColumnSelect();
+        $this->breedsTable->bootedWithSecondaryHeader();
+        $this->breedsTable->booted();
+        $this->breedsTable->renderingWithData($view, []);
+        $this->breedsTable->renderingWithPagination($view, []);
+        $this->breedsTable->render();
+    }
+
     protected function setupPetOwnerTable()
     {
         $view = view('livewire-tables::datatable');
@@ -123,7 +138,6 @@ class TestCase extends Orchestra
         $this->petOwnerTable->renderingWithData($view, []);
         $this->petOwnerTable->renderingWithPagination($view, []);
         $this->petOwnerTable->render();
-
     }
 
     protected function setupSpeciesTable()
