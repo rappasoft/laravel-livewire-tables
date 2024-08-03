@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 final class TextFilterVisualsTest extends TestCase
 {
-
     public function test_can_use_endswith_method(): void
     {
 
