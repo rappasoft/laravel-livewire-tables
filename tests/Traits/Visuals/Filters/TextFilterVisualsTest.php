@@ -28,10 +28,10 @@ final class TextFilterVisualsTest extends TestCase
                 ];
             }
         })
-            ->assertSee('Persian')
-            ->setFilter('name', 'Coon')
-            ->assertDontSee('Persian')
-            ->assertSee('Coon');
+        ->assertSee('Persian')
+        ->call('setFilter','name', 'Coon')
+        ->assertDontSee('Persian')
+        ->assertSee('Coon');
     }
 
     public function test_can_use_notendswith_method(): void
@@ -54,7 +54,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Maine Coon')
-            ->setFilter('name', 'Coon')
+            ->call('setFilter','name', 'Coon')
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
@@ -79,7 +79,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Persian')
-            ->setFilter('name', 'Maine')
+            ->call('setFilter','name', 'Maine')
             ->assertDontSee('Persian')
             ->assertSee('Maine Coon');
     }
@@ -104,7 +104,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Maine Coon')
-            ->setFilter('name', 'Maine')
+            ->call('setFilter','name', 'Maine')
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
@@ -129,7 +129,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Maine Coon')
-            ->setFilter('name', 'ne')
+            ->call('setFilter','name', 'ne')
             ->assertSee('Maine Coon')
             ->assertDontSee('Persian');
     }
@@ -153,7 +153,7 @@ final class TextFilterVisualsTest extends TestCase
             }
         })
             ->assertSee('Maine Coon')
-            ->setFilter('name', 'e C')
+            ->call('setFilter','name', 'e C')
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
