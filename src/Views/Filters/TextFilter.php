@@ -4,14 +4,14 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{IsStringFilter,HandlesWildcards};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HandlesWildcards, IsStringFilter};
 
 class TextFilter extends Filter
 {
     use IsStringFilter;
     use HasWireables;
     use HandlesWildcards;
-    
+
     public string $wireMethod = 'blur';
 
     protected string $view = 'livewire-tables::components.tools.filters.text-field';
