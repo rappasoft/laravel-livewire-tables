@@ -254,4 +254,53 @@ final class FilterVisualsTest extends TestCase
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
     }
+
+    public function test_can_use_contains_method(): void
+    {
+
+        Livewire::test(new class extends BreedsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+            }
+
+            public function filters(): array
+            {
+                return [
+                    \Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter::make('name')
+                        ->setField('name')
+                        ->contains(),
+                ];
+            }
+        })
+            ->assertSee('Maine Coon')
+            ->set('filterComponents.name', 'ne')
+            ->assertSee('Maine Coon')
+            ->assertDontSee('Persian');
+    }
+
+    public function test_can_use_not_contains_method(): void
+    {
+
+        Livewire::test(new class extends BreedsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+            }
+
+            public function filters(): array
+            {
+                return [
+                    \Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter::make('name')
+                        ->notContains('name'),
+                ];
+            }
+        })
+            ->assertSee('Maine Coon')
+            ->set('filterComponents.name', 'e C')
+            ->assertDontSee('Maine Coon')
+            ->assertSee('Persian');
+    }
 }
