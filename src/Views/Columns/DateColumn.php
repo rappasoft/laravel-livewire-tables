@@ -41,6 +41,7 @@ class DateColumn extends Column
         } catch (\Exception $exception) {
             return $this->getEmptyValue();
         }
+
         return $this->getEmptyValue();
     }
 }
