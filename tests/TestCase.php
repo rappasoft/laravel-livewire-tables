@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableUnpaginated,SpeciesTable};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableUnpaginated,PetsTableWithOwner,SpeciesTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Owner;
@@ -107,6 +107,23 @@ class TestCase extends Orchestra
         $this->basicTable->renderingWithData($view, []);
         $this->basicTable->renderingWithPagination($view, []);
         $this->basicTable->render();
+    }
+
+    protected function setupPetOwnerTable()
+    {
+        $view = view('livewire-tables::datatable');
+        $this->petOwnerTable = new PetsTableWithOwner;
+        $this->petOwnerTable->boot();
+        $this->petOwnerTable->bootedComponentUtilities();
+        $this->petOwnerTable->bootedWithData();
+        $this->petOwnerTable->bootedWithColumns();
+        $this->petOwnerTable->bootedWithColumnSelect();
+        $this->petOwnerTable->bootedWithSecondaryHeader();
+        $this->petOwnerTable->booted();
+        $this->petOwnerTable->renderingWithData($view, []);
+        $this->petOwnerTable->renderingWithPagination($view, []);
+        $this->petOwnerTable->render();
+
     }
 
     protected function setupSpeciesTable()

@@ -8,6 +8,13 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
 final class DateColumnTest extends TestCase
 {
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        parent::setupPetOwnerTable();
+    }
+
     public function test_can_set_the_column_title(): void
     {
         $column = DateColumn::make('Last Visit', 'last_visit');
@@ -90,6 +97,19 @@ final class DateColumnTest extends TestCase
 
         $column->emptyValue('');
         $this->assertSame('04-04-2023', $column->getContents(Pet::where('id', 4)->first()));
+
+    }
+
+    public function test_can_get_distant_related_date(): void
+    {
+        $column1 = DateColumn::make('Owner DoB', 'owner.date_of_birth')->inputFormat('Y-m-d')->outputFormat('d-m-Y');
+        $column2 = DateColumn::make('Owner DoB', 'owner.date_of_birth')->inputFormat('Y-m-d')->outputFormat('d-M-Y');
+
+        $rows = $this->petOwnerTable->getRows();
+        $lastRow = $rows->last();
+
+        $this->assertSame('22-08-1985', $column1->getContents($lastRow));
+        $this->assertSame('22-Aug-1985', $column2->getContents($lastRow));
 
     }
 }
