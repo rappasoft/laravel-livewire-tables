@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 
 final class DateColumnTest extends TestCase
 {
@@ -41,8 +42,8 @@ final class DateColumnTest extends TestCase
 
         $rows = $this->basicTable->getRows();
 
-        $this->assertSame($rows->last()->last_visit, $column->getContents($rows->last()));
-        $this->assertSame($rows->last()->last_visit, '2023-05-04');
+        $this->assertSame($rows->last()->last_visit->format('Y-m-d'), $column->getContents($rows->last()));
+        $this->assertSame($rows->last()->last_visit->format('Y-m-d'), '2023-05-04');
     }
 
     public function test_can_get_column_reformatted_contents(): void
@@ -57,12 +58,13 @@ final class DateColumnTest extends TestCase
     public function test_can_not_get_column_reformatted_contents_with_bad_values(): void
     {
         $column = DateColumn::make('Name', 'last_visit')->inputFormat('d-m-Y')->outputFormat('d-m-Y');
+        $column->emptyValue('Not Found');
 
         $firstRow = $this->basicTable->getRows()->first();
 
         $firstRow->last_visit = '44-12-2023';
 
-        $this->assertSame('', $column->getContents($firstRow));
+        $this->assertSame('Not Found', $column->getContents($firstRow));
 
         $firstRow->last_visit = '04-01-2023';
 
@@ -84,12 +86,10 @@ final class DateColumnTest extends TestCase
         $column->emptyValue('Not Found');
         $this->assertSame('Not Found', $column->getEmptyValue());
 
-        $thirdRow = $this->basicTable->getRows()->slice(3, 1)->first();
-
-        $this->assertSame('Not Found', $column->getContents($thirdRow));
+        $this->assertSame('Not Found', $column->getContents(Pet::where('id',3)->first()));
 
         $column->emptyValue('');
-        $this->assertSame('', $column->getContents($thirdRow));
+        $this->assertSame('04-04-2023', $column->getContents(Pet::where('id',4)->first()));
 
     }
 }

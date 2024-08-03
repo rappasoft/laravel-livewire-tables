@@ -34,6 +34,10 @@ class Pet extends Model
         'species_id',
         'breed_id',
     ];
+    
+    protected $casts = [
+        'last_visit' => 'datetime:Y-m-d',
+    ];
 
     public function species(): BelongsTo
     {
