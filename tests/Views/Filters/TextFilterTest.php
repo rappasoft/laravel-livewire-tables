@@ -103,21 +103,22 @@ final class TextFilterTest extends FilterTestCase
     public function test_has_field_name(): void
     {
         $filter = TextFilter::make('BreedID');
-        $this->assertFalse($filter->hasField();
+        $this->assertFalse($filter->hasField());
 
         $filter->setField('breed_id');
-        $this->assertTrue($filter->hasField();
+        $this->assertTrue($filter->hasField());
 
     }
 
     public function test_get_field_name(): void
     {
         $filter = TextFilter::make('BreedID');
-        $this->assertFalse($filter->hasField();
+        $this->assertFalse($filter->hasField());
         
         $filter->setField('breed_id');
-        $this->assertTrue($filter->hasField();
+        $this->assertTrue($filter->hasField());
         $this->assertSame('breed_id', $filter->getField());
     }
+
 
 }
