@@ -26,7 +26,7 @@ class TestCase extends Orchestra
     public PetsTableUnpaginated $unpaginatedTable;
 
     public BreedsTable $breedsTable;
-  
+
     public PetsTableWithOwner $petOwnerTable;
 
     /**
@@ -123,7 +123,7 @@ class TestCase extends Orchestra
         $this->breedsTable->renderingWithPagination($view, []);
         $this->breedsTable->render();
     }
-  
+
     protected function setupPetOwnerTable()
     {
         $view = view('livewire-tables::datatable');
