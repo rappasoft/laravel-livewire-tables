@@ -29,5 +29,4 @@ trait ViewComponentColumnHelpers
     {
         return $this->customComponentView;
     }
-
 }

@@ -3,13 +3,13 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
-use ReflectionClass;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ViewComponentColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ViewComponentColumnHelpers;
+use ReflectionClass;
 
 class ViewComponentColumn extends Column
 {
@@ -48,18 +48,15 @@ class ViewComponentColumn extends Column
             }
         }
 
-        if ($this->hasCustomComponent())
-        {
+        if ($this->hasCustomComponent()) {
             $reflectionClass = new ReflectionClass($this->getCustomComponent());
 
             $reflectionInstance = $reflectionClass->newInstanceArgs($attributes);
 
             return $reflectionInstance->render();
+        } else {
+            return view($this->getComponentView())->with($attributes);
         }
-        else {
-            return view($this->getComponentView())->with($attributes);            
-        }
-
 
     }
 }
