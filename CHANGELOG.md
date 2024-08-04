@@ -11,6 +11,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Bug Fixes
 - Fix loading spinner for dark tailwind theme by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1809
+- Fix ViewComponentColumn issue with not accepting parameters cleanly by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1816
 
 ### Tweaks
 - Blade Minimisation & ColumnSelect Cleanup by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1806
