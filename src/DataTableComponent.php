@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables;
 
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\HasAllTraits;
+use Livewire\Attributes\On;
 
 abstract class DataTableComponent extends Component
 {
