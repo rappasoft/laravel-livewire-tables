@@ -160,6 +160,23 @@ Column::make('My one off column')
     ),
 ```
 
+Note that any field not used elsewhere in the table, that is required (for example creating an attribute based on two unused fields, these must be added to the query with setAdditionalSelects() in the configure() method (See Here)[https://rappasoft.com/docs/laravel-livewire-tables/v3/datatable/available-methods#content-builder])
+```php
+    public function configure(): void
+    {
+        $this->setAdditionalSelects(['users.forename as forename', 'users.surname as surname']);
+    }
+```
+
+You can then use the fields:
+```php
+Column::make('My one off column')
+    ->label(
+        fn($row, Column $column)  => $row->forename.' '.$row->surname
+    )
+    ->html(),
+```
+
 ## Collapsing
 
 The component has the ability to collapse certain columns at different screen sizes. It will add a plus icon as the left most column that will open up a view below the row with the information of the collapsed columns:
