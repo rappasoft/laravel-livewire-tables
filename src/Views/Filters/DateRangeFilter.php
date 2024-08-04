@@ -70,7 +70,7 @@ class DateRangeFilter extends Filter
         return $returnedValues;
     }
 
-    protected function setupEarlyLateDates(string $dateFormat)
+    protected function setupEarlyLateDates(string $dateFormat): array
     {
         $earliestDateString = ($this->getConfig('earliestDate') != '') ? $this->getConfig('earliestDate') : null;
         $latestDateString = ($this->getConfig('latestDate') != '') ? $this->getConfig('latestDate') : null;
@@ -92,7 +92,7 @@ class DateRangeFilter extends Filter
         return [];
     }
 
-    protected function populateReturnedValues(string|array $values)
+    protected function populateReturnedValues(string|array $values): array
     {
         $returnedValues = ['minDate' => '', 'maxDate' => ''];
         if (is_array($values)) {
@@ -118,7 +118,7 @@ class DateRangeFilter extends Filter
         return $returnedValues;
     }
 
-    protected function validateDateFormat(array $returnedValues, string $dateFormat)
+    protected function validateDateFormat(array $returnedValues, string $dateFormat): bool
     {
         $validator = Validator::make($returnedValues, [
             'minDate' => 'required|date_format:'.$dateFormat,

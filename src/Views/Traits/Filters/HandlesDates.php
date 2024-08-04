@@ -14,7 +14,7 @@ trait HandlesDates
 
     protected Carbon $carbonInstance;
 
-    protected function createCarbon()
+    protected function createCarbon(): void
     {
         $this->carbonInstance = new Carbon;
         $this->carbonInstance->setLocale($this->getPillsLocale());
