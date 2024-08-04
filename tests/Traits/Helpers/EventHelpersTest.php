@@ -8,11 +8,11 @@ final class EventHelpersTest extends TestCase
 {
     public function test_can_get_event_names()
     {
-        $this->assertSame([],$this->basicTable->getEventNames());
+        $this->assertSame([], $this->basicTable->getEventNames());
     }
-    
+
     public function test_can_get_event_statuses()
     {
-        $this->assertSame(['columnSelected' => true, 'searchApplied' => false, 'filterApplied' => false],$this->basicTable->getEventStatuses());
+        $this->assertSame(['columnSelected' => true, 'searchApplied' => false, 'filterApplied' => false], $this->basicTable->getEventStatuses());
     }
 }
