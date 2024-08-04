@@ -131,7 +131,7 @@ You will have access to `$row`, `$value`, and `$column` from within your view.
 
 ## Labels
 
-If you have a column that is not associated with a database column, you can chain the `label` method
+If you have a column that is not associated with a database column, you can chain the `label` method:
 
 ```php
 Column::make('My one off column')
