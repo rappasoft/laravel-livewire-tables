@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.1] - 2024-08-04
+### Bug Fixes
+- Fix ViewComponentColumn issue with not accepting parameters cleanly by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1818
+
 ## [v3.4.0] - 2024-08-04
 ### New Features
 - Add Helpers for TextFilters by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1812

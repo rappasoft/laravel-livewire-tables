@@ -45,7 +45,6 @@ class ViewComponentColumn extends Column
             }
         }
 
-        return \Illuminate\Support\Facades\Blade::render(
-            '<x-'.$this->getComponentView().' '.new ComponentAttributeBag($attributes).' />');
+        return view($this->getComponentView())->with($attributes);
     }
 }
