@@ -31,6 +31,6 @@ trait EventHelpers
 
     public function getEventStatuses(): array
     {
-        return [...['columnSelected' => true, 'searchApplied' => false, 'filterApplied' => false], ... $this->eventStatuses];
+        return [...['columnSelected' => true, 'searchApplied' => false, 'filterApplied' => false], ...$this->eventStatuses];
     }
 }
