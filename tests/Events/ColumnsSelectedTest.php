@@ -68,7 +68,7 @@ final class ColumnsSelectedTest extends TestCase
     {
         Event::fake();
 
-        $user = new \Illuminate\Foundation\Auth\User();
+        $user = new \Illuminate\Foundation\Auth\User;
         $user->id = '1234';
         $user->name = 'Bob';
 
@@ -77,7 +77,7 @@ final class ColumnsSelectedTest extends TestCase
         $this->basicTable->deselectAllColumns();
 
         Event::assertDispatched(ColumnsSelected::class, function ($event) {
-            return $event->columns == []  && $event->user->id == '1234' && $event->tableName == $this->basicTable->getTableName();
+            return $event->columns == [] && $event->user->id == '1234' && $event->tableName == $this->basicTable->getTableName();
         });
     }
 }

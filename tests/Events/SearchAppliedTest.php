@@ -58,8 +58,8 @@ final class SearchAppliedTest extends TestCase
     public function test_an_event_is_emitted_when_a_search_is_applied_and_event_enabled_with_values_and_user()
     {
         Event::fake();
-        
-        $user = new \Illuminate\Foundation\Auth\User();
+
+        $user = new \Illuminate\Foundation\Auth\User;
         $user->id = '1234';
         $user->name = 'Bob';
         $this->actingAs($user);
