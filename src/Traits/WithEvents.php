@@ -10,7 +10,7 @@ trait WithEvents
     use EventConfiguration,
         EventHelpers;
 
-    protected array $eventStatuses = ['columnSelected' => true, 'searchApplied' => true, 'filterApplied' => true];
+    protected array $eventStatuses = ['columnSelected' => true, 'searchApplied' => false, 'filterApplied' => false];
 
     public function setSortEvent(string $field, string $direction): void
     {

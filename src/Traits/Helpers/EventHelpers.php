@@ -6,7 +6,7 @@ trait EventHelpers
 {
     public function getEventStatus(string $event): bool
     {
-        return $this->eventStatuses[$event] ?? true;
+        return $this->eventStatuses[$event] ?? false;
     }
 
     public function getEventStatusColumnSelect(): bool
@@ -31,6 +31,6 @@ trait EventHelpers
 
     public function getEventStatuses(): array
     {
-        return $this->eventStatuses ?? ['columnSelected' => true, 'searchApplied' => true, 'filterApplied' => true];
+        return $this->eventStatuses ?? ['columnSelected' => true, 'searchApplied' => false, 'filterApplied' => false];
     }
 }
