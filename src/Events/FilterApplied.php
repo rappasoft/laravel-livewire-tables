@@ -9,7 +9,6 @@ class FilterApplied extends LaravelLivewireTablesEvent
 {
     use Dispatchable, SerializesModels;
 
-
     public function __construct(string $tableName, string $key, string|array $value)
     {
         $this->setupCoreEventProperties($tableName, $key);

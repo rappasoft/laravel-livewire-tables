@@ -2,16 +2,16 @@
 
 namespace Rappasoft\LaravelLivewireTables\Events;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Auth\User;
 
 class LaravelLivewireTablesEvent
 {
     use Dispatchable, SerializesModels;
 
     public string $tableName;
-    
+
     public ?string $key;
 
     public ?User $user;
@@ -34,15 +34,14 @@ class LaravelLivewireTablesEvent
     public function setTableForEvent(string $tableName)
     {
         $this->tableName = $tableName;
-        
+
         $this->setupUserForEvent();
 
     }
 
     public function setupUserForEvent()
     {
-        if (auth()->user())
-        {
+        if (auth()->user()) {
             $this->user = auth()->user();
         }
     }
