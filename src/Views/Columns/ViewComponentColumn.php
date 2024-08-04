@@ -33,7 +33,7 @@ class ViewComponentColumn extends Column
             throw new DataTableConfigurationException('You can not use a label column with a component column');
         }
 
-        if ($this->hasComponentView() === false) {
+        if ($this->hasComponentView() === false && $this->hasCustomComponent() === false) {
             throw new DataTableConfigurationException('You must specify a component view for a component column');
         }
 
