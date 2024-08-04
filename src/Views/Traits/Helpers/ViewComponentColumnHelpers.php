@@ -19,4 +19,15 @@ trait ViewComponentColumnHelpers
     {
         return isset($this->componentView);
     }
+
+    public function hasCustomComponent(): bool
+    {
+        return isset($this->customComponentView);
+    }
+
+    public function getCustomComponent(): string
+    {
+        return $this->customComponentView;
+    }
+
 }

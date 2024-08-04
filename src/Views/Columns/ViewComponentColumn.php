@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
+use ReflectionClass;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
@@ -15,7 +16,9 @@ class ViewComponentColumn extends Column
     use ViewComponentColumnConfiguration,
         ViewComponentColumnHelpers;
 
-    protected string $componentView;
+    protected ?string $componentView;
+
+    protected ?string $customComponentView;
 
     public function __construct(string $title, ?string $from = null)
     {
@@ -45,6 +48,18 @@ class ViewComponentColumn extends Column
             }
         }
 
-        return view($this->getComponentView())->with($attributes);
+        if ($this->hasCustomComponent())
+        {
+            $reflectionClass = new ReflectionClass($this->getCustomComponent());
+
+            $reflectionInstance = $reflectionClass->newInstanceArgs($attributes);
+
+            return $reflectionInstance->render();
+        }
+        else {
+            return view($this->getComponentView())->with($attributes);            
+        }
+
+
     }
 }
