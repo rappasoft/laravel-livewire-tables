@@ -135,7 +135,7 @@ trait FilterHelpers
 
     #[On('setFilter')]
     #[On('set-filter')]
-    public function setFilter(string $filterKey, mixed $value): void
+    public function setFilter(string $filterKey, string|array|null $value): void
     {
         $this->appliedFilters[$filterKey] = $this->filterComponents[$filterKey] = $value;
 
