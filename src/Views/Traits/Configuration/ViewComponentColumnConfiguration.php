@@ -13,4 +13,11 @@ trait ViewComponentColumnConfiguration
 
         return $this;
     }
+
+    public function customComponent(string $customComponentView): self
+    {
+        $this->customComponentView = $customComponentView;
+
+        return $this;
+    }
 }
