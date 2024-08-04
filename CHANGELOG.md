@@ -2,6 +2,17 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.2] - 2024-08-04
+### New Features
+- Additional Events & Customisable Behaviour by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1820
+
+### Bug Fixes
+- Typehinting to allow events to be used to update Multi-Value Filters by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1822
+
+### Tweaks
+- Add missing ReturnTypes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1823
+- Removing old $listeners approach, now using the Livewire v3 On attribute by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1821
+
 ## [v3.4.1] - 2024-08-04
 ### Bug Fixes
 - Fix ViewComponentColumn issue with not accepting parameters cleanly by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1818
