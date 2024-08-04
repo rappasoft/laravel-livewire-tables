@@ -12,7 +12,7 @@ class SearchApplied
     public string $tableName;
     public string $search;
 
-    public function __construct(string $tableName, ?string $search == null)
+    public function __construct(string $tableName, string $search)
     {
         $this->tableName = $tableName;
         $this->search = $search;

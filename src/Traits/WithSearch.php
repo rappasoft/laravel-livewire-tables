@@ -53,7 +53,7 @@ trait WithSearch
 
             $this->callHook('searchUpdated', ['value' => $this->getSearch()]);
             $this->callTraitHook('searchUpdated', ['value' => $this->getSearch()]);
-            if ($this->getEventStatusSearchApplied())
+            if ($this->getEventStatusSearchApplied() && $this->getSearch() != null)
             {
                 event(new SearchApplied($this->getTableName(), $this->getSearch()));
             }

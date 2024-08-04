@@ -140,7 +140,7 @@ trait FilterHelpers
 
         $this->callHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
         $this->callTraitHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
-        if ($this->getEventStatusFilterApplied())
+        if ($this->getEventStatusFilterApplied() && $filterKey != null && $value != null)
         {
             event(new FilterApplied($this->getTableName(), $filterKey, $value));
         }
