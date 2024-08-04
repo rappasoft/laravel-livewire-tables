@@ -11,7 +11,7 @@ final class EventConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getEventStatusColumnSelect());
         $this->assertFalse($this->basicTable->getEventStatusSearchApplied());
         $this->assertFalse($this->basicTable->getEventStatusFilterApplied());
-        
+
         $this->basicTable->enableAllEvents();
 
         $this->assertTrue($this->basicTable->getEventStatusColumnSelect());
@@ -24,7 +24,7 @@ final class EventConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getEventStatusColumnSelect());
         $this->assertFalse($this->basicTable->getEventStatusSearchApplied());
         $this->assertFalse($this->basicTable->getEventStatusFilterApplied());
-        
+
         $this->basicTable->disableAllEvents();
 
         $this->assertTrue($this->basicTable->getEventStatusColumnSelect());
