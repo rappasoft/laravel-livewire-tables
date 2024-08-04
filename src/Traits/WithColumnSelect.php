@@ -54,7 +54,9 @@ trait WithColumnSelect
     {
         // The query string isn't needed if it's the same as the default
         session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
-        event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
+        if ($this->getEventStatusColumnSelect()) {
+            event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->selectedColumns));
+        }
     }
 
     public function renderingWithColumnSelect(\Illuminate\View\View $view, array $data = []): void
