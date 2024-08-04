@@ -10,6 +10,7 @@ class SearchApplied
     use Dispatchable, SerializesModels;
 
     public string $tableName;
+
     public string $search;
 
     public function __construct(string $tableName, string $search)

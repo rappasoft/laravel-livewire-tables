@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
-use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 
 trait WithSearch
 {
@@ -53,11 +53,10 @@ trait WithSearch
 
             $this->callHook('searchUpdated', ['value' => $this->getSearch()]);
             $this->callTraitHook('searchUpdated', ['value' => $this->getSearch()]);
-            if ($this->getEventStatusSearchApplied() && $this->getSearch() != null)
-            {
+            if ($this->getEventStatusSearchApplied() && $this->getSearch() != null) {
                 event(new SearchApplied($this->getTableName(), $this->getSearch()));
             }
-    
+
             if ($searchableColumns->count()) {
                 $this->setBuilder($this->getBuilder()->where(function ($query) use ($searchableColumns) {
                     foreach ($searchableColumns as $index => $column) {

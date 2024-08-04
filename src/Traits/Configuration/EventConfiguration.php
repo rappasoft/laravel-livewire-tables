@@ -45,7 +45,7 @@ trait EventConfiguration
 
         return $this;
     }
-    
+
     public function disableSearchAppliedEvent(): self
     {
         $this->disableEvent('searchApplied');
@@ -59,7 +59,7 @@ trait EventConfiguration
 
         return $this;
     }
-    
+
     public function disableFilterAppliedEvent(): self
     {
         $this->disableEvent('filterApplied');
@@ -69,8 +69,7 @@ trait EventConfiguration
 
     public function enableAllEvents(): self
     {
-        foreach ($this->getEventNames() as $eventName)
-        {
+        foreach ($this->getEventNames() as $eventName) {
             $this->enableEvent($eventName);
         }
 
@@ -79,11 +78,10 @@ trait EventConfiguration
 
     public function disableAllEvents(): self
     {
-        foreach ($this->getEventNames() as $eventName)
-        {
+        foreach ($this->getEventNames() as $eventName) {
             $this->disableEvent($eventName);
         }
 
         return $this;
     }
-} 
+}

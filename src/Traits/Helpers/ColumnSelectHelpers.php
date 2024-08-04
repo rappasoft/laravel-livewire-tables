@@ -159,8 +159,7 @@ trait ColumnSelectHelpers
             $this->selectedColumns[] = $column->getSlug();
         }
         $this->forgetColumnSelectSession();
-        if ($this->getEventStatusColumnSelect())
-        {
+        if ($this->getEventStatusColumnSelect()) {
             event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->selectedColumns));
         }
     }
@@ -169,8 +168,7 @@ trait ColumnSelectHelpers
     {
         $this->selectedColumns = [];
         session([$this->getColumnSelectSessionKey() => []]);
-        if ($this->getEventStatusColumnSelect())
-        {
+        if ($this->getEventStatusColumnSelect()) {
             event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->selectedColumns));
         }
     }

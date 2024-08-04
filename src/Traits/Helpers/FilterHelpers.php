@@ -6,10 +6,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
+use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 
 trait FilterHelpers
 {
@@ -140,8 +140,7 @@ trait FilterHelpers
 
         $this->callHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
         $this->callTraitHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
-        if ($this->getEventStatusFilterApplied() && $filterKey != null && $value != null)
-        {
+        if ($this->getEventStatusFilterApplied() && $filterKey != null && $value != null) {
             event(new FilterApplied($this->getTableName(), $filterKey, $value));
         }
 
