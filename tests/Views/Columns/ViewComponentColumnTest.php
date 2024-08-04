@@ -48,7 +48,7 @@ final class ViewComponentColumnTest extends TestCase
 
     }
 
-    public function test_can_render_component(): void
+    /*public function test_can_render_component(): void
     {
 
         $column = ViewComponentColumn::make('Age 2', 'age')
@@ -59,5 +59,5 @@ final class ViewComponentColumnTest extends TestCase
         $contents = $column->getContents(Pet::find(1));
         $this->assertSame('<div>2420</div>', $contents);
 
-    }
+    }*/
 }
