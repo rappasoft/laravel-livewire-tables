@@ -15,7 +15,7 @@ class LaravelLivewireTablesEvent
     public ?string $key;
 
     public string|array|null $value;
-    
+
     public ?User $user;
 
     public function setKeyForEvent(string $key): self
