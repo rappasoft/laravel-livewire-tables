@@ -39,7 +39,7 @@ trait SortingHelpers
         return $this->sorts[$field] ?? null;
     }
 
-    #[On('setSort')] 
+    #[On('setSort')]
     #[On('set-sort')]
     public function setSort(string $field, string $direction): string
     {
@@ -59,7 +59,7 @@ trait SortingHelpers
     /**
      * Clear the sorts array
      */
-    #[On('clearSorts')] 
+    #[On('clearSorts')]
     #[On('clearsorts')]
     public function clearSorts(): void
     {

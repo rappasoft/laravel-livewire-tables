@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 trait EventHelpers
 {
-    
     public function getEventStatus(string $event): bool
     {
         return $this->eventStatuses[$event] ?? false;
