@@ -63,4 +63,21 @@ final class ColumnsSelectedTest extends TestCase
             return $event->columns == [] && $event->tableName == $this->basicTable->getTableName();
         });
     }
+
+    public function test_an_event_is_emitted_when_a_column_selection_are_updated_and_event_is_enabled_with_fields_and_user()
+    {
+        Event::fake();
+
+        $user = new \Illuminate\Foundation\Auth\User();
+        $user->id = '1234';
+        $user->name = 'Bob';
+
+        $this->actingAs($user);
+
+        $this->basicTable->deselectAllColumns();
+
+        Event::assertDispatched(ColumnsSelected::class, function ($event) {
+            return $event->columns == []  && $event->user->id == '1234' && $event->tableName == $this->basicTable->getTableName();
+        });
+    }
 }

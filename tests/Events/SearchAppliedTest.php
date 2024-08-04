@@ -54,4 +54,21 @@ final class SearchAppliedTest extends TestCase
             return $event->value == 'test search value' && $event->tableName == $this->basicTable->getTableName();
         });
     }
+
+    public function test_an_event_is_emitted_when_a_search_is_applied_and_event_enabled_with_values_and_user()
+    {
+        Event::fake();
+        
+        $user = new \Illuminate\Foundation\Auth\User();
+        $user->id = '1234';
+        $user->name = 'Bob';
+        $this->actingAs($user);
+
+        // Select all columns to test event trigger
+        $this->basicTable->enableSearchAppliedEvent()->setSearch('test search value')->applySearch();
+
+        Event::assertDispatched(SearchApplied::class, function ($event) {
+            return $event->value == 'test search value' && $event->user->id == '1234' && $event->tableName == $this->basicTable->getTableName();
+        });
+    }
 }

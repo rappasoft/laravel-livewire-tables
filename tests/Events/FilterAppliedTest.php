@@ -44,4 +44,22 @@ final class FilterAppliedTest extends TestCase
             return $event->value == 'test value' && $event->key = 'pet_name_filter' && $event->tableName == $this->basicTable->getTableName();
         });
     }
+
+    public function test_an_event_is_emitted_when_a_filter_is_applied_with_values_and_user()
+    {
+        Event::fake();
+        
+        $user = new \Illuminate\Foundation\Auth\User();
+        $user->id = '1234';
+        $user->name = 'Bob';
+        $this->actingAs($user);
+
+        // Select all columns to test event trigger
+        $this->basicTable->enableFilterAppliedEvent()->setFilter('pet_name_filter', 'test value');
+
+        Event::assertDispatched(FilterApplied::class, function ($event) {
+            return $event->value == 'test value' && $event->user->id == '1234' && $event->key = 'pet_name_filter' && $event->tableName == $this->basicTable->getTableName();
+        });
+    }
+
 }
