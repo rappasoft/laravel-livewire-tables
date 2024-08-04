@@ -25,7 +25,7 @@ trait WithEvents
     }
 
     // No Longer Used
-    public function setFilterEvent(string $filter, string $value): void
+    public function setFilterEvent(string $filter, string|array|null $value): void
     {
         $this->setFilter($filter, $value);
     }
