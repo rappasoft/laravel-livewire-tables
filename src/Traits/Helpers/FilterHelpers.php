@@ -133,6 +133,7 @@ trait FilterHelpers
         });
     }
 
+    #[On('setFilter')]
     #[On('set-filter')]
     public function setFilter(string $filterKey, mixed $value): void
     {
@@ -163,6 +164,7 @@ trait FilterHelpers
         $this->setFilter($filterKey, array_keys($filter->getOptions()));
     }
 
+    #[On('clearFilters')]
     #[On('clear-filters')]
     public function setFilterDefaults(): void
     {
