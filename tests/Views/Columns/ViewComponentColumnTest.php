@@ -28,10 +28,12 @@ final class ViewComponentColumnTest extends TestCase
     public function test_can_have_component_view(): void
     {
         $column = ViewComponentColumn::make('Age 2', 'age')
-            ->component('test-component')
             ->attributes(fn ($value, $row, Column $column) => [
                 'age' => $row->age,
             ]);
+
+        $this->assertFalse($column->hasComponentView());
+        $column->component('test-component');
         $this->assertTrue($column->hasComponentView());
     }
 
@@ -45,6 +47,21 @@ final class ViewComponentColumnTest extends TestCase
             ]);
         $contents = $column->getContents(Pet::find(1));
         $this->assertSame('<div>2420</div>', $contents);
+
+    }
+
+    public function test_can_use_custom_component(): void
+    {
+        $column = ViewComponentColumn::make('Age 2', 'age')
+            ->attributes(fn ($value, $row, Column $column) => [
+                'age' => $row->age,
+            ]);
+
+        $this->assertFalse($column->hasCustomComponent());
+        $column->customComponent(\Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent::class);
+        $contents = $column->getContents(Pet::find(1));
+        $this->assertSame('<div>2420</div>', $contents);
+        $this->assertTrue($column->hasCustomComponent());
 
     }
 
