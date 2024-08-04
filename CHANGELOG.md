@@ -2,6 +2,25 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.0] - 2024-08-04
+### New Features
+- Add Helpers for TextFilters by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1812
+- Change method names for TextFilters handler by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1814
+- Capability to set Reorder Column TH Attributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1811
+- Bulk Actions - Customise Select All Behaviours by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1810
+
+### Bug Fixes
+- Fix loading spinner for dark tailwind theme by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1809
+
+### Tweaks
+- Blade Minimisation & ColumnSelect Cleanup by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1806
+- Adjust DateColumn with Missing Tests and Coping with DateTime Casts by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1813
+
+### Docs
+- Add reference to Bulk Actions TH styling in main styling by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1808
+- Update docs for setPillsLocale by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1800
+- Add note on label method for setAdditionalSelects by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1816
+
 ## [v3.3.4] - 2024-07-27
 ### New Features
 - Added capability to setFilterDefaultValue for a DateRangeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1796
