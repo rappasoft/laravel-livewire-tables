@@ -26,11 +26,11 @@ trait EventHelpers
 
     public function getEventNames(): array
     {
-        return array_keys($this->eventStatuses) ?? ['columnSelected', 'searchApplied', 'filterApplied'];
+        return ['columnSelected', 'searchApplied', 'filterApplied'];
     }
 
     public function getEventStatuses(): array
     {
-        return $this->eventStatuses ?? ['columnSelected' => true, 'searchApplied' => false, 'filterApplied' => false];
+        return [...['columnSelected' => true, 'searchApplied' => false, 'filterApplied' => false], ... $this->eventStatuses];
     }
 }
