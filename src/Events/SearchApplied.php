@@ -11,8 +11,9 @@ class SearchApplied extends LaravelLivewireTablesEvent
 
     public function __construct(string $tableName, string $value)
     {
-        $this->setTableForEvent($tableName);
+        $this->setTableForEvent($tableName)
+            ->setValueForEvent($value)
+            ->setUserForEvent();
 
-        $this->setValueForEvent($value);
     }
 }

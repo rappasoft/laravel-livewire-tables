@@ -9,9 +9,12 @@ class FilterApplied extends LaravelLivewireTablesEvent
 {
     use Dispatchable, SerializesModels;
 
-    public function __construct(string $tableName, string $key, string|array $value)
+    public function __construct(string $tableName, string $key, string|array|null $value = null)
     {
-        $this->setupCoreEventProperties($tableName, $key);
-        $this->setValueForEvent($value);
+        $this->setTableForEvent($tableName)
+            ->setKeyForEvent($key)
+            ->setValueForEvent($value)
+            ->setUserForEvent();
+
     }
 }

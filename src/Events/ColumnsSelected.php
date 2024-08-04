@@ -11,9 +11,11 @@ class ColumnsSelected extends LaravelLivewireTablesEvent
 
     public array $columns;
 
-    public function __construct(string $tableName, string $key, array $columns)
+    public function __construct(string $tableName, string $key, array $columns = [])
     {
-        $this->setupCoreEventProperties($tableName, $key);
+        $this->setTableForEvent($tableName)
+             ->setKeyForEvent($key)
+             ->setUserForEvent();
 
         $this->columns = $columns;
     }

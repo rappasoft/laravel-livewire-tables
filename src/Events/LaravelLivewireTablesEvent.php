@@ -14,35 +14,38 @@ class LaravelLivewireTablesEvent
 
     public ?string $key;
 
+    public string|array|null $value;
+    
     public ?User $user;
 
-    public string|array $value;
-
-    public function setupCoreEventProperties(string $tableName, string $key)
+    public function setKeyForEvent(string $key): self
     {
-        $this->setTableForEvent($tableName);
-
         $this->key = $key;
 
+        return $this;
     }
 
-    public function setValueForEvent(string $value)
+    public function setValueForEvent(string|array $value): self
     {
         $this->value = $value;
+
+        return $this;
+
     }
 
-    public function setTableForEvent(string $tableName)
+    public function setTableForEvent(string $tableName): self
     {
         $this->tableName = $tableName;
 
-        $this->setupUserForEvent();
-
+        return $this;
     }
 
-    public function setupUserForEvent()
+    public function setUserForEvent(): self
     {
         if (auth()->user()) {
             $this->user = auth()->user();
         }
+
+        return $this;
     }
 }
