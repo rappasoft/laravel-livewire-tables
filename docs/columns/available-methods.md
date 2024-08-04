@@ -131,7 +131,7 @@ You will have access to `$row`, `$value`, and `$column` from within your view.
 
 ## Labels
 
-If you have a column that is not associated with a database column, you can chain the `label` method:
+If you have a column that is not associated with a database column, you can chain the `label` method
 
 ```php
 Column::make('My one off column')
@@ -158,6 +158,23 @@ Column::make('My one off column')
     ->label(
         fn($row, Column $column) => view('my.other.view')->withRow($row)
     ),
+```
+
+Note that any field not used elsewhere in the table, that is required (for example creating an attribute based on two unused fields, these must be added to the query with setAdditionalSelects() in the configure() method (See Here)[https://rappasoft.com/docs/laravel-livewire-tables/v3/datatable/available-methods#content-builder])
+```php
+    public function configure(): void
+    {
+        $this->setAdditionalSelects(['users.forename as forename', 'users.surname as surname']);
+    }
+```
+
+You can then use the fields:
+```php
+Column::make('My one off column')
+    ->label(
+        fn($row, Column $column)  => $row->forename.' '.$row->surname
+    )
+    ->html(),
 ```
 
 ## Collapsing
