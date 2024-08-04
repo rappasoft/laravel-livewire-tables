@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Events;
 
 use Illuminate\Support\Facades\Event;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class FilterAppliedTest extends TestCase
 {
@@ -13,13 +13,12 @@ final class FilterAppliedTest extends TestCase
         $this->assertTrue(true);
     }
 
-
     public function test_an_event_is_not_emitted_when_a_filter_is_applied_and_event_disabled()
     {
         Event::fake();
 
         // Select all columns to test event trigger
-        $this->basicTable->disableFilterAppliedEvent()->setFilter('pet_name_filter','test 456');
+        $this->basicTable->disableFilterAppliedEvent()->setFilter('pet_name_filter', 'test 456');
 
         Event::assertNotDispatched(FilterApplied::class);
     }
@@ -29,7 +28,7 @@ final class FilterAppliedTest extends TestCase
         Event::fake();
 
         // Select all columns to test event trigger
-        $this->basicTable->enableFilterAppliedEvent()->setFilter('pet_name_filter','test 123');
+        $this->basicTable->enableFilterAppliedEvent()->setFilter('pet_name_filter', 'test 123');
 
         Event::assertDispatched(FilterApplied::class);
     }
@@ -39,7 +38,7 @@ final class FilterAppliedTest extends TestCase
         Event::fake();
 
         // Select all columns to test event trigger
-        $this->basicTable->enableFilterAppliedEvent()->setFilter('pet_name_filter','test value');
+        $this->basicTable->enableFilterAppliedEvent()->setFilter('pet_name_filter', 'test value');
 
         Event::assertDispatched(FilterApplied::class, function ($event) {
             return $event->value == 'test value' && $event->key = 'pet_name_filter' && $event->tableName == $this->basicTable->getTableName();

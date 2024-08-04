@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Events;
 
 use Illuminate\Support\Facades\Event;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class ColumnsSelectedTest extends TestCase
 {
@@ -40,7 +40,6 @@ final class ColumnsSelectedTest extends TestCase
         Event::assertNotDispatched(ColumnsSelected::class);
     }
 
-
     public function test_an_event_is_emitted_when_a_column_selection_are_updated__and_event_is_enabled_with_fields_one()
     {
         Event::fake();
@@ -59,10 +58,9 @@ final class ColumnsSelectedTest extends TestCase
         Event::fake();
 
         $this->basicTable->deselectAllColumns();
-        
+
         Event::assertDispatched(ColumnsSelected::class, function ($event) {
             return $event->columns == [] && $event->tableName == $this->basicTable->getTableName();
         });
     }
-
 }

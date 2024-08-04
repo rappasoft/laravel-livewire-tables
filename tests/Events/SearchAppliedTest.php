@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Events;
 
 use Illuminate\Support\Facades\Event;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class SearchAppliedTest extends TestCase
 {
