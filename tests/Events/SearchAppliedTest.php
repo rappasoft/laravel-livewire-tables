@@ -18,7 +18,7 @@ final class SearchAppliedTest extends TestCase
         Event::fake();
 
         // Select all columns to test event trigger
-        $this->basicTable->setSearch('test');
+        $this->basicTable->setSearch('test')->applySearch();
 
         Event::assertNotDispatched(SearchApplied::class);
     }
@@ -28,7 +28,7 @@ final class SearchAppliedTest extends TestCase
         Event::fake();
 
         // Select all columns to test event trigger
-        $this->basicTable->disableSearchAppliedEvent()->setSearch('test');
+        $this->basicTable->disableSearchAppliedEvent()->setSearch('test')->applySearch();
 
         Event::assertNotDispatched(SearchApplied::class);
     }
@@ -38,7 +38,7 @@ final class SearchAppliedTest extends TestCase
         Event::fake();
 
         // Select all columns to test event trigger
-        $this->basicTable->enableSearchAppliedEvent()->setSearch('test search');
+        $this->basicTable->enableSearchAppliedEvent()->setSearch('test search')->applySearch();
 
         Event::assertDispatched(SearchApplied::class);
     }
@@ -48,7 +48,7 @@ final class SearchAppliedTest extends TestCase
         Event::fake();
 
         // Select all columns to test event trigger
-        $this->basicTable->enableSearchAppliedEvent()->setSearch('test search value');
+        $this->basicTable->enableSearchAppliedEvent()->setSearch('test search value')->applySearch();
 
         Event::assertDispatched(SearchApplied::class, function ($event) {
             return $event->value == 'test search value' && $event->tableName == $this->basicTable->getTableName();
