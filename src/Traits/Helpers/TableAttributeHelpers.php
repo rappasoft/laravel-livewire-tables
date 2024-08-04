@@ -3,77 +3,60 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait TableAttributeHelpers
 {
-    /**
-     * @return array<mixed>
-     */
+    #[Computed]
     public function getComponentWrapperAttributes(): array
     {
         return count($this->componentWrapperAttributes) ? $this->componentWrapperAttributes : ['id' => 'datatable-'.$this->getId()];
     }
 
-    /**
-     * @return array<mixed>
-     */
+    #[Computed]
     public function getTableWrapperAttributes(): array
     {
         return count($this->tableWrapperAttributes) ? $this->tableWrapperAttributes : ['default' => true];
     }
 
-    /**
-     * @return array<mixed>
-     */
+    #[Computed]
     public function getTableAttributes(): array
     {
         return count($this->tableAttributes) ? $this->tableAttributes : ['id' => 'table-'.$this->getTableName(), 'default' => true];
     }
 
-    /**
-     * @return array<mixed>
-     */
+    #[Computed]
     public function getTheadAttributes(): array
     {
         return count($this->theadAttributes) ? $this->theadAttributes : ['default' => true];
     }
 
-    /**
-     * @return array<mixed>
-     */
+    #[Computed]
     public function getTbodyAttributes(): array
     {
         return count($this->tbodyAttributes) ? $this->tbodyAttributes : ['default' => true];
     }
 
-    /**
-     * @return array<mixed>
-     */
+    #[Computed]
     public function getThAttributes(Column $column): array
     {
         return isset($this->thAttributesCallback) ? call_user_func($this->thAttributesCallback, $column) : ['default' => true];
     }
 
-    /**
-     * @return array<mixed>
-     */
+    #[Computed]
     public function getThSortButtonAttributes(Column $column): array
     {
         return isset($this->thSortButtonAttributesCallback) ? call_user_func($this->thSortButtonAttributesCallback, $column) : ['default' => true];
     }
 
-    /**
-     * @return array<mixed>
-     */
+    #[Computed]
     public function getTrAttributes(Model $row, int $index): array
     {
         return isset($this->trAttributesCallback) ? call_user_func($this->trAttributesCallback, $row, $index) : ['default' => true];
     }
 
-    /**
-     * @return array<mixed>
-     */
+    #[Computed]
     public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
     {
         return isset($this->tdAttributesCallback) ? call_user_func($this->tdAttributesCallback, $column, $row, $colIndex, $rowIndex) : ['default' => true];

@@ -55,23 +55,22 @@
                 <button
                     x-cloak x-show="!currentlyReorderingStatus"
                     x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $tableName }}', 'row': {{ $rowIndex }}});open = !open"
-                    class="p-0"
-                    style="background:none;border:none;"
+                    class="border-0 bg-transparent p-0"
                 >
-                    <x-heroicon-o-plus-circle x-cloak x-show="!open" style="width:1.4em;height:1.4em;" 
+                    <x-heroicon-o-plus-circle x-cloak x-show="!open"  
                         {{ 
                             $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
                             ->class([
-                                'text-success' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                                'laravel-livewire-tables-btn-lg text-success' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
                             ])
                             ->except('default') 
                         }}
                     />
-                    <x-heroicon-o-minus-circle x-cloak x-show="open" style="width:1.4em;height:1.4em;" 
+                    <x-heroicon-o-minus-circle x-cloak x-show="open" 
                         {{ 
                             $attributes->merge($this->getCollapsingColumnButtonExpandAttributes)
                             ->class([
-                                'text-warning' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
+                                'laravel-livewire-tables-btn-lg text-warning' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
                             ])
                             ->except('default') 
                         }}

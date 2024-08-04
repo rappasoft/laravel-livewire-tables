@@ -16,7 +16,7 @@ class DateColumn extends Column
 {
     use IsColumn;
     use DateColumnConfiguration,
-        DateColumnHelpers;
+        DateColumnHelpers { DateColumnHelpers::getValue insteadof IsColumn; }
 
     public string $inputFormat = 'Y-m-d';
 
@@ -28,26 +28,18 @@ class DateColumn extends Column
 
     public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-
-        $dateTime = $this->getValue($row);
-
-        if ($dateTime != '' && $dateTime != null) {
-            if ($dateTime instanceof DateTime) {
-                return $dateTime->format($this->getOutputFormat());
-            } else {
-                try {
-                    // Check if format matches what is expected
-                    if (Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat())) {
-                        return Carbon::createFromFormat($this->getInputFormat(), $dateTime)->format($this->getOutputFormat());
-                    }
-                } catch (\Exception $exception) {
-                    report($exception);
-
-                    // Return Null
-                    return $this->getEmptyValue();
+        try {
+            $dateTime = $this->getValue($row);
+            if ($dateTime != '' && $dateTime != null) {
+                if ($dateTime instanceof DateTime) {
+                    return $dateTime->format($this->getOutputFormat());
+                } else {
+                    // Check if format matches what is expected and return Carbon instance if so, otherwise emptyValue
+                    return Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat()) ? Carbon::createFromFormat($this->getInputFormat(), $dateTime)->format($this->getOutputFormat()) : $this->getEmptyValue();
                 }
-
             }
+        } catch (\Exception $exception) {
+            return $this->getEmptyValue();
         }
 
         return $this->getEmptyValue();

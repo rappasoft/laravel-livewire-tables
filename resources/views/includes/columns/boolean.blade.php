@@ -32,9 +32,9 @@
     @if ($status)
         @if ($type === 'icons')
             @if ($successValue === true)
-                <x-heroicon-o-check-circle style="width:1.2em;height:1.2em;" class="d-inline-block text-success" />
+                <x-heroicon-o-check-circle  class="d-inline-block text-success laravel-livewire-tables-btn-small" />
             @else
-                <x-heroicon-o-check-circle style="width:1.2em;height:1.2em;" class="d-inline-block text-danger" />
+                <x-heroicon-o-check-circle class="d-inline-block text-danger laravel-livewire-tables-btn-small" />
             @endif
         @elseif ($type === 'yes-no')
             @if ($successValue === true)
@@ -46,9 +46,9 @@
     @else
         @if ($type === 'icons')
             @if ($successValue === false)
-                <x-heroicon-o-x-circle style="width:1.2em;height:1.2em;" class="d-inline-block text-success" />
+                <x-heroicon-o-x-circle class="d-inline-block text-success laravel-livewire-tables-btn-small" />
             @else
-                <x-heroicon-o-x-circle style="width:1.2em;height:1.2em;" class="d-inline-block text-danger" />
+                <x-heroicon-o-x-circle class="d-inline-block text-danger laravel-livewire-tables-btn-small" />
             @endif
         @elseif ($type === 'yes-no')
             @if ($successValue === false)

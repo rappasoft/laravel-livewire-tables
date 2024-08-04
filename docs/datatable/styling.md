@@ -127,7 +127,10 @@ public function configure(): void
 
 ### setThAttributes
 
-Set a list of attributes to override on the th elements
+Set a list of attributes to override on the th elements.  
+
+Note: If you are using Bulk Actions, then the th for Bulk Actions is [styled separately](../bulk-actions/customisations).
+Note: If you are using Reorder, then the th for Reorder is [styled separately](../reordering/available-methods).
 
 ```php
 public function configure(): void

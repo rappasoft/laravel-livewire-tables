@@ -62,19 +62,18 @@
                 {{ $column->getTitle() }}
             @else
                 <div
-                    class="d-flex align-items-center"
+                    class="d-flex align-items-center laravel-livewire-tables-cursor"
                     wire:click="sortBy('{{ ($column->isSortable() ? $column->getColumnSelectName() : $column->getSlug()) }}')"
-                    style="cursor:pointer;"
                 >
                     <span>{{ $column->getTitle() }}</span>
 
                     <span class="relative d-flex align-items-center">
                         @if ($direction === 'asc')
-                            <x-heroicon-o-chevron-up class="ms-1" style="width:1em;height:1em;" />
+                            <x-heroicon-o-chevron-up class="laravel-livewire-tables-btn-smaller ms-1 "  />
                         @elseif ($direction === 'desc')
-                            <x-heroicon-o-chevron-down class="ms-1" style="width:1em;height:1em;" />
+                            <x-heroicon-o-chevron-down class="laravel-livewire-tables-btn-smaller ms-1"  />
                         @else
-                            <x-heroicon-o-chevron-up-down class="ms-1" style="width:1em;height:1em;" />
+                            <x-heroicon-o-chevron-up-down class="laravel-livewire-tables-btn-smaller ms-1" />
                         @endif
                     </span>
                 </div>
