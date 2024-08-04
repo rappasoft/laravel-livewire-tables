@@ -2,8 +2,16 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Rappasoft\LaravelLivewireTables\Traits\Configuration\EventConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Helpers\EventHelpers;
+
 trait WithEvents
 {
+    use EventConfiguration,
+        EventHelpers;
+
+    protected array $eventStatuses = ['columnSelected' => true, 'searchApplied' => true, 'filterApplied' => true];
+
     public function setSortEvent(string $field, string $direction): void
     {
         $this->setSort($field, $direction);

@@ -159,14 +159,20 @@ trait ColumnSelectHelpers
             $this->selectedColumns[] = $column->getSlug();
         }
         $this->forgetColumnSelectSession();
-        event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
+        if ($this->getEventStatusColumnSelect())
+        {
+            event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->selectedColumns));
+        }
     }
 
     public function deselectAllColumns(): void
     {
         $this->selectedColumns = [];
         session([$this->getColumnSelectSessionKey() => []]);
-        event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
+        if ($this->getEventStatusColumnSelect())
+        {
+            event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->selectedColumns));
+        }
     }
 
     public function allVisibleColumnsAreSelected(): bool
