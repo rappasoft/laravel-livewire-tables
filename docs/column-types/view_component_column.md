@@ -15,6 +15,18 @@ ViewComponentColumn::make('E-mail', 'email')
     ]),
 ```
 
+### customComponent
+
+Should you wish to render the Custom Component in it's entirety, then you may use the customComponent method.  Otherwise it will pass in the values directly to the blade, rather than executing your View Component.
+
+```php
+ViewComponentColumn::make('Weight', 'grams')
+    ->customComponent(\App\View\Components\TestWeight::class)
+    ->attributes(fn ($value, $row, Column $column) => [
+        'weight' => new Weight($value),
+    ]),
+```
+
 Please also see the following for other available methods:
 <ul>
     <li>
