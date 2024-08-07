@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.3] - 2024-08-06
+### Bug Fixes
+- View component column fixes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1825
+
 ## [v3.4.2] - 2024-08-04
 ### New Features
 - Additional Events & Customisable Behaviour by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1820
