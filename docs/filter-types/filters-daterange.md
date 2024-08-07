@@ -1,6 +1,6 @@
 ---
 title: DateRange Filters
-weight: 3
+weight: 4
 ---
 
 DateRange filters are Flatpickr based components, and simply filtering by a date range.  If you would like to more smoothly filter your query by a start and end date, you can use the DateRangeFilter:
@@ -70,17 +70,17 @@ A full list of options is below, please see the Flatpickr documentation for refe
 
 You may use this to set a default value for the filter that will be applied on first load (but may be cleared by the user).  This should be an array:
 
-```
+```php
     DateRangeFilter::make('EMail Verified Range')
         ->setFilterDefaultValue(['minDate' => '2024-05-05', 'maxDate' => '2024-06-06'])
 ```
 or
-```
+```php
     DateRangeFilter::make('EMail Verified Range')
         ->setFilterDefaultValue(['min' => '2024-05-05', 'max' => '2024-06-06'])
 ```
 or
-```
+```php
     DateRangeFilter::make('EMail Verified Range')
         ->setFilterDefaultValue(['2024-05-05', '2024-06-06'])
 ```
@@ -117,26 +117,26 @@ public function filters(): array
 By default, this filter will inject the Flatpickr JS Library and CSS. However, you can customise this behaviour using the configuration file.
 
 ### Option 1 - The default behaviour:
-```
+```php
     'inject_third_party_assets_enabled' => true,
 ```
 
 ### Option 2 - Bundled
 If you choose to bundle the Tables JS/CSS (recommended) by adding the following to your build process:
 
-```
+```js
 'vendor/rappasoft/laravel-livewire-tables/resources/js/laravel-livewire-tables-thirdparty.min.js';
 ```
 
 or in your app.js
 
-```
+```js
 import '../../vendor/rappasoft/livewire-tables/resources/js/laravel-livewire-tables-thirdparty.min.js';
 ```
 
 Then you should disable injection to avoid conflicts:
 
-```
+```php
     'inject_third_party_assets_enabled' => false,
 ```
 
@@ -146,12 +146,12 @@ You must ensure that Flatpickr is present PRIOR to the tables loading.  For exam
 It is typically recommended not to utilise the CDN approach, as changes to core code may impact behaviour, and you may need to implement changes to your CSP if present.
 
 If using the CDN approach, ensure the following config matches:
-```
+```js
     'inject_third_party_assets_enabled' => false,
 ```
 
 Then include the following in your layout:
-```
+```html
 // Flatpickr Core Script
 <script src="https://npmcdn.com/flatpickr" async></script>
 
@@ -161,7 +161,7 @@ Then include the following in your layout:
 
 ### Option 4 - Locally Installed
 If you have a locally installed version of Flatpickr already, you can set injection to false, and your local version will be used instead.
-```
+```js
     'inject_third_party_assets_enabled' => false,
 ```
 
@@ -170,7 +170,7 @@ The default installation includes only the English (en) locale.
 
 ### Bundling
 Should you wish to localise, you must include the Flatpickr locale files in your build pipeline.  This applies to only the specific locales that you require in your app.js (requires adding the flatpickr library to your package.json by executing "npm i flatpickr --save")
-```
+```js
 import { Arabic } from "../imports/flatpickr/l10n/ar.js";
 import { Catalan } from "../imports/flatpickr/l10n/cat.js";
 import { Danish } from "../imports/flatpickr/l10n/da.js";
@@ -192,6 +192,6 @@ import { Ukrainian } from "../imports/flatpickr/l10n/uk.js"
 You can also add locales using the Flatpickr CDN, ensuring that these are loaded before the page renders.
 
 For example to add German (de), ensure that the following is in the "head" section of your layout, ideally before your app.js
-```
+```html
 <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js" async></script>
 ```

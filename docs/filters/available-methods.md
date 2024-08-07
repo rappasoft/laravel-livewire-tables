@@ -415,7 +415,7 @@ You may override this using the following methods, on any of the above Filter ty
 
 #### setWireBlur()
 Forces the filter to use a wire:model.blur approach
-```
+```php
     TextFilter::make('Name')
     ->config([
         'placeholder' => 'Search Name',
@@ -426,7 +426,7 @@ Forces the filter to use a wire:model.blur approach
 
 #### setWireDefer()
 Forces the filter to use a wire:model approach
-```
+```php
     TextFilter::make('Name')
     ->config([
         'placeholder' => 'Search Name',
@@ -437,7 +437,7 @@ Forces the filter to use a wire:model approach
 
 #### setWireLive()
 Forces the fitler to use a wire:model.live approach
-```
+```php
     TextFilter::make('Name')
     ->config([
         'placeholder' => 'Search Name',
@@ -448,13 +448,11 @@ Forces the fitler to use a wire:model.live approach
 
 #### setWireDebounce(int $debounceDelay)
 Allows you to pass a string to use a wire:model.live.debounce.Xms approach
-```
-```
+```php
     TextFilter::make('Name')
     ->config([
         'placeholder' => 'Search Name',
         'maxlength' => '25',
     ])
     ->setWireDebounce(50)
-```
 ```

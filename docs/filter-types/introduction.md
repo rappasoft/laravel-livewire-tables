@@ -7,6 +7,9 @@ There are several Filter types available for use, offering a range of capabiliti
 
 <ul>
     <li>
+        <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/filter-types/filters-boolean">Boolean Filter</a>
+    </li>
+    <li>
         <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/filter-types/filters-date">Date Filter</a>
     </li>
     <li>

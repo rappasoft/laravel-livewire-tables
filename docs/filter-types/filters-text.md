@@ -1,6 +1,6 @@
 ---
 title: Text Filters
-weight: 10
+weight: 11
 ---
 
 Text filters are just simple text filters, allowing you to pass a string value into a builder query.

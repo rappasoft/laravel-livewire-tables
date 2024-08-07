@@ -1,6 +1,6 @@
 ---
 title: Date Filters
-weight: 2
+weight: 3
 ---
 
 Date filters are HTML date elements.
