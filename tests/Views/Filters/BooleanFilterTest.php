@@ -48,5 +48,4 @@ final class BooleanFilterTest extends FilterTestCase
         $this->assertSame(true, $filter->getFilterDefaultValue());
 
     }
-
 }
