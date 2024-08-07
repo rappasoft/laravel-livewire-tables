@@ -13,8 +13,12 @@ class BooleanFilter extends Filter
 
     protected string $view = 'livewire-tables::components.tools.filters.boolean';
 
-    public function validate(bool $value): bool
+    public function validate($value): bool
     {
+        if(is_int($value) && ($value == 0 || $value == 1))
+        {
+            $value = (bool) $value;
+        }
         return is_bool($value);
     }
 
