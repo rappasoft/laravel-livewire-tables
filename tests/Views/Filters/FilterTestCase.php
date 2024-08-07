@@ -93,5 +93,4 @@ abstract class FilterTestCase extends TestCase
 
         $this->assertFalse(self::$filterInstance->isResetByClearButton());
     }
-
 }

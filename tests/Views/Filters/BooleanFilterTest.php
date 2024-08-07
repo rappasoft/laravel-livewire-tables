@@ -34,8 +34,7 @@ final class BooleanFilterTest extends FilterTestCase
             true => 'Active',
             false => 'Inactive',
         ]);
-        $this->assertSame('Active',$filter->getFilterPillValue(1));
-        $this->assertSame('Inactive',$filter->getFilterPillValue(0));
+        $this->assertSame('Active', $filter->getFilterPillValue(1));
+        $this->assertSame('Inactive', $filter->getFilterPillValue(0));
     }
-
 }

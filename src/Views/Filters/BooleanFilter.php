@@ -15,10 +15,10 @@ class BooleanFilter extends Filter
 
     public function validate($value): bool
     {
-        if(is_int($value) && ($value == 0 || $value == 1))
-        {
+        if (is_int($value) && ($value == 0 || $value == 1)) {
             $value = (bool) $value;
         }
+
         return is_bool($value);
     }
 
