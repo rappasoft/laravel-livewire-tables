@@ -254,7 +254,6 @@ trait FilterHelpers
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
         $this->dispatch('filter-was-reset', tableName: $this->getTableName(), filterKey: $filter->getKey());
 
-
     }
 
     public function getFilterLayout(): string

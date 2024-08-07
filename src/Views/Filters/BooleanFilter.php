@@ -15,14 +15,14 @@ class BooleanFilter extends Filter
 
     public function validate(bool $value): bool
     {
-       return is_bool($value);
+        return is_bool($value);
     }
 
     public function getFilterPillValue($value): array|string|bool|null
     {
         return $this->getCustomFilterPillValue($value);
     }
-    
+
     public function isEmpty(?string $value): bool
     {
         return is_null($value);
@@ -35,5 +35,4 @@ class BooleanFilter extends Filter
     {
         return $this->filterDefaultValue ?? null;
     }
-
 }
