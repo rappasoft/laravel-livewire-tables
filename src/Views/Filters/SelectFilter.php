@@ -41,7 +41,7 @@ class SelectFilter extends Filter
         return $value;
     }
 
-    public function getFilterPillValue($value): string|array|null
+    public function getFilterPillValue($value): array|string|bool|null
     {
 
         return $this->getCustomFilterPillValue($value)
