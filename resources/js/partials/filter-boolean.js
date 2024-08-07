@@ -8,9 +8,9 @@ document.addEventListener('alpine:init', () => {
                 this.switchOn = Boolean(Number(this.value)); 
             }
             this.listeners.push(
-                Livewire.on('filter-was-reset', (detail) => {
+                Livewire.on('filter-was-set', (detail) => {
                     if(detail.tableName == tableName && detail.filterKey == filterKey) { 
-                        this.switchOn = defaultValue; 
+                        this.switchOn = detail.value ?? defaultValue; 
                     }
                 })
             );

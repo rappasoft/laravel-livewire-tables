@@ -144,7 +144,7 @@ trait FilterHelpers
         if ($this->getEventStatusFilterApplied() && $filterKey != null && $value != null) {
             event(new FilterApplied($this->getTableName(), $filterKey, $value));
         }
-
+        $this->dispatch('filter-was-set', tableName: $this->getTableName(), filterKey: $filterKey, value: $value);
     }
 
     public function selectAllFilterOptions(string $filterKey): void
@@ -252,8 +252,6 @@ trait FilterHelpers
         $this->callHook('filterReset', ['filter' => $filter->getKey()]);
         $this->callTraitHook('filterReset', ['filter' => $filter->getKey()]);
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
-        $this->dispatch('filter-was-reset', tableName: $this->getTableName(), filterKey: $filter->getKey());
-
     }
 
     public function getFilterLayout(): string
