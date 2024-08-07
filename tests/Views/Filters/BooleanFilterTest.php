@@ -37,4 +37,16 @@ final class BooleanFilterTest extends FilterTestCase
         $this->assertSame('Active', $filter->getFilterPillValue(1));
         $this->assertSame('Inactive', $filter->getFilterPillValue(0));
     }
+
+    public function test_can_set_default_values(): void
+    {
+        $filter = self::$filterInstance;
+        $this->assertFalse($filter->hasFilterDefaultValue());
+        $this->assertNull($filter->getFilterDefaultValue());
+        $filter->setFilterDefaultValue(true);
+        $this->assertTrue($filter->hasFilterDefaultValue());
+        $this->assertSame(true, $filter->getFilterDefaultValue());
+
+    }
+
 }
