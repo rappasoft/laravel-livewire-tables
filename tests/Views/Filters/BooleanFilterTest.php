@@ -43,7 +43,7 @@ final class BooleanFilterTest extends FilterTestCase
         $filter = self::$filterInstance;
         $this->assertFalse($filter->hasFilterDefaultValue());
         $this->assertNull($filter->getFilterDefaultValue());
-        
+
         $filter->setFilterDefaultValue(true);
         $this->assertTrue($filter->hasFilterDefaultValue());
         $this->assertSame(true, $filter->getFilterDefaultValue());
