@@ -1,7 +1,12 @@
 ---
-title: Boolean Filters
+title: Boolean Filters (beta)
 weight: 2
 ---
+
+## Beta
+This is currently in beta, and will only work with Tailwind.
+
+## Details
 
 The BooleanFilter is designed so that you can toggle a more complex query/filter, as opposed to being a yes/no type of filter (which is what the SelectFilter is perfect for)
 
