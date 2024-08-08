@@ -29,7 +29,7 @@ class BooleanFilter extends Filter
 
     public function isEmpty(bool|int|string|null $value): bool
     {
-        return (is_null($value) || (is_string($value) && $value == ''));
+        return is_null($value) || (is_string($value) && $value == '');
     }
 
     /**

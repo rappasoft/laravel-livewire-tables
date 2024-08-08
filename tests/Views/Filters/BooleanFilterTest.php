@@ -73,5 +73,4 @@ final class BooleanFilterTest extends FilterTestCase
     {
         $this->assertFalse(self::$filterInstance->isEmpty('0'));
     }
-
 }
