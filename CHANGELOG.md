@@ -2,9 +2,16 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [v3.4.3] - 2024-08-06
+## [v3.4.3] - 2024-08-08
+### New Features
+- Boolean/Toggle Filter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1830
+
 ### Bug Fixes
 - View component column fixes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1825
+
+### Docs
+- Update setDelaySelectAllEnabled Docs by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1829
+- ViewComponentColumn - New method docs by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1828
 
 ## [v3.4.2] - 2024-08-04
 ### New Features
