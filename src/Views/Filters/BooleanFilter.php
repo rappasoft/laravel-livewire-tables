@@ -13,15 +13,31 @@ class BooleanFilter extends Filter
 
     protected string $view = 'livewire-tables::components.tools.filters.boolean';
 
-    public function validate(bool|int $value): bool
+    public function validate(bool|int|string|null $value): bool
     {
+        if ($value === null)
+        {
+            return false;
+        }
+        else if(is_string($value))
+        {
+            if ($value == "0" || $value == "1")
+            {
+                $value = (int) $value;
+            }
+            else
+            {
+                return false;
+            }
+        }
         if (is_int($value) && ($value == 0 || $value == 1)) {
             $value = (bool) $value;
         }
-        if (is_bool($value)) {
+
+        if (is_bool($value))
+        {
             return $value;
         }
-
         return false;
     }
 
@@ -30,9 +46,25 @@ class BooleanFilter extends Filter
         return $this->getCustomFilterPillValue($value);
     }
 
-    public function isEmpty(bool|int|null $value): bool
+    public function isEmpty(bool|int|string|null $value): bool
     {
-        return is_null($value);
+        if (is_null($value))
+        {
+            return true;
+        }
+        else if (is_string($value))
+        {
+            return ($value != '0' && $value != '1');
+        }
+        else if (is_int($value))
+        {
+            return ($value != 0 && $value != 1);
+        }
+        else if(is_bool($value))
+        {
+            return false;
+        }
+        return true;
     }
 
     /**
