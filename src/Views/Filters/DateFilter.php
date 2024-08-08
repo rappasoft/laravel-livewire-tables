@@ -27,7 +27,7 @@ class DateFilter extends Filter
         return ($carbonDate === false) ? false : $carbonDate->format('Y-m-d');
     }
 
-    public function getFilterPillValue($value): string|array|null
+    public function getFilterPillValue($value): array|string|bool|null
     {
         if ($this->validate($value)) {
             return $this->outputTranslatedDate($this->createCarbonDate($value));

@@ -37,7 +37,7 @@ class MultiSelectDropdownFilter extends Filter
         return (is_string($value) || is_numeric($value)) ? $value : false;
     }
 
-    public function getFilterPillValue($value): string|array|null
+    public function getFilterPillValue($value): array|string|bool|null
     {
         $values = [];
 

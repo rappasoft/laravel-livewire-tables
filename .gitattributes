@@ -37,3 +37,4 @@
 /resources/js/partials/filter-date-range.js             export-ignore
 /resources/js/partials/filter-number-range.js           export-ignore
 /resources/js/partials/reorder.js                       export-ignore
+/minifyJs                                               export-ignore

@@ -1,0 +1,6 @@
+minify ./resources/js/partials/filter-boolean.js > ./resources/js/partials/filter-boolean.min.js \
+&& minify ./resources/js/partials/filter-date-range.js > ./resources/js/partials/filter-date-range.min.js \
+&& minify ./resources/js/partials/filter-number-range.js > ./resources/js/partials/filter-number-range.min.js \
+&& minify ./resources/js/partials/reorder.js > ./resources/js/partials/reorder.min.js \
+&& minify ./resources/js/partials/tableWrapper.js > ./resources/js/partials/tableWrapper.min.js \
+&& minify ./resources/js/laravel-livewire-tables.js > ./resources/js/laravel-livewire-tables.min.js

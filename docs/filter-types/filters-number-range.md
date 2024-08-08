@@ -1,6 +1,6 @@
 ---
 title: NumberRange Filters
-weight: 7
+weight: 8
 ---
 
 NumberRange filters allow for a minimum and maximum value to be input on a single slider.

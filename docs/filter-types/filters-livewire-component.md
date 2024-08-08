@@ -1,6 +1,6 @@
 ---
 title: Livewire Custom Filter (Beta)
-weight: 11
+weight: 12
 ---
 
 **IN BETA**
