@@ -27,9 +27,9 @@ class BooleanFilter extends Filter
         return $this->getCustomFilterPillValue($value);
     }
 
-    public function isEmpty(?string $value): bool
+    public function isEmpty(bool|int|string|null $value): bool
     {
-        return is_null($value);
+        return (is_null($value) || (is_string($value) && $value == ''));
     }
 
     /**

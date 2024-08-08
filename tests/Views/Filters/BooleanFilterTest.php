@@ -53,4 +53,25 @@ final class BooleanFilterTest extends FilterTestCase
         $this->assertSame(false, $filter->getFilterDefaultValue());
 
     }
+
+    public function test_can_get_if_boolean_filter_empty(): void
+    {
+        $this->assertTrue(self::$filterInstance->isEmpty(''));
+    }
+
+    public function test_can_get_if_boolean_filter_not_empty_int(): void
+    {
+        $this->assertFalse(self::$filterInstance->isEmpty(0));
+    }
+
+    public function test_can_get_if_boolean_filter_not_empty_bool(): void
+    {
+        $this->assertFalse(self::$filterInstance->isEmpty(false));
+    }
+
+    public function test_can_get_if_boolean_filter_not_empty_string(): void
+    {
+        $this->assertFalse(self::$filterInstance->isEmpty('0'));
+    }
+
 }
