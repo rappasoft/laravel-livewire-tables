@@ -18,10 +18,10 @@ class BooleanFilter extends Filter
         if (is_int($value) && ($value == 0 || $value == 1)) {
             $value = (bool) $value;
         }
-        if (is_bool($value))
-        {
+        if (is_bool($value)) {
             return $value;
         }
+
         return false;
     }
 
