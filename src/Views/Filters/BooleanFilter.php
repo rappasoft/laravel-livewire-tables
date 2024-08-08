@@ -15,18 +15,12 @@ class BooleanFilter extends Filter
 
     public function validate(bool|int|string|null $value): bool
     {
-        if ($value === null)
-        {
+        if ($value === null) {
             return false;
-        }
-        else if(is_string($value))
-        {
-            if ($value == "0" || $value == "1")
-            {
+        } elseif (is_string($value)) {
+            if ($value == '0' || $value == '1') {
                 $value = (int) $value;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
@@ -34,10 +28,10 @@ class BooleanFilter extends Filter
             $value = (bool) $value;
         }
 
-        if (is_bool($value))
-        {
+        if (is_bool($value)) {
             return $value;
         }
+
         return false;
     }
 
@@ -48,22 +42,16 @@ class BooleanFilter extends Filter
 
     public function isEmpty(bool|int|string|null $value): bool
     {
-        if (is_null($value))
-        {
+        if (is_null($value)) {
             return true;
-        }
-        else if (is_string($value))
-        {
-            return ($value != '0' && $value != '1');
-        }
-        else if (is_int($value))
-        {
-            return ($value != 0 && $value != 1);
-        }
-        else if(is_bool($value))
-        {
+        } elseif (is_string($value)) {
+            return $value != '0' && $value != '1';
+        } elseif (is_int($value)) {
+            return $value != 0 && $value != 1;
+        } elseif (is_bool($value)) {
             return false;
         }
+
         return true;
     }
 
