@@ -21,3 +21,19 @@ For example, your filter may look like this, toggling the filter from true to fa
         }
     })
 ```
+
+Many of the standard methods are available, for example
+```php
+    BooleanFilter::make('Limit to Older Enabled Users')
+    ->filter(function (Builder $builder, bool $enabled) {
+        if ($enabled)
+        {
+            $builder->where('status',true)->where('age', '>', 60);
+        }
+    })
+    ->setFilterPillValues([
+        true => 'Active',
+        false => 'Inactive',
+    ])
+    ->setFilterDefaultValue(true)
+```
