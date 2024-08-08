@@ -1,6 +1,6 @@
 ---
 title: DateTime Filters
-weight: 4
+weight: 5
 ---
 
 DateTime filters are HTML datetime-local elements and act the same as date filters.

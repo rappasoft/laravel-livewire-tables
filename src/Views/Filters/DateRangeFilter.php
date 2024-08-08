@@ -175,7 +175,7 @@ class DateRangeFilter extends Filter
         return $this;
     }
 
-    public function getFilterPillValue($value): string|array|null
+    public function getFilterPillValue($value): array|string|bool|null
     {
         $validatedValue = $this->validate($value);
 

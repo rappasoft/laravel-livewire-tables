@@ -1,6 +1,6 @@
 ---
 title: Multi-Select Filters
-weight: 6
+weight: 7
 ---
 
 Multi-select filters are a list of checkboxes. The user can select multiple options from the list. There is also an 'All' option that will select all values.

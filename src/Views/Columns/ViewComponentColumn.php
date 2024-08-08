@@ -9,13 +9,16 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ViewComponentColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ViewComponentColumnHelpers;
+use ReflectionClass;
 
 class ViewComponentColumn extends Column
 {
     use ViewComponentColumnConfiguration,
         ViewComponentColumnHelpers;
 
-    protected string $componentView;
+    protected ?string $componentView;
+
+    protected ?string $customComponentView;
 
     public function __construct(string $title, ?string $from = null)
     {
@@ -30,7 +33,7 @@ class ViewComponentColumn extends Column
             throw new DataTableConfigurationException('You can not use a label column with a component column');
         }
 
-        if ($this->hasComponentView() === false) {
+        if ($this->hasComponentView() === false && $this->hasCustomComponent() === false) {
             throw new DataTableConfigurationException('You must specify a component view for a component column');
         }
 
@@ -45,6 +48,15 @@ class ViewComponentColumn extends Column
             }
         }
 
-        return view($this->getComponentView())->with($attributes);
+        if ($this->hasCustomComponent()) {
+            $reflectionClass = new ReflectionClass($this->getCustomComponent());
+
+            $reflectionInstance = $reflectionClass->newInstanceArgs($attributes);
+
+            return $reflectionInstance->render();
+        } else {
+            return view($this->getComponentView())->with($attributes);
+        }
+
     }
 }

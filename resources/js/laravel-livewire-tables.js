@@ -2,6 +2,7 @@
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
+        listeners: [],
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
         paginationCurrentCount: wire.entangle('paginationCurrentCount'),
@@ -69,8 +70,33 @@ document.addEventListener('alpine:init', () => {
                 tempSelectedItems.push(value.toString());
             }
             this.selectedItems = [...new Set(tempSelectedItems)];
+        },
+        destroy() {
+            this.listeners.forEach((listener) => {
+                listener();
+            });
         }
     }));
+    
+
+    Alpine.data('booleanFilter', (wire,filterKey,tableName,defaultValue) => ({
+        switchOn: false, 
+        value: wire.entangle('filterComponents.'+filterKey).live, 
+        init() { 
+            this.switchOn = false; 
+            if (typeof this.value !== 'undefined') { 
+                this.switchOn = Boolean(Number(this.value)); 
+            }
+            this.listeners.push(
+                Livewire.on('filter-was-set', (detail) => {
+                    if(detail.tableName == tableName && detail.filterKey == filterKey) { 
+                        this.switchOn = detail.value ?? defaultValue; 
+                    }
+                })
+            );
+        }
+    }));
+
     Alpine.data('numberRangeFilter', (wire, filterKey, parentElementPath, filterConfig, childElementRoot) => ({
         allFilters: wire.entangle('filterComponents', false),
         originalMin: 0,
@@ -221,8 +247,6 @@ document.addEventListener('alpine:init', () => {
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
         dragStart(event) {
             this.$nextTick(() => { this.setupEvenOddClasses() });
-
-
             this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
@@ -334,8 +358,6 @@ document.addEventListener('alpine:init', () => {
                     oddRowClassArray = Array.from(tbody.rows[1].classList);
                     this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
                     this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
-                    console.log("EvenNotInOdd:"+this.evenNotInOdd);
-                    console.log("oddNotInEven:"+this.oddNotInEven);
 
                     evenRowClassArray = []
                     oddRowClassArray = []

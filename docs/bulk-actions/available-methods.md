@@ -305,10 +305,28 @@ public function configure(): void
 
 This prevents the default behaviour from firing, which improves performance when working with very large sets of data.  With this feature enabled, the backend update will not fire, however an indication that all result rows have been selected will be passed to the backend, and the frontend will behave as if all rows are selected.
 
+
 When running your Bulk Action, having used "Select All", you may then access the array of "all rows" based on your most recent search/filter results:
-```
+```php
 $rows = $this->getSelectedRows();
 ```
+
+Once your bulk action completes, ensure that you call:
+```php
+$this->clearSelected();
+```
+
+### IMPORTANT NOTES
+#### Actions After Frontend Select All
+If you apply a filter/search/sort, then the delay select will be abandoned, and the array will be populated.  Ensure that you do not do this!
+
+#### Use of setSelectAll
+Do NOT call either of these methods, as they will prevent the correct method from working.  These two methods SELECT ALL regardless of what the frontend is doing.
+```php
+$this->setSelectAllStatus(true);
+$this->setSelectAllEnabled();
+```
+
 
 ## setDelaySelectAllDisabled
 
