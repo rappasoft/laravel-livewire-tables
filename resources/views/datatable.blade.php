@@ -1,8 +1,9 @@
-@php($tableName = $this->getTableName())
-@php($tableId = $this->getTableAttributes()['id'])
+@php($tableName = $this->getTableName)
+@php($tableId = $this->getTableId)
+@php($primaryKey = $this->getPrimaryKey)
 
-<div x-data="laravellivewiretable($wire, '{{ $this->showBulkActionsDropdownAlpine() }}', '{{ $tableId }}', '{{ $this->getPrimaryKey() }}')">
-    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
+<div x-data="laravellivewiretable($wire, '{{ $this->showBulkActionsDropdownAlpine() }}', '{{ $tableId }}', '{{ $primaryKey }}')">
+    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey>
         @if ($this->hasConfigurableAreaFor('before-tools'))
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
         @endif
@@ -48,19 +49,19 @@
             @endif
 
             @forelse ($rows as $rowIndex => $row)
-                <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
+                <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$primaryKey} }}" :row="$row" :rowIndex="$rowIndex">
                     @if($this->getCurrentlyReorderingStatus)
-                        <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
+                        <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$primaryKey} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
                     @endif
                     @if($this->showBulkActionsSections)
-                        <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex"/>
+                        <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$primaryKey} }}" :row="$row" :rowIndex="$rowIndex"/>
                     @endif
                     @if ($this->showCollapsingColumnSections)
-                        <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
+                        <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$primaryKey} }}" :rowIndex="$rowIndex" />
                     @endif
 
                     @foreach($selectedVisibleColumns as $colIndex => $column)
-                        <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
+                        <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$primaryKey} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
                             @if($column->isHtml())                            
                                 {!! $column->renderContents($row) !!}
                             @else

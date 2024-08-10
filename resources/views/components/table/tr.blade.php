@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','primaryKey'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -6,7 +6,7 @@
 @endphp
 
 <tr
-    rowpk='{{ $row->{$component->getPrimaryKey()} }}'
+    rowpk='{{ $row->{$primaryKey} }}'
     x-on:dragstart.self="currentlyReorderingStatus && dragStart(event)"
     x-on:drop.prevent="currentlyReorderingStatus && dropEvent(event)"
     x-on:dragover.prevent.throttle.500ms="currentlyReorderingStatus && dragOverEvent(event)"
@@ -16,9 +16,9 @@
     @else
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
     @endif
-    id="{{ $tableName }}-row-{{ $row->{$component->getPrimaryKey()} }}"
+    id="{{ $tableName }}-row-{{ $row->{$primaryKey} }}"
     :draggable="currentlyReorderingStatus"
-    wire:key="{{ $tableName }}-tablerow-tr-{{ $row->{$component->getPrimaryKey()} }}"
+    wire:key="{{ $tableName }}-tablerow-tr-{{ $row->{$primaryKey} }}"
     loopType="{{ ($rowIndex % 2 === 0) ? 'even' : 'odd' }}"
     {{
         $attributes->merge($customAttributes)
