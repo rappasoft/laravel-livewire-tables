@@ -1,5 +1,5 @@
-@aware(['component', 'tableName'])
-@if ($component->isTailwind())
+@aware(['component', 'tableName','isTailwind'])
+@if ($isTailwind)
 <div class="@if ($component->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($component->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
     <div
         x-data="{ open: false, childElementOpen: false }"

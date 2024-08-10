@@ -1,6 +1,6 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isTailwind'])
 
-@if ($component->isTailwind())
+@if ($isTailwind)
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-4 px-4 md:p-0" x-cloak x-show="!currentlyReorderingStatus">

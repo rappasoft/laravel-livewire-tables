@@ -1,7 +1,7 @@
-@aware(['component'])
+@aware(['component','isTailwind'])
 
 <div @class([
-    'flex-col' => $component->isTailwind(),
+    'flex-col' => $isTailwind,
     'd-flex flex-column ' => ($component->isBootstrap()),
 ])>
     {{ $slot }}

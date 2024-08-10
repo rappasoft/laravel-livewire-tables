@@ -1,8 +1,8 @@
-@aware(['component'])
+@aware(['component','isTailwind'])
 
 @php($attributes = $attributes->merge(['wire:key' => 'empty-message-'.$component->getId()]))
 
-@if ($component->isTailwind())
+@if ($isTailwind)
     <tr {{ $attributes }}>
         <td colspan="{{ $component->getColspanCount() }}">
             <div class="flex justify-center items-center space-x-2 dark:bg-gray-800">

@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isTailwind'])
 @props(['column', 'index'])
 
 @php
@@ -8,7 +8,7 @@
     $direction = $column->hasField() ? $component->getSort($column->getColumnSelectName()) : $component->getSort($column->getSlug()) ?? null ;
 @endphp
 
-@if ($component->isTailwind())
+@if ($isTailwind)
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])

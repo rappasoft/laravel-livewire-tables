@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isTailwind'])
 @props(['filterGenericData'])
 
 @if ($component->hasConfigurableAreaFor('before-toolbar'))
@@ -7,18 +7,18 @@
 
 <div @class([
         'd-md-flex justify-content-between mb-3' => $component->isBootstrap(),
-        'md:flex md:justify-between mb-4 px-4 md:p-0' => $component->isTailwind(),
+        'md:flex md:justify-between mb-4 px-4 md:p-0' => $isTailwind,
     ])
 >
     <div @class([
             'd-md-flex' => $component->isBootstrap(),
-            'w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2' => $component->isTailwind(),
+            'w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2' => $isTailwind,
         ])
     >
         @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
             <div x-cloak x-show="!currentlyReorderingStatus" @class([
                 'mb-3 mb-md-0 input-group' => $component->isBootstrap(),
-                'flex rounded-md shadow-sm' => $component->isTailwind(),
+                'flex rounded-md shadow-sm' => $isTailwind,
             ])>
                 @include($component->getConfigurableAreaFor('toolbar-left-start'), $component->getParametersForConfigurableArea('toolbar-left-start'))
             </div>
@@ -39,7 +39,7 @@
         @if ($component->hasConfigurableAreaFor('toolbar-left-end'))
             <div x-cloak x-show="!currentlyReorderingStatus" @class([
                 'mb-3 mb-md-0 input-group' => $component->isBootstrap(),
-                'flex rounded-md shadow-sm' => $component->isTailwind(),
+                'flex rounded-md shadow-sm' => $isTailwind,
             ])>
                 @include($component->getConfigurableAreaFor('toolbar-left-end'), $component->getParametersForConfigurableArea('toolbar-left-end'))
             </div>
@@ -49,7 +49,7 @@
     <div x-cloak x-show="!currentlyReorderingStatus"
         @class([
             'd-md-flex' => $component->isBootstrap(),
-            'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => $component->isTailwind(),
+            'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => $isTailwind,
         ])
     >
         @if ($component->hasConfigurableAreaFor('toolbar-right-start'))

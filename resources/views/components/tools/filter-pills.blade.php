@@ -1,13 +1,13 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isTailwind'])
 
 @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedVisibleFiltersForPills())
     <div>
         <div @class([
-            'mb-4 px-4 md:p-0' => $component->isTailwind(),
+            'mb-4 px-4 md:p-0' => $isTailwind,
             'mb-3' => $component->isBootstrap(),
         ]) x-cloak x-show="!currentlyReorderingStatus">
             <small @class([
-                'text-gray-700 dark:text-white' => $component->isTailwind(),
+                'text-gray-700 dark:text-white' => $isTailwind,
                 '' =>  $component->isBootstrap(),
             ])>
                 @lang('Applied Filters'):
@@ -25,7 +25,7 @@
                     <span
                         wire:key="{{ $tableName }}-filter-pill-{{ $filter->getKey() }}"
                         @class([
-                            'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $component->isTailwind(),
+                            'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $isTailwind,
                             'badge badge-pill badge-info d-inline-flex align-items-center' => $component->isBootstrap4(),
                             'badge rounded-pill bg-info d-inline-flex align-items-center' => $component->isBootstrap5(),
                         ])
@@ -42,7 +42,7 @@
                             {{ $filterPillValue }}
                         @endif
 
-                        @if ($component->isTailwind())
+                        @if ($isTailwind)
                             <button
                                 wire:click="resetFilter('{{ $filter->getKey() }}')"
                                 type="button"
@@ -72,7 +72,7 @@
                 @endif
             @endforeach
 
-            @if ($component->isTailwind())
+            @if ($isTailwind)
                 <button
                     wire:click.prevent="setFilterDefaults"
                     class="focus:outline-none active:outline-none"

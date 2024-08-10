@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isTailwind'])
 
 @php
     $customAttributes = [
@@ -9,7 +9,7 @@
     ];
 @endphp
 
-@if ($component->isTailwind())
+@if ($isTailwind)
     <div
         wire:key="{{ $tableName }}-twrap"
         {{ $attributes->merge($customAttributes['wrapper'])

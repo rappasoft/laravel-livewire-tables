@@ -1,11 +1,11 @@
-@aware(['component'])
+@aware(['component','isTailwind'])
 @props(['rows'])
 
 @if ($component->hasConfigurableAreaFor('before-pagination'))
     @include($component->getConfigurableAreaFor('before-pagination'), $component->getParametersForConfigurableArea('before-pagination'))
 @endif
 
-@if ($component->isTailwind())
+@if ($isTailwind)
     <div>
         @if ($component->paginationVisibilityIsEnabled())
             <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">

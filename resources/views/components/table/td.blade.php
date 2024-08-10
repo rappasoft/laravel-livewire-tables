@@ -1,4 +1,4 @@
-@aware(['component', 'row', 'rowIndex', 'tableName', 'primaryKey'])
+@aware(['component', 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind'])
 @props(['column', 'colIndex'])
 
 @php
@@ -13,10 +13,10 @@
     @endif
         {{
             $attributes->merge($customAttributes)
-                ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $component->isTailwind() && ($customAttributes['default'] ?? true)])
-                ->class(['hidden' =>  $component->isTailwind() && $column && $column->shouldCollapseAlways()])
-                ->class(['hidden md:table-cell' => $component->isTailwind() && $column && $column->shouldCollapseOnMobile()])
-                ->class(['hidden lg:table-cell' => $component->isTailwind() && $column && $column->shouldCollapseOnTablet()])
+                ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $isTailwind && ($customAttributes['default'] ?? true)])
+                ->class(['hidden' =>  $isTailwind && $column && $column->shouldCollapseAlways()])
+                ->class(['hidden md:table-cell' => $isTailwind && $column && $column->shouldCollapseOnMobile()])
+                ->class(['hidden lg:table-cell' => $isTailwind && $column && $column->shouldCollapseOnTablet()])
                 ->class(['' => $component->isBootstrap() && ($customAttributes['default'] ?? true)])
                 ->class(['d-none' => $component->isBootstrap() && $column && $column->shouldCollapseAlways()])
                 ->class(['d-none d-md-table-cell' => $component->isBootstrap() && $column && $column->shouldCollapseOnMobile()])

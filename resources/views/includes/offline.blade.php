@@ -1,5 +1,6 @@
+@aware(['isTailwind'])
 @if ($component->offlineIndicatorIsEnabled())
-    @if ($component->isTailwind())
+    @if ($isTailwind)
         <div wire:offline.class.remove="hidden" class="hidden">
             <div class="rounded-md bg-red-100 p-4 mb-4 dark:border-red-800 dark:bg-red-500">
                 <div class="flex">

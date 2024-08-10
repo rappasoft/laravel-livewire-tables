@@ -1,7 +1,7 @@
-@aware(['component'])
+@aware(['component','isTailwind'])
 @props(['customAttributes' => [], 'displayMinimisedOnReorder' => true])
 
-@if ($component->isTailwind())
+@if ($isTailwind)
     <tr {{ $attributes
             ->merge($customAttributes)
             ->class(['bg-white dark:bg-gray-700 dark:text-white' => $customAttributes['default'] ?? true])

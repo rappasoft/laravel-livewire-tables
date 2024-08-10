@@ -1,7 +1,7 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isTailwind'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
-    @if ($component->isTailwind())
+    @if ($isTailwind)
         <th
             scope="col"
             {{
