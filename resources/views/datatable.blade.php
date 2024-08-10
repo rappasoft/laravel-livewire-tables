@@ -19,7 +19,7 @@
             @if($this->showFilterPillsSection)
                 <x-livewire-tables::tools.filter-pills />
             @endif
-            <x-livewire-tables::tools.toolbar :$filterGenericData />
+            <x-livewire-tables::tools.toolbar />
         </x-livewire-tables::tools>
 
         <x-livewire-tables::table>
@@ -41,7 +41,7 @@
             </x-slot>
 
             @if($this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader())
-                <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$filterGenericData :$selectedVisibleColumns  />
+                <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$selectedVisibleColumns  />
             @endif
             @if($this->hasDisplayLoadingPlaceholder())
                 <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
@@ -85,9 +85,9 @@
             @if ($this->footerIsEnabled() && $this->hasColumnsWithFooter())
                 <x-slot name="tfoot">
                     @if ($this->useHeaderAsFooterIsEnabled())
-                        <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$filterGenericData />
+                        <x-livewire-tables::table.tr.secondary-header :rows="$rows"  />
                     @else
-                        <x-livewire-tables::table.tr.footer :rows="$rows"  :$filterGenericData />
+                        <x-livewire-tables::table.tr.footer :rows="$rows"  />
                     @endif
                 </x-slot>
             @endif
