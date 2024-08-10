@@ -65,9 +65,8 @@ trait HasSecondaryHeader
 
     /**
      * @param  mixed  $rows
-     * @return mixed
      */
-    public function getSecondaryHeaderContents($rows)
+    public function getSecondaryHeaderContents($rows): string|HtmlString
     {
         $value = null;
         $callback = $this->getSecondaryHeaderCallback();
@@ -82,18 +81,14 @@ trait HasSecondaryHeader
         } else {
             throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
         }
-
-        return null;
     }
 
-    public function getSecondaryHeaderFilter(?Filter $filter, array $filterGenericData)
+    public function getSecondaryHeaderFilter(?Filter $filter, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string
     {
         if ($filter !== null && $filter instanceof Filter) {
             return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
         } else {
             throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
         }
-
-        return null;
     }
 }

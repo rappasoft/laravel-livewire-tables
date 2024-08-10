@@ -206,7 +206,7 @@ trait ColumnHelpers
         return $this->displayColumnLabel ?? true;
     }
 
-    public function getHasTableRowUrl()
+    public function getHasTableRowUrl(): bool
     {
         return $this->hasTableRowUrl;
     }
