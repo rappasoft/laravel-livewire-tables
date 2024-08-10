@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 document.addEventListener('alpine:init', () => {
-    Alpine.data('tableWrapper', (wire, showBulkActionsAlpine, tableID, primaryKeyName) => ({
+    Alpine.data('laravellivewiretable', (wire, showBulkActionsAlpine, tableID, primaryKeyName) => ({
         listeners: [],
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),

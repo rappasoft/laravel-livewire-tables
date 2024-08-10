@@ -1,6 +1,7 @@
 @php($tableName = $this->getTableName())
+@php($tableId = $this->getTableAttributes()['id'])
 
-<div>
+<div x-data="laravellivewiretable($wire, '{{ $this->showBulkActionsDropdownAlpine() }}', '{{ $tableId }}', '{{ $this->getPrimaryKey() }}')">
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
         @if ($this->hasConfigurableAreaFor('before-tools'))
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
