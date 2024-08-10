@@ -206,12 +206,10 @@ trait ColumnHelpers
         return $this->displayColumnLabel ?? true;
     }
 
-
     public function getHasTableRowUrl()
     {
         return $this->hasTableRowUrl;
     }
-    
 
     public function isTailwind(): bool
     {
