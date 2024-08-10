@@ -10,9 +10,9 @@ use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Livewire\Attributes\Computed;
 
 trait WithData
 {
@@ -281,5 +281,4 @@ trait WithData
         // If model does not exist
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
     }
-
 }
