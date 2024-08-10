@@ -1,7 +1,7 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isTailwind','isBootstrap'])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
-    @if ($component->isTailwind())
+    @if ($isTailwind)
         <th
             scope="col"
             {{
@@ -13,7 +13,7 @@
             }}
             :class="{ 'laravel-livewire-tables-reorderingMinimised': ! currentlyReorderingStatus }"
         ></th>
-    @elseif ($component->isBootstrap())
+    @elseif ($isBootstrap)
         <th
             scope="col"
             {{
