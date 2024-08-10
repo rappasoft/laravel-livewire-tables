@@ -147,7 +147,7 @@ trait ColumnHelpers
 
     public function isReorderColumn(): bool
     {
-        return $this->getField() === $this->component->getDefaultReorderColumn();
+        return $this->isReorderColumn;
     }
 
     public function hasFormatter(): bool
@@ -206,10 +206,12 @@ trait ColumnHelpers
         return $this->displayColumnLabel ?? true;
     }
 
+
     public function getHasTableRowUrl()
     {
         return $this->hasTableRowUrl;
     }
+    
 
     public function isTailwind(): bool
     {
