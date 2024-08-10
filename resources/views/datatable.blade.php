@@ -41,7 +41,7 @@
             </x-slot>
 
             @if($this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader())
-                <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$selectedVisibleColumns  />
+                <x-livewire-tables::table.tr.secondary-header :$selectedVisibleColumns  />
             @endif
             @if($this->hasDisplayLoadingPlaceholder())
                 <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
@@ -49,10 +49,10 @@
 
 
             @if($this->showBulkActionsSections)
-                <x-livewire-tables::table.tr.bulk-actions :rows="$rows" :displayMinimisedOnReorder="true" />
+                <x-livewire-tables::table.tr.bulk-actions  :displayMinimisedOnReorder="true" />
             @endif
 
-            @forelse ($rows as $rowIndex => $row)
+            @forelse ($this->getRows as $rowIndex => $row)
                 <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$primaryKey} }}" :row="$row" :rowIndex="$rowIndex">
                     @if($this->getCurrentlyReorderingStatus)
                         <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$primaryKey} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
@@ -85,15 +85,15 @@
             @if ($this->footerIsEnabled() && $this->hasColumnsWithFooter())
                 <x-slot name="tfoot">
                     @if ($this->useHeaderAsFooterIsEnabled())
-                        <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$selectedVisibleColumns />
+                        <x-livewire-tables::table.tr.secondary-header  :$selectedVisibleColumns />
                     @else
-                        <x-livewire-tables::table.tr.footer :rows="$rows"  :$selectedVisibleColumns />
+                        <x-livewire-tables::table.tr.footer  :$selectedVisibleColumns />
                     @endif
                 </x-slot>
             @endif
         </x-livewire-tables::table>
 
-        <x-livewire-tables::pagination :rows="$rows" />
+        <x-livewire-tables::pagination  />
 
         @includeIf($customView)
     </x-livewire-tables::wrapper>

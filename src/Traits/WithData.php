@@ -12,6 +12,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Livewire\Attributes\Computed;
 
 trait WithData
 {
@@ -27,6 +28,7 @@ trait WithData
     /**
      * Retrieves the rows for the executed query
      */
+    #[Computed]
     public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
         // Setup the Base Query
@@ -280,13 +282,4 @@ trait WithData
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
     }
 
-    /**
-     * Add Rows And Generic Data to View
-     */
-    public function renderingWithData(\Illuminate\View\View $view, array $data = []): void
-    {
-        $view->with([
-            'rows' => $this->getRows(),
-        ]);
-    }
 }

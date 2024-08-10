@@ -1,8 +1,8 @@
 @aware(['component', 'tableName'])
-@props(['rows', 'selectedVisibleColumns'])
+@props(['selectedVisibleColumns'])
 
 <x-livewire-tables::table.tr.plain
-    :customAttributes="$this->getFooterTrAttributes($rows)"
+    :customAttributes="$this->getFooterTrAttributes($this->getRows)"
     wire:key="{{ $tableName .'-footer' }}"
 >
     {{-- Adds a Column For Bulk Actions--}}
@@ -18,7 +18,7 @@
     @endif
 
     @foreach($selectedVisibleColumns as $colIndex => $column)
-        <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true"  wire:key="{{ $tableName .'-footer-shown-'.$colIndex }}" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
+        <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true"  wire:key="{{ $tableName .'-footer-shown-'.$colIndex }}" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $this->getRows, $colIndex)">
 
             @if($column->hasFooter() && $column->hasFooterCallback())
                 @if($column->footerCallbackIsFilter())
@@ -26,7 +26,7 @@
                 @elseif($column->footerCallbackIsString())
                     {{ $column->getFooterFilter($this->getFilterByKey($column->getFooterCallback()), $this->getFilterGenericData) }}
                 @else
-                    {{ $column->getFooterContents($rows) }}
+                    {{ $column->getFooterContents($this->getRows) }}
                 @endif
             @endif
 

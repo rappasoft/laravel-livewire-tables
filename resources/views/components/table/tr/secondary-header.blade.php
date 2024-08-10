@@ -1,8 +1,8 @@
 @aware(['component', 'tableName'])
-@props(['rows', 'selectedVisibleColumns'])
+@props(['selectedVisibleColumns'])
 
 <x-livewire-tables::table.tr.plain
-    :customAttributes="$this->getSecondaryHeaderTrAttributes($rows)"
+    :customAttributes="$this->getSecondaryHeaderTrAttributes($this->getRows)"
     wire:key="{{ $tableName .'-secondary-header' }}"
 >
     {{-- TODO: Remove --}}
@@ -17,14 +17,14 @@
     @endif
 
     @foreach($selectedVisibleColumns as $colIndex => $column)
-        <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)">
+        <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $this->getRows, $colIndex)">
             @if($column->hasSecondaryHeader() && $column->hasSecondaryHeaderCallback())
                 @if( $column->secondaryHeaderCallbackIsFilter())
                     {{ $column->getSecondaryHeaderFilter($column->getSecondaryHeaderCallback(), $this->getFilterGenericData) }}    
                 @elseif($column->secondaryHeaderCallbackIsString())
                     {{ $column->getSecondaryHeaderFilter($this->getFilterByKey($column->getSecondaryHeaderCallback()), $this->getFilterGenericData) }}
                 @else
-                    {{ $column->getSecondaryHeaderContents($rows) }}
+                    {{ $column->getSecondaryHeaderContents($this->getRows) }}
                 @endif
             @endif
         </x-livewire-tables::table.td.plain>
