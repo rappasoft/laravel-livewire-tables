@@ -1,5 +1,5 @@
 @aware(['component', 'tableName','isBootstrap','isBootstrap4','isBootstrap5'])
-@if($component->isBootstrap())
+@if($isBootstrap)
     <ul
         x-cloak
         @class([
@@ -13,7 +13,7 @@
             <div
                 wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar"
                 @class([
-                    'p-2' => $component->isBootstrap(),
+                    'p-2' => $isBootstrap,
                 ])
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
             >
@@ -24,7 +24,7 @@
         @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
             <div
                 @class([
-                    'dropdown-divider' => $component->isBootstrap(),
+                    'dropdown-divider' => $isBootstrap,
                 ])
             >
             </div>

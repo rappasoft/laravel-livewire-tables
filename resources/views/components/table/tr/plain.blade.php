@@ -1,4 +1,4 @@
-@aware(['component','isTailwind'])
+@aware(['component','isTailwind','isBootstrap'])
 @props(['customAttributes' => [], 'displayMinimisedOnReorder' => true])
 
 @if ($isTailwind)
@@ -11,7 +11,7 @@
     >
         {{ $slot }}
     </tr>
-@elseif ($component->isBootstrap())
+@elseif ($isBootstrap)
     <tr {{ $attributes
             ->merge($customAttributes)
             ->class(['' => $customAttributes['default'] ?? true])

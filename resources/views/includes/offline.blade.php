@@ -1,4 +1,4 @@
-@aware(['isTailwind'])
+@aware(['isTailwind','isBootstrap'])
 @if ($component->offlineIndicatorIsEnabled())
     @if ($isTailwind)
         <div wire:offline.class.remove="hidden" class="hidden">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-    @elseif ($component->isBootstrap())
+    @elseif ($isBootstrap)
         <div wire:offline.class.remove="d-none" class="d-none">
             <div class="alert alert-danger d-flex align-items-center">
                 <x-heroicon-s-x-circle class="laravel-livewire-tables-btn-md" />

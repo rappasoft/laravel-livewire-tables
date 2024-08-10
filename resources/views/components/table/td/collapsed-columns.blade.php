@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind'])
+@aware(['component', 'tableName','isTailwind','isBootstrap'])
 @props(['rowIndex', 'hidden' => false])
 
 @if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
@@ -41,7 +41,7 @@
                 </button>
             @endif
         </td>
-    @elseif ($component->isBootstrap())
+    @elseif ($isBootstrap)
         <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}" 
             {{
                 $attributes

@@ -78,7 +78,7 @@
         </div>
     </div>
 </div>
-@elseif ($component->isBootstrap())
+@elseif ($isBootstrap)
 <div
     @class([
         'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $isBootstrap4,
@@ -92,14 +92,14 @@
         x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
         x-on:mousedown.away="if (!childElementOpen) { open = false }"
         @class([
-            'dropdown d-block d-md-inline' => $component->isBootstrap(),
+            'dropdown d-block d-md-inline' => $isBootstrap,
         ])
         wire:key="{{ $tableName }}-column-select-button"
     >
         <button
             x-on:click="open = !open"
             @class([
-                'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
+                'btn dropdown-toggle d-block w-100 d-md-inline' => $isBootstrap,
             ])
             type="button" id="{{ $tableName }}-columnSelect" aria-haspopup="true"
             x-bind:aria-expanded="open"

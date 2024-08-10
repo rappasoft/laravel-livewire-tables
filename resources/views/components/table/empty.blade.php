@@ -1,4 +1,4 @@
-@aware(['component','isTailwind'])
+@aware(['component','isTailwind','isBootstrap'])
 
 @php($attributes = $attributes->merge(['wire:key' => 'empty-message-'.$component->getId()]))
 
@@ -10,7 +10,7 @@
             </div>
         </td>
     </tr>
-@elseif ($component->isBootstrap())
+@elseif ($isBootstrap)
      <tr {{ $attributes }}>
         <td colspan="{{ $component->getColspanCount() }}">
             {{ $component->getEmptyMessage() }}

@@ -1,4 +1,4 @@
-@aware(['component', 'rowIndex', 'rowID','isTailwind'])
+@aware(['component', 'rowIndex', 'rowID','isTailwind','isBootstrap'])
 @props(['column' => null, 'customAttributes' => [], 'displayMinimisedOnReorder' => false, 'hideUntilReorder' => false])
 
 @if ($isTailwind)
@@ -12,7 +12,7 @@
     }} @if($hideUntilReorder) x-show="reorderDisplayColumn" @endif >
         {{ $slot }}
     </td>
-@elseif ($component->isBootstrap())
+@elseif ($isBootstrap)
     <td {{ $attributes
         ->merge($customAttributes)
         ->class(['' => $customAttributes['default'] ?? true])

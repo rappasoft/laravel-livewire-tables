@@ -1,4 +1,4 @@
-@aware(['component', 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind'])
+@aware(['component', 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind','isBootstrap'])
 @props(['column', 'colIndex'])
 
 @php
@@ -17,11 +17,11 @@
                 ->class(['hidden' =>  $isTailwind && $column && $column->shouldCollapseAlways()])
                 ->class(['hidden md:table-cell' => $isTailwind && $column && $column->shouldCollapseOnMobile()])
                 ->class(['hidden lg:table-cell' => $isTailwind && $column && $column->shouldCollapseOnTablet()])
-                ->class(['' => $component->isBootstrap() && ($customAttributes['default'] ?? true)])
-                ->class(['d-none' => $component->isBootstrap() && $column && $column->shouldCollapseAlways()])
-                ->class(['d-none d-md-table-cell' => $component->isBootstrap() && $column && $column->shouldCollapseOnMobile()])
-                ->class(['d-none d-lg-table-cell' => $component->isBootstrap() && $column && $column->shouldCollapseOnTablet()])
-                ->class(['laravel-livewire-tables-cursor' => $component->isBootstrap() && $column && $column->isClickable()])
+                ->class(['' => $isBootstrap && ($customAttributes['default'] ?? true)])
+                ->class(['d-none' => $isBootstrap && $column && $column->shouldCollapseAlways()])
+                ->class(['d-none d-md-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnMobile()])
+                ->class(['d-none d-lg-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnTablet()])
+                ->class(['laravel-livewire-tables-cursor' => $isBootstrap && $column && $column->isClickable()])
                 ->except('default')
         }}
     >

@@ -1,14 +1,14 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div
-    x-data="{ open: false, childElementOpen: false, isTailwind: @js($isTailwind), isBootstrap: @js($component->isBootstrap()) }"
+    x-data="{ open: false, childElementOpen: false, isTailwind: @js($isTailwind), isBootstrap: @js($isBootstrap) }"
     x-cloak x-show="(selectedItems.length > 0 || hideBulkActionsWhenEmpty == false)"
     @class([
-        'mb-3 mb-md-0' => $component->isBootstrap(),
+        'mb-3 mb-md-0' => $isBootstrap,
         'w-full md:w-auto mb-4 md:mb-0' => $isTailwind,
     ])
 >
     <div @class([
-            'dropdown d-block d-md-inline' => $component->isBootstrap(),
+            'dropdown d-block d-md-inline' => $isBootstrap,
             'relative inline-block text-left z-10 w-full md:w-auto' => $isTailwind,
         ])
     >
@@ -16,7 +16,7 @@
             {{ 
                 $attributes->merge($this->getBulkActionsButtonAttributes)
                 ->class([
-                    'btn dropdown-toggle d-block d-md-inline' => $component->isBootstrap() && $this->getBulkActionsButtonAttributes['default-styling'] ?? true,
+                    'btn dropdown-toggle d-block d-md-inline' => $isBootstrap && $this->getBulkActionsButtonAttributes['default-styling'] ?? true,
                     'border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $isTailwind  && $this->getBulkActionsButtonAttributes['default-colors'] ?? true,
                     'inline-flex justify-center w-full rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50' => $isTailwind  && $this->getBulkActionsButtonAttributes['default-styling'] ?? true,
 
@@ -111,7 +111,7 @@
                         {{ 
                             $attributes->merge($this->getBulkActionsMenuItemAttributes)
                                 ->class([
-                                    'dropdown-item' => $component->isBootstrap() && $this->getBulkActionsMenuItemAttributes['default-styling'] ?? true,
+                                    'dropdown-item' => $isBootstrap && $this->getBulkActionsMenuItemAttributes['default-styling'] ?? true,
                                 ])
                                 ->except('default') 
                         }}

@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind'])
+@aware(['component', 'tableName','isTailwind','isBootstrap'])
 @props(['column', 'index'])
 
 @php
@@ -47,7 +47,7 @@
             @endunless
         @endif
     </th>
-@elseif ($component->isBootstrap())
+@elseif ($isBootstrap)
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['' => $customAttributes['default'] ?? true])

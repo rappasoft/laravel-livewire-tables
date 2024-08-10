@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind'])
+@aware(['component', 'tableName','isTailwind','isBootstrap'])
 @props(['rows'])
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
@@ -73,7 +73,7 @@
                 </template>
             </x-livewire-tables::table.td.plain>
         </x-livewire-tables::table.tr.plain>
-    @elseif ($component->isBootstrap())
+    @elseif ($isBootstrap)
         <x-livewire-tables::table.tr.plain
             x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
             wire:key="{{ $tableName }}-bulk-select-message"

@@ -4,11 +4,11 @@
     <div>
         <div @class([
             'mb-4 px-4 md:p-0' => $isTailwind,
-            'mb-3' => $component->isBootstrap(),
+            'mb-3' => $isBootstrap,
         ]) x-cloak x-show="!currentlyReorderingStatus">
             <small @class([
                 'text-gray-700 dark:text-white' => $isTailwind,
-                '' =>  $component->isBootstrap(),
+                '' =>  $isBootstrap,
             ])>
                 @lang('Applied Filters'):
             </small>
@@ -56,7 +56,7 @@
                                 href="#"
                                 wire:click="resetFilter('{{ $filter->getKey() }}')"
                                 @class([
-                                    'text-white ml-2' => ($component->isBootstrap()),
+                                    'text-white ml-2' => ($isBootstrap),
                                 ])
                             >
                                 <span @class([
