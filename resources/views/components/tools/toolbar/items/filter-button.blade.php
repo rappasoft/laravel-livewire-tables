@@ -1,11 +1,11 @@
-@aware(['component', 'tableName','isTailwind'])
+@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 @props(['filterGenericData'])
 
 <div 
                 @class([
-                    'ml-0 ml-md-2 mb-3 mb-md-0' => $component->isBootstrap4(),
-                    'ms-0 ms-md-2 mb-3 mb-md-0' => $component->isBootstrap5() && $component->searchIsEnabled(),
-                    'mb-3 mb-md-0' => $component->isBootstrap5() && !$component->searchIsEnabled(),
+                    'ml-0 ml-md-2 mb-3 mb-md-0' => $isBootstrap4,
+                    'ms-0 ms-md-2 mb-3 mb-md-0' => $isBootstrap5 && $component->searchIsEnabled(),
+                    'mb-3 mb-md-0' => $isBootstrap5 && !$component->searchIsEnabled(),
                 ])
 >
     <div

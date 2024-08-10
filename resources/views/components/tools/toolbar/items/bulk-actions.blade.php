@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind'])
+@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div
     x-data="{ open: false, childElementOpen: false, isTailwind: @js($isTailwind), isBootstrap: @js($component->isBootstrap()) }"
     x-cloak x-show="(selectedItems.length > 0 || hideBulkActionsWhenEmpty == false)"
@@ -93,8 +93,8 @@
                 {{ 
                     $attributes->merge($this->getBulkActionsMenuAttributes)
                     ->class([
-                        'dropdown-menu dropdown-menu-right w-100' => $component->isBootstrap4() && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
-                        'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5() && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
+                        'dropdown-menu dropdown-menu-right w-100' => $isBootstrap4 && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
+                        'dropdown-menu dropdown-menu-end w-100' => $isBootstrap5 && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
                     ])
                     ->except('default') 
                 }}

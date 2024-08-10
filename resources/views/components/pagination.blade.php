@@ -1,4 +1,4 @@
-@aware(['component','isTailwind'])
+@aware(['component','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 @props(['rows'])
 
 @if ($component->hasConfigurableAreaFor('before-pagination'))
@@ -47,7 +47,7 @@
             </div>
         @endif
     </div>
-@elseif ($component->isBootstrap4())
+@elseif ($isBootstrap4)
     <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
@@ -100,7 +100,7 @@
             @endif
         @endif
     </div>
-@elseif ($component->isBootstrap5())
+@elseif ($isBootstrap5)
     <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)

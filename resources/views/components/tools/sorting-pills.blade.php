@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind'])
+@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
 @if ($isTailwind)
     <div>
@@ -41,7 +41,7 @@
             </div>
         @endif
     </div>
-@elseif ($component->isBootstrap4())
+@elseif ($isBootstrap4)
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">
@@ -81,7 +81,7 @@
             </div>
         @endif
     </div>
-@elseif ($component->isBootstrap5())
+@elseif ($isBootstrap5)
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">

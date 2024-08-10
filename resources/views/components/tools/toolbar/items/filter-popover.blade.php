@@ -1,10 +1,10 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isBootstrap','isBootstrap4','isBootstrap5'])
 @if($component->isBootstrap())
     <ul
         x-cloak
         @class([
-            'dropdown-menu w-100 mt-md-5' => $component->isBootstrap4(),
-            'dropdown-menu w-100' => $component->isBootstrap5(),
+            'dropdown-menu w-100 mt-md-5' => $isBootstrap4,
+            'dropdown-menu w-100' => $isBootstrap5,
         ])
         x-bind:class="{ 'show': filterPopoverOpen }"
         role="menu"
@@ -32,8 +32,8 @@
             <button
                 wire:click.prevent="setFilterDefaults" x-on:click="filterPopoverOpen = false"
                 @class([
-                    'dropdown-item btn text-center' => $component->isBootstrap4(),
-                    'dropdown-item text-center' => $component->isBootstrap5(),
+                    'dropdown-item btn text-center' => $isBootstrap4,
+                    'dropdown-item text-center' => $isBootstrap5,
                 ])
             >
                 @lang('Clear')

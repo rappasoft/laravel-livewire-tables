@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind'])
+@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 @if ($isTailwind)
 <div class="@if ($component->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($component->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
     <div
@@ -81,10 +81,10 @@
 @elseif ($component->isBootstrap())
 <div
     @class([
-        'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $component->isBootstrap4(),
-        'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $component->isBootstrap4(),
-        'd-none d-sm-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $component->isBootstrap5(),
-        'd-none d-md-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $component->isBootstrap5(),
+        'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $isBootstrap4,
+        'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $isBootstrap4,
+        'd-none d-sm-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $isBootstrap5,
+        'd-none d-md-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $isBootstrap5,
     ])
 >
     <div
@@ -110,12 +110,12 @@
         <div
             x-bind:class="{ 'show': open }"
             @class([
-                'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $component->isBootstrap4(),
-                'dropdown-menu dropdown-menu-end w-100' => $component->isBootstrap5(),
+                'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $isBootstrap4,
+                'dropdown-menu dropdown-menu-end w-100' => $isBootstrap5,
             ])
             aria-labelledby="columnSelect-{{ $tableName }}"
         >
-            @if($component->isBootstrap4())
+            @if($isBootstrap4)
                 <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                     <label wire:loading.attr="disabled" class="px-2 mb-1">
                         <input
@@ -127,7 +127,7 @@
                         <span class="ml-2">{{ __('All Columns') }}</span>
                     </label>
                 </div>
-            @elseif($component->isBootstrap5())
+            @elseif($isBootstrap5)
                 <div class="form-check ms-2" wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                     <input
                         wire:loading.attr="disabled"
@@ -146,10 +146,10 @@
                 <div
                     wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}"
                     @class([
-                        'form-check ms-2' => $component->isBootstrap5(),
+                        'form-check ms-2' => $isBootstrap5,
                     ])
                 >
-                    @if ($component->isBootstrap4())
+                    @if ($isBootstrap4)
                         <label
                             wire:loading.attr="disabled"
                             wire:target="selectedColumns"
@@ -165,7 +165,7 @@
                                 {{ $columnTitle }}
                             </span>
                         </label>
-                    @elseif($component->isBootstrap5())
+                    @elseif($isBootstrap5)
                         <input
                             wire:model.live="selectedColumns"
                             wire:target="selectedColumns"

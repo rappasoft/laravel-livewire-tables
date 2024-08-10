@@ -2,9 +2,12 @@
 @php($tableId = $this->getTableId)
 @php($primaryKey = $this->getPrimaryKey)
 @php($isTailwind = $this->isTailwind)
+@php($isBootstrap = $this->isBootstrap)
+@php($isBootstrap4 = $this->isBootstrap4)
+@php($isBootstrap5 = $this->isBootstrap5)
 
 <div x-data="laravellivewiretable($wire, '{{ $this->showBulkActionsDropdownAlpine() }}', '{{ $tableId }}', '{{ $primaryKey }}')">
-    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind>
+    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
         @if ($this->hasConfigurableAreaFor('before-tools'))
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
         @endif

@@ -1,8 +1,8 @@
-@aware(['component', 'tableName','isTailwind'])
+@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div x-data x-cloak x-show="reorderStatus"
     @class([
-        'mr-0 mr-md-2 mb-3 mb-md-0' => $component->isBootstrap4(),
-        'me-0 me-md-2 mb-3 mb-md-0' => $component->isBootstrap5()
+        'mr-0 mr-md-2 mb-3 mb-md-0' => $isBootstrap4,
+        'me-0 me-md-2 mb-3 mb-md-0' => $isBootstrap5
     ])
 >
     <button
