@@ -59,7 +59,8 @@ trait HasFooter
     public function footerCallbackIsFilter(): bool
     {
         $callback = $this->getFooterCallback();
-        return ($callback instanceof Filter);
+
+        return $callback instanceof Filter;
     }
 
     /**
@@ -77,6 +78,7 @@ trait HasFooter
             if ($this->isHtml()) {
                 return new HtmlString($value);
             }
+
             return $value;
         } else {
             throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
@@ -92,7 +94,7 @@ trait HasFooter
         } else {
             throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
         }
+
         return null;
     }
-
 }

@@ -235,5 +235,4 @@ trait ColumnHelpers
     {
         return $this->isReorderColumn;
     }
-
 }

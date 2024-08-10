@@ -59,7 +59,8 @@ trait HasSecondaryHeader
     public function secondaryHeaderCallbackIsFilter(): bool
     {
         $callback = $this->getSecondaryHeaderCallback();
-        return ($callback instanceof Filter);
+
+        return $callback instanceof Filter;
     }
 
     /**
@@ -76,22 +77,23 @@ trait HasSecondaryHeader
             if ($this->isHtml()) {
                 return new HtmlString($value);
             }
+
             return $value;
         } else {
             throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
         }
+
         return null;
     }
-
 
     public function getSecondaryHeaderFilter(?Filter $filter, array $filterGenericData)
     {
         if ($filter !== null && $filter instanceof Filter) {
             return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
-        }  else {
+        } else {
             throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
         }
+
         return null;
     }
-
 }

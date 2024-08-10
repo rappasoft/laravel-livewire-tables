@@ -19,7 +19,6 @@ final class ColumnConfigurationTest extends TestCase
         $this->assertTrue($column->eagerLoadRelationsIsEnabled());
     }
 
-
     public function test_can_set_column_format(): void
     {
         $column = Column::make('Name');

@@ -124,11 +124,11 @@ final class FilterVisualsTest extends TestCase
                             return $builder->whereIn('pets.species_id', $values);
                         })
                         ->setPillsSeparator('<br />'),
-                        
+
                     \Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter::make('Pet Name', 'pet_name_filter')
                         ->filter(function (\Illuminate\Database\Eloquent\Builder $builder, string $value) {
                             return $builder->where('pets.name', '=', $value);
-                        })
+                        }),
                 ];
             }
         })
