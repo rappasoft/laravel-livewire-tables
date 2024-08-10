@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 document.addEventListener('alpine:init', () => {
+
     Alpine.data('laravellivewiretable', (wire, showBulkActionsAlpine, tableID, primaryKeyName) => ({
         listeners: [],
         childElementOpen: false,
@@ -213,6 +214,7 @@ document.addEventListener('alpine:init', () => {
             this.listeners.forEach((listener) => {
                 listener();
             });
+
         }
     }));
     
