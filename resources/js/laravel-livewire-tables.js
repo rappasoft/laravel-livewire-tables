@@ -25,8 +25,8 @@ document.addEventListener('alpine:init', () => {
         oddNotInEven: {},
         orderedRows: [],
         defaultReorderColumn: wire.get('defaultReorderColumn'),
-        reorderStatus: wire.get('reorderStatus'),
-        currentlyReorderingStatus: false,
+        reorderStatus: wire.entangle('reorderStatus'),
+        currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
         dragStart(event) {
@@ -101,24 +101,26 @@ document.addEventListener('alpine:init', () => {
             }
         },
         reorderToggle() {
-            this.$nextTick(() => { this.setupEvenOddClasses() });
             if (this.currentlyReorderingStatus) {
+                console.log("Disable Reordering");
                 wire.disableReordering();
- 
             }
             else {
-                this.setupEvenOddClasses();
                 if (this.hideReorderColumnUnlessReorderingStatus) {
                     this.reorderDisplayColumn = true;
+                    console.log("enableReordering");
                 }
+                this.setupEvenOddClasses();
                 wire.enableReordering();
- 
             }
+            this.$nextTick(() => { this.setupEvenOddClasses() });
         },
         cancelReorder() {
             if (this.hideReorderColumnUnlessReorderingStatus) {
                 this.reorderDisplayColumn = false;
             }
+            console.log("cancelReorder");
+
             wire.disableReordering();
  
         },
@@ -211,10 +213,6 @@ document.addEventListener('alpine:init', () => {
             this.listeners.forEach((listener) => {
                 listener();
             });
-        },
-        init()
-        {
-            this.currentlyReorderingStatus = wire.get('currentlyReorderingStatus') ?? false;
         }
     }));
     
