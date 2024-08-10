@@ -85,9 +85,9 @@
             @if ($this->footerIsEnabled() && $this->hasColumnsWithFooter())
                 <x-slot name="tfoot">
                     @if ($this->useHeaderAsFooterIsEnabled())
-                        <x-livewire-tables::table.tr.secondary-header :rows="$rows"  />
+                        <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$selectedVisibleColumns />
                     @else
-                        <x-livewire-tables::table.tr.footer :rows="$rows"  />
+                        <x-livewire-tables::table.tr.footer :rows="$rows"  :$selectedVisibleColumns />
                     @endif
                 </x-slot>
             @endif

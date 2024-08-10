@@ -1,5 +1,5 @@
 @aware(['component', 'tableName'])
-@props(['rows'])
+@props(['rows', 'selectedVisibleColumns'])
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getFooterTrAttributes($rows)"
@@ -17,12 +17,19 @@
         <x-livewire-tables::table.td.collapsed-columns :displayMinimisedOnReorder="true" rowIndex="-1" :hidden="true" wire:key="{{ $tableName.'-footer-collapse' }}" />
     @endif
 
-    @foreach($this->getColumns() as $colIndex => $column)
-        @continue($column->isHidden())
-        @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-        @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus && $this->getHideReorderColumnUnlessReorderingStatus())
+    @foreach($selectedVisibleColumns as $colIndex => $column)
         <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true"  wire:key="{{ $tableName .'-footer-shown-'.$colIndex }}" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
-            {{ $column->getFooterContents($rows, $this->getFilterGenericData) }}
+
+            @if($column->hasFooter() && $column->hasFooterCallback())
+                @if($column->footerCallbackIsFilter())
+                    {{ $column->getFooterFilter($column->getFooterCallback(), $this->getFilterGenericData) }}
+                @elseif($column->footerCallbackIsString())
+                    {{ $column->getFooterFilter($this->getFilterByKey($column->getFooterCallback()), $this->getFilterGenericData) }}
+                @else
+                    {{ $column->getFooterContents($rows) }}
+                @endif
+            @endif
+
         </x-livewire-tables::table.td.plain>
     @endforeach
 </x-livewire-tables::table.tr.plain>

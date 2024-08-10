@@ -51,36 +51,47 @@ trait HasSecondaryHeader
         return $this->secondaryHeaderCallback;
     }
 
+    public function secondaryHeaderCallbackIsString(): bool
+    {
+        return is_string($this->getSecondaryHeaderCallback());
+    }
+
+    public function secondaryHeaderCallbackIsFilter(): bool
+    {
+        $callback = $this->getSecondaryHeaderCallback();
+        return ($callback instanceof Filter);
+    }
+
     /**
      * @param  mixed  $rows
      * @return mixed
      */
-    public function getSecondaryHeaderContents($rows, array $filterGenericData)
+    public function getSecondaryHeaderContents($rows)
     {
         $value = null;
         $callback = $this->getSecondaryHeaderCallback();
 
-        if ($this->hasSecondaryHeaderCallback()) {
-            if (is_callable($callback)) {
-                $value = call_user_func($callback, $rows);
-                if ($this->isHtml()) {
-                    return new HtmlString($value);
-                }
-            } elseif ($callback instanceof Filter) {
-                return $callback->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
-            } elseif (is_string($callback)) {
-                $filter = $this->getComponent()->getFilterByKey($callback);
-
-                if ($filter instanceof Filter) {
-                    return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
-                } else {
-                    throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
-                }
-            } else {
-                throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
+        if (is_callable($callback)) {
+            $value = call_user_func($callback, $rows);
+            if ($this->isHtml()) {
+                return new HtmlString($value);
             }
+            return $value;
+        } else {
+            throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
         }
-
-        return $value;
+        return null;
     }
+
+
+    public function getSecondaryHeaderFilter(?Filter $filter, array $filterGenericData)
+    {
+        if ($filter !== null && $filter instanceof Filter) {
+            return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
+        }  else {
+            throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
+        }
+        return null;
+    }
+
 }

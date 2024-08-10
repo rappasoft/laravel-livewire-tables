@@ -230,4 +230,10 @@ trait ColumnHelpers
     {
         return $this->theme == 'bootstrap-5';
     }
+
+    public function getIsReorderColumn(): bool
+    {
+        return $this->isReorderColumn;
+    }
+
 }

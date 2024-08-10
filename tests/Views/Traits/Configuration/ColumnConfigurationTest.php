@@ -19,16 +19,6 @@ final class ColumnConfigurationTest extends TestCase
         $this->assertTrue($column->eagerLoadRelationsIsEnabled());
     }
 
-    public function test_can_set_component_on_column(): void
-    {
-        $column = Column::make('Name');
-
-        $this->assertNull($column->getComponent());
-
-        $column->setComponent($this->basicTable);
-
-        $this->assertSame($this->basicTable, $column->getComponent());
-    }
 
     public function test_can_set_column_format(): void
     {
@@ -80,9 +70,8 @@ final class ColumnConfigurationTest extends TestCase
     {
         $column = Column::make('Name');
 
-        $column->setComponent($this->basicTable);
-
         $this->basicTable->setTableRowUrl(fn ($row) => 'https://example.com');
+        $column->setHasTableRowUrl($this->basicTable->hasTableRowUrl());
 
         $this->assertTrue($column->isClickable());
 

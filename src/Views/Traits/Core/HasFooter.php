@@ -51,35 +51,48 @@ trait HasFooter
         return $this->footerCallback;
     }
 
+    public function footerCallbackIsString(): bool
+    {
+        return is_string($this->getFooterCallback());
+    }
+
+    public function footerCallbackIsFilter(): bool
+    {
+        $callback = $this->getFooterCallback();
+        return ($callback instanceof Filter);
+    }
+
     /**
      * @param  mixed  $rows
      * @return mixed
      */
-    public function getFooterContents($rows, array $filterGenericData)
+    public function getFooterContents($rows)
     {
         $value = null;
         $callback = $this->getFooterCallback();
 
-        if ($this->hasFooterCallback()) {
-            if (is_callable($callback)) {
-                $value = call_user_func($callback, $rows);
+        if (is_callable($callback)) {
+            $value = call_user_func($callback, $rows);
 
-                if ($this->isHtml()) {
-                    return new HtmlString($value);
-                }
-            } elseif ($callback instanceof Filter) {
-                return $callback->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();
-            } elseif (is_string($callback)) {
-                $filter = $this->getComponent()->getFilterByKey($callback);
-
-                if ($filter instanceof Filter) {
-                    return $filter->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();
-                }
-            } else {
-                throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
+            if ($this->isHtml()) {
+                return new HtmlString($value);
             }
+            return $value;
+        } else {
+            throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
         }
 
-        return $value;
+        return null;
     }
+
+    public function getFooterFilter(?Filter $filter, array $filterGenericData)
+    {
+        if ($filter !== null && $filter instanceof Filter) {
+            return $filter->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();
+        } else {
+            throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
+        }
+        return null;
+    }
+
 }
