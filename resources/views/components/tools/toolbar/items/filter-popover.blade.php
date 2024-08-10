@@ -17,7 +17,7 @@
                 ])
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
             >
-                {{ $filter->setGenericDisplayData($filterGenericData)->render() }}
+                {{ $filter->setGenericDisplayData($component->getFilterGenericData)->render() }}
             </div>
         @endforeach
 
@@ -61,7 +61,7 @@
                     role="menuitem"
                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                 >
-                    {{ $filter->setGenericDisplayData($filterGenericData)->render() }}
+                    {{ $filter->setGenericDisplayData($component->getFilterGenericData)->render() }}
                 </div>
             </div>
         @endforeach

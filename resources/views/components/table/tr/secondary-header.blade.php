@@ -1,5 +1,5 @@
 @aware(['component', 'tableName'])
-@props(['rows', 'filterGenericData', 'selectedVisibleColumns'])
+@props(['rows', 'selectedVisibleColumns'])
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getSecondaryHeaderTrAttributes($rows)"
@@ -18,7 +18,7 @@
 
     @foreach($selectedVisibleColumns as $colIndex => $column)
         <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)">
-            {{ $column->getSecondaryHeaderContents($rows, $filterGenericData) }}
+            {{ $column->getSecondaryHeaderContents($rows, $component->getFilterGenericData) }}
         </x-livewire-tables::table.td.plain>
     @endforeach
 </x-livewire-tables::table.tr.plain>

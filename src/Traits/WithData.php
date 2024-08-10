@@ -286,7 +286,6 @@ trait WithData
     public function renderingWithData(\Illuminate\View\View $view, array $data = []): void
     {
         $view->with([
-            'filterGenericData' => $this->getFilterGenericData(),
             'rows' => $this->getRows(),
         ]);
     }

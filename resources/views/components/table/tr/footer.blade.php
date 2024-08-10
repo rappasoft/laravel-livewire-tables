@@ -1,5 +1,5 @@
 @aware(['component', 'tableName'])
-@props(['rows', 'filterGenericData'])
+@props(['rows'])
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getFooterTrAttributes($rows)"
@@ -22,7 +22,7 @@
         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
         @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus && $this->getHideReorderColumnUnlessReorderingStatus())
         <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true"  wire:key="{{ $tableName .'-footer-shown-'.$colIndex }}" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
-            {{ $column->getFooterContents($rows, $filterGenericData) }}
+            {{ $column->getFooterContents($rows, $component->getFilterGenericData) }}
         </x-livewire-tables::table.td.plain>
     @endforeach
 </x-livewire-tables::table.tr.plain>

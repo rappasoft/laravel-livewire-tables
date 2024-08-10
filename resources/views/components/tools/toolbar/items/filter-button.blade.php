@@ -1,5 +1,5 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
-@props(['filterGenericData'])
+@props([])
 
 <div 
                 @class([
@@ -56,7 +56,7 @@
         </div>
 
         @if ($component->isFilterLayoutPopover())
-            <x-livewire-tables::tools.toolbar.items.filter-popover :$filterGenericData />
+            <x-livewire-tables::tools.toolbar.items.filter-popover  />
         @endif
 
     </div>
