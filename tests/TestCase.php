@@ -103,7 +103,6 @@ class TestCase extends Orchestra
         $this->basicTable->bootedWithColumnSelect();
         $this->basicTable->bootedWithSecondaryHeader();
         $this->basicTable->booted();
-        $this->basicTable->renderingWithData($view, []);
         $this->basicTable->renderingWithPagination($view, []);
         $this->basicTable->render();
     }
@@ -119,7 +118,6 @@ class TestCase extends Orchestra
         $this->breedsTable->bootedWithColumnSelect();
         $this->breedsTable->bootedWithSecondaryHeader();
         $this->breedsTable->booted();
-        $this->breedsTable->renderingWithData($view, []);
         $this->breedsTable->renderingWithPagination($view, []);
         $this->breedsTable->render();
     }
@@ -135,7 +133,6 @@ class TestCase extends Orchestra
         $this->petOwnerTable->bootedWithColumnSelect();
         $this->petOwnerTable->bootedWithSecondaryHeader();
         $this->petOwnerTable->booted();
-        $this->petOwnerTable->renderingWithData($view, []);
         $this->petOwnerTable->renderingWithPagination($view, []);
         $this->petOwnerTable->render();
     }
@@ -151,7 +148,6 @@ class TestCase extends Orchestra
         $this->speciesTable->bootedWithColumnSelect();
         $this->speciesTable->bootedWithSecondaryHeader();
         $this->speciesTable->booted();
-        $this->speciesTable->renderingWithData($view, []);
         $this->speciesTable->renderingWithPagination($view, []);
         $this->speciesTable->render();
     }
@@ -168,7 +164,6 @@ class TestCase extends Orchestra
         $this->unpaginatedTable->bootedWithColumnSelect();
         $this->unpaginatedTable->bootedWithSecondaryHeader();
         $this->unpaginatedTable->booted();
-        $this->unpaginatedTable->renderingWithData($view, []);
         $this->unpaginatedTable->renderingWithPagination($view, []);
         $this->unpaginatedTable->render();
 
