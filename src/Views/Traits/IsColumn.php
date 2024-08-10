@@ -60,5 +60,4 @@ trait IsColumn
     protected string $theme = 'tailwind';
 
     protected bool $isReorderColumn = false;
-
 }
