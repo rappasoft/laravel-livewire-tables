@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.5] - 2024-08-10
+### Bug Fixes
+- Fix sort queryString bug by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1835
+
 ## [v3.4.4] - 2024-08-10
 ### New Features
 - Boolean/Toggle Filter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1830

@@ -19,9 +19,19 @@ trait SortingHelpers
 
     public function getSorts(): array
     {
+        foreach ($this->sorts as $column => $direction) {
+            if (is_array($direction)) {
+                foreach ($direction as $colAppend => $actualDirection) {
+                    $this->sorts[$column.'.'.$colAppend] = $actualDirection;
+                    unset($this->sorts[$column]);
+                }
+            }
+
+        }
+
         return $this->sorts;
     }
-
+    
     /**
      * @param  array<mixed>  $sorts
      * @return array<mixed>
