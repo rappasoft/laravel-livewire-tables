@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isTailwind','isBootstrap'])
 @props(['column', 'index'])
 
 @php
@@ -8,7 +8,7 @@
     $direction = $column->hasField() ? $component->getSort($column->getColumnSelectName()) : $component->getSort($column->getSlug()) ?? null ;
 @endphp
 
-@if ($component->isTailwind())
+@if ($isTailwind)
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
@@ -30,7 +30,14 @@
                             ->except(['default', 'wire:key'])
                     }}
                 >
-                    <span>{{ $column->getTitle() }}</span>
+                    <span {{
+        $attributes->merge($customAttributes)
+            ->class(['text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
+            ->class(['hidden' => $column->shouldCollapseAlways()])
+            ->class(['hidden md:table-cell' => $column->shouldCollapseOnMobile()])
+            ->class(['hidden lg:table-cell' => $column->shouldCollapseOnTablet()])
+            ->except('default')
+        }}>{{ $column->getTitle() }}</span>
 
                     <span class="relative flex items-center">
                         @if ($direction === 'asc')
@@ -47,7 +54,7 @@
             @endunless
         @endif
     </th>
-@elseif ($component->isBootstrap())
+@elseif ($isBootstrap)
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['' => $customAttributes['default'] ?? true])

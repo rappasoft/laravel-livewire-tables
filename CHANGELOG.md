@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.4] - 2024-08-10
+### New Features
+- Boolean/Toggle Filter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1830
+
+### Bug Fixes
+- Merge Column Attributes Back in if Sortable by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1833
+
+### Tweaks
+- Moving JS to Simplified Method in datatable  by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1832
+
 ## [v3.4.3] - 2024-08-08
 ### New Features
 - Boolean/Toggle Filter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1830
