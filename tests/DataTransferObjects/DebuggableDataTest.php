@@ -19,6 +19,7 @@ final class DebuggableDataTest extends TestCase
 
     public function test_check_all_default_dto_elements()
     {
+        $this->basicTable->getRows();
         $debuggableDTO = new DebuggableData($this->basicTable);
         $debuggableArray = $debuggableDTO->toArray();
 
