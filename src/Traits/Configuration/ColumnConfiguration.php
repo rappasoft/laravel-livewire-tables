@@ -11,7 +11,9 @@ trait ColumnConfiguration
         $this->prependedColumns = collect($prependedColumns)
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
-                $column->setComponent($this);
+                $column->setTheme($this->getTheme());
+                $column->setHasTableRowUrl($this->hasTableRowUrl());
+                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
 
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {
@@ -30,7 +32,9 @@ trait ColumnConfiguration
         $this->appendedColumns = collect($appendedColumns)
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
-                $column->setComponent($this);
+                $column->setTheme($this->getTheme());
+                $column->setHasTableRowUrl($this->hasTableRowUrl());
+                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
 
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {

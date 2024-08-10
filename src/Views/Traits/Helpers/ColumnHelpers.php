@@ -187,7 +187,7 @@ trait ColumnHelpers
     public function isClickable(): bool
     {
         return $this->clickable &&
-            $this->component->hasTableRowUrl() &&
+            $this->getHasTableRowUrl() &&
             ! $this instanceof LinkColumn;
     }
 
@@ -204,5 +204,32 @@ trait ColumnHelpers
     public function getColumnLabelStatus(): bool
     {
         return $this->displayColumnLabel ?? true;
+    }
+
+
+    public function getHasTableRowUrl()
+    {
+        return $this->hasTableRowUrl;
+    }
+    
+
+    public function isTailwind(): bool
+    {
+        return $this->theme != 'bootstrap-4' && $this->theme != 'bootstrap-5';
+    }
+
+    public function isBootstrap(): bool
+    {
+        return $this->theme == 'bootstrap-4' || $this->theme == 'bootstrap-5';
+    }
+
+    public function isBootstrap4(): bool
+    {
+        return $this->theme == 'bootstrap-4';
+    }
+
+    public function isBootstrap5(): bool
+    {
+        return $this->theme == 'bootstrap-5';
     }
 }

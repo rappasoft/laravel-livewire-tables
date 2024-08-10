@@ -30,7 +30,8 @@ class BooleanColumn extends Column
         $value = $this->getValue($row);
 
         return view($this->getView())
-            ->withComponent($this->getComponent())
+            ->withIsTailwind($this->isTailwind())
+            ->withIsBootstrap($this->isBootstrap())
             ->withSuccessValue($this->getSuccessValue())
             ->withType($this->getType())
             ->withStatus($this->hasCallback() ? call_user_func($this->getCallback(), $value, $row) : (bool) $value === true);

@@ -54,4 +54,11 @@ trait IsColumn
     protected bool $clickable = true;
 
     protected ?string $customSlug = null;
+
+    protected bool $hasTableRowUrl = false;
+
+    protected string $theme = 'tailwind';
+
+    protected bool $isReorderColumn = false;
+
 }
