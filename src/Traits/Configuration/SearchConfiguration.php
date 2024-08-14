@@ -8,14 +8,12 @@ trait SearchConfiguration
 {
     public function setSearch(string $query): self
     {
-        if ($this->shouldTrimSearchString())
-        {
+        if ($this->shouldTrimSearchString()) {
             $this->search = trim($query);
-        }
-        else
-        {
+        } else {
             $this->search = $query;
         }
+
         return $this;
     }
 
@@ -183,5 +181,4 @@ trait SearchConfiguration
 
         return $this;
     }
-
 }

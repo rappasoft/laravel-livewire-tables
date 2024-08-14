@@ -55,11 +55,10 @@ trait WithSearch
             $searchableColumns = $this->getSearchableColumns();
             $search = $this->getSearch();
 
-            if ($this->shouldTrimSearchString())
-            {
+            if ($this->shouldTrimSearchString()) {
                 $search = trim($search);
             }
-    
+
             $this->callHook('searchUpdated', ['value' => $search]);
             $this->callTraitHook('searchUpdated', ['value' => $search]);
             if ($this->getEventStatusSearchApplied() && $search != null) {
@@ -81,14 +80,12 @@ trait WithSearch
 
         return $this->getBuilder();
     }
-    
+
     public function updatedSearch(string|array|null $value): void
     {
-        if ($this->shouldTrimSearchString() && $this->search != trim($value))
-        {
+        if ($this->shouldTrimSearchString() && $this->search != trim($value)) {
             $this->search = $value = trim($value);
         }
-
 
         $this->resetComputedPage();
 

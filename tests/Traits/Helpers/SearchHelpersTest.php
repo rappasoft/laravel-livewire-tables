@@ -122,19 +122,19 @@ final class SearchHelpersTest extends TestCase
         $this->basicTable->setTrimSearchStringEnabled();
 
         $this->basicTable->clearSearch();
-        
+
         $this->basicTable->setSearch('Anthony  ');
 
         $this->assertSame('Anthony', $this->basicTable->getSearch());
 
         $this->basicTable->clearSearch();
-        
+
         $this->basicTable->setSearch('   Anthony');
 
         $this->assertSame('Anthony', $this->basicTable->getSearch());
 
         $this->basicTable->clearSearch();
-        
+
         $this->basicTable->setSearch('   Anthony   ');
 
         $this->assertSame('Anthony', $this->basicTable->getSearch());
@@ -142,12 +142,10 @@ final class SearchHelpersTest extends TestCase
         $this->basicTable->clearSearch();
 
         $this->basicTable->setTrimSearchStringDisabled();
-        
+
         $this->basicTable->setSearch('   Anthony   ');
 
         $this->assertSame('   Anthony   ', $this->basicTable->getSearch());
 
     }
-
-
 }
