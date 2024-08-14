@@ -34,6 +34,8 @@ trait WithSearch
 
     protected array $searchFieldAttributes = [];
 
+    protected bool $trimSearchString = false;
+
     protected function queryStringWithSearch(): array
     {
         if ($this->queryStringIsEnabled() && $this->searchIsEnabled()) {
@@ -49,21 +51,28 @@ trait WithSearch
     public function applySearch(): Builder
     {
         if ($this->searchIsEnabled() && $this->hasSearch()) {
-            $searchableColumns = $this->getSearchableColumns();
 
-            $this->callHook('searchUpdated', ['value' => $this->getSearch()]);
-            $this->callTraitHook('searchUpdated', ['value' => $this->getSearch()]);
-            if ($this->getEventStatusSearchApplied() && $this->getSearch() != null) {
-                event(new SearchApplied($this->getTableName(), $this->getSearch()));
+            $searchableColumns = $this->getSearchableColumns();
+            $search = $this->getSearch();
+
+            if ($this->shouldTrimSearchString())
+            {
+                $search = trim($search);
+            }
+    
+            $this->callHook('searchUpdated', ['value' => $search]);
+            $this->callTraitHook('searchUpdated', ['value' => $search]);
+            if ($this->getEventStatusSearchApplied() && $search != null) {
+                event(new SearchApplied($this->getTableName(), $search));
             }
 
             if ($searchableColumns->count()) {
-                $this->setBuilder($this->getBuilder()->where(function ($query) use ($searchableColumns) {
+                $this->setBuilder($this->getBuilder()->where(function ($query) use ($searchableColumns, $search) {
                     foreach ($searchableColumns as $index => $column) {
                         if ($column->hasSearchCallback()) {
-                            ($column->getSearchCallback())($query, $this->getSearch());
+                            ($column->getSearchCallback())($query, $search);
                         } else {
-                            $query->{$index === 0 ? 'where' : 'orWhere'}($column->getColumn(), 'like', '%'.$this->getSearch().'%');
+                            $query->{$index === 0 ? 'where' : 'orWhere'}($column->getColumn(), 'like', '%'.$search.'%');
                         }
                     }
                 }));
@@ -72,9 +81,15 @@ trait WithSearch
 
         return $this->getBuilder();
     }
-
+    
     public function updatedSearch(string|array|null $value): void
     {
+        if ($this->shouldTrimSearchString() && $this->search != trim($value))
+        {
+            $this->search = $value = trim($value);
+        }
+
+
         $this->resetComputedPage();
 
         // Clear bulk actions on search - if enabled

@@ -112,4 +112,42 @@ final class SearchHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasSearchPlaceholder());
     }
+
+    public function test_can_trim_whitespace_from_search(): void
+    {
+        $this->basicTable->setSearch('Anthony  ');
+
+        $this->assertSame('Anthony  ', $this->basicTable->getSearch());
+
+        $this->basicTable->setTrimSearchStringEnabled();
+
+        $this->basicTable->clearSearch();
+        
+        $this->basicTable->setSearch('Anthony  ');
+
+        $this->assertSame('Anthony', $this->basicTable->getSearch());
+
+        $this->basicTable->clearSearch();
+        
+        $this->basicTable->setSearch('   Anthony');
+
+        $this->assertSame('Anthony', $this->basicTable->getSearch());
+
+        $this->basicTable->clearSearch();
+        
+        $this->basicTable->setSearch('   Anthony   ');
+
+        $this->assertSame('Anthony', $this->basicTable->getSearch());
+
+        $this->basicTable->clearSearch();
+
+        $this->basicTable->setTrimSearchStringDisabled();
+        
+        $this->basicTable->setSearch('   Anthony   ');
+
+        $this->assertSame('   Anthony   ', $this->basicTable->getSearch());
+
+    }
+
+
 }

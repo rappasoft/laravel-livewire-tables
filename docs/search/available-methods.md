@@ -168,3 +168,27 @@ public function configure(): void
     $this->setSearchThrottle(1000);
 }
 ```
+
+## setTrimSearchStringEnabled
+
+A new behaviour, which will trim search strings of whitespace at either end
+
+```php
+public function configure(): void
+{
+    // Will trim whitespace from either end of search strings
+    $this->setTrimSearchStringEnabled();
+}
+```
+
+## setTrimSearchStringDisabled
+
+The default behaviour, does not trim search strings of whitespace.
+
+```php
+public function configure(): void
+{
+    // Will not trim whitespace from either end of search strings
+    $this->setTrimSearchStringDisabled();
+}
+```

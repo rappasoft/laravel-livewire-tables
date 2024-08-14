@@ -8,8 +8,14 @@ trait SearchConfiguration
 {
     public function setSearch(string $query): self
     {
-        $this->search = $query;
-
+        if ($this->shouldTrimSearchString())
+        {
+            $this->search = trim($query);
+        }
+        else
+        {
+            $this->search = $query;
+        }
         return $this;
     }
 
@@ -156,4 +162,26 @@ trait SearchConfiguration
 
         return $this;
     }
+
+    public function setTrimSearchString(bool $status): self
+    {
+        $this->trimSearchString = $status;
+
+        return $this;
+    }
+
+    public function setTrimSearchStringEnabled(): self
+    {
+        $this->setTrimSearchString(true);
+
+        return $this;
+    }
+
+    public function setTrimSearchStringDisabled(): self
+    {
+        $this->setTrimSearchString(false);
+
+        return $this;
+    }
+
 }
