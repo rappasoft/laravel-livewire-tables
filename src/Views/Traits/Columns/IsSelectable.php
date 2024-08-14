@@ -35,4 +35,20 @@ trait IsSelectable
 
         return $this;
     }
+
+    public function selectedIf($callable): self
+    {
+        $this->selected = call_user_func($callable);
+        
+        return $this;
+    }
+
+    public function deselectedIf($callable): self
+    {
+        $this->selected = !call_user_func($callable);
+        
+        return $this;
+    }
+
+
 }
