@@ -1,4 +1,4 @@
-@if ($component->isTailwind())
+@if ($isTailwind)
     @if ($status)
         @if ($type === 'icons')
             @if ($successValue === true)
@@ -28,7 +28,7 @@
             @endif
         @endif
     @endif
-@elseif ($component->isBootstrap())
+@elseif ($isBootstrap)
     @if ($status)
         @if ($type === 'icons')
             @if ($successValue === true)

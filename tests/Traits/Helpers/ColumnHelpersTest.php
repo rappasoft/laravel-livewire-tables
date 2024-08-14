@@ -273,14 +273,13 @@ final class ColumnHelpersTest extends TestCase
     public function test_can_check_if_column_is_reorder_column(): void
     {
         $column = Column::make('ID', 'id');
-        $column->setComponent($this->basicTable);
 
-        $this->assertFalse($column->isReorderColumn());
+        $this->assertFalse($column->getIsReorderColumn());
 
         $column = Column::make('Sort');
-        $column->setComponent($this->basicTable);
+        $column->setIsReorderColumn($this->basicTable->getDefaultReorderColumn() == $column->getField());
 
-        $this->assertTrue($column->isReorderColumn());
+        $this->assertTrue($column->getIsReorderColumn());
     }
 
     public function test_can_check_if_column_has_secondary_header(): void
@@ -295,7 +294,10 @@ final class ColumnHelpersTest extends TestCase
     {
         $column = $this->basicTable->getColumnBySelectName('breed.name');
         $this->assertTrue($column->hasSecondaryHeader());
-        $contents = $column->getSecondaryHeaderContents(Pet::find(1), $this->basicTable->getFilterGenericData());
+        $this->assertTrue($column->hasSecondaryHeaderCallback());
+
+        $contents = $column->getSecondaryHeaderFilter($this->basicTable->getFilterByKey($column->getSecondaryHeaderCallback()), $this->basicTable->getFilterGenericData());
+        //$contents = $column->getSecondaryHeaderFilter($this->basicTable->getFilterByKey('breed'));
         $this->assertStringContainsString('id="table-filter-breed-8-header"', $contents);
     }
 

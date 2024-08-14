@@ -84,7 +84,7 @@ jobs:
         run: composer update --${{ matrix.stability }} --no-interaction
 
       - name: Install PHPStan
-        run: composer require nunomaduro/larastan:^2.0 --dev --no-interaction
+        run: composer require larastan/larastan:^2.0 --dev --no-interaction
 
       - name: Run PHPStan Tests
         run: ./vendor/bin/phpstan analyse
