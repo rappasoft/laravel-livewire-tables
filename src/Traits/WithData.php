@@ -287,13 +287,11 @@ trait WithData
      */
     public function renderingWithData(\Illuminate\View\View $view, array $data = []): void
     {
-        if (!$this->getComputedPropertiesStatus())
-        {
+        if (! $this->getComputedPropertiesStatus()) {
             $view->with([
                 'filterGenericData' => $this->getFilterGenericData(),
                 'rows' => $this->getRows(),
             ]);
         }
     }
-
 }

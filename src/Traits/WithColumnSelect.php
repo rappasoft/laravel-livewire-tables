@@ -61,8 +61,7 @@ trait WithColumnSelect
 
     public function renderingWithColumnSelect(\Illuminate\View\View $view, array $data = []): void
     {
-        if (!$this->getComputedPropertiesStatus())
-        {
+        if (! $this->getComputedPropertiesStatus()) {
             $view->with([
                 'selectedVisibleColumns' => $this->getVisibleColumns(),
             ]);
