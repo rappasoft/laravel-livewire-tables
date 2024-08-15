@@ -24,7 +24,7 @@
                 @elseif($column->secondaryHeaderCallbackIsString())
                     {{ $column->getSecondaryHeaderFilter($this->getFilterByKey($column->getSecondaryHeaderCallback()), $this->getFilterGenericData) }}
                 @else
-                    {{ $column->getSecondaryHeaderContents($this->getRows) }}
+                    {{ $column->getNewSecondaryHeaderContents($this->getRows) }}
                 @endif
             @endif
         </x-livewire-tables::table.td.plain>

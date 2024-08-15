@@ -65,8 +65,40 @@ trait HasFooter
 
     /**
      * @param  mixed  $rows
+     * @return mixed
      */
-    public function getFooterContents($rows): string|HtmlString
+    public function getFooterContents($rows, array $filterGenericData)
+    {
+        $value = null;
+        $callback = $this->getFooterCallback();
+
+        if ($this->hasFooterCallback()) {
+            if (is_callable($callback)) {
+                $value = call_user_func($callback, $rows);
+
+                if ($this->isHtml()) {
+                    return new HtmlString($value);
+                }
+            } elseif ($callback instanceof Filter) {
+                return $callback->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();
+            } elseif (is_string($callback)) {
+                $filter = $this->getComponent()->getFilterByKey($callback);
+
+                if ($filter instanceof Filter) {
+                    return $filter->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();
+                }
+            } else {
+                throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
+            }
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param  mixed  $rows
+     */
+    public function getNewFooterContents($rows): string|HtmlString
     {
         $value = null;
         $callback = $this->getFooterCallback();
@@ -83,6 +115,7 @@ trait HasFooter
             throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
         }
     }
+
 
     public function getFooterFilter(?Filter $filter, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string
     {

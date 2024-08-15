@@ -26,7 +26,7 @@
                 @elseif($column->footerCallbackIsString())
                     {{ $column->getFooterFilter($this->getFilterByKey($column->getFooterCallback()), $this->getFilterGenericData) }}
                 @else
-                    {{ $column->getFooterContents($this->getRows) }}
+                    {{ $column->getNewFooterContents($this->getRows) }}
                 @endif
             @endif
 
