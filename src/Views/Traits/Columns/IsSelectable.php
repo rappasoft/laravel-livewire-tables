@@ -38,28 +38,21 @@ trait IsSelectable
 
     public function selectedIf(callable|bool $value): self
     {
-        if (is_bool($value))
-        {
+        if (is_bool($value)) {
             $this->selected = $value;
-        }
-        else
-        {
+        } else {
             $this->selected = call_user_func($value);
         }
-        
 
         return $this;
     }
 
     public function deselectedIf(callable|bool $value): self
     {
-        if (is_bool($value))
-        {
-            $this->selected = !$value;
-        }
-        else
-        {
-            $this->selected = !call_user_func($value);
+        if (is_bool($value)) {
+            $this->selected = ! $value;
+        } else {
+            $this->selected = ! call_user_func($value);
         }
 
         return $this;
