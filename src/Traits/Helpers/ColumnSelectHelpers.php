@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Livewire\Attributes\Computed;
 
 trait ColumnSelectHelpers
 {
@@ -141,6 +142,16 @@ trait ColumnSelectHelpers
     public function getAllColumnsAreSelected(): bool
     {
         return $this->getSelectableSelectedColumns()->count() === $this->getSelectableColumns()->count();
+    }
+
+    #[Computed]
+    public function selectedVisibleColumns(): array
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
+            ->values()
+            ->toArray();
     }
 
     public function getVisibleColumns(): array

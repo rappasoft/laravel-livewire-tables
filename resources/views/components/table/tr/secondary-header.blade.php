@@ -1,5 +1,4 @@
 @aware(['component', 'tableName'])
-@props(['selectedVisibleColumns'])
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getSecondaryHeaderTrAttributes($this->getRows)"
@@ -16,7 +15,7 @@
         <x-livewire-tables::table.td.collapsed-columns :hidden=true :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'header-collapsed-hide' }}" rowIndex="-1"  />
     @endif
 
-    @foreach($selectedVisibleColumns as $colIndex => $column)
+    @foreach($this->selectedVisibleColumns as $colIndex => $column)
         <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $this->getRows, $colIndex)">
             @if($column->hasSecondaryHeader() && $column->hasSecondaryHeaderCallback())
                 @if( $column->secondaryHeaderCallbackIsFilter())
