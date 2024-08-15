@@ -112,7 +112,6 @@ trait HasSecondaryHeader
         }
     }
 
-
     public function getSecondaryHeaderFilter(?Filter $filter, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string
     {
         if ($filter !== null && $filter instanceof Filter) {
