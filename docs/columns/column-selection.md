@@ -34,6 +34,13 @@ Column::make('Address', 'address.address')
     ->deselectedIf(fn() => 2 > 1),
 ```
 
+or
+
+```php
+Column::make('Address', 'address.address')
+    ->deselectedIf(!Auth::user()),
+```
+
 ## SelectedIf
 
 If you would like a column to be included in the column select and selected based on an external parameter/callback, you may use this approach.
@@ -43,6 +50,12 @@ Returning "true" will select the Column by default, returning "false" will desel
 ```php
 Column::make('Address', 'address.address')
     ->selectedIf(fn() => 2 > 1),
+```
+or
+
+```php
+Column::make('Address', 'address.address')
+    ->selectedIf(Auth::user()),
 ```
 
 ## Available Methods
