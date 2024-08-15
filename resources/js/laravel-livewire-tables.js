@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 document.addEventListener('alpine:init', () => {
-
+    
     Alpine.data('laravellivewiretable', (wire, showBulkActionsAlpine, tableID, primaryKeyName) => ({
         listeners: [],
         childElementOpen: false,
@@ -103,13 +103,11 @@ document.addEventListener('alpine:init', () => {
         },
         reorderToggle() {
             if (this.currentlyReorderingStatus) {
-                console.log("Disable Reordering");
                 wire.disableReordering();
             }
             else {
                 if (this.hideReorderColumnUnlessReorderingStatus) {
                     this.reorderDisplayColumn = true;
-                    console.log("enableReordering");
                 }
                 this.setupEvenOddClasses();
                 wire.enableReordering();
@@ -120,7 +118,6 @@ document.addEventListener('alpine:init', () => {
             if (this.hideReorderColumnUnlessReorderingStatus) {
                 this.reorderDisplayColumn = false;
             }
-            console.log("cancelReorder");
 
             wire.disableReordering();
  
@@ -367,4 +364,217 @@ document.addEventListener('alpine:init', () => {
     
     
     }));
+
+
+    Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
+        listeners: [],
+        childElementOpen: false,
+        filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
+        paginationCurrentCount: wire.entangle('paginationCurrentCount'),
+        paginationTotalItemCount: wire.entangle('paginationTotalItemCount'),
+        paginationCurrentItems: wire.entangle('paginationCurrentItems'),
+        selectedItems: wire.entangle('selected'),
+        selectAllStatus: wire.entangle('selectAll'),
+        delaySelectAll: wire.entangle('delaySelectAll'),
+        hideBulkActionsWhenEmpty: wire.entangle('hideBulkActionsWhenEmpty'),
+        toggleSelectAll() {
+            if (!showBulkActionsAlpine) {
+                return;
+            }
+
+            if (this.paginationTotalItemCount === this.selectedItems.length) {
+                this.clearSelected();
+                this.selectAllStatus = false;
+            } else {
+                if (this.delaySelectAll)
+                {   
+                    this.setAllItemsSelected();
+                }
+                else
+                {
+                    this.setAllSelected();
+                }
+            }
+        },
+        setAllItemsSelected() {
+            if (!showBulkActionsAlpine) {
+                return;
+            }
+            this.selectAllStatus = true;
+            this.selectAllOnPage();
+        },
+        setAllSelected() {
+            if (!showBulkActionsAlpine) {
+                return;
+            }
+            if (this.delaySelectAll)
+            {   
+                this.selectAllStatus = true;
+                this.selectAllOnPage();
+            }
+            else
+            {
+                wire.setAllSelected();
+            }
+        },
+        clearSelected() {
+            if (!showBulkActionsAlpine) {
+                return;
+            }
+            this.selectAllStatus = false;
+            wire.clearSelected();
+        },
+        selectAllOnPage() {
+            if (!showBulkActionsAlpine) {
+                return;
+            }
+
+            let tempSelectedItems = this.selectedItems;
+            const iterator = this.paginationCurrentItems.values();
+            for (const value of iterator) {
+                tempSelectedItems.push(value.toString());
+            }
+            this.selectedItems = [...new Set(tempSelectedItems)];
+        },
+        destroy() {
+            this.listeners.forEach((listener) => {
+                listener();
+            });
+        }
+    }));
+
+    Alpine.data('reorderFunction', (wire, tableID, primaryKeyName) => ({
+        dragging: false,
+        reorderEnabled: false,
+        sourceID: '',
+        targetID: '',
+        evenRowClasses: '',
+        oddRowClasses: '',
+        currentlyHighlightedElement: '',
+        evenRowClassArray: {},
+        oddRowClassArray: {},
+        evenNotInOdd: {},
+        oddNotInEven: {},
+        orderedRows: [],
+        defaultReorderColumn: wire.get('defaultReorderColumn'),
+        reorderStatus: wire.get('reorderStatus'),
+        currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
+        hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
+        reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
+        dragStart(event) {
+            this.$nextTick(() => { this.setupEvenOddClasses() });
+            this.sourceID = event.target.id;
+            event.dataTransfer.effectAllowed = 'move';
+            event.dataTransfer.setData('text/plain', event.target.id);
+            event.target.classList.add("laravel-livewire-tables-dragging");
+        },
+        dragOverEvent(event) {
+            if (typeof this.currentlyHighlightedElement == 'object') {
+                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
+            }
+            let target = event.target.closest('tr');
+            this.currentlyHighlightedElement = target;
+ 
+            if (event.offsetY < (target.getBoundingClientRect().height / 2)) {
+                target.classList.add('laravel-livewire-tables-highlight-top');
+                target.classList.remove('laravel-livewire-tables-highlight-bottom');
+            }
+            else {
+                target.classList.remove('laravel-livewire-tables-highlight-top');
+                target.classList.add('laravel-livewire-tables-highlight-bottom');
+            }
+        },
+        dragLeaveEvent(event) {
+            event.target.closest('tr').classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
+        },
+        dropEvent(event) {
+            if (typeof this.currentlyHighlightedElement == 'object') {
+                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
+            }
+ 
+            let target = event.target.closest('tr');
+            let parent = event.target.closest('tr').parentNode;
+            let element = document.getElementById(this.sourceID).closest('tr');
+            element.classList.remove("laravel-livewire-table-dragging");
+            let originalPosition = element.rowIndex;
+            let newPosition = target.rowIndex;
+            let table = document.getElementById(tableID);
+            let loopStart = originalPosition;
+            if (event.offsetY > (target.getBoundingClientRect().height / 2)) {
+                parent.insertBefore(element, target.nextSibling);
+            }
+            else {
+                parent.insertBefore(element, target);
+            }
+            if (newPosition < originalPosition) {
+                loopStart = newPosition;
+            }
+            let nextLoop = 'even';
+            for (let i = 1, row; row = table.rows[i]; i++) {
+                if (!row.classList.contains('hidden') && !row.classList.contains('md:hidden') ) {
+                    if (nextLoop === 'even') {
+                        row.classList.remove(...this.oddNotInEven);
+                        row.classList.add(...this.evenNotInOdd);
+                        nextLoop = 'odd';
+                    }
+                    else {
+                        row.classList.remove(...this.evenNotInOdd);
+                        row.classList.add(...this.oddNotInEven);
+                        nextLoop = 'even';
+                    }
+                }
+            }
+        },
+        reorderToggle() {
+            this.$nextTick(() => { this.setupEvenOddClasses() });
+            if (this.currentlyReorderingStatus) {
+                wire.disableReordering();
+ 
+            }
+            else {
+                this.setupEvenOddClasses();
+                if (this.hideReorderColumnUnlessReorderingStatus) {
+                    this.reorderDisplayColumn = true;
+                }
+                wire.enableReordering();
+ 
+            }
+        },
+        cancelReorder() {
+            if (this.hideReorderColumnUnlessReorderingStatus) {
+                this.reorderDisplayColumn = false;
+            }
+            wire.disableReordering();
+ 
+        },
+        updateOrderedItems() {
+            let table = document.getElementById(tableID);
+            let orderedRows = [];
+            for (let i = 1, row; row = table.rows[i]; i++) {
+            orderedRows.push({ [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
+            }
+            wire.storeReorder(orderedRows);
+        },
+        setupEvenOddClasses() {
+            if (this.evenNotInOdd.length === undefined || this.evenNotInOdd.length == 0 || this.oddNotInEven.length === undefined || this.oddNotInEven.length == 0)
+            {
+                let tbody = document.getElementById(tableID).getElementsByTagName('tbody')[0];
+                let evenRowClassArray = [];
+                let oddRowClassArray = [];
+ 
+                if (tbody.rows[0] !== undefined && tbody.rows[1] !== undefined) {
+                    evenRowClassArray = Array.from(tbody.rows[0].classList);
+                    oddRowClassArray = Array.from(tbody.rows[1].classList);
+                    this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
+                    this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
+
+                    evenRowClassArray = []
+                    oddRowClassArray = []
+                }
+            }
+        },
+        init() {
+        }
+    }));
+
 });
