@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.6] - 2024-08-15
+### New Features
+- Column Features - deselectedIf/selectedIf by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1846
+- Add setTrimSearchStringEnabled/setTrimSearchStringDisabled by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1843
+
+### Tweaks
+- Remove Component from Column, move getRows into ComputedProperty by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1838
+- Clean up filter generic data by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1837
+
 ## [v3.4.5] - 2024-08-10
 ### Bug Fixes
 - Fix sort queryString bug by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1835
