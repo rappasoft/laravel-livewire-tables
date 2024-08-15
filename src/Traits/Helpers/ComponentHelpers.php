@@ -202,4 +202,9 @@ trait ComponentHelpers
     {
         return $this->extraWithAvgs;
     }
+
+    public function getComputedPropertiesStatus(): bool
+    {
+        return $this->useComputedProperties ?? false;
+    }
 }

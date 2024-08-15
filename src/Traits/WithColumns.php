@@ -79,8 +79,11 @@ trait WithColumns
      */
     public function renderingWithColumns(\Illuminate\View\View $view, array $data = []): void
     {
-        $view = $view->with([
-            'columns' => $this->getColumns(),
-        ]);
+        if (!$this->getComputedPropertiesStatus())
+        {
+            $view->with([
+                'columns' => $this->getColumns(),
+            ]);
+        }
     }
 }
