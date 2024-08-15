@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Livewire\Attributes\Computed;
 
 trait ColumnSelectHelpers
 {
