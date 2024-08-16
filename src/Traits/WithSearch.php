@@ -14,11 +14,11 @@ trait WithSearch
 
     public string $search = '';
 
-    public bool $searchStatus = true;
+    protected ?string $searchPlaceholder = null;
 
-    public bool $searchVisibilityStatus = true;
+    protected bool $searchVisibilityStatus = true;
 
-    public ?string $searchPlaceholder = null;
+    protected bool $searchStatus = true;
 
     protected ?bool $searchFilterBlur = null;
 
