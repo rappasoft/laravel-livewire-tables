@@ -1,6 +1,6 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
-@if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedVisibleFiltersForPills())
+@if ($this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
     <div>
         <div @class([
             'mb-4 px-4 md:p-0' => $isTailwind,
@@ -13,8 +13,8 @@
                 @lang('Applied Filters'):
             </small>
 
-            @foreach($component->getAppliedFiltersWithValues() as $filterSelectName => $value)
-                @php($filter = $component->getFilterByKey($filterSelectName))
+            @foreach($this->getAppliedFiltersWithValues() as $filterSelectName => $value)
+                @php($filter = $this->getFilterByKey($filterSelectName))
 
                 @continue(is_null($filter))
                 @continue($filter->isHiddenFromPills())

@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnHelpers;
@@ -23,10 +24,6 @@ trait WithColumns
     protected ?bool $shouldMobileCollapse;
 
     protected ?bool $shouldTabletCollapse;
-
-    public int $defaultVisibleColumnCount;
-
-    public int $visibleColumnCount;
 
     /**
      * Sets up Columns
@@ -79,8 +76,10 @@ trait WithColumns
      */
     public function renderingWithColumns(\Illuminate\View\View $view, array $data = []): void
     {
-        $view = $view->with([
-            'columns' => $this->getColumns(),
-        ]);
+        if (! $this->getComputedPropertiesStatus()) {
+            $view->with([
+                'columns' => $this->getColumns(),
+            ]);
+        }
     }
 }

@@ -63,10 +63,36 @@ trait HasSecondaryHeader
         return $callback instanceof Filter;
     }
 
-    /**
-     * @param  mixed  $rows
-     */
-    public function getSecondaryHeaderContents($rows): string|HtmlString
+    public function getSecondaryHeaderContents(mixed $rows, array $filterGenericData): string|HtmlString
+    {
+        $value = null;
+        $callback = $this->getSecondaryHeaderCallback();
+
+        if ($this->hasSecondaryHeaderCallback()) {
+            if (is_callable($callback)) {
+                $value = call_user_func($callback, $rows);
+                if ($this->isHtml()) {
+                    return new HtmlString($value);
+                }
+            } elseif ($callback instanceof Filter) {
+                return $callback->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
+            } elseif (is_string($callback)) {
+                $filter = $this->getComponent()->getFilterByKey($callback);
+
+                if ($filter instanceof Filter) {
+                    return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
+                } else {
+                    throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
+                }
+            } else {
+                throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
+            }
+        }
+
+        return $value;
+    }
+
+    public function getNewSecondaryHeaderContents(mixed $rows): string|HtmlString
     {
         $value = null;
         $callback = $this->getSecondaryHeaderCallback();

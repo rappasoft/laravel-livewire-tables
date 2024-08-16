@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
@@ -14,23 +15,24 @@ trait WithSearch
 
     public string $search = '';
 
+    #[Locked]
     public bool $searchStatus = true;
 
-    public bool $searchVisibilityStatus = true;
+    protected ?string $searchPlaceholder = null;
 
-    public ?bool $searchFilterBlur = null;
+    protected bool $searchVisibilityStatus = true;
 
-    public ?int $searchFilterDebounce = null;
+    protected ?bool $searchFilterBlur = null;
 
-    public ?bool $searchFilterDefer = null;
+    protected ?int $searchFilterDebounce = null;
 
-    public ?bool $searchFilterLazy = null;
+    protected ?bool $searchFilterDefer = null;
 
-    public ?bool $searchFilterLive = null;
+    protected ?bool $searchFilterLazy = null;
 
-    public ?int $searchFilterThrottle = null;
+    protected ?bool $searchFilterLive = null;
 
-    public ?string $searchPlaceholder = null;
+    protected ?int $searchFilterThrottle = null;
 
     protected array $searchFieldAttributes = [];
 

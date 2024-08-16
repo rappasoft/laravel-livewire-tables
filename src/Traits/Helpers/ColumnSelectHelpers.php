@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -85,11 +86,7 @@ trait ColumnSelectHelpers
             ->values();
     }
 
-    public function getCurrentlySelectedCols(): void
-    {
-        $this->defaultVisibleColumnCount = count($this->getDefaultVisibleColumns());
-        $this->visibleColumnCount = count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns()));
-    }
+    public function getCurrentlySelectedCols(): void {}
 
     public function getUnSelectableColumns(): Collection
     {
@@ -141,6 +138,16 @@ trait ColumnSelectHelpers
     public function getAllColumnsAreSelected(): bool
     {
         return $this->getSelectableSelectedColumns()->count() === $this->getSelectableColumns()->count();
+    }
+
+    #[Computed]
+    public function selectedVisibleColumns(): array
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
+            ->values()
+            ->toArray();
     }
 
     public function getVisibleColumns(): array
@@ -198,8 +205,6 @@ trait ColumnSelectHelpers
         }
         $this->setupFirstColumnSelectRun();
 
-        $this->defaultVisibleColumnCount = count($this->selectableColumns);
-
         // If remember selection is off, then clear the session
         if ($this->rememberColumnSelectionIsDisabled()) {
             $this->forgetColumnSelectSession();
@@ -217,7 +222,6 @@ trait ColumnSelectHelpers
                 session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
             }
         }
-        $this->visibleColumnCount = count($this->selectedColumns);
     }
 
     protected function setupFirstColumnSelectRun(): void

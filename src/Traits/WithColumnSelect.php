@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
@@ -12,6 +13,7 @@ trait WithColumnSelect
     use ColumnSelectConfiguration,
         ColumnSelectHelpers;
 
+    #[Locked]
     public array $columnSelectColumns = ['setupRun' => false, 'selected' => [], 'deselected' => [], 'defaultdeselected' => []];
 
     public array $selectedColumns = [];
@@ -22,6 +24,12 @@ trait WithColumnSelect
 
     public array $defaultDeselectedColumns = [];
 
+    #[Locked]
+    public bool $excludeDeselectedColumnsFromQuery = false;
+
+    #[Locked]
+    public bool $defaultDeselectedColumnsSetup = false;
+
     protected bool $columnSelectStatus = true;
 
     protected bool $rememberColumnSelectionStatus = true;
@@ -29,10 +37,6 @@ trait WithColumnSelect
     protected bool $columnSelectHiddenOnMobile = false;
 
     protected bool $columnSelectHiddenOnTablet = false;
-
-    public bool $excludeDeselectedColumnsFromQuery = false;
-
-    public bool $defaultDeselectedColumnsSetup = false;
 
     protected function queryStringWithColumnSelect(): array
     {
@@ -61,8 +65,10 @@ trait WithColumnSelect
 
     public function renderingWithColumnSelect(\Illuminate\View\View $view, array $data = []): void
     {
-        $view = $view->with([
-            'selectedVisibleColumns' => $this->getVisibleColumns(),
-        ]);
+        if (! $this->getComputedPropertiesStatus()) {
+            $view->with([
+                'selectedVisibleColumns' => $this->getVisibleColumns(),
+            ]);
+        }
     }
 }

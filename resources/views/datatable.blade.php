@@ -35,13 +35,13 @@
                     <x-livewire-tables::table.th.collapsed-columns />
                 @endif
 
-                @foreach($selectedVisibleColumns as $index => $column)
+                @foreach($this->selectedVisibleColumns as $index => $column)
                     <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :column="$column" :index="$index" />
                 @endforeach
             </x-slot>
 
             @if($this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader())
-                <x-livewire-tables::table.tr.secondary-header :$selectedVisibleColumns  />
+                <x-livewire-tables::table.tr.secondary-header  />
             @endif
             @if($this->hasDisplayLoadingPlaceholder())
                 <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
@@ -64,7 +64,7 @@
                         <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$primaryKey} }}" :rowIndex="$rowIndex" />
                     @endif
 
-                    @foreach($selectedVisibleColumns as $colIndex => $column)
+                    @foreach($this->selectedVisibleColumns as $colIndex => $column)
                         <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$primaryKey} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
                             @if($column->isHtml())                            
                                 {!! $column->renderContents($row) !!}
@@ -85,9 +85,9 @@
             @if ($this->footerIsEnabled() && $this->hasColumnsWithFooter())
                 <x-slot name="tfoot">
                     @if ($this->useHeaderAsFooterIsEnabled())
-                        <x-livewire-tables::table.tr.secondary-header  :$selectedVisibleColumns />
+                        <x-livewire-tables::table.tr.secondary-header  />
                     @else
-                        <x-livewire-tables::table.tr.footer  :$selectedVisibleColumns />
+                        <x-livewire-tables::table.tr.footer  />
                     @endif
                 </x-slot>
             @endif

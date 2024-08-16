@@ -2,13 +2,13 @@
 @props(['column', 'colIndex'])
 
 @php
-    $customAttributes = $component->getTdAttributes($column, $row, $colIndex, $rowIndex)
+    $customAttributes = $this->getTdAttributes($column, $row, $colIndex, $rowIndex)
 @endphp
 
 <td wire:key="{{ $tableName . '-table-td-'.$row->{$primaryKey}.'-'.$column->getSlug() }}"
     @if ($column->isClickable())
-        @if($component->getTableRowUrlTarget($row) === "navigate") wire:navigate href="{{ $component->getTableRowUrl($row) }}"
-        @else onclick="window.open('{{ $component->getTableRowUrl($row) }}', '{{ $component->getTableRowUrlTarget($row) ?? '_self' }}')"
+        @if($this->getTableRowUrlTarget($row) === "navigate") wire:navigate href="{{ $this->getTableRowUrl($row) }}"
+        @else onclick="window.open('{{ $this->getTableRowUrl($row) }}', '{{ $this->getTableRowUrlTarget($row) ?? '_self' }}')"
         @endif
     @endif
         {{

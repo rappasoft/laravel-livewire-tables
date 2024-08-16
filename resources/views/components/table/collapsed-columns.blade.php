@@ -2,25 +2,25 @@
 @props(['row', 'rowIndex'])
 
 @php
-    $customAttributes = $component->getTrAttributes($row, $rowIndex);
+    $customAttributes = $this->getTrAttributes($row, $rowIndex);
 @endphp
 
-@if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
+@if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
     @php
-        $colspan = $component->getColspanCount();
+        $colspan = $this->getColspanCount();
         $columns = collect();
 
-        if($component->shouldCollapseAlways())
+        if($this->shouldCollapseAlways())
         {
-            $columns->push($component->getCollapsedAlwaysColumns());
+            $columns->push($this->getCollapsedAlwaysColumns());
         }
-        if ($component->shouldCollapseOnMobile() && $component->shouldCollapseOnTablet()) {
-            $columns->push($component->getCollapsedMobileColumns());
-            $columns->push($component->getCollapsedTabletColumns());
-        } elseif ($component->shouldCollapseOnTablet() && ! $component->shouldCollapseOnMobile()) {
-            $columns->push($component->getCollapsedTabletColumns());
-        } elseif ($component->shouldCollapseOnMobile() && ! $component->shouldCollapseOnTablet()) {
-            $columns->push($component->getCollapsedMobileColumns());
+        if ($this->shouldCollapseOnMobile() && $this->shouldCollapseOnTablet()) {
+            $columns->push($this->getCollapsedMobileColumns());
+            $columns->push($this->getCollapsedTabletColumns());
+        } elseif ($this->shouldCollapseOnTablet() && ! $this->shouldCollapseOnMobile()) {
+            $columns->push($this->getCollapsedTabletColumns());
+        } elseif ($this->shouldCollapseOnMobile() && ! $this->shouldCollapseOnTablet()) {
+            $columns->push($this->getCollapsedMobileColumns());
         }
 
         $columns = $columns->collapse();

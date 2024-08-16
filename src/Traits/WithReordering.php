@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ReorderingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ReorderingHelpers;
 
@@ -18,13 +19,13 @@ trait WithReordering
 
     public bool $reorderDisplayColumn = false;
 
-    public string $reorderMethod = 'reorder';
-
     public string $defaultReorderColumn = 'sort';
 
-    public string $defaultReorderDirection = 'asc';
-
     public array $orderedItems = [];
+
+    protected string $reorderMethod = 'reorder';
+
+    protected string $defaultReorderDirection = 'asc';
 
     protected array $reorderThAttributes = ['default' => true];
 

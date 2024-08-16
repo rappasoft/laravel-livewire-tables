@@ -36,9 +36,9 @@ trait WithBulkActions
 
     protected bool $alwaysHideBulkActionsDropdownOption = false;
 
-    public bool $clearSelectedOnSearch = true;
+    protected bool $clearSelectedOnSearch = true;
 
-    public bool $clearSelectedOnFilter = true;
+    protected bool $clearSelectedOnFilter = true;
 
     protected array $bulkActionsButtonAttributes = ['default-colors' => true, 'default-styling' => true];
 

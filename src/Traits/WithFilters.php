@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
 
@@ -12,25 +13,31 @@ trait WithFilters
     use FilterConfiguration,
         FilterHelpers;
 
+    #[Locked]
     public bool $filtersStatus = true;
 
+    #[Locked]
     public bool $filtersVisibilityStatus = true;
 
+    #[Locked]
     public bool $filterPillsStatus = true;
 
+    #[Locked]
     public bool $filterSlideDownDefaultVisible = false;
 
+    #[Locked]
     public string $filterLayout = 'popover';
 
+    #[Locked]
     public int $filterCount;
-
-    protected ?Collection $filterCollection;
 
     public array $filterComponents = [];
 
     public array $appliedFilters = [];
 
     public array $filterGenericData = [];
+
+    protected ?Collection $filterCollection;
 
     public function filters(): array
     {

@@ -1,10 +1,10 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap'])
 
-@if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
+@if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
     @php
-        $colspan = $component->getColspanCount();
-        $selectAll = $component->selectAllIsEnabled();
-        $simplePagination = $component->isPaginationMethod('simple');
+        $colspan = $this->getColspanCount();
+        $selectAll = $this->selectAllIsEnabled();
+        $simplePagination = $this->isPaginationMethod('simple');
     @endphp
 
     @if ($isTailwind)

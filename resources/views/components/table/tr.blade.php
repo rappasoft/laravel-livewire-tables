@@ -2,7 +2,7 @@
 @props(['row', 'rowIndex'])
 
 @php
-    $customAttributes = $component->getTrAttributes($row, $rowIndex);
+    $customAttributes = $this->getTrAttributes($row, $rowIndex);
 @endphp
 
 <tr
@@ -11,7 +11,7 @@
     x-on:drop.prevent="currentlyReorderingStatus && dropEvent(event)"
     x-on:dragover.prevent.throttle.500ms="currentlyReorderingStatus && dragOverEvent(event)"
     x-on:dragleave.prevent.throttle.500ms="currentlyReorderingStatus && dragLeaveEvent(event)"
-    @if($component->hasDisplayLoadingPlaceholder()) 
+    @if($this->hasDisplayLoadingPlaceholder()) 
     wire:loading.remove
     @else
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
@@ -24,7 +24,7 @@
         $attributes->merge($customAttributes)
                 ->class(['bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
                 ->class(['bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
-                ->class(['cursor-pointer' => ($isTailwind && $component->hasTableRowUrl() && ($customAttributes['default'] ?? true))])
+                ->class(['cursor-pointer' => ($isTailwind && $this->hasTableRowUrl() && ($customAttributes['default'] ?? true))])
                 ->class(['bg-light rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
                 ->class(['bg-white rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
                 ->except(['default'])
