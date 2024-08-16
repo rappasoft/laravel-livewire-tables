@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Computed;
 
 trait ComponentHelpers
 {
@@ -29,6 +30,7 @@ trait ComponentHelpers
     /**
      * @return mixed
      */
+    #[Computed]
     public function getPrimaryKey()
     {
         return $this->primaryKey;
@@ -69,21 +71,25 @@ trait ComponentHelpers
         return $this->theme ?? config('livewire-tables.theme', 'tailwind');
     }
 
+    #[Computed]
     public function isTailwind(): bool
     {
         return $this->getTheme() === 'tailwind';
     }
 
+    #[Computed]
     public function isBootstrap(): bool
     {
         return $this->getTheme() === 'bootstrap-4' || $this->getTheme() === 'bootstrap-5';
     }
 
+    #[Computed]
     public function isBootstrap4(): bool
     {
         return $this->getTheme() === 'bootstrap-4';
     }
 
+    #[Computed]
     public function isBootstrap5(): bool
     {
         return $this->getTheme() === 'bootstrap-5';
@@ -117,9 +123,16 @@ trait ComponentHelpers
         return $this->tableName = $name;
     }
 
+    #[Computed]
     public function getTableName(): string
     {
         return $this->tableName;
+    }
+
+    #[Computed]
+    public function getTableId(): string
+    {
+        return $this->getTableAttributes()['id'];
     }
 
     public function isTableNamed(string $name): bool
@@ -148,5 +161,50 @@ trait ComponentHelpers
     public function getAdditionalSelects(): array
     {
         return $this->additionalSelects;
+    }
+
+    public function hasExtraWiths(): bool
+    {
+        return ! empty($this->extraWiths);
+    }
+
+    public function getExtraWiths(): array
+    {
+        return $this->extraWiths;
+    }
+
+    public function hasExtraWithCounts(): bool
+    {
+        return ! empty($this->extraWithCounts);
+    }
+
+    public function getExtraWithCounts(): array
+    {
+        return $this->extraWithCounts;
+    }
+
+    public function hasExtraWithSums(): bool
+    {
+        return ! empty($this->extraWithSums);
+    }
+
+    public function getExtraWithSums(): array
+    {
+        return $this->extraWithSums;
+    }
+
+    public function hasExtraWithAvgs(): bool
+    {
+        return ! empty($this->extraWithAvgs);
+    }
+
+    public function getExtraWithAvgs(): array
+    {
+        return $this->extraWithAvgs;
+    }
+
+    public function getComputedPropertiesStatus(): bool
+    {
+        return $this->useComputedProperties ?? false;
     }
 }

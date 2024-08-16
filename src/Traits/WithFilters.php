@@ -3,6 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
 
@@ -11,25 +13,31 @@ trait WithFilters
     use FilterConfiguration,
         FilterHelpers;
 
+    #[Locked]
     public bool $filtersStatus = true;
 
+    #[Locked]
     public bool $filtersVisibilityStatus = true;
 
+    #[Locked]
     public bool $filterPillsStatus = true;
 
+    #[Locked]
     public bool $filterSlideDownDefaultVisible = false;
 
+    #[Locked]
     public string $filterLayout = 'popover';
 
+    #[Locked]
     public int $filterCount;
-
-    protected $filterCollection;
 
     public array $filterComponents = [];
 
     public array $appliedFilters = [];
 
     public array $filterGenericData = [];
+
+    protected ?Collection $filterCollection;
 
     public function filters(): array
     {
@@ -60,6 +68,9 @@ trait WithFilters
                             continue;
                         }
 
+                        $this->callHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);
+                        $this->callTraitHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);
+
                         ($filter->getFilterCallback())($this->getBuilder(), $value);
                     }
                 }
@@ -73,15 +84,24 @@ trait WithFilters
     {
         $this->resetComputedPage();
 
-        // Clear bulk actions on filter
-        $this->clearSelected();
-        $this->setSelectAllDisabled();
+        // Clear bulk actions on filter - if enabled
+        if ($this->getClearSelectedOnFilter()) {
+            $this->clearSelected();
+            $this->setSelectAllDisabled();
+        }
 
         // Clear filters on empty value
         $filter = $this->getFilterByKey($filterName);
 
         if ($filter && $filter->isEmpty($value)) {
+            $this->callHook('filterRemoved', ['filter' => $filter->getKey()]);
+            $this->callTraitHook('filterRemoved', ['filter' => $filter->getKey()]);
+
             $this->resetFilter($filterName);
+        } elseif ($filter) {
+            $this->callHook('filterUpdated', ['filter' => $filter->getKey(), 'value' => $value]);
+            $this->callTraitHook('filterUpdated', ['filter' => $filter->getKey(), 'value' => $value]);
+
         }
     }
 }

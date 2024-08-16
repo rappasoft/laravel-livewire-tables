@@ -11,10 +11,10 @@ trait WithQueryString
     use QueryStringConfiguration,
         QueryStringHelpers;
 
-    protected ?string $queryStringAlias;
-
     #[Locked]
     public ?bool $queryStringStatus;
+
+    protected ?string $queryStringAlias;
 
     /**
      * Set the custom query string array for this specific table

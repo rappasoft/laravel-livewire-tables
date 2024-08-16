@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Livewire\Attributes\Locked;
 use Livewire\WithPagination as LivewirePagination;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\PaginationConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\PaginationHelpers;
@@ -16,18 +17,20 @@ trait WithPagination
 
     public int $perPage = 10;
 
+    #[Locked]
     public array $perPageAccepted = [10, 25, 50];
 
+    #[Locked]
     public string $paginationTheme = 'tailwind';
 
+    #[Locked]
     public bool $paginationStatus = true;
 
+    #[Locked]
     public bool $paginationVisibilityStatus = true;
 
+    #[Locked]
     public bool $perPageVisibilityStatus = true;
-
-    // standard, simple, cursor
-    protected string $paginationMethod = 'standard';
 
     public array $paginationCurrentItems = [];
 
@@ -37,9 +40,14 @@ trait WithPagination
 
     public array $numberOfPaginatorsRendered = [];
 
+    // standard, simple, cursor
+    protected string $paginationMethod = 'standard';
+
     protected bool $shouldShowPaginationDetails = true;
 
     protected array $perPageFieldAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
+
+    protected bool $shouldRetrieveTotalItemCount = true;
 
     public function mountWithPagination(): void
     {
@@ -51,7 +59,7 @@ trait WithPagination
     }
 
     // TODO: Test
-    public function updatedPerPage($value): void
+    public function updatedPerPage(int|string $value): void
     {
         if (! in_array((int) $value, $this->getPerPageAccepted(), false)) {
             $value = $this->getPerPageAccepted()[0] ?? 10;

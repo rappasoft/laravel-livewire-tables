@@ -5,17 +5,19 @@ namespace Rappasoft\LaravelLivewireTables\Events;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ColumnsSelected
+class ColumnsSelected extends LaravelLivewireTablesEvent
 {
     use Dispatchable, SerializesModels;
 
     public array $columns;
 
-    public string $key;
-
-    public function __construct(string $key, array $columns)
+    public function __construct(string $tableName, string $key, array $columns = [])
     {
-        $this->key = $key;
+        $this->setTableForEvent($tableName)
+            ->setKeyForEvent($key)
+            ->setValueForEvent($columns)
+            ->setUserForEvent();
+
         $this->columns = $columns;
     }
 }

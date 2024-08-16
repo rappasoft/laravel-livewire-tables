@@ -135,4 +135,9 @@ trait SearchHelpers
     {
         return count($this->searchFieldAttributes) ? $this->searchFieldAttributes : ['default' => true];
     }
+
+    public function shouldTrimSearchString(): bool
+    {
+        return $this->trimSearchString ?? false;
+    }
 }

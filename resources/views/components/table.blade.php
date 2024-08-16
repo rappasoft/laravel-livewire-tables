@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware(['component', 'tableName','isTailwind','isBootstrap'])
 
 @php
     $customAttributes = [
@@ -9,7 +9,7 @@
     ];
 @endphp
 
-@if ($component->isTailwind())
+@if ($isTailwind)
     <div
         wire:key="{{ $tableName }}-twrap"
         {{ $attributes->merge($customAttributes['wrapper'])
@@ -49,7 +49,7 @@
             @endif
         </table>
     </div>
-@elseif ($component->isBootstrap())
+@elseif ($isBootstrap)
     <div wire:key="{{ $tableName }}-twrap"
         {{ $attributes->merge($customAttributes['wrapper'])
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])

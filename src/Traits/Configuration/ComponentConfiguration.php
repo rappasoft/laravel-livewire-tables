@@ -96,4 +96,74 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    public function setExtraWiths(array $extraWiths): self
+    {
+        $this->extraWiths = $extraWiths;
+
+        return $this;
+    }
+
+    public function addExtraWith(string $extraWith): self
+    {
+        $this->extraWiths[] = $extraWith;
+
+        return $this;
+    }
+
+    public function addExtraWiths(array $extraWiths): self
+    {
+        $this->extraWiths = [...$this->extraWiths, ...$extraWiths];
+
+        return $this;
+    }
+
+    public function setExtraWithCounts(array $extraWithCounts): self
+    {
+        $this->extraWithCounts = $extraWithCounts;
+
+        return $this;
+    }
+
+    public function addExtraWithCount(string $extraWithCount): self
+    {
+        $this->extraWithCounts[] = $extraWithCount;
+
+        return $this;
+    }
+
+    public function addExtraWithCounts(array $extraWithCounts): self
+    {
+        $this->extraWithCounts = [...$this->extraWithCounts, ...$extraWithCounts];
+
+        return $this;
+    }
+
+    public function addExtraWithSum(string $relationship, string $column): self
+    {
+        $this->extraWithSums[] = ['table' => $relationship, 'field' => $column];
+
+        return $this;
+    }
+
+    public function addExtraWithAvg(string $relationship, string $column): self
+    {
+        $this->extraWithAvgs[] = ['table' => $relationship, 'field' => $column];
+
+        return $this;
+    }
+
+    public function useComputedPropertiesEnabled(): self
+    {
+        $this->useComputedProperties = true;
+
+        return $this;
+    }
+
+    public function useComputedPropertiesDisabled(): self
+    {
+        $this->useComputedProperties = false;
+
+        return $this;
+    }
 }

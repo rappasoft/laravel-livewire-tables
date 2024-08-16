@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Livewire\Features\SupportConsoleCommands\Commands\ComponentParser;
@@ -62,7 +63,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
             $this->argument('name')
         );
 
-        $livewireMakeCommand = new LivewireMakeCommand();
+        $livewireMakeCommand = new LivewireMakeCommand;
 
         if ($livewireMakeCommand->isReservedClassName($name = $this->parser->className())) {
             $this->line("<fg=red;options=bold>Class is reserved:</> {$name}");
@@ -97,10 +98,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
         return $classPath;
     }
 
-    /**
-     * @param  mixed  $path
-     */
-    protected function ensureDirectoryExists($path): void
+    protected function ensureDirectoryExists(string $path): void
     {
         if (! File::isDirectory(dirname($path))) {
             File::makeDirectory(dirname($path), 0777, true, true);
@@ -147,7 +145,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
     /*
     * Credits to Harm Smits: https://stackoverflow.com/a/67099502/2263114
     */
-    private function getClassesList($file): array
+    private function getClassesList(string $file): array
     {
         $classes = [];
         $namespace = '';
@@ -186,7 +184,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
      */
     private function generateColumns(string $modelName): string
     {
-        $model = new $modelName();
+        $model = new $modelName;
 
         if ($model instanceof Model === false) {
             throw new \Exception('Invalid model given.');
@@ -215,7 +213,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
         return $columns;
     }
 
-    protected function possibleModels()
+    protected function possibleModels(): array
     {
         $modelPath = is_dir(app_path('Models')) ? app_path('Models') : app_path();
 
@@ -226,7 +224,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
             ->all();
     }
 
-    protected function promptForMissingArguments(InputInterface $input, OutputInterface $output)
+    protected function promptForMissingArguments(InputInterface $input, OutputInterface $output): void
     {
 
         if ($this->didReceiveOptions($input)) {

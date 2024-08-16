@@ -90,8 +90,8 @@ final class MultiSelectDropdownFilterTest extends TestCase
     public function test_can_get_filter_pill_value(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
-        $this->assertSame($optionsArray[1], $filter->getFilterPillValue(['1']));
-        $this->assertSame($optionsArray[1].', '.$optionsArray[2], $filter->getFilterPillValue(['1', '2']));
+        $this->assertSame($optionsArray[1], $filter->getFilterPillValue(['1'])[0]);
+        $this->assertSame([$optionsArray[1], $optionsArray[2]], $filter->getFilterPillValue(['1', '2']));
     }
 
     public function test_can_check_if_filter_has_configs(): void
@@ -258,5 +258,14 @@ final class MultiSelectDropdownFilterTest extends TestCase
         $this->assertSame('live.debounce.500ms', $filter->getWireableMethod());
         $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
+    }
+
+    #[Depends('test_array_setup')]
+    public function test_can_set_separator(array $optionsArray): void
+    {
+        $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
+        $this->assertSame(', ', $filter->getPillsSeparator());
+        $filter->setPillsSeparator('<br />');
+        $this->assertSame('<br />', $filter->getPillsSeparator());
     }
 }

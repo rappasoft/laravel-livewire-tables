@@ -10,6 +10,7 @@ use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -27,6 +28,7 @@ trait WithData
     /**
      * Retrieves the rows for the executed query
      */
+    #[Computed]
     public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
         // Setup the Base Query
@@ -56,6 +58,29 @@ trait WithData
 
         $this->setBuilder($this->applyFilters());
 
+        $builder = $this->getBuilder();
+
+        if ($this->hasExtraWiths()) {
+            $builder->with($this->getExtraWiths());
+        }
+
+        if ($this->hasExtraWithSums()) {
+            foreach ($this->getExtraWithSums() as $extraSum) {
+                $builder->withSum($extraSum['table'], $extraSum['field']);
+            }
+        }
+        if ($this->hasExtraWithAvgs()) {
+            foreach ($this->getExtraWithAvgs() as $extraAvg) {
+                $builder->withAvg($extraAvg['table'], $extraAvg['field']);
+            }
+        }
+
+        if ($this->hasExtraWithCounts()) {
+            $builder->withCount($this->getExtraWithCounts());
+        }
+
+        $this->setBuilder($builder);
+
         return $this->getBuilder();
 
     }
@@ -80,21 +105,25 @@ trait WithData
                 $this->paginationTotalItemCount = $paginatedResults->total() ?? 0;
 
                 return $paginatedResults;
-            }
+            } elseif ($this->isPaginationMethod('simple')) {
 
-            if ($this->isPaginationMethod('simple')) {
+                if ($this->getShouldRetrieveTotalItemCount()) {
+                    $this->paginationTotalItemCount = $this->getBuilder()->count();
 
-                $this->paginationTotalItemCount = $this->getBuilder()->count();
+                    return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                } else {
+                    $this->paginationTotalItemCount = -1;
 
-                return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                    return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? 10 : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                }
 
-            }
-
-            if ($this->isPaginationMethod('cursor')) {
+            } elseif ($this->isPaginationMethod('cursor')) {
 
                 $this->paginationTotalItemCount = $this->getBuilder()->count();
 
                 return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
+            } else {
+                throw new DataTableConfigurationException('Pagination method must be either simple, standard or cursor');
             }
         }
 
@@ -171,7 +200,7 @@ trait WithData
         return $this->getBuilder();
     }
 
-    protected function performJoin($table, $foreign, $other, $type = 'left'): Builder
+    protected function performJoin(string $table, string $foreign, string $other, string $type = 'left'): Builder
     {
         $joins = [];
 
@@ -245,7 +274,8 @@ trait WithData
     public function builder(): Builder
     {
         if ($this->hasModel()) {
-            return $this->getModel()::query()->with($this->getRelationships());
+            return $this->getModel()::query()
+                ->with($this->getRelationships());
         }
 
         // If model does not exist
@@ -257,9 +287,11 @@ trait WithData
      */
     public function renderingWithData(\Illuminate\View\View $view, array $data = []): void
     {
-        $view->with([
-            'filterGenericData' => $this->getFilterGenericData(),
-            'rows' => $this->getRows(),
-        ]);
+        if (! $this->getComputedPropertiesStatus()) {
+            $view->with([
+                'filterGenericData' => $this->getFilterGenericData(),
+                'rows' => $this->getRows(),
+            ]);
+        }
     }
 }

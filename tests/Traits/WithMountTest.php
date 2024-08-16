@@ -11,7 +11,7 @@ final class WithMountTest extends TestCase
     {
         $view = view('livewire-tables::datatable');
 
-        $table = new PetsTableMount();
+        $table = new PetsTableMount;
         $table->boot();
         $table->mount(102);
         $table->bootedComponentUtilities();
@@ -20,7 +20,6 @@ final class WithMountTest extends TestCase
         $table->bootedWithColumnSelect();
         $table->bootedWithSecondaryHeader();
         $table->booted();
-        $table->renderingWithData($view, []);
         $table->renderingWithPagination($view, []);
         $table->render();
         $rows = $table->getRows();
@@ -29,7 +28,7 @@ final class WithMountTest extends TestCase
         $this->assertNotSame(strtoupper($rows->first()->name), 'CHICO');
         $this->assertNotSame(strtoupper($rows->first()->name), 'CARTMAN');
 
-        $table2 = new PetsTableMount();
+        $table2 = new PetsTableMount;
         $table2->boot();
         $table2->mount(202);
         $table2->bootedComponentUtilities();
@@ -38,7 +37,6 @@ final class WithMountTest extends TestCase
         $table2->bootedWithColumnSelect();
         $table2->bootedWithSecondaryHeader();
         $table2->booted();
-        $table2->renderingWithData($view, []);
         $table2->renderingWithPagination($view, []);
         $table2->render();
         $rows2 = $table2->getRows();
@@ -46,7 +44,7 @@ final class WithMountTest extends TestCase
         $this->assertNotSame(strtoupper($rows2->first()->name), 'CARTMAN');
         $this->assertNotSame(strtoupper($rows2->first()->name), 'MAY');
 
-        $table3 = new PetsTableMount();
+        $table3 = new PetsTableMount;
         $table3->boot();
         $table3->mount();
         $table3->bootedComponentUtilities();
@@ -55,7 +53,6 @@ final class WithMountTest extends TestCase
         $table3->bootedWithColumnSelect();
         $table3->bootedWithSecondaryHeader();
         $table3->booted();
-        $table3->renderingWithData($view, []);
         $table3->renderingWithPagination($view, []);
         $table3->render();
         $rows3 = $table3->getRows();

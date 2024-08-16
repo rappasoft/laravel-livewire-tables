@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 
 trait SortingHelpers
@@ -18,6 +19,16 @@ trait SortingHelpers
 
     public function getSorts(): array
     {
+        foreach ($this->sorts as $column => $direction) {
+            if (is_array($direction)) {
+                foreach ($direction as $colAppend => $actualDirection) {
+                    $this->sorts[$column.'.'.$colAppend] = $actualDirection;
+                    unset($this->sorts[$column]);
+                }
+            }
+
+        }
+
         return $this->sorts;
     }
 
@@ -38,6 +49,7 @@ trait SortingHelpers
         return $this->sorts[$field] ?? null;
     }
 
+    #[On('setSort')]
     #[On('set-sort')]
     public function setSort(string $field, string $direction): string
     {
@@ -57,6 +69,7 @@ trait SortingHelpers
     /**
      * Clear the sorts array
      */
+    #[On('clearSorts')]
     #[On('clearsorts')]
     public function clearSorts(): void
     {
@@ -146,5 +159,11 @@ trait SortingHelpers
     public function getDefaultSortingLabelDesc(): string
     {
         return $this->defaultSortingLabelDesc;
+    }
+
+    #[Computed]
+    public function showSortPillsSection(): bool
+    {
+        return $this->sortingPillsAreEnabled() && $this->hasSorts();
     }
 }

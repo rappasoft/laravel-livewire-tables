@@ -70,7 +70,7 @@ trait FilterHelpers
     /**
      * @param  mixed  $value
      */
-    public function getFilterPillValue($value): ?string
+    public function getFilterPillValue($value): array|string|bool|null
     {
         return $value;
     }

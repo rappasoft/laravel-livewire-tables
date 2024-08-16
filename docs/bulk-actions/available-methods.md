@@ -184,58 +184,150 @@ public function configure(): void
 }
 ```
 
-## setBulkActionsThAttributes
 
-You may pass an array to this method, which allows you to pass Custom Attributes into the table header
+## setShouldAlwaysHideBulkActionsDropdownOption
 
-```php
-public function configure(): void
-{
-    $this->setBulkActionsThAttributes([
-        'class' => 'bg-red-500',
-        'default' => false
-    ]);
-}
-```
-
-## setBulkActionsThCheckboxAttributes
-
-You may pass an array to this method, which allows you to pass Custom Attributes into the Select All/None checkbox in the Table Header
+Allows hiding the Bulk Actions button & menu, regardless of whether there are any items selected, or hideBulkActionsWhenEmptyEnabled behaviour
 
 ```php
 public function configure(): void
 {
-    $this->setBulkActionsThCheckboxAttributes([
-        'class' => 'bg-blue-500',
-        'default' => false
-    ]);
+    $this->setShouldAlwaysHideBulkActionsDropdownOption(true);
 }
 ```
 
-## setBulkActionsTdAttributes
 
-You may pass an array to this method, which allows you to pass Custom Attributes into the td containing the Bulk Actions Checkbox for the row
+## setShouldAlwaysHideBulkActionsDropdownOptionEnabled
+
+Allows hiding the Bulk Actions button & menu, regardless of whether there are any items selected, or hideBulkActionsWhenEmptyEnabled behaviour
 
 ```php
 public function configure(): void
 {
-    $this->setBulkActionsTdAttributes([
-        'class' => 'bg-green-500',
-        'default' => true
-    ]);
+    $this->setShouldAlwaysHideBulkActionsDropdownOptionEnabled();
 }
 ```
 
-## setBulkActionsTdCheckboxAttributes
 
-You may pass an array to this method, which allows you to pass Custom Attributes into the Bulk Actions Checkbox for the row
+## setShouldAlwaysHideBulkActionsDropdownOptionDisabled
+
+Restores the Bulk Actions to default functionality, so it will respect the hideBulkActionsWhenEmptyEnabled behaviour
 
 ```php
 public function configure(): void
 {
-    $this->setBulkActionsTdCheckboxAttributes([
-        'class' => 'bg-green-500',
-        'default' => true
-    ]);
+    $this->setShouldAlwaysHideBulkActionsDropdownOptionDisabled();
 }
 ```
+
+
+## setClearSelectedOnSearch
+
+By default, any selected items for Bulk Actions are cleared upon searching.  You may configure this behaviour here.
+
+```php
+public function configure(): void
+{
+    $this->setClearSelectedOnSearch(true);
+}
+```
+
+
+## setClearSelectedOnSearchEnabled
+
+By default, any selected items for Bulk Actions are cleared upon searching.  This enables this behaviour.
+
+```php
+public function configure(): void
+{
+    $this->setClearSelectedOnSearchEnabled();
+}
+```
+
+
+## setClearSelectedOnSearchDisabled
+
+By default, any selected items for Bulk Actions are cleared upon searching.  This disables this behaviour, ensuring that selected items are retained after searching.
+
+```php
+public function configure(): void
+{
+    $this->setClearSelectedOnSearchDisabled();
+}
+```
+
+
+## setClearSelectedOnFilter
+
+By default, any selected items for Bulk Actions are cleared upon filtering.  You may configure this behaviour here.
+
+```php
+public function configure(): void
+{
+    $this->setClearSelectedOnFilter(true);
+}
+```
+
+
+## setClearSelectedOnFilterEnabled
+
+By default, any selected items for Bulk Actions are cleared upon filtering.  This enables this behaviour.
+
+```php
+public function configure(): void
+{
+    $this->setClearSelectedOnFilterEnabled();
+}
+```
+
+
+## setClearSelectedOnFilterDisabled
+
+By default, any selected items for Bulk Actions are cleared upon filtering.  This disables this behaviour, ensuring that selected items are retained after filtering.
+
+```php
+public function configure(): void
+{
+    $this->setClearSelectedOnFilterDisabled();
+}
+```
+
+## setDelaySelectAllEnabled
+
+By default, using the "Select All", immediately makes a call to the backend to populate the "selected" array with the primary key of all resultant rows (based on Filter/Search).  This can be slow with large result sets, but gives a good user experience with smaller results, as it allows them to "Select All" and then deselect some rows.
+
+```php
+public function configure(): void
+{
+    $this->setDelaySelectAllEnabled();
+}
+```
+
+This prevents the default behaviour from firing, which improves performance when working with very large sets of data.  With this feature enabled, the backend update will not fire, however an indication that all result rows have been selected will be passed to the backend, and the frontend will behave as if all rows are selected.
+
+
+When running your Bulk Action, having used "Select All", you may then access the array of "all rows" based on your most recent search/filter results:
+```php
+$rows = $this->getSelectedRows();
+```
+
+Once your bulk action completes, ensure that you call:
+```php
+$this->clearSelected();
+```
+
+### IMPORTANT NOTES
+#### Actions After Frontend Select All
+If you apply a filter/search/sort, then the delay select will be abandoned, and the array will be populated.  Ensure that you do not do this!
+
+#### Use of setSelectAll
+Do NOT call either of these methods, as they will prevent the correct method from working.  These two methods SELECT ALL regardless of what the frontend is doing.
+```php
+$this->setSelectAllStatus(true);
+$this->setSelectAllEnabled();
+```
+
+
+## setDelaySelectAllDisabled
+
+This is the default behaviour, see setDelaySelectEnabled for details on what enabling this does.

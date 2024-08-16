@@ -1,0 +1,31 @@
+.laravel-livewire-tables-cursor {
+    cursor:pointer;
+}
+
+.laravel-livewire-tables-btn-tiny {
+    width:0.5em;
+    height:0.5em;
+}
+
+.laravel-livewire-tables-btn-smaller {
+    width:1em;
+    height:1em;
+}
+
+.laravel-livewire-tables-btn-small
+{
+    width:1.2em;
+    height:1.2em;
+}
+
+.laravel-livewire-tables-btn-md
+{
+    width:1.3em;
+    height:1.3em;
+}
+
+.laravel-livewire-tables-btn-lg
+{
+    width:1.4em;
+    height:1.4em;
+}

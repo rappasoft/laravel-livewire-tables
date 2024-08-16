@@ -83,12 +83,14 @@ final class PaginationHelpersTest extends TestCase
 
     public function test_can_check_per_page_displayed_item_count(): void
     {
+        $rows = $this->basicTable->getRows();
         $this->assertSame(5, $this->basicTable->getPerPageDisplayedItemCount());
 
     }
 
     public function test_can_check_per_page_displayed_items(): void
     {
+        $rows = $this->basicTable->getRows();
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getPerPageDisplayedItemIds());
 
     }
@@ -139,6 +141,36 @@ final class PaginationHelpersTest extends TestCase
         );
 
         $this->assertSame(['default-styling' => false, 'default-colors' => true, 'class' => 'bg-blue-500 dark:bg-red-500'], $this->basicTable->getPerPageFieldAttributes());
+
+    }
+
+    public function test_can_toggle_total_item_count_retrieval(): void
+    {
+
+        $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
+
+        $this->basicTable->setShouldRetrieveTotalItemCountDisabled();
+
+        $this->assertFalse($this->basicTable->getShouldRetrieveTotalItemCount());
+
+        $this->basicTable->setShouldRetrieveTotalItemCountEnabled();
+
+        $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
+
+    }
+
+    public function test_can_toggle_total_item_count_retrieval_via_status(): void
+    {
+
+        $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
+
+        $this->basicTable->setShouldRetrieveTotalItemCountStatus(false);
+
+        $this->assertFalse($this->basicTable->getShouldRetrieveTotalItemCount());
+
+        $this->basicTable->setShouldRetrieveTotalItemCountStatus(true);
+
+        $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
 
     }
 }

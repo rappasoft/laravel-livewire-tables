@@ -1,9 +1,7 @@
 ---
 title: Number Filters
-weight: 8
+weight: 9
 ---
-
-## Number Filters
 
 Number filters are just HTML number inputs.
 

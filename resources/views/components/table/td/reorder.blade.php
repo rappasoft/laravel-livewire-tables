@@ -1,7 +1,7 @@
 @aware(['component', 'tableName'])
 @props(['rowID', 'rowIndex'])
 
-@php($theme = $component->getTheme())
+@php($theme = $this->getTheme())
 
 <x-livewire-tables::table.td.plain x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-tbody-reorder-{{ $rowID }}" :displayMinimisedOnReorder="false">
     <svg

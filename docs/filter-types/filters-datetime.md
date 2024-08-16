@@ -1,9 +1,7 @@
 ---
 title: DateTime Filters
-weight: 4
+weight: 5
 ---
-
-## DateTime Filters
 
 DateTime filters are HTML datetime-local elements and act the same as date filters.
 
@@ -35,6 +33,7 @@ public function filters(): array
 }
 ```
 
+## setFilterDefaultValue
 DateTime filters also support the setFilterDefaultValue() method, which must be a valid datetime in the "Y-m-dTH:i" format.  This will apply as a default until removed.
 ```php
 public function filters(): array
@@ -49,6 +48,23 @@ public function filters(): array
             ->setFilterDefaultValue('2023-07-07T06:27')
     ];
 }
+```        
+
+## setPillsLocale        
+DateTime Filters also support the setPillsLocale method, which allows you to set a locale for use in generating the Filter Pills values
+```php
+public function filters(): array
+{
+    return [
+        DateTimeFilter::make('Verified From')
+            ->setPillsLocale('fr ') // Use French localisation for the Filter Pills values
+            ->config([
+                'min' => '2020-01-01',  // Earliest Acceptable Date
+                'max' => '2021-12-31', // Latest Acceptable Date
+                'pillFormat' => 'd M Y - H:i', // Format for use in Filter Pills
+                'placeholder' => 'Enter Date', // A placeholder value
+            ])
+    ];
+}
 ```
-                    
 

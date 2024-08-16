@@ -19,17 +19,6 @@ final class ColumnConfigurationTest extends TestCase
         $this->assertTrue($column->eagerLoadRelationsIsEnabled());
     }
 
-    public function test_can_set_component_on_column(): void
-    {
-        $column = Column::make('Name');
-
-        $this->assertNull($column->getComponent());
-
-        $column->setComponent($this->basicTable);
-
-        $this->assertSame($this->basicTable, $column->getComponent());
-    }
-
     public function test_can_set_column_format(): void
     {
         $column = Column::make('Name');
@@ -80,9 +69,8 @@ final class ColumnConfigurationTest extends TestCase
     {
         $column = Column::make('Name');
 
-        $column->setComponent($this->basicTable);
-
         $this->basicTable->setTableRowUrl(fn ($row) => 'https://example.com');
+        $column->setHasTableRowUrl($this->basicTable->hasTableRowUrl());
 
         $this->assertTrue($column->isClickable());
 
@@ -100,6 +88,67 @@ final class ColumnConfigurationTest extends TestCase
         $column->deselected();
 
         $this->assertFalse($column->isSelected());
+    }
+
+    public function test_can_deselect_if_column_via_callback(): void
+    {
+        $column = Column::make('Name');
+
+        $this->assertTrue($column->isSelected());
+
+        $column->deselectedIf(fn () => 2 > 4);
+
+        $this->assertTrue($column->isSelected());
+
+        $column->deselectedIf(fn () => 6 > 4);
+
+        $this->assertFalse($column->isSelected());
+    }
+
+    public function test_can_select_if_column_via_callback(): void
+    {
+        $column = Column::make('Name 2');
+
+        $this->assertTrue($column->isSelected());
+
+        $column->selectedIf(fn () => 1 > 4);
+
+        $this->assertFalse($column->isSelected());
+
+        $column->selectedIf(fn () => 6 > 4);
+
+        $this->assertTrue($column->isSelected());
+    }
+
+    public function test_can_select_if_column_via_bool(): void
+    {
+        $column = Column::make('Name 3');
+
+        $this->assertTrue($column->isSelected());
+
+        $column->selectedIf(false);
+
+        $this->assertFalse($column->isSelected());
+
+        $column->selectedIf(true);
+
+        $this->assertTrue($column->isSelected());
+    }
+
+    public function test_can_deselect_if_column_via_bool(): void
+    {
+        $column = Column::make('Name 3');
+
+        $this->assertTrue($column->isSelected());
+
+        $column->deselectedIf(true);
+
+        $this->assertFalse($column->isSelected());
+
+        $column->deselectedIf(false);
+
+        $this->assertTrue($column->isSelected());
+
     }
 
     public function test_can_set_secondary_header_as_filter(): void

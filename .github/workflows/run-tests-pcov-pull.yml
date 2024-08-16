@@ -1,9 +1,15 @@
 name: run-tests-pcov-pull
 
 on:
+  push:
+    branches:
+      - 'develop'
+      - 'development'
+      - 'master'
   pull_request:
     branches:
       - 'develop'
+      - 'development'
       - 'master'
 
 jobs:
@@ -17,14 +23,14 @@ jobs:
         laravel: [10]
         stability: [prefer-dist]
 
-    name: PCOV-PULL - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+    name: PCOV - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-withpcov
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pcov,pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup cache environment
         id: extcache
@@ -46,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache extensions
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.extcache.outputs.dir }}
           key: ${{ steps.extcache.outputs.key }}
@@ -60,7 +66,7 @@ jobs:
         run: |
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-PCOV-PULL-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
@@ -85,7 +91,7 @@ jobs:
         run: php ./vendor/bin/paratest --cache-directory=".phpunit.cache/code-coverage" --strict-coverage --coverage-clover ./coverage.xml --processes=4
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:

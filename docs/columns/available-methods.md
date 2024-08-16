@@ -3,6 +3,10 @@ title: Available Methods
 weight: 3
 ---
 
+## Styling
+
+To change the CSS classes or other attributes assigned to a Column, use can use [setTdAttributes](../datatable/styling), which allows customising attributes based on column type, name or value.
+
 ## Sorting
 
 See also [component sorting configuration](../sorting/available-methods).
@@ -25,7 +29,7 @@ Column::make(__('Address'))
 
 ### [Multi-column sorting](../sorting/available-methods#setsinglesortingstatus)
 
-In v2, multi-column sorting is **disabled by default**. To enable it you can set the `setSingleSortingDisabled()` method on the component.
+Multi-column sorting is **disabled by default**. To enable it you can set the `setSingleSortingDisabled()` method on the component.
 
 ```php
 public function configure(): void
@@ -154,6 +158,23 @@ Column::make('My one off column')
     ->label(
         fn($row, Column $column) => view('my.other.view')->withRow($row)
     ),
+```
+
+Note that any field not used elsewhere in the table, that is required (for example creating an attribute based on two unused fields, these must be added to the query with setAdditionalSelects() in the configure() method (See Here)[https://rappasoft.com/docs/laravel-livewire-tables/v3/datatable/available-methods#content-builder])
+```php
+    public function configure(): void
+    {
+        $this->setAdditionalSelects(['users.forename as forename', 'users.surname as surname']);
+    }
+```
+
+You can then use the fields:
+```php
+Column::make('My one off column')
+    ->label(
+        fn($row, Column $column)  => $row->forename.' '.$row->surname
+    )
+    ->html(),
 ```
 
 ## Collapsing

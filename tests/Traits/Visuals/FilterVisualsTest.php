@@ -87,6 +87,67 @@ final class FilterVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
+    public function test_filters_pills_separator_is_customisable(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+            }
+
+            public function filters(): array
+            {
+                return [
+                    \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter::make('Breed')
+                        ->options(
+                            \Rappasoft\LaravelLivewireTables\Tests\Models\Breed::query()
+                                ->orderBy('name')
+                                ->get()
+                                ->keyBy('id')
+                                ->map(fn ($breed) => $breed->name)
+                                ->toArray()
+                        )
+                        ->filter(function (\Illuminate\Database\Eloquent\Builder $builder, array $values) {
+                            return $builder->whereIn('pets.breed_id', $values);
+                        }),
+                    \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter::make('Species')
+                        ->options(
+                            \Rappasoft\LaravelLivewireTables\Tests\Models\Species::query()
+                                ->orderBy('name')
+                                ->get()
+                                ->keyBy('id')
+                                ->map(fn ($species) => $species->name)
+                                ->toArray()
+                        )
+                        ->filter(function (\Illuminate\Database\Eloquent\Builder $builder, array $values) {
+                            return $builder->whereIn('pets.species_id', $values);
+                        })
+                        ->setPillsSeparator('<br />'),
+
+                    \Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter::make('Pet Name', 'pet_name_filter')
+                        ->filter(function (\Illuminate\Database\Eloquent\Builder $builder, string $value) {
+                            return $builder->where('pets.name', '=', $value);
+                        }),
+                ];
+            }
+        })
+            ->set('filterComponents.species', [1, 2])
+            ->assertSeeHtmlInOrder([
+                'wire:key="table-filter-pill-species"',
+                'Cat',
+                '<br />',
+                'Dog',
+                '<br />',
+            ])
+            ->set('filterComponents.breed', [1, 2])
+            ->assertSeeHtmlInOrder([
+                'wire:key="table-filter-pill-breed"',
+                'American Shorthair,',
+                'Maine Coon',
+            ]);
+    }
+
     /*public function test_filter_events_apply_correctly(): void
     {
         Livewire::test(PetsTable::class)
@@ -96,4 +157,5 @@ final class FilterVisualsTest extends TestCase
             ->emit('clearFilters')
             ->assertDontSee('Applied Filters');
     }*/
+
 }

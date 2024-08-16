@@ -19,3 +19,5 @@ phpunit.xml.dist.dev
 .env
 phpunit.xml.bak
 phpstan.txt
+coverage.xml
+./tmp/**

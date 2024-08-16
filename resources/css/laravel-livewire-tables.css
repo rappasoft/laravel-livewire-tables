@@ -5,9 +5,37 @@
     border-color: var(--rappasoft-table-highlight-color, rgb(255 255 255)) !important;
 }
 
+.laravel-livewire-tables-cursor {
+    cursor:pointer;
+}
 
+.laravel-livewire-tables-btn-tiny {
+    width:0.5em;
+    height:0.5em;
+}
 
+.laravel-livewire-tables-btn-smaller {
+    width:1em;
+    height:1em;
+}
 
+.laravel-livewire-tables-btn-small
+{
+    width:1.2em;
+    height:1.2em;
+}
+
+.laravel-livewire-tables-btn-md
+{
+    width:1.3em;
+    height:1.3em;
+}
+
+.laravel-livewire-tables-btn-lg
+{
+    width:1.4em;
+    height:1.4em;
+}
 
 .laravel-livewire-tables-highlight-top {
     border-style: solid !important;
@@ -137,13 +165,11 @@
 
 .range-slider::before {
     --before: 1;
-    --at-edge: var(--thumb-close-to-min);
     counter-reset: x var(--min);
     left: var(--offset);
 }
 
 .range-slider::after {
-    --at-edge: var(--thumb-close-to-max);
     counter-reset: x var(--max);
     right: var(--offset);
 }
@@ -383,7 +409,7 @@ label[dir=rtl] .range-slider {
   }
   .dark .lds-hourglass:after {
     border: 32px solid #FFF;
-
+    border-color: #000 transparent #000 transparent;
   }
 
 

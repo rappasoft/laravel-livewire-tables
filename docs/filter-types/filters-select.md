@@ -1,9 +1,7 @@
 ---
 title: Select Filters
-weight: 9
+weight: 10
 ---
-
-## Select Filters
 
 Select filters are a simple dropdown list. The user selects one choice from the list.
 
@@ -56,6 +54,6 @@ public function filters(): array
 }
 ```
 To set a default "All" option at the start of the dropdown, you can do so by utilising the 
-```
+```php
 ->setFirstOption('NAME')
 ```

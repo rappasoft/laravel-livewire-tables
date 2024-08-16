@@ -57,4 +57,41 @@ final class ColumnSelectHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->getColumnSelectIsHiddenOnTablet());
     }
+
+    public function test_can_get_for_query(): void
+    {
+        $cols = [];
+        foreach ($this->basicTable->getSelectedColumnsForQuery() as $column) {
+            $cols[] = $column->getColumnSelectName();
+        }
+
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed.name'], $cols);
+
+    }
+
+    public function test_can_get_unselectable_columns(): void
+    {
+        $cols = [];
+        foreach ($this->basicTable->getUnSelectableColumns() as $column) {
+            $cols[] = $column->getColumnSelectName();
+        }
+
+        $this->assertSame(['sort'], $cols);
+
+    }
+
+    public function test_get_currently_selected_cols_works(): void
+    {
+        $this->assertSame(8, count($this->basicTable->getDefaultVisibleColumns()));
+        $this->assertSame(8, count(array_intersect($this->basicTable->selectedColumns, $this->basicTable->getDefaultVisibleColumns())));
+
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $this->basicTable->selectedColumns);
+
+        $this->basicTable->selectedColumns = ['id', 'sort', 'name', 'age', 'breed', 'other', 'rowimg'];
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'rowimg'], $this->basicTable->selectedColumns);
+
+        $this->assertSame(7, count(array_intersect($this->basicTable->selectedColumns, $this->basicTable->getDefaultVisibleColumns())));
+        $this->assertSame(8, count($this->basicTable->getDefaultVisibleColumns()));
+
+    }
 }

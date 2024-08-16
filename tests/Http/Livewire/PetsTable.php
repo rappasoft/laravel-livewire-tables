@@ -107,7 +107,7 @@ class PetsTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            MultiSelectFilter::make('Breed')
+            MultiSelectFilter::make('Breed', 'breed')
                 ->options(
                     Breed::query()
                         ->orderBy('name')

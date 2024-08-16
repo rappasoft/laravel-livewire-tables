@@ -51,11 +51,19 @@ trait HasFooter
         return $this->footerCallback;
     }
 
-    /**
-     * @param  mixed  $rows
-     * @return mixed
-     */
-    public function getFooterContents($rows, array $filterGenericData)
+    public function footerCallbackIsString(): bool
+    {
+        return is_string($this->getFooterCallback());
+    }
+
+    public function footerCallbackIsFilter(): bool
+    {
+        $callback = $this->getFooterCallback();
+
+        return $callback instanceof Filter;
+    }
+
+    public function getFooterContents(mixed $rows, array $filterGenericData): string|HtmlString
     {
         $value = null;
         $callback = $this->getFooterCallback();
@@ -81,5 +89,32 @@ trait HasFooter
         }
 
         return $value;
+    }
+
+    public function getNewFooterContents(mixed $rows): string|HtmlString
+    {
+        $value = null;
+        $callback = $this->getFooterCallback();
+
+        if (is_callable($callback)) {
+            $value = call_user_func($callback, $rows);
+
+            if ($this->isHtml()) {
+                return new HtmlString($value);
+            }
+
+            return $value;
+        } else {
+            throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
+        }
+    }
+
+    public function getFooterFilter(?Filter $filter, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string
+    {
+        if ($filter !== null && $filter instanceof Filter) {
+            return $filter->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();
+        } else {
+            throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');
+        }
     }
 }

@@ -4,7 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
+use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
@@ -131,10 +133,18 @@ trait FilterHelpers
         });
     }
 
+    #[On('setFilter')]
     #[On('set-filter')]
-    public function setFilter(string $filterKey, mixed $value): void
+    public function setFilter(string $filterKey, string|array|null $value): void
     {
         $this->appliedFilters[$filterKey] = $this->filterComponents[$filterKey] = $value;
+
+        $this->callHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
+        $this->callTraitHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
+        if ($this->getEventStatusFilterApplied() && $filterKey != null && $value != null) {
+            event(new FilterApplied($this->getTableName(), $filterKey, $value));
+        }
+        $this->dispatch('filter-was-set', tableName: $this->getTableName(), filterKey: $filterKey, value: $value);
     }
 
     public function selectAllFilterOptions(string $filterKey): void
@@ -154,6 +164,7 @@ trait FilterHelpers
         $this->setFilter($filterKey, array_keys($filter->getOptions()));
     }
 
+    #[On('clearFilters')]
     #[On('clear-filters')]
     public function setFilterDefaults(): void
     {
@@ -238,7 +249,8 @@ trait FilterHelpers
         if (! $filter instanceof Filter) {
             $filter = $this->getFilterByKey($filter);
         }
-
+        $this->callHook('filterReset', ['filter' => $filter->getKey()]);
+        $this->callTraitHook('filterReset', ['filter' => $filter->getKey()]);
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
     }
 
@@ -312,12 +324,19 @@ trait FilterHelpers
         return ! empty($this->filterGenericData);
     }
 
-    public function getFilterGenericData()
+    #[Computed(persist: true)]
+    public function getFilterGenericData(): array
     {
         if (! $this->hasFilterGenericData()) {
             $this->setFilterGenericData($this->generateFilterGenericData());
         }
 
         return $this->filterGenericData;
+    }
+
+    #[Computed]
+    public function showFilterPillsSection(): bool
+    {
+        return $this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills();
     }
 }

@@ -131,7 +131,7 @@ trait ColumnHelpers
     }
 
     // TODO: Test
-    public function getValue(Model $row)
+    public function getValue(Model $row): mixed
     {
         if ($this->isBaseColumn()) {
             return $row->{$this->getField()};
@@ -147,7 +147,7 @@ trait ColumnHelpers
 
     public function isReorderColumn(): bool
     {
-        return $this->getField() === $this->component->getDefaultReorderColumn();
+        return $this->isReorderColumn;
     }
 
     public function hasFormatter(): bool
@@ -187,7 +187,7 @@ trait ColumnHelpers
     public function isClickable(): bool
     {
         return $this->clickable &&
-            $this->component->hasTableRowUrl() &&
+            $this->getHasTableRowUrl() &&
             ! $this instanceof LinkColumn;
     }
 
@@ -204,5 +204,35 @@ trait ColumnHelpers
     public function getColumnLabelStatus(): bool
     {
         return $this->displayColumnLabel ?? true;
+    }
+
+    public function getHasTableRowUrl(): bool
+    {
+        return $this->hasTableRowUrl;
+    }
+
+    public function isTailwind(): bool
+    {
+        return $this->theme != 'bootstrap-4' && $this->theme != 'bootstrap-5';
+    }
+
+    public function isBootstrap(): bool
+    {
+        return $this->theme == 'bootstrap-4' || $this->theme == 'bootstrap-5';
+    }
+
+    public function isBootstrap4(): bool
+    {
+        return $this->theme == 'bootstrap-4';
+    }
+
+    public function isBootstrap5(): bool
+    {
+        return $this->theme == 'bootstrap-5';
+    }
+
+    public function getIsReorderColumn(): bool
+    {
+        return $this->isReorderColumn;
     }
 }

@@ -22,6 +22,24 @@ This is called immediately after the Columns are set up
 ## rowsRetrieved
 This is called immediately after the query is executed, and is passed the result from the executed query.
 
+## searchUpdated
+This is called whenever the search is updated, and is passed the value that has been searched for
+
+## filterApplying
+This is called whenever a Filter is applying
+
+## filterReset
+This is called whenever a Filter is reset
+
+## filterSet
+This is called whenever a Filter is set
+
+## filterUpdated
+This is called whenever a Filter is updated/used
+
+## filterRemoved
+This is called whenever a Filter is removed from the table
+
 ## Use in Traits
 To use these in a trait, allowing you to easily set defaults across multiple tables, you should ensure that you append the Lifecycle Hook with your trait name, e.g.
 

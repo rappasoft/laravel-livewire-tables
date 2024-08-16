@@ -34,6 +34,20 @@ trait WithBulkActions
 
     protected array $bulkActionsTdCheckboxAttributes = ['default' => true];
 
+    protected bool $alwaysHideBulkActionsDropdownOption = false;
+
+    protected bool $clearSelectedOnSearch = true;
+
+    protected bool $clearSelectedOnFilter = true;
+
+    protected array $bulkActionsButtonAttributes = ['default-colors' => true, 'default-styling' => true];
+
+    protected array $bulkActionsMenuAttributes = ['default-colors' => true, 'default-styling' => true];
+
+    protected array $bulkActionsMenuItemAttributes = ['default-colors' => true, 'default-styling' => true];
+
+    public bool $delaySelectAll = false;
+
     public function bulkActions(): array
     {
         return property_exists($this, 'bulkActions') ? $this->bulkActions : [];
