@@ -13,6 +13,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### Tweaks
 - Remove Component from Column, move getRows into ComputedProperty by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1838
 - Clean up filter generic data by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1837
+- Further work to clean up Blades, and use Computed Properties by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1850
 
 ## [v3.4.5] - 2024-08-10
 ### Bug Fixes
