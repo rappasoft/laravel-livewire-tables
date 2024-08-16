@@ -16,18 +16,9 @@ trait WithPagination
 
     public int $perPage = 10;
 
-    public array $perPageAccepted = [10, 25, 50];
-
     public string $paginationTheme = 'tailwind';
 
     public bool $paginationStatus = true;
-
-    public bool $paginationVisibilityStatus = true;
-
-    public bool $perPageVisibilityStatus = true;
-
-    // standard, simple, cursor
-    protected string $paginationMethod = 'standard';
 
     public array $paginationCurrentItems = [];
 
@@ -36,6 +27,15 @@ trait WithPagination
     public ?int $paginationTotalItemCount = null;
 
     public array $numberOfPaginatorsRendered = [];
+
+    protected array $perPageAccepted = [10, 25, 50];
+
+    protected bool $paginationVisibilityStatus = true;
+
+    protected bool $perPageVisibilityStatus = true;
+
+    // standard, simple, cursor
+    protected string $paginationMethod = 'standard';
 
     protected bool $shouldShowPaginationDetails = true;
 

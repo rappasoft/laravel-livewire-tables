@@ -18,19 +18,19 @@ trait WithSearch
 
     public bool $searchVisibilityStatus = true;
 
-    public ?bool $searchFilterBlur = null;
-
-    public ?int $searchFilterDebounce = null;
-
-    public ?bool $searchFilterDefer = null;
-
-    public ?bool $searchFilterLazy = null;
-
-    public ?bool $searchFilterLive = null;
-
-    public ?int $searchFilterThrottle = null;
-
     public ?string $searchPlaceholder = null;
+
+    protected ?bool $searchFilterBlur = null;
+
+    protected ?int $searchFilterDebounce = null;
+
+    protected ?bool $searchFilterDefer = null;
+
+    protected ?bool $searchFilterLazy = null;
+
+    protected ?bool $searchFilterLive = null;
+
+    protected ?int $searchFilterThrottle = null;
 
     protected array $searchFieldAttributes = [];
 
