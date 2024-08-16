@@ -12,11 +12,7 @@ trait WithPagination
         PaginationConfiguration,
         PaginationHelpers;
 
-    public ?string $pageName = null;
-
     public int $perPage = 10;
-
-    public string $paginationTheme = 'tailwind';
 
     public bool $paginationStatus = true;
 
@@ -24,9 +20,13 @@ trait WithPagination
 
     public int $paginationCurrentCount = 0;
 
+    protected ?string $pageName = null;
+
     public ?int $paginationTotalItemCount = null;
 
     public array $numberOfPaginatorsRendered = [];
+
+    protected string $paginationTheme = 'tailwind';
 
     protected array $perPageAccepted = [10, 25, 50];
 
