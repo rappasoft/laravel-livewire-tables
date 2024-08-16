@@ -63,10 +63,7 @@ trait HasSecondaryHeader
         return $callback instanceof Filter;
     }
 
-    /**
-     * @param  mixed  $rows
-     */
-    public function getSecondaryHeaderContents($rows, array $filterGenericData)
+    public function getSecondaryHeaderContents(mixed $rows, array $filterGenericData): string|HtmlString
     {
         $value = null;
         $callback = $this->getSecondaryHeaderCallback();
@@ -95,7 +92,7 @@ trait HasSecondaryHeader
         return $value;
     }
 
-    public function getNewSecondaryHeaderContents($rows): string|HtmlString
+    public function getNewSecondaryHeaderContents(mixed $rows): string|HtmlString
     {
         $value = null;
         $callback = $this->getSecondaryHeaderCallback();

@@ -63,11 +63,7 @@ trait HasFooter
         return $callback instanceof Filter;
     }
 
-    /**
-     * @param  mixed  $rows
-     * @return mixed
-     */
-    public function getFooterContents($rows, array $filterGenericData)
+    public function getFooterContents(mixed $rows, array $filterGenericData): string|HtmlString
     {
         $value = null;
         $callback = $this->getFooterCallback();
@@ -95,10 +91,7 @@ trait HasFooter
         return $value;
     }
 
-    /**
-     * @param  mixed  $rows
-     */
-    public function getNewFooterContents($rows): string|HtmlString
+    public function getNewFooterContents(mixed $rows): string|HtmlString
     {
         $value = null;
         $callback = $this->getFooterCallback();
