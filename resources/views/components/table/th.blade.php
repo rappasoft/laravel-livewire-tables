@@ -3,9 +3,9 @@
 
 @php
     $attributes = $attributes->merge(['wire:key' => $tableName . '-header-col-'.$column->getSlug()]);
-    $customAttributes = $component->getThAttributes($column);
-    $customSortButtonAttributes = $component->getThSortButtonAttributes($column);
-    $direction = $column->hasField() ? $component->getSort($column->getColumnSelectName()) : $component->getSort($column->getSlug()) ?? null ;
+    $customAttributes = $this->getThAttributes($column);
+    $customSortButtonAttributes = $this->getThSortButtonAttributes($column);
+    $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : $this->getSort($column->getSlug()) ?? null ;
 @endphp
 
 @if ($isTailwind)
@@ -19,7 +19,7 @@
         }}
     >
         @if($column->getColumnLabelStatus())
-            @unless ($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
+            @unless ($this->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
                 {{ $column->getTitle() }}
             @else
                 <button
@@ -65,7 +65,7 @@
         }}
     >
         @if($column->getColumnLabelStatus())
-            @unless ($component->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
+            @unless ($this->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
                 {{ $column->getTitle() }}
             @else
                 <div

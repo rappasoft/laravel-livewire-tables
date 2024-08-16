@@ -2,12 +2,12 @@
 @props(['row', 'rowIndex'])
 
 @php
-    $customAttributes = $component->getBulkActionsTdAttributes();
-    $bulkActionsTdCheckboxAttributes = $component->getBulkActionsTdCheckboxAttributes();
-    $theme = $component->getTheme();
+    $customAttributes = $this->getBulkActionsTdAttributes();
+    $bulkActionsTdCheckboxAttributes = $this->getBulkActionsTdCheckboxAttributes();
+    $theme = $this->getTheme();
 @endphp
 
-@if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
+@if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
     <x-livewire-tables::table.td.plain wire:key="{{ $tableName }}-tbody-td-bulk-actions-td-{{ $row->{$primaryKey} }}" :displayMinimisedOnReorder="true"  :$customAttributes>
         <div @class([
             'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',

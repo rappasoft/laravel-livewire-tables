@@ -1,15 +1,15 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap'])
 @props(['rowIndex', 'hidden' => false])
 
-@if ($component->collapsingColumnsAreEnabled() && $component->hasCollapsedColumns())
+@if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
     @if ($isTailwind)
         <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}"
             {{
                 $attributes
                     ->merge(['class' => 'p-3 table-cell text-center '])
-                    ->class(['sm:hidden' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet()])
-                    ->class(['md:hidden' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet() && $component->shouldCollapseOnMobile()])
-                    ->class(['lg:hidden' => !$component->shouldCollapseAlways() && ($component->shouldCollapseOnTablet() || $component->shouldCollapseOnMobile())])
+                    ->class(['sm:hidden' => !$this->shouldCollapseAlways() && !$this->shouldCollapseOnTablet()])
+                    ->class(['md:hidden' => !$this->shouldCollapseAlways() && !$this->shouldCollapseOnTablet() && $this->shouldCollapseOnMobile()])
+                    ->class(['lg:hidden' => !$this->shouldCollapseAlways() && ($this->shouldCollapseOnTablet() || $this->shouldCollapseOnMobile())])
             }}
             :class="currentlyReorderingStatus ? 'laravel-livewire-tables-reorderingMinimised' : ''"
         >
@@ -45,9 +45,9 @@
         <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}" 
             {{
                 $attributes
-                    ->class(['d-sm-none' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet()])
-                    ->class(['d-md-none' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet() && $component->shouldCollapseOnMobile()])
-                    ->class(['d-lg-none' => !$component->shouldCollapseAlways() && ($component->shouldCollapseOnTablet() || $component->shouldCollapseOnMobile())])
+                    ->class(['d-sm-none' => !$this->shouldCollapseAlways() && !$this->shouldCollapseOnTablet()])
+                    ->class(['d-md-none' => !$this->shouldCollapseAlways() && !$this->shouldCollapseOnTablet() && $this->shouldCollapseOnMobile()])
+                    ->class(['d-lg-none' => !$this->shouldCollapseAlways() && ($this->shouldCollapseOnTablet() || $this->shouldCollapseOnMobile())])
             }}
             :class="currentlyReorderingStatus ? 'laravel-livewire-tables-reorderingMinimised' : ''"
         >
