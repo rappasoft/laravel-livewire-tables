@@ -18,17 +18,17 @@ trait WithSorting
 
     public bool $sortingStatus = true;
 
-    public bool $singleColumnSortingStatus = true;
+    protected bool $singleColumnSortingStatus = true;
 
-    public bool $sortingPillsStatus = true;
+    protected bool $sortingPillsStatus = true;
 
-    public ?string $defaultSortColumn = null;
+    protected string $defaultSortDirection = 'asc';
 
-    public string $defaultSortDirection = 'asc';
+    protected string $defaultSortingLabelAsc = 'A-Z';
 
-    public string $defaultSortingLabelAsc = 'A-Z';
+    protected string $defaultSortingLabelDesc = 'Z-A';
 
-    public string $defaultSortingLabelDesc = 'Z-A';
+    protected ?string $defaultSortColumn = null;
 
     protected function queryStringWithSorting(): array
     {
