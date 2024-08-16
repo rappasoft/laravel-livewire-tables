@@ -12,17 +12,17 @@ trait WithFilters
     use FilterConfiguration,
         FilterHelpers;
 
-    public bool $filtersStatus = true;
+    protected bool $filtersStatus = true;
 
-    public bool $filtersVisibilityStatus = true;
+    protected bool $filtersVisibilityStatus = true;
 
-    public bool $filterPillsStatus = true;
+    protected bool $filterPillsStatus = true;
 
     public bool $filterSlideDownDefaultVisible = false;
 
     public string $filterLayout = 'popover';
 
-    public int $filterCount;
+    protected int $filterCount;
 
     protected ?Collection $filterCollection;
 
