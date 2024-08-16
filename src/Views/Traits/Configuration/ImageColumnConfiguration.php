@@ -2,6 +2,4 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
-trait ImageColumnConfiguration
-{
-}
+trait ImageColumnConfiguration {}

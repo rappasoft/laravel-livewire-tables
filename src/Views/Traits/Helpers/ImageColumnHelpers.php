@@ -2,6 +2,4 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
-trait ImageColumnHelpers
-{
-}
+trait ImageColumnHelpers {}

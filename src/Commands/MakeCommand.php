@@ -62,7 +62,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
             $this->argument('name')
         );
 
-        $livewireMakeCommand = new LivewireMakeCommand();
+        $livewireMakeCommand = new LivewireMakeCommand;
 
         if ($livewireMakeCommand->isReservedClassName($name = $this->parser->className())) {
             $this->line("<fg=red;options=bold>Class is reserved:</> {$name}");
@@ -186,7 +186,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
      */
     private function generateColumns(string $modelName): string
     {
-        $model = new $modelName();
+        $model = new $modelName;
 
         if ($model instanceof Model === false) {
             throw new \Exception('Invalid model given.');

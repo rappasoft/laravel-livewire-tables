@@ -30,8 +30,8 @@ class TestCase extends Orchestra
 
         if (! Breed::where('id', 1)->get()) {
             include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
-            (new \CreateTestTables())->down();
-            (new \CreateTestTables())->up();
+            (new \CreateTestTables)->down();
+            (new \CreateTestTables)->up();
 
             Species::insert([
                 ['id' => 1, 'name' => 'Cat'],
@@ -82,7 +82,7 @@ class TestCase extends Orchestra
     protected function setupBasicTable()
     {
         $view = view('livewire-tables::datatable');
-        $this->basicTable = new PetsTable();
+        $this->basicTable = new PetsTable;
         $this->basicTable->boot();
         $this->basicTable->bootedComponentUtilities();
         $this->basicTable->bootedWithData();
@@ -99,7 +99,7 @@ class TestCase extends Orchestra
     {
 
         $view = view('livewire-tables::datatable');
-        $this->unpaginatedTable = new PetsTableUnpaginated();
+        $this->unpaginatedTable = new PetsTableUnpaginated;
         $this->unpaginatedTable->boot();
         $this->unpaginatedTable->bootedComponentUtilities();
         $this->unpaginatedTable->bootedWithData();
