@@ -2,10 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Livewire\Attributes\Locked;
 use Livewire\WithPagination as LivewirePagination;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\PaginationConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\PaginationHelpers;
-use Livewire\Attributes\Locked;
 
 trait WithPagination
 {

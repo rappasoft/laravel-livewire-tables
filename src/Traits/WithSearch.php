@@ -3,10 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
-use Livewire\Attributes\Locked;
 
 trait WithSearch
 {

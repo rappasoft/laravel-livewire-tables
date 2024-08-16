@@ -3,16 +3,15 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnHelpers;
-use Livewire\Attributes\Locked;
 
 trait WithColumns
 {
     use ColumnConfiguration;
     use ColumnHelpers;
-
 
     protected Collection $columns;
 

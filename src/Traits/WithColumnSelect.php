@@ -2,17 +2,17 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Livewire\Attributes\Locked;
 
 trait WithColumnSelect
 {
     use ColumnSelectConfiguration,
         ColumnSelectHelpers;
-    
+
     #[Locked]
     public array $columnSelectColumns = ['setupRun' => false, 'selected' => [], 'deselected' => [], 'defaultdeselected' => []];
 

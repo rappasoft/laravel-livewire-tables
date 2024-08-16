@@ -86,9 +86,7 @@ trait ColumnSelectHelpers
             ->values();
     }
 
-    public function getCurrentlySelectedCols(): void
-    {
-    }
+    public function getCurrentlySelectedCols(): void {}
 
     public function getUnSelectableColumns(): Collection
     {
@@ -206,7 +204,6 @@ trait ColumnSelectHelpers
             $this->selectableColumns = $this->getColumnsForColumnSelect();
         }
         $this->setupFirstColumnSelectRun();
-
 
         // If remember selection is off, then clear the session
         if ($this->rememberColumnSelectionIsDisabled()) {
