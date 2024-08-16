@@ -2,8 +2,8 @@
 @props(['colCount' => 1])
 
 @php
-$customAttributes['loader-wrapper'] = $component->getLoadingPlaceHolderWrapperAttributes();
-$customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttributes();
+$customAttributes['loader-wrapper'] = $this->getLoadingPlaceHolderWrapperAttributes();
+$customAttributes['loader-icon'] = $this->getLoadingPlaceHolderIconAttributes();
 @endphp
 @if($this->hasLoadingPlaceholderBlade())
     @include($this->getLoadingPlaceHolderBlade(), ['colCount' => $colCount])
@@ -27,7 +27,7 @@ $customAttributes['loader-icon'] = $component->getLoadingPlaceHolderIconAttribut
                             ->except('default');
                 }}
                 ></div>
-                <div>{{ $component->getLoadingPlaceholderContent() }}</div>
+                <div>{{ $this->getLoadingPlaceholderContent() }}</div>
             </div>
         </td>
     </tr>
