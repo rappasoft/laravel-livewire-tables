@@ -83,12 +83,14 @@ final class PaginationHelpersTest extends TestCase
 
     public function test_can_check_per_page_displayed_item_count(): void
     {
+        $rows = $this->basicTable->getRows();
         $this->assertSame(5, $this->basicTable->getPerPageDisplayedItemCount());
 
     }
 
     public function test_can_check_per_page_displayed_items(): void
     {
+        $rows = $this->basicTable->getRows();
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getPerPageDisplayedItemIds());
 
     }

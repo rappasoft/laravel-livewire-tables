@@ -28,6 +28,8 @@ class ButtonGroupColumn extends Column
         return view($this->getView())
             ->withColumn($this)
             ->withRow($row)
+            ->withIsTailwind($this->isTailwind())
+            ->withIsBootstrap($this->isBootstrap())
             ->withButtons($this->getButtons())
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }

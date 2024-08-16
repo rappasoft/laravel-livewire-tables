@@ -324,6 +324,7 @@ trait FilterHelpers
         return ! empty($this->filterGenericData);
     }
 
+    #[Computed(persist: true)]
     public function getFilterGenericData(): array
     {
         if (! $this->hasFilterGenericData()) {

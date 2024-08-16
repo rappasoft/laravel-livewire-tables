@@ -10,6 +10,7 @@ use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -27,6 +28,7 @@ trait WithData
     /**
      * Retrieves the rows for the executed query
      */
+    #[Computed]
     public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
         // Setup the Base Query
@@ -285,9 +287,11 @@ trait WithData
      */
     public function renderingWithData(\Illuminate\View\View $view, array $data = []): void
     {
-        $view->with([
-            'filterGenericData' => $this->getFilterGenericData(),
-            'rows' => $this->getRows(),
-        ]);
+        if (! $this->getComputedPropertiesStatus()) {
+            $view->with([
+                'filterGenericData' => $this->getFilterGenericData(),
+                'rows' => $this->getRows(),
+            ]);
+        }
     }
 }

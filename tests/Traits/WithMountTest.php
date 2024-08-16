@@ -20,7 +20,6 @@ final class WithMountTest extends TestCase
         $table->bootedWithColumnSelect();
         $table->bootedWithSecondaryHeader();
         $table->booted();
-        $table->renderingWithData($view, []);
         $table->renderingWithPagination($view, []);
         $table->render();
         $rows = $table->getRows();
@@ -38,7 +37,6 @@ final class WithMountTest extends TestCase
         $table2->bootedWithColumnSelect();
         $table2->bootedWithSecondaryHeader();
         $table2->booted();
-        $table2->renderingWithData($view, []);
         $table2->renderingWithPagination($view, []);
         $table2->render();
         $rows2 = $table2->getRows();
@@ -55,7 +53,6 @@ final class WithMountTest extends TestCase
         $table3->bootedWithColumnSelect();
         $table3->bootedWithSecondaryHeader();
         $table3->booted();
-        $table3->renderingWithData($view, []);
         $table3->renderingWithPagination($view, []);
         $table3->render();
         $rows3 = $table3->getRows();

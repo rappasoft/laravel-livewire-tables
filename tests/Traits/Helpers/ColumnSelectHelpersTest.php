@@ -82,19 +82,16 @@ final class ColumnSelectHelpersTest extends TestCase
 
     public function test_get_currently_selected_cols_works(): void
     {
-        $this->basicTable->getCurrentlySelectedCols();
-        $this->assertSame(8, $this->basicTable->defaultVisibleColumnCount);
-        $this->assertSame(8, $this->basicTable->visibleColumnCount);
+        $this->assertSame(8, count($this->basicTable->getDefaultVisibleColumns()));
+        $this->assertSame(8, count(array_intersect($this->basicTable->selectedColumns, $this->basicTable->getDefaultVisibleColumns())));
 
-        $this->basicTable->getCurrentlySelectedCols();
         $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $this->basicTable->selectedColumns);
 
         $this->basicTable->selectedColumns = ['id', 'sort', 'name', 'age', 'breed', 'other', 'rowimg'];
         $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'rowimg'], $this->basicTable->selectedColumns);
 
-        $this->basicTable->getCurrentlySelectedCols();
-        $this->assertSame(7, $this->basicTable->visibleColumnCount);
-        $this->assertSame(8, $this->basicTable->defaultVisibleColumnCount);
+        $this->assertSame(7, count(array_intersect($this->basicTable->selectedColumns, $this->basicTable->getDefaultVisibleColumns())));
+        $this->assertSame(8, count($this->basicTable->getDefaultVisibleColumns()));
 
     }
 }

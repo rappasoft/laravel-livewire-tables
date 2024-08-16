@@ -51,11 +51,19 @@ trait HasSecondaryHeader
         return $this->secondaryHeaderCallback;
     }
 
-    /**
-     * @param  mixed  $rows
-     * @return mixed
-     */
-    public function getSecondaryHeaderContents($rows, array $filterGenericData)
+    public function secondaryHeaderCallbackIsString(): bool
+    {
+        return is_string($this->getSecondaryHeaderCallback());
+    }
+
+    public function secondaryHeaderCallbackIsFilter(): bool
+    {
+        $callback = $this->getSecondaryHeaderCallback();
+
+        return $callback instanceof Filter;
+    }
+
+    public function getSecondaryHeaderContents(mixed $rows, array $filterGenericData): string|HtmlString
     {
         $value = null;
         $callback = $this->getSecondaryHeaderCallback();
@@ -82,5 +90,31 @@ trait HasSecondaryHeader
         }
 
         return $value;
+    }
+
+    public function getNewSecondaryHeaderContents(mixed $rows): string|HtmlString
+    {
+        $value = null;
+        $callback = $this->getSecondaryHeaderCallback();
+
+        if (is_callable($callback)) {
+            $value = call_user_func($callback, $rows);
+            if ($this->isHtml()) {
+                return new HtmlString($value);
+            }
+
+            return $value;
+        } else {
+            throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
+        }
+    }
+
+    public function getSecondaryHeaderFilter(?Filter $filter, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string
+    {
+        if ($filter !== null && $filter instanceof Filter) {
+            return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
+        } else {
+            throw new DataTableConfigurationException('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().');
+        }
     }
 }

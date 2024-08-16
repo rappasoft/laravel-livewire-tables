@@ -1,8 +1,7 @@
 @aware(['component', 'tableName'])
-@props(['rows', 'filterGenericData', 'selectedVisibleColumns'])
 
 <x-livewire-tables::table.tr.plain
-    :customAttributes="$this->getSecondaryHeaderTrAttributes($rows)"
+    :customAttributes="$this->getSecondaryHeaderTrAttributes($this->getRows)"
     wire:key="{{ $tableName .'-secondary-header' }}"
 >
     {{-- TODO: Remove --}}
@@ -16,9 +15,17 @@
         <x-livewire-tables::table.td.collapsed-columns :hidden=true :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'header-collapsed-hide' }}" rowIndex="-1"  />
     @endif
 
-    @foreach($selectedVisibleColumns as $colIndex => $column)
-        <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)">
-            {{ $column->getSecondaryHeaderContents($rows, $filterGenericData) }}
+    @foreach($this->selectedVisibleColumns as $colIndex => $column)
+        <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $this->getRows, $colIndex)">
+            @if($column->hasSecondaryHeader() && $column->hasSecondaryHeaderCallback())
+                @if( $column->secondaryHeaderCallbackIsFilter())
+                    {{ $column->getSecondaryHeaderFilter($column->getSecondaryHeaderCallback(), $this->getFilterGenericData) }}    
+                @elseif($column->secondaryHeaderCallbackIsString())
+                    {{ $column->getSecondaryHeaderFilter($this->getFilterByKey($column->getSecondaryHeaderCallback()), $this->getFilterGenericData) }}
+                @else
+                    {{ $column->getNewSecondaryHeaderContents($this->getRows) }}
+                @endif
+            @endif
         </x-livewire-tables::table.td.plain>
     @endforeach
 </x-livewire-tables::table.tr.plain>

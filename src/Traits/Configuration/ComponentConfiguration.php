@@ -152,4 +152,18 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    public function useComputedPropertiesEnabled(): self
+    {
+        $this->useComputedProperties = true;
+
+        return $this;
+    }
+
+    public function useComputedPropertiesDisabled(): self
+    {
+        $this->useComputedProperties = false;
+
+        return $this;
+    }
 }

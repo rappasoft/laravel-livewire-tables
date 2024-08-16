@@ -1,30 +1,30 @@
 @aware(['component', 'tableName','isBootstrap','isBootstrap4','isBootstrap5'])
-@if($isBootstrap)
+@if($this->isBootstrap)
     <ul
         x-cloak
         @class([
-            'dropdown-menu w-100 mt-md-5' => $isBootstrap4,
-            'dropdown-menu w-100' => $isBootstrap5,
+            'dropdown-menu w-100 mt-md-5' => $this->isBootstrap4,
+            'dropdown-menu w-100' => $this->isBootstrap5,
         ])
         x-bind:class="{ 'show': filterPopoverOpen }"
         role="menu"
     >
-        @foreach ($component->getVisibleFilters() as $filter)
+        @foreach ($this->getVisibleFilters() as $filter)
             <div
                 wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar"
                 @class([
-                    'p-2' => $isBootstrap,
+                    'p-2' => $this->isBootstrap,
                 ])
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
             >
-                {{ $filter->setGenericDisplayData($filterGenericData)->render() }}
+                {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
             </div>
         @endforeach
 
-        @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
+        @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
             <div
                 @class([
-                    'dropdown-divider' => $isBootstrap,
+                    'dropdown-divider' => $this->isBootstrap,
                 ])
             >
             </div>
@@ -32,8 +32,8 @@
             <button
                 wire:click.prevent="setFilterDefaults" x-on:click="filterPopoverOpen = false"
                 @class([
-                    'dropdown-item btn text-center' => $isBootstrap4,
-                    'dropdown-item text-center' => $isBootstrap5,
+                    'dropdown-item btn text-center' => $this->isBootstrap4,
+                    'dropdown-item text-center' => $this->isBootstrap5,
                 ])
             >
                 @lang('Clear')
@@ -54,19 +54,19 @@
         aria-orientation="vertical"
         aria-labelledby="filters-menu"
     >
-        @foreach ($component->getVisibleFilters() as $filter)
+        @foreach ($this->getVisibleFilters() as $filter)
             <div class="py-1" role="none">
                 <div
                     class="block px-4 py-2 text-sm text-gray-700 space-y-1"
                     role="menuitem"
                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                 >
-                    {{ $filter->setGenericDisplayData($filterGenericData)->render() }}
+                    {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
                 </div>
             </div>
         @endforeach
 
-        @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
+        @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
             <div class="block px-4 py-3 text-sm text-gray-700 dark:text-white" role="menuitem">
                 <button
                     x-on:click="filterPopoverOpen = false"
