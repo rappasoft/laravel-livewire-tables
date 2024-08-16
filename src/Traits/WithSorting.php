@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
+use Livewire\Attributes\Locked;
 
 trait WithSorting
 {
@@ -18,17 +19,17 @@ trait WithSorting
 
     public bool $sortingStatus = true;
 
-    protected bool $singleColumnSortingStatus = true;
+    public bool $singleColumnSortingStatus = true;
 
-    protected bool $sortingPillsStatus = true;
+    public bool $sortingPillsStatus = true;
 
-    protected string $defaultSortDirection = 'asc';
+    public ?string $defaultSortColumn = null;
 
-    protected string $defaultSortingLabelAsc = 'A-Z';
+    public string $defaultSortDirection = 'asc';
 
-    protected string $defaultSortingLabelDesc = 'Z-A';
+    public string $defaultSortingLabelAsc = 'A-Z';
 
-    protected ?string $defaultSortColumn = null;
+    public string $defaultSortingLabelDesc = 'Z-A';
 
     protected function queryStringWithSorting(): array
     {

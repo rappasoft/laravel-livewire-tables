@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ReorderingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ReorderingHelpers;
+use Livewire\Attributes\Locked;
 
 trait WithReordering
 {

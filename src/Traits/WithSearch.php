@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
+use Livewire\Attributes\Locked;
 
 trait WithSearch
 {
@@ -14,11 +15,12 @@ trait WithSearch
 
     public string $search = '';
 
+    #[Locked]
+    public bool $searchStatus = true;
+
     protected ?string $searchPlaceholder = null;
 
     protected bool $searchVisibilityStatus = true;
-
-    protected bool $searchStatus = true;
 
     protected ?bool $searchFilterBlur = null;
 

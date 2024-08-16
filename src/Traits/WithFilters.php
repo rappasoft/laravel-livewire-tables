@@ -6,31 +6,38 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
+use Livewire\Attributes\Locked;
 
 trait WithFilters
 {
     use FilterConfiguration,
         FilterHelpers;
+    
+    #[Locked]
+    public bool $filtersStatus = true;
 
-    protected bool $filtersStatus = true;
+    #[Locked]
+    public bool $filtersVisibilityStatus = true;
 
-    protected bool $filtersVisibilityStatus = true;
+    #[Locked]
+    public bool $filterPillsStatus = true;
 
-    protected bool $filterPillsStatus = true;
-
+    #[Locked]
     public bool $filterSlideDownDefaultVisible = false;
 
+    #[Locked]
     public string $filterLayout = 'popover';
 
-    protected int $filterCount;
-
-    protected ?Collection $filterCollection;
+    #[Locked]
+    public int $filterCount;
 
     public array $filterComponents = [];
 
     public array $appliedFilters = [];
 
     public array $filterGenericData = [];
+
+    protected ?Collection $filterCollection;
 
     public function filters(): array
     {

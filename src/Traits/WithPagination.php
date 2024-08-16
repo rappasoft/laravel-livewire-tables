@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Livewire\WithPagination as LivewirePagination;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\PaginationConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\PaginationHelpers;
+use Livewire\Attributes\Locked;
 
 trait WithPagination
 {
@@ -12,27 +13,32 @@ trait WithPagination
         PaginationConfiguration,
         PaginationHelpers;
 
+    public ?string $pageName = null;
+
     public int $perPage = 10;
 
+    #[Locked]
+    public array $perPageAccepted = [10, 25, 50];
+
+    #[Locked]
+    public string $paginationTheme = 'tailwind';
+
+    #[Locked]
     public bool $paginationStatus = true;
+
+    #[Locked]
+    public bool $paginationVisibilityStatus = true;
+
+    #[Locked]
+    public bool $perPageVisibilityStatus = true;
 
     public array $paginationCurrentItems = [];
 
     public int $paginationCurrentCount = 0;
 
-    public ?string $pageName = null;
-
     public ?int $paginationTotalItemCount = null;
 
     public array $numberOfPaginatorsRendered = [];
-
-    public array $perPageAccepted = [10, 25, 50];
-
-    protected string $paginationTheme = 'tailwind';
-
-    protected bool $paginationVisibilityStatus = true;
-
-    protected bool $perPageVisibilityStatus = true;
 
     // standard, simple, cursor
     protected string $paginationMethod = 'standard';

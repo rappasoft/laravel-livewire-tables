@@ -88,8 +88,6 @@ trait ColumnSelectHelpers
 
     public function getCurrentlySelectedCols(): void
     {
-        $this->defaultVisibleColumnCount = count($this->getDefaultVisibleColumns());
-        $this->visibleColumnCount = count(array_intersect($this->selectedColumns, $this->getDefaultVisibleColumns()));
     }
 
     public function getUnSelectableColumns(): Collection
@@ -209,7 +207,6 @@ trait ColumnSelectHelpers
         }
         $this->setupFirstColumnSelectRun();
 
-        $this->defaultVisibleColumnCount = count($this->selectableColumns);
 
         // If remember selection is off, then clear the session
         if ($this->rememberColumnSelectionIsDisabled()) {
@@ -228,7 +225,6 @@ trait ColumnSelectHelpers
                 session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
             }
         }
-        $this->visibleColumnCount = count($this->selectedColumns);
     }
 
     protected function setupFirstColumnSelectRun(): void
