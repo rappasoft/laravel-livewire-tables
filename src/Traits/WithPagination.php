@@ -20,15 +20,15 @@ trait WithPagination
 
     public int $paginationCurrentCount = 0;
 
-    protected ?string $pageName = null;
+    public ?string $pageName = null;
 
     public ?int $paginationTotalItemCount = null;
 
     public array $numberOfPaginatorsRendered = [];
 
-    protected string $paginationTheme = 'tailwind';
+    public array $perPageAccepted = [10, 25, 50];
 
-    protected array $perPageAccepted = [10, 25, 50];
+    protected string $paginationTheme = 'tailwind';
 
     protected bool $paginationVisibilityStatus = true;
 
