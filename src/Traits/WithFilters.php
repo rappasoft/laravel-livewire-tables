@@ -22,7 +22,7 @@ trait WithFilters
     #[Locked]
     public bool $filterPillsStatus = true;
 
-    #[Locked]
+    // Entangled in JS
     public bool $filterSlideDownDefaultVisible = false;
 
     #[Locked]
@@ -31,8 +31,10 @@ trait WithFilters
     #[Locked]
     public int $filterCount;
 
+    // Set in JS
     public array $filterComponents = [];
 
+    // Set in Frontend
     public array $appliedFilters = [];
 
     public array $filterGenericData = [];
