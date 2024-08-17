@@ -12,14 +12,17 @@ trait WithBulkActions
 
     public bool $bulkActionsStatus = true;
 
+    // Entangled in JS
     public bool $selectAll = false;
 
     public array $bulkActions = [];
 
     public array $bulkActionConfirms = [];
 
+    // Entangled in JS
     public array $selected = [];
 
+    // Entangled in JS
     public bool $hideBulkActionsWhenEmpty = false;
 
     public ?string $bulkActionConfirmDefaultMessage;
@@ -46,6 +49,7 @@ trait WithBulkActions
 
     protected array $bulkActionsMenuItemAttributes = ['default-colors' => true, 'default-styling' => true];
 
+    // Entangled in JS
     public bool $delaySelectAll = false;
 
     public function bulkActions(): array
