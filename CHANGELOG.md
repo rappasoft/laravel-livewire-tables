@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.7] - 2024-08-18
+### Bug Fixes
+- Correct a locked property that is entangled in js, and add comments around some key properties to prevent reoccurrence by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1859
+
 ## [v3.4.6] - 2024-08-15
 ### New Features
 - Column Features - deselectedIf/selectedIf by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1846

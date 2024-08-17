@@ -31,8 +31,10 @@ trait WithFilters
     #[Locked]
     public int $filterCount;
 
+    // Set in JS
     public array $filterComponents = [];
 
+    // Set in Frontend
     public array $appliedFilters = [];
 
     public array $filterGenericData = [];
