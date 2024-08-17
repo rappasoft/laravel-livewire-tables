@@ -21,7 +21,7 @@ trait WithBulkActions
 
     // Entangled in JS
     public array $selected = [];
-    
+
     // Entangled in JS
     public bool $hideBulkActionsWhenEmpty = false;
 

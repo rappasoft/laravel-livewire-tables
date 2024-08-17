@@ -19,7 +19,7 @@ trait WithReordering
 
     // Entangled in JS
     public bool $hideReorderColumnUnlessReorderingStatus = false;
-    
+
     // Entangled in JS
     public bool $reorderDisplayColumn = false;
 
