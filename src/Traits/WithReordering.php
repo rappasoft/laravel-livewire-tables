@@ -11,14 +11,19 @@ trait WithReordering
     use ReorderingConfiguration,
         ReorderingHelpers;
 
+    // Entangled in JS
     public bool $reorderStatus = false;
 
+    // Entangled in JS
     public bool $currentlyReorderingStatus = false;
 
+    // Entangled in JS
     public bool $hideReorderColumnUnlessReorderingStatus = false;
-
+    
+    // Entangled in JS
     public bool $reorderDisplayColumn = false;
 
+    // Retrieved in JS
     public string $defaultReorderColumn = 'sort';
 
     public array $orderedItems = [];

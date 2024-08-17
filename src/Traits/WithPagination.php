@@ -31,11 +31,14 @@ trait WithPagination
 
     #[Locked]
     public bool $perPageVisibilityStatus = true;
-
+    
+    // Entangled in JS
     public array $paginationCurrentItems = [];
 
+    // Entangled in JS
     public int $paginationCurrentCount = 0;
 
+    // Entangled in JS
     public ?int $paginationTotalItemCount = null;
 
     public array $numberOfPaginatorsRendered = [];

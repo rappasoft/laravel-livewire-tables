@@ -21,8 +21,8 @@ trait WithFilters
 
     #[Locked]
     public bool $filterPillsStatus = true;
-
-    #[Locked]
+    
+    // Entangled in JS
     public bool $filterSlideDownDefaultVisible = false;
 
     #[Locked]
