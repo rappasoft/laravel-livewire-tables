@@ -29,7 +29,7 @@ class Action extends Component
         return new static($label);
     }
 
-    public function render(): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function render(): null|string|\Illuminate\Support\HtmlString|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $view = view($this->getView())
             ->withAttributes($this->getActionAttributesBag())

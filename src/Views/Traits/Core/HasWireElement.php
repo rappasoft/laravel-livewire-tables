@@ -105,7 +105,7 @@ trait HasWireElement
             'hasWireElement' => $this->hasWireElement(),
             'wireElementType' => $this->getWireElementType(),
             'wireElementComponentName' => $this->getWireElementComponentName(),
-            'wireElementParams' => json_encode($this->getWireElementParams(), true),
+            'wireElementParams' => json_encode($this->getWireElementParams()),
         ];
     }
 }
