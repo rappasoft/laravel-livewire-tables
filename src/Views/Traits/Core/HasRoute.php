@@ -6,7 +6,7 @@ trait HasRoute
 {
     public string $route = '#';
 
-    public function route($route): self
+    public function route(string $route): self
     {
         $this->route = $route;
         $this->attributes['href'] = $route;
@@ -14,7 +14,7 @@ trait HasRoute
         return $this;
     }
 
-    public function setRoute($route): self
+    public function setRoute(string $route): self
     {
         $this->route = $route;
         $this->attributes['href'] = $route;

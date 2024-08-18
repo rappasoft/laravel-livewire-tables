@@ -16,7 +16,7 @@ trait HasWireElement
 
     protected bool $shouldWireNavigate = false;
 
-    public function wireModal($component, $params = []): self
+    public function wireModal(string $component, array $params = []): self
     {
         $this->wireElementType = 'modal';
         $this->wireElementComponentName = $component;
@@ -25,7 +25,7 @@ trait HasWireElement
         return $this;
     }
 
-    public function wireSlideOver($component, $params = []): self
+    public function wireSlideOver(string $component, array $params = []): self
     {
         $this->wireElementType = 'slide-over';
         $this->wireElementComponentName = $component;
@@ -79,7 +79,7 @@ trait HasWireElement
         return $this->wireElementParams;
     }
 
-    public function setWireElementParams($params): self
+    public function setWireElementParams(array $params): self
     {
         $this->wireElementParams = $params;
 
