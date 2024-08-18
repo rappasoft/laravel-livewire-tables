@@ -33,6 +33,7 @@ final class ActionTest extends TestCase
         $this->assertTrue($action->hasIcon());
         $this->assertFalse($action->hasIconAttributes());
         $this->assertSame('fas fa-minus', $action->getIcon());
+        $this->assertSame('fas fa-minus', $action->icon);
 
     }
 
@@ -48,6 +49,8 @@ final class ActionTest extends TestCase
         $action->setIconAttributes(['class' => 'font-sm text-sm']);
         $this->assertTrue($action->hasIconAttributes());
         $this->assertSame(['class' => 'font-sm text-sm'], $action->getIconAttributes());
+        $this->assertSame(['class' => 'font-sm text-sm'], $action->iconAttributes);
+
         $bag = new \Illuminate\View\ComponentAttributeBag(['class' => 'font-sm text-sm']);
         $this->assertSame($bag->getAttributes(), $action->getIconAttributesBag()->getAttributes());
     }
@@ -68,4 +71,15 @@ final class ActionTest extends TestCase
         $action->setRoute('dashboard4');
         $this->assertSame('dashboard4', $action->getRoute());
     }
+
+    public function test_can_set_action_button_to_wire_navigate(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
+            ->route('dashboard2');
+        $this->assertFalse($action->getWireNavigate());
+        $action->wireNavigate();
+        $this->assertTrue($action->getWireNavigate());
+    }
+
 }
