@@ -98,7 +98,6 @@ trait HasWireElement
         return $this->shouldWireNavigate;
     }
 
-
     protected function getWireElementView(): array
     {
         return [
@@ -109,5 +108,4 @@ trait HasWireElement
             'wireElementParams' => json_encode($this->getWireElementParams(), true),
         ];
     }
-
 }

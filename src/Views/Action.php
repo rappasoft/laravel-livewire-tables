@@ -40,7 +40,6 @@ class Action extends Component
                 ...$this->getIconView(),
             ]);
 
-
         return $view;
     }
 }
