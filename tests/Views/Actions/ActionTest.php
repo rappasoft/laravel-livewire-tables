@@ -35,13 +35,13 @@ final class ActionTest extends TestCase
         $this->assertSame('fas fa-minus', $action->getIcon());
 
     }
-    
+
     public function test_can_get_action_button_icon_attributes(): void
     {
         $action = Action::make('Update Summaries')
-        ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
-        ->wireNavigate()
-        ->route('dashboard2');
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
+            ->wireNavigate()
+            ->route('dashboard2');
         $this->assertFalse($action->hasIcon());
         $this->assertFalse($action->hasIconAttributes());
 
@@ -66,5 +66,4 @@ final class ActionTest extends TestCase
         $action->setRoute('dashboard4');
         $this->assertSame('dashboard4', $action->getRoute());
     }
-
 }
