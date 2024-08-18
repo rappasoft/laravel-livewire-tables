@@ -6,6 +6,9 @@
            @if($hasWireElement)
                wire:{{ $wireElementType }}="{{ $wireElementComponentName }} , {{ $wireElementParams }}"
            @endif
+           @if($shouldWireNavigate)
+            wire:navigate
+           @endif
         >
             {{ $label }}
 

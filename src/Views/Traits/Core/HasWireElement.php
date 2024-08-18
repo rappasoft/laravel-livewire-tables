@@ -14,6 +14,8 @@ trait HasWireElement
 
     protected ?object $wireElementCallback;
 
+    protected bool $shouldWireNavigate = false;
+
     public function wireModal($component, $params = []): self
     {
         $this->wireElementType = 'modal';
@@ -76,4 +78,36 @@ trait HasWireElement
     {
         return $this->wireElementParams;
     }
+
+    public function setWireElementParams($params): self
+    {
+        $this->wireElementParams = $params;
+
+        return $this;
+    }
+
+    public function wireNavigate(): self
+    {
+        $this->shouldWireNavigate = true;
+
+        return $this;
+    }
+
+    public function getWireNavigate(): bool
+    {
+        return $this->shouldWireNavigate;
+    }
+
+
+    protected function getWireElementView(): array
+    {
+        return [
+            'shouldWireNavigate' => $this->getWireNavigate(),
+            'hasWireElement' => $this->hasWireElement(),
+            'wireElementType' => $this->getWireElementType(),
+            'wireElementComponentName' => $this->getWireElementComponentName(),
+            'wireElementParams' => json_encode($this->getWireElementParams(), true),
+        ];
+    }
+
 }

@@ -23,7 +23,6 @@ trait HasActionAttributes
     public function getActionAttributesBag(): ComponentAttributeBag
     {
         $actionAttributes['href'] = $this->getRoute();
-
         return new \Illuminate\View\ComponentAttributeBag($actionAttributes);
 
     }

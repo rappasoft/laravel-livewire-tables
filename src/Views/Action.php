@@ -29,33 +29,18 @@ class Action extends Component
         return new static($label);
     }
 
-    public function getContents(): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-    {
-        return view($this->getView())
-            ->withAttributes([])
-            ->withLabel($this->getLabel())
-            ->withButtonAttributes($this->getActionAttributesBag())
-            ->withHasWireElement($this->hasWireElement())
-            ->withWireElementType($this->getWireElementType())
-            ->withWireElementComponentName($this->getWireElementComponentName())
-            ->withWireElementParams(json_encode($this->getWireElementParams(), true))
-            ->withIcon($this->hasIcon() ? $this->getIcon() : '')
-            ->withHasIcon($this->hasIcon())
-            ->withIconAttributes($this->getIconAttributesBag());
-    }
-
     public function render(): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view($this->getView())
+        $view = view($this->getView())
             ->withAttributes($this->getActionAttributesBag())
             ->withLabel($this->getLabel())
             ->withButtonAttributes($this->getActionAttributes())
-            ->withHasWireElement($this->hasWireElement())
-            ->withWireElementType($this->getWireElementType())
-            ->withWireElementComponentName($this->getWireElementComponentName())
-            ->withWireElementParams(json_encode($this->getWireElementParams(), true))
-            ->withIcon($this->hasIcon() ? $this->getIcon() : '')
-            ->withHasIcon($this->hasIcon())
-            ->withIconAttributes(new \Illuminate\View\ComponentAttributeBag($this->hasIconAttributes() ? $this->getIconAttributes() : ['default' => true]));
+            ->with([
+                ...$this->getWireElementView(),
+                ...$this->getIconView(),
+            ]);
+
+
+        return $view;
     }
 }

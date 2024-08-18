@@ -46,6 +46,10 @@ setIconAttributes is used to set any additional attributes for the Icon for the 
 
 Used for non-wireable butons, to set the route that the action button should take the user to upon clicking.
 
+### wireNavigate
+
+Used in conjunction with setRoute - makes the link "wire:navigate" rather than default behaviour
+
 ### setActionWrapperAttributes
 
 This is used to set attributes for the "div" that wraps any Action Buttons:

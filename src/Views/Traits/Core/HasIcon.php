@@ -48,4 +48,15 @@ trait HasIcon
     {
         return new ComponentAttributeBag($this->hasIconAttributes() ? $this->getIconAttributes() : ['default' => true]);
     }
+
+
+    protected function getIconView(): array
+    {
+        return [
+            'icon' => $this->hasIcon() ? $this->getIcon() : '',
+            'hasIcon' => $this->hasIcon(),
+            'iconAttributes' => new \Illuminate\View\ComponentAttributeBag($this->hasIconAttributes() ? $this->getIconAttributes() : ['default' => true])
+        ];
+    }
+
 }
