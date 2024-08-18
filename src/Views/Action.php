@@ -2,10 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views;
 
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasActionAttributes, HasIcon, HasLabel, HasRoute, HasView, HasWireElement};
-use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasVisibility;
 use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasVisibility;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasActionAttributes, HasIcon, HasLabel, HasRoute, HasView, HasWireElement};
 
 class Action extends Component
 {
@@ -19,7 +19,6 @@ class Action extends Component
 
     protected string $view = 'livewire-tables::includes.actions.button';
 
-
     public function __construct(?string $label = null)
     {
         $this->label = trim(__($label));
@@ -30,7 +29,6 @@ class Action extends Component
         return new static($label);
     }
 
-
     public function getContents(): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view($this->getView())
@@ -40,7 +38,7 @@ class Action extends Component
             ->withHasWireElement($this->hasWireElement())
             ->withWireElementType($this->getWireElementType())
             ->withWireElementComponentName($this->getWireElementComponentName())
-            ->withWireElementParams(json_encode($this->getWireElementParams(),true))
+            ->withWireElementParams(json_encode($this->getWireElementParams(), true))
             ->withIcon($this->hasIcon() ? $this->getIcon() : '')
             ->withHasIcon($this->hasIcon())
             ->withIconAttributes($this->getIconAttributesBag());
@@ -55,10 +53,9 @@ class Action extends Component
             ->withHasWireElement($this->hasWireElement())
             ->withWireElementType($this->getWireElementType())
             ->withWireElementComponentName($this->getWireElementComponentName())
-            ->withWireElementParams(json_encode($this->getWireElementParams(),true))
+            ->withWireElementParams(json_encode($this->getWireElementParams(), true))
             ->withIcon($this->hasIcon() ? $this->getIcon() : '')
             ->withHasIcon($this->hasIcon())
             ->withIconAttributes(new \Illuminate\View\ComponentAttributeBag($this->hasIconAttributes() ? $this->getIconAttributes() : ['default' => true]));
-}
-
+    }
 }

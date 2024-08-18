@@ -36,5 +36,4 @@ trait WithActions
     {
         return collect($this->actions());
     }
-
 }

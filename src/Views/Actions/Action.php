@@ -10,5 +10,4 @@ class Action extends BaseAction
     {
         parent::__construct($label);
     }
-
 }

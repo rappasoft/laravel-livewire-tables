@@ -7,6 +7,7 @@ use Illuminate\View\ComponentAttributeBag;
 trait HasIcon
 {
     public ?string $icon;
+
     public ?array $iconAttributes;
 
     public function setIcon(string $icon): self
@@ -47,5 +48,4 @@ trait HasIcon
     {
         return new ComponentAttributeBag($this->hasIconAttributes() ? $this->getIconAttributes() : ['default' => true]);
     }
-
 }

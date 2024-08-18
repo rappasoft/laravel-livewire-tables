@@ -26,5 +26,4 @@ trait HasRoute
     {
         return $this->route;
     }
-
 }
