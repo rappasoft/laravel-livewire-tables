@@ -25,11 +25,12 @@ final class ActionTest extends TestCase
     {
         $action = Action::make('Update Summaries')
             ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
-            ->setIcon('fas fa-minus')
-            ->setIconAttributes(['class' => 'font-sm text-sm'])
             ->wireNavigate()
             ->route('dashboard2');
-
+        $this->assertFalse($action->hasIcon());
+        $action->setIcon('fas fa-minus')
+        ->setIconAttributes(['class' => 'font-sm text-sm']);
+        $this->assertTrue($action->hasIcon());
         $this->assertSame('fas fa-minus', $action->getIcon());
     }
 
@@ -47,4 +48,5 @@ final class ActionTest extends TestCase
         $action->setRoute('dashboard4');
         $this->assertSame('dashboard4', $action->getRoute());
     }
+
 }
