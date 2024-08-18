@@ -32,4 +32,20 @@ final class ActionTest extends TestCase
 
         $this->assertSame('fas fa-minus', $action->getIcon());
     }
+
+    public function test_can_get_action_button_route(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->wireNavigate();
+        $this->assertSame('#', $action->getRoute());
+        $action->route('dashboard2');
+
+        $this->assertSame('dashboard2', $action->getRoute());
+        $action->setRoute('dashboard4');
+        $this->assertSame('dashboard4', $action->getRoute());
+    }
+
 }
