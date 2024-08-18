@@ -29,7 +29,7 @@ final class ActionTest extends TestCase
             ->route('dashboard2');
         $this->assertFalse($action->hasIcon());
         $action->setIcon('fas fa-minus')
-        ->setIconAttributes(['class' => 'font-sm text-sm']);
+            ->setIconAttributes(['class' => 'font-sm text-sm']);
         $this->assertTrue($action->hasIcon());
         $this->assertSame('fas fa-minus', $action->getIcon());
     }
@@ -48,5 +48,4 @@ final class ActionTest extends TestCase
         $action->setRoute('dashboard4');
         $this->assertSame('dashboard4', $action->getRoute());
     }
-
 }
