@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Locked;
+use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
-use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 
 trait WithFilters
 {
