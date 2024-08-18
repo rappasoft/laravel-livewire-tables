@@ -47,5 +47,4 @@ final class ActionTest extends TestCase
         $action->setRoute('dashboard4');
         $this->assertSame('dashboard4', $action->getRoute());
     }
-
 }
