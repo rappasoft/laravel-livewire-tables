@@ -60,7 +60,9 @@ final class ActionTest extends TestCase
             ->setIconAttributes(['class' => 'font-sm text-sm'])
             ->wireNavigate();
         $this->assertSame('#', $action->getRoute());
+        $this->assertSame('#', $action->route);
         $action->route('dashboard2');
+        $this->assertSame('dashboard2', $action->route);
 
         $this->assertSame('dashboard2', $action->getRoute());
         $action->setRoute('dashboard4');
