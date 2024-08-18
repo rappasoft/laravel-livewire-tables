@@ -87,7 +87,7 @@ final class ActionTest extends TestCase
         $action = Action::make('Update Summaries')
             ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
             ->route('dashboard2');
-        $this->assertSame('object', gettype($action->render()));
+        $this->assertSame('object',gettype($action->render()));
         $renderData = $action->render()->getData();
 
         $this->assertFalse($renderData['shouldWireNavigate']);
@@ -96,4 +96,16 @@ final class ActionTest extends TestCase
         $this->assertSame('Update Summaries', $renderData['label']);
 
     }
+    public function test_can_get_action_button_action_attributes(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->wireNavigate()
+            ->route('dashboard2');
+        $this->assertSame(['default' => true], $action->getActionAttributes());
+        $action->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true]);
+        $this->assertSame(['default' => true, 'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800'], $action->getActionAttributes());
+        $action->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => false]);
+        $this->assertSame(['default' => false, 'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800'], $action->getActionAttributes());
+    }
+
 }
