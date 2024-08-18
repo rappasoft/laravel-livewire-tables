@@ -8,6 +8,7 @@ trait HasAllTraits
     use WithTableHooks;
     use WithLoadingPlaceholder;
     use ComponentUtilities,
+        //WithActions,
         WithData,
         WithColumns,
         WithSorting,

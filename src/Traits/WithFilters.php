@@ -103,6 +103,7 @@ trait WithFilters
         } elseif ($filter) {
             $this->callHook('filterUpdated', ['filter' => $filter->getKey(), 'value' => $value]);
             $this->callTraitHook('filterUpdated', ['filter' => $filter->getKey(), 'value' => $value]);
+            $this->dispatch('filter-was-set', tableName: $this->getTableName(), filterKey: $filter->getKey(), value: $value);
 
         }
     }
