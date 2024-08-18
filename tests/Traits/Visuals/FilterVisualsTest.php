@@ -59,10 +59,10 @@ final class FilterVisualsTest extends TestCase
     public function test_event_dispatched_when_setFilter_dispatched(): void
     {
         Livewire::test(PetsTable::class)
-            ->dispatch('setFilter', filterKey: 'breed', value: [1])	
+            ->dispatch('setFilter', filterKey: 'breed', value: [1])
             ->assertDispatched('filter-was-set');
     }
-    
+
     public function test_filter_pills_show_when_visible(): void
     {
         Livewire::test(PetsTable::class)
