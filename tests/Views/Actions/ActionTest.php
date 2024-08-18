@@ -7,17 +7,16 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Actions\Action;
 
-final class ActionTest extends TestCase {
-
-
+final class ActionTest extends TestCase
+{
     public function test_can_get_action_button_label(): void
     {
         $action = Action::make('Update Summaries')
-        ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
-        ->setIcon("fas fa-minus")
-        ->setIconAttributes(['class' => 'font-sm text-sm'])
-        ->wireNavigate()
-        ->route('dashboard2');
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->wireNavigate()
+            ->route('dashboard2');
 
         $this->assertSame('Update Summaries', $action->getLabel());
     }
@@ -25,14 +24,12 @@ final class ActionTest extends TestCase {
     public function test_can_get_action_button_icon(): void
     {
         $action = Action::make('Update Summaries')
-        ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
-        ->setIcon("fas fa-minus")
-        ->setIconAttributes(['class' => 'font-sm text-sm'])
-        ->wireNavigate()
-        ->route('dashboard2');
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->wireNavigate()
+            ->route('dashboard2');
 
         $this->assertSame('fas fa-minus', $action->getIcon());
     }
-
-
 }
