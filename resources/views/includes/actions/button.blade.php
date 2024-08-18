@@ -1,4 +1,4 @@
-<button {{ $attributes->merge($buttonAttributes)
+<a {{ $attributes->merge($buttonAttributes)
             ->class(['focus:border-indigo-300 focus:ring-indigo-200  justify-center text-center items-center inline-flex rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50' => $this->isTailwind && $buttonAttributes['default'] ?? true])
             ->class(['btn btn-sm btn-success' => $this->isBootstrap && $buttonAttributes['default'] ?? true])
             ->except('default')
@@ -16,4 +16,4 @@
                 ->except('default')
             }}></i>
         @endif
-</button>
+</a>
