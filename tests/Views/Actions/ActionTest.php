@@ -81,5 +81,4 @@ final class ActionTest extends TestCase
         $action->wireNavigate();
         $this->assertTrue($action->getWireNavigate());
     }
-
 }
