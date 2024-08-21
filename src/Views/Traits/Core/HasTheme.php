@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
-
 trait HasTheme
 {
     protected string $theme = 'tailwind';
@@ -33,5 +32,4 @@ trait HasTheme
     {
         return $this->theme == 'bootstrap-5';
     }
-
 }

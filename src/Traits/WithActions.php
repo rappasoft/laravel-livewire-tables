@@ -34,17 +34,17 @@ trait WithActions
     public function hasActions(): bool
     {
         return (new Collection($this->actions()))
-        ->filter(fn ($action) => $action instanceof Action)->count() > 0;
+            ->filter(fn ($action) => $action instanceof Action)->count() > 0;
     }
 
     #[Computed]
     public function getActions(): Collection
     {
         return (new Collection($this->actions()))
-        ->filter(fn ($action) => $action instanceof Action)
-        ->each(function (Action $action, int $key) {
-            $action->setTheme($this->getTheme());
-        });
+            ->filter(fn ($action) => $action instanceof Action)
+            ->each(function (Action $action, int $key) {
+                $action->setTheme($this->getTheme());
+            });
 
     }
 }
