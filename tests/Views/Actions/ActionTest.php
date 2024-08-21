@@ -4,10 +4,10 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Actions;
 
 use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableAttributes};
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Actions\Action;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableAttributes};
 
 final class ActionTest extends TestCase
 {
@@ -55,7 +55,7 @@ final class ActionTest extends TestCase
 
         $action->setIconAttributes(['class' => 'font-sm text-sm']);
         $bag = new \Illuminate\View\ComponentAttributeBag(['default-styling' => true, 'class' => 'font-sm text-sm']);
-
+        
         $this->assertSame($bag->getAttributes(), $action->getIconAttributes()->getAttributes());
         $this->assertSame(['default-styling' => true, 'class' => 'font-sm text-sm'], $action->iconAttributes);
 
@@ -143,7 +143,7 @@ final class ActionTest extends TestCase
         $this->assertFalse($action->hasWireAction());
 
         $action->setWireAction('wire:click')
-            ->setWireActionParams("\$dispatch('openModal', { component: 'incidents.incident.modal', arguments: JSON.parse('{\u0022modelID\u0022:\u0022\u0022}') })");
+            ->setWireActionParams("\$dispatch('openModal', { component: 'test-modal', arguments: JSON.parse('{\u0022modelID\u0022:\u0022\u0022}') })");
 
         $this->assertTrue($action->hasWireAction());
     }
@@ -155,11 +155,26 @@ final class ActionTest extends TestCase
             ->setIcon('fas fa-minus')
             ->setIconAttributes(['class' => 'font-sm text-sm'])
             ->setWireAction('wire:click')
-            ->setWireActionParams("\$dispatch('openModal', { component: 'incidents.incident.modal', arguments: JSON.parse('{\u0022modelID\u0022:\u0022\u0022}') })");
+            ->setWireActionParams("\$dispatch('openModal', { component: 'test-modal', arguments: JSON.parse('{\u0022modelID\u0022:\u0022\u0022}') })");
 
         $this->assertTrue($action->hasWireAction());
 
         $this->assertSame('wire:click', $action->getWireAction());
+
+    }
+
+    public function test_can_get_wire_action_dispatch(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->setWireAction('wire:click')
+            ->setWireActionDispatchParams("'openModal', { component: 'test-modal', arguments: JSON.parse('{\u0022modelID\u0022:\u0022\u0022}') }");
+        $this->assertTrue($action->hasWireAction());
+
+        $this->assertSame('wire:click', $action->getWireAction());
+        $this->assertSame("\$dispatch('openModal', { component: 'test-modal', arguments: JSON.parse('{\u0022modelID\u0022:\u0022\u0022}') })", $action->getWireActionParams());
 
     }
 
@@ -182,9 +197,9 @@ final class ActionTest extends TestCase
 
     public function test_can_set_action_wrapper_attributes(): void
     {
-        $petsTable = (new class extends PetsTable
-        {
+        $petsTable = (new class extends PetsTable {
             use \Rappasoft\LaravelLivewireTables\Traits\WithActions;
+
 
             public function configure(): void
             {
@@ -204,14 +219,14 @@ final class ActionTest extends TestCase
         $this->assertSame(['default-styling' => true, 'default-colors' => true], $petsTable->getActionWrapperAttributes());
         $petsTable->setActionWrapperAttributes(['default-styling' => false, 'class' => 'bg-blue-500']);
         $this->assertSame([
-            'default-styling' => false,
+            'default-styling' => false, 
             'default-colors' => true,
             'class' => 'bg-blue-500',
         ], $petsTable->getActionWrapperAttributes());
 
         $petsTable->setActionWrapperAttributes(['default-colors' => false, 'class' => 'bg-red-500']);
         $this->assertSame([
-            'default-styling' => true,
+            'default-styling' => true, 
             'default-colors' => false,
             'class' => 'bg-red-500',
         ], $petsTable->getActionWrapperAttributes());
@@ -220,15 +235,13 @@ final class ActionTest extends TestCase
 
     public function test_can_check_has_actions(): void
     {
-        $petsTable = (new class extends PetsTable
-        {
+        $petsTable = (new class extends PetsTable {
             use \Rappasoft\LaravelLivewireTables\Traits\WithActions;
 
-            public function actions()
-            {
+            public function actions() {
                 return [
                     \Rappasoft\LaravelLivewireTables\Views\Actions\Action::make('Test Edit 1')
-                        ->setRoute('dashboard24'),
+            ->setRoute('dashboard24')
                 ];
             }
 
@@ -252,4 +265,5 @@ final class ActionTest extends TestCase
         $this->assertSame(1, $petsTable->getActions()->count());
 
     }
+
 }
