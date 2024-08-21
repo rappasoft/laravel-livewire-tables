@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
+namespace Rappasoft\LaravelLivewireTables\Views\Traits\Actions;
 
 trait HasRoute
 {

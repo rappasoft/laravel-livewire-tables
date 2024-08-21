@@ -3,12 +3,13 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 use Illuminate\View\ComponentAttributeBag;
+use Livewire\Attributes\Computed;
 
 trait HasIcon
 {
     public ?string $icon;
 
-    public ?array $iconAttributes;
+    public array $iconAttributes = ['default-styling' => true];
 
     public function setIcon(string $icon): self
     {
@@ -29,7 +30,7 @@ trait HasIcon
 
     public function setIconAttributes(array $iconAttributes): self
     {
-        $this->iconAttributes = $iconAttributes;
+        $this->iconAttributes = [...['default-styling' => true], ...$iconAttributes];
 
         return $this;
     }
@@ -39,14 +40,9 @@ trait HasIcon
         return isset($this->iconAttributes);
     }
 
-    public function getIconAttributes(): array
+    public function getIconAttributes(): ComponentAttributeBag
     {
-        return $this->iconAttributes;
-    }
-
-    public function getIconAttributesBag(): ComponentAttributeBag
-    {
-        return new ComponentAttributeBag($this->hasIconAttributes() ? $this->getIconAttributes() : ['default' => true]);
+        return new ComponentAttributeBag([...['default-styling' => true], ...$this->iconAttributes]);
     }
 
     protected function getIconView(): array
@@ -54,7 +50,7 @@ trait HasIcon
         return [
             'icon' => $this->hasIcon() ? $this->getIcon() : '',
             'hasIcon' => $this->hasIcon(),
-            'iconAttributes' => new \Illuminate\View\ComponentAttributeBag($this->hasIconAttributes() ? $this->getIconAttributes() : ['default' => true]),
+            'iconAttributes' => $this->getIconAttributes(),
         ];
     }
 }

@@ -4,26 +4,30 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
+use Rappasoft\LaravelLivewireTables\Views\Action;
 
 trait WithActions
 {
-    public array $actionWrapperAttributes = ['default' => true];
-
-    public function setActionWrapperAttributes(array $actionWrapperAttributes)
-    {
-        $this->actionWrapperAttributes = [...['default' => true], ...$actionWrapperAttributes];
-    }
-
-    #[Computed]
-    public function getActionWrapperAttributes()
-    {
-        return $this->actionWrapperAttributes ?? ['default' => true];
-    }
+    public array $actionWrapperAttributes = ['default-styling' => true, 'default-colors' => true];
 
     public function actions(): array
     {
         return [];
     }
+
+    public function setActionWrapperAttributes(array $actionWrapperAttributes): self
+    {
+        $this->actionWrapperAttributes = [...['default-styling' => true, 'default-colors' => true], ...$actionWrapperAttributes];
+
+        return $this;
+    }
+
+    #[Computed]
+    public function getActionWrapperAttributes(): array
+    {
+        return [...['default-styling' => true, 'default-colors' => true], ...$this->actionWrapperAttributes];
+    }
+
 
     #[Computed]
     public function hasActions(): bool
@@ -34,6 +38,7 @@ trait WithActions
     #[Computed]
     public function getActions(): Collection
     {
-        return collect($this->actions());
+        $allActions = collect($this->actions());
+        return $allActions->filter(fn ($action) => $action instanceof Action);
     }
 }

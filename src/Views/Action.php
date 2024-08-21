@@ -5,7 +5,8 @@ namespace Rappasoft\LaravelLivewireTables\Views;
 use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasVisibility;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasActionAttributes, HasIcon, HasLabel, HasRoute, HasView, HasWireElement};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasIcon, HasLabel, HasView, HasWireActions};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Actions\{HasActionAttributes, HasRoute};
 
 class Action extends Component
 {
@@ -15,7 +16,7 @@ class Action extends Component
     use HasRoute;
     use HasView;
     use HasVisibility;
-    use HasWireElement;
+    use HasWireActions;
 
     protected string $view = 'livewire-tables::includes.actions.button';
 
@@ -32,13 +33,8 @@ class Action extends Component
     public function render(): null|string|\Illuminate\Support\HtmlString|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $view = view($this->getView())
-            ->withAttributes($this->getActionAttributesBag())
-            ->withLabel($this->getLabel())
-            ->withButtonAttributes($this->getActionAttributes())
-            ->with([
-                ...$this->getWireElementView(),
-                ...$this->getIconView(),
-            ]);
+            ->withAction($this)
+            ->withAttributes($this->getActionAttributes());
 
         return $view;
     }
