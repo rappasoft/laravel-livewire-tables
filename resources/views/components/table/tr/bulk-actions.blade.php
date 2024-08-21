@@ -97,7 +97,7 @@
                     </div>
                 </template>
 
-                <<template x-if="selectedItems.length !== paginationTotalItemCount && !selectAllStatus">
+                <template x-if="selectedItems.length !== paginationTotalItemCount && !selectAllStatus">
                     <div wire:key="{{ $tableName }}-some-selected">
                         <span>
                             @lang('You have selected')
