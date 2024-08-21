@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\ComponentAttributeBag;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
+use Rappasoft\LaravelLivewireTables\Views\{Action, Column,Filter};
 
 trait HasAttributes
 {
