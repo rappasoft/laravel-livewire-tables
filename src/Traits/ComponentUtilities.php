@@ -45,7 +45,7 @@ trait ComponentUtilities
 
     protected array $extraWithAvgs = [];
 
-    protected bool $useComputedProperties = true;
+    protected bool $useComputedProperties = false;
 
     /**
      * Set any configuration options
