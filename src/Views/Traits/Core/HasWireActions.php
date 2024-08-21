@@ -58,7 +58,7 @@ trait HasWireActions
         return $this;
     }
 
-    public function setWireActionDispatch(string $wireActionParams): self
+    public function setWireActionDispatchParams(string $wireActionParams): self
     {
         $this->setWireActionParams('$dispatch('.$wireActionParams.')');
 

@@ -81,23 +81,83 @@ public function actions(): array
 ### setIconAttributes
 
 setIconAttributes is used to set any additional attributes for the Icon for the action button
+```php
+public function actions(): array
+{
+    return [
+        Action::make('Edit Item')
+        ->setIcon("fas fa-edit")
+        ->setIconAttributes(['class' => 'font-4xl text-4xl']),
+    ];
+}
+```
 
 ### setRoute
 
 Used for non-wireable butons, to set the route that the action button should take the user to upon clicking.
+```php
+public function actions(): array
+{
+    return [
+        Action::make('Dashboard')
+        ->setRoute('dashboard')
+    ];
+}
+```
 
 ### wireNavigate
 
 Used in conjunction with setRoute - makes the link "wire:navigate" rather than default behaviour
+```php
+public function actions(): array
+{
+    return [
+        Action::make('Dashboard')
+        ->setRoute('dashboard')
+        ->wireNavigate()
+    ];
+}
+```
 
 ### setWireAction
-TO DO
+```php
+public function actions(): array
+{
+    return [
+        Action::make('Create 2')
+        ->setWireAction("wire:click")
+    ];
+}
+```
 
 ### setWireActionParams
-TO DO
+Specify the action & parameters to pass to the wire:click method
 
-### setWireActionDispatch
-TO DO
+```php
+public function actions(): array
+{
+    return [
+        Action::make('Create 2')
+        ->setWireAction("wire:click")
+        ->setWireActionParams(['id' => 'test']),
+    ];
+}
+```
+
+### setWireActionDispatchParams
+
+Use $dispatch rather than a typical wire:click action
+
+```php
+public function actions(): array
+{
+    return [
+        Action::make('Create 2')
+        ->setWireAction("wire:click")
+        ->setWireActionDispatchParams("'openModal', { component: 'test-modal' }"),
+    ];
+}
+```
 
 ### setView
 
