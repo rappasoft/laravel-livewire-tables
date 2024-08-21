@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.9] - 2024-08-21
+### Bug Fixes
+- Default UseComputedProperties to False to allow previously published views to work by default by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1869
+- Fix superfluous bulk actions tr > by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1868
+
 ## [v3.4.8] - 2024-08-18
 ### New Features
 - Add an event dispatch for Filter Was Set when filterComponents is updated by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1861
