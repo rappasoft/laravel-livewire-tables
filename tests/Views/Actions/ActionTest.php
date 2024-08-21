@@ -11,6 +11,7 @@ use Rappasoft\LaravelLivewireTables\Views\Actions\Action;
 
 final class ActionTest extends TestCase
 {
+    
     public function test_can_get_action_button_label(): void
     {
         $action = Action::make('Update Summaries')
