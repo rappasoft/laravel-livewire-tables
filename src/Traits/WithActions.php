@@ -8,8 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\Action;
 
 trait WithActions
 {
-    protected const DEFAULT_ACTION_WRAPPER_ATTRIBUTES = ['default-styling' => true, 'default-colors' => true];
-
     protected array $actionWrapperAttributes = ['default-styling' => true, 'default-colors' => true];
 
     protected function actions(): array
@@ -19,7 +17,7 @@ trait WithActions
 
     public function setActionWrapperAttributes(array $actionWrapperAttributes): self
     {
-        $this->actionWrapperAttributes = [...self::DEFAULT_ACTION_WRAPPER_ATTRIBUTES, ...$actionWrapperAttributes];
+        $this->actionWrapperAttributes = [...['default-styling' => true, 'default-colors' => true], ...$actionWrapperAttributes];
 
         return $this;
     }
@@ -27,7 +25,7 @@ trait WithActions
     #[Computed]
     public function getActionWrapperAttributes(): array
     {
-        return [...self::DEFAULT_ACTION_WRAPPER_ATTRIBUTES, ...$this->actionWrapperAttributes];
+        return [...['default-styling' => true, 'default-colors' => true], ...$this->actionWrapperAttributes];
     }
 
     #[Computed]
