@@ -233,6 +233,34 @@ final class ActionTest extends TestCase
 
     }
 
+    public function test_can_check_that_route_is_appended_to_attributes(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->route('dashboard22');
+        $this->assertSame((new ComponentAttributeBag([
+            'default-styling' => true,
+            'default-colors' => true,
+            'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800',
+            'href' => 'dashboard22',
+        ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
+    }
+
+    public function test_can_check_that_route_is_not_appended_to_attributes_with_wireaction(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->route('dashboard22')
+            ->setWireAction('wire:click')
+            ->setWireActionParams('testactionparams');
+        $this->assertSame((new ComponentAttributeBag([
+            'default-styling' => true,
+            'default-colors' => true,
+            'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800',
+            'href' => '#',
+        ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
+    }
+
     public function test_can_check_has_actions(): void
     {
         $petsTable = (new class extends PetsTable
