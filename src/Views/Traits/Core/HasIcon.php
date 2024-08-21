@@ -35,22 +35,8 @@ trait HasIcon
         return $this;
     }
 
-    public function hasIconAttributes(): bool
-    {
-        return isset($this->iconAttributes);
-    }
-
     public function getIconAttributes(): ComponentAttributeBag
     {
         return new ComponentAttributeBag([...['default-styling' => true], ...$this->iconAttributes]);
-    }
-
-    protected function getIconView(): array
-    {
-        return [
-            'icon' => $this->hasIcon() ? $this->getIcon() : '',
-            'hasIcon' => $this->hasIcon(),
-            'iconAttributes' => $this->getIconAttributes(),
-        ];
     }
 }
