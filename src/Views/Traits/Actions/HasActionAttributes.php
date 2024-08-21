@@ -6,7 +6,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 trait HasActionAttributes
 {
-
     protected array $actionAttributes = ['default-styling' => true, 'default-colors' => true];
 
     public function setActionAttributes(array $actionAttributes): self
