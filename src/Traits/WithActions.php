@@ -33,12 +33,18 @@ trait WithActions
     #[Computed]
     public function hasActions(): bool
     {
-        return $this->getActions()->count() > 0;
+        return (new Collection($this->actions()))
+        ->filter(fn ($action) => $action instanceof Action)->count() > 0;
     }
 
     #[Computed]
     public function getActions(): Collection
     {
-        return (new Collection($this->actions()))->filter(fn ($action) => $action instanceof Action);
+        return (new Collection($this->actions()))
+        ->filter(fn ($action) => $action instanceof Action)
+        ->each(function (Action $action, int $key) {
+            $action->setTheme($this->getTheme());
+        });
+
     }
 }

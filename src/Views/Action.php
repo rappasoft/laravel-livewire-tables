@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Actions\{HasActionAttributes, HasRoute};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasVisibility;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasIcon, HasLabel, HasView, HasWireActions};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasIcon, HasLabel, HasTheme, HasView, HasWireActions};
 
 class Action extends Component
 {
@@ -14,6 +14,7 @@ class Action extends Component
     use HasIcon;
     use HasLabel;
     use HasRoute;
+    use HasTheme;
     use HasView;
     use HasVisibility;
     use HasWireActions;
@@ -34,6 +35,8 @@ class Action extends Component
     {
         $view = view($this->getView())
             ->withAction($this)
+            ->withIsBootstrap($this->isBootstrap())
+            ->withIsTailwind($this->isTailwind())
             ->withAttributes($this->getActionAttributes());
 
         return $view;

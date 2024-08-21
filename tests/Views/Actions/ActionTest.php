@@ -295,4 +295,17 @@ final class ActionTest extends TestCase
         $this->assertSame(1, $petsTable->getActions()->count());
 
     }
+
+    public function test_action_renders_correctly(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 
+            'default-styling' => true, 
+            'default-colors' => true]
+            )
+            ->route('dashboard22');
+
+       $this->assertStringContainsString('<a class="focus:border-indigo-300 focus:ring-indigo-200 justify-center text-center items-center inline-flex rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50 dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800" href="dashboard22"', $action->render());
+    }
+
 }
