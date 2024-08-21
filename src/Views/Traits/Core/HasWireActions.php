@@ -9,8 +9,8 @@ trait HasWireActions
     protected bool $shouldWireNavigate = false;
 
     protected ?string $wireAction = null;
-    protected ?string $wireActionParams = null;
 
+    protected ?string $wireActionParams = null;
 
     public function wireNavigate(): self
     {
@@ -33,7 +33,7 @@ trait HasWireActions
     {
         return $this->wireAction;
     }
-    
+
     public function setWireAction(string $wireAction): self
     {
         $this->wireAction = $wireAction;
@@ -50,7 +50,7 @@ trait HasWireActions
     {
         return $this->wireActionParams;
     }
-    
+
     public function setWireActionParams(string $wireActionParams): self
     {
         $this->wireActionParams = $wireActionParams;
@@ -60,7 +60,7 @@ trait HasWireActions
 
     public function setWireActionDispatch(string $wireActionParams): self
     {
-        $this->setWireActionParams("\$dispatch(".$wireActionParams.")");
+        $this->setWireActionParams('$dispatch('.$wireActionParams.')');
 
         return $this;
     }

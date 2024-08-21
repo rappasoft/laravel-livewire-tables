@@ -28,7 +28,6 @@ trait WithActions
         return [...['default-styling' => true, 'default-colors' => true], ...$this->actionWrapperAttributes];
     }
 
-
     #[Computed]
     public function hasActions(): bool
     {
@@ -39,6 +38,7 @@ trait WithActions
     public function getActions(): Collection
     {
         $allActions = collect($this->actions());
+
         return $allActions->filter(fn ($action) => $action instanceof Action);
     }
 }

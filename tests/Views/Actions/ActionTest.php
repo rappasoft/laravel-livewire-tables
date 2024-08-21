@@ -2,11 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Actions;
 
+use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Actions\Action;
-use Illuminate\View\ComponentAttributeBag;
 
 final class ActionTest extends TestCase
 {
@@ -26,9 +26,9 @@ final class ActionTest extends TestCase
     {
         $action = Action::make('Update Summaries')
             ->setActionAttributes([
-                'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 
-                'default-styling' => true, 
-                'default-colors' => true
+                'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800',
+                'default-styling' => true,
+                'default-colors' => true,
             ])
             ->wireNavigate()
             ->route('dashboard2');
@@ -44,10 +44,10 @@ final class ActionTest extends TestCase
     {
         $action = Action::make('Update Summaries')
             ->setActionAttributes([
-                'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 
-                'default-styling' => true, 
-                'default-colors' => true
-                ])
+                'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800',
+                'default-styling' => true,
+                'default-colors' => true,
+            ])
             ->wireNavigate()
             ->route('dashboard2');
         $this->assertFalse($action->hasIcon());
@@ -93,42 +93,42 @@ final class ActionTest extends TestCase
             ->wireNavigate()
             ->route('dashboard2');
         $this->assertSame((new ComponentAttributeBag([
-            'default-styling' => true, 
-            'default-colors' => true, 
-            'href' => 'dashboard2'
-            ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
+            'default-styling' => true,
+            'default-colors' => true,
+            'href' => 'dashboard2',
+        ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
 
         $action->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true]);
         $this->assertSame((new ComponentAttributeBag([
-            'default-styling' => true, 
-            'default-colors' => true, 
+            'default-styling' => true,
+            'default-colors' => true,
             'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800',
-            'href' => 'dashboard2'
-            ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
+            'href' => 'dashboard2',
+        ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
 
         $action->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true]);
         $this->assertSame((new ComponentAttributeBag([
-            'default-styling' => true, 
-            'default-colors' => true, 
+            'default-styling' => true,
+            'default-colors' => true,
             'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800',
-            'href' => 'dashboard2'
-            ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
+            'href' => 'dashboard2',
+        ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
 
         $action->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => false]);
         $this->assertSame((new ComponentAttributeBag([
-            'default-styling' => true, 
-            'default-colors' => false, 
+            'default-styling' => true,
+            'default-colors' => false,
             'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800',
-            'href' => 'dashboard2'
-            ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
+            'href' => 'dashboard2',
+        ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
 
         $action->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-colors' => false]);
         $this->assertSame((new ComponentAttributeBag([
-            'default-styling' => true, 
-            'default-colors' => false, 
+            'default-styling' => true,
+            'default-colors' => false,
             'class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800',
-            'href' => 'dashboard2'
-            ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
+            'href' => 'dashboard2',
+        ]))->getAttributes(), $action->getActionAttributes()->getAttributes());
 
     }
 
@@ -141,8 +141,8 @@ final class ActionTest extends TestCase
 
         $this->assertFalse($action->hasWireAction());
 
-        $action->setWireAction("wire:click")
-        ->setWireActionParams("\$dispatch('openModal', { component: 'incidents.incident.modal', arguments: JSON.parse('{\u0022modelID\u0022:\u0022\u0022}') })");
+        $action->setWireAction('wire:click')
+            ->setWireActionParams("\$dispatch('openModal', { component: 'incidents.incident.modal', arguments: JSON.parse('{\u0022modelID\u0022:\u0022\u0022}') })");
 
         $this->assertTrue($action->hasWireAction());
     }
@@ -153,7 +153,7 @@ final class ActionTest extends TestCase
             ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
             ->setIcon('fas fa-minus')
             ->setIconAttributes(['class' => 'font-sm text-sm'])
-            ->setWireAction("wire:click")
+            ->setWireAction('wire:click')
             ->setWireActionParams("\$dispatch('openModal', { component: 'incidents.incident.modal', arguments: JSON.parse('{\u0022modelID\u0022:\u0022\u0022}') })");
 
         $this->assertTrue($action->hasWireAction());
@@ -168,8 +168,8 @@ final class ActionTest extends TestCase
             ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
             ->setIcon('fas fa-minus')
             ->setIconAttributes(['class' => 'font-sm text-sm'])
-            ->setWireAction("wire:click")
-            ->setWireActionParams("testactionparams");
+            ->setWireAction('wire:click')
+            ->setWireActionParams('testactionparams');
 
         $this->assertTrue($action->hasWireActionParams());
         $this->assertTrue($action->hasWireAction());
@@ -178,5 +178,4 @@ final class ActionTest extends TestCase
         $this->assertSame('wire:click', $action->getWireAction());
 
     }
-
 }

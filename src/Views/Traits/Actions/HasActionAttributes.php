@@ -19,13 +19,10 @@ trait HasActionAttributes
     {
         $actionAttributes = [...['default-styling' => true, 'default-colors' => true], ...$this->actionAttributes];
 
-        if (!$this->hasWireAction() && method_exists($this, 'getRoute'))
-        {
-            $actionAttributes["href"] = $this->getRoute();
-        }
-        else
-        {
-            $actionAttributes["href"] = "#";
+        if (! $this->hasWireAction() && method_exists($this, 'getRoute')) {
+            $actionAttributes['href'] = $this->getRoute();
+        } else {
+            $actionAttributes['href'] = '#';
         }
 
         return new ComponentAttributeBag($actionAttributes);
