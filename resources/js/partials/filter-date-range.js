@@ -8,7 +8,7 @@ function fpf() {
             altFormat: filterConfig['altFormat'] ?? "F j, Y",
             altInput: filterConfig['altInput'] ?? false,
             allowInput: filterConfig['allowInput'] ?? false,
-            allowInvalidPreload: true,
+            allowInvalidPreload: filterConfig['allowInvalidPreload'] ?? true,
             ariaDateFormat: filterConfig['ariaDateFormat'] ?? "F j, Y",
             clickOpens: true,
             dateFormat: filterConfig['dateFormat'] ?? "Y-m-d",
@@ -30,15 +30,16 @@ function fpf() {
             },
             onChange: function (selectedDates, dateStr, instance) {
                 if (selectedDates.length > 1) {
-                    var startDate = dateStr.split(' ')[0];
-                    var endDate = dateStr.split(' ')[2];
+                    var dates = dateStr.split(' ');
+
                     var wireDateArray = {};
                     window.childElementOpen = false;
                     window.filterPopoverOpen = false;
-                    wireDateArray = { 'minDate': startDate, 'maxDate': endDate };
+                    wireDateArray = { 'minDate': dates[0], 'maxDate': (typeof dates[2] === "undefined") ? dates[0] : dates[2] };
                     wire.set('filterComponents.' + filterKey, wireDateArray);
                 }
-            }
+
+            },
         }),
         setupWire() {
             if (this.wireValues !== undefined) {
