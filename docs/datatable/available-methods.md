@@ -18,9 +18,21 @@ public function configure(): void
 }
 ```
 
+### useComputedPropertiesDisabled
+
+If you have published the Views **prior to v3.4.5**, and do not wish to remove the published views, then you should add the following call, which will disable the new Computed Properties behaviour.  Note that publishing the views is not recommended!
+
+```php
+public function configure(): void
+{
+  $this->useComputedPropertiesDisabled();
+}
+```
+
+
 ## Attributes
 
-Documentation for Data Table Styling/Attributes is now: <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/columns/styling" aria-label="Documentation for Data Table Styling" >Here</a>
+Documentation for Data Table Styling/Attributes is now: [Here](../datatable/styling)
 
 ## Offline
 

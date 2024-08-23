@@ -42,11 +42,16 @@ public function configure(): void
 
 ## setRefreshMethod
 
-Fire a specific action when polling.
+Fire a specific action when polling.  This is only necessary when you wish to call additional actions on each refresh.  You must have a public function with the same name as the refresh method.
 
 ```php
 public function configure(): void
 {
-    $this->setRefreshMethod('refresh');
+    $this->setRefreshMethod('refreshTable');
+}
+
+public function refreshTable()
+{
+    // Custom Code Here
 }
 ```
