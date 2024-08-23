@@ -1,5 +1,5 @@
 ---
-title: Customising Style
+title: Styling
 weight: 5
 ---
 
