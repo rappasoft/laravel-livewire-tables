@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.11] - 2024-08-23
+### New Features
+- Add setIconLeft/setIconRight for Actions by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1877
+
 ## [v3.4.10] - 2024-08-23
 ### Bug Fixes
 - Default UseComputedProperties to True to default to new views by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1873
