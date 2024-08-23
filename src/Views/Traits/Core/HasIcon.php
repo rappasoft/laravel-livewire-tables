@@ -60,5 +60,4 @@ trait HasIcon
 
         return $this;
     }
-
 }
