@@ -267,7 +267,7 @@ final class ActionTest extends TestCase
         {
             use \Rappasoft\LaravelLivewireTables\Traits\WithActions;
 
-            public function actions()
+            public function actions(): array
             {
                 return [
                     \Rappasoft\LaravelLivewireTables\Views\Actions\Action::make('Test Edit 1')
