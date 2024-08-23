@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.12] - 2024-08-23
+### Tweaks
+- Adjust Action Button Margins by @lrljoe in 
+
 ## [v3.4.11] - 2024-08-23
 ### New Features
 - Add setIconLeft/setIconRight for Actions by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1877
