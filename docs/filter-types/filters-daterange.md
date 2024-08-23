@@ -46,6 +46,7 @@ public function filters(): array
 A full list of options is below, please see the Flatpickr documentation for reference as to purpose:
 | Config Option  | Type | Default | Description | 
 | ------------- | ------------- | ------------- | ------------- |
+| allowInvalidPreload | Boolean | true | Allows the preloading of an invalid date. When disabled, the field will be cleared if the provided date is invalid |
 | allowInput | Boolean | false | Allows the user to enter a date directly into the input field. By default, direct entry is disabled. | 
 | altFormat | String | "F j, Y" | Exactly the same as date format, but for the altInput field | 
 | altInput | Boolean | false | Show the user a readable date (as per altFormat), but return something totally different to the server. | 
@@ -153,7 +154,7 @@ If using the CDN approach, ensure the following config matches:
 Then include the following in your layout:
 ```html
 // Flatpickr Core Script
-<script src="https://npmcdn.com/flatpickr" async></script>
+<script src="https://npmcdn.com/flatpickr" defer></script>
 
 // Flatpickr Core CSS
 <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css">
@@ -193,5 +194,5 @@ You can also add locales using the Flatpickr CDN, ensuring that these are loaded
 
 For example to add German (de), ensure that the following is in the "head" section of your layout, ideally before your app.js
 ```html
-<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js" async></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js" defer></script>
 ```
