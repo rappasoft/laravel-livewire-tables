@@ -8,6 +8,9 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Allow Single Date DateRangeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1872
 - Allow clearing of DateRangeFilter by Text Box by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1875
 
+### Docs
+- Docs Update by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1876
+
 ## [v3.4.9] - 2024-08-21
 ### Bug Fixes
 - Default UseComputedProperties to False to allow previously published views to work by default by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1869
