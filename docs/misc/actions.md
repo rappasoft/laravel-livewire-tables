@@ -7,14 +7,6 @@ Actions is a beta feature, that allows for the creation of Action Buttons that a
 
 This is NOT recommended for production use at this point in time.
 
-## Usage
-To use "Actions", while it is in beta, you must include the following Trait in your table:
-```php
-use Rappasoft\LaravelLivewireTables\Traits\WithActions;
-```
-
-Once out of beta, this will not be required.
-
 ## Component Available Methods
 ### setActionWrapperAttributes
 
