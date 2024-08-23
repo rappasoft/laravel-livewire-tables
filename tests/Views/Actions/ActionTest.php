@@ -296,6 +296,42 @@ final class ActionTest extends TestCase
 
     }
 
+    public function test_can_set_icon_to_right_default(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->setWireAction('wire:click')
+            ->setWireActionParams('testactionparams');
+        $this->assertTrue($action->getIconRight());
+    }
+
+    public function test_can_set_icon_to_left(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->setIconLeft()
+            ->setWireAction('wire:click')
+            ->setWireActionParams('testactionparams');
+        $this->assertFalse($action->getIconRight());
+    }
+
+    public function test_can_set_icon_to_right(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->setWireAction('wire:click')
+            ->setWireActionParams('testactionparams')
+            ->setIconLeft()
+            ->setIconRight();
+        $this->assertTrue($action->getIconRight());
+    }
+
     public function test_action_renders_correctly(): void
     {
         $action = Action::make('Update Summaries')
