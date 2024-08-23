@@ -84,6 +84,38 @@ public function actions(): array
 }
 ```
 
+### setIconLeft
+
+setIconLeft is used to prepend the Icon to the Text (Non-Default Behaviour)
+
+```php
+public function actions(): array
+{
+    return [
+        Action::make('Edit Item')
+        ->setIcon("fas fa-edit")
+        ->setIconAttributes(['class' => 'font-4xl text-4xl'])
+        ->setIconLeft(),
+    ];
+}
+```
+
+### setIconRight
+
+setIconRight is used to append the Icon to the Text (Default Behaviour)
+
+```php
+public function actions(): array
+{
+    return [
+        Action::make('Edit Item')
+        ->setIcon("fas fa-edit")
+        ->setIconAttributes(['class' => 'font-4xl text-4xl'])
+        ->setIconRight(),
+    ];
+}
+```
+
 ### setRoute
 
 Used for non-wireable butons, to set the route that the action button should take the user to upon clicking.
