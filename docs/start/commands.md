@@ -7,10 +7,10 @@ weight: 5
 
 To generate a new datatable component you can use the `make:datatable` command:
 
-Create a new datatable component called `UserTable` in `App\Livewire` that uses the `App\Models\User` model.
+Create a new datatable component called `UsersTable` in `App\Livewire` that uses the `App\Models\User` model.
 
 ```bash
-php artisan make:datatable UserTable User
+php artisan make:datatable UsersTable User
 ```
 
 ### Custom Model Path
