@@ -1,6 +1,6 @@
 ---
 title: Rendering
-weight: 5
+weight: 6
 ---
 
 ## Rendering Components
