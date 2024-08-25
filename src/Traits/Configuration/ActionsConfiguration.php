@@ -11,11 +11,21 @@ trait ActionsConfiguration
         return $this;
     }
 
-    public function setActionsInToolbar(): self
+    public function setActionsInToolbar(bool $status): self
     {
-        $this->displayActionsInToolbar = true;
+        $this->displayActionsInToolbar = $status;
 
         return $this;
+    }
+
+    public function setActionsInToolbarEnabled(): self
+    {
+        return $this->setActionsInToolbar(true);
+    }
+
+    public function setActionsInToolbarDisabled(): self
+    {
+        return $this->setActionsInToolbar(false);
     }
 
     protected function setActionsPosition(string $position): self

@@ -370,4 +370,33 @@ final class ActionTest extends TestCase
         $this->assertSame('right', $petsTable->getActionsPosition());
 
     }
+
+    public function test_can_set_action_toolbar(): void
+    {
+        $petsTable = (new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        });
+
+        $this->assertFalse($petsTable->showActionsInToolbar());
+        $petsTable->setActionsInToolbarEnabled();
+        $this->assertTrue($petsTable->showActionsInToolbar());
+        $petsTable->setActionsInToolbarDisabled();
+        $this->assertFalse($petsTable->showActionsInToolbar());
+
+    }
+
 }
