@@ -19,6 +19,9 @@ final class ColorColumnTest extends TestCase
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
 
         $this->assertSame('livewire-tables::includes.columns.color', $column->getView());
+        $column->setView('test-color-column');
+        $this->assertSame('test-color-column', $column->getView());
+
     }
 
     public function test_can_infer_field_name_from_title_if_no_from(): void
@@ -33,6 +36,13 @@ final class ColorColumnTest extends TestCase
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
 
         $this->assertSame('favorite_color', $column->getField());
+    }
+
+    public function test_can_set_view(): void
+    {
+        $column = ColorColumn::make('Favorite Color', 'favorite_color');
+
+        $this->assertSame('livewire-tables::includes.columns.color', $column->getView());
     }
 
     public function test_can_set_default_value(): void
