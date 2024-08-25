@@ -41,5 +41,4 @@ trait BooleanColumnConfiguration
 
         return $this;
     }
-
 }

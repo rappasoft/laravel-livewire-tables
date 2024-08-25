@@ -25,5 +25,4 @@ trait BooleanColumnHelpers
     {
         return $this->toggleMethod ?? '';
     }
-
 }
