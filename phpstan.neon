@@ -23,6 +23,10 @@ parameters:
           - '#Parameter \#1 \$string of function str expects string\|null\, string\|false given#'
           - '#Binary operation \".\" between array\|string\|null and#'
           path: src/Commands/MakeCommand.php
+        - messages: 
+          - '#Parameter \#1 \$string of function str expects string\|null, string\|false given.#'
+          - '#Binary operation \".\" between array\|string\|null and#'
+          path: src/Features/AutoInjectRappasoftAssets.php
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
         - '#Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$model has no type specified#'
