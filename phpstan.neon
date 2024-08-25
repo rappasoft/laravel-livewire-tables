@@ -27,17 +27,46 @@ parameters:
           - '#Parameter \#1 \$string of function str expects string\|null, string\|false given.#'
           - '#Binary operation \".\" between array\|string\|null and#'
           path: src/Features/AutoInjectRappasoftAssets.php
+        - messages: 
+          - '#Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>\:\:mapWithKeys\(\) expects callable\(mixed, int\|string\): array, Closure\(mixed, mixed\): iterable given.#'
+          - '#Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<int,string\>::filter\(\) expects \(callable\(string, int\): bool\)\|null, Closure\(mixed\): int<0, max> given#'
+          - '#Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>::mapWithKeys\(\)#'
+          - '#Parameter \#1 \$callback of method Illuminate\\Support\\Collection<\(int\|string\),mixed>::mapWithKeys\(\) expects#'
+          paths: 
+            - src/Views/Traits/Filters/HasOptions.php
+            - src/Views/Filters/SelectFilter.php
+            - src/Views/Filters/MultiSelectDropdownFilter.php
+        - messages: 
+          - '#Unsafe usage of new static\(\).#'
+          paths:
+            - src/Views/Action.php
+            - src/Views/Column.php
+            - src/Views/Filter.php
+        - messages: 
+          - '#Property Rappasoft\\LaravelLivewireTables\\DataTableComponent::\$model has no type specified#'
+          paths:
+            - src/Traits/ComponentUtilities.php
+        - messages: 
+          - '#Property Illuminate\\Database\\Query\\Builder::\$joins \(array\) on left side of \?\? is not nullable#'
+          paths:
+            - src/Traits/WithData.php
+        - messages: 
+          - '#on array<string, non-empty-array<int<0, max>, mixed>> in empty\(\) does not exist.#'
+          - '#on array<string, non-empty-array<int<0, max>, mixed>> in isset\(\) does not exist.#'
+          - '#on non-empty-array<1\|string, array<int<0, max>, mixed>> in isset\(\) does not exist#'
+          paths:
+            - src/Traits/Helpers/FilterHelpers.php
+        - messages: 
+          - '#Cannot access offset 1 on array<int, string>\|false.#'
+          paths:
+            - src/Traits/WithSorting.php
+        - messages: 
+          - '#Parameter \#1 \$objectOrClass of class ReflectionClass constructor expects class-string<T of object>\|T of object, string\|null given#'
+          - '#Call to an undefined method object::render\(\)#'
+          - '#Call to an undefined method Illuminate\\Contracts\\View\\Factory\|Illuminate\\View\\View::with\(\)#'
+          paths:
+            - src/Views/Columns/ViewComponentColumn.php
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
-        - '#Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$model has no type specified#'
         - '#Unable to resolve the template type TMapWithKeysKey in call to method Illuminate\\Support\\Collection#'
         - '#Unable to resolve the template type TMapWithKeysValue in call to method Illuminate\\Support\\Collection#'
-        - '#Access to an undefined property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view#'
-        - "#Unsafe usage of new static#"
-        - '#on array\<string, non-empty-array\<int\<0, max\>, mixed\>\> in empty\(\) does not exist.#'
-        - '#on array<string, non-empty-array<int<0, max>, mixed>> in isset\(\) does not exist#'
-        - '#on non-empty-array<1\|string, array<int<0, max>, mixed>> in isset\(\) does not exist.#'
-        - '#\$callback of method Illuminate\\Support\\Collection<int,string>::filter\(\) expects \(callable\(string, int\): bool\)\|null, Closure\(mixed\): int<0, max> given.#'
-        - '#Property Illuminate\\Database\\Query\\Builder\:\:\$joins \(array\) on left side of \?\? is not nullable.#'
-        - '#Cannot call method getFilterByKey\(\) on Rappasoft\\LaravelLivewireTables\\DataTableComponent\|null#'
-        - '#Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>\:\:mapWithKeys\(\) expects callable\(mixed, int\|string\): array, Closure\(mixed, mixed\): iterable given.#'
