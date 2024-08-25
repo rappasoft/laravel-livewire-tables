@@ -7,8 +7,8 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\BooleanColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasCallback;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\BooleanColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasConfirmation;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\BooleanColumnHelpers;
 
 class BooleanColumn extends Column
 {
