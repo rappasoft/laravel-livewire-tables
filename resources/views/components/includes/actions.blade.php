@@ -4,7 +4,9 @@
             ->class(['' => $this->isTailwind && $this->getActionWrapperAttributes['default-colors'] ?? true])
             ->class(['d-flex flex-cols py-2 space-x-2' => $this->isBootstrap && $this->getActionWrapperAttributes['default-styling'] ?? true])
             ->class(['' => $this->isBootstrap && $this->getActionWrapperAttributes['default-colors'] ?? true])
-            ->class([$this->getActionsPosition => true])
+            ->class(['justify-start' => $this->getActionsPosition == 'left'])
+            ->class(['justify-center' => $this->getActionsPosition == 'center'])
+            ->class(['justify-end' => $this->getActionsPosition == 'right'])
             ->except(['default-styling','default-colors'])
         }} >
     @foreach($this->getActions as $action)

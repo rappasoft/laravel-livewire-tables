@@ -361,13 +361,13 @@ final class ActionTest extends TestCase
             }
         });
 
-        $this->assertSame('justify-end', $petsTable->getActionsPosition());
+        $this->assertSame('right', $petsTable->getActionsPosition());
         $petsTable->setActionsLeft();
-        $this->assertSame('justify-start', $petsTable->getActionsPosition());
+        $this->assertSame('left', $petsTable->getActionsPosition());
         $petsTable->setActionsCenter();
-        $this->assertSame('justify-center', $petsTable->getActionsPosition());
+        $this->assertSame('center', $petsTable->getActionsPosition());
         $petsTable->setActionsRight();
-        $this->assertSame('justify-end', $petsTable->getActionsPosition());
+        $this->assertSame('right', $petsTable->getActionsPosition());
 
     }
 }
