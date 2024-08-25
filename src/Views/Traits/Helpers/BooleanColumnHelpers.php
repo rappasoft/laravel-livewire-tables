@@ -21,8 +21,8 @@ trait BooleanColumnHelpers
         return $this->isToggleable ?? false;
     }
 
-    public function getToggleMethod(): string
+    public function getToggleMethod(): ?string
     {
-        return $this->toggleMethod;
+        return $this->toggleMethod ?? null;
     }
 }
