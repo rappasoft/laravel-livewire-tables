@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.13] - 2024-08-25
+### Bug Fixes
+- Fix for Action Button with no icon by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1887
+
+### Docs
+- Add a Recommended Approach document by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1886
+- Reorder the "Getting Started" docs by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1884
+
 ## [v3.4.12] - 2024-08-23
 ### Tweaks
 - Adjust Action Button Margins by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1880

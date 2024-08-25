@@ -1,6 +1,6 @@
 ---
 title: Configuration
-weight: 4
+weight: 5
 ---
 
 ## Publishing Assets
