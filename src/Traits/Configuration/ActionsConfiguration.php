@@ -18,31 +18,25 @@ trait ActionsConfiguration
         return $this;
     }
 
-    public function setActionsPosition(string $position): self
+    protected function setActionsPosition(string $position): self
     {
-        $this->actionsPosition = $position;
+        $this->actionsPosition = ($position == 'left' || $position == 'center' || $position == 'right') ? $position : 'right';
 
         return $this;
     }
 
     public function setActionsLeft(): self
     {
-        $this->actionsPosition = 'left';
-
-        return $this;
+        return $this->setActionsPosition('left');
     }
 
     public function setActionsCenter(): self
     {
-        $this->actionsPosition = 'center';
-
-        return $this;
+        return $this->setActionsPosition('center');
     }
 
     public function setActionsRight(): self
     {
-        $this->actionsPosition = 'right';
-
-        return $this;
+        return $this->setActionsPosition('right');
     }
 }
