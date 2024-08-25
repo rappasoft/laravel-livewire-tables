@@ -26,7 +26,7 @@ trait ConfigurableAreasHelpers
      */
     public function getConfigurableAreaFor($area): ?string
     {
-        $area = $this->configurableAreas[$area] ?? null;
+        $area = array_key_exists($area, $this->configurableAreas) ? $this->configurableAreas[$area] : null;
 
         if (is_array($area)) {
             return $area[0];

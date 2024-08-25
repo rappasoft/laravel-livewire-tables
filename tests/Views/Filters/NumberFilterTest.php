@@ -157,7 +157,7 @@ final class NumberFilterTest extends TestCase
     {
         $filter = NumberFilter::make('BreedID');
         $this->assertSame(123, $filter->validate(123));
-        $this->assertSame(123, $filter->validate('123'));
+        $this->assertFalse($filter->validate('123'));
     }
 
     public function test_can_get_if_number_filter_empty(): void

@@ -14,9 +14,9 @@ trait WithSecondaryHeader
 
     protected bool $columnsWithSecondaryHeader = false;
 
-    protected ?object $secondaryHeaderTrAttributesCallback;
+    protected \Closure|null $secondaryHeaderTrAttributesCallback;
 
-    protected ?object $secondaryHeaderTdAttributesCallback;
+    protected \Closure|null $secondaryHeaderTdAttributesCallback;
 
     public function bootedWithSecondaryHeader(): void
     {
