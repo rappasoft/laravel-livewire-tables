@@ -25,14 +25,14 @@ trait SecondaryHeaderConfiguration
         return $this;
     }
 
-    public function setSecondaryHeaderTrAttributes(callable $callback): self
+    public function setSecondaryHeaderTrAttributes(\Closure $callback): self
     {
         $this->secondaryHeaderTrAttributesCallback = $callback;
 
         return $this;
     }
 
-    public function setSecondaryHeaderTdAttributes(callable $callback): self
+    public function setSecondaryHeaderTdAttributes(\Closure $callback): self
     {
         $this->secondaryHeaderTdAttributesCallback = $callback;
 

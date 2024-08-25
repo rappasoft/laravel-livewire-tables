@@ -21,12 +21,9 @@ trait ConfigurableAreasHelpers
         return isset($this->configurableAreas[$area]) && $this->getConfigurableAreaFor($area) !== null;
     }
 
-    /**
-     * @param  string|array<mixed>  $area
-     */
-    public function getConfigurableAreaFor($area): ?string
+    public function getConfigurableAreaFor(string $area): ?string
     {
-        $area = $this->configurableAreas[$area] ?? null;
+        $area = array_key_exists($area, $this->configurableAreas) ? $this->configurableAreas[$area] : null;
 
         if (is_array($area)) {
             return $area[0];
@@ -35,13 +32,9 @@ trait ConfigurableAreasHelpers
         return $area;
     }
 
-    /**
-     * @param  string|array<mixed>  $area
-     * @return array<mixed>
-     */
-    public function getParametersForConfigurableArea($area): array
+    public function getParametersForConfigurableArea(string $area): array
     {
-        $area = $this->configurableAreas[$area] ?? null;
+        $area = array_key_exists($area, $this->configurableAreas) ? $this->configurableAreas[$area] : null;
 
         if (is_array($area) && isset($area[1]) && is_array($area[1])) {
             return $area[1];

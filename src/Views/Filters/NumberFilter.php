@@ -15,8 +15,16 @@ class NumberFilter extends Filter
 
     protected string $view = 'livewire-tables::components.tools.filters.number';
 
-    public function validate(mixed $value): float|int|bool
+    public function validate(float|int|string|array $value): float|int|string|false
     {
-        return is_numeric($value) ? $value : false;
+        if (is_array($value)) {
+            return false;
+        } elseif (is_float($value)) {
+            return (float) $value;
+        } elseif (is_int($value)) {
+            return (int) $value;
+        }
+
+        return false;
     }
 }

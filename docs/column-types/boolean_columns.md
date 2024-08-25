@@ -80,6 +80,46 @@ BooleanColumn::make('Active')
     ->yesNo()
 ```
 
+### Toggleable
+
+You may call a defined public function, which should live within your Table Component, to allow "toggling" against your database:
+
+```php
+BooleanColumn::make('Active', 'status')
+    ->toggleable('changeStatus'),
+```
+
+Then your "changeStatus" method may look like
+```php
+    public function changeStatus(int $id)
+    {
+        $item = $this->model::find($id);
+        $item->status = !$item->status;
+        $item->save();
+    }
+```
+
+### Toggleable Confirmation Message
+
+You may define a confirmation message prior to executing your toggleable() method.  The method will only be executed upon confirming.
+```php
+BooleanColumn::make('Active', 'status')
+    ->confirmMessage('Are you sure that you want to change the status?')
+    ->toggleable('changeStatus'),
+```
+
+Then your "changeStatus" method may look like
+```php
+    public function changeStatus(int $id)
+    {
+        $item = $this->model::find($id);
+        $item->status = !$item->status;
+        $item->save();
+    }
+```
+
+
+### Additional Methods
 Please also see the following for other available methods:
 <ul>
     <li>

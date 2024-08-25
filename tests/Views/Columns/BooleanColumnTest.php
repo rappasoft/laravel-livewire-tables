@@ -77,4 +77,33 @@ final class BooleanColumnTest extends TestCase
         $curVal = $column->hasCallback() ? call_user_func($column->getCallback(), $value, $row) : (bool) $value === true;
         $this->assertSame($curVal, false);
     }
+
+    public function test_can_set_toggleable(): void
+    {
+        $column = BooleanColumn::make('Name', 'name');
+
+        $this->assertFalse($column->getIsToggleable());
+        $this->assertNull($column->getToggleMethod());
+        $column->toggleable('changeStatus');
+        $this->assertTrue($column->getIsToggleable());
+        $this->assertSame('changeStatus', $column->getToggleMethod());
+    }
+
+    public function test_can_set_toggleable_with_confirm_message(): void
+    {
+        $column = BooleanColumn::make('Name', 'name')
+            ->toggleable('changeStatus');
+
+        $this->assertTrue($column->getIsToggleable());
+        $this->assertSame('changeStatus', $column->getToggleMethod());
+
+        $this->assertFalse($column->hasConfirmMessage());
+
+        $column->confirmMessage('Are you sure?');
+
+        $this->assertTrue($column->hasConfirmMessage());
+
+        $this->assertSame('Are you sure?', $column->getConfirmMessage());
+
+    }
 }

@@ -123,7 +123,11 @@ trait SearchHelpers
 
     public function getSearchPlaceholder(): string
     {
-        return $this->hasSearchPlaceholder() ? $this->searchPlaceholder : __('Search');
+        if ($this->hasSearchPlaceholder()) {
+            return $this->searchPlaceholder;
+        }
+
+        return __('Search');
     }
 
     public function hasSearchPlaceholder(): bool
