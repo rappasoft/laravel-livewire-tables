@@ -1,5 +1,7 @@
 @if($isToggleable && $toggleMethod != '')
-    <button wire:click="{{ $toggleMethod }}('{{ $rowPrimaryKey }}')">
+    <button wire:click="{{ $toggleMethod }}('{{ $rowPrimaryKey }}')" 
+    @if($hasConfirmMessage) wire:confirm="{{ $confirmMessage }}" @endif
+>
 @endif
 @if ($isTailwind)
     @if ($status)

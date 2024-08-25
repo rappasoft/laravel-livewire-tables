@@ -8,11 +8,13 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\BooleanColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasCallback;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\BooleanColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasConfirmation;
 
 class BooleanColumn extends Column
 {
     use BooleanColumnConfiguration,
         BooleanColumnHelpers,
+        HasConfirmation,
         HasCallback;
 
     protected string $type = 'icons';
@@ -36,7 +38,9 @@ class BooleanColumn extends Column
         return view($this->getView())
             ->withRowPrimaryKey($row->{$row->getKeyName()})
             ->withIsToggleable($this->getIsToggleable())
-            ->withToggleMethod($this->getToggleMethod())
+            ->withToggleMethod($this->getIsToggleable() ? $this->getToggleMethod() : '')
+            ->withHasConfirmMessage($this->hasConfirmMessage())
+            ->withConfirmMessage($this->hasConfirmMessage() ? $this->getConfirmMessage() : '')
             ->withIsTailwind($this->isTailwind())
             ->withIsBootstrap($this->isBootstrap())
             ->withSuccessValue($this->getSuccessValue())

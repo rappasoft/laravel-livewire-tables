@@ -23,6 +23,6 @@ trait BooleanColumnHelpers
 
     public function getToggleMethod(): string
     {
-        return $this->toggleMethod ?? '';
+        return $this->toggleMethod;
     }
 }
