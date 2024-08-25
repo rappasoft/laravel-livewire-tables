@@ -15,4 +15,14 @@ trait BooleanColumnHelpers
     {
         return $this->type;
     }
+
+    public function getIsToggleable(): bool
+    {
+        return $this->isToggleable ?? false;
+    }
+
+    public function getToggleMethod(): ?string
+    {
+        return $this->toggleMethod ?? null;
+    }
 }
