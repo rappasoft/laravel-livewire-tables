@@ -11,7 +11,6 @@ trait AggregateColumnHelpers
 {
     public function getDataSource(): string
     {
-
         return $this->dataSource;
     }
 

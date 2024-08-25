@@ -57,7 +57,7 @@ trait IsSortable
         return $this->sortCallback !== null;
     }
 
-    public function getSortingPillTitle(): string
+    public function getSortingPillTitle(): ?string
     {
         if ($this->hasCustomSortingPillTitle()) {
             return $this->getCustomSortingPillTitle();
@@ -84,11 +84,11 @@ trait IsSortable
     public function getCustomSortingPillDirections(string $direction): string
     {
         if ($direction === 'asc') {
-            return $this->sortingPillDirectionAsc;
+            return $this->sortingPillDirectionAsc ?? 'A-Z';
         }
 
         if ($direction === 'desc') {
-            return $this->sortingPillDirectionDesc;
+            return $this->sortingPillDirectionDesc ?? 'Z-A';
         }
 
         return __('N/A');

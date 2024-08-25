@@ -21,7 +21,7 @@ trait HandlesDates
 
     }
 
-    protected function createCarbonDate(string $value): Carbon|bool
+    protected function createCarbonDate(string $value): Carbon|bool|null
     {
         $this->createCarbon();
         $fromFormat = false;

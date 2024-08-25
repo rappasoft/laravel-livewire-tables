@@ -7,7 +7,7 @@ trait ViewComponentColumnHelpers
     /**
      * Retrieves the defined Component View
      */
-    public function getComponentView(): string
+    public function getComponentView(): ?string
     {
         return $this->componentView;
     }
@@ -25,7 +25,7 @@ trait ViewComponentColumnHelpers
         return isset($this->customComponentView);
     }
 
-    public function getCustomComponent(): string
+    public function getCustomComponent(): ?string
     {
         return $this->customComponentView;
     }

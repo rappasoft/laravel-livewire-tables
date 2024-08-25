@@ -83,9 +83,9 @@ trait WithSearch
         return $this->getBuilder();
     }
 
-    public function updatedSearch(string|array|null $value): void
+    public function updatedSearch(?string $value): void
     {
-        if ($this->shouldTrimSearchString() && $this->search != trim($value)) {
+        if ($this->shouldTrimSearchString() && $value !== null && $this->search != trim($value)) {
             $this->search = $value = trim($value);
         }
 

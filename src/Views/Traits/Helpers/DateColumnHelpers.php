@@ -19,9 +19,9 @@ trait DateColumnHelpers
     /**
      * Retrieve the inputFormat to use for the Column
      */
-    public function getInputFormat(): ?string
+    public function getInputFormat(): string
     {
-        return $this->inputFormat ?? null;
+        return $this->inputFormat ?? 'Y-m-d';
     }
 
     /**

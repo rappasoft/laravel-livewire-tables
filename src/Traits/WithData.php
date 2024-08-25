@@ -156,10 +156,10 @@ trait WithData
             $this->setBuilder($this->getBuilder()->with($column->getRelationString()));
         }
 
-        $table = false;
-        $tableAlias = false;
-        $foreign = false;
-        $other = false;
+        $table = null;
+        $tableAlias = null;
+        $foreign = null;
+        $other = null;
         $lastAlias = false;
         $lastQuery = clone $this->getBuilder();
 
@@ -189,7 +189,7 @@ trait WithData
                     break;
             }
 
-            if ($table) {
+            if ($table !== null && $foreign !== null && $other !== null) {
                 $this->setBuilder($this->performJoin($table, $foreign, $other));
             }
 

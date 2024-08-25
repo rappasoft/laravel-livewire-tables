@@ -193,7 +193,7 @@ trait ColumnHelpers
 
     public function getCustomSlug(): string
     {
-        return $this->customSlug;
+        return $this->customSlug ?? $this->getTitle();
     }
 
     public function hasCustomSlug(): bool

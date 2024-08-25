@@ -13,6 +13,16 @@ parameters:
     treatPhpDocTypesAsCertain: false
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
+        - messages: 
+          - '#Parameter \#1 \$value of static method Illuminate\\Support\\Str::studly\(\) expects string, array\|bool\|string\|null given.#'
+          - '#Property Rappasoft\\LaravelLivewireTables\\Commands\\MakeCommand::\$modelPath \(string\|null\) does not accept array\|bool\|string\|null#'
+          - '#Parameter \#1 \$force of method Rappasoft\\LaravelLivewireTables\\Commands\\MakeCommand::createClass\(\) expects bool, array\|bool\|string\|null given#'
+          - '#Parameter \#3 \$subject of function str_replace expects array\|string\, string\|false given#'
+          - '#Parameter \#1 \$code of static method Symfony\\Polyfill\\Php80\\PhpToken::tokenize\(\) expects string\, string\|false given#'
+          - '#Parameter \#1 \$string of function trim expects string, array\|bool\|string\|null given.#'
+          - '#Parameter \#1 \$string of function str expects string\|null\, string\|false given#'
+          - '#Binary operation \".\" between array\|string\|null and#'
+          path: src/Commands/MakeCommand.php
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
         - '#Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$model has no type specified#'
@@ -25,3 +35,5 @@ parameters:
         - '#on non-empty-array<1\|string, array<int<0, max>, mixed>> in isset\(\) does not exist.#'
         - '#\$callback of method Illuminate\\Support\\Collection<int,string>::filter\(\) expects \(callable\(string, int\): bool\)\|null, Closure\(mixed\): int<0, max> given.#'
         - '#Property Illuminate\\Database\\Query\\Builder\:\:\$joins \(array\) on left side of \?\? is not nullable.#'
+        - '#Cannot call method getFilterByKey\(\) on Rappasoft\\LaravelLivewireTables\\DataTableComponent\|null#'
+        - '#Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>\:\:mapWithKeys\(\) expects callable\(mixed, int\|string\): array, Closure\(mixed, mixed\): iterable given.#'

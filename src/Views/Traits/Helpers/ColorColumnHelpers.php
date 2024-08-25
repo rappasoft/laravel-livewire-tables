@@ -8,7 +8,7 @@ use Illuminate\View\ComponentAttributeBag;
 trait ColorColumnHelpers
 {
     // TODO: Test
-    public function getColor(Model|int $row): string
+    public function getColor(Model $row): string
     {
         return $this->hasColorCallback() ? app()->call($this->getColorCallback(), ['row' => $row, 'value' => $row->{$this->getFrom()} ?? '']) : ($this->getValue($row));
     }
