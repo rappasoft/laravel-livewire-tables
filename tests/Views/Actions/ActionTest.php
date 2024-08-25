@@ -398,5 +398,4 @@ final class ActionTest extends TestCase
         $this->assertFalse($petsTable->showActionsInToolbar());
 
     }
-
 }
