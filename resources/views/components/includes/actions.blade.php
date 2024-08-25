@@ -7,6 +7,8 @@
             ->class(['justify-start' => $this->getActionsPosition == 'left'])
             ->class(['justify-center' => $this->getActionsPosition == 'center'])
             ->class(['justify-end' => $this->getActionsPosition == 'right'])
+            ->class(['pl-2' => $this->showActionsInToolbar && $this->getActionsPosition == 'left'])
+            ->class(['pr-2' => $this->showActionsInToolbar && $this->getActionsPosition == 'right'])
             ->except(['default-styling','default-colors'])
         }} >
     @foreach($this->getActions as $action)
