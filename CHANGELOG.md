@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.14] - 2024-08-25
+### New Features
+- Set Action Position (Left/Center/Right) and Set Actions in Toolbar by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1889
+
 ## [v3.4.13] - 2024-08-25
 ### Bug Fixes
 - Fix for Action Button with no icon by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1887

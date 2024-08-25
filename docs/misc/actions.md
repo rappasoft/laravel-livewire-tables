@@ -21,6 +21,61 @@ This is used to set attributes for the "div" that wraps all defined Action Butto
     }
 ```
 
+### setActionsInToolbarEnabled
+
+Displays the Actions within the Toolbar.  Default is displaying above the Toolbar.
+
+```php
+    public function configure(): void
+    {
+        $this->setActionsInToolbarEnabled();
+    }
+```
+
+### setActionsInToolbarDisabled
+
+Displays the Actions above the Toolbar, default behaviour
+```php
+    public function configure(): void
+    {
+        $this->setActionsInToolbarDisabled();
+    }
+```
+
+
+### setActionsLeft
+
+Displays the Actions justified to the left
+
+```php
+    public function configure(): void
+    {
+        $this->setActionsLeft();
+    }
+```
+
+### setActionsCenter
+
+Displays the Actions justified to the center
+
+```php
+    public function configure(): void
+    {
+        $this->setActionsCenter();
+    }
+```
+
+### setActionsRight
+
+Displays the Actions justified to the right
+
+```php
+    public function configure(): void
+    {
+        $this->setActionsRight();
+    }
+```
+
 ### actions()
 
 Define your actions using the actions() method:
