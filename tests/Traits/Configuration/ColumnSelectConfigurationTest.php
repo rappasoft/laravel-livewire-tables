@@ -99,7 +99,7 @@ final class ColumnSelectConfigurationTest extends TestCase
 
     }
 
-    public function test_check_get_selected_columns()
+    public function test_check_get_selected_columns(): void
     {
 
         $this->basicTable->deselectAllColumns();
@@ -115,6 +115,8 @@ final class ColumnSelectConfigurationTest extends TestCase
     public function test_can_check_all_columns_get_selected_and_extra_methods_work(): void
     {
         $this->assertTrue($this->basicTable->allSelectedColumnsAreVisibleByDefault());
+        
+        $this->assertSame(8, count($this->basicTable->getDefaultVisibleColumns()));
 
         $this->assertTrue($this->basicTable->allVisibleColumnsAreSelected());
 
