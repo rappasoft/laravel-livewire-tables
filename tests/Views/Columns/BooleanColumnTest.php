@@ -92,7 +92,7 @@ final class BooleanColumnTest extends TestCase
     public function test_can_set_toggleable_with_confirm_message(): void
     {
         $column = BooleanColumn::make('Name', 'name')
-        ->toggleable('changeStatus');
+            ->toggleable('changeStatus');
 
         $this->assertTrue($column->getIsToggleable());
         $this->assertSame('changeStatus', $column->getToggleMethod());
@@ -105,8 +105,5 @@ final class BooleanColumnTest extends TestCase
 
         $this->assertSame('Are you sure?', $column->getConfirmMessage());
 
-
     }
-
-
 }
