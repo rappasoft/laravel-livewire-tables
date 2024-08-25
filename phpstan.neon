@@ -13,6 +13,8 @@ parameters:
     treatPhpDocTypesAsCertain: false
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue
         - messages: 
           - '#Parameter \#1 \$value of static method Illuminate\\Support\\Str::studly\(\) expects string, array\|bool\|string\|null given.#'
           - '#Property Rappasoft\\LaravelLivewireTables\\Commands\\MakeCommand::\$modelPath \(string\|null\) does not accept array\|bool\|string\|null#'
@@ -66,7 +68,10 @@ parameters:
           - '#Call to an undefined method Illuminate\\Contracts\\View\\Factory\|Illuminate\\View\\View::with\(\)#'
           paths:
             - src/Views/Columns/ViewComponentColumn.php
-        - identifier: missingType.generics
-        - identifier: missingType.iterableValue
-        - '#Unable to resolve the template type TMapWithKeysKey in call to method Illuminate\\Support\\Collection#'
-        - '#Unable to resolve the template type TMapWithKeysValue in call to method Illuminate\\Support\\Collection#'
+        - messages: 
+          - '#Unable to resolve the template type TMapWithKeysKey in call to method Illuminate\\Support\\Collection#'
+          - '#Unable to resolve the template type TMapWithKeysValue in call to method Illuminate\\Support\\Collection#'
+          paths:
+            - src/Views/Filters/MultiSelectDropdownFilter.php
+            - src/Views/Filters/SelectFilter.php
+
