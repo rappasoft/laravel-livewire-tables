@@ -23,14 +23,21 @@ class DateFilter extends Filter
     {
         $this->setInputDateFormat('Y-m-d')->setOutputDateFormat($this->getConfig('pillFormat') ?? 'Y-m-d');
         $carbonDate = $this->createCarbonDate($value);
-
-        return ($carbonDate === false) ? false : $carbonDate->format('Y-m-d');
+        if ($carbonDate instanceof \Carbon\Carbon)
+        {
+            return $carbonDate->format('Y-m-d');
+        }
+        return false;
     }
 
-    public function getFilterPillValue($value): array|string|bool|null
+    public function getFilterPillValue($value): string|null
     {
         if ($this->validate($value)) {
-            return $this->outputTranslatedDate($this->createCarbonDate($value));
+            $carbonDate = $this->createCarbonDate($value);
+            if ($carbonDate instanceof \Carbon\Carbon)
+            {
+                return $this->outputTranslatedDate($carbonDate);
+            }
         }
 
         return null;
