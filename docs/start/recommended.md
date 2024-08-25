@@ -3,7 +3,7 @@ title: Recommended
 weight: 2
 ---
 
-The below is the recommended approach, that gives the best performance for the tables:
+While the package is very customisable, and supports a number of different approaches.  The below is the recommended approach, that gives the best performance for the tables:
 
 ## Installation
 ```
