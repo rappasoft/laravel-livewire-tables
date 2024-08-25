@@ -36,6 +36,10 @@
             <x-livewire-tables::tools.toolbar.items.filter-button />
         @endif
 
+        @if($this->hasActions && $this->showActionsInToolbar && $this->getActionsPosition == 'left')
+            <x-livewire-tables::includes.actions/>    
+        @endif
+
         @if ($this->hasConfigurableAreaFor('toolbar-left-end'))
             <div x-cloak x-show="!currentlyReorderingStatus" @class([
                 'mb-3 mb-md-0 input-group' => $this->isBootstrap,
@@ -54,6 +58,10 @@
     >
         @if ($this->hasConfigurableAreaFor('toolbar-right-start'))
             @include($this->getConfigurableAreaFor('toolbar-right-start'), $this->getParametersForConfigurableArea('toolbar-right-start'))
+        @endif
+
+        @if($this->hasActions && $this->showActionsInToolbar && $this->getActionsPosition == 'right')
+            <x-livewire-tables::includes.actions/>    
         @endif
 
         @if ($this->showBulkActionsDropdownAlpine() && $this->shouldAlwaysHideBulkActionsDropdownOption != true)

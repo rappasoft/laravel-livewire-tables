@@ -9,7 +9,7 @@ trait HasIcon
 {
     public ?string $icon;
 
-    public array $iconAttributes = ['default-styling' => true];
+    public array $iconAttributes = ['class' => '', 'default-styling' => true];
 
     public bool $iconRight = true;
 
@@ -32,14 +32,14 @@ trait HasIcon
 
     public function setIconAttributes(array $iconAttributes): self
     {
-        $this->iconAttributes = [...['default-styling' => true], ...$iconAttributes];
+        $this->iconAttributes = [...$this->iconAttributes, ...$iconAttributes];
 
         return $this;
     }
 
     public function getIconAttributes(): ComponentAttributeBag
     {
-        return new ComponentAttributeBag([...['default-styling' => true], ...$this->iconAttributes]);
+        return new ComponentAttributeBag([...['class' => '', 'default-styling' => true], ...$this->iconAttributes]);
     }
 
     public function getIconRight(): bool
