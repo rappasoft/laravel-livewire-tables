@@ -17,7 +17,7 @@ class ColorColumn extends Column
         ColorColumnHelpers;
     use HasDefaultStringValue;
 
-    public \Closure|null $colorCallback;
+    public ?\Closure $colorCallback;
 
     protected string $view = 'livewire-tables::includes.columns.color';
 
