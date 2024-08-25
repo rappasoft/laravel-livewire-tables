@@ -1,6 +1,6 @@
 ---
 title: Including Assets
-weight: 3
+weight: 4
 ---
 
 ## Package Specific Code
