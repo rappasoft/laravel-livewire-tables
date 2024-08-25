@@ -10,7 +10,7 @@ trait WithActions
     use ActionsConfiguration,
         ActionsHelpers;
 
-    protected array $actionWrapperAttributes = ['default-styling' => true, 'default-colors' => true];
+    protected array $actionWrapperAttributes = ['class' => '', 'default-styling' => true, 'default-colors' => true];
 
     protected bool $displayActionsInToolbar = false;
 

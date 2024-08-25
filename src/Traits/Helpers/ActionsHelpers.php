@@ -15,15 +15,28 @@ trait ActionsHelpers
     }
 
     #[Computed]
-    public function showActionsInToolbar(): bool
+    public function getActionsPosition(): string
     {
-        return $this->displayActionsInToolbar ?? false;
+        switch ($this->actionsPosition) {
+            case "left":
+                return "justify-start";
+                break;
+            case "center":
+                return "justify-center";
+                break;
+            case "right":
+                return "justify-end";
+                break;
+            default:
+                return "justify-end";
+        }
+        
     }
 
     #[Computed]
     public function getActionWrapperAttributes(): array
     {
-        return [...['default-styling' => true, 'default-colors' => true], ...$this->actionWrapperAttributes];
+        return [...['class' => '', 'default-styling' => true, 'default-colors' => true], ...$this->actionWrapperAttributes];
     }
 
     #[Computed]
