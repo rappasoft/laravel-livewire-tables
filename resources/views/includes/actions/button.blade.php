@@ -29,5 +29,7 @@
                 }}
             ></i>
             <span>{{ $action->getLabel() }}</span>
+        @else
+            <span>{{ $action->getLabel() }}</span>
         @endif
 </a>
