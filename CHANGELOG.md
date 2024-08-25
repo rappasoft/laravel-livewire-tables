@@ -2,6 +2,13 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.15] - 2024-08-25
+### New Features
+- BooleanColumn - Toggleable Callback by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1892
+
+### Tweaks
+- Doc Type Fixes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1891
+
 ## [v3.4.14] - 2024-08-25
 ### New Features
 - Set Action Position (Left/Center/Right) and Set Actions in Toolbar by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1889
