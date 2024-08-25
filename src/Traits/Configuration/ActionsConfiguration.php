@@ -10,7 +10,7 @@ trait ActionsConfiguration
 
         return $this;
     }
-    
+
     public function setActionsInToolbar(): self
     {
         $this->displayActionsInToolbar = true;
@@ -25,18 +25,16 @@ trait ActionsConfiguration
 
     public function setActionsLeft(): self
     {
-        $this->actionsPosition = "left";
+        $this->actionsPosition = 'left';
     }
 
     public function setActionsCenter(): self
     {
-        $this->actionsPosition = "center";
+        $this->actionsPosition = 'center';
     }
 
     public function setActionsRight(): self
     {
-        $this->actionsPosition = "right";
+        $this->actionsPosition = 'right';
     }
-
-
 }

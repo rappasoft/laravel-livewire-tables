@@ -2,13 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Livewire\Attributes\Computed;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Views\Action;
 
 trait ActionsHelpers
 {
-
     #[Computed]
     public function showActionsInToolbar(): bool
     {

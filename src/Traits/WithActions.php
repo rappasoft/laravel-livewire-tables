@@ -20,5 +20,4 @@ trait WithActions
     {
         return [];
     }
-
 }
