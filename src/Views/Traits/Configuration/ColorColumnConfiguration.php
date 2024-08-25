@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Columns;
 
 trait ColorColumnConfiguration
 {
-    public function color(callable $callback): self
+    public function color(\Closure $callback): self
     {
         $this->colorCallback = $callback;
 

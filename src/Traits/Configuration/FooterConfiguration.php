@@ -46,14 +46,14 @@ trait FooterConfiguration
         return $this;
     }
 
-    public function setFooterTrAttributes(callable $callback): self
+    public function setFooterTrAttributes(\Closure $callback): self
     {
         $this->footerTrAttributesCallback = $callback;
 
         return $this;
     }
 
-    public function setFooterTdAttributes(callable $callback): self
+    public function setFooterTdAttributes(\Closure $callback): self
     {
         $this->footerTdAttributesCallback = $callback;
 

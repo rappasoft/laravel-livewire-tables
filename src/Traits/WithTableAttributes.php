@@ -21,15 +21,15 @@ trait WithTableAttributes
 
     protected array $tbodyAttributes = [];
 
-    protected ?object $thAttributesCallback;
+    protected ?\Closure $thAttributesCallback;
 
-    protected ?object $thSortButtonAttributesCallback;
+    protected ?\Closure $thSortButtonAttributesCallback;
 
-    protected ?object $trAttributesCallback;
+    protected ?\Closure $trAttributesCallback;
 
-    protected ?object $tdAttributesCallback;
+    protected ?\Closure $tdAttributesCallback;
 
-    protected ?object $trUrlCallback;
+    protected ?\Closure $trUrlCallback;
 
-    protected ?object $trUrlTargetCallback;
+    protected ?\Closure $trUrlTargetCallback;
 }

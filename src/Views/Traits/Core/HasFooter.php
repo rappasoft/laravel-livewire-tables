@@ -63,7 +63,7 @@ trait HasFooter
         return $callback instanceof Filter;
     }
 
-    public function getFooterContents(mixed $rows, array $filterGenericData): string|HtmlString
+    public function getFooterContents(mixed $rows, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string|HtmlString
     {
         $value = null;
         $callback = $this->getFooterCallback();

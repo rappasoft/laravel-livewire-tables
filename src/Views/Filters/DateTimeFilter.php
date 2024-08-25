@@ -24,14 +24,20 @@ class DateTimeFilter extends Filter
         $this->setInputDateFormat('Y-m-d\TH:i')->setOutputDateFormat($this->getConfig('pillFormat'));
 
         $carbonDate = $this->createCarbonDate($value);
+        if ($carbonDate instanceof \Carbon\Carbon) {
+            return $carbonDate->format('Y-m-d\TH:i');
+        }
 
-        return ($carbonDate === false) ? false : $carbonDate->format('Y-m-d\TH:i');
+        return false;
     }
 
-    public function getFilterPillValue($value): array|string|bool|null
+    public function getFilterPillValue($value): ?string
     {
         if ($this->validate($value)) {
-            return $this->outputTranslatedDate($this->createCarbonDate($value));
+            $carbonDate = $this->createCarbonDate($value);
+            if ($carbonDate && $carbonDate instanceof \Carbon\Carbon) {
+                return $this->outputTranslatedDate($carbonDate);
+            }
         }
 
         return null;
