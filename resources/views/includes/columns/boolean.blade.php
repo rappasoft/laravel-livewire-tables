@@ -1,3 +1,6 @@
+@if($isToggleable && $toggleMethod != '')
+    <button wire:click="{{ $toggleMethod }}('{{ $rowPrimaryKey }}')">
+@endif
 @if ($isTailwind)
     @if ($status)
         @if ($type === 'icons')
@@ -58,4 +61,7 @@
             @endif
         @endif
     @endif
+@endif
+@if($isToggleable && $toggleMethod != '')
+    </button>
 @endif

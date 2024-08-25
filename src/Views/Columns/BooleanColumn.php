@@ -21,6 +21,9 @@ class BooleanColumn extends Column
 
     protected string $view = 'livewire-tables::includes.columns.boolean';
 
+    protected bool $isToggleable = false;
+    protected ?string $toggleMethod;
+
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if ($this->isLabel()) {
@@ -28,8 +31,10 @@ class BooleanColumn extends Column
         }
 
         $value = $this->getValue($row);
-
         return view($this->getView())
+            ->withRowPrimaryKey($row->{$row->getKeyName()})
+            ->withIsToggleable($this->getIsToggleable())
+            ->withToggleMethod($this->getToggleMethod())
             ->withIsTailwind($this->isTailwind())
             ->withIsBootstrap($this->isBootstrap())
             ->withSuccessValue($this->getSuccessValue())
