@@ -1,6 +1,6 @@
 ---
 title: Commands
-weight: 6
+weight: 5
 ---
 
 ## Generating Datatable Components
