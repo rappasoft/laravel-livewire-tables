@@ -80,7 +80,6 @@ final class ActionsVisualsTest extends TestCase
 
     }
 
-
     public function test_can_align_actions_right(): void
     {
         $petsTable = (new class extends PetsTable

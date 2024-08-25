@@ -18,19 +18,19 @@ trait ActionsHelpers
     public function getActionsPosition(): string
     {
         switch ($this->actionsPosition) {
-            case "left":
-                return "justify-start";
+            case 'left':
+                return 'justify-start';
                 break;
-            case "center":
-                return "justify-center";
+            case 'center':
+                return 'justify-center';
                 break;
-            case "right":
-                return "justify-end";
+            case 'right':
+                return 'justify-end';
                 break;
             default:
-                return "justify-end";
+                return 'justify-end';
         }
-        
+
     }
 
     #[Computed]

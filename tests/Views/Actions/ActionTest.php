@@ -200,7 +200,6 @@ final class ActionTest extends TestCase
     {
         $petsTable = (new class extends PetsTable
         {
-
             public function configure(): void
             {
                 $this->setPrimaryKey('id');
@@ -342,12 +341,10 @@ final class ActionTest extends TestCase
         $this->assertStringContainsString('<a class="focus:border-indigo-300 focus:ring-indigo-200 justify-center text-center items-center inline-flex space-x-2 rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50 dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800" href="dashboard22"', $action->render());
     }
 
-
     public function test_can_set_action_position(): void
     {
         $petsTable = (new class extends PetsTable
         {
-
             public function configure(): void
             {
                 $this->setPrimaryKey('id');
