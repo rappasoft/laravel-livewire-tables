@@ -44,17 +44,22 @@ trait ToolsHelpers
         }
 
         if ($this->getToolBarStatus()) {
-            return
+            if (
                 $this->hasToolbarConfigurableAreas() || // Has Configured Toolbar Configurable Areas
                 $this->hasToolbarActions() ||  // Actions Exist In Toolbar
                 $this->hasToolbarReorder() ||  // If Reorder Is Enabled
                 $this->hasToolbarColumnSelect() || // Column Select Enabled
                 $this->displayToolbarSearch() || // If Search Is Enabled
                 $this->displayToolbarFilters() ||  // If Filters Are Enabled
-                $this->displayToolbarPagination();  // Pagination Selection Is Enabled
-        } else {
+                $this->displayToolbarPagination()  // Pagination Selection Is Enabled
+            )
+            {
+                return true;
+            }
             return false;
         }
+
+        return false;
     }
 
     #[Computed]
@@ -74,7 +79,7 @@ trait ToolsHelpers
     {
         if ($this->filtersAreEnabled() && $this->filtersVisibilityIsEnabled() && $this->hasVisibleFilters()) {
             return true;
-        } elseif ($this->filtersAreEnabled() && $this->showBulkActionsDropdownAlpine() && $this->shouldAlwaysHideBulkActionsDropdownOption != true) {
+        } elseif ($this->filtersAreEnabled() && $this->showBulkActionsDropdownAlpine() && $this->shouldAlwaysHideBulkActionsDropdownOption() != true) {
             return true;
         }
 
