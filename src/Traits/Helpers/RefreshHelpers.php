@@ -9,10 +9,7 @@ trait RefreshHelpers
         return $this->refresh !== false;
     }
 
-    /**
-     * @return bool|string
-     */
-    public function getRefreshStatus()
+    public function getRefreshStatus(): bool|string
     {
         return $this->refresh;
     }

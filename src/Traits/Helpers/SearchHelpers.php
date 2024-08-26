@@ -6,7 +6,7 @@ trait SearchHelpers
 {
     public function hasSearch(): bool
     {
-        return $this->search != '';
+        return filled($this->search);
     }
 
     public function getSearch(): string

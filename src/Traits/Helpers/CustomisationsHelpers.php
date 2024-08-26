@@ -9,7 +9,7 @@ trait CustomisationsHelpers
      */
     public function hasExtends(): bool
     {
-        return isset($this->extends) && $this->extends !== null;
+        return isset($this->extends);
     }
 
     public function getExtends(): ?string
@@ -22,7 +22,7 @@ trait CustomisationsHelpers
      */
     public function hasSection(): bool
     {
-        return isset($this->section) && $this->section !== null;
+        return isset($this->section);
     }
 
     public function getSection(): ?string
@@ -35,7 +35,7 @@ trait CustomisationsHelpers
      */
     public function hasSlot(): bool
     {
-        return isset($this->slot) && $this->slot !== null;
+        return isset($this->slot);
     }
 
     public function getSlot(): ?string
@@ -48,7 +48,7 @@ trait CustomisationsHelpers
      */
     public function hasLayout(): bool
     {
-        return isset($this->layout) && $this->layout !== null;
+        return isset($this->layout);
     }
 
     public function getLayout(): ?string

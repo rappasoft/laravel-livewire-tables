@@ -20,13 +20,13 @@ trait ColumnHelpers
             ->map(function (Column $column) {
                 $column->setTheme($this->getTheme());
                 $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+                $column->setIsReorderColumn($this->getDefaultReorderColumn() === $column->getField());
                 if ($column instanceof AggregateColumn) {
-                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
+                    if ($column->getAggregateMethod() === 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
-                    } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
+                    } elseif ($column->getAggregateMethod() === 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
                         $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
-                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
+                    } elseif ($column->getAggregateMethod() === 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
                         $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
@@ -73,9 +73,6 @@ trait ColumnHelpers
             ->first();
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getColumnRelations(): array
     {
         return $this->getColumns()
@@ -85,9 +82,6 @@ trait ColumnHelpers
             ->toArray();
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getColumnRelationStrings(): array
     {
         return $this->getColumns()
@@ -119,11 +113,7 @@ trait ColumnHelpers
 
     public function hasCollapsedColumns(): bool
     {
-        if ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways()) {
-            return true;
-        }
-
-        return false;
+        return $this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways();
     }
 
     public function shouldCollapseOnMobile(): bool
@@ -211,13 +201,13 @@ trait ColumnHelpers
             ->map(function (Column $column) {
                 $column->setTheme($this->getTheme());
                 $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+                $column->setIsReorderColumn($this->getDefaultReorderColumn() === $column->getField());
                 if ($column instanceof AggregateColumn) {
-                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
+                    if ($column->getAggregateMethod() === 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
-                    } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
+                    } elseif ($column->getAggregateMethod() === 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
                         $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
-                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
+                    } elseif ($column->getAggregateMethod() === 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
                         $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
                     }
                 }
@@ -241,13 +231,13 @@ trait ColumnHelpers
             ->map(function (Column $column) {
                 $column->setTheme($this->getTheme());
                 $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+                $column->setIsReorderColumn($this->getDefaultReorderColumn() === $column->getField());
                 if ($column instanceof AggregateColumn) {
-                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
+                    if ($column->getAggregateMethod() === 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
-                    } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
+                    } elseif ($column->getAggregateMethod() === 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
                         $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
-                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
+                    } elseif ($column->getAggregateMethod() === 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
                         $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
                     }
                 }

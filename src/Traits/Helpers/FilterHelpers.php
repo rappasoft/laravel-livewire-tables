@@ -175,9 +175,6 @@ trait FilterHelpers
         }
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getAppliedFilters(): array
     {
         $validFilterKeys = $this->getFilters()
@@ -218,9 +215,6 @@ trait FilterHelpers
             ->count() > 0;
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getAppliedFiltersWithValues(): array
     {
         return $this->appliedFilters = array_filter($this->getAppliedFilters(), function ($item, $key) {
@@ -241,16 +235,15 @@ trait FilterHelpers
         return count($this->getAppliedFiltersWithValues());
     }
 
-    /**
-     * @param  mixed  $filter
-     */
-    public function resetFilter($filter): void
+    public function resetFilter(mixed $filter): void
     {
         if (! $filter instanceof Filter) {
             $filter = $this->getFilterByKey($filter);
         }
+
         $this->callHook('filterReset', ['filter' => $filter->getKey()]);
         $this->callTraitHook('filterReset', ['filter' => $filter->getKey()]);
+
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
     }
 
@@ -289,8 +282,6 @@ trait FilterHelpers
 
     /**
      * Get filters sorted by row
-     *
-     * @return array<mixed>
      */
     public function getFiltersByRow(): array
     {
@@ -302,7 +293,8 @@ trait FilterHelpers
             }
 
             if (empty($orderedFilters['1'])) {
-                $orderedFilters['1'] = (isset($orderedFilters['99']) ? $orderedFilters['99'] : []);
+                $orderedFilters['1'] = $orderedFilters['99'] ?? [];
+
                 if (isset($orderedFilters['99'])) {
                     unset($orderedFilters['99']);
                 }
