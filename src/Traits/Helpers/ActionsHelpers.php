@@ -33,7 +33,7 @@ trait ActionsHelpers
             $this->validActions = $this->getActions();
         }
 
-        return ($this->validActions->count() ?? 0) > 0;
+        return $this->validActions->count() > 0;
     }
 
     #[Computed]
