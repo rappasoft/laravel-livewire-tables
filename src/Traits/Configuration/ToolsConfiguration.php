@@ -7,6 +7,7 @@ trait ToolsConfiguration
     public function setToolsStatus(bool $status): self
     {
         $this->toolsStatus = $status;
+
         return $this;
     }
 
@@ -23,6 +24,7 @@ trait ToolsConfiguration
     public function setToolBarStatus(bool $status): self
     {
         $this->toolBarStatus = $status;
+
         return $this;
     }
 
@@ -35,6 +37,4 @@ trait ToolsConfiguration
     {
         return $this->setToolBarStatus(false);
     }
-
-
 }

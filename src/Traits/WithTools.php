@@ -11,6 +11,6 @@ trait WithTools
         ToolsHelpers;
 
     protected bool $toolsStatus = true;
-    protected bool $toolBarStatus = true;
 
+    protected bool $toolBarStatus = true;
 }

@@ -29,7 +29,6 @@ final class ToolsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->getToolBarStatus());
     }
 
-
     public function test_can_get_tools_should_display(): void
     {
         $this->assertTrue($this->basicTable->getToolsStatus());
@@ -68,8 +67,8 @@ final class ToolsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->getToolsStatus());
         $this->assertTrue($this->basicTable->getToolBarStatus());
         $this->basicTable->setSearchDisabled()
-                          ->setColumnSelectDisabled()
-                          ->setPerPageVisibilityDisabled();
+            ->setColumnSelectDisabled()
+            ->setPerPageVisibilityDisabled();
         $this->basicTable->setSorts(['id' => 'asc', 'name' => 'desc']);
 
         $this->assertTrue($this->basicTable->shouldShowToolBar());
@@ -96,12 +95,9 @@ final class ToolsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->shouldShowTools());
 
         $this->basicTable->setFiltersDisabled();
-        
+
         $this->assertFalse($this->basicTable->shouldShowToolBar());
         $this->assertFalse($this->basicTable->shouldShowTools());
 
     }
-
-    
-
 }
