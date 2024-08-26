@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ActionsConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ActionsHelpers;
+use Illuminate\Support\Collection;
 
 trait WithActions
 {
@@ -15,6 +16,8 @@ trait WithActions
     protected bool $displayActionsInToolbar = false;
 
     protected string $actionsPosition = 'right';
+
+    protected ?Collection $validActions;
 
     protected function actions(): array
     {
