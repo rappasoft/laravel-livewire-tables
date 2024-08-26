@@ -52,10 +52,10 @@ trait ToolsHelpers
                 $this->displayToolbarSearch() || // If Search Is Enabled
                 $this->displayToolbarFilters() ||  // If Filters Are Enabled
                 $this->displayToolbarPagination()  // Pagination Selection Is Enabled
-            )
-            {
+            ) {
                 return true;
             }
+
             return false;
         }
 
