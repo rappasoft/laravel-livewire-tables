@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ActionsConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ActionsHelpers;
-use Illuminate\Support\Collection;
 
 trait WithActions
 {
