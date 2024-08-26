@@ -29,18 +29,24 @@ trait ActionsHelpers
     #[Computed]
     public function hasActions(): bool
     {
-        return (new Collection($this->actions()))
-            ->filter(fn ($action) => $action instanceof Action)->count() > 0;
+        if (! isset($this->validActions)) {
+            $this->validActions = $this->getActions();
+        }
+
+        return $this->validActions->count() > 0;
     }
 
     #[Computed]
     public function getActions(): Collection
     {
-        return (new Collection($this->actions()))
-            ->filter(fn ($action) => $action instanceof Action)
-            ->each(function (Action $action, int $key) {
-                $action->setTheme($this->getTheme());
-            });
+        if (! isset($this->validActions)) {
+            $this->validActions = (new Collection($this->actions()))
+                ->filter(fn ($action) => $action instanceof Action)
+                ->each(function (Action $action, int $key) {
+                    $action->setTheme($this->getTheme());
+                });
+        }
 
+        return $this->validActions;
     }
 }
