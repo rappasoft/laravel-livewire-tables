@@ -132,7 +132,7 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         $this->assertFalse($assets->hasRenderedRappsoftTableStyles);
 
-        $this->assertStringStartsWith('<link href="/rappasoft/laravel-livewire-tables/core.min.css" rel="stylesheet" />', ltrim($assets->tableStyles()));
+        $this->assertStringStartsWith('<link href="/rappasoft/laravel-livewire-tables/core.min.css" rel="stylesheet" />', trim(ltrim($assets->tableStyles(), '<!-- Rappasoft Core Table Styles -->')));
 
         $this->assertTrue($assets->hasRenderedRappsoftTableStyles);
     }
@@ -143,7 +143,7 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         $this->assertFalse($assets->hasRenderedRappsoftTableScripts);
 
-        $this->assertStringStartsWith('<script src="', $assets->tableScripts());
+        $this->assertStringStartsWith('<script src="', trim(ltrim($assets->tableScripts(), '<!-- Rappasoft Core Table Scripts -->')));
 
         $this->assertTrue($assets->hasRenderedRappsoftTableScripts);
     }
@@ -154,7 +154,7 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         $this->assertFalse($assets->hasRenderedRappsoftTableThirdPartyStyles);
 
-        $this->assertStringStartsWith('<link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" />', ltrim($assets->tableThirdPartyStyles()));
+        $this->assertStringStartsWith('<link href="/rappasoft/laravel-livewire-tables/thirdparty.css" rel="stylesheet" />', trim(ltrim($assets->tableThirdPartyStyles(), '<!-- Rappasoft Table Third Party Styles -->')));
 
         $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyStyles);
     }
@@ -165,7 +165,7 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         $this->assertFalse($assets->hasRenderedRappsoftTableThirdPartyScripts);
 
-        $this->assertStringStartsWith('<script src="', $assets->tableThirdPartyScripts());
+        $this->assertStringStartsWith('<script src="', trim(ltrim($assets->tableThirdPartyScripts(), '<!-- Rappasoft Third Party Scripts -->')));
 
         $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyScripts);
     }
