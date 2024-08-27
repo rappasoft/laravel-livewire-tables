@@ -12,7 +12,7 @@ trait IconColumnHelpers
 
     public function getIcon(Model|int $row): string
     {
-        return $this->hasIconCallback() ? app()->call($this->getIconCallback(), ['row' => $row, 'value' => $this->getValue($row) ?? '']) : ($this->getValue($row));
+        return $this->hasIconCallback() ? app()->call($this->getIconCallback(), ['row' => $row, 'value' => $this->getValue($row)]) : ($this->getValue($row));
     }
 
     public function getIconCallback(): ?callable
