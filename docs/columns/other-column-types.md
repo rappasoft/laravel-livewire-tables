@@ -29,6 +29,9 @@ weight: 4
         <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/column-types/date_columns">Date Columns</a>
     </li>
     <li>
+        [Icon Columns (Beta)](../column-types/icon_columns)
+    </li>
+    <li>
         <a href="https://rappasoft.com/docs/laravel-livewire-tables/v3/column-types/image_columns">Image Columns</a>
     </li>
     <li>
