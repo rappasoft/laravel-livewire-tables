@@ -2,13 +2,9 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         colors="false"
-         cacheResult="false" 
-         executionOrder="random" 
-         failOnWarning="false" 
-         failOnRisky="false" 
-         failOnEmptyTestSuite="false" 
-         beStrictAboutOutputDuringTests="true" >
+         cacheResult="false"
+         executionOrder="random"
+         beStrictAboutOutputDuringTests="true">
     <testsuites>
         <testsuite name="Laravel Livewire Tables Test Suite">
             <directory>tests</directory>
