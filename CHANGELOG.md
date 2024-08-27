@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.16] - 2024-08-27
+### New Features
+- Add icon column by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1902
+- Enable/Disable Tools/Toolbar by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1896
+
+### Bug Fixes
+- Fix has actions by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1901
+- Use Computed Properties By Default by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1898
+
+### Tweaks
+- PHPStan - Config File Update and Baseline by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1903
+
 ## [v3.4.15] - 2024-08-25
 ### New Features
 - BooleanColumn - Toggleable Callback by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1892
