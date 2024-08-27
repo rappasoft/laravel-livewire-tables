@@ -1,6 +1,6 @@
 ---
 title: Link Columns
-weight: 11
+weight: 12
 ---
 
 Link columns provide a way to display HTML links in your table without having to use `format()` or partial views:
