@@ -29,7 +29,6 @@ class IconColumn extends Column
         $this->html();
     }
 
-
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $attributeBag = $this->getAttributeBag($row);
