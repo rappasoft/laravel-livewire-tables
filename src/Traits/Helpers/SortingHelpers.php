@@ -164,6 +164,6 @@ trait SortingHelpers
     #[Computed]
     public function showSortPillsSection(): bool
     {
-        return $this->sortingPillsAreEnabled() && $this->hasSorts();
+        return $this->sortingIsEnabled() && $this->sortingPillsAreEnabled() && $this->hasSorts();
     }
 }
