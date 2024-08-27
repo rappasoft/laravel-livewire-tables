@@ -10,5 +10,4 @@ trait IconColumnConfiguration
 
         return $this;
     }
-
 }

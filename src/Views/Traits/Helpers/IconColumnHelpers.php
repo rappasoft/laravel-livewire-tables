@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasDefaultStringValue;
 trait IconColumnHelpers
 {
     use HasDefaultStringValue;
-    
 
     public function getIcon(Model|int $row): string
     {
@@ -25,6 +24,4 @@ trait IconColumnHelpers
     {
         return isset($this->iconCallback);
     }
-
-
 }

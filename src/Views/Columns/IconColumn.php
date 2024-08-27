@@ -34,7 +34,6 @@ class IconColumn extends Column
             ->withIsBootstrap($this->isBootstrap())
             ->withIcon($this->getIcon($row))
             ->withClasses($attributeBag['class'])
-            ->withAttributes(collect($attributeBag)->except('class')->toArray())
-        ;
+            ->withAttributes(collect($attributeBag)->except('class')->toArray());
     }
 }
