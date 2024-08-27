@@ -42,7 +42,7 @@ trait ActionsHelpers
         if (! isset($this->validActions)) {
             $this->validActions = (new Collection($this->actions()))
                 ->filter(fn ($action) => $action instanceof Action)
-            ->each(function (Action $action) {
+                ->each(function (Action $action) {
                     $action->setTheme($this->getTheme());
                 });
         }
