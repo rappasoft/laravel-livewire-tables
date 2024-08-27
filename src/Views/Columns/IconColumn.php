@@ -22,6 +22,10 @@ class IconColumn extends Column
     public function __construct(string $title, ?string $from = null)
     {
         parent::__construct($title, $from);
+        if (! isset($from)) {
+            $this->label(fn () => null);
+        }
+
         $this->html();
     }
 
