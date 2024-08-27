@@ -1,0 +1,76 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Offset '1' on array\\<string, non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>\\> in empty\\(\\) does not exist\\.$#"
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: "#^Offset '99' on array\\<string, non\\-empty\\-array\\<int\\<0, max\\>, mixed\\>\\> in isset\\(\\) does not exist\\.$#"
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: "#^Offset '99' on non\\-empty\\-array\\<1\\|string, array\\<int\\<0, max\\>, mixed\\>\\> in isset\\(\\) does not exist\\.$#"
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: "#^Property Illuminate\\\\Database\\\\Query\\\\Builder\\:\\:\\$joins \\(array\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: "#^Property Rappasoft\\\\LaravelLivewireTables\\\\DataTableComponent\\:\\:\\$model has no type specified\\.$#"
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/Views/Action.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/Views/Column.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/Views/Filter.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<int,string\\>\\:\\:filter\\(\\) expects \\(callable\\(string, int\\)\\: bool\\)\\|null, Closure\\(mixed\\)\\: int\\<0, max\\> given\\.$#"
+			count: 1
+			path: src/Views/Filters/MultiSelectDropdownFilter.php
+
+		-
+			message: "#^Unable to resolve the template type TMapWithKeysKey in call to method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:mapWithKeys\\(\\)$#"
+			count: 1
+			path: src/Views/Filters/MultiSelectDropdownFilter.php
+
+		-
+			message: "#^Unable to resolve the template type TMapWithKeysValue in call to method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:mapWithKeys\\(\\)$#"
+			count: 1
+			path: src/Views/Filters/MultiSelectDropdownFilter.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<int,string\\>\\:\\:filter\\(\\) expects \\(callable\\(string, int\\)\\: bool\\)\\|null, Closure\\(mixed\\)\\: int\\<0, max\\> given\\.$#"
+			count: 1
+			path: src/Views/Filters/MultiSelectFilter.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<int,string\\>\\:\\:filter\\(\\) expects \\(callable\\(string, int\\)\\: bool\\)\\|null, Closure\\(mixed\\)\\: int\\<0, max\\> given\\.$#"
+			count: 1
+			path: src/Views/Filters/NumberRangeFilter.php
+
+		-
+			message: "#^Unable to resolve the template type TMapWithKeysKey in call to method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:mapWithKeys\\(\\)$#"
+			count: 1
+			path: src/Views/Filters/SelectFilter.php
+
+		-
+			message: "#^Unable to resolve the template type TMapWithKeysValue in call to method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:mapWithKeys\\(\\)$#"
+			count: 1
+			path: src/Views/Filters/SelectFilter.php
