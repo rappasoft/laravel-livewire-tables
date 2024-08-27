@@ -293,7 +293,7 @@ trait FilterHelpers
             }
 
             if (empty($orderedFilters['1'])) {
-                $orderedFilters['1'] = $orderedFilters['99'] ?? [];
+                $orderedFilters['1'] = (isset($orderedFilters['99']) ? $orderedFilters['99'] : []);
 
                 if (isset($orderedFilters['99'])) {
                     unset($orderedFilters['99']);

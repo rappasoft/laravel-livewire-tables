@@ -46,7 +46,7 @@ trait ColumnSelectHelpers
 
     protected function forgetColumnSelectSession(): void
     {
-        session()?->forget($this->getColumnSelectSessionKey());
+        session()->forget($this->getColumnSelectSessionKey());
     }
 
     protected function getColumnSelectSessionKey(): string
@@ -192,8 +192,8 @@ trait ColumnSelectHelpers
     {
 
         // If the column select is off, make sure to clear the session
-        if ($this->columnSelectIsDisabled() && session()?->has($this->getColumnSelectSessionKey())) {
-            session()?->forget($this->getColumnSelectSessionKey());
+        if ($this->columnSelectIsDisabled() && session()->has($this->getColumnSelectSessionKey())) {
+            session()->forget($this->getColumnSelectSessionKey());
 
             return;
         }
@@ -211,7 +211,7 @@ trait ColumnSelectHelpers
         // Set to either the default set or what is stored in the session
         $this->selectedColumns = (count($this->selectedColumns) > 1) ?
             $this->selectedColumns :
-            session()?->get($this->getColumnSelectSessionKey(), $this->getDefaultVisibleColumns());
+            session()->get($this->getColumnSelectSessionKey(), $this->getDefaultVisibleColumns());
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them
         foreach ($this->getColumns() as $column) {

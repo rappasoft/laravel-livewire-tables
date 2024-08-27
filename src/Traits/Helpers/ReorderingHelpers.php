@@ -74,12 +74,12 @@ trait ReorderingHelpers
 
     public function forgetReorderingSession(): void
     {
-        session()?->forget($this->getReorderingSessionKey());
+        session()->forget($this->getReorderingSessionKey());
     }
 
     public function hasReorderingSession(): bool
     {
-        return session()?->has($this->getReorderingSessionKey());
+        return session()->has($this->getReorderingSessionKey());
     }
 
     public function getReorderingSessionKey(): string
