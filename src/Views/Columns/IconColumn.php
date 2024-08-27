@@ -29,10 +29,6 @@ class IconColumn extends Column
         $this->html();
     }
 
-    public function getValue(Model $row): string
-    {
-        return parent::getValue($row) ?? $this->getDefaultValue();
-    }
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
