@@ -31,7 +31,7 @@ trait HasAttributes
     // TODO: Test
     public function getAttributeBag(Model $row): ComponentAttributeBag
     {
-        return new ComponentAttributeBag($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
+        return new ComponentAttributeBag($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row, 'value' => $this->getValue($row)]) : []);
     }
 
     /**

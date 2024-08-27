@@ -193,10 +193,10 @@ class TestCase extends Orchestra
         $app['config']->set('view.cache', false);
         $app['config']->set('view.compiled', realpath(storage_path('framework/views')).'/'.rand(0, 100));
 
-        if (file_exists(__DIR__.'/../database/sqlite.database')) {
+        if (file_exists(__DIR__.'/../database/database.sqlite')) {
             $app['config']->set('database.connections.sqlite', [
                 'driver' => 'sqlite',
-                'database' => __DIR__.'/../database/sqlite.database',
+                'database' => __DIR__.'/../database/database.sqlite',
                 'prefix' => '',
             ]);
         } else {
