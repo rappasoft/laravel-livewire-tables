@@ -27,29 +27,33 @@ class RappasoftFrontendAssets
         // Set the JS route for the core tables JS
         app($this::class)->setRappasoftTableScriptRoute(function ($handle) {
             $scriptPath = rtrim(config('livewire-tables.script_base_path', '/rappasoft/laravel-livewire-tables'), '/').'/core.min.js';
+            $middlewares = config('livewire-tables.middlewares', []);
 
-            return Route::get($scriptPath, $handle);
+            return Route::get($scriptPath, $handle)->middleware($middlewares);
         });
 
         // Set the CSS route for the core tables CSS
         app($this::class)->setRappasoftTableStylesRoute(function ($handle) {
             $stylesPath = rtrim(config('livewire-tables.script_base_path', '/rappasoft/laravel-livewire-tables'), '/').'/core.min.css';
+            $middlewares = config('livewire-tables.middlewares', []);
 
-            return Route::get($stylesPath, $handle);
+            return Route::get($stylesPath, $handle)->middleware($middlewares);
         });
 
         // Set the JS route for the third party JS
         app($this::class)->setRappasoftTableThirdPartyScriptRoute(function ($handle) {
             $scriptPath = rtrim(config('livewire-tables.script_base_path', '/rappasoft/laravel-livewire-tables'), '/').'/thirdparty.min.js';
+            $middlewares = config('livewire-tables.middlewares', []);
 
-            return Route::get($scriptPath, $handle);
+            return Route::get($scriptPath, $handle)->middleware($middlewares);
         });
 
         // Set the CSS route for the third party CSS
         app($this::class)->setRappasoftTableThirdPartyStylesRoute(function ($handle) {
             $stylesPath = rtrim(config('livewire-tables.script_base_path', '/rappasoft/laravel-livewire-tables'), '/').'/thirdparty.css';
+            $middlewares = config('livewire-tables.middlewares', []);
 
-            return Route::get($stylesPath, $handle);
+            return Route::get($stylesPath, $handle)->middleware($middlewares);
         });
 
         static::registerBladeDirectives();

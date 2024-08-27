@@ -114,4 +114,10 @@ return [
         'defaultConfig' => [],
     ],
 
+    /**
+     * Configuration options for setting the middleware to apply to the routes
+     */
+    'middlewares' => [
+    ],
+
 ];

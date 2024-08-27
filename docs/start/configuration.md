@@ -81,3 +81,24 @@ You must also make sure you have this Alpine style available globally. Note that
     [x-cloak] { display: none !important; }
 </style>
 ```
+
+## Middleware configuration
+
+The package registers 4 routes into Laravel, which correspond to the 4 blade directives `@rappasoftTableScripts`, `@rappasoftTableStyles`, `@rappasoftTableThirdPartyScripts`, `@rappasoftTableThirdPartyStyles`.
+
+For specific situations like multi tenancy applications, you might encounter the need to specify one or several middlewares to apply to these routes.
+
+You can define the list of middlewares to apply by changing the middlewares configuration option :
+
+```php
+<?php
+
+return [
+    ...
+    /**
+     * Configuration options for setting the middleware to apply to the routes
+     */
+    'middlewares' => [
+    ],
+];
+```
