@@ -24,11 +24,9 @@ trait SessionStorageHelpers
         return $this->getTableName().'-filter-backup';
     }
 
-
     public function storeFilterValues(): void
     {
-        if($this->shouldStoreFiltersInSession())
-        {
+        if ($this->shouldStoreFiltersInSession()) {
             if (session()->has($this->getFilterSessionKey())) {
                 session()->forget($this->getFilterSessionKey());
             }
@@ -38,21 +36,18 @@ trait SessionStorageHelpers
 
     public function restoreFilterValues(): void
     {
-        if(empty($this->filterComponents) || empty($this->appliedFilters))
-        {
-            if($this->shouldStoreFiltersInSession())
-            {
+        if (empty($this->filterComponents) || empty($this->appliedFilters)) {
+            if ($this->shouldStoreFiltersInSession()) {
                 if (session()->has($this->getFilterSessionKey())) {
                     $this->filterComponents = $this->appliedFilters = session()->get($this->getFilterSessionKey());
                 }
-            }    
+            }
         }
     }
 
     public function clearStoredFilterValues(): void
     {
-        if($this->shouldStoreFiltersInSession())
-        {
+        if ($this->shouldStoreFiltersInSession()) {
             session([$this->getFilterSessionKey() => []]);
         }
     }

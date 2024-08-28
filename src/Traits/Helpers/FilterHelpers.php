@@ -246,7 +246,6 @@ trait FilterHelpers
         return count($this->getAppliedFiltersWithValues());
     }
 
-
     /**
      * @param  mixed  $filter
      */
