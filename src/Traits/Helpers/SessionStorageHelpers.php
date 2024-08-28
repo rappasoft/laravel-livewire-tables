@@ -11,7 +11,7 @@ trait SessionStorageHelpers
 
     protected function getSessionStorageStatusFilters(): bool
     {
-        return $this->sessionStorageStatus['filters'] ?? false;
+        return $this->getSessionStorageStatus('filters') ?? false;
     }
 
     protected function shouldStoreFiltersInSession(): bool
@@ -19,24 +19,41 @@ trait SessionStorageHelpers
         return $this->getSessionStorageStatus('filters');
     }
 
-    public function getFilterSessionKey(): string
+    protected function getFilterSessionKey(): string
     {
         return $this->getTableName().'-filter-backup';
     }
 
-    public function storeFiltersInSession(): void
-    {
-        if (session()->has($this->getFilterSessionKey())) {
-            session()->forget($this->getFilterSessionKey());
-        }
-        session([$this->getFilterSessionKey() => $this->appliedFilters]);
 
+    public function storeFilterValues(): void
+    {
+        if($this->shouldStoreFiltersInSession())
+        {
+            if (session()->has($this->getFilterSessionKey())) {
+                session()->forget($this->getFilterSessionKey());
+            }
+            session([$this->getFilterSessionKey() => $this->appliedFilters]);
+        }
     }
 
-    public function restoreFiltersFromSession(): void
+    public function restoreFilterValues(): void
     {
-        if (session()->has($this->getFilterSessionKey())) {
-            $this->appliedFilters = session()->get($this->getFilterSessionKey());
+        if(empty($this->filterComponents) || empty($this->appliedFilters))
+        {
+            if($this->shouldStoreFiltersInSession())
+            {
+                if (session()->has($this->getFilterSessionKey())) {
+                    $this->filterComponents = $this->appliedFilters = session()->get($this->getFilterSessionKey());
+                }
+            }    
+        }
+    }
+
+    public function clearStoredFilterValues(): void
+    {
+        if($this->shouldStoreFiltersInSession())
+        {
+            session([$this->getFilterSessionKey() => []]);
         }
     }
 }
