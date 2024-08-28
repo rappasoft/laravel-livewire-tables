@@ -8,11 +8,9 @@ use Rappasoft\LaravelLivewireTables\Traits\Helpers\SessionStorageHelpers;
 trait WithSessionStorage
 {
     use SessionStorageConfiguration,
-    SessionStorageHelpers;
+        SessionStorageHelpers;
 
     public array $sessionStorageStatus = [
         'filters' => false,
     ];
-
-
 }

@@ -14,7 +14,6 @@ trait SessionStorageHelpers
         return $this->sessionStorageStatus['filters'] ?? false;
     }
 
-
     protected function shouldStoreFiltersInSession(): bool
     {
         return $this->getSessionStorageStatus('filters');
@@ -33,11 +32,11 @@ trait SessionStorageHelpers
         session([$this->getFilterSessionKey() => $this->appliedFilters]);
 
     }
+
     public function restoreFiltersFromSession(): void
     {
         if (session()->has($this->getFilterSessionKey())) {
             $this->appliedFilters = session()->get($this->getFilterSessionKey());
         }
     }
-
 }

@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait SessionStorageConfiguration
 {
-
     protected function storeFiltersInSessionStatus(bool $status): self
     {
         $this->sessionStorageStatus['filters'] = $status;
@@ -16,10 +15,9 @@ trait SessionStorageConfiguration
     {
         return $this->storeFiltersInSessionStatus(true);
     }
-    
+
     protected function storeFiltersInSessionDisabled(): self
     {
-        return $this->storeFiltersInSessionStatus(false);   
+        return $this->storeFiltersInSessionStatus(false);
     }
-
 }
