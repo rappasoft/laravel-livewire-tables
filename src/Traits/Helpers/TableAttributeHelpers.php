@@ -61,7 +61,7 @@ trait TableAttributeHelpers
     {
         return isset($this->tdAttributesCallback) ? call_user_func($this->tdAttributesCallback, $column, $row, $colIndex, $rowIndex) : ['default' => true];
     }
-    
+
     #[Computed]
     public function hasTableRowUrl(): bool
     {
