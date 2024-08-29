@@ -21,7 +21,7 @@
                                 <span>@lang('results')</span>
                             @endif
                         </p>
-                    @elseif ($this->paginationIsEnabled() && $this->isPaginationMethod('simple'))
+                    @elseif ($this->paginationIsEnabled() && $this->isPaginationMethodSimple)
                         <p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
                             @if($this->showPaginationDetails())
                                 <span>@lang('Showing')</span>
@@ -67,7 +67,7 @@
                         @endif
                     </div>
                 </div>
-            @elseif ($this->paginationIsEnabled() && $this->isPaginationMethod('simple'))
+            @elseif ($this->paginationIsEnabled() && $this->isPaginationMethodSimple)
                 <div class="row mt-3">
                     <div class="col-12 col-md-6 overflow-auto">
                         {{ $this->getRows->links('livewire-tables::specific.bootstrap-4.simple-pagination') }}
@@ -119,7 +119,7 @@
                         @endif
                     </div>
                 </div>
-            @elseif ($this->paginationIsEnabled() && $this->isPaginationMethod('simple'))
+            @elseif ($this->paginationIsEnabled() && $this->isPaginationMethodSimple)
                 <div class="row mt-3">
                     <div class="col-12 col-md-6 overflow-auto">
                         {{ $this->getRows->links('livewire-tables::specific.bootstrap-4.simple-pagination') }}

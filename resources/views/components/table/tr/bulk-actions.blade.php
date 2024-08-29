@@ -2,9 +2,8 @@
 
 @if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
     @php
-        $colspan = $this->getColspanCount();
-        $selectAll = $this->selectAllIsEnabled();
-        $simplePagination = $this->isPaginationMethod('simple');
+        $colspan = $this->getColspanCount;
+       // $selectAll = $this->selectAllIsEnabled;
     @endphp
 
     @if ($isTailwind)
@@ -18,7 +17,7 @@
                     <div wire:key="{{ $tableName }}-all-selected">
                         <span>
                             @lang('You are currently selecting all')
-                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
+                            @if(!$this->isPaginationMethodSimple) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                             @lang('rows').
                         </span>
 
@@ -39,7 +38,7 @@
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
+                            @if(!$this->isPaginationMethodSimple) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                         </span>
 
                         <button
@@ -82,7 +81,7 @@
                     <div wire:key="{{ $tableName }}-all-selected">
                         <span>
                             @lang('You are currently selecting all')
-                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
+                            @if(!$this->isPaginationMethodSimple) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                             @lang('rows').
                         </span>
 
@@ -103,7 +102,7 @@
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
+                            @if(!$this->isPaginationMethodSimple) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                         </span>
 
                         <button

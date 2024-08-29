@@ -7,7 +7,7 @@
 
 @if ($this->collapsingColumnsAreEnabled && $this->hasCollapsedColumns)
     @php
-        $colspan = $this->getColspanCount();
+        $colspan = $this->getColspanCount;
         $columns = collect();
 
         if($this->shouldCollapseAlways())

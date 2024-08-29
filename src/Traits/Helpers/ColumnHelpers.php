@@ -200,7 +200,8 @@ trait ColumnHelpers
     {
         return $this->getVisibleTabletColumns()->count();
     }
-
+    
+    #[Computed]
     public function getColspanCount(): int
     {
         return 100;

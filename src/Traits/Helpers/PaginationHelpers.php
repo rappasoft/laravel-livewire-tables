@@ -99,6 +99,12 @@ trait PaginationHelpers
         return $this->paginationMethod === $paginationMethod;
     }
 
+    #[Computed]
+    public function isPaginationMethodSimple(): bool
+    {
+        return $this->paginationMethod === "simple";
+    }
+
     /**
      * @return array<mixed>
      */
