@@ -11,7 +11,7 @@
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
-                    @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                    @continue($this->columnSelectIsEnabled && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
                         wire:key="{{ $tableName }}-sorting-pill-{{ $columnSelectName }}"
@@ -52,7 +52,7 @@
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
-                    @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                    @continue($this->columnSelectIsEnabled && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
                         wire:key="{{ $tableName . '-sorting-pill-' . $columnSelectName }}"
@@ -92,7 +92,7 @@
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
-                    @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                    @continue($this->columnSelectIsEnabled && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
                         wire:key="{{ $tableName }}-sorting-pill-{{ $columnSelectName }}"

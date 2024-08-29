@@ -28,7 +28,7 @@
             <x-livewire-tables::tools.toolbar.items.search-field />
         @endif
 
-        @if ($this->filtersAreEnabled() && $this->filtersVisibilityIsEnabled() && $this->hasVisibleFilters())
+        @if ($this->filtersAreEnabled && $this->filtersVisibilityIsEnabled && $this->hasVisibleFilters)
             <x-livewire-tables::tools.toolbar.items.filter-button />
         @endif
 
@@ -64,7 +64,7 @@
             <x-livewire-tables::tools.toolbar.items.bulk-actions />
         @endif
 
-        @if ($this->columnSelectIsEnabled())
+        @if ($this->columnSelectIsEnabled)
             <x-livewire-tables::tools.toolbar.items.column-select />
         @endif
 
@@ -78,10 +78,10 @@
     </div>
 </div>
 @if (
-    $this->filtersAreEnabled() &&
-    $this->filtersVisibilityIsEnabled() &&
-    $this->hasVisibleFilters() &&
-    $this->isFilterLayoutSlideDown()
+    $this->filtersAreEnabled &&
+    $this->filtersVisibilityIsEnabled &&
+    $this->hasVisibleFilters &&
+    $this->isFilterLayoutSlideDown
 )
     <x-livewire-tables::tools.toolbar.items.filter-slidedown  />
 @endif

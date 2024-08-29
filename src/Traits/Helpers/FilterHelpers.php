@@ -36,6 +36,7 @@ trait FilterHelpers
         return $this->filtersStatus;
     }
 
+    #[Computed]
     public function filtersAreEnabled(): bool
     {
         return $this->getFiltersStatus() === true;
@@ -51,6 +52,7 @@ trait FilterHelpers
         return $this->filtersVisibilityStatus;
     }
 
+    #[Computed]
     public function filtersVisibilityIsEnabled(): bool
     {
         return $this->getFiltersVisibilityStatus() === true;
@@ -81,6 +83,7 @@ trait FilterHelpers
         return $this->filterPillsStatus;
     }
 
+    #[Computed]
     public function filterPillsAreEnabled(): bool
     {
         return $this->getFilterPillsStatus() === true;
@@ -96,6 +99,7 @@ trait FilterHelpers
         return $this->getFiltersCount() > 0;
     }
 
+    #[Computed]
     public function hasVisibleFilters(): bool
     {
         return $this->getFilters()
@@ -194,6 +198,7 @@ trait FilterHelpers
         return count($this->getAppliedFiltersWithValues()) > 0;
     }
 
+    #[Computed]
     public function hasAppliedVisibleFiltersWithValuesThatCanBeCleared(): bool
     {
         return collect($this->getAppliedFiltersWithValues())
@@ -202,6 +207,7 @@ trait FilterHelpers
             ->count() > 0;
     }
 
+    #[Computed]
     public function getFilterBadgeCount(): int
     {
         return collect($this->getAppliedFiltersWithValues())
@@ -210,6 +216,7 @@ trait FilterHelpers
             ->count();
     }
 
+    #[Computed]
     public function hasAppliedVisibleFiltersForPills(): bool
     {
         return collect($this->getAppliedFiltersWithValues())
@@ -254,16 +261,19 @@ trait FilterHelpers
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
     }
 
+    #[Computed]
     public function getFilterLayout(): string
     {
         return $this->filterLayout;
     }
 
+    #[Computed]
     public function isFilterLayoutPopover(): bool
     {
         return $this->getFilterLayout() === 'popover';
     }
 
+    #[Computed]
     public function isFilterLayoutSlideDown(): bool
     {
         return $this->getFilterLayout() === 'slide-down';
@@ -282,6 +292,7 @@ trait FilterHelpers
     /**
      * Get whether filter has a configured slide down row.
      */
+    #[Computed]
     public function getVisibleFilters(): Collection
     {
         return $this->getFilters()->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());

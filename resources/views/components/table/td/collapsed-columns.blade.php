@@ -1,7 +1,7 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap'])
 @props(['rowIndex', 'hidden' => false])
 
-@if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+@if ($this->collapsingColumnsAreEnabled && $this->hasCollapsedColumns)
     @if ($isTailwind)
         <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}"
             {{

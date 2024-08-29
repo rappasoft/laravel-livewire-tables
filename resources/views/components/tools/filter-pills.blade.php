@@ -1,6 +1,6 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
-@if ($this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
+@if ($this->filtersAreEnabled && $this->filterPillsAreEnabled && $this->hasAppliedVisibleFiltersForPills)
     <div>
         <div @class([
             'mb-4 px-4 md:p-0' => $isTailwind,

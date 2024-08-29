@@ -11,7 +11,7 @@
         <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-hasBulkActions' }}" />
     @endif
 
-    @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+    @if ($this->collapsingColumnsAreEnabled && $this->hasCollapsedColumns)
         <x-livewire-tables::table.td.collapsed-columns :hidden=true :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'header-collapsed-hide' }}" rowIndex="-1"  />
     @endif
 

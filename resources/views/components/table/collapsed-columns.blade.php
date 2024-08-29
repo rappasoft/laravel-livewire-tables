@@ -5,7 +5,7 @@
     $customAttributes = $this->getTrAttributes($row, $rowIndex);
 @endphp
 
-@if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+@if ($this->collapsingColumnsAreEnabled && $this->hasCollapsedColumns)
     @php
         $colspan = $this->getColspanCount();
         $columns = collect();
@@ -52,7 +52,7 @@
             <div>
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
-                    @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                    @continue($this->columnSelectIsEnabled && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <p wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}"
                     

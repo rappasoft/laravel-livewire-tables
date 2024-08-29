@@ -1,6 +1,6 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap'])
 
-@if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+@if ($this->collapsingColumnsAreEnabled && $this->hasCollapsedColumns)
     @if ($isTailwind)
         <th
             scope="col"

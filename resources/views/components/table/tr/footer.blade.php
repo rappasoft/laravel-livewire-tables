@@ -12,7 +12,7 @@
     @endif
 
     {{-- Adds a Column If Collapsing Columns Exist --}}
-    @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+    @if ($this->collapsingColumnsAreEnabled && $this->hasCollapsedColumns)
         <x-livewire-tables::table.td.collapsed-columns :displayMinimisedOnReorder="true" rowIndex="-1" :hidden="true" wire:key="{{ $tableName.'-footer-collapse' }}" />
     @endif
 
