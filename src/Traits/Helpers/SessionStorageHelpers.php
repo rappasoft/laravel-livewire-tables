@@ -11,7 +11,7 @@ trait SessionStorageHelpers
 
     protected function getSessionStorageStatusFilters(): bool
     {
-        return $this->getSessionStorageStatus('filters') ?? false;
+        return $this->getSessionStorageStatus('filters');
     }
 
     protected function shouldStoreFiltersInSession(): bool
@@ -21,7 +21,7 @@ trait SessionStorageHelpers
 
     protected function getFilterSessionKey(): string
     {
-        return $this->getTableName().'-filter-backup';
+        return $this->getTableName().'-stored-filters';
     }
 
     public function storeFilterValues(): void
