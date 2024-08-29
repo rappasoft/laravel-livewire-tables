@@ -56,7 +56,7 @@
             @if($this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader())
                 <x-livewire-tables::table.tr.secondary-header  />
             @endif
-            @if($this->hasDisplayLoadingPlaceholder())
+            @if($this->hasDisplayLoadingPlaceholder)
                 <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
             @endif
 

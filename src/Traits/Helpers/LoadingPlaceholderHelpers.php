@@ -2,8 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\Computed;
+
 trait LoadingPlaceholderHelpers
 {
+    #[Computed]
     public function hasDisplayLoadingPlaceholder(): bool
     {
         return $this->getDisplayLoadingPlaceholder();
