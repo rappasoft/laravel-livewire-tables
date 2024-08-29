@@ -10,16 +10,16 @@
         $colspan = $this->getColspanCount;
         $columns = collect();
 
-        if($this->shouldCollapseAlways())
+        if($this->shouldCollapseAlways)
         {
             $columns->push($this->getCollapsedAlwaysColumns());
         }
-        if ($this->shouldCollapseOnMobile() && $this->shouldCollapseOnTablet()) {
+        if ($this->shouldCollapseOnMobile && $this->shouldCollapseOnTablet) {
             $columns->push($this->getCollapsedMobileColumns());
             $columns->push($this->getCollapsedTabletColumns());
-        } elseif ($this->shouldCollapseOnTablet() && ! $this->shouldCollapseOnMobile()) {
+        } elseif ($this->shouldCollapseOnTablet && ! $this->shouldCollapseOnMobile) {
             $columns->push($this->getCollapsedTabletColumns());
-        } elseif ($this->shouldCollapseOnMobile() && ! $this->shouldCollapseOnTablet()) {
+        } elseif ($this->shouldCollapseOnMobile && ! $this->shouldCollapseOnTablet) {
             $columns->push($this->getCollapsedMobileColumns());
         }
 

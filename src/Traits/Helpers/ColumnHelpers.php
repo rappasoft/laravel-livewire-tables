@@ -128,6 +128,7 @@ trait ColumnHelpers
         return false;
     }
 
+    #[Computed]
     public function shouldCollapseOnMobile(): bool
     {
 
@@ -165,6 +166,7 @@ trait ColumnHelpers
         return $this->getVisibleMobileColumns()->count();
     }
 
+    #[Computed]
     public function shouldCollapseOnTablet(): bool
     {
         if (! isset($this->shouldTabletCollapse)) {
