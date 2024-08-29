@@ -105,7 +105,7 @@ trait WithData
                 $this->paginationTotalItemCount = $paginatedResults->total() ?? 0;
 
                 return $paginatedResults;
-            } elseif ($this->isPaginationMethodSimple) {
+            } elseif ($this->isPaginationMethod('simple')) {
 
                 if ($this->getShouldRetrieveTotalItemCount()) {
                     $this->paginationTotalItemCount = $this->getBuilder()->count();
