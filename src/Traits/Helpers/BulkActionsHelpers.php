@@ -31,7 +31,7 @@ trait BulkActionsHelpers
     {
         return $this->selectAll;
     }
-    
+
     #[Computed]
     public function selectAllIsEnabled(): bool
     {

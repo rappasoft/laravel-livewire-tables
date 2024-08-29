@@ -102,7 +102,7 @@ trait PaginationHelpers
     #[Computed]
     public function isPaginationMethodSimple(): bool
     {
-        return $this->paginationMethod === "simple";
+        return $this->paginationMethod === 'simple';
     }
 
     /**
