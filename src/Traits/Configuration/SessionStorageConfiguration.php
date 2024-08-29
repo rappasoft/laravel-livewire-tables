@@ -11,12 +11,12 @@ trait SessionStorageConfiguration
         return $this;
     }
 
-    protected function storeFiltersInSessionEnabled(): self
+    public function storeFiltersInSessionEnabled(): self
     {
         return $this->storeFiltersInSessionStatus(true);
     }
 
-    protected function storeFiltersInSessionDisabled(): self
+    public function storeFiltersInSessionDisabled(): self
     {
         return $this->storeFiltersInSessionStatus(false);
     }

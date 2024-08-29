@@ -9,17 +9,12 @@ trait SessionStorageHelpers
         return $this->sessionStorageStatus[$name] ?? false;
     }
 
-    protected function getSessionStorageStatusFilters(): bool
+    public function shouldStoreFiltersInSession(): bool
     {
         return $this->getSessionStorageStatus('filters');
     }
 
-    protected function shouldStoreFiltersInSession(): bool
-    {
-        return $this->getSessionStorageStatus('filters');
-    }
-
-    protected function getFilterSessionKey(): string
+    public function getFilterSessionKey(): string
     {
         return $this->getTableName().'-stored-filters';
     }
@@ -37,18 +32,22 @@ trait SessionStorageHelpers
     public function restoreFilterValues(): void
     {
         if (empty($this->filterComponents) || empty($this->appliedFilters)) {
-            if ($this->shouldStoreFiltersInSession()) {
-                if (session()->has($this->getFilterSessionKey())) {
-                    $this->filterComponents = $this->appliedFilters = session()->get($this->getFilterSessionKey());
-                }
-            }
+            $this->filterComponents = $this->appliedFilters = $this->getStoredFilterValues();
         }
+    }
+
+    public function getStoredFilterValues(): array
+    {
+        if ($this->shouldStoreFiltersInSession() && session()->has($this->getFilterSessionKey())) {
+            return session()->get($this->getFilterSessionKey());
+        }
+        return [];
     }
 
     public function clearStoredFilterValues(): void
     {
-        if ($this->shouldStoreFiltersInSession()) {
-            session([$this->getFilterSessionKey() => []]);
+        if ($this->shouldStoreFiltersInSession() && session()->has($this->getFilterSessionKey())) {
+            session()->forget($this->getFilterSessionKey());
         }
     }
 }
