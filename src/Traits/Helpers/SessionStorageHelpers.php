@@ -22,9 +22,7 @@ trait SessionStorageHelpers
     public function storeFilterValues(): void
     {
         if ($this->shouldStoreFiltersInSession()) {
-            if (session()->has($this->getFilterSessionKey())) {
-                session()->forget($this->getFilterSessionKey());
-            }
+            $this->clearStoredFilterValues();
             session([$this->getFilterSessionKey() => $this->appliedFilters]);
         }
     }
