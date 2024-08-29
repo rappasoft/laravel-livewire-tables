@@ -7,7 +7,7 @@
     $theme = $this->getTheme();
 @endphp
 
-@if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+@if ($this->bulkActionsAreEnabled && $this->hasBulkActions)
     <x-livewire-tables::table.td.plain wire:key="{{ $tableName }}-tbody-td-bulk-actions-td-{{ $row->{$primaryKey} }}" :displayMinimisedOnReorder="true"  :$customAttributes>
         <div @class([
             'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',

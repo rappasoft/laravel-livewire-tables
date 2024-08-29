@@ -5,9 +5,9 @@
     wire:key="{{ $tableName .'-footer' }}"
 >
     {{-- Adds a Column For Bulk Actions--}}
-    @if (!$this->bulkActionsAreEnabled() || !$this->hasBulkActions())
+    @if (!$this->bulkActionsAreEnabled || !$this->hasBulkActions)
         <x-livewire-tables::table.td.plain x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName . '-footer-bulkactions-1' }}" />
-    @elseif ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+    @elseif ($this->bulkActionsAreEnabled && $this->hasBulkActions)
         <x-livewire-tables::table.td.plain wire:key="{{ $tableName . '-footer-bulkactions-2' }}" />
     @endif
 

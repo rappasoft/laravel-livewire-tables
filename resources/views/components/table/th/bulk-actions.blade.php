@@ -5,7 +5,7 @@
     $theme = $this->getTheme();
 @endphp
 
-@if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+@if ($this->bulkActionsAreEnabled && $this->hasBulkActions)
     <x-livewire-tables::table.th.plain wire:key="{{ $tableName }}-thead-bulk-actions" :displayMinimisedOnReorder="true" :$customAttributes>
         <div
             x-data="{newSelectCount: 0, indeterminateCheckbox: false, bulkActionHeaderChecked: false}"

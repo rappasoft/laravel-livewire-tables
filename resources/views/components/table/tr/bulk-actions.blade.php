@@ -1,6 +1,6 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap'])
 
-@if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+@if ($this->bulkActionsAreEnabled() && $this->hasBulkActions)
     @php
         $colspan = $this->getColspanCount;
        // $selectAll = $this->selectAllIsEnabled;

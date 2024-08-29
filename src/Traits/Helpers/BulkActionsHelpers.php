@@ -16,7 +16,8 @@ trait BulkActionsHelpers
     {
         return $this->bulkActionsStatus;
     }
-
+    
+    #[Computed]
     public function bulkActionsAreEnabled(): bool
     {
         return $this->getBulkActionsStatus() === true;
@@ -58,6 +59,7 @@ trait BulkActionsHelpers
         return $this->getHideBulkActionsWhenEmptyStatus() === false;
     }
 
+    #[Computed]
     public function hasBulkActions(): bool
     {
         return count($this->bulkActions()) > 0;
