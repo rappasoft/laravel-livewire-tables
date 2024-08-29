@@ -41,6 +41,7 @@ trait SessionStorageHelpers
         if ($this->shouldStoreFiltersInSession() && session()->has($this->getFilterSessionKey())) {
             return session()->get($this->getFilterSessionKey());
         }
+
         return [];
     }
 

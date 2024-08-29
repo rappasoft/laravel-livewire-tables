@@ -24,5 +24,4 @@ final class SessionStorageHelpersTest extends TestCase
     {
         $this->assertSame($this->basicTable->getTableName().'-stored-filters', $this->basicTable->getFilterSessionKey());
     }
-
 }
