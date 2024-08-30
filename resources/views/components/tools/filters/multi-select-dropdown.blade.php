@@ -1,13 +1,13 @@
 <div>
-    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$this->getTableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
+    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
 
 
     @if ($isTailwind)
         <div class="rounded-md shadow-sm">
             <select multiple
                 {{ $filter->getWireMethod("filterComponents.".$filter->getKey()) }}
-                wire:key="{{ $filter->generateWireKey($this->getTableName, 'multiselectdropdown') }}"
-                id="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
+                wire:key="{{ $filter->generateWireKey($tableName, 'multiselectdropdown') }}"
+                id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 class="block w-full transition duration-150 ease-in-out border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600"
             >
             @if ($filter->getFirstOption() != "")
@@ -29,8 +29,8 @@
     @elseif ($isBootstrap)
         <select multiple
             {{ $filter->getWireMethod("filterComponents.".$filter->getKey()) }}
-            wire:key="{{ $filter->generateWireKey($this->getTableName, 'multiselectdropdown') }}"
-            id="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
+            wire:key="{{ $filter->generateWireKey($tableName, 'multiselectdropdown') }}"
+            id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             class="{{ $isBootstrap4 ? 'form-control' : 'form-select' }}"
         >
         @if ($filter->getFirstOption() != "")

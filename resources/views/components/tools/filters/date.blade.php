@@ -1,12 +1,12 @@
 <div>
-    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$this->getTableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
+    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
     <div @class([
         "rounded-md shadow-sm" => $isTailwind,
         "mb-3 mb-md-0 input-group" => $isBootstrap,
     ])>
         <input {{ $filter->getWireMethod("filterComponents.".$filter->getKey()) }}
-            wire:key="{{ $filter->generateWireKey($this->getTableName, 'date') }}"
-            id="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
+            wire:key="{{ $filter->generateWireKey($tableName, 'date') }}"
+            id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             type="date"
             @if($filter->hasConfig('min')) min="{{ $filter->getConfig('min') }}" @endif
             @if($filter->hasConfig('max')) max="{{ $filter->getConfig('max') }}" @endif
