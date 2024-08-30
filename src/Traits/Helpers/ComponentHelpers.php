@@ -213,5 +213,4 @@ trait ComponentHelpers
     {
         return md5(now());
     }
-
 }
