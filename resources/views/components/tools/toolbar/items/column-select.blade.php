@@ -77,7 +77,7 @@
         </div>
     </div>
 </div>
-@elseif ($isBootstrap)
+@elseif ($this->isBootstrap)
 <div
     @class([
         'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $this->getColumnSelectIsHiddenOnMobile() && $this->isBootstrap4,
