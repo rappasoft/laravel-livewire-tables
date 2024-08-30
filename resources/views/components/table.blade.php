@@ -1,5 +1,3 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap'])
-
 @php
     $customAttributes = [
         'wrapper' => $this->getTableWrapperAttributes(),
@@ -9,20 +7,20 @@
     ];
 @endphp
 
-@if ($isTailwind)
+@if ($this->isTailwind)
     <div
-        wire:key="{{ $tableName }}-twrap"
+        wire:key="{{ $this->getTableName }}-twrap"
         {{ $attributes->merge($customAttributes['wrapper'])
             ->class(['shadow overflow-y-auto border-b border-gray-200 dark:border-gray-700 sm:rounded-lg' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default') }}
     >
         <table
-            wire:key="{{ $tableName }}-table"
+            wire:key="{{ $this->getTableName }}-table"
             {{ $attributes->merge($customAttributes['table'])
                 ->class(['min-w-full divide-y divide-gray-200 dark:divide-none' => $customAttributes['table']['default'] ?? true])
                 ->except('default') }}
         >
-            <thead wire:key="{{ $tableName }}-thead"
+            <thead wire:key="{{ $this->getTableName }}-thead"
                 {{ $attributes->merge($customAttributes['thead'])
                     ->class(['bg-gray-50 dark:bg-gray-800' => $customAttributes['thead']['default'] ?? true])
                     ->except('default') }}
@@ -33,8 +31,8 @@
             </thead>
 
             <tbody
-                wire:key="{{ $tableName }}-tbody"
-                id="{{ $tableName }}-tbody"
+                wire:key="{{ $this->getTableName }}-tbody"
+                id="{{ $this->getTableName }}-tbody"
                 {{ $attributes->merge($customAttributes['tbody'])
                         ->class(['bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-none' => $customAttributes['tbody']['default'] ?? true])
                         ->except('default') }}
@@ -43,27 +41,27 @@
             </tbody>
 
             @if (isset($tfoot))
-                <tfoot wire:key="{{ $tableName }}-tfoot">
+                <tfoot wire:key="{{ $this->getTableName }}-tfoot">
                     {{ $tfoot }}
                 </tfoot>
             @endif
         </table>
     </div>
-@elseif ($isBootstrap)
-    <div wire:key="{{ $tableName }}-twrap"
+@elseif ($this->isBootstrap)
+    <div wire:key="{{ $this->getTableName }}-twrap"
         {{ $attributes->merge($customAttributes['wrapper'])
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default') }}
     >
         <table
-            wire:key="{{ $tableName }}-table"
+            wire:key="{{ $this->getTableName }}-table"
             {{ $attributes->merge($customAttributes['table'])
                 ->class(['laravel-livewire-table table' => $customAttributes['table']['default'] ?? true])
                 ->except('default')
             }}
         >
             <thead
-                wire:key="{{ $tableName }}-thead"
+                wire:key="{{ $this->getTableName }}-thead"
                 {{ $attributes->merge($customAttributes['thead'])
                     ->class(['' => $customAttributes['thead']['default'] ?? true])
                     ->except('default') }}
@@ -74,8 +72,8 @@
             </thead>
 
             <tbody
-                wire:key="{{ $tableName }}-tbody"
-                id="{{ $tableName }}-tbody"
+                wire:key="{{ $this->getTableName }}-tbody"
+                id="{{ $this->getTableName }}-tbody"
                 {{ $attributes->merge($customAttributes['tbody'])
                         ->class(['' => $customAttributes['tbody']['default'] ?? true])
                         ->except('default') }}
@@ -84,7 +82,7 @@
             </tbody>
 
             @if (isset($tfoot))
-                <tfoot wire:key="{{ $tableName }}-tfoot">
+                <tfoot wire:key="{{ $this->getTableName }}-tfoot">
                     {{ $tfoot }}
                 </tfoot>
             @endif

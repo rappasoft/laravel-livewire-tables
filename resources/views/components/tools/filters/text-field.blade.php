@@ -1,13 +1,13 @@
 <div>
-    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
+    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$this->getTableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
 
     <div @class([
         "rounded-md shadow-sm" => $isTailwind,
         "mb-3 mb-md-0 input-group" => $isBootstrap,
     ])>
         <input {{ $filter->getWireMethod("filterComponents.".$filter->getKey()) }}
-            wire:key="{{ $filter->generateWireKey($tableName, 'text') }}"
-            id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
+            wire:key="{{ $filter->generateWireKey($this->getTableName, 'text') }}"
+            id="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             type="text"
             @if($filter->hasConfig('placeholder')) placeholder="{{ $filter->getConfig('placeholder') }}" @endif
             @if($filter->hasConfig('maxlength')) maxlength="{{ $filter->getConfig('maxlength') }}" @endif

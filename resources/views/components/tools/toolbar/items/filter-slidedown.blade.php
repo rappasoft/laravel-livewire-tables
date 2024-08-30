@@ -1,6 +1,3 @@
-@aware(['component', 'tableName'])
-@props([])
-
 <div x-cloak x-show="filtersOpen" 
     @class([
         'container' => $this->isBootstrap,
@@ -56,7 +53,7 @@
                             $filter->hasFilterSlidedownColspan() &&
                             $filter->getFilterSlidedownColspan() == 3,
                     ])
-                    id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
+                    id="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}-wrapper"
                 >
                     {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
                 </div>

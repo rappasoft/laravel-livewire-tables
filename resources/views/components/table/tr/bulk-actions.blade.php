@@ -1,20 +1,18 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap'])
-
 @if ($this->bulkActionsAreEnabled() && $this->hasBulkActions)
     @php
         $colspan = $this->getColspanCount;
        // $selectAll = $this->selectAllIsEnabled;
     @endphp
 
-    @if ($isTailwind)
+    @if ($this->isTailwind)
         <x-livewire-tables::table.tr.plain
             x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
-            wire:key="{{ $tableName }}-bulk-select-message"
+            wire:key="{{ $this->getTableName }}-bulk-select-message"
             class="bg-indigo-50 dark:bg-gray-900 dark:text-white"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
                 <template x-if="selectedItems.length == paginationTotalItemCount || selectAllStatus">
-                    <div wire:key="{{ $tableName }}-all-selected">
+                    <div wire:key="{{ $this->getTableName }}-all-selected">
                         <span>
                             @lang('You are currently selecting all')
                             @if(!$this->isPaginationMethodSimple) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
@@ -33,7 +31,7 @@
                 </template>
 
                 <template x-if="selectedItems.length !== paginationTotalItemCount && !selectAllStatus">
-                    <div wire:key="{{ $tableName }}-some-selected">
+                    <div wire:key="{{ $this->getTableName }}-some-selected">
                         <span>
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>
@@ -71,14 +69,14 @@
                 </template>
             </x-livewire-tables::table.td.plain>
         </x-livewire-tables::table.tr.plain>
-    @elseif ($isBootstrap)
+    @elseif ($this->isBootstrap)
         <x-livewire-tables::table.tr.plain
             x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
-            wire:key="{{ $tableName }}-bulk-select-message"
+            wire:key="{{ $this->getTableName }}-bulk-select-message"
         >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
                 <template x-if="selectedItems.length == paginationTotalItemCount || selectAllStatus">
-                    <div wire:key="{{ $tableName }}-all-selected">
+                    <div wire:key="{{ $this->getTableName }}-all-selected">
                         <span>
                             @lang('You are currently selecting all')
                             @if(!$this->isPaginationMethodSimple) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
@@ -97,7 +95,7 @@
                 </template>
 
                 <template x-if="selectedItems.length !== paginationTotalItemCount && !selectAllStatus">
-                    <div wire:key="{{ $tableName }}-some-selected">
+                    <div wire:key="{{ $this->getTableName }}-some-selected">
                         <span>
                             @lang('You have selected')
                             <strong><span x-text="selectedItems.length"></span></strong>

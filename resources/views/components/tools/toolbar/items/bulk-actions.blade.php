@@ -1,4 +1,3 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div
     x-data="{ open: false, childElementOpen: false, isTailwind: @js($isTailwind), isBootstrap: @js($isBootstrap) }"
     x-cloak x-show="(selectedItems.length > 0 || hideBulkActionsWhenEmpty == false)"
@@ -24,7 +23,7 @@
                 ->except('default') 
             }}
             type="button"
-            id="{{ $tableName }}-bulkActionsDropdown" 
+            id="{{ $this->getTableName }}-bulkActionsDropdown" 
             
                         
             @if($this->isTailwind)
@@ -70,7 +69,7 @@
                                 @if($this->hasConfirmationMessage($action))
                                     wire:confirm="{{ $this->getBulkActionConfirmMessage($action) }}"
                                 @endif
-                                wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
+                                wire:key="{{ $this->getTableName }}-bulk-action-{{ $action }}"
                                 type="button"
                                 role="menuitem"
                                 {{ 
@@ -98,7 +97,7 @@
                     ])
                     ->except('default') 
                 }}
-                aria-labelledby="{{ $tableName }}-bulkActionsDropdown"
+                aria-labelledby="{{ $this->getTableName }}-bulkActionsDropdown"
             >
                 @foreach ($this->getBulkActions() as $action => $title)
                     <a
@@ -107,7 +106,7 @@
                             wire:confirm="{{ $this->getBulkActionConfirmMessage($action) }}"
                         @endif
                         wire:click="{{ $action }}"
-                        wire:key="{{ $tableName }}-bulk-action-{{ $action }}"
+                        wire:key="{{ $this->getTableName }}-bulk-action-{{ $action }}"
                         {{ 
                             $attributes->merge($this->getBulkActionsMenuItemAttributes)
                                 ->class([

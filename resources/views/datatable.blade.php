@@ -1,13 +1,8 @@
-@php($tableName = $this->getTableName)
 @php($tableId = $this->getTableId)
 @php($primaryKey = $this->getPrimaryKey)
-@php($isTailwind = $this->isTailwind)
-@php($isBootstrap = $this->isBootstrap)
-@php($isBootstrap4 = $this->isBootstrap4)
-@php($isBootstrap5 = $this->isBootstrap5)
 
 <div x-data="laravellivewiretable($wire, '{{ $this->showBulkActionsDropdownAlpine() }}', '{{ $tableId }}', '{{ $primaryKey }}')">
-    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
+    <x-livewire-tables::wrapper :tableName="$this->getTableName" :$primaryKey>
         @if($this->hasActions && !$this->showActionsInToolbar)
             <x-livewire-tables::includes.actions/>    
         @endif
@@ -49,7 +44,7 @@
                 @endif
 
                 @foreach($this->selectedVisibleColumns as $index => $column)
-                    <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :column="$column" :index="$index" />
+                    <x-livewire-tables::table.th wire:key="{{ $this->getTableName.'-table-head-'.$index }}" :$column :$index />
                 @endforeach
             </x-slot>
 
@@ -66,19 +61,20 @@
             @endif
 
             @forelse ($this->getRows as $rowIndex => $row)
-                <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$primaryKey} }}" :row="$row" :rowIndex="$rowIndex">
+                @php($rowPrimaryKey = $row->{$primaryKey})
+                <x-livewire-tables::table.tr wire:key="{{ $this->getTableName }}-row-wrap-{{ $rowPrimaryKey }}" :$row :$rowIndex>
                     @if($this->getCurrentlyReorderingStatus)
-                        <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$primaryKey} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
+                        <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $this->getTableName }}-row-reorder-{{ $rowPrimaryKey }}" :rowID="$this->getTableName.'-'.$rowPrimaryKey" :$rowIndex />
                     @endif
                     @if($this->showBulkActionsSections)
-                        <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$primaryKey} }}" :row="$row" :rowIndex="$rowIndex"/>
+                        <x-livewire-tables::table.td.bulk-actions wire:key="{{ $this->getTableName }}-row-bulk-act-{{ $rowPrimaryKey }}" :$row :$rowIndex/>
                     @endif
                     @if ($this->showCollapsingColumnSections)
-                        <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$primaryKey} }}" :rowIndex="$rowIndex" />
+                        <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $this->getTableName }}-row-collapsed-{{ $rowPrimaryKey }}" :$rowIndex />
                     @endif
 
                     @foreach($this->selectedVisibleColumns as $colIndex => $column)
-                        <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$primaryKey} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
+                        <x-livewire-tables::table.td wire:key="{{ $this->getTableName . '-' . $rowPrimaryKey . '-datatable-td-' . $column->getSlug() }}"  :$column :$colIndex>
                             @if($column->isHtml())                            
                                 {!! $column->renderContents($row) !!}
                             @else
@@ -89,7 +85,7 @@
                 </x-livewire-tables::table.tr>
 
                 @if ($this->showCollapsingColumnSections)
-                    <x-livewire-tables::table.collapsed-columns :row="$row" :rowIndex="$rowIndex" />
+                    <x-livewire-tables::table.collapsed-columns :$row :$rowIndex />
                 @endif
             @empty
                 <x-livewire-tables::table.empty />

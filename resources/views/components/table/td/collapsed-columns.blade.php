@@ -1,9 +1,8 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap'])
 @props(['rowIndex', 'hidden' => false])
 
 @if ($this->collapsingColumnsAreEnabled && $this->hasCollapsedColumns)
-    @if ($isTailwind)
-        <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}"
+    @if ($this->isTailwind)
+        <td x-data="{open:false}" wire:key="{{ $this->getTableName }}-collapsingIcon-{{ $rowIndex }}-{{ $this->getNow }}"
             {{
                 $attributes
                     ->merge(['class' => 'p-3 table-cell text-center '])
@@ -16,7 +15,7 @@
             @if (! $hidden)
                 <button
                     x-cloak x-show="!currentlyReorderingStatus"
-                    x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $tableName }}', 'row': {{ $rowIndex }}}); open = !open"
+                    x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $this->getTableName }}', 'row': {{ $rowIndex }}}); open = !open"
                 >
                     <x-heroicon-o-plus-circle x-cloak x-show="!open" 
                         {{ 
@@ -41,8 +40,8 @@
                 </button>
             @endif
         </td>
-    @elseif ($isBootstrap)
-        <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}" 
+    @elseif ($this->isBootstrap)
+        <td x-data="{open:false}" wire:key="{{ $this->getTableName }}-collapsingIcon-{{ $rowIndex }}-{{ $this->getNow }}" 
             {{
                 $attributes
                     ->class(['d-sm-none' => !$this->shouldCollapseAlways && !$this->shouldCollapseOnTablet])
@@ -54,7 +53,7 @@
             @if (! $hidden)
                 <button
                     x-cloak x-show="!currentlyReorderingStatus"
-                    x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $tableName }}', 'row': {{ $rowIndex }}});open = !open"
+                    x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $this->getTableName }}', 'row': {{ $rowIndex }}});open = !open"
                     class="border-0 bg-transparent p-0"
                 >
                     <x-heroicon-o-plus-circle x-cloak x-show="!open"  

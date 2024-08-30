@@ -1,6 +1,3 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap'])
-@props([])
-
 <div @class([
         'd-md-flex justify-content-between mb-3' => $this->isBootstrap,
         'md:flex md:justify-between mb-4 px-4 md:p-0' => $this->isTailwind,

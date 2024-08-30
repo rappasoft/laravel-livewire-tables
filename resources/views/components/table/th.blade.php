@@ -1,14 +1,13 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap'])
 @props(['column', 'index'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => $tableName . '-header-col-'.$column->getSlug()]);
+    $attributes = $attributes->merge(['wire:key' => $this->getTableName . '-header-col-'.$column->getSlug()]);
     $customAttributes = $this->getThAttributes($column);
     $customSortButtonAttributes = $this->getThSortButtonAttributes($column);
     $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : $this->getSort($column->getSlug()) ?? null ;
 @endphp
 
-@if ($isTailwind)
+@if ($this->isTailwind)
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
@@ -54,7 +53,7 @@
             @endunless
         @endif
     </th>
-@elseif ($isBootstrap)
+@elseif ($this->isBootstrap)
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['' => $customAttributes['default'] ?? true])

@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','primaryKey','isTailwind','isBootstrap'])
+@aware(['primaryKey'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -16,17 +16,17 @@
     @else
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
     @endif
-    id="{{ $tableName }}-row-{{ $row->{$primaryKey} }}"
+    id="{{ $this->getTableName }}-row-{{ $row->{$primaryKey} }}"
     :draggable="currentlyReorderingStatus"
-    wire:key="{{ $tableName }}-tablerow-tr-{{ $row->{$primaryKey} }}"
+    wire:key="{{ $this->getTableName }}-tablerow-tr-{{ $row->{$primaryKey} }}"
     loopType="{{ ($rowIndex % 2 === 0) ? 'even' : 'odd' }}"
     {{
         $attributes->merge($customAttributes)
-                ->class(['bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
-                ->class(['bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
-                ->class(['cursor-pointer' => ($isTailwind && $this->hasTableRowUrl && ($customAttributes['default'] ?? true))])
-                ->class(['bg-light rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
-                ->class(['bg-white rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
+                ->class(['bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($this->isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
+                ->class(['bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($this->isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
+                ->class(['cursor-pointer' => ($this->isTailwind && $this->hasTableRowUrl && ($customAttributes['default'] ?? true))])
+                ->class(['bg-light rappasoft-striped-row' => ($this->isBootstrap && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
+                ->class(['bg-white rappasoft-striped-row' => ($this->isBootstrap && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
                 ->except(['default'])
     }}
 

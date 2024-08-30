@@ -1,12 +1,11 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
-@if ($isTailwind)
-<div class="@if ($component->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($component->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
+@if ($this->isTailwind)
+<div class="@if ($this->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($this->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
     <div
         x-data="{ open: false, childElementOpen: false }"
         @keydown.window.escape="if (!childElementOpen) { open = false }"
         x-on:click.away="if (!childElementOpen) { open = false }"
         class="inline-block relative w-full text-left md:w-auto"
-        wire:key="{{ $tableName }}-column-select-button"
+        wire:key="{{ $this->getTableName }}-column-select-button"
     >
         <div>
             <span class="rounded-md shadow-sm">
@@ -39,7 +38,7 @@
                 <div class="p-2" role="menu" aria-orientation="vertical"
                         aria-labelledby="column-select-menu"
                 >
-                    <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
+                    <div wire:key="{{ $this->getTableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                         <label
                             wire:loading.attr="disabled"
                             class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait"
@@ -48,16 +47,16 @@
                                 class="text-indigo-600 transition duration-150 ease-in-out border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
                                 wire:loading.attr="disabled" 
                                 type="checkbox"
-                                @checked($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count())
-                                @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count())  wire:click="deselectAllColumns" @else wire:click="selectAllColumns" @endif
+                                @checked($this->getSelectableSelectedColumns()->count() == $this->getSelectableColumns()->count())
+                                @if($this->getSelectableSelectedColumns()->count() == $this->getSelectableColumns()->count())  wire:click="deselectAllColumns" @else wire:click="selectAllColumns" @endif
                             >
                             <span class="ml-2">{{ __('All Columns') }}</span>
                         </label>
                     </div>
 
-                    @foreach ($component->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
+                    @foreach ($this->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
                         <div
-                            wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}"
+                            wire:key="{{ $this->getTableName }}-columnSelect-{{ $loop->index }}"
                         >
                             <label
                                 wire:loading.attr="disabled"
@@ -81,10 +80,10 @@
 @elseif ($isBootstrap)
 <div
     @class([
-        'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $isBootstrap4,
-        'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $isBootstrap4,
-        'd-none d-sm-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $isBootstrap5,
-        'd-none d-md-block mb-3 mb-md-0 md-0 ms-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $isBootstrap5,
+        'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $this->getColumnSelectIsHiddenOnMobile() && $this->isBootstrap4,
+        'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $this->getColumnSelectIsHiddenOnTablet() && $this->isBootstrap4,
+        'd-none d-sm-block mb-3 mb-md-0 md-0 ms-md-2' => $this->getColumnSelectIsHiddenOnMobile() && $this->isBootstrap5,
+        'd-none d-md-block mb-3 mb-md-0 md-0 ms-md-2' => $this->getColumnSelectIsHiddenOnTablet() && $this->isBootstrap5,
     ])
 >
     <div
@@ -92,16 +91,16 @@
         x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
         x-on:mousedown.away="if (!childElementOpen) { open = false }"
         @class([
-            'dropdown d-block d-md-inline' => $isBootstrap,
+            'dropdown d-block d-md-inline' => $this->isBootstrap,
         ])
-        wire:key="{{ $tableName }}-column-select-button"
+        wire:key="{{ $this->getTableName }}-column-select-button"
     >
         <button
             x-on:click="open = !open"
             @class([
-                'btn dropdown-toggle d-block w-100 d-md-inline' => $isBootstrap,
+                'btn dropdown-toggle d-block w-100 d-md-inline' => $this->isBootstrap,
             ])
-            type="button" id="{{ $tableName }}-columnSelect" aria-haspopup="true"
+            type="button" id="{{ $this->getTableName }}-columnSelect" aria-haspopup="true"
             x-bind:aria-expanded="open"
         >
             @lang('Columns')
@@ -110,30 +109,30 @@
         <div
             x-bind:class="{ 'show': open }"
             @class([
-                'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $isBootstrap4,
-                'dropdown-menu dropdown-menu-end w-100' => $isBootstrap5,
+                'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $this->isBootstrap4,
+                'dropdown-menu dropdown-menu-end w-100' => $this->isBootstrap5,
             ])
-            aria-labelledby="columnSelect-{{ $tableName }}"
+            aria-labelledby="columnSelect-{{ $this->getTableName }}"
         >
-            @if($isBootstrap4)
-                <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
+            @if($this->isBootstrap4)
+                <div wire:key="{{ $this->getTableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                     <label wire:loading.attr="disabled" class="px-2 mb-1">
                         <input
                             wire:loading.attr="disabled"
                             type="checkbox"
-                            @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
+                            @if($this->getSelectableSelectedColumns()->count() == $this->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                         />
 
                         <span class="ml-2">{{ __('All Columns') }}</span>
                     </label>
                 </div>
-            @elseif($isBootstrap5)
-                <div class="form-check ms-2" wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
+            @elseif($this->isBootstrap5)
+                <div class="form-check ms-2" wire:key="{{ $this->getTableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                     <input
                         wire:loading.attr="disabled"
                         type="checkbox"
                         class="form-check-input"
-                        @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
+                        @if($this->getSelectableSelectedColumns()->count() == $this->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                     />
 
                     <label wire:loading.attr="disabled" class="form-check-label">
@@ -142,14 +141,14 @@
                 </div>
             @endif
 
-            @foreach ($component->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
+            @foreach ($this->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
                 <div
-                    wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}"
+                    wire:key="{{ $this->getTableName }}-columnSelect-{{ $loop->index }}"
                     @class([
-                        'form-check ms-2' => $isBootstrap5,
+                        'form-check ms-2' => $this->isBootstrap5,
                     ])
                 >
-                    @if ($isBootstrap4)
+                    @if ($this->isBootstrap4)
                         <label
                             wire:loading.attr="disabled"
                             wire:target="selectedColumns"
@@ -165,7 +164,7 @@
                                 {{ $columnTitle }}
                             </span>
                         </label>
-                    @elseif($isBootstrap5)
+                    @elseif($this->isBootstrap5)
                         <input
                             wire:model.live="selectedColumns"
                             wire:target="selectedColumns"

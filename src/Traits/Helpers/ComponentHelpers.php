@@ -207,4 +207,11 @@ trait ComponentHelpers
     {
         return $this->useComputedProperties ?? false;
     }
+
+    #[Computed]
+    public function getNow(): string
+    {
+        return md5(now());
+    }
+
 }

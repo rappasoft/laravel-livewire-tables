@@ -1,6 +1,3 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
-@props([])
-
 <div 
                 @class([
                     'ml-0 ml-md-2 mb-3 mb-md-0' => $this->isBootstrap4,
