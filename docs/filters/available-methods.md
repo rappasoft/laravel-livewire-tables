@@ -182,6 +182,28 @@ public function configure(): void
 }
 ```
 
+### storeFiltersInSessionEnabled
+
+Optional behaviour - stores filter values in session (specific to table)
+
+```php
+public function configure(): void
+{
+    $this->storeFiltersInSessionEnabled();
+}
+```
+
+### storeFiltersInSessionDisabled
+
+Default behaviour - does not store filters in session
+
+```php
+public function configure(): void
+{
+    $this->storeFiltersInSessionDisabled();
+}
+```
+
 
 ----
 
