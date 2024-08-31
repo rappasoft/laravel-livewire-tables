@@ -177,6 +177,7 @@ Set the filter slide down to collapsed by default
 ```php
 public function configure(): void
 {
+    // Shorthand for $this->setFilterSlideDownDefaultStatus(false)
     $this->setFilterSlideDownDefaultStatusDisabled();
 }
 ```
@@ -191,7 +192,6 @@ public function configure(): void
     $this->storeFiltersInSessionEnabled();
 }
 ```
-
 ### storeFiltersInSessionDisabled
 
 Default behaviour - does not store filters in session
