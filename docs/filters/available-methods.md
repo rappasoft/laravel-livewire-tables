@@ -177,7 +177,6 @@ Set the filter slide down to collapsed by default
 ```php
 public function configure(): void
 {
-    // Shorthand for $this->setFilterSlideDownDefaultStatus(false)
     $this->setFilterSlideDownDefaultStatusDisabled();
 }
 ```
