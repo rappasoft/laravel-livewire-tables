@@ -13,23 +13,29 @@ trait HasTheme
         return $this;
     }
 
+    public function getTheme(): string
+    {
+        return $this->theme ?? config('livewire-tables.theme', 'tailwind');
+    }
+
+
     public function isTailwind(): bool
     {
-        return $this->theme != 'bootstrap-4' && $this->theme != 'bootstrap-5';
+        return $this->getTheme() != 'bootstrap-4' && $this->getTheme() != 'bootstrap-5';
     }
 
     public function isBootstrap(): bool
     {
-        return $this->theme == 'bootstrap-4' || $this->theme == 'bootstrap-5';
+        return $this->getTheme() == 'bootstrap-4' || $this->getTheme() == 'bootstrap-5';
     }
 
     public function isBootstrap4(): bool
     {
-        return $this->theme == 'bootstrap-4';
+        return $this->getTheme() == 'bootstrap-4';
     }
 
     public function isBootstrap5(): bool
     {
-        return $this->theme == 'bootstrap-5';
+        return $this->getTheme() == 'bootstrap-5';
     }
 }

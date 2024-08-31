@@ -15,8 +15,6 @@ trait ComponentUtilities
 
     public array $table = [];
 
-    public ?string $theme = null;
-
     protected Builder $builder;
 
     protected $model;
