@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait ThemeConfiguration
 {
-
     public function setTheme(): void
     {
         $theme = $this->getTheme();
@@ -13,6 +12,4 @@ trait ThemeConfiguration
             $this->setPaginationTheme('bootstrap');
         }
     }
-
-
 }

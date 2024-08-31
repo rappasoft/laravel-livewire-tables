@@ -18,7 +18,6 @@ trait HasTheme
         return $this->theme ?? config('livewire-tables.theme', 'tailwind');
     }
 
-
     public function isTailwind(): bool
     {
         return $this->getTheme() != 'bootstrap-4' && $this->getTheme() != 'bootstrap-5';

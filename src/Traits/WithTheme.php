@@ -12,5 +12,4 @@ trait WithTheme
         ThemeHelpers;
 
     public ?string $theme = null;
-
 }

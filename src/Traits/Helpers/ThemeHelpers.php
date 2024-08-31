@@ -33,4 +33,5 @@ trait ThemeHelpers
     public function isBootstrap5(): bool
     {
         return $this->getTheme() === 'bootstrap-5';
-    }}
+    }
+}
