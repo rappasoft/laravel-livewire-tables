@@ -32,4 +32,6 @@ trait WithTableAttributes
     protected ?\Closure $trUrlCallback;
 
     protected ?\Closure $trUrlTargetCallback;
+
+    public bool $shouldBeDisplayed = true;
 }

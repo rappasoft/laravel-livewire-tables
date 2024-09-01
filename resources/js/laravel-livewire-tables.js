@@ -3,6 +3,7 @@
 document.addEventListener('alpine:init', () => {
     
     Alpine.data('laravellivewiretable', (wire, showBulkActionsAlpine, tableID, primaryKeyName) => ({
+        shouldBeDisplayed: wire.entangle('shouldBeDisplayed').live,
         listeners: [],
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
@@ -373,6 +374,7 @@ document.addEventListener('alpine:init', () => {
 
 
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
+        shouldBeDisplayed: wire.entangle('shouldBeDisplayed').live,
         listeners: [],
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
