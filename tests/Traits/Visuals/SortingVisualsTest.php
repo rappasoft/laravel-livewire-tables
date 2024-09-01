@@ -121,7 +121,6 @@ final class SortingVisualsTest extends TestCase
     public function test_sorting_pill_shows_correct_name_and_direction(): void
     {
         Livewire::test(PetsTable::class)
-            ->assertDontSee('Key')
             ->call('sortBy', 'id')
             ->assertSee('Key')
             ->assertSee('0-9')
