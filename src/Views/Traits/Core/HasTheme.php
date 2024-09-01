@@ -25,25 +25,25 @@ trait HasTheme
         return $this;
     }
 
-    #[Computed(persist: true, seconds: 60)]
+    #[Computed]
     public function isTailwind(): bool
     {
         return ! $this->isBootstrap4() && ! $this->isBootstrap5();
     }
 
-    #[Computed(persist: true, seconds: 60)]
+    #[Computed]
     public function isBootstrap(): bool
     {
         return $this->isBootstrap4() || $this->isBootstrap5();
     }
 
-    #[Computed(persist: true, seconds: 60)]
+    #[Computed]
     public function isBootstrap4(): bool
     {
         return $this->getTheme() === 'bootstrap-4';
     }
 
-    #[Computed(persist: true, seconds: 60)]
+    #[Computed]
     public function isBootstrap5(): bool
     {
         return $this->getTheme() === 'bootstrap-5';
