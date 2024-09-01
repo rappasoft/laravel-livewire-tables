@@ -99,7 +99,7 @@ trait ComponentHelpers
 
     public function isTableNamed(string $name): bool
     {
-        return $this->tableName === $name;
+        return $this->getTableName() === $name;
     }
 
     public function getEagerLoadAllRelationsStatus(): bool
