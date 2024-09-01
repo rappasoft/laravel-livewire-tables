@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
@@ -17,7 +18,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
-use Livewire\Attributes\On; 
 
 class PetsTable extends DataTableComponent
 {

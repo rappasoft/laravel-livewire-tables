@@ -2,26 +2,24 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 
-use Livewire\Attributes\On; 
+use Livewire\Attributes\On;
 
 class PetsTableEvents extends PetsTable
 {
-
     public function mount()
     {
         $this->setShouldBeHidden();
     }
 
-    #[On('showTable')] 
+    #[On('showTable')]
     public function showTable(): void
     {
         $this->setShouldBeDisplayed();
     }
 
-    #[On('hideTable')] 
+    #[On('hideTable')]
     public function hideTable()
     {
         $this->setShouldBeHidden();
     }
-
 }

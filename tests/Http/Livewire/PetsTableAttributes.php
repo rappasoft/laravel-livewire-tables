@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 
 class PetsTableAttributes extends PetsTable
 {
-
     public function configure(): void
     {
         $this->setPrimaryKey('id')
@@ -32,5 +31,4 @@ class PetsTableAttributes extends PetsTable
             });
 
     }
-
 }

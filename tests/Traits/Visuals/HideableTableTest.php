@@ -37,11 +37,11 @@ final class HideableTableTest extends TestCase
         $this->setupEventsTable();
 
         Livewire::test($this->eventsTable)
-        ->assertSet('shouldBeDisplayed', false)
-        ->assertSee('Cartman')
-        ->call('setShouldBeDisplayed')
-        ->assertSet('shouldBeDisplayed', true)
-        ->assertSee('Cartman');
+            ->assertSet('shouldBeDisplayed', false)
+            ->assertSee('Cartman')
+            ->call('setShouldBeDisplayed')
+            ->assertSet('shouldBeDisplayed', true)
+            ->assertSee('Cartman');
 
     }
 
@@ -50,9 +50,9 @@ final class HideableTableTest extends TestCase
         $this->setupEventsTable();
 
         Livewire::test($this->eventsTable)
-        ->assertSee('Cartman')
-        ->assertSet('shouldBeDisplayed', false)
-        ->assertSee('Cartman');
+            ->assertSee('Cartman')
+            ->assertSet('shouldBeDisplayed', false)
+            ->assertSee('Cartman');
     }
 
     public function test_can_show_hidden_table(): void
@@ -60,10 +60,10 @@ final class HideableTableTest extends TestCase
         $this->setupEventsTable();
 
         Livewire::test($this->eventsTable)
-        ->assertSet('shouldBeDisplayed', false)
-        ->dispatch('showTable')
-        ->assertSet('shouldBeDisplayed', true)
-        ->assertSee('Cartman');
+            ->assertSet('shouldBeDisplayed', false)
+            ->dispatch('showTable')
+            ->assertSet('shouldBeDisplayed', true)
+            ->assertSee('Cartman');
 
     }
 }
