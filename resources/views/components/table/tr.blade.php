@@ -1,4 +1,4 @@
-@aware(['tableName','primaryKey','isTailwind','isBootstrap'])
+@aware(['primaryKey','isTailwind','isBootstrap'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -16,9 +16,9 @@
     @else
     wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
     @endif
-    id="{{ $tableName }}-row-{{ $row->{$primaryKey} }}"
+    id="{{ $this->getTableName }}-row-{{ $row->{$primaryKey} }}"
     :draggable="currentlyReorderingStatus"
-    wire:key="{{ $tableName }}-tablerow-tr-{{ $row->{$primaryKey} }}"
+    wire:key="{{ $this->getTableName }}-tablerow-tr-{{ $row->{$primaryKey} }}"
     loopType="{{ ($rowIndex % 2 === 0) ? 'even' : 'odd' }}"
     {{
         $attributes->merge($customAttributes)

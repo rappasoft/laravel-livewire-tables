@@ -1,4 +1,4 @@
-@aware(['tableName', 'primaryKey','isTailwind','isBootstrap'])
+@aware(['primaryKey','isTailwind','isBootstrap'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -28,9 +28,9 @@
 
     <tr
         x-data
-        @toggle-row-content.window="($event.detail.tableName === '{{ $tableName }}' && $event.detail.row === {{ $rowIndex }}) ? $el.classList.toggle('{{ $isBootstrap ? 'd-none' : 'hidden' }}') : null"
+        @toggle-row-content.window="($event.detail.tableName === '{{ $this->getTableName }}' && $event.detail.row === {{ $rowIndex }}) ? $el.classList.toggle('{{ $isBootstrap ? 'd-none' : 'hidden' }}') : null"
 
-        wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents"
+        wire:key="{{ $this->getTableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents"
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
         {{
         $attributes->merge($customAttributes)
@@ -54,7 +54,7 @@
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
-                    <p wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}"
+                    <p wire:key="{{ $this->getTableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}"
                     
                         @class([
                             'block mb-2' => $isTailwind && $column->shouldCollapseAlways(),

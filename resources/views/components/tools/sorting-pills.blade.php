@@ -1,4 +1,4 @@
-@aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
 @if ($this->isTailwind)
     <div>
@@ -14,7 +14,7 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
-                        wire:key="{{ $tableName }}-sorting-pill-{{ $columnSelectName }}"
+                        wire:key="{{ $this->getTableName }}-sorting-pill-{{ $columnSelectName }}"
                         class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900"
                     >
                         {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirection($this, $direction) }}
@@ -55,7 +55,7 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
-                        wire:key="{{ $tableName . '-sorting-pill-' . $columnSelectName }}"
+                        wire:key="{{ $this->getTableName . '-sorting-pill-' . $columnSelectName }}"
                         class="badge badge-pill badge-info d-inline-flex align-items-center"
                     >
                         {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirection($this, $direction) }}
@@ -95,7 +95,7 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
-                        wire:key="{{ $tableName }}-sorting-pill-{{ $columnSelectName }}"
+                        wire:key="{{ $this->getTableName }}-sorting-pill-{{ $columnSelectName }}"
                         class="badge rounded-pill bg-info d-inline-flex align-items-center"
                     >
                         {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirection($this, $direction) }}

@@ -1,4 +1,4 @@
-@aware(['tableName','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware(['isBootstrap','isBootstrap4','isBootstrap5'])
 @if($this->isBootstrap)
     <ul
         x-cloak
@@ -11,11 +11,11 @@
     >
         @foreach ($this->getVisibleFilters() as $filter)
             <div
-                wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar"
+                wire:key="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}-toolbar"
                 @class([
                     'p-2' => $this->isBootstrap,
                 ])
-                id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
+                id="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}-wrapper"
             >
                 {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
             </div>
@@ -59,7 +59,7 @@
                 <div
                     class="block px-4 py-2 text-sm text-gray-700 space-y-1"
                     role="menuitem"
-                    id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
+                    id="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}-wrapper"
                 >
                     {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
                 </div>

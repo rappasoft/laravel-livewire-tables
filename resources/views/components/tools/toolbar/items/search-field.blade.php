@@ -1,4 +1,4 @@
-@aware(['tableName','isTailwind', 'isBootstrap'])
+@aware(['isTailwind', 'isBootstrap'])
 
 <div 
     @class([

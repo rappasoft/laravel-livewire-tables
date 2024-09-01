@@ -1,4 +1,3 @@
-@php($tableName = $this->getTableName)
 @php($tableId = $this->getTableId)
 @php($primaryKey = $this->getPrimaryKey)
 @php($isTailwind = $this->isTailwind)
@@ -7,7 +6,7 @@
 @php($isBootstrap5 = $this->isBootstrap5)
 
 <div {{ $this->getTopLevelAttributes() }}>
-    <x-livewire-tables::wrapper :component="$this" :$tableName :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
+    <x-livewire-tables::wrapper :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
         @if($this->hasActions && !$this->showActionsInToolbar)
             <x-livewire-tables::includes.actions/>    
         @endif

@@ -1,11 +1,11 @@
-@aware(['row', 'rowIndex', 'tableName', 'primaryKey','isTailwind','isBootstrap'])
+@aware(['row', 'rowIndex', 'primaryKey','isTailwind','isBootstrap'])
 @props(['column', 'colIndex'])
 
 @php
     $customAttributes = $this->getTdAttributes($column, $row, $colIndex, $rowIndex)
 @endphp
 
-<td wire:key="{{ $tableName . '-table-td-'.$row->{$primaryKey}.'-'.$column->getSlug() }}"
+<td wire:key="{{ $this->getTableName . '-table-td-'.$row->{$primaryKey}.'-'.$column->getSlug() }}"
     @if ($column->isClickable())
         @if($this->getTableRowUrlTarget($row) === "navigate") wire:navigate href="{{ $this->getTableRowUrl($row) }}"
         @else onclick="window.open('{{ $this->getTableRowUrl($row) }}', '{{ $this->getTableRowUrlTarget($row) ?? '_self' }}')"

@@ -1,4 +1,4 @@
-@aware(['tableName','primaryKey'])
+@aware(['primaryKey'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -8,7 +8,7 @@
 @endphp
 
 @if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
-    <x-livewire-tables::table.td.plain wire:key="{{ $tableName }}-tbody-td-bulk-actions-td-{{ $row->{$primaryKey} }}" :displayMinimisedOnReorder="true"  :$customAttributes>
+    <x-livewire-tables::table.td.plain wire:key="{{ $this->getTableName }}-tbody-td-bulk-actions-td-{{ $row->{$primaryKey} }}" :displayMinimisedOnReorder="true"  :$customAttributes>
         <div @class([
             'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',
             'form-check' => $theme === 'bootstrap-5',
@@ -16,7 +16,7 @@
             <input
                 x-cloak x-show="!currentlyReorderingStatus"
                 x-model="selectedItems"
-                wire:key="{{ $tableName . 'selectedItems-'.$row->{$primaryKey} }}"
+                wire:key="{{ $this->getTableName . 'selectedItems-'.$row->{$primaryKey} }}"
                 wire:loading.attr.delay="disabled"
                 value="{{ $row->{$primaryKey} }}"
                 type="checkbox"

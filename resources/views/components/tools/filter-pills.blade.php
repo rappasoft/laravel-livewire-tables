@@ -1,4 +1,4 @@
-@aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
 @if ($this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
     <div>
@@ -23,7 +23,7 @@
                     @include($filter->getCustomPillBlade(), ['filter' => $filter])
                 @else
                     <span
-                        wire:key="{{ $tableName }}-filter-pill-{{ $filter->getKey() }}"
+                        wire:key="{{ $this->getTableName }}-filter-pill-{{ $filter->getKey() }}"
                         @class([
                             'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $isTailwind,
                             'badge badge-pill badge-info d-inline-flex align-items-center' => $isBootstrap4,

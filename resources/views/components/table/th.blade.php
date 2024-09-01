@@ -1,8 +1,8 @@
-@aware(['tableName','isTailwind','isBootstrap'])
+@aware(['isTailwind','isBootstrap'])
 @props(['column', 'index'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => $tableName . '-header-col-'.$column->getSlug()]);
+    $attributes = $attributes->merge(['wire:key' => $this->getTableName . '-header-col-'.$column->getSlug()]);
     $customAttributes = $this->getThAttributes($column);
     $customSortButtonAttributes = $this->getThSortButtonAttributes($column);
     $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : $this->getSort($column->getSlug()) ?? null ;

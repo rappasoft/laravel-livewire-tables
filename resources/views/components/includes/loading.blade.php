@@ -1,4 +1,4 @@
-@aware(['isTailwind', 'isBootstrap', 'tableName'])
+@aware(['isTailwind', 'isBootstrap'])
 @props(['colCount' => 1])
 
 @php
@@ -9,7 +9,7 @@ $customAttributes['loader-icon'] = $this->getLoadingPlaceHolderIconAttributes();
     @include($this->getLoadingPlaceHolderBlade(), ['colCount' => $colCount])
 @else
 
-    <tr wire:key="{{ $tableName }}-loader" class="hidden d-none"
+    <tr wire:key="{{ $this->getTableName }}-loader" class="hidden d-none"
     {{
         $attributes->merge($customAttributes['loader-wrapper'])
             ->class(['w-full text-center h-screen place-items-center align-middle' => $isTailwind && ($customAttributes['loader-wrapper']['default'] ?? true)])

@@ -1,4 +1,4 @@
-@aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 @if ($isTailwind)
 <div class="@if ($this->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($this->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
     <div
@@ -6,7 +6,7 @@
         @keydown.window.escape="if (!childElementOpen) { open = false }"
         x-on:click.away="if (!childElementOpen) { open = false }"
         class="inline-block relative w-full text-left md:w-auto"
-        wire:key="{{ $tableName }}-column-select-button"
+        wire:key="{{ $this->getTableName }}-column-select-button"
     >
         <div>
             <span class="rounded-md shadow-sm">
@@ -39,7 +39,7 @@
                 <div class="p-2" role="menu" aria-orientation="vertical"
                         aria-labelledby="column-select-menu"
                 >
-                    <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
+                    <div wire:key="{{ $this->getTableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                         <label
                             wire:loading.attr="disabled"
                             class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait"
@@ -57,7 +57,7 @@
 
                     @foreach ($this->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
                         <div
-                            wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}"
+                            wire:key="{{ $this->getTableName }}-columnSelect-{{ $loop->index }}"
                         >
                             <label
                                 wire:loading.attr="disabled"
@@ -94,14 +94,14 @@
         @class([
             'dropdown d-block d-md-inline' => $isBootstrap,
         ])
-        wire:key="{{ $tableName }}-column-select-button"
+        wire:key="{{ $this->getTableName }}-column-select-button"
     >
         <button
             x-on:click="open = !open"
             @class([
                 'btn dropdown-toggle d-block w-100 d-md-inline' => $isBootstrap,
             ])
-            type="button" id="{{ $tableName }}-columnSelect" aria-haspopup="true"
+            type="button" id="{{ $this->getTableName }}-columnSelect" aria-haspopup="true"
             x-bind:aria-expanded="open"
         >
             @lang('Columns')
@@ -113,10 +113,10 @@
                 'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $isBootstrap4,
                 'dropdown-menu dropdown-menu-end w-100' => $isBootstrap5,
             ])
-            aria-labelledby="columnSelect-{{ $tableName }}"
+            aria-labelledby="columnSelect-{{ $this->getTableName }}"
         >
             @if($isBootstrap4)
-                <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
+                <div wire:key="{{ $this->getTableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                     <label wire:loading.attr="disabled" class="px-2 mb-1">
                         <input
                             wire:loading.attr="disabled"
@@ -128,7 +128,7 @@
                     </label>
                 </div>
             @elseif($isBootstrap5)
-                <div class="form-check ms-2" wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
+                <div class="form-check ms-2" wire:key="{{ $this->getTableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                     <input
                         wire:loading.attr="disabled"
                         type="checkbox"
@@ -144,7 +144,7 @@
 
             @foreach ($this->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
                 <div
-                    wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}"
+                    wire:key="{{ $this->getTableName }}-columnSelect-{{ $loop->index }}"
                     @class([
                         'form-check ms-2' => $isBootstrap5,
                     ])

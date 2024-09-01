@@ -1,4 +1,4 @@
-@aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 @props([])
 
 <div 

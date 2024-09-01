@@ -1,10 +1,10 @@
-@aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div @class([
         'ml-0 ml-md-2' => $this->isBootstrap4,
         'ms-0 ms-md-2' => $this->isBootstrap5,
     ])
 >
-    <select wire:model.live="perPage" id="{{ $tableName }}-perPage"
+    <select wire:model.live="perPage" id="{{ $this->getTableName }}-perPage"
         {{ 
             $attributes->merge($this->getPerPageFieldAttributes())
             ->class([
@@ -19,7 +19,7 @@
         @foreach ($this->getPerPageAccepted() as $item)
             <option
                 value="{{ $item }}"
-                wire:key="{{ $tableName }}-per-page-{{ $item }}"
+                wire:key="{{ $this->getTableName }}-per-page-{{ $item }}"
             >
                 {{ $item === -1 ? __('All') : $item }}
             </option>
