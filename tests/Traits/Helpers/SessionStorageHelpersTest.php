@@ -25,20 +25,19 @@ final class SessionStorageHelpersTest extends TestCase
         $this->assertSame($this->basicTable->getTableName().'-stored-filters', $this->basicTable->getFilterSessionKey());
     }
 
-    
     public function test_can_store_for_fikers(): void
     {
         $this->basicTable->storeFiltersInSessionEnabled();
 
         $this->assertTrue($this->basicTable->shouldStoreFiltersInSession());
-        
+
         $this->basicTable->setFilter('breed', ['1']);
         $this->assertSame(['1'], $this->basicTable->getAppliedFilterWithValue('breed'));
-        $this->assertSame(['breed' => ['1']], $this->basicTable->appliedFilters );
+        $this->assertSame(['breed' => ['1']], $this->basicTable->appliedFilters);
         $this->assertSame(['breed' => ['1']], $this->basicTable->getStoredFilterValues());
 
         $this->basicTable->setFilter('breed', ['22']);
-        $this->assertSame(['breed' => ['22']], $this->basicTable->appliedFilters );
+        $this->assertSame(['breed' => ['22']], $this->basicTable->appliedFilters);
         $this->assertSame(['22'], $this->basicTable->getAppliedFilterWithValue('breed'));
         $this->assertSame(['breed' => ['22']], $this->basicTable->getStoredFilterValues());
 
@@ -58,7 +57,7 @@ final class SessionStorageHelpersTest extends TestCase
         $this->basicTable->storeFilterValues();
         $this->assertSame(['44'], $this->basicTable->getAppliedFilterWithValue('breed'));
 
-        $this->basicTable->appliedFilters  = $this->basicTable->filterComponents =  [];
+        $this->basicTable->appliedFilters = $this->basicTable->filterComponents = [];
         $this->assertNull($this->basicTable->getAppliedFilterWithValue('breed'));
         $this->assertSame([], $this->basicTable->appliedFilters);
         $this->assertSame([], $this->basicTable->filterComponents);
@@ -68,12 +67,7 @@ final class SessionStorageHelpersTest extends TestCase
         $this->assertSame(['44'], $this->basicTable->getAppliedFilterWithValue('breed'));
         $this->assertSame(['breed' => ['44']], $this->basicTable->getStoredFilterValues());
 
-
-
-
-
     }
-
 
     public function test_can_get_session_storage_status_for_columnselect(): void
     {
