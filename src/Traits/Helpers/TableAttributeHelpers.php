@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\View\ComponentAttributeBag;
 
 trait TableAttributeHelpers
 {
@@ -82,4 +83,23 @@ trait TableAttributeHelpers
     {
         return $this->shouldBeDisplayed;
     }
+
+    
+    public function getTopLevelAttributesArray(): array
+    {
+        return [
+            'x-data' => "laravellivewiretable(\$wire, '". $this->showBulkActionsDropdownAlpine()."', '".$this->getTableId()."', '". $this->getPrimaryKey()."')",
+            'x-cloak',
+            'x-show' => "shouldBeDisplayed",
+            'x-on:show-table.window' => "showTable(event.detail.tableName ?? '', event.detail.tableFingerpint ?? '')",
+            'x-on:hide-table.window' => "hideTable(event.detail.tableName ?? '', event.detail.tableFingerpint ?? '')",
+        ];
+    }
+
+    #[Computed]
+    public function getTopLevelAttributes(): ComponentAttributeBag 
+    {
+        return new ComponentAttributeBag($this->getTopLevelAttributesArray());
+    }
+
 }
