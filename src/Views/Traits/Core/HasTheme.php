@@ -27,7 +27,7 @@ trait HasTheme
     #[Computed(persist: true, seconds: 60)]
     public function isTailwind(): bool
     {
-        return !$this->isBootstrap4() && !$this->isBootstrap5();
+        return ! $this->isBootstrap4() && ! $this->isBootstrap5();
     }
 
     #[Computed(persist: true, seconds: 60)]

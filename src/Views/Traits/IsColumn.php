@@ -57,6 +57,6 @@ trait IsColumn
     protected ?string $customSlug = null;
 
     protected bool $hasTableRowUrl = false;
-    
+
     protected bool $isReorderColumn = false;
 }
