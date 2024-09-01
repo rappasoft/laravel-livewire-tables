@@ -123,7 +123,7 @@ trait TableAttributeConfiguration
     {
         $this->shouldBeDisplayed = $status;
     }
-    
+
     public function setShouldBeDisplayed(): void
     {
         $this->setShouldBeDisplayedStatus(true);
@@ -132,5 +132,5 @@ trait TableAttributeConfiguration
     public function setShouldBeHidden(): void
     {
         $this->setShouldBeDisplayedStatus(false);
-    }    
+    }
 }

@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Closure;
+use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\TableAttributeConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\TableAttributeHelpers;
-use Livewire\Attributes\On; 
 
 trait WithTableAttributes
 {
@@ -35,5 +35,4 @@ trait WithTableAttributes
     protected ?\Closure $trUrlTargetCallback;
 
     public bool $shouldBeDisplayed = true;
-
 }

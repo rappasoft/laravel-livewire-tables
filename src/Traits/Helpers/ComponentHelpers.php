@@ -7,7 +7,6 @@ use Livewire\Attributes\Computed;
 
 trait ComponentHelpers
 {
-
     public function getDataTableFingerprint(): string
     {
         return $this->dataTableFingerprint ?? ($this->dataTableFingerprint = $this->generateDataTableFingerprint());
