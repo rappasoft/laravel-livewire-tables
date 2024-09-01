@@ -78,6 +78,7 @@ trait WithFilters
                     }
                 }
             }
+            $this->storeFilterValues();
         }
 
         return $this->getBuilder();
@@ -110,5 +111,6 @@ trait WithFilters
             $this->dispatch('filter-was-set', tableName: $this->getTableName(), filterKey: $filter->getKey(), value: $value);
 
         }
+
     }
 }

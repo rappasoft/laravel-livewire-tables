@@ -182,6 +182,30 @@ public function configure(): void
 }
 ```
 
+### storeFiltersInSessionEnabled
+
+Optional behaviour - stores filter values in the session (specific to table - based on the table name)
+
+#### Exercise Caution 
+If re-using the same Livewire Table Component multiple times in your site, with the same table name, this may cause clashes in filter values
+
+```php
+public function configure(): void
+{
+    $this->storeFiltersInSessionEnabled();
+}
+```
+### storeFiltersInSessionDisabled
+
+Default behaviour - does not store filters in the session
+
+```php
+public function configure(): void
+{
+    $this->storeFiltersInSessionDisabled();
+}
+```
+
 
 ----
 

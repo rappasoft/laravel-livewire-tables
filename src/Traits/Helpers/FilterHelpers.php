@@ -18,6 +18,8 @@ trait FilterHelpers
      */
     public function mountFilterHelpers(): void
     {
+        $this->restoreFilterValues();
+
         foreach ($this->getFilters() as $filter) {
             if (! isset($this->appliedFilters[$filter->getKey()])) {
                 if ($filter->hasFilterDefaultValue()) {
@@ -145,6 +147,8 @@ trait FilterHelpers
             event(new FilterApplied($this->getTableName(), $filterKey, $value));
         }
         $this->dispatch('filter-was-set', tableName: $this->getTableName(), filterKey: $filterKey, value: $value);
+        $this->storeFilterValues();
+
     }
 
     public function selectAllFilterOptions(string $filterKey): void
@@ -173,6 +177,7 @@ trait FilterHelpers
                 $this->resetFilter($filter);
             }
         }
+
     }
 
     /**
@@ -252,6 +257,7 @@ trait FilterHelpers
         $this->callHook('filterReset', ['filter' => $filter->getKey()]);
         $this->callTraitHook('filterReset', ['filter' => $filter->getKey()]);
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
+
     }
 
     public function getFilterLayout(): string

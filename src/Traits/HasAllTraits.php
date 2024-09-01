@@ -27,6 +27,7 @@ trait HasAllTraits
         WithRefresh,
         WithReordering,
         WithSecondaryHeader,
+        WithSessionStorage,
         WithTableAttributes,
         WithTools;
 }
