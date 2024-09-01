@@ -48,15 +48,15 @@ final class ComponentVisualsTest extends TestCase
             Livewire::test(NoPrimaryKeyTable::class);
         } catch (DataTableConfigurationException $DataTableConfigurationException) {
             $this->testErrors = true;
-            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($DataTableConfigurationException->getMessage(), 0, 71));
+            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method, or configuring/configured lifecycle hooks', substr($DataTableConfigurationException->getMessage(), 0, 113));
         } catch (ViewException $ViewException) {
             $this->testErrors = true;
 
-            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($ViewException->getMessage(), 0, 71));
+            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method, or configuring/configured lifecycle hooks', substr($ViewException->getMessage(), 0, 113));
 
         } catch (Exception $standardException) {
             $this->testErrors = true;
-            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method.', substr($standardException->getMessage(), 0, 71));
+            $this->assertSame('You must set a primary key using setPrimaryKey in the configure method, or configuring/configured lifecycle hooks', substr($standardException->getMessage(), 0, 113));
         }
         if (! $this->testErrors) {
             $this->fail('Did Not Throw Error - Missing Primary Key');

@@ -3,6 +3,9 @@
 document.addEventListener('alpine:init', () => {
     
     Alpine.data('laravellivewiretable', (wire, showBulkActionsAlpine, tableID, primaryKeyName) => ({
+        shouldBeDisplayed: wire.entangle('shouldBeDisplayed'),
+        tableName: wire.entangle('tableName'),
+        dataTableFingerprint: wire.entangle('dataTableFingerprint'),
         listeners: [],
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
@@ -207,6 +210,18 @@ document.addEventListener('alpine:init', () => {
             }
             this.selectedItems = [...new Set(tempSelectedItems)];
         },
+        showTable(eventTableName = '', eventTableFingerpint = '')
+        {
+            if ((eventTableName != '' && eventTableName === this.tableName) || (eventTableFingerprint != '' && eventTableFingerpint === this.dataTableFingerprint)) { 
+                this.shouldBeDisplayed = true; 
+            } 
+        },
+        hideTable(eventTableName = '', eventTableFingerpint = '')
+        {
+            if ((eventTableName != '' && eventTableName === this.tableName) || (eventTableFingerprint != '' && eventTableFingerpint === this.dataTableFingerprint)) { 
+                this.shouldBeDisplayed = false; 
+            } 
+        },
         destroy() {
             this.listeners.forEach((listener) => {
                 listener();
@@ -373,6 +388,7 @@ document.addEventListener('alpine:init', () => {
 
 
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
+        shouldBeDisplayed: wire.entangle('shouldBeDisplayed'),
         listeners: [],
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),

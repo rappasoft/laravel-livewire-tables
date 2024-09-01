@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
@@ -27,7 +28,8 @@ trait ComponentUtilities
 
     protected string $tableName = 'table';
 
-    protected ?string $dataTableFingerprint;
+    #[Locked]
+    public ?string $dataTableFingerprint;
 
     protected bool $offlineIndicatorStatus = true;
 
@@ -61,6 +63,8 @@ trait ComponentUtilities
         if (is_null($this->theme)) {
             $this->setTheme();
         }
+        $this->generateDataTableFingerprint();
+
     }
 
     /**
@@ -81,7 +85,7 @@ trait ComponentUtilities
 
         // Make sure a primary key is set
         if (! $this->hasPrimaryKey()) {
-            throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method.');
+            throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method, or configuring/configured lifecycle hooks');
         }
 
     }

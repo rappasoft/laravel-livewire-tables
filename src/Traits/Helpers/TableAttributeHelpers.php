@@ -76,4 +76,10 @@ trait TableAttributeHelpers
     {
         return isset($this->trUrlTargetCallback) ? call_user_func($this->trUrlTargetCallback, $row) : null;
     }
+
+    #[Computed]
+    public function getShouldBeDisplayed(): bool
+    {
+        return $this->shouldBeDisplayed;
+    }
 }
