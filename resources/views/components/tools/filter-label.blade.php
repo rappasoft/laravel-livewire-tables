@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware(['tableName'])
 @props(['filter', 'filterLayout' => 'popover', 'tableName' => 'table', 'isTailwind' => false, 'isBootstrap' => false, 'isBootstrap4' => false, 'isBootstrap5' => false, 'for' => null])
 
 @php

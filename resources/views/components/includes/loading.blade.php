@@ -1,4 +1,4 @@
-@aware(['isTailwind', 'isBootstrap', 'tableName', 'component'])
+@aware(['isTailwind', 'isBootstrap', 'tableName'])
 @props(['colCount' => 1])
 
 @php

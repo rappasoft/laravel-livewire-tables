@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware(['tableName'])
 @props([])
 
 <div x-cloak x-show="filtersOpen" 

@@ -1,4 +1,4 @@
-@aware(['component', 'rowIndex', 'rowID','isTailwind','isBootstrap'])
+@aware(['rowIndex', 'rowID','isTailwind','isBootstrap'])
 @props(['column' => null, 'customAttributes' => [], 'displayMinimisedOnReorder' => false, 'hideUntilReorder' => false])
 
 @if ($isTailwind)

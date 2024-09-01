@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware(['tableName'])
 @php
     $customAttributes = $this->getBulkActionsThAttributes();
     $bulkActionsThCheckboxAttributes = $this->getBulkActionsThCheckboxAttributes();

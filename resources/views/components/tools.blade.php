@@ -1,4 +1,4 @@
-@aware(['component','isTailwind','isBootstrap'])
+@aware(['isTailwind','isBootstrap'])
 
 <div @class([
     'flex-col' => $isTailwind,
