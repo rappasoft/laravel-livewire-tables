@@ -6,7 +6,7 @@
 @php($isBootstrap4 = $this->isBootstrap4)
 @php($isBootstrap5 = $this->isBootstrap5)
 
-<div x-data="laravellivewiretable($wire, '{{ $this->showBulkActionsDropdownAlpine() }}', '{{ $tableId }}', '{{ $primaryKey }}')">
+<div {{ $this->getTopLevelAttributes() }}>
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
         @if($this->hasActions && !$this->showActionsInToolbar)
             <x-livewire-tables::includes.actions/>    

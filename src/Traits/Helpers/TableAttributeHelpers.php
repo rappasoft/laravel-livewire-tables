@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\View\ComponentAttributeBag;
 use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -75,5 +76,29 @@ trait TableAttributeHelpers
     public function getTableRowUrlTarget(int|Model $row): ?string
     {
         return isset($this->trUrlTargetCallback) ? call_user_func($this->trUrlTargetCallback, $row) : null;
+    }
+
+    #[Computed]
+    public function getShouldBeDisplayed(): bool
+    {
+        return $this->shouldBeDisplayed;
+    }
+
+    public function getTopLevelAttributesArray(): array
+    {
+        return [
+            'x-data' => 'laravellivewiretable($wire)',
+            'x-init' => "setTableId('".$this->getTableAttributes()['id']."'); setAlpineBulkActions('".$this->showBulkActionsDropdownAlpine()."'); setPrimaryKeyName('".$this->getPrimaryKey()."');",
+            'x-cloak',
+            'x-show' => 'shouldBeDisplayed',
+            'x-on:show-table.window' => 'showTable(event)',
+            'x-on:hide-table.window' => 'hideTable(event)',
+        ];
+    }
+
+    #[Computed]
+    public function getTopLevelAttributes(): ComponentAttributeBag
+    {
+        return new ComponentAttributeBag($this->getTopLevelAttributesArray());
     }
 }

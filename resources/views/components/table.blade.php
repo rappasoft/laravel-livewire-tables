@@ -21,6 +21,7 @@
             {{ $attributes->merge($customAttributes['table'])
                 ->class(['min-w-full divide-y divide-gray-200 dark:divide-none' => $customAttributes['table']['default'] ?? true])
                 ->except('default') }}
+            
         >
             <thead wire:key="{{ $tableName }}-thead"
                 {{ $attributes->merge($customAttributes['thead'])

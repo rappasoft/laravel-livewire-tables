@@ -41,23 +41,23 @@ final class ColumnSelectConfigurationTest extends TestCase
 
     public function test_can_set_remember_column_selection_status(): void
     {
-        $this->assertTrue($this->basicTable->getRememberColumnSelectionStatus());
+        $this->assertTrue($this->basicTable->shouldStoreColumnSelectInSession());
 
         $this->basicTable->setRememberColumnSelectionDisabled();
 
-        $this->assertFalse($this->basicTable->getRememberColumnSelectionStatus());
+        $this->assertFalse($this->basicTable->shouldStoreColumnSelectInSession());
 
         $this->basicTable->setRememberColumnSelectionEnabled();
 
-        $this->assertTrue($this->basicTable->getRememberColumnSelectionStatus());
+        $this->assertTrue($this->basicTable->shouldStoreColumnSelectInSession());
 
         $this->basicTable->setRememberColumnSelectionStatus(false);
 
-        $this->assertFalse($this->basicTable->getRememberColumnSelectionStatus());
+        $this->assertFalse($this->basicTable->shouldStoreColumnSelectInSession());
 
         $this->basicTable->setRememberColumnSelectionStatus(true);
 
-        $this->assertTrue($this->basicTable->getRememberColumnSelectionStatus());
+        $this->assertTrue($this->basicTable->shouldStoreColumnSelectInSession());
     }
 
     public function test_can_deselect_all_columns(): void

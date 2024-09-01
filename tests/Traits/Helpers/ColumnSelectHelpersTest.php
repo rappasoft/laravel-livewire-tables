@@ -21,15 +21,24 @@ final class ColumnSelectHelpersTest extends TestCase
 
     public function test_can_get_remember_column_selection_status(): void
     {
-        $this->assertTrue($this->basicTable->rememberColumnSelectionIsEnabled());
+        $this->assertTrue($this->basicTable->shouldStoreColumnSelectInSession());
 
         $this->basicTable->setRememberColumnSelectionDisabled();
 
-        $this->assertTrue($this->basicTable->rememberColumnSelectionIsDisabled());
+        $this->assertFalse($this->basicTable->shouldStoreColumnSelectInSession());
 
         $this->basicTable->setRememberColumnSelectionEnabled();
 
-        $this->assertTrue($this->basicTable->rememberColumnSelectionIsEnabled());
+        $this->assertTrue($this->basicTable->shouldStoreColumnSelectInSession());
+
+        $this->basicTable->storeColumnSelectInSessionDisabled();
+
+        $this->assertFalse($this->basicTable->shouldStoreColumnSelectInSession());
+
+        $this->basicTable->storeColumnSelectInSessionEnabled();
+
+        $this->assertTrue($this->basicTable->shouldStoreColumnSelectInSession());
+
     }
 
     public function test_can_set_column_select_hidden_on_mobile_status(): void

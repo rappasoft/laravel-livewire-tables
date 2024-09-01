@@ -9,7 +9,7 @@ trait ComponentHelpers
 {
     public function getDataTableFingerprint(): string
     {
-        return $this->dataTableFingerprint ?? $this->generateDataTableFingerprint();
+        return $this->dataTableFingerprint ?? ($this->dataTableFingerprint = $this->generateDataTableFingerprint());
     }
 
     public function setBuilder(Builder $builder): void
@@ -57,44 +57,6 @@ trait ComponentHelpers
         return $this->model;
     }
 
-    public function setTheme(): void
-    {
-        $theme = $this->getTheme();
-
-        if ($theme === 'bootstrap-4' || $theme === 'bootstrap-5') {
-            $this->setPaginationTheme('bootstrap');
-        }
-    }
-
-    public function getTheme(): string
-    {
-        return $this->theme ?? config('livewire-tables.theme', 'tailwind');
-    }
-
-    #[Computed]
-    public function isTailwind(): bool
-    {
-        return $this->getTheme() === 'tailwind';
-    }
-
-    #[Computed]
-    public function isBootstrap(): bool
-    {
-        return $this->getTheme() === 'bootstrap-4' || $this->getTheme() === 'bootstrap-5';
-    }
-
-    #[Computed]
-    public function isBootstrap4(): bool
-    {
-        return $this->getTheme() === 'bootstrap-4';
-    }
-
-    #[Computed]
-    public function isBootstrap5(): bool
-    {
-        return $this->getTheme() === 'bootstrap-5';
-    }
-
     /**
      * Get the translated empty message of the table
      */
@@ -132,7 +94,7 @@ trait ComponentHelpers
     #[Computed]
     public function getTableId(): string
     {
-        return $this->getTableAttributes()['id'];
+        return $this->getTableAttributes()['id'] ?? 'table-'.$this->getTableName();
     }
 
     public function isTableNamed(string $name): bool

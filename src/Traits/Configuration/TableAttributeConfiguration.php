@@ -118,4 +118,19 @@ trait TableAttributeConfiguration
 
         return $this;
     }
+
+    public function setShouldBeDisplayedStatus(bool $status): void
+    {
+        $this->shouldBeDisplayed = $status;
+    }
+
+    public function setShouldBeDisplayed(): void
+    {
+        $this->setShouldBeDisplayedStatus(true);
+    }
+
+    public function setShouldBeHidden(): void
+    {
+        $this->setShouldBeDisplayedStatus(false);
+    }
 }

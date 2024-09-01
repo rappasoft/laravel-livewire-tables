@@ -2,7 +2,13 @@
 
 document.addEventListener('alpine:init', () => {
     
-    Alpine.data('laravellivewiretable', (wire, showBulkActionsAlpine, tableID, primaryKeyName) => ({
+    Alpine.data('laravellivewiretable', (wire) => ({
+        tableId: '',
+        showBulkActionsAlpine: false,
+        primaryKeyName: '',
+        shouldBeDisplayed: wire.entangle('shouldBeDisplayed'),
+        tableName: wire.entangle('tableName'),
+        dataTableFingerprint: wire.entangle('dataTableFingerprint'),
         listeners: [],
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
@@ -67,7 +73,7 @@ document.addEventListener('alpine:init', () => {
             element.classList.remove("laravel-livewire-table-dragging");
             let originalPosition = element.rowIndex;
             let newPosition = target.rowIndex;
-            let table = document.getElementById(tableID);
+            let table = document.getElementById(this.tableId);
             let loopStart = originalPosition;
             if (event.offsetY > (target.getBoundingClientRect().height / 2)) {
                 parent.insertBefore(element, target.nextSibling);
@@ -123,17 +129,17 @@ document.addEventListener('alpine:init', () => {
  
         },
         updateOrderedItems() {
-            let table = document.getElementById(tableID);
+            let table = document.getElementById(this.tableId);
             let orderedRows = [];
             for (let i = 1, row; row = table.rows[i]; i++) {
-            orderedRows.push({ [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
+            orderedRows.push({ [this.primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
             }
             wire.storeReorder(orderedRows);
         },
         setupEvenOddClasses() {
             if (this.evenNotInOdd.length === undefined || this.evenNotInOdd.length == 0 || this.oddNotInEven.length === undefined || this.oddNotInEven.length == 0)
             {
-                let tbody = document.getElementById(tableID).getElementsByTagName('tbody')[0];
+                let tbody = document.getElementById(this.tableId).getElementsByTagName('tbody')[0];
                 let evenRowClassArray = [];
                 let oddRowClassArray = [];
  
@@ -149,7 +155,7 @@ document.addEventListener('alpine:init', () => {
             }
         },
         toggleSelectAll() {
-            if (!showBulkActionsAlpine) {
+            if (!this.showBulkActionsAlpine) {
                 return;
             }
 
@@ -168,14 +174,14 @@ document.addEventListener('alpine:init', () => {
             }
         },
         setAllItemsSelected() {
-            if (!showBulkActionsAlpine) {
+            if (!this.showBulkActionsAlpine) {
                 return;
             }
             this.selectAllStatus = true;
             this.selectAllOnPage();
         },
         setAllSelected() {
-            if (!showBulkActionsAlpine) {
+            if (!this.showBulkActionsAlpine) {
                 return;
             }
             if (this.delaySelectAll)
@@ -189,14 +195,14 @@ document.addEventListener('alpine:init', () => {
             }
         },
         clearSelected() {
-            if (!showBulkActionsAlpine) {
+            if (!this.showBulkActionsAlpine) {
                 return;
             }
             this.selectAllStatus = false;
             wire.clearSelected();
         },
         selectAllOnPage() {
-            if (!showBulkActionsAlpine) {
+            if (!this.showBulkActionsAlpine) {
                 return;
             }
 
@@ -206,6 +212,36 @@ document.addEventListener('alpine:init', () => {
                 tempSelectedItems.push(value.toString());
             }
             this.selectedItems = [...new Set(tempSelectedItems)];
+        },
+        setTableId(tableId)
+        {
+            this.tableId = tableId;
+        },
+        setAlpineBulkActions(showBulkActionsAlpine)
+        {
+            this.showBulkActionsAlpine = showBulkActionsAlpine;
+        },
+        setPrimaryKeyName(primaryKeyName)
+        {
+            this.primaryKeyName = primaryKeyName;
+        },
+        showTable(event)
+        {
+            let eventTableName = event.detail.tableName ?? '';
+            let eventTableFingerprint = event.detail.tableFingerpint ?? '';
+
+            if (((eventTableName ?? '') != '' && eventTableName === this.tableName) || (eventTableFingerprint != '' && eventTableFingerpint === this.dataTableFingerprint)) { 
+                this.shouldBeDisplayed = true; 
+            } 
+        },
+        hideTable(event)
+        {
+            let eventTableName = event.detail.tableName ?? '';
+            let eventTableFingerprint = event.detail.tableFingerpint ?? '';
+
+            if ((eventTableName != '' && eventTableName === this.tableName) || (eventTableFingerprint != '' && eventTableFingerpint === this.dataTableFingerprint)) { 
+                this.shouldBeDisplayed = false; 
+            } 
         },
         destroy() {
             this.listeners.forEach((listener) => {
@@ -373,6 +409,7 @@ document.addEventListener('alpine:init', () => {
 
 
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
+        shouldBeDisplayed: wire.entangle('shouldBeDisplayed'),
         listeners: [],
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),
