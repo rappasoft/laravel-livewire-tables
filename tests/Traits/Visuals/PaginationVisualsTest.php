@@ -184,7 +184,7 @@ final class PaginationVisualsTest extends TestCase
     public function test_detailed_pagination_is_displayed_standard_bs4(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('theme', 'bootstrap-4')
+            ->call('setTheme', 'bootstrap-4')
             ->call('enableDetailedPagination', 'standard')
             ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-md-right text-muted">',
                 '<span>Showing</span>',
@@ -197,7 +197,7 @@ final class PaginationVisualsTest extends TestCase
     public function test_detailed_pagination_is_displayed_simple_bs4(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('theme', 'bootstrap-4')
+            ->call('setTheme', 'bootstrap-4')
             ->call('enableDetailedPagination', 'simple')
             ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 overflow-auto">',
                 '<span>Showing</span>',
@@ -210,8 +210,8 @@ final class PaginationVisualsTest extends TestCase
     public function test_detailed_pagination_is_not_displayed_standard_bs4(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('theme', 'bootstrap-4')
-            ->call('disableDetailedPagination', 'standard')
+        ->call('setTheme', 'bootstrap-4')
+        ->call('disableDetailedPagination', 'standard')
             ->assertDontSeeHtml('<span>Showing</span>')
             ->assertDontSeeHtml('<span>to</span>')
             ->assertDontSeeHtml('<span>of</span>');
@@ -220,8 +220,8 @@ final class PaginationVisualsTest extends TestCase
     public function test_detailed_pagination_is_not_displayed_simple_bs4(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('theme', 'bootstrap-4')
-            ->call('disableDetailedPagination', 'simple')
+        ->call('setTheme', 'bootstrap-4')
+        ->call('disableDetailedPagination', 'simple')
             ->assertDontSeeHtml('<span>Showing</span>')
             ->assertDontSeeHtml('<span>to</span>');
     }
@@ -229,8 +229,8 @@ final class PaginationVisualsTest extends TestCase
     public function test_detailed_pagination_is_displayed_standard_bs5(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('theme', 'bootstrap-5')
-            ->call('enableDetailedPagination', 'standard')
+        ->call('setTheme', 'bootstrap-5')
+        ->call('enableDetailedPagination', 'standard')
             ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-md-end text-muted">',
                 '<span>Showing</span>',
                 '<strong>1</strong>',
@@ -242,7 +242,7 @@ final class PaginationVisualsTest extends TestCase
     public function test_detailed_pagination_is_displayed_simple_bs5(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('theme', 'bootstrap-5')
+        ->call('setTheme', 'bootstrap-5')
             ->call('enableDetailedPagination', 'simple')
             ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-md-end text-muted">',
                 '<span>Showing</span>',
@@ -255,7 +255,7 @@ final class PaginationVisualsTest extends TestCase
     public function test_detailed_pagination_is_not_displayed_standard_bs5(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('theme', 'bootstrap-5')
+        ->call('setTheme', 'bootstrap-5')
             ->call('disableDetailedPagination', 'standard')
             ->assertDontSeeHtml('<span>Showing</span>')
             ->assertDontSeeHtml('<span>to</span>')
@@ -265,7 +265,7 @@ final class PaginationVisualsTest extends TestCase
     public function test_detailed_pagination_is_not_displayed_simple_bs5(): void
     {
         Livewire::test(PetsTable::class)
-            ->set('theme', 'bootstrap-5')
+        ->call('setTheme', 'bootstrap-5')
             ->call('disableDetailedPagination', 'simple')
             ->assertDontSeeHtml('<span>Showing</span>')
             ->assertDontSeeHtml('<span>to</span>');

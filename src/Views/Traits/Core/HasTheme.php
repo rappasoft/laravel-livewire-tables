@@ -2,15 +2,16 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
-use Livewire\Attributes\Computed;
+use Livewire\Attributes\{Computed,Locked};
 
 trait HasTheme
 {
-    protected string $theme = 'tailwind';
+    #[Locked]
+    public ?string $theme;
 
     public function getTheme(): string
     {
-        return $this->theme ?? config('livewire-tables.theme', 'tailwind');
+        return $this->theme ?? ($this->theme = config('livewire-tables.theme', 'tailwind'));
     }
 
     public function setTheme(string $theme): self
