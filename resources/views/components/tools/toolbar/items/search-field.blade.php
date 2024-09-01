@@ -1,5 +1,3 @@
-@aware(['isTailwind', 'isBootstrap'])
-
 <div 
     @class([
         'mb-3 mb-md-0 input-group' => $this->isBootstrap,

@@ -1,5 +1,3 @@
-@aware(['isTailwind','isBootstrap'])
-
 @php
     $customAttributes = [
         'wrapper' => $this->getTableWrapperAttributes(),
@@ -9,7 +7,7 @@
     ];
 @endphp
 
-@if ($isTailwind)
+@if ($this->isTailwind)
     <div
         wire:key="{{ $this->getTableName }}-twrap"
         {{ $attributes->merge($customAttributes['wrapper'])
@@ -50,7 +48,7 @@
             @endif
         </table>
     </div>
-@elseif ($isBootstrap)
+@elseif ($this->isBootstrap)
     <div wire:key="{{ $this->getTableName }}-twrap"
         {{ $attributes->merge($customAttributes['wrapper'])
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])

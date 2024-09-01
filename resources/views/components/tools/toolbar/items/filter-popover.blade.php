@@ -1,4 +1,3 @@
-@aware(['isBootstrap','isBootstrap4','isBootstrap5'])
 @if($this->isBootstrap)
     <ul
         x-cloak

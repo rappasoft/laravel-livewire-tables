@@ -1,4 +1,3 @@
-@aware(['isTailwind','isBootstrap'])
 @if ($this->offlineIndicatorIsEnabled())
     @if ($this->isTailwind)
         <div wire:offline.class.remove="hidden" class="hidden">

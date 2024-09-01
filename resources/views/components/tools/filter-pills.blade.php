@@ -1,14 +1,12 @@
-@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
-
 @if ($this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
     <div>
         <div @class([
-            'mb-4 px-4 md:p-0' => $isTailwind,
-            'mb-3' => $isBootstrap,
+            'mb-4 px-4 md:p-0' => $this->isTailwind,
+            'mb-3' => $this->isBootstrap,
         ]) x-cloak x-show="!currentlyReorderingStatus">
             <small @class([
-                'text-gray-700 dark:text-white' => $isTailwind,
-                '' =>  $isBootstrap,
+                'text-gray-700 dark:text-white' => $this->isTailwind,
+                '' =>  $this->isBootstrap,
             ])>
                 @lang('Applied Filters'):
             </small>
@@ -25,9 +23,9 @@
                     <span
                         wire:key="{{ $this->getTableName }}-filter-pill-{{ $filter->getKey() }}"
                         @class([
-                            'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $isTailwind,
-                            'badge badge-pill badge-info d-inline-flex align-items-center' => $isBootstrap4,
-                            'badge rounded-pill bg-info d-inline-flex align-items-center' => $isBootstrap5,
+                            'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $this->isTailwind,
+                            'badge badge-pill badge-info d-inline-flex align-items-center' => $this->isBootstrap4,
+                            'badge rounded-pill bg-info d-inline-flex align-items-center' => $this->isBootstrap5,
                         ])
                     >
                         {{ $filter->getFilterPillTitle() }}: 
@@ -42,7 +40,7 @@
                             {{ $filterPillValue }}
                         @endif
 
-                        @if ($isTailwind)
+                        @if ($this->isTailwind)
                             <button
                                 wire:click="resetFilter('{{ $filter->getKey() }}')"
                                 type="button"
@@ -56,12 +54,12 @@
                                 href="#"
                                 wire:click="resetFilter('{{ $filter->getKey() }}')"
                                 @class([
-                                    'text-white ml-2' => ($isBootstrap),
+                                    'text-white ml-2' => ($this->isBootstrap),
                                 ])
                             >
                                 <span @class([
-                                    'sr-only' => $isBootstrap4,
-                                    'visually-hidden' => $isBootstrap5,
+                                    'sr-only' => $this->isBootstrap4,
+                                    'visually-hidden' => $this->isBootstrap5,
                                 ])>
                                     @lang('Remove filter option')
                                 </span>
@@ -72,7 +70,7 @@
                 @endif
             @endforeach
 
-            @if ($isTailwind)
+            @if ($this->isTailwind)
                 <button
                     wire:click.prevent="setFilterDefaults"
                     class="focus:outline-none active:outline-none"
@@ -86,8 +84,8 @@
                     href="#"
                     wire:click.prevent="setFilterDefaults"
                     @class([
-                        'badge badge-pill badge-light' => $isBootstrap4,
-                        'badge rounded-pill bg-light text-dark text-decoration-none' => $isBootstrap5,
+                        'badge badge-pill badge-light' => $this->isBootstrap4,
+                        'badge rounded-pill bg-light text-dark text-decoration-none' => $this->isBootstrap5,
                     ])
                 >
                     @lang('Clear')

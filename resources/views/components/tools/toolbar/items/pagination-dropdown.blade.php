@@ -1,4 +1,3 @@
-@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div @class([
         'ml-0 ml-md-2' => $this->isBootstrap4,
         'ms-0 ms-md-2' => $this->isBootstrap5,

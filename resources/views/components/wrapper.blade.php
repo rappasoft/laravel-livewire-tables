@@ -1,4 +1,4 @@
-@props(['primaryKey', 'isTailwind', 'isBootstrap','isBootstrap4', 'isBootstrap5'])
+@props(['primaryKey'])
 <div wire:key="{{ $this->getTableName }}-wrapper" >
     <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}
         @if ($this->hasRefresh()) wire:poll{{ $this->getRefreshOptions() }} @endif

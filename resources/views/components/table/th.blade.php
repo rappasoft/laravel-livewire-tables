@@ -1,4 +1,3 @@
-@aware(['isTailwind','isBootstrap'])
 @props(['column', 'index'])
 
 @php
@@ -8,7 +7,7 @@
     $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : $this->getSort($column->getSlug()) ?? null ;
 @endphp
 
-@if ($isTailwind)
+@if ($this->isTailwind)
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
@@ -54,7 +53,7 @@
             @endunless
         @endif
     </th>
-@elseif ($isBootstrap)
+@elseif ($this->isBootstrap)
     <th scope="col" {{
         $attributes->merge($customAttributes)
             ->class(['' => $customAttributes['default'] ?? true])

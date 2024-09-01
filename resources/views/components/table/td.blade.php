@@ -1,4 +1,4 @@
-@aware(['row', 'rowIndex', 'primaryKey','isTailwind','isBootstrap'])
+@aware(['row', 'rowIndex', 'primaryKey'])
 @props(['column', 'colIndex'])
 
 @php
@@ -13,15 +13,15 @@
     @endif
         {{
             $attributes->merge($customAttributes)
-                ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $isTailwind && ($customAttributes['default'] ?? true)])
-                ->class(['hidden' =>  $isTailwind && $column && $column->shouldCollapseAlways()])
-                ->class(['hidden md:table-cell' => $isTailwind && $column && $column->shouldCollapseOnMobile()])
-                ->class(['hidden lg:table-cell' => $isTailwind && $column && $column->shouldCollapseOnTablet()])
-                ->class(['' => $isBootstrap && ($customAttributes['default'] ?? true)])
-                ->class(['d-none' => $isBootstrap && $column && $column->shouldCollapseAlways()])
-                ->class(['d-none d-md-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnMobile()])
-                ->class(['d-none d-lg-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnTablet()])
-                ->class(['laravel-livewire-tables-cursor' => $isBootstrap && $column && $column->isClickable()])
+                ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $this->isTailwind && ($customAttributes['default'] ?? true)])
+                ->class(['hidden' =>  $this->isTailwind && $column && $column->shouldCollapseAlways()])
+                ->class(['hidden md:table-cell' => $this->isTailwind && $column && $column->shouldCollapseOnMobile()])
+                ->class(['hidden lg:table-cell' => $this->isTailwind && $column && $column->shouldCollapseOnTablet()])
+                ->class(['' => $this->isBootstrap && ($customAttributes['default'] ?? true)])
+                ->class(['d-none' => $this->isBootstrap && $column && $column->shouldCollapseAlways()])
+                ->class(['d-none d-md-table-cell' => $this->isBootstrap && $column && $column->shouldCollapseOnMobile()])
+                ->class(['d-none d-lg-table-cell' => $this->isBootstrap && $column && $column->shouldCollapseOnTablet()])
+                ->class(['laravel-livewire-tables-cursor' => $this->isBootstrap && $column && $column->isClickable()])
                 ->except('default')
         }}
     >

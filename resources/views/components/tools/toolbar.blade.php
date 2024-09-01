@@ -1,4 +1,3 @@
-@aware(['isTailwind','isBootstrap'])
 @props([])
 
 <div @class([

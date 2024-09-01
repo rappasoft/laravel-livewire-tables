@@ -1,6 +1,5 @@
-@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div
-    x-data="{ open: false, childElementOpen: false, isTailwind: @js($isTailwind), isBootstrap: @js($isBootstrap) }"
+    x-data="{ open: false, childElementOpen: false, isTailwind: @js($this->isTailwind), isBootstrap: @js($this->isBootstrap) }"
     x-cloak x-show="(selectedItems.length > 0 || hideBulkActionsWhenEmpty == false)"
     @class([
         'mb-3 mb-md-0' => $this->isBootstrap,

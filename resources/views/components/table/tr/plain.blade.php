@@ -1,7 +1,6 @@
-@aware(['isTailwind','isBootstrap'])
 @props(['customAttributes' => [], 'displayMinimisedOnReorder' => true])
 
-@if ($isTailwind)
+@if ($this->isTailwind)
     <tr {{ $attributes
             ->merge($customAttributes)
             ->class(['bg-white dark:bg-gray-700 dark:text-white' => $customAttributes['default'] ?? true])
@@ -11,7 +10,7 @@
     >
         {{ $slot }}
     </tr>
-@elseif ($isBootstrap)
+@elseif ($this->isBootstrap)
     <tr {{ $attributes
             ->merge($customAttributes)
             ->class(['' => $customAttributes['default'] ?? true])

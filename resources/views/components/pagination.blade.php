@@ -1,5 +1,3 @@
-@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
-
 @if ($this->hasConfigurableAreaFor('before-pagination'))
     @include($this->getConfigurableAreaFor('before-pagination'), $this->getParametersForConfigurableArea('before-pagination'))
 @endif

@@ -1,8 +1,6 @@
-@aware(['isTailwind','isBootstrap'])
-
 @php($attributes = $attributes->merge(['wire:key' => 'empty-message-'.$this->getId()]))
 
-@if ($isTailwind)
+@if ($this->isTailwind)
     <tr {{ $attributes }}>
         <td colspan="{{ $this->getColspanCount() }}">
             <div class="flex justify-center items-center space-x-2 dark:bg-gray-800">
@@ -10,7 +8,7 @@
             </div>
         </td>
     </tr>
-@elseif ($isBootstrap)
+@elseif ($this->isBootstrap)
      <tr {{ $attributes }}>
         <td colspan="{{ $this->getColspanCount() }}">
             {{ $this->getEmptyMessage() }}

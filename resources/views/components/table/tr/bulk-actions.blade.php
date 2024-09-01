@@ -1,5 +1,3 @@
-@aware(['isTailwind','isBootstrap'])
-
 @if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
     @php
         $colspan = $this->getColspanCount();
@@ -7,7 +5,7 @@
         $simplePagination = $this->isPaginationMethod('simple');
     @endphp
 
-    @if ($isTailwind)
+    @if ($this->isTailwind)
         <x-livewire-tables::table.tr.plain
             x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
             wire:key="{{ $this->getTableName }}-bulk-select-message"
@@ -72,7 +70,7 @@
                 </template>
             </x-livewire-tables::table.td.plain>
         </x-livewire-tables::table.tr.plain>
-    @elseif ($isBootstrap)
+    @elseif ($this->isBootstrap)
         <x-livewire-tables::table.tr.plain
             x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
             wire:key="{{ $this->getTableName }}-bulk-select-message"

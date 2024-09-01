@@ -1,5 +1,3 @@
-@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
-
 @if ($this->isTailwind)
     <div>
         @if ($this->sortingPillsAreEnabled() && $this->hasSorts())

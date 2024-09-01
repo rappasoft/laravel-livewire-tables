@@ -1,5 +1,4 @@
-@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
-@if ($isTailwind)
+@if ($this->isTailwind)
 <div class="@if ($this->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($this->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
     <div
         x-data="{ open: false, childElementOpen: false }"
@@ -78,13 +77,13 @@
         </div>
     </div>
 </div>
-@elseif ($isBootstrap)
+@elseif ($this->isBootstrap)
 <div
     @class([
-        'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $this->getColumnSelectIsHiddenOnMobile() && $isBootstrap4,
-        'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $this->getColumnSelectIsHiddenOnTablet() && $isBootstrap4,
-        'd-none d-sm-block mb-3 mb-md-0 md-0 ms-md-2' => $this->getColumnSelectIsHiddenOnMobile() && $isBootstrap5,
-        'd-none d-md-block mb-3 mb-md-0 md-0 ms-md-2' => $this->getColumnSelectIsHiddenOnTablet() && $isBootstrap5,
+        'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $this->getColumnSelectIsHiddenOnMobile() && $this->isBootstrap4,
+        'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $this->getColumnSelectIsHiddenOnTablet() && $this->isBootstrap4,
+        'd-none d-sm-block mb-3 mb-md-0 md-0 ms-md-2' => $this->getColumnSelectIsHiddenOnMobile() && $this->isBootstrap5,
+        'd-none d-md-block mb-3 mb-md-0 md-0 ms-md-2' => $this->getColumnSelectIsHiddenOnTablet() && $this->isBootstrap5,
     ])
 >
     <div
@@ -92,14 +91,14 @@
         x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
         x-on:mousedown.away="if (!childElementOpen) { open = false }"
         @class([
-            'dropdown d-block d-md-inline' => $isBootstrap,
+            'dropdown d-block d-md-inline' => $this->isBootstrap,
         ])
         wire:key="{{ $this->getTableName }}-column-select-button"
     >
         <button
             x-on:click="open = !open"
             @class([
-                'btn dropdown-toggle d-block w-100 d-md-inline' => $isBootstrap,
+                'btn dropdown-toggle d-block w-100 d-md-inline' => $this->isBootstrap,
             ])
             type="button" id="{{ $this->getTableName }}-columnSelect" aria-haspopup="true"
             x-bind:aria-expanded="open"
@@ -110,12 +109,12 @@
         <div
             x-bind:class="{ 'show': open }"
             @class([
-                'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $isBootstrap4,
-                'dropdown-menu dropdown-menu-end w-100' => $isBootstrap5,
+                'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $this->isBootstrap4,
+                'dropdown-menu dropdown-menu-end w-100' => $this->isBootstrap5,
             ])
             aria-labelledby="columnSelect-{{ $this->getTableName }}"
         >
-            @if($isBootstrap4)
+            @if($this->isBootstrap4)
                 <div wire:key="{{ $this->getTableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                     <label wire:loading.attr="disabled" class="px-2 mb-1">
                         <input
@@ -127,7 +126,7 @@
                         <span class="ml-2">{{ __('All Columns') }}</span>
                     </label>
                 </div>
-            @elseif($isBootstrap5)
+            @elseif($this->isBootstrap5)
                 <div class="form-check ms-2" wire:key="{{ $this->getTableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
                     <input
                         wire:loading.attr="disabled"
@@ -146,10 +145,10 @@
                 <div
                     wire:key="{{ $this->getTableName }}-columnSelect-{{ $loop->index }}"
                     @class([
-                        'form-check ms-2' => $isBootstrap5,
+                        'form-check ms-2' => $this->isBootstrap5,
                     ])
                 >
-                    @if ($isBootstrap4)
+                    @if ($this->isBootstrap4)
                         <label
                             wire:loading.attr="disabled"
                             wire:target="selectedColumns"
@@ -165,7 +164,7 @@
                                 {{ $columnTitle }}
                             </span>
                         </label>
-                    @elseif($isBootstrap5)
+                    @elseif($this->isBootstrap5)
                         <input
                             wire:model.live="selectedColumns"
                             wire:target="selectedColumns"
