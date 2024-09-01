@@ -11,6 +11,4 @@ final class TableAttributeHelpersTest extends TestCase
         $topLevelAttributesArray = $this->basicTable->getTopLevelAttributesArray();
 
     }
-
-
 }
