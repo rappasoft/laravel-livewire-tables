@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.17] - 2024-09-01
+### New Features
+- Add hide table option by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1914
+- Add column select session methods by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1913
+- Save filter selection to session (BETA) by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1910
+
+### Tweaks
+- Use Core Attribute Bag by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1916
+- Use Core HasTheme Methods by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1915
+
 ## [v3.4.16] - 2024-08-27
 ### New Features
 - Add icon column by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1902
