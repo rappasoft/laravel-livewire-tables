@@ -94,7 +94,7 @@ trait ComponentHelpers
     #[Computed]
     public function getTableId(): string
     {
-        return $this->getTableAttributes()['id'];
+        return $this->getTableAttributes()['id'] ?? 'table-'.$this->getTableName();
     }
 
     public function isTableNamed(string $name): bool
