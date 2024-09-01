@@ -63,7 +63,7 @@
             @forelse ($this->getRows as $rowIndex => $row)
                 <x-livewire-tables::table.tr wire:key="{{ $this->getTableName }}-row-wrap-{{ $row->{$primaryKey} }}" :$row :$rowIndex>
                     @if($this->getCurrentlyReorderingStatus)
-                        <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $this->getTableName }}-row-reorder-{{ $row->{$primaryKey} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :$rowIndex />
+                        <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $this->getTableName }}-row-reorder-{{ $row->{$primaryKey} }}" :rowID="$this->getTableName.'-'.$row->{$this->getPrimaryKey()}" :$rowIndex />
                     @endif
                     @if($this->showBulkActionsSections)
                         <x-livewire-tables::table.td.bulk-actions wire:key="{{ $this->getTableName }}-row-bulk-act-{{ $row->{$primaryKey} }}" :$row :$rowIndex />
