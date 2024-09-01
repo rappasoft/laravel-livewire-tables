@@ -29,7 +29,7 @@ trait ColumnSelectConfiguration
 
     public function setRememberColumnSelectionStatus(bool $status): self
     {
-        $this->rememberColumnSelectionStatus = $status;
+        $this->storeColumnSelectInSessionStatus($status);
 
         return $this;
     }
