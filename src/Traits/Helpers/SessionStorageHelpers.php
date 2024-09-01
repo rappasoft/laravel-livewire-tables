@@ -50,7 +50,6 @@ trait SessionStorageHelpers
         }
     }
 
-
     public function shouldStoreColumnSelectInSession(): bool
     {
         return $this->getSessionStorageStatus('columnselect');
@@ -89,11 +88,9 @@ trait SessionStorageHelpers
             session()->forget($this->getColumnSelectSessionKey());
         }
     }
-    
+
     protected function forgetColumnSelectSession(): void
     {
         session()->forget($this->getColumnSelectSessionKey());
     }
-
-
 }

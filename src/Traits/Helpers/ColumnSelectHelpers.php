@@ -29,7 +29,6 @@ trait ColumnSelectHelpers
         return in_array($column instanceof Column ? $column->getSlug() : $column, $this->selectedColumns, true);
     }
 
-
     public function getColumnSelectIsHiddenOnTablet(): bool
     {
         return $this->columnSelectHiddenOnTablet;
@@ -182,7 +181,7 @@ trait ColumnSelectHelpers
         $this->setupFirstColumnSelectRun();
 
         // If remember selection is off, then clear the session
-        if (!$this->shouldStoreColumnSelectInSession()) {
+        if (! $this->shouldStoreColumnSelectInSession()) {
             $this->forgetColumnSelectSession();
         }
 
@@ -198,7 +197,7 @@ trait ColumnSelectHelpers
             }
         }
         $this->selectedColumns = $selectedColumns;
-       // $this->storeColumnSelectValues();
+        // $this->storeColumnSelectValues();
     }
 
     protected function setupFirstColumnSelectRun(): void
