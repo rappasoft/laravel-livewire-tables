@@ -20,4 +20,21 @@ trait SessionStorageConfiguration
     {
         return $this->storeFiltersInSessionStatus(false);
     }
+
+    protected function storeColumnSelectInSessionStatus(bool $status): self
+    {
+        $this->sessionStorageStatus['columnselect'] = $status;
+
+        return $this;
+    }
+
+    public function storeColumnSelectInSessionEnabled(): self
+    {
+        return $this->storeColumnSelectInSessionStatus(true);
+    }
+
+    public function storeColumnSelectInSessionDisabled(): self
+    {
+        return $this->storeColumnSelectInSessionStatus(false);
+    }
 }

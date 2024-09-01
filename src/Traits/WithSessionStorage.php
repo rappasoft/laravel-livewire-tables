@@ -11,6 +11,7 @@ trait WithSessionStorage
         SessionStorageHelpers;
 
     public array $sessionStorageStatus = [
+        'columnselect' => false,
         'filters' => false,
     ];
 }
