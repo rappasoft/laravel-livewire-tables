@@ -82,5 +82,4 @@ trait TableAttributeHelpers
     {
         return $this->shouldBeDisplayed;
     }
-
 }

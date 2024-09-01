@@ -133,5 +133,4 @@ trait TableAttributeConfiguration
     {
         $this->setShouldBeDisplayed(false);
     }
-
 }
