@@ -87,11 +87,12 @@ trait TableAttributeHelpers
     public function getTopLevelAttributesArray(): array
     {
         return [
-            'x-data' => "laravellivewiretable(\$wire, '".$this->showBulkActionsDropdownAlpine()."', '".$this->getTableId()."', '".$this->getPrimaryKey()."')",
+            'x-data' => "laravellivewiretable(\$wire)",
+            'x-init' => "setTableId('".$this->getTableAttributes()['id']."'); setAlpineBulkActions('".$this->showBulkActionsDropdownAlpine()."'); setPrimaryKeyName('".$this->getPrimaryKey()."');",
             'x-cloak',
             'x-show' => 'shouldBeDisplayed',
-            'x-on:show-table.window' => "showTable(event.detail.tableName ?? '', event.detail.tableFingerpint ?? '')",
-            'x-on:hide-table.window' => "hideTable(event.detail.tableName ?? '', event.detail.tableFingerpint ?? '')",
+            'x-on:show-table.window' => "showTable(event)",
+            'x-on:hide-table.window' => "hideTable(event)",
         ];
     }
 
