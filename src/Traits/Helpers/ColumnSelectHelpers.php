@@ -24,35 +24,11 @@ trait ColumnSelectHelpers
         return $this->getColumnSelectStatus() === false;
     }
 
-    public function getRememberColumnSelectionStatus(): bool
-    {
-        return $this->rememberColumnSelectionStatus;
-    }
-
-    public function rememberColumnSelectionIsEnabled(): bool
-    {
-        return $this->getRememberColumnSelectionStatus() === true;
-    }
-
-    public function rememberColumnSelectionIsDisabled(): bool
-    {
-        return $this->getRememberColumnSelectionStatus() === false;
-    }
-
     public function columnSelectIsEnabledForColumn(mixed $column): bool
     {
         return in_array($column instanceof Column ? $column->getSlug() : $column, $this->selectedColumns, true);
     }
 
-    protected function forgetColumnSelectSession(): void
-    {
-        session()->forget($this->getColumnSelectSessionKey());
-    }
-
-    protected function getColumnSelectSessionKey(): string
-    {
-        return $this->getDataTableFingerprint().'-columnSelectEnabled';
-    }
 
     public function getColumnSelectIsHiddenOnTablet(): bool
     {
@@ -206,22 +182,23 @@ trait ColumnSelectHelpers
         $this->setupFirstColumnSelectRun();
 
         // If remember selection is off, then clear the session
-        if ($this->rememberColumnSelectionIsDisabled()) {
+        if (!$this->shouldStoreColumnSelectInSession()) {
             $this->forgetColumnSelectSession();
         }
 
         // Set to either the default set or what is stored in the session
-        $this->selectedColumns = (count($this->selectedColumns) > 1) ?
+        $selectedColumns = (count($this->selectedColumns) > 1) ?
             $this->selectedColumns :
             session()->get($this->getColumnSelectSessionKey(), $this->getDefaultVisibleColumns());
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them
         foreach ($this->getColumns() as $column) {
-            if (! $column->isSelectable() && ! in_array($column->getSlug(), $this->selectedColumns, true)) {
-                $this->selectedColumns[] = $column->getSlug();
-                session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
+            if (! $column->isSelectable() && ! in_array($column->getSlug(), $selectedColumns, true)) {
+                $selectedColumns[] = $column->getSlug();
             }
         }
+        $this->selectedColumns = $selectedColumns;
+       // $this->storeColumnSelectValues();
     }
 
     protected function setupFirstColumnSelectRun(): void
