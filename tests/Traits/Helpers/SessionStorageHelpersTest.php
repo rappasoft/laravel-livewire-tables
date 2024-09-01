@@ -25,11 +25,10 @@ final class SessionStorageHelpersTest extends TestCase
         $this->assertSame($this->basicTable->getTableName().'-stored-filters', $this->basicTable->getFilterSessionKey());
     }
 
-    
     public function test_can_get_session_storage_status_for_columnselect(): void
     {
         $this->assertTrue($this->basicTable->shouldStoreColumnSelectInSession());
-        
+
         $this->basicTable->storeColumnSelectInSessionDisabled();
 
         $this->assertFalse($this->basicTable->shouldStoreColumnSelectInSession());
@@ -37,7 +36,6 @@ final class SessionStorageHelpersTest extends TestCase
         $this->basicTable->storeColumnSelectInSessionEnabled();
 
         $this->assertTrue($this->basicTable->shouldStoreColumnSelectInSession());
-
 
     }
 
