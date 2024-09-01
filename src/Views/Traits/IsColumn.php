@@ -5,7 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{HasVisibility, IsCollapsible, IsSearchable, IsSelectable, IsSortable};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes,HasFooter,HasSecondaryHeader,HasView};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes,HasFooter,HasSecondaryHeader,HasTheme,HasView};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\{ColumnHelpers,RelationshipHelpers};
 
 trait IsColumn
@@ -20,6 +20,7 @@ trait IsColumn
         HasAttributes,
         HasFooter,
         HasSecondaryHeader,
+        HasTheme,
         HasView,
         HasVisibility;
 
@@ -56,8 +57,6 @@ trait IsColumn
     protected ?string $customSlug = null;
 
     protected bool $hasTableRowUrl = false;
-
-    protected string $theme = 'tailwind';
-
+    
     protected bool $isReorderColumn = false;
 }

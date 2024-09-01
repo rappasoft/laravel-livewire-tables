@@ -211,26 +211,6 @@ trait ColumnHelpers
         return $this->hasTableRowUrl;
     }
 
-    public function isTailwind(): bool
-    {
-        return $this->theme != 'bootstrap-4' && $this->theme != 'bootstrap-5';
-    }
-
-    public function isBootstrap(): bool
-    {
-        return $this->theme == 'bootstrap-4' || $this->theme == 'bootstrap-5';
-    }
-
-    public function isBootstrap4(): bool
-    {
-        return $this->theme == 'bootstrap-4';
-    }
-
-    public function isBootstrap5(): bool
-    {
-        return $this->theme == 'bootstrap-5';
-    }
-
     public function getIsReorderColumn(): bool
     {
         return $this->isReorderColumn;
