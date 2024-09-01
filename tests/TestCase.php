@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{BreedsTable,PetsTable,PetsTableUnpaginated,PetsTableWithOwner,SpeciesTable};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{BreedsTable,PetsTable,PetsTableEvents,PetsTableUnpaginated,PetsTableWithOwner,SpeciesTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Owner;
@@ -105,6 +105,21 @@ class TestCase extends Orchestra
         $this->basicTable->booted();
         $this->basicTable->renderingWithPagination($view, []);
         $this->basicTable->render();
+    }
+
+    protected function setupEventsTable()
+    {
+        $view = view('livewire-tables::datatable');
+        $this->eventsTable = new PetsTableEvents;
+        $this->eventsTable->boot();
+        $this->eventsTable->bootedComponentUtilities();
+        $this->eventsTable->bootedWithData();
+        $this->eventsTable->bootedWithColumns();
+        $this->eventsTable->bootedWithColumnSelect();
+        $this->eventsTable->bootedWithSecondaryHeader();
+        $this->eventsTable->booted();
+        $this->eventsTable->renderingWithPagination($view, []);
+        $this->eventsTable->render();
     }
 
     protected function setupBreedsTable()
