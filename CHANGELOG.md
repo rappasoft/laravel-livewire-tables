@@ -3,10 +3,11 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [v3.4.18] - 2024-09-04
-
 ### New Features
 - Added translation to Polish by @meavric in https://github.com/rappasoft/laravel-livewire-tables/pull/1925
 
+### Docs
+- Added example for Vertical Scrolling table by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1926
 
 ## [v3.4.17] - 2024-09-01
 ### New Features
