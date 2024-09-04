@@ -26,20 +26,12 @@ trait SecondaryHeaderHelpers
         return $this->getSecondaryHeaderStatus() === false;
     }
 
-    /**
-     * @param  mixed  $rows
-     * @return array<mixed>
-     */
-    public function getSecondaryHeaderTrAttributes($rows): array
+    public function getSecondaryHeaderTrAttributes(mixed $rows): array
     {
         return isset($this->secondaryHeaderTrAttributesCallback) ? call_user_func($this->secondaryHeaderTrAttributesCallback, $rows) : ['default' => true];
     }
 
-    /**
-     * @param  mixed  $rows
-     * @return array<mixed>
-     */
-    public function getSecondaryHeaderTdAttributes(Column $column, $rows, int $index): array
+    public function getSecondaryHeaderTdAttributes(Column $column, mixed $rows, int $index): array
     {
         return isset($this->secondaryHeaderTdAttributesCallback) ? call_user_func($this->secondaryHeaderTdAttributesCallback, $column, $rows, $index) : ['default' => true];
     }

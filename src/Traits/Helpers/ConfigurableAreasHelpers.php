@@ -4,9 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 trait ConfigurableAreasHelpers
 {
-    /**
-     * @return array<mixed>
-     */
     public function getConfigurableAreas(): array
     {
         return $this->configurableAreas;

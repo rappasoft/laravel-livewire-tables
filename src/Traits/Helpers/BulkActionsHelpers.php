@@ -62,9 +62,6 @@ trait BulkActionsHelpers
         return count($this->bulkActions()) > 0;
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getBulkActions(): array
     {
         return $this->bulkActions();
@@ -72,37 +69,26 @@ trait BulkActionsHelpers
 
     public function showBulkActionsDropdown(): bool
     {
-        $show = false;
-
-        if ($this->bulkActionsAreEnabled()) {
-            if ($this->hasBulkActions()) {
-                $show = true;
-            }
-
-            if ($this->hideBulkActionsWhenEmptyIsEnabled()) {
-                if ($this->hasSelected()) {
-                    $show = true;
-                } else {
-                    $show = false;
-                }
-            }
+        if (! $this->bulkActionsAreEnabled()) {
+            return false;
         }
 
-        return $show;
+        if ($this->hasBulkActions()) {
+            return true;
+        }
+
+        if ($this->hideBulkActionsWhenEmptyIsEnabled()) {
+            return $this->hasSelected();
+        }
+
+        return false;
     }
 
-    /**
-     * @param  array<mixed>  $selected
-     * @return array<mixed>
-     */
     public function setSelected(array $selected): array
     {
         return $this->selected = $selected;
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getSelected(): array
     {
         return $this->selected;
@@ -180,13 +166,11 @@ trait BulkActionsHelpers
 
     public function getBulkActionDefaultConfirmationMessage(): string
     {
-        return isset($this->bulkActionConfirmDefaultMessage) ? $this->bulkActionConfirmDefaultMessage : __('Bulk Actions Confirm');
+        return $this->bulkActionConfirmDefaultMessage ?? __('Bulk Actions Confirm');
     }
 
     /**
      * Used to get attributes for the <th> for Bulk Actions
-     *
-     * @return array<mixed>
      */
     public function getBulkActionsThAttributes(): array
     {
@@ -195,8 +179,6 @@ trait BulkActionsHelpers
 
     /**
      * Used to get attributes for the Checkbox for Bulk Actions TH
-     *
-     * @return array<mixed>
      */
     public function getBulkActionsThCheckboxAttributes(): array
     {
@@ -205,8 +187,6 @@ trait BulkActionsHelpers
 
     /**
      * Used to get attributes for the Bulk Actions TD
-     *
-     * @return array<mixed>
      */
     public function getBulkActionsTdAttributes(): array
     {
@@ -215,8 +195,6 @@ trait BulkActionsHelpers
 
     /**
      * Used to get attributes for the Bulk Actions TD
-     *
-     * @return array<mixed>
      */
     public function getBulkActionsTdCheckboxAttributes(): array
     {
@@ -262,9 +240,9 @@ trait BulkActionsHelpers
     {
         if ($this->getDelaySelectAllStatus() && $this->selectAllIsEnabled()) {
             return (clone $this->baseQuery())->select($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => $item)->toArray();
-        } else {
-            return $this->selected;
         }
+
+        return $this->selected;
     }
 
     public function getDelaySelectAllStatus(): bool

@@ -71,9 +71,6 @@ trait PaginationHelpers
         return $this->perPage;
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getPerPageAccepted(): array
     {
         return $this->perPageAccepted;
@@ -99,9 +96,6 @@ trait PaginationHelpers
         return $this->paginationMethod === $paginationMethod;
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getPerPageDisplayedItemIds(): array
     {
         return $this->paginationCurrentItems;

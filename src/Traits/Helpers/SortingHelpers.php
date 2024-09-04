@@ -32,10 +32,6 @@ trait SortingHelpers
         return $this->sorts;
     }
 
-    /**
-     * @param  array<mixed>  $sorts
-     * @return array<mixed>
-     */
     public function setSorts(array $sorts = []): array
     {
 

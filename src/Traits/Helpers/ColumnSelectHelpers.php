@@ -91,9 +91,7 @@ trait ColumnSelectHelpers
         return $this->getColumns()
             ->reject(fn (Column $column) => ! $column->isSelectable())
             ->reject(fn (Column $column) => $column->isHidden())
-            ->keyBy(function (Column $column, int $key) {
-                return $column->getSlug();
-            })
+            ->keyBy(fn (Column $column) => $column->getSlug())
             ->map(fn ($column) => $column->getTitle())
             ->toArray();
     }

@@ -28,8 +28,6 @@ trait CollapsingColumnHelpers
 
     /**
      * Retrieves attributes for the Collapsed Column Collapse Button
-     *
-     * @return array<mixed>
      */
     #[Computed]
     public function getCollapsingColumnButtonCollapseAttributes(): array
@@ -39,8 +37,6 @@ trait CollapsingColumnHelpers
 
     /**
      * Retrieves attributes for the Collapsed Column Expand Button
-     *
-     * @return array<mixed>
      */
     #[Computed]
     public function getCollapsingColumnButtonExpandAttributes(): array

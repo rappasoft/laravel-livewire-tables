@@ -41,20 +41,12 @@ trait FooterHelpers
         return $this->getUseHeaderAsFooterStatus() === false;
     }
 
-    /**
-     * @param  mixed  $rows
-     * @return array<mixed>
-     */
-    public function getFooterTrAttributes($rows): array
+    public function getFooterTrAttributes(mixed $rows): array
     {
         return isset($this->footerTrAttributesCallback) ? call_user_func($this->footerTrAttributesCallback, $rows) : ['default' => true];
     }
 
-    /**
-     * @param  mixed  $rows
-     * @return array<mixed>
-     */
-    public function getFooterTdAttributes(Column $column, $rows, int $index): array
+    public function getFooterTdAttributes(Column $column, mixed $rows, int $index): array
     {
         return isset($this->footerTdAttributesCallback) ? call_user_func($this->footerTdAttributesCallback, $column, $rows, $index) : ['default' => true];
     }

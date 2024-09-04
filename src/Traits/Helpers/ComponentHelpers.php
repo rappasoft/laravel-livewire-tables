@@ -24,21 +24,15 @@ trait ComponentHelpers
 
     public function hasPrimaryKey(): bool
     {
-        return isset($this->primaryKey) && $this->primaryKey !== null;
+        return isset($this->primaryKey);
     }
 
-    /**
-     * @return mixed
-     */
     #[Computed]
-    public function getPrimaryKey()
+    public function getPrimaryKey(): ?string
     {
         return $this->primaryKey;
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getRelationships(): array
     {
         return $this->relationships;
@@ -49,10 +43,7 @@ trait ComponentHelpers
         return $this->model !== null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getModel()
+    public function getModel(): mixed
     {
         return $this->model;
     }
@@ -117,9 +108,6 @@ trait ComponentHelpers
         return $this->getEagerLoadAllRelationsStatus() === false;
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function getAdditionalSelects(): array
     {
         return $this->additionalSelects;

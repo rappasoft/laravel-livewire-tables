@@ -94,8 +94,6 @@ trait ReorderingHelpers
 
     /**
      * Used to get attributes for the <th> for Bulk Actions
-     *
-     * @return array<mixed>
      */
     #[Computed]
     public function getReorderThAttributes(): array
