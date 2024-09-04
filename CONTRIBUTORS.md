@@ -18,6 +18,7 @@
 | Indonesian (ID) | None |
 | Italian (IT) | Core Team |
 | Malay (MS) | [wanadri](https://github.com/wanadri) |
+| Polish (PL) | [meavric](https://github.com/meavric) |
 | Portugese (PT) | None |
 | Russian (RU) | None |
 | Spanish (ES) | [CristhoferMF](https://github.com/CristhoferMF) |

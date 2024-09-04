@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## UNRELEASED
+
+### New Features
+- Added translation to Polish by @meavric in https://github.com/rappasoft/laravel-livewire-tables/pull/1925
+
 ## [v3.4.17] - 2024-09-01
 ### New Features
 - Add hide table option by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1914
