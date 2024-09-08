@@ -8,7 +8,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Fixes for ButtonGroupColumn, ImageColumn, LinkColumn - to not default as label if has a "from" property. by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1932
 - Add button type to tailwind pagination blade template by @matzeschmitt in https://github.com/rappasoft/laravel-livewire-tables/pull/1928
 
-## [v3.4.18] - 2024-09-04
+## [v3.4.18] - 2024-09-08
 ### New Features
 - Added translation to Polish by @meavric in https://github.com/rappasoft/laravel-livewire-tables/pull/1925
 
