@@ -140,7 +140,7 @@ trait WithData
             }
 
         } else {
-            foreach ($this->getColumns()->reject(fn (Column $column) => $column->isLabel()) as $column) {
+            foreach ($this->getColumns()->reject(fn (Column $column) => (!$column->hasFrom() && $column->isLabel())) as $column) {
                 if ($column->hasRelations()) {
                     $this->setBuilder($this->joinRelation($column));
                 }
@@ -227,7 +227,7 @@ trait WithData
                 $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
             }
         } else {
-            foreach ($this->getColumns()->reject(fn (Column $column) => $column->isLabel()) as $column) {
+            foreach ($this->getColumns()->reject(fn (Column $column) => (!$column->hasFrom() && $column->isLabel())) as $column) {
                 $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
             }
         }

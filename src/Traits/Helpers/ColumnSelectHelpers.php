@@ -79,7 +79,7 @@ trait ColumnSelectHelpers
     public function getSelectedColumnsForQuery(): array
     {
         return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isLabel())
+            ->reject(fn (Column $column) => (!$column->hasFrom() && $column->isLabel()))
             ->reject(fn (Column $column) => $column->isHidden())
             ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
             ->values()
