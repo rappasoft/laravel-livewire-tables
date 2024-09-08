@@ -386,3 +386,21 @@ public function configure(): void
   ]);
 }
 ```
+
+### Vertical Scrolling Example
+Should you wish to implement a table with a responsive height, and vertical scrolling for additional rows, a basic example is below that demonstrates the approach, noting that you will likely wish to adjust the break-points!
+
+```php
+public function configure(): void
+{
+
+    $this->setTableWrapperAttributes([
+        'class' => 'max-h-56 md:max-h-72 lg:max-h-96 overflow-y-scroll',
+        ]);
+    $this->setTheadAttributes([
+        'class' => 'sticky top-0 '
+    ]);
+}
+```
+
+Keep in mind that you must only call methods from configure() once to avoid overriding or conflicting results.
