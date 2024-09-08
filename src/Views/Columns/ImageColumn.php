@@ -20,8 +20,10 @@ class ImageColumn extends Column
     public function __construct(string $title, ?string $from = null)
     {
         parent::__construct($title, $from);
+        if (! isset($from)) {
+            $this->label(fn () => null);
+        }
 
-        $this->label(fn () => null);
     }
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
