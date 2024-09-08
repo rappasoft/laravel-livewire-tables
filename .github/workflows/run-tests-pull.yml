@@ -21,7 +21,7 @@ jobs:
 
     name: PULL PHP-${{ matrix.php }} - Laravel-10
     env:
-      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-L{{ matrix.laravel }}
+      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
 
     steps:
@@ -48,7 +48,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.extensions }}
-          tools: phpunit:latest
+          tools: phpunit:9.6
           ini-values: memory_limit=512M
           coverage: none
         env:
@@ -84,7 +84,7 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
-        run: php ./vendor/bin/paratest --no-coverage --processes=4
+        run: php ./vendor/bin/phpunit --no-coverage
 
 
   test-laravel11:
@@ -100,7 +100,7 @@ jobs:
 
     name: PULL PHP-${{ matrix.php }} - Laravel-11
     env:
-      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-L{{ matrix.laravel }}
+      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
 
     steps:
