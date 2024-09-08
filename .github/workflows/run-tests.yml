@@ -49,7 +49,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.extensions }}
-          tools: phpunit:latest
+          tools: phpunit:9.6
           ini-values: memory_limit=512M
           coverage: none
         env:
