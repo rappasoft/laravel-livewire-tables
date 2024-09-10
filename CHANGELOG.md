@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.20] - 2024-09-10
+### Bug Fixes
+- Revert tableName to be public by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1937
+
 ## [v3.4.19] - 2024-09-08
 ### Bug Fixes
 - Adjustment for Laravel 10 GH Workflows by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1933
