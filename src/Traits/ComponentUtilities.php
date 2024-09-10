@@ -24,7 +24,8 @@ trait ComponentUtilities
 
     protected array $relationships = [];
 
-    protected string $tableName = 'table';
+    #[Locked]
+    public string $tableName = 'table';
 
     #[Locked]
     public ?string $dataTableFingerprint;
