@@ -184,7 +184,6 @@ trait BulkActionsHelpers
         return isset($this->bulkActionConfirmDefaultMessage) ? $this->bulkActionConfirmDefaultMessage : __('Bulk Actions Confirm');
     }
 
-
     #[Computed]
     public function shouldAlwaysHideBulkActionsDropdownOption(): bool
     {
@@ -217,7 +216,6 @@ trait BulkActionsHelpers
 
     public function getBulkActionsColumn()
     {
-        return Column::make('bulkactions')->label(fn() => null);
+        return Column::make('bulkactions')->label(fn () => null);
     }
-
 }

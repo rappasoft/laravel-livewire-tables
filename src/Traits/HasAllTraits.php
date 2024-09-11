@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasTheme;
 use Rappasoft\LaravelLivewireTables\Traits\Core\HasCustomAttributes;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasTheme;
 
 trait HasAllTraits
 {

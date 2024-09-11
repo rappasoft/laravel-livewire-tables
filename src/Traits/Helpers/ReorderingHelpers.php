@@ -107,13 +107,11 @@ trait ReorderingHelpers
     #[Computed]
     public function hasReorderThAttributes(): bool
     {
-        return ($this->getReorderThAttributes() != ['default' => true]);
+        return $this->getReorderThAttributes() != ['default' => true];
     }
 
-    
     public function getReorderColumn()
     {
-        return Column::make('reorder')->label(fn() => null);
+        return Column::make('reorder')->label(fn () => null);
     }
-
 }

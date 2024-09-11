@@ -111,7 +111,6 @@ trait BulkActionsConfiguration
         return $this;
     }
 
-
     public function setShouldAlwaysHideBulkActionsDropdownOption(bool $status = false): self
     {
         $this->alwaysHideBulkActionsDropdownOption = $status;

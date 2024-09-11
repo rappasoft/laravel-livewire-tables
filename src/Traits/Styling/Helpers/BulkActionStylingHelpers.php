@@ -6,7 +6,6 @@ use Livewire\Attributes\Computed;
 
 trait BulkActionStylingHelpers
 {
-    
     /**
      * Used to get attributes for the Bulk Actions Button
      *
@@ -30,7 +29,7 @@ trait BulkActionStylingHelpers
         return $this->getCustomAttributes('bulkActionsMenuAttributes', true, false);
 
     }
-    
+
     /**
      * Used to get attributes for the items in the Bulk Actions Menu (Dropdown)
      *
@@ -39,7 +38,7 @@ trait BulkActionStylingHelpers
     #[Computed]
     public function getBulkActionsMenuItemAttributes(): array
     {
-        return $this->getCustomAttributes('bulkActionsMenuItemAttributes', true,  false);
+        return $this->getCustomAttributes('bulkActionsMenuItemAttributes', true, false);
 
     }
 
@@ -94,5 +93,4 @@ trait BulkActionStylingHelpers
         return $this->getCustomAttributes('bulkActionsTdCheckboxAttributes');
 
     }
-
 }

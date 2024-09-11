@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class BulkActionsConfigurationTest extends TestCase
 {
-
     public static function attributeStatusProvider(): array
     {
         return [
@@ -157,8 +156,6 @@ final class BulkActionsConfigurationTest extends TestCase
         $this->assertSame('Test Default Message', $this->basicTable->getBulkActionDefaultConfirmationMessage());
 
     }
-
-
 
     public function test_can_set_bulk_actions_delay_select_all_status(): void
     {

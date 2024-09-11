@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Configuration;
 
 trait BulkActionStylingConfiguration
 {
-    
     /**
      * Used to set attributes for the Bulk Actions Menu Button
      */
@@ -71,8 +70,7 @@ trait BulkActionStylingConfiguration
     public function setBulkActionsThCheckboxAttributes(array $bulkActionsThCheckboxAttributes): self
     {
         $this->setCustomAttributes('bulkActionsThCheckboxAttributes', $bulkActionsThCheckboxAttributes);
+
         return $this;
     }
-
-
 }

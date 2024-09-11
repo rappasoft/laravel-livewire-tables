@@ -110,12 +110,12 @@ trait IsSortable
 
         return $direction === 'asc' ? $component->getDefaultSortingLabelAsc() : $component->getDefaultSortingLabelDesc();
     }
-    
+
     /**
      * Used in resources/views/components/table/th.blade.php
      */
     public function getColumnSortKey(): string
     {
-        return ($this->isSortable() ? $this->getColumnSelectName() : $this->getSlug());
+        return $this->isSortable() ? $this->getColumnSelectName() : $this->getSlug();
     }
 }

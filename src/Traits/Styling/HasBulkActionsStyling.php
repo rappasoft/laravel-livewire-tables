@@ -8,7 +8,7 @@ use Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers\BulkActionStylingHelp
 trait HasBulkActionsStyling
 {
     use BulkActionStylingConfiguration,
-    BulkActionStylingHelpers;
+        BulkActionStylingHelpers;
 
     protected array $bulkActionsCheckboxAttributes = [];
 
@@ -25,5 +25,4 @@ trait HasBulkActionsStyling
     protected array $bulkActionsMenuAttributes = ['default-colors' => true, 'default-styling' => true];
 
     protected array $bulkActionsMenuItemAttributes = ['default-colors' => true, 'default-styling' => true];
-
 }

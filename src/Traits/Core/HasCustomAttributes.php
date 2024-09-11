@@ -13,26 +13,25 @@ trait HasCustomAttributes
 
     public function getCustomAttributes(string $propertyName, bool $default = false, bool $classicMode = true): array
     {
-        if ($classicMode)
-        {
-            if ($this->hasCustomAttributes($propertyName))
-            {
+        if ($classicMode) {
+            if ($this->hasCustomAttributes($propertyName)) {
                 $vals = array_merge(['default' => $default, 'default-colors' => $default, 'default-styling' => $default], $this->{$propertyName});
                 ksort($vals);
+
                 return $vals;
-            } 
+            }
+
             return ['default' => true, 'default-colors' => true, 'default-styling' => true];
-        }
-        else
-        {
-            if ($this->hasCustomAttributes($propertyName))
-            {
+        } else {
+            if ($this->hasCustomAttributes($propertyName)) {
                 $vals = array_merge(['default-colors' => $default, 'default-styling' => $default], $this->{$propertyName});
                 ksort($vals);
+
                 return $vals;
-            } 
+            }
+
             return ['default-colors' => true, 'default-styling' => true];
-    
+
         }
     }
 
@@ -41,12 +40,10 @@ trait HasCustomAttributes
         return new ComponentAttributeBag($this->getCustomAttributes($propertyName));
     }
 
-    public function setCustomAttributes(string $propertyName,array $customAttributes): self
+    public function setCustomAttributes(string $propertyName, array $customAttributes): self
     {
         $this->{$propertyName} = $customAttributes;
 
         return $this;
     }
-
-
 }

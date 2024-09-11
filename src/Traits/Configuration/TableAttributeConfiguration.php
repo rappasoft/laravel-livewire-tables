@@ -95,7 +95,6 @@ trait TableAttributeConfiguration
         return $this;
     }
 
-
     /**
      * Set a list of attributes to override on the td elements
      */

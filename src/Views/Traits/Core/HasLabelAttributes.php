@@ -28,7 +28,7 @@ trait HasLabelAttributes
     {
         return new ComponentAttributeBag($this->getLabelAttributes());
     }
-    
+
     /**
      * Set a list of attributes to override on the th label
      */
