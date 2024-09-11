@@ -214,7 +214,7 @@ trait BulkActionsHelpers
         return $this->delaySelectAll ?? false;
     }
 
-    public function getBulkActionsColumn()
+    public function getBulkActionsColumn(): Column
     {
         return Column::make('bulkactions')->label(fn () => null);
     }

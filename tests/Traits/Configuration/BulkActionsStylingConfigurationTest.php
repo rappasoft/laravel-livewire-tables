@@ -2,47 +2,30 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
+use Illuminate\View\ComponentAttributeBag;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class BulkActionsStylingConfigurationTest extends TestCase
 {
-    public static function attributeStatusProvider2(): array
-    {
-        return [
-            [false, false, false, 'bg-blue-500', 'bg-red-300'],
-            [true, false, false, 'bg-red-500', 'bg-yellow-300'],
-            [true, true, false, 'bg-green-500', 'bg-gray-300'],
-            [true, true, true, 'bg-yellow-500', 'bg-green-300'],
-            [true, false, true, 'bg-red-500', 'bg-blue-300'],
-            [false, true, false, 'bg-green-500', 'bg-amber-300'],
-            [false, true, true, 'bg-gray-500', 'bg-blue-300'],
-            [false, false, true, 'bg-blue-500', 'bg-yellow-300'],
-        ];
-    }
 
     public static function providesAttributeDataSet(): array
     {
         return [
-            [false, false, false, 'bg-blue-500', 'bg-red-300'],
-            [true, false, false, 'bg-red-500', 'bg-yellow-300'],
-            [true, true, false, 'bg-green-500', 'bg-gray-300'],
-            [true, true, true, 'bg-yellow-500', 'bg-green-300'],
-            [true, false, true, 'bg-red-500', 'bg-blue-300'],
-            [false, true, false, 'bg-green-500', 'bg-amber-300'],
-            [false, true, true, 'bg-gray-500', 'bg-blue-300'],
-            [false, false, true, 'bg-blue-500', 'bg-yellow-300'],
+            'fff' => [false, false, false, 'bg-blue-500', 'bg-red-300'],
+            'tff' => [true, false, false, 'bg-red-500', 'bg-yellow-300'],
+            'ttf' => [true, true, false, 'bg-green-500', 'bg-gray-300'],
+            'ttt' => [true, true, true, 'bg-yellow-500', 'bg-green-300'],
+            'tft' =>  [true, false, true, 'bg-red-500', 'bg-blue-300'],
+            'ftf' => [false, true, false, 'bg-green-500', 'bg-amber-300'],
+            'ftt' => [false, true, true, 'bg-gray-500', 'bg-blue-300'],
+            'fff' =>  [false, false, true, 'bg-blue-500', 'bg-yellow-300'],
         ];
     }
 
-    public static function attributeStatusProvider(): array
+    public static function providesBulkActionMethodsToTest(): array
     {
-
-        $allItems = [];
-
-        $dataSetItems = self::providesAttributeDataSet();
-
-        $testItems = [
+        return [
             'BulkActionsButtonAttributes',
             'BulkActionsMenuAttributes',
             'BulkActionsMenuItemAttributes',
@@ -51,18 +34,37 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'BulkActionsTdAttributes',
             'BulkActionsTdCheckboxAttributes',
         ];
+    }
 
-        foreach ($testItems as $testItem) {
-            foreach ($dataSetItems as $dataSetItem) {
-                $allItems[] = ['set'.$testItem, 'get'.$testItem, $dataSetItem[0], $dataSetItem[1],  $dataSetItem[2],  $dataSetItem[3],  $dataSetItem[4]];
+    public static function mergesMethodsWithAttributes(array $methodsToTest, array $dataSetItems): array
+    {
+        $allItems = [];
+
+        foreach ($methodsToTest as $methodToTest) {
+            $lcFirst = lcfirst($methodToTest);
+            $getMethod = 'get'.$methodToTest;
+            $setMethod = 'set'.$methodToTest;
+            $lower = strtolower($methodToTest);
+
+            foreach ($dataSetItems as $index => $dataSetItem) {
+                $allItems[$lower."_".$index] = [$setMethod, $getMethod, $lcFirst, $dataSetItem[0], $dataSetItem[1],  $dataSetItem[2],  $dataSetItem[3],  $dataSetItem[4]];
             }
         }
-
         return $allItems;
     }
 
-    #[DataProvider('attributeStatusProvider')]
-    public function test_can_set_bulk_actions_td_attributes_via_provider(string $setMethod, string $getMethod, bool $default, bool $defaultColors, bool $defaultStyling, string $class1, string $class2): void
+    public static function bulkActionAttributesProvider(): array
+    {
+        $dataSetItems = self::providesAttributeDataSet();
+        $methodsToTest = self::providesBulkActionMethodsToTest();
+
+        return self::mergesMethodsWithAttributes($methodsToTest, $dataSetItems);
+
+    }
+
+
+    #[DataProvider('bulkActionAttributesProvider')]
+    public function test_can_set_bulk_actions_attributes_via_provider(string $setMethod, string $getMethod, string $propertyName, bool $default, bool $defaultColors, bool $defaultStyling, string $class1, string $class2): void
     {
         $this->basicTable->{$setMethod}([
             'default' => $default,
@@ -91,6 +93,25 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default-colors' => ! $defaultColors,
             'default-styling' => $defaultStyling,
         ], $this->basicTable->{$getMethod}());
+    }
+
+    #[DataProvider('bulkActionAttributesProvider')]
+    public function test_can_get_bulk_actions_attributes_bag_via_provider(string $setMethod, string $getMethod, string $propertyName, bool $default, bool $defaultColors, bool $defaultStyling, string $class1, string $class2): void
+    {
+        $data = [
+            'class' => $class1,
+            'default' => $default,
+            'default-colors' => $defaultColors,
+            'default-styling' => $defaultStyling,
+        ];
+
+        $this->basicTable->{$setMethod}($data);
+
+        $this->assertSame($data, $this->basicTable->{$getMethod}());
+
+        $attributeBag = new ComponentAttributeBag($data);
+
+        $this->assertSame($attributeBag->getAttributes(), $this->basicTable->getCustomAttributesBag($propertyName)->getAttributes());
     }
 
     public function test_bulk_actions_td_attributes_returns_default_true_if_not_set(): void

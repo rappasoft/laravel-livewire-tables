@@ -110,7 +110,7 @@ trait ReorderingHelpers
         return $this->getReorderThAttributes() != ['default' => true];
     }
 
-    public function getReorderColumn()
+    public function getReorderColumn(): Column
     {
         return Column::make('reorder')->label(fn () => null);
     }
