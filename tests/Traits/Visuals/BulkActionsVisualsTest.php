@@ -189,4 +189,38 @@ final class BulkActionsVisualsTest extends TestCase
             }
         })->assertDontSee('Bulk Actions');
     }
+
+    public function test_bulk_dropdown_can_have_customised_classes(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+                $this->setBulkActionsThAttributes([
+                    'class' => 'bg-yellow-500 dark:bg-yellow-800',
+                    'default' => false,
+                    'default-styling' => true,
+                    'default-colors' => false,
+                ]);
+        
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        })->assertSee('Bulk Actions')
+        ->assertSeeHtmlInOrder([
+            'scope="col"',
+            'class="bg-yellow-500 dark:bg-yellow-800"',
+            'wire:key="table-thead-bulk-actions"',
+        ]);
+    }
+
 }

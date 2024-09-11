@@ -19,7 +19,7 @@
 
                     'form-control' => $this->isBootstrap && $this->getSearchFieldAttributes()['default'] ?? true,
                 ])
-                ->except('default') 
+                ->except(['default','default-styling','default-colors']) 
             }}
 
         />

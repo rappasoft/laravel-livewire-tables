@@ -59,7 +59,7 @@
             ->class(['d-none' => $column->shouldCollapseAlways()])
             ->class(['d-none d-md-table-cell' => $column->shouldCollapseOnMobile()])
             ->class(['d-none d-lg-table-cell' => $column->shouldCollapseOnTablet()])
-            ->except('default')
+            ->except(['default','default-styling','default-colors'])
         }}
     >
         @if($column->getColumnLabelStatus())

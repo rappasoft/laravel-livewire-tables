@@ -24,7 +24,7 @@ $customAttributes['loader-icon'] = $this->getLoadingPlaceHolderIconAttributes();
                         $attributes->merge($customAttributes['loader-icon'])
                             ->class(['lds-hourglass' => $isTailwind && ($customAttributes['loader-icon']['default'] ?? true)])
                             ->class(['lds-hourglass' => $isBootstrap && ($customAttributes['loader-icon']['default'] ?? true)])
-                            ->except('default');
+                            ->except(['default','default-styling','default-colors']);
                 }}
                 ></div>
                 <div>{{ $this->getLoadingPlaceholderContent() }}</div>

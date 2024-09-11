@@ -6,7 +6,7 @@
             ->merge($customAttributes)
             ->class(['bg-white dark:bg-gray-700 dark:text-white' => $customAttributes['default'] ?? true])
             ->class(['laravel-livewire-tables-reorderingMinimised'])
-            ->except('default')
+            ->except(['default','default-styling','default-colors'])
         }}
     >
         {{ $slot }}
@@ -16,7 +16,7 @@
             ->merge($customAttributes)
             ->class(['' => $customAttributes['default'] ?? true])
             ->class(['laravel-livewire-tables-reorderingMinimised'])
-            ->except('default')
+            ->except(['default','default-styling','default-colors'])
         }}
     >
         {{ $slot }}

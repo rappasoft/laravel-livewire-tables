@@ -8,7 +8,7 @@
         ->class(['hidden' => $column && $column->shouldCollapseAlways()])
         ->class(['hidden md:table-cell' => $column && $column->shouldCollapseOnMobile()])
         ->class(['hidden lg:table-cell' => $column && $column->shouldCollapseOnTablet()])
-        ->except('default')
+        ->except(['default','default-styling','default-colors'])
     }} @if($hideUntilReorder) x-show="reorderDisplayColumn" @endif >
         {{ $slot }}
     </td>
@@ -19,7 +19,7 @@
         ->class(['d-none' => $column && $column->shouldCollapseAlways()])
         ->class(['d-none d-md-table-cell' => $column && $column->shouldCollapseOnMobile()])
         ->class(['d-none d-lg-table-cell' => $column && $column->shouldCollapseOnTablet()])
-        ->except('default')
+        ->except(['default','default-styling','default-colors'])
     }}>
         {{ $slot }}
     </td>
