@@ -203,7 +203,7 @@ final class BulkActionsVisualsTest extends TestCase
                     'default-styling' => true,
                     'default-colors' => false,
                 ]);
-        
+
             }
 
             public function bulkActions(): array
@@ -216,11 +216,10 @@ final class BulkActionsVisualsTest extends TestCase
                 return $items;
             }
         })->assertSee('Bulk Actions')
-        ->assertSeeHtmlInOrder([
-            'scope="col"',
-            'class="bg-yellow-500 dark:bg-yellow-800"',
-            'wire:key="table-thead-bulk-actions"',
-        ]);
+            ->assertSeeHtmlInOrder([
+                'scope="col"',
+                'class="bg-yellow-500 dark:bg-yellow-800"',
+                'wire:key="table-thead-bulk-actions"',
+            ]);
     }
-
 }
