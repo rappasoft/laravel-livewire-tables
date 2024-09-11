@@ -1,6 +1,7 @@
 @aware(['component', 'tableName'])
 @php
-    $customAttributes = $this->getBulkActionsThAttributes();
+    $customAttributes = $this->hasBulkActionsThAttributes ? $this->getBulkActionsThAttributes : $this->getAllThAttributes($this->getBulkActionsColumn())['customAttributes'];
+
     $bulkActionsThCheckboxAttributes = $this->getBulkActionsThCheckboxAttributes();
     $theme = $this->getTheme();
 @endphp

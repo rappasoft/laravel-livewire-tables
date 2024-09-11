@@ -8,7 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\IsFilter;
 abstract class Filter
 {
     use IsFilter;
-
+    
     protected string $view = '';
 
     public function __construct(string $name, ?string $key = null)

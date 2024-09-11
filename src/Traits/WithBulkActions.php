@@ -4,11 +4,13 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\BulkActionsConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\BulkActionsHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Styling\HasBulkActionsStyling;
 
 trait WithBulkActions
 {
     use BulkActionsConfiguration,
-        BulkActionsHelpers;
+        BulkActionsHelpers,
+        HasBulkActionsStyling;
 
     public bool $bulkActionsStatus = true;
 
@@ -27,27 +29,11 @@ trait WithBulkActions
 
     public ?string $bulkActionConfirmDefaultMessage;
 
-    protected array $bulkActionsCheckboxAttributes = [];
-
-    protected array $bulkActionsThAttributes = ['default' => true];
-
-    protected array $bulkActionsThCheckboxAttributes = ['default' => true];
-
-    protected array $bulkActionsTdAttributes = ['default' => true];
-
-    protected array $bulkActionsTdCheckboxAttributes = ['default' => true];
-
     protected bool $alwaysHideBulkActionsDropdownOption = false;
 
     protected bool $clearSelectedOnSearch = true;
 
     protected bool $clearSelectedOnFilter = true;
-
-    protected array $bulkActionsButtonAttributes = ['default-colors' => true, 'default-styling' => true];
-
-    protected array $bulkActionsMenuAttributes = ['default-colors' => true, 'default-styling' => true];
-
-    protected array $bulkActionsMenuItemAttributes = ['default-colors' => true, 'default-styling' => true];
 
     // Entangled in JS
     public bool $delaySelectAll = false;

@@ -3,61 +3,59 @@
 
 @php
     $attributes = $attributes->merge(['wire:key' => $tableName . '-header-col-'.$column->getSlug()]);
-    $customAttributes = $this->getThAttributes($column);
-    $customSortButtonAttributes = $this->getThSortButtonAttributes($column);
+    $allThAttributes = $this->getAllThAttributes($column);
+
+    $customThAttributes = $allThAttributes['customAttributes'];
+    $customSortButtonAttributes = $allThAttributes['sortButtonAttributes'];
+    $customSortIconAttributes = $allThAttributes['sortIconAttributes'];
+    $customLabelAttributes = $allThAttributes['labelAttributes'];
+
+    //$customThAttributes = $this->getThAttributes($column);
+    //$customSortButtonAttributes = $this->getThSortButtonAttributes($column);
+    //$customSortIconAttributes = $this->getThSortIconAttributes($column);
+
     $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : $this->getSort($column->getSlug()) ?? null ;
 @endphp
 
 @if ($isTailwind)
     <th scope="col" {{
-        $attributes->merge($customAttributes)
-            ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
+        $attributes->merge($customThAttributes)
+            ->class(['text-gray-500 dark:bg-gray-800 dark:text-gray-400' => ($customThAttributes['default-colors'] ?? true || $customThAttributes['default'] ?? true)])
+            ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap uppercase tracking-wider' => ($customThAttributes['default-styling'] ?? true || $customThAttributes['default'] ?? true)])
             ->class(['hidden' => $column->shouldCollapseAlways()])
             ->class(['hidden md:table-cell' => $column->shouldCollapseOnMobile()])
             ->class(['hidden lg:table-cell' => $column->shouldCollapseOnTablet()])
-            ->except('default')
+            ->except(['default', 'default-colors', 'default-styling'])
         }}
     >
         @if($column->getColumnLabelStatus())
             @unless ($this->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
-                {{ $column->getTitle() }}
+                <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
             @else
-                <button
-                    wire:click="sortBy('{{ ($column->isSortable() ? $column->getColumnSelectName() : $column->getSlug()) }}')"
+                <button wire:click="sortBy('{{ $column->getColumnSortKey() }}')"
                     {{
                         $attributes->merge($customSortButtonAttributes)
-                            ->class(['flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])
-                            ->except(['default', 'wire:key'])
+                            ->class(['text-gray-500 dark:text-gray-400' => ($customSortButtonAttributes['default-colors'] ?? true || $customSortButtonAttributes['default'] ?? true)])    
+                            ->class(['flex items-center space-x-1 text-left text-xs leading-4 font-medium uppercase tracking-wider group focus:outline-none' => ($customSortButtonAttributes['default-styling'] ?? true || $customSortButtonAttributes['default'] ?? true)])
+                            ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
                     }}
                 >
-                    <span {{
-        $attributes->merge($customAttributes)
-            ->class(['text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
-            ->class(['hidden' => $column->shouldCollapseAlways()])
-            ->class(['hidden md:table-cell' => $column->shouldCollapseOnMobile()])
-            ->class(['hidden lg:table-cell' => $column->shouldCollapseOnTablet()])
-            ->except('default')
-        }}>{{ $column->getTitle() }}</span>
+                    <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
+                    <x-livewire-tables::table.th.sort-icons :$direction 
+                    {{
+                        $attributes->merge($customSortIconAttributes)
+                            ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
+                    }}
+                    />
 
-                    <span class="relative flex items-center">
-                        @if ($direction === 'asc')
-                            <x-heroicon-o-chevron-up class="w-3 h-3 group-hover:opacity-0" />
-                            <x-heroicon-o-chevron-down class="w-3 h-3 opacity-0 group-hover:opacity-100 absolute"/>
-                        @elseif ($direction === 'desc')
-                            <x-heroicon-o-chevron-down class="w-3 h-3 group-hover:opacity-0" />
-                            <x-heroicon-o-x-circle class="w-3 h-3 opacity-0 group-hover:opacity-100 absolute"/>
-                        @else
-                            <x-heroicon-o-chevron-up class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        @endif
-                    </span>
                 </button>
             @endunless
         @endif
     </th>
 @elseif ($isBootstrap)
     <th scope="col" {{
-        $attributes->merge($customAttributes)
-            ->class(['' => $customAttributes['default'] ?? true])
+        $attributes->merge($customThAttributes)
+            ->class(['' => $customThAttributes['default'] ?? true])
             ->class(['d-none' => $column->shouldCollapseAlways()])
             ->class(['d-none d-md-table-cell' => $column->shouldCollapseOnMobile()])
             ->class(['d-none d-lg-table-cell' => $column->shouldCollapseOnTablet()])
@@ -66,23 +64,25 @@
     >
         @if($column->getColumnLabelStatus())
             @unless ($this->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
-                {{ $column->getTitle() }}
+                <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
             @else
                 <div
                     class="d-flex align-items-center laravel-livewire-tables-cursor"
-                    wire:click="sortBy('{{ ($column->isSortable() ? $column->getColumnSelectName() : $column->getSlug()) }}')"
+                    wire:click="sortBy('{{ $column->getColumnSortKey() }}')"
+                    {{
+                        $attributes->merge($customSortButtonAttributes)
+                            ->class(['' => ($customSortButtonAttributes['default-styling'] ?? true || $customSortButtonAttributes['default'] ?? true)])
+                            ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
+                    }}
                 >
-                    <span>{{ $column->getTitle() }}</span>
+                    <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
 
-                    <span class="relative d-flex align-items-center">
-                        @if ($direction === 'asc')
-                            <x-heroicon-o-chevron-up class="laravel-livewire-tables-btn-smaller ms-1 "  />
-                        @elseif ($direction === 'desc')
-                            <x-heroicon-o-chevron-down class="laravel-livewire-tables-btn-smaller ms-1"  />
-                        @else
-                            <x-heroicon-o-chevron-up-down class="laravel-livewire-tables-btn-smaller ms-1" />
-                        @endif
-                    </span>
+                    <x-livewire-tables::table.th.sort-icons :$direction                     {{
+                        $attributes->merge($customSortButtonAttributes)
+                            ->class(['' => ($customSortButtonAttributes['default-colors'] ?? true || $customSortButtonAttributes['default'] ?? true)])
+                            ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
+                    }}
+                />
                 </div>
             @endunless
         @endif

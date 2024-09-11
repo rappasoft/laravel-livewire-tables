@@ -2,10 +2,26 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class BulkActionsConfigurationTest extends TestCase
 {
+
+    public static function attributeStatusProvider(): array
+    {
+        return [
+            [false, false, false],
+            [true, false, false],
+            [true, true, false],
+            [true, true, true],
+            [true, false, true],
+            [false, true, false],
+            [false, true, true],
+            [false, false, true],
+        ];
+    }
+
     public function test_variables_are_correct_types(): void
     {
         $this->assertIsBool($this->basicTable->bulkActionsStatus);
@@ -142,106 +158,7 @@ final class BulkActionsConfigurationTest extends TestCase
 
     }
 
-    public function test_can_set_bulk_actions_td_attributes(): void
-    {
-        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsTdAttributes());
 
-        $this->basicTable->setBulkActionsTdAttributes(['class' => 'bg-blue-500']);
-
-        $this->assertSame(['default' => true, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsTdAttributes());
-
-        $this->basicTable->setBulkActionsTdAttributes(['class' => 'bg-blue-500', 'default' => false]);
-
-        $this->assertSame(['default' => false, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsTdAttributes());
-    }
-
-    public function test_can_set_bulk_actions_td_checkbox_attributes(): void
-    {
-        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsTdCheckboxAttributes());
-
-        $this->basicTable->setBulkActionsTdCheckboxAttributes(['class' => 'bg-gray-500']);
-
-        $this->assertSame(['default' => true, 'class' => 'bg-gray-500'], $this->basicTable->getBulkActionsTdCheckboxAttributes());
-
-        $this->basicTable->setBulkActionsTdCheckboxAttributes(['class' => 'bg-gray-500', 'default' => false]);
-
-        $this->assertSame(['default' => false, 'class' => 'bg-gray-500'], $this->basicTable->getBulkActionsTdCheckboxAttributes());
-    }
-
-    public function test_can_set_bulk_actions_th_attributes(): void
-    {
-        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThAttributes());
-
-        $this->basicTable->setBulkActionsThAttributes(['class' => 'bg-red-500']);
-
-        $this->assertSame(['default' => true, 'class' => 'bg-red-500'], $this->basicTable->getBulkActionsThAttributes());
-
-        $this->basicTable->setBulkActionsThAttributes(['class' => 'bg-red-500', 'default' => false]);
-
-        $this->assertSame(['default' => false, 'class' => 'bg-red-500'], $this->basicTable->getBulkActionsThAttributes());
-    }
-
-    public function test_can_set_bulk_actions_th_checkbox_attributes(): void
-    {
-        $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThCheckboxAttributes());
-
-        $this->basicTable->setBulkActionsThCheckboxAttributes(['class' => 'bg-green-500']);
-
-        $this->assertSame(['default' => true, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsThCheckboxAttributes());
-
-        $this->basicTable->setBulkActionsThCheckboxAttributes(['class' => 'bg-green-500', 'default' => false]);
-
-        $this->assertSame(['default' => false, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsThCheckboxAttributes());
-    }
-
-    public function test_can_set_bulk_actions_button_attributes(): void
-    {
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsButtonAttributes());
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
-
-        $this->basicTable->setBulkActionsButtonAttributes(['default-colors' => false, 'class' => 'bg-green-500']);
-
-        $this->assertSame(['default-colors' => false, 'default-styling' => true, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsButtonAttributes());
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
-
-        $this->basicTable->setBulkActionsButtonAttributes(['class' => 'bg-green-500', 'default-colors' => false]);
-
-        $this->assertSame(['default-colors' => false, 'default-styling' => true, 'class' => 'bg-green-500'], $this->basicTable->getBulkActionsButtonAttributes());
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
-    }
-
-    public function test_can_set_bulk_actions_menu_attributes(): void
-    {
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsButtonAttributes());
-
-        $this->basicTable->setBulkActionsMenuAttributes(['class' => 'bg-blue-500']);
-
-        $this->assertSame(['default-colors' => true, 'default-styling' => true, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsMenuAttributes());
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsButtonAttributes());
-
-        $this->basicTable->setBulkActionsMenuAttributes(['class' => 'bg-blue-500', 'default-colors' => false]);
-
-        $this->assertSame(['default-colors' => false, 'default-styling' => true, 'class' => 'bg-blue-500'], $this->basicTable->getBulkActionsMenuAttributes());
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsButtonAttributes());
-    }
-
-    public function test_can_set_bulk_actions_menu_item_attributes(): void
-    {
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuItemAttributes());
-
-        $this->basicTable->setBulkActionsMenuItemAttributes(['class' => 'bg-red-500']);
-
-        $this->assertSame(['default-colors' => true, 'default-styling' => true, 'class' => 'bg-red-500'], $this->basicTable->getBulkActionsMenuItemAttributes());
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
-
-        $this->basicTable->setBulkActionsMenuItemAttributes(['class' => 'bg-amber-500', 'default-colors' => false]);
-
-        $this->assertSame(['default-colors' => false, 'default-styling' => true, 'class' => 'bg-amber-500'], $this->basicTable->getBulkActionsMenuItemAttributes());
-        $this->assertSame(['default-colors' => true, 'default-styling' => true], $this->basicTable->getBulkActionsMenuAttributes());
-
-    }
 
     public function test_can_set_bulk_actions_delay_select_all_status(): void
     {

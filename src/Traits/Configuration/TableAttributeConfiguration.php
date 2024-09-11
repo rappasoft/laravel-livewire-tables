@@ -86,6 +86,17 @@ trait TableAttributeConfiguration
     }
 
     /**
+     * Set a list of attributes to override on the th sort icon elements
+     */
+    public function setThSortIconAttributes(\Closure $callback): self
+    {
+        $this->thSortIconAttributesCallback = $callback;
+
+        return $this;
+    }
+
+
+    /**
      * Set a list of attributes to override on the td elements
      */
     public function setTrAttributes(\Closure $callback): self

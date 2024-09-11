@@ -8,6 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\AggregateColumn;
 
 trait ColumnHelpers
 {
+    
     /**
      * Set the user defined columns
      */

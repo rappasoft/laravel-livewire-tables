@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasTheme;
+use Rappasoft\LaravelLivewireTables\Traits\Core\HasCustomAttributes;
 
 trait HasAllTraits
 {
@@ -18,6 +19,7 @@ trait HasAllTraits
         WithSearch,
         WithPagination;
     use WithBulkActions,
+        HasCustomAttributes,
         WithCollapsingColumns,
         WithColumnSelect,
         WithConfigurableAreas,
