@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class BulkActionsStylingConfigurationTest extends TestCase
 {
-
     public static function providesAttributeDataSet(): array
     {
         return [
@@ -16,10 +15,10 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'tff' => [true, false, false, 'bg-red-500', 'bg-yellow-300'],
             'ttf' => [true, true, false, 'bg-green-500', 'bg-gray-300'],
             'ttt' => [true, true, true, 'bg-yellow-500', 'bg-green-300'],
-            'tft' =>  [true, false, true, 'bg-red-500', 'bg-blue-300'],
+            'tft' => [true, false, true, 'bg-red-500', 'bg-blue-300'],
             'ftf' => [false, true, false, 'bg-green-500', 'bg-amber-300'],
             'ftt' => [false, true, true, 'bg-gray-500', 'bg-blue-300'],
-            'fff' =>  [false, false, true, 'bg-blue-500', 'bg-yellow-300'],
+            'fff' => [false, false, true, 'bg-blue-500', 'bg-yellow-300'],
         ];
     }
 
@@ -47,9 +46,10 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             $lower = strtolower($methodToTest);
 
             foreach ($dataSetItems as $index => $dataSetItem) {
-                $allItems[$lower."_".$index] = [$setMethod, $getMethod, $lcFirst, $dataSetItem[0], $dataSetItem[1],  $dataSetItem[2],  $dataSetItem[3],  $dataSetItem[4]];
+                $allItems[$lower.'_'.$index] = [$setMethod, $getMethod, $lcFirst, $dataSetItem[0], $dataSetItem[1],  $dataSetItem[2],  $dataSetItem[3],  $dataSetItem[4]];
             }
         }
+
         return $allItems;
     }
 
@@ -61,7 +61,6 @@ final class BulkActionsStylingConfigurationTest extends TestCase
         return self::mergesMethodsWithAttributes($methodsToTest, $dataSetItems);
 
     }
-
 
     #[DataProvider('bulkActionAttributesProvider')]
     public function test_can_set_bulk_actions_attributes_via_provider(string $setMethod, string $getMethod, string $propertyName, bool $default, bool $defaultColors, bool $defaultStyling, string $class1, string $class2): void
