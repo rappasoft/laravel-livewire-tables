@@ -60,7 +60,7 @@ trait BulkActionStylingHelpers
     #[Computed]
     public function hasBulkActionsThAttributes(): bool
     {
-        return $this->getBulkActionsThAttributes() != ['default' => true];
+        return $this->getBulkActionsThAttributes() != ['default' => true, 'default-colors' => false, 'default-styling' => false];
     }
 
     /**
