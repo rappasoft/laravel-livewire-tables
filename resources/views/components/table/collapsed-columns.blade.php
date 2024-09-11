@@ -38,7 +38,7 @@
                 ->class(['hidden bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
                 ->class(['d-none bg-light rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
                 ->class(['d-none bg-white rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
-                ->except(['default'])
+                ->except(['default','default-styling','default-colors'])
         }}
 
     >

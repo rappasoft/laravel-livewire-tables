@@ -27,7 +27,7 @@
                 ->class(['cursor-pointer' => ($isTailwind && $this->hasTableRowUrl() && ($customAttributes['default'] ?? true))])
                 ->class(['bg-light rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
                 ->class(['bg-white rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
-                ->except(['default'])
+                ->except(['default','default-styling','default-colors'])
     }}
 
 >
