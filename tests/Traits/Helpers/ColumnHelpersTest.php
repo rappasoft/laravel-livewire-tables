@@ -360,5 +360,4 @@ final class ColumnHelpersTest extends TestCase
         $this->assertSame(['class' => 'text-xl', 'default' => true, 'default-colors' => false, 'default-styling' => false], $column->getLabelAttributes());
 
     }
-
 }
