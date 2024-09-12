@@ -455,4 +455,13 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame(['default-styling' => true, 'default-colors' => true], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
 
     }
+
+    public function test_can_get_set_should_be_displayed(): void
+    {
+        $this->assertTrue($this->basicTable->getShouldBeDisplayed());
+        $this->basicTable->setShouldBeHidden();
+        $this->assertFalse($this->basicTable->getShouldBeDisplayed());
+        $this->basicTable->setShouldBeDisplayed();
+        $this->assertTrue($this->basicTable->getShouldBeDisplayed());       
+    }
 }
