@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Livewire\Attributes\Computed;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait BulkActionsHelpers
 {
@@ -183,46 +184,6 @@ trait BulkActionsHelpers
         return isset($this->bulkActionConfirmDefaultMessage) ? $this->bulkActionConfirmDefaultMessage : __('Bulk Actions Confirm');
     }
 
-    /**
-     * Used to get attributes for the <th> for Bulk Actions
-     *
-     * @return array<mixed>
-     */
-    public function getBulkActionsThAttributes(): array
-    {
-        return $this->bulkActionsThAttributes ?? ['default' => true];
-    }
-
-    /**
-     * Used to get attributes for the Checkbox for Bulk Actions TH
-     *
-     * @return array<mixed>
-     */
-    public function getBulkActionsThCheckboxAttributes(): array
-    {
-        return $this->bulkActionsThCheckboxAttributes ?? ['default' => true];
-    }
-
-    /**
-     * Used to get attributes for the Bulk Actions TD
-     *
-     * @return array<mixed>
-     */
-    public function getBulkActionsTdAttributes(): array
-    {
-        return $this->bulkActionsTdAttributes ?? ['default' => true];
-    }
-
-    /**
-     * Used to get attributes for the Bulk Actions TD
-     *
-     * @return array<mixed>
-     */
-    public function getBulkActionsTdCheckboxAttributes(): array
-    {
-        return $this->bulkActionsTdCheckboxAttributes ?? ['default' => true];
-    }
-
     #[Computed]
     public function shouldAlwaysHideBulkActionsDropdownOption(): bool
     {
@@ -239,25 +200,6 @@ trait BulkActionsHelpers
         return $this->clearSelectedOnFilter ?? true;
     }
 
-    #[Computed]
-    public function getBulkActionsButtonAttributes(): array
-    {
-        return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsButtonAttributes);
-
-    }
-
-    #[Computed]
-    public function getBulkActionsMenuAttributes(): array
-    {
-        return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsMenuAttributes);
-    }
-
-    #[Computed]
-    public function getBulkActionsMenuItemAttributes(): array
-    {
-        return array_merge(['default-colors' => true, 'default-styling' => true], $this->bulkActionsMenuItemAttributes);
-    }
-
     public function getSelectedRows(): array
     {
         if ($this->getDelaySelectAllStatus() && $this->selectAllIsEnabled()) {
@@ -270,5 +212,10 @@ trait BulkActionsHelpers
     public function getDelaySelectAllStatus(): bool
     {
         return $this->delaySelectAll ?? false;
+    }
+
+    public function getBulkActionsColumn(): Column
+    {
+        return Column::make('bulkactions')->label(fn () => null);
     }
 }

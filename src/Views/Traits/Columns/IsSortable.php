@@ -42,11 +42,19 @@ trait IsSortable
         return $this;
     }
 
+    /**
+     * Used internally
+     * Used in resources/views/components/table/th.blade.php
+     */
     public function getSortCallback(): ?callable
     {
         return $this->sortCallback;
     }
 
+    /**
+     * Used internally
+     * Used in resources/views/components/table/th.blade.php
+     */
     public function isSortable(): bool
     {
         return $this->hasField() && $this->sortable === true;
@@ -101,5 +109,13 @@ trait IsSortable
         }
 
         return $direction === 'asc' ? $component->getDefaultSortingLabelAsc() : $component->getDefaultSortingLabelDesc();
+    }
+
+    /**
+     * Used in resources/views/components/table/th.blade.php
+     */
+    public function getColumnSortKey(): string
+    {
+        return $this->isSortable() ? $this->getColumnSelectName() : $this->getSlug();
     }
 }

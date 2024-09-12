@@ -35,7 +35,7 @@ final class SortingVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->assertSeeHtmlInOrder([
                 'wire:click="sortBy(\'id\')"',
-                'class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400"',
+                'class="flex items-center space-x-1 text-left text-xs leading-4 font-medium uppercase tracking-wider group focus:outline-none text-gray-500 dark:text-gray-400"',
             ]);
     }
 
@@ -45,8 +45,25 @@ final class SortingVisualsTest extends TestCase
             ->call('setSortingDisabled')
             ->assertDontSeeHtml('<button
                 wire:click="sortBy(\'id\')"
-                class="flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400"
+                class="flex items-center space-x-1 text-left text-xs leading-4 font-medium uppercase tracking-wider group focus:outline-none text-gray-500 dark:text-gray-400"
             >');
+
+    }
+
+    public function test_th_headers_are_not_buttons_until_sorting_enabled(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->call('setSortingDisabled')
+            ->assertDontSeeHtml('<button
+                wire:click="sortBy(\'id\')"
+                class="flex items-center space-x-1 text-left text-xs leading-4 font-medium uppercase tracking-wider group focus:outline-none text-gray-500 dark:text-gray-400"
+            >')
+            ->call('setSortingEnabled')
+            ->assertSeeHtmlInOrder([
+                'wire:click="sortBy(\'id\')"',
+                'class="flex items-center space-x-1 text-left text-xs leading-4 font-medium uppercase tracking-wider group focus:outline-none text-gray-500 dark:text-gray-400"',
+            ]);
+
     }
 
     public function test_th_headers_are_not_buttons_unless_the_column_is_sortable(): void

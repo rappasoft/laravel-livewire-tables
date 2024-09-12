@@ -180,11 +180,11 @@ final class SearchConfigurationTest extends TestCase
 
     public function test_can_set_search_field_attributes(): void
     {
-        $this->assertSame(['default' => true], $this->basicTable->getSearchFieldAttributes());
+        $this->assertSame(['default' => false, 'default-colors' => false, 'default-styling' => false], $this->basicTable->getSearchFieldAttributes());
 
         $this->basicTable->setSearchFieldAttributes(['class' => 'bg-blue', 'style' => 'font-size: 3em;']);
 
-        $this->assertSame(['class' => 'bg-blue', 'style' => 'font-size: 3em;'], $this->basicTable->getSearchFieldAttributes());
+        $this->assertSame(['class' => 'bg-blue', 'default' => false, 'default-colors' => false, 'default-styling' => false, 'style' => 'font-size: 3em;'], $this->basicTable->getSearchFieldAttributes());
 
     }
 }
