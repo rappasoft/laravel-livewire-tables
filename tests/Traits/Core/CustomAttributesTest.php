@@ -4,12 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Core;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class CustomAttributesTest extends TestCase
 {
-
     public function test_can_get_custom_attribute_defaults_false_standard_mode(): void
     {
         $mock = new class extends PetsTable
@@ -25,11 +24,10 @@ final class CustomAttributesTest extends TestCase
         $mock->configure();
         $mock->boot();
 
-
         $this->assertSame([
-            'default' => false, 
-            'default-colors' => false, 
-            'default-styling' => false
+            'default' => false,
+            'default-colors' => false,
+            'default-styling' => false,
         ], $mock->getCustomAttributes('testAttributesArray', false, true));
     }
 
@@ -49,8 +47,8 @@ final class CustomAttributesTest extends TestCase
         $mock->boot();
 
         $this->assertSame([
-            'default-colors' => false, 
-            'default-styling' => false
+            'default-colors' => false,
+            'default-styling' => false,
         ], $mock->getCustomAttributes('testAttributesArray', false, false));
     }
 
@@ -70,9 +68,9 @@ final class CustomAttributesTest extends TestCase
         $mock->boot();
 
         $this->assertSame([
-            'default' => true, 
-            'default-colors' => true, 
-            'default-styling' => true
+            'default' => true,
+            'default-colors' => true,
+            'default-styling' => true,
         ], $mock->getCustomAttributes('testAttributesArray', true, true));
     }
 
@@ -92,10 +90,8 @@ final class CustomAttributesTest extends TestCase
         $mock->boot();
 
         $this->assertSame([
-            'default-colors' => true, 
-            'default-styling' => true
+            'default-colors' => true,
+            'default-styling' => true,
         ], $mock->getCustomAttributes('testAttributesArray', true, false));
     }
-
-
 }
