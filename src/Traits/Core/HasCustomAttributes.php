@@ -8,7 +8,7 @@ trait HasCustomAttributes
 {
     public function hasCustomAttributes(string $propertyName): bool
     {
-        return isset($this->{$propertyName});
+        return property_exists($this, $propertyName) && isset($this->{$propertyName});
     }
 
     public function getCustomAttributes(string $propertyName, bool $default = false, bool $classicMode = true): array
