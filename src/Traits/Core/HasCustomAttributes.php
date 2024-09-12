@@ -21,7 +21,7 @@ trait HasCustomAttributes
                 return $vals;
             }
 
-            return ['default' => true, 'default-colors' => true, 'default-styling' => true];
+            return ['default' => $default, 'default-colors' => $default, 'default-styling' => $default];
         } else {
             if ($this->hasCustomAttributes($propertyName)) {
                 $vals = array_merge(['default-colors' => $default, 'default-styling' => $default], $this->{$propertyName});
@@ -30,7 +30,7 @@ trait HasCustomAttributes
                 return $vals;
             }
 
-            return ['default-colors' => true, 'default-styling' => true];
+            return ['default-colors' => $default, 'default-styling' => $default];
 
         }
     }
