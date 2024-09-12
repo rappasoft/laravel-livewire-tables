@@ -462,6 +462,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->basicTable->setShouldBeHidden();
         $this->assertFalse($this->basicTable->getShouldBeDisplayed());
         $this->basicTable->setShouldBeDisplayed();
-        $this->assertTrue($this->basicTable->getShouldBeDisplayed());       
+        $this->assertTrue($this->basicTable->getShouldBeDisplayed());
     }
 }
