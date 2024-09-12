@@ -105,7 +105,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getThSortIconAttributes($this->basicTable->columns()[1]), ['default' => true, 'default-colors' => false, 'default-styling' => false, 'here' => 'there']);
     }
 
-
     public function test_can_set_tr_attributes(): void
     {
         $this->basicTable->setTrAttributes(function (Model $row, $index) {
