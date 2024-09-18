@@ -14,7 +14,7 @@
         >
 
         @if($action->hasIcon() && $action->getIconRight())
-            <span>{{ $action->getLabel() }}</span>
+            <span {{ $action->getLabelAttributesBag() }}>{{ $action->getLabel() }}</span>
             <i {{ $action->getIconAttributes()
                     ->class(["ms-1 ". $action->getIcon() => $isBootstrap])
                     ->class(["ml-1 ". $action->getIcon() => $isTailwind])
@@ -28,8 +28,8 @@
                     ->except(['default','default-styling','default-colors'])
                 }}
             ></i>
-            <span>{{ $action->getLabel() }}</span>
+            <span {{ $action->getLabelAttributesBag() }}>{{ $action->getLabel() }}</span>
         @else
-            <span>{{ $action->getLabel() }}</span>
+            <span {{ $action->getLabelAttributesBag() }}>{{ $action->getLabel() }}</span>
         @endif
 </a>
