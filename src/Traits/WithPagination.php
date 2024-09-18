@@ -74,6 +74,8 @@ trait WithPagination
             session()->put($this->getPerPagePaginationSessionKey(), $this->getPerPageAccepted()[0] ?? 10);
         }
         $this->setPerPage($value);
+        $this->resetPage($this->getComputedPageName());
+
     }
 
     protected function queryStringWithPagination(): array
