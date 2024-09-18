@@ -92,6 +92,21 @@ public function actions(): array
 
 ## Button Available Methods
 
+### setLabelAttributes
+Set custom attributes for an Action Label.  At present it is recommended to only use this for "class" and "style" attributes to avoid conflicts.
+
+By default, this replaces the default classes on the Action Label, if you would like to keep them, set the default flag to true.
+
+```php
+Action::make('Dashboard')
+    ->setRoute('dashboard')
+    ->wireNavigate()
+    ->setLabelAttributes([
+        'class' => 'text-xl', 
+        'default' => true,
+    ]),
+```
+
 ### setActionAttributes
 
 setActionAttributes is used to pass any attributes that you wish to implement on the "button" element for the action button.  By default it will merge with the default classes. 
@@ -251,6 +266,7 @@ public function actions(): array
     ];
 }
 ```
+
 
 ## Extending
 
