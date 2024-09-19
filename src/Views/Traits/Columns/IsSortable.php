@@ -99,7 +99,7 @@ trait IsSortable
             return $this->sortingPillDirectionDesc;
         }
 
-        return __('N/A');
+        return __('livewire-tables::NA');
     }
 
     public function getSortingPillDirection(DataTableComponent $component, string $direction): string

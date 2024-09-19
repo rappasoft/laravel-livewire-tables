@@ -18,7 +18,7 @@
                     x-bind:aria-expanded="open"
                     aria-expanded="true"
                 >
-                    @lang('Columns')
+                    @lang('livewire-tables::Columns')
 
                     <x-heroicon-m-chevron-down class="-mr-1 ml-2 h-5 w-5" />
                 </button>
@@ -51,7 +51,7 @@
                                 @checked($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count())
                                 @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count())  wire:click="deselectAllColumns" @else wire:click="selectAllColumns" @endif
                             >
-                            <span class="ml-2">{{ __('All Columns') }}</span>
+                            <span class="ml-2">@lang('livewire-tables::All Columns')</span>
                         </label>
                     </div>
 
@@ -104,7 +104,7 @@
             type="button" id="{{ $tableName }}-columnSelect" aria-haspopup="true"
             x-bind:aria-expanded="open"
         >
-            @lang('Columns')
+            @lang('livewire-tables::Columns')
         </button>
 
         <div
@@ -124,7 +124,9 @@
                             @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                         />
 
-                        <span class="ml-2">{{ __('All Columns') }}</span>
+                        <span class="ml-2">@lang('livewire-tables::All Columns')</span>
+                        
+
                     </label>
                 </div>
             @elseif($isBootstrap5)
@@ -137,7 +139,7 @@
                     />
 
                     <label wire:loading.attr="disabled" class="form-check-label">
-                        {{ __('All Columns') }}
+                        @lang('livewire-tables::All Columns')
                     </label>
                 </div>
             @endif

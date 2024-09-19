@@ -3,12 +3,9 @@ name: run-tests-pcov-pull
 on:
   push:
     branches:
-      - 'develop'
       - 'development'
-      - 'master'
   pull_request:
     branches:
-      - 'develop'
       - 'development'
       - 'master'
 
