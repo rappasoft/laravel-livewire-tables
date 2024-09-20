@@ -115,7 +115,6 @@ trait IsSortable
         return __('livewire-tables::not_applicable');
     }
 
-
     public function getSortingPillDirection(DataTableComponent $component, string $direction): string
     {
         if ($this->hasCustomSortingPillDirections()) {
