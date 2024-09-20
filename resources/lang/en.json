@@ -13,7 +13,7 @@
     "livewire-tables::Filters": "Filters",
     "livewire-tables::max": "Max",
     "livewire-tables::min": "Min",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "No",
     "livewire-tables::No items found. Try to broaden your search.": "No items found. Try to broaden your search.",
     "livewire-tables::of": "of",

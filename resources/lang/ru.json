@@ -10,7 +10,7 @@
     "livewire-tables::Deselect All": "Снять выделение",
     "livewire-tables::Done Reordering": "Сортировка выполнена",
     "livewire-tables::Filters": "Фильтры",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "Нет",
     "livewire-tables::No items found. Try to broaden your search.": "Ничего не найдено. Попробуйте расширить поиск.",
     "livewire-tables::of": "из",

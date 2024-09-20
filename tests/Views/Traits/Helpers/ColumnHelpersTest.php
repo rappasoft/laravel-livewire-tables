@@ -108,6 +108,17 @@ final class ColumnHelpersTest extends TestCase
         $this->assertSame('New Title', $column->getCustomSortingPillTitle());
     }
 
+    
+    public function test_can_get_standard_sorting_pill_directions(): void
+    {
+        $column = Column::make('My Title');
+
+        $this->assertFalse($column->hasCustomSortingPillDirections());
+
+        $this->assertSame(__('livewire-tables::not_applicable'), $column->getCustomSortingPillDirections('asc'));
+        $this->assertSame(__('livewire-tables::not_applicable'), $column->getCustomSortingPillDirections('desc'));        
+    }
+
     public function test_can_set_custom_sorting_pill_directions(): void
     {
         $column = Column::make('My Title');

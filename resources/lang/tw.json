@@ -11,7 +11,7 @@
     "livewire-tables::Deselect All": "取消選擇",
     "livewire-tables::Done Reordering": "排序完成",
     "livewire-tables::Filters": "過濾規則",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "不",
     "livewire-tables::No items found. Try to broaden your search.": "無資料呈現。請嘗試擴大搜尋範圍。",
     "livewire-tables::of": "筆資料，共",

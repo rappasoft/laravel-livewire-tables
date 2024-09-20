@@ -10,7 +10,7 @@
     "livewire-tables::Deselect All": "Fravælg alle",
     "livewire-tables::Done Reordering": "Færdig med omorganisering",
     "livewire-tables::Filters": "Filtre",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "Nej",
     "livewire-tables::No items found. Try to broaden your search.": "Ingen elementer fundet. Prøv at udvide din søgning.",
     "livewire-tables::of": "af",

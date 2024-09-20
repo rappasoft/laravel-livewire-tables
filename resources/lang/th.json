@@ -11,7 +11,7 @@
     "livewire-tables::Deselect All": "ไม่เลือกทั้งหมด",
     "livewire-tables::Done Reordering": "จัดลำดับแล้ว",
     "livewire-tables::Filters": "ตัวกรอง",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "เลขที่",
     "livewire-tables::No items found. Try to broaden your search.": "ไม่พบรายการที่ค้นหา",
     "livewire-tables::of": "จาก",

@@ -10,7 +10,7 @@
     "livewire-tables::Deselect All": "Tout désélectionner ",
     "livewire-tables::Done Reordering": "Réordonnancement terminé",
     "livewire-tables::Filters": "Filtres",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "Non",
     "livewire-tables::No items found. Try to broaden your search.": "Aucun élément trouvé. Essayez d'élargir votre recherche.",
     "livewire-tables::of": "sur",

@@ -10,7 +10,7 @@
     "livewire-tables::Deselect All": "Seçimleri kaldır",
     "livewire-tables::Done Reordering": "Sıralamayı Tamamla",
     "livewire-tables::Filters": "Filtreler",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "HAYIR",
     "livewire-tables::No items found. Try to broaden your search.": "Kayıt bulunamadı.",
     "livewire-tables::of": " ",

@@ -10,7 +10,7 @@
     "livewire-tables::Deselect All": "Deselecciona tot",
     "livewire-tables::Done Reordering": "Reordenació finalitzada",
     "livewire-tables::Filters": "Filtres",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "No",
     "livewire-tables::No items found. Try to broaden your search.": "No s'han trobat elements. Intenti ampliar la cerca.",
     "livewire-tables::of": "de",

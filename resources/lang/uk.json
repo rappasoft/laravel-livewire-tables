@@ -11,7 +11,7 @@
     "livewire-tables::Deselect All": "Зняти вибір із усіх",
     "livewire-tables::Done Reordering": "Сортування виконанно",
     "livewire-tables::Filters": "Фільтри",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "Немає",
     "livewire-tables::No items found. Try to broaden your search.": "Немає елементів. Спробуйте розширити пошук.",
     "livewire-tables::of": "від",

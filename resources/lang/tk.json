@@ -10,7 +10,7 @@
     "livewire-tables::Deselect All": "Hemmesini Aýyr",
     "livewire-tables::Done Reordering": "Täzeden Tertiplendi",
     "livewire-tables::Filters": "Süzgüçler",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "Hayir",
     "livewire-tables::No items found. Try to broaden your search.": "Hiç zat tapylmady. Gözlegiňizi giňeltmäge synanyşyň.",
     "livewire-tables::of": "aralygy",

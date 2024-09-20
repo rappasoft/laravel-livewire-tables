@@ -11,7 +11,7 @@
     "livewire-tables::Deselect All": "Odznacz wszystko",
     "livewire-tables::Done Reordering": "Done Reordering",
     "livewire-tables::Filters": "Filtry",
-    "livewire-tables::NA": "N/A",
+    "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "Nie",
     "livewire-tables::No items found. Try to broaden your search.": "Brak rezultatów do wyświetlenia.",
     "livewire-tables::of": "z",
