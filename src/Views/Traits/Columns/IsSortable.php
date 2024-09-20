@@ -102,6 +102,20 @@ trait IsSortable
         return __('livewire-tables::not_applicable');
     }
 
+    public function getCustomSortingPillDirectionsLabel(string $direction, string $defaultLabelAsc, string $defaultLabelDesc): string
+    {
+        if ($direction === 'asc') {
+            return $this->sortingPillDirectionAsc ?? $defaultLabelAsc;
+        }
+
+        if ($direction === 'desc') {
+            return $this->sortingPillDirectionDesc ?? $defaultLabelDesc;
+        }
+
+        return __('livewire-tables::not_applicable');
+    }
+
+
     public function getSortingPillDirection(DataTableComponent $component, string $direction): string
     {
         if ($this->hasCustomSortingPillDirections()) {
@@ -109,6 +123,15 @@ trait IsSortable
         }
 
         return $direction === 'asc' ? $component->getDefaultSortingLabelAsc() : $component->getDefaultSortingLabelDesc();
+    }
+
+    public function getSortingPillDirectionLabel(string $direction, string $defaultLabelAsc, string $defaultLabelDesc): string
+    {
+        if ($this->hasCustomSortingPillDirections()) {
+            return $this->getCustomSortingPillDirectionsLabel($direction, $defaultLabelAsc, $defaultLabelDesc);
+        }
+
+        return $direction === 'asc' ? $defaultLabelAsc : $defaultLabelDesc;
     }
 
     /**
