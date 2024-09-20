@@ -170,7 +170,7 @@ final class SearchConfigurationTest extends TestCase
 
     public function test_can_set_search_placeholder(): void
     {
-        $this->assertSame(__('Search'), $this->basicTable->getSearchPlaceholder());
+        $this->assertSame(__('livewire-tables::Search'), $this->basicTable->getSearchPlaceholder());
 
         $this->basicTable->setSearchPlaceholder('Anthony');
 

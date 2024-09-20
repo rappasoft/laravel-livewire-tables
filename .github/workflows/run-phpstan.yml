@@ -11,6 +11,7 @@ on:
       - '*/*'       # matches every branch containing a single '/'
       - '**'        # matches every branch
       - '!master'
+      - '!development'
 
 jobs:
   test:
