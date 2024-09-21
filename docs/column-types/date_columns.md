@@ -8,7 +8,7 @@ Date columns provide an easy way to display dates in a given format, without hav
 You may pass either a DateTime object, in which you can define an "outputFormat"
 ```php
 DateColumn::make('Updated At', 'updated_at')
-    ->outputFormat('Y-m-d H:i:s),
+    ->outputFormat('Y-m-d H:i:s'),
 ```
 
 Or you may pass a string, in which case you can define an "inputFormat" in addition to the outputFormat:
