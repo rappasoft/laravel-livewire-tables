@@ -156,7 +156,7 @@ trait SearchConfiguration
 
     public function setSearchFieldAttributes(array $attributes = []): self
     {
-        $this->setCustomAttributes('searchFieldAttributes', $attributes);
+        $this->setCustomAttributes('searchFieldAttributes', array_merge(['default' => false, 'default-colors' => false, 'default-styling' => false], $attributes));
 
         return $this;
     }
