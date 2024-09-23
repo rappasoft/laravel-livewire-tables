@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Events;
 
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -16,7 +16,7 @@ class LaravelLivewireTablesEvent
 
     public string|array|null $value;
 
-    public ?User $user;
+    public ?Authenticatable $user;
 
     public function setKeyForEvent(string $key): self
     {
