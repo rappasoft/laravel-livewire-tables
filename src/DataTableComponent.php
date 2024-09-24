@@ -18,7 +18,7 @@ abstract class DataTableComponent extends Component
     {
         //
     }
-
+  
     /**
      * Runs on every request, after the component is mounted or hydrated, but before any update methods are called
      */
