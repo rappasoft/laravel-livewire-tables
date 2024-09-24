@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [v3.4.21] - 2024-09-24
+## [v3.4.21] - 2024-09-25
 ### Bug Fixes
 - Remove persist from getFilterGenericData by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1966
 - In LaravelLivewireTablesEvent, change the type to Illuminate\Contracts\Auth\Authenticatable by @khwadj in https://github.com/rappasoft/laravel-livewire-tables/pull/1963
