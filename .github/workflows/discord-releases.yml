@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Package Releases
-        uses: SethCohen/github-releases-to-discord@v1.13.1
+        uses: SethCohen/github-releases-to-discord@latest
         with:
           webhook_url: ${{ secrets.WEBHOOK_DISCORD_RELEASE_URL }}
           color: "2105893"
