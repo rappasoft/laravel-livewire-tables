@@ -18,6 +18,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Migration to Core attribute management by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1943
 - Localisation - Avoid Conflicts With Other Packages by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1955
 - GitHub Workflow Tweak for Styling Fixes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1967
+- GitHub Workflow Tweak for Discord - Updates by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1968
 
 ### Docs
 - Fix syntax for DateColumn outputFormat in docs by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1960
