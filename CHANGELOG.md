@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.22] - 2024-09-25
+### Bug Fixes
+- Fix Loading Placeholder Bug - Breaking Table by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1969
+
 ## [v3.4.21] - 2024-09-25
 ### Bug Fixes
 - Remove persist from getFilterGenericData by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1966
