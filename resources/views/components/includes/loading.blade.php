@@ -17,7 +17,7 @@ $customAttributes['loader-icon'] = $this->getLoadingPlaceHolderIconAttributes();
     }}
     wire:loading.class.remove="hidden d-none"
     >
-        <td wire:key="{{ $tableName }}-loader-column" colspan="{{ $colCount }}">
+        <td colspan="{{ $colCount }}" wire:key="{{ $tableName }}-loader-column" >
             <div class="h-min self-center align-middle text-center">
                 <div class="lds-hourglass"
                 {{

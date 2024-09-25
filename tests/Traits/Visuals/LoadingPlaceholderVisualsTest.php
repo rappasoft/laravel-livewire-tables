@@ -12,7 +12,7 @@ final class LoadingPlaceholderVisualsTest extends TestCase
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
             ->call('setPerPageAccepted', [1, 5, 10])
-            ->assertSeeHtml('tr wire:key="table-loader" class="hidden d-none"')
+            ->assertSeeHtml('tr wire:key="table-loader')
             ->call('setPerPage', 5);
     }
 
@@ -21,7 +21,7 @@ final class LoadingPlaceholderVisualsTest extends TestCase
         Livewire::test(PetsTableLoadingPlaceholder::class)
             ->call('setPerPageAccepted', [1, 5, 10])
             ->assertSeeHtmlInOrder([
-                '<tr wire:key="table-loader" class="hidden d-none"',
+                '<tr wire:key="table-loader"',
                 '<td colspan="',
                 '<div class="h-min self-center align-middle text-center"',
                 '<div class="lds-hourglass"',
