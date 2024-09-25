@@ -339,7 +339,7 @@ Example blade:
         type="button"
         class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
     >
-        <span class="sr-only">@lang('Remove filter option')</span>
+        <span class="sr-only">@lang('livewire-tables::Remove filter option')</span>
         <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
             <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
         </svg>
@@ -387,6 +387,8 @@ Example label blade:
 ```
 
 ### setFilterLabelAttributes
+
+#### Old Method (Still Supported)
 Set custom attributes for a Filter Label.  At present it is recommended to only use this for "class" and "style" attributes to avoid conflicts.
 
 By default, this replaces the default classes on the Filter Label wrapper, if you would like to keep them, set the default flag to true.
@@ -394,6 +396,21 @@ By default, this replaces the default classes on the Filter Label wrapper, if yo
 ```php
 TextFilter::make('Name')
     ->setFilterLabelAttributes(
+        [
+            'class' => 'text-xl', 
+            'default' => true,
+        ]
+    ),
+```
+
+#### New Method (Recommended)
+Set custom attributes for a Filter Label.  At present it is recommended to only use this for "class" and "style" attributes to avoid conflicts.
+
+By default, this replaces the default classes on the Filter Label wrapper, if you would like to keep them, set the default flag to true.
+
+```php
+TextFilter::make('Name')
+    ->setLabelAttributes(
         [
             'class' => 'text-xl', 
             'default' => true,

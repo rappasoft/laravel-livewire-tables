@@ -52,6 +52,7 @@ trait WithFilters
         if ($this->queryStringIsEnabled() && $this->filtersAreEnabled()) {
             return [
                 'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
+                'filterComponents' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
             ];
         }
 

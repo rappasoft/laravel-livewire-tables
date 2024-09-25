@@ -21,7 +21,7 @@
             type="button"
             class="flex-shrink-0 ml-1 h-6 w-6 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
         >
-            <span class="sr-only">@lang('Remove filter option')</span>
+            <span class="sr-only">@lang('livewire-tables::Remove filter option')</span>
             <x-heroicon-m-x-mark class="h-6 w-6" />
         </button>
     </template>

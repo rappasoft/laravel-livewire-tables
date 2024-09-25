@@ -12,30 +12,30 @@
                     @if ($this->paginationIsEnabled() && $this->isPaginationMethod('standard') && $this->getRows->lastPage() > 1)
                         <p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
                             @if($this->showPaginationDetails())
-                                <span>@lang('Showing')</span>
+                                <span>@lang('livewire-tables::Showing')</span>
                                 <span class="font-medium">{{ $this->getRows->firstItem() }}</span>
-                                <span>@lang('to')</span>
+                                <span>@lang('livewire-tables::to')</span>
                                 <span class="font-medium">{{ $this->getRows->lastItem() }}</span>
-                                <span>@lang('of')</span>
+                                <span>@lang('livewire-tables::of')</span>
                                 <span class="font-medium"><span x-text="paginationTotalItemCount"></span></span>
-                                <span>@lang('results')</span>
+                                <span>@lang('livewire-tables::results')</span>
                             @endif
                         </p>
                     @elseif ($this->paginationIsEnabled() && $this->isPaginationMethod('simple'))
                         <p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
                             @if($this->showPaginationDetails())
-                                <span>@lang('Showing')</span>
+                                <span>@lang('livewire-tables::Showing')</span>
                                 <span class="font-medium">{{ $this->getRows->firstItem() }}</span>
-                                <span>@lang('to')</span>
+                                <span>@lang('livewire-tables::to')</span>
                                 <span class="font-medium">{{ $this->getRows->lastItem() }}</span>
                             @endif
                         </p>
                     @elseif ($this->paginationIsEnabled() && $this->isPaginationMethod('cursor'))
                     @else
                         <p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
-                            @lang('Showing')
+                            @lang('livewire-tables::Showing')
                             <span class="font-medium">{{ $this->getRows->count() }}</span>
-                            @lang('results')
+                            @lang('livewire-tables::results')
                         </p>
                     @endif
                 </div>
@@ -57,13 +57,13 @@
 
                     <div class="col-12 col-md-6 text-center text-md-right text-muted">
                         @if($this->showPaginationDetails())
-                            <span>@lang('Showing')</span>
+                            <span>@lang('livewire-tables::Showing')</span>
                             <strong>{{ $this->getRows->count() ? $this->getRows->firstItem() : 0 }}</strong>
-                            <span>@lang('to')</span>
+                            <span>@lang('livewire-tables::to')</span>
                             <strong>{{ $this->getRows->count() ? $this->getRows->lastItem() : 0 }}</strong>
-                            <span>@lang('of')</span>
+                            <span>@lang('livewire-tables::of')</span>
                             <strong><span x-text="paginationTotalItemCount"></span></strong>
-                            <span>@lang('results')</span>
+                            <span>@lang('livewire-tables::results')</span>
                         @endif
                     </div>
                 </div>
@@ -75,9 +75,9 @@
 
                     <div class="col-12 col-md-6 text-center text-md-right text-muted">
                         @if($this->showPaginationDetails())
-                            <span>@lang('Showing')</span>
+                            <span>@lang('livewire-tables::Showing')</span>
                             <strong>{{ $this->getRows->count() ? $this->getRows->firstItem() : 0 }}</strong>
-                            <span>@lang('to')</span>
+                            <span>@lang('livewire-tables::to')</span>
                             <strong>{{ $this->getRows->count() ? $this->getRows->lastItem() : 0 }}</strong>
                         @endif
                     </div>
@@ -91,9 +91,9 @@
             @else
                 <div class="row mt-3">
                     <div class="col-12 text-muted">
-                        @lang('Showing')
+                        @lang('livewire-tables::Showing')
                         <strong>{{ $this->getRows->count() }}</strong>
-                        @lang('results')
+                        @lang('livewire-tables::results')
                     </div>
                 </div>
             @endif
@@ -109,13 +109,13 @@
                     </div>
                     <div class="col-12 col-md-6 text-center text-md-end text-muted">
                         @if($this->showPaginationDetails())
-                            <span>@lang('Showing')</span>
+                            <span>@lang('livewire-tables::Showing')</span>
                             <strong>{{ $this->getRows->count() ? $this->getRows->firstItem() : 0 }}</strong>
-                            <span>@lang('to')</span>
+                            <span>@lang('livewire-tables::to')</span>
                             <strong>{{ $this->getRows->count() ? $this->getRows->lastItem() : 0 }}</strong>
-                            <span>@lang('of')</span>
+                            <span>@lang('livewire-tables::of')</span>
                             <strong><span x-text="paginationTotalItemCount"></span></strong>
-                            <span>@lang('results')</span>
+                            <span>@lang('livewire-tables::results')</span>
                         @endif
                     </div>
                 </div>
@@ -126,9 +126,9 @@
                     </div>
                     <div class="col-12 col-md-6 text-center text-md-end text-muted">
                         @if($this->showPaginationDetails())
-                            <span>@lang('Showing')</span>
+                            <span>@lang('livewire-tables::Showing')</span>
                             <strong>{{ $this->getRows->count() ? $this->getRows->firstItem() : 0 }}</strong>
-                            <span>@lang('to')</span>
+                            <span>@lang('livewire-tables::to')</span>
                             <strong>{{ $this->getRows->count() ? $this->getRows->lastItem() : 0 }}</strong>
                         @endif
                     </div>
@@ -142,9 +142,9 @@
             @else
                 <div class="row mt-3">
                     <div class="col-12 text-muted">
-                        @lang('Showing')
+                        @lang('livewire-tables::Showing')
                         <strong>{{ $this->getRows->count() }}</strong>
-                        @lang('results')
+                        @lang('livewire-tables::results')
                     </div>
                 </div>
             @endif

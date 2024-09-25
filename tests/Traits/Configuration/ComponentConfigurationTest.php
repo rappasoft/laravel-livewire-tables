@@ -73,8 +73,8 @@ final class ComponentConfigurationTest extends TestCase
             return ['default' => true, 'here' => 'there'];
         });
 
-        $this->assertSame($this->basicTable->getThAttributes($this->basicTable->columns()[0]), ['default' => false, 'this' => 'that']);
-        $this->assertSame($this->basicTable->getThAttributes($this->basicTable->columns()[1]), ['default' => true, 'here' => 'there']);
+        $this->assertSame($this->basicTable->getThAttributes($this->basicTable->columns()[0]), ['default' => false, 'default-colors' => false, 'default-styling' => false, 'this' => 'that']);
+        $this->assertSame($this->basicTable->getThAttributes($this->basicTable->columns()[1]), ['default' => true, 'default-colors' => false, 'default-styling' => false, 'here' => 'there']);
     }
 
     public function test_can_set_th_sort_button_attributes(): void
@@ -87,8 +87,22 @@ final class ComponentConfigurationTest extends TestCase
             return ['default' => true, 'here' => 'there'];
         });
 
-        $this->assertSame($this->basicTable->getThSortButtonAttributes($this->basicTable->columns()[0]), ['default' => false, 'this' => 'that']);
-        $this->assertSame($this->basicTable->getThSortButtonAttributes($this->basicTable->columns()[1]), ['default' => true, 'here' => 'there']);
+        $this->assertSame($this->basicTable->getThSortButtonAttributes($this->basicTable->columns()[0]), ['default' => false, 'default-colors' => false, 'default-styling' => false,  'this' => 'that']);
+        $this->assertSame($this->basicTable->getThSortButtonAttributes($this->basicTable->columns()[1]), ['default' => true, 'default-colors' => false, 'default-styling' => false, 'here' => 'there']);
+    }
+
+    public function test_can_set_th_sort_icon_attributes(): void
+    {
+        $this->basicTable->setThSortIconAttributes(function (Column $column) {
+            if ($column->isField('id')) {
+                return ['default' => false, 'this' => 'that'];
+            }
+
+            return ['default' => true, 'here' => 'there'];
+        });
+
+        $this->assertSame($this->basicTable->getThSortIconAttributes($this->basicTable->columns()[0]), ['default' => false, 'default-colors' => false, 'default-styling' => false,  'this' => 'that']);
+        $this->assertSame($this->basicTable->getThSortIconAttributes($this->basicTable->columns()[1]), ['default' => true, 'default-colors' => false, 'default-styling' => false, 'here' => 'there']);
     }
 
     public function test_can_set_tr_attributes(): void
@@ -440,5 +454,14 @@ final class ComponentConfigurationTest extends TestCase
 
         $this->assertSame(['default-styling' => true, 'default-colors' => true], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
 
+    }
+
+    public function test_can_get_set_should_be_displayed(): void
+    {
+        $this->assertTrue($this->basicTable->getShouldBeDisplayed());
+        $this->basicTable->setShouldBeHidden();
+        $this->assertFalse($this->basicTable->getShouldBeDisplayed());
+        $this->basicTable->setShouldBeDisplayed();
+        $this->assertTrue($this->basicTable->getShouldBeDisplayed());
     }
 }

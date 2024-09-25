@@ -3,7 +3,7 @@
             ->class(['focus:border-indigo-300 focus:ring-indigo-200' => $isTailwind && $attributes['default-colors'] ?? true])
             ->class(['btn btn-sm btn-success' => $isBootstrap && $attributes['default-styling'] ?? true])
             ->class(['' => $isBootstrap && $attributes['default-colors'] ?? true])
-            ->except(['default-styling', 'default-colors'])
+            ->except(['default','default-styling','default-colors'])
         }} 
            @if($action->hasWireAction())
             {{ $action->getWireAction() }}="{{ $action->getWireActionParams() }}"
@@ -14,22 +14,22 @@
         >
 
         @if($action->hasIcon() && $action->getIconRight())
-            <span>{{ $action->getLabel() }}</span>
+            <span {{ $action->getLabelAttributesBag() }}>{{ $action->getLabel() }}</span>
             <i {{ $action->getIconAttributes()
                     ->class(["ms-1 ". $action->getIcon() => $isBootstrap])
                     ->class(["ml-1 ". $action->getIcon() => $isTailwind])
-                    ->except('default-styling')
+                    ->except(['default','default-styling','default-colors'])
                 }}
             ></i>
         @elseif($action->hasIcon() && !$action->getIconRight())
             <i {{ $action->getIconAttributes()
                     ->class(["ms-1 ". $action->getIcon() => $isBootstrap])
                     ->class(["mr-1 ". $action->getIcon() => $isTailwind])
-                    ->except('default-styling')
+                    ->except(['default','default-styling','default-colors'])
                 }}
             ></i>
-            <span>{{ $action->getLabel() }}</span>
+            <span {{ $action->getLabelAttributesBag() }}>{{ $action->getLabel() }}</span>
         @else
-            <span>{{ $action->getLabel() }}</span>
+            <span {{ $action->getLabelAttributesBag() }}>{{ $action->getLabel() }}</span>
         @endif
 </a>

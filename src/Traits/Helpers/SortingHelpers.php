@@ -151,11 +151,13 @@ trait SortingHelpers
         return $this->getSortingPillsStatus() === false;
     }
 
+    #[Computed]
     public function getDefaultSortingLabelAsc(): string
     {
         return $this->defaultSortingLabelAsc;
     }
 
+    #[Computed]
     public function getDefaultSortingLabelDesc(): string
     {
         return $this->defaultSortingLabelDesc;

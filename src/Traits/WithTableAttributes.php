@@ -26,6 +26,8 @@ trait WithTableAttributes
 
     protected ?\Closure $thSortButtonAttributesCallback;
 
+    protected ?\Closure $thSortIconAttributesCallback;
+
     protected ?\Closure $trAttributesCallback;
 
     protected ?\Closure $tdAttributesCallback;

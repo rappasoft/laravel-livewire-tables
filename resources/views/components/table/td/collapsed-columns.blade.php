@@ -25,7 +25,7 @@
                                 'h-6 w-6' => $this->getCollapsingColumnButtonExpandAttributes['default-styling'] ?? true,
                                 'text-green-600' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
                             ])
-                            ->except('default') 
+                            ->except(['default','default-styling','default-colors']) 
                         }}
                      />
                     <x-heroicon-o-minus-circle x-cloak x-show="open" 
@@ -35,7 +35,7 @@
                                 'h-6 w-6' => $this->getCollapsingColumnButtonCollapseAttributes['default-styling'] ?? true,
                                 'text-yellow-600' => $this->getCollapsingColumnButtonCollapseAttributes['default-colors'] ?? true,
                             ])
-                            ->except('default') 
+                            ->except(['default','default-styling','default-colors']) 
                         }}
                     />
                 </button>
@@ -63,7 +63,7 @@
                             ->class([
                                 'laravel-livewire-tables-btn-lg text-success' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
                             ])
-                            ->except('default') 
+                            ->except(['default','default-styling','default-colors']) 
                         }}
                     />
                     <x-heroicon-o-minus-circle x-cloak x-show="open" 
@@ -72,7 +72,7 @@
                             ->class([
                                 'laravel-livewire-tables-btn-lg text-warning' => $this->getCollapsingColumnButtonExpandAttributes['default-colors'] ?? true,
                             ])
-                            ->except('default') 
+                            ->except(['default','default-styling','default-colors']) 
                         }}
                     />
                 </button>

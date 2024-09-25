@@ -108,6 +108,16 @@ final class ColumnHelpersTest extends TestCase
         $this->assertSame('New Title', $column->getCustomSortingPillTitle());
     }
 
+    public function test_can_get_standard_sorting_pill_directions(): void
+    {
+        $column = Column::make('My Title');
+
+        $this->assertFalse($column->hasCustomSortingPillDirections());
+
+        $this->assertSame($this->basicTable->getDefaultSortingLabelAsc(), $column->getCustomSortingPillDirections('asc'));
+        $this->assertSame($this->basicTable->getDefaultSortingLabelDesc(), $column->getCustomSortingPillDirections('desc'));
+    }
+
     public function test_can_set_custom_sorting_pill_directions(): void
     {
         $column = Column::make('My Title');

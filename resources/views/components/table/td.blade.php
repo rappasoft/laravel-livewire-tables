@@ -22,7 +22,7 @@
                 ->class(['d-none d-md-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnMobile()])
                 ->class(['d-none d-lg-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnTablet()])
                 ->class(['laravel-livewire-tables-cursor' => $isBootstrap && $column && $column->isClickable()])
-                ->except('default')
+                ->except(['default','default-styling','default-colors'])
         }}
     >
         {{ $slot }}

@@ -302,3 +302,7 @@ Labels are visible by default, but should you wish to override a previous "hideC
 Column::make('Name')
     ->setColumnLabelStatusEnabled()
 ```
+
+## See Also
+[Column Styling](./styling)
+

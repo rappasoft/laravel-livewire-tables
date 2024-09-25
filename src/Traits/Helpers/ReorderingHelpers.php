@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Livewire\Attributes\Computed;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ReorderingHelpers
 {
@@ -101,5 +102,16 @@ trait ReorderingHelpers
     public function getReorderThAttributes(): array
     {
         return $this->reorderThAttributes ?? ['default' => true];
+    }
+
+    #[Computed]
+    public function hasReorderThAttributes(): bool
+    {
+        return $this->getReorderThAttributes() != ['default' => true];
+    }
+
+    public function getReorderColumn(): Column
+    {
+        return Column::make('reorder')->label(fn () => null);
     }
 }

@@ -2,6 +2,28 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.4.21] - 2024-09-25
+### Bug Fixes
+- Remove persist from getFilterGenericData by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1966
+- In LaravelLivewireTablesEvent, change the type to Illuminate\Contracts\Auth\Authenticatable by @khwadj in https://github.com/rappasoft/laravel-livewire-tables/pull/1963
+- Fix for Search Field Attribute Defaults by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1962
+- Fix Filter Pills Icon - Tailwind by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1961
+- Add filterComponents into queryString to ensure they're maintained by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1957
+- Reset Current Page on "Per Page" changing by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1953
+
+### New Features
+- Add setLabelAttributes method to Action, and update Docs for Filter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1952
+
+### Tweaks
+- Migration to Core attribute management by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1943
+- Localisation - Avoid Conflicts With Other Packages by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1955
+- GitHub Workflow Tweak for Styling Fixes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1967
+- GitHub Workflow Tweak for Discord - Updates by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1968
+
+### Docs
+- Fix syntax for DateColumn outputFormat in docs by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1960
+
+
 ## [v3.4.20] - 2024-09-10
 ### Bug Fixes
 - Revert tableName to be public by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1937

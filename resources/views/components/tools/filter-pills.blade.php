@@ -10,7 +10,7 @@
                 'text-gray-700 dark:text-white' => $isTailwind,
                 '' =>  $isBootstrap,
             ])>
-                @lang('Applied Filters'):
+                @lang('livewire-tables::Applied Filters'):
             </small>
 
             @foreach($this->getAppliedFiltersWithValues() as $filterSelectName => $value)
@@ -48,8 +48,8 @@
                                 type="button"
                                 class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
                             >
-                                <span class="sr-only">@lang('Remove filter option')</span>
-                                <x-heroicon-m-x-mark class="h-2 w-2" />
+                                <span class="sr-only">@lang('livewire-tables::Remove filter option')</span>
+                                <x-heroicon-m-x-mark class="h-full" />
                             </button>
                         @else
                             <a
@@ -63,7 +63,7 @@
                                     'sr-only' => $isBootstrap4,
                                     'visually-hidden' => $isBootstrap5,
                                 ])>
-                                    @lang('Remove filter option')
+                                    @lang('livewire-tables::Remove filter option')
                                 </span>
                                 <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-tiny"  />
                             </a>
@@ -78,7 +78,7 @@
                     class="focus:outline-none active:outline-none"
                 >
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-200 dark:text-gray-900">
-                        @lang('Clear')
+                        @lang('livewire-tables::Clear')
                     </span>
                 </button>
             @else
@@ -90,7 +90,7 @@
                         'badge rounded-pill bg-light text-dark text-decoration-none' => $isBootstrap5,
                     ])
                 >
-                    @lang('Clear')
+                    @lang('livewire-tables::Clear')
                 </a>
             @endif
         </div>

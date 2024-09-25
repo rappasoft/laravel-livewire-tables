@@ -39,7 +39,7 @@
             
             <x-slot name="thead">
                 @if($this->getCurrentlyReorderingStatus)
-                    <x-livewire-tables::table.th.reorder x-cloak x-show="currentlyReorderingStatus" />
+                    <x-livewire-tables::table.th.reorder x-cloak x-show="currentlyReorderingStatus"  />
                 @endif
                 @if($this->showBulkActionsSections)
                     <x-livewire-tables::table.th.bulk-actions :displayMinimisedOnReorder="true" />

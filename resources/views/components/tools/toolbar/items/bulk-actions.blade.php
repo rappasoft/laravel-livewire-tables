@@ -21,7 +21,7 @@
                     'inline-flex justify-center w-full rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50' => $this->isTailwind  && $this->getBulkActionsButtonAttributes['default-styling'] ?? true,
 
                 ])
-                ->except('default') 
+                ->except(['default','default-styling','default-colors']) 
             }}
             type="button"
             id="{{ $tableName }}-bulkActionsDropdown" 
@@ -34,7 +34,7 @@
                         @endif
             aria-haspopup="true" aria-expanded="false">
 
-            @lang('Bulk Actions')
+            @lang('livewire-tables::Bulk Actions')
             @if($this->isTailwind)
                 <x-heroicon-m-chevron-down class="-mr-1 ml-2 h-5 w-5" />
             @endif
@@ -60,7 +60,7 @@
                             'bg-white dark:bg-gray-700 dark:text-white' => $this->isTailwind && $this->getBulkActionsMenuAttributes['default-colors'] ?? true,
                             'rounded-md shadow-xs' => $this->isTailwind && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
                         ])
-                        ->except('default') 
+                        ->except(['default','default-styling','default-colors']) 
                     }}
                 >
                     <div class="py-1" role="menu" aria-orientation="vertical">
@@ -79,7 +79,7 @@
                                         'text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 dark:text-white dark:hover:bg-gray-600' => $this->isTailwind && $this->getBulkActionsMenuItemAttributes['default-colors'] ?? true,
                                         'block w-full px-4 py-2 text-sm leading-5 focus:outline-none flex items-center space-x-2' => $this->isTailwind && $this->getBulkActionsMenuItemAttributes['default-styling'] ?? true,
                                     ])
-                                    ->except('default') 
+                                    ->except(['default','default-styling','default-colors']) 
                                 }}
                             >
                                 <span>{{ $title }}</span>
@@ -96,7 +96,7 @@
                         'dropdown-menu dropdown-menu-right w-100' => $this->isBootstrap4 && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
                         'dropdown-menu dropdown-menu-end w-100' => $this->isBootstrap5 && $this->getBulkActionsMenuAttributes['default-styling'] ?? true,
                     ])
-                    ->except('default') 
+                    ->except(['default','default-styling','default-colors']) 
                 }}
                 aria-labelledby="{{ $tableName }}-bulkActionsDropdown"
             >
@@ -113,7 +113,7 @@
                                 ->class([
                                     'dropdown-item' => $this->isBootstrap && $this->getBulkActionsMenuItemAttributes['default-styling'] ?? true,
                                 ])
-                                ->except('default') 
+                                ->except(['default','default-styling','default-colors']) 
                         }}
                     >
                         {{ $title }}

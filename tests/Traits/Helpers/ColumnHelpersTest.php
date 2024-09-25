@@ -342,4 +342,22 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column3->getColumnLabelStatus());
         $this->assertFalse($column2->getColumnLabelStatus());
     }
+
+    public function test_can_check_if_column_label_has_attributes(): void
+    {
+        $column = Column::make('ID', 'id');
+
+        $this->assertFalse($column->hasLabelAttributes());
+
+        $column->setLabelAttributes(['class' => 'text-xl']);
+
+        $this->assertTrue($column->hasLabelAttributes());
+
+        $this->assertSame(['class' => 'text-xl', 'default' => false, 'default-colors' => false, 'default-styling' => false], $column->getLabelAttributes());
+
+        $column->setLabelAttributes(['class' => 'text-xl', 'default' => true]);
+
+        $this->assertSame(['class' => 'text-xl', 'default' => true, 'default-colors' => false, 'default-styling' => false], $column->getLabelAttributes());
+
+    }
 }

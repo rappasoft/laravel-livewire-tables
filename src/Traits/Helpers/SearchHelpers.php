@@ -127,7 +127,7 @@ trait SearchHelpers
             return $this->searchPlaceholder;
         }
 
-        return __('Search');
+        return __('livewire-tables::Search');
     }
 
     public function hasSearchPlaceholder(): bool
@@ -137,7 +137,7 @@ trait SearchHelpers
 
     public function getSearchFieldAttributes(): array
     {
-        return count($this->searchFieldAttributes) ? $this->searchFieldAttributes : ['default' => true];
+        return $this->getCustomAttributes('searchFieldAttributes', true);
     }
 
     public function shouldTrimSearchString(): bool

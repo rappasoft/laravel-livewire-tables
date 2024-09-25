@@ -189,7 +189,7 @@ class DateRangeFilter extends Filter
 
             if (($minDate instanceof Carbon) && $maxDate instanceof Carbon) {
                 return $this->outputTranslatedDate($minDate)
-                        .' '.__('to').' '.
+                        .' '.__('livewire-tables::to').' '.
                         $this->outputTranslatedDate($maxDate);
             }
         }
