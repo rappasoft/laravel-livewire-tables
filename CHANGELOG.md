@@ -2,17 +2,16 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [v3.4.23] - UNRELEASED
+## [v3.4.22] - UNRELEASED
+### Bug Fixes
+- Fix Loading Placeholder Bug - Breaking Table by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1969
+
 ### New Features
 - Add setPaginationWrapperAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1978
 - Add configurable areas - before-wrapper and after-wrapper by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1977
 
 ### Docs
 - Add getTitle reference for setTdAttributes/setTrAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1976
-
-## [v3.4.22] - 2024-09-27
-### Bug Fixes
-- Fix Loading Placeholder Bug - Breaking Table by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1969
 
 ## [v3.4.21] - 2024-09-25
 ### Bug Fixes
