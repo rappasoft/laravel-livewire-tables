@@ -35,9 +35,6 @@ trait WithFilters
     // Set in JS
     public array $filterComponents = [];
 
-    // Set in Frontend
-    public array $appliedFilters = [];
-
     public array $filterGenericData = [];
 
     protected ?Collection $filterCollection;
@@ -51,7 +48,6 @@ trait WithFilters
     {
         if ($this->queryStringIsEnabled() && $this->filtersAreEnabled()) {
             return [
-                'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
                 'filterComponents' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
             ];
         }
