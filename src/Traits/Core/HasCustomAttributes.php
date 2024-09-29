@@ -46,4 +46,10 @@ trait HasCustomAttributes
 
         return $this;
     }
+
+    public function getCustomAttributesBagFromArray(array $attributesArray): ComponentAttributeBag
+    {
+        return new ComponentAttributeBag($attributesArray);
+    }
+
 }
