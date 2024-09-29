@@ -13,7 +13,7 @@ final class ToolsStylingHelpersTest extends TestCase
 
     public function test_can_get_tools_attributes_initial_values(): void
     {
-        $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => ''], $this->basicTable->getToolsAttributesBag()->getAttributes());
+        $this->assertSame(['class' => '', 'default-colors' => true, 'default-styling' => true], $this->basicTable->getToolsAttributesBag()->getAttributes());
     }
 
     public function test_can_get_toolbar_attributes_initial_status(): void
@@ -23,6 +23,6 @@ final class ToolsStylingHelpersTest extends TestCase
 
     public function test_can_get_toolbar_attributes_initial_values(): void
     {
-        $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => ''], $this->basicTable->getToolBarAttributesBag()->getAttributes());
+        $this->assertSame(['class' => '', 'default-colors' => true, 'default-styling' => true], $this->basicTable->getToolBarAttributesBag()->getAttributes());
     }
 }
