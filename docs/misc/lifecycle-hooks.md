@@ -19,6 +19,12 @@ This is called prior to setting up the available Columns via the columns() metho
 ## columnsSet
 This is called immediately after the Columns are set up
 
+## configuringColumnSelect
+This is called immediately prior to setting up Column Select
+
+## configuredColumnSelect
+This is called immediately after setting up Column Select
+
 ## rowsRetrieved
 This is called immediately after the query is executed, and is passed the result from the executed query.
 
