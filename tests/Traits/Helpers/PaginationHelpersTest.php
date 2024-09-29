@@ -182,5 +182,24 @@ final class PaginationHelpersTest extends TestCase
         $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg']);
 
         $this->assertSame(['class' => 'text-lg'], $this->basicTable->getPaginationWrapperAttributes());
+
+        $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg', 'testval' => '456']);
+
+        $this->assertSame(['class' => 'text-lg', 'testval' => '456'], $this->basicTable->getPaginationWrapperAttributes());
+
+    }
+
+    public function test_can_get_pagination_wrapper_attributes_bag(): void
+    {
+        $this->assertSame((new \Illuminate\View\ComponentAttributeBag(['class' => '']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
+
+        $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg']);
+
+        $this->assertSame((new \Illuminate\View\ComponentAttributeBag(['class' => 'text-lg']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
+
+        $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg', 'testval' => '123']);
+
+        $this->assertSame((new \Illuminate\View\ComponentAttributeBag(['class' => 'text-lg', 'testval' => '123']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
+
     }
 }

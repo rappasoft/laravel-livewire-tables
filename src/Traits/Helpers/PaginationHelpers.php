@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Livewire\Attributes\Computed;
+use Illuminate\View\ComponentAttributeBag;
 
 trait PaginationHelpers
 {
@@ -156,9 +157,15 @@ trait PaginationHelpers
         return $this->shouldRetrieveTotalItemCount;
     }
 
-    #[Computed]
     public function getPaginationWrapperAttributes(): array
     {
-        return $this->paginationWrapperAttributes;
+        return $this->paginationWrapperAttributes ?? ['class' => ''];
+    }
+
+
+    #[Computed]
+    public function getPaginationWrapperAttributesBag(): ComponentAttributeBag
+    {
+        return new ComponentAttributeBag($this->getPaginationWrapperAttributes());
     }
 }

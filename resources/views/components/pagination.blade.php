@@ -7,7 +7,7 @@
 )
 
 @if ($this->isTailwind)
-    <div {{ $this->getPaginationWrapperAttributes }}>
+    <div {{ $this->getPaginationWrapperAttributesBag() }}>
         @if ($this->paginationVisibilityIsEnabled())
             <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">
                 <div>
@@ -49,7 +49,7 @@
         @endif
     </div>
 @elseif ($this->isBootstrap4)
-    <div {{ $this->getPaginationWrapperAttributes }}>
+    <div {{ $this->getPaginationWrapperAttributesBag() }}>
         @if ($this->paginationVisibilityIsEnabled())
             @if ($this->paginationIsEnabled() && $this->isPaginationMethod('standard') && $this->getRows->lastPage() > 1)
                 <div class="row mt-3">
@@ -102,7 +102,7 @@
         @endif
     </div>
 @elseif ($this->isBootstrap5)
-    <div {{ $this->getPaginationWrapperAttributes }} >
+    <div {{ $this->getPaginationWrapperAttributesBag() }} >
         @if ($this->paginationVisibilityIsEnabled())
             @if ($this->paginationIsEnabled() && $this->isPaginationMethod('standard') && $this->getRows->lastPage() > 1)
                 <div class="row mt-3">
