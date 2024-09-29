@@ -59,10 +59,9 @@ final class ToolsStylingHelpersTest extends TestCase
     public function test_can_change_tools_and_toolbar_attributes_initial_values_no_defaults(): void
     {
         $this->basicTable->setToolsAttributes(['class' => 'bg-amber-500'])->setToolBarAttributes(['class' => 'bg-green-500']);
-        
+
         $this->assertSame(['class' => 'bg-amber-500', 'default-colors' => false, 'default-styling' => false], $this->basicTable->getToolsAttributesBag()->getAttributes());
 
         $this->assertSame(['class' => 'bg-green-500', 'default-colors' => false, 'default-styling' => false], $this->basicTable->getToolBarAttributesBag()->getAttributes());
     }
-
 }
