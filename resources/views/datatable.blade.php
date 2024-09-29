@@ -7,15 +7,24 @@
 @php($isBootstrap5 = $this->isBootstrap5)
 
 <div {{ $this->getTopLevelAttributes() }}>
+
+    @includeWhen(
+        $this->hasConfigurableAreaFor('before-wrapper'), 
+        $this->getConfigurableAreaFor('before-wrapper'), 
+        $this->getParametersForConfigurableArea('before-wrapper')
+    )
+
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
         @if($this->hasActions && !$this->showActionsInToolbar)
             <x-livewire-tables::includes.actions/>    
         @endif
     
 
-        @if ($this->hasConfigurableAreaFor('before-tools'))
-            @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
-        @endif
+        @includeWhen(
+            $this->hasConfigurableAreaFor('before-tools'), 
+            $this->getConfigurableAreaFor('before-tools'), 
+            $this->getParametersForConfigurableArea('before-tools')
+        )
 
         @if($this->shouldShowTools)
         <x-livewire-tables::tools>
@@ -26,11 +35,21 @@
                 <x-livewire-tables::tools.filter-pills />
             @endif
 
-            @includeWhen($this->hasConfigurableAreaFor('before-toolbar'), $this->getConfigurableAreaFor('before-toolbar'), $this->getParametersForConfigurableArea('before-toolbar'))
+            @includeWhen(
+                $this->hasConfigurableAreaFor('before-toolbar'), 
+                $this->getConfigurableAreaFor('before-toolbar'), 
+                $this->getParametersForConfigurableArea('before-toolbar')
+            )
+
             @if($this->shouldShowToolBar)
                 <x-livewire-tables::tools.toolbar />
             @endif
-            @includeWhen($this->hasConfigurableAreaFor('after-toolbar'), $this->getConfigurableAreaFor('after-toolbar'), $this->getParametersForConfigurableArea('after-toolbar'))
+
+            @includeWhen(
+                $this->hasConfigurableAreaFor('after-toolbar'), 
+                $this->getConfigurableAreaFor('after-toolbar'), 
+                $this->getParametersForConfigurableArea('after-toolbar')
+            )
             
         </x-livewire-tables::tools>
         @endif
@@ -110,4 +129,11 @@
 
         @includeIf($customView)
     </x-livewire-tables::wrapper>
+
+    @includeWhen(
+            $this->hasConfigurableAreaFor('after-wrapper'), 
+            $this->getConfigurableAreaFor('after-wrapper'), 
+            $this->getParametersForConfigurableArea('after-wrapper')
+    )
+    
 </div>
