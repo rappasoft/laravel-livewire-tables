@@ -51,5 +51,4 @@ trait HasCustomAttributes
     {
         return new ComponentAttributeBag($attributesArray);
     }
-
 }
