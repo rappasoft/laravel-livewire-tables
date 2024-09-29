@@ -1,10 +1,14 @@
 @aware(['component', 'tableName','isTailwind','isBootstrap'])
 @props([])
+@php($toolBarAttributes = $this->getToolBarAttributesBag())
 
-<div @class([
-        'd-md-flex justify-content-between mb-3' => $this->isBootstrap,
-        'md:flex md:justify-between mb-4 px-4 md:p-0' => $this->isTailwind,
-    ])
+<div 
+    {{
+        $toolBarAttributes->merge()
+        ->class(['md:flex md:justify-between mb-4 px-4 md:p-0' => $isTailwind && ($toolBarAttributes['default-styling'] ?? true)])
+        ->class(['d-md-flex justify-content-between mb-3' => $isBootstrap && ($toolBarAttributes['default-styling'] ?? true)])
+        ->except(['default','default-styling','default-colors']) 
+    }}
 >
     <div @class([
             'd-md-flex' => $this->isBootstrap,
@@ -52,9 +56,7 @@
             'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => $this->isTailwind,
         ])
     >
-        @if ($this->hasConfigurableAreaFor('toolbar-right-start'))
-            @include($this->getConfigurableAreaFor('toolbar-right-start'), $this->getParametersForConfigurableArea('toolbar-right-start'))
-        @endif
+        @includeWhen($this->hasConfigurableAreaFor('toolbar-right-start'), $this->getConfigurableAreaFor('toolbar-right-start'), $this->getParametersForConfigurableArea('toolbar-right-start'))
 
         @if($this->hasActions && $this->showActionsInToolbar && $this->getActionsPosition == 'right')
             <x-livewire-tables::includes.actions/>    
@@ -72,9 +74,7 @@
             <x-livewire-tables::tools.toolbar.items.pagination-dropdown />
         @endif
 
-        @if ($this->hasConfigurableAreaFor('toolbar-right-end'))
-            @include($this->getConfigurableAreaFor('toolbar-right-end'), $this->getParametersForConfigurableArea('toolbar-right-end'))
-        @endif
+        @includeWhen($this->hasConfigurableAreaFor('toolbar-right-end'), $this->getConfigurableAreaFor('toolbar-right-end'), $this->getParametersForConfigurableArea('toolbar-right-end'))
     </div>
 </div>
 @if (
