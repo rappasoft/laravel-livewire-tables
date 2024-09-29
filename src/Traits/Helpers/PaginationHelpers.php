@@ -155,4 +155,10 @@ trait PaginationHelpers
     {
         return $this->shouldRetrieveTotalItemCount;
     }
+
+    #[Computed]
+    public function getPaginationWrapperAttributes(): array 
+    {
+        return $this->paginationWrapperAttributes;
+    }
 }

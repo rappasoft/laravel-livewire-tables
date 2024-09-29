@@ -173,4 +173,14 @@ final class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
 
     }
+
+    public function test_can_get_pagination_wrapper_attributes(): void
+    {
+
+        $this->assertSame(['class' => ''], $this->basicTable->getPaginationWrapperAttributes());
+
+        $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg']);
+
+        $this->assertSame(['class' => 'text-lg'], $this->basicTable->getPaginationWrapperAttributes());
+    }
 }

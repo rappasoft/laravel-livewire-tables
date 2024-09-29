@@ -1,11 +1,13 @@
 @aware(['component','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
-@if ($this->hasConfigurableAreaFor('before-pagination'))
-    @include($this->getConfigurableAreaFor('before-pagination'), $this->getParametersForConfigurableArea('before-pagination'))
-@endif
+@includeWhen(
+    $this->hasConfigurableAreaFor('before-pagination'), 
+    $this->getConfigurableAreaFor('before-pagination'), 
+    $this->getParametersForConfigurableArea('before-pagination')
+)
 
 @if ($this->isTailwind)
-    <div>
+    <div {{ $this->getPaginationWrapperAttributes }}>
         @if ($this->paginationVisibilityIsEnabled())
             <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">
                 <div>
@@ -47,7 +49,7 @@
         @endif
     </div>
 @elseif ($this->isBootstrap4)
-    <div >
+    <div {{ $this->getPaginationWrapperAttributes }}>
         @if ($this->paginationVisibilityIsEnabled())
             @if ($this->paginationIsEnabled() && $this->isPaginationMethod('standard') && $this->getRows->lastPage() > 1)
                 <div class="row mt-3">
@@ -100,7 +102,7 @@
         @endif
     </div>
 @elseif ($this->isBootstrap5)
-    <div >
+    <div {{ $this->getPaginationWrapperAttributes }} >
         @if ($this->paginationVisibilityIsEnabled())
             @if ($this->paginationIsEnabled() && $this->isPaginationMethod('standard') && $this->getRows->lastPage() > 1)
                 <div class="row mt-3">
@@ -152,6 +154,8 @@
     </div>
 @endif
 
-@if ($this->hasConfigurableAreaFor('after-pagination'))
-    @include($this->getConfigurableAreaFor('after-pagination'), $this->getParametersForConfigurableArea('after-pagination'))
-@endif
+@includeWhen(
+    $this->hasConfigurableAreaFor('after-pagination'), 
+    $this->getConfigurableAreaFor('after-pagination'), 
+    $this->getParametersForConfigurableArea('after-pagination')
+)
