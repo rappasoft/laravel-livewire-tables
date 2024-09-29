@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Livewire\Attributes\Computed;
 use Illuminate\View\ComponentAttributeBag;
+use Livewire\Attributes\Computed;
 
 trait PaginationHelpers
 {
@@ -161,7 +161,6 @@ trait PaginationHelpers
     {
         return $this->paginationWrapperAttributes ?? ['class' => ''];
     }
-
 
     #[Computed]
     public function getPaginationWrapperAttributesBag(): ComponentAttributeBag
