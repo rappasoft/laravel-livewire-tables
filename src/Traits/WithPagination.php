@@ -55,7 +55,6 @@ trait WithPagination
     // Used In Frontend
     protected array $paginationWrapperAttributes = ['class' => ''];
 
-
     public function mountWithPagination(): void
     {
         $sessionPerPage = session()->get($this->getPerPagePaginationSessionKey(), $this->getPerPageAccepted()[0] ?? 10);

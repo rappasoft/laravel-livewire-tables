@@ -157,7 +157,7 @@ trait PaginationHelpers
     }
 
     #[Computed]
-    public function getPaginationWrapperAttributes(): array 
+    public function getPaginationWrapperAttributes(): array
     {
         return $this->paginationWrapperAttributes;
     }
