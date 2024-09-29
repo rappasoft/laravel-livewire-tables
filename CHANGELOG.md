@@ -2,9 +2,13 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## UNRELEASED
+## [v3.4.23] - UNRELEASED
 ### New Features
 - Add setPaginationWrapperAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1978
+- Add configurable areas - before-wrapper and after-wrapper by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1977
+
+### Docs
+- Add getTitle reference for setTdAttributes/setTrAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1976
 
 ## [v3.4.22] - 2024-09-27
 ### Bug Fixes
