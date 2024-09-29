@@ -16,6 +16,12 @@ final class ToolsStylingHelpersTest extends TestCase
         $this->assertSame(['class' => '', 'default-colors' => true, 'default-styling' => true], $this->basicTable->getToolsAttributesBag()->getAttributes());
     }
 
+    public function test_can_change_tools_attributes_initial_values(): void
+    {
+        $this->basicTable->setToolsAttributes(['class' => 'bg-red-500', 'default-colors' => true, 'default-styling' => true]);
+        $this->assertSame(['class' => 'bg-red-500', 'default-colors' => true, 'default-styling' => true], $this->basicTable->getToolsAttributesBag()->getAttributes());
+    }
+
     public function test_can_get_toolbar_attributes_initial_status(): void
     {
         $this->assertTrue($this->basicTable->hasCustomAttributes('toolBarAttributes'));
@@ -25,4 +31,11 @@ final class ToolsStylingHelpersTest extends TestCase
     {
         $this->assertSame(['class' => '', 'default-colors' => true, 'default-styling' => true], $this->basicTable->getToolBarAttributesBag()->getAttributes());
     }
+
+    public function test_can_change_toolbar_attributes_initial_values(): void
+    {
+        $this->basicTable->setToolBarAttributes(['class' => 'bg-blue-500', 'default-colors' => true, 'default-styling' => true]);
+        $this->assertSame(['class' => 'bg-blue-500', 'default-colors' => true, 'default-styling' => true], $this->basicTable->getToolBarAttributesBag()->getAttributes());
+    }
+
 }

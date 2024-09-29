@@ -10,7 +10,7 @@ trait HasToolsStyling
     use ToolsStylingConfiguration,
         ToolsStylingHelpers;
 
-    protected array $toolsAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
+    protected array $toolsAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];
 
-    protected array $toolBarAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
+    protected array $toolBarAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];
 }
