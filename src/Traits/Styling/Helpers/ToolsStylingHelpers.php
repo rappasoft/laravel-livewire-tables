@@ -2,12 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
 
-use Livewire\Attributes\Computed;
 use Illuminate\View\ComponentAttributeBag;
+use Livewire\Attributes\Computed;
 
 trait ToolsStylingHelpers
 {
-
     protected function getToolsAttributes(): array
     {
         return $this->getCustomAttributes(propertyName: 'toolsAttributes', default: false, classicMode: false);

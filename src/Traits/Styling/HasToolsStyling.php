@@ -13,5 +13,4 @@ trait HasToolsStyling
     protected array $toolsAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
 
     protected array $toolBarAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
-    
 }

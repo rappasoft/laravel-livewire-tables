@@ -15,6 +15,4 @@ trait WithTools
     protected bool $toolsStatus = true;
 
     protected bool $toolBarStatus = true;
-
-
 }

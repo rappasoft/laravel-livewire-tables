@@ -25,5 +25,4 @@ final class ToolsStylingHelpersTest extends TestCase
     {
         $this->assertSame(['default-styling' => true, 'default-colors' => true, 'class' => ''], $this->basicTable->getToolBarAttributesBag()->getAttributes());
     }
-
 }
