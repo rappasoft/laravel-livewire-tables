@@ -26,6 +26,7 @@ You can use the `setConfigurableAreas` method to set multiple areas that you wan
 public function configure(): void
 {
   $this->setConfigurableAreas([
+    'before-wrapper' => 'path.to.my.view',
     'before-tools' => 'path.to.my.view',
     'toolbar-left-start' => 'path.to.my.view',
     'toolbar-left-end' => 'path.to.my.view',
@@ -35,6 +36,7 @@ public function configure(): void
     'after-toolbar' => 'path.to.my.view',
     'before-pagination' => 'path.to.my.view',
     'after-pagination' => 'path.to.my.view',
+    'after-wrapper' => 'path.to.my.view',
   ]);
 }
 ```

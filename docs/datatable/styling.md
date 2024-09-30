@@ -150,6 +150,11 @@ public function configure(): void
 
 Set a list of attributes to override on the th elements.  
 
+If your Column does not have a field (e.g. a label column), then you may use the following, which will utilise the first parameter in Column::make()
+```php
+  $column->getTitle()
+```
+
 ```php
 public function configure(): void
 {
@@ -310,6 +315,11 @@ public function configure(): void
 ### setTdAttributes
 
 Set a list of attributes to override on the td elements
+
+If your Column does not have a field (e.g. a label column), then you may use the following, which will utilise the first parameter in Column::make()
+```php
+  $column->getTitle()
+```
 
 ```php
 public function configure(): void

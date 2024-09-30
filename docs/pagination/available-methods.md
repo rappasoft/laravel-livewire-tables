@@ -296,3 +296,14 @@ public function configure(): void
     $this->setShouldRetrieveTotalItemCountDisabled();
 }
 ```
+
+## setPaginationWrapperAttributes
+
+Used to set attributes for the "div" that wraps the pagination section
+
+```php
+public function configure(): void
+{
+    $this->setPaginationWrapperAttributes(['class' => 'text-lg']);
+}
+```

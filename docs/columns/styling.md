@@ -45,6 +45,11 @@ Below is a copy of the relevant sections from [datatable styling](../datatable/s
 
 Set a list of attributes to override on the th elements.  
 
+If your Column does not have a field (e.g. a label column), then you may use the following, which will utilise the first parameter in Column::make()
+```php
+  $column->getTitle()
+```
+
 ```php
 public function configure(): void
 {
@@ -203,6 +208,11 @@ public function configure(): void
 ## setTdAttributes
 
 Set a list of attributes to override on the td elements.  For example, changing the background color between red/green based on whether the "total" field is over or under 1000.
+
+If your Column does not have a field (e.g. a label column), then you may use the following, which will utilise the first parameter in Column::make()
+```php
+  $column->getTitle()
+```
 
 ```php
 public function configure(): void

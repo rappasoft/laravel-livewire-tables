@@ -177,4 +177,11 @@ trait PaginationConfiguration
 
         return $this;
     }
+
+    public function setPaginationWrapperAttributes(array $paginationWrapperAttributes): self
+    {
+        $this->paginationWrapperAttributes = array_merge(['class' => ''], $paginationWrapperAttributes);
+
+        return $this;
+    }
 }
