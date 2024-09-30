@@ -9,9 +9,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ### New Features
 - Add setPaginationWrapperAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1978
 - Add configurable areas - before-wrapper and after-wrapper by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1977
+- Add ToolsAttributes and ToolbarAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1982
 
 ### Docs
 - Add getTitle reference for setTdAttributes/setTrAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1976
+- Add setToolsAttributes and setToolBarAttributes docs by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1984
+- Add docs for the ColumnSelect lifecycle hooks by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1983
 
 ## [v3.4.21] - 2024-09-25
 ### Bug Fixes
