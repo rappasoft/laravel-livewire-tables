@@ -18,8 +18,8 @@ abstract class BasePaginationVisuals extends ThemedTestCase
     public function setupSingleRecordBasicTable()
     {
         return $this->setupBasicTableForLivewire()
-        ->call('setPerPageAccepted', [1])
-        ->call('setPerPage', 1);
+            ->call('setPerPageAccepted', [1])
+            ->call('setPerPage', 1);
     }
 
     public function tableWithStandardDetailedPagination()
@@ -41,6 +41,4 @@ abstract class BasePaginationVisuals extends ThemedTestCase
         $this->setupBasicTableForBrowsing()
             ->call('setPerPage', 15);
     }
-
-
 }

@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ThemedTestCase extends TestCase
 {
-
     protected function setupBasicTableForLivewire()
     {
         return Livewire::test(PetsTable::class);
@@ -19,5 +18,4 @@ class ThemedTestCase extends TestCase
     {
         return $this->setupBasicTableForLivewire();
     }
-
 }
