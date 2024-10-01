@@ -12,15 +12,14 @@ final class BS4PaginationVisualsTest extends ThemedTestCase
     protected function setupBasicTableForBrowsing()
     {
         return $this->setupBasicTableForLivewire()
-                ->call('setTheme', 'bootstrap-4');
+            ->call('setTheme', 'bootstrap-4');
     }
 
     protected function setupBasicTableSingleRecord()
     {
         return $this->setupSingleRecordBasicTable()
-                ->call('setTheme', 'bootstrap-4');
+            ->call('setTheme', 'bootstrap-4');
     }
-
 
     public function test_pagination_shows_by_default(): void
     {
@@ -75,5 +74,4 @@ final class BS4PaginationVisualsTest extends ThemedTestCase
             ->assertDontSeeHtml('<span>Showing</span>')
             ->assertDontSeeHtml('<span>to</span>');
     }
-
 }

@@ -10,6 +10,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 abstract class ThemedTestCase extends TestCase
 {
     abstract protected function setupBasicTableForBrowsing();
+
     abstract protected function setupBasicTableSingleRecord();
 
     protected function setupBasicTableForLivewire()
@@ -25,8 +26,8 @@ abstract class ThemedTestCase extends TestCase
     public function setupSingleRecordBasicTable()
     {
         return $this->setupBasicTableForLivewire()
-        ->call('setPerPageAccepted', [1])
-        ->call('setPerPage', 1);
+            ->call('setPerPageAccepted', [1])
+            ->call('setPerPage', 1);
     }
 
     public function tableWithStandardDetailedPagination()

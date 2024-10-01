@@ -12,13 +12,13 @@ final class TWPaginationVisualsTest extends ThemedTestCase
     protected function setupBasicTableForBrowsing()
     {
         return $this->setupBasicTableForLivewire()
-                ->call('setTheme', 'tailwind');
+            ->call('setTheme', 'tailwind');
     }
-    
+
     protected function setupBasicTableSingleRecord()
     {
         return $this->setupSingleRecordBasicTable()
-                ->call('setTheme', 'tailwind');
+            ->call('setTheme', 'tailwind');
     }
 
     public function test_pagination_shows_by_default(): void
@@ -65,7 +65,7 @@ final class TWPaginationVisualsTest extends ThemedTestCase
     public function test_paged_results_label_shows_with_pagination_enabled_and_more_than_one_page(): void
     {
         $this->setupBasicTableSingleRecord()
-             ->assertSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
+            ->assertSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
     public function test_paged_results_label_doesnt_show_with_pagination_enabled_and_less_than_one_page(): void
@@ -193,7 +193,6 @@ final class TWPaginationVisualsTest extends ThemedTestCase
             ->assertDontSeeHtml('<span>Showing</span>')
             ->assertDontSeeHtml('<span>to</span>');
     }
-
 
     public function test_pagination_field_can_set_colors(): void
     {

@@ -9,17 +9,16 @@ use Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals\Themed\ThemedTestCase;
 
 final class BS5PaginationVisualsTest extends ThemedTestCase
 {
-
     protected function setupBasicTableForBrowsing()
     {
         return $this->setupBasicTableForLivewire()
-                ->call('setTheme', 'bootstrap-5');
+            ->call('setTheme', 'bootstrap-5');
     }
 
     protected function setupBasicTableSingleRecord()
     {
         return $this->setupSingleRecordBasicTable()
-                ->call('setTheme', 'bootstrap-5');
+            ->call('setTheme', 'bootstrap-5');
     }
 
     public function test_pagination_shows_by_default(): void
@@ -34,7 +33,6 @@ final class BS5PaginationVisualsTest extends ThemedTestCase
         $this->setupBasicTableForBrowsing()
             ->assertSeeHtml('<select wire:model.live="perPage" id="table-perPage" class="form-select">');
     }
-
 
     public function test_detailed_pagination_is_displayed_standard_bs5(): void
     {
@@ -76,5 +74,4 @@ final class BS5PaginationVisualsTest extends ThemedTestCase
             ->assertDontSeeHtml('<span>Showing</span>')
             ->assertDontSeeHtml('<span>to</span>');
     }
-
 }
