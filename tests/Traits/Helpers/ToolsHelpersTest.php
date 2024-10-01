@@ -34,7 +34,7 @@ final class ToolsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->getToolBarStatus());
 
         $this->basicTable->setToolsEnabled();
-        
+
         $this->assertTrue($this->basicTable->getToolsStatus());
         $this->assertTrue($this->basicTable->getToolBarStatus());
 
