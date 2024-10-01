@@ -17,6 +17,4 @@ trait WithLoadingPlaceholder
     protected string $loadingPlaceholderContent = 'Loading';
 
     protected ?string $loadingPlaceholderBlade = null;
-
-
 }

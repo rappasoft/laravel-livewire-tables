@@ -31,5 +31,4 @@ trait LoadingPlaceholderStylingConfiguration
 
         return $this;
     }
-
 }
