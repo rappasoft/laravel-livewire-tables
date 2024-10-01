@@ -1,0 +1,67 @@
+<?php
+
+namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
+
+use Livewire\Attributes\Computed;
+use Illuminate\View\ComponentAttributeBag;
+
+trait PaginationStylingHelpers
+{
+    #[Computed]
+    public function getPaginationTheme(): string
+    {
+        return $this->paginationTheme;
+    }
+
+    #[Computed]
+    public function getPaginationWrapperAttributes(): array
+    {
+        return $this->getCustomAttributes(propertyName: 'paginationWrapperAttributes', default: false, classicMode: true);
+    }
+
+    #[Computed]
+    public function getPaginationWrapperAttributesBag(): ComponentAttributeBag
+    {
+        return $this->getCustomAttributesBagFromArray($this->getPaginationWrapperAttributes());
+    }
+
+
+    #[Computed]
+    public function getPerPageFieldAttributes(): array
+    {
+        return $this->getCustomAttributes(propertyName: 'perPageFieldAttributes', default: false, classicMode: false);
+
+    }
+
+    #[Computed]
+    public function getPerPageFieldAttributesBag(): ComponentAttributeBag
+    {
+        return new ComponentAttributeBag($this->getPerPageFieldAttributes());
+    }
+
+    #[Computed]
+    public function getPerPageWrapperAttributes(): array
+    {
+        return $this->getCustomAttributes(propertyName: 'perPageWrapperAttributes', default: false, classicMode: false);
+
+    }
+
+    #[Computed]
+    public function getPerPageWrapperAttributesBag(): ComponentAttributeBag
+    {
+        return new ComponentAttributeBag($this->getPerPageWrapperAttributes());
+    }
+
+    #[Computed]
+    public function hasCustomPaginationBlade(): bool
+    {
+        return (isset($this->customPaginationBlade) && $this->customPaginationBlade !== null);
+    }
+
+    #[Computed]
+    public function getCustomPaginationBlade(): string
+    {
+        return $this->customPaginationBlade ? '';
+    }
+
+}

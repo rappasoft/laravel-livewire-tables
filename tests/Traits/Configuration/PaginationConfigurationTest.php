@@ -12,15 +12,6 @@ final class PaginationConfigurationTest extends TestCase
         parent::setupUnpaginatedTable();
     }
 
-    public function test_pagination_theme_can_be_set(): void
-    {
-        $this->assertSame('tailwind', $this->basicTable->getPaginationTheme());
-
-        $this->basicTable->setPaginationTheme('bootstrap');
-
-        $this->assertSame('bootstrap', $this->basicTable->getPaginationTheme());
-    }
-
     public function test_can_set_pagination_status(): void
     {
         $this->assertTrue($this->basicTable->getPaginationStatus());

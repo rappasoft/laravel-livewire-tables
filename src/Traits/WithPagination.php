@@ -6,12 +6,14 @@ use Livewire\Attributes\Locked;
 use Livewire\WithPagination as LivewirePagination;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\PaginationConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\PaginationHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Styling\HasPaginationStyling;
 
 trait WithPagination
 {
     use LivewirePagination,
         PaginationConfiguration,
-        PaginationHelpers;
+        PaginationHelpers,
+        HasPaginationStyling;
 
     public ?string $pageName = null;
 
@@ -19,9 +21,6 @@ trait WithPagination
 
     #[Locked]
     public array $perPageAccepted = [10, 25, 50];
-
-    #[Locked]
-    public string $paginationTheme = 'tailwind';
 
     #[Locked]
     public bool $paginationStatus = true;
@@ -48,12 +47,8 @@ trait WithPagination
 
     protected bool $shouldShowPaginationDetails = true;
 
-    protected array $perPageFieldAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
-
     protected bool $shouldRetrieveTotalItemCount = true;
 
-    // Used In Frontend
-    protected array $paginationWrapperAttributes = ['class' => ''];
 
     public function mountWithPagination(): void
     {
