@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
 
-use Livewire\Attributes\Computed;
 use Illuminate\View\ComponentAttributeBag;
+use Livewire\Attributes\Computed;
 
 trait PaginationStylingHelpers
 {
@@ -24,7 +24,6 @@ trait PaginationStylingHelpers
     {
         return $this->getCustomAttributesBagFromArray($this->getPaginationWrapperAttributes());
     }
-
 
     #[Computed]
     public function getPerPageFieldAttributes(): array
@@ -55,7 +54,7 @@ trait PaginationStylingHelpers
     #[Computed]
     public function hasCustomPaginationBlade(): bool
     {
-        return (isset($this->customPaginationBlade) && $this->customPaginationBlade !== null);
+        return isset($this->customPaginationBlade) && $this->customPaginationBlade !== null;
     }
 
     #[Computed]
@@ -63,5 +62,4 @@ trait PaginationStylingHelpers
     {
         return $this->customPaginationBlade ?? '';
     }
-
 }

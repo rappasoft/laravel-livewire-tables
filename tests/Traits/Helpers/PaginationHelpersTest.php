@@ -120,7 +120,6 @@ final class PaginationHelpersTest extends TestCase
 
     }
 
-
     public function test_can_toggle_total_item_count_retrieval(): void
     {
 
@@ -150,5 +149,4 @@ final class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->getShouldRetrieveTotalItemCount());
 
     }
-
 }

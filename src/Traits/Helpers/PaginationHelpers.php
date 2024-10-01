@@ -139,12 +139,9 @@ trait PaginationHelpers
         return $this->tableName.'-perPage';
     }
 
-
     #[Computed]
     public function getShouldRetrieveTotalItemCount(): bool
     {
         return $this->shouldRetrieveTotalItemCount;
     }
-
-
 }

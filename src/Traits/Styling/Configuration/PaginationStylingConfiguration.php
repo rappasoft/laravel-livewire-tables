@@ -24,7 +24,7 @@ trait PaginationStylingConfiguration
 
         return $this;
     }
-    
+
     public function setPerPageFieldAttributes(array $perPageFieldAttributes = []): self
     {
         $this->setCustomAttributes(propertyName: 'perPageFieldAttributes', customAttributes: array_merge($this->getPerPageFieldAttributes(), $perPageFieldAttributes));
@@ -38,6 +38,4 @@ trait PaginationStylingConfiguration
 
         return $this;
     }
-
-
 }

@@ -49,7 +49,6 @@ trait WithPagination
 
     protected bool $shouldRetrieveTotalItemCount = true;
 
-
     public function mountWithPagination(): void
     {
         $sessionPerPage = session()->get($this->getPerPagePaginationSessionKey(), $this->getPerPageAccepted()[0] ?? 10);
