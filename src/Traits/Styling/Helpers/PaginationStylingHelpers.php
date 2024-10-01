@@ -61,7 +61,7 @@ trait PaginationStylingHelpers
     #[Computed]
     public function getCustomPaginationBlade(): string
     {
-        return $this->customPaginationBlade ? '';
+        return $this->customPaginationBlade ?? '';
     }
 
 }

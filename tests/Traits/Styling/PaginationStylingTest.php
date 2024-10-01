@@ -2,8 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Styling;
 
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Illuminate\View\ComponentAttributeBag;
+use Livewire\Livewire;
 
 final class PaginationStylingTest extends TestCase
 {
@@ -66,31 +68,72 @@ final class PaginationStylingTest extends TestCase
     public function test_can_get_pagination_wrapper_attributes(): void
     {
 
-        $this->assertSame(['class' => ''], $this->basicTable->getPaginationWrapperAttributes());
+        $this->assertSame(['class' => '', 'default' => false, 'default-colors' => false, 'default-styling' => false], $this->basicTable->getPaginationWrapperAttributes());
 
         $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg']);
 
-        $this->assertSame(['class' => 'text-lg'], $this->basicTable->getPaginationWrapperAttributes());
+        $this->assertSame(['class' => 'text-lg', 'default' => false, 'default-colors' => false, 'default-styling' => false], $this->basicTable->getPaginationWrapperAttributes());
 
         $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg', 'testval' => '456']);
 
-        $this->assertSame(['class' => 'text-lg', 'testval' => '456'], $this->basicTable->getPaginationWrapperAttributes());
+        $this->assertSame(['class' => 'text-lg', 'default' => false, 'default-colors' => false, 'default-styling' => false, 'testval' => '456'], $this->basicTable->getPaginationWrapperAttributes());
 
     }
 
     public function test_can_get_pagination_wrapper_attributes_bag(): void
     {
-        $this->assertSame((new ComponentAttributeBag(['class' => '']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
+        $this->assertSame((new ComponentAttributeBag(['class' => '', 'default' => false, 'default-colors' => false, 'default-styling' => false]))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
 
         $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg']);
 
-        $this->assertSame((new ComponentAttributeBag(['class' => 'text-lg']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
+        $this->assertSame((new ComponentAttributeBag(['class' => 'text-lg', 'default' => false, 'default-colors' => false, 'default-styling' => false]))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
 
         $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg', 'testval' => '123']);
 
-        $this->assertSame((new ComponentAttributeBag(['class' => 'text-lg', 'testval' => '123']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
+        $this->assertSame((new ComponentAttributeBag(['class' => 'text-lg', 'default' => false, 'default-colors' => false, 'default-styling' => false, 'testval' => '123']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
 
     }
+
+    public function test_pagination_wrapper_merges_classes_in_frontend(): void
+    {
+
+            Livewire::test(new class extends PetsTable
+            {
+                public function configure(): void
+                {
+                    $this->setPrimaryKey('id')
+                    ->setPaginationWrapperAttributes(['class' => 'pagiclass text-lg', 'testval' => '592', 'default' => true, 'default-colors' => true, 'default-styling' => true]);
+                }
+            })
+            ->assertSeeHtml('<div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0 pagiclass text-lg" testval="592"');
+
+            Livewire::test(new class extends PetsTable
+            {
+                public function configure(): void
+                {
+                    $this->setPrimaryKey('id')
+                    ->setPaginationWrapperAttributes(['class' => 'pagiclass text-lg', 'testval' => '592', 'default' => true, 'default-colors' => false, 'default-styling' => false]);
+                }
+            })
+            ->assertSeeHtml('<div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0 pagiclass text-lg" testval="592"');
+
+    }
+
+    public function test_pagination_wrapper_replaces_classes_in_frontend(): void
+    {
+        Livewire::test(new class extends PetsTable
+            {
+                public function configure(): void
+                {
+                    $this->setPrimaryKey('id')
+                    ->setPaginationWrapperAttributes(['class' => 'pagiclass text-lg', 'testval' => '592', 'default' => false, 'default-colors' => false, 'default-styling' => false]);
+                }
+            })
+            ->assertSeeHtml('<div class="pagiclass text-lg" testval="592"');
+
+    }
+
+
 
     public function test_can_use_custom_pagination_blade(): void
     {
@@ -104,5 +147,6 @@ final class PaginationStylingTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasCustomPaginationBlade());
     }
+
 
 }

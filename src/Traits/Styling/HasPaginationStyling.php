@@ -11,6 +11,7 @@ trait HasPaginationStyling
     use PaginationStylingConfiguration,
         PaginationStylingHelpers;
 
+    // Used In Frontend
     #[Locked]
     public string $paginationTheme = 'tailwind';
     
@@ -22,6 +23,7 @@ trait HasPaginationStyling
 
     // Used In Frontend
     protected array $paginationWrapperAttributes = ['class' => ''];
-
+    
+    // Used In Frontend
     protected ?string $customPaginationBlade;
 }
