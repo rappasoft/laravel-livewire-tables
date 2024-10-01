@@ -34,7 +34,6 @@
                     <span class="font-medium">{{ $this->getRows->lastItem() }}</span>
                 @endif
             </p>
-        @elseif ($this->isPaginationMethod('cursor'))
         @else
             <p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
                 @lang('livewire-tables::Showing')
@@ -43,6 +42,19 @@
             </p>
         @endif
         {{ $this->getRows->links('livewire-tables::specific.tailwind.'.(!$this->isPaginationMethod('standard') ? 'simple-' : '').'pagination') }}
+    </div>
+@elseif ($this->isTailwind && $this->paginationIsDisabled())
+    <div {{ $this->getPaginationWrapperAttributesBag()->class([
+            "mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0" => $this->isTailwind && ($this->getPaginationWrapperAttributes['default'] ?? true)
+            ])
+            ->except(['default', 'default-colors', 'default-styling'])
+        }}
+    >
+        <p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
+            @lang('livewire-tables::Showing')
+            <span class="font-medium">{{ $this->getRows->count() }}</span>
+            @lang('livewire-tables::results')
+        </p>
     </div>
 @elseif ($this->isBootstrap4 && $this->paginationIsEnabled() && $this->paginationVisibilityIsEnabled())
     <div {{ $this->getPaginationWrapperAttributesBag()
