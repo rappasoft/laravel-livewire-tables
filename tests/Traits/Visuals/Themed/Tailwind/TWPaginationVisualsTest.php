@@ -1,49 +1,55 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
+namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals\Themed\Tailwind;
 
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable};
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals\Themed\ThemedTestCase;
 
-final class PaginationVisualsTest extends TestCase
+final class TWPaginationVisualsTest extends ThemedTestCase
 {
+    protected function setupBasicTableForBrowsing()
+    {
+        return $this->setupBasicTableForLivewire()
+                ->call('setTheme', 'tailwind');
+    }
+    
+    protected function setupBasicTableSingleRecord()
+    {
+        return $this->setupSingleRecordBasicTable()
+                ->call('setTheme', 'tailwind');
+    }
+
     public function test_pagination_shows_by_default(): void
     {
-        Livewire::test(PetsTable::class)
-            ->call('setPerPageAccepted', [1])
-            ->call('setPerPage', 1)
+        $this->setupBasicTableSingleRecord()
             ->assertSeeHtml('<nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">');
     }
 
     public function test_per_page_shows_by_default(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->assertSeeHtml('wire:model.live="perPage"');
     }
 
     public function test_pagination_is_removed_when_hidden(): void
     {
-        Livewire::test(PetsTable::class)
-            ->call('setPerPageAccepted', [1])
-            ->call('setPerPage', 1)
+        $this->setupBasicTableSingleRecord()
             ->call('setPaginationVisibilityDisabled')
             ->assertDontSeeHtml('<nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">');
     }
 
     public function test_pagination_is_removed_when_disabled(): void
     {
-        Livewire::test(PetsTable::class)
-            ->call('setPerPageAccepted', [1])
-            ->call('setPerPage', 1)
+        $this->setupBasicTableSingleRecord()
             ->call('setPaginationDisabled')
             ->assertDontSeeHtml('<nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">');
     }
 
     public function test_per_page_is_removed_when_hidden(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->call('setPerPageVisibilityDisabled')
             ->assertDontSeeHtml('wire:model.live="perPage"');
 
@@ -51,50 +57,57 @@ final class PaginationVisualsTest extends TestCase
 
     public function test_per_page_is_removed_when_pagination_disabled(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->call('setPaginationDisabled')
             ->assertDontSeeHtml('wire:model.live="perPage"');
     }
 
     public function test_paged_results_label_shows_with_pagination_enabled_and_more_than_one_page(): void
     {
-        Livewire::test(PetsTable::class)
-            ->call('setPerPageAccepted', [1])
-            ->call('setPerPage', 1)
-            ->assertSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
+        $this->setupBasicTableSingleRecord()
+             ->assertSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
     public function test_paged_results_label_doesnt_show_with_pagination_enabled_and_less_than_one_page(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->assertDontSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
     public function test_total_results_label_shows_with_one_page_and_pagination_enabled(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->assertSeeHtml('<p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
     public function test_total_results_label_shows_with_pagination_disabled(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->call('setPaginationDisabled')
             ->assertSeeHtml('<p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
     public function test_paged_results_label_doesnt_show_with_pagination_hidden(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
+            ->call('setPaginationVisibilityDisabled')
+            ->assertDontSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
+
+        $this->setupBasicTableSingleRecord()
             ->call('setPaginationVisibilityDisabled')
             ->assertDontSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
     public function test_total_results_label_doesnt_show_with_pagination_hidden(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->call('setPaginationVisibilityDisabled')
             ->assertDontSeeHtml('<p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
+
+        $this->setupBasicTableSingleRecord()
+            ->call('setPaginationVisibilityDisabled')
+            ->assertDontSeeHtml('<p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
+
     }
 
     /* Broken Test - HtmlInOrder does not work cleanly */
@@ -121,27 +134,29 @@ final class PaginationVisualsTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->call('setPerPage', 15);
     }
 
     public function test_can_get_currently_displayed_ids(): void
     {
-        Livewire::test(PetsTable::class)->assertSet('paginationCurrentItems', [1, 2, 3, 4, 5])
+        $this->setupBasicTableForBrowsing()
+            ->assertSet('paginationCurrentItems', [1, 2, 3, 4, 5])
             ->assertNotSet('paginationCurrentItems', [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     }
 
     public function test_can_get_currently_displayed_count(): void
     {
-        Livewire::test(PetsTable::class)->assertSet('paginationCurrentCount', 5)
+        $this->setupBasicTableForBrowsing()
+            ->assertSet('paginationCurrentCount', 5)
             ->assertNotSet('paginationCurrentCount', 125);
     }
 
-    public function test_detailed_pagination_is_displayed_standard_tw(): void
+    public function test_detailed_pagination_is_displayed_standard(): void
     {
-        Livewire::test(PetsTable::class)
-            ->call('enableDetailedPagination', 'standard')
-            ->assertSeeHtmlInOrder(['<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">',
+        $this->tableWithStandardDetailedPagination()
+            ->assertSeeHtmlInOrder([
+                '<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">',
                 '<span>Showing</span>',
                 '<span class="font-medium">1</span>',
                 '<span>to</span>',
@@ -149,11 +164,11 @@ final class PaginationVisualsTest extends TestCase
             ]);
     }
 
-    public function test_detailed_pagination_is_displayed_simple_tw(): void
+    public function test_detailed_pagination_is_displayed_simple(): void
     {
-        Livewire::test(PetsTable::class)
-            ->call('enableDetailedPagination', 'simple')
-            ->assertSeeHtmlInOrder(['<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">',
+        $this->tableWithSimpleDetailedPagination()
+            ->assertSeeHtmlInOrder([
+                '<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">',
                 '<span>Showing</span>',
                 '<span class="font-medium">1</span>',
                 '<span>to</span>',
@@ -164,7 +179,7 @@ final class PaginationVisualsTest extends TestCase
 
     public function test_detailed_pagination_is_not_displayed_standard_tw(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->call('disableDetailedPagination', 'standard')
             ->assertDontSeeHtml('<span>Showing</span>')
             ->assertDontSeeHtml('<span>to</span>')
@@ -173,107 +188,16 @@ final class PaginationVisualsTest extends TestCase
 
     public function test_detailed_pagination_is_not_displayed_simple_tw(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->call('disableDetailedPagination', 'simple')
             ->assertDontSeeHtml('<span>Showing</span>')
             ->assertDontSeeHtml('<span>to</span>');
     }
 
-    //
-
-    public function test_detailed_pagination_is_displayed_standard_bs4(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->call('setTheme', 'bootstrap-4')
-            ->call('enableDetailedPagination', 'standard')
-            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-md-right text-muted">',
-                '<span>Showing</span>',
-                '<strong>1</strong>',
-                '<span>to</span>',
-                '<span>of</span>',
-            ]);
-    }
-
-    public function test_detailed_pagination_is_displayed_simple_bs4(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->call('setTheme', 'bootstrap-4')
-            ->call('enableDetailedPagination', 'simple')
-            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 overflow-auto">',
-                '<span>Showing</span>',
-                '<strong>1</strong>',
-                '<span>to</span>',
-            ])
-            ->assertDontSeeHtml('<span>of</span>');
-    }
-
-    public function test_detailed_pagination_is_not_displayed_standard_bs4(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->call('setTheme', 'bootstrap-4')
-            ->call('disableDetailedPagination', 'standard')
-            ->assertDontSeeHtml('<span>Showing</span>')
-            ->assertDontSeeHtml('<span>to</span>')
-            ->assertDontSeeHtml('<span>of</span>');
-    }
-
-    public function test_detailed_pagination_is_not_displayed_simple_bs4(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->call('setTheme', 'bootstrap-4')
-            ->call('disableDetailedPagination', 'simple')
-            ->assertDontSeeHtml('<span>Showing</span>')
-            ->assertDontSeeHtml('<span>to</span>');
-    }
-
-    public function test_detailed_pagination_is_displayed_standard_bs5(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->call('setTheme', 'bootstrap-5')
-            ->call('enableDetailedPagination', 'standard')
-            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-md-end text-muted">',
-                '<span>Showing</span>',
-                '<strong>1</strong>',
-                '<span>to</span>',
-                '<span>of</span>',
-            ]);
-    }
-
-    public function test_detailed_pagination_is_displayed_simple_bs5(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->call('setTheme', 'bootstrap-5')
-            ->call('enableDetailedPagination', 'simple')
-            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-md-end text-muted">',
-                '<span>Showing</span>',
-                '<strong>1</strong>',
-                '<span>to</span>',
-            ])
-            ->assertDontSeeHtml('<span>of</span>');
-    }
-
-    public function test_detailed_pagination_is_not_displayed_standard_bs5(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->call('setTheme', 'bootstrap-5')
-            ->call('disableDetailedPagination', 'standard')
-            ->assertDontSeeHtml('<span>Showing</span>')
-            ->assertDontSeeHtml('<span>to</span>')
-            ->assertDontSeeHtml('<span>of</span>');
-    }
-
-    public function test_detailed_pagination_is_not_displayed_simple_bs5(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->call('setTheme', 'bootstrap-5')
-            ->call('disableDetailedPagination', 'simple')
-            ->assertDontSeeHtml('<span>Showing</span>')
-            ->assertDontSeeHtml('<span>to</span>');
-    }
 
     public function test_pagination_field_can_set_colors(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->assertSeeHtmlInOrder([
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"',
@@ -304,7 +228,7 @@ final class PaginationVisualsTest extends TestCase
 
     public function test_pagination_field_can_set_styling(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->assertSeeHtmlInOrder([
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"',
@@ -342,7 +266,7 @@ final class PaginationVisualsTest extends TestCase
 
     public function test_pagination_field_can_remove_default_styling_and_colors(): void
     {
-        Livewire::test(PetsTable::class)
+        $this->setupBasicTableForBrowsing()
             ->assertSeeHtmlInOrder([
                 '<select wire:model.live="perPage" id="table-perPage"',
                 'class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"',
