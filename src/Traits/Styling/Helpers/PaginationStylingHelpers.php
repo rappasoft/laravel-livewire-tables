@@ -33,22 +33,10 @@ trait PaginationStylingHelpers
     }
 
     #[Computed]
-    public function getPerPageFieldAttributesBag(): ComponentAttributeBag
-    {
-        return new ComponentAttributeBag($this->getPerPageFieldAttributes());
-    }
-
-    #[Computed]
     public function getPerPageWrapperAttributes(): array
     {
         return $this->getCustomAttributes(propertyName: 'perPageWrapperAttributes', default: false, classicMode: false);
 
-    }
-
-    #[Computed]
-    public function getPerPageWrapperAttributesBag(): ComponentAttributeBag
-    {
-        return new ComponentAttributeBag($this->getPerPageWrapperAttributes());
     }
 
     #[Computed]
