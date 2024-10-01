@@ -7,11 +7,8 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-abstract class ThemedTestCase extends TestCase
+class ThemedTestCase extends TestCase
 {
-    abstract protected function setupBasicTableForBrowsing();
-
-    abstract protected function setupBasicTableSingleRecord();
 
     protected function setupBasicTableForLivewire()
     {
@@ -23,22 +20,4 @@ abstract class ThemedTestCase extends TestCase
         return $this->setupBasicTableForLivewire();
     }
 
-    public function setupSingleRecordBasicTable()
-    {
-        return $this->setupBasicTableForLivewire()
-            ->call('setPerPageAccepted', [1])
-            ->call('setPerPage', 1);
-    }
-
-    public function tableWithStandardDetailedPagination()
-    {
-        return $this->setupBasicTableSingleRecord()
-            ->call('enableDetailedPagination', 'standard');
-    }
-
-    public function tableWithSimpleDetailedPagination()
-    {
-        return $this->setupBasicTableSingleRecord()
-            ->call('enableDetailedPagination', 'simple');
-    }
 }

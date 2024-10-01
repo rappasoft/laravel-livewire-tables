@@ -2,12 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals\Themed\Tailwind;
 
-use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable};
-use Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals\Themed\ThemedTestCase;
+use Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals\Themed\BasePaginationVisuals;
 
-final class TWPaginationVisualsTest extends ThemedTestCase
+final class TWPaginationVisualsTest extends BasePaginationVisuals
 {
     protected function setupBasicTableForBrowsing()
     {
@@ -129,14 +126,6 @@ final class TWPaginationVisualsTest extends ThemedTestCase
             '<option value="-1" wire:key="per-page--1-table">All</option>'
         ]);
     }*/
-
-    public function test_per_page_dropdown_only_renders_with_accepted_values(): void
-    {
-        $this->expectException(DataTableConfigurationException::class);
-
-        $this->setupBasicTableForBrowsing()
-            ->call('setPerPage', 15);
-    }
 
     public function test_can_get_currently_displayed_ids(): void
     {

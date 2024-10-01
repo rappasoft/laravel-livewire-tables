@@ -2,12 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals\Themed\Bootstrap5;
 
-use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable};
-use Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals\Themed\ThemedTestCase;
+use Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals\Themed\BasePaginationVisuals;
 
-final class BS5PaginationVisualsTest extends ThemedTestCase
+final class BS5PaginationVisualsTest extends BasePaginationVisuals
 {
     protected function setupBasicTableForBrowsing()
     {
