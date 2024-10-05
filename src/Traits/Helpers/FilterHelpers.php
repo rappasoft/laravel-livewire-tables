@@ -21,14 +21,14 @@ trait FilterHelpers
         $this->restoreFilterValues();
 
         foreach ($this->getFilters() as $filter) {
-            if (! isset($this->appliedFilters[$filter->getKey()])) {
+            if (! isset($this->filterComponents[$filter->getKey()])) {
                 if ($filter->hasFilterDefaultValue()) {
                     $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
                 } else {
                     $this->resetFilter($filter);
                 }
             } else {
-                $this->setFilter($filter->getKey(), $this->appliedFilters[$filter->getKey()]);
+                $this->setFilter($filter->getKey(), $this->filterComponents[$filter->getKey()]);
             }
         }
     }
@@ -139,7 +139,7 @@ trait FilterHelpers
     #[On('set-filter')]
     public function setFilter(string $filterKey, string|array|null $value): void
     {
-        $this->appliedFilters[$filterKey] = $this->filterComponents[$filterKey] = $value;
+        $this->filterComponents[$filterKey] = $value;
 
         $this->callHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
         $this->callTraitHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
@@ -228,7 +228,7 @@ trait FilterHelpers
      */
     public function getAppliedFiltersWithValues(): array
     {
-        return $this->appliedFilters = array_filter($this->getAppliedFilters(), function ($item, $key) {
+        return $this->filterComponents = array_filter($this->getAppliedFilters(), function ($item, $key) {
             return ! $this->getFilterByKey($key)->isEmpty($item) && (is_array($item) ? count($item) : $item !== null);
         }, ARRAY_FILTER_USE_BOTH);
     }
