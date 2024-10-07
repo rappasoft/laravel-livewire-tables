@@ -10,7 +10,6 @@ This is **not recommended** as due to the nature of Livewire, it becomes ineffic
 ## component
 ```
 LivewireComponentColumn::make('Action')
-    ->title(fn($row) => 'Edit')
     ->component('PathToLivewireComponent'),
 
 ```
