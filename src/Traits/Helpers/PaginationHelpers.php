@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Illuminate\View\ComponentAttributeBag;
 use Livewire\Attributes\Computed;
 
 trait PaginationHelpers
@@ -20,11 +19,6 @@ trait PaginationHelpers
     public function getPaginationStatus(): bool
     {
         return $this->paginationStatus;
-    }
-
-    public function getPaginationTheme(): string
-    {
-        return $this->paginationTheme;
     }
 
     public function paginationIsEnabled(): bool
@@ -146,25 +140,8 @@ trait PaginationHelpers
     }
 
     #[Computed]
-    public function getPerPageFieldAttributes(): array
-    {
-        return $this->perPageFieldAttributes;
-    }
-
-    #[Computed]
     public function getShouldRetrieveTotalItemCount(): bool
     {
         return $this->shouldRetrieveTotalItemCount;
-    }
-
-    public function getPaginationWrapperAttributes(): array
-    {
-        return $this->paginationWrapperAttributes ?? ['class' => ''];
-    }
-
-    #[Computed]
-    public function getPaginationWrapperAttributesBag(): ComponentAttributeBag
-    {
-        return new ComponentAttributeBag($this->getPaginationWrapperAttributes());
     }
 }

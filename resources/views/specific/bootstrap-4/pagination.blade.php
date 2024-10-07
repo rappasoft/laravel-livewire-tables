@@ -2,7 +2,7 @@
     @if ($paginator->hasPages())
         @php(isset($this->numberOfPaginatorsRendered[$paginator->getPageName()]) ? $this->numberOfPaginatorsRendered[$paginator->getPageName()]++ : $this->numberOfPaginatorsRendered[$paginator->getPageName()] = 1)
 
-        <nav>
+        <nav role="navigation" aria-label="Pagination Navigation">
             <ul class="pagination">
                 {{-- Previous Page Link --}}
                 @if ($paginator->onFirstPage())
