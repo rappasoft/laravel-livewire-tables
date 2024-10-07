@@ -11,8 +11,6 @@
     "livewire-tables::Deselect All": "Deseleziona tutto",
     "livewire-tables::Done Reordering": "Ordinamento Terminato",
     "livewire-tables::Filters": "Filtri",
-    "livewire-tables::max": "Max",
-    "livewire-tables::min": "Min",
     "livewire-tables::not_applicable": "N/A",
     "livewire-tables::No": "No",
     "livewire-tables::No items found. Try to broaden your search.": "Nessun risultato trovato. Prova ad ampliare la tua ricerca.",
@@ -45,8 +43,6 @@
     "Deselect All": "Deseleziona tutto",
     "Done Reordering": "Ordinamento Terminato",
     "Filters": "Filtri",
-    "max": "Max",
-    "min": "Min",
     "not_applicable": "N/A",
     "No": "No",
     "No items found. Try to broaden your search.": "Nessun risultato trovato. Prova ad ampliare la tua ricerca.",
@@ -67,4 +63,5 @@
     "You are currently selecting all": "Stai selezionando tutto",
     "You are not connected to the internet.": "Non sei connesso a internet",
     "You have selected": "Hai selezionato"
+
 }
