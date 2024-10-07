@@ -19,22 +19,6 @@ trait LoadingPlaceholderHelpers
         return $this->loadingPlaceholderContent ?? __('livewire-tables:loading');
     }
 
-    public function getLoadingPlaceholderAttributes(): array
-    {
-        return count($this->loadingPlaceHolderAttributes) ? $this->loadingPlaceHolderAttributes : ['default' => true];
-
-    }
-
-    public function getLoadingPlaceHolderIconAttributes(): array
-    {
-        return count($this->loadingPlaceHolderIconAttributes) ? $this->loadingPlaceHolderIconAttributes : ['default' => true];
-    }
-
-    public function getLoadingPlaceHolderWrapperAttributes(): array
-    {
-        return count($this->loadingPlaceHolderWrapperAttributes) ? $this->loadingPlaceHolderWrapperAttributes : ['default' => true];
-    }
-
     public function hasLoadingPlaceholderBlade(): bool
     {
         return ! is_null($this->getLoadingPlaceHolderBlade());
