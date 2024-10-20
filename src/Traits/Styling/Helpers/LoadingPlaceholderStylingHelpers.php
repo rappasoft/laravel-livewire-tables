@@ -29,5 +29,4 @@ trait LoadingPlaceholderStylingHelpers
         return $this->getCustomAttributes(propertyName: 'loadingPlaceHolderCellAttributes', default: true, classicMode: true);
 
     }
-
 }
