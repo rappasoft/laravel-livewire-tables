@@ -6,29 +6,23 @@ trait LoadingPlaceholderStylingConfiguration
 {
     public function setLoadingPlaceHolderAttributes(array $attributes): self
     {
-        $this->loadingPlaceHolderAttributes = $attributes;
+        $this->setCustomAttributes('loadingPlaceHolderAttributes', $attributes);
 
         return $this;
     }
 
     public function setLoadingPlaceHolderIconAttributes(array $attributes): self
     {
-        $this->loadingPlaceHolderIconAttributes = $attributes;
+        $this->setCustomAttributes('loadingPlaceHolderIconAttributes', $attributes);
 
         return $this;
     }
 
     public function setLoadingPlaceHolderWrapperAttributes(array $attributes): self
     {
-        $this->loadingPlaceHolderWrapperAttributes = $attributes;
+        $this->setCustomAttributes('loadingPlaceHolderWrapperAttributes', $attributes);
 
         return $this;
     }
 
-    public function setLoadingPlaceholderBlade(string $customBlade): self
-    {
-        $this->loadingPlaceholderBlade = $customBlade;
-
-        return $this;
-    }
 }

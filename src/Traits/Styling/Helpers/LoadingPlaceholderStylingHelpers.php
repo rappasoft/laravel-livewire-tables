@@ -8,21 +8,26 @@ trait LoadingPlaceholderStylingHelpers
 {
     public function getLoadingPlaceholderAttributes(): array
     {
-        return count($this->loadingPlaceHolderAttributes) ? $this->loadingPlaceHolderAttributes : ['default' => true];
+        return $this->getCustomAttributes(propertyName: 'loadingPlaceHolderAttributes', default: true, classicMode: true);
+
     }
 
     public function getLoadingPlaceHolderIconAttributes(): array
     {
-        return count($this->loadingPlaceHolderIconAttributes) ? $this->loadingPlaceHolderIconAttributes : ['default' => true];
+        return $this->getCustomAttributes(propertyName: 'loadingPlaceHolderIconAttributes', default: true, classicMode: true);
+
     }
 
     public function getLoadingPlaceHolderWrapperAttributes(): array
     {
-        return count($this->loadingPlaceHolderWrapperAttributes) ? $this->loadingPlaceHolderWrapperAttributes : ['default' => true];
+        return $this->getCustomAttributes(propertyName: 'loadingPlaceHolderWrapperAttributes', default: true, classicMode: true);
+
     }
 
     public function getLoadingPlaceHolderCellAttributes(): array
     {
-        return count($this->loadingPlaceHolderCellAttributes) ? $this->loadingPlaceHolderCellAttributes : ['default' => true];
+        return $this->getCustomAttributes(propertyName: 'loadingPlaceHolderCellAttributes', default: true, classicMode: true);
+
     }
+
 }
