@@ -16,5 +16,7 @@ trait HasLoadingPlaceholderStyling
 
     protected array $loadingPlaceHolderWrapperAttributes = [];
 
+    protected array $loadingPlaceHolderRowAttributes = [];
+
     protected array $loadingPlaceHolderCellAttributes = ['class' => '', 'default' => true];
 }

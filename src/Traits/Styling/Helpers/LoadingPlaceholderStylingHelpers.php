@@ -20,8 +20,12 @@ trait LoadingPlaceholderStylingHelpers
 
     public function getLoadingPlaceHolderWrapperAttributes(): array
     {
-        return $this->getCustomAttributes(propertyName: 'loadingPlaceHolderWrapperAttributes', default: true, classicMode: true);
+        return $this->getCustomAttributes(propertyName: 'loadingPlaceHolderRowAttributes', default: true, classicMode: true);
+    }
 
+    public function getLoadingPlaceHolderRowAttributes(): array
+    {
+        return $this->getCustomAttributes(propertyName: 'loadingPlaceHolderRowAttributes', default: true, classicMode: true);
     }
 
     public function getLoadingPlaceHolderCellAttributes(): array

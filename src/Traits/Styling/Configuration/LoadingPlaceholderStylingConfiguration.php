@@ -18,9 +18,17 @@ trait LoadingPlaceholderStylingConfiguration
         return $this;
     }
 
+    
+    public function setLoadingPlaceHolderRowAttributes(array $attributes): self
+    {
+        $this->setCustomAttributes('loadingPlaceHolderRowAttributes', [...$this->getCustomAttributes(propertyName: 'loadingPlaceHolderRowAttributes', default: false, classicMode: true), ...$attributes]);
+
+        return $this;
+    }
+
     public function setLoadingPlaceHolderWrapperAttributes(array $attributes): self
     {
-        $this->setCustomAttributes('loadingPlaceHolderWrapperAttributes', [...$this->getCustomAttributes(propertyName: 'loadingPlaceHolderWrapperAttributes', default: false, classicMode: true), ...$attributes]);
+        $this->setCustomAttributes('loadingPlaceHolderRowAttributes', [...$this->getCustomAttributes(propertyName: 'loadingPlaceHolderRowAttributes', default: false, classicMode: true), ...$attributes]);
 
         return $this;
     }

@@ -2,15 +2,15 @@
 @props(['colCount' => 1])
 
 @php
-$loaderWrapper = $this->getLoadingPlaceHolderWrapperAttributes();
+$loaderRow = $this->getLoadingPlaceHolderRowAttributes();
 $loaderCell = $this->getLoadingPlaceHolderCellAttributes();
 $loaderIcon = $this->getLoadingPlaceHolderIconAttributes();
 @endphp
 
 <tr wire:key="{{ $tableName }}-loader" wire:loading.class.remove="hidden d-none" {{
-    $attributes->merge($loaderWrapper)
-        ->class(['hidden w-full text-center place-items-center align-middle' => $this->isTailwind && ($loaderWrapper['default'] ?? true)])
-        ->class(['d-none w-100 text-center align-items-center' => $this->isBootstrap && ($loaderWrapper['default'] ?? true)])
+    $attributes->merge($loaderRow)
+        ->class(['hidden w-full text-center place-items-center align-middle' => $this->isTailwind && ($loaderRow['default'] ?? true)])
+        ->class(['d-none w-100 text-center align-items-center' => $this->isBootstrap && ($loaderRow['default'] ?? true)])
         ->except(['default','default-styling','default-colors'])
 }}>
     <td colspan="{{ $colCount }}" wire:key="{{ $tableName }}-loader-column" {{
