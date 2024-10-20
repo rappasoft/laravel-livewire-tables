@@ -48,11 +48,20 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
 
-        $this->assertSame(['default' => true], $this->basicTable->getLoadingPlaceHolderAttributes());
+        $this->assertSame(['default' => true, 'default' => true, 'default-colors' => true, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderAttributes());
 
         $this->basicTable->setLoadingPlaceHolderAttributes(['class' => 'test12345']);
 
-        $this->assertSame(['class' => 'test12345'], $this->basicTable->getLoadingPlaceHolderAttributes());
+        $this->assertSame(['class' => 'test12345', 'default' => false, 'default-colors' => false, 'default-styling' => false], $this->basicTable->getLoadingPlaceHolderAttributes());
+
+        $this->basicTable->setLoadingPlaceHolderAttributes(['class' => 'test12345', 'default' => true, 'default-colors' => true, 'default-styling' => true]);
+
+        $this->assertSame(['class' => 'test12345', 'default' => true, 'default-colors' => true, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderAttributes());
+
+        $this->basicTable->setLoadingPlaceHolderAttributes(['class' => 'test12345', 'default' => false, 'default-colors' => false, 'default-styling' => true]);
+
+        $this->assertSame(['class' => 'test12345', 'default' => false, 'default-colors' => false, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderAttributes());
+
 
     }
 
@@ -60,11 +69,20 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
 
-        $this->assertSame(['default' => true], $this->basicTable->getLoadingPlaceHolderIconAttributes());
+        $this->assertSame(['default' => true, 'default-colors' => true, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderIconAttributes());
 
         $this->basicTable->setLoadingPlaceHolderIconAttributes(['class' => 'test123']);
 
-        $this->assertSame(['class' => 'test123'], $this->basicTable->getLoadingPlaceHolderIconAttributes());
+        $this->assertSame(['class' => 'test123', 'default' => false, 'default-colors' => false, 'default-styling' => false], $this->basicTable->getLoadingPlaceHolderIconAttributes());
+
+        $this->basicTable->setLoadingPlaceHolderIconAttributes(['class' => 'test123', 'default' => true, 'default-colors' => true, 'default-styling' => true]);
+
+        $this->assertSame(['class' => 'test123', 'default' => true, 'default-colors' => true, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderIconAttributes());
+
+        $this->basicTable->setLoadingPlaceHolderIconAttributes(['class' => 'test123', 'default' => false, 'default-colors' => false, 'default-styling' => true]);
+
+        $this->assertSame(['class' => 'test123', 'default' => false, 'default-colors' => false, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderIconAttributes());
+
 
     }
 
@@ -72,11 +90,20 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
 
-        $this->assertSame(['default' => true], $this->basicTable->getLoadingPlaceHolderWrapperAttributes());
+        $this->assertSame(['default' => true, 'default-colors' => true, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderWrapperAttributes());
 
         $this->basicTable->setLoadingPlaceHolderWrapperAttributes(['class' => 'test1234567-wrapper']);
 
-        $this->assertSame(['class' => 'test1234567-wrapper'], $this->basicTable->getLoadingPlaceHolderWrapperAttributes());
+        $this->assertSame(['class' => 'test1234567-wrapper', 'default' => false, 'default-colors' => false, 'default-styling' => false], $this->basicTable->getLoadingPlaceHolderWrapperAttributes());
+
+        $this->basicTable->setLoadingPlaceHolderWrapperAttributes(['class' => 'test1234567-wrapper', 'default' => true, 'default-colors' => true, 'default-styling' => true]);
+
+        $this->assertSame(['class' => 'test1234567-wrapper', 'default' => true, 'default-colors' => true, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderWrapperAttributes());
+
+        $this->basicTable->setLoadingPlaceHolderWrapperAttributes(['class' => 'test1234567-wrapper', 'default' => false, 'default-colors' => false, 'default-styling' => true]);
+
+        $this->assertSame(['class' => 'test1234567-wrapper', 'default' => false, 'default-colors' => false, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderWrapperAttributes());
+
     }
 
     public function test_can_set_loading_placeholder_custom_blade(): void
