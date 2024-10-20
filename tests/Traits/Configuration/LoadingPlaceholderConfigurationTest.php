@@ -131,7 +131,6 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
 
     }
 
-
     public function test_can_set_loading_placeholder_custom_blade(): void
     {
         $this->basicTable->setLoadingPlaceholderEnabled();
