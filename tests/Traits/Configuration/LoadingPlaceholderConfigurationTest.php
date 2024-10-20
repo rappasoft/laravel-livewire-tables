@@ -62,7 +62,6 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
 
         $this->assertSame(['class' => 'test12345', 'default' => false, 'default-colors' => false, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderAttributes());
 
-
     }
 
     public function test_can_set_loading_placeholder_icon_attributes(): void
@@ -82,7 +81,6 @@ final class LoadingPlaceholderConfigurationTest extends TestCase
         $this->basicTable->setLoadingPlaceHolderIconAttributes(['class' => 'test123', 'default' => false, 'default-colors' => false, 'default-styling' => true]);
 
         $this->assertSame(['class' => 'test123', 'default' => false, 'default-colors' => false, 'default-styling' => true], $this->basicTable->getLoadingPlaceHolderIconAttributes());
-
 
     }
 

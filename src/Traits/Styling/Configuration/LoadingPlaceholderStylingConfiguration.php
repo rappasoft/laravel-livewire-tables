@@ -7,7 +7,7 @@ trait LoadingPlaceholderStylingConfiguration
     public function setLoadingPlaceHolderAttributes(array $attributes): self
     {
         $this->setCustomAttributes('loadingPlaceHolderAttributes', [...$this->getCustomAttributes(propertyName: 'loadingPlaceHolderAttributes', default: false, classicMode: true), ...$attributes]);
-       
+
         return $this;
     }
 
