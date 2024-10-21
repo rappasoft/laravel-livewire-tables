@@ -23,14 +23,14 @@ trait SessionStorageHelpers
     {
         if ($this->shouldStoreFiltersInSession()) {
             $this->clearStoredFilterValues();
-            session([$this->getFilterSessionKey() => $this->appliedFilters]);
+            session([$this->getFilterSessionKey() => $this->filterComponents]);
         }
     }
 
     public function restoreFilterValues(): void
     {
-        if (empty($this->filterComponents) || empty($this->appliedFilters)) {
-            $this->filterComponents = $this->appliedFilters = $this->getStoredFilterValues();
+        if (empty($this->filterComponents)) {
+            $this->filterComponents = $this->getStoredFilterValues();
         }
     }
 
