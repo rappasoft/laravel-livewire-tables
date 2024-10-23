@@ -42,7 +42,7 @@ class LaravelLivewireTablesEvent
 
     public function setUserForEvent(): self
     {
-        if (auth()->user()) {
+        if (config('livewire-tables.events.enableUserForEvent', true) && auth()->user()) {
             $this->user = auth()->user();
         }
 
