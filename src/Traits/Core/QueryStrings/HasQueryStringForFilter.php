@@ -44,7 +44,7 @@ trait HasQueryStringForFilter
     {
         $this->setupQueryStringStatusForFilter();
 
-        return (($this->queryStringIsEnabled() === true || $this->getQueryStringStatusForFilter() === true) && $this->filtersAreEnabled());
+        return ($this->queryStringIsEnabled() === true || $this->getQueryStringStatusForFilter() === true) && $this->filtersAreEnabled();
     }
 
     public function setQueryStringStatusForFilter(bool $status): self
