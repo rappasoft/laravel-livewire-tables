@@ -83,7 +83,7 @@ final class QueryStringForFiltersTest extends TestCase
         $mock->configure();
         $mock->boot();
 
-        $this->assertSame("table-filters", $mock->getQueryStringAliasForFilter());
+        $this->assertSame('table-filters', $mock->getQueryStringAliasForFilter());
 
     }
 
@@ -102,9 +102,8 @@ final class QueryStringForFiltersTest extends TestCase
         $mock->configure();
         $mock->boot();
 
-        $this->assertSame("table-filters", $mock->getQueryStringAliasForFilter());
-        $mock->setQueryStringAliasForFilter("pet-filters");
-        $this->assertSame("pet-filters", $mock->getQueryStringAliasForFilter());
+        $this->assertSame('table-filters', $mock->getQueryStringAliasForFilter());
+        $mock->setQueryStringAliasForFilter('pet-filters');
+        $this->assertSame('pet-filters', $mock->getQueryStringAliasForFilter());
     }
-
 }

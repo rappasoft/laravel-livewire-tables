@@ -6,7 +6,6 @@ use Livewire\Attributes\Locked;
 
 trait HasQueryStringForFilter
 {
-    
     #[Locked]
     public ?bool $queryStringStatusForFilter;
 
@@ -33,7 +32,7 @@ trait HasQueryStringForFilter
     {
         $this->setupQueryStringStatusForFilter();
 
-        return ($this->queryStringIsEnabled() === true && $this->getQueryStringStatusForFilter() === true &&  $this->filtersAreEnabled());
+        return $this->queryStringIsEnabled() === true && $this->getQueryStringStatusForFilter() === true && $this->filtersAreEnabled();
     }
 
     public function setQueryStringStatusForFilter(bool $status): self
@@ -64,7 +63,7 @@ trait HasQueryStringForFilter
 
     public function getQueryStringAliasForFilter(): string
     {
-        return $this->queryStringAliasForFilter ?? $this->getQueryStringAlias() ."-filters";
+        return $this->queryStringAliasForFilter ?? $this->getQueryStringAlias().'-filters';
     }
 
     public function setQueryStringAliasForFilter(string $queryStringAliasForFilter): self
@@ -73,5 +72,4 @@ trait HasQueryStringForFilter
 
         return $this;
     }
-
 }
