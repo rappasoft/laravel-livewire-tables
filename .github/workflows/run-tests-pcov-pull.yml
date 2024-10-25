@@ -26,6 +26,14 @@ jobs:
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pcov,pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
+      - name: Wait for tests to finish
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: 'Run Tests Pull'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -66,8 +74,8 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-PCOV-PULL-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-PCOV-PULL-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |

@@ -1,0 +1,104 @@
+name: run-phpstan-pull
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+      - 'development'
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+        php: [8.3]
+        laravel: [11]
+        stability: [prefer-dist]
+
+    name: PHPStan - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    env:
+      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+
+    steps:
+      - name: Wait for tests to finish
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: 'Run Tests Pull'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup cache environment
+        id: extcache
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.extensions }}
+          key: ${{ env.extensionKey }}
+
+      - name: Cache extensions
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.extcache.outputs.dir }}
+          key: ${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ steps.extcache.outputs.key }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.extensions }}
+          coverage: pcov
+          tools: phpunit:9.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          
+      - name: Get composer cache directory
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+
+      - name: Add token
+        run: |
+          composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
+
+      - name: Update dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer update --${{ matrix.stability }} --no-interaction
+
+      - name: Install PHPStan
+        run: composer require larastan/larastan:^2.0 --no-interaction
+
+      - uses: actions/cache/restore@v4
+        id: larastan-restore
+        with:
+          path: ./build/phpstan
+          key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
+
+      - name: Run PHPStan Tests
+        run: ./vendor/bin/phpstan analyse
+
+      - uses: actions/cache/save@v4
+        id: larastan-save
+        with:
+          path: ./build/phpstan
+          key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
