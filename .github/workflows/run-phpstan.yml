@@ -103,5 +103,5 @@ jobs:
       - uses: actions/cache/save@v4
         id: larastan-save
         with:
-          path: steps.larastan-restore.path
-          key: steps.larastan-restore.key
+          path: ${{ steps.larastan-restore.path }}
+          key: ${{ steps.larastan-restore.path }}
