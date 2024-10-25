@@ -26,11 +26,11 @@ jobs:
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
-      - name: Wait for styling to finish
+      - name: Wait for tests to finish
         uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.ref }}
-          running-workflow-name: 'Fix PHP code style issues'
+          running-workflow-name: 'run-tests'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 20
 
