@@ -86,7 +86,8 @@ final class SearchAppliedTest extends TestCase
         $this->basicTable->enableSearchAppliedEvent()->setSearch('test')->applySearch();
 
         Event::assertDispatched(SearchApplied::class, function ($event) {
-            $this->assertFalse(isset($event->user), "User set on Event when config is set to disable this behavior");
+            $this->assertFalse(isset($event->user), 'User set on Event when config is set to disable this behavior');
+
             return true;
         });
     }

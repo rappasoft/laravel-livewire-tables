@@ -119,8 +119,8 @@ return [
      */
     'events' => [
         /**
-        * Enable or disable passing the user from Laravel's Auth service to events
-        */
+         * Enable or disable passing the user from Laravel's Auth service to events
+         */
         'enableUserForEvent' => true,
     ],
 

@@ -76,7 +76,8 @@ final class FilterAppliedTest extends TestCase
         $this->basicTable->enableFilterAppliedEvent()->setFilter('pet_name_filter', 'test value');
 
         Event::assertDispatched(FilterApplied::class, function ($event) {
-            $this->assertFalse(isset($event->user), "User set on Event when config is set to disable this behavior");
+            $this->assertFalse(isset($event->user), 'User set on Event when config is set to disable this behavior');
+
             return true;
         });
     }
