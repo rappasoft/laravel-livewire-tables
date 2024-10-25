@@ -23,14 +23,6 @@ jobs:
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
-      - name: Wait for tests to finish
-        uses: lewagon/wait-on-check-action@v1.3.4
-        with:
-          ref: ${{ github.ref }}
-          running-workflow-name: 'Run Tests Pull'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 20
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -70,8 +62,8 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: phpstan-${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: phpstan-${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |
@@ -88,17 +80,10 @@ jobs:
       - name: Install PHPStan
         run: composer require larastan/larastan:^2.0 --no-interaction
 
-      - uses: actions/cache/restore@v4
-        id: larastan-restore
+      - uses: actions/cache@v4
         with:
           path: ./build/phpstan
           key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
 
       - name: Run PHPStan Tests
         run: ./vendor/bin/phpstan analyse
-
-      - uses: actions/cache/save@v4
-        id: larastan-save
-        with:
-          path: ./build/phpstan
-          key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
