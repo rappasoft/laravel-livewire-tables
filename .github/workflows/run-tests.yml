@@ -1,4 +1,4 @@
-name: run-tests
+name: Run Standard Tests
 
 on:
   push:
@@ -22,10 +22,18 @@ jobs:
 
     name: PHP-${{ matrix.php }} - Laravel-10
     env:
-      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
+      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
 
     steps:
+      - name: Wait for styling to finish
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: 'Fix PHP code style issues'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+
       - name: Checkout code
         uses: actions/checkout@v4
         
@@ -41,8 +49,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ steps.extcache.outputs.dir }}
-          key: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
-          restore-keys: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
+          key: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -66,8 +74,8 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |
@@ -101,10 +109,18 @@ jobs:
 
     name: PHP-${{ matrix.php }} - Laravel-11
     env:
-      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
+      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
 
     steps:
+      - name: Wait for styling to finish
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: 'Fix PHP code style issues'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+
       - name: Checkout code
         uses: actions/checkout@v4
         
@@ -120,8 +136,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ steps.extcache.outputs.dir }}
-          key: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
-          restore-keys: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
+          key: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -145,8 +161,8 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |
@@ -164,4 +180,4 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
-        run: php ./vendor/bin/paratest --no-coverage
+        run: php ./vendor/bin/phpunit --no-coverage
