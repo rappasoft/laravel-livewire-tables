@@ -16,6 +16,7 @@ trait WithQueryString
 
     protected ?string $queryStringAlias;
 
+
     /**
      * Set the custom query string array for this specific table
      *

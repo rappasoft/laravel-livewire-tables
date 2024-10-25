@@ -8,11 +8,13 @@ use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForFilter;
 
 trait WithFilters
 {
     use FilterConfiguration,
         FilterHelpers;
+    use HasQueryStringForFilter;
 
     #[Locked]
     public bool $filtersStatus = true;
@@ -49,10 +51,10 @@ trait WithFilters
 
     protected function queryStringWithFilters(): array
     {
-        if ($this->queryStringIsEnabled() && $this->filtersAreEnabled()) {
+        if ($this->queryStringForFilterIsEnabled()) {
             return [
-                'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
-                'filterComponents' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-filters'],
+                'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForFilter()],
+                'filterComponents' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForFilter()],
             ];
         }
 

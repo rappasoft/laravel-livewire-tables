@@ -76,43 +76,7 @@ public function configure(): void
 
 ## Query String
 
-The query string is **enabled by default**, but if you ever needed to toggle it you can use the following methods:
-
-### setQueryStringStatus
-
-Enable/disable the query string.
-
-```php
-public function configure(): void
-{
-  $this->setQueryStringStatus(true);
-  $this->setQueryStringStatus(false);
-}
-```
-
-### setQueryStringEnabled
-
-Enable the query string.
-
-```php
-public function configure(): void
-{
-  // Shorthand for $this->setQueryStringStatus(true)
-  $this->setQueryStringEnabled();
-}
-```
-
-### setQueryStringDisabled
-
-Disable the query string.
-
-```php
-public function configure(): void
-{
-  // Shorthand for $this->setQueryStringStatus(false)
-  $this->setQueryStringDisabled();
-}
-```
+The documentation for Query String now lives: [here](./query-string)
 
 ## Relationships
 
