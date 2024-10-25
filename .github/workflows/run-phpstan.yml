@@ -1,10 +1,6 @@
 name: run-phpstan
 
 on:
-  pull_request:
-    branches:
-      - 'master'
-      - 'development'
   push:
     branches:
       - '*'         # matches every branch that doesn't contain a '/'
@@ -26,10 +22,18 @@ jobs:
 
     name: PHPStan - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
     env:
-      extensionKey: phpextensions
+      extensionKey: phpstan-phpextensions
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
+      - name: Wait for styling to finish
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: 'Fix PHP code style issues'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -86,6 +90,13 @@ jobs:
 
       - name: Install PHPStan
         run: composer require larastan/larastan:^2.0 --dev --no-interaction
+
+      - name: Cache Larastan result cache
+        uses: actions/cache@v4
+        with:
+          path: .phpstan.cache
+          key: ${{ github.run_id }}-phpstan-result-cache
+          restore-keys: phpstan-result-cache-
 
       - name: Run PHPStan Tests
         run: ./vendor/bin/phpstan analyse
