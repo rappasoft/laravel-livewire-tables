@@ -55,6 +55,8 @@ There are several events, all in the Rappasoft\LaravelLivewireTables\Events name
 | FilterApplied | Applied when a Filter is applied (not when removed) |  The Table Name ($tableName), Filter Key ($key), Filter Value ($value), Logged In User ($user) |
 | SearchApplied | Applied when a Search is applied (not when removed) | The Table Name ($tableName), Search Term ($value), Logged In User ($user) |
 
+Passing the user with an event is optional and [can be disabled in the config](../start/configuration.md#bypassing-laravels-auth-service).
+
 By default, the Tables will dispatch an event when the Selected Columns is changed, you may customise this behaviour:
 
 #### enableAllEvents
