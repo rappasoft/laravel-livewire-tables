@@ -86,14 +86,19 @@ jobs:
         run: composer update --${{ matrix.stability }} --no-interaction
 
       - name: Install PHPStan
-        run: composer require larastan/larastan:^2.0 --dev --no-interaction
+        run: composer require larastan/larastan:^2.0 --no-interaction
 
-      - name: Cache Larastan result cache
-        uses: actions/cache@v4
+      - uses: actions/cache/restore@v4
+        id: larastan-restore
         with:
-          path: .phpstan.cache
-          key: ${{ github.run_id }}-phpstan-result-cache
-          restore-keys: phpstan-result-cache-
+          path: ./build/phpstan
+          key: phpstan-result-cache
 
       - name: Run PHPStan Tests
         run: ./vendor/bin/phpstan analyse
+
+      - uses: actions/cache/save@v4
+        id: larastan-save
+        with:
+          path: steps.larastan-restore.path
+          key: steps.larastan-restore.key
