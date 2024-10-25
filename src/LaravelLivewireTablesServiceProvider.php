@@ -24,7 +24,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
 
-        // Load Default Translations 
+        // Load Default Translations
         $this->loadJsonTranslationsFrom(
             __DIR__.'/../resources/lang'
         );
