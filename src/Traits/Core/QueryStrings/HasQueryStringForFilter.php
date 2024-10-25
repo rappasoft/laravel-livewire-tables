@@ -11,9 +11,16 @@ trait HasQueryStringForFilter
 
     protected ?string $queryStringAliasForFilter;
 
-    public function hasQueryStringStatusForFilter(): bool
+    protected function queryStringHasQueryStringForFilter(): array
     {
-        return isset($this->queryStringStatusForFilter);
+        if ($this->queryStringForFilterIsEnabled()) {
+            return [
+                'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForFilter()],
+                'filterComponents' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForFilter()],
+            ];
+        }
+
+        return [];
     }
 
     public function setupQueryStringStatusForFilter(): void
@@ -21,6 +28,11 @@ trait HasQueryStringForFilter
         if (! $this->hasQueryStringStatusForFilter()) {
             $this->setQueryStringForFilterEnabled();
         }
+    }
+
+    public function hasQueryStringStatusForFilter(): bool
+    {
+        return isset($this->queryStringStatusForFilter);
     }
 
     public function getQueryStringStatusForFilter(): bool
@@ -32,7 +44,7 @@ trait HasQueryStringForFilter
     {
         $this->setupQueryStringStatusForFilter();
 
-        return $this->queryStringIsEnabled() === true && $this->getQueryStringStatusForFilter() === true && $this->filtersAreEnabled();
+        return (($this->queryStringIsEnabled() === true || $this->getQueryStringStatusForFilter() === true) && $this->filtersAreEnabled());
     }
 
     public function setQueryStringStatusForFilter(bool $status): self
@@ -66,9 +78,9 @@ trait HasQueryStringForFilter
         return $this->queryStringAliasForFilter ?? $this->getQueryStringAlias().'-filters';
     }
 
-    public function setQueryStringAliasForFilter(string $queryStringAliasForFilter): self
+    public function setQueryStringAliasForFilter(string $alias): self
     {
-        $this->queryStringAliasForFilter = $queryStringAliasForFilter;
+        $this->queryStringAliasForFilter = $alias;
 
         return $this;
     }
