@@ -49,8 +49,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ steps.extcache.outputs.dir }}
-          key: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
-          restore-keys: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
+          key: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -74,8 +74,8 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |
@@ -136,8 +136,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ steps.extcache.outputs.dir }}
-          key: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
-          restore-keys: ${{ runner.os }}-${{ steps.extcache.outputs.key }}
+          key: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -161,8 +161,8 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-STDPUSH-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |

@@ -66,8 +66,8 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-PCOV-PULL-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-PCOV-PULL-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-PCOV-PULL-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PCOV-PULL-PHP${{ matrix.php }}-Laravel${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |

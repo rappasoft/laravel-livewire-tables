@@ -62,8 +62,8 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-PHPStan-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-PHPStan-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-PHPStan-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHPStan-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
         run: |
