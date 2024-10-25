@@ -45,6 +45,7 @@ class BooleanColumn extends Column
             ->withIsBootstrap($this->isBootstrap())
             ->withSuccessValue($this->getSuccessValue())
             ->withType($this->getType())
+            ->withValue($value)
             ->withStatus($this->hasCallback() ? call_user_func($this->getCallback(), $value, $row) : (bool) $value === true);
     }
 }
