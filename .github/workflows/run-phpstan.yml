@@ -104,4 +104,4 @@ jobs:
         id: larastan-save
         with:
           path: ${{ steps.larastan-restore.path }}
-          key: ${{ steps.larastan-restore.path }}
+          key: ${{ steps.larastan-restore.key }}
