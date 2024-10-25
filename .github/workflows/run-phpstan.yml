@@ -30,7 +30,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.ref }}
-          running-workflow-name: 'run-tests'
+          running-workflow-name: 'Run Standard Tests'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 20
 

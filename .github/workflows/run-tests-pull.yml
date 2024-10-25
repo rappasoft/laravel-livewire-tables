@@ -1,4 +1,4 @@
-name: run-tests-pull
+name: Run Tests Pull
 
 on:
   pull_request:
