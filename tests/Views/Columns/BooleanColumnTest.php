@@ -119,5 +119,4 @@ final class BooleanColumnTest extends TestCase
         $this->assertSame($column['isBootstrap'], false);
 
     }
-
 }
