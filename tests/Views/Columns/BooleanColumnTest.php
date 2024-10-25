@@ -104,6 +104,19 @@ final class BooleanColumnTest extends TestCase
         $this->assertTrue($column->hasConfirmMessage());
 
         $this->assertSame('Are you sure?', $column->getConfirmMessage());
+    }
+
+    public function test_can_get_value(): void
+    {
+        $column = BooleanColumn::make('Name')->getContents(Pet::find(1));
+        $this->assertSame($column['value'], 'Cartman');
+    }
+
+    public function test_can_get_is_tailwind(): void
+    {
+        $column = BooleanColumn::make('Name')->getContents(Pet::find(1));
+        $this->assertSame($column['isTailwind'], true);
+        $this->assertSame($column['isBootstrap'], false);
 
     }
 }
