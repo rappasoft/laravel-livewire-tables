@@ -95,7 +95,7 @@ jobs:
         id: larastan-restore
         with:
           path: ./build/phpstan
-          key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
 
       - name: Run PHPStan Tests
         run: ./vendor/bin/phpstan analyse
@@ -103,5 +103,5 @@ jobs:
       - uses: actions/cache/save@v4
         id: larastan-save
         with:
-          path: ${{ steps.larastan-restore.path }}
-          key: ${{ steps.larastan-restore.key }}
+          path: ./build/phpstan
+          key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
