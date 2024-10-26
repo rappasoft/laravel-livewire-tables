@@ -103,3 +103,54 @@ public function configure(): void
   $this->setQueryStringAliasForFilter('filtervalues');
 }
 ```
+
+## Search
+
+The search query string is **enabled by default**, but if you ever needed to toggle it you can use the following methods:
+
+### setQueryStringStatusForSearch
+
+Enable/disable the query string for search
+
+```php
+public function configure(): void
+{
+  $this->setQueryStringStatusForSearch(true);
+  $this->setQueryStringStatusForSearch(false);
+}
+```
+
+### setQueryStringForSearchEnabled
+
+Enable the query string for search
+
+```php
+public function configure(): void
+{
+  // Shorthand for $this->setQueryStringStatusForSearch(true)
+  $this->setQueryStringForSearchEnabled();
+}
+```
+
+### setQueryStringForSearchDisabled
+
+Disable the query string for search
+
+```php
+public function configure(): void
+{
+  // Shorthand for $this->setQueryStringStatusForSearch(false)
+  $this->setQueryStringForSearchDisabled();
+}
+```
+
+### setQueryStringAliasForSearch
+
+Change the Alias in the URL for the search, otherwise defaults to "$tablename-search"
+
+```php
+public function configure(): void
+{
+  $this->setQueryStringAliasForSearch('search');
+}
+```
