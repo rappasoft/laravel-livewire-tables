@@ -22,7 +22,6 @@ trait HasQueryStringForSearch
         return [];
     }
 
-
     public function setupQueryStringStatusForSearch(): void
     {
         if (! $this->hasQueryStringStatusForSearch()) {
@@ -84,5 +83,4 @@ trait HasQueryStringForSearch
 
         return $this;
     }
-
 }
