@@ -13,14 +13,11 @@ trait HasQueryStringForFilter
 
     protected function queryStringHasQueryStringForFilter(): array
     {
-        if ($this->queryStringForFilterIsEnabled()) {
-            return [
+        return ($this->queryStringForFilterIsEnabled()) ?
+            [
                 'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForFilter()],
                 'filterComponents' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForFilter()],
-            ];
-        }
-
-        return [];
+            ] : [];
     }
 
     public function setupQueryStringStatusForFilter(): void
