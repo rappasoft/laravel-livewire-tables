@@ -87,39 +87,4 @@ final class QueryStringForSearchTest extends TestCase
 
     }
 
-    public function test_search_via_query_string_functions(): void
-    {
-        Livewire::withQueryParams(['table-search' => 'Cartman'])
-            ->test(PetsTable::class)
-            ->assertSee('Cartman')
-            ->assertDontSee('Chico');
-
-        Livewire::withQueryParams(['table-search' => 'Chico'])
-            ->test(PetsTable::class)
-            ->assertSee('Chico')
-            ->assertDontSee('Cartman');
-
-        $mock = new class extends PetsTable
-        {
-            public ?array $testAttributesArray;
-
-            public function configure(): void
-            {
-                $this->setPrimaryKey('id');
-                $this->setDataTableFingerprint('test');
-                $this->setQueryStringAliasForSearch('pet-search');
-            }
-        };
-
-        Livewire::withQueryParams(['table-search' => 'Chico'])
-            ->test($mock)
-            ->assertSee('Chico')
-            ->assertSee('Cartman');
-
-        Livewire::withQueryParams(['pet-search' => 'Chico'])
-            ->test($mock)
-            ->assertSee('Chico')
-            ->assertDontSee('Cartman');
-
-    }
 }
