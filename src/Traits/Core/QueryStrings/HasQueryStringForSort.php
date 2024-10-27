@@ -16,6 +16,7 @@ trait HasQueryStringForSort
         return ($this->queryStringForSortEnabled() && $this->sortingIsEnabled()) ? ['sorts' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForSort()]] : [];
 
     }
+
     public function setupQueryStringStatusForSort(): void
     {
         if (! $this->hasQueryStringStatusForSort()) {
