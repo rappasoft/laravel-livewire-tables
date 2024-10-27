@@ -17,17 +17,17 @@ trait HasQueryStringForSearch
         }
     }
 
-    protected function hasQueryStringStatusForSearch(): bool
+    public function hasQueryStringStatusForSearch(): bool
     {
         return $this->hasQueryStringConfigStatus('search');
     }
 
-    protected function getQueryStringStatusForSearch(): bool
+    public function getQueryStringStatusForSearch(): bool
     {
         return $this->getQueryStringConfigStatus('search');
     }
 
-    protected function queryStringForSearchEnabled(): bool
+    public function queryStringForSearchEnabled(): bool
     {
         $this->setupQueryStringStatusForSearch();
 
@@ -49,12 +49,12 @@ trait HasQueryStringForSearch
         return $this->setQueryStringStatusForSearch(false);
     }
 
-    protected function hasQueryStringAliasForSearch(): bool
+    public function hasQueryStringAliasForSearch(): bool
     {
         return $this->hasQueryStringConfigAlias('search');
     }
 
-    protected function getQueryStringAliasForSearch(): string
+    public function getQueryStringAliasForSearch(): string
     {
         return $this->getQueryStringConfigAlias('search');
     }

@@ -10,19 +10,19 @@ trait HasQueryStringForSort
 
     }
 
-    public function setupQueryStringStatusForSort(): void
+    protected function setupQueryStringStatusForSort(): void
     {
         if (! $this->hasQueryStringStatusForSort()) {
             $this->setQueryStringForSortEnabled();
         }
     }
 
-    protected function hasQueryStringStatusForSort(): bool
+    public function hasQueryStringStatusForSort(): bool
     {
         return $this->hasQueryStringConfigStatus('sorts');
     }
 
-    protected function getQueryStringStatusForSort(): bool
+    public function getQueryStringStatusForSort(): bool
     {
         return $this->getQueryStringConfigStatus('sorts');
     }
@@ -49,12 +49,12 @@ trait HasQueryStringForSort
         return $this->setQueryStringStatusForSort(false);
     }
 
-    protected function hasQueryStringAliasForSort(): bool
+    public function hasQueryStringAliasForSort(): bool
     {
         return $this->hasQueryStringConfigAlias('sorts');
     }
 
-    protected function getQueryStringAliasForSort(): string
+    public function getQueryStringAliasForSort(): string
     {
         return $this->getQueryStringConfigAlias('sorts');
     }
