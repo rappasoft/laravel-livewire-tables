@@ -2,21 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings;
 
-use Livewire\Attributes\Locked;
-
 trait HasQueryStringForSort
 {
-    #[Locked]
-    public ?bool $queryStringStatusForSort;
-
-    protected ?string $queryStringAliasForSort;
 
     protected function queryStringHasQueryStringForSort(): array
     {
         return ($this->queryStringForSortEnabled() && $this->sortingIsEnabled()) ? ['sorts' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForSort()]] : [];
 
     }
-
     public function setupQueryStringStatusForSort(): void
     {
         if (! $this->hasQueryStringStatusForSort()) {
@@ -24,17 +17,17 @@ trait HasQueryStringForSort
         }
     }
 
-    public function hasQueryStringStatusForSort(): bool
+    protected function hasQueryStringStatusForSort(): bool
     {
-        return isset($this->queryStringStatusForSort);
+        return $this->hasQueryStringConfigStatus('sorts');
     }
 
-    public function getQueryStringStatusForSort(): bool
+    protected function getQueryStringStatusForSort(): bool
     {
-        return $this->queryStringStatusForSort ?? true;
+        return $this->getQueryStringConfigStatus("sorts");
     }
 
-    public function queryStringForSortEnabled(): bool
+    protected function queryStringForSortEnabled(): bool
     {
         $this->setupQueryStringStatusForSort();
 
@@ -43,9 +36,7 @@ trait HasQueryStringForSort
 
     public function setQueryStringStatusForSort(bool $status): self
     {
-        $this->queryStringStatusForSort = $status;
-
-        return $this;
+        return $this->setQueryStringConfigStatus("sorts", $status);
     }
 
     public function setQueryStringForSortEnabled(): self
@@ -58,20 +49,18 @@ trait HasQueryStringForSort
         return $this->setQueryStringStatusForSort(false);
     }
 
-    public function hasQueryStringAliasForSort(): bool
+    protected function hasQueryStringAliasForSort(): bool
     {
-        return isset($this->queryStringAliasForSort);
+        return $this->hasQueryStringConfigAlias('sorts');
     }
 
-    public function getQueryStringAliasForSort(): string
+    protected function getQueryStringAliasForSort(): string
     {
-        return $this->queryStringAliasForSort ?? $this->getQueryStringAlias().'-sorts';
+        return $this->getQueryStringConfigAlias("sorts");
     }
 
     public function setQueryStringAliasForSort(string $alias): self
     {
-        $this->queryStringAliasForSort = $alias;
-
-        return $this;
+        return $this->setQueryStringConfigAlias("sorts", $alias);
     }
 }
