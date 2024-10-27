@@ -105,5 +105,6 @@ final class QueryStringForSearchTest extends TestCase
         $this->assertSame('table-search', $mock->getQueryStringAliasForSearch());
         $mock->setQueryStringAliasForSearch('pet-search');
         $this->assertSame('pet-search', $mock->getQueryStringAliasForSearch());
+        $this->assertTrue($mock->hasQueryStringAliasForSearch());
     }
 }

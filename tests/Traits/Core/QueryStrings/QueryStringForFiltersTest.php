@@ -105,5 +105,6 @@ final class QueryStringForFiltersTest extends TestCase
         $this->assertSame('table-filters', $mock->getQueryStringAliasForFilter());
         $mock->setQueryStringAliasForFilter('pet-filters');
         $this->assertSame('pet-filters', $mock->getQueryStringAliasForFilter());
+        $this->assertTrue($mock->hasQueryStringAliasForFilter());
     }
 }
