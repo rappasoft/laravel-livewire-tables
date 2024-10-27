@@ -84,6 +84,28 @@ final class QueryStringForSearchTest extends TestCase
         $mock->boot();
 
         $this->assertSame('table-search', $mock->getQueryStringAliasForSearch());
+        $this->assertFalse($mock->hasQueryStringAliasForSearch());
+    }
+
+    public function test_can_change_default_search_query_string_alias(): void
+    {
+        $mock = new class extends PetsTable
+        {
+            public ?array $testAttributesArray;
+
+            public function configure(): void
+            {
+                $this->setDataTableFingerprint('test');
+            }
+        };
+
+        $mock->configure();
+        $mock->boot();
+
+        $this->assertSame('table-search', $mock->getQueryStringAliasForSearch());
+        $mock->setQueryStringAliasForSearch('pet-search');
+        $this->assertSame('pet-search', $mock->getQueryStringAliasForSearch());
         $this->assertTrue($mock->hasQueryStringAliasForSearch());
     }
+
 }
