@@ -7,12 +7,14 @@ use Illuminate\Support\Collection;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForSort;
 
 trait WithSorting
 {
     use SortingConfiguration,
         SortingHelpers;
-
+    use HasQueryStringForSort;
+    
     public array $sorts = [];
 
     public Collection $sortableColumns;
@@ -31,16 +33,6 @@ trait WithSorting
 
     public string $defaultSortingLabelDesc = 'Z-A';
 
-    public function queryStringWithSorting(): array
-    {
-        if ($this->queryStringIsEnabled() && $this->sortingIsEnabled()) {
-            return [
-                'sorts' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-sorts'],
-            ];
-        }
-
-        return [];
-    }
 
     public function sortBy(string $columnSelectName): ?string
     {
