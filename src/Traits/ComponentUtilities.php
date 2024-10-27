@@ -8,11 +8,13 @@ use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryString;
 
 trait ComponentUtilities
 {
     use ComponentConfiguration,
         ComponentHelpers;
+    use HasQueryString;
 
     public array $table = [];
 
@@ -48,6 +50,8 @@ trait ComponentUtilities
 
     protected bool $useComputedProperties = true;
 
+    protected bool $hasRunConfigure = false;
+
     /**
      * Set any configuration options
      */
@@ -71,22 +75,33 @@ trait ComponentUtilities
      */
     public function bootedComponentUtilities(): void
     {
-        // Fire Lifecycle Hooks for configuring
-        $this->callHook('configuring');
-        $this->callTraitHook('configuring');
-
-        // Call the configure() method
-        $this->configure();
-
-        // Fire Lifecycle Hooks for configured
-        $this->callHook('configured');
-        $this->callTraitHook('configured');
+        $this->runCoreConfiguration();
 
         // Make sure a primary key is set
         if (! $this->hasPrimaryKey()) {
             throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method, or configuring/configured lifecycle hooks');
         }
 
+    }
+
+    protected function runCoreConfiguration(): void
+    {
+        if (!$this->hasRunConfigure)
+        {
+            // Fire Lifecycle Hooks for configuring
+            $this->callHook('configuring');
+            $this->callTraitHook('configuring');
+
+            // Call the configure() method
+            $this->configure();
+
+            // Fire Lifecycle Hooks for configured
+            $this->callHook('configured');
+            $this->callTraitHook('configured');
+            
+            $this->hasRunConfigure = true;
+
+        }
     }
 
     /**

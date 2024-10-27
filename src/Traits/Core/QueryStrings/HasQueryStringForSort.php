@@ -27,7 +27,7 @@ trait HasQueryStringForSort
         return $this->getQueryStringConfigStatus('sorts');
     }
 
-    protected function queryStringForSortEnabled(): bool
+    public function queryStringForSortEnabled(): bool
     {
         $this->setupQueryStringStatusForSort();
 

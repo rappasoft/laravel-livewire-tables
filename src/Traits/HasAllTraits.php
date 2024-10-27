@@ -12,6 +12,7 @@ trait HasAllTraits
     use WithLoadingPlaceholder;
     use HasTheme;
     use ComponentUtilities,
+        WithQueryString,
         WithActions,
         WithData,
         WithColumns,
@@ -28,7 +29,6 @@ trait HasAllTraits
         WithEvents,
         WithFilters,
         WithFooter,
-        WithQueryString,
         WithRefresh,
         WithReordering,
         WithSecondaryHeader,
