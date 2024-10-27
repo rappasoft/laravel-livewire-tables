@@ -84,8 +84,7 @@ trait ComponentUtilities
 
     protected function runCoreConfiguration(): void
     {
-        if (!$this->hasRunConfigure)
-        {
+        if (! $this->hasRunConfigure) {
             // Fire Lifecycle Hooks for configuring
             $this->callHook('configuring');
             $this->callTraitHook('configuring');
@@ -96,7 +95,7 @@ trait ComponentUtilities
             // Fire Lifecycle Hooks for configured
             $this->callHook('configured');
             $this->callTraitHook('configured');
-            
+
             $this->hasRunConfigure = true;
 
         }
