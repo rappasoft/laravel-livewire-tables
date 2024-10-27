@@ -107,5 +107,4 @@ final class QueryStringForSearchTest extends TestCase
         $this->assertSame('pet-search', $mock->getQueryStringAliasForSearch());
         $this->assertTrue($mock->hasQueryStringAliasForSearch());
     }
-
 }
