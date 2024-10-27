@@ -86,5 +86,4 @@ final class QueryStringForSearchTest extends TestCase
         $this->assertSame('table-search', $mock->getQueryStringAliasForSearch());
 
     }
-
 }
