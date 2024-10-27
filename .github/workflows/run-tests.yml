@@ -23,7 +23,7 @@ jobs:
     name: PHP-${{ matrix.php }} - Laravel-10
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
-      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
 
     steps:
       - name: Checkout code
@@ -102,7 +102,7 @@ jobs:
     name: PHP-${{ matrix.php }} - Laravel-11
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
-      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
 
     steps:
       - name: Checkout code

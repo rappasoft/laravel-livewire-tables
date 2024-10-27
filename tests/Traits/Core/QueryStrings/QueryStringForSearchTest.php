@@ -7,9 +7,9 @@ use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
-final class QueryStringForFiltersTest extends TestCase
+final class QueryStringForSearchTest extends TestCase
 {
-    public function test_can_get_default_filter_query_string_status(): void
+    public function test_can_get_default_search_query_string_status(): void
     {
         $mock = new class extends PetsTable
         {
@@ -24,10 +24,10 @@ final class QueryStringForFiltersTest extends TestCase
         $mock->configure();
         $mock->boot();
 
-        $this->assertSame(true, $mock->getQueryStringStatusForFilter());
+        $this->assertSame(true, $mock->getQueryStringStatusForSearch());
     }
 
-    public function test_can_disable_filter_query_string_status(): void
+    public function test_can_disable_search_query_string_status(): void
     {
         $mock = new class extends PetsTable
         {
@@ -36,17 +36,17 @@ final class QueryStringForFiltersTest extends TestCase
             public function configure(): void
             {
                 $this->setDataTableFingerprint('test');
-                $this->setQueryStringForFilterDisabled();
+                $this->setQueryStringForSearchDisabled();
             }
         };
 
         $mock->configure();
         $mock->boot();
 
-        $this->assertSame(false, $mock->getQueryStringStatusForFilter());
+        $this->assertSame(false, $mock->getQueryStringStatusForSearch());
     }
 
-    public function test_can_enable_filter_query_string_status(): void
+    public function test_can_enable_search_query_string_status(): void
     {
         $mock = new class extends PetsTable
         {
@@ -55,39 +55,20 @@ final class QueryStringForFiltersTest extends TestCase
             public function configure(): void
             {
                 $this->setDataTableFingerprint('test');
-                $this->setQueryStringForFilterDisabled();
+                $this->setQueryStringForSearchDisabled();
             }
         };
 
         $mock->configure();
         $mock->boot();
 
-        $this->assertSame(false, $mock->getQueryStringStatusForFilter());
-        $mock->setQueryStringForFilterEnabled();
-        $this->assertSame(true, $mock->getQueryStringStatusForFilter());
-
-    }
-
-    public function test_can_get_default_filter_query_string_alias(): void
-    {
-        $mock = new class extends PetsTable
-        {
-            public ?array $testAttributesArray;
-
-            public function configure(): void
-            {
-                $this->setDataTableFingerprint('test');
-            }
-        };
-
-        $mock->configure();
-        $mock->boot();
-
-        $this->assertSame('table-filters', $mock->getQueryStringAliasForFilter());
+        $this->assertSame(false, $mock->getQueryStringStatusForSearch());
+        $mock->setQueryStringForSearchEnabled();
+        $this->assertSame(true, $mock->getQueryStringStatusForSearch());
 
     }
 
-    public function test_can_change_default_filter_query_string_alias(): void
+    public function test_can_get_default_search_query_string_alias(): void
     {
         $mock = new class extends PetsTable
         {
@@ -102,9 +83,28 @@ final class QueryStringForFiltersTest extends TestCase
         $mock->configure();
         $mock->boot();
 
-        $this->assertSame('table-filters', $mock->getQueryStringAliasForFilter());
-        $mock->setQueryStringAliasForFilter('pet-filters');
-        $this->assertSame('pet-filters', $mock->getQueryStringAliasForFilter());
-        $this->assertTrue($mock->hasQueryStringAliasForFilter());
+        $this->assertSame('table-search', $mock->getQueryStringAliasForSearch());
+    }
+
+    public function test_can_change_default_search_query_string_alias(): void
+    {
+        $mock = new class extends PetsTable
+        {
+            public ?array $testAttributesArray;
+
+            public function configure(): void
+            {
+                $this->setDataTableFingerprint('test');
+            }
+        };
+
+        $mock->configure();
+        $mock->boot();
+
+        $this->assertFalse($mock->hasQueryStringAliasForSearch());
+        $this->assertSame('table-search', $mock->getQueryStringAliasForSearch());
+        $mock->setQueryStringAliasForSearch('pet-search');
+        $this->assertSame('pet-search', $mock->getQueryStringAliasForSearch());
+        $this->assertTrue($mock->hasQueryStringAliasForSearch());
     }
 }

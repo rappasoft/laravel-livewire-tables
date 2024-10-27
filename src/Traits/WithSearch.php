@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForSearch;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
 
 trait WithSearch
 {
     use SearchConfiguration,
         SearchHelpers;
+    use HasQueryStringForSearch;
 
     public string $search = '';
 
@@ -37,17 +39,6 @@ trait WithSearch
     protected array $searchFieldAttributes = [];
 
     protected bool $trimSearchString = false;
-
-    protected function queryStringWithSearch(): array
-    {
-        if ($this->queryStringIsEnabled() && $this->searchIsEnabled()) {
-            return [
-                'search' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-search'],
-            ];
-        }
-
-        return [];
-    }
 
     // TODO
     public function applySearch(): Builder
