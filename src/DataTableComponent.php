@@ -11,7 +11,7 @@ abstract class DataTableComponent extends Component
     use HasAllTraits;
 
     /**
-     * Runs on every request, immediately after the component is instantiated, but before any other lifecycle methods are called
+     * Runs on every request, immediately after the component is instantiated, but before any other lifecycle methods are called 
      */
     #[On('refreshDatatable')]
     public function boot(): void
