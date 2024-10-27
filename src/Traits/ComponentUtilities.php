@@ -7,8 +7,8 @@ use Illuminate\Support\Str;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
-use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryString;
+use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
 
 trait ComponentUtilities
 {
@@ -86,8 +86,7 @@ trait ComponentUtilities
 
     protected function runCoreConfiguration(): void
     {
-        if (!$this->hasRunConfigure)
-        {
+        if (! $this->hasRunConfigure) {
             // Fire Lifecycle Hooks for configuring
             $this->callHook('configuring');
             $this->callTraitHook('configuring');
@@ -98,7 +97,7 @@ trait ComponentUtilities
             // Fire Lifecycle Hooks for configured
             $this->callHook('configured');
             $this->callTraitHook('configured');
-            
+
             $this->hasRunConfigure = true;
 
         }
