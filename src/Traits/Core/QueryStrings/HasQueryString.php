@@ -26,7 +26,7 @@ trait HasQueryString
 
     protected function getQueryStringConfigStatus(string $type): bool
     {
-        return  $this->getQueryStringConfig($type)['status'] ?? $this->getQueryStringStatus();
+        return $this->getQueryStringConfig($type)['status'] ?? $this->getQueryStringStatus();
     }
 
     protected function hasQueryStringConfigAlias(string $type): bool
@@ -36,9 +36,8 @@ trait HasQueryString
 
     protected function getQueryStringConfigAlias(string $type): string
     {
-        return  $this->getQueryStringConfig($type)['alias'] ?? $this->getQueryStringAlias()."-".$type;
+        return $this->getQueryStringConfig($type)['alias'] ?? $this->getQueryStringAlias().'-'.$type;
     }
-
 
     protected function setQueryStringConfig(string $type, array $config): self
     {
@@ -55,7 +54,6 @@ trait HasQueryString
 
     protected function setQueryStringConfigAlias(string $type, string $alias): self
     {
-        return $this->setQueryStringConfig($type,['alias' => $alias]);
+        return $this->setQueryStringConfig($type, ['alias' => $alias]);
     }
-
 }

@@ -4,12 +4,12 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings;
 
 trait HasQueryStringForSort
 {
-
     protected function queryStringHasQueryStringForSort(): array
     {
         return ($this->queryStringForSortEnabled() && $this->sortingIsEnabled()) ? ['sorts' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForSort()]] : [];
 
     }
+
     public function setupQueryStringStatusForSort(): void
     {
         if (! $this->hasQueryStringStatusForSort()) {
@@ -24,7 +24,7 @@ trait HasQueryStringForSort
 
     protected function getQueryStringStatusForSort(): bool
     {
-        return $this->getQueryStringConfigStatus("sorts");
+        return $this->getQueryStringConfigStatus('sorts');
     }
 
     protected function queryStringForSortEnabled(): bool
@@ -36,7 +36,7 @@ trait HasQueryStringForSort
 
     public function setQueryStringStatusForSort(bool $status): self
     {
-        return $this->setQueryStringConfigStatus("sorts", $status);
+        return $this->setQueryStringConfigStatus('sorts', $status);
     }
 
     public function setQueryStringForSortEnabled(): self
@@ -56,11 +56,11 @@ trait HasQueryStringForSort
 
     protected function getQueryStringAliasForSort(): string
     {
-        return $this->getQueryStringConfigAlias("sorts");
+        return $this->getQueryStringConfigAlias('sorts');
     }
 
     public function setQueryStringAliasForSort(string $alias): self
     {
-        return $this->setQueryStringConfigAlias("sorts", $alias);
+        return $this->setQueryStringConfigAlias('sorts', $alias);
     }
 }

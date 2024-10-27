@@ -24,7 +24,7 @@ trait HasQueryStringForSearch
 
     protected function getQueryStringStatusForSearch(): bool
     {
-        return $this->getQueryStringConfigStatus("search");
+        return $this->getQueryStringConfigStatus('search');
     }
 
     protected function queryStringForSearchEnabled(): bool
@@ -36,7 +36,7 @@ trait HasQueryStringForSearch
 
     public function setQueryStringStatusForSearch(bool $status): self
     {
-        return $this->setQueryStringConfigStatus("search", $status);
+        return $this->setQueryStringConfigStatus('search', $status);
     }
 
     public function setQueryStringForSearchEnabled(): self
@@ -56,11 +56,11 @@ trait HasQueryStringForSearch
 
     protected function getQueryStringAliasForSearch(): string
     {
-        return $this->getQueryStringConfigAlias("search");
+        return $this->getQueryStringConfigAlias('search');
     }
 
     public function setQueryStringAliasForSearch(string $alias): self
     {
-        return $this->setQueryStringConfigAlias("search", $alias);
+        return $this->setQueryStringConfigAlias('search', $alias);
     }
 }
