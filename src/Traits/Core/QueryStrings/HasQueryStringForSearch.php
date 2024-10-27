@@ -13,7 +13,7 @@ trait HasQueryStringForSearch
 
     protected function queryStringHasQueryStringForSearch(): array
     {
-        return ($this->queryStringForSearchEnabled() && $this->searchIsEnabled()) ? [ 'search' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForSearch()]] : [];
+        return ($this->queryStringForSearchEnabled() && $this->searchIsEnabled()) ? ['search' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForSearch()]] : [];
 
     }
 
