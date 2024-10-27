@@ -12,9 +12,9 @@ trait HasAllTraits
     use WithLoadingPlaceholder;
     use HasTheme;
     use ComponentUtilities,
-        WithQueryString,
         WithActions,
         WithData,
+        WithQueryString,
         WithColumns,
         WithSorting,
         WithSearch,
