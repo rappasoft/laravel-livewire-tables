@@ -90,14 +90,14 @@ final class QueryStringForSearchTest extends TestCase
     public function test_search_via_query_string_functions(): void
     {
         Livewire::withQueryParams(['table-search' => 'Cartman'])
-        ->test(PetsTable::class)
-        ->assertSee('Cartman')
-        ->assertDontSee('Chico');
+            ->test(PetsTable::class)
+            ->assertSee('Cartman')
+            ->assertDontSee('Chico');
 
         Livewire::withQueryParams(['table-search' => 'Chico'])
-        ->test(PetsTable::class)
-        ->assertSee('Chico')
-        ->assertDontSee('Cartman');
+            ->test(PetsTable::class)
+            ->assertSee('Chico')
+            ->assertDontSee('Cartman');
 
         $mock = new class extends PetsTable
         {
@@ -112,14 +112,14 @@ final class QueryStringForSearchTest extends TestCase
         };
 
         Livewire::withQueryParams(['table-search' => 'Chico'])
-        ->test($mock)
-        ->assertSee('Chico')
-        ->assertSee('Cartman');
+            ->test($mock)
+            ->assertSee('Chico')
+            ->assertSee('Cartman');
 
         Livewire::withQueryParams(['pet-search' => 'Chico'])
-        ->test($mock)
-        ->assertSee('Chico')
-        ->assertDontSee('Cartman');
+            ->test($mock)
+            ->assertSee('Chico')
+            ->assertDontSee('Cartman');
 
     }
 }
