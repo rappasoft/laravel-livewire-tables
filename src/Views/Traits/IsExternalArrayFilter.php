@@ -24,11 +24,10 @@ trait IsExternalArrayFilter
     public array $selectOptions = [];
 
     #[On('filter-was-set')]
-    #[Renderless] 
+    #[Renderless]
     public function setFilterValues($tableName, $filterKey, $value)
     {
-        if ($tableName == $this->tableName && $filterKey == $this->filterKey)
-        {
+        if ($tableName == $this->tableName && $filterKey == $this->filterKey) {
             $this->selectedItems = $value;
             $this->clearFilter();
             $this->needsUpdating = false;
@@ -38,7 +37,7 @@ trait IsExternalArrayFilter
 
     protected function clearFilter() {}
 
-    #[Renderless] 
+    #[Renderless]
     public function updatedSelectedItems($values)
     {
         $this->needsUpdating = true;
@@ -54,18 +53,14 @@ trait IsExternalArrayFilter
         $this->needsUpdating = false;
     }
 
-    #[Renderless] 
+    #[Renderless]
     protected function sendUpdateDispatch(array $returnValues)
     {
-        if ($this->needsUpdating)
-        {
-            if (!empty($returnValues))
-            {
-                $this->dispatch('livewireArrayFilterUpdateValues', tableName: $this->tableName, filterKey: $this->filterKey, values: $returnValues)->to($this->tableComponent); 
+        if ($this->needsUpdating) {
+            if (! empty($returnValues)) {
+                $this->dispatch('livewireArrayFilterUpdateValues', tableName: $this->tableName, filterKey: $this->filterKey, values: $returnValues)->to($this->tableComponent);
                 $this->value = array_keys($returnValues);
-            }
-            else
-            {
+            } else {
                 $this->value = [];
             }
             $this->needsUpdating = false;
@@ -77,14 +72,11 @@ trait IsExternalArrayFilter
     {
         $returnValues = [];
 
-        if ($this->needsUpdating == true && !empty($this->selectedItems))
-        {
-            foreach ($this->selectedItems as $selectedItem)
-            {
+        if ($this->needsUpdating == true && ! empty($this->selectedItems)) {
+            foreach ($this->selectedItems as $selectedItem) {
                 $returnValues[$selectedItem] = $this->selectOptions[$selectedItem] ?? 'Unknown';
             }
             $this->sendUpdateDispatch($returnValues);
         }
     }
-
 }

@@ -33,5 +33,4 @@ class LivewireComponentFilter extends Filter
     {
         return $this->filterDefaultValue ?? null;
     }
-
 }

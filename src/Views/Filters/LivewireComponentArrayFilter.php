@@ -20,7 +20,7 @@ class LivewireComponentArrayFilter extends Filter
 
     public function validate(array $value): array|bool
     {
-        
+
         return $value;
     }
 
@@ -50,6 +50,4 @@ class LivewireComponentArrayFilter extends Filter
 
         return $values;
     }
-
-
 }

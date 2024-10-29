@@ -31,13 +31,12 @@ trait IsLivewireComponentFilter
         return $this->livewireComponent ?? '';
     }
 
-    
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         if ($this->livewireComponent == '') {
             throw new DataTableConfigurationException('You must specify a valid path to your Livewire Component Filter.');
         }
-        
+
         return view($this->getViewPath(), $this->getFilterDisplayData())->with([
             'livewireComponent' => $this->livewireComponent,
         ]);
