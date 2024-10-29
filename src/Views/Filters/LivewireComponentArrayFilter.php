@@ -5,25 +5,28 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\IsLivewireComponentFilter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsArrayFilter, IsLivewireComponentFilter};
 
-class LivewireComponentFilter extends Filter
+class LivewireComponentArrayFilter extends Filter
 {
     use HasWireables;
+    use IsArrayFilter;
+    use HasOptions;
     use IsLivewireComponentFilter;
 
     public string $wireMethod = 'blur';
 
     protected string $view = 'livewire-tables::components.tools.filters.livewire-component-filter';
 
-    public function validate(string $value): string|bool
+    public function validate(array $value): array|bool
     {
+        
         return $value;
     }
 
-    public function isEmpty(?string $value): bool
+    public function isEmpty(array $value = []): bool
     {
-        return is_null($value) || $value === '';
+        return empty($value);
     }
 
     /**
@@ -33,5 +36,20 @@ class LivewireComponentFilter extends Filter
     {
         return $this->filterDefaultValue ?? null;
     }
+
+    public function getFilterPillValue($value): array|string|bool|null
+    {
+        $values = [];
+        foreach ($value as $key => $item) {
+
+            $found = $this->getCustomFilterPillValue($item) ?? ($this->options[$item] ?? $item);
+            if ($found) {
+                $values[] = $found;
+            }
+        }
+
+        return $values;
+    }
+
 
 }
