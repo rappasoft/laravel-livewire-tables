@@ -38,8 +38,7 @@ trait IsExternalArrayFilter
     #[Renderless]
     public function updatedSelectedItems(string $value): void
     {
-        if (!$this->needsUpdating)
-        {
+        if (! $this->needsUpdating) {
             $this->needsUpdating = true;
 
         }
