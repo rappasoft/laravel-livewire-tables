@@ -2,22 +2,15 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings;
 
-use Livewire\Attributes\Locked;
-
 trait HasQueryStringForSearch
 {
-    #[Locked]
-    public ?bool $queryStringStatusForSearch;
-
-    protected ?string $queryStringAliasForSearch;
-
     protected function queryStringHasQueryStringForSearch(): array
     {
         return ($this->queryStringForSearchEnabled() && $this->searchIsEnabled()) ? ['search' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForSearch()]] : [];
 
     }
 
-    public function setupQueryStringStatusForSearch(): void
+    protected function setupQueryStringStatusForSearch(): void
     {
         if (! $this->hasQueryStringStatusForSearch()) {
             $this->setQueryStringForSearchEnabled();
@@ -26,12 +19,12 @@ trait HasQueryStringForSearch
 
     public function hasQueryStringStatusForSearch(): bool
     {
-        return isset($this->queryStringStatusForSearch);
+        return $this->hasQueryStringConfigStatus('search');
     }
 
     public function getQueryStringStatusForSearch(): bool
     {
-        return $this->queryStringStatusForSearch ?? true;
+        return $this->getQueryStringConfigStatus('search');
     }
 
     public function queryStringForSearchEnabled(): bool
@@ -43,39 +36,31 @@ trait HasQueryStringForSearch
 
     public function setQueryStringStatusForSearch(bool $status): self
     {
-        $this->queryStringStatusForSearch = $status;
-
-        return $this;
+        return $this->setQueryStringConfigStatus('search', $status);
     }
 
     public function setQueryStringForSearchEnabled(): self
     {
-        $this->setQueryStringStatusForSearch(true);
-
-        return $this;
+        return $this->setQueryStringStatusForSearch(true);
     }
 
     public function setQueryStringForSearchDisabled(): self
     {
-        $this->setQueryStringStatusForSearch(false);
-
-        return $this;
+        return $this->setQueryStringStatusForSearch(false);
     }
 
     public function hasQueryStringAliasForSearch(): bool
     {
-        return isset($this->queryStringAliasForSearch);
+        return $this->hasQueryStringConfigAlias('search');
     }
 
     public function getQueryStringAliasForSearch(): string
     {
-        return $this->queryStringAliasForSearch ?? $this->getQueryStringAlias().'-search';
+        return $this->getQueryStringConfigAlias('search');
     }
 
     public function setQueryStringAliasForSearch(string $alias): self
     {
-        $this->queryStringAliasForSearch = $alias;
-
-        return $this;
+        return $this->setQueryStringConfigAlias('search', $alias);
     }
 }

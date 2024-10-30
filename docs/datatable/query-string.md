@@ -154,3 +154,54 @@ public function configure(): void
   $this->setQueryStringAliasForSearch('search');
 }
 ```
+
+## Sorts
+
+The sorts query string is **enabled by default**, but if you ever needed to toggle it you can use the following methods:
+
+### setQueryStringStatusForSort
+
+Enable/disable the query string for sort
+
+```php
+public function configure(): void
+{
+  $this->setQueryStringStatusForSort(true);
+  $this->setQueryStringStatusForSort(false);
+}
+```
+
+### setQueryStringForSortEnabled
+
+Enable the query string for sort
+
+```php
+public function configure(): void
+{
+  // Shorthand for $this->setQueryStringStatusForSort(true)
+  $this->setQueryStringForSortEnabled();
+}
+```
+
+### setQueryStringForSortDisabled
+
+Disable the query string for sort
+
+```php
+public function configure(): void
+{
+  // Shorthand for $this->setQueryStringStatusForSort(false)
+  $this->setQueryStringForSortDisabled();
+}
+```
+
+### setQueryStringAliasForSort
+
+Change the Alias in the URL for the sorts, otherwise defaults to "$tablename-sorts"
+
+```php
+public function configure(): void
+{
+  $this->setQueryStringAliasForSort('sorts');
+}
+```

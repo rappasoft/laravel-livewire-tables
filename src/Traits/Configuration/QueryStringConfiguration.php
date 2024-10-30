@@ -14,7 +14,7 @@ trait QueryStringConfiguration
     public function setupQueryStringStatus(): void
     {
         if (! $this->hasQueryStringStatus()) {
-            $this->configure();
+            $this->runCoreConfiguration();
             if (! $this->hasQueryStringStatus()) {
                 $this->setQueryStringEnabled();
             }

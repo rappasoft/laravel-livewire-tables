@@ -4,12 +4,14 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\QueryStringConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryString;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\QueryStringHelpers;
 
 trait WithQueryString
 {
     use QueryStringConfiguration,
         QueryStringHelpers;
+    use HasQueryString;
 
     #[Locked]
     public ?bool $queryStringStatus;

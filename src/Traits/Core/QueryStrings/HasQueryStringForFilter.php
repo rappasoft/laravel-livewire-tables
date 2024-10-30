@@ -20,7 +20,7 @@ trait HasQueryStringForFilter
             ] : [];
     }
 
-    public function setupQueryStringStatusForFilter(): void
+    protected function setupQueryStringStatusForFilter(): void
     {
         if (! $this->hasQueryStringStatusForFilter()) {
             $this->setQueryStringForFilterEnabled();
