@@ -22,7 +22,6 @@ $loaderIcon = $this->getLoadingPlaceHolderIconAttributes();
         @if($this->hasLoadingPlaceholderBlade())
             @include($this->getLoadingPlaceHolderBlade(), ['colCount' => $colCount])
         @else
-
             <div class="h-min self-center align-middle text-center">
                 <div class="lds-hourglass"{{
                         $attributes->merge($loaderIcon)
