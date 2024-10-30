@@ -345,4 +345,14 @@ trait FilterHelpers
     {
         return $this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills();
     }
+
+    #[On('livewireArrayFilterUpdateValues')]
+    public function updateLivewireArrayFilterValues(string $filterKey, string $tableName, array $values): void
+    {
+        if ($this->tableName == $tableName) {
+            $filter = $this->getFilterByKey($filterKey);
+            $filter->options($values);
+        }
+
+    }
 }
