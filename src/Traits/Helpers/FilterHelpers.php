@@ -347,7 +347,7 @@ trait FilterHelpers
     }
 
     #[On('livewireArrayFilterUpdateValues')]
-    public function updateLivewireArrayFilterValues(string $filterKey, string $tableName, array $values)
+    public function updateLivewireArrayFilterValues(string $filterKey, string $tableName, array $values): void
     {
         if ($this->tableName == $tableName) {
             $filter = $this->getFilterByKey($filterKey);

@@ -7,7 +7,7 @@ use Livewire\Attributes\{Modelable,On,Renderless};
 trait IsExternalArrayFilter
 {
     #[Modelable]
-    public $value = [];
+    public array $value = [];
 
     public string $filterKey = '';
 
@@ -24,12 +24,10 @@ trait IsExternalArrayFilter
     public array $selectOptions = [];
 
     #[On('filter-was-set')]
-    #[Renderless]
-    public function setFilterValues($tableName, $filterKey, $value)
+    public function setFilterValues(string $tableName, string $filterKey, array $value): void
     {
-        if ($tableName == $this->tableName && $filterKey == $this->filterKey) {
+        if ($tableName == $this->tableName && $filterKey == $this->filterKey && $this->selectedItems != $value) {
             $this->selectedItems = $value;
-            $this->clearFilter();
             $this->needsUpdating = false;
 
         }
@@ -38,37 +36,31 @@ trait IsExternalArrayFilter
     protected function clearFilter() {}
 
     #[Renderless]
-    public function updatedSelectedItems($values)
+    public function updatedSelectedItems(string $value): void
     {
-        $this->needsUpdating = true;
-    }
-
-    protected function enableUpdateDispatch(): void
-    {
-        $this->needsUpdating = true;
-    }
-
-    protected function disableUpdateDispatch(): void
-    {
-        $this->needsUpdating = false;
-    }
-
-    #[Renderless]
-    protected function sendUpdateDispatch(array $returnValues)
-    {
-        if ($this->needsUpdating) {
-            if (! empty($returnValues)) {
-                $this->dispatch('livewireArrayFilterUpdateValues', tableName: $this->tableName, filterKey: $this->filterKey, values: $returnValues)->to($this->tableComponent);
-                $this->value = array_keys($returnValues);
-            } else {
-                $this->value = [];
-            }
-            $this->needsUpdating = false;
+        if (!$this->needsUpdating)
+        {
+            $this->needsUpdating = true;
 
         }
     }
 
-    public function renderingIsExternalArrayFilter()
+    #[Renderless]
+    protected function sendUpdateDispatch(array $returnValues): void
+    {
+        if ($this->needsUpdating) {
+            if (! empty($returnValues)) {
+                $this->value = array_keys($returnValues);
+            } else {
+                $this->value = [];
+            }
+            $this->dispatch('livewireArrayFilterUpdateValues', tableName: $this->tableName, filterKey: $this->filterKey, values: $returnValues)->to($this->tableComponent);
+
+        }
+    }
+
+    #[Renderless]
+    public function renderingIsExternalArrayFilter(): void
     {
         $returnValues = [];
 

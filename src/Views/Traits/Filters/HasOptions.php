@@ -33,7 +33,7 @@ trait HasOptions
 
     public function getOptions(): array
     {
-        return $this->options ?? $this->options = config($this->optionsPath, []);
+        return $this->options ?? $this->options = (property_exists($this, 'optionsPath') ? config($this->optionsPath, []) : []);
     }
 
     public function getKeys(): array

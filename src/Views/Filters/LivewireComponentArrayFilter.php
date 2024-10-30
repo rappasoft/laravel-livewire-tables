@@ -16,7 +16,7 @@ class LivewireComponentArrayFilter extends Filter
 
     public string $wireMethod = 'blur';
 
-    protected string $view = 'livewire-tables::components.tools.filters.livewire-component-filter';
+    protected string $view = 'livewire-tables::components.tools.filters.livewire-component-array-filter';
 
     public function validate(array $value): array|bool
     {
@@ -49,5 +49,10 @@ class LivewireComponentArrayFilter extends Filter
         }
 
         return $values;
+    }
+
+    public function getKeys(): array
+    {
+        return array_keys($this->options ?? []);
     }
 }
