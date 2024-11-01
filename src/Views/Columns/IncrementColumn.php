@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class IncrementColumn extends Column
 {
-
     protected string $view = 'livewire-tables::includes.columns.increment';
 
     public function __construct(string $title, ?string $from = null)
