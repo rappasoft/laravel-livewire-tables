@@ -36,5 +36,4 @@ final class IncrementColumnTest extends TestCase
         $row1 = $rows->first();
 
     }
-
 }
