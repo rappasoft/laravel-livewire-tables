@@ -125,8 +125,12 @@
             @endif
         </x-livewire-tables::table>
 
-        <x-livewire-tables::pagination  />
-
+        @if($this->hasCustomPaginationBlade)
+            @include($this->getCustomPaginationBlade)
+        @else
+            <x-livewire-tables::pagination  />
+        @endif
+        
         @includeIf($customView)
     </x-livewire-tables::wrapper>
 
