@@ -1,6 +1,6 @@
 ---
 title: Styling
-weight: 5
+weight: 6
 ---
 
 The package offers significant opportunities to customise the look & feel of the core table, as well as other elements (which are documented in the relevant sections).

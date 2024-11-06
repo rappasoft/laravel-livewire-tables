@@ -48,6 +48,8 @@ trait ComponentUtilities
 
     protected bool $useComputedProperties = true;
 
+    protected bool $hasRunConfigure = false;
+
     /**
      * Set any configuration options
      */
@@ -71,22 +73,32 @@ trait ComponentUtilities
      */
     public function bootedComponentUtilities(): void
     {
-        // Fire Lifecycle Hooks for configuring
-        $this->callHook('configuring');
-        $this->callTraitHook('configuring');
-
-        // Call the configure() method
-        $this->configure();
-
-        // Fire Lifecycle Hooks for configured
-        $this->callHook('configured');
-        $this->callTraitHook('configured');
+        $this->runCoreConfiguration();
 
         // Make sure a primary key is set
         if (! $this->hasPrimaryKey()) {
             throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method, or configuring/configured lifecycle hooks');
         }
 
+    }
+
+    protected function runCoreConfiguration(): void
+    {
+        if (! $this->hasRunConfigure) {
+            // Fire Lifecycle Hooks for configuring
+            $this->callHook('configuring');
+            $this->callTraitHook('configuring');
+
+            // Call the configure() method
+            $this->configure();
+
+            // Fire Lifecycle Hooks for configured
+            $this->callHook('configured');
+            $this->callTraitHook('configured');
+
+            $this->hasRunConfigure = true;
+
+        }
     }
 
     /**

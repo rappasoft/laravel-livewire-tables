@@ -61,4 +61,24 @@ final class FilterAppliedTest extends TestCase
             return $event->value == 'test value' && $event->user->id == '1234' && $event->key = 'pet_name_filter' && $event->tableName == $this->basicTable->getTableName();
         });
     }
+
+    public function test_user_not_set_on_event_when_a_filter_is_applied_and_user_for_event_disabled()
+    {
+        Event::fake();
+
+        config()->set('livewire-tables.events.enableUserForEvent', false);
+
+        $user = new \Illuminate\Foundation\Auth\User;
+        $user->id = '1234';
+        $user->name = 'Bob';
+        $this->actingAs($user);
+
+        $this->basicTable->enableFilterAppliedEvent()->setFilter('pet_name_filter', 'test value');
+
+        Event::assertDispatched(FilterApplied::class, function ($event) {
+            $this->assertFalse(isset($event->user), 'User set on Event when config is set to disable this behavior');
+
+            return true;
+        });
+    }
 }

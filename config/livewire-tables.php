@@ -114,4 +114,14 @@ return [
         'defaultConfig' => [],
     ],
 
+    /**
+     * Configuration options for Events
+     */
+    'events' => [
+        /**
+         * Enable or disable passing the user from Laravel's Auth service to events
+         */
+        'enableUserForEvent' => true,
+    ],
+
 ];

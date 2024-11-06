@@ -47,7 +47,9 @@ You may use this method to set custom text for the placeholder:
         $this->setLoadingPlaceholderContent('Text To Display');
     }
 ```
-### setLoadingPlaceHolderWrapperAttributes
+### setLoadingPlaceHolderWrapperAttributes (Deprecated)
+
+This is replaced by setLoadingPlaceHolderRowAttributes, but remains functional.
 
 This method allows you to customise the attributes for the &lt;tr&gt; element used as a Placeholder when the table is loading.  Similar to other setAttribute methods, this accepts a range of attributes, and a boolean "default", which will enable/disable the default attributes.
 
@@ -55,6 +57,22 @@ This method allows you to customise the attributes for the &lt;tr&gt; element us
     public function configure(): void
     {
         $this->setLoadingPlaceHolderWrapperAttributes([
+            'class' => 'text-bold',
+            'default' => false,
+        ]);
+    }
+
+```
+
+### setLoadingPlaceHolderRowAttributes
+
+Replaces setLoadingPlaceHolderWrapperAttributes
+This method allows you to customise the attributes for the &lt;tr&gt; element used as a Placeholder when the table is loading.  Similar to other setAttribute methods, this accepts a range of attributes, and a boolean "default", which will enable/disable the default attributes.
+
+```php
+    public function configure(): void
+    {
+        $this->setLoadingPlaceHolderRowAttributes([
             'class' => 'text-bold',
             'default' => false,
         ]);

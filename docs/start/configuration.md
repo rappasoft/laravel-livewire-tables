@@ -81,3 +81,22 @@ You must also make sure you have this Alpine style available globally. Note that
     [x-cloak] { display: none !important; }
 </style>
 ```
+
+## Bypassing Laravel's Auth Service
+
+By default, all [events](../datatable/events#dispatched) will retrieve any currently authenticated user from Laravel's [Auth service](https://laravel.com/docs/authentication) and pass it along with the event.
+
+If your project doesn't include the Illuminate/Auth package, or you otherwise want to prevent this, you can set the `enableUserForEvent` config option to false.
+
+```php
+// config/livewire-tables.php
+return [
+    // ...
+    'events' => [
+        /**
+        * Enable or disable passing the user from Laravel's Auth service to events
+        */
+        'enableUserForEvent' => false,
+    ],
+];
+```
