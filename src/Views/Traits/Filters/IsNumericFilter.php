@@ -10,7 +10,7 @@ trait IsNumericFilter
 {
     public function isEmpty(float|int|string|array|null $value): bool
     {
-        return (!is_null($value) ? ($this->validate($value) == false) : true);
+        return ! is_null($value) ? ($this->validate($value) == false) : true;
     }
 
     /**

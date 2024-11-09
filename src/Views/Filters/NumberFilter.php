@@ -26,11 +26,12 @@ class NumberFilter extends Filter
             return $floatValue;
         } elseif (is_int($value)) {
             return $intValue;
-        } elseif(is_numeric($value)) {
+        } elseif (is_numeric($value)) {
             return (($floatValue - $intValue) == 0) ? $intValue : $floatValue;
-        } else if (ctype_digit($value)) {
+        } elseif (ctype_digit($value)) {
             return $intValue;
         }
+
         return false;
     }
 }
