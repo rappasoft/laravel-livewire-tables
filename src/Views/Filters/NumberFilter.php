@@ -23,8 +23,10 @@ class NumberFilter extends Filter
             return (float) $value;
         } elseif (is_int($value)) {
             return (int) $value;
+        } else if (ctype_digit($value)) {
+            return (float) $value;
         }
-
         return false;
+
     }
 }
