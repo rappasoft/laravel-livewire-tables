@@ -226,10 +226,23 @@ trait FilterHelpers
     /**
      * @return array<mixed>
      */
-    public function getAppliedFiltersWithValues(): array
+    /*public function getAppliedFiltersWithValuesOld(): array
     {
         return $this->appliedFilters = array_filter($this->getAppliedFilters(), function ($item, $key) {
             return ! $this->getFilterByKey($key)->isEmpty($item) && (is_array($item) ? count($item) : $item !== null);
+        }, ARRAY_FILTER_USE_BOTH);
+    }*/
+
+    /**
+     * @return array<mixed>
+     */
+    public function getAppliedFiltersWithValues(): array
+    {
+        return $this->appliedFilters = array_filter($this->getAppliedFilters(), function ($item, $key) {
+            $filter = $this->getFilterByKey($key);
+            $item = (!is_null($item) && !$filter->isEmpty($item)) ? $filter->validate($item) : $item;
+            
+            return ! $filter->isEmpty($item) && (is_array($item) ? count($item) : $item !== null);
         }, ARRAY_FILTER_USE_BOTH);
     }
 
