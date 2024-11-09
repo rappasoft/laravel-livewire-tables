@@ -104,7 +104,7 @@ final class FilterHelpersTest extends TestCase
 
         $this->assertSame(['1'], $this->basicTable->getAppliedFilterWithValue('breed'));
 
-        $this->basicTable->setFilter('breed_id_filter', '2');
+        $this->basicTable->setFilter('breed_id_filter', 2);
 
         $this->assertSame('2', $this->basicTable->getAppliedFilterWithValue('breed_id_filter'));
 
