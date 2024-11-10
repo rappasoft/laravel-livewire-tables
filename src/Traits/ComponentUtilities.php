@@ -34,7 +34,7 @@ trait ComponentUtilities
 
     protected bool $eagerLoadAllRelationsStatus = false;
 
-    protected string $emptyMessage = 'No items found. Try to broaden your search.';
+    protected string $emptyMessage = 'No items found, try to broaden your search';
 
     protected array $additionalSelects = [];
 

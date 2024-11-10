@@ -21,7 +21,7 @@
                 value="{{ $item }}"
                 wire:key="{{ $tableName }}-per-page-{{ $item }}"
             >
-                {{ $item === -1 ? __('livewire-tables::All') : $item }}
+                {{ $item === -1 ? __('livewire-tables::core.All') : $item }}
             </option>
         @endforeach
     </select>
