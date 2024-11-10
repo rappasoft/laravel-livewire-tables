@@ -33,7 +33,7 @@
                 @endif
                 @if ($this->isFilterLayoutSlideDown()) x-on:click="filtersOpen = !filtersOpen" @endif
             >
-                @lang('livewire-tables::Filters')
+                {{ __('livewire-tables::core.Filters') }}
 
                 @if ($count = $this->getFilterBadgeCount())
                     <span @class([

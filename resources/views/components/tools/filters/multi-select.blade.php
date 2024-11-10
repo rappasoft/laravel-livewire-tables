@@ -15,7 +15,7 @@
                 @if ($filter->getFirstOption() != "")
                     {{ $filter->getFirstOption() }}
                 @else
-                    @lang('livewire-tables::All')
+                    {{ __('livewire-tables::core.All') }}
                 @endif
                 </label>
             </div>
@@ -42,7 +42,7 @@
                 wire:input="selectAllFilterOptions('{{ $filter->getKey() }}')"
                 class="form-check-input"
             >
-            <label class="form-check-label" for="{{ $tableName }}-filter-{{ $filter->getKey() }}-@if($filter->hasCustomPosition()){{ $filter->getCustomPosition() }}@endif-select-all">@lang('livewire-tables::All')</label>
+            <label class="form-check-label" for="{{ $tableName }}-filter-{{ $filter->getKey() }}-@if($filter->hasCustomPosition()){{ $filter->getCustomPosition() }}@endif-select-all">{{ __('livewire-tables::core.All') }}</label>
         </div>
 
         @foreach($filter->getOptions() as $key => $value)

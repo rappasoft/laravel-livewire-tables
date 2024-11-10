@@ -127,7 +127,7 @@ trait SearchHelpers
             return $this->searchPlaceholder;
         }
 
-        return __('livewire-tables::Search');
+        return __('livewire-tables::core.Search');
     }
 
     public function hasSearchPlaceholder(): bool

@@ -9,8 +9,14 @@
          failOnEmptyTestSuite="false" 
          beStrictAboutOutputDuringTests="true" >
     <testsuites>
-        <testsuite name="Laravel Livewire Tables Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Laravel Livewire Tables Unit Test Suite">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Laravel Livewire Tables Localisations Unit">
+            <directory>tests/Localisations/Unit</directory>
+        </testsuite>
+        <testsuite name="Laravel Livewire Tables Localisations Presence">
+            <directory>tests/Localisations/Presence</directory>
         </testsuite>
     </testsuites>
     <source>
