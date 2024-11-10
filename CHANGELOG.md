@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.2] - 2024-11-09
+## Bug Fixes
+- Migrate Localisation back to PHP Files from JSON by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2038
+
 ## [v3.5.1] - 2024-11-09
 ### Bug Fixes
 - Fix NumberFilter bug for string values by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2034
