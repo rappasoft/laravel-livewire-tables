@@ -2,12 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Localisations\Unit\Component;
 
-use Rappasoft\LaravelLivewireTables\Tests\Localisations\BaseLocalisationCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use Rappasoft\LaravelLivewireTables\Tests\Localisations\BaseLocalisationCase;
 
 final class EmptyStringTest extends BaseLocalisationCase
 {
-
     #[DataProvider('localisationProvider')]
     public function test_can_get_localised_empty_message(string $locale): void
     {
@@ -15,5 +14,4 @@ final class EmptyStringTest extends BaseLocalisationCase
         $this->basicTable->changeLocale($locale);
         $this->assertEquals($localisedString, $this->basicTable->getEmptyMessage());
     }
-
 }

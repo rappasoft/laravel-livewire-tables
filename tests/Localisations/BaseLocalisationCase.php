@@ -2,18 +2,18 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Localisations;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use PHPUnit\Framework\Attributes\DataProvider;
 
 class BaseLocalisationCase extends TestCase
 {
-
     public static function getEnLocaleStrings(): array
     {
         $baseDir = __DIR__.'/../../resources/lang/';
 
-        $items = require($baseDir."en/core.php");
+        $items = require $baseDir.'en/core.php';
+
         return $items;
     }
 
@@ -21,7 +21,8 @@ class BaseLocalisationCase extends TestCase
     {
         $baseDir = __DIR__.'/../../resources/lang/';
 
-        $items = require($baseDir.$locale."/core.php");
+        $items = require $baseDir.$locale.'/core.php';
+
         return $items;
     }
 
@@ -58,15 +59,14 @@ class BaseLocalisationCase extends TestCase
         ];
         //return $availableLocales;
 
-        foreach ($availableLocales as $availableLocale)
-        {
+        foreach ($availableLocales as $availableLocale) {
             //$array = require($baseDir.$availableLocale.'/core.php');
             $localisations[] = [
-                'locale' => $availableLocale, 
-          //      'localisationStrings' => $array,
+                'locale' => $availableLocale,
+                //      'localisationStrings' => $array,
             ];
         }
+
         return $localisations;
     }
-
 }
