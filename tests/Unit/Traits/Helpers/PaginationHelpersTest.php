@@ -202,4 +202,17 @@ final class PaginationHelpersTest extends TestCase
         $this->assertSame((new \Illuminate\View\ComponentAttributeBag(['class' => 'text-lg', 'testval' => '123']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
 
     }
+
+    public function test_check_updated_per_page_returns_correctly(): void
+    {
+        $rows = $this->basicTable->getRows();
+        $this->basicTable->setPerPageAccepted([5, 10, 15, 25, 50]);
+
+        $this->basicTable->setPerPage(5);
+        $this->assertSame(5, $this->basicTable->getPerPage());
+
+        $this->basicTable->updatedPerPage(15);
+        $this->assertSame(15, $this->basicTable->getPerPage());
+
+    }
 }

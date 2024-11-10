@@ -26,14 +26,6 @@ jobs:
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pcov,pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
     steps:
-      - name: Wait for tests to finish
-        uses: lewagon/wait-on-check-action@v1.3.4
-        with:
-          ref: ${{ github.ref }}
-          running-workflow-name: 'Run Tests Pull'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 20
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -100,7 +92,7 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          token: ${{ secrets.CODE_COV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
           verbose: true
 
