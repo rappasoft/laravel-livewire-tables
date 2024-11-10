@@ -10,7 +10,7 @@
          beStrictAboutOutputDuringTests="true" >
     <testsuites>
         <testsuite name="Laravel Livewire Tables Test Suite">
-            <directory>tests</directory>
+            <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
     <source>
