@@ -92,7 +92,7 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          token: ${{ secrets.CODE_COV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
           verbose: true
 
