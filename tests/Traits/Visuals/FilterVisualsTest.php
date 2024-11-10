@@ -152,7 +152,6 @@ final class FilterVisualsTest extends TestCase
                 'Cat',
                 '<br />',
                 'Dog',
-                '<br />',
             ])
             ->set('filterComponents.breed', [1, 2])
             ->assertSeeHtmlInOrder([

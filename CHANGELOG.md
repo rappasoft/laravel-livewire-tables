@@ -2,8 +2,12 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## [v3.5.0] - 2024-11-06
+## [v3.5.1] - 2024-11-09
+### Bug Fixes
+- Fix NumberFilter bug for string values by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2034
+- Fixes for Filter Pills - Split blades, and ensure invalid filter alues are removed by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2035
 
+## [v3.5.0] - 2024-11-06
 ### Bug Fixes
 - Issue in multiple places where there is incorrect brackets in conjunction with coalescing operator (??) by @mrl22 in https://github.com/rappasoft/laravel-livewire-tables/pull/2021
 - Add Value to BooleanColumn custom view by @lrjoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2010
@@ -21,8 +25,6 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Adds Swedish translations by @Aiiion in https://github.com/rappasoft/laravel-livewire-tables/pull/2027
 - Fix missing i18n keys for FR, IT, EN, DE by @khwadj in https://github.com/rappasoft/laravel-livewire-tables/pull/1993
 - Add lang Norwegian and Albanian by @channor in https://github.com/rappasoft/laravel-livewire-tables/pull/1988
-
-
 
 ## [v3.4.22] - 2024-09-29
 ### Bug Fixes
