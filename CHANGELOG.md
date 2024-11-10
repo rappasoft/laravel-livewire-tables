@@ -26,8 +26,6 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Fix missing i18n keys for FR, IT, EN, DE by @khwadj in https://github.com/rappasoft/laravel-livewire-tables/pull/1993
 - Add lang Norwegian and Albanian by @channor in https://github.com/rappasoft/laravel-livewire-tables/pull/1988
 
-
-
 ## [v3.4.22] - 2024-09-29
 ### Bug Fixes
 - Fix Loading Placeholder Bug - Breaking Table by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/1969
