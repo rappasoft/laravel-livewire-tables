@@ -215,5 +215,4 @@ final class PaginationHelpersTest extends TestCase
         $this->assertSame(15, $this->basicTable->getPerPage());
 
     }
-
 }
