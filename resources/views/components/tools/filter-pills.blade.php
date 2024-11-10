@@ -10,7 +10,7 @@
                 'text-gray-700 dark:text-white' => $isTailwind,
                 '' =>  $isBootstrap,
             ])>
-                @lang('livewire-tables::Applied Filters'):
+                {{ __('livewire-tables::core.Applied Filters') }}:
             </small>
 
             @foreach($this->getAppliedFiltersWithValues() as $filterSelectName => $value)

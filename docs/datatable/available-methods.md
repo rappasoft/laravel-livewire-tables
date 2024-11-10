@@ -154,7 +154,7 @@ public function configure(): void
 
 Set the message displayed when the table is filtered but there are no results to show.
 
-Defaults to: "_No items found. Try to broaden your search._"
+Defaults to: "_No items found, try to broaden your search._"
 
 ```php
 public function configure(): void

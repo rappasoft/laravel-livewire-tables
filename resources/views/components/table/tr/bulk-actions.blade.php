@@ -17,9 +17,9 @@
                 <template x-if="selectedItems.length == paginationTotalItemCount || selectAllStatus">
                     <div wire:key="{{ $tableName }}-all-selected">
                         <span>
-                            @lang('livewire-tables::You are currently selecting all')
+                            {{ __('livewire-tables::core.You are currently selecting all') }}
                             @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
-                            @lang('livewire-tables::rows').
+                            {{ __('livewire-tables::core.rows') }}.
                         </span>
 
                         <button
@@ -28,7 +28,7 @@
                             type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
                         >
-                            @lang('livewire-tables::Deselect All')
+                            {{ __('livewire-tables::core.Deselect All') }}
                         </button>
                     </div>
                 </template>
@@ -36,9 +36,9 @@
                 <template x-if="selectedItems.length !== paginationTotalItemCount && !selectAllStatus">
                     <div wire:key="{{ $tableName }}-some-selected">
                         <span>
-                            @lang('livewire-tables::You have selected')
+                            {{ __('livewire-tables::core.You have selected') }}
                             <strong><span x-text="selectedItems.length"></span></strong>
-                            @lang('livewire-tables::rows, do you want to select all')
+                            {{ __('livewire-tables::core.rows, do you want to select all') }}
                             @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                         </span>
 
@@ -47,8 +47,7 @@
                             wire:loading.attr="disabled"
                             type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
-                        >
-                            @lang('livewire-tables::Select All On Page')
+                        >{{ __('livewire-tables::core.Select All On Page') }}
                         </button>&nbsp;
 
                         <button
@@ -57,7 +56,7 @@
                             type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
                         >
-                            @lang('livewire-tables::Select All')
+                            {{ __('livewire-tables::core.Select All') }}
                         </button>
 
                         <button
@@ -66,7 +65,7 @@
                             type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
                         >
-                            @lang('livewire-tables::Deselect All')
+                            {{ __('livewire-tables::core.Deselect All') }}
                         </button>
                     </div>
                 </template>
@@ -81,9 +80,10 @@
                 <template x-if="selectedItems.length == paginationTotalItemCount || selectAllStatus">
                     <div wire:key="{{ $tableName }}-all-selected">
                         <span>
-                            @lang('livewire-tables::You are currently selecting all')
-                            @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
-                            @lang('livewire-tables::rows').
+                        {{ __('livewire-tables::core.You are currently selecting all') }}
+                        @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
+                            {{ __('livewire-tables::core.rows') }}.
+
                         </span>
 
                         <button
@@ -92,7 +92,7 @@
                             type="button"
                             class="btn btn-primary btn-sm"
                         >
-                            @lang('livewire-tables::Deselect All')
+                        {{ __('livewire-tables::core.Deselect All') }}
                         </button>
                     </div>
                 </template>
@@ -100,9 +100,9 @@
                 <template x-if="selectedItems.length !== paginationTotalItemCount && !selectAllStatus">
                     <div wire:key="{{ $tableName }}-some-selected">
                         <span>
-                            @lang('livewire-tables::You have selected')
+                            {{ __('livewire-tables::core.You have selected') }}
                             <strong><span x-text="selectedItems.length"></span></strong>
-                            @lang('livewire-tables::rows, do you want to select all')
+                            {{ __('livewire-tables::core.rows, do you want to select all') }}
                             @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                         </span>
 
@@ -112,7 +112,7 @@
                             type="button"
                             class="btn btn-primary btn-sm"
                         >
-                            @lang('livewire-tables::Select All On Page')
+                            {{ __('livewire-tables::core.Select All On Page') }}
                         </button>&nbsp;
 
                         <button
@@ -121,7 +121,7 @@
                             type="button"
                             class="btn btn-primary btn-sm"
                         >
-                            @lang('livewire-tables::Select All')
+                            {{ __('livewire-tables::core.Select All') }}
                         </button>
 
                         <button
@@ -130,7 +130,7 @@
                             type="button"
                             class="btn btn-primary btn-sm"
                         >
-                            @lang('livewire-tables::Deselect All')
+                            {{ __('livewire-tables::core.Deselect All') }}
                         </button>
                     </div>
                 </template>

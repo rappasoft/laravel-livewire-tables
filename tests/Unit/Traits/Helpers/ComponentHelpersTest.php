@@ -22,9 +22,9 @@ final class ComponentHelpersTest extends TestCase
         $this->assertEquals('tailwind', $this->basicTable->getTheme());
     }
 
-    public function test_can_get_empty_message(): void
+    public function test_can_get_default_empty_message(): void
     {
-        $this->assertEquals('No items found. Try to broaden your search.', $this->basicTable->getEmptyMessage());
+        $this->assertEquals(__('livewire-tables::core.No items found, try to broaden your search'), $this->basicTable->getEmptyMessage());
     }
 
     public function test_can_get_offline_status(): void
