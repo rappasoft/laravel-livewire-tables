@@ -12,6 +12,7 @@ abstract class DataTableComponent extends Component
 
     /**
      * Runs on every request, immediately after the component is instantiated, but before any other lifecycle methods are called
+     * Called when refreshDatatable is called as an event
      */
     #[On('refreshDatatable')]
     public function boot(): void
