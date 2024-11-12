@@ -3,11 +3,11 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 final class ColumnHelpersTest extends TestCase
 {
@@ -385,5 +385,4 @@ final class ColumnHelpersTest extends TestCase
         $testTable->booted();
 
     }
-
 }
