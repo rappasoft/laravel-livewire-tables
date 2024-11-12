@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
 use Illuminate\Support\Facades\Event;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
@@ -244,6 +244,4 @@ final class FilterHelpersTest extends TestCase
         Event::assertDispatched(FilterApplied::class);
 
     }
-
-
 }
