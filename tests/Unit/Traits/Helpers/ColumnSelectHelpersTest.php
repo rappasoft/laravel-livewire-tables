@@ -143,4 +143,63 @@ final class ColumnSelectHelpersTest extends TestCase
         Event::assertDispatched(ColumnsSelected::class);
 
     }
+
+    public function test_event_does_fire_for_columnselect(): void
+    {
+        Event::fake();
+
+        $testTable = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                parent::configure();
+                $this->enableColumnSelectEvent();
+            }
+        };
+        $testTable->configure();
+        $testTable->boot();
+        $testTable->bootedComponentUtilities();
+        $testTable->bootedWithData();
+        $testTable->bootedWithColumns();
+        $testTable->bootedWithColumnSelect();
+        $testTable->bootedWithSecondaryHeader();
+        $testTable->booted();
+
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $testTable->selectedColumns);
+
+        $testTable->selectedColumns = ['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'];
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $testTable->selectedColumns);
+        $testTable->updatedSelectedColumns();
+        Event::assertDispatched(ColumnsSelected::class);
+
+    }
+
+    public function test_event_does_not_fire_for_columnselect(): void
+    {
+        Event::fake();
+
+        $testTable = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                parent::configure();
+                $this->disableColumnSelectEvent();
+            }
+        };
+        $testTable->configure();
+        $testTable->boot();
+        $testTable->bootedComponentUtilities();
+        $testTable->bootedWithData();
+        $testTable->bootedWithColumns();
+        $testTable->bootedWithColumnSelect();
+        $testTable->bootedWithSecondaryHeader();
+        $testTable->booted();
+
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $testTable->selectedColumns);
+        $testTable->selectedColumns = ['id', 'sort', 'name', 'age', 'breed', 'other', 'rowimg'];
+        $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'rowimg'], $testTable->selectedColumns);
+        $testTable->updatedSelectedColumns();
+        Event::assertNotDispatched(ColumnsSelected::class);
+    }
+
 }
