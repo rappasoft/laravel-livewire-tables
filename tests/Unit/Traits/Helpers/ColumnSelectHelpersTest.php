@@ -201,5 +201,4 @@ final class ColumnSelectHelpersTest extends TestCase
         $testTable->updatedSelectedColumns();
         Event::assertNotDispatched(ColumnsSelected::class);
     }
-
 }
