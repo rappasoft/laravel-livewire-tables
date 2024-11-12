@@ -46,5 +46,4 @@ trait WithFilters
     {
         return [];
     }
-
 }

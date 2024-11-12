@@ -395,7 +395,6 @@ trait FilterHelpers
 
         return $this->getBuilder();
     }
-    
 
     public function updatedFilterComponents(string|array|null $value, string $filterName): void
     {
@@ -410,7 +409,7 @@ trait FilterHelpers
         // Clear filters on empty value
         $filter = $this->getFilterByKey($filterName);
         $value = $filter->validate($value);
-        
+
         if ($filter && ($value === false || $filter->isEmpty($value))) {
             $this->callHook('filterRemoved', ['filter' => $filter->getKey()]);
             $this->callTraitHook('filterRemoved', ['filter' => $filter->getKey()]);
@@ -427,5 +426,4 @@ trait FilterHelpers
         }
 
     }
-
 }
