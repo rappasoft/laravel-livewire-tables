@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
+use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -358,6 +360,29 @@ final class ColumnHelpersTest extends TestCase
         $column->setLabelAttributes(['class' => 'text-xl', 'default' => true]);
 
         $this->assertSame(['class' => 'text-xl', 'default' => true, 'default-colors' => false, 'default-styling' => false], $column->getLabelAttributes());
+
+    }
+
+    public function test_throws_error_if_no_columns_are_defined(): void
+    {
+        $this->expectException(NoColumnsException::class);
+
+        $testTable = new class extends PetsTable
+        {
+            public function columns(): array
+            {
+                return [];
+            }
+        };
+
+        $testTable->configure();
+        $testTable->boot();
+        $testTable->bootedComponentUtilities();
+        $testTable->bootedWithData();
+        $testTable->bootedWithColumns();
+        $testTable->bootedWithColumnSelect();
+        $testTable->bootedWithSecondaryHeader();
+        $testTable->booted();
 
     }
 }
