@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
 final class WithSearchTest extends TestCase
 {
@@ -34,4 +35,84 @@ final class WithSearchTest extends TestCase
         //
         //        $this->assertSame([], $this->basicTable->getSelected());
     }
+
+    public function test_updated_search_untrimmed_string(): void
+    {
+        $untrimmed = "searchtext  ";
+        $trimmed = "searchtext";
+
+        $testTableDefault = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                parent::configure();
+    
+            }
+        };
+
+        $testTableDefault->configure();
+        $testTableDefault->boot();
+        $testTableDefault->bootedComponentUtilities();
+        $testTableDefault->bootedWithData();
+        $testTableDefault->bootedWithColumns();
+        $testTableDefault->bootedWithColumnSelect();
+        $testTableDefault->bootedWithSecondaryHeader();
+        $testTableDefault->booted();
+
+        $this->assertSame("", $testTableDefault->search);
+
+        $testTableDefault->search = $untrimmed;
+        $testTableDefault->updatedSearch($untrimmed);
+        $this->assertSame($untrimmed, $testTableDefault->search);
+
+        $testTableDefault->search = $trimmed;
+        $testTableDefault->updatedSearch($trimmed);
+        $this->assertSame($trimmed, $testTableDefault->search);
+
+        $testTableDefault->search = "";
+        $testTableDefault->updatedSearch("");
+        $this->assertSame("", $testTableDefault->search);
+
+    }
+
+    public function test_updated_search_trimmed_string(): void
+    {
+        $untrimmed = "searchtext  ";
+        $trimmed = "searchtext";
+
+        $testTableTrimSearch = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->trimSearchString = true;
+                parent::configure();
+    
+            }
+        };
+
+        $testTableTrimSearch->configure();
+        $testTableTrimSearch->boot();
+        $testTableTrimSearch->bootedComponentUtilities();
+        $testTableTrimSearch->bootedWithData();
+        $testTableTrimSearch->bootedWithColumns();
+        $testTableTrimSearch->bootedWithColumnSelect();
+        $testTableTrimSearch->bootedWithSecondaryHeader();
+        $testTableTrimSearch->booted();
+
+        $this->assertSame("", $testTableTrimSearch->search);
+
+        $testTableTrimSearch->search = $trimmed;
+        $testTableTrimSearch->updatedSearch($trimmed);
+        $this->assertSame($trimmed, $testTableTrimSearch->search);
+
+        $testTableTrimSearch->search = $untrimmed;
+        $testTableTrimSearch->updatedSearch($untrimmed);
+        $this->assertSame($trimmed, $testTableTrimSearch->search);
+
+        $testTableTrimSearch->search = "";
+        $testTableTrimSearch->updatedSearch("");
+        $this->assertSame("", $testTableTrimSearch->search);
+
+    }
+
 }
