@@ -2,11 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
-
 use Illuminate\Support\Facades\Event;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class ColumnSelectHelpersTest extends TestCase
 {
@@ -144,5 +143,4 @@ final class ColumnSelectHelpersTest extends TestCase
         Event::assertDispatched(ColumnsSelected::class);
 
     }
-
 }
