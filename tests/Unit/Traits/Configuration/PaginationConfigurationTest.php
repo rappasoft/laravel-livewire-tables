@@ -120,5 +120,11 @@ final class PaginationConfigurationTest extends TestCase
         $this->assertSame(50, $this->basicTable->getPerPage());
         $this->basicTable->perPage = 25;
         $this->assertSame(25, $this->basicTable->getPerPage());
+        $this->basicTable->setPerPage(10);
+        $this->assertSame(10, $this->basicTable->getPerPage());
+        $this->assertSame(50, $this->basicTable->getDefaultPerPage());
+        $this->basicTable->unsetPerPage();
+        $this->assertSame(50, $this->basicTable->getPerPage());
+
     }
 }
