@@ -33,11 +33,11 @@ final class SessionStorageHelpersTest extends TestCase
 
         $this->basicTable->setFilter('breed', ['1']);
         $this->assertSame(['1'], $this->basicTable->getAppliedFilterWithValue('breed'));
-        $this->assertSame(['breed' => ['1']], $this->basicTable->appliedFilters);
+        $this->assertSame(['breed' => ['1']], $this->basicTable->filterComponents);
         $this->assertSame(['breed' => ['1']], $this->basicTable->getStoredFilterValues());
 
         $this->basicTable->setFilter('breed', ['2']);
-        $this->assertSame(['breed' => ['2']], $this->basicTable->appliedFilters);
+        $this->assertSame(['breed' => ['2']], $this->basicTable->filterComponents);
         $this->assertSame(['2'], $this->basicTable->getAppliedFilterWithValue('breed'));
         $this->assertSame(['breed' => ['2']], $this->basicTable->getStoredFilterValues());
 
@@ -53,17 +53,16 @@ final class SessionStorageHelpersTest extends TestCase
         $this->assertSame(['breed' => ['3']], $this->basicTable->getStoredFilterValues());
         $this->assertSame(['3'], $this->basicTable->getAppliedFilterWithValue('breed'));
 
-        $this->basicTable->appliedFilters = $this->basicTable->filterComponents = ['breed' => ['4']];
+        $this->basicTable->setFilter('breed', ['4']);
         $this->basicTable->storeFilterValues();
         $this->assertSame(['4'], $this->basicTable->getAppliedFilterWithValue('breed'));
 
-        $this->basicTable->appliedFilters = $this->basicTable->filterComponents = [];
+        $this->basicTable->filterComponents = [];
         $this->assertNull($this->basicTable->getAppliedFilterWithValue('breed'));
-        $this->assertSame([], $this->basicTable->appliedFilters);
         $this->assertSame([], $this->basicTable->filterComponents);
 
         $this->basicTable->restoreFilterValues();
-        $this->assertSame(['breed' => ['4']], $this->basicTable->appliedFilters);
+        $this->assertSame(['breed' => ['4']], $this->basicTable->filterComponents);
         $this->assertSame(['4'], $this->basicTable->getAppliedFilterWithValue('breed'));
         $this->assertSame(['breed' => ['4']], $this->basicTable->getStoredFilterValues());
 
