@@ -113,10 +113,12 @@ final class PaginationConfigurationTest extends TestCase
 
     public function test_can_set_default_per_page(): void
     {
-        $this->assertSame(10, $this->unpaginatedTable->getPerPage());
-        $this->unpaginatedTable->setDefaultPerPage(50);
-        $this->assertSame(50, $this->unpaginatedTable->getPerPage());
-        $this->unpaginatedTable->perPage = 25;
-        $this->assertSame(25, $this->unpaginatedTable->getPerPage());
+        $this->assertSame(10, $this->basicTable->getPerPage());
+        $this->basicTable->unsetPerPage();
+        $this->basicTable->setDefaultPerPage(50);
+        $this->assertSame(50, $this->basicTable->getDefaultPerPage());
+        $this->assertSame(50, $this->basicTable->getPerPage());
+        $this->basicTable->perPage = 25;
+        $this->assertSame(25, $this->basicTable->getPerPage());
     }
 }

@@ -107,6 +107,13 @@ trait PaginationConfiguration
         return $this;
     }
 
+    public function unsetPerPage(): self
+    {
+        $this->perPage = null;
+
+        return $this;
+    }
+
     public function setPaginationMethod(string $paginationMethod): self
     {
         $this->paginationMethod = $paginationMethod;
