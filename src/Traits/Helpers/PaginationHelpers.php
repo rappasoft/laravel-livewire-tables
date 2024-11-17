@@ -74,7 +74,7 @@ trait PaginationHelpers
 
     public function getDefaultPerPage(): int
     {
-        return $this->defaultPerPage ?? ($this->getPerPageAccepted()[0] ?? 10);
+        return (in_array((int) $this->defaultPerPage, $this->getPerPageAccepted()) ? $this->defaultPerPage : ($this->getPerPageAccepted()[0] ?? 10);
     }
 
     /**
