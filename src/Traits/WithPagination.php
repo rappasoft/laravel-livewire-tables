@@ -15,7 +15,10 @@ trait WithPagination
 
     public ?string $pageName = null;
 
-    public int $perPage = 10;
+    public ?int $perPage;
+
+    #[Locked]
+    public int $defaultPerPage = 10;
 
     #[Locked]
     public array $perPageAccepted = [10, 25, 50];
@@ -57,9 +60,9 @@ trait WithPagination
 
     public function mountWithPagination(): void
     {
-        $sessionPerPage = session()->get($this->getPerPagePaginationSessionKey(), $this->getPerPageAccepted()[0] ?? 10);
+        $sessionPerPage = session()->get($this->getPerPagePaginationSessionKey(), $this->getPerPage());
         if (! in_array((int) $sessionPerPage, $this->getPerPageAccepted(), false)) {
-            $sessionPerPage = $this->getPerPageAccepted()[0] ?? 10;
+            $sessionPerPage = $this->getDefaultPerPage();
         }
         $this->setPerPage($sessionPerPage);
     }
@@ -68,7 +71,7 @@ trait WithPagination
     public function updatedPerPage(int|string $value): void
     {
         if (! in_array((int) $value, $this->getPerPageAccepted(), false)) {
-            $value = $this->getPerPageAccepted()[0] ?? 10;
+            $value = $this->getDefaultPerPage();
         }
 
         if (in_array(session($this->getPerPagePaginationSessionKey(), (int) $value), $this->getPerPageAccepted(), true)) {
