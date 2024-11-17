@@ -268,7 +268,7 @@ document.addEventListener('alpine:init', () => {
             );
         }
     }));
-    
+
     Alpine.data('newBooleanFilter', (filterKey,tableName,defaultValue) => ({
         switchOn: false, 
         value: false, 
@@ -381,7 +381,7 @@ document.addEventListener('alpine:init', () => {
     }));
     
     Alpine.data('flatpickrFilter', (wire, filterKey, filterConfig, refLocation, locale) => ({
-        wireValues: null,
+        wireValues: wire.entangle('filterComponents.' + filterKey),
         flatpickrInstance: flatpickr(refLocation, {
             mode: 'range',
             altFormat: filterConfig['altFormat'] ?? "F j, Y",
@@ -426,7 +426,6 @@ document.addEventListener('alpine:init', () => {
             }
         },
         setupWire() {
-            this.wireValues = this.$wire.get('filterComponents.'+filterKey);
             if (this.wireValues !== undefined) {
                 if (this.wireValues.minDate !== undefined && this.wireValues.maxDate !== undefined) {
                     let initialDateArray = [this.wireValues.minDate, this.wireValues.maxDate];
@@ -441,16 +440,12 @@ document.addEventListener('alpine:init', () => {
             }
         },
         init() {
-            this.$nextTick(() => { 
-                this.setupWire();
-            });
-            
+            this.setupWire();
             this.$watch('wireValues', value => this.setupWire());
         }
     
     
     }));
-
 
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
         shouldBeDisplayed: wire.entangle('shouldBeDisplayed'),
