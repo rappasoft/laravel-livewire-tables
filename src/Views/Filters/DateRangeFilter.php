@@ -28,7 +28,7 @@ class DateRangeFilter extends Filter
         return ['minDate' => '', 'maxDate' => ''];
     }
 
-    public function validate(array|string $values): array|bool
+    public function validate(array|string|null $values): array|bool
     {
         $this->getOptions();
         $this->getConfigs();
@@ -197,7 +197,7 @@ class DateRangeFilter extends Filter
         return '';
     }
 
-    public function isEmpty(array|string $value): bool
+    public function isEmpty(array|string|null $value): bool
     {
         $values = [];
         if (is_array($value)) {
