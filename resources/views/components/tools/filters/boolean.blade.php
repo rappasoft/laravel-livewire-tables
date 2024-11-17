@@ -1,6 +1,6 @@
 @php($defaultValue = ($filter->hasFilterDefaultValue() ? (bool) $filter->getFilterDefaultValue() : false))
 <div class="flex flex-cols" 
-    x-data="booleanFilter('{{ $filter->getKey() }}', '{{ $tableName }}', '{{ $defaultValue }}')"
+    x-data="newBooleanFilter('{{ $filter->getKey() }}', '{{ $tableName }}', '{{ $defaultValue }}')"
 >   
     <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
     <input id="thisId" type="checkbox" name="switch" class="hidden" :checked="value" />
@@ -8,7 +8,7 @@
     <button id="{{ $tableName }}-filter-{{ $filter->getKey() }}"
         x-ref="switchButton"
         type="button" 
-        @click="toggleStatus"
+        @click="toggleStatusWithUpdate"
         :class="(value == 1 || value == true)  ? 'bg-blue-600' : 'bg-neutral-200'" 
         class="relative inline-flex h-6 py-0.5 ml-4 focus:outline-none rounded-full w-10"
         x-cloak>
