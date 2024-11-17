@@ -252,14 +252,44 @@ document.addEventListener('alpine:init', () => {
     }));
     
 
-    Alpine.data('booleanFilter', (wire,filterKey,tableName,defaultValue) => ({
+    Alpine.data('booleanFilter', (filterKey,tableName,defaultValue) => ({
         switchOn: false, 
-        value: wire.entangle('filterComponents.'+filterKey).live, 
+        value: false, 
+        toggleStatus()
+        {
+            let tempValue = Boolean(Number(this.$wire.get('filterComponents.'+filterKey) ?? this.value));
+            let newBoolean = !tempValue;
+            let newValue = Number(newBoolean);
+            this.value = newBoolean;
+            this.switchOn = newBoolean;
+            this.updateStatus(newValue);
+        },
+        toggleStatusWithReset()
+        {
+            let tempValue = Boolean(Number(this.$wire.get('filterComponents.'+filterKey) ?? this.value));
+            let newBoolean = !tempValue;
+            let newValue = Number(newBoolean);
+            this.value = newBoolean;
+            this.switchOn = newBoolean;
+            this.$wire.call('resetFilter',filterKey);
+            
+        },
+        updateStatus(newValue)
+        {
+            this.$wire.set('filterComponents.'+filterKey, newValue);
+        },
+        setSwitchOn(val)
+        {
+            let number = Number(val ?? 0);
+            this.switchOn = Boolean(number); 
+        },
         init() { 
-            this.switchOn = false; 
-            if (typeof this.value !== 'undefined') { 
-                this.switchOn = Boolean(Number(this.value)); 
-            }
+            this.$nextTick(() => { 
+                this.value = this.$wire.get('filterComponents.'+filterKey) ?? defaultValue;
+                let number = Number(this.value ?? 0);
+                this.switchOn = Boolean(number); 
+            });
+
             this.listeners.push(
                 Livewire.on('filter-was-set', (detail) => {
                     if(detail.tableName == tableName && detail.filterKey == filterKey) { 
@@ -341,7 +371,7 @@ document.addEventListener('alpine:init', () => {
     }));
     
     Alpine.data('flatpickrFilter', (wire, filterKey, filterConfig, refLocation, locale) => ({
-        wireValues: wire.entangle('filterComponents.' + filterKey),
+        wireValues: null,
         flatpickrInstance: flatpickr(refLocation, {
             mode: 'range',
             altFormat: filterConfig['altFormat'] ?? "F j, Y",
@@ -386,6 +416,7 @@ document.addEventListener('alpine:init', () => {
             }
         },
         setupWire() {
+            this.wireValues = this.$wire.get('filterComponents.'+filterKey);
             if (this.wireValues !== undefined) {
                 if (this.wireValues.minDate !== undefined && this.wireValues.maxDate !== undefined) {
                     let initialDateArray = [this.wireValues.minDate, this.wireValues.maxDate];
@@ -400,7 +431,10 @@ document.addEventListener('alpine:init', () => {
             }
         },
         init() {
-            this.setupWire();
+            this.$nextTick(() => { 
+                this.setupWire();
+            });
+            
             this.$watch('wireValues', value => this.setupWire());
         }
     
