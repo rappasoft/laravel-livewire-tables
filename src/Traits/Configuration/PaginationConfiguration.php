@@ -107,6 +107,13 @@ trait PaginationConfiguration
         return $this;
     }
 
+    public function unsetPerPage(): self
+    {
+        $this->perPage = null;
+
+        return $this;
+    }
+
     public function setPaginationMethod(string $paginationMethod): self
     {
         $this->paginationMethod = $paginationMethod;
@@ -138,12 +145,10 @@ trait PaginationConfiguration
     /**
      * Set a default per-page value (if not set already by session or querystring)
      */
-    public function setDefaultPerPage(int $perPage): self
+    public function setDefaultPerPage(int $defaultPerPage): self
     {
-        $defaultPerPage = $perPage;
-
-        if ($this->perPage == 10) {
-            $this->setPerPage($perPage);
+        if (in_array((int) $defaultPerPage, $this->getPerPageAccepted())) {
+            $this->defaultPerPage = $defaultPerPage;
         }
 
         return $this;

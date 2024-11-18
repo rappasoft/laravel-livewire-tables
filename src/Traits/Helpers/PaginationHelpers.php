@@ -69,7 +69,12 @@ trait PaginationHelpers
 
     public function getPerPage(): int
     {
-        return $this->perPage;
+        return $this->perPage ?? $this->getDefaultPerPage();
+    }
+
+    public function getDefaultPerPage(): int
+    {
+        return in_array((int) $this->defaultPerPage, $this->getPerPageAccepted()) ? $this->defaultPerPage : ($this->getPerPageAccepted()[0] ?? 10);
     }
 
     /**
@@ -128,7 +133,7 @@ trait PaginationHelpers
         if (in_array(session($this->getPerPagePaginationSessionKey(), $this->getPerPage()), $this->getPerPageAccepted(), true)) {
             $this->setPerPage(session($this->getPerPagePaginationSessionKey(), $this->getPerPage()));
         } else {
-            $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
+            $this->setPerPage($this->getDefaultPerPage());
         }
     }
 

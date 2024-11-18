@@ -2,6 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
+use Illuminate\Support\Facades\Event;
+use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
@@ -206,5 +209,39 @@ final class FilterHelpersTest extends TestCase
         $this->basicTable->setFilterSlideDownDefaultStatusDisabled();
 
         $this->assertFalse($this->basicTable->getFilterSlideDownDefaultStatus());
+    }
+
+    public function test_event_fires_for_filter(): void
+    {
+        Event::fake();
+
+        $testTable = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                parent::configure();
+            }
+        };
+        $testTable->configure();
+        $testTable->boot();
+        $testTable->bootedComponentUtilities();
+        $testTable->bootedWithData();
+        $testTable->bootedWithColumns();
+        $testTable->bootedWithColumnSelect();
+        $testTable->bootedWithSecondaryHeader();
+        $testTable->booted();
+
+        $testTable->setFilter('breed_id_filter', '2');
+        $testTable->updatedFilterComponents('2', 'breed_id_filter');
+        $this->assertSame(['breed_id_filter' => '2'], $testTable->getAppliedFiltersWithValues());
+        Event::assertNotDispatched(FilterApplied::class);
+
+        $testTable->enableFilterAppliedEvent();
+
+        $testTable->setFilter('breed_id_filter', '3');
+        $testTable->updatedFilterComponents('3', 'breed_id_filter');
+        $this->assertSame(['breed_id_filter' => '3'], $testTable->getAppliedFiltersWithValues());
+        Event::assertDispatched(FilterApplied::class);
+
     }
 }
