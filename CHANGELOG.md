@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.3] - 2024-11-18
+## Bug Fixes
+- FixSetDefaultPerPage by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2067
+- Fix BooleanColumn unexpected truthy behaviour by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2066
+- Adjustment for DateRangeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2064
+
+## Testing
+- Adjust SessionStorageHelpersTest by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2065
+- Add updatedSelectedColumns test for Event by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2060
+- Add test for FilterApplied Event being dispatched by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2059
+- Add Simple updatedSearch tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2058
+- Add test for No Columns defined - throws correct Exception by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2057
+
 ## [v3.5.2] - 2024-11-09
 ## Bug Fixes
 - Migrate Localisation back to PHP Files from JSON by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2038
