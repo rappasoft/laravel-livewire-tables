@@ -21,5 +21,4 @@ trait HasColumnView
             ->withLocalisationPath($this->getLocalisationPath());
 
     }
-
 }
