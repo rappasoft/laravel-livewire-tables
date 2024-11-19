@@ -25,9 +25,8 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         );
 
         // Load Default Translations
-        if(config('livewire-tables.use_json_translations', false))
-        {
-        // Load Default Translations
+        if (config('livewire-tables.use_json_translations', false)) {
+            // Load Default Translations
             $this->loadJsonTranslationsFrom(
                 __DIR__.'/../resources/lang/json'
             );
@@ -37,12 +36,9 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
                 $this->app->langPath('vendor/livewire-tables')
             );
 
-        }
-        else
-        {
+        } else {
             $this->loadTranslationsFrom(__DIR__.'/../resources/lang/php', 'livewire-tables');
         }
-        
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
 

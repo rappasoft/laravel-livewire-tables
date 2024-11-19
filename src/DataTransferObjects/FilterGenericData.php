@@ -25,7 +25,7 @@ class FilterGenericData
 
     public function toArray(): array
     {
-       return [
+        return [
             'tableName' => $this->tableName,
             'filterLayout' => $this->filterLayout,
             'isTailwind' => $this->isTailwind,
