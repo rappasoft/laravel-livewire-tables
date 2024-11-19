@@ -34,7 +34,7 @@
                         @endif
             aria-haspopup="true" aria-expanded="false">
 
-            {{ __('livewire-tables::core.Bulk Actions') }}
+            {{ __($this->getLocalisationPath.'Bulk Actions') }}
 
             @if($this->isTailwind)
                 <x-heroicon-m-chevron-down class="-mr-1 ml-2 h-5 w-5" />

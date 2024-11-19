@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
+use Illuminate\Support\Facades\Log;
 
 trait HasView
 {
@@ -15,8 +16,23 @@ trait HasView
     }
 
     public function getView(): string
-    {
+    {      
         return $this->view;
+    }
+
+    public function getColumnView()
+    {
+        return view($this->getView());
+    }
+
+
+    public function getColumnViewWithDefaults()
+    {
+        return $this->getColumnView()
+        ->withIsTailwind($this->isTailwind())
+        ->withIsBootstrap($this->isBootstrap())
+        ->withLocalisationPath($this->getLocalisationPath());
+        
     }
 
     /**

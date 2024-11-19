@@ -32,9 +32,7 @@ class ColorColumn extends Column
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view($this->getView())
-            ->withIsTailwind($this->isTailwind())
-            ->withIsBootstrap($this->isBootstrap())
+        return $this->getColumnViewWithDefaults()
             ->withColor($this->getColor($row))
             ->withAttributeBag($this->getAttributeBag($row));
     }

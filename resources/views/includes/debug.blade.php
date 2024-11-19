@@ -1,6 +1,6 @@
 <div>
     @if ($this->debugIsEnabled())
-        <p><strong>{{ __('livewire-tables::core.Debugging Values') }}:</strong></p>
+        <p><strong>{{ __($this->getLocalisationPath.'Debugging Values') }}:</strong></p>
         
 
         @if (! app()->runningInConsole())
