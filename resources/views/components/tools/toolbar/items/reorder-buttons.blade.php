@@ -14,11 +14,11 @@
         ])
     >
         <span x-cloak x-show="currentlyReorderingStatus">
-         {{ __('livewire-tables::core.cancel') }}
+         {{ __($this->getLocalisationPath.'cancel') }}
         </span>
 
         <span x-cloak x-show="!currentlyReorderingStatus">
-        {{ __('livewire-tables::core.Reorder') }}
+        {{ __($this->getLocalisationPath.'Reorder') }}
         </span>
 
     </button>
@@ -33,7 +33,7 @@
             ])
         >
             <span>
-            {{ __('livewire-tables::core.save') }}
+            {{ __($this->getLocalisationPath.'save') }}
             </span>
         </button>
     </div>

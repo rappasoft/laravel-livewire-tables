@@ -32,6 +32,7 @@ class FilterGenericData
             'isBootstrap' => ($this->isBootstrap4 || $this->isBootstrap5),
             'isBootstrap4' => $this->isBootstrap4,
             'isBootstrap5' => $this->isBootstrap5,
+            'localisationPath' => (config('livewire-tables.use_json_translations', false)) ? 'livewire-tables::' : 'livewire-tables::core.',
         ];
     }
 }

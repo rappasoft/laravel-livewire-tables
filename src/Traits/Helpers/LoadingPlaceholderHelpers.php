@@ -16,7 +16,7 @@ trait LoadingPlaceholderHelpers
 
     public function getLoadingPlaceholderContent(): string
     {
-        return $this->loadingPlaceholderContent ?? __('livewire-tables::core.loading');
+        return $this->loadingPlaceholderContent ?? __($this->getLocalisationPath().'loading');
     }
 
     public function hasLoadingPlaceholderBlade(): bool

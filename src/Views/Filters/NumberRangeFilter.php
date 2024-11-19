@@ -89,7 +89,7 @@ class NumberRangeFilter extends Filter
     public function getFilterPillValue($values): array|string|bool|null
     {
         if ($this->validate($values)) {
-            return __('livewire-tables::core.min').':'.$values['min'].', '.__('livewire-tables::core.max').':'.$values['max'];
+            return __($this->getLocalisationPath().'min').':'.$values['min'].', '.__($this->getLocalisationPath().'max').':'.$values['max'];
         }
 
         return '';

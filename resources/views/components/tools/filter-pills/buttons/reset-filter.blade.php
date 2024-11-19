@@ -9,7 +9,7 @@
             "text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white",
         ])
     >
-        <span class="sr-only">{{ __('livewire-tables::core.Remove filter option') }}</span>
+        <span class="sr-only">{{ __($this->getLocalisationPath.'Remove filter option') }}</span>
         <x-heroicon-m-x-mark class="h-full" />
     </button>
 @else
@@ -23,7 +23,7 @@
         <span @class([
             'sr-only' => $isBootstrap4,
             'visually-hidden' => $isBootstrap5,
-            ])>{{ __('livewire-tables::core.Remove filter option') }}
+            ])>{{ __($this->getLocalisationPath.'Remove filter option') }}
             </span>
         <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-tiny"  />
     </a>

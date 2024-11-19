@@ -35,14 +35,12 @@ class BooleanColumn extends Column
 
         $value = $this->getValue($row);
 
-        return view($this->getView())
+        return $this->getColumnViewWithDefaults()
             ->withRowPrimaryKey($row->{$row->getKeyName()})
             ->withIsToggleable($this->getIsToggleable())
             ->withToggleMethod($this->getIsToggleable() ? $this->getToggleMethod() : '')
             ->withHasConfirmMessage($this->hasConfirmMessage())
             ->withConfirmMessage($this->hasConfirmMessage() ? $this->getConfirmMessage() : '')
-            ->withIsTailwind($this->isTailwind())
-            ->withIsBootstrap($this->isBootstrap())
             ->withSuccessValue($this->getSuccessValue())
             ->withType($this->getType())
             ->withValue($value)

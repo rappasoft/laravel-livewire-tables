@@ -9,7 +9,7 @@
                     </div>
                     <div class="ml-3">
                         <h3 class="text-sm font-medium text-red-800 dark:text-white">
-                            {{ __('livewire-tables::core.You are not connected to the internet') }}.
+                            {{ __($this->getLocalisationPath.'You are not connected to the internet') }}.
                         </h3>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
         <div wire:offline.class.remove="d-none" class="d-none">
             <div class="alert alert-danger d-flex align-items-center">
                 <x-heroicon-s-x-circle class="laravel-livewire-tables-btn-md" />
-                <span class="d-inline-block ml-2">{{ __('livewire-tables::core.You are not connected to the internet') }}.
+                <span class="d-inline-block ml-2">{{ __($this->getLocalisationPath.'You are not connected to the internet') }}.
                 </span>
             </div>
         </div>
