@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.4] - 2024-11-20
+### Bug Fixes
+- Allow JSON and PHP type localisations by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2071
+- Allow lazy loading of tables by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2072
+
 ## [v3.5.3] - 2024-11-18
 ## Bug Fixes
 - FixSetDefaultPerPage by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2067
