@@ -89,7 +89,7 @@ final class ViewComponentColumnTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $column = ViewComponentColumn::make('Total Users')->attributes(fn ($value, $row, Column $column) => 'test')->getContents(Pet::find(1));
+        $column = ViewComponentColumn::make('Total Users')->component('test-component')->attributes(fn ($value, $row, Column $column) => 'test')->getContents(Pet::find(1));
 
     }
 }
