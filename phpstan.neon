@@ -4,7 +4,6 @@ includes:
 
 parameters:
     paths:
-        - config
         - database
         - src
     level: 6
