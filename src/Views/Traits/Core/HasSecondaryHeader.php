@@ -77,7 +77,7 @@ trait HasSecondaryHeader
             } elseif ($callback instanceof Filter) {
                 return $callback->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
             } elseif (is_string($callback)) {
-                $filter = $this->getComponent()->getFilterByKey($callback);
+                $filter = $this->component->getFilterByKey($callback);
 
                 if ($filter instanceof Filter) {
                     return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();

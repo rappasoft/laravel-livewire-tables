@@ -78,7 +78,7 @@ trait HasFooter
             } elseif ($callback instanceof Filter) {
                 return $callback->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();
             } elseif (is_string($callback)) {
-                $filter = $this->getComponent()->getFilterByKey($callback);
+                $filter = $this->component->getFilterByKey($callback);
 
                 if ($filter instanceof Filter) {
                     return $filter->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();

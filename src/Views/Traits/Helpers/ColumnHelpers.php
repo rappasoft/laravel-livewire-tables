@@ -13,11 +13,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait ColumnHelpers
 {
-    public function getComponent(): ?DataTableComponent
-    {
-        return $this->component;
-    }
-
     public function hasFrom(): bool
     {
         return $this->from !== null;
