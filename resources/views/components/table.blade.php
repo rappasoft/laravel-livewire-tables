@@ -21,7 +21,7 @@
             {{ $attributes->merge($customAttributes['table'])
                 ->class(['min-w-full divide-y divide-gray-200 dark:divide-none' => $customAttributes['table']['default'] ?? true])
                 ->except(['default','default-styling','default-colors']) }}
-            
+
         >
             <thead wire:key="{{ $tableName }}-thead"
                 {{ $attributes->merge($customAttributes['thead'])
@@ -43,11 +43,11 @@
                 {{ $slot }}
             </tbody>
 
-            @if (isset($tfoot))
+            @isset($tfoot)
                 <tfoot wire:key="{{ $tableName }}-tfoot">
                     {{ $tfoot }}
                 </tfoot>
-            @endif
+            @endisset
         </table>
     </div>
 @elseif ($isBootstrap)
@@ -84,11 +84,11 @@
                 {{ $slot }}
             </tbody>
 
-            @if (isset($tfoot))
+            @isset($tfoot)
                 <tfoot wire:key="{{ $tableName }}-tfoot">
                     {{ $tfoot }}
                 </tfoot>
-            @endif
+            @endisset
         </table>
     </div>
 @endif

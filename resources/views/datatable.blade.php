@@ -10,20 +10,19 @@
     <div {{ $this->getTopLevelAttributes() }}>
 
         @includeWhen(
-            $this->hasConfigurableAreaFor('before-wrapper'), 
-            $this->getConfigurableAreaFor('before-wrapper'), 
+            $this->hasConfigurableAreaFor('before-wrapper'),
+            $this->getConfigurableAreaFor('before-wrapper'),
             $this->getParametersForConfigurableArea('before-wrapper')
         )
 
         <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
             @if($this->hasActions && !$this->showActionsInToolbar)
-                <x-livewire-tables::includes.actions/>    
+                <x-livewire-tables::includes.actions/>
             @endif
-        
 
             @includeWhen(
-                $this->hasConfigurableAreaFor('before-tools'), 
-                $this->getConfigurableAreaFor('before-tools'), 
+                $this->hasConfigurableAreaFor('before-tools'),
+                $this->getConfigurableAreaFor('before-tools'),
                 $this->getParametersForConfigurableArea('before-tools')
             )
 
@@ -37,8 +36,8 @@
                 @endif
 
                 @includeWhen(
-                    $this->hasConfigurableAreaFor('before-toolbar'), 
-                    $this->getConfigurableAreaFor('before-toolbar'), 
+                    $this->hasConfigurableAreaFor('before-toolbar'),
+                    $this->getConfigurableAreaFor('before-toolbar'),
                     $this->getParametersForConfigurableArea('before-toolbar')
                 )
 
@@ -47,16 +46,16 @@
                 @endif
 
                 @includeWhen(
-                    $this->hasConfigurableAreaFor('after-toolbar'), 
-                    $this->getConfigurableAreaFor('after-toolbar'), 
+                    $this->hasConfigurableAreaFor('after-toolbar'),
+                    $this->getConfigurableAreaFor('after-toolbar'),
                     $this->getParametersForConfigurableArea('after-toolbar')
                 )
-                
+
             </x-livewire-tables::tools>
             @endif
 
             <x-livewire-tables::table>
-                
+
                 <x-slot name="thead">
                     @if($this->getCurrentlyReorderingStatus)
                         <x-livewire-tables::table.th.reorder x-cloak x-show="currentlyReorderingStatus"  />
@@ -80,7 +79,6 @@
                     <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
                 @endif
 
-
                 @if($this->showBulkActionsSections)
                     <x-livewire-tables::table.tr.bulk-actions  :displayMinimisedOnReorder="true" />
                 @endif
@@ -99,7 +97,7 @@
 
                         @foreach($this->selectedVisibleColumns as $colIndex => $column)
                             <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$primaryKey} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
-                                @if($column->isHtml())                            
+                                @if($column->isHtml())
                                     {!! $column->renderContents($row) !!}
                                 @else
                                     {{ $column->renderContents($row) }}
@@ -132,10 +130,10 @@
         </x-livewire-tables::wrapper>
 
         @includeWhen(
-                $this->hasConfigurableAreaFor('after-wrapper'), 
-                $this->getConfigurableAreaFor('after-wrapper'), 
-                $this->getParametersForConfigurableArea('after-wrapper')
+            $this->hasConfigurableAreaFor('after-wrapper'),
+            $this->getConfigurableAreaFor('after-wrapper'),
+            $this->getParametersForConfigurableArea('after-wrapper')
         )
-        
+
     </div>
 </div>

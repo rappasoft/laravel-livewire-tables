@@ -50,18 +50,19 @@
             colspan="{{ $colspan }}"
         >
             <div>
+                @php /** @var \Rappasoft\LaravelLivewireTables\Views\Column $column */ @endphp
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <p wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}"
-                    
+
                         @class([
                             'block mb-2' => $isTailwind && $column->shouldCollapseAlways(),
                             'block mb-2 sm:hidden' => $isTailwind && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
                             'block mb-2 md:hidden' => $isTailwind && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
                             'block mb-2 lg:hidden' => $isTailwind && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
-                            
+
                             'd-block mb-2' => $isBootstrap && $column->shouldCollapseAlways(),
                             'd-block mb-2 d-sm-none' => $isBootstrap && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
                             'd-block mb-2 d-md-none' => $isBootstrap && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
