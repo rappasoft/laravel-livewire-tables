@@ -24,7 +24,6 @@ final class ColorColumnTest extends TestCase
 
     }
 
-    
     public function test_can_infer_field_name_from_title_if_no_from(): void
     {
         $column = ColorColumn::make('Favorite Color');
