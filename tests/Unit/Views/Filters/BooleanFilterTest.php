@@ -84,7 +84,7 @@ final class BooleanFilterTest extends FilterTestCase
 
         $this->assertFalse($filter->validate(null));
     }
-    
+
     public function test_is_empty_null_boolean_filter_value(): void
     {
         $filter = self::$filterInstance;
@@ -95,5 +95,4 @@ final class BooleanFilterTest extends FilterTestCase
 
         $this->assertTrue($filter->isEmpty(null));
     }
-
 }
