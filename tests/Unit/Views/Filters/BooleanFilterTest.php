@@ -84,5 +84,4 @@ final class BooleanFilterTest extends FilterTestCase
 
         $this->assertFalse($filter->validate(null));
     }
-
 }
