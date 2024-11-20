@@ -77,4 +77,11 @@ final class ViewComponentColumnTest extends TestCase
         $this->assertSame('<div>2420</div>', $contents);
 
     }*/
+
+    public function test_can_not_user_as_label(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $column = ViewComponentColumn::make('Total Users')->label(fn () => 'My Label')->getContents(Pet::find(1));
+    }
 }
