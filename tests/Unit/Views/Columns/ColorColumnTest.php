@@ -24,6 +24,7 @@ final class ColorColumnTest extends TestCase
 
     }
 
+    
     public function test_can_infer_field_name_from_title_if_no_from(): void
     {
         $column = ColorColumn::make('Favorite Color');
@@ -174,6 +175,34 @@ final class ColorColumnTest extends TestCase
         $this->assertSame('#ff0000', $column->getColor($rows->first()));
         $this->assertSame('#ffa500', $column->getColor($rows->last()));
         $this->assertSame('#008000', $column->getColor($rows->slice(2, 1)->first()));
+
+    }
+
+    public function test_can_get_column_get_contents_from_color(): void
+    {
+        $column = ColorColumn::make('Species Color')->color(
+            function ($row) {
+                if ($row->species_id == 1) {
+                    return '#ff0000';
+                } elseif ($row->species_id == 2) {
+                    return '#008000';
+                } else {
+                    return '#ffa500';
+                }
+
+            }
+        );
+        $rows = $this->basicTable->setAdditionalSelects(['pets.species_id as species_id'])->getRows();
+
+        $contents1 = $column->getContents($rows->first());
+        $this->assertSame($contents1['color'], '#ff0000');
+        $this->assertSame($contents1['isTailwind'], true);
+        $this->assertSame($contents1['isBootstrap'], false);
+
+        $contents2 = $column->getContents($rows->last());
+        $this->assertSame($contents2['color'], '#ffa500');
+        $this->assertSame($contents2['isTailwind'], true);
+        $this->assertSame($contents2['isBootstrap'], false);
 
     }
 }
