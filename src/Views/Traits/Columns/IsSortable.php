@@ -99,7 +99,7 @@ trait IsSortable
             return $this->sortingPillDirectionDesc ?? $defaultLabelDesc;
         }
 
-        return __('livewire-tables::core.not_applicable');
+        return __($this->getLocalisationPath().'not_applicable');
     }
 
     public function getCustomSortingPillDirectionsLabel(string $direction, ?string $defaultLabelAsc = 'A-Z', ?string $defaultLabelDesc = 'Z-A'): string
@@ -112,7 +112,7 @@ trait IsSortable
             return $this->sortingPillDirectionDesc ?? $defaultLabelDesc;
         }
 
-        return __('livewire-tables::core.not_applicable');
+        return __($this->getLocalisationPath().'not_applicable');
     }
 
     public function getSortingPillDirection(DataTableComponent $component, string $direction): string

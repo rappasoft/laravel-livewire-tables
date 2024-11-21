@@ -201,12 +201,14 @@ class TestCase extends Orchestra
         config()->set('cache.default', 'array');
         config()->set('view.cache', false);
         config()->set('view.compiled', realpath(storage_path('framework/views')).'/'.rand(0, 100));
+        //      config()->set('livewire-tables.use_json_translations', true);
 
         $app['config']->set('app.env', 'testing');
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('cache.default', 'array');
         $app['config']->set('view.cache', false);
         $app['config']->set('view.compiled', realpath(storage_path('framework/views')).'/'.rand(0, 100));
+        //        $app['config']->set('livewire-tables.use_json_translations', true);
 
         if (file_exists(__DIR__.'/../database/database.sqlite')) {
             $app['config']->set('database.connections.sqlite', [

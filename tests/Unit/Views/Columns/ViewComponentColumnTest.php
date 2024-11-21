@@ -77,4 +77,19 @@ final class ViewComponentColumnTest extends TestCase
         $this->assertSame('<div>2420</div>', $contents);
 
     }*/
+
+    public function test_can_not_use_as_label(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $column = ViewComponentColumn::make('Total Users')->label(fn () => 'My Label')->getContents(Pet::find(1));
+    }
+
+    public function test_can_not_return_invalid_attributes(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $column = ViewComponentColumn::make('Total Users')->component('test-component')->attributes(fn ($value, $row, Column $column) => 'test')->getContents(Pet::find(1));
+
+    }
 }

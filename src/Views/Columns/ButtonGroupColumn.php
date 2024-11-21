@@ -27,11 +27,9 @@ class ButtonGroupColumn extends Column
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|\Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view($this->getView())
+        return $this->getColumnViewWithDefaults()
             ->withColumn($this)
             ->withRow($row)
-            ->withIsTailwind($this->isTailwind())
-            ->withIsBootstrap($this->isBootstrap())
             ->withButtons($this->getButtons())
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }

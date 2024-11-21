@@ -387,6 +387,7 @@ final class FilterHelpersTest extends TestCase
             'isBootstrap' => false,
             'isBootstrap4' => false,
             'isBootstrap5' => false,
+            'localisationPath' => 'livewire-tables::core.',
         ];
 
         $filter1->setGenericDisplayData($testGenericData);
@@ -397,6 +398,8 @@ final class FilterHelpersTest extends TestCase
         $this->assertSame($testGenericData['isBootstrap'], $filter1->getFilterDisplayData()['isBootstrap']);
         $this->assertSame($testGenericData['isBootstrap4'], $filter1->getFilterDisplayData()['isBootstrap4']);
         $this->assertSame($testGenericData['isBootstrap5'], $filter1->getFilterDisplayData()['isBootstrap5']);
+        $this->assertSame($testGenericData['localisationPath'], $filter1->getFilterDisplayData()['localisationPath']);
+
         $this->assertSame($filter1, $filter1->getFilterDisplayData()['filter']);
     }
 }

@@ -10,7 +10,7 @@ class BaseLocalisationCase extends TestCase
 {
     public static function getEnLocaleStrings(): array
     {
-        $baseDir = __DIR__.'/../../resources/lang/';
+        $baseDir = __DIR__.'/../../resources/lang/php/';
 
         $items = require $baseDir.'en/core.php';
 
@@ -19,7 +19,7 @@ class BaseLocalisationCase extends TestCase
 
     public static function getLocaleStrings($locale): array
     {
-        $baseDir = __DIR__.'/../../resources/lang/';
+        $baseDir = __DIR__.'/../../resources/lang/php/';
 
         $items = require $baseDir.$locale.'/core.php';
 
@@ -28,7 +28,7 @@ class BaseLocalisationCase extends TestCase
 
     public static function localisationProvider(): array
     {
-        $baseDir = __DIR__.'/../../resources/lang/';
+        $baseDir = __DIR__.'/../../resources/lang/php/';
 
         $localisations = [];
 

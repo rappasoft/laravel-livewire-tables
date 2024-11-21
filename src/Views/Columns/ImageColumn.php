@@ -32,10 +32,8 @@ class ImageColumn extends Column
             throw new DataTableConfigurationException('You must specify a location callback for an image column.');
         }
 
-        return view($this->getView())
+        return $this->getColumnViewWithDefaults()
             ->withColumn($this)
-            ->withIsTailwind($this->isTailwind())
-            ->withIsBootstrap($this->isBootstrap())
             ->withPath(app()->call($this->getLocationCallback(), ['row' => $row]))
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }

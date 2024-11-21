@@ -31,6 +31,11 @@ return [
     'enable_blade_directives' => false,
 
     /**
+     * Use JSON Translations instead of PHP Array
+     */
+    'use_json_translations' => false,
+
+    /**
      * Customise Script & Styles Paths
      */
     'script_base_path' => '/rappasoft/laravel-livewire-tables',

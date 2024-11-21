@@ -33,9 +33,7 @@ class IconColumn extends Column
     {
         $attributeBag = $this->getAttributeBag($row);
 
-        return view($this->getView())
-            ->withIsTailwind($this->isTailwind())
-            ->withIsBootstrap($this->isBootstrap())
+        return $this->getColumnViewWithDefaults()
             ->withIcon($this->getIcon($row))
             ->withClasses($attributeBag['class'])
             ->withAttributes(collect($attributeBag)->except('class')->toArray());

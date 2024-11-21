@@ -36,10 +36,8 @@ class WireLinkColumn extends Column
             throw new DataTableConfigurationException('You must specify an action callback for a WireLink column.');
         }
 
-        return view($this->getView())
+        return $this->getColumnViewWithDefaults()
             ->withColumn($this)
-            ->withIsTailwind($this->isTailwind())
-            ->withIsBootstrap($this->isBootstrap())
             ->withTitle(app()->call($this->getTitleCallback(), ['row' => $row]))
             ->withPath(app()->call($this->getActionCallback(), ['row' => $row]))
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);

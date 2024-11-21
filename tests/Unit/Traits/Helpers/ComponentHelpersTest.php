@@ -24,7 +24,7 @@ final class ComponentHelpersTest extends TestCase
 
     public function test_can_get_default_empty_message(): void
     {
-        $this->assertEquals(__('livewire-tables::core.No items found, try to broaden your search'), $this->basicTable->getEmptyMessage());
+        $this->assertEquals(__($this->basicTable->getLocalisationPath().'No items found, try to broaden your search'), $this->basicTable->getEmptyMessage());
     }
 
     public function test_can_get_offline_status(): void

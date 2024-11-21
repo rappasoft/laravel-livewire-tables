@@ -37,10 +37,8 @@ class LinkColumn extends Column
             throw new DataTableConfigurationException('You must specify a location callback for an link column.');
         }
 
-        return view($this->getView())
+        return $this->getColumnViewWithDefaults()
             ->withColumn($this)
-            ->withIsTailwind($this->isTailwind())
-            ->withIsBootstrap($this->isBootstrap())
             ->withTitle(app()->call($this->getTitleCallback(), ['row' => $row]))
             ->withPath(app()->call($this->getLocationCallback(), ['row' => $row]))
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);

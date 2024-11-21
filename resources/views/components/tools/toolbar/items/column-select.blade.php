@@ -18,7 +18,7 @@
                     x-bind:aria-expanded="open"
                     aria-expanded="true"
                 >
-                    {{ __('livewire-tables::core.Columns') }}
+                    {{ __($this->getLocalisationPath.'Columns') }}
 
                     <x-heroicon-m-chevron-down class="-mr-1 ml-2 h-5 w-5" />
                 </button>
@@ -51,7 +51,7 @@
                                 @checked($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count())
                                 @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count())  wire:click="deselectAllColumns" @else wire:click="selectAllColumns" @endif
                             >
-                            <span class="ml-2">{{ __('livewire-tables::core.All Columns') }}</span>
+                            <span class="ml-2">{{ __($this->getLocalisationPath.'All Columns') }}</span>
                         </label>
                     </div>
 
@@ -104,7 +104,7 @@
             type="button" id="{{ $tableName }}-columnSelect" aria-haspopup="true"
             x-bind:aria-expanded="open"
         >
-            {{ __('livewire-tables::core.Columns') }}
+            {{ __($this->getLocalisationPath.'Columns') }}
         </button>
 
         <div
@@ -124,7 +124,7 @@
                             @if($component->getSelectableSelectedColumns()->count() == $component->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                         />
 
-                        <span class="ml-2">{{ __('livewire-tables::core.All Columns') }}</span>
+                        <span class="ml-2">{{ __($this->getLocalisationPath.'All Columns') }}</span>
                         
 
                     </label>
@@ -139,7 +139,7 @@
                     />
 
                     <label wire:loading.attr="disabled" class="form-check-label">
-                        {{ __('livewire-tables::core.All Columns') }}
+                        {{ __($this->getLocalisationPath.'All Columns') }}
                     </label>
                 </div>
             @endif

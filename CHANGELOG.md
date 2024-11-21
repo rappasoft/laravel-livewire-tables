@@ -2,13 +2,26 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.4] - 2024-11-21
+### Bug Fixes
+- Allow JSON and PHP type localisations by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2071
+- Allow lazy loading of tables by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2072
+
+### Testing
+- RemoveConfigFileFromCoverage by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2080
+- Test for ViewComponentColumn - Cannot return non-array attributes  by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2078
+- BooleanFilter - Add Tests for Null in IsEmpty and Validate by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2077
+- Add Attributes Check For ViewComponentColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2076
+- Add ViewComponentColumn label test  by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2075
+- Add ColorColumnTests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2074
+
 ## [v3.5.3] - 2024-11-18
-## Bug Fixes
+### Bug Fixes
 - FixSetDefaultPerPage by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2067
 - Fix BooleanColumn unexpected truthy behaviour by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2066
 - Adjustment for DateRangeFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2064
 
-## Testing
+### Testing
 - Adjust SessionStorageHelpersTest by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2065
 - Add updatedSelectedColumns test for Event by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2060
 - Add test for FilterApplied Event being dispatched by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2059
