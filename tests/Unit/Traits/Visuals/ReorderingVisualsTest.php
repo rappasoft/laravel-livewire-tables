@@ -9,7 +9,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class ReorderingVisualsTest extends TestCase
 {
-    public function test_FilterArraySetup(): array
+    public function test_filter_array_setup(): array
     {
         $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
         $this->assertNotEmpty($filterDefaultArray);
