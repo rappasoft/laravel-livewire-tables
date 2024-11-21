@@ -49,14 +49,14 @@ final class FilterVisualsTest extends TestCase
             ->assertSee('Applied Filters');
     }
 
-    public function test_event_dispatched_when_filterComponents_set(): void
+    public function test_event_dispatched_when_filter_components_set(): void
     {
         Livewire::test(PetsTable::class)
             ->set('filterComponents.breed', [1])
             ->assertDispatched('filter-was-set');
     }
 
-    public function test_event_dispatched_when_setFilter_dispatched(): void
+    public function test_event_dispatched_when_set_filter_dispatched(): void
     {
         Livewire::test(PetsTable::class)
             ->dispatch('setFilter', filterKey: 'breed', value: [1])

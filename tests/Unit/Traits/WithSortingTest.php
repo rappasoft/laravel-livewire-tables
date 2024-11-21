@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class WithSortingTest extends TestCase
 {
-    public function test_cannot_call_sortBy_if_sorting_is_disabled(): void
+    public function test_cannot_call_sort_by_if_sorting_is_disabled(): void
     {
         $this->assertSame($this->basicTable->sortBy('id'), 'asc');
 

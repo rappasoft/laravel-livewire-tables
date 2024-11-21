@@ -126,7 +126,6 @@ final class ToolsHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->shouldShowTools());
 
-
     }
 
     public function test_can_get_tools_status_toolbar_disabled(): void
