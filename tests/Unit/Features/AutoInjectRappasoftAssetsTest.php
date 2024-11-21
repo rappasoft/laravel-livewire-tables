@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class AutoInjectRappasoftAssetsTest extends TestCase
 {
-    public function test_shouldInjectRappasoftAndThirdParty()
+    public function test_should_inject_rappasoft_and_third_party()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', true);
         config()->set('livewire-tables.inject_third_party_assets_enabled', true);
@@ -20,7 +20,7 @@ final class AutoInjectRappasoftAssetsTest extends TestCase
         $this->assertStringContainsStringIgnoringCase('<script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  ></script>', $injectionReturn);
     }
 
-    public function test_shouldNotInjectRappasoftOrThirdParty()
+    public function test_should_not_inject_rappasoft_or_third_party()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', false);
         config()->set('livewire-tables.inject_third_party_assets_enabled', false);
@@ -30,7 +30,7 @@ final class AutoInjectRappasoftAssetsTest extends TestCase
         $this->assertEquals('<html><head>  </head><body></body></html>', AutoInjectRappasoftAssets::injectAssets('<html><head></head><body></body></html>'));
     }
 
-    public function test_shouldOnlyInjectThirdParty()
+    public function test_should_only_inject_third_party()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', false);
         config()->set('livewire-tables.inject_third_party_assets_enabled', true);
@@ -41,7 +41,7 @@ final class AutoInjectRappasoftAssetsTest extends TestCase
         $this->assertStringContainsStringIgnoringCase('<script src="/rappasoft/laravel-livewire-tables/thirdparty.min.js"  ></script>', $injectionReturn);
     }
 
-    public function test_shouldOnlyInjectRappasoft()
+    public function test_should_only_inject_rappasoft()
     {
         config()->set('livewire-tables.inject_core_assets_enabled', true);
         config()->set('livewire-tables.inject_third_party_assets_enabled', false);

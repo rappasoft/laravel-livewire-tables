@@ -9,7 +9,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class ReorderingVisualsTest extends TestCase
 {
-    public function test_FilterArraySetup(): array
+    public function test_filter_array_setup(): array
     {
         $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
         $this->assertNotEmpty($filterDefaultArray);
@@ -95,7 +95,7 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:key="table-sorting-pill-id"');
     }
 
-    #[Depends('test_FilterArraySetup')]
+    #[Depends('test_filter_array_setup')]
     public function test_sorting_is_disabled_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
@@ -169,7 +169,7 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSet('perPage', 10);
     }
 
-    #[Depends('test_FilterArraySetup')]
+    #[Depends('test_filter_array_setup')]
     public function test_search_hides_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
@@ -267,7 +267,7 @@ final class ReorderingVisualsTest extends TestCase
             ->assertDontSee('do you want to select all');
     }
 
-    #[Depends('test_FilterArraySetup')]
+    #[Depends('test_filter_array_setup')]
     public function test_filters_are_disabled_on_reorder(array $filterDefaultArray): void
     {
         $customisedFilterArray = $filterDefaultArray;
@@ -290,7 +290,7 @@ final class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('Filters');
     }
 
-    #[Depends('test_FilterArraySetup')]
+    #[Depends('test_filter_array_setup')]
     public function test_filter_pills_hide_on_reorder(array $filterDefaultArray): void
     {
         $filterDefaultArray['breed'] = [1];

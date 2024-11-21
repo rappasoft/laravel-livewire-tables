@@ -9,7 +9,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
 final class DateColumnTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         parent::setupPetOwnerTable();
