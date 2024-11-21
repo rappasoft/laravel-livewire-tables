@@ -111,4 +111,29 @@ final class ToolsHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->shouldShowTools());
 
     }
+
+    public function test_can_get_tools_status_no_sortpills(): void
+    {
+        $this->assertTrue($this->basicTable->shouldShowTools());
+
+        $this->basicTable->setToolsEnabled();
+        $this->basicTable->setSortingDisabled();
+        $this->basicTable->setToolBarDisabled();
+        $this->assertFalse($this->basicTable->shouldShowTools());
+
+        $this->basicTable->setFiltersEnabled();
+        $this->basicTable->setFilter('pet_name_filter', 'Test');
+
+        $this->assertTrue($this->basicTable->shouldShowTools());
+
+    }
+
+    public function test_can_get_tools_status_toolbar_disabled(): void
+    {
+        $this->assertTrue($this->basicTable->shouldShowTools());
+        $this->basicTable->setToolsEnabled();
+        $this->basicTable->setToolBarDisabled();
+        $this->assertFalse($this->basicTable->shouldShowToolBar());
+
+    }
 }
