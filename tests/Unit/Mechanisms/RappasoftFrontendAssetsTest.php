@@ -170,97 +170,97 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyScripts);
     }
 
-    #[Depends('test_JsResponseSetupCacheEnabled')]
+    #[Depends('test_js_response_setup_cache_enabled')]
     public function test_check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $jsResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $jsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    #[Depends('test_JsResponseSetupCacheEnabled')]
+    #[Depends('test_js_response_setup_cache_enabled')]
     public function test_check_pretend_response_is_js_returns_correct_content_type_cache_enabled(array $jsResponseSetupCacheEnabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $jsResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    #[Depends('test_JsResponseSetupCacheDisabled')]
+    #[Depends('test_js_response_setup_cache_disabled')]
     public function test_check_pretend_response_is_js_returns_correct_cache_control_cache_disabled(array $jsResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $jsResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    #[Depends('test_JsResponseSetupCacheDisabled')]
+    #[Depends('test_js_response_setup_cache_disabled')]
     public function test_check_pretend_response_is_js_returns_correct_content_type_cache_disabled(array $jsResponseSetupCacheDisabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $jsResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
 
-    #[Depends('test_CssResponseSetupCacheEnabled')]
+    #[Depends('test_css_response_setup_cache_enabled')]
     public function test_check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $cssResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $cssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    #[Depends('test_CssResponseSetupCacheEnabled')]
+    #[Depends('test_css_response_setup_cache_enabled')]
     public function test_check_pretend_response_is_css_returns_correct_content_type_caching_enabled(array $cssResponseSetupCacheEnabled)
     {
         $this->assertSame('text/css; charset=utf-8', $cssResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    #[Depends('test_CssResponseSetupCacheDisabled')]
+    #[Depends('test_css_response_setup_cache_disabled')]
     public function test_check_pretend_response_is_css_returns_correct_cache_control_caching_disabled(array $cssResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $cssResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    #[Depends('test_CssResponseSetupCacheDisabled')]
+    #[Depends('test_css_response_setup_cache_disabled')]
     public function test_check_pretend_response_is_css_returns_correct_content_type_caching_disabled(array $cssResponseSetupCacheDisabled)
     {
         $this->assertSame('text/css; charset=utf-8', $cssResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
 
-    #[Depends('test_ThirdPartyCssResponseSetupCacheEnabled')]
+    #[Depends('test_third_party_css_response_setup_cache_enabled')]
     public function test_tp_check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $thirdPartyCssResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $thirdPartyCssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    #[Depends('test_ThirdPartyCssResponseSetupCacheEnabled')]
+    #[Depends('test_third_party_css_response_setup_cache_enabled')]
     public function test_tp_check_pretend_response_is_css_returns_correct_content_type_caching_enabled(array $thirdPartyCssResponseSetupCacheEnabled)
     {
         $this->assertSame('text/css; charset=utf-8', $thirdPartyCssResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    #[Depends('test_ThirdPartyCssResponseSetupCacheDisabled')]
+    #[Depends('test_third_party_css_response_setup_cache_disabled')]
     public function test_tp_check_pretend_response_is_css_returns_correct_cache_control_caching_disabled(array $thirdPartyCssResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $thirdPartyCssResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    #[Depends('test_ThirdPartyCssResponseSetupCacheDisabled')]
+    #[Depends('test_third_party_css_response_setup_cache_disabled')]
     public function test_tp_check_pretend_response_is_css_returns_correct_content_type_caching_disabled(array $thirdPartyCssResponseSetupCacheDisabled)
     {
         $this->assertSame('text/css; charset=utf-8', $thirdPartyCssResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
 
-    #[Depends('test_ThirdPartyJsResponseSetupCacheEnabled')]
+    #[Depends('test_third_party_js_response_setup_cache_enabled')]
     public function test_tp_check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $thirdPartyJsResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $thirdPartyJsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    #[Depends('test_ThirdPartyJsResponseSetupCacheEnabled')]
+    #[Depends('test_third_party_js_response_setup_cache_enabled')]
     public function test_tp_check_pretend_response_is_js_returns_correct_content_type_cache_enabled(array $thirdPartyJsResponseSetupCacheEnabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $thirdPartyJsResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    #[Depends('test_ThirdPartyJsResponseSetupCacheDisabled')]
+    #[Depends('test_third_party_js_response_setup_cache_disabled')]
     public function test_tp_check_pretend_response_is_js_returns_correct_cache_control_cache_disabled(array $thirdPartyJsResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $thirdPartyJsResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    #[Depends('test_ThirdPartyJsResponseSetupCacheDisabled')]
+    #[Depends('test_third_party_js_response_setup_cache_disabled')]
     public function test_tp_check_pretend_response_is_js_returns_correct_content_type_cache_disabled(array $thirdPartyJsResponseSetupCacheDisabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $thirdPartyJsResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
