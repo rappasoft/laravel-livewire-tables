@@ -15,9 +15,9 @@ trait WithColumns
 
     protected Collection $columns;
 
-    protected Collection $prependedColumns;
+    protected ?Collection $prependedColumns;
 
-    protected Collection $appendedColumns;
+    protected ?Collection $appendedColumns;
 
     protected ?bool $shouldAlwaysCollapse;
 
@@ -57,21 +57,6 @@ trait WithColumns
      */
     abstract public function columns(): array;
 
-    /**
-     * Prepend columns.
-     */
-    public function prependColumns(): array
-    {
-        return [];
-    }
-
-    /**
-     * Append columns.
-     */
-    public function appendColumns(): array
-    {
-        return [];
-    }
 
     /**
      * Add Columns to View

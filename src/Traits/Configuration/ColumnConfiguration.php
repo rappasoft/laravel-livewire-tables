@@ -10,48 +10,12 @@ trait ColumnConfiguration
     {
         $this->prependedColumns = collect($prependedColumns);
         $this->hasRunColumnSetup = false;
-        /*
-
-            ->filter(fn ($column) => $column instanceof Column)
-            ->map(function (Column $column) {
-                $column->setTheme($this->getTheme());
-                $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
-
-                if ($column->hasField()) {
-                    if ($column->isBaseColumn()) {
-                        $column->setTable($this->getBuilder()->getModel()->getTable());
-                    } else {
-                        $column->setTable($this->getTableForColumn($column));
-                    }
-                }
-
-                return $column;
-            });*/
     }
 
     public function setAppendedColumns(array $appendedColumns): void
     {
         $this->appendedColumns = collect($appendedColumns);
         $this->hasRunColumnSetup = false;
-        /*
-
-            ->filter(fn ($column) => $column instanceof Column)
-            ->map(function (Column $column) {
-                $column->setTheme($this->getTheme());
-                $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
-
-                if ($column->hasField()) {
-                    if ($column->isBaseColumn()) {
-                        $column->setTable($this->getBuilder()->getModel()->getTable());
-                    } else {
-                        $column->setTable($this->getTableForColumn($column));
-                    }
-                }
-
-                return $column;
-            });*/
     }
 
     public function unsetCollapsedStatuses(): void
