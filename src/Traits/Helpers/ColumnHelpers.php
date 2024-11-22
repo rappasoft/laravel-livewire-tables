@@ -13,14 +13,21 @@ trait ColumnHelpers
      */
     public function setColumns(): void
     {
-        $this->prependedColumns = $this->getPrependedColumns();
+        $this->columns = collect($this->getPrependedColumns())->concat($this->columns())->concat(collect($this->getAppendedColumns()));
 
-        $columns = collect($this->columns())
+    }
+    
+    protected function setupColumns(): void
+    {
+        if(!$this->hasRunColumnSetup)
+        {
+            $this->columns = $this->columns
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
-                $column->setTheme($this->getTheme());
-                $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+                $column->setTheme($this->getTheme())
+                ->setHasTableRowUrl($this->hasTableRowUrl())
+                ->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+
                 if ($column instanceof AggregateColumn) {
                     if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
@@ -42,13 +49,16 @@ trait ColumnHelpers
                 return $column;
             });
 
-        $this->appendedColumns = $this->getAppendedColumns();
-
-        $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
+            $this->hasRunColumnSetup = true;
+        }
     }
 
     public function getColumns(): Collection
     {
+        if(!$this->hasRunColumnSetup)
+        {
+            $this->setupColumns();
+        }
         return $this->columns;
     }
 
@@ -206,7 +216,8 @@ trait ColumnHelpers
 
     public function getPrependedColumns(): Collection
     {
-        return collect($this->prependedColumns ?? $this->prependColumns())
+        return collect($this->prependedColumns ?? $this->prependColumns());
+        /*return collect($this->prependedColumns ?? $this->prependColumns())
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setTheme($this->getTheme());
@@ -231,13 +242,13 @@ trait ColumnHelpers
                 }
 
                 return $column;
-            });
+            });*/
     }
 
     public function getAppendedColumns(): Collection
     {
-        return collect($this->appendedColumns ?? $this->appendColumns())
-            ->filter(fn ($column) => $column instanceof Column)
+        return collect($this->appendedColumns ?? $this->appendColumns());
+            /*->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setTheme($this->getTheme());
                 $column->setHasTableRowUrl($this->hasTableRowUrl());
@@ -261,7 +272,7 @@ trait ColumnHelpers
                 }
 
                 return $column;
-            });
+            });*/
 
     }
 

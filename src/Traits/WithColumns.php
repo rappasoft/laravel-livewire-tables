@@ -25,6 +25,8 @@ trait WithColumns
 
     protected ?bool $shouldTabletCollapse;
 
+    protected bool $hasRunColumnSetup = false;
+
     /**
      * Sets up Columns
      */
@@ -39,7 +41,7 @@ trait WithColumns
 
         // Set Columns
         $this->setColumns();
-
+        
         // Fire Lifecycle Hooks for columnsSet
         $this->callHook('columnsSet');
         $this->callTraitHook('columnsSet');

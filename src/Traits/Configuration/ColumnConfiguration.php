@@ -8,7 +8,10 @@ trait ColumnConfiguration
 {
     public function setPrependedColumns(array $prependedColumns): void
     {
-        $this->prependedColumns = collect($prependedColumns)
+        $this->prependedColumns = collect($prependedColumns);
+        $this->hasRunColumnSetup = false;
+        /*
+        
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setTheme($this->getTheme());
@@ -24,12 +27,15 @@ trait ColumnConfiguration
                 }
 
                 return $column;
-            });
+            });*/
     }
 
     public function setAppendedColumns(array $appendedColumns): void
     {
-        $this->appendedColumns = collect($appendedColumns)
+        $this->appendedColumns = collect($appendedColumns);
+        $this->hasRunColumnSetup = false;
+        /*
+        
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setTheme($this->getTheme());
@@ -45,7 +51,7 @@ trait ColumnConfiguration
                 }
 
                 return $column;
-            });
+            });*/
     }
 
     public function unsetCollapsedStatuses(): void
