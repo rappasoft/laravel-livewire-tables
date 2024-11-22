@@ -8,44 +8,14 @@ trait ColumnConfiguration
 {
     public function setPrependedColumns(array $prependedColumns): void
     {
-        $this->prependedColumns = collect($prependedColumns)
-            ->filter(fn ($column) => $column instanceof Column)
-            ->map(function (Column $column) {
-                $column->setTheme($this->getTheme());
-                $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
-
-                if ($column->hasField()) {
-                    if ($column->isBaseColumn()) {
-                        $column->setTable($this->getBuilder()->getModel()->getTable());
-                    } else {
-                        $column->setTable($this->getTableForColumn($column));
-                    }
-                }
-
-                return $column;
-            });
+        $this->prependedColumns = collect($prependedColumns);
+        $this->hasRunColumnSetup = false;
     }
 
     public function setAppendedColumns(array $appendedColumns): void
     {
-        $this->appendedColumns = collect($appendedColumns)
-            ->filter(fn ($column) => $column instanceof Column)
-            ->map(function (Column $column) {
-                $column->setTheme($this->getTheme());
-                $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
-
-                if ($column->hasField()) {
-                    if ($column->isBaseColumn()) {
-                        $column->setTable($this->getBuilder()->getModel()->getTable());
-                    } else {
-                        $column->setTable($this->getTableForColumn($column));
-                    }
-                }
-
-                return $column;
-            });
+        $this->appendedColumns = collect($appendedColumns);
+        $this->hasRunColumnSetup = false;
     }
 
     public function unsetCollapsedStatuses(): void
