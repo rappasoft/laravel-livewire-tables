@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.5] - 2024-11-22
+### Bug Fixes
+Fix date range filter default value by @edwinvdpol in https://github.com/rappasoft/laravel-livewire-tables/pull/2082
+
 ## [v3.5.4] - 2024-11-21
 ### Bug Fixes
 - Allow JSON and PHP type localisations by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2071
