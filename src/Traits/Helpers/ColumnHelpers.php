@@ -244,7 +244,6 @@ trait ColumnHelpers
         return $this->shouldAlwaysCollapse;
     }
 
-    
     /**
      * Prepend columns.
      */

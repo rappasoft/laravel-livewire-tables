@@ -57,7 +57,6 @@ trait WithColumns
      */
     abstract public function columns(): array;
 
-
     /**
      * Add Columns to View
      */
