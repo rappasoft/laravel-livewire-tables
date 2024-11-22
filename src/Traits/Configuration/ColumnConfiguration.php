@@ -11,7 +11,7 @@ trait ColumnConfiguration
         $this->prependedColumns = collect($prependedColumns);
         $this->hasRunColumnSetup = false;
         /*
-        
+
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setTheme($this->getTheme());
@@ -35,7 +35,7 @@ trait ColumnConfiguration
         $this->appendedColumns = collect($appendedColumns);
         $this->hasRunColumnSetup = false;
         /*
-        
+
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setTheme($this->getTheme());

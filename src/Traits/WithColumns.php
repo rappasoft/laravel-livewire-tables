@@ -41,7 +41,7 @@ trait WithColumns
 
         // Set Columns
         $this->setColumns();
-        
+
         // Fire Lifecycle Hooks for columnsSet
         $this->callHook('columnsSet');
         $this->callTraitHook('columnsSet');
