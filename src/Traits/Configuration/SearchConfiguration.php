@@ -154,13 +154,6 @@ trait SearchConfiguration
         return $this;
     }
 
-    public function setSearchFieldAttributes(array $attributes = []): self
-    {
-        $this->setCustomAttributes('searchFieldAttributes', array_merge(['default' => false, 'default-colors' => false, 'default-styling' => false], $attributes));
-
-        return $this;
-    }
-
     public function setTrimSearchString(bool $status): self
     {
         $this->trimSearchString = $status;

@@ -8,12 +8,14 @@ use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForSearch;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Styling\HasSearchFieldStyling;
 
 trait WithSearch
 {
     use SearchConfiguration,
         SearchHelpers;
     use HasQueryStringForSearch;
+    use HasSearchFieldStyling;
 
     public string $search = '';
 
@@ -36,9 +38,8 @@ trait WithSearch
 
     protected ?int $searchFilterThrottle = null;
 
-    protected array $searchFieldAttributes = [];
-
     protected bool $trimSearchString = false;
+
 
     // TODO
     public function applySearch(): Builder
