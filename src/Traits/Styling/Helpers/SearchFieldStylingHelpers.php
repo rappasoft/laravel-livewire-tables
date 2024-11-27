@@ -6,7 +6,6 @@ use Livewire\Attributes\Computed;
 
 trait SearchFieldStylingHelpers
 {
-
     public function getSearchFieldAttributes(): array
     {
         return $this->getCustomAttributes('searchFieldAttributes', true);
@@ -29,5 +28,4 @@ trait SearchFieldStylingHelpers
     {
         return $this->getCustomAttributes('searchIconAttributes', true, false);
     }
-
 }

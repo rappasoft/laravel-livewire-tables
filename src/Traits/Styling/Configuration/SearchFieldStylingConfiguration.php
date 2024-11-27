@@ -19,7 +19,6 @@ trait SearchFieldStylingConfiguration
         return $this;
     }
 
-
     public function setSearchFieldAttributes(array $attributes = []): self
     {
         $this->setCustomAttributes('searchFieldAttributes', array_merge(['default' => false, 'default-colors' => false, 'default-styling' => false], $attributes));

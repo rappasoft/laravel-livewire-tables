@@ -40,7 +40,6 @@ trait WithSearch
 
     protected bool $trimSearchString = false;
 
-
     // TODO
     public function applySearch(): Builder
     {

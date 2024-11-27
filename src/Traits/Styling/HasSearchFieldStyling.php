@@ -8,8 +8,8 @@ use Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers\SearchFieldStylingHel
 trait HasSearchFieldStyling
 {
     use SearchFieldStylingConfiguration,
-    SearchFieldStylingHelpers;
-    
+        SearchFieldStylingHelpers;
+
     protected array $searchFieldAttributes = [];
 
     protected bool $searchIconSet = false;
@@ -17,5 +17,4 @@ trait HasSearchFieldStyling
     protected ?string $searchIcon = null;
 
     protected array $searchIconAttributes = ['default-colors' => true, 'default-styling' => true];
-    
 }
