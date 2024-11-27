@@ -1,6 +1,7 @@
 <?php
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
+
 use Livewire\Attributes\Computed;
 
 trait SearchHelpers
