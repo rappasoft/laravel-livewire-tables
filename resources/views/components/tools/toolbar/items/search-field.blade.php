@@ -12,12 +12,8 @@
             <div class="relative inset-y-0 left-6
                         inline-flex items-center 
                         pointer-events-none">
-                <x-heroicon-m-magnifying-glass {{ $attributes->merge($this->getSearchIconAttributes())
-                    ->class([
-                        'w-4 h-4' => (($this->getSearchIconAttributes()['default'] ?? true) || ($this->getSearchIconAttributes()['default-styling'] ?? true)),
-                    ]) 
-                }}
-                />
+
+                    @svg($this->getSearchIcon, $this->getSearchIconClasses, $this->getSearchIconOtherAttributes())
 
             </div>
         @endif

@@ -121,20 +121,6 @@ trait SearchHelpers
         return '.live';
     }
 
-    public function getSearchPlaceholder(): string
-    {
-        if ($this->hasSearchPlaceholder()) {
-            return $this->searchPlaceholder;
-        }
-
-        return __($this->getLocalisationPath().'Search');
-    }
-
-    public function hasSearchPlaceholder(): bool
-    {
-        return $this->searchPlaceholder !== null;
-    }
-
     public function shouldTrimSearchString(): bool
     {
         return $this->trimSearchString ?? false;

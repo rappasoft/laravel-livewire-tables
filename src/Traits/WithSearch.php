@@ -22,8 +22,6 @@ trait WithSearch
     #[Locked]
     public bool $searchStatus = true;
 
-    protected ?string $searchPlaceholder = null;
-
     protected bool $searchVisibilityStatus = true;
 
     protected ?bool $searchFilterBlur = null;
