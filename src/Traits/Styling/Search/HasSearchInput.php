@@ -28,7 +28,7 @@ trait HasSearchInput
 
         return $this;
     }
-    
+
     public function getSearchPlaceholder(): string
     {
         if ($this->hasSearchPlaceholder()) {
@@ -42,5 +42,4 @@ trait HasSearchInput
     {
         return $this->searchPlaceholder !== null;
     }
-
 }

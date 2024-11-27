@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class SearchConfigurationTest extends TestCase
 {
@@ -232,8 +232,6 @@ final class SearchConfigurationTest extends TestCase
             {
                 $this->setSearchIconAttributes($attributes);
             }
-
-
         };
 
         $mock->configure();
@@ -272,8 +270,6 @@ final class SearchConfigurationTest extends TestCase
             {
                 $this->searchIconDisabled();
             }
-
-
         };
 
         $mock->configure();
@@ -286,7 +282,6 @@ final class SearchConfigurationTest extends TestCase
         $mock->pubSetSearchIconDisabled();
         $this->assertFalse($mock->hasSearchIcon());
 
-
     }
 
     public function test_can_set_search_icon_attributes(): void
@@ -298,7 +293,7 @@ final class SearchConfigurationTest extends TestCase
             public function configure(): void
             {
                 $this->setDataTableFingerprint('test');
-        
+
             }
 
             public function pubSetSearchFieldAttributes(array $attributes)
@@ -315,8 +310,6 @@ final class SearchConfigurationTest extends TestCase
             {
                 $this->setSearchIconAttributes($attributes);
             }
-
-
         };
 
         $mock->configure();
@@ -343,6 +336,4 @@ final class SearchConfigurationTest extends TestCase
         ], $mock->getSearchIconAttributes());
 
     }
-
-
 }

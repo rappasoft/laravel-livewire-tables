@@ -147,7 +147,6 @@ trait SearchConfiguration
         return $this;
     }
 
-
     public function setTrimSearchString(bool $status): self
     {
         $this->trimSearchString = $status;

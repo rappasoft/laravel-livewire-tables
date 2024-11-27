@@ -43,10 +43,10 @@ trait HasSearchIcon
         return collect($this->getSearchIconAttributes())->except('class')->toArray();
     }
 
-    
     protected function setSearchIconStatus(bool $searchIconStatus): self
     {
         $this->searchIconSet = $searchIconStatus;
+
         return $this;
     }
 
@@ -66,12 +66,11 @@ trait HasSearchIcon
 
         return $this->searchIconEnabled();
     }
-    
+
     protected function setSearchIconAttributes(array $searchIconAttributes): self
     {
         $this->searchIconAttributes = array_merge($this->searchIconAttributes, $searchIconAttributes);
 
         return $this->searchIconEnabled();
     }
-
 }

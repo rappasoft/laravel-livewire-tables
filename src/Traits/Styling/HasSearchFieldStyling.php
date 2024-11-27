@@ -8,5 +8,4 @@ trait HasSearchFieldStyling
 {
     use HasSearchIcon,
         HasSearchInput;
-
 }
