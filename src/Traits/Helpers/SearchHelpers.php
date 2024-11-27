@@ -1,14 +1,17 @@
 <?php
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
+use Livewire\Attributes\Computed;
 
 trait SearchHelpers
 {
+    #[Computed]
     public function hasSearch(): bool
     {
         return $this->search != '';
     }
 
+    #[Computed]
     public function getSearch(): string
     {
         return $this->search ?? '';
@@ -27,6 +30,7 @@ trait SearchHelpers
         return $this->searchStatus;
     }
 
+    #[Computed]
     public function searchIsEnabled(): bool
     {
         return $this->getSearchStatus() === true;
@@ -42,6 +46,7 @@ trait SearchHelpers
         return $this->searchVisibilityStatus;
     }
 
+    #[Computed]
     public function searchVisibilityIsEnabled(): bool
     {
         return $this->getSearchVisibilityStatus() === true;
