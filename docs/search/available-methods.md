@@ -199,6 +199,8 @@ To help customise, a "Search Input Icon" has been added, allowing for the additi
 
 At present, the Search Icon is only available as a "left aligned" icon.
 
+This is presently only available for Tailwind implementations
+
 ### setSearchIcon
 
 This adds an Icon to the Search Input Field, which expects an icon path (e.g. heroicon-m-magnifying-glass)
