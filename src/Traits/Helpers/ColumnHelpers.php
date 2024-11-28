@@ -13,14 +13,19 @@ trait ColumnHelpers
      */
     public function setColumns(): void
     {
-        $this->prependedColumns = $this->getPrependedColumns();
+        $columns = collect($this->getPrependedColumns())->concat($this->columns())->concat(collect($this->getAppendedColumns()));
+        $this->columns = $columns->filter(fn ($column) => $column instanceof Column);
+    }
 
-        $columns = collect($this->columns())
+    protected function setupColumns(): void
+    {
+        $this->columns = $this->columns
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
-                $column->setTheme($this->getTheme());
-                $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+                $column->setTheme($this->getTheme())
+                    ->setHasTableRowUrl($this->hasTableRowUrl())
+                    ->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+
                 if ($column instanceof AggregateColumn) {
                     if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
@@ -42,13 +47,15 @@ trait ColumnHelpers
                 return $column;
             });
 
-        $this->appendedColumns = $this->getAppendedColumns();
-
-        $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
+        $this->hasRunColumnSetup = true;
     }
 
     public function getColumns(): Collection
     {
+        if (! $this->hasRunColumnSetup) {
+            $this->setupColumns();
+        }
+
         return $this->columns;
     }
 
@@ -206,63 +213,12 @@ trait ColumnHelpers
 
     public function getPrependedColumns(): Collection
     {
-        return collect($this->prependedColumns ?? $this->prependColumns())
-            ->filter(fn ($column) => $column instanceof Column)
-            ->map(function (Column $column) {
-                $column->setTheme($this->getTheme());
-                $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
-                if ($column instanceof AggregateColumn) {
-                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
-                        $this->addExtraWithCount($column->getDataSource());
-                    } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
-                        $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
-                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
-                        $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
-                    }
-                }
-
-                if ($column->hasField()) {
-                    if ($column->isBaseColumn()) {
-                        $column->setTable($this->getBuilder()->getModel()->getTable());
-                    } else {
-                        $column->setTable($this->getTableForColumn($column));
-                    }
-                }
-
-                return $column;
-            });
+        return $this->prependedColumns ?? collect($this->prependColumns());
     }
 
     public function getAppendedColumns(): Collection
     {
-        return collect($this->appendedColumns ?? $this->appendColumns())
-            ->filter(fn ($column) => $column instanceof Column)
-            ->map(function (Column $column) {
-                $column->setTheme($this->getTheme());
-                $column->setHasTableRowUrl($this->hasTableRowUrl());
-                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
-                if ($column instanceof AggregateColumn) {
-                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
-                        $this->addExtraWithCount($column->getDataSource());
-                    } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
-                        $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
-                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
-                        $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
-                    }
-                }
-
-                if ($column->hasField()) {
-                    if ($column->isBaseColumn()) {
-                        $column->setTable($this->getBuilder()->getModel()->getTable());
-                    } else {
-                        $column->setTable($this->getTableForColumn($column));
-                    }
-                }
-
-                return $column;
-            });
-
+        return $this->appendedColumns ?? collect($this->appendColumns());
     }
 
     public function getCollapsedAlwaysColumns(): Collection
@@ -286,5 +242,21 @@ trait ColumnHelpers
         }
 
         return $this->shouldAlwaysCollapse;
+    }
+
+    /**
+     * Prepend columns.
+     */
+    public function prependColumns(): array
+    {
+        return [];
+    }
+
+    /**
+     * Append columns.
+     */
+    public function appendColumns(): array
+    {
+        return [];
     }
 }

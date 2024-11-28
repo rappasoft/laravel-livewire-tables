@@ -2,13 +2,17 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\Computed;
+
 trait SearchHelpers
 {
+    #[Computed]
     public function hasSearch(): bool
     {
         return $this->search != '';
     }
 
+    #[Computed]
     public function getSearch(): string
     {
         return $this->search ?? '';
@@ -27,6 +31,7 @@ trait SearchHelpers
         return $this->searchStatus;
     }
 
+    #[Computed]
     public function searchIsEnabled(): bool
     {
         return $this->getSearchStatus() === true;
@@ -42,6 +47,7 @@ trait SearchHelpers
         return $this->searchVisibilityStatus;
     }
 
+    #[Computed]
     public function searchVisibilityIsEnabled(): bool
     {
         return $this->getSearchVisibilityStatus() === true;
@@ -119,25 +125,6 @@ trait SearchHelpers
         }
 
         return '.live';
-    }
-
-    public function getSearchPlaceholder(): string
-    {
-        if ($this->hasSearchPlaceholder()) {
-            return $this->searchPlaceholder;
-        }
-
-        return __($this->getLocalisationPath().'Search');
-    }
-
-    public function hasSearchPlaceholder(): bool
-    {
-        return $this->searchPlaceholder !== null;
-    }
-
-    public function getSearchFieldAttributes(): array
-    {
-        return $this->getCustomAttributes('searchFieldAttributes', true);
     }
 
     public function shouldTrimSearchString(): bool

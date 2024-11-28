@@ -1,3 +1,5 @@
+@php /** @var \Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter $filter */ @endphp
+
 <div>
     <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
 
@@ -5,7 +7,7 @@
         'rounded-md shadow-sm' => $isTailwind,
         'inline' => $isBootstrap,
     ])>
-        <select {{ $filter->getWireMethod("filterComponents.".$filter->getKey()) }}
+        <select {{ $filter->getWireMethod('filterComponents.'.$filter->getKey()) }}
             wire:key="{{ $filter->generateWireKey($tableName, 'select') }}"
             id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             @class([

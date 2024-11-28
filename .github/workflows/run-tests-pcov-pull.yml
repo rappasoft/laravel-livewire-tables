@@ -71,8 +71,10 @@ jobs:
           restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         run: |
-          composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+          composer config github-oauth.github.com $GITHUB_TOKEN
           
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
@@ -93,7 +95,7 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: $CODECOV_TOKEN
           files: ./coverage.xml
           verbose: true
 

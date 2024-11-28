@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.6] - 2024-11-28
+### New Features
+- Add Icon to Search Input by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2092
+
+### Tweaks
+- Search - Rationalisation of blades into files by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2094
+- Columns() Setup Improvements by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2089
+- Typehinting in blade components by @edwinvdpol in https://github.com/rappasoft/laravel-livewire-tables/pull/2081
+
+### Testing
+- Tweak Workflows to use an env key by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2090
+
 ## [v3.5.5] - 2024-11-22
 ### Bug Fixes
 - Fix date range filter default value by @edwinvdpol in https://github.com/rappasoft/laravel-livewire-tables/pull/2082

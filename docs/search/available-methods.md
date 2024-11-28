@@ -192,3 +192,39 @@ public function configure(): void
     $this->setTrimSearchStringDisabled();
 }
 ```
+
+## Search Icon
+
+To help customise, a "Search Input Icon" has been added, allowing for the addition of an icon to the search input field.
+
+At present, the Search Icon is only available as a "left aligned" icon.
+
+This is presently only available for Tailwind implementations
+
+### setSearchIcon
+
+This adds an Icon to the Search Input Field, which expects an icon path (e.g. heroicon-m-magnifying-glass)
+
+```php
+public function configure(): void
+{
+    $this->setSearchIcon('heroicon-m-magnifying-glass');
+}
+```
+
+### setSearchIconAttributes
+
+This allows you to specify attributes for the Search Icon for the Input Field.
+
+Note that classes will be injected prior to styles, due to the behaviour of icons.
+
+```php
+public function configure(): void
+{
+    $this->setSearchIconAttributes([
+        'class' => 'h-4 w-4',
+        'style' => 'color: #000000',
+    ]);
+}
+
+```

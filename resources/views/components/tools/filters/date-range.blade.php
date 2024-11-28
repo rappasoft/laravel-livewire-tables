@@ -1,4 +1,5 @@
 @php
+    /** @var \Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter $filter */
     $filterKey = $filter->getKey();
 @endphp
 
@@ -23,6 +24,6 @@
                 'd-inline-block w-100 form-control' => $isBootstrap,
             ])
             @if($filter->hasConfig('placeholder')) placeholder="{{ $filter->getConfig('placeholder') }}" @endif
-        />     
+        />
     </div>
 </div>

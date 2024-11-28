@@ -2,6 +2,7 @@
 @props(['column', 'index'])
 
 @php
+    /** @var \Rappasoft\LaravelLivewireTables\Views\Column $column */
     $attributes = $attributes->merge(['wire:key' => $tableName . '-header-col-'.$column->getSlug()]);
     $allThAttributes = $this->getAllThAttributes($column);
 
@@ -41,7 +42,7 @@
                     }}
                 >
                     <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
-                    <x-livewire-tables::table.th.sort-icons :$direction 
+                    <x-livewire-tables::table.th.sort-icons :$direction
                     {{
                         $attributes->merge($customSortIconAttributes)
                             ->except(['default', 'default-colors', 'default-styling', 'wire:key'])

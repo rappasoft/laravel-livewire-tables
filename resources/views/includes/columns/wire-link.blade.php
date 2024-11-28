@@ -1,4 +1,5 @@
-<button 
+@php /** @var \Rappasoft\LaravelLivewireTables\Views\Columns\WireLinkColumn $column */ @endphp
+<button
     {!! count($attributes) ? $column->arrayToAttributes($attributes) : '' !!}
     @if($column->hasConfirmMessage())
         wire:confirm="{{ $column->getConfirmMessage() }}"
