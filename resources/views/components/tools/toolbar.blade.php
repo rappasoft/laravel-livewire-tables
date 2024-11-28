@@ -28,7 +28,7 @@
             <x-livewire-tables::tools.toolbar.items.reorder-buttons />
         @endif
 
-        @if ($this->searchIsEnabled() && $this->searchVisibilityIsEnabled())
+        @if ($this->searchIsEnabled && $this->searchVisibilityIsEnabled)
             <x-livewire-tables::tools.toolbar.items.search-field />
         @endif
 
