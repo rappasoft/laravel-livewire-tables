@@ -2,9 +2,9 @@
 @props(['colCount' => 1])
 
 @php
-$loaderRow = $this->getLoadingPlaceHolderRowAttributes();
-$loaderCell = $this->getLoadingPlaceHolderCellAttributes();
-$loaderIcon = $this->getLoadingPlaceHolderIconAttributes();
+    $loaderRow = $this->getLoadingPlaceHolderRowAttributes();
+    $loaderCell = $this->getLoadingPlaceHolderCellAttributes();
+    $loaderIcon = $this->getLoadingPlaceHolderIconAttributes();
 @endphp
 
 <tr wire:key="{{ $tableName }}-loader" wire:loading.class.remove="hidden d-none" {{
@@ -27,11 +27,10 @@ $loaderIcon = $this->getLoadingPlaceHolderIconAttributes();
                         $attributes->merge($loaderIcon)
                             ->class(['lds-hourglass' => $this->isTailwind && ($loaderIcon['default'] ?? true)])
                             ->class(['lds-hourglass' => $this->isBootstrap && ($loaderIcon['default'] ?? true)])
-                            ->except(['default','default-styling','default-colors']);
+                            ->except(['default','default-styling','default-colors'])
                 }}></div>
                 <div>{!! $this->getLoadingPlaceholderContent() !!}</div>
             </div>
         @endif
     </td>
 </tr>
-

@@ -1,20 +1,22 @@
 @php
+    /** @var \Rappasoft\LaravelLivewireTables\Views\Filters\NumberRangeFilter $filter */
     $filterKey = $filter->getKey();
     $currentMin = $minRange = $filter->getConfig('minRange');
     $currentMax = $maxRange = $filter->getConfig('maxRange');
     $suffix = $filter->hasConfig('suffix') ? '--suffix:"'. $filter->getConfig('suffix') .'";' : '';
     $prefix = $filter->hasConfig('prefix') ? '--prefix:"'.$filter->getConfig('prefix').'";' : '';
 @endphp
+
 <div id="{{ $tableName }}-numberRange-{{ $filterKey }}" x-data="numberRangeFilter($wire,'{{ $filterKey }}', '{{ $tableName }}-numberRange-{{ $filterKey }}-wrapper', @js($filter->getConfigs()), '{{ $tableName }}-numberRange-{{ $filterKey }}')" x-on:mousedown.away.throttle.2000ms="updateWireable" x-on:touchstart.away.throttle.2000ms="updateWireable" x-on:mouseleave.throttle.2000ms="updateWireable">
     <x-livewire-tables::tools.filter-label for="{{ $tableName.'-numberRange-'.$filterKey.'-min' }}" :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
-    <div 
+    <div
         @class([
             'mt-4 h-22 pt-8 pb-4 grid gap-10' => $isTailwind,
             'mt-4 h-22 w-100 pb-4 pt-2 grid gap-10' => $isBootstrap,
         ])
         wire:ignore
     >
-        <div 
+        <div
             id="{{ $tableName }}-numberRange-{{ $filterKey }}-wrapper" data-ticks-position='bottom'
             @class([
                 'range-slider flat' => $isTailwind,
@@ -23,7 +25,7 @@
             style=' --min:{{ $minRange }}; --max:{{ $maxRange }}; {{ $suffix . $prefix }}'
         >
             <input type="range" min="{{ $minRange }}" max="{{ $maxRange }}" value="{{ $currentMin }}"
-                id="{{ $tableName }}-numberRange-{{ $filterKey }}-min" x-model='filterMin' x-on:change="updateWire()"  
+                id="{{ $tableName }}-numberRange-{{ $filterKey }}-min" x-model='filterMin' x-on:change="updateWire()"
                 oninput="this.parentNode.style.setProperty('--value-a',this.value); this.parentNode.style.setProperty('--text-value-a', JSON.stringify(this.value))"
             />
             <output></output>

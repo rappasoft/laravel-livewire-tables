@@ -1,6 +1,8 @@
 @aware(['component', 'rowIndex', 'rowID','isTailwind','isBootstrap'])
 @props(['column' => null, 'customAttributes' => [], 'displayMinimisedOnReorder' => false, 'hideUntilReorder' => false])
 
+@php /** @var \Rappasoft\LaravelLivewireTables\Views\Column|null $column */ @endphp
+
 @if ($isTailwind)
     <td x-cloak {{ $attributes
         ->merge($customAttributes)
