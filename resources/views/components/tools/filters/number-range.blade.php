@@ -1,5 +1,4 @@
 @php
-    /** @var \Rappasoft\LaravelLivewireTables\Views\Filters\NumberRangeFilter $filter */
     $filterKey = $filter->getKey();
     $currentMin = $minRange = $filter->getConfig('minRange');
     $currentMax = $maxRange = $filter->getConfig('maxRange');

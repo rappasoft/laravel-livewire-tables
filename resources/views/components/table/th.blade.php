@@ -2,7 +2,6 @@
 @props(['column', 'index'])
 
 @php
-    /** @var \Rappasoft\LaravelLivewireTables\Views\Column $column */
     $attributes = $attributes->merge(['wire:key' => $tableName . '-header-col-'.$column->getSlug()]);
     $allThAttributes = $this->getAllThAttributes($column);
 

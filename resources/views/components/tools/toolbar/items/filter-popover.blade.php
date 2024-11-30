@@ -9,7 +9,6 @@
         x-bind:class="{ 'show': filterPopoverOpen }"
         role="menu"
     >
-        @php /** @var \Rappasoft\LaravelLivewireTables\Views\Filter $filter */ @endphp
         @foreach ($this->getVisibleFilters() as $filter)
             <div
                 wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar"
@@ -55,7 +54,6 @@
         aria-orientation="vertical"
         aria-labelledby="filters-menu"
     >
-        @php /** @var \Rappasoft\LaravelLivewireTables\Views\Filter $filter */ @endphp
         @foreach ($this->getVisibleFilters() as $filter)
             <div class="py-1" role="none">
                 <div
