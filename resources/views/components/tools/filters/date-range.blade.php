@@ -1,5 +1,4 @@
 @php
-    /** @var \Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter $filter */
     $filterKey = $filter->getKey();
 @endphp
 

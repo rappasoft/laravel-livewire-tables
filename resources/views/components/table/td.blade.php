@@ -2,7 +2,6 @@
 @props(['column', 'colIndex'])
 
 @php
-    /** @var \Rappasoft\LaravelLivewireTables\Views\Column $column */
     $customAttributes = $this->getTdAttributes($column, $row, $colIndex, $rowIndex)
 @endphp
 

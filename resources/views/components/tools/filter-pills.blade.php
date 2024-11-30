@@ -14,7 +14,6 @@
             </small>
 
             @foreach($this->getAppliedFiltersWithValues() as $filterSelectName => $value)
-                @php /** @var \Rappasoft\LaravelLivewireTables\Views\Filter $filter */ @endphp
                 @php($filter = $this->getFilterByKey($filterSelectName))
                 @continue(is_null($filter) || $filter->isHiddenFromPills())
                 @php( $filterPillTitle = $filter->getFilterPillTitle())

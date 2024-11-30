@@ -22,7 +22,6 @@
             ])
             row="{{ $filterRowIndex }}"
         >
-            @php /** @var \Rappasoft\LaravelLivewireTables\Views\Filter $filter */ @endphp
             @foreach ($filterRow as $filter)
                 <div
                     @class([

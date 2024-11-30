@@ -50,7 +50,6 @@
             colspan="{{ $colspan }}"
         >
             <div>
-                @php /** @var \Rappasoft\LaravelLivewireTables\Views\Column $column */ @endphp
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))

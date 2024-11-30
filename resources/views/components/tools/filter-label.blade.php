@@ -2,7 +2,6 @@
 @props(['filter', 'filterLayout' => 'popover', 'tableName' => 'table', 'isTailwind' => false, 'isBootstrap' => false, 'isBootstrap4' => false, 'isBootstrap5' => false, 'for' => null])
 
 @php
-    /** @var \Rappasoft\LaravelLivewireTables\Views\Filter $filter */
     $filterLabelAttributes = $filter->getFilterLabelAttributes();
     $customLabelAttributes = $filter->getLabelAttributes();
 @endphp

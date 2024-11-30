@@ -1,5 +1,4 @@
 @php
-    /** @var \Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter $filter */
     $defaultValue = ($filter->hasFilterDefaultValue() ? (bool) $filter->getFilterDefaultValue() : false)
 @endphp
 <div class="flex flex-cols"
