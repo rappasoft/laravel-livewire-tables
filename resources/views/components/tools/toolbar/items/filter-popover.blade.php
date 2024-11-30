@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isBootstrap','isBootstrap4','isBootstrap5'])
 @if($this->isBootstrap)
     <ul
         x-cloak
