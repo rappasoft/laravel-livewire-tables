@@ -30,10 +30,45 @@ final class IncrementColumnTest extends TestCase
         IncrementColumn::make()->getContents(Pet::find(1));
     }
 
+    public function test_handles_row_index_correctly(): void
+    {
+        $rows = $this->basicTable->getRows();
+        $row1 = $rows->first();
+        $col = IncrementColumn::make('#')->setRowIndex(1);
+        $contents = $col->getContents($row1);
+        $this->assertSame(1, $col->getRowIndex());
+
+    }
+
+    public function test_handles_col_index_correctly(): void
+    {
+        $rows = $this->basicTable->getRows();
+        $row1 = $rows->first();
+        $col = IncrementColumn::make('#')->setColumnIndex(2);
+        $contents = $col->getContents($row1);
+        $this->assertSame(2, $col->getColumnIndex());
+
+    }
+
+    public function test_handles_indexes_correctly(): void
+    {
+        $rows = $this->basicTable->getRows();
+        $row1 = $rows->first();
+        $col = IncrementColumn::make('#')->setIndexes(5,3);
+        $contents = $col->getContents($row1);
+        $this->assertSame(5, $col->getRowIndex());
+        $this->assertSame(3, $col->getColumnIndex());
+
+    }
+
+
     public function test_renders_correctly(): void
     {
         $rows = $this->basicTable->getRows();
         $row1 = $rows->first();
+        $col = IncrementColumn::make('#')->setRowIndex(1);
+        $contents = $col->getContents($row1);
+        $this->assertSame(1, $col->getRowIndex());
 
     }
 }

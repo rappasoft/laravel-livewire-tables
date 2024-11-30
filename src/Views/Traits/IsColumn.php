@@ -62,4 +62,9 @@ trait IsColumn
     protected bool $hasTableRowUrl = false;
 
     protected bool $isReorderColumn = false;
+
+    protected ?int $columnIndex;
+
+    protected ?int $rowIndex;
+
 }

@@ -215,4 +215,14 @@ trait ColumnHelpers
     {
         return $this->isReorderColumn;
     }
+    
+    public function getColumnIndex(): int
+    {
+        return $this->columnIndex;
+    }
+
+    public function getRowIndex(): int
+    {
+        return $this->rowIndex;
+    }
 }
