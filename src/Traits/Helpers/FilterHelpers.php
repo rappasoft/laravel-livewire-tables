@@ -266,7 +266,6 @@ trait FilterHelpers
         return $this->getFilters()->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());
     }
 
-
     public function hasFilterGenericData(): bool
     {
         return ! empty($this->filterGenericData);

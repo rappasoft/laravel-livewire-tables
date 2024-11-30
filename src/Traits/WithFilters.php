@@ -17,7 +17,7 @@ trait WithFilters
         FilterHelpers;
     use HasQueryStringForFilter;
     use HasFilterMenuStyling;
-    
+
     #[Locked]
     public bool $filtersStatus = true;
 

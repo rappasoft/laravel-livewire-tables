@@ -169,7 +169,6 @@ final class FilterVisualsTest extends TestCase
             {
                 $this->setPrimaryKey('id');
 
-        
             }
 
             public function filters(): array
@@ -208,17 +207,17 @@ final class FilterVisualsTest extends TestCase
                 ];
             }
         })
-        ->assertSeeHtmlInOrder([
-            'class="w-full md:w-56 origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50 bg-white divide-gray-100 ring-black dark:bg-gray-700 dark:text-white dark:divide-gray-600"',
-        ])
-        ->call('setFilterPopoverAttributes', ['class' => 'w-96', 'default-width' => false])
-        ->assertSeeHtmlInOrder([
-            'class="origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50 bg-white divide-gray-100 ring-black dark:bg-gray-700 dark:text-white dark:divide-gray-600 w-96"',
-        ])
-        ->call('setFilterPopoverAttributes', ['class' => 'w-96', 'default-width' => false, 'default-colors' => false])
-        ->assertSeeHtmlInOrder([
-            'class="origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50 w-96"',
-        ]);
+            ->assertSeeHtmlInOrder([
+                'class="w-full md:w-56 origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50 bg-white divide-gray-100 ring-black dark:bg-gray-700 dark:text-white dark:divide-gray-600"',
+            ])
+            ->call('setFilterPopoverAttributes', ['class' => 'w-96', 'default-width' => false])
+            ->assertSeeHtmlInOrder([
+                'class="origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50 bg-white divide-gray-100 ring-black dark:bg-gray-700 dark:text-white dark:divide-gray-600 w-96"',
+            ])
+            ->call('setFilterPopoverAttributes', ['class' => 'w-96', 'default-width' => false, 'default-colors' => false])
+            ->assertSeeHtmlInOrder([
+                'class="origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50 w-96"',
+            ]);
 
     }
 

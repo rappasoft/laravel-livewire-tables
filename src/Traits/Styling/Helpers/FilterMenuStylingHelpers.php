@@ -48,7 +48,6 @@ trait FilterMenuStylingHelpers
         return $this->getFilterLayout() === 'slide-down';
     }
 
-    
     /**
      * Get whether any filter has a configured slide down row.
      */
@@ -90,5 +89,4 @@ trait FilterMenuStylingHelpers
 
         return $orderedFilters;
     }
-
 }

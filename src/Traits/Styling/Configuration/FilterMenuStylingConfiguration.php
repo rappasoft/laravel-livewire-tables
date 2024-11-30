@@ -61,5 +61,4 @@ trait FilterMenuStylingConfiguration
 
         return $this;
     }
-
 }

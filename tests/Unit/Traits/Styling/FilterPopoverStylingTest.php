@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class FilterPopoverStylingTest extends TestCase
 {
-
     public function test_filter_popover_attributes_returns_default_if_not_set(): void
     {
         $this->assertSame(['class' => '', 'default-width' => true, 'default-colors' => true, 'default-styling' => true], $this->basicTable->getFilterPopoverAttributes());
@@ -25,7 +24,4 @@ final class FilterPopoverStylingTest extends TestCase
         $this->assertSame(['class' => 'bg-red-500', 'default-width' => true, 'default-colors' => false, 'default-styling' => true], $this->basicTable->getFilterPopoverAttributes());
 
     }
-
-
-
 }
