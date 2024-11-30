@@ -98,9 +98,9 @@
                         @foreach($this->selectedVisibleColumns as $colIndex => $column)
                             <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$primaryKey} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
                                 @if($column->isHtml())
-                                    {!! $column->renderContents($row) !!}
+                                    {!! $column->setIndexes($rowIndex, $colIndex)->renderContents($row) !!}
                                 @else
-                                    {{ $column->renderContents($row) }}
+                                    {{ $column->setIndexes($rowIndex, $colIndex)->renderContents($row) }}
                                 @endif
                             </x-livewire-tables::table.td>
                         @endforeach
