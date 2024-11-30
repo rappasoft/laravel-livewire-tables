@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div
     x-data="{ open: false, childElementOpen: false, isTailwind: @js($isTailwind), isBootstrap: @js($isBootstrap) }"
     x-cloak x-show="(selectedItems.length > 0 || hideBulkActionsWhenEmpty == false)"

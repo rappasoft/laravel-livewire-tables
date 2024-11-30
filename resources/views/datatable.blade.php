@@ -15,7 +15,7 @@
             $this->getParametersForConfigurableArea('before-wrapper')
         )
 
-        <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
+        <x-livewire-tables::wrapper :tableName="$tableName" :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
             @if($this->hasActions && !$this->showActionsInToolbar)
                 <x-livewire-tables::includes.actions/>
             @endif

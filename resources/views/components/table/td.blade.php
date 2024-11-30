@@ -1,4 +1,4 @@
-@aware(['component', 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind','isBootstrap'])
+@aware([ 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind','isBootstrap'])
 @props(['column', 'colIndex'])
 
 @php

@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','primaryKey'])
+@aware([ 'tableName','primaryKey'])
 @props(['row', 'rowIndex'])
 
 @php

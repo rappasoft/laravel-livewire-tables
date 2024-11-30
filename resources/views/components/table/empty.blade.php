@@ -1,4 +1,4 @@
-@aware(['component','isTailwind','isBootstrap'])
+@aware(['isTailwind','isBootstrap'])
 
 @php($attributes = $attributes->merge(['wire:key' => 'empty-message-'.$this->getId()]))
 

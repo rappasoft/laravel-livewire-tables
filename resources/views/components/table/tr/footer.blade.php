@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware([ 'tableName'])
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getFooterTrAttributes($this->getRows)"
