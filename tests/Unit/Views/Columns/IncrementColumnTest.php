@@ -54,13 +54,12 @@ final class IncrementColumnTest extends TestCase
     {
         $rows = $this->basicTable->getRows();
         $row1 = $rows->first();
-        $col = IncrementColumn::make('#')->setIndexes(5,3);
+        $col = IncrementColumn::make('#')->setIndexes(5, 3);
         $contents = $col->getContents($row1);
         $this->assertSame(5, $col->getRowIndex());
         $this->assertSame(3, $col->getColumnIndex());
 
     }
-
 
     public function test_renders_correctly(): void
     {

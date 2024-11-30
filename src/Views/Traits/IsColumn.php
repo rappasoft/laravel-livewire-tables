@@ -66,5 +66,4 @@ trait IsColumn
     protected ?int $columnIndex;
 
     protected ?int $rowIndex;
-
 }
