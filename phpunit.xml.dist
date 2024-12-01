@@ -21,8 +21,6 @@
     </testsuites>
     <source>
         <include>
-            <directory>config</directory>
-            <directory>database</directory>
             <directory>src</directory>
         </include>
     </source>
