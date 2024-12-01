@@ -86,14 +86,14 @@ final class SearchHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasSearchBlur());
     }
 
-    /*public function test_can_check_if_search_lazy_is_set(): void
+    public function test_can_check_if_search_lazy_is_set(): void
     {
         $this->assertFalse($this->basicTable->hasSearchLazy());
 
         $this->basicTable->setSearchLazy();
 
         $this->assertTrue($this->basicTable->hasSearchLazy());
-    }*/
+    }
 
     public function test_can_check_if_search_throttle_is_set(): void
     {
