@@ -1,0 +1,174 @@
+<?php
+
+namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits;
+
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Livewire\Livewire;
+use Livewire\Component;
+use Livewire\Features\SupportPageComponents\PageComponentConfig;
+
+final class WithCustomisationsTest extends TestCase
+{
+
+    public function test_can_use_as_nested(): void
+    {
+        $test = Livewire::test([new class extends Component {
+            public function render() {
+                return <<<'HTML'
+                <div>
+                    <div>ParentComponentTest</div>
+                    <div> <livewire:child /></div>
+                </div>
+                HTML;
+            }
+        },
+        'child' => new class extends PetsTable {
+            public function configure(): void
+            {
+                parent::configure();
+                $this->setLayout('livewire-tables::tests.layout1');
+
+            }
+        }
+    ])
+    ->assertSee('ParentComponentTest')
+    ->assertSee('Cartman');
+
+    }
+
+    public function test_can_use_as_full_page(): void
+    {
+        $temp = new class extends PetsTable {
+            public function configure(): void
+            {
+                parent::configure();
+
+                $this->setLayout('livewire-tables::tests.layout1');
+
+            }
+        };
+        $view = view('livewire-tables::datatable');
+
+        $temp->boot();
+        $temp->bootedComponentUtilities();
+        $temp->bootedWithData();
+        $temp->bootedWithColumns();
+        $temp->bootedWithColumnSelect();
+        $temp->bootedWithSecondaryHeader();
+        $temp->booted();
+        $temp->renderingWithColumns($view, $view->getData());
+        $temp->renderingWithColumnSelect($view, $view->getData());
+        $temp->renderingWithCustomisations($view, $view->getData());
+        $temp->renderingWithData($view, $view->getData());
+        $temp->renderingWithFooter($view, $view->getData());
+        $temp->renderingWithReordering($view, $view->getData());        
+        $temp->renderingWithPagination($view, $view->getData());
+        $temp->render();
+        $layoutConfig = $view->getData()['layoutConfig'];
+
+        $this->assertSame($temp->getLayout(), $layoutConfig->view);
+    }
+
+    public function test_can_set_custom_section(): void
+    {
+        $temp = new class extends PetsTable {
+            public function configure(): void
+            {
+                parent::configure();
+
+                $this->setSection('test-section-1');
+
+            }
+        };
+        $view = view('livewire-tables::datatable');
+
+        $temp->boot();
+        $temp->bootedComponentUtilities();
+        $temp->bootedWithData();
+        $temp->bootedWithColumns();
+        $temp->bootedWithColumnSelect();
+        $temp->bootedWithSecondaryHeader();
+        $temp->booted();
+        $temp->renderingWithColumns($view, $view->getData());
+        $temp->renderingWithColumnSelect($view, $view->getData());
+        $temp->renderingWithCustomisations($view, $view->getData());
+        $temp->renderingWithData($view, $view->getData());
+        $temp->renderingWithFooter($view, $view->getData());
+        $temp->renderingWithReordering($view, $view->getData());        
+        $temp->renderingWithPagination($view, $view->getData());
+        $temp->render();
+        $layoutConfig = $view->getData()['layoutConfig'];
+
+        $this->assertSame($temp->getSection(), $layoutConfig->slotOrSection);
+    }
+
+    public function test_can_set_custom_slot(): void
+    {
+        $temp = new class extends PetsTable {
+            public function configure(): void
+            {
+                parent::configure();
+
+                $this->setSlot('test-slot-1');
+
+            }
+        };
+        $view = view('livewire-tables::datatable');
+
+        $temp->boot();
+        $temp->bootedComponentUtilities();
+        $temp->bootedWithData();
+        $temp->bootedWithColumns();
+        $temp->bootedWithColumnSelect();
+        $temp->bootedWithSecondaryHeader();
+        $temp->booted();
+        $temp->renderingWithColumns($view, $view->getData());
+        $temp->renderingWithColumnSelect($view, $view->getData());
+        $temp->renderingWithCustomisations($view, $view->getData());
+        $temp->renderingWithData($view, $view->getData());
+        $temp->renderingWithFooter($view, $view->getData());
+        $temp->renderingWithReordering($view, $view->getData());        
+        $temp->renderingWithPagination($view, $view->getData());
+        $temp->render();
+        $layoutConfig = $view->getData()['layoutConfig'];
+
+        $this->assertSame($temp->getSlot(), $layoutConfig->slotOrSection);
+    }
+
+    public function test_can_set_custom_extends(): void
+    {
+        $temp = new class extends PetsTable {
+            public function configure(): void
+            {
+                parent::configure();
+
+                $this->setExtends('test-extends-1');
+
+            }
+        };
+        $view = view('livewire-tables::datatable');
+
+        $temp->boot();
+        $temp->bootedComponentUtilities();
+        $temp->bootedWithData();
+        $temp->bootedWithColumns();
+        $temp->bootedWithColumnSelect();
+        $temp->bootedWithSecondaryHeader();
+        $temp->booted();
+        $temp->renderingWithColumns($view, $view->getData());
+        $temp->renderingWithColumnSelect($view, $view->getData());
+        $temp->renderingWithCustomisations($view, $view->getData());
+        $temp->renderingWithData($view, $view->getData());
+        $temp->renderingWithFooter($view, $view->getData());
+        $temp->renderingWithReordering($view, $view->getData());        
+        $temp->renderingWithPagination($view, $view->getData());
+        $temp->render();
+        $layoutConfig = $view->getData()['layoutConfig'];
+        $this->assertSame('extends', $layoutConfig->type);
+        $this->assertSame($temp->getExtends(), $layoutConfig->view);
+        $this->assertSame('content', $layoutConfig->slotOrSection);
+    }
+
+
+}
