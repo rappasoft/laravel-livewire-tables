@@ -2,7 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
 
+use Illuminate\Support\Arr;
 use Livewire\Attributes\Computed;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait FilterMenuStylingHelpers
 {
