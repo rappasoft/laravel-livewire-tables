@@ -108,7 +108,7 @@ class TestCase extends Orchestra
         $this->basicTable->renderingWithCustomisations($view, $view->getData());
         $this->basicTable->renderingWithData($view, $view->getData());
         $this->basicTable->renderingWithFooter($view, $view->getData());
-        $this->basicTable->renderingWithReordering($view, $view->getData());        
+        $this->basicTable->renderingWithReordering($view, $view->getData());
         $this->basicTable->renderingWithPagination($view, $view->getData());
         $this->basicTable->render();
     }
@@ -129,7 +129,7 @@ class TestCase extends Orchestra
         $this->eventsTable->renderingWithCustomisations($view, $view->getData());
         $this->eventsTable->renderingWithData($view, $view->getData());
         $this->eventsTable->renderingWithFooter($view, $view->getData());
-        $this->eventsTable->renderingWithReordering($view, $view->getData());        
+        $this->eventsTable->renderingWithReordering($view, $view->getData());
         $this->eventsTable->renderingWithPagination($view, $view->getData());
 
         $this->eventsTable->render();
@@ -151,7 +151,7 @@ class TestCase extends Orchestra
         $this->breedsTable->renderingWithCustomisations($view, $view->getData());
         $this->breedsTable->renderingWithData($view, $view->getData());
         $this->breedsTable->renderingWithFooter($view, $view->getData());
-        $this->breedsTable->renderingWithReordering($view, $view->getData());        
+        $this->breedsTable->renderingWithReordering($view, $view->getData());
         $this->breedsTable->renderingWithPagination($view, $view->getData());
         $this->breedsTable->render();
     }
@@ -172,7 +172,7 @@ class TestCase extends Orchestra
         $this->petOwnerTable->renderingWithCustomisations($view, $view->getData());
         $this->petOwnerTable->renderingWithData($view, $view->getData());
         $this->petOwnerTable->renderingWithFooter($view, $view->getData());
-        $this->petOwnerTable->renderingWithReordering($view, $view->getData());        
+        $this->petOwnerTable->renderingWithReordering($view, $view->getData());
         $this->petOwnerTable->renderingWithPagination($view, $view->getData());
         $this->petOwnerTable->render();
     }
@@ -193,7 +193,7 @@ class TestCase extends Orchestra
         $this->speciesTable->renderingWithCustomisations($view, $view->getData());
         $this->speciesTable->renderingWithData($view, $view->getData());
         $this->speciesTable->renderingWithFooter($view, $view->getData());
-        $this->speciesTable->renderingWithReordering($view, $view->getData());        
+        $this->speciesTable->renderingWithReordering($view, $view->getData());
         $this->speciesTable->renderingWithPagination($view, $view->getData());
         $this->speciesTable->render();
     }
@@ -215,7 +215,7 @@ class TestCase extends Orchestra
         $this->unpaginatedTable->renderingWithCustomisations($view, $view->getData());
         $this->unpaginatedTable->renderingWithData($view, $view->getData());
         $this->unpaginatedTable->renderingWithFooter($view, $view->getData());
-        $this->unpaginatedTable->renderingWithReordering($view, $view->getData());        
+        $this->unpaginatedTable->renderingWithReordering($view, $view->getData());
         $this->unpaginatedTable->renderingWithPagination($view, $view->getData());
         $this->unpaginatedTable->render();
 
