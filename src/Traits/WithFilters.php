@@ -9,12 +9,14 @@ use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForFilter;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Styling\HasFilterMenuStyling;
 
 trait WithFilters
 {
     use FilterConfiguration,
         FilterHelpers;
     use HasQueryStringForFilter;
+    use HasFilterMenuStyling;
 
     #[Locked]
     public bool $filtersStatus = true;
@@ -24,12 +26,6 @@ trait WithFilters
 
     #[Locked]
     public bool $filterPillsStatus = true;
-
-    // Entangled in JS
-    public bool $filterSlideDownDefaultVisible = false;
-
-    #[Locked]
-    public string $filterLayout = 'popover';
 
     #[Locked]
     public int $filterCount;
