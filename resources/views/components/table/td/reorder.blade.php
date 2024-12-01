@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware([ 'tableName'])
 @props(['rowID', 'rowIndex'])
 
 @php($theme = $this->getTheme())

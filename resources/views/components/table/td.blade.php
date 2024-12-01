@@ -1,8 +1,7 @@
-@aware(['component', 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind','isBootstrap'])
+@aware([ 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind','isBootstrap'])
 @props(['column', 'colIndex'])
 
 @php
-    /** @var \Rappasoft\LaravelLivewireTables\Views\Column $column */
     $customAttributes = $this->getTdAttributes($column, $row, $colIndex, $rowIndex)
 @endphp
 

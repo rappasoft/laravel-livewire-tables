@@ -1,4 +1,4 @@
-@aware(['component','isTailwind','isBootstrap'])
+@aware(['isTailwind','isBootstrap'])
 @php($toolsAttributes = $this->getToolsAttributesBag())
 
 <div {{

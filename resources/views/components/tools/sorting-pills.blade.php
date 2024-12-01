@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
 @if ($this->isTailwind)
     <div>
@@ -7,7 +7,6 @@
                 <small class="text-gray-700 dark:text-white">{{ __($this->getLocalisationPath.'Applied Sorting') }}:</small>
 
                 @foreach($this->getSorts() as $columnSelectName => $direction)
-                    @php /** @var \Rappasoft\LaravelLivewireTables\Views\Column|null $column */ @endphp
                     @php($column = $this->getColumnBySelectName($columnSelectName) ?? $this->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
@@ -49,7 +48,6 @@
                 <small>{{ __($this->getLocalisationPath.'Applied Sorting') }}:</small>
 
                 @foreach($this->getSorts() as $columnSelectName => $direction)
-                    @php /** @var \Rappasoft\LaravelLivewireTables\Views\Column|null $column */ @endphp
                     @php($column = $this->getColumnBySelectName($columnSelectName) ?? $this->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
@@ -90,7 +88,6 @@
                 <small>{{ __($this->getLocalisationPath.'Applied Sorting') }}:</small>
 
                 @foreach($this->getSorts() as $columnSelectName => $direction)
-                    @php /** @var \Rappasoft\LaravelLivewireTables\Views\Column|null $column */ @endphp
                     @php($column = $this->getColumnBySelectName($columnSelectName) ?? $this->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))

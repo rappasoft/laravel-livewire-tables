@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware([ 'tableName'])
 
 <x-livewire-tables::table.tr.plain
     :customAttributes="$this->getSecondaryHeaderTrAttributes($this->getRows)"

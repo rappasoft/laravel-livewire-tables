@@ -206,6 +206,30 @@ public function configure(): void
 }
 ```
 
+### setFilterPopoverAttributes
+
+Allows for the customisation of the appearance of the Filter Popover Menu.
+
+Note the addition of a "default-width" boolean, allowing you to customise the width more smoothly without impacting other applied classes.
+
+You may also replace default colors by setting "default-colors" to false, or default styling by setting "default-styling" to false, and specifying replacement classes in the "class" property.
+
+You can also replace the default transition behaviours (Tailwind) by specifying replacement attributes in the array.
+
+```php
+public function configure(): void
+{
+    $this->setFilterPopoverAttributes(
+        [
+        'class' => 'w-96',
+        'default-width' => false,
+        'default-colors' => true,
+        'default-styling' => true, 
+        'x-transition:enter' => 'transition ease-out duration-100',
+        ]
+    );
+}
+```
 
 ----
 

@@ -62,6 +62,14 @@ final class SearchVisualsTest extends TestCase
             ->assertSeeHtml('wire:model.blur="search"');
     }
 
+    public function test_search_lazy_filter_is_applied(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->assertDontSeeHtml('wire:model.live.lazy="search"')
+            ->call('setSearchLazy')
+            ->assertSeeHtml('wire:model.live.lazy="search"');
+    }
+
     public function test_search_defer_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)
@@ -72,7 +80,8 @@ final class SearchVisualsTest extends TestCase
     public function test_search_live_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)
-            ->assertDontSeeHtml('wire:model="search"')
+            ->call('setSearchLazy')
+            ->assertDontSeeHtml('wire:model.live="search"')
             ->call('setSearchLive')
             ->assertSeeHtml('wire:model.live="search"');
     }

@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware([ 'tableName'])
 @props([])
 
 <div x-cloak x-show="filtersOpen"
@@ -22,7 +22,6 @@
             ])
             row="{{ $filterRowIndex }}"
         >
-            @php /** @var \Rappasoft\LaravelLivewireTables\Views\Filter $filter */ @endphp
             @foreach ($filterRow as $filter)
                 <div
                     @class([

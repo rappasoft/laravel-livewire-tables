@@ -1,4 +1,4 @@
-@aware(['component','isTailwind','isBootstrap'])
+@aware(['isTailwind','isBootstrap'])
 @props(['displayMinimisedOnReorder' => false, 'hideUntilReorder' => false, 'customAttributes' => ['default' => true]])
 
 <th x-cloak {{ $attributes }} scope="col"

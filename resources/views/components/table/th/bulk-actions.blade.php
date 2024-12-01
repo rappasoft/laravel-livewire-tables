@@ -1,4 +1,4 @@
-@aware(['component', 'tableName'])
+@aware([ 'tableName'])
 @php
     $customAttributes = $this->hasBulkActionsThAttributes ? $this->getBulkActionsThAttributes : $this->getAllThAttributes($this->getBulkActionsColumn())['customAttributes'];
 

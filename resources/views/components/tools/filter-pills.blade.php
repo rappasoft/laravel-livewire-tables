@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
 @if ($this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
     <div>
@@ -14,7 +14,6 @@
             </small>
 
             @foreach($this->getAppliedFiltersWithValues() as $filterSelectName => $value)
-                @php /** @var \Rappasoft\LaravelLivewireTables\Views\Filter $filter */ @endphp
                 @php($filter = $this->getFilterByKey($filterSelectName))
                 @continue(is_null($filter) || $filter->isHiddenFromPills())
                 @php( $filterPillTitle = $filter->getFilterPillTitle())

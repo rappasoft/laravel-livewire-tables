@@ -1,4 +1,4 @@
-@aware(['component','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
 @includeWhen(
     $this->hasConfigurableAreaFor('before-pagination'), 

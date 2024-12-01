@@ -1,68 +1,51 @@
-@aware(['component', 'tableName','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware(['tableName'])
 @if($this->isBootstrap)
-    <ul
-        x-cloak
-        @class([
-            'dropdown-menu w-100 mt-md-5' => $this->isBootstrap4,
-            'dropdown-menu w-100' => $this->isBootstrap5,
-        ])
-        x-bind:class="{ 'show': filterPopoverOpen }"
-        role="menu"
-    >
-        @php /** @var \Rappasoft\LaravelLivewireTables\Views\Filter $filter */ @endphp
+    <ul x-cloak {{ $attributes
+            ->merge($this->getFilterPopoverAttributes)
+            ->merge(['role' => 'menu'])
+            ->class([
+                'w-100' => $this->getFilterPopoverAttributes['default-width'] ?? true,
+                'dropdown-menu mt-md-5' => $this->isBootstrap4,
+                'dropdown-menu' => $this->isBootstrap5,
+            ]) }} x-bind:class="{ 'show': filterPopoverOpen }">
         @foreach ($this->getVisibleFilters() as $filter)
-            <div
-                wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar"
-                @class([
-                    'p-2' => $this->isBootstrap,
-                ])
-                id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
-            >
+            <div id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper" wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar" class="p-2">
                 {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
             </div>
         @endforeach
 
         @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
-            <div
-                @class([
-                    'dropdown-divider' => $this->isBootstrap,
-                ])
-            >
-            </div>
-
-            <button
-                wire:click.prevent="setFilterDefaults" x-on:click="filterPopoverOpen = false"
-                @class([
-                    'dropdown-item btn text-center' => $this->isBootstrap4,
-                    'dropdown-item text-center' => $this->isBootstrap5,
-                ])
-            >
-                {{ __($this->getLocalisationPath.'Clear') }}
-            </button>
+            <div class='dropdown-divider'></div>
+            <x-livewire-tables::tools.toolbar.items.filter-popover.clear-button />
         @endif
     </ul>
 @else
-    <div
-        x-cloak x-show="filterPopoverOpen"
-        x-transition:enter="transition ease-out duration-100"
-        x-transition:enter-start="transform opacity-0 scale-95"
-        x-transition:enter-end="transform opacity-100 scale-100"
-        x-transition:leave="transition ease-in duration-75"
-        x-transition:leave-start="transform opacity-100 scale-100"
-        x-transition:leave-end="transform opacity-0 scale-95"
-        class="origin-top-left absolute left-0 mt-2 w-full md:w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50 dark:bg-gray-700 dark:text-white dark:divide-gray-600"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="filters-menu"
-    >
-        @php /** @var \Rappasoft\LaravelLivewireTables\Views\Filter $filter */ @endphp
+    <div x-cloak x-show="filterPopoverOpen"
+        {{ 
+            $attributes
+            ->merge($this->getFilterPopoverAttributes)
+            ->merge([
+                'role' => 'menu',
+                'aria-orientation' => 'vertical',
+                'aria-labelledby' => 'filters-menu',
+                'x-transition:enter' => 'transition ease-out duration-100',
+                'x-transition:enter-start' => 'transform opacity-0 scale-95',
+                'x-transition:enter-end' => 'transform opacity-100 scale-100',
+                'x-transition:leave' => 'transition ease-in duration-75',
+                'x-transition:leave-start' => 'transform opacity-100 scale-100',
+                'x-transition:leave-end' => 'transform opacity-0 scale-95',
+            ])
+            ->class([
+                'w-full md:w-56' => $this->getFilterPopoverAttributes['default-width'] ?? true,
+                'origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50' => $this->getFilterPopoverAttributes['default-styling'] ?? true,
+                'bg-white divide-gray-100 ring-black dark:bg-gray-700 dark:text-white dark:divide-gray-600' => $this->getFilterPopoverAttributes['default-colors'] ?? true,
+            ])
+            ->except(['x-cloak', 'x-show', 'default','default-width', 'default-styling','default-colors']) 
+        }}>
+
         @foreach ($this->getVisibleFilters() as $filter)
             <div class="py-1" role="none">
-                <div
-                    class="block px-4 py-2 text-sm text-gray-700 space-y-1"
-                    role="menuitem"
-                    id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
-                >
+                <div id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper" wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar" class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem">
                     {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
                 </div>
             </div>
@@ -70,14 +53,7 @@
 
         @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
             <div class="block px-4 py-3 text-sm text-gray-700 dark:text-white" role="menuitem">
-                <button
-                    x-on:click="filterPopoverOpen = false"
-                    wire:click.prevent="setFilterDefaults"
-                    type="button"
-                    class="w-full inline-flex items-center justify-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                >
-                    {{ __($this->getLocalisationPath.'Clear') }}
-                </button>
+                <x-livewire-tables::tools.toolbar.items.filter-popover.clear-button />
             </div>
         @endif
     </div>

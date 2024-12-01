@@ -1,4 +1,3 @@
-@php /** @var \Rappasoft\LaravelLivewireTables\Views\Action $action */ @endphp
 <a {{ $attributes->merge()
             ->class(['justify-center text-center items-center inline-flex space-x-2 rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50' => $isTailwind && $attributes['default-styling'] ?? true])
             ->class(['focus:border-indigo-300 focus:ring-indigo-200' => $isTailwind && $attributes['default-colors'] ?? true])

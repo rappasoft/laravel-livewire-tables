@@ -1,4 +1,3 @@
-@php /** @var \Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter $filter */ @endphp
 <div>
     <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
     <div @class([

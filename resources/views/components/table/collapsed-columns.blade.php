@@ -1,4 +1,4 @@
-@aware(['component', 'tableName', 'primaryKey','isTailwind','isBootstrap'])
+@aware([ 'tableName', 'primaryKey','isTailwind','isBootstrap'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -50,7 +50,6 @@
             colspan="{{ $colspan }}"
         >
             <div>
-                @php /** @var \Rappasoft\LaravelLivewireTables\Views\Column $column */ @endphp
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
