@@ -2,6 +2,25 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.7] - 2024-12-01
+### New Features
+- IncrementColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2096
+- Add setFilterPopoverAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2101
+
+### Tweaks
+- Remove View TypeHinting in blades due to reported errors by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2097
+
+### Blades
+- Remove $component from blades to improve performance by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2098
+
+### Testing
+- Exclude config/database from sources by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2102
+- Add missing tests for WithCustomisations by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2104
+- Ignore WithEvents Coverage by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2105
+- Add Search Lazy Tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2106
+- Add extra Search Lazy Tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2107
+
+
 ## [v3.5.6] - 2024-11-28
 ### New Features
 - Add Icon to Search Input by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2092
