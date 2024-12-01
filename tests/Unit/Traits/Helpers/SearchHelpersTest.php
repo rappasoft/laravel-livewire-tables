@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class SearchHelpersTest extends TestCase
@@ -146,6 +147,51 @@ final class SearchHelpersTest extends TestCase
         $this->basicTable->setSearch('   Anthony   ');
 
         $this->assertSame('   Anthony   ', $this->basicTable->getSearch());
+
+    }
+
+    public function test_can_test_all_search_options(): void
+    {
+        $temp = new class extends PetsTable
+        {
+            public function resetSearchConfiguration(): self
+            {
+                $this->searchFilterBlur = null;
+                $this->searchFilterDebounce = null;
+                $this->searchFilterDefer = null;
+                $this->searchFilterLazy = null;
+                $this->searchFilterLive = null;
+                $this->searchFilterThrottle = null;
+
+                return $this;
+            }
+        };
+
+        $this->assertFalse($temp->hasSearchDebounce());
+
+        $temp->setSearchDebounce(1000);
+
+        $this->assertSame('.live.debounce.1000ms', $temp->getSearchOptions());
+
+        $temp->resetSearchConfiguration()->setSearchDefer();
+
+        $this->assertSame('', $temp->getSearchOptions());
+
+        $temp->resetSearchConfiguration()->setSearchLive();
+
+        $this->assertSame('.live', $temp->getSearchOptions());
+
+        $temp->resetSearchConfiguration()->setSearchBlur();
+
+        $this->assertSame('.blur', $temp->getSearchOptions());
+
+        $temp->resetSearchConfiguration()->setSearchLazy();
+
+        $this->assertSame('.live.lazy', $temp->getSearchOptions());
+
+        $temp->resetSearchConfiguration()->setSearchThrottle(599);
+
+        $this->assertSame('.live.throttle.599ms', $temp->getSearchOptions());
 
     }
 }
