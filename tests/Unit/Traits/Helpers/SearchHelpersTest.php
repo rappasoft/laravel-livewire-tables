@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class SearchHelpersTest extends TestCase
 {
@@ -162,7 +162,7 @@ final class SearchHelpersTest extends TestCase
                 $this->searchFilterLazy = null;
                 $this->searchFilterLive = null;
                 $this->searchFilterThrottle = null;
-            
+
                 return $this;
             }
         };
@@ -192,7 +192,6 @@ final class SearchHelpersTest extends TestCase
         $temp->resetSearchConfiguration()->setSearchThrottle(599);
 
         $this->assertSame('.live.throttle.599ms', $temp->getSearchOptions());
-
 
     }
 }
