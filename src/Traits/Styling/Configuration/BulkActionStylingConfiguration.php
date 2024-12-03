@@ -77,7 +77,6 @@ trait BulkActionStylingConfiguration
     /**
      * Used to set attributes for the Bulk Actions Row Buttons
      */
-    #[Computed]
     public function setBulkActionsRowButtonAttributes(array $bulkActionsRowButtonAttributes): self
     {
         $this->setCustomAttributes('bulkActionsRowButtonAttributes', $bulkActionsRowButtonAttributes);
