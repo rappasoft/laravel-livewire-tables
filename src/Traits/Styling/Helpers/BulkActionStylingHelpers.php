@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
 
 use Livewire\Attributes\Computed;
+use Illuminate\View\ComponentAttributeBag;
 
 trait BulkActionStylingHelpers
 {
@@ -93,4 +94,18 @@ trait BulkActionStylingHelpers
         return $this->getCustomAttributes('bulkActionsTdCheckboxAttributes');
 
     }
+
+    /**
+     * Used to get attributes for the Bulk Actions Row Buttons
+     *
+     * @return array<mixed>
+     */
+    #[Computed]
+    public function getBulkActionsRowButtonAttributes(): array
+    {
+        return $this->getCustomAttributes('bulkActionsRowButtonAttributes', true);
+
+    }
+
+
 }
