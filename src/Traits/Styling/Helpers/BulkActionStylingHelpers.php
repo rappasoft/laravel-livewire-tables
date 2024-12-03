@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
 
-use Livewire\Attributes\Computed;
 use Illuminate\View\ComponentAttributeBag;
+use Livewire\Attributes\Computed;
 
 trait BulkActionStylingHelpers
 {
@@ -112,6 +112,4 @@ trait BulkActionStylingHelpers
     {
         return $this->getCustomAttributesBagFromArray($this->getBulkActionsRowButtonAttributes());
     }
-
-
 }
