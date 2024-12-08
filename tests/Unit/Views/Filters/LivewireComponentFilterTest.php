@@ -46,5 +46,4 @@ final class LivewireComponentFilterTest extends FilterTestCase
         $this->assertFalse($filter->isEmpty(1234));
 
     }
-
 }

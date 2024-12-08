@@ -29,16 +29,15 @@ final class BooleanFilterTest extends FilterTestCase
 
     public function test_can_set_boolean_filter_to_valid_string(): void
     {
-        $this->assertTrue(self::$filterInstance->validate("1"));
-        $this->assertFalse(self::$filterInstance->validate("0"));
+        $this->assertTrue(self::$filterInstance->validate('1'));
+        $this->assertFalse(self::$filterInstance->validate('0'));
     }
 
     public function test_cannot_set_boolean_filter_to_valid_string(): void
     {
-        $this->assertFalse(self::$filterInstance->validate("abc"));
-        $this->assertFalse(self::$filterInstance->validate("def"));
+        $this->assertFalse(self::$filterInstance->validate('abc'));
+        $this->assertFalse(self::$filterInstance->validate('def'));
     }
-
 
     public function test_can_get_custom_filter_pills(): void
     {
@@ -91,7 +90,6 @@ final class BooleanFilterTest extends FilterTestCase
     {
         $this->assertTrue(self::$filterInstance->isEmpty('abc'));
     }
-
 
     public function test_can_validate_null_boolean_filter_value(): void
     {
