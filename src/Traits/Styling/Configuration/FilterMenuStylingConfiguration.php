@@ -26,7 +26,6 @@ trait FilterMenuStylingConfiguration
         return $this;
     }
 
-
     /**
      * Set a list of attributes to override on the th sort button elements
      */

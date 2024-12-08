@@ -42,13 +42,11 @@ trait FilterMenuStylingHelpers
     {
 
         if (isset($this->filterSlidedownRowCallback)) {
-            return array_merge( ['class' => '', 'default-colors' => true, 'default-styling' => true, 'row' => (int) $rowIndex], call_user_func($this->filterSlidedownRowCallback, (int) $rowIndex));
+            return array_merge(['class' => '', 'default-colors' => true, 'default-styling' => true, 'row' => (int) $rowIndex], call_user_func($this->filterSlidedownRowCallback, (int) $rowIndex));
         }
 
-        return  ['class' => '', 'default-colors' => true, 'default-styling' => true, 'row' => (int) $rowIndex];
+        return ['class' => '', 'default-colors' => true, 'default-styling' => true, 'row' => (int) $rowIndex];
     }
-
-
 
     public function getFilterSlideDownDefaultStatus(): bool
     {
