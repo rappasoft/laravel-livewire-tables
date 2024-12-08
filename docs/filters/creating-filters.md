@@ -3,7 +3,7 @@ title: Creating Filters
 weight: 2
 ---
 
-To create filters, you must implement the `filters()` method on your component.
+To create filters, you must implement the `filters()` method on your component, which must return an array.
 
 ```php
 public function filters(): array

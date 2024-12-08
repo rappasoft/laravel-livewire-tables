@@ -1,28 +1,38 @@
 @aware([ 'tableName'])
 @props([])
 
-<div x-cloak x-show="filtersOpen"
-    @class([
-        'container' => $this->isBootstrap,
-    ])
-    @if($this->isTailwind)
-        x-transition:enter="transition ease-out duration-100"
-        x-transition:enter-start="transform opacity-0"
-        x-transition:enter-end="transform opacity-100"
-        x-transition:leave="transition ease-in duration-75"
-        x-transition:leave-start="transform opacity-100"
-        x-transition:leave-end="transform opacity-0"
-    @endif
->
-    @foreach ($this->getFiltersByRow() as $filterRowIndex => $filterRow)
-        <div
-            @class([
-                'row col-12' => $this->isBootstrap,
-                'grid grid-cols-12 gap-6 px-4 md:p-0 mb-6' => $this->isTailwind,
+<div x-cloak x-show="filtersOpen" {{ $attributes
+            ->merge($this->getFilterSlidedownWrapperAttributes)
+            ->merge($this->isTailwind ? [
+                'x-transition:enter' => 'transition ease-out duration-100',
+                'x-transition:enter-start' => 'transform opacity-0',
+                'x-transition:enter-end' => 'transform opacity-100',
+                'x-transition:leave' => 'transition ease-in duration-75',
+                'x-transition:leave-start' => 'transform opacity-100',
+                'x-transition:leave-end' => 'transform opacity-0',
+            ] : [])
+            ->class([
+                'container' => $this->isBootstrap && ($this->getFilterSlidedownWrapperAttributes['default'] ?? true),
             ])
-            row="{{ $filterRowIndex }}"
+            ->except(['default','default-colors','default-styling'])
+        }} 
+
+>
+    @foreach ($this->getFiltersByRow() as $filterRowIndex => $filtersInRow)
+        @php($defaultAttributes = $this->getFilterSlidedownRowAttributes($filterRowIndex))
+        <div {{ $attributes
+            ->merge($defaultAttributes)
+            ->merge([
+                'row' => $filterRowIndex,
+            ])
+            ->class([
+                'row col-12' => $this->isBootstrap && ($defaultAttributes['default-styling'] ?? true),
+                'grid grid-cols-12 gap-6 px-4 py-2 mb-2' => $this->isTailwind && ($defaultAttributes['default-styling'] ?? true),
+            ])
+            ->except(['default','default-colors','default-styling'])
+        }} 
         >
-            @foreach ($filterRow as $filter)
+            @foreach ($filtersInRow as $filter)
                 <div
                     @class([
                         'space-y-1 mb-4' =>

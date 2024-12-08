@@ -18,4 +18,9 @@ trait HasFilterMenuStyling
     public bool $filterSlideDownDefaultVisible = false;
 
     protected array $filterPopoverAttributes = ['class' => '', 'default-width' => true, 'default-colors' => true, 'default-styling' => true];
+
+    protected array $filterSlidedownWrapperAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];
+
+    protected ?\Closure $filterSlidedownRowCallback;
+
 }

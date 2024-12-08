@@ -16,6 +16,27 @@ trait FilterMenuStylingConfiguration
         return $this;
     }
 
+    /**
+     * Used to set attributes for the Filter Slidedown Wrapper
+     */
+    public function setFilterSlidedownWrapperAttributes(array $filterSlidedownWrapperAttributes): self
+    {
+        $this->filterSlidedownWrapperAttributes = array_merge($this->filterSlidedownWrapperAttributes, $filterSlidedownWrapperAttributes);
+
+        return $this;
+    }
+
+
+    /**
+     * Set a list of attributes to override on the th sort button elements
+     */
+    public function setFilterSlidedownRowAttributes(\Closure $callback): self
+    {
+        $this->filterSlidedownRowCallback = $callback;
+
+        return $this;
+    }
+
     public function setFilterLayout(string $type): self
     {
         if (! in_array($type, ['popover', 'slide-down'], true)) {

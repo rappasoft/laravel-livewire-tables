@@ -3,7 +3,7 @@ title: Introduction
 weight: 1
 ---
 
-Filters are a good way to narrow down your data. Version 2 has two ways to interact with filters, either by a popover menu or a slide down area.
+Filters are a good way to narrow down your data. Version 2 has two ways to interact with filters, either by a popover menu or a slide down area, which are configurable on a per-table basis.
 
 ## Popover Menu
 
