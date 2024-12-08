@@ -26,7 +26,7 @@ trait PaginationHelpers
     {
         return $this->paginationTheme;
     }
-    
+
     #[Computed]
     public function paginationIsEnabled(): bool
     {
@@ -118,7 +118,7 @@ trait PaginationHelpers
     {
         return $this->paginationCurrentCount;
     }
-    
+
     #[Computed]
     public function showPaginationDetails(): bool
     {
