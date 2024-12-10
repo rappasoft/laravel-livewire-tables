@@ -25,4 +25,6 @@ trait HasBulkActionsStyling
     protected array $bulkActionsMenuAttributes = ['default-colors' => true, 'default-styling' => true];
 
     protected array $bulkActionsMenuItemAttributes = ['default-colors' => true, 'default-styling' => true];
+
+    protected array $bulkActionsRowButtonAttributes = ['default-colors' => true, 'default-styling' => true];
 }

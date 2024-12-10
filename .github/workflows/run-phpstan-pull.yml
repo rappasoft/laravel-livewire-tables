@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-24.04]
         php: [8.3]
         laravel: [11]
         stability: [prefer-dist]
@@ -20,7 +20,7 @@ jobs:
     name: PHPStan - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
-      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, exif, iconv, fileinfo
 
     steps:
       - name: Checkout code
@@ -47,7 +47,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.extensions }}
           coverage: pcov
-          tools: phpunit:9.5
+          tools: phpunit:11.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

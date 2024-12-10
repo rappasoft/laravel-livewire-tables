@@ -186,7 +186,7 @@ final class PaginationVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setTheme', 'bootstrap-4')
             ->call('enableDetailedPagination', 'standard')
-            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-md-right text-muted">',
+            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-muted text-md-right">',
                 '<span>Showing</span>',
                 '<strong>1</strong>',
                 '<span>to</span>',
@@ -231,7 +231,7 @@ final class PaginationVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setTheme', 'bootstrap-5')
             ->call('enableDetailedPagination', 'standard')
-            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-md-end text-muted">',
+            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-muted text-md-end">',
                 '<span>Showing</span>',
                 '<strong>1</strong>',
                 '<span>to</span>',
@@ -244,7 +244,7 @@ final class PaginationVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setTheme', 'bootstrap-5')
             ->call('enableDetailedPagination', 'simple')
-            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-md-end text-muted">',
+            ->assertSeeHtmlInOrder(['<div class="col-12 col-md-6 text-center text-muted text-md-end">',
                 '<span>Showing</span>',
                 '<strong>1</strong>',
                 '<span>to</span>',

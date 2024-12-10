@@ -32,6 +32,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'BulkActionsThCheckboxAttributes',
             'BulkActionsTdAttributes',
             'BulkActionsTdCheckboxAttributes',
+            'BulkActionsRowButtonAttributes',
         ];
     }
 
