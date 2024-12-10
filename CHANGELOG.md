@@ -2,6 +2,25 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.8] - 2024-12-10
+### New Features
+- Set bulk action row button attributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2117
+- Add setFilterSlidedownWrapperAttributes and setFilterSlidedownRowAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2120
+
+### Bug Fixes
+- Respect setDisplayPaginationDetailsDisabled for unpaginated tables by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2119
+
+### Localisation
+- Added neccessary files for Farsi translation by @AmirMehrabi in https://github.com/rappasoft/laravel-livewire-tables/pull/2100
+
+### Testing
+- Workflow Adjustments by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2108
+- Add extra Search Lazy Tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2107
+- Restore Missing Lazy Search Tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2106
+- Ignore WithEvents Coverage by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2105
+- Add missing tests for WithCustomisations by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2104
+- Add missing LivewireComponentFilterTest and BooleanFilterTest by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2121
+
 ## [v3.5.7] - 2024-12-01
 ### New Features
 - IncrementColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2096
