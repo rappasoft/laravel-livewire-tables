@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
-use Livewire\Attributes\{Computed,Locked};
+use Livewire\Attributes\{Computed, Locked};
 
 trait HasTheme
 {

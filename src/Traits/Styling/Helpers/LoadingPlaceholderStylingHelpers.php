@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
 
-use Livewire\Attributes\Computed;
-
 trait LoadingPlaceholderStylingHelpers
 {
     public function getLoadingPlaceholderAttributes(): array

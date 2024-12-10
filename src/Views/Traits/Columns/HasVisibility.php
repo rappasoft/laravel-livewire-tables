@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Columns;
 
-use Rappasoft\LaravelLivewireTables\Views\Column;
-
 trait HasVisibility
 {
     protected bool $hidden = false;

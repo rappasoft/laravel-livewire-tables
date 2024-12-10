@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -15,7 +16,7 @@ class IconColumn extends Column
     use IconColumnConfiguration,
         IconColumnHelpers;
 
-    public ?\Closure $iconCallback;
+    public ?Closure $iconCallback;
 
     protected string $view = 'livewire-tables::includes.columns.icon';
 

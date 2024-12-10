@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
-use Illuminate\Database\Eloquent\Model;
-
 trait HasWireActions
 {
     protected bool $shouldWireNavigate = false;

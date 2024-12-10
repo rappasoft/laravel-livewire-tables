@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -17,7 +18,7 @@ class ColorColumn extends Column
         ColorColumnHelpers;
     use HasDefaultStringValue;
 
-    public ?\Closure $colorCallback;
+    public ?Closure $colorCallback;
 
     protected string $view = 'livewire-tables::includes.columns.color';
 

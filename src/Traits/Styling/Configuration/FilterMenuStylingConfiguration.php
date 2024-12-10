@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Configuration;
 
+use Closure;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait FilterMenuStylingConfiguration
@@ -29,7 +30,7 @@ trait FilterMenuStylingConfiguration
     /**
      * Set a list of attributes to override on the th sort button elements
      */
-    public function setFilterSlidedownRowAttributes(\Closure $callback): self
+    public function setFilterSlidedownRowAttributes(Closure $callback): self
     {
         $this->filterSlidedownRowCallback = $callback;
 

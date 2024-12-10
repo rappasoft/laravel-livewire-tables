@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Views\Filter;
-
 trait FilterConfiguration
 {
     public function setFilterPillTitle(string $title): self

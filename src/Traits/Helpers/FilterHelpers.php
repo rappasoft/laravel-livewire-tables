@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;

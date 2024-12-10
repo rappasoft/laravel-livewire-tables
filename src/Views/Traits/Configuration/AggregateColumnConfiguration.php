@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
-use Illuminate\Database\Eloquent\{Builder, Model};
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 

@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
+use Closure;
+
 trait TableAttributeConfiguration
 {
     /**
@@ -68,7 +70,7 @@ trait TableAttributeConfiguration
     /**
      * Set a list of attributes to override on the th elements
      */
-    public function setThAttributes(\Closure $callback): self
+    public function setThAttributes(Closure $callback): self
     {
         $this->thAttributesCallback = $callback;
 
@@ -78,7 +80,7 @@ trait TableAttributeConfiguration
     /**
      * Set a list of attributes to override on the th sort button elements
      */
-    public function setThSortButtonAttributes(\Closure $callback): self
+    public function setThSortButtonAttributes(Closure $callback): self
     {
         $this->thSortButtonAttributesCallback = $callback;
 
@@ -88,7 +90,7 @@ trait TableAttributeConfiguration
     /**
      * Set a list of attributes to override on the th sort icon elements
      */
-    public function setThSortIconAttributes(\Closure $callback): self
+    public function setThSortIconAttributes(Closure $callback): self
     {
         $this->thSortIconAttributesCallback = $callback;
 
@@ -98,7 +100,7 @@ trait TableAttributeConfiguration
     /**
      * Set a list of attributes to override on the td elements
      */
-    public function setTrAttributes(\Closure $callback): self
+    public function setTrAttributes(Closure $callback): self
     {
         $this->trAttributesCallback = $callback;
 
@@ -108,21 +110,21 @@ trait TableAttributeConfiguration
     /**
      * Set a list of attributes to override on the td elements
      */
-    public function setTdAttributes(\Closure $callback): self
+    public function setTdAttributes(Closure $callback): self
     {
         $this->tdAttributesCallback = $callback;
 
         return $this;
     }
 
-    public function setTableRowUrl(\Closure $callback): self
+    public function setTableRowUrl(Closure $callback): self
     {
         $this->trUrlCallback = $callback;
 
         return $this;
     }
 
-    public function setTableRowUrlTarget(\Closure $callback): self
+    public function setTableRowUrlTarget(Closure $callback): self
     {
         $this->trUrlTargetCallback = $callback;
 

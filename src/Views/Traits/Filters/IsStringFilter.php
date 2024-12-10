@@ -2,10 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
-use Closure;
-use Illuminate\View\ComponentAttributeBag;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
-
 trait IsStringFilter
 {
     public function isEmpty(?string $value): bool

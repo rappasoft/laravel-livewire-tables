@@ -2,10 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Columns;
 
-use Closure;
-use Illuminate\View\ComponentAttributeBag;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
-
 trait IsCollapsible
 {
     protected bool $collapseOnMobile = false;

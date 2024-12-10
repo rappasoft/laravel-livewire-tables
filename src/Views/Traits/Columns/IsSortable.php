@@ -2,9 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Columns;
 
-use Closure;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait IsSortable
 {
