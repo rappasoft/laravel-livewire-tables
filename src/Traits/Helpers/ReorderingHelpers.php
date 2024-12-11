@@ -93,23 +93,6 @@ trait ReorderingHelpers
         return $this->getTableName().'-reordering-backup';
     }
 
-    /**
-     * Used to get attributes for the <th> for Bulk Actions
-     *
-     * @return array<mixed>
-     */
-    #[Computed]
-    public function getReorderThAttributes(): array
-    {
-        return $this->reorderThAttributes ?? ['default' => true];
-    }
-
-    #[Computed]
-    public function hasReorderThAttributes(): bool
-    {
-        return $this->getReorderThAttributes() != ['default' => true];
-    }
-
     public function getReorderColumn(): Column
     {
         return Column::make('reorder')->label(fn () => null);

@@ -154,13 +154,6 @@ trait PaginationConfiguration
         return $this;
     }
 
-    public function setPerPageFieldAttributes(array $attributes = []): self
-    {
-        $this->perPageFieldAttributes = [...$this->perPageFieldAttributes, ...$attributes];
-
-        return $this;
-    }
-
     public function setShouldRetrieveTotalItemCountStatus(bool $status): self
     {
         $this->shouldRetrieveTotalItemCount = $status;
@@ -183,10 +176,4 @@ trait PaginationConfiguration
         return $this;
     }
 
-    public function setPaginationWrapperAttributes(array $paginationWrapperAttributes): self
-    {
-        $this->paginationWrapperAttributes = array_merge(['class' => ''], $paginationWrapperAttributes);
-
-        return $this;
-    }
 }

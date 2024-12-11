@@ -20,11 +20,6 @@ trait ActionsHelpers
         return $this->actionsPosition ?? 'right';
     }
 
-    #[Computed]
-    public function getActionWrapperAttributes(): array
-    {
-        return [...['class' => '', 'default-styling' => true, 'default-colors' => true], ...$this->actionWrapperAttributes];
-    }
 
     #[Computed]
     public function hasActions(): bool

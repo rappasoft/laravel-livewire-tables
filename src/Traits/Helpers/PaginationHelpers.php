@@ -153,25 +153,9 @@ trait PaginationHelpers
     }
 
     #[Computed]
-    public function getPerPageFieldAttributes(): array
-    {
-        return $this->perPageFieldAttributes;
-    }
-
-    #[Computed]
     public function getShouldRetrieveTotalItemCount(): bool
     {
         return $this->shouldRetrieveTotalItemCount;
     }
 
-    public function getPaginationWrapperAttributes(): array
-    {
-        return $this->paginationWrapperAttributes ?? ['class' => ''];
-    }
-
-    #[Computed]
-    public function getPaginationWrapperAttributesBag(): ComponentAttributeBag
-    {
-        return new ComponentAttributeBag($this->getPaginationWrapperAttributes());
-    }
 }
