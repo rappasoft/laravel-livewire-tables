@@ -4,11 +4,13 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ReorderingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ReorderingHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Styling\HasReorderStyling;
 
 trait WithReordering
 {
     use ReorderingConfiguration,
-        ReorderingHelpers;
+        ReorderingHelpers,
+        HasReorderStyling;
 
     // Entangled in JS
     public bool $reorderStatus = false;
@@ -30,8 +32,6 @@ trait WithReordering
     protected string $reorderMethod = 'reorder';
 
     protected string $defaultReorderDirection = 'asc';
-
-    protected array $reorderThAttributes = ['default' => true];
 
     public function setupReordering(): void
     {

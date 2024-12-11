@@ -4,13 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait ActionsConfiguration
 {
-    public function setActionWrapperAttributes(array $actionWrapperAttributes): self
-    {
-        $this->actionWrapperAttributes = [...$this->actionWrapperAttributes, ...$actionWrapperAttributes];
-
-        return $this;
-    }
-
     public function setActionsInToolbar(bool $status): self
     {
         $this->displayActionsInToolbar = $status;
