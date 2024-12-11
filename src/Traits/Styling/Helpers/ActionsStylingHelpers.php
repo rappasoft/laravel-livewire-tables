@@ -11,6 +11,4 @@ trait ActionsStylingHelpers
     {
         return [...['class' => '', 'default-styling' => true, 'default-colors' => true], ...$this->actionWrapperAttributes];
     }
-
-
 }

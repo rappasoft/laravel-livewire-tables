@@ -23,5 +23,4 @@ trait PaginationStylingHelpers
     {
         return new ComponentAttributeBag($this->getPaginationWrapperAttributes());
     }
-
 }

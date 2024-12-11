@@ -4,8 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait ActionsConfiguration
 {
-
-
     public function setActionsInToolbar(bool $status): self
     {
         $this->displayActionsInToolbar = $status;

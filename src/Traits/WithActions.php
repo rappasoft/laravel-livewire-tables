@@ -12,7 +12,7 @@ trait WithActions
     use ActionsConfiguration,
         ActionsHelpers,
         HasActionsStyling;
-        
+
     protected bool $displayActionsInToolbar = false;
 
     protected string $actionsPosition = 'right';

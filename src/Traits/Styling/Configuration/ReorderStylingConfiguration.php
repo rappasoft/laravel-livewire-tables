@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Configuration;
 
 trait ReorderStylingConfiguration
 {
-
     /**
      * Used to set attributes for the <th> for Reorder Column
      */
@@ -14,5 +13,4 @@ trait ReorderStylingConfiguration
 
         return $this;
     }
-
 }

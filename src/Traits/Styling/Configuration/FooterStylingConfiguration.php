@@ -19,5 +19,4 @@ trait FooterStylingConfiguration
 
         return $this;
     }
-
 }

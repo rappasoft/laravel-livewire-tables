@@ -8,10 +8,9 @@ use Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers\CollapsingColumnsStyl
 trait HasCollapsingColumnsStyling
 {
     use CollapsingColumnsStylingConfiguration,
-    CollapsingColumnsStylingHelpers;
-    
+        CollapsingColumnsStylingHelpers;
+
     protected array $collapsingColumnButtonCollapseAttributes = ['default-styling' => true, 'default-colors' => true];
 
     protected array $collapsingColumnButtonExpandAttributes = ['default-styling' => true, 'default-colors' => true];
-
 }

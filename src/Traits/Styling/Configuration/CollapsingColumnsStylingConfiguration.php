@@ -27,5 +27,4 @@ trait CollapsingColumnsStylingConfiguration
 
         return $this;
     }
-
 }

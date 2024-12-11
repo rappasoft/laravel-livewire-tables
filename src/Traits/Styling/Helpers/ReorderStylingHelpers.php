@@ -6,7 +6,6 @@ use Livewire\Attributes\Computed;
 
 trait ReorderStylingHelpers
 {
-
     /**
      * Used to get attributes for the <th> for Bulk Actions
      *
@@ -23,5 +22,4 @@ trait ReorderStylingHelpers
     {
         return $this->getReorderThAttributes() != ['default' => true];
     }
-
 }

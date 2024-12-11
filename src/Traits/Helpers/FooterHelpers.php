@@ -40,5 +40,4 @@ trait FooterHelpers
     {
         return $this->getUseHeaderAsFooterStatus() === false;
     }
-
 }

@@ -20,7 +20,6 @@ trait ActionsHelpers
         return $this->actionsPosition ?? 'right';
     }
 
-
     #[Computed]
     public function hasActions(): bool
     {

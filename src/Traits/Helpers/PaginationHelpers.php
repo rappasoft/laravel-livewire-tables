@@ -157,5 +157,4 @@ trait PaginationHelpers
     {
         return $this->shouldRetrieveTotalItemCount;
     }
-
 }

@@ -16,7 +16,6 @@ trait WithSecondaryHeader
 
     protected bool $columnsWithSecondaryHeader = false;
 
-
     public function bootedWithSecondaryHeader(): void
     {
         $this->setupSecondaryHeader();

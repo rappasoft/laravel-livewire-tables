@@ -23,5 +23,4 @@ trait FooterStylingHelpers
     {
         return isset($this->footerTdAttributesCallback) ? call_user_func($this->footerTdAttributesCallback, $column, $rows, $index) : ['default' => true];
     }
-
 }

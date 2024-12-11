@@ -23,5 +23,4 @@ trait SecondaryHeaderHelpers
     {
         return $this->getSecondaryHeaderStatus() === false;
     }
-
 }

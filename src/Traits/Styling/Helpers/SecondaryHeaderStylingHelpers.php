@@ -23,5 +23,4 @@ trait SecondaryHeaderStylingHelpers
     {
         return isset($this->secondaryHeaderTdAttributesCallback) ? call_user_func($this->secondaryHeaderTdAttributesCallback, $column, $rows, $index) : ['default' => true];
     }
-
 }

@@ -11,5 +11,4 @@ trait HasReorderStyling
         ReorderStylingHelpers;
 
     protected array $reorderThAttributes = ['default' => true];
-
 }

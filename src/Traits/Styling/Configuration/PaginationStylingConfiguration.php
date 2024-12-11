@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Configuration;
 
 trait PaginationStylingConfiguration
 {
-    
     public function setPerPageFieldAttributes(array $attributes = []): self
     {
         $this->perPageFieldAttributes = [...$this->perPageFieldAttributes, ...$attributes];

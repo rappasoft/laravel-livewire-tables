@@ -14,5 +14,4 @@ trait HasFooterStyling
     protected ?Closure $footerTrAttributesCallback;
 
     protected ?Closure $footerTdAttributesCallback;
-    
 }

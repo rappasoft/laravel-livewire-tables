@@ -4,8 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
 
 use Livewire\Attributes\Computed;
 
-trait CollapsingColumnsStylingHelpers {
-
+trait CollapsingColumnsStylingHelpers
+{
     /**
      * Retrieves attributes for the Collapsed Column Collapse Button
      *
@@ -27,6 +27,4 @@ trait CollapsingColumnsStylingHelpers {
     {
         return [...['default-styling' => true, 'default-colors' => true], ...$this->collapsingColumnButtonExpandAttributes];
     }
-
-
 }

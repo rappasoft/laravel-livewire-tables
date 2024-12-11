@@ -11,5 +11,4 @@ trait HasActionsStyling
         ActionsStylingHelpers;
 
     protected array $actionWrapperAttributes = ['class' => '', 'default-styling' => true, 'default-colors' => true];
-
 }
