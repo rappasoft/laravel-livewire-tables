@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.10] - 2024-12-11
+### Tweaks
+- Migrate additional Styling into separate traits by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2127
+
 ## [v3.5.9] - 2024-12-11
 ### Tweaks
 - Optimize Imports by @edwinvdpol in https://github.com/rappasoft/laravel-livewire-tables/pull/2124
