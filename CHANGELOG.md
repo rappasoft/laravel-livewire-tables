@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.5.9] - 2024-12-11
+### Tweaks
+- Optimize Imports by @edwinvdpol in https://github.com/rappasoft/laravel-livewire-tables/pull/2124
+
 ## [v3.5.8] - 2024-12-10
 ### New Features
 - Set bulk action row button attributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2117

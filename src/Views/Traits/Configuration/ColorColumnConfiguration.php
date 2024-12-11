@@ -2,11 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Views\Traits\Columns;
+use Closure;
 
 trait ColorColumnConfiguration
 {
-    public function color(\Closure $callback): self
+    public function color(Closure $callback): self
     {
         $this->colorCallback = $callback;
 

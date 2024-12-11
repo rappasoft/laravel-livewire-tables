@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
-use Livewire\Attributes\{Modelable,On,Renderless};
+use Livewire\Attributes\{Modelable, On, Renderless};
 
 trait IsExternalArrayFilter
 {

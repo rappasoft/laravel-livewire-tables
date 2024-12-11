@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\View\ComponentAttributeBag;
 
 trait ColorColumnHelpers
 {

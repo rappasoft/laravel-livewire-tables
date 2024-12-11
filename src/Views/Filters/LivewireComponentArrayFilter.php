@@ -2,10 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsArrayFilter, IsLivewireComponentFilter};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions, IsArrayFilter, IsLivewireComponentFilter};
 
 class LivewireComponentArrayFilter extends Filter
 {

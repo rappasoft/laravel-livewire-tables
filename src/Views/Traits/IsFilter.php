@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Core\HasLocalisations;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasConfig,HasLabelAttributes,HasView};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasConfig, HasLabelAttributes, HasView};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasCustomPosition, HasVisibility};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
 

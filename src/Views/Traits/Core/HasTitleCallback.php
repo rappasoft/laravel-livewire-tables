@@ -2,9 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
-use Closure;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
-
 trait HasTitleCallback
 {
     protected mixed $titleCallback = null;

@@ -5,7 +5,6 @@ namespace Rappasoft\LaravelLivewireTables\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Livewire\Features\SupportConsoleCommands\Commands\ComponentParser;

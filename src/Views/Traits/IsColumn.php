@@ -6,7 +6,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\Core\HasLocalisations;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{HasColumnView, HasVisibility, IsCollapsible, IsSearchable, IsSelectable, IsSortable};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes,HasFooter,HasLabelAttributes,HasSecondaryHeader,HasTheme};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasFooter, HasLabelAttributes, HasSecondaryHeader, HasTheme};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\{ColumnHelpers,RelationshipHelpers};
 
 trait IsColumn

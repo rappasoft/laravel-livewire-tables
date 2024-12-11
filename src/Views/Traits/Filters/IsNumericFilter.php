@@ -2,10 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
-use Closure;
-use Illuminate\View\ComponentAttributeBag;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
-
 trait IsNumericFilter
 {
     public function isEmpty(float|int|string|array|null $value): bool

@@ -2,13 +2,13 @@
 
 return [
     'All' => 'Alla',
-    'All Columns' => 'Alla Columner',
+    'All Columns' => 'Alla Kolumner',
     'Applied Filters' => 'Valda filter',
     'Applied Sorting' => 'Vald sortering',
     'Bulk Actions' => 'Bulk Modifiering',
     'Bulk Actions Confirm' => 'Är du säker?',
     'Clear' => 'Rensa',
-    'Columns' => 'Columner',
+    'Columns' => 'Kolumner',
     'Debugging Values' => 'Debug Värden',
     'Deselect All' => 'Avmarkera alla',
     'Done Reordering' => 'Omordning klart',

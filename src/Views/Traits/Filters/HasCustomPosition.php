@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
-
 trait HasCustomPosition
 {
     public ?string $filterPosition = null;

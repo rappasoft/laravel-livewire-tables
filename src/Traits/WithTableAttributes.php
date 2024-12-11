@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Closure;
-use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\TableAttributeConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\TableAttributeHelpers;
 
@@ -22,19 +21,19 @@ trait WithTableAttributes
 
     protected array $tbodyAttributes = [];
 
-    protected ?\Closure $thAttributesCallback;
+    protected ?Closure $thAttributesCallback;
 
-    protected ?\Closure $thSortButtonAttributesCallback;
+    protected ?Closure $thSortButtonAttributesCallback;
 
-    protected ?\Closure $thSortIconAttributesCallback;
+    protected ?Closure $thSortIconAttributesCallback;
 
-    protected ?\Closure $trAttributesCallback;
+    protected ?Closure $trAttributesCallback;
 
-    protected ?\Closure $tdAttributesCallback;
+    protected ?Closure $tdAttributesCallback;
 
-    protected ?\Closure $trUrlCallback;
+    protected ?Closure $trUrlCallback;
 
-    protected ?\Closure $trUrlTargetCallback;
+    protected ?Closure $trUrlTargetCallback;
 
     public bool $shouldBeDisplayed = true;
 }

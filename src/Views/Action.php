@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views;
 
-use Illuminate\View\{Component,ComponentAttributeBag};
+use Illuminate\View\Component;
 use Rappasoft\LaravelLivewireTables\Traits\Core\HasLocalisations;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Actions\{HasActionAttributes, HasRoute};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasVisibility;
