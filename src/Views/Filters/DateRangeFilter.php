@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HandlesDates, HasConfig,HasOptions};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HandlesDates, HasConfig, HasOptions};
 
 class DateRangeFilter extends Filter
 {

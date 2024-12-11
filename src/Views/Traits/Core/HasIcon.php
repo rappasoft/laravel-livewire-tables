@@ -3,7 +3,6 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 use Illuminate\View\ComponentAttributeBag;
-use Livewire\Attributes\Computed;
 
 trait HasIcon
 {

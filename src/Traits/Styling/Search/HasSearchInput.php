@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Search;
 
-use Livewire\Attributes\Computed;
-
 trait HasSearchInput
 {
     protected array $searchFieldAttributes = [];

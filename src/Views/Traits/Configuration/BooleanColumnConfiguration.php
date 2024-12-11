@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
-use Closure;
-
 trait BooleanColumnConfiguration
 {
     public function setSuccessValue(bool $value): self

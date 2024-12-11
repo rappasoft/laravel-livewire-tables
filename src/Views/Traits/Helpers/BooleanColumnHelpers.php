@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
-use Closure;
-
 trait BooleanColumnHelpers
 {
     public function getSuccessValue(): bool

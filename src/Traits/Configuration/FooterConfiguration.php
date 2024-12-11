@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
+use Closure;
+
 trait FooterConfiguration
 {
     public function setFooterStatus(bool $status): self
@@ -46,14 +48,14 @@ trait FooterConfiguration
         return $this;
     }
 
-    public function setFooterTrAttributes(\Closure $callback): self
+    public function setFooterTrAttributes(Closure $callback): self
     {
         $this->footerTrAttributesCallback = $callback;
 
         return $this;
     }
 
-    public function setFooterTdAttributes(\Closure $callback): self
+    public function setFooterTdAttributes(Closure $callback): self
     {
         $this->footerTdAttributesCallback = $callback;
 

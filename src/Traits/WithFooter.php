@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Closure;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FooterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FooterHelpers;
 
@@ -16,9 +17,9 @@ trait WithFooter
 
     protected bool $columnsWithFooter = false;
 
-    protected ?\Closure $footerTrAttributesCallback;
+    protected ?Closure $footerTrAttributesCallback;
 
-    protected ?\Closure $footerTdAttributesCallback;
+    protected ?Closure $footerTdAttributesCallback;
 
     public function setupFooter(): void
     {

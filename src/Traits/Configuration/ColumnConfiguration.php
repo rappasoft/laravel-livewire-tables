@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Views\Column;
-
 trait ColumnConfiguration
 {
     public function setPrependedColumns(array $prependedColumns): void

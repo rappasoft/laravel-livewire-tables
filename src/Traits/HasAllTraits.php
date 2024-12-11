@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Rappasoft\LaravelLivewireTables\Traits\Core\{HasCustomAttributes,HasLocalisations};
+use Rappasoft\LaravelLivewireTables\Traits\Core\{HasCustomAttributes, HasLocalisations};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasTheme;
 
 trait HasAllTraits

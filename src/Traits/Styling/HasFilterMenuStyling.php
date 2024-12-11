@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling;
 
+use Closure;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Styling\Configuration\FilterMenuStylingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers\FilterMenuStylingHelpers;
@@ -21,5 +22,5 @@ trait HasFilterMenuStyling
 
     protected array $filterSlidedownWrapperAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];
 
-    protected ?\Closure $filterSlidedownRowCallback;
+    protected ?Closure $filterSlidedownRowCallback;
 }

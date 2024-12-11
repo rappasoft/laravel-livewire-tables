@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
+use Closure;
+
 trait SecondaryHeaderConfiguration
 {
     public function setSecondaryHeaderStatus(bool $status): self
@@ -25,14 +27,14 @@ trait SecondaryHeaderConfiguration
         return $this;
     }
 
-    public function setSecondaryHeaderTrAttributes(\Closure $callback): self
+    public function setSecondaryHeaderTrAttributes(Closure $callback): self
     {
         $this->secondaryHeaderTrAttributesCallback = $callback;
 
         return $this;
     }
 
-    public function setSecondaryHeaderTdAttributes(\Closure $callback): self
+    public function setSecondaryHeaderTdAttributes(Closure $callback): self
     {
         $this->secondaryHeaderTdAttributesCallback = $callback;
 
