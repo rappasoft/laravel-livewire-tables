@@ -126,7 +126,6 @@ final class ColumnTest extends TestCase
 
     }
 
-    
     public function test_custom_sorting_pills_label_defaults_correctly(): void
     {
         $column = Column::make('Name', 'name');
