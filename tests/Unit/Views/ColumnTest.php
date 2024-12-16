@@ -114,4 +114,10 @@ final class ColumnTest extends TestCase
 
         $contents = $column->renderContents($rows->first());
     }
+
+    public function test_custom_sorting_pills_label_defaults_correctly(): void
+    {
+        $column = Column::make('Name', 'name');
+        $this->assertSame('Name', $column->getTitle());
+    }
 }
