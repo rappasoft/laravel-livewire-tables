@@ -115,6 +115,18 @@ final class ColumnTest extends TestCase
         $contents = $column->renderContents($rows->first());
     }
 
+    public function test_custom_sorting_pills_defaults_correctly(): void
+    {
+        $column = Column::make('Name', 'name');
+        $defaultString = __($this->basicTable->getLocalisationPath().'not_applicable');
+
+        $this->assertSame('A-Z', $column->getCustomSortingPillDirections('asc'));
+        $this->assertSame('Z-A', $column->getCustomSortingPillDirections('desc'));
+        $this->assertSame($defaultString, $column->getCustomSortingPillDirections('faulty_string'));
+
+    }
+
+    
     public function test_custom_sorting_pills_label_defaults_correctly(): void
     {
         $column = Column::make('Name', 'name');
