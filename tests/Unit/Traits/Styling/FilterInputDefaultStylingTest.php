@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Styling;
 
 use PHPUnit\Framework\Attributes\Group;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 #[Group('Filters')]
 #[Group('Styling')]
@@ -38,9 +38,6 @@ final class FilterInputDefaultStylingTest extends TestCase
 
                 return $this;
             }
-
-
-
         };
 
         $testTableDefault->configure();
@@ -78,15 +75,12 @@ final class FilterInputDefaultStylingTest extends TestCase
 
             }
 
-
             public function setDefaultFilterInputColors(string $defaultFilterInputColors): self
             {
                 parent::setDefaultFilterInputColors($defaultFilterInputColors);
 
                 return $this;
             }
-
-
         };
 
         $testTableDefault->configure();
