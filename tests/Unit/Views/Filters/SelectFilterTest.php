@@ -13,6 +13,10 @@ final class SelectFilterTest extends FilterTestCase
     {
         parent::setUp();
         self::$filterInstance = SelectFilter::make('Active')->options(['Cartman', 'Tux', 'May', 'Ben', 'Chico']);
+        self::$extraFilterInputAttributes = [
+            'wire:key' => 'test123-filter-select-active',
+        ];
+
     }
 
     public function test_array_setup(): array
