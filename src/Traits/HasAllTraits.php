@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Core\{HasCustomAttributes, HasLocalisations};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasTheme;
+use Rappasoft\LaravelLivewireTables\Traits\Styling\HasDefaultFilterInputStyling;
 
 trait HasAllTraits
 {
@@ -13,6 +14,7 @@ trait HasAllTraits
     use WithLoadingPlaceholder;
     use HasTheme;
     use ComponentUtilities,
+        HasDefaultFilterInputStyling,
         WithActions,
         WithData,
         WithQueryString,
