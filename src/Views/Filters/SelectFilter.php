@@ -60,5 +60,4 @@ class SelectFilter extends Filter
 
         return $attributes;
     }
-
 }
