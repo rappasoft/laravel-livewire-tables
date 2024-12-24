@@ -68,6 +68,7 @@ If using Tailwind, you should update your tailwind.config.js file, adding the fo
 ```js
     './vendor/rappasoft/laravel-livewire-tables/resources/views/*.blade.php',
     './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
+    './vendor/rappasoft/laravel-livewire-tables/src/Traits/Styling/Defaults/**/*.php',
 ```
 
 It is also recommended to add the paths to any Livewire Tables components, for example:

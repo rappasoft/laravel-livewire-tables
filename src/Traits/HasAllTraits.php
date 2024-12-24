@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Core\{HasCustomAttributes, HasLocalisations};
-use Rappasoft\LaravelLivewireTables\Traits\Styling\HasDefaultFilterInputStyling;
+use Rappasoft\LaravelLivewireTables\Traits\Styling\Defaults\{HasDefaultFilterInputStyling};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasTheme;
 
 trait HasAllTraits

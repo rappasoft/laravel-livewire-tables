@@ -48,6 +48,7 @@ module.exports = {
     purge: [
         ...
         './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
+        './vendor/rappasoft/laravel-livewire-tables/src/Traits/Styling/Defaults/**/*.php',
     ],
     ...
 };
@@ -57,6 +58,7 @@ module.exports = {
     content: [
         ...
         './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
+        './vendor/rappasoft/laravel-livewire-tables/src/Traits/Styling/Defaults/**/*.php',
     ],
     ...
 };
