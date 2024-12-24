@@ -3,10 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals\Filters;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BreedsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
-use PHPUnit\Framework\Attributes\Group;
 
 #[Group('Visuals')]
 #[Group('Filters')]
@@ -325,11 +325,11 @@ final class TextFilterVisualsTest extends FilterVisualsTestCase
             {
                 return [
                     TextFilter::make('name')
-                    ->setInputAttributes(['maxlength' => 75, 'class' => 'bg-red-500', 'default-styling' => true]),
+                        ->setInputAttributes(['maxlength' => 75, 'class' => 'bg-red-500', 'default-styling' => true]),
                 ];
             }
         })
-        ->assertSeeHtml('<input wire:model.blur="filterComponents.name" class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 bg-red-500" id="table-filter-name" maxlength="75" type="text" wire:key="table-filter-text-name" />');
-        
+            ->assertSeeHtml('<input wire:model.blur="filterComponents.name" class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 bg-red-500" id="table-filter-name" maxlength="75" type="text" wire:key="table-filter-text-name" />');
+
     }
 }

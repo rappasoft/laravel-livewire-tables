@@ -17,7 +17,7 @@ trait HandlesFilterLabelAttributes
     {
         return $this->getFilterLabelAttributes() != ['default' => true] && $this->getFilterLabelAttributes() != ['default' => false];
     }
-    
+
     public function setFilterLabelAttributes(array $filterLabelAttributes): self
     {
         $this->filterLabelAttributes = [...['default' => false], ...$filterLabelAttributes];

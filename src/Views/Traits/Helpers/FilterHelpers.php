@@ -133,7 +133,6 @@ trait FilterHelpers
         return ! is_null($this->filterDefaultValue);
     }
 
-
     public function generateWireKey(string $tableName, string $filterType, string $extraData = ''): string
     {
         return $tableName.'-filter-'.$filterType.'-'.$this->getKey().($extraData != '' ? '-'.$extraData : '').($this->hasCustomPosition() ? '-'.$this->getCustomPosition() : '');
@@ -152,7 +151,7 @@ trait FilterHelpers
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         return view($this->getViewPath())
-        ->with($this->getFilterDisplayData())
-        ->with(['filterInputAttributes' => $this->getInputAttributesBag()]);
+            ->with($this->getFilterDisplayData())
+            ->with(['filterInputAttributes' => $this->getInputAttributesBag()]);
     }
 }

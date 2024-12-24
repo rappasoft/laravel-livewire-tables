@@ -2,14 +2,16 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Group;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 #[Group('Filters')]
 abstract class FilterTestCase extends TestCase
 {
     protected static $filterInstance;
+
     protected static $testGenericData;
+
     protected static $extraFilterInputAttributes;
 
     protected function setUp(): void
@@ -146,14 +148,12 @@ abstract class FilterTestCase extends TestCase
             'default-styling' => true,
             'id' => $baseAttributes['id'],
         ];
-        if(isset(self::$extraFilterInputAttributes))
-        {
-            $standardAttributes = array_merge($standardAttributes,self::$extraFilterInputAttributes);
+        if (isset(self::$extraFilterInputAttributes)) {
+            $standardAttributes = array_merge($standardAttributes, self::$extraFilterInputAttributes);
             ksort($standardAttributes);
         }
 
         $this->assertSame($standardAttributes, $currentAttributeBag);
 
     }
-
 }

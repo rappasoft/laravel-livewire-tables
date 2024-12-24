@@ -45,14 +45,15 @@ class DateFilter extends Filter
     protected function getCoreInputAttributes(): array
     {
         $attributes = array_merge(parent::getCoreInputAttributes(),
-        [
-            'min' => $this->hasConfig('min') ?  $this->getConfig('min') : null,
-            'max' => $this->hasConfig('max') ?  $this->getConfig('max') : null,
-            'placeholder' => $this->hasConfig('placeholder') ? $this->getConfig('placeholder') : null,
-            'type' => 'date',
-            'wire:key' => $this->generateWireKey($this->getGenericDisplayData()['tableName'], 'date'),
-        ]);
+            [
+                'min' => $this->hasConfig('min') ? $this->getConfig('min') : null,
+                'max' => $this->hasConfig('max') ? $this->getConfig('max') : null,
+                'placeholder' => $this->hasConfig('placeholder') ? $this->getConfig('placeholder') : null,
+                'type' => 'date',
+                'wire:key' => $this->generateWireKey($this->getGenericDisplayData()['tableName'], 'date'),
+            ]);
         ksort($attributes);
+
         return $attributes;
     }
 }

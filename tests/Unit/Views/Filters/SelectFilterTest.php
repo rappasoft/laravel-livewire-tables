@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use PHPUnit\Framework\Attributes\Group;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 #[Group('Filters')]
 final class SelectFilterTest extends FilterTestCase

@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 use PHPUnit\Framework\Attributes\Group;
+use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 #[Group('Filters')]
 final class TextFilterTest extends FilterTestCase
@@ -127,6 +127,4 @@ final class TextFilterTest extends FilterTestCase
         $this->assertTrue($filter->hasFieldName());
         $this->assertSame('breed_id', $filter->getFieldName());
     }
-
-    
 }

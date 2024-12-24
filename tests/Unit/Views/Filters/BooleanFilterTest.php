@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 use PHPUnit\Framework\Attributes\Group;
+use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 
 #[Group('Filters')]
 final class BooleanFilterTest extends FilterTestCase
@@ -183,8 +183,5 @@ final class BooleanFilterTest extends FilterTestCase
             'x-ref' => 'switchButton',
         ], $currentAttributeBag);
 
-
-
     }
-
 }

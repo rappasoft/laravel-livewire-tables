@@ -54,7 +54,6 @@ trait FilterConfiguration
         return $this;
     }
 
-
     public function setGenericDisplayData(array $genericDisplayData = []): self
     {
         $this->genericDisplayData = [

@@ -3,21 +3,20 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberRangeFilter;
-use PHPUnit\Framework\Attributes\Group;
 
 #[Group('Filters')]
 final class NumberRangeFilterTest extends FilterTestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();
         self::$filterInstance = NumberRangeFilter::make('Active');
 
-
     }
+
     public function test_can_get_filter_name(): void
     {
         // Should Match
@@ -210,7 +209,7 @@ final class NumberRangeFilterTest extends FilterTestCase
         $this->assertSame('Active', self::$filterInstance->getFilterPillTitle());
 
         self::$filterInstance
-        ->setFilterPillTitle('User Status');
+            ->setFilterPillTitle('User Status');
 
         $this->assertSame('User Status', self::$filterInstance->getFilterPillTitle());
     }

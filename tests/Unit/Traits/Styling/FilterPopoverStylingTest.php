@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Styling;
 
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Group;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 #[Group('Filters')]
 final class FilterPopoverStylingTest extends TestCase

@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use DateTime;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use PHPUnit\Framework\Attributes\Group;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 
 #[Group('Filters')]
 final class DateFilterTest extends FilterTestCase

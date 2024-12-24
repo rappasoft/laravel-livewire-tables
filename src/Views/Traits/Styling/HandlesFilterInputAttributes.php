@@ -12,6 +12,7 @@ trait HandlesFilterInputAttributes
     {
         $attributes = array_merge($this->getCoreInputAttributes(), $this->getInputAttributes());
         ksort($attributes);
+
         return new ComponentAttributeBag($attributes);
     }
 
@@ -23,7 +24,7 @@ trait HandlesFilterInputAttributes
     protected function getCoreInputAttributes(): array
     {
         return [
-            'id' => $this->getGenericDisplayData()['tableName']."-filter-".$this->getKey().($this->hasCustomPosition() ? "-".$this->getCustomPosition() : ''),
+            'id' => $this->getGenericDisplayData()['tableName'].'-filter-'.$this->getKey().($this->hasCustomPosition() ? '-'.$this->getCustomPosition() : ''),
             'default-styling' => true,
             'default-colors' => true,
         ];
@@ -38,6 +39,4 @@ trait HandlesFilterInputAttributes
 
         return $this;
     }
-
-
 }

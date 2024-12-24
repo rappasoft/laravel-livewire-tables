@@ -4,9 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Core\QueryStrings;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use PHPUnit\Framework\Attributes\Group;
 
 #[Group('Filters')]
 final class QueryStringForFiltersTest extends TestCase

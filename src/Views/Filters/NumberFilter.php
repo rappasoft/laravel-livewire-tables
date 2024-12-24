@@ -38,15 +38,16 @@ class NumberFilter extends Filter
     protected function getCoreInputAttributes(): array
     {
         $attributes = array_merge(parent::getCoreInputAttributes(),
-        [
-            'min' => $this->hasConfig('min') ?  $this->getConfig('min') : null,
-            'max' => $this->hasConfig('max') ?  $this->getConfig('max') : null,
-            'placeholder' => $this->hasConfig('placeholder') ? $this->getConfig('placeholder') : null,
-            'type' => 'number',
-            'wire:key' => $this->generateWireKey($this->getGenericDisplayData()['tableName'], 'number'),
+            [
+                'min' => $this->hasConfig('min') ? $this->getConfig('min') : null,
+                'max' => $this->hasConfig('max') ? $this->getConfig('max') : null,
+                'placeholder' => $this->hasConfig('placeholder') ? $this->getConfig('placeholder') : null,
+                'type' => 'number',
+                'wire:key' => $this->generateWireKey($this->getGenericDisplayData()['tableName'], 'number'),
 
-        ]);
+            ]);
         ksort($attributes);
+
         return $attributes;
     }
 }
