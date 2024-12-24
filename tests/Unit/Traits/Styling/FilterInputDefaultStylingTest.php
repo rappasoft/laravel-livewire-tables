@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 #[Group('Styling')]
 final class FilterInputDefaultStylingTest extends TestCase
 {
-
     public function test_has_filter_default_input_styling(): void
     {
         $this->assertFalse($this->basicTable->hasDefaultFilterInputStyling());
@@ -37,5 +36,4 @@ final class FilterInputDefaultStylingTest extends TestCase
 
         $this->assertTrue($this->basicTable->hasDefaultFilterInputColors());
     }
-
 }
