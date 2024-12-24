@@ -50,5 +50,4 @@ final class FilterInputDefaultStylingTest extends TestCase
 
         $this->assertSame('border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-800 dark:text-white dark:border-gray-600', $this->getDefaultFilterInputColors());
     }
-
 }
