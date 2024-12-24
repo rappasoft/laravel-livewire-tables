@@ -49,4 +49,16 @@ class SelectFilter extends Filter
                 ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$value]
             ?? null;
     }
+
+    protected function getCoreInputAttributes(): array
+    {
+        $attributes = array_merge(parent::getCoreInputAttributes(),
+            [
+                'wire:key' => $this->generateWireKey($this->getGenericDisplayData()['tableName'], 'select'),
+            ]);
+        ksort($attributes);
+
+        return $attributes;
+    }
+
 }
