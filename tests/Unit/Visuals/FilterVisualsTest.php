@@ -1,12 +1,14 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Visuals;
+namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableNoFilters;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+#[Group('Visuals')]
 final class FilterVisualsTest extends TestCase
 {
     public function test_filters_button_shows_when_enabled(): void

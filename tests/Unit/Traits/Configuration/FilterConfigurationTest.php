@@ -2,9 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+#[Group('Filters')]
 final class FilterConfigurationTest extends TestCase
 {
     public function test_filters_status_can_be_set(): void

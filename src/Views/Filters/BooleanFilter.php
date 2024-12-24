@@ -55,6 +55,22 @@ class BooleanFilter extends Filter
         return true;
     }
 
+    protected function getCoreInputAttributes(): array
+    {
+        $attributes = array_merge(parent::getCoreInputAttributes(),
+            [
+                '@click' => 'toggleStatusWithUpdate',
+                'activeColor' => 'bg-blue-600',
+                'blobColor' => 'bg-white',
+                'inactiveColor' => 'bg-neutral-200',
+                'type' => 'button',
+                'x-ref' => 'switchButton',
+            ]);
+        ksort($attributes);
+
+        return $attributes;
+    }
+
     /**
      * Gets the Default Value for this Filter via the Component
      */

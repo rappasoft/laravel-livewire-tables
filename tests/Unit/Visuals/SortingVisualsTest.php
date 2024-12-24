@@ -1,12 +1,14 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Visuals;
+namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals;
 
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+#[Group('Visuals')]
 final class SortingVisualsTest extends TestCase
 {
     public array $default10 = [];

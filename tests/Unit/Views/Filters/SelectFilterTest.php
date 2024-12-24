@@ -3,8 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
+#[Group('Filters')]
 final class SelectFilterTest extends FilterTestCase
 {
     protected function setUp(): void
@@ -77,32 +79,32 @@ final class SelectFilterTest extends FilterTestCase
     {
         $this->assertSame('live', self::$filterInstance->getWireableMethod());
 
-        $this->assertSame('wire:model.live=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+        $this->assertSame('wire:model.live="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
         self::$filterInstance->setWireBlur();
 
         $this->assertSame('blur', self::$filterInstance->getWireableMethod());
-        $this->assertSame('wire:model.blur=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+        $this->assertSame('wire:model.blur="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
         self::$filterInstance->setWireDefer();
 
         $this->assertSame('defer', self::$filterInstance->getWireableMethod());
-        $this->assertSame('wire:model=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+        $this->assertSame('wire:model="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
         self::$filterInstance->setWireLive();
         $this->assertSame('live', self::$filterInstance->getWireableMethod());
 
-        $this->assertSame('wire:model.live=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+        $this->assertSame('wire:model.live="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
         self::$filterInstance->setWireDebounce(250);
 
         $this->assertSame('live.debounce.250ms', self::$filterInstance->getWireableMethod());
-        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+        $this->assertSame('wire:model.live.debounce.250ms="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
         self::$filterInstance->setWireDebounce(500);
 
         $this->assertSame('live.debounce.500ms', self::$filterInstance->getWireableMethod());
-        $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+        $this->assertSame('wire:model.live.debounce.500ms="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
     }
 }

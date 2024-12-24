@@ -4,9 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Core\QueryStrings;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+#[Group('Filters')]
 final class QueryStringForFiltersTest extends TestCase
 {
     public function test_can_get_default_filter_query_string_status(): void

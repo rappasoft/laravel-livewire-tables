@@ -1,11 +1,13 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Visuals;
+namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+#[Group('Visuals')]
 final class SearchVisualsTest extends TestCase
 {
     public function test_search_shows_be_default(): void

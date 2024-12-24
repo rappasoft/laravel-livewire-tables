@@ -2,15 +2,35 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+#[Group('Filters')]
 abstract class FilterTestCase extends TestCase
 {
     protected static $filterInstance;
 
+    protected static $testGenericData;
+
+    protected static $extraFilterInputAttributes;
+
     protected function setUp(): void
     {
         parent::setUp();
+        self::$testGenericData = [
+            'filterLayout' => 'tailwind',
+            'tableName' => 'test123',
+            'isTailwind' => true,
+            'isBootstrap' => false,
+            'isBootstrap4' => false,
+            'isBootstrap5' => false,
+            'localisationPath' => 'livewire-tables::core.',
+        ];
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        self::$extraFilterInputAttributes = null;
     }
 
     public function test_can_get_filter_name(): void
@@ -92,5 +112,48 @@ abstract class FilterTestCase extends TestCase
         self::$filterInstance->notResetByClearButton();
 
         $this->assertFalse(self::$filterInstance->isResetByClearButton());
+    }
+
+    public function test_can_set_custom_input_attributes(): void
+    {
+        $filter = self::$filterInstance;
+
+        $filter->setGenericDisplayData(self::$testGenericData);
+        $baseAttributes = $filter->getInputAttributesBag();
+
+        $this->assertTrue($baseAttributes['default-styling']);
+        $this->assertTrue($baseAttributes['default-colors']);
+
+        $filter->setInputAttributes([
+            'class' => 'bg-red-500',
+        ]);
+
+        $this->assertFalse($filter->getInputAttributesBag()['default-styling']);
+        $this->assertFalse($filter->getInputAttributesBag()['default-colors']);
+        $this->assertSame('bg-red-500', $filter->getInputAttributesBag()['class']);
+        $filter->setInputAttributes([
+            'class' => 'bg-red-500 dark:bg-red-500',
+            'default-styling' => true,
+        ]);
+        $currentAttributeBag = $filter->getInputAttributesBag()->getAttributes();
+        ksort($currentAttributeBag);
+
+        $this->assertTrue($currentAttributeBag['default-styling']);
+        $this->assertFalse($currentAttributeBag['default-colors']);
+        $this->assertSame('bg-red-500 dark:bg-red-500', $currentAttributeBag['class']);
+
+        $standardAttributes = [
+            'class' => 'bg-red-500 dark:bg-red-500',
+            'default-colors' => false,
+            'default-styling' => true,
+            'id' => $baseAttributes['id'],
+        ];
+        if (isset(self::$extraFilterInputAttributes)) {
+            $standardAttributes = array_merge($standardAttributes, self::$extraFilterInputAttributes);
+            ksort($standardAttributes);
+        }
+
+        $this->assertSame($standardAttributes, $currentAttributeBag);
+
     }
 }

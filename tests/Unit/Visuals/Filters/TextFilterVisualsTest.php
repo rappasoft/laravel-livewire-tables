@@ -1,18 +1,20 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Visuals\Filters;
+namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals\Filters;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BreedsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
-final class TextFilterVisualsTest extends TestCase
+#[Group('Visuals')]
+#[Group('Filters')]
+final class TextFilterVisualsTest extends FilterVisualsTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
-        parent::setupBreedsTable();
     }
 
     public function test_can_use_endswith_method(): void
@@ -307,5 +309,27 @@ final class TextFilterVisualsTest extends TestCase
             ->call('setFilter', 'name', 'e C')
             ->assertDontSee('Maine Coon')
             ->assertSee('Persian');
+    }
+
+    public function test_can_set_custom_attributes_on_text_filter(): void
+    {
+
+        Livewire::test(new class extends BreedsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+            }
+
+            public function filters(): array
+            {
+                return [
+                    TextFilter::make('name')
+                        ->setInputAttributes(['maxlength' => 75, 'class' => 'bg-red-500', 'default-styling' => true]),
+                ];
+            }
+        })
+            ->assertSeeHtml('<input wire:model.blur="filterComponents.name" class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 bg-red-500" id="table-filter-name" maxlength="75" type="text" wire:key="table-filter-text-name" />');
+
     }
 }
