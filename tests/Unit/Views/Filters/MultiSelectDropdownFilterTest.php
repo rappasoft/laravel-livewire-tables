@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Builder;
 use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
+use PHPUnit\Framework\Attributes\Group;
 
-final class MultiSelectDropdownFilterTest extends TestCase
+#[Group('Filters')]
+final class MultiSelectDropdownFilterTest extends FilterTestCase
 {
     public array $optionsArray = [];
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        self::$filterInstance = MultiSelectDropdownFilter::make('Active');
+    }
 
     public function test_array_setup(): array
     {
@@ -21,251 +29,225 @@ final class MultiSelectDropdownFilterTest extends TestCase
 
     public function test_can_get_filter_name(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
-
-        $this->assertSame('Active', $filter->getName());
+        $this->assertSame('Active', self::$filterInstance->getName());
     }
 
     public function test_can_get_filter_key(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
-
-        $this->assertSame('active', $filter->getKey());
+        $this->assertSame('active', self::$filterInstance->getKey());
     }
 
     public function test_can_get_filter_configs(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
+        $this->assertSame([], self::$filterInstance->getConfigs());
 
-        $this->assertSame([], $filter->getConfigs());
+        self::$filterInstance->config(['foo' => 'bar']);
 
-        $filter->config(['foo' => 'bar']);
-
-        $this->assertSame(['foo' => 'bar'], $filter->getConfigs());
+        $this->assertSame(['foo' => 'bar'], self::$filterInstance->getConfigs());
     }
 
     public function test_get_a_single_filter_config(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active')
+        self::$filterInstance
             ->config(['foo' => 'bar']);
 
-        $this->assertSame('bar', $filter->getConfig('foo'));
+        $this->assertSame('bar', self::$filterInstance->getConfig('foo'));
     }
 
     public function test_can_get_filter_default_value(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
-
-        $this->assertSame([], $filter->getDefaultValue());
+        $this->assertSame([], self::$filterInstance->getDefaultValue());
     }
 
     public function test_can_get_filter_callback(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->hasFilterCallback());
 
-        $this->assertFalse($filter->hasFilterCallback());
-
-        $filter = MultiSelectDropdownFilter::make('Active')
+        self::$filterInstance
             ->filter(function (Builder $builder, int $value) {
                 return $builder->where('name', '=', $value);
             });
 
-        $this->assertTrue($filter->hasFilterCallback());
-        $this->assertIsCallable($filter->getFilterCallback());
+        $this->assertTrue(self::$filterInstance->hasFilterCallback());
+        $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
 
     public function test_can_get_filter_pill_title(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
+        $this->assertSame('Active', self::$filterInstance->getFilterPillTitle());
 
-        $this->assertSame('Active', $filter->getFilterPillTitle());
+        self::$filterInstance->setFilterPillTitle('User Status');
 
-        $filter = MultiSelectDropdownFilter::make('Active')
-            ->setFilterPillTitle('User Status');
-
-        $this->assertSame('User Status', $filter->getFilterPillTitle());
+        $this->assertSame('User Status', self::$filterInstance->getFilterPillTitle());
     }
 
     #[Depends('test_array_setup')]
     public function test_can_get_filter_pill_value(array $optionsArray): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
-        $this->assertSame($optionsArray[1], $filter->getFilterPillValue(['1'])[0]);
-        $this->assertSame([$optionsArray[1], $optionsArray[2]], $filter->getFilterPillValue(['1', '2']));
+        self::$filterInstance->options($optionsArray);
+        $this->assertSame($optionsArray[1], self::$filterInstance->getFilterPillValue(['1'])[0]);
+        $this->assertSame([$optionsArray[1], $optionsArray[2]], self::$filterInstance->getFilterPillValue(['1', '2']));
     }
 
     public function test_can_check_if_filter_has_configs(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->hasConfigs());
 
-        $this->assertFalse($filter->hasConfigs());
+        self::$filterInstance->config(['foo' => 'bar']);
 
-        $filter = MultiSelectDropdownFilter::make('Active')
-            ->config(['foo' => 'bar']);
-
-        $this->assertTrue($filter->hasConfigs());
+        $this->assertTrue(self::$filterInstance->hasConfigs());
     }
 
     public function test_can_check_filter_config_by_name(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active')
+        self::$filterInstance
             ->config(['foo' => 'bar']);
 
-        $this->assertTrue($filter->hasConfig('foo'));
-        $this->assertFalse($filter->hasConfig('bar'));
+        $this->assertTrue(self::$filterInstance->hasConfig('foo'));
+        $this->assertFalse(self::$filterInstance->hasConfig('bar'));
     }
 
     public function test_can_check_if_filter_is_hidden_from_menus(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->isHiddenFromMenus());
+        $this->assertTrue(self::$filterInstance->isVisibleInMenus());
 
-        $this->assertFalse($filter->isHiddenFromMenus());
-        $this->assertTrue($filter->isVisibleInMenus());
+        self::$filterInstance->hiddenFromMenus();
 
-        $filter->hiddenFromMenus();
-
-        $this->assertTrue($filter->isHiddenFromMenus());
-        $this->assertFalse($filter->isVisibleInMenus());
+        $this->assertTrue(self::$filterInstance->isHiddenFromMenus());
+        $this->assertFalse(self::$filterInstance->isVisibleInMenus());
     }
 
     public function test_can_check_if_filter_is_hidden_from_pills(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->isHiddenFromPills());
+        $this->assertTrue(self::$filterInstance->isVisibleInPills());
 
-        $this->assertFalse($filter->isHiddenFromPills());
-        $this->assertTrue($filter->isVisibleInPills());
+        self::$filterInstance->hiddenFromPills();
 
-        $filter->hiddenFromPills();
-
-        $this->assertTrue($filter->isHiddenFromPills());
-        $this->assertFalse($filter->isVisibleInPills());
+        $this->assertTrue(self::$filterInstance->isHiddenFromPills());
+        $this->assertFalse(self::$filterInstance->isVisibleInPills());
     }
 
     public function test_can_check_if_filter_is_hidden_from_count(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->isHiddenFromFilterCount());
+        $this->assertTrue(self::$filterInstance->isVisibleInFilterCount());
 
-        $this->assertFalse($filter->isHiddenFromFilterCount());
-        $this->assertTrue($filter->isVisibleInFilterCount());
+        self::$filterInstance->hiddenFromFilterCount();
 
-        $filter->hiddenFromFilterCount();
-
-        $this->assertTrue($filter->isHiddenFromFilterCount());
-        $this->assertFalse($filter->isVisibleInFilterCount());
+        $this->assertTrue(self::$filterInstance->isHiddenFromFilterCount());
+        $this->assertFalse(self::$filterInstance->isVisibleInFilterCount());
     }
 
     public function test_can_check_if_filter_is_reset_by_clear_button(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
+        $this->assertTrue(self::$filterInstance->isResetByClearButton());
 
-        $this->assertTrue($filter->isResetByClearButton());
+        self::$filterInstance->notResetByClearButton();
 
-        $filter->notResetByClearButton();
-
-        $this->assertFalse($filter->isResetByClearButton());
+        $this->assertFalse(self::$filterInstance->isResetByClearButton());
     }
 
     #[Depends('test_array_setup')]
     public function test_can_set_filter_to_number(array $optionsArray): void
     {
-        $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
-        $this->assertSame(123, $filter->validate(123));
-        $this->assertSame('123', $filter->validate('123'));
+        $this->assertSame(123, self::$filterInstance->validate(123));
+        $this->assertSame('123', self::$filterInstance->validate('123'));
     }
 
     #[Depends('test_array_setup')]
     public function test_can_set_filter_to_valid_value(array $optionsArray): void
     {
-        $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
-        $this->assertSame($optionsArray, $filter->getOptions());
-        $this->assertSame(['1', '3'], $filter->validate([0 => '1', 1 => '3']));
-        $this->assertSame(['1', '3'], $filter->validate([0 => '1', 1 => '3', 2 => '99']));
+        self::$filterInstance->options($optionsArray);
+        $this->assertSame($optionsArray, self::$filterInstance->getOptions());
+        $this->assertSame(['1', '3'], self::$filterInstance->validate([0 => '1', 1 => '3']));
+        $this->assertSame(['1', '3'], self::$filterInstance->validate([0 => '1', 1 => '3', 2 => '99']));
     }
 
     public function test_can_get_if_filter_empty(): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active');
-        $this->assertTrue($filter->isEmpty(['all']));
-        $this->assertTrue($filter->isEmpty(''));
-        $this->assertFalse($filter->isEmpty([]));
-        $this->assertTrue($filter->isEmpty('123'));
-        $this->assertTrue($filter->isEmpty('test'));
-        $this->assertFalse($filter->isEmpty([1]));
+        $this->assertTrue(self::$filterInstance->isEmpty(['all']));
+        $this->assertTrue(self::$filterInstance->isEmpty(''));
+        $this->assertFalse(self::$filterInstance->isEmpty([]));
+        $this->assertTrue(self::$filterInstance->isEmpty('123'));
+        $this->assertTrue(self::$filterInstance->isEmpty('test'));
+        $this->assertFalse(self::$filterInstance->isEmpty([1]));
     }
 
     #[Depends('test_array_setup')]
     public function test_can_set_filter_first_option(array $optionsArray): void
     {
-        $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
-        $this->assertSame('', $filter->getFirstOption());
-        $filter->setFirstOption('all');
-        $this->assertSame('all', $filter->getFirstOption());
+        self::$filterInstance->options($optionsArray);
+        $this->assertSame('', self::$filterInstance->getFirstOption());
+        self::$filterInstance->setFirstOption('all');
+        $this->assertSame('all', self::$filterInstance->getFirstOption());
     }
 
     #[Depends('test_array_setup')]
     public function test_can_check_if_can_set_default_value(array $optionsArray): void
     {
-        $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
+        self::$filterInstance->options($optionsArray);
 
-        $this->assertSame([], $filter->getFilterDefaultValue());
+        $this->assertSame([], self::$filterInstance->getFilterDefaultValue());
 
-        $filter->setFilterDefaultValue(['1', '3']);
+        self::$filterInstance->setFilterDefaultValue(['1', '3']);
 
-        $this->assertSame(['1', '3'], $filter->getFilterDefaultValue());
+        $this->assertSame(['1', '3'], self::$filterInstance->getFilterDefaultValue());
     }
 
     #[Depends('test_array_setup')]
     public function test_can_set_custom_filter_view(array $optionsArray): void
     {
-        $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
-        $this->assertSame('livewire-tables::components.tools.filters.multi-select-dropdown', $filter->getViewPath());
-        $filter->setCustomView('test-custom-filter-view');
-        $this->assertSame('test-custom-filter-view', $filter->getViewPath());
+        self::$filterInstance->options($optionsArray);
+        $this->assertSame('livewire-tables::components.tools.filters.multi-select-dropdown', self::$filterInstance->getViewPath());
+        self::$filterInstance->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
 
     #[Depends('test_array_setup')]
     public function test_can_set_select_filter_wireable_live(array $optionsArray): void
     {
 
-        $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
+        self::$filterInstance->options($optionsArray);
 
-        $this->assertSame('live.debounce.250ms', $filter->getWireableMethod());
+        $this->assertSame('live.debounce.250ms', self::$filterInstance->getWireableMethod());
 
-        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('wire:model.live.debounce.250ms="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
-        $filter->setWireBlur();
+        self::$filterInstance->setWireBlur();
 
-        $this->assertSame('blur', $filter->getWireableMethod());
-        $this->assertSame('wire:model.blur=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('blur', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model.blur="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
-        $filter->setWireLive();
+        self::$filterInstance->setWireLive();
 
-        $this->assertSame('live', $filter->getWireableMethod());
-        $this->assertSame('wire:model.live=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('live', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model.live="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
-        $filter->setWireDefer();
+        self::$filterInstance->setWireDefer();
 
-        $this->assertSame('defer', $filter->getWireableMethod());
-        $this->assertSame('wire:model=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('defer', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
-        $filter->setWireDebounce(250);
+        self::$filterInstance->setWireDebounce(250);
 
-        $this->assertSame('live.debounce.250ms', $filter->getWireableMethod());
-        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('live.debounce.250ms', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model.live.debounce.250ms="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
-        $filter->setWireDebounce(500);
+        self::$filterInstance->setWireDebounce(500);
 
-        $this->assertSame('live.debounce.500ms', $filter->getWireableMethod());
-        $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('live.debounce.500ms', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model.live.debounce.500ms="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
     }
 
     #[Depends('test_array_setup')]
     public function test_can_set_separator(array $optionsArray): void
     {
-        $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
-        $this->assertSame(', ', $filter->getPillsSeparator());
-        $filter->setPillsSeparator('<br />');
-        $this->assertSame('<br />', $filter->getPillsSeparator());
+        self::$filterInstance->options($optionsArray);
+        $this->assertSame(', ', self::$filterInstance->getPillsSeparator());
+        self::$filterInstance->setPillsSeparator('<br />');
+        $this->assertSame('<br />', self::$filterInstance->getPillsSeparator());
     }
 }

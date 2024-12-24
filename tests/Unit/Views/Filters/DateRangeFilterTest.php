@@ -4,7 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Filters')]
 final class DateRangeFilterTest extends FilterTestCase
 {
     protected function setUp(): void

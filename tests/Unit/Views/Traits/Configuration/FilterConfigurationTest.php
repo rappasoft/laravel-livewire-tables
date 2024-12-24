@@ -4,7 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Filters')]
 final class FilterConfigurationTest extends TestCase
 {
     public function test_filter_config_can_be_set(): void

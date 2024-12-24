@@ -6,7 +6,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Filters')]
 final class QueryStringForFiltersTest extends TestCase
 {
     public function test_can_get_default_filter_query_string_status(): void

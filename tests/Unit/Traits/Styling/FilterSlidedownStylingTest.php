@@ -3,7 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Styling;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Filters')]
 final class FilterSlidedownStylingTest extends TestCase
 {
     public function test_filter_slidedown_wrapper_attributes_returns_default_if_not_set(): void

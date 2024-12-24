@@ -3,7 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Styling;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Filters')]
 final class FilterPopoverStylingTest extends TestCase
 {
     public function test_filter_popover_attributes_returns_default_if_not_set(): void

@@ -1,11 +1,13 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Visuals;
+namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals;
 
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Visuals')]
 final class HideableTableTest extends TestCase
 {
     public function test_can_see_table_by_default(): void

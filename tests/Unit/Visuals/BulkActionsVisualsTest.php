@@ -1,11 +1,13 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Visuals;
+namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals;
 
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Visuals')]
 final class BulkActionsVisualsTest extends TestCase
 {
     public function test_bulk_dropdown_shows_when_necessary(): void

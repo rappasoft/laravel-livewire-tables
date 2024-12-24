@@ -12,7 +12,9 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Filters')]
 final class FilterHelpersTest extends TestCase
 {
     public function test_can_get_filters_status(): void

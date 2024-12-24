@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Visuals\Columns;
+namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals\Columns;
 
 use Exception;
 use Illuminate\View\ViewException;
@@ -9,7 +9,9 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{BrokenSecondaryHeaderTable, NoBuildMethodTable, NoPrimaryKeyTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableAttributes};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Visuals')]
 final class IconColumnVisualsTest extends TestCase
 {
     private $testErrors;

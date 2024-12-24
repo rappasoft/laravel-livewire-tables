@@ -133,15 +133,6 @@ trait FilterHelpers
         return ! is_null($this->filterDefaultValue);
     }
 
-    public function getFilterLabelAttributes(): array
-    {
-        return [...['default' => true], ...$this->filterLabelAttributes];
-    }
-
-    public function hasFilterLabelAttributes(): bool
-    {
-        return $this->getFilterLabelAttributes() != ['default' => true] && $this->getFilterLabelAttributes() != ['default' => false];
-    }
 
     public function generateWireKey(string $tableName, string $filterType, string $extraData = ''): string
     {
@@ -160,6 +151,8 @@ trait FilterHelpers
 
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
+        return view($this->getViewPath())
+        ->with($this->getFilterDisplayData())
+        ->with(['filterInputAttributes' => $this->getInputAttributesBag()]);
     }
 }

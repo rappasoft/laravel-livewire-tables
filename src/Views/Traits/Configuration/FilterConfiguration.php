@@ -54,12 +54,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    public function setFilterLabelAttributes(array $filterLabelAttributes): self
-    {
-        $this->filterLabelAttributes = [...['default' => false], ...$filterLabelAttributes];
-
-        return $this;
-    }
 
     public function setGenericDisplayData(array $genericDisplayData = []): self
     {

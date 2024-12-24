@@ -4,7 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('Filters')]
 final class FilterConfigurationTest extends TestCase
 {
     public function test_filters_status_can_be_set(): void

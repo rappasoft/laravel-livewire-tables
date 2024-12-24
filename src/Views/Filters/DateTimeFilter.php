@@ -42,4 +42,18 @@ class DateTimeFilter extends Filter
 
         return null;
     }
+
+    protected function getCoreInputAttributes(): array
+    {
+        $attributes = array_merge(parent::getCoreInputAttributes(),
+        [
+            'min' => $this->hasConfig('min') ?  $this->getConfig('min') : null,
+            'max' => $this->hasConfig('max') ?  $this->getConfig('max') : null,
+            'placeholder' => $this->hasConfig('placeholder') ? $this->getConfig('placeholder') : null,
+            'type' => 'datetime-local',
+            'wire:key' => $this->generateWireKey($this->getGenericDisplayData()['tableName'], 'datetime'),
+        ]);
+        ksort($attributes);
+        return $attributes;
+    }
 }
