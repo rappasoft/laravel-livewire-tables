@@ -7,7 +7,6 @@ use Livewire\Attributes\Computed;
 
 trait QueryHelpers
 {
-    
     public function getBuilder(): Builder
     {
         return $this->builder;

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait QueryConfiguration
 {
-    
     public function setBuilder(Builder $builder): void
     {
         $this->builder = $builder;
@@ -45,7 +44,7 @@ trait QueryConfiguration
 
         return $this;
     }
-    
+
     public function setExtraWiths(array $extraWiths): self
     {
         $this->extraWiths = $extraWiths;
@@ -101,7 +100,7 @@ trait QueryConfiguration
 
         return $this;
     }
-    
+
     public function setEagerLoadAllRelationsStatus(bool $status): self
     {
         $this->eagerLoadAllRelationsStatus = $status;
@@ -122,5 +121,4 @@ trait QueryConfiguration
 
         return $this;
     }
-
 }

@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait ComponentConfiguration
 {
-
     /**
      * Set the empty message
      */
@@ -42,7 +41,6 @@ trait ComponentConfiguration
 
         return $this;
     }
-
 
     public function useComputedPropertiesEnabled(): self
     {

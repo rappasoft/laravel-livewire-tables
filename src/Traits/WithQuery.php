@@ -9,8 +9,8 @@ use Rappasoft\LaravelLivewireTables\Traits\Helpers\QueryHelpers;
 trait WithQuery
 {
     use QueryConfiguration,
-    QueryHelpers;
-    
+        QueryHelpers;
+
     protected Builder $builder;
 
     protected ?string $primaryKey;
@@ -28,5 +28,4 @@ trait WithQuery
     protected array $extraWithAvgs = [];
 
     protected bool $eagerLoadAllRelationsStatus = false;
-
 }

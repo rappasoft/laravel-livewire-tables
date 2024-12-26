@@ -5,8 +5,8 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
-use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForColumnSelect;
+use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
 
 trait WithColumnSelect
 {

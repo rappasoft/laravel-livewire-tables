@@ -13,7 +13,7 @@ trait QueryStringConfiguration
             }
         }
     }
-    
+
     public function setQueryStringStatus(bool $status): self
     {
         $this->queryStringStatus = $status;
@@ -59,5 +59,4 @@ trait QueryStringConfiguration
     {
         return $this->setQueryStringConfig($type, ['alias' => $alias]);
     }
-
 }

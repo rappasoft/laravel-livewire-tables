@@ -25,5 +25,4 @@ class QueryStringTestBase extends TestCase
             }
         };
     }
-
 }

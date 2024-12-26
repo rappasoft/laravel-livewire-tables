@@ -74,7 +74,6 @@ trait ComponentHelpers
         return $this->tableName === $name;
     }
 
-
     public function getComputedPropertiesStatus(): bool
     {
         return $this->useComputedProperties ?? false;

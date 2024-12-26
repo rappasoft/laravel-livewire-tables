@@ -60,5 +60,4 @@ trait QueryStringHelpers
     {
         return $this->getQueryStringConfig($type)['alias'] ?? $this->getQueryStringAlias().'-'.$type;
     }
-
 }

@@ -29,7 +29,6 @@ final class QueryStringForSortTest extends QueryStringTestBase
         parent::$mock->boot();
         parent::$mock->setQueryStringForSortDisabled();
 
-
         $this->assertSame(false, parent::$mock->getQueryStringStatusForSort());
     }
 
@@ -38,7 +37,6 @@ final class QueryStringForSortTest extends QueryStringTestBase
         parent::$mock->configure();
         parent::$mock->boot();
         parent::$mock->setQueryStringForSortDisabled();
-
 
         $this->assertSame(false, parent::$mock->getQueryStringStatusForSort());
         parent::$mock->setQueryStringForSortEnabled();
@@ -61,7 +59,6 @@ final class QueryStringForSortTest extends QueryStringTestBase
         parent::$mock->configure();
         parent::$mock->boot();
         parent::$mock->setQueryStringForSortDisabled();
-
 
         $this->assertSame('table-sorts', parent::$mock->getQueryStringAliasForSort());
         parent::$mock->setQueryStringAliasForSort('pet-sorts');

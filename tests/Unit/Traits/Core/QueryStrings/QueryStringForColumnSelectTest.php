@@ -64,6 +64,4 @@ final class QueryStringForColumnSelectTest extends QueryStringTestBase
         $this->assertSame('selected-columns', parent::$mock->getQueryStringAliasForColumnSelect());
         $this->assertTrue(parent::$mock->hasQueryStringAliasForColumnSelect());
     }
-
-
 }

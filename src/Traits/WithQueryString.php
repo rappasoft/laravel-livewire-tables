@@ -10,7 +10,7 @@ trait WithQueryString
 {
     use QueryStringConfiguration,
         QueryStringHelpers;
-    
+
     #[Locked]
     public array $queryStringConfig = [
         'columns' => ['status' => false, 'alias' => null],
@@ -18,7 +18,7 @@ trait WithQueryString
         'search' => ['status' => true, 'alias' => null],
         'sorts' => ['status' => true, 'alias' => null],
     ];
-    
+
     #[Locked]
     public ?bool $queryStringStatus;
 
