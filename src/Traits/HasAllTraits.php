@@ -12,7 +12,8 @@ trait HasAllTraits
     use HasLocalisations;
     use WithLoadingPlaceholder;
     use HasTheme;
-    use ComponentUtilities,
+    use WithQuery,
+        ComponentUtilities,
         WithActions,
         WithData,
         WithQueryString,

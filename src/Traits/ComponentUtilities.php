@@ -15,13 +15,7 @@ trait ComponentUtilities
 
     public array $table = [];
 
-    protected Builder $builder;
-
     protected $model;
-
-    protected ?string $primaryKey;
-
-    protected array $relationships = [];
 
     #[Locked]
     public string $tableName = 'table';
@@ -31,19 +25,7 @@ trait ComponentUtilities
 
     protected bool $offlineIndicatorStatus = true;
 
-    protected bool $eagerLoadAllRelationsStatus = false;
-
     protected string $emptyMessage = 'No items found, try to broaden your search';
-
-    protected array $additionalSelects = [];
-
-    protected array $extraWiths = [];
-
-    protected array $extraWithCounts = [];
-
-    protected array $extraWithSums = [];
-
-    protected array $extraWithAvgs = [];
 
     protected bool $useComputedProperties = true;
 
