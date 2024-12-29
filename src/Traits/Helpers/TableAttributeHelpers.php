@@ -103,24 +103,21 @@ trait TableAttributeHelpers
     public function getTrAttributesBag(Model $row, int $index): ComponentAttributeBag
     {
         $default = [
-            'id' => $this->getTableName()."-row-".$row->{$this->getPrimaryKey()},
+            'id' => $this->getTableName().'-row-'.$row->{$this->getPrimaryKey()},
             'loopType' => $index % 2 === 0 ? 'even' : 'odd',
             'rowpk' => $row->{$this->getPrimaryKey()},
-            'x-on:dragstart.self' => "currentlyReorderingStatus && dragStart(event)",
-            'x-on:drop.prevent' => "currentlyReorderingStatus && dropEvent(event)",
-            'x-on:dragover.prevent.throttle.500ms' => "currentlyReorderingStatus && dragOverEvent(event)",
-            'x-on:dragleave.prevent.throttle.500ms' => "currentlyReorderingStatus && dragLeaveEvent(event)",
-            ':draggable' => "currentlyReorderingStatus",
-            'wire:key' => $this->getTableName()."-tablerow-tr-".$row->{$this->getPrimaryKey()},
+            'x-on:dragstart.self' => 'currentlyReorderingStatus && dragStart(event)',
+            'x-on:drop.prevent' => 'currentlyReorderingStatus && dropEvent(event)',
+            'x-on:dragover.prevent.throttle.500ms' => 'currentlyReorderingStatus && dragOverEvent(event)',
+            'x-on:dragleave.prevent.throttle.500ms' => 'currentlyReorderingStatus && dragLeaveEvent(event)',
+            ':draggable' => 'currentlyReorderingStatus',
+            'wire:key' => $this->getTableName().'-tablerow-tr-'.$row->{$this->getPrimaryKey()},
         ];
 
-        if($this->hasDisplayLoadingPlaceholder())
-        {
-            $default['wire:loading.class.add'] = "hidden d-none";
-        }
-        else
-        {
-            $default['wire:loading.class.delay'] = "opacity-50 dark:bg-gray-900 dark:opacity-60";
+        if ($this->hasDisplayLoadingPlaceholder()) {
+            $default['wire:loading.class.add'] = 'hidden d-none';
+        } else {
+            $default['wire:loading.class.delay'] = 'opacity-50 dark:bg-gray-900 dark:opacity-60';
         }
 
         return new ComponentAttributeBag(array_merge($default, $this->getTrAttributes($row, $index)));
@@ -135,27 +132,24 @@ trait TableAttributeHelpers
     #[Computed]
     public function getTdAttributesBag(Column $column, Model $row, int $colIndex, int $rowIndex): ComponentAttributeBag
     {
-        $default = [ 
-            'wire:key' => $this->getTableName() . '-table-td-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug(),
+        $default = [
+            'wire:key' => $this->getTableName().'-table-td-'.$row->{$this->getPrimaryKey()}.'-'.$column->getSlug(),
             'default' => true,
             'default-colors' => true,
             'default-styling' => true,
         ];
-        if($column->isClickable())
-        {
-            if($this->getTableRowUrlTarget($row) === 'navigate') {
+        if ($column->isClickable()) {
+            if ($this->getTableRowUrlTarget($row) === 'navigate') {
                 $default['wire:navigate'] = '';
                 $default['href'] = $this->getTableRowUrl($row);
-            } 
-            else
-            {
+            } else {
                 $target = $this->getTableRowUrlTarget($row) ?? '_self';
                 $default['onclick'] = "window.open('".$this->getTableRowUrl($row)."', '".$target."')";
-            }    
+            }
         }
+
         return new ComponentAttributeBag(array_merge($default, $this->getTdAttributes($column, $row, $colIndex, $rowIndex)));
     }
-
 
     public function hasTableRowUrl(): bool
     {

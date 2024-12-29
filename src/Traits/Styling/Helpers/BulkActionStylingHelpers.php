@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
 
-use Illuminate\View\ComponentAttributeBag;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\View\ComponentAttributeBag;
 use Livewire\Attributes\Computed;
 
 trait BulkActionStylingHelpers
@@ -83,13 +83,14 @@ trait BulkActionStylingHelpers
     public function getBulkActionsTdAttributesNew(string $rowPrimaryKey): array
     {
         $default = [
-            'wire:key' => $this->getTableName() ."-tbody-td-bulk-actions-".$rowPrimaryKey,
-            ':displayMinimisedOnReorder' => "true",
+            'wire:key' => $this->getTableName().'-tbody-td-bulk-actions-'.$rowPrimaryKey,
+            ':displayMinimisedOnReorder' => 'true',
         ];
+
         return array_merge($default, $this->getBulkActionsTdAttributes());
     }
 
-        /**
+    /**
      * Used to get attributes for the Bulk Actions TD
      *
      * @return array<mixed>
@@ -99,7 +100,6 @@ trait BulkActionStylingHelpers
         return $this->getCustomAttributes('bulkActionsTdAttributes');
     }
 
-
     /**
      * Used to get attributes for the Bulk Actions TD
      *
@@ -107,7 +107,6 @@ trait BulkActionStylingHelpers
      */
     public function getBulkActionsTdCheckboxAttributes(): array
     {
-
 
         return $this->getCustomAttributes('bulkActionsTdCheckboxAttributes');
 
@@ -117,19 +116,18 @@ trait BulkActionStylingHelpers
     {
         $default = [
             'x-cloak' => '',
-            'x-show' => "!currentlyReorderingStatus",
-            'x-model' => "selectedItems",
-            'wire:key' => $this->getTableName()."-selectedItems-".$rowPrimaryKey,
-            'id' => $this->getTableName()."-row-bac-".$rowPrimaryKey,
+            'x-show' => '!currentlyReorderingStatus',
+            'x-model' => 'selectedItems',
+            'wire:key' => $this->getTableName().'-selectedItems-'.$rowPrimaryKey,
+            'id' => $this->getTableName().'-row-bac-'.$rowPrimaryKey,
             'value' => $rowPrimaryKey,
-            'wire:loading.attr.delay' => "disabled",
-            'type' => "checkbox",
+            'wire:loading.attr.delay' => 'disabled',
+            'type' => 'checkbox',
         ];
 
         return array_merge($default, $this->getBulkActionsTdCheckboxAttributes());
 
     }
-
 
     /**
      * Used to get attributes for the Bulk Actions Row Buttons

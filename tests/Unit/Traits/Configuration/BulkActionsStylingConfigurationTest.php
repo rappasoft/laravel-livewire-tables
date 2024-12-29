@@ -145,11 +145,11 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'value' => '5',
             'wire:loading.attr.delay' => 'disabled',
             'type' => 'checkbox',
-            'default' => true, 
-            'default-colors' => false, 
-            'default-styling' => false
-        ], 
-        $this->basicTable->getBulkActionsTdCheckboxAttributesNew(5));
+            'default' => true,
+            'default-colors' => false,
+            'default-styling' => false,
+        ],
+            $this->basicTable->getBulkActionsTdCheckboxAttributesNew(5));
 
         $this->assertSame([
             'x-cloak' => '',
@@ -160,36 +160,33 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'value' => '14',
             'wire:loading.attr.delay' => 'disabled',
             'type' => 'checkbox',
-            'default' => true, 
-            'default-colors' => false, 
-            'default-styling' => false
-        ], 
-        $this->basicTable->getBulkActionsTdCheckboxAttributesNew(14));
+            'default' => true,
+            'default-colors' => false,
+            'default-styling' => false,
+        ],
+            $this->basicTable->getBulkActionsTdCheckboxAttributesNew(14));
 
     }
-
 
     public function test_can_set_bulk_actions_td_attributes(): void
     {
         $this->assertSame([
             'wire:key' => 'table-tbody-td-bulk-actions-5',
             ':displayMinimisedOnReorder' => 'true',
-            'default' => true, 
-            'default-colors' => false, 
-            'default-styling' => false
-        ], 
-        $this->basicTable->getBulkActionsTdAttributesNew(5));
+            'default' => true,
+            'default-colors' => false,
+            'default-styling' => false,
+        ],
+            $this->basicTable->getBulkActionsTdAttributesNew(5));
 
         $this->assertSame([
             'wire:key' => 'table-tbody-td-bulk-actions-14',
             ':displayMinimisedOnReorder' => 'true',
-            'default' => true, 
-            'default-colors' => false, 
-            'default-styling' => false
-        ], 
-        $this->basicTable->getBulkActionsTdAttributesNew(14));
+            'default' => true,
+            'default-colors' => false,
+            'default-styling' => false,
+        ],
+            $this->basicTable->getBulkActionsTdAttributesNew(14));
 
     }
-
-
 }
