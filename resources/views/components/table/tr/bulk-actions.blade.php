@@ -32,7 +32,7 @@
                                 'ml-1 underline text-sm leading-5 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
                                 'text-blue-600 text-gray-700 focus:text-gray-800 dark:text-white dark:hover:text-gray-400' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
                                 'btn btn-primary btn-sm' => $this->isBootstrap && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true)
-                            ])
+                            ])->except(['default','default-styling','default-colors'])
                         }}
                     >
                         {{ __($this->getLocalisationPath.'Deselect All') }}
