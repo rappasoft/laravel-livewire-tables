@@ -2,18 +2,13 @@
 @props(['column', 'colIndex'])
 
 @php
-    $customAttributes = $this->getTdAttributes($column, $row, $colIndex, $rowIndex)
+    $customAttributes = $this->getTdAttributesBag($column, $row, $colIndex, $rowIndex)
 @endphp
 
-<td wire:key="{{ $tableName . '-table-td-'.$row->{$primaryKey}.'-'.$column->getSlug() }}"
-    @if ($column->isClickable())
-        @if($this->getTableRowUrlTarget($row) === 'navigate') wire:navigate href="{{ $this->getTableRowUrl($row) }}"
-        @else onclick="window.open('{{ $this->getTableRowUrl($row) }}', '{{ $this->getTableRowUrlTarget($row) ?? '_self' }}')"
-        @endif
-    @endif
-        {{
-            $attributes->merge($customAttributes)
-                ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $isTailwind && ($customAttributes['default'] ?? true)])
+<td {{
+            $customAttributes->merge()
+                ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium' => $isTailwind && ($customAttributes['default-styling'] ?? ($customAttributes['default'] ?? true))])
+                ->class(['dark:text-white' => $isTailwind && ($customAttributes['default-colors'] ?? ($customAttributes['default'] ?? true))])
                 ->class(['hidden' =>  $isTailwind && $column && $column->shouldCollapseAlways()])
                 ->class(['hidden md:table-cell' => $isTailwind && $column && $column->shouldCollapseOnMobile()])
                 ->class(['hidden lg:table-cell' => $isTailwind && $column && $column->shouldCollapseOnTablet()])
@@ -23,7 +18,6 @@
                 ->class(['d-none d-lg-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnTablet()])
                 ->class(['laravel-livewire-tables-cursor' => $isBootstrap && $column && $column->isClickable()])
                 ->except(['default','default-styling','default-colors'])
-        }}
-    >
-        {{ $slot }}
+        }}>
+    {{ $slot }}
 </td>

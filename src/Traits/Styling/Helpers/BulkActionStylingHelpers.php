@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\ComponentAttributeBag;
 use Livewire\Attributes\Computed;
 
@@ -79,6 +80,21 @@ trait BulkActionStylingHelpers
      *
      * @return array<mixed>
      */
+    public function getBulkActionsTdAttributesNew(string $rowPrimaryKey): array
+    {
+        $default = [
+            'wire:key' => $this->getTableName().'-tbody-td-bulk-actions-'.$rowPrimaryKey,
+            ':displayMinimisedOnReorder' => 'true',
+        ];
+
+        return array_merge($default, $this->getBulkActionsTdAttributes());
+    }
+
+    /**
+     * Used to get attributes for the Bulk Actions TD
+     *
+     * @return array<mixed>
+     */
     public function getBulkActionsTdAttributes(): array
     {
         return $this->getCustomAttributes('bulkActionsTdAttributes');
@@ -91,7 +107,25 @@ trait BulkActionStylingHelpers
      */
     public function getBulkActionsTdCheckboxAttributes(): array
     {
+
         return $this->getCustomAttributes('bulkActionsTdCheckboxAttributes');
+
+    }
+
+    public function getBulkActionsTdCheckboxAttributesNew(string $rowPrimaryKey): array
+    {
+        $default = [
+            'x-cloak' => '',
+            'x-show' => '!currentlyReorderingStatus',
+            'x-model' => 'selectedItems',
+            'wire:key' => $this->getTableName().'-selectedItems-'.$rowPrimaryKey,
+            'id' => $this->getTableName().'-row-bac-'.$rowPrimaryKey,
+            'value' => $rowPrimaryKey,
+            'wire:loading.attr.delay' => 'disabled',
+            'type' => 'checkbox',
+        ];
+
+        return array_merge($default, $this->getBulkActionsTdCheckboxAttributes());
 
     }
 
