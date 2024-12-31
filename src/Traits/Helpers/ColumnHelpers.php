@@ -124,7 +124,8 @@ trait ColumnHelpers
     {
         return $this->getColumns()->count();
     }
-
+    
+    #[Computed]
     public function hasCollapsedColumns(): bool
     {
         if ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways()) {
