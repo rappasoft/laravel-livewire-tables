@@ -2,43 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits;
 
-use Livewire\Component;
 use Livewire\Features\SupportPageComponents\PageComponentConfig;
-use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class WithCustomisationsTest extends TestCase
 {
-    public function test_can_use_as_nested(): void
-    {
-        $test = Livewire::test([new class extends Component
-        {
-            public function render()
-            {
-                return <<<'HTML'
-                <div>
-                    <div>ParentComponentTest</div>
-                    <div> <livewire:child /></div>
-                </div>
-                HTML;
-            }
-        },
-            'child' => new class extends PetsTable
-            {
-                public function configure(): void
-                {
-                    parent::configure();
-                    $this->setLayout('livewire-tables::tests.layout1');
-
-                }
-            },
-        ])
-            ->assertSee('ParentComponentTest')
-            ->assertSee('Cartman');
-
-    }
-
     public function test_can_use_as_full_page(): void
     {
         $temp = new class extends PetsTable

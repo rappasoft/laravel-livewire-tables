@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
-use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoColumnsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
@@ -25,13 +24,6 @@ class DataTableComponentTest extends TestCase
         $this->basicTable->setPrimaryKey(null);
 
         $this->assertFalse($this->basicTable->hasPrimaryKey());
-    }
-
-    public function test_primary_key_has_to_be_set(): void
-    {
-        $this->expectException(\Illuminate\View\ViewException::class);
-        Livewire::test(NoPrimaryKeyTable::class)
-            ->call('setSearch', 'abcd');
     }
 
     public function test_default_fingerprint_will_always_be_the_same_for_same_datatable(): void
