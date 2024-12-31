@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\AggregateColumn;
-use Livewire\Attributes\Computed;
 
 trait ColumnHelpers
 {
