@@ -192,7 +192,40 @@ final class BulkActionsVisualsTest extends TestCase
         })->assertDontSee('Bulk Actions');
     }
 
-    public function test_bulk_dropdown_can_have_customised_classes(): void
+    public function test_bulk_dropdown_can_have_customised_classes_with_no_defaults(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+                $this->setBulkActionsThAttributes([
+                    'class' => 'bg-yellow-500 dark:bg-yellow-800',
+                    'default' => false,
+                    'default-styling' => false,
+                    'default-colors' => false,
+                ]);
+
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        })->assertSee('Bulk Actions')
+            ->assertSeeHtmlInOrder([
+                'scope="col"',
+                'class="bg-yellow-500 dark:bg-yellow-800"',
+                'wire:key="table-thead-bulk-actions"',
+            ]);
+    }
+
+    public function test_bulk_dropdown_can_have_customised_classes_with_default_styling(): void
     {
         Livewire::test(new class extends PetsTable
         {
@@ -220,7 +253,73 @@ final class BulkActionsVisualsTest extends TestCase
         })->assertSee('Bulk Actions')
             ->assertSeeHtmlInOrder([
                 'scope="col"',
-                'class="bg-yellow-500 dark:bg-yellow-800"',
+                'class="table-cell px-3 py-2 md:px-6 md:py-3 text-center md:text-left laravel-livewire-tables-reorderingMinimised bg-yellow-500 dark:bg-yellow-800"',
+                'wire:key="table-thead-bulk-actions"',
+            ]);
+    }
+
+    public function test_bulk_dropdown_can_have_customised_classes_with_default_colors(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+                $this->setBulkActionsThAttributes([
+                    'class' => 'text-lg',
+                    'default' => false,
+                    'default-styling' => false,
+                    'default-colors' => true,
+                ]);
+
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        })->assertSee('Bulk Actions')
+            ->assertSeeHtmlInOrder([
+                'scope="col"',
+                'class="bg-gray-50 dark:bg-gray-800 text-lg"',
+                'wire:key="table-thead-bulk-actions"',
+            ]);
+    }
+
+    public function test_bulk_dropdown_can_have_customised_classes_with_defaults(): void
+    {
+        Livewire::test(new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                $this->setPrimaryKey('id');
+                $this->setBulkActionsThAttributes([
+                    'class' => 'text-lg',
+                    'default' => true,
+                    'default-styling' => true,
+                    'default-colors' => true,
+                ]);
+
+            }
+
+            public function bulkActions(): array
+            {
+                return ['exportBulk' => 'exportBulk'];
+            }
+
+            public function exportBulk($items)
+            {
+                return $items;
+            }
+        })->assertSee('Bulk Actions')
+            ->assertSeeHtmlInOrder([
+                'scope="col"',
+                'class="table-cell px-3 py-2 md:px-6 md:py-3 text-center md:text-left laravel-livewire-tables-reorderingMinimised bg-gray-50 dark:bg-gray-800 text-lg"',
                 'wire:key="table-thead-bulk-actions"',
             ]);
     }
