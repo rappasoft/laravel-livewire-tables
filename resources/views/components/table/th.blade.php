@@ -1,23 +1,15 @@
-@aware([ 'tableName','isTailwind','isBootstrap'])
 @props(['column', 'index'])
 
 @php
-    $attributes = $attributes->merge(['wire:key' => $tableName . '-header-col-'.$column->getSlug()]);
     $allThAttributes = $this->getAllThAttributes($column);
-
     $customThAttributes = $allThAttributes['customAttributes'];
     $customSortButtonAttributes = $allThAttributes['sortButtonAttributes'];
-    $customSortIconAttributes = $allThAttributes['sortIconAttributes'];
     $customLabelAttributes = $allThAttributes['labelAttributes'];
+    $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : $this->getSort($column->getSlug()) ?? null;
 
-    //$customThAttributes = $this->getThAttributes($column);
-    //$customSortButtonAttributes = $this->getThSortButtonAttributes($column);
-    //$customSortIconAttributes = $this->getThSortIconAttributes($column);
-
-    $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : $this->getSort($column->getSlug()) ?? null ;
 @endphp
 
-@if ($isTailwind)
+@if ($this->isTailwind)
     <th scope="col" {{
         $attributes->merge($customThAttributes)
             ->class(['text-gray-500 dark:bg-gray-800 dark:text-gray-400' => (($customThAttributes['default-colors'] ?? true) || ($customThAttributes['default'] ?? true))])
@@ -41,18 +33,12 @@
                     }}
                 >
                     <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
-                    <x-livewire-tables::table.th.sort-icons :$direction
-                    {{
-                        $attributes->merge($customSortIconAttributes)
-                            ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
-                    }}
-                    />
-
+                    <x-livewire-tables::table.th.sort-icons :$direction  />
                 </button>
             @endunless
         @endif
     </th>
-@elseif ($isBootstrap)
+@elseif ($this->isBootstrap)
     <th scope="col" {{
         $attributes->merge($customThAttributes)
             ->class(['' => $customThAttributes['default'] ?? true])
@@ -76,13 +62,8 @@
                     }}
                 >
                     <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
+                    <x-livewire-tables::table.th.sort-icons :$direction  />
 
-                    <x-livewire-tables::table.th.sort-icons :$direction                     {{
-                        $attributes->merge($customSortButtonAttributes)
-                            ->class(['' => (($customSortButtonAttributes['default-colors'] ?? true) || ($customSortButtonAttributes['default'] ?? true))])
-                            ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
-                    }}
-                />
                 </div>
             @endunless
         @endif
