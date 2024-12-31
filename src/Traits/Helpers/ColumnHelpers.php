@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\AggregateColumn;
+use Livewire\Attributes\Computed;
 
 trait ColumnHelpers
 {
@@ -133,6 +134,7 @@ trait ColumnHelpers
         return false;
     }
 
+    #[Computed]
     public function shouldCollapseOnMobile(): bool
     {
 
@@ -170,6 +172,7 @@ trait ColumnHelpers
         return $this->getVisibleMobileColumns()->count();
     }
 
+    #[Computed]
     public function shouldCollapseOnTablet(): bool
     {
         if (! isset($this->shouldTabletCollapse)) {
@@ -235,6 +238,7 @@ trait ColumnHelpers
         return $this->getCollapsedAlwaysColumns()->count();
     }
 
+    #[Computed]
     public function shouldCollapseAlways(): bool
     {
         if (! isset($this->shouldAlwaysCollapse)) {

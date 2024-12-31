@@ -1,5 +1,4 @@
 @props(['direction' => 'none', 'customIconAttributes'])
-@aware(['column'])
 <span @class([
         'relative flex items-center' => $this->isTailwind,
         'relative d-flex align-items-center' => $this->isBootstrap
@@ -44,7 +43,7 @@
                         'absolute opacity-100 group-hover:opacity-0',
                     ])
                     ->except(['default', 'default-colors', 'default-styling', 'wire:key'])  }}  />
-                <x-heroicon-o-chevron-up {{ $attributes->merge($this->getThSortIconAttributes($column))
+                <x-heroicon-o-chevron-up {{ $attributes->merge($customIconAttributes)
                     ->class([
                         'w-3 h-3' => $customIconAttributes['default-styling'] ?? ($customIconAttributes['default'] ?? true),
                         'absolute opacity-0 group-hover:opacity-100',

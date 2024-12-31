@@ -11,11 +11,13 @@ trait CollapsingColumnHelpers
         return $this->collapsingColumnsStatus;
     }
 
+    #[Computed]
     public function hasCollapsingColumns(): bool
     {
         return $this->getCollapsingColumnsStatus() === true;
     }
 
+    #[Computed]
     public function collapsingColumnsAreEnabled(): bool
     {
         return $this->getCollapsingColumnsStatus() === true;

@@ -26,7 +26,7 @@
 }}>
     @if($column->getColumnLabelStatus())
         @unless ($this->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
-            <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
+            <x-livewire-tables::table.th.label :$customLabelAttributes :columnTitle="$column->getTitle()" />
         @else
             @if ($this->isTailwind)
 
@@ -38,7 +38,7 @@
                             ])
                             ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
                 }}>
-                    <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
+                    <x-livewire-tables::table.th.label :$customLabelAttributes :columnTitle="$column->getTitle()" />
                     <x-livewire-tables::table.th.sort-icons :$direction :$customIconAttributes />
                 </button>
             @elseif ($this->isBootstrap)
@@ -47,7 +47,7 @@
                             ->class(['d-flex align-items-center laravel-livewire-tables-cursor' => (($customSortButtonAttributes['default-styling'] ?? true) || ($customSortButtonAttributes['default'] ?? true))])
                             ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
                 }}>
-                    <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
+                    <x-livewire-tables::table.th.label :$customLabelAttributes :columnTitle="$column->getTitle()" />
                     <x-livewire-tables::table.th.sort-icons :$direction :$customIconAttributes />
 
                 </div>
