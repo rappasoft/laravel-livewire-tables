@@ -36,7 +36,7 @@ trait WithSorting
     {
         $this->setupDefaultSorting();
     }
-    
+
     public function sortBy(string $columnSelectName): ?string
     {
 

@@ -205,7 +205,7 @@ final class ColumnHelpersTest extends TestCase
         $this->assertSame(7, $this->basicTable->getVisibleTabletColumnsCount());
     }
 
-    /// *** ** //
+    // / *** ** //
 
     public function test_can_tell_if_columns_should_collapse_always(): void
     {
@@ -299,7 +299,7 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->hasSecondaryHeaderCallback());
 
         $contents = $column->getSecondaryHeaderFilter($this->basicTable->getFilterByKey($column->getSecondaryHeaderCallback()), $this->basicTable->getFilterGenericData());
-        //$contents = $column->getSecondaryHeaderFilter($this->basicTable->getFilterByKey('breed'));
+        // $contents = $column->getSecondaryHeaderFilter($this->basicTable->getFilterByKey('breed'));
         $this->assertStringContainsString('id="table-filter-breed-8-header"', $contents);
     }
 

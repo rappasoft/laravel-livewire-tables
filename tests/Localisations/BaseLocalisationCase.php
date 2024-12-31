@@ -57,10 +57,10 @@ class BaseLocalisationCase extends TestCase
             'tw',
             'uk',
         ];
-        //return $availableLocales;
+        // return $availableLocales;
 
         foreach ($availableLocales as $availableLocale) {
-            //$array = require($baseDir.$availableLocale.'/core.php');
+            // $array = require($baseDir.$availableLocale.'/core.php');
             $localisations[] = [
                 'locale' => $availableLocale,
                 //      'localisationStrings' => $array,

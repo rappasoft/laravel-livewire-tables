@@ -10,7 +10,7 @@ trait SortingConfiguration
             $this->setSort($this->getDefaultSortColumn(), $this->getDefaultSortDirection());
         }
     }
-    
+
     public function setSortingStatus(bool $status): self
     {
         $this->sortingStatus = $status;

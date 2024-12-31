@@ -126,7 +126,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
         if (isset($this->modelPath)) {
             $filename = rtrim($this->modelPath, '/').'/'.$this->model.'.php';
             if (File::exists($filename)) {
-                //In case the file has more than one class which is highly unlikely but still possible
+                // In case the file has more than one class which is highly unlikely but still possible
                 $classes = array_filter($this->getClassesList($filename), function ($class) {
                     return substr($class, strrpos($class, '\\') + 1) == $this->model;
                 });
