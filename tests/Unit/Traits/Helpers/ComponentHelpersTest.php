@@ -244,7 +244,7 @@ final class ComponentHelpersTest extends TestCase
 
     // Exists in DataTableComponentTest
     // public function test_can_get_dataTable_fingerprint(): void
-    //{
+    // {
     //     $this->assertSame($this->defaultFingerPrintingAlgo($this->basicTable::class), $this->basicTable->getDataTableFingerprint());
     // }
 

@@ -51,7 +51,7 @@ trait WithReordering
 
     public function enableReordering(): void
     {
-        //$this->enablePaginatedReordering();
+        // $this->enablePaginatedReordering();
 
         $this->setReorderingSession();
         $this->setReorderingBackup();

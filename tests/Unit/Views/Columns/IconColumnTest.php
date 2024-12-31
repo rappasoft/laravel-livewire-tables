@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
-//use Illuminate\Support\Facades\Exceptions;
+// use Illuminate\Support\Facades\Exceptions;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\IconColumn;
