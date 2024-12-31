@@ -12,7 +12,8 @@ trait HasAllTraits
     use HasLocalisations;
     use WithLoadingPlaceholder;
     use HasTheme;
-    use WithQuery,
+    use WithFilters,
+        WithQuery,
         ComponentUtilities,
         WithActions,
         WithData,
@@ -29,7 +30,6 @@ trait HasAllTraits
         WithCustomisations,
         WithDebugging,
         WithEvents,
-        WithFilters,
         WithFooter,
         WithRefresh,
         WithReordering,
