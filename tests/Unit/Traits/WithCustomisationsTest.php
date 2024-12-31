@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class WithCustomisationsTest extends TestCase
 {
-
     public function test_can_use_as_full_page(): void
     {
         $temp = new class extends PetsTable

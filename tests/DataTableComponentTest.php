@@ -26,7 +26,6 @@ class DataTableComponentTest extends TestCase
         $this->assertFalse($this->basicTable->hasPrimaryKey());
     }
 
-
     public function test_default_fingerprint_will_always_be_the_same_for_same_datatable(): void
     {
         $this->assertSame(

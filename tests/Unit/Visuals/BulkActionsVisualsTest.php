@@ -258,7 +258,6 @@ final class BulkActionsVisualsTest extends TestCase
             ]);
     }
 
-
     public function test_bulk_dropdown_can_have_customised_classes_with_default_colors(): void
     {
         Livewire::test(new class extends PetsTable
@@ -324,6 +323,4 @@ final class BulkActionsVisualsTest extends TestCase
                 'wire:key="table-thead-bulk-actions"',
             ]);
     }
-
-
 }
