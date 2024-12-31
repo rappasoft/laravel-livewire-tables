@@ -32,6 +32,11 @@ trait WithSorting
 
     public string $defaultSortingLabelDesc = 'Z-A';
 
+    public function mountWithSorting(): void
+    {
+        $this->setupDefaultSorting();
+    }
+    
     public function sortBy(string $columnSelectName): ?string
     {
 
@@ -66,11 +71,7 @@ trait WithSorting
 
     public function applySorting(): Builder
     {
-        if ($this->hasDefaultSort() && ! $this->hasSorts()) {
-            $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultSortColumn(), $this->getDefaultSortDirection()));
 
-            return $this->getBuilder();
-        }
         $allCols = $this->getColumns();
 
         foreach ($this->getSorts() as $column => $direction) {
