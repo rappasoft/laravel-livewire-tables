@@ -124,7 +124,7 @@ trait ColumnHelpers
     {
         return $this->getColumns()->count();
     }
-    
+
     #[Computed]
     public function hasCollapsedColumns(): bool
     {
