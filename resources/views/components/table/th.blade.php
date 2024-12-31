@@ -5,6 +5,7 @@
     $customThAttributes = $allThAttributes['customAttributes'];
     $customSortButtonAttributes = $allThAttributes['sortButtonAttributes'];
     $customLabelAttributes = $allThAttributes['labelAttributes'];
+    $customIconAttributes = $this->getThSortIconAttributes($column);
     $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : $this->getSort($column->getSlug()) ?? null;
 
 @endphp
@@ -33,7 +34,7 @@
                     }}
                 >
                     <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
-                    <x-livewire-tables::table.th.sort-icons :$direction  />
+                    <x-livewire-tables::table.th.sort-icons :$direction :$customIconAttributes />
                 </button>
             @endunless
         @endif
@@ -62,7 +63,7 @@
                     }}
                 >
                     <span {{ $customLabelAttributes->except(['default', 'default-colors', 'default-styling']) }}>{{ $column->getTitle() }}</span>
-                    <x-livewire-tables::table.th.sort-icons :$direction  />
+                    <x-livewire-tables::table.th.sort-icons :$direction :$customIconAttributes />
 
                 </div>
             @endunless

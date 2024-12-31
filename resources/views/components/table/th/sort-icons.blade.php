@@ -1,13 +1,10 @@
-@props(['direction' => 'none'])
+@props(['direction' => 'none', 'customIconAttributes'])
 @aware(['column'])
 <span @class([
         'relative flex items-center' => $this->isTailwind,
         'relative d-flex align-items-center' => $this->isBootstrap
     ])
 >
-@php
-$customIconAttributes = $this->getThSortIconAttributes($column)
-@endphp
 
     @if($this->isTailwind)
         @switch($direction)
