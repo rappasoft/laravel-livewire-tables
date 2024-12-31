@@ -58,7 +58,7 @@
             @case('asc')
                 <x-heroicon-o-chevron-up {{ $attributes->merge($customIconAttributes)
                     ->class([
-                        'laravel-livewire-tables-btn-smaller ms-1 ' => $customIconAttributes['default-styling'] ?? ($customIconAttributes['default'] ?? true),
+                        'laravel-livewire-tables-btn-smaller ms-1' => $customIconAttributes['default-styling'] ?? ($customIconAttributes['default'] ?? true),
                     ])
                     ->except(['default', 'default-colors', 'default-styling', 'wire:key']) }} />
                 @break
