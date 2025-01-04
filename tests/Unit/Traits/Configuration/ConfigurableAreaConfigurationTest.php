@@ -12,6 +12,6 @@ final class ConfigurableAreaConfigurationTest extends TestCase
 
         $this->basicTable->setConfigurableArea('before-tools', 'path.to.my.view');
 
-        $this->assertSame('path.to.my.view',$this->basicTable->getConfigurableAreaFor('before-tools'));
+        $this->assertSame('path.to.my.view', $this->basicTable->getConfigurableAreaFor('before-tools'));
     }
 }
