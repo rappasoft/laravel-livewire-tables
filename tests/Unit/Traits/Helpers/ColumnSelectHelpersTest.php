@@ -157,10 +157,11 @@ final class ColumnSelectHelpersTest extends TestCase
                 $this->enableColumnSelectEvent();
             }
         };
+        $testTable->mountManagesFilters();
         $testTable->configure();
         $testTable->boot();
         $testTable->bootedComponentUtilities();
-        $testTable->bootedWithData();
+        $testTable->bootedManagesFilters();
         $testTable->bootedWithColumns();
         $testTable->bootedWithColumnSelect();
         $testTable->bootedWithSecondaryHeader();
@@ -187,10 +188,11 @@ final class ColumnSelectHelpersTest extends TestCase
                 $this->disableColumnSelectEvent();
             }
         };
+        $testTable->mountManagesFilters();
         $testTable->configure();
         $testTable->boot();
+        $testTable->bootedManagesFilters();
         $testTable->bootedComponentUtilities();
-        $testTable->bootedWithData();
         $testTable->bootedWithColumns();
         $testTable->bootedWithColumnSelect();
         $testTable->bootedWithSecondaryHeader();

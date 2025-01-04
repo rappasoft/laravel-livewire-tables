@@ -96,7 +96,6 @@ final class WithCustomisationsTest extends TestCase
         $temp->boot();
         $temp->bootedComponentUtilities();
         $temp->bootedManagesFilters();
-        $temp->bootedWithData();
         $temp->bootedWithColumns();
         $temp->bootedWithColumnSelect();
         $temp->bootedWithSecondaryHeader();
@@ -130,7 +129,6 @@ final class WithCustomisationsTest extends TestCase
 
         $temp->boot();
         $temp->bootedComponentUtilities();
-        $temp->bootedWithData();
         $temp->bootedWithColumns();
         $temp->bootedWithColumnSelect();
         $temp->bootedWithSecondaryHeader();
