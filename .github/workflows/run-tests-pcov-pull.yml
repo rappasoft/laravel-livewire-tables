@@ -88,7 +88,7 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
-        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Unit and Visuals Test Suite" --cache-directory=".phpunit.cache/code-coverage" --strict-coverage --coverage-clover ./coverage.xml
+        run: php ./vendor/bin/phpunit --cache-directory=".phpunit.cache/code-coverage" --strict-coverage --coverage-clover ./coverage.xml --testsuite "Laravel Livewire Tables Unit Test Suite","Laravel Livewire Tables Visuals Test Suite"
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
