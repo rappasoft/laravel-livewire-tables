@@ -2,6 +2,4 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
-trait FilterConfiguration
-{
-}
+trait FilterConfiguration {}

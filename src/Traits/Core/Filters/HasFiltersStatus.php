@@ -24,7 +24,6 @@ trait HasFiltersStatus
         return $this->getFiltersStatus() === false;
     }
 
-
     public function setFiltersStatus(bool $status): self
     {
         $this->filtersStatus = $status;
