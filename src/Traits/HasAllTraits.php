@@ -11,9 +11,9 @@ trait HasAllTraits
     use WithTableHooks;
     use HasLocalisations,
         WithLoadingPlaceholder,
-        HasTheme;
-    use WithFilters,
-        WithQuery,
+        HasTheme,
+        WithFilters;
+    use WithQuery,
         ComponentUtilities,
         WithActions,
         WithData,

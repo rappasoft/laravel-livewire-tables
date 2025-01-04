@@ -1,10 +1,10 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings;
+namespace Rappasoft\LaravelLivewireTables\Traits\Core\Filters;
 
 use Livewire\Attributes\Locked;
 
-trait HasQueryStringForFilter
+trait HasFilterQueryString
 {
     #[Locked]
     public ?bool $queryStringStatusForFilter;

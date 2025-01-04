@@ -22,9 +22,10 @@ final class WithCustomisationsTest extends TestCase
         };
         $view = view('livewire-tables::datatable');
 
+        $temp->mountManagesFilters();
         $temp->boot();
         $temp->bootedComponentUtilities();
-        $temp->bootedWithData();
+        $temp->bootedManagesFilters();
         $temp->bootedWithColumns();
         $temp->bootedWithColumnSelect();
         $temp->bootedWithSecondaryHeader();
@@ -56,9 +57,10 @@ final class WithCustomisationsTest extends TestCase
         };
         $view = view('livewire-tables::datatable');
 
+        $temp->mountManagesFilters();
         $temp->boot();
         $temp->bootedComponentUtilities();
-        $temp->bootedWithData();
+        $temp->bootedManagesFilters();
         $temp->bootedWithColumns();
         $temp->bootedWithColumnSelect();
         $temp->bootedWithSecondaryHeader();
@@ -90,8 +92,10 @@ final class WithCustomisationsTest extends TestCase
         };
         $view = view('livewire-tables::datatable');
 
+        $temp->mountManagesFilters();
         $temp->boot();
         $temp->bootedComponentUtilities();
+        $temp->bootedManagesFilters();
         $temp->bootedWithData();
         $temp->bootedWithColumns();
         $temp->bootedWithColumnSelect();

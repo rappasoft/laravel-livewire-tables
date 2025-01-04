@@ -118,10 +118,11 @@ final class ColumnSelectHelpersTest extends TestCase
                 parent::configure();
             }
         };
+        $testTable->mountManagesFilters();
         $testTable->configure();
         $testTable->boot();
+        $testTable->bootedManagesFilters();
         $testTable->bootedComponentUtilities();
-        $testTable->bootedWithData();
         $testTable->bootedWithColumns();
         $testTable->bootedWithColumnSelect();
         $testTable->bootedWithSecondaryHeader();

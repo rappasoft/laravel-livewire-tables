@@ -3,35 +3,14 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
-use Livewire\Attributes\Computed;
-use Livewire\Attributes\On;
+use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\{Computed,On};
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectFilter,MultiSelectDropdownFilter};
 
 trait FilterHelpers
 {
-    /**
-     * Sets Filter Default Values
-     */
-    public function mountFilterHelpers(): void
-    {
-        $this->restoreFilterValues();
-
-        foreach ($this->getFilters() as $filter) {
-            if (! isset($this->appliedFilters[$filter->getKey()])) {
-                if ($filter->hasFilterDefaultValue()) {
-                    $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
-                } else {
-                    $this->resetFilter($filter);
-                }
-            } else {
-                $this->setFilter($filter->getKey(), $this->appliedFilters[$filter->getKey()]);
-            }
-        }
-    }
-
     public function getFiltersStatus(): bool
     {
         return $this->filtersStatus;
@@ -47,46 +26,9 @@ trait FilterHelpers
         return $this->getFiltersStatus() === false;
     }
 
-    public function getFiltersVisibilityStatus(): bool
-    {
-        return $this->filtersVisibilityStatus;
-    }
-
-    public function filtersVisibilityIsEnabled(): bool
-    {
-        return $this->getFiltersVisibilityStatus() === true;
-    }
-
-    public function filtersVisibilityIsDisabled(): bool
-    {
-        return $this->getFiltersVisibilityStatus() === false;
-    }
-
-    public function getFilterPillsStatus(): bool
-    {
-        return $this->filterPillsStatus;
-    }
-
-    public function filterPillsAreEnabled(): bool
-    {
-        return $this->getFilterPillsStatus() === true;
-    }
-
-    public function filterPillsAreDisabled(): bool
-    {
-        return $this->getFilterPillsStatus() === false;
-    }
-
     public function hasFilters(): bool
     {
         return $this->getFiltersCount() > 0;
-    }
-
-    public function hasVisibleFilters(): bool
-    {
-        return $this->getFilters()
-            ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus())
-            ->count() > 0;
     }
 
     public function getFilters(): Collection
@@ -96,7 +38,6 @@ trait FilterHelpers
         }
 
         return $this->filterCollection;
-
     }
 
     public function getFiltersCount(): int
@@ -104,9 +45,7 @@ trait FilterHelpers
         if (! isset($this->filterCount)) {
             $this->filterCount = $this->getFilters()->count();
         }
-
         return $this->filterCount;
-
     }
 
     /**
@@ -199,14 +138,6 @@ trait FilterHelpers
             ->count();
     }
 
-    public function hasAppliedVisibleFiltersForPills(): bool
-    {
-        return collect($this->getAppliedFiltersWithValues())
-            ->map(fn ($_item, $key) => $this->getFilterByKey($key))
-            ->reject(fn (Filter $filter) => $filter->isHiddenFromPills())
-            ->count() > 0;
-    }
-
     /**
      * @return array<mixed>
      */
@@ -255,35 +186,6 @@ trait FilterHelpers
         $this->callTraitHook('filterReset', ['filter' => $filter->getKey()]);
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
 
-    }
-
-    /**
-     * Get whether filter has a configured slide down row.
-     */
-    public function getVisibleFilters(): Collection
-    {
-        return $this->getFilters()->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());
-    }
-
-    public function hasFilterGenericData(): bool
-    {
-        return ! empty($this->filterGenericData);
-    }
-
-    #[Computed]
-    public function getFilterGenericData(): array
-    {
-        if (! $this->hasFilterGenericData()) {
-            $this->setFilterGenericData($this->generateFilterGenericData());
-        }
-
-        return $this->filterGenericData;
-    }
-
-    #[Computed]
-    public function showFilterPillsSection(): bool
-    {
-        return $this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills();
     }
 
     #[On('livewireArrayFilterUpdateValues')]

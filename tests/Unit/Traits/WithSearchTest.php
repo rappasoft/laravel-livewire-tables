@@ -49,7 +49,7 @@ final class WithSearchTest extends TestCase
 
             }
         };
-
+        $testTableDefault->mountManagesFilters();
         $testTableDefault->configure();
         $testTableDefault->boot();
         $testTableDefault->bootedComponentUtilities();

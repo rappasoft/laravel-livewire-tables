@@ -9,6 +9,10 @@ trait QueryHelpers
 {
     public function getBuilder(): Builder
     {
+        if(!isset($this->builder))
+        {
+            $this->setBuilder($this->builder());
+        }
         return $this->builder;
     }
 

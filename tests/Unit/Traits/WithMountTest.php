@@ -14,8 +14,8 @@ final class WithMountTest extends TestCase
         $table = new PetsTableMount;
         $table->boot();
         $table->mount(102);
+        $table->mountManagesFilters();
         $table->bootedComponentUtilities();
-        $table->bootedWithData();
         $table->bootedWithColumns();
         $table->bootedWithColumnSelect();
         $table->bootedWithSecondaryHeader();

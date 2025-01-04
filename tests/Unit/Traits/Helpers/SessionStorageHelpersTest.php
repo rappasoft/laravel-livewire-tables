@@ -27,17 +27,40 @@ final class SessionStorageHelpersTest extends TestCase
 
     public function test_can_store_for_fikers(): void
     {
+        $this->basicTable->storeFiltersInSessionDisabled();
+        $this->assertFalse($this->basicTable->shouldStoreFiltersInSession());
+
         $this->basicTable->storeFiltersInSessionEnabled();
 
         $this->assertTrue($this->basicTable->shouldStoreFiltersInSession());
 
         $this->basicTable->setFilter('breed', ['1']);
         $this->assertSame(['1'], $this->basicTable->getAppliedFilterWithValue('breed'));
-        $this->assertSame(['breed' => ['1']], $this->basicTable->filterComponents);
-        $this->assertSame(['breed' => ['1']], $this->basicTable->getStoredFilterValues());
+        $this->assertSame([
+            'breed' => ['1'],
+            'species' => [],
+            'breed_id_filter' => null,
+            'pet_name_filter' => null,
+            'last_visit_date_filter' => null,
+            'last_visit_datetime_filter' => null,
+            'breed_select_filter' => null,
+        ], $this->basicTable->filterComponents);
+        $this->assertSame(['breed' => ['1'],
+        'species' => [],
+        'breed_id_filter' => null,
+        'pet_name_filter' => null,
+        'last_visit_date_filter' => null,
+        'last_visit_datetime_filter' => null,
+        'breed_select_filter' => null], $this->basicTable->getStoredFilterValues());
 
         $this->basicTable->setFilter('breed', ['2']);
-        $this->assertSame(['breed' => ['2']], $this->basicTable->filterComponents);
+        $this->assertSame(['breed' => ['2'],
+        'species' => [],
+        'breed_id_filter' => null,
+        'pet_name_filter' => null,
+        'last_visit_date_filter' => null,
+        'last_visit_datetime_filter' => null,
+        'breed_select_filter' => null], $this->basicTable->filterComponents);
         $this->assertSame(['2'], $this->basicTable->getAppliedFilterWithValue('breed'));
         $this->assertSame(['breed' => ['2']], $this->basicTable->getStoredFilterValues());
 
