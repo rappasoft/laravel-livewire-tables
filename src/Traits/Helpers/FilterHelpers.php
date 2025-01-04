@@ -2,12 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\{Computed,On};
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectFilter,MultiSelectDropdownFilter};
+use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectDropdownFilter, MultiSelectFilter};
 
 trait FilterHelpers
 {
@@ -45,6 +45,7 @@ trait FilterHelpers
         if (! isset($this->filterCount)) {
             $this->filterCount = $this->getFilters()->count();
         }
+
         return $this->filterCount;
     }
 

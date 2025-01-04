@@ -59,5 +59,4 @@ trait HasFilterPillsStyling
             ->reject(fn (Filter $filter) => $filter->isHiddenFromPills())
             ->count() > 0;
     }
-
 }

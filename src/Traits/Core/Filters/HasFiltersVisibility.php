@@ -37,7 +37,7 @@ trait HasFiltersVisibility
     {
         return $this->getFilters()->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());
     }
-    
+
     #[Locked]
     public bool $filtersVisibilityStatus = true;
 
@@ -61,5 +61,4 @@ trait HasFiltersVisibility
 
         return $this;
     }
-
 }

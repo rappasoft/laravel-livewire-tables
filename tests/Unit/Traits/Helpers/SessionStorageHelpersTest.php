@@ -46,21 +46,21 @@ final class SessionStorageHelpersTest extends TestCase
             'breed_select_filter' => null,
         ], $this->basicTable->filterComponents);
         $this->assertSame(['breed' => ['1'],
-        'species' => [],
-        'breed_id_filter' => null,
-        'pet_name_filter' => null,
-        'last_visit_date_filter' => null,
-        'last_visit_datetime_filter' => null,
-        'breed_select_filter' => null], $this->basicTable->getStoredFilterValues());
+            'species' => [],
+            'breed_id_filter' => null,
+            'pet_name_filter' => null,
+            'last_visit_date_filter' => null,
+            'last_visit_datetime_filter' => null,
+            'breed_select_filter' => null], $this->basicTable->getStoredFilterValues());
 
         $this->basicTable->setFilter('breed', ['2']);
         $this->assertSame(['breed' => ['2'],
-        'species' => [],
-        'breed_id_filter' => null,
-        'pet_name_filter' => null,
-        'last_visit_date_filter' => null,
-        'last_visit_datetime_filter' => null,
-        'breed_select_filter' => null], $this->basicTable->filterComponents);
+            'species' => [],
+            'breed_id_filter' => null,
+            'pet_name_filter' => null,
+            'last_visit_date_filter' => null,
+            'last_visit_datetime_filter' => null,
+            'breed_select_filter' => null], $this->basicTable->filterComponents);
         $this->assertSame(['2'], $this->basicTable->getAppliedFilterWithValue('breed'));
         $this->assertSame(['breed' => ['2']], $this->basicTable->getStoredFilterValues());
 

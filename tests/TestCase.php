@@ -97,7 +97,7 @@ class TestCase extends Orchestra
         $view = view('livewire-tables::datatable');
         $this->basicTable = new PetsTable;
         $this->basicTable->mountManagesFilters();
-        $this->basicTable->boot();    
+        $this->basicTable->boot();
         $this->basicTable->bootedManagesFilters();
         $this->basicTable->bootedComponentUtilities();
         $this->basicTable->bootedWithColumns();

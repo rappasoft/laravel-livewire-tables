@@ -6,16 +6,14 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 
 trait ManagesFilters
-{        
-
+{
     // Set in JS
     public array $filterComponents = [];
 
     // Set in Frontend
     public array $appliedFilters = [];
 
-
-        /**
+    /**
      * Sets Filter Default Values
      */
     public function mountManagesFilters(): void
@@ -39,8 +37,7 @@ trait ManagesFilters
     {
         $this->setBuilder($this->builder());
 
-        foreach($this->filterComponents as $filterKey => $value)
-        {
+        foreach ($this->filterComponents as $filterKey => $value) {
             $this->appliedFilters[$filterKey] = $value;
         }
     }
@@ -71,7 +68,6 @@ trait ManagesFilters
         return $this->getBuilder();
     }
 
-
     public function updatedFilterComponents(string|array|null $value, string $filterName): void
     {
         $this->resetComputedPage();
@@ -101,6 +97,4 @@ trait ManagesFilters
         }
 
     }
-
-
 }

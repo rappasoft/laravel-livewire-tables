@@ -16,7 +16,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait WithData
 {
-
     /**
      * Retrieves the rows for the executed query
      */

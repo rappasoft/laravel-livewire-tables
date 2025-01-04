@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Core\Filters;
 
-use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterGenericData;
 use Livewire\Attributes\Computed;
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterGenericData;
 
 trait HasFilterGenericData
 {

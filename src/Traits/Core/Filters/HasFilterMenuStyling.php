@@ -10,7 +10,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait HasFilterMenuStyling
 {
-
     #[Locked]
     public string $filterLayout = 'popover';
 
@@ -23,8 +22,7 @@ trait HasFilterMenuStyling
 
     protected ?Closure $filterSlidedownRowCallback;
 
-
-        /**
+    /**
      * Used to set attributes for the Filter Popover
      */
     public function setFilterPopoverAttributes(array $filterPopoverAttributes): self
@@ -100,7 +98,7 @@ trait HasFilterMenuStyling
         return $this;
     }
 
-        /**
+    /**
      * Used to get attributes for the Filter Popover
      *
      * @return array<mixed>
@@ -211,5 +209,4 @@ trait HasFilterMenuStyling
 
         return $orderedFilters;
     }
-
 }
