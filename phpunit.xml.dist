@@ -26,12 +26,9 @@
             <directory>tests/Localisations/Presence</directory>
         </testsuite>
     </testsuites>
-    <source ignoreIndirectDeprecations="true"
-            restrictNotices="true"
-            restrictWarnings="true">
+    <source>
         <include>
             <directory>src</directory>
         </include>
     </source>
-
 </phpunit>
