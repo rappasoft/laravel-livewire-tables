@@ -11,21 +11,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectDropdownFilter, Mu
 
 trait FilterHelpers
 {
-    public function getFiltersStatus(): bool
-    {
-        return $this->filtersStatus;
-    }
-
-    public function filtersAreEnabled(): bool
-    {
-        return $this->getFiltersStatus() === true;
-    }
-
-    public function filtersAreDisabled(): bool
-    {
-        return $this->getFiltersStatus() === false;
-    }
-
     public function hasFilters(): bool
     {
         return $this->getFiltersCount() > 0;

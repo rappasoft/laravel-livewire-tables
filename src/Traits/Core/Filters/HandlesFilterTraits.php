@@ -9,5 +9,6 @@ trait HandlesFilterTraits
         HasFilterMenuStyling,
         HasFilterPillsStyling,
         HasFilterQueryString,
+        HasFiltersStatus,
         HasFiltersVisibility;
 }

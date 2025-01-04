@@ -15,9 +15,6 @@ trait WithFilters
     use HandlesFilterTraits;
 
     #[Locked]
-    public bool $filtersStatus = true;
-
-    #[Locked]
     public int $filterCount;
 
     protected ?Collection $filterCollection;
