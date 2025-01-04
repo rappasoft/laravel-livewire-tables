@@ -96,9 +96,10 @@ class TestCase extends Orchestra
     {
         $view = view('livewire-tables::datatable');
         $this->basicTable = new PetsTable;
+        $this->basicTable->mountManagesFilters();
         $this->basicTable->boot();
+        $this->basicTable->bootedManagesFilters();
         $this->basicTable->bootedComponentUtilities();
-        $this->basicTable->bootedWithData();
         $this->basicTable->bootedWithColumns();
         $this->basicTable->bootedWithColumnSelect();
         $this->basicTable->bootedWithSecondaryHeader();
@@ -117,9 +118,10 @@ class TestCase extends Orchestra
     {
         $view = view('livewire-tables::datatable');
         $this->eventsTable = new PetsTableEvents;
+        $this->eventsTable->mountManagesFilters();
         $this->eventsTable->boot();
         $this->eventsTable->bootedComponentUtilities();
-        $this->eventsTable->bootedWithData();
+        $this->eventsTable->bootedManagesFilters();
         $this->eventsTable->bootedWithColumns();
         $this->eventsTable->bootedWithColumnSelect();
         $this->eventsTable->bootedWithSecondaryHeader();
@@ -139,9 +141,10 @@ class TestCase extends Orchestra
     {
         $view = view('livewire-tables::datatable');
         $this->breedsTable = new BreedsTable;
+        $this->breedsTable->mountManagesFilters();
         $this->breedsTable->boot();
         $this->breedsTable->bootedComponentUtilities();
-        $this->breedsTable->bootedWithData();
+        $this->breedsTable->bootedManagesFilters();
         $this->breedsTable->bootedWithColumns();
         $this->breedsTable->bootedWithColumnSelect();
         $this->breedsTable->bootedWithSecondaryHeader();
@@ -160,9 +163,10 @@ class TestCase extends Orchestra
     {
         $view = view('livewire-tables::datatable');
         $this->petOwnerTable = new PetsTableWithOwner;
+        $this->petOwnerTable->mountManagesFilters();
         $this->petOwnerTable->boot();
         $this->petOwnerTable->bootedComponentUtilities();
-        $this->petOwnerTable->bootedWithData();
+        $this->petOwnerTable->bootedManagesFilters();
         $this->petOwnerTable->bootedWithColumns();
         $this->petOwnerTable->bootedWithColumnSelect();
         $this->petOwnerTable->bootedWithSecondaryHeader();
@@ -181,9 +185,10 @@ class TestCase extends Orchestra
     {
         $view = view('livewire-tables::datatable');
         $this->speciesTable = new SpeciesTable;
+        $this->speciesTable->mountManagesFilters();
         $this->speciesTable->boot();
         $this->speciesTable->bootedComponentUtilities();
-        $this->speciesTable->bootedWithData();
+        $this->speciesTable->bootedManagesFilters();
         $this->speciesTable->bootedWithColumns();
         $this->speciesTable->bootedWithColumnSelect();
         $this->speciesTable->bootedWithSecondaryHeader();
@@ -203,9 +208,10 @@ class TestCase extends Orchestra
 
         $view = view('livewire-tables::datatable');
         $this->unpaginatedTable = new PetsTableUnpaginated;
+        $this->unpaginatedTable->mountManagesFilters();
         $this->unpaginatedTable->boot();
         $this->unpaginatedTable->bootedComponentUtilities();
-        $this->unpaginatedTable->bootedWithData();
+        $this->unpaginatedTable->bootedManagesFilters();
         $this->unpaginatedTable->bootedWithColumns();
         $this->unpaginatedTable->bootedWithColumnSelect();
         $this->unpaginatedTable->bootedWithSecondaryHeader();

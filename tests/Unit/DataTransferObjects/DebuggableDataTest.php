@@ -25,7 +25,13 @@ final class DebuggableDataTest extends TestCase
 
         $defaultQuery = 'select "pets"."id" as "id", "pets"."sort" as "sort", "pets"."name" as "name", "pets"."age" as "age", "breed"."name" as "breed.name", "pets"."last_visit" as "last_visit" from "pets" left join "breeds" as "breed" on "pets"."breed_id" = "breed"."id" limit 10 offset 0';
         $this->assertSame($debuggableArray['query'], $defaultQuery);
-        $this->assertSame($debuggableArray['filters'], []);
+        $this->assertSame($debuggableArray['filters'], ['breed' => [],
+            'species' => [],
+            'breed_id_filter' => null,
+            'pet_name_filter' => null,
+            'last_visit_date_filter' => null,
+            'last_visit_datetime_filter' => null,
+            'breed_select_filter' => null]);
         $this->assertSame($debuggableArray['sorts'], []);
         $this->assertSame($debuggableArray['search'], '');
         $this->assertFalse($debuggableArray['select-all']);
@@ -36,12 +42,24 @@ final class DebuggableDataTest extends TestCase
     {
         $debuggableDTO = new DebuggableData($this->basicTable);
         $debuggableArray = $debuggableDTO->toArray();
-        $this->assertSame($debuggableArray['filters'], []);
+        $this->assertSame($debuggableArray['filters'], ['breed' => [],
+            'species' => [],
+            'breed_id_filter' => null,
+            'pet_name_filter' => null,
+            'last_visit_date_filter' => null,
+            'last_visit_datetime_filter' => null,
+            'breed_select_filter' => null]);
 
         $this->basicTable->setFilter('breed', ['1']);
         $debuggableDTO = new DebuggableData($this->basicTable);
         $debuggableArray = $debuggableDTO->toArray();
-        $this->assertSame($debuggableArray['filters'], ['breed' => ['1']]);
+        $this->assertSame($debuggableArray['filters'], ['breed' => ['1'],
+            'species' => [],
+            'breed_id_filter' => null,
+            'pet_name_filter' => null,
+            'last_visit_date_filter' => null,
+            'last_visit_datetime_filter' => null,
+            'breed_select_filter' => null]);
 
     }
 }

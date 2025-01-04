@@ -49,11 +49,11 @@ final class WithSearchTest extends TestCase
 
             }
         };
-
+        $testTableDefault->mountManagesFilters();
         $testTableDefault->configure();
         $testTableDefault->boot();
         $testTableDefault->bootedComponentUtilities();
-        $testTableDefault->bootedWithData();
+        $testTableDefault->bootedManagesFilters();
         $testTableDefault->bootedWithColumns();
         $testTableDefault->bootedWithColumnSelect();
         $testTableDefault->bootedWithSecondaryHeader();
@@ -90,10 +90,11 @@ final class WithSearchTest extends TestCase
             }
         };
 
+        $testTableTrimSearch->mountManagesFilters();
         $testTableTrimSearch->configure();
         $testTableTrimSearch->boot();
         $testTableTrimSearch->bootedComponentUtilities();
-        $testTableTrimSearch->bootedWithData();
+        $testTableTrimSearch->bootedManagesFilters();
         $testTableTrimSearch->bootedWithColumns();
         $testTableTrimSearch->bootedWithColumnSelect();
         $testTableTrimSearch->bootedWithSecondaryHeader();
