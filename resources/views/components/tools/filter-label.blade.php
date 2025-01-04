@@ -13,9 +13,11 @@
 
         {{
             $attributes->merge($customLabelAttributes)->merge($filterLabelAttributes)
-                ->class(['block text-sm font-medium leading-5 text-gray-700 dark:text-white' => $isTailwind && ($filterLabelAttributes['default'] ?? true)])
-                ->class(['d-block' => $isBootstrap && $filterLayout === 'slide-down' && ($filterLabelAttributes['default'] ?? true)])
-                ->class(['mb-2' => $isBootstrap && $filterLayout === 'popover' && ($filterLabelAttributes['default'] ?? true)])
+                ->class([
+                    'block text-sm font-medium leading-5 text-gray-700 dark:text-white' => $isTailwind && ($filterLabelAttributes['default'] ?? true),
+                    'd-block' => $isBootstrap && $filterLayout === 'slide-down' && ($filterLabelAttributes['default'] ?? true),
+                    'mb-2' => $isBootstrap && $filterLayout === 'popover' && ($filterLabelAttributes['default'] ?? true),
+                ])
                 ->except(['default', 'default-colors', 'default-styling'])
         }}
 
