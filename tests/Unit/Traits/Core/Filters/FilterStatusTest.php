@@ -34,7 +34,6 @@ final class FilterStatusTest extends TestCase
             {
                 $this->setFiltersDisabled();
             }
-
         };
 
         $mock->configure();
@@ -42,14 +41,13 @@ final class FilterStatusTest extends TestCase
 
         $this->assertTrue($mock->filtersAreEnabled());
         $this->assertFalse($mock->filtersAreDisabled());
-        
+
         $mock->setFiltersToDisabled();
-        
+
         $this->assertFalse($mock->filtersAreEnabled());
         $this->assertTrue($mock->filtersAreDisabled());
 
     }
-
 
     public function test_can_check_if_filters_can_be_enabled_when_disabled(): void
     {
@@ -71,7 +69,6 @@ final class FilterStatusTest extends TestCase
             {
                 $this->setFiltersDisabled();
             }
-
         };
 
         $mock->configure();
@@ -85,5 +82,4 @@ final class FilterStatusTest extends TestCase
         $this->assertFalse($mock->filtersAreDisabled());
 
     }
-
 }
