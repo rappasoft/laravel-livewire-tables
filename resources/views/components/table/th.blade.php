@@ -44,7 +44,9 @@
             @elseif ($this->isBootstrap)
                 <div wire:click="sortBy('{{ $column->getColumnSortKey() }}')" {{
                         $attributes->merge($customSortButtonAttributes)
-                            ->class(['d-flex align-items-center laravel-livewire-tables-cursor' => (($customSortButtonAttributes['default-styling'] ?? true) || ($customSortButtonAttributes['default'] ?? true))])
+                            ->class([
+                                'd-flex align-items-center laravel-livewire-tables-cursor' => (($customSortButtonAttributes['default-styling'] ?? true) || ($customSortButtonAttributes['default'] ?? true))
+                            ])
                             ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
                 }}>
                     <x-livewire-tables::table.th.label :$customLabelAttributes :columnTitle="$column->getTitle()" />
