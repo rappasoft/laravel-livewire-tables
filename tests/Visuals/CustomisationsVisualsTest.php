@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals;
+namespace Rappasoft\LaravelLivewireTables\Tests\Visuals;
 
 use Exception;
 use Illuminate\View\ViewException;

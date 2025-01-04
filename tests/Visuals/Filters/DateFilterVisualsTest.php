@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals\Filters;
+namespace Rappasoft\LaravelLivewireTables\Tests\Visuals\Filters;
 
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Group;

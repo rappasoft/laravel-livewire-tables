@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Visuals\Columns;
+namespace Rappasoft\LaravelLivewireTables\Tests\Visuals\Columns;
 
 use Exception;
 use Illuminate\View\ViewException;

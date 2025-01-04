@@ -87,8 +87,10 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
-        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Unit Test Suite" --no-coverage
+        run: php ./vendor/bin/paratest --testsuite "Laravel Livewire Tables Unit Test Suite" --no-coverage
 
+      - name: Run Visuals Tests
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
 
   test-laravel11:
     runs-on: ${{ matrix.os }}
@@ -168,4 +170,7 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
-        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Unit Test Suite" --no-coverage
+        run: php ./vendor/bin/paratest --testsuite "Laravel Livewire Tables Unit Test Suite" --no-coverage
+
+      - name: Run Visuals Tests
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
