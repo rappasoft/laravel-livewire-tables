@@ -24,21 +24,21 @@ trait HasFiltersStatus
         return $this->getFiltersStatus() === false;
     }
 
-    public function setFiltersStatus(bool $status): self
+    protected function setFiltersStatus(bool $status): self
     {
         $this->filtersStatus = $status;
 
         return $this;
     }
 
-    public function setFiltersEnabled(): self
+    protected function setFiltersEnabled(): self
     {
         $this->setFiltersStatus(true);
 
         return $this;
     }
 
-    public function setFiltersDisabled(): self
+    protected function setFiltersDisabled(): self
     {
         $this->setFiltersStatus(false);
 
