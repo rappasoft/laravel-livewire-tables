@@ -207,5 +207,5 @@ trait ColumnSelectHelpers
 
     public function getCurrentlySelectedCols(): void {}
     */
-    
+
 }

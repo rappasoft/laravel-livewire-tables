@@ -77,7 +77,7 @@ trait ToolsHelpers
     #[Computed]
     public function displayToolbarFilters(): bool
     {
-        return ($this->filtersAreEnabled() && (($this->filtersVisibilityIsEnabled() && $this->hasVisibleFilters()) || ($this->showBulkActionsDropdownAlpine() && $this->shouldAlwaysHideBulkActionsDropdownOption() != true)));
+        return $this->filtersAreEnabled() && (($this->filtersVisibilityIsEnabled() && $this->hasVisibleFilters()) || ($this->showBulkActionsDropdownAlpine() && $this->shouldAlwaysHideBulkActionsDropdownOption() != true));
     }
 
     protected function hasToolbarColumnSelect(): bool
