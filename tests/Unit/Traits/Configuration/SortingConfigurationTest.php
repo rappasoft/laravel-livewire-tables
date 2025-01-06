@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Configuration;
 
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class SortingConfigurationTest extends TestCase
@@ -91,5 +92,70 @@ final class SortingConfigurationTest extends TestCase
         $this->basicTable->setSortingPillsStatus(true);
 
         $this->assertTrue($this->basicTable->getSortingPillsStatus());
+    }
+
+    public function test_default_sort_applies_correctly(): void
+    {
+        $tempDesc = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                parent::configure();
+                $this->setSortingEnabled();
+                $this->setDefaultSort('name', 'desc');
+            }
+        };
+        $viewDesc = view('livewire-tables::datatable');
+
+        $tempDesc->boot();
+        $tempDesc->bootedComponentUtilities();
+        $tempDesc->bootedManagesFilters();
+        $tempDesc->bootedWithColumns();
+        $tempDesc->bootedWithColumnSelect();
+        $tempDesc->bootedWithSecondaryHeader();
+        $tempDesc->booted();
+        $tempDesc->mountManagesFilters();
+        $tempDesc->mountWithSorting();
+        $tempDesc->renderingWithColumns($viewDesc, $viewDesc->getData());
+        $tempDesc->renderingWithColumnSelect($viewDesc, $viewDesc->getData());
+        $tempDesc->renderingWithCustomisations($viewDesc, $viewDesc->getData());
+        $tempDesc->renderingWithData($viewDesc, $viewDesc->getData());
+        $tempDesc->renderingWithFooter($viewDesc, $viewDesc->getData());
+        $tempDesc->renderingWithReordering($viewDesc, $viewDesc->getData());
+        $tempDesc->renderingWithPagination($viewDesc, $viewDesc->getData());
+        $tempDesc->render();
+        $this->assertSame(['name' => 'desc'], $tempDesc->getSorts());
+        $this->assertSame('desc', $tempDesc->getSort('name'));
+
+        $tempAsc = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                parent::configure();
+                $this->setSortingEnabled();
+                $this->setDefaultSort('name', 'asc');
+            }
+        };
+        $viewAsc = view('livewire-tables::datatable');
+        $tempAsc->boot();
+        $tempAsc->bootedComponentUtilities();
+        $tempAsc->bootedManagesFilters();
+        $tempAsc->bootedWithColumns();
+        $tempAsc->bootedWithColumnSelect();
+        $tempAsc->bootedWithSecondaryHeader();
+        $tempAsc->booted();
+        $tempAsc->mountManagesFilters();
+        $tempAsc->mountWithSorting();
+        $tempAsc->renderingWithColumns($viewAsc, $viewAsc->getData());
+        $tempAsc->renderingWithColumnSelect($viewAsc, $viewAsc->getData());
+        $tempAsc->renderingWithCustomisations($viewAsc, $viewAsc->getData());
+        $tempAsc->renderingWithData($viewAsc, $viewAsc->getData());
+        $tempAsc->renderingWithFooter($viewAsc, $viewAsc->getData());
+        $tempAsc->renderingWithReordering($viewAsc, $viewAsc->getData());
+        $tempAsc->renderingWithPagination($viewAsc, $viewAsc->getData());
+        $tempAsc->render();
+        $this->assertSame(['name' => 'asc'], $tempAsc->getSorts());
+        $this->assertSame('asc', $tempAsc->getSort('name'));
+
     }
 }
