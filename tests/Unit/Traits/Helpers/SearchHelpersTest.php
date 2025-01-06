@@ -194,4 +194,24 @@ final class SearchHelpersTest extends TestCase
         $this->assertSame('.live.throttle.599ms', $temp->getSearchOptions());
 
     }
+
+    public function test_can_get_search_term_with_trim(): void
+    {
+        $this->basicTable->setTrimSearchStringEnabled();
+        $this->basicTable->setSearch('Anthony');
+        $this->assertSame('Anthony', $this->basicTable->getSearch());
+        $this->basicTable->setSearch('Bob    ');
+        $this->assertSame('Bob', $this->basicTable->getSearch());
+        $this->basicTable->setSearch('     Bill    ');
+        $this->assertSame('Bill', $this->basicTable->getSearch());
+    }
+
+    public function test_can_get_search_term_without_trim(): void
+    {
+        $this->basicTable->setTrimSearchStringDisabled();
+        $this->basicTable->setSearch('Ben    ');
+        $this->assertSame('Ben    ', $this->basicTable->getSearch());
+        $this->basicTable->setSearch('     Baz    ');
+        $this->assertSame('     Baz    ', $this->basicTable->getSearch());
+    }
 }
