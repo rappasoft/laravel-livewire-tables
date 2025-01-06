@@ -74,8 +74,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchDebounce(1000);
         $this->basicTable->setSearchDefer();
+        $this->basicTable->setSearchDebounce(1000);
     }
 
     public function test_can_set_search_defer(): void
@@ -92,8 +92,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchDefer();
         $this->basicTable->setSearchDebounce(1000);
+        $this->basicTable->setSearchDefer();
     }
 
     public function test_can_set_search_lazy(): void
@@ -110,8 +110,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchLazy();
         $this->basicTable->setSearchDebounce(1000);
+        $this->basicTable->setSearchLazy();
     }
 
     public function test_can_set_search_live(): void
@@ -128,8 +128,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchLive();
         $this->basicTable->setSearchDebounce(1000);
+        $this->basicTable->setSearchLive();
     }
 
     public function test_can_set_search_blur(): void
@@ -146,8 +146,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchBlur();
         $this->basicTable->setSearchDefer();
+        $this->basicTable->setSearchBlur();
     }
 
     public function test_can_set_search_throttle(): void
@@ -165,8 +165,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchThrottle(1000);
         $this->basicTable->setSearchDefer();
+        $this->basicTable->setSearchThrottle(1000);
     }
 
     public function test_can_set_search_placeholder(): void
