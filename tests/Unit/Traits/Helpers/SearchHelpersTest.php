@@ -204,7 +204,6 @@ final class SearchHelpersTest extends TestCase
         $this->assertSame('Bob', $this->basicTable->getSearch());
         $this->basicTable->setSearch('     Bill    ');
         $this->assertSame('Bill', $this->basicTable->getSearch());
-
     }
 
     public function test_can_get_search_term_without_trim(): void
@@ -214,6 +213,5 @@ final class SearchHelpersTest extends TestCase
         $this->assertSame('Ben    ', $this->basicTable->getSearch());
         $this->basicTable->setSearch('     Baz    ');
         $this->assertSame('     Baz    ', $this->basicTable->getSearch());
-
     }
 }
