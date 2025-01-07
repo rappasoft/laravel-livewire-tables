@@ -195,7 +195,6 @@ final class SearchHelpersTest extends TestCase
 
     }
 
-    
     public function test_can_get_search_term_with_trim(): void
     {
         $this->basicTable->setTrimSearchStringEnabled();
@@ -217,5 +216,4 @@ final class SearchHelpersTest extends TestCase
         $this->assertSame('     Baz    ', $this->basicTable->getSearch());
 
     }
-
 }

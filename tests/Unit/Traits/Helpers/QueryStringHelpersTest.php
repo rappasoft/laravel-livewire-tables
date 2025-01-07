@@ -9,7 +9,7 @@ final class QueryStringHelpersTest extends TestCase
 {
     public function test_check_querystring_returns_empty_if_disabled(): void
     {
-        
+
         $testTableQueryString = new class extends PetsTable
         {
             public function configure(): void
@@ -33,15 +33,14 @@ final class QueryStringHelpersTest extends TestCase
         $testTableQueryString->bootedWithColumnSelect();
         $testTableQueryString->bootedWithSecondaryHeader();
         $testTableQueryString->booted();
-        
-        $this->assertSame([], $testTableQueryString->getCurrentQueryStringBinding());
 
+        $this->assertSame([], $testTableQueryString->getCurrentQueryStringBinding());
 
     }
 
     public function test_check_querystring_returns_default_if_enabled(): void
     {
-        
+
         $testTableQueryString = new class extends PetsTable
         {
             public function configure(): void
@@ -65,11 +64,8 @@ final class QueryStringHelpersTest extends TestCase
         $testTableQueryString->bootedWithColumnSelect();
         $testTableQueryString->bootedWithSecondaryHeader();
         $testTableQueryString->booted();
-        
+
         $this->assertSame(['table' => ['except' => null, 'history' => false, 'keep' => false, 'as' => 'table']], $testTableQueryString->getCurrentQueryStringBinding());
 
-
     }
-
-
 }
