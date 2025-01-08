@@ -40,5 +40,4 @@ final class WithColumnsTest extends TestCase
         $testTableDefault->render();
         $this->assertSame(9, $view->getData()['columns']->count());
     }
-
 }
