@@ -40,5 +40,4 @@ trait HandlesSearchVisibility
     {
         return $this->setSearchVisibilityStatus(false);
     }
-
 }

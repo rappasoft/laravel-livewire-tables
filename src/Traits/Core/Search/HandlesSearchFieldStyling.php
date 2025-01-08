@@ -7,6 +7,5 @@ use Rappasoft\LaravelLivewireTables\Traits\Core\Search\Styling\{HasSearchIcon, H
 trait HandlesSearchFieldStyling
 {
     use HasSearchIcon,
-    HasSearchInput;
-
+        HasSearchInput;
 }

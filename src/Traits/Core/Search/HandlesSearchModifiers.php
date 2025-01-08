@@ -86,6 +86,7 @@ trait HandlesSearchModifiers
 
         return '.live';
     }
+
     /**
      * @throws DataTableConfigurationException
      */
@@ -169,6 +170,4 @@ trait HandlesSearchModifiers
 
         return $this;
     }
-
-
 }
