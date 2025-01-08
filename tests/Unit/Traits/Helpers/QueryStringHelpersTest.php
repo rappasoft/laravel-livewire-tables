@@ -68,4 +68,43 @@ final class QueryStringHelpersTest extends TestCase
         $this->assertSame(['table' => ['except' => null, 'history' => false, 'keep' => false, 'as' => 'table']], $testTableQueryString->getCurrentQueryStringBinding());
 
     }
+
+    public function test_check_querystring_alias_returns_default_if_enabled(): void
+    {
+
+        $testTableQueryString = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                parent::configure();
+                $this->setQueryStringEnabled();
+            }
+
+            public function getCurrentQueryStringBinding(): array
+            {
+                return $this->queryStringWithQueryString();
+            }
+        };
+
+        $testTableQueryString->mountManagesFilters();
+        $testTableQueryString->configure();
+        $testTableQueryString->boot();
+        $testTableQueryString->bootedComponentUtilities();
+        $testTableQueryString->bootedManagesFilters();
+        $testTableQueryString->bootedWithColumns();
+        $testTableQueryString->bootedWithColumnSelect();
+        $testTableQueryString->bootedWithSecondaryHeader();
+        $testTableQueryString->booted();
+
+        $this->assertFalse($testTableQueryString->hasQueryStringAlias());
+        $this->assertSame('table', $testTableQueryString->getQueryStringAlias());
+        $this->assertSame(['table' => ['except' => null, 'history' => false, 'keep' => false, 'as' => 'table']], $testTableQueryString->getCurrentQueryStringBinding());
+
+        $testTableQueryString->setQueryStringAlias('test123');
+
+        $this->assertTrue($testTableQueryString->hasQueryStringAlias());
+        $this->assertSame('test123', $testTableQueryString->getQueryStringAlias());
+        $this->assertSame(['table' => ['except' => null, 'history' => false, 'keep' => false, 'as' => 'test123']], $testTableQueryString->getCurrentQueryStringBinding());
+
+    }
 }
