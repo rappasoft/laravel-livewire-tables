@@ -28,13 +28,11 @@ final class WithColumnsTest extends TestCase
         $testTableDefault->bootedManagesFilters();
         $testTableDefault->bootedWithColumns();
         $testTableDefault->bootedWithColumnSelect();
-        $testTableDefault->bootedWithSecondaryHeader();
         $testTableDefault->booted();
         $testTableDefault->renderingWithColumns($view, $view->getData());
         $testTableDefault->renderingWithColumnSelect($view, $view->getData());
         $testTableDefault->renderingWithCustomisations($view, $view->getData());
         $testTableDefault->renderingWithData($view, $view->getData());
-        $testTableDefault->renderingWithFooter($view, $view->getData());
         $testTableDefault->renderingWithReordering($view, $view->getData());
         $testTableDefault->renderingWithPagination($view, $view->getData());
         $testTableDefault->render();

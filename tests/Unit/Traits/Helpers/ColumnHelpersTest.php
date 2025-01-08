@@ -199,7 +199,6 @@ final class ColumnHelpersTest extends TestCase
         $testTable->bootedManagesFilters();
         $testTable->bootedWithColumns();
         $testTable->bootedWithColumnSelect();
-        $testTable->bootedWithSecondaryHeader();
         $testTable->booted();
 
     }

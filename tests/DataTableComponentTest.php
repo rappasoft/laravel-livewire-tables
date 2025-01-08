@@ -73,7 +73,6 @@ class DataTableComponentTest extends TestCase
         $table->bootedComponentUtilities();
         $table->bootedWithColumns();
         $table->bootedWithColumnSelect();
-        $table->bootedWithSecondaryHeader();
         $table->booted();
         $table->renderingWithPagination($view, []);
         $table->render();

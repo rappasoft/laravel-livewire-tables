@@ -31,7 +31,6 @@ final class QueryStringHelpersTest extends TestCase
         $testTableQueryString->bootedManagesFilters();
         $testTableQueryString->bootedWithColumns();
         $testTableQueryString->bootedWithColumnSelect();
-        $testTableQueryString->bootedWithSecondaryHeader();
         $testTableQueryString->booted();
 
         $this->assertSame([], $testTableQueryString->getCurrentQueryStringBinding());
@@ -62,7 +61,6 @@ final class QueryStringHelpersTest extends TestCase
         $testTableQueryString->bootedManagesFilters();
         $testTableQueryString->bootedWithColumns();
         $testTableQueryString->bootedWithColumnSelect();
-        $testTableQueryString->bootedWithSecondaryHeader();
         $testTableQueryString->booted();
 
         $this->assertSame(['table' => ['except' => null, 'history' => false, 'keep' => false, 'as' => 'table']], $testTableQueryString->getCurrentQueryStringBinding());
@@ -93,7 +91,6 @@ final class QueryStringHelpersTest extends TestCase
         $testTableQueryString->bootedManagesFilters();
         $testTableQueryString->bootedWithColumns();
         $testTableQueryString->bootedWithColumnSelect();
-        $testTableQueryString->bootedWithSecondaryHeader();
         $testTableQueryString->booted();
 
         $this->assertFalse($testTableQueryString->hasQueryStringAlias());
