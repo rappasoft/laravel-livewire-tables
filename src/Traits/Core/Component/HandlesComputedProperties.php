@@ -19,7 +19,7 @@ trait HandlesComputedProperties
 
         return $this;
     }
-    
+
     public function getComputedPropertiesStatus(): bool
     {
         return $this->useComputedProperties ?? false;

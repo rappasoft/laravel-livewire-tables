@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
-use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\Core\Component\{HandlesComputedProperties,HandlesEmptyMessage, HandlesFingerprint, HandlesOfflineIndicator,HandlesTableName};
+use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
 
 trait ComponentUtilities
 {
@@ -18,7 +18,7 @@ trait ComponentUtilities
         HandlesOfflineIndicator,
         ComponentConfiguration,
         ComponentHelpers;
-        
+
     public array $table = [];
 
     protected $model;

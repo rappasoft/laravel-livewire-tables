@@ -25,5 +25,4 @@ trait ComponentHelpers
     {
         return $this->getTableAttributes()['id'] ?? 'table-'.$this->getTableName();
     }
-
 }

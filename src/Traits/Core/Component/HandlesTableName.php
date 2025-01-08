@@ -24,5 +24,4 @@ trait HandlesTableName
     {
         return $this->tableName === $name;
     }
-
 }

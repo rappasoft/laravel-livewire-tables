@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Core\Component;
 
 trait HandlesEmptyMessage
 {
-
     protected string $emptyMessage = 'No items found, try to broaden your search';
 
     /**
@@ -18,7 +17,7 @@ trait HandlesEmptyMessage
 
         return $this->emptyMessage;
     }
-    
+
     /**
      * Set the empty message
      */
@@ -28,5 +27,4 @@ trait HandlesEmptyMessage
 
         return $this;
     }
-
 }
