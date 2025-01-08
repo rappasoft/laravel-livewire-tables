@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Traits\Styling\Search;
+namespace Rappasoft\LaravelLivewireTables\Traits\Core\Search\Styling;
 
 use Livewire\Attributes\Computed;
 
