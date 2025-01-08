@@ -75,28 +75,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->isLabel());
     }
 
-    public function test_can_check_if_column_should_collapse_on_mobile(): void
-    {
-        $column = Column::make('My Title');
-
-        $this->assertFalse($column->shouldCollapseOnMobile());
-
-        $column->collapseOnMobile();
-
-        $this->assertTrue($column->shouldCollapseOnMobile());
-    }
-
-    public function test_can_check_if_column_should_collapse_on_tablet(): void
-    {
-        $column = Column::make('My Title');
-
-        $this->assertFalse($column->shouldCollapseOnTablet());
-
-        $column->collapseOnTablet();
-
-        $this->assertTrue($column->shouldCollapseOnTablet());
-    }
-
     public function test_can_set_custom_sorting_pill_title(): void
     {
         $column = Column::make('My Title');

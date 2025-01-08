@@ -18,12 +18,6 @@ trait WithColumns
 
     protected ?Collection $appendedColumns;
 
-    protected ?bool $shouldAlwaysCollapse;
-
-    protected ?bool $shouldMobileCollapse;
-
-    protected ?bool $shouldTabletCollapse;
-
     protected bool $hasRunColumnSetup = false;
 
     /**

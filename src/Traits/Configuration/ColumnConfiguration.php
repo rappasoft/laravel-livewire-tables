@@ -15,11 +15,4 @@ trait ColumnConfiguration
         $this->appendedColumns = collect($appendedColumns);
         $this->hasRunColumnSetup = false;
     }
-
-    public function unsetCollapsedStatuses(): void
-    {
-        unset($this->shouldAlwaysCollapse);
-        unset($this->shouldMobileCollapse);
-        unset($this->shouldTabletCollapse);
-    }
 }

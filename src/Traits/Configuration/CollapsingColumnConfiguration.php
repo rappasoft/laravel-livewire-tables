@@ -24,4 +24,11 @@ trait CollapsingColumnConfiguration
 
         return $this;
     }
+
+    public function unsetCollapsedStatuses(): void
+    {
+        unset($this->shouldAlwaysCollapse);
+        unset($this->shouldMobileCollapse);
+        unset($this->shouldTabletCollapse);
+    }
 }
