@@ -18,7 +18,6 @@ final class WithMountTest extends TestCase
         $table->bootedComponentUtilities();
         $table->bootedWithColumns();
         $table->bootedWithColumnSelect();
-        $table->bootedWithSecondaryHeader();
         $table->booted();
         $table->renderingWithPagination($view, []);
         $table->render();
@@ -36,7 +35,6 @@ final class WithMountTest extends TestCase
         $table2->bootedManagesFilters();
         $table2->bootedWithColumns();
         $table2->bootedWithColumnSelect();
-        $table2->bootedWithSecondaryHeader();
         $table2->booted();
         $table2->renderingWithPagination($view, []);
         $table2->render();
@@ -53,7 +51,6 @@ final class WithMountTest extends TestCase
         $table3->bootedComponentUtilities();
         $table3->bootedWithColumns();
         $table3->bootedWithColumnSelect();
-        $table3->bootedWithSecondaryHeader();
         $table3->booted();
         $table3->renderingWithPagination($view, []);
         $table3->render();

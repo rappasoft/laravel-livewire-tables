@@ -125,7 +125,6 @@ final class ColumnSelectHelpersTest extends TestCase
         $testTable->bootedComponentUtilities();
         $testTable->bootedWithColumns();
         $testTable->bootedWithColumnSelect();
-        $testTable->bootedWithSecondaryHeader();
         $testTable->booted();
 
         $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $testTable->selectedColumns);
@@ -164,7 +163,6 @@ final class ColumnSelectHelpersTest extends TestCase
         $testTable->bootedManagesFilters();
         $testTable->bootedWithColumns();
         $testTable->bootedWithColumnSelect();
-        $testTable->bootedWithSecondaryHeader();
         $testTable->booted();
 
         $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $testTable->selectedColumns);
@@ -195,7 +193,6 @@ final class ColumnSelectHelpersTest extends TestCase
         $testTable->bootedComponentUtilities();
         $testTable->bootedWithColumns();
         $testTable->bootedWithColumnSelect();
-        $testTable->bootedWithSecondaryHeader();
         $testTable->booted();
 
         $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $testTable->selectedColumns);

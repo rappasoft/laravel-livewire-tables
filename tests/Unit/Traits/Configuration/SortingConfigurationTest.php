@@ -112,7 +112,6 @@ final class SortingConfigurationTest extends TestCase
         $tempDesc->bootedManagesFilters();
         $tempDesc->bootedWithColumns();
         $tempDesc->bootedWithColumnSelect();
-        $tempDesc->bootedWithSecondaryHeader();
         $tempDesc->booted();
         $tempDesc->mountManagesFilters();
         $tempDesc->mountWithSorting();
@@ -120,7 +119,6 @@ final class SortingConfigurationTest extends TestCase
         $tempDesc->renderingWithColumnSelect($viewDesc, $viewDesc->getData());
         $tempDesc->renderingWithCustomisations($viewDesc, $viewDesc->getData());
         $tempDesc->renderingWithData($viewDesc, $viewDesc->getData());
-        $tempDesc->renderingWithFooter($viewDesc, $viewDesc->getData());
         $tempDesc->renderingWithReordering($viewDesc, $viewDesc->getData());
         $tempDesc->renderingWithPagination($viewDesc, $viewDesc->getData());
         $tempDesc->render();
@@ -142,7 +140,6 @@ final class SortingConfigurationTest extends TestCase
         $tempAsc->bootedManagesFilters();
         $tempAsc->bootedWithColumns();
         $tempAsc->bootedWithColumnSelect();
-        $tempAsc->bootedWithSecondaryHeader();
         $tempAsc->booted();
         $tempAsc->mountManagesFilters();
         $tempAsc->mountWithSorting();
@@ -150,7 +147,6 @@ final class SortingConfigurationTest extends TestCase
         $tempAsc->renderingWithColumnSelect($viewAsc, $viewAsc->getData());
         $tempAsc->renderingWithCustomisations($viewAsc, $viewAsc->getData());
         $tempAsc->renderingWithData($viewAsc, $viewAsc->getData());
-        $tempAsc->renderingWithFooter($viewAsc, $viewAsc->getData());
         $tempAsc->renderingWithReordering($viewAsc, $viewAsc->getData());
         $tempAsc->renderingWithPagination($viewAsc, $viewAsc->getData());
         $tempAsc->render();

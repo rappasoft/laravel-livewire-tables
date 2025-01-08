@@ -19,17 +19,4 @@ trait WithFooter
 
     protected bool $columnsWithFooter = false;
 
-    public function setupFooter(): void
-    {
-        foreach ($this->getColumns() as $column) {
-            if ($column->hasFooter()) {
-                $this->columnsWithFooter = true;
-            }
-        }
-    }
-
-    public function renderingWithFooter(): void
-    {
-        $this->setupFooter();
-    }
 }

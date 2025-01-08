@@ -232,7 +232,6 @@ final class FilterHelpersTest extends TestCase
         $testTable->bootedComponentUtilities();
         $testTable->bootedWithColumns();
         $testTable->bootedWithColumnSelect();
-        $testTable->bootedWithSecondaryHeader();
         $testTable->booted();
 
         $testTable->setFilter('breed_id_filter', '2');

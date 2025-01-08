@@ -27,6 +27,13 @@ trait ColumnHelpers
                     ->setHasTableRowUrl($this->hasTableRowUrl())
                     ->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
 
+                if ($column->hasFooter()) {
+                    $this->columnsWithFooter = true;
+                }
+                if ($column->hasSecondaryHeader()) {
+                    $this->columnsWithSecondaryHeader = true;
+                }
+
                 if ($column instanceof AggregateColumn) {
                     if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
