@@ -3,40 +3,21 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use Livewire\Attributes\Locked;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
-use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForSearch;
-use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
-use Rappasoft\LaravelLivewireTables\Traits\Styling\HasSearchFieldStyling;
+use Rappasoft\LaravelLivewireTables\Traits\Core\Search\{HandlesSearchFieldStyling, HandlesSearchModifiers,HandlesSearchStatus, HandlesSearchTrim,HandlesSearchVisibility};
 
 trait WithSearch
 {
-    use SearchConfiguration,
-        SearchHelpers;
-    use HasQueryStringForSearch;
-    use HasSearchFieldStyling;
+    use HandlesSearchStatus,
+        HandlesSearchModifiers,
+        HandlesSearchTrim,
+        HandlesSearchVisibility,
+        HasQueryStringForSearch,
+        HandlesSearchFieldStyling;
 
     public string $search = '';
-
-    #[Locked]
-    public bool $searchStatus = true;
-
-    protected bool $searchVisibilityStatus = true;
-
-    protected ?bool $searchFilterBlur = null;
-
-    protected ?int $searchFilterDebounce = null;
-
-    protected ?bool $searchFilterDefer = null;
-
-    protected ?bool $searchFilterLazy = null;
-
-    protected ?bool $searchFilterLive = null;
-
-    protected ?int $searchFilterThrottle = null;
-
-    protected bool $trimSearchString = false;
 
     // TODO
     public function applySearch(): Builder
@@ -45,10 +26,6 @@ trait WithSearch
 
             $searchableColumns = $this->getSearchableColumns();
             $search = $this->getSearch();
-
-            if ($this->shouldTrimSearchString()) {
-                $search = trim($search);
-            }
 
             $this->callHook('searchUpdated', ['value' => $search]);
             $this->callTraitHook('searchUpdated', ['value' => $search]);
@@ -89,5 +66,40 @@ trait WithSearch
         if (is_null($value) || $value === '') {
             $this->clearSearch();
         }
+    }
+
+    #[Computed]
+    public function hasSearch(): bool
+    {
+        return $this->search != '';
+    }
+
+    #[Computed]
+    public function getSearch(): string
+    {
+        if ($this->shouldTrimSearchString() && $this->search != trim($this->search)) {
+            $this->search = trim($this->search);
+        }
+
+        return $this->search ?? '';
+    }
+
+    /**
+     * Search the search query from the table array
+     */
+    public function clearSearch(): void
+    {
+        $this->search = '';
+    }
+
+    public function setSearch(string $query): self
+    {
+        if ($this->shouldTrimSearchString()) {
+            $this->search = trim($query);
+        } else {
+            $this->search = $query;
+        }
+
+        return $this;
     }
 }

@@ -1,68 +1,91 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
+namespace Rappasoft\LaravelLivewireTables\Traits\Core\Search;
 
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
-trait SearchConfiguration
+trait HandlesSearchModifiers
 {
-    public function setSearch(string $query): self
+    protected ?bool $searchFilterBlur = null;
+
+    protected ?int $searchFilterDebounce = null;
+
+    protected ?bool $searchFilterDefer = null;
+
+    protected ?bool $searchFilterLazy = null;
+
+    protected ?bool $searchFilterLive = null;
+
+    protected ?int $searchFilterThrottle = null;
+
+    public function hasSearchDebounce(): bool
     {
-        if ($this->shouldTrimSearchString()) {
-            $this->search = trim($query);
-        } else {
-            $this->search = $query;
+        return $this->searchFilterDebounce !== null;
+    }
+
+    public function getSearchDebounce(): ?int
+    {
+        return $this->searchFilterDebounce;
+    }
+
+    public function hasSearchDefer(): bool
+    {
+        return $this->searchFilterDefer !== null;
+    }
+
+    public function hasSearchLazy(): bool
+    {
+        return $this->searchFilterLazy !== null;
+    }
+
+    public function hasSearchLive(): bool
+    {
+        return $this->searchFilterLive !== null;
+    }
+
+    public function hasSearchThrottle(): bool
+    {
+        return $this->searchFilterThrottle !== null;
+    }
+
+    public function getSearchThrottle(): ?int
+    {
+        return $this->searchFilterThrottle;
+    }
+
+    public function hasSearchBlur(): bool
+    {
+        return $this->searchFilterBlur !== null;
+    }
+
+    public function getSearchOptions(): string
+    {
+        if ($this->hasSearchDebounce()) {
+            return '.live.debounce.'.$this->getSearchDebounce().'ms';
         }
 
-        return $this;
+        if ($this->hasSearchDefer()) {
+            return '';
+        }
+
+        if ($this->hasSearchLive()) {
+            return '.live';
+        }
+
+        if ($this->hasSearchBlur()) {
+            return '.blur';
+        }
+
+        if ($this->hasSearchLazy()) {
+            return '.live.lazy';
+        }
+
+        if ($this->hasSearchThrottle()) {
+            return '.live.throttle.'.$this->getSearchThrottle().'ms';
+        }
+
+        return '.live';
     }
-
-    public function setSearchStatus(bool $status): self
-    {
-        $this->searchStatus = $status;
-
-        return $this;
-    }
-
-    public function setSearchEnabled(): self
-    {
-        $this->setSearchStatus(true);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setSearchDisabled(): self
-    {
-        $this->setSearchStatus(false);
-        $this->search = '';
-
-        return $this;
-    }
-
-    public function setSearchVisibilityStatus(bool $status): self
-    {
-        $this->searchVisibilityStatus = $status;
-
-        return $this;
-    }
-
-    public function setSearchVisibilityEnabled(): self
-    {
-        $this->setSearchVisibilityStatus(true);
-
-        return $this;
-    }
-
-    public function setSearchVisibilityDisabled(): self
-    {
-        $this->setSearchVisibilityStatus(false);
-
-        return $this;
-    }
-
     /**
      * @throws DataTableConfigurationException
      */
@@ -147,24 +170,5 @@ trait SearchConfiguration
         return $this;
     }
 
-    public function setTrimSearchString(bool $status): self
-    {
-        $this->trimSearchString = $status;
 
-        return $this;
-    }
-
-    public function setTrimSearchStringEnabled(): self
-    {
-        $this->setTrimSearchString(true);
-
-        return $this;
-    }
-
-    public function setTrimSearchStringDisabled(): self
-    {
-        $this->setTrimSearchString(false);
-
-        return $this;
-    }
 }
