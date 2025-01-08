@@ -15,5 +15,4 @@ trait WithSecondaryHeader
     protected bool $secondaryHeaderStatus = true;
 
     protected bool $columnsWithSecondaryHeader = false;
-
 }
