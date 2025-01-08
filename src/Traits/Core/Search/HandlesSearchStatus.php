@@ -34,7 +34,9 @@ trait HandlesSearchStatus
 
     public function setSearchEnabled(): self
     {
-        return $this->setSearchStatus(true);
+        $this->setSearchStatus(true);
+        
+        return $this;
     }
 
     /**
@@ -44,6 +46,8 @@ trait HandlesSearchStatus
     {
         $this->search = '';
 
-        return $this->setSearchStatus(false);
+        $this->setSearchStatus(false);
+
+        return $this;
     }
 }
