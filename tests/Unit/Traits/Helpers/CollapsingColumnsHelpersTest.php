@@ -214,6 +214,4 @@ final class CollapsingColumnsHelpersTest extends TestCase
         $this->assertSame('Name', $this->basicTable->getCollapsedColumnsForContent()->slice(1)->first()->getTitle());
 
     }
-
-
 }

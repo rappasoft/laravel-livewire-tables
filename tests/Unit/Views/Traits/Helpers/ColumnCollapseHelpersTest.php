@@ -9,9 +9,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 final class ColumnCollapseHelpersTest extends TestCase
 {
-
-
-
     public function test_can_check_if_column_should_collapse_on_mobile(): void
     {
         $column = Column::make('My Title');
@@ -64,7 +61,5 @@ final class ColumnCollapseHelpersTest extends TestCase
         $this->assertFalse($column->shouldNeverCollapse());
         $this->assertFalse($column->shouldCollapseNever());
 
-        
     }
-
 }
