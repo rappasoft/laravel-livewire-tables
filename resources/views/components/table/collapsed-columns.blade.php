@@ -1,39 +1,16 @@
 @aware([ 'tableName', 'primaryKey','isTailwind','isBootstrap'])
 @props(['row', 'rowIndex'])
 
-@php
-    $customAttributes = $this->getTrAttributes($row, $rowIndex);
-@endphp
-
-@if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
-    @php
-        $colspan = $this->getColspanCount();
-        $columns = collect();
-
-        if($this->shouldCollapseAlways())
-        {
-            $columns->push($this->getCollapsedAlwaysColumns());
-        }
-        if ($this->shouldCollapseOnMobile() && $this->shouldCollapseOnTablet()) {
-            $columns->push($this->getCollapsedMobileColumns());
-            $columns->push($this->getCollapsedTabletColumns());
-        } elseif ($this->shouldCollapseOnTablet() && ! $this->shouldCollapseOnMobile()) {
-            $columns->push($this->getCollapsedTabletColumns());
-        } elseif ($this->shouldCollapseOnMobile() && ! $this->shouldCollapseOnTablet()) {
-            $columns->push($this->getCollapsedMobileColumns());
-        }
-
-        $columns = $columns->collapse();
-    @endphp
-
-    <tr
-        x-data
+@if ($this->collapsingColumnsAreEnabled && $this->hasCollapsedColumns)
+    @php($customAttributes = $this->getTrAttributes($row, $rowIndex))
+    <tr x-data
         @toggle-row-content.window="($event.detail.tableName === '{{ $tableName }}' && $event.detail.row === {{ $rowIndex }}) ? $el.classList.toggle('{{ $isBootstrap ? 'd-none' : 'hidden' }}') : null"
-
-        wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents"
-        wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
         {{
-        $attributes->merge($customAttributes)
+            $attributes->merge([
+                    'wire:loading.class.delay' => 'opacity-50 dark:bg-gray-900 dark:opacity-60',
+                    'wire:key' => $tableName.'-row-'.$row->{$primaryKey}.'-collapsed-contents',
+                ])
+                ->merge($customAttributes)
                 ->class([
                     'hidden bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0),
                     'hidden bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0),
@@ -42,36 +19,31 @@
                 ])
                 ->except(['default','default-styling','default-colors'])
         }}
-
     >
-        <td
-            @class([
+        <td colspan="{{ $this->getColspanCount }}" @class([
                 'text-left pt-4 pb-2 px-4' => $isTailwind,
                 'text-start pt-3 p-2' => $isBootstrap,
-            ])
-            colspan="{{ $colspan }}"
-        >
+        ])>
             <div>
-                @foreach($columns as $colIndex => $column)
-                    @continue($column->isHidden())
-                    @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                @foreach($this->getCollapsedColumnsForContent as $colIndex => $column)
 
-                    <p wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}"
+                    <p wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}" @class([
+                            'block mb-2 hidden' => $isTailwind,
+                            'sm:block' => $isTailwind && $column->shouldCollapseAlways(),
+                            'sm:block md:hidden' => $isTailwind && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
+                            'sm:block lg:hidden' => $isTailwind && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
 
-                        @class([
-                            'block mb-2' => $isTailwind && $column->shouldCollapseAlways(),
-                            'block mb-2 sm:hidden' => $isTailwind && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
-                            'block mb-2 md:hidden' => $isTailwind && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
-                            'block mb-2 lg:hidden' => $isTailwind && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
-
-                            'd-block mb-2' => $isBootstrap && $column->shouldCollapseAlways(),
-                            'd-block mb-2 d-sm-none' => $isBootstrap && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
-                            'd-block mb-2 d-md-none' => $isBootstrap && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
-                            'd-block mb-2 d-lg-none' => $isBootstrap && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
-
-                        ])
-                    >
-                        <strong>{{ $column->getTitle() }}</strong>: {{ $column->renderContents($row) }}
+                            'd-block mb-2' => $isBootstrap,
+                            'd-sm-none' => $isBootstrap && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
+                            'd-md-none' => $isBootstrap && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
+                            'd-lg-none' => $isBootstrap && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
+                    ])>
+                        <strong>{{ $column->getTitle() }}</strong>: 
+                        @if($column->isHtml())
+                            {!! $column->setIndexes($rowIndex, $colIndex)->renderContents($row) !!}
+                        @else
+                            {{ $column->setIndexes($rowIndex, $colIndex)->renderContents($row) }}
+                        @endif
                     </p>
                 @endforeach
             </div>

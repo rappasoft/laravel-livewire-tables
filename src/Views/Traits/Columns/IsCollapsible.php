@@ -10,9 +10,13 @@ trait IsCollapsible
 
     protected bool $collapseAlways = false;
 
+    protected bool $collapseSometimes = false;
+
+
     public function collapseOnMobile(): self
     {
         $this->collapseOnMobile = true;
+        $this->collapseSometimes = true;
 
         return $this;
     }
@@ -28,6 +32,7 @@ trait IsCollapsible
     public function collapseOnTablet(): self
     {
         $this->collapseOnTablet = true;
+        $this->collapseSometimes = true;
 
         return $this;
     }
@@ -40,6 +45,7 @@ trait IsCollapsible
     public function collapseAlways(): self
     {
         $this->collapseAlways = true;
+        $this->collapseSometimes = true;
 
         return $this;
     }
@@ -48,4 +54,20 @@ trait IsCollapsible
     {
         return $this->collapseAlways;
     }
+
+    public function shouldCollapseSometimes(): bool
+    {
+        return $this->collapseSometimes;
+    }
+
+    public function shouldNeverCollapse(): bool
+    {
+        return $this->collapseSometimes === false;
+    }
+
+    public function shouldCollapseNever(): bool
+    {
+        return (($this->shouldCollapseOnMobile() === false) && ($this->shouldCollapseOnTablet() === false) && ($this->shouldCollapseAlways() === false));
+    }
+
 }

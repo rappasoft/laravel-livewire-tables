@@ -16,10 +16,4 @@ trait ColumnConfiguration
         $this->hasRunColumnSetup = false;
     }
 
-    public function unsetCollapsedStatuses(): void
-    {
-        unset($this->shouldAlwaysCollapse);
-        unset($this->shouldMobileCollapse);
-        unset($this->shouldTabletCollapse);
-    }
 }
