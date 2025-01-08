@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Foundation\Console\AboutCommand;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
 use Livewire\ComponentHookRegistry;
 use Rappasoft\LaravelLivewireTables\Commands\MakeCommand;
 use Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets;
@@ -45,7 +45,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
 
         $this->consoleCommands();
-        
+
         if (config('livewire-tables.inject_core_assets_enabled') || config('livewire-tables.inject_third_party_assets_enabled') || config('livewire-tables.enable_blade_directives')) {
             (new RappasoftFrontendAssets)->boot();
         }
@@ -82,15 +82,15 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             ]);
         }
     }
-    
+
     public function addBladeLoopDirective(): void
     {
         Blade::directive('tableloop', function ($expression) {
             return "<?php foreach ($expression): ?>";
         });
-         
+
         Blade::directive('endtableloop', function ($expression) {
-            return "<?php endforeach; ?>";
+            return '<?php endforeach; ?>';
         });
 
     }

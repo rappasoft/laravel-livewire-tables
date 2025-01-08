@@ -12,7 +12,6 @@ trait IsCollapsible
 
     protected bool $collapseSometimes = false;
 
-
     public function collapseOnMobile(): self
     {
         $this->collapseOnMobile = true;
@@ -67,7 +66,6 @@ trait IsCollapsible
 
     public function shouldCollapseNever(): bool
     {
-        return (($this->shouldCollapseOnMobile() === false) && ($this->shouldCollapseOnTablet() === false) && ($this->shouldCollapseAlways() === false));
+        return ($this->shouldCollapseOnMobile() === false) && ($this->shouldCollapseOnTablet() === false) && ($this->shouldCollapseAlways() === false);
     }
-
 }

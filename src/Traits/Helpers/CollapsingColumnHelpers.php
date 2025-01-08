@@ -34,13 +34,13 @@ trait CollapsingColumnHelpers
     #[Computed]
     public function showCollapsingColumnSections(): bool
     {
-        return ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns());
+        return $this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns();
     }
 
     #[Computed]
     public function hasCollapsedColumns(): bool
     {
-        return ($this->hasCollapsingColumns() && ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways()));
+        return $this->hasCollapsingColumns() && ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways());
     }
 
     #[Computed]
@@ -150,10 +150,9 @@ trait CollapsingColumnHelpers
     {
         $colspan = $this->getColspanCount();
         $columns = $this->getColumns()
-        ->reject(fn (Column $column) => ($column->isHidden() || ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column))))
-        ->reject(fn (Column $column) => $column->shouldNeverCollapse());
+            ->reject(fn (Column $column) => ($column->isHidden() || ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column))))
+            ->reject(fn (Column $column) => $column->shouldNeverCollapse());
 
         return $columns;
     }
-
 }

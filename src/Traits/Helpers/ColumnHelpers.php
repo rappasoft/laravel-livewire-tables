@@ -125,7 +125,6 @@ trait ColumnHelpers
         return $this->getColumns()->count();
     }
 
-
     public function getPrependedColumns(): Collection
     {
         return $this->prependedColumns ?? collect($this->prependColumns());

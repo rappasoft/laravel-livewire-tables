@@ -31,5 +31,4 @@ trait CollapsingColumnConfiguration
         unset($this->shouldMobileCollapse);
         unset($this->shouldTabletCollapse);
     }
-
 }

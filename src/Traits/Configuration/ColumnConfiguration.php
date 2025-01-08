@@ -15,5 +15,4 @@ trait ColumnConfiguration
         $this->appendedColumns = collect($appendedColumns);
         $this->hasRunColumnSetup = false;
     }
-
 }
