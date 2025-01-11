@@ -2,13 +2,22 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Columns;
 
+use Illuminate\Support\Facades\View;
+
 trait HasComponentView
 {
     protected string $componentView;
 
     public function component(string $component): self
     {
-        $this->componentView = 'components.'.$component;
+        if (View::exists('components.'.$component))
+        {
+            $this->componentView = 'components.'.$component;
+        }
+        elseif (View::exists($component))
+        {
+            $this->componentView = $component;    
+        }
 
         return $this;
     }

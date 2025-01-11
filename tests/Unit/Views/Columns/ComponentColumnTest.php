@@ -7,9 +7,16 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Components\TestComponent;
+use Illuminate\Support\Facades\Blade;
 
 final class ComponentColumnTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+    }
+
     public function test_can_set_the_column_title(): void
     {
         $column = ComponentColumn::make('Name', 'name');
@@ -32,6 +39,61 @@ final class ComponentColumnTest extends TestCase
         $column = ComponentColumn::make('Name', 'name')->collapseOnMobile()->collapseOnTablet();
         $row = Pet::find(1);
         $column->getContents($row);
+
+    }
+
+    
+    public function test_can_set_custom_slot(): void
+    {
+        $column = ComponentColumn::make('Age 2', 'age')
+        ->attributes(fn ($value, $row, Column $column) => [
+            'age' => $row->age,
+        ])
+        ->slot(fn ($value, $row, Column $column) => [
+            ($row->age < 2) => 'test1',
+            ($row->age > 2) => 'test2',
+        ]);
+        $this->assertTrue($column->hasSlotCallback());
+    }
+
+        
+    public function test_can_get_custom_slot(): void
+    {
+
+        $column = ComponentColumn::make('Age 2', 'age')
+        ->attributes(fn ($value, $row, Column $column) => [
+            'age' => $row->age,
+        ])
+        ->slot(fn ($value, $row, Column $column) => (($row->age < 10) ? 'youngslot' : 'oldslot'))
+        ->component('livewire-tables-test::test');
+
+        $pet1 = Pet::where('age', '>', 11)->first();
+        $pet1_contents = $column->getContents($pet1);
+        $this->assertSame('oldslot',$pet1_contents->getData()['slot']->__toString());
+
+        $pet2 = Pet::where('age', '<', 5)->first();
+        $pet2_contents = $column->getContents($pet2);
+        $this->assertSame('youngslot',$pet2_contents->getData()['slot']->__toString());
+
+    }
+
+    public function test_can_get_attributes(): void
+    {
+
+        $column = ComponentColumn::make('Age 2', 'age')
+        ->attributes(fn ($value, $row, Column $column) => [
+            'age' => $row->age,
+        ])
+        ->slot(fn ($value, $row, Column $column) => (($row->age < 10) ? 'youngslot' : 'oldslot'))
+        ->component('livewire-tables-test::test');
+
+        $pet1 = Pet::where('age', '>', 11)->first();
+        $pet1_contents = $column->getContents($pet1);
+        $this->assertSame(22, $pet1_contents->getData()['attributes']['age']);
+
+        $pet2 = Pet::where('age', '<', 5)->first();
+        $pet2_contents = $column->getContents($pet2);
+        $this->assertSame(2, $pet2_contents->getData()['attributes']['age']);
 
     }
 }

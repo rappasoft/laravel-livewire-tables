@@ -8,6 +8,7 @@ use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Rappasoft\LaravelLivewireTables\Tests\TestServiceProvider;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{BreedsTable,PetsTable,PetsTableEvents,PetsTableUnpaginated,PetsTableWithOwner,SpeciesTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
@@ -35,7 +36,7 @@ class TestCase extends Orchestra
     protected function setUp(): void
     {
         parent::setUp();
-
+        
         if (! Breed::where('id', 1)->get()) {
             include_once __DIR__.'/../database/migrations/create_test_tables.php.stub';
             (new \CreateTestTables)->down();
@@ -139,6 +140,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
+            TestServiceProvider::class,
             LivewireServiceProvider::class,
             LaravelLivewireTablesServiceProvider::class,
             BladeIconsServiceProvider::class,
