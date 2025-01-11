@@ -7,9 +7,9 @@ use Illuminate\Support\HtmlString;
 use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{HasComponentView, HasSlot};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ComponentColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ComponentColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{HasSlot,HasComponentView};
 
 class ComponentColumn extends Column
 {
@@ -45,7 +45,7 @@ class ComponentColumn extends Column
         if ($this->hasSlotCallback()) {
             $slotContent = $this->getSlotContent($row, $value);
         }
-        
+
         return view($this->getComponentView(), [
             'attributes' => new ComponentAttributeBag($attributes),
             'slot' => $slotContent,

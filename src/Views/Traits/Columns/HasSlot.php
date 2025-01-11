@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Columns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
-use Closure;
 
 trait HasSlot
 {
@@ -27,7 +27,7 @@ trait HasSlot
 
     public function hasSlotCallback(): bool
     {
-        return (isset($this->slotCallback) && $this->slotCallback !== null);
+        return isset($this->slotCallback) && $this->slotCallback !== null;
     }
 
     public function slot(callable $callback): self
