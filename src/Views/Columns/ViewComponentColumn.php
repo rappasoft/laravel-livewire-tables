@@ -14,7 +14,8 @@ use ReflectionClass;
 class ViewComponentColumn extends Column
 {
     use ViewComponentColumnConfiguration,
-        ViewComponentColumnHelpers;
+        ViewComponentColumnHelpers,
+        HasComponentView;
 
     protected ?string $customComponentView;
 
