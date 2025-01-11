@@ -16,8 +16,9 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BaseTable;
 
-class NoBuildMethodTable extends DataTableComponent
+class NoBuildMethodTable extends BaseTable
 {
     public function configure(): void
     {

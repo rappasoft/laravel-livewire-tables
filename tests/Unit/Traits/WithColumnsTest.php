@@ -22,20 +22,9 @@ final class WithColumnsTest extends TestCase
 
         $view = view('livewire-tables::datatable');
 
-        $testTableDefault->boot();
-        $testTableDefault->mountManagesFilters();
-        $testTableDefault->bootedComponentUtilities();
-        $testTableDefault->bootedManagesFilters();
-        $testTableDefault->bootedWithColumns();
-        $testTableDefault->bootedWithColumnSelect();
-        $testTableDefault->booted();
-        $testTableDefault->renderingWithColumns($view, $view->getData());
-        $testTableDefault->renderingWithColumnSelect($view, $view->getData());
-        $testTableDefault->renderingWithCustomisations($view, $view->getData());
-        $testTableDefault->renderingWithData($view, $view->getData());
-        $testTableDefault->renderingWithReordering($view, $view->getData());
-        $testTableDefault->renderingWithPagination($view, $view->getData());
-        $testTableDefault->render();
+        $testTableDefault->bootAll();
+        $view = $testTableDefault->renderAll();
+
         $this->assertSame(9, $view->getData()['columns']->count());
     }
 }

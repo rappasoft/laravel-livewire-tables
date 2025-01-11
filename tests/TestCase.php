@@ -96,101 +96,35 @@ class TestCase extends Orchestra
     {
         $view = view('livewire-tables::datatable');
         $this->basicTable = new PetsTable;
-        $this->basicTable->mountManagesFilters();
-        $this->basicTable->boot();
-        $this->basicTable->bootedManagesFilters();
-        $this->basicTable->bootedComponentUtilities();
-        $this->basicTable->bootedWithColumns();
-        $this->basicTable->bootedWithColumnSelect();
-        $this->basicTable->booted();
-        $this->basicTable->renderingWithColumns($view, $view->getData());
-        $this->basicTable->renderingWithColumnSelect($view, $view->getData());
-        $this->basicTable->renderingWithCustomisations($view, $view->getData());
-        $this->basicTable->renderingWithData($view, $view->getData());
-        $this->basicTable->renderingWithReordering($view, $view->getData());
-        $this->basicTable->renderingWithPagination($view, $view->getData());
-        $this->basicTable->render();
+        $this->basicTable->bootAll();
     }
 
     protected function setupEventsTable()
     {
         $view = view('livewire-tables::datatable');
         $this->eventsTable = new PetsTableEvents;
-        $this->eventsTable->mountManagesFilters();
-        $this->eventsTable->boot();
-        $this->eventsTable->bootedComponentUtilities();
-        $this->eventsTable->bootedManagesFilters();
-        $this->eventsTable->bootedWithColumns();
-        $this->eventsTable->bootedWithColumnSelect();
-        $this->eventsTable->booted();
-        $this->eventsTable->renderingWithColumns($view, $view->getData());
-        $this->eventsTable->renderingWithColumnSelect($view, $view->getData());
-        $this->eventsTable->renderingWithCustomisations($view, $view->getData());
-        $this->eventsTable->renderingWithData($view, $view->getData());
-        $this->eventsTable->renderingWithReordering($view, $view->getData());
-        $this->eventsTable->renderingWithPagination($view, $view->getData());
-
-        $this->eventsTable->render();
+        $this->eventsTable->bootAll();
     }
 
     protected function setupBreedsTable()
     {
         $view = view('livewire-tables::datatable');
         $this->breedsTable = new BreedsTable;
-        $this->breedsTable->mountManagesFilters();
-        $this->breedsTable->boot();
-        $this->breedsTable->bootedComponentUtilities();
-        $this->breedsTable->bootedManagesFilters();
-        $this->breedsTable->bootedWithColumns();
-        $this->breedsTable->bootedWithColumnSelect();
-        $this->breedsTable->booted();
-        $this->breedsTable->renderingWithColumns($view, $view->getData());
-        $this->breedsTable->renderingWithColumnSelect($view, $view->getData());
-        $this->breedsTable->renderingWithCustomisations($view, $view->getData());
-        $this->breedsTable->renderingWithData($view, $view->getData());
-        $this->breedsTable->renderingWithReordering($view, $view->getData());
-        $this->breedsTable->renderingWithPagination($view, $view->getData());
-        $this->breedsTable->render();
+        $this->breedsTable->bootAll();
     }
 
     protected function setupPetOwnerTable()
     {
         $view = view('livewire-tables::datatable');
         $this->petOwnerTable = new PetsTableWithOwner;
-        $this->petOwnerTable->mountManagesFilters();
-        $this->petOwnerTable->boot();
-        $this->petOwnerTable->bootedComponentUtilities();
-        $this->petOwnerTable->bootedManagesFilters();
-        $this->petOwnerTable->bootedWithColumns();
-        $this->petOwnerTable->bootedWithColumnSelect();
-        $this->petOwnerTable->booted();
-        $this->petOwnerTable->renderingWithColumns($view, $view->getData());
-        $this->petOwnerTable->renderingWithColumnSelect($view, $view->getData());
-        $this->petOwnerTable->renderingWithCustomisations($view, $view->getData());
-        $this->petOwnerTable->renderingWithData($view, $view->getData());
-        $this->petOwnerTable->renderingWithReordering($view, $view->getData());
-        $this->petOwnerTable->renderingWithPagination($view, $view->getData());
-        $this->petOwnerTable->render();
+        $this->petOwnerTable->bootAll();
     }
 
     protected function setupSpeciesTable()
     {
         $view = view('livewire-tables::datatable');
         $this->speciesTable = new SpeciesTable;
-        $this->speciesTable->mountManagesFilters();
-        $this->speciesTable->boot();
-        $this->speciesTable->bootedComponentUtilities();
-        $this->speciesTable->bootedManagesFilters();
-        $this->speciesTable->bootedWithColumns();
-        $this->speciesTable->bootedWithColumnSelect();
-        $this->speciesTable->booted();
-        $this->speciesTable->renderingWithColumns($view, $view->getData());
-        $this->speciesTable->renderingWithColumnSelect($view, $view->getData());
-        $this->speciesTable->renderingWithCustomisations($view, $view->getData());
-        $this->speciesTable->renderingWithData($view, $view->getData());
-        $this->speciesTable->renderingWithReordering($view, $view->getData());
-        $this->speciesTable->renderingWithPagination($view, $view->getData());
-        $this->speciesTable->render();
+        $this->speciesTable->bootAll();
     }
 
     protected function setupUnpaginatedTable()
@@ -198,20 +132,7 @@ class TestCase extends Orchestra
 
         $view = view('livewire-tables::datatable');
         $this->unpaginatedTable = new PetsTableUnpaginated;
-        $this->unpaginatedTable->mountManagesFilters();
-        $this->unpaginatedTable->boot();
-        $this->unpaginatedTable->bootedComponentUtilities();
-        $this->unpaginatedTable->bootedManagesFilters();
-        $this->unpaginatedTable->bootedWithColumns();
-        $this->unpaginatedTable->bootedWithColumnSelect();
-        $this->unpaginatedTable->booted();
-        $this->unpaginatedTable->renderingWithColumns($view, $view->getData());
-        $this->unpaginatedTable->renderingWithColumnSelect($view, $view->getData());
-        $this->unpaginatedTable->renderingWithCustomisations($view, $view->getData());
-        $this->unpaginatedTable->renderingWithData($view, $view->getData());
-        $this->unpaginatedTable->renderingWithReordering($view, $view->getData());
-        $this->unpaginatedTable->renderingWithPagination($view, $view->getData());
-        $this->unpaginatedTable->render();
+        $this->unpaginatedTable->bootAll();
 
     }
 

@@ -17,12 +17,12 @@ final class CustomAttributesTest extends TestCase
 
             public function configure(): void
             {
+                $this->setPrimaryKey('id');
                 $this->setDataTableFingerprint('test');
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertSame([
             'default' => false,
@@ -39,12 +39,13 @@ final class CustomAttributesTest extends TestCase
 
             public function configure(): void
             {
+                $this->setPrimaryKey('id');
+
                 $this->setDataTableFingerprint('test');
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertSame([
             'default-colors' => false,
@@ -60,12 +61,13 @@ final class CustomAttributesTest extends TestCase
 
             public function configure(): void
             {
+                $this->setPrimaryKey('id');
+
                 $this->setDataTableFingerprint('test');
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertSame([
             'default' => true,
@@ -82,12 +84,13 @@ final class CustomAttributesTest extends TestCase
 
             public function configure(): void
             {
+                $this->setPrimaryKey('id');
+
                 $this->setDataTableFingerprint('test');
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertSame([
             'default-colors' => true,

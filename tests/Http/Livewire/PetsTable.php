@@ -5,7 +5,6 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\App;
 use Livewire\Attributes\On;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
@@ -20,36 +19,15 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
-class PetsTable extends DataTableComponent
+class PetsTable extends BaseTable
 {
     public $model = Pet::class;
-
-    public string $paginationTest = 'standard';
 
     public function changeLocale(string $locale)
     {
         App::setLocale($locale);
     }
 
-    public function enableDetailedPagination(string $type = 'standard')
-    {
-        $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);
-        $this->setPaginationMethod($type);
-        $this->setDisplayPaginationDetailsEnabled();
-
-    }
-
-    public function disableDetailedPagination(string $type = 'standard')
-    {
-        $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);
-        $this->setPaginationMethod($type);
-        $this->setDisplayPaginationDetailsDisabled();
-    }
-
-    public function setPaginationTest(string $type)
-    {
-        $this->paginationTest = $type;
-    }
 
     public function configure(): void
     {
@@ -174,4 +152,6 @@ class PetsTable extends DataTableComponent
                 ->setFilterPillBlade('livewire-tables::tests.testFilterPills'),
         ];
     }
+
+
 }

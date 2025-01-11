@@ -185,19 +185,13 @@ final class SearchConfigurationTest extends TestCase
         {
             public ?array $testAttributesArray;
 
-            public function configure(): void
-            {
-                $this->setDataTableFingerprint('test');
-            }
-
             public function pubSetSearchFieldAttributes(array $attributes)
             {
                 $this->setSearchFieldAttributes($attributes);
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertSame(['default' => true, 'default-colors' => true, 'default-styling' => true], $mock->getSearchFieldAttributes());
 
@@ -212,11 +206,6 @@ final class SearchConfigurationTest extends TestCase
         $mock = new class extends PetsTable
         {
             public ?array $testAttributesArray;
-
-            public function configure(): void
-            {
-                $this->setDataTableFingerprint('test');
-            }
 
             public function pubSetSearchFieldAttributes(array $attributes)
             {
@@ -234,8 +223,7 @@ final class SearchConfigurationTest extends TestCase
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertFalse($mock->hasSearchIcon());
         $mock->pubSetSearchIcon('heroicon-m-magnifying-glass-2');
@@ -250,11 +238,6 @@ final class SearchConfigurationTest extends TestCase
         $mock = new class extends PetsTable
         {
             public ?array $testAttributesArray;
-
-            public function configure(): void
-            {
-                $this->setDataTableFingerprint('test');
-            }
 
             public function pubSetSearchFieldAttributes(array $attributes)
             {
@@ -272,8 +255,7 @@ final class SearchConfigurationTest extends TestCase
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertFalse($mock->hasSearchIcon());
         $mock->pubSetSearchIconEnabled();
@@ -289,12 +271,6 @@ final class SearchConfigurationTest extends TestCase
         $mock = new class extends PetsTable
         {
             public ?array $testAttributesArray;
-
-            public function configure(): void
-            {
-                $this->setDataTableFingerprint('test');
-
-            }
 
             public function pubSetSearchFieldAttributes(array $attributes)
             {
@@ -312,8 +288,7 @@ final class SearchConfigurationTest extends TestCase
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertSame('h-4 w-4', $mock->getSearchIconClasses());
         $this->assertSame([

@@ -36,8 +36,7 @@ final class FilterStatusTest extends TestCase
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertTrue($mock->filtersAreEnabled());
         $this->assertFalse($mock->filtersAreDisabled());
@@ -71,8 +70,7 @@ final class FilterStatusTest extends TestCase
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertTrue($mock->filtersAreDisabled());
         $this->assertFalse($mock->filtersAreEnabled());

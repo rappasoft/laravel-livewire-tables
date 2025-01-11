@@ -24,14 +24,7 @@ final class QueryStringHelpersTest extends TestCase
             }
         };
 
-        $testTableQueryString->mountManagesFilters();
-        $testTableQueryString->configure();
-        $testTableQueryString->boot();
-        $testTableQueryString->bootedComponentUtilities();
-        $testTableQueryString->bootedManagesFilters();
-        $testTableQueryString->bootedWithColumns();
-        $testTableQueryString->bootedWithColumnSelect();
-        $testTableQueryString->booted();
+        $testTableQueryString->bootAll();
 
         $this->assertSame([], $testTableQueryString->getCurrentQueryStringBinding());
 
@@ -54,14 +47,7 @@ final class QueryStringHelpersTest extends TestCase
             }
         };
 
-        $testTableQueryString->mountManagesFilters();
-        $testTableQueryString->configure();
-        $testTableQueryString->boot();
-        $testTableQueryString->bootedComponentUtilities();
-        $testTableQueryString->bootedManagesFilters();
-        $testTableQueryString->bootedWithColumns();
-        $testTableQueryString->bootedWithColumnSelect();
-        $testTableQueryString->booted();
+        $testTableQueryString->bootAll();
 
         $this->assertSame(['table' => ['except' => null, 'history' => false, 'keep' => false, 'as' => 'table']], $testTableQueryString->getCurrentQueryStringBinding());
 
@@ -84,14 +70,7 @@ final class QueryStringHelpersTest extends TestCase
             }
         };
 
-        $testTableQueryString->mountManagesFilters();
-        $testTableQueryString->configure();
-        $testTableQueryString->boot();
-        $testTableQueryString->bootedComponentUtilities();
-        $testTableQueryString->bootedManagesFilters();
-        $testTableQueryString->bootedWithColumns();
-        $testTableQueryString->bootedWithColumnSelect();
-        $testTableQueryString->booted();
+        $testTableQueryString->bootAll();
 
         $this->assertFalse($testTableQueryString->hasQueryStringAlias());
         $this->assertSame('table', $testTableQueryString->getQueryStringAlias());

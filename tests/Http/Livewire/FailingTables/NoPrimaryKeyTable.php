@@ -17,8 +17,9 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BaseTable;
 
-class NoPrimaryKeyTable extends DataTableComponent
+class NoPrimaryKeyTable extends BaseTable
 {
     public $model = Pet::class;
 

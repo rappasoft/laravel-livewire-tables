@@ -192,14 +192,7 @@ final class ColumnHelpersTest extends TestCase
                 return [];
             }
         };
-        $testTable->mountManagesFilters();
-        $testTable->configure();
-        $testTable->boot();
-        $testTable->bootedComponentUtilities();
-        $testTable->bootedManagesFilters();
-        $testTable->bootedWithColumns();
-        $testTable->bootedWithColumnSelect();
-        $testTable->booted();
+        $testTable->bootAll();
 
     }
 }
