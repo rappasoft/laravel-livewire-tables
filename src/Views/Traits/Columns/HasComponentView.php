@@ -10,13 +10,10 @@ trait HasComponentView
 
     public function component(string $component): self
     {
-        if (View::exists('components.'.$component))
-        {
+        if (View::exists('components.'.$component)) {
             $this->componentView = 'components.'.$component;
-        }
-        elseif (View::exists($component))
-        {
-            $this->componentView = $component;    
+        } elseif (View::exists($component)) {
+            $this->componentView = $component;
         }
 
         return $this;

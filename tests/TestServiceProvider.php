@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Components\TestComponent;
 
 class TestServiceProvider extends ServiceProvider
