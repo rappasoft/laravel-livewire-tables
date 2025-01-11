@@ -22,20 +22,9 @@ final class WithCustomisationsTest extends TestCase
         };
         $view = view('livewire-tables::datatable');
 
-        $temp->mountManagesFilters();
-        $temp->boot();
-        $temp->bootedComponentUtilities();
-        $temp->bootedManagesFilters();
-        $temp->bootedWithColumns();
-        $temp->bootedWithColumnSelect();
-        $temp->booted();
-        $temp->renderingWithColumns($view, $view->getData());
-        $temp->renderingWithColumnSelect($view, $view->getData());
-        $temp->renderingWithCustomisations($view, $view->getData());
-        $temp->renderingWithData($view, $view->getData());
-        $temp->renderingWithReordering($view, $view->getData());
-        $temp->renderingWithPagination($view, $view->getData());
-        $temp->render();
+        $temp->bootAll();
+        $view = $temp->renderAll();
+
         $layoutConfig = $view->getData()['layoutConfig'];
 
         $this->assertSame($temp->getLayout(), $layoutConfig->view);
@@ -55,20 +44,9 @@ final class WithCustomisationsTest extends TestCase
         };
         $view = view('livewire-tables::datatable');
 
-        $temp->mountManagesFilters();
-        $temp->boot();
-        $temp->bootedComponentUtilities();
-        $temp->bootedManagesFilters();
-        $temp->bootedWithColumns();
-        $temp->bootedWithColumnSelect();
-        $temp->booted();
-        $temp->renderingWithColumns($view, $view->getData());
-        $temp->renderingWithColumnSelect($view, $view->getData());
-        $temp->renderingWithCustomisations($view, $view->getData());
-        $temp->renderingWithData($view, $view->getData());
-        $temp->renderingWithReordering($view, $view->getData());
-        $temp->renderingWithPagination($view, $view->getData());
-        $temp->render();
+        $temp->bootAll();
+        $view = $temp->renderAll();
+
         $layoutConfig = $view->getData()['layoutConfig'];
 
         $this->assertSame($temp->getSection(), $layoutConfig->slotOrSection);
@@ -88,20 +66,8 @@ final class WithCustomisationsTest extends TestCase
         };
         $view = view('livewire-tables::datatable');
 
-        $temp->mountManagesFilters();
-        $temp->boot();
-        $temp->bootedComponentUtilities();
-        $temp->bootedManagesFilters();
-        $temp->bootedWithColumns();
-        $temp->bootedWithColumnSelect();
-        $temp->booted();
-        $temp->renderingWithColumns($view, $view->getData());
-        $temp->renderingWithColumnSelect($view, $view->getData());
-        $temp->renderingWithCustomisations($view, $view->getData());
-        $temp->renderingWithData($view, $view->getData());
-        $temp->renderingWithReordering($view, $view->getData());
-        $temp->renderingWithPagination($view, $view->getData());
-        $temp->render();
+        $temp->bootAll();
+        $view = $temp->renderAll();
         $layoutConfig = $view->getData()['layoutConfig'];
 
         $this->assertSame($temp->getSlot(), $layoutConfig->slotOrSection);
@@ -121,18 +87,8 @@ final class WithCustomisationsTest extends TestCase
         };
         $view = view('livewire-tables::datatable');
 
-        $temp->boot();
-        $temp->bootedComponentUtilities();
-        $temp->bootedWithColumns();
-        $temp->bootedWithColumnSelect();
-        $temp->booted();
-        $temp->renderingWithColumns($view, $view->getData());
-        $temp->renderingWithColumnSelect($view, $view->getData());
-        $temp->renderingWithCustomisations($view, $view->getData());
-        $temp->renderingWithData($view, $view->getData());
-        $temp->renderingWithReordering($view, $view->getData());
-        $temp->renderingWithPagination($view, $view->getData());
-        $temp->render();
+        $temp->bootAll();
+        $view = $temp->renderAll();
         $layoutConfig = $view->getData()['layoutConfig'];
         $this->assertSame('extends', $layoutConfig->type);
         $this->assertSame($temp->getExtends(), $layoutConfig->view);

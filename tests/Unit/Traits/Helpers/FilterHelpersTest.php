@@ -224,15 +224,7 @@ final class FilterHelpersTest extends TestCase
                 parent::configure();
             }
         };
-        $testTable->mountManagesFilters();
-
-        $testTable->configure();
-        $testTable->boot();
-        $testTable->bootedManagesFilters();
-        $testTable->bootedComponentUtilities();
-        $testTable->bootedWithColumns();
-        $testTable->bootedWithColumnSelect();
-        $testTable->booted();
+        $testTable->bootAll();
 
         $testTable->setFilter('breed_id_filter', '2');
         $testTable->updatedFilterComponents('2', 'breed_id_filter');

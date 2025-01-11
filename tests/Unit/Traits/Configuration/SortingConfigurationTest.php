@@ -105,25 +105,6 @@ final class SortingConfigurationTest extends TestCase
                 $this->setDefaultSort('name', 'desc');
             }
         };
-        $viewDesc = view('livewire-tables::datatable');
-
-        $tempDesc->boot();
-        $tempDesc->bootedComponentUtilities();
-        $tempDesc->bootedManagesFilters();
-        $tempDesc->bootedWithColumns();
-        $tempDesc->bootedWithColumnSelect();
-        $tempDesc->booted();
-        $tempDesc->mountManagesFilters();
-        $tempDesc->mountWithSorting();
-        $tempDesc->renderingWithColumns($viewDesc, $viewDesc->getData());
-        $tempDesc->renderingWithColumnSelect($viewDesc, $viewDesc->getData());
-        $tempDesc->renderingWithCustomisations($viewDesc, $viewDesc->getData());
-        $tempDesc->renderingWithData($viewDesc, $viewDesc->getData());
-        $tempDesc->renderingWithReordering($viewDesc, $viewDesc->getData());
-        $tempDesc->renderingWithPagination($viewDesc, $viewDesc->getData());
-        $tempDesc->render();
-        $this->assertSame(['name' => 'desc'], $tempDesc->getSorts());
-        $this->assertSame('desc', $tempDesc->getSort('name'));
 
         $tempAsc = new class extends PetsTable
         {
@@ -134,22 +115,17 @@ final class SortingConfigurationTest extends TestCase
                 $this->setDefaultSort('name', 'asc');
             }
         };
+
+        $viewDesc = view('livewire-tables::datatable');
+        $tempDesc->bootAll();
+        $tempDesc->renderAll($viewDesc);
         $viewAsc = view('livewire-tables::datatable');
-        $tempAsc->boot();
-        $tempAsc->bootedComponentUtilities();
-        $tempAsc->bootedManagesFilters();
-        $tempAsc->bootedWithColumns();
-        $tempAsc->bootedWithColumnSelect();
-        $tempAsc->booted();
-        $tempAsc->mountManagesFilters();
-        $tempAsc->mountWithSorting();
-        $tempAsc->renderingWithColumns($viewAsc, $viewAsc->getData());
-        $tempAsc->renderingWithColumnSelect($viewAsc, $viewAsc->getData());
-        $tempAsc->renderingWithCustomisations($viewAsc, $viewAsc->getData());
-        $tempAsc->renderingWithData($viewAsc, $viewAsc->getData());
-        $tempAsc->renderingWithReordering($viewAsc, $viewAsc->getData());
-        $tempAsc->renderingWithPagination($viewAsc, $viewAsc->getData());
-        $tempAsc->render();
+        $tempAsc->bootAll();
+        $tempAsc->renderAll($viewAsc);
+
+        $this->assertSame(['name' => 'desc'], $tempDesc->getSorts());
+        $this->assertSame('desc', $tempDesc->getSort('name'));
+
         $this->assertSame(['name' => 'asc'], $tempAsc->getSorts());
         $this->assertSame('asc', $tempAsc->getSort('name'));
 
