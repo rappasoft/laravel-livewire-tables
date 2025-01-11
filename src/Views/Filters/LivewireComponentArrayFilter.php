@@ -25,7 +25,7 @@ class LivewireComponentArrayFilter extends Filter
 
     public function isEmpty(array $value = []): bool
     {
-        return (empty($value) || (count($value) == 1 && (is_null($value[0]) || $value[0] == "")));
+        return empty($value) || (count($value) == 1 && (is_null($value[0]) || $value[0] == ''));
     }
 
     /**
