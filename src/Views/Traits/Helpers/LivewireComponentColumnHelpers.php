@@ -25,11 +25,10 @@ trait LivewireComponentColumnHelpers
     {
         return isset($this->livewireComponent);
     }
-    
+
     public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        if(!$this->hasLivewireComponent())
-        {
+        if (! $this->hasLivewireComponent()) {
             throw new DataTableConfigurationException('You must define a Livewire Component for this column');
         }
 
@@ -61,5 +60,4 @@ trait LivewireComponentColumnHelpers
         ));
 
     }
-
 }

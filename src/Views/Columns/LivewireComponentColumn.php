@@ -17,5 +17,4 @@ class LivewireComponentColumn extends Column
         LivewireComponentColumnHelpers;
 
     protected ?string $livewireComponent;
-
 }
