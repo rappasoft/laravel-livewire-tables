@@ -22,8 +22,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 class PetsTableWithOwner extends PetsTable
 {
-
-
     public function columns(): array
     {
         return [

@@ -4,16 +4,15 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BaseTable;
 use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed,Pet,Species};
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\{ImageColumn,LinkColumn};
 use Rappasoft\LaravelLivewireTables\Views\Filters\{DateFilter,DateTimeFilter,MultiSelectDropdownFilter,MultiSelectFilter,NumberFilter,SelectFilter,TextFilter};
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\BaseTable;
 
 class BrokenSecondaryHeaderTable extends BaseTable
 {
     public $model = Pet::class;
-
 
     public function configure(): void
     {

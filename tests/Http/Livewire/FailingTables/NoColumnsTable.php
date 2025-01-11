@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables;
 
-use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 
 class NoColumnsTable extends PetsTable
 {
@@ -14,5 +14,4 @@ class NoColumnsTable extends PetsTable
         return [
         ];
     }
-
 }

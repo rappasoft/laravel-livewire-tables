@@ -28,7 +28,6 @@ class PetsTable extends BaseTable
         App::setLocale($locale);
     }
 
-
     public function configure(): void
     {
         $this->setPrimaryKey('id');
@@ -152,6 +151,4 @@ class PetsTable extends BaseTable
                 ->setFilterPillBlade('livewire-tables::tests.testFilterPills'),
         ];
     }
-
-
 }

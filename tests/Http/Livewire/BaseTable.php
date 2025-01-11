@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 
 abstract class BaseTable extends DataTableComponent
 {
-    
     public string $paginationTest = 'standard';
 
     public function enableDetailedPagination(string $type = 'standard')
@@ -44,10 +43,10 @@ abstract class BaseTable extends DataTableComponent
         $this->mountWithSorting();
         $this->renderAll($view);
     }
+
     public function renderAll($view = null)
     {
-        if (is_null($view))
-        {
+        if (is_null($view)) {
             $view = view('livewire-tables::datatable');
         }
         $this->renderingWithColumns($view, $view->getData());
@@ -57,6 +56,7 @@ abstract class BaseTable extends DataTableComponent
         $this->renderingWithReordering($view, $view->getData());
         $this->renderingWithPagination($view, $view->getData());
         $this->render();
+
         return $view;
     }
 }
