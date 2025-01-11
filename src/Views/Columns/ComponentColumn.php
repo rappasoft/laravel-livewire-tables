@@ -9,15 +9,12 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ComponentColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ComponentColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{HasSlot,HasComponentView};
 
 class ComponentColumn extends Column
 {
-    use ComponentColumnConfiguration,
-        ComponentColumnHelpers;
-
-    protected string $componentView;
-
-    protected mixed $slotCallback = null;
+    use HasComponentView,
+        HasSlot;
 
     public function __construct(string $title, ?string $from = null)
     {
@@ -46,12 +43,9 @@ class ComponentColumn extends Column
             }
         }
         if ($this->hasSlotCallback()) {
-            $slotContent = call_user_func($this->getSlotCallback(), $value, $row, $this);
-            if (is_string($slotContent)) {
-                $slotContent = new HtmlString($slotContent);
-            }
+            $slotContent = $this->getSlotContent($row, $value);
         }
-
+        
         return view($this->getComponentView(), [
             'attributes' => new ComponentAttributeBag($attributes),
             'slot' => $slotContent,

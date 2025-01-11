@@ -8,14 +8,13 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ViewComponentColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ViewComponentColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasComponentView;
 use ReflectionClass;
 
 class ViewComponentColumn extends Column
 {
     use ViewComponentColumnConfiguration,
         ViewComponentColumnHelpers;
-
-    protected ?string $componentView;
 
     protected ?string $customComponentView;
 
