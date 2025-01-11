@@ -5,8 +5,8 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn ;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 
 final class LivewireComponentColumnTest extends TestCase
 {
@@ -52,7 +52,7 @@ final class LivewireComponentColumnTest extends TestCase
         $column->component('test-component');
 
         $this->assertTrue($column->hasLivewireComponent());
-        $this->assertSame('test-component',$column->getLivewireComponent());
+        $this->assertSame('test-component', $column->getLivewireComponent());
     }
 
     public function test_can_not_avoid_defining_livewire_component(): void
@@ -67,7 +67,7 @@ final class LivewireComponentColumnTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $column =  LivewireComponentColumn::make('Name')->component('test-component')->attributes(fn ($value, $row, Column $column) => 'test');
+        $column = LivewireComponentColumn::make('Name')->component('test-component')->attributes(fn ($value, $row, Column $column) => 'test');
 
         $column->getContents(Pet::find(1));
     }
@@ -92,5 +92,4 @@ final class LivewireComponentColumnTest extends TestCase
 
         $this->assertTrue($column->hasAttributesCallback());
     }
-
 }
