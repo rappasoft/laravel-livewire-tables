@@ -24,6 +24,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - WithSearch Tweaks by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2163
 - Optimize Header/Footer by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2164
 - Clean up Column Component View and Slot behaviours by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2169
+- Adjustments for ComponentColumn - cleaning up behaviours by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2173
 
 ### Testing
 - Add Missing Test for getCustomSortingPillDirectionsLabel with invalid direction by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2130
@@ -39,6 +40,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Add queryStringAliasTest by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2161
 - Migrate LivewireComponentColumn methods and add some missing basic tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2168
 - Add initial tests for LivewireComponentArrayFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2170
+- Improve centralisation of tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2172
 
 ## [v3.5.10] - 2024-12-11
 ### Tweaks
