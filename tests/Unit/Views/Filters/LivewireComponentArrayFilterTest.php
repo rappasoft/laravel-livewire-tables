@@ -48,7 +48,6 @@ final class LivewireComponentArrayFilterTest extends FilterTestCase
 
     public function test_can_get_filter_default_value(): void
     {
-        $this->assertSame([],self::$filterInstance->getDefaultValue());
+        $this->assertSame([], self::$filterInstance->getDefaultValue());
     }
-
 }
