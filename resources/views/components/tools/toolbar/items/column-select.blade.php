@@ -13,7 +13,14 @@
                     <button
                         x-on:click="open = !open"
                         type="button"
-                        class="inline-flex justify-center px-4 py-2 w-full text-sm font-medium text-gray-700 bg-white rounded-md border border-gray-300 shadow-sm hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
+                        {{
+                            $attributes->merge($this->getColumnSelectButtonAttributes())
+                            ->class([
+                                'inline-flex justify-center px-4 py-2 w-full text-sm font-medium rounded-md border shadow-sm focus:ring focus:ring-opacity-50' => $this->getColumnSelectButtonAttributes()['default-styling'],
+                                'text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $this->getColumnSelectButtonAttributes()['default-colors'],
+                            ])
+                            ->except(['default-styling', 'default-colors'])
+                        }}
                         aria-haspopup="true"
                         x-bind:aria-expanded="open"
                         aria-expanded="true"
@@ -45,7 +52,14 @@
                                 class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait"
                             >
                                 <input
-                                    class="text-indigo-600 transition duration-150 ease-in-out border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
+                                    {{
+                                        $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                        ->class([
+                                            'transition duration-150 ease-in-out rounded shadow-sm focus:ring focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-wait' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
+                                            'text-indigo-600 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-colors'],
+                                        ])
+                                        ->except(['default-styling', 'default-colors'])
+                                    }}
                                     wire:loading.attr="disabled"
                                     type="checkbox"
                                     @checked($this->getSelectableSelectedColumns()->count() === $this->getSelectableColumns()->count())
@@ -65,7 +79,14 @@
                                     class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait"
                                 >
                                     <input
-                                        class="text-indigo-600 rounded border-gray-300 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
+                                        {{
+                                            $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                            ->class([
+                                                'transition duration-150 ease-in-out rounded shadow-sm focus:ring focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-wait' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
+                                                'text-indigo-600 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-colors'],
+                                            ])
+                                            ->except(['default-styling', 'default-colors'])
+                                        }}
                                         wire:model.live="selectedColumns" wire:target="selectedColumns"
                                         wire:loading.attr="disabled" type="checkbox"
                                         value="{{ $columnSlug }}" />
@@ -98,9 +119,13 @@
         >
             <button
                 x-on:click="open = !open"
-                @class([
-                    'btn dropdown-toggle d-block w-100 d-md-inline' => $isBootstrap,
-                ])
+                {{
+                    $attributes->merge($this->getColumnSelectButtonAttributes())
+                    ->class([
+                        'btn dropdown-toggle d-block w-100 d-md-inline' => $this->getColumnSelectButtonAttributes()['default-styling'],
+                    ])
+                    ->except(['default-styling', 'default-colors'])
+                }}
                 type="button" id="{{ $tableName }}-columnSelect" aria-haspopup="true"
                 x-bind:aria-expanded="open"
             >
@@ -134,7 +159,13 @@
                         <input
                             wire:loading.attr="disabled"
                             type="checkbox"
-                            class="form-check-input"
+                            {{
+                                $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                ->class([
+                                    'form-check-input' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
+                                ])
+                                ->except(['default-styling', 'default-colors'])
+                            }}
                             @if($this->getSelectableSelectedColumns()->count() == $this->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                         />
 
@@ -173,7 +204,13 @@
                                 wire:target="selectedColumns"
                                 wire:loading.attr="disabled"
                                 type="checkbox"
-                                class="form-check-input"
+                                {{
+                                    $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                    ->class([
+                                        'form-check-input' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
+                                    ])
+                                    ->except(['default-styling', 'default-colors'])
+                                }}
                                 value="{{ $columnSlug }}"
                             />
                             <label

@@ -7,12 +7,14 @@ use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Styling\HasColumnSelectStyling;
 
 trait WithColumnSelect
 {
     use ColumnSelectConfiguration,
         ColumnSelectHelpers,
-        HasQueryStringForColumnSelect;
+        HasQueryStringForColumnSelect,
+        HasColumnSelectStyling;
 
     #[Locked]
     public array $columnSelectColumns = ['setupRun' => false, 'selected' => [], 'deselected' => [], 'defaultdeselected' => []];
