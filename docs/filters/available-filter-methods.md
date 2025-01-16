@@ -208,6 +208,58 @@ TextFilter::make('Name')
     ),
 ```
 
+## setInputAttributes
+Allows for customising the attributes that will apply to the input field for the filter.
+
+By default, this replaces the default classes on the Filter Input, if you would like to keep them, set the default-styling and/or default-colors flags to true.
+
+### TextFilter Example
+The following would:
+- Set a maxlength of 75
+- Set a placeholder of "Enter a Name"
+- Replace the default colors
+- Retain the default styling (e.g. rounding/shadow)
+
+```php
+public function filters(): array
+{
+    return [
+        TextFilter::make('Name')
+        ->setInputAttributes([
+            'maxlength' => '75',
+            'placeholder' => 'Enter a Name',
+            'class' => 'text-white bg-red-500 dark:bg-red-500',
+            'default-colors' => false,
+            'default-styling' => true,
+        ]),
+    ];
+}
+```
+
+### NumberFilter Example
+The following would:
+- Set a min of 5
+- Set a max of 20
+- Set steps to be 0.5
+- Keep the default colors & styling
+
+```php
+public function filters(): array
+{
+    return [
+        NumberFilter::make('Age')
+        ->setInputAttributes([
+            'min' => '5',
+            'max' => '20',
+            'step' => '0.5',
+            'default-colors' => true,
+            'default-styling' => true,
+        ]),
+    ];
+}
+```
+
+
 ## setCustomView
 Use a fully custom view for a filter.  This will utilise solely your view when rendering this filter.  Note that the following methods will no longer apply to a filter using this:
 - setCustomFilterLabel

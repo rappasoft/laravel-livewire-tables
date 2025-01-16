@@ -4,14 +4,20 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\QueryStringConfiguration;
-use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryString;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\QueryStringHelpers;
 
 trait WithQueryString
 {
     use QueryStringConfiguration,
         QueryStringHelpers;
-    use HasQueryString;
+
+    #[Locked]
+    public array $queryStringConfig = [
+        'columns' => ['status' => false, 'alias' => null],
+        'filter' => ['status' => false, 'alias' => null],
+        'search' => ['status' => true, 'alias' => null],
+        'sorts' => ['status' => true, 'alias' => null],
+    ];
 
     #[Locked]
     public ?bool $queryStringStatus;

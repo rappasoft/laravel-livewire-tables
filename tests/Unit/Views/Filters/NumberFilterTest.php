@@ -3,190 +3,177 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 
-final class NumberFilterTest extends TestCase
+#[Group('Filters')]
+final class NumberFilterTest extends FilterTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        self::$filterInstance = NumberFilter::make('Active');
+        self::$extraFilterInputAttributes = [
+            'max' => null,
+            'min' => null,
+            'placeholder' => null,
+            'type' => 'number',
+            'wire:key' => 'test123-filter-number-active',
+        ];
+
+    }
+
     public function test_can_get_filter_name(): void
     {
-        $filter = NumberFilter::make('Active');
-
-        $this->assertSame('Active', $filter->getName());
+        $this->assertSame('Active', self::$filterInstance->getName());
     }
 
     public function test_can_get_filter_key(): void
     {
-        $filter = NumberFilter::make('Active');
-
-        $this->assertSame('active', $filter->getKey());
+        $this->assertSame('active', self::$filterInstance->getKey());
     }
 
     public function test_can_get_filter_configs(): void
     {
-        $filter = NumberFilter::make('Active');
+        $this->assertSame([], self::$filterInstance->getConfigs());
 
-        $this->assertSame([], $filter->getConfigs());
+        self::$filterInstance->config(['foo' => 'bar']);
 
-        $filter->config(['foo' => 'bar']);
-
-        $this->assertSame(['foo' => 'bar'], $filter->getConfigs());
+        $this->assertSame(['foo' => 'bar'], self::$filterInstance->getConfigs());
     }
 
     public function test_get_a_single_filter_config(): void
     {
-        $filter = NumberFilter::make('Active')
+        self::$filterInstance
             ->config(['foo' => 'bar']);
 
-        $this->assertSame('bar', $filter->getConfig('foo'));
+        $this->assertSame('bar', self::$filterInstance->getConfig('foo'));
     }
 
     public function test_can_get_filter_default_value(): void
     {
-        $filter = NumberFilter::make('Active');
-
-        $this->assertNull($filter->getDefaultValue());
+        $this->assertNull(self::$filterInstance->getDefaultValue());
     }
 
     public function test_can_get_filter_callback(): void
     {
-        $filter = NumberFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->hasFilterCallback());
 
-        $this->assertFalse($filter->hasFilterCallback());
-
-        $filter = NumberFilter::make('Active')
+        self::$filterInstance
             ->filter(function (Builder $builder, int $value) {
                 return $builder->where('breed_id', '>', $value);
             });
 
-        $this->assertTrue($filter->hasFilterCallback());
-        $this->assertIsCallable($filter->getFilterCallback());
+        $this->assertTrue(self::$filterInstance->hasFilterCallback());
+        $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
 
     public function test_can_get_filter_pill_title(): void
     {
-        $filter = NumberFilter::make('Active');
+        $this->assertSame('Active', self::$filterInstance->getFilterPillTitle());
 
-        $this->assertSame('Active', $filter->getFilterPillTitle());
+        self::$filterInstance->setFilterPillTitle('User Status');
 
-        $filter = NumberFilter::make('Active')
-            ->setFilterPillTitle('User Status');
-
-        $this->assertSame('User Status', $filter->getFilterPillTitle());
+        $this->assertSame('User Status', self::$filterInstance->getFilterPillTitle());
     }
 
     public function test_can_check_if_filter_has_configs(): void
     {
-        $filter = NumberFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->hasConfigs());
 
-        $this->assertFalse($filter->hasConfigs());
-
-        $filter = NumberFilter::make('Active')
+        self::$filterInstance
             ->config(['foo' => 'bar']);
 
-        $this->assertTrue($filter->hasConfigs());
+        $this->assertTrue(self::$filterInstance->hasConfigs());
     }
 
     public function test_can_check_filter_config_by_name(): void
     {
-        $filter = NumberFilter::make('Active')
+        self::$filterInstance
             ->config(['foo' => 'bar']);
 
-        $this->assertTrue($filter->hasConfig('foo'));
-        $this->assertFalse($filter->hasConfig('bar'));
+        $this->assertTrue(self::$filterInstance->hasConfig('foo'));
+        $this->assertFalse(self::$filterInstance->hasConfig('bar'));
     }
 
     public function test_can_check_if_filter_is_hidden_from_menus(): void
     {
-        $filter = NumberFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->isHiddenFromMenus());
+        $this->assertTrue(self::$filterInstance->isVisibleInMenus());
 
-        $this->assertFalse($filter->isHiddenFromMenus());
-        $this->assertTrue($filter->isVisibleInMenus());
+        self::$filterInstance->hiddenFromMenus();
 
-        $filter->hiddenFromMenus();
-
-        $this->assertTrue($filter->isHiddenFromMenus());
-        $this->assertFalse($filter->isVisibleInMenus());
+        $this->assertTrue(self::$filterInstance->isHiddenFromMenus());
+        $this->assertFalse(self::$filterInstance->isVisibleInMenus());
     }
 
     public function test_can_check_if_filter_is_hidden_from_pills(): void
     {
-        $filter = NumberFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->isHiddenFromPills());
+        $this->assertTrue(self::$filterInstance->isVisibleInPills());
 
-        $this->assertFalse($filter->isHiddenFromPills());
-        $this->assertTrue($filter->isVisibleInPills());
+        self::$filterInstance->hiddenFromPills();
 
-        $filter->hiddenFromPills();
-
-        $this->assertTrue($filter->isHiddenFromPills());
-        $this->assertFalse($filter->isVisibleInPills());
+        $this->assertTrue(self::$filterInstance->isHiddenFromPills());
+        $this->assertFalse(self::$filterInstance->isVisibleInPills());
     }
 
     public function test_can_check_if_filter_is_hidden_from_count(): void
     {
-        $filter = NumberFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->isHiddenFromFilterCount());
+        $this->assertTrue(self::$filterInstance->isVisibleInFilterCount());
 
-        $this->assertFalse($filter->isHiddenFromFilterCount());
-        $this->assertTrue($filter->isVisibleInFilterCount());
+        self::$filterInstance->hiddenFromFilterCount();
 
-        $filter->hiddenFromFilterCount();
-
-        $this->assertTrue($filter->isHiddenFromFilterCount());
-        $this->assertFalse($filter->isVisibleInFilterCount());
+        $this->assertTrue(self::$filterInstance->isHiddenFromFilterCount());
+        $this->assertFalse(self::$filterInstance->isVisibleInFilterCount());
     }
 
     public function test_can_check_if_filter_is_reset_by_clear_button(): void
     {
-        $filter = NumberFilter::make('Active');
+        $this->assertTrue(self::$filterInstance->isResetByClearButton());
 
-        $this->assertTrue($filter->isResetByClearButton());
+        self::$filterInstance->notResetByClearButton();
 
-        $filter->notResetByClearButton();
-
-        $this->assertFalse($filter->isResetByClearButton());
+        $this->assertFalse(self::$filterInstance->isResetByClearButton());
     }
 
     public function test_can_not_set_number_filter_to_non_number(): void
     {
-        $filter = NumberFilter::make('BreedID');
-        $this->assertFalse($filter->validate('test'));
-        $this->assertFalse($filter->validate(['test']));
+        $this->assertFalse(self::$filterInstance->validate('test'));
+        $this->assertFalse(self::$filterInstance->validate(['test']));
     }
 
     public function test_can_set_number_filter_to_number(): void
     {
-        $filter = NumberFilter::make('BreedID');
-        $this->assertSame(123, $filter->validate(123));
-        $this->assertSame(123.51, $filter->validate(123.51));
-        $this->assertSame(123, $filter->validate('123'));
-        $this->assertSame(123.51, $filter->validate('123.51'));
+        $this->assertSame(123, self::$filterInstance->validate(123));
+        $this->assertSame(123.51, self::$filterInstance->validate(123.51));
+        $this->assertSame(123, self::$filterInstance->validate('123'));
+        $this->assertSame(123.51, self::$filterInstance->validate('123.51'));
 
     }
 
     public function test_can_get_if_number_filter_empty(): void
     {
-        $filter = NumberFilter::make('Active');
-        $this->assertTrue($filter->isEmpty(''));
-        $this->assertTrue($filter->isEmpty('q'));
-        $this->assertFalse($filter->isEmpty('123'));
+        $this->assertTrue(self::$filterInstance->isEmpty(''));
+        $this->assertTrue(self::$filterInstance->isEmpty('q'));
+        $this->assertFalse(self::$filterInstance->isEmpty('123'));
     }
 
     public function test_can_check_if_can_set_default_value(): void
     {
-        $filter = NumberFilter::make('Active');
+        $this->assertNull(self::$filterInstance->getFilterDefaultValue());
 
-        $this->assertNull($filter->getFilterDefaultValue());
+        self::$filterInstance->setFilterDefaultValue(123);
 
-        $filter->setFilterDefaultValue(123);
-
-        $this->assertSame('123', $filter->getFilterDefaultValue());
+        $this->assertSame('123', self::$filterInstance->getFilterDefaultValue());
     }
 
     public function test_can_set_custom_filter_view(): void
     {
-        $filter = NumberFilter::make('Active');
-        $this->assertSame('livewire-tables::components.tools.filters.number', $filter->getViewPath());
-        $filter->setCustomView('test-custom-filter-view');
-        $this->assertSame('test-custom-filter-view', $filter->getViewPath());
+        $this->assertSame('livewire-tables::components.tools.filters.number', self::$filterInstance->getViewPath());
+        self::$filterInstance->setCustomView('test-custom-filter-view');
+        $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
 }

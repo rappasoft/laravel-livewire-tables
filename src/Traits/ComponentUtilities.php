@@ -6,46 +6,22 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Core\Component\{HandlesComputedProperties,HandlesEmptyMessage, HandlesFingerprint, HandlesOfflineIndicator,HandlesTableName};
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
 
 trait ComponentUtilities
 {
-    use ComponentConfiguration,
+    use HandlesTableName,
+        HandlesFingerprint,
+        HandlesEmptyMessage,
+        HandlesComputedProperties,
+        HandlesOfflineIndicator,
+        ComponentConfiguration,
         ComponentHelpers;
 
     public array $table = [];
 
-    protected Builder $builder;
-
     protected $model;
-
-    protected ?string $primaryKey;
-
-    protected array $relationships = [];
-
-    #[Locked]
-    public string $tableName = 'table';
-
-    #[Locked]
-    public ?string $dataTableFingerprint;
-
-    protected bool $offlineIndicatorStatus = true;
-
-    protected bool $eagerLoadAllRelationsStatus = false;
-
-    protected string $emptyMessage = 'No items found, try to broaden your search';
-
-    protected array $additionalSelects = [];
-
-    protected array $extraWiths = [];
-
-    protected array $extraWithCounts = [];
-
-    protected array $extraWithSums = [];
-
-    protected array $extraWithAvgs = [];
-
-    protected bool $useComputedProperties = true;
 
     protected bool $hasRunConfigure = false;
 
@@ -98,17 +74,6 @@ trait ComponentUtilities
             $this->hasRunConfigure = true;
 
         }
-    }
-
-    /**
-     * Returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
-     */
-    protected function generateDataTableFingerprint(): string
-    {
-        $className = str_split(static::class);
-        $crc32 = sprintf('%u', crc32(serialize($className)));
-
-        return base_convert($crc32, 10, 36);
     }
 
     /**

@@ -118,14 +118,7 @@ final class ColumnSelectHelpersTest extends TestCase
                 parent::configure();
             }
         };
-        $testTable->configure();
-        $testTable->boot();
-        $testTable->bootedComponentUtilities();
-        $testTable->bootedWithData();
-        $testTable->bootedWithColumns();
-        $testTable->bootedWithColumnSelect();
-        $testTable->bootedWithSecondaryHeader();
-        $testTable->booted();
+        $testTable->bootAll();
 
         $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $testTable->selectedColumns);
 
@@ -156,14 +149,7 @@ final class ColumnSelectHelpersTest extends TestCase
                 $this->enableColumnSelectEvent();
             }
         };
-        $testTable->configure();
-        $testTable->boot();
-        $testTable->bootedComponentUtilities();
-        $testTable->bootedWithData();
-        $testTable->bootedWithColumns();
-        $testTable->bootedWithColumnSelect();
-        $testTable->bootedWithSecondaryHeader();
-        $testTable->booted();
+        $testTable->bootAll();
 
         $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $testTable->selectedColumns);
 
@@ -186,14 +172,7 @@ final class ColumnSelectHelpersTest extends TestCase
                 $this->disableColumnSelectEvent();
             }
         };
-        $testTable->configure();
-        $testTable->boot();
-        $testTable->bootedComponentUtilities();
-        $testTable->bootedWithData();
-        $testTable->bootedWithColumns();
-        $testTable->bootedWithColumnSelect();
-        $testTable->bootedWithSecondaryHeader();
-        $testTable->booted();
+        $testTable->bootAll();
 
         $this->assertSame(['id', 'sort', 'name', 'age', 'breed', 'other', 'link', 'rowimg'], $testTable->selectedColumns);
         $testTable->selectedColumns = ['id', 'sort', 'name', 'age', 'breed', 'other', 'rowimg'];

@@ -74,8 +74,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchDebounce(1000);
         $this->basicTable->setSearchDefer();
+        $this->basicTable->setSearchDebounce(1000);
     }
 
     public function test_can_set_search_defer(): void
@@ -92,8 +92,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchDefer();
         $this->basicTable->setSearchDebounce(1000);
+        $this->basicTable->setSearchDefer();
     }
 
     public function test_can_set_search_lazy(): void
@@ -110,8 +110,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchLazy();
         $this->basicTable->setSearchDebounce(1000);
+        $this->basicTable->setSearchLazy();
     }
 
     public function test_can_set_search_live(): void
@@ -128,8 +128,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchLive();
         $this->basicTable->setSearchDebounce(1000);
+        $this->basicTable->setSearchLive();
     }
 
     public function test_can_set_search_blur(): void
@@ -146,8 +146,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchBlur();
         $this->basicTable->setSearchDefer();
+        $this->basicTable->setSearchBlur();
     }
 
     public function test_can_set_search_throttle(): void
@@ -165,8 +165,8 @@ final class SearchConfigurationTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $this->basicTable->setSearchThrottle(1000);
         $this->basicTable->setSearchDefer();
+        $this->basicTable->setSearchThrottle(1000);
     }
 
     public function test_can_set_search_placeholder(): void
@@ -185,19 +185,13 @@ final class SearchConfigurationTest extends TestCase
         {
             public ?array $testAttributesArray;
 
-            public function configure(): void
-            {
-                $this->setDataTableFingerprint('test');
-            }
-
             public function pubSetSearchFieldAttributes(array $attributes)
             {
                 $this->setSearchFieldAttributes($attributes);
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertSame(['default' => true, 'default-colors' => true, 'default-styling' => true], $mock->getSearchFieldAttributes());
 
@@ -212,11 +206,6 @@ final class SearchConfigurationTest extends TestCase
         $mock = new class extends PetsTable
         {
             public ?array $testAttributesArray;
-
-            public function configure(): void
-            {
-                $this->setDataTableFingerprint('test');
-            }
 
             public function pubSetSearchFieldAttributes(array $attributes)
             {
@@ -234,8 +223,7 @@ final class SearchConfigurationTest extends TestCase
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertFalse($mock->hasSearchIcon());
         $mock->pubSetSearchIcon('heroicon-m-magnifying-glass-2');
@@ -250,11 +238,6 @@ final class SearchConfigurationTest extends TestCase
         $mock = new class extends PetsTable
         {
             public ?array $testAttributesArray;
-
-            public function configure(): void
-            {
-                $this->setDataTableFingerprint('test');
-            }
 
             public function pubSetSearchFieldAttributes(array $attributes)
             {
@@ -272,8 +255,7 @@ final class SearchConfigurationTest extends TestCase
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertFalse($mock->hasSearchIcon());
         $mock->pubSetSearchIconEnabled();
@@ -289,12 +271,6 @@ final class SearchConfigurationTest extends TestCase
         $mock = new class extends PetsTable
         {
             public ?array $testAttributesArray;
-
-            public function configure(): void
-            {
-                $this->setDataTableFingerprint('test');
-
-            }
 
             public function pubSetSearchFieldAttributes(array $attributes)
             {
@@ -312,8 +288,7 @@ final class SearchConfigurationTest extends TestCase
             }
         };
 
-        $mock->configure();
-        $mock->boot();
+        $mock->bootAll();
 
         $this->assertSame('h-4 w-4', $mock->getSearchIconClasses());
         $this->assertSame([

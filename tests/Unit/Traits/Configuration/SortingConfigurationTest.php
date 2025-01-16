@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Configuration;
 
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class SortingConfigurationTest extends TestCase
@@ -91,5 +92,42 @@ final class SortingConfigurationTest extends TestCase
         $this->basicTable->setSortingPillsStatus(true);
 
         $this->assertTrue($this->basicTable->getSortingPillsStatus());
+    }
+
+    public function test_default_sort_applies_correctly(): void
+    {
+        $tempDesc = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                parent::configure();
+                $this->setSortingEnabled();
+                $this->setDefaultSort('name', 'desc');
+            }
+        };
+
+        $tempAsc = new class extends PetsTable
+        {
+            public function configure(): void
+            {
+                parent::configure();
+                $this->setSortingEnabled();
+                $this->setDefaultSort('name', 'asc');
+            }
+        };
+
+        $viewDesc = view('livewire-tables::datatable');
+        $tempDesc->bootAll();
+        $tempDesc->renderAll($viewDesc);
+        $viewAsc = view('livewire-tables::datatable');
+        $tempAsc->bootAll();
+        $tempAsc->renderAll($viewAsc);
+
+        $this->assertSame(['name' => 'desc'], $tempDesc->getSorts());
+        $this->assertSame('desc', $tempDesc->getSort('name'));
+
+        $this->assertSame(['name' => 'asc'], $tempAsc->getSorts());
+        $this->assertSame('asc', $tempAsc->getSort('name'));
+
     }
 }

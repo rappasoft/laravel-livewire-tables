@@ -2,14 +2,26 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 
+#[Group('Filters')]
 final class BooleanFilterTest extends FilterTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
         self::$filterInstance = BooleanFilter::make('Active');
+        self::$extraFilterInputAttributes = [
+            '@click' => 'toggleStatusWithUpdate',
+            'activeColor' => 'bg-blue-600',
+            'blobColor' => 'bg-white',
+            'class' => 'bg-red-500 dark:bg-red-500',
+            'inactiveColor' => 'bg-neutral-200',
+            'type' => 'button',
+            'x-ref' => 'switchButton',
+        ];
+
     }
 
     public function test_can_not_set_boolean_filter_to_non_number(): void
@@ -41,28 +53,26 @@ final class BooleanFilterTest extends FilterTestCase
 
     public function test_can_get_custom_filter_pills(): void
     {
-        $filter = self::$filterInstance;
-        $filter->setFilterPillValues([
+        self::$filterInstance->setFilterPillValues([
             true => 'Active',
             false => 'Inactive',
         ]);
-        $this->assertSame('Active', $filter->getFilterPillValue(1));
-        $this->assertSame('Inactive', $filter->getFilterPillValue(0));
+        $this->assertSame('Active', self::$filterInstance->getFilterPillValue(1));
+        $this->assertSame('Inactive', self::$filterInstance->getFilterPillValue(0));
     }
 
     public function test_can_set_default_values(): void
     {
-        $filter = self::$filterInstance;
-        $this->assertFalse($filter->hasFilterDefaultValue());
-        $this->assertNull($filter->getFilterDefaultValue());
+        $this->assertFalse(self::$filterInstance->hasFilterDefaultValue());
+        $this->assertNull(self::$filterInstance->getFilterDefaultValue());
 
-        $filter->setFilterDefaultValue(true);
-        $this->assertTrue($filter->hasFilterDefaultValue());
-        $this->assertSame(true, $filter->getFilterDefaultValue());
+        self::$filterInstance->setFilterDefaultValue(true);
+        $this->assertTrue(self::$filterInstance->hasFilterDefaultValue());
+        $this->assertSame(true, self::$filterInstance->getFilterDefaultValue());
 
-        $filter->setFilterDefaultValue(false);
-        $this->assertTrue($filter->hasFilterDefaultValue());
-        $this->assertSame(false, $filter->getFilterDefaultValue());
+        self::$filterInstance->setFilterDefaultValue(false);
+        $this->assertTrue(self::$filterInstance->hasFilterDefaultValue());
+        $this->assertSame(false, self::$filterInstance->getFilterDefaultValue());
 
     }
 
@@ -93,23 +103,85 @@ final class BooleanFilterTest extends FilterTestCase
 
     public function test_can_validate_null_boolean_filter_value(): void
     {
-        $filter = self::$filterInstance;
-        $filter->setFilterPillValues([
+        self::$filterInstance->setFilterPillValues([
             true => 'Active',
             false => 'Inactive',
         ]);
 
-        $this->assertFalse($filter->validate(null));
+        $this->assertFalse(self::$filterInstance->validate(null));
     }
 
     public function test_is_empty_null_boolean_filter_value(): void
     {
-        $filter = self::$filterInstance;
-        $filter->setFilterPillValues([
+        self::$filterInstance->setFilterPillValues([
             true => 'Active',
             false => 'Inactive',
         ]);
 
-        $this->assertTrue($filter->isEmpty(null));
+        $this->assertTrue(self::$filterInstance->isEmpty(null));
+    }
+
+    public function test_can_set_custom_input_attributes_boolean(): void
+    {
+
+        self::$filterInstance->setGenericDisplayData(self::$testGenericData);
+        $baseAttributes = self::$filterInstance->getInputAttributesBag();
+
+        $this->assertTrue($baseAttributes['default-styling']);
+        $this->assertTrue($baseAttributes['default-colors']);
+
+        self::$filterInstance->setInputAttributes([
+            'class' => 'bg-red-500',
+        ]);
+
+        $this->assertFalse(self::$filterInstance->getInputAttributesBag()['default-styling']);
+        $this->assertFalse(self::$filterInstance->getInputAttributesBag()['default-colors']);
+        $this->assertSame('bg-red-500', self::$filterInstance->getInputAttributesBag()['class']);
+        self::$filterInstance->setInputAttributes([
+            'class' => 'bg-red-500 dark:bg-red-500',
+            'default-styling' => true,
+        ]);
+        $currentAttributeBag = self::$filterInstance->getInputAttributesBag()->getAttributes();
+        ksort($currentAttributeBag);
+
+        $this->assertTrue($currentAttributeBag['default-styling']);
+        $this->assertFalse($currentAttributeBag['default-colors']);
+        $this->assertSame('bg-red-500 dark:bg-red-500', $currentAttributeBag['class']);
+
+        $this->assertSame([
+            '@click' => 'toggleStatusWithUpdate',
+            'activeColor' => 'bg-blue-600',
+            'blobColor' => 'bg-white',
+            'class' => 'bg-red-500 dark:bg-red-500',
+            'default-colors' => false,
+            'default-styling' => true,
+            'id' => $baseAttributes['id'],
+            'inactiveColor' => 'bg-neutral-200',
+            'type' => 'button',
+            'x-ref' => 'switchButton',
+        ], $currentAttributeBag);
+
+        self::$filterInstance->setInputAttributes([
+            'activeColor' => 'bg-red-600',
+            'blobColor' => 'bg-green-500',
+            'default-colors' => false,
+            'default-styling' => true,
+            'inactiveColor' => 'bg-blue-200',
+        ]);
+        $currentAttributeBag = self::$filterInstance->getInputAttributesBag()->getAttributes();
+        ksort($currentAttributeBag);
+
+        $this->assertSame([
+            '@click' => 'toggleStatusWithUpdate',
+            'activeColor' => 'bg-red-600',
+            'blobColor' => 'bg-green-500',
+            'default-colors' => false,
+            'default-styling' => true,
+            'id' => $baseAttributes['id'],
+            'inactiveColor' => 'bg-blue-200',
+            'type' => 'button',
+            'x-ref' => 'switchButton',
+        ], $currentAttributeBag);
+
     }
 }

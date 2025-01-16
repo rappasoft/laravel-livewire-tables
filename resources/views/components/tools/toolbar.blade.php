@@ -5,8 +5,10 @@
 <div
     {{
         $toolBarAttributes->merge()
-        ->class(['md:flex md:justify-between mb-4 px-4 md:p-0' => $isTailwind && ($toolBarAttributes['default-styling'] ?? true)])
-        ->class(['d-md-flex justify-content-between mb-3' => $isBootstrap && ($toolBarAttributes['default-styling'] ?? true)])
+        ->class([
+            'md:flex md:justify-between mb-4 px-4 md:p-0' => $isTailwind && ($toolBarAttributes['default-styling'] ?? true),
+            'd-md-flex justify-content-between mb-3' => $isBootstrap && ($toolBarAttributes['default-styling'] ?? true),
+        ])
         ->except(['default','default-styling','default-colors'])
     }}
 >

@@ -2,11 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
+use Illuminate\Support\Str;
+
 trait LivewireComponentColumnConfiguration
 {
-    use ComponentColumnConfiguration;
+    public function component(string $livewireComponent): self
+    {
+        $this->livewireComponent = (Str::startsWith($livewireComponent, 'livewire:')) ? substr($livewireComponent, 9) : $livewireComponent;
 
-    protected string $componentView;
-
-    protected mixed $slotCallback;
+        return $this;
+    }
 }

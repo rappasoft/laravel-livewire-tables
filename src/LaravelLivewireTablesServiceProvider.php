@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables;
 
 use Illuminate\Foundation\Console\AboutCommand;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\ComponentHookRegistry;
 use Rappasoft\LaravelLivewireTables\Commands\MakeCommand;
@@ -39,6 +40,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         } else {
             $this->loadTranslationsFrom(__DIR__.'/../resources/lang/php', 'livewire-tables');
         }
+        $this->addBladeLoopDirective();
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
 
@@ -79,6 +81,18 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
                 MakeCommand::class,
             ]);
         }
+    }
+
+    public function addBladeLoopDirective(): void
+    {
+        Blade::directive('tableloop', function ($expression) {
+            return "<?php foreach ($expression): ?>";
+        });
+
+        Blade::directive('endtableloop', function ($expression) {
+            return '<?php endforeach; ?>';
+        });
+
     }
 
     public function register(): void

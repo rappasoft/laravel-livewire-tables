@@ -33,7 +33,7 @@ final class ViewComponentColumnTest extends TestCase
             ]);
 
         $this->assertFalse($column->hasComponentView());
-        $column->component('test-component');
+        $column->component('livewire-tables-test::test');
         $this->assertTrue($column->hasComponentView());
     }
 

@@ -3,8 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Views\Filters\LivewireComponentFilter;
 
+#[Group('Filters')]
 final class LivewireComponentFilterTest extends FilterTestCase
 {
     protected function setUp(): void
@@ -15,35 +17,31 @@ final class LivewireComponentFilterTest extends FilterTestCase
 
     public function test_can_get_filter_callback(): void
     {
-        $filter = LivewireComponentFilter::make('Active');
+        $this->assertFalse(self::$filterInstance->hasFilterCallback());
 
-        $this->assertFalse($filter->hasFilterCallback());
-
-        $filter = LivewireComponentFilter::make('Active')
+        self::$filterInstance
             ->filter(function (Builder $builder, int $value) {
                 return $builder->where('name', '=', $value);
             });
 
-        $this->assertTrue($filter->hasFilterCallback());
-        $this->assertIsCallable($filter->getFilterCallback());
+        $this->assertTrue(self::$filterInstance->hasFilterCallback());
+        $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
 
     public function test_can_set_livewire_component_filter_to_text(): void
     {
-        $filter = LivewireComponentFilter::make('BreedID');
-        $this->assertSame('test', $filter->validate('test'));
-        $this->assertSame('123', $filter->validate(123));
+        $this->assertSame('test', self::$filterInstance->validate('test'));
+        $this->assertSame('123', self::$filterInstance->validate(123));
 
     }
 
     public function test_can_get_if_livewire_component_filter_empty(): void
     {
-        $filter = LivewireComponentFilter::make('Active');
-        $this->assertTrue($filter->isEmpty(null));
-        $this->assertTrue($filter->isEmpty(''));
-        $this->assertFalse($filter->isEmpty('123'));
-        $this->assertFalse($filter->isEmpty('test'));
-        $this->assertFalse($filter->isEmpty(1234));
+        $this->assertTrue(self::$filterInstance->isEmpty(null));
+        $this->assertTrue(self::$filterInstance->isEmpty(''));
+        $this->assertFalse(self::$filterInstance->isEmpty('123'));
+        $this->assertFalse(self::$filterInstance->isEmpty('test'));
+        $this->assertFalse(self::$filterInstance->isEmpty(1234));
 
     }
 }

@@ -51,13 +51,10 @@ trait WithReordering
 
     public function enableReordering(): void
     {
-        //$this->enablePaginatedReordering();
-
         $this->setReorderingSession();
         $this->setReorderingBackup();
         $this->resetReorderFields();
         $this->reorderStatus = $this->currentlyReorderingStatus = $this->reorderDisplayColumn = true;
-
     }
 
     public function disableReordering(): void

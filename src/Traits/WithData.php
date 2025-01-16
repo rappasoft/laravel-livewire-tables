@@ -17,20 +17,12 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 trait WithData
 {
     /**
-     * Sets up the Builder instance
-     */
-    public function bootedWithData(): void
-    {
-        //Sets up the Builder Instance
-        $this->setBuilder($this->builder());
-    }
-
-    /**
      * Retrieves the rows for the executed query
      */
     #[Computed]
     public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
+
         // Setup the Base Query
         $this->baseQuery();
 
@@ -52,6 +44,10 @@ trait WithData
 
     protected function baseQuery(): Builder
     {
+        $this->setBuilder($this->builder());
+
+        $builder = $this->getBuilder();
+
         $this->setBuilder($this->joinRelations());
 
         $this->setBuilder($this->applySearch());

@@ -76,10 +76,10 @@ trait HasWireables
     {
 
         if ($wireMethod != 'defer') {
-            return 'wire:model.'.$wireMethod.'='.$wireableElement;
+            return 'wire:model.'.$wireMethod.'="'.$wireableElement.'"';
         }
 
-        return 'wire:model='.$wireableElement;
+        return 'wire:model="'.$wireableElement.'"';
 
     }
 }

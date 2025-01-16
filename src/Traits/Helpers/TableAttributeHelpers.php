@@ -47,7 +47,7 @@ trait TableAttributeHelpers
     {
 
         if (isset($this->thAttributesCallback)) {
-            return array_merge(['default' => false, 'default-colors' => false, 'default-styling' => false], call_user_func($this->thAttributesCallback, $column));
+            return array_merge(['scope' => 'col', 'default' => false, 'default-colors' => false, 'default-styling' => false], call_user_func($this->thAttributesCallback, $column));
         }
 
         return ['default' => true, 'default-colors' => true, 'default-styling' => true];

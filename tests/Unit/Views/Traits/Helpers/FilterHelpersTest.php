@@ -3,12 +3,14 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
+#[Group('Filters')]
 final class FilterHelpersTest extends TestCase
 {
     public function test_can_get_filter_name(): void

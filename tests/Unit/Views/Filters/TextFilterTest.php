@@ -3,14 +3,22 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
+#[Group('Filters')]
 final class TextFilterTest extends FilterTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
         self::$filterInstance = TextFilter::make('Active');
+        self::$extraFilterInputAttributes = [
+            'maxlength' => null,
+            'placeholder' => null,
+            'type' => 'text',
+            'wire:key' => 'test123-filter-text-active',
+        ];
     }
 
     public function test_can_get_filter_callback(): void
@@ -70,33 +78,33 @@ final class TextFilterTest extends FilterTestCase
 
         $this->assertSame('blur', $filter->getWireableMethod());
 
-        $this->assertSame('wire:model.blur=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('wire:model.blur="filterComponents.active"', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireLive();
 
         $this->assertSame('live', $filter->getWireableMethod());
-        $this->assertSame('wire:model.live=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('wire:model.live="filterComponents.active"', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireDefer();
 
         $this->assertSame('defer', $filter->getWireableMethod());
-        $this->assertSame('wire:model=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('wire:model="filterComponents.active"', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireBlur();
 
         $this->assertSame('blur', $filter->getWireableMethod());
 
-        $this->assertSame('wire:model.blur=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('wire:model.blur="filterComponents.active"', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireDebounce(250);
 
         $this->assertSame('live.debounce.250ms', $filter->getWireableMethod());
-        $this->assertSame('wire:model.live.debounce.250ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('wire:model.live.debounce.250ms="filterComponents.active"', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
         $filter->setWireDebounce(500);
 
         $this->assertSame('live.debounce.500ms', $filter->getWireableMethod());
-        $this->assertSame('wire:model.live.debounce.500ms=filterComponents.active', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
+        $this->assertSame('wire:model.live.debounce.500ms="filterComponents.active"', $filter->getWireMethod('filterComponents.'.$filter->getKey()));
 
     }
 

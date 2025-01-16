@@ -9,10 +9,12 @@ trait HasAllTraits
 {
     // Note Specific Order Below!
     use WithTableHooks;
-    use HasLocalisations;
-    use WithLoadingPlaceholder;
-    use HasTheme;
-    use ComponentUtilities,
+    use HasLocalisations,
+        WithLoadingPlaceholder,
+        HasTheme,
+        WithFilters;
+    use WithQuery,
+        ComponentUtilities,
         WithActions,
         WithData,
         WithQueryString,
@@ -28,7 +30,6 @@ trait HasAllTraits
         WithCustomisations,
         WithDebugging,
         WithEvents,
-        WithFilters,
         WithFooter,
         WithRefresh,
         WithReordering,

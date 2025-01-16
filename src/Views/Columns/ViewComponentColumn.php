@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasComponentView;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ViewComponentColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ViewComponentColumnHelpers;
 use ReflectionClass;
@@ -13,9 +14,8 @@ use ReflectionClass;
 class ViewComponentColumn extends Column
 {
     use ViewComponentColumnConfiguration,
-        ViewComponentColumnHelpers;
-
-    protected ?string $componentView;
+        ViewComponentColumnHelpers,
+        HasComponentView;
 
     protected ?string $customComponentView;
 

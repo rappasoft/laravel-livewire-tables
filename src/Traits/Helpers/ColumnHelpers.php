@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\AggregateColumn;
 
@@ -25,6 +26,13 @@ trait ColumnHelpers
                 $column->setTheme($this->getTheme())
                     ->setHasTableRowUrl($this->hasTableRowUrl())
                     ->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+
+                if ($column->hasFooter()) {
+                    $this->columnsWithFooter = true;
+                }
+                if ($column->hasSecondaryHeader()) {
+                    $this->columnsWithSecondaryHeader = true;
+                }
 
                 if ($column instanceof AggregateColumn) {
                     if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
@@ -124,93 +132,6 @@ trait ColumnHelpers
         return $this->getColumns()->count();
     }
 
-    public function hasCollapsedColumns(): bool
-    {
-        if ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways()) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function shouldCollapseOnMobile(): bool
-    {
-
-        if (! isset($this->shouldMobileCollapse)) {
-            $this->shouldMobileCollapse = ($this->getCollapsedMobileColumnsCount() > 0);
-        }
-
-        return $this->shouldMobileCollapse;
-
-    }
-
-    public function getCollapsedMobileColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isHidden())
-            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
-            ->filter(fn (Column $column) => $column->shouldCollapseOnMobile())
-            ->values();
-    }
-
-    public function getCollapsedMobileColumnsCount(): int
-    {
-        return $this->getCollapsedMobileColumns()->count();
-    }
-
-    public function getVisibleMobileColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->shouldCollapseOnMobile())
-            ->values();
-    }
-
-    public function getVisibleMobileColumnsCount(): int
-    {
-        return $this->getVisibleMobileColumns()->count();
-    }
-
-    public function shouldCollapseOnTablet(): bool
-    {
-        if (! isset($this->shouldTabletCollapse)) {
-            $this->shouldTabletCollapse = ($this->getCollapsedTabletColumnsCount() > 0);
-        }
-
-        return $this->shouldTabletCollapse;
-
-    }
-
-    public function getCollapsedTabletColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isHidden())
-            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
-            ->filter(fn (Column $column) => $column->shouldCollapseOnTablet())
-            ->values();
-    }
-
-    public function getCollapsedTabletColumnsCount(): int
-    {
-        return $this->getCollapsedTabletColumns()->count();
-    }
-
-    public function getVisibleTabletColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->shouldCollapseOnTablet())
-            ->values();
-    }
-
-    public function getVisibleTabletColumnsCount(): int
-    {
-        return $this->getVisibleTabletColumns()->count();
-    }
-
-    public function getColspanCount(): int
-    {
-        return 100;
-    }
-
     public function getPrependedColumns(): Collection
     {
         return $this->prependedColumns ?? collect($this->prependColumns());
@@ -219,29 +140,6 @@ trait ColumnHelpers
     public function getAppendedColumns(): Collection
     {
         return $this->appendedColumns ?? collect($this->appendColumns());
-    }
-
-    public function getCollapsedAlwaysColumns(): Collection
-    {
-        return $this->getColumns()
-            ->reject(fn (Column $column) => $column->isHidden())
-            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
-            ->filter(fn (Column $column) => $column->shouldCollapseAlways())
-            ->values();
-    }
-
-    public function getCollapsedAlwaysColumnsCount(): int
-    {
-        return $this->getCollapsedAlwaysColumns()->count();
-    }
-
-    public function shouldCollapseAlways(): bool
-    {
-        if (! isset($this->shouldAlwaysCollapse)) {
-            $this->shouldAlwaysCollapse = ($this->getCollapsedAlwaysColumnsCount() > 0);
-        }
-
-        return $this->shouldAlwaysCollapse;
     }
 
     /**

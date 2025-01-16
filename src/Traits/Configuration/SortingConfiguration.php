@@ -4,6 +4,13 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 trait SortingConfiguration
 {
+    protected function setupDefaultSorting(): void
+    {
+        if ($this->sortingIsEnabled() && $this->hasDefaultSort() && ! $this->hasSorts()) {
+            $this->setSort($this->getDefaultSortColumn(), $this->getDefaultSortDirection());
+        }
+    }
+
     public function setSortingStatus(bool $status): self
     {
         $this->sortingStatus = $status;

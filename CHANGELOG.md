@@ -2,6 +2,46 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+
+## [v3.6.0] - UNRELEASED
+
+### Bug Fixes
+- Ensure Default Sorting Is Shown in Pills by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2138
+- Filters
+  - Find Filters Before Query by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2143
+  - Migrate Filter Code Appropriately by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2146
+  - Migrate Filter Status into Own Trait by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2147
+
+### Tweaks
+- Enable InputAttributes for SelectFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2133
+- Tidy ComponentUtilities, Migrate ColumnSelectQueryString by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2135
+- TH Fixes - Clean-up, efficiency, and Sort Icons fixes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2140
+- Add hasCollapsedColumns as Computed by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2141
+- Tidy up Blade Class Definitions by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2145
+- Tidy ColumnSelectHelpers & displayToolbarFilters Method by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2150
+- Tidy & Improve Collapsed Columns Behaviour by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2159
+- Tidy computed properties behaviour by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2160
+- WithSearch Tweaks by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2163
+- Optimize Header/Footer by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2164
+- Clean up Column Component View and Slot behaviours by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2169
+- Adjustments for ComponentColumn - cleaning up behaviours by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2173
+
+### Testing
+- Add Missing Test for getCustomSortingPillDirectionsLabel with invalid direction by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2130
+- Add Custom FIlter Input Attributes, Cleanup Filter Tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2131
+- Separate the Unit and Visuals Test Suites by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2144
+- Update PCOV Workflow by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2148
+- Add configurable area test by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2149
+- Add SortingConfiguration Missing Test by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2151
+- Add Missing Search Tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2152
+- Adjust SearchHelpersTest by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2153
+- Add test queryStringWithQueryString by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2154
+- Add missing tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2157
+- Add queryStringAliasTest by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2161
+- Migrate LivewireComponentColumn methods and add some missing basic tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2168
+- Add initial tests for LivewireComponentArrayFilter by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2170
+- Improve centralisation of tests by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2172
+
 ## [v3.5.10] - 2024-12-11
 ### Tweaks
 - Migrate additional Styling into separate traits by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2127

@@ -7,6 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfigurati
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasConfig, HasLabelAttributes, HasView};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasCustomPosition, HasVisibility};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Styling\{HandlesFilterInputAttributes, HandlesFilterLabelAttributes};
 
 trait IsFilter
 {
@@ -17,7 +18,9 @@ trait IsFilter
         HasCustomPosition,
         HasLabelAttributes,
         HasVisibility,
-        HasView;
+        HasView,
+        HandlesFilterInputAttributes,
+        HandlesFilterLabelAttributes;
 
     protected string $name;
 
@@ -32,8 +35,6 @@ trait IsFilter
     protected array $filterPillValues = [];
 
     protected ?string $filterCustomLabel = null;
-
-    protected array $filterLabelAttributes = [];
 
     protected ?string $filterCustomPillBlade = null;
 

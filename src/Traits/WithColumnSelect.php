@@ -5,12 +5,14 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
 
 trait WithColumnSelect
 {
     use ColumnSelectConfiguration,
-        ColumnSelectHelpers;
+        ColumnSelectHelpers,
+        HasQueryStringForColumnSelect;
 
     #[Locked]
     public array $columnSelectColumns = ['setupRun' => false, 'selected' => [], 'deselected' => [], 'defaultdeselected' => []];
@@ -35,7 +37,7 @@ trait WithColumnSelect
 
     protected bool $columnSelectHiddenOnTablet = false;
 
-    protected function queryStringWithColumnSelect(): array
+    /*protected function queryStringWithColumnSelect(): array
     {
         if ($this->queryStringIsEnabled() && $this->columnSelectIsEnabled()) {
             return [
@@ -44,7 +46,7 @@ trait WithColumnSelect
         }
 
         return [];
-    }
+    }*/
 
     public function bootedWithColumnSelect(): void
     {

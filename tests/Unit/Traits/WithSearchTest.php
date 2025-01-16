@@ -49,15 +49,7 @@ final class WithSearchTest extends TestCase
 
             }
         };
-
-        $testTableDefault->configure();
-        $testTableDefault->boot();
-        $testTableDefault->bootedComponentUtilities();
-        $testTableDefault->bootedWithData();
-        $testTableDefault->bootedWithColumns();
-        $testTableDefault->bootedWithColumnSelect();
-        $testTableDefault->bootedWithSecondaryHeader();
-        $testTableDefault->booted();
+        $testTableDefault->bootAll();
 
         $this->assertSame('', $testTableDefault->search);
 
@@ -90,14 +82,7 @@ final class WithSearchTest extends TestCase
             }
         };
 
-        $testTableTrimSearch->configure();
-        $testTableTrimSearch->boot();
-        $testTableTrimSearch->bootedComponentUtilities();
-        $testTableTrimSearch->bootedWithData();
-        $testTableTrimSearch->bootedWithColumns();
-        $testTableTrimSearch->bootedWithColumnSelect();
-        $testTableTrimSearch->bootedWithSecondaryHeader();
-        $testTableTrimSearch->booted();
+        $testTableTrimSearch->bootAll();
 
         $this->assertSame('', $testTableTrimSearch->search);
 
