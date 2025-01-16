@@ -11,5 +11,6 @@ trait HasColumnSelectStyling
         ColumnSelectStylingHelpers;
 
     protected array $columnSelectButtonAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
+
     protected array $columnSelectMenuOptionCheckboxAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
 }
