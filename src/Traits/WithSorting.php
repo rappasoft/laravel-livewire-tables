@@ -7,12 +7,14 @@ use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForSort;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
+use Rappasoft\LaravelLivewireTables\Traits\Styling\HasSortingPillsStyling;
 
 trait WithSorting
 {
     use SortingConfiguration,
-        SortingHelpers;
-    use HasQueryStringForSort;
+        SortingHelpers,
+        HasQueryStringForSort,
+        HasSortingPillsStyling;
 
     public array $sorts = [];
 
