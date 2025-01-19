@@ -86,17 +86,22 @@ final class FilterConfigurationTest extends TestCase
 
         $this->assertSame('popover', $this->basicTable->getFilterLayout());
 
+        $this->basicTable->setFilterLayoutSlideDown();
+
+        $this->assertSame('slide-down', $this->basicTable->getFilterLayout());
+
         $this->basicTable->setFilterLayout('popover2');
 
         $this->assertSame('popover', $this->basicTable->getFilterLayout());
 
-        $this->basicTable->setFilterLayoutSlideDown();
-
         $this->basicTable->setFilterLayout('slide-down');
+
+        $this->assertSame('slide-down', $this->basicTable->getFilterLayout());
 
         $this->basicTable->setFilterLayoutPopover();
 
-        $this->basicTable->setFilterLayout('popover');
+        $this->assertSame('popover', $this->basicTable->getFilterLayout());
+
     }
 
     public function test_filters_layout_popover_default_can_be_set(): void

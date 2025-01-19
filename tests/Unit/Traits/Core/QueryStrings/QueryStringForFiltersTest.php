@@ -29,8 +29,11 @@ final class QueryStringForFiltersTest extends QueryStringTestBase
         parent::$mock->configure();
         parent::$mock->boot();
         $this->assertSame(true, parent::$mock->getQueryStringStatusForFilter());
+        $this->assertTrue(parent::$mock->hasQueryStringStatusForFilter());
         parent::$mock->setQueryStringForFilterDisabled();
         $this->assertSame(false, parent::$mock->getQueryStringStatusForFilter());
+        $this->assertTrue(parent::$mock->hasQueryStringStatusForFilter());
+
     }
 
     public function test_can_enable_filter_query_string_status(): void
