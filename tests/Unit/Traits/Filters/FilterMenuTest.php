@@ -2,13 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Filters;
 
+use Illuminate\Database\Eloquent\Builder;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 
 #[Group('Filters')]
 final class FilterMenuTest extends TestCase
@@ -86,7 +86,7 @@ final class FilterMenuTest extends TestCase
                         ->filter(function (Builder $builder, array $values) {
                             return $builder->whereIn('breed_id', $values);
                         }),
-                    ];
+                ];
             }
 
             public function publiclySetFilterPillsItemAttributes(array $attributes = [])
@@ -107,10 +107,7 @@ final class FilterMenuTest extends TestCase
         $this->assertTrue($testTableDefault->hasFiltersWithSlidedownRows());
     }
 
+    /*
+     }*/
 
-   /* 
-    }*/
-
-
-    
 }
