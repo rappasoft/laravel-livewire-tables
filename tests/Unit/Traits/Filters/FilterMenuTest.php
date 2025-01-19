@@ -25,5 +25,4 @@ final class FilterMenuTest extends TestCase
         $this->assertSame(['class' => '', 'default-colors' => true, 'default-styling' => true, 'row' => 2], $this->basicTable->getFilterSlidedownRowAttributes('2'));
 
     }
-
 }

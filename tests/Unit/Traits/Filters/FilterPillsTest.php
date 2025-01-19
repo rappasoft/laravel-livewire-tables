@@ -4,8 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Filters;
 
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 #[Group('Filters')]
 final class FilterPillsTest extends TestCase
@@ -35,7 +35,7 @@ final class FilterPillsTest extends TestCase
                 $this->useComputedPropertiesDisabled();
 
             }
-            
+
             public function publiclySetFilterPillsItemAttributes(array $attributes = [])
             {
                 $this->setFilterPillsItemAttributes($attributes);
@@ -50,7 +50,6 @@ final class FilterPillsTest extends TestCase
             {
                 $this->setFilterPillsResetAllButtonAttributes($attributes);
             }
-
         };
         $this->assertSame(['class' => '', 'default-colors' => true, 'default-styling' => true], $testTableDefault->getFilterPillsItemAttributes());
         $testTableDefault->publiclySetFilterPillsItemAttributes(['class' => 'bg-blue-500']);
@@ -70,7 +69,7 @@ final class FilterPillsTest extends TestCase
                 $this->useComputedPropertiesDisabled();
 
             }
-            
+
             public function publiclySetFilterPillsItemAttributes(array $attributes = [])
             {
                 $this->setFilterPillsItemAttributes($attributes);
@@ -85,7 +84,6 @@ final class FilterPillsTest extends TestCase
             {
                 $this->setFilterPillsResetAllButtonAttributes($attributes);
             }
-
         };
 
         $this->assertSame(['class' => '', 'default-colors' => true, 'default-styling' => true], $testTableDefault->getFilterPillsResetFilterButtonAttributes());
@@ -106,7 +104,7 @@ final class FilterPillsTest extends TestCase
                 $this->useComputedPropertiesDisabled();
 
             }
-            
+
             public function publiclySetFilterPillsItemAttributes(array $attributes = [])
             {
                 $this->setFilterPillsItemAttributes($attributes);
@@ -130,5 +128,4 @@ final class FilterPillsTest extends TestCase
         $this->assertSame(['class' => 'bg-red-500', 'default-colors' => false, 'default-styling' => true], $testTableDefault->getFilterPillsResetAllButtonAttributes());
 
     }
-
 }
