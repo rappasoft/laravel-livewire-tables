@@ -121,7 +121,7 @@ final class FilterMenuTest extends TestCase
             public function filters(): array
             {
                 return [
-                        MultiSelectFilter::make('Breed 1', 'breed')
+                    MultiSelectFilter::make('Breed 1', 'breed')
                         ->setFilterSlidedownRow(1)
                         ->options(
                             Breed::query()
@@ -134,7 +134,7 @@ final class FilterMenuTest extends TestCase
                         ->filter(function (Builder $builder, array $values) {
                             return $builder->whereIn('breed_id', $values);
                         }),
-                        MultiSelectFilter::make('Breed 3', 'breed3')
+                    MultiSelectFilter::make('Breed 3', 'breed3')
                         ->setFilterSlidedownRow(1)
                         ->options(
                             Breed::query()
@@ -147,7 +147,7 @@ final class FilterMenuTest extends TestCase
                         ->filter(function (Builder $builder, array $values) {
                             return $builder->whereIn('breed_id', $values);
                         }),
-                        MultiSelectFilter::make('Breed 2', 'breed2')
+                    MultiSelectFilter::make('Breed 2', 'breed2')
                         ->setFilterSlidedownRow(2)
                         ->options(
                             Breed::query()
@@ -160,8 +160,8 @@ final class FilterMenuTest extends TestCase
                         ->filter(function (Builder $builder, array $values) {
                             return $builder->whereIn('breed_id', $values);
                         }),
-                        
-                        MultiSelectFilter::make('Breed 4', 'breed4')
+
+                    MultiSelectFilter::make('Breed 4', 'breed4')
                         ->options(
                             Breed::query()
                                 ->orderBy('name')
