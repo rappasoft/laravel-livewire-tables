@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Configuration;
 
-trait FilterVisibilityConfiguration 
+trait FilterVisibilityConfiguration
 {
     public function setFiltersVisibilityStatus(bool $status): self
     {
@@ -20,6 +20,4 @@ trait FilterVisibilityConfiguration
     {
         return $this->setFiltersVisibilityStatus(false);
     }
-
-
 }

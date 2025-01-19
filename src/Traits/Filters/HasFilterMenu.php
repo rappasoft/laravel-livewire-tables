@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Traits\Filters\Configuration\FilterMenuConfi
 use Rappasoft\LaravelLivewireTables\Traits\Filters\Helpers\FilterMenuHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\Filters\Styling\HasFilterMenuStyling;
 
-
 trait HasFilterMenu
 {
     use FilterMenuConfiguration,
@@ -19,6 +18,4 @@ trait HasFilterMenu
 
     // Entangled in JS
     public bool $filterSlideDownDefaultVisible = false;
-
-
 }

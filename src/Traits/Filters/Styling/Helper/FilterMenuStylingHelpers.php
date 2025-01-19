@@ -45,6 +45,4 @@ trait FilterMenuStylingHelpers
 
         return ['class' => '', 'default-colors' => true, 'default-styling' => true, 'row' => (int) $rowIndex];
     }
-
-
 }

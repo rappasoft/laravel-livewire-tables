@@ -35,5 +35,4 @@ trait FilterPillsHelpers
             ->reject(fn (Filter $filter) => $filter->isHiddenFromPills())
             ->count() > 0;
     }
-
 }

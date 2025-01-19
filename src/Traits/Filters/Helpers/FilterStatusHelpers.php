@@ -21,5 +21,4 @@ trait FilterStatusHelpers
     {
         return $this->getFiltersStatus() === false;
     }
-
 }

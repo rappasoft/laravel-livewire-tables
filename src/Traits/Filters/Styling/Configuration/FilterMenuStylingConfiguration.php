@@ -31,8 +31,4 @@ trait FilterMenuStylingConfiguration
 
         return $this;
     }
-
-
-
-
 }

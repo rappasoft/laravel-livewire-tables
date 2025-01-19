@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait ManagesFilters
 {
-
     /**
      * Sets Filter Default Values
      */
@@ -35,5 +34,4 @@ trait ManagesFilters
             $this->appliedFilters[$filterKey] = $value;
         }
     }
-
 }

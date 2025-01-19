@@ -15,5 +15,4 @@ trait HasFilterPillsStyling
     protected array $filterPillsResetFilterButtonAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];
 
     protected array $filterPillsResetAllButtonAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];
-
 }

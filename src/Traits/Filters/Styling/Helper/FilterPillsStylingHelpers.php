@@ -6,7 +6,6 @@ use Livewire\Attributes\Computed;
 
 trait FilterPillsStylingHelpers
 {
-    
     #[Computed]
     public function getFilterPillsItemAttributes(): array
     {
@@ -24,6 +23,4 @@ trait FilterPillsStylingHelpers
     {
         return $this->filterPillsResetAllButtonAttributes;
     }
-
-
 }

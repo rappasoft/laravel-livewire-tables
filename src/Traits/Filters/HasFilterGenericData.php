@@ -11,5 +11,4 @@ trait HasFilterGenericData
         FilterGenericDataHelpers;
 
     public array $filterGenericData = [];
-
 }

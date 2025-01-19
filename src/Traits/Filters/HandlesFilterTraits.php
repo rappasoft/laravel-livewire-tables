@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Filters;
 
-use Livewire\Attributes\Locked;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Filters\{Configuration\FilterConfiguration, Helpers\FilterHelpers};
 
 trait HandlesFilterTraits

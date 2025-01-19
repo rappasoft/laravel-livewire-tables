@@ -4,9 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
-trait FilterMenuConfiguration 
+trait FilterMenuConfiguration
 {
-
     public function setFilterLayout(string $type): self
     {
         if (! in_array($type, ['popover', 'slide-down'], true)) {
@@ -44,6 +43,4 @@ trait FilterMenuConfiguration
     {
         return $this->setFilterSlideDownDefaultStatus(true);
     }
-
-
 }

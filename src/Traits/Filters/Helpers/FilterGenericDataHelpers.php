@@ -20,5 +20,4 @@ trait FilterGenericDataHelpers
 
         return $this->filterGenericData;
     }
-
 }

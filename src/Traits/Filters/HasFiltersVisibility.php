@@ -13,7 +13,4 @@ trait HasFiltersVisibility
 
     #[Locked]
     public bool $filtersVisibilityStatus = true;
-
-
-
 }

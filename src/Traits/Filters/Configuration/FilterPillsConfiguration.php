@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Configuration;
 
-trait FilterPillsConfiguration 
+trait FilterPillsConfiguration
 {
     public function setFilterPillsStatus(bool $status): self
     {

@@ -78,5 +78,4 @@ trait FilterMenuHelpers
 
         return $orderedFilters;
     }
-
 }

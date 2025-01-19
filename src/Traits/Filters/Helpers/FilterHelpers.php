@@ -41,9 +41,6 @@ trait FilterHelpers
         });
     }
 
-
-
-
     /**
      * @return array<mixed>
      */
@@ -114,5 +111,4 @@ trait FilterHelpers
     {
         return count($this->getAppliedFiltersWithValues());
     }
-
 }

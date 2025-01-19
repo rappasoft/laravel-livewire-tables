@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Configuration;
 
-trait FilterStatusConfiguration 
+trait FilterStatusConfiguration
 {
     public function setFiltersStatus(bool $status): self
     {
@@ -20,5 +20,4 @@ trait FilterStatusConfiguration
     {
         return $this->setFiltersStatus(false);
     }
-
 }

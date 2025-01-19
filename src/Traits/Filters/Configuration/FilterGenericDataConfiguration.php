@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Configuration;
 
 use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterGenericData;
 
-trait FilterGenericDataConfiguration 
+trait FilterGenericDataConfiguration
 {
     public function generateFilterGenericData(): array
     {
@@ -15,5 +15,4 @@ trait FilterGenericDataConfiguration
     {
         $this->filterGenericData = $filterGenericData;
     }
-
 }

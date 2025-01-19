@@ -15,9 +15,4 @@ trait HasFilterPills
 
     #[Locked]
     public bool $filterPillsStatus = true;
-
-
-
-
-
 }

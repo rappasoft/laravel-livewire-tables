@@ -36,5 +36,4 @@ trait FilterVisibilityHelpers
     {
         return $this->getFilters()->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());
     }
-
 }

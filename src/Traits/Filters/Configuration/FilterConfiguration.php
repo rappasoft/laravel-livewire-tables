@@ -8,9 +8,8 @@ use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectDropdownFilter, MultiSelectFilter};
 
-trait FilterConfiguration {
-
-    
+trait FilterConfiguration
+{
     #[On('setFilter')]
     #[On('set-filter')]
     public function setFilter(string $filterKey, string|array|null $value): void
@@ -26,7 +25,7 @@ trait FilterConfiguration {
         $this->storeFilterValues();
 
     }
-    
+
     #[On('clearFilters')]
     #[On('clear-filters')]
     public function setFilterDefaults(): void
@@ -38,6 +37,7 @@ trait FilterConfiguration {
         }
 
     }
+
     /**
      * @param  mixed  $filter
      */
@@ -104,8 +104,6 @@ trait FilterConfiguration {
 
         return $this->getBuilder();
     }
-
-    
 
     public function updatedFilterComponents(string|array|null $value, string $filterName): void
     {
