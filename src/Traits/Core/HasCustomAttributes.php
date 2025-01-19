@@ -46,7 +46,7 @@ trait HasCustomAttributes
 
         return $this;
     }
-    
+
     protected function mergeCustomAttributes(string $propertyName, array $customAttributes): self
     {
         $mergedArray = array_merge($this->{$propertyName}, $customAttributes);
@@ -60,6 +60,7 @@ trait HasCustomAttributes
     {
         $attributes = [...$this->getCustomAttributes(propertyName: $propertyName, default: false, classicMode: true), ...$customAttributes];
         ksort($attributes);
+
         return $this->setCustomAttributes($propertyName, $attributes);
     }
 
@@ -67,6 +68,7 @@ trait HasCustomAttributes
     {
         $attributes = [...$this->getCustomAttributes(propertyName: $propertyName, default: false, classicMode: false), ...$customAttributes];
         ksort($attributes);
+
         return $this->setCustomAttributes($propertyName, $attributes);
     }
 
