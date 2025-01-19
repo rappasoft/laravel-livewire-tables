@@ -105,7 +105,7 @@ Tailwind: `inline-flex justify-center w-full rounded-md border shadow-sm px-4 py
 ```php
 public function configure(): void
 {
-  $this->setFilterPillsItemAttributes([
+  $this->setFilterButtonAttributes([
     'class' => 'border-rose-300 bg-white text-rose-700 hover:bg-rose-50 focus:border-stone-300 focus:ring-stone-200', // Add these classes to the filter button
     'default-colors' => false, // Do not output the default colors
     'default-styling' => true // Output the default styling
