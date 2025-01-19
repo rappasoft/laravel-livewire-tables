@@ -11,7 +11,7 @@ trait HasFilterQueryString
 
     protected ?string $queryStringAliasForFilter;
 
-    protected function queryStringHasQueryStringForFilter(): array
+    protected function queryStringHasFilterQueryString(): array
     {
         return ($this->queryStringForFilterIsEnabled()) ?
             [
@@ -29,56 +29,47 @@ trait HasFilterQueryString
 
     public function hasQueryStringStatusForFilter(): bool
     {
-        return isset($this->queryStringStatusForFilter);
+        return $this->hasQueryStringConfigStatus('filters');
     }
 
     public function getQueryStringStatusForFilter(): bool
     {
-        return $this->queryStringStatusForFilter ?? true;
+        return $this->getQueryStringConfigStatus('filters');
     }
 
     public function queryStringForFilterIsEnabled(): bool
     {
-        $this->setupQueryStringStatusForFilter();
 
         return $this->getQueryStringStatusForFilter() && $this->filtersAreEnabled();
     }
 
     public function setQueryStringStatusForFilter(bool $status): self
     {
-        $this->queryStringStatusForFilter = $status;
-
-        return $this;
+        return $this->setQueryStringConfigStatus('filters', $status);
     }
 
     public function setQueryStringForFilterEnabled(): self
     {
-        $this->setQueryStringStatusForFilter(true);
-
-        return $this;
+        return $this->setQueryStringStatusForFilter(true);
     }
 
     public function setQueryStringForFilterDisabled(): self
     {
-        $this->setQueryStringStatusForFilter(false);
-
-        return $this;
+        return $this->setQueryStringStatusForFilter(false);
     }
 
     public function hasQueryStringAliasForFilter(): bool
     {
-        return isset($this->queryStringAliasForFilter);
+        return $this->hasQueryStringConfigAlias('filters');
     }
 
     public function getQueryStringAliasForFilter(): string
     {
-        return $this->queryStringAliasForFilter ?? $this->getQueryStringAlias().'-filters';
+        return $this->getQueryStringConfigAlias('filters');
     }
 
     public function setQueryStringAliasForFilter(string $alias): self
     {
-        $this->queryStringAliasForFilter = $alias;
-
-        return $this;
+        return $this->setQueryStringConfigAlias('filters', $alias);
     }
 }

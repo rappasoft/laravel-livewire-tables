@@ -46,6 +46,29 @@ trait HasCustomAttributes
 
         return $this;
     }
+    
+    protected function mergeCustomAttributes(string $propertyName, array $customAttributes): self
+    {
+        $mergedArray = array_merge($this->{$propertyName}, $customAttributes);
+        ksort($mergedArray);
+        $this->{$propertyName} = $mergedArray;
+
+        return $this;
+    }
+
+    protected function mergeCustomAttributesClassic(string $propertyName, array $customAttributes): self
+    {
+        $attributes = [...$this->getCustomAttributes(propertyName: $propertyName, default: false, classicMode: true), ...$customAttributes];
+        ksort($attributes);
+        return $this->setCustomAttributes($propertyName, $attributes);
+    }
+
+    protected function mergeCustomAttributesModern(string $propertyName, array $customAttributes): self
+    {
+        $attributes = [...$this->getCustomAttributes(propertyName: $propertyName, default: false, classicMode: false), ...$customAttributes];
+        ksort($attributes);
+        return $this->setCustomAttributes($propertyName, $attributes);
+    }
 
     public function getCustomAttributesBagFromArray(array $attributesArray): ComponentAttributeBag
     {
