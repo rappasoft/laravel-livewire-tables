@@ -54,6 +54,12 @@
             </x-livewire-tables::tools>
             @endif
 
+            @includeWhen(
+                $this->hasConfigurableAreaFor('after-tools'),
+                $this->getConfigurableAreaFor('after-tools'),
+                $this->getParametersForConfigurableArea('after-tools')
+            )
+
             <x-livewire-tables::table>
 
                 <x-slot name="thead">

@@ -20,6 +20,7 @@ trait WithConfigurableAreas
         'toolbar-right-end' => null,
         'before-toolbar' => null,
         'after-toolbar' => null,
+        'after-tools' => null,
         'before-pagination' => null,
         'after-pagination' => null,
     ];
