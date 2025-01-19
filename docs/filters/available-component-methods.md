@@ -83,6 +83,67 @@ public function configure(): void
 }
 ```
 
+## setFilterButtonAttributes
+Allows for customisation of the appearance of the "Filter Button"
+
+Note that this utilises a refreshed approach for attributes, and allows for appending to, or replacing the styles and colors independently, via the below methods.
+
+#### default-colors
+Setting to false will disable the default colors for the Filter Button, the default colors are:
+
+Bootstrap: None
+
+Tailwind: `border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600`
+
+#### default-styling
+Setting to false will disable the default styling for the Filter Button, the default styling is:
+
+Bootstrap: `btn dropdown-toggle d-block w-100 d-md-inline`
+
+Tailwind: `inline-flex justify-center w-full rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50`
+
+```php
+public function configure(): void
+{
+  $this->setFilterPillsItemAttributes([
+    'class' => 'border-rose-300 bg-white text-rose-700 hover:bg-rose-50 focus:border-stone-300 focus:ring-stone-200', // Add these classes to the filter button
+    'default-colors' => false, // Do not output the default colors
+    'default-styling' => true // Output the default styling
+  ]);
+}
+```
+
+## setFilterButtonBadgeAttributes
+Allows for customisation of the appearance of the "Filter Button Badge"
+
+Note that this utilises a refreshed approach for attributes, and allows for appending to, or replacing the styles and colors independently, via the below methods.
+
+#### default-colors
+Setting to false will disable the default colors for the Filter Button Badge, the default colors are:
+
+Bootstrap: None
+
+Tailwind: `bg-indigo-100 text-indigo-800 dark:bg-indigo-200 dark:text-indigo-900`
+
+#### default-styling
+Setting to false will disable the default styling for the Filter Button Badge, the default styling is:
+
+Bootstrap: `badge badge-info`
+
+Tailwind: `ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 capitalize`
+
+```php
+
+public function configure(): void
+{
+  $this->setFilterButtonBadgeAttributes([
+    'class' => 'bg-rose-100 text-rose-800', // Add these classes to the filter button badge
+    'default-colors' => false, // Do not output the default colors
+    'default-styling' => true // Output the default styling
+  ]);
+}
+```
+
 ---
 
 ## setFilterPillsStatus
