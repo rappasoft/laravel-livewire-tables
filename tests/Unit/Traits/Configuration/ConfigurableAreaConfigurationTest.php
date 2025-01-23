@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class ConfigurableAreaConfigurationTest extends TestCase
 {
-
     public static function configurableAreaProvider(): array
     {
         return [
@@ -96,5 +95,4 @@ final class ConfigurableAreaConfigurationTest extends TestCase
 
         $this->basicTable->setHideConfigurableAreasWhenReorderingStatus(true);
     }
-
 }

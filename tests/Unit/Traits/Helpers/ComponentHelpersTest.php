@@ -181,7 +181,6 @@ final class ComponentHelpersTest extends TestCase
         $this->assertEquals(['name', 'updated_at'], $this->basicTable->getAdditionalSelects());
     }
 
-
     // Exists in DataTableComponentTest
     // public function test_can_get_dataTable_fingerprint(): void
     // {

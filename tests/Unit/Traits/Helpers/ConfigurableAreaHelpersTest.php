@@ -68,5 +68,4 @@ final class ConfigurableAreaHelpersTest extends TestCase
 
         $this->assertFalse($this->basicTable->hideConfigurableAreasWhenReorderingIsDisabled());
     }
-
 }

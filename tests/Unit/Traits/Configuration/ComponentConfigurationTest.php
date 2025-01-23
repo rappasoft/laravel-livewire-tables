@@ -294,7 +294,6 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableRowUrlTarget(2), 'navigate');
     }
 
-
     public function test_no_extra_withs_by_default(): void
     {
         $this->assertFalse($this->basicTable->hasExtraWiths());
