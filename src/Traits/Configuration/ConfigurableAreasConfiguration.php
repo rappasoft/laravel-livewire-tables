@@ -5,6 +5,8 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 trait ConfigurableAreasConfiguration
 {
     /**
+     * Set all configurable areas to this array of configuration data
+     * 
      * @param  array<mixed>  $areas
      */
     public function setConfigurableAreas(array $areas): self
@@ -14,6 +16,12 @@ trait ConfigurableAreasConfiguration
         return $this;
     }
 
+    /**
+     * Configure a specific Configurable Area
+     * 
+     * @param  string $configurableArea
+     * @param  array<mixed>  $config
+     */
     public function setConfigurableArea(string $configurableArea, mixed $config): self
     {
         if (array_key_exists($configurableArea, $this->configurableAreas)) {
