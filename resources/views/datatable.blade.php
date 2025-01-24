@@ -28,9 +28,23 @@
                 )
 
                 @if($this->shouldShowTools)
-                <x-livewire-tables::tools>
-                    @if ($this->showSortPillsSection)
-                        <x-livewire-tables::tools.sorting-pills />
+                  <x-livewire-tables::tools>
+                      @if ($this->showSortPillsSection)
+                          <x-livewire-tables::tools.sorting-pills />
+                  </x-livewire-tables::tools>
+                @endif
+
+                @includeWhen(
+                    $this->hasConfigurableAreaFor('after-tools'),
+                    $this->getConfigurableAreaFor('after-tools'),
+                    $this->getParametersForConfigurableArea('after-tools')
+                )
+
+            <x-livewire-tables::table>
+
+                <x-slot name="thead">
+                    @if($this->getCurrentlyReorderingStatus)
+                        <x-livewire-tables::table.th.reorder x-cloak x-show="currentlyReorderingStatus"  />
                     @endif
                     @if($this->showFilterPillsSection)
                         <x-livewire-tables::tools.filter-pills />
