@@ -28,10 +28,31 @@
                 )
 
                 @if($this->shouldShowTools)
-                  <x-livewire-tables::tools>
-                      @if ($this->showSortPillsSection)
-                          <x-livewire-tables::tools.sorting-pills />
-                  </x-livewire-tables::tools>
+                    <x-livewire-tables::tools>
+                        @if ($this->showSortPillsSection)
+                            <x-livewire-tables::tools.sorting-pills />
+                        @endif
+                        @if($this->showFilterPillsSection)
+                            <x-livewire-tables::tools.filter-pills />
+                        @endif
+
+                        @includeWhen(
+                            $this->hasConfigurableAreaFor('before-toolbar'),
+                            $this->getConfigurableAreaFor('before-toolbar'),
+                            $this->getParametersForConfigurableArea('before-toolbar')
+                        )
+
+                        @if($this->shouldShowToolBar)
+                            <x-livewire-tables::tools.toolbar />
+                        @endif
+
+                        @includeWhen(
+                            $this->hasConfigurableAreaFor('after-toolbar'),
+                            $this->getConfigurableAreaFor('after-toolbar'),
+                            $this->getParametersForConfigurableArea('after-toolbar')
+                        )
+
+                    </x-livewire-tables::tools>
                 @endif
 
                 @includeWhen(
@@ -39,35 +60,6 @@
                     $this->getConfigurableAreaFor('after-tools'),
                     $this->getParametersForConfigurableArea('after-tools')
                 )
-
-            <x-livewire-tables::table>
-
-                <x-slot name="thead">
-                    @if($this->getCurrentlyReorderingStatus)
-                        <x-livewire-tables::table.th.reorder x-cloak x-show="currentlyReorderingStatus"  />
-                    @endif
-                    @if($this->showFilterPillsSection)
-                        <x-livewire-tables::tools.filter-pills />
-                    @endif
-
-                    @includeWhen(
-                        $this->hasConfigurableAreaFor('before-toolbar'),
-                        $this->getConfigurableAreaFor('before-toolbar'),
-                        $this->getParametersForConfigurableArea('before-toolbar')
-                    )
-
-                    @if($this->shouldShowToolBar)
-                        <x-livewire-tables::tools.toolbar />
-                    @endif
-
-                    @includeWhen(
-                        $this->hasConfigurableAreaFor('after-toolbar'),
-                        $this->getConfigurableAreaFor('after-toolbar'),
-                        $this->getParametersForConfigurableArea('after-toolbar')
-                    )
-
-                </x-livewire-tables::tools>
-                @endif
 
                 <x-livewire-tables::table>
 
