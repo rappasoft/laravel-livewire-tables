@@ -4,7 +4,7 @@
     @class([
         'mb-3 mb-md-0 input-group' => $isBootstrap,
         'rounded-md shadow-sm' => $isTailwind,
-        'flex' => !$this->hasSearchIcon,
+        'flex' => ($isTailwind && !$this->hasSearchIcon),
         'relative inline-flex flex-row' => $this->hasSearchIcon,
     ])>
 
