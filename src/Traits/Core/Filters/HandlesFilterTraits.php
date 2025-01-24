@@ -10,5 +10,6 @@ trait HandlesFilterTraits
         HasFilterPillsStyling,
         HasFilterQueryString,
         HasFiltersStatus,
-        HasFiltersVisibility;
+        HasFiltersVisibility,
+        HasFilterButtonStyling;
 }

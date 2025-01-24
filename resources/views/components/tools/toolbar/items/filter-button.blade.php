@@ -1,7 +1,7 @@
 @aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 @props([])
 
-<div 
+<div
                 @class([
                     'ml-0 ml-md-2 mb-3 mb-md-0' => $this->isBootstrap4,
                     'ms-0 ms-md-2 mb-3 mb-md-0' => $this->isBootstrap5 && $this->searchIsEnabled(),
@@ -22,10 +22,15 @@
         <div>
             <button
                 type="button"
-                @class([
-                    'btn dropdown-toggle d-block w-100 d-md-inline' => $this->isBootstrap,
-                    'inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $this->isTailwind,
-                ])
+                {{
+                    $attributes->merge($this->getFilterButtonAttributes())
+                    ->class([
+                        'btn dropdown-toggle d-block w-100 d-md-inline' => $this->isBootstrap && $this->getFilterButtonAttributes()['default-styling'],
+                        'inline-flex justify-center w-full rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50' => $this->isTailwind && $this->getFilterButtonAttributes()['default-styling'],
+                        'border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $this->isTailwind && $this->getFilterButtonAttributes()['default-colors'],
+                    ])
+                    ->except(['default-styling', 'default-colors'])
+                }}
                 @if ($this->isFilterLayoutPopover()) x-on:click="filterPopoverOpen = !filterPopoverOpen"
                     aria-haspopup="true"
                     x-bind:aria-expanded="filterPopoverOpen"
@@ -36,10 +41,17 @@
                 {{ __($this->getLocalisationPath.'Filters') }}
 
                 @if ($count = $this->getFilterBadgeCount())
-                    <span @class([
-                            'badge badge-info' => $this->isBootstrap,
-                            'ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $this->isTailwind,
-                        ])>
+                    <span
+                        {{
+                            $attributes->merge($this->getFilterButtonBadgeAttributes())
+                            ->class([
+                                'badge badge-info' => $this->isBootstrap && $this->getFilterButtonBadgeAttributes()['default-styling'],
+                                'ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 capitalize' => $this->isTailwind && $this->getFilterButtonBadgeAttributes()['default-styling'],
+                                'bg-indigo-100 text-indigo-800 dark:bg-indigo-200 dark:text-indigo-900' => $this->isTailwind && $this->getFilterButtonBadgeAttributes()['default-colors'],
+                            ])
+                            ->except(['default-styling', 'default-colors'])
+                        }}
+                    >
                         {{ $count }}
                     </span>
                 @endif
