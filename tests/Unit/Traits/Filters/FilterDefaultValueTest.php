@@ -23,14 +23,15 @@ final class FilterDefaultValueTest extends TestCase
                 $this->useComputedPropertiesDisabled();
 
             }
+
             public function filters(): array
             {
                 return [
                     TextFilter::make('Pet Name', 'pet_name_filter')
-                    ->filter(function (Builder $builder, string $value) {
-                        return $builder->where('pets.name', '=', $value);
-                    })
-                    ->setFilterDefaultValue('car'),
+                        ->filter(function (Builder $builder, string $value) {
+                            return $builder->where('pets.name', '=', $value);
+                        })
+                        ->setFilterDefaultValue('car'),
                 ];
             }
         };
