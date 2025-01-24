@@ -1,45 +1,82 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Traits\Core\Filters;
+namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Configuration;
 
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectDropdownFilter, MultiSelectFilter};
 
-trait ManagesFilters
+trait FilterConfiguration
 {
-    // Set in JS
-    public array $filterComponents = [];
-
-    // Set in Frontend
-    public array $appliedFilters = [];
-
-    /**
-     * Sets Filter Default Values
-     */
-    public function mountManagesFilters(): void
+    #[On('setFilter')]
+    #[On('set-filter')]
+    public function setFilter(string $filterKey, string|array|null $value): void
     {
-        $this->restoreFilterValues();
+        $this->appliedFilters[$filterKey] = $this->filterComponents[$filterKey] = $value;
 
-        foreach ($this->getFilters() as $filter) {
-            if (! isset($this->appliedFilters[$filter->getKey()])) {
-                if ($filter->hasFilterDefaultValue()) {
-                    $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
-                } else {
-                    $this->resetFilter($filter);
-                }
-            } else {
-                $this->setFilter($filter->getKey(), $this->appliedFilters[$filter->getKey()]);
-            }
+        $this->callHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
+        $this->callTraitHook('filterSet', ['filter' => $filterKey, 'value' => $value]);
+        if ($this->getEventStatusFilterApplied() && $filterKey != null && $value != null) {
+            event(new FilterApplied($this->getTableName(), $filterKey, $value));
         }
+        $this->dispatch('filter-was-set', tableName: $this->getTableName(), filterKey: $filterKey, value: $value);
+        $this->storeFilterValues();
+
     }
 
-    public function bootedManagesFilters(): void
+    #[On('clearFilters')]
+    #[On('clear-filters')]
+    public function setFilterDefaults(): void
     {
-        $this->setBuilder($this->builder());
-
-        foreach ($this->filterComponents as $filterKey => $value) {
-            $this->appliedFilters[$filterKey] = $value;
+        foreach ($this->getFilters() as $filter) {
+            if ($filter->isResetByClearButton()) {
+                $this->resetFilter($filter);
+            }
         }
+
+    }
+
+    /**
+     * @param  mixed  $filter
+     */
+    public function resetFilter($filter): void
+    {
+        if (! $filter instanceof Filter) {
+            $filter = $this->getFilterByKey($filter);
+        }
+        $this->callHook('filterReset', ['filter' => $filter->getKey()]);
+        $this->callTraitHook('filterReset', ['filter' => $filter->getKey()]);
+        $this->setFilter($filter->getKey(), $filter->getDefaultValue());
+
+    }
+
+    #[On('livewireArrayFilterUpdateValues')]
+    public function updateLivewireArrayFilterValues(string $filterKey, string $tableName, array $values): void
+    {
+        if ($this->tableName == $tableName) {
+            $filter = $this->getFilterByKey($filterKey);
+            $filter->options($values);
+        }
+
+    }
+
+    public function selectAllFilterOptions(string $filterKey): void
+    {
+        $filter = $this->getFilterByKey($filterKey);
+
+        if (! $filter instanceof MultiSelectFilter && ! $filter instanceof MultiSelectDropdownFilter) {
+            return;
+        }
+
+        if (count($this->getAppliedFilterWithValue($filterKey) ?? []) === count($filter->getOptions())) {
+            $this->resetFilter($filterKey);
+
+            return;
+        }
+
+        $this->setFilter($filterKey, array_keys($filter->getOptions()));
     }
 
     public function applyFilters(): Builder

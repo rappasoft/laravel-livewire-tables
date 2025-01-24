@@ -78,25 +78,18 @@ final class FilterConfigurationTest extends TestCase
 
         $this->assertSame('popover', $this->basicTable->getFilterLayout());
 
-        $this->basicTable->setFilterLayout('slide-down');
+        $this->assertSame('slide-down', $this->basicTable->setFilterLayout('slide-down')->getFilterLayout());
 
-        $this->assertSame('slide-down', $this->basicTable->getFilterLayout());
+        $this->assertSame('popover', $this->basicTable->setFilterLayout('popover')->getFilterLayout());
 
-        $this->basicTable->setFilterLayout('popover');
+        $this->assertSame('slide-down', $this->basicTable->setFilterLayoutSlideDown()->getFilterLayout());
 
-        $this->assertSame('popover', $this->basicTable->getFilterLayout());
+        $this->assertSame('popover', $this->basicTable->setFilterLayout('popover2')->getFilterLayout());
 
-        $this->basicTable->setFilterLayout('popover2');
+        $this->assertSame('slide-down', $this->basicTable->setFilterLayout('slide-down')->getFilterLayout());
 
-        $this->assertSame('popover', $this->basicTable->getFilterLayout());
+        $this->assertSame('popover', $this->basicTable->setFilterLayoutPopover()->getFilterLayout());
 
-        $this->basicTable->setFilterLayoutSlideDown();
-
-        $this->basicTable->setFilterLayout('slide-down');
-
-        $this->basicTable->setFilterLayoutPopover();
-
-        $this->basicTable->setFilterLayout('popover');
     }
 
     public function test_filters_layout_popover_default_can_be_set(): void
@@ -118,5 +111,10 @@ final class FilterConfigurationTest extends TestCase
         $this->basicTable->setFilterSlideDownDefaultStatus(false);
 
         $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);
+
+        $this->assertSame('slide-down', $this->basicTable->setFilterLayout('slide-down')->getFilterLayout());
+
+        $this->assertSame('popover', $this->basicTable->setFilterLayoutPopover()->getFilterLayout());
+
     }
 }
