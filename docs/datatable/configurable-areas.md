@@ -34,6 +34,7 @@ public function configure(): void
     'toolbar-right-end' => 'path.to.my.view',
     'before-toolbar' => 'path.to.my.view',
     'after-toolbar' => 'path.to.my.view',
+    'after-tools' => 'path.to.my.view',
     'before-pagination' => 'path.to.my.view',
     'after-pagination' => 'path.to.my.view',
     'after-wrapper' => 'path.to.my.view',
