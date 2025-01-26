@@ -6,11 +6,6 @@ use Livewire\Attributes\Locked;
 
 trait HasFilterQueryString
 {
-    #[Locked]
-    public bool $queryStringStatusForFilter = true;
-
-    protected ?string $queryStringAliasForFilter;
-
     protected function queryStringHasFilterQueryString(): array
     {
         return ($this->queryStringForFilterIsEnabled()) ?
@@ -18,6 +13,11 @@ trait HasFilterQueryString
                 'appliedFilters' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForFilter()],
                 'filterComponents' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForFilter()],
             ] : [];
+    }
+
+    public function queryStringForFilterIsEnabled(): bool
+    {
+        return $this->getQueryStringStatusForFilter() && $this->filtersAreEnabled();
     }
 
     public function hasQueryStringStatusForFilter(): bool
@@ -30,27 +30,6 @@ trait HasFilterQueryString
         return $this->getQueryStringConfigStatus('filters');
     }
 
-    public function queryStringForFilterIsEnabled(): bool
-    {
-
-        return $this->getQueryStringStatusForFilter() && $this->filtersAreEnabled();
-    }
-
-    public function setQueryStringStatusForFilter(bool $status): self
-    {
-        return $this->setQueryStringConfigStatus('filters', $status);
-    }
-
-    public function setQueryStringForFilterEnabled(): self
-    {
-        return $this->setQueryStringStatusForFilter(true);
-    }
-
-    public function setQueryStringForFilterDisabled(): self
-    {
-        return $this->setQueryStringStatusForFilter(false);
-    }
-
     public function hasQueryStringAliasForFilter(): bool
     {
         return $this->hasQueryStringConfigAlias('filters');
@@ -61,7 +40,22 @@ trait HasFilterQueryString
         return $this->getQueryStringConfigAlias('filters');
     }
 
-    public function setQueryStringAliasForFilter(string $alias): self
+    protected function setQueryStringStatusForFilter(bool $status): self
+    {
+        return $this->setQueryStringConfigStatus('filters', $status);
+    }
+
+    protected function setQueryStringForFilterEnabled(): self
+    {
+        return $this->setQueryStringStatusForFilter(true);
+    }
+
+    protected function setQueryStringForFilterDisabled(): self
+    {
+        return $this->setQueryStringStatusForFilter(false);
+    }
+
+    protected function setQueryStringAliasForFilter(string $alias): self
     {
         return $this->setQueryStringConfigAlias('filters', $alias);
     }
