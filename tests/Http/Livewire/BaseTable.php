@@ -10,5 +10,4 @@ abstract class BaseTable extends DataTableComponent
     use TestHelpers;
 
     public string $paginationTest = 'standard';
-
 }

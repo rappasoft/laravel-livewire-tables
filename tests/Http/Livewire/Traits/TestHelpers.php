@@ -37,5 +37,4 @@ trait TestHelpers
 
         return $view;
     }
-
 }

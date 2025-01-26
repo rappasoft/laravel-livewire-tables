@@ -38,7 +38,6 @@ class QueryStringTestBase extends TestCase
             {
                 return parent::setQueryStringForFilterDisabled();
             }
-
         };
     }
 }

@@ -23,6 +23,4 @@ trait TestPaginationHelpers
     {
         $this->paginationTest = $type;
     }
-
-
 }
