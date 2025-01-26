@@ -5,8 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HandlesDates, HasConfig, HasOptions};
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\{HandlesDates, HasConfig, HasOptions, HasWireables};
 
 class DateRangeFilter extends Filter
 {

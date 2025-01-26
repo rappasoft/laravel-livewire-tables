@@ -3,8 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions, IsArrayFilter, IsLivewireComponentFilter};
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\{HasOptions, HasWireables, IsArrayFilter, IsLivewireComponentFilter};
 
 class LivewireComponentArrayFilter extends Filter
 {

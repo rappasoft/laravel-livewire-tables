@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
+namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
