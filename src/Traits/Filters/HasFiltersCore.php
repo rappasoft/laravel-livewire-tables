@@ -2,14 +2,18 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Traits\Filters\Configuration\FilterConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Filters\Helpers\FilterHelpers;
 
-trait ManagesFilters
+trait HasFiltersCore
 {
+    use FilterConfiguration,
+        FilterHelpers;
+
     /**
      * Sets Filter Default Values
      */
-    public function mountManagesFilters(): void
+    public function mountHasFiltersCore(): void
     {
         $this->restoreFilterValues();
 
@@ -26,7 +30,7 @@ trait ManagesFilters
         }
     }
 
-    public function bootedManagesFilters(): void
+    public function bootedHasFiltersCore(): void
     {
         $this->setBuilder($this->builder());
 
