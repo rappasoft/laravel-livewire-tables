@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Views\Traits;
+namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 use Livewire\Attributes\{Modelable, On, Renderless};
 

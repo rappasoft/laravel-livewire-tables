@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
+namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 trait FilterConfiguration
 {

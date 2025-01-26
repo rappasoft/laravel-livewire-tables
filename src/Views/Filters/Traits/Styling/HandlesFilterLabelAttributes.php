@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Views\Traits\Styling;
+namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Styling;
 
 use Illuminate\View\ComponentAttributeBag;
 

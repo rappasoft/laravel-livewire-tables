@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
+namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 trait IsNumericFilter
 {
