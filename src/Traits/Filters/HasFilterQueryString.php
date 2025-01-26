@@ -7,7 +7,7 @@ use Livewire\Attributes\Locked;
 trait HasFilterQueryString
 {
     #[Locked]
-    public ?bool $queryStringStatusForFilter;
+    public bool $queryStringStatusForFilter = true;
 
     protected ?string $queryStringAliasForFilter;
 

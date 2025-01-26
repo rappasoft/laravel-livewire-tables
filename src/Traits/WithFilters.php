@@ -4,19 +4,17 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Locked;
-use Rappasoft\LaravelLivewireTables\Traits\Filters\{Configuration\FilterConfiguration, HasFilterGenericData, HasFilterMenu, HasFilterPills, HasFilterQueryString, HasFiltersStatus, HasFiltersVisibility, Helpers\FilterHelpers, ManagesFilters};
+use Rappasoft\LaravelLivewireTables\Traits\Filters\{HasFilterGenericData, HasFilterMenu, HasFilterPills, HasFilterQueryString, HasFiltersCore, HasFiltersStatus, HasFiltersVisibility};
 
 trait WithFilters
 {
-    use FilterConfiguration,
-        FilterHelpers,
-        HasFiltersStatus,
+    use HasFiltersStatus,
         HasFilterGenericData,
         HasFilterMenu,
         HasFilterPills,
         HasFilterQueryString,
         HasFiltersVisibility,
-        ManagesFilters;
+        HasFiltersCore;
 
     // Set in JS
     public array $filterComponents = [];

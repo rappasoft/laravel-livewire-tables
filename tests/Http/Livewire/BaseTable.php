@@ -34,11 +34,11 @@ abstract class BaseTable extends DataTableComponent
 
         $this->boot();
         $this->bootedComponentUtilities();
-        $this->bootedManagesFilters();
+        $this->bootedHasFiltersCore();
         $this->bootedWithColumns();
         $this->bootedWithColumnSelect();
         $this->booted();
-        $this->mountManagesFilters();
+        $this->mountHasFiltersCore();
         $this->mountComponentUtilities();
         $this->mountWithSorting();
         $this->renderAll($view);
