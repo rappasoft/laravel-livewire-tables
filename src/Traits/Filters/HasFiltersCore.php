@@ -9,7 +9,7 @@ trait HasFiltersCore
 {
     use FilterConfiguration,
         FilterHelpers;
-        
+
     /**
      * Sets Filter Default Values
      */
@@ -38,5 +38,4 @@ trait HasFiltersCore
             $this->appliedFilters[$filterKey] = $value;
         }
     }
-
 }
