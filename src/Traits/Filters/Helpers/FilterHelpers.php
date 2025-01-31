@@ -121,5 +121,4 @@ trait FilterHelpers
         return collect($this->filterComponents ?? [])
             ->filter(fn ($value, $key) => in_array($key, $validFilterKeys, true));
     }
-
 }
