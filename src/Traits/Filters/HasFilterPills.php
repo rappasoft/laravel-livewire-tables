@@ -15,4 +15,8 @@ trait HasFilterPills
 
     #[Locked]
     public bool $filterPillsStatus = true;
+
+    public array $externalFilterPillsValues = [];
+
+    public array $externalFilterPillsLength = [];
 }

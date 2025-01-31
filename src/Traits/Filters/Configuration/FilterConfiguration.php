@@ -52,16 +52,6 @@ trait FilterConfiguration
 
     }
 
-    #[On('livewireArrayFilterUpdateValues')]
-    public function updateLivewireArrayFilterValues(string $filterKey, string $tableName, array $values): void
-    {
-        if ($this->tableName == $tableName) {
-            $filter = $this->getFilterByKey($filterKey);
-            $filter->options($values);
-        }
-
-    }
-
     public function selectAllFilterOptions(string $filterKey): void
     {
         $filter = $this->getFilterByKey($filterKey);

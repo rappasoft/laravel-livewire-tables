@@ -19,6 +19,9 @@ document.addEventListener('alpine:init', () => {
         selectAllStatus: wire.entangle('selectAll'),
         delaySelectAll: wire.entangle('delaySelectAll'),
         hideBulkActionsWhenEmpty: wire.entangle('hideBulkActionsWhenEmpty'),
+        externalFilterPillsVals: wire.entangle('externalFilterPillsValues').live,
+        showFilterPillLabel: [],
+        filterPillsSeparator: ', ',
         dragging: false,
         reorderEnabled: false,
         sourceID: '',
@@ -36,6 +39,36 @@ document.addEventListener('alpine:init', () => {
         currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
+        syncExternalFilterPillsValues(filterKey,filterValues) {
+            this.externalFilterPillsVals[filterKey] = filterValues;
+            this.showFilterPillLabel[filterKey] = this.getFilterPillsLength(filterKey);
+        },
+        getFilterPillsLength(filterKey)
+        {
+            return Object.keys(this.externalFilterPillsVals[filterKey]).length ?? 0;
+        },
+        setFilterPillsLength(externalFilterPillsValues)
+        {
+            let filterValueLength = 0;
+            if (typeof(externalFilterPillsValues) !== 'undefined')
+            {
+                filterValueLength = Object.keys(externalFilterPillsValues).length ?? 0;
+            }
+            else
+            {
+                filterValueLength = 0;
+            }
+            return filterValueLength; 
+        },
+        showFilterPillsLabel(filterKey)
+        {
+            let pillsLength = this.getFilterPillsLength(filterKey);
+            return (this.getFilterPillsLength(filterKey) > 0);
+        },
+        showFilterPillsSeparator(filterKey,index)
+        {
+            return ((index+1) < (this.getFilterPillsLength(filterKey)));
+        },
         dragStart(event) {
             this.$nextTick(() => { this.setupEvenOddClasses() });
             this.sourceID = event.target.id;
@@ -658,5 +691,96 @@ document.addEventListener('alpine:init', () => {
         init() {
         }
     }));
+
+    Alpine.data('filterPillsArrayExternal', (tableNameVal, filterKeyVal) => ({
+        tableName: tableNameVal,
+        filterKey: filterKeyVal,
+        filterPillValues: null,
+        separator: ', ',
+        filterPillValuesLength: 0,
+        hasLoaded: false,
+        updatedPillsValues(event)
+        {
+            this.hasLoaded = false;
+            let eventTableName = event.detail.tableName ?? '';
+            let eventFilterValues = event.detail.filterValues;
+            let eventFilterValueLength = 0;
+            if((eventTableName ?? '') != '' && eventTableName === this.tableName)
+            {
+                this.filterPillValues = eventFilterValues; 
+                eventFilterValueLength = this.setLength(eventFilterValues);
+
+                this.filterPillValuesLength = eventFilterValueLength;
+            }
+            this.hasLoaded = true;
+        },
+        refreshFilterPill(event)
+        {
+
+        },
+        refreshFilterPillNew(event)
+        {
+            let eventFilterValues = event.detail.filterValues;
+
+            this.filterPillValues = eventFilterValues;
+            this.filterPillValuesLength = (typeof(eventFilterValues) !== 'undefined') ? Object.keys(eventFilterValues).length  : 0;
+
+        },
+        setupFilterPill(separator, filterPillValues)
+        {
+            this.hasLoaded = false;
+
+            this.separator = separator;
+            this.filterPillValues = filterPillValues;
+            this.filterPillValuesLength = (typeof(this.filterPillValues) !== 'undefined') ? Object.keys(this.filterPillValues).length  : 0;
+            this.$nextTick(() => { 
+                this.filterPillValuesLength = (typeof(this.filterPillValues) !== 'undefined') ? Object.keys(this.filterPillValues).length  : 0 
+                this.hasLoaded = true;
+
+            });
+
+        },
+        setSeparator(value)
+        {
+            this.separator = value;
+        },
+        getLength()
+        {
+            return Object.keys(this.filterPillValues).length ?? 0;
+        },
+        setLength(eventFilterValues)
+        {
+            let filterValueLength = 0;
+            if (typeof(eventFilterValues) !== 'undefined')
+            {
+                filterValueLength = Object.keys(eventFilterValues).length ?? 0;
+            }
+            else
+            {
+                filterValueLength = 0;
+            }
+            return filterValueLength; 
+        },
+        showSeparator(index)
+        {
+            return ((index+1) < (this.getLength()));
+        },
+        init()
+        {
+            window.addEventListener('filter-pills-updated', (event) => {
+                this.updatedPillsValues(event)
+            });
+
+            window.addEventListener('update-filter-pill-values', (event) => {
+                this.refreshFilterPill(event)
+            });
+            window.addEventListener('refresh-filter-pill', (event) => {
+                this.refreshFilterPillNew(event);
+            });
+
+            
+        }
+    }));
+
 
 });

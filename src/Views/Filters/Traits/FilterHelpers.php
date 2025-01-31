@@ -57,72 +57,9 @@ trait FilterHelpers
         return $this->filterCallback;
     }
 
-    public function getCustomFilterPillTitle(): ?string
-    {
-        return $this->filterPillTitle;
-    }
-
-    public function getFilterPillTitle(): string
-    {
-        return $this->getCustomFilterPillTitle() ?? $this->getName();
-    }
-
-    /**
-     * @param  mixed  $value
-     */
-    public function getFilterPillValue($value): array|string|bool|null
-    {
-        return $value;
-    }
-
-    /**
-     * @return array<mixed>
-     */
-    public function getCustomFilterPillValues(): array
-    {
-        return $this->filterPillValues;
-    }
-
-    public function getCustomFilterPillValue(string $value): ?string
-    {
-        return $this->getCustomFilterPillValues()[$value] ?? null;
-    }
-
     public function isResetByClearButton(): bool
     {
         return $this->resetByClearButton === true;
-    }
-
-    /**
-     * Returns whether the filter has a custom label blade
-     */
-    public function hasCustomFilterLabel(): bool
-    {
-        return ! is_null($this->filterCustomLabel);
-    }
-
-    /**
-     * Returns the path to the custom filter label blade
-     */
-    public function getCustomFilterLabel(): string
-    {
-        return $this->filterCustomLabel ?? '';
-    }
-
-    /**
-     * Determine if filter has a Custom Pill Blade
-     */
-    public function hasCustomPillBlade(): bool
-    {
-        return $this->filterCustomPillBlade != null;
-    }
-
-    /**
-     * Get the path to the Custom Pill Blade
-     */
-    public function getCustomPillBlade(): ?string
-    {
-        return $this->filterCustomPillBlade;
     }
 
     /**
