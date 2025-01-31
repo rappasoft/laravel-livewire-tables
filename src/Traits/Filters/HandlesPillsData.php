@@ -8,14 +8,19 @@ trait HandlesPillsData
     {
         $filters = [];
 
-        foreach ($this->getAppliedFiltersWithValuesForPills() as $filterSelectName => $value) {
-            if (! is_null($filterSelectName)) {
-                if (! is_null($filter = $this->getFilterByKey($filterSelectName))) {
-                    if ($filter->isEmpty($value)) {
+        foreach ($this->getAppliedFiltersWithValuesForPills() as $filterSelectName => $value)
+        {
+            if (!is_null($filterSelectName))
+            {
+                if(!is_null($filter = $this->getFilterByKey($filterSelectName)))
+                {
+                    if($filter->isEmpty($value))
+                    {
                         continue;
                     }
                     $filterPillValue = $filter->getFilterPillValue($value);
                     $filterPillTitle = $filter->getFilterPillTitle();
+
 
                     $filters[$filter->getKey()] = [
                         'filter' => $filter,
@@ -27,9 +32,10 @@ trait HandlesPillsData
                     ];
                 }
             }
-
+    
         }
 
         return $filters;
     }
+
 }

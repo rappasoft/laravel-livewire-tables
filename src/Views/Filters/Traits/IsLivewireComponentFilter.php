@@ -8,6 +8,12 @@ trait IsLivewireComponentFilter
 {
     public string $livewireComponent = '';
 
+
+    public function isAnExternalLivewireFilter(): bool
+    {
+        return true;
+    }
+
     public function setLivewireComponent(string $livewireComponent): self
     {
 
