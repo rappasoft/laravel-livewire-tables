@@ -22,7 +22,7 @@ abstract class LivewireArrayExternalFilter extends Component
     public array $optionsSelected = [];
 
     #[Renderless]
-    public function updatedOptionsSelected($value)
+    public function updatedOptionsSelected(mixed $value): void
     {
         if (! $this->skipUpdate) {
             if (! $this->needsUpdating) {

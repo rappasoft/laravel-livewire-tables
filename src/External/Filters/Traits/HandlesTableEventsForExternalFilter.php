@@ -15,7 +15,7 @@ trait HandlesTableEventsForExternalFilter
     }
 
     #[Renderless]
-    public function renderingHandlesTableEventsForExternalFilter()
+    public function renderingHandlesTableEventsForExternalFilter(\Illuminate\View\View $view, array $data = []): void
     {
         if ($this->needsUpdating) {
             $this->needsUpdating = false;
