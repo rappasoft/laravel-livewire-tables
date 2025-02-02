@@ -1,17 +1,17 @@
-@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
 
-@if ($this->isTailwind)
+@if ($isTailwind)
     <div>
         @if ($this->sortingPillsAreEnabled() && $this->hasSorts())
             <div class="mb-4 px-4 md:p-0" x-cloak x-show="!currentlyReorderingStatus">
-                <small class="text-gray-700 dark:text-white">{{ __($this->getLocalisationPath.'Applied Sorting') }}:</small>
+                <small class="text-gray-700 dark:text-white">{{ __($localisationPath.'Applied Sorting') }}:</small>
 
                 @foreach($this->getSorts() as $columnSelectName => $direction)
                     @php($column = $this->getColumnBySelectName($columnSelectName) ?? $this->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
-                    @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                    @continue($this->columnSelectIsEnabled && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
                         wire:key="{{ $tableName }}-sorting-pill-{{ $columnSelectName }}"
@@ -38,7 +38,7 @@
                                 ->except(['default-styling', 'default-colors'])
                             }}
                         >
-                            <span class="sr-only">{{ __($this->getLocalisationPath.'Remove sort option') }}</span>
+                            <span class="sr-only">{{ __($localisationPath.'Remove sort option') }}</span>
                             <x-heroicon-m-x-mark class="h-3 w-3" />
                         </button>
                     </span>
@@ -58,24 +58,24 @@
                             ->except(['default-styling', 'default-colors'])
                         }}
                     >
-                        {{ __($this->getLocalisationPath.'Clear') }}
+                        {{ __($localisationPath.'Clear') }}
                     </span>
                 </button>
             </div>
         @endif
     </div>
-@elseif ($this->isBootstrap4)
+@elseif ($isBootstrap4)
     <div>
         @if ($this->sortingPillsAreEnabled() && $this->hasSorts())
             <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">
-                <small>{{ __($this->getLocalisationPath.'Applied Sorting') }}:</small>
+                <small>{{ __($localisationPath.'Applied Sorting') }}:</small>
 
                 @foreach($this->getSorts() as $columnSelectName => $direction)
                     @php($column = $this->getColumnBySelectName($columnSelectName) ?? $this->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
-                    @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                    @continue($this->columnSelectIsEnabled && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
                         wire:key="{{ $tableName . '-sorting-pill-' . $columnSelectName }}"
@@ -100,7 +100,7 @@
                                 ->except(['default-styling', 'default-colors'])
                             }}
                         >
-                            <span class="sr-only">{{ __($this->getLocalisationPath.'Remove sort option') }}</span>
+                            <span class="sr-only">{{ __($localisationPath.'Remove sort option') }}</span>
                             <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-smaller" />
                         </a>
                     </span>
@@ -117,23 +117,23 @@
                         ->except(['default-styling', 'default-colors'])
                     }}
                 >
-                    {{ __($this->getLocalisationPath.'Clear') }}
+                    {{ __($localisationPath.'Clear') }}
                 </a>
             </div>
         @endif
     </div>
-@elseif ($this->isBootstrap5)
+@elseif ($isBootstrap5)
     <div>
         @if ($this->sortingPillsAreEnabled() && $this->hasSorts())
             <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">
-                <small>{{ __($this->getLocalisationPath.'Applied Sorting') }}:</small>
+                <small>{{ __($localisationPath.'Applied Sorting') }}:</small>
 
                 @foreach($this->getSorts() as $columnSelectName => $direction)
                     @php($column = $this->getColumnBySelectName($columnSelectName) ?? $this->getColumnBySlug($columnSelectName))
 
                     @continue(is_null($column))
                     @continue($column->isHidden())
-                    @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+                    @continue($this->columnSelectIsEnabled && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <span
                         wire:key="{{ $tableName }}-sorting-pill-{{ $columnSelectName }}"
@@ -158,7 +158,7 @@
                                 ->except(['default-styling', 'default-colors'])
                             }}
                         >
-                            <span class="visually-hidden">{{ __($this->getLocalisationPath.'Remove sort option') }}</span>
+                            <span class="visually-hidden">{{ __($localisationPath.'Remove sort option') }}</span>
                             <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-smaller" />
                         </a>
                     </span>
@@ -175,7 +175,7 @@
                         ->except(['default-styling', 'default-colors'])
                     }}
                 >
-                    {{ __($this->getLocalisationPath.'Clear') }}
+                    {{ __($localisationPath.'Clear') }}
                 </a>
             </div>
         @endif

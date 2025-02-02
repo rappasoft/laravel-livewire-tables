@@ -7,6 +7,12 @@ use Livewire\Attributes\Computed;
 trait FilterPillsStylingHelpers
 {
     #[Computed]
+    public function displayFilterPillsWhileLoading(): bool
+    {
+        return $this->showFilterPillsWhileLoading;
+    }
+
+    #[Computed]
     public function getFilterPillsItemAttributes(): array
     {
         return $this->filterPillsItemAttributes;

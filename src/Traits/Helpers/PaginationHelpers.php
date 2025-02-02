@@ -28,6 +28,12 @@ trait PaginationHelpers
     }
 
     #[Computed]
+    public function showPaginationDropdown(): bool
+    {
+        return $this->paginationIsEnabled() && $this->perPageVisibilityIsEnabled();
+    }
+
+    #[Computed]
     public function paginationIsEnabled(): bool
     {
         return $this->getPaginationStatus() === true;

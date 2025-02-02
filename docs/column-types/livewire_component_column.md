@@ -8,7 +8,7 @@ Livewire Component Columns allow for the use of a Livewire Component as a Column
 This is **not recommended** as due to the nature of Livewire, it becomes inefficient at scale.
 
 ## component
-```
+```php
 LivewireComponentColumn::make('Action')
     ->component('PathToLivewireComponent'),
 

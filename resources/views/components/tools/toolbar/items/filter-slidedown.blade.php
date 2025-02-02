@@ -1,9 +1,9 @@
-@aware([ 'tableName'])
+@aware([ 'tableName', 'isTailwind', 'isBootstrap'])
 @props([])
 
 <div x-cloak x-show="filtersOpen" {{ $attributes
             ->merge($this->getFilterSlidedownWrapperAttributes)
-            ->merge($this->isTailwind ? [
+            ->merge($isTailwind ? [
                 'x-transition:enter' => 'transition ease-out duration-100',
                 'x-transition:enter-start' => 'transform opacity-0',
                 'x-transition:enter-end' => 'transform opacity-100',
@@ -12,7 +12,7 @@
                 'x-transition:leave-end' => 'transform opacity-0',
             ] : [])
             ->class([
-                'container' => $this->isBootstrap && ($this->getFilterSlidedownWrapperAttributes['default'] ?? true),
+                'container' => $isBootstrap && ($this->getFilterSlidedownWrapperAttributes['default'] ?? true),
             ])
             ->except(['default','default-colors','default-styling'])
         }} 
@@ -26,8 +26,8 @@
                 'row' => $filterRowIndex,
             ])
             ->class([
-                'row col-12' => $this->isBootstrap && ($defaultAttributes['default-styling'] ?? true),
-                'grid grid-cols-12 gap-6 px-4 py-2 mb-2' => $this->isTailwind && ($defaultAttributes['default-styling'] ?? true),
+                'row col-12' => $isBootstrap && ($defaultAttributes['default-styling'] ?? true),
+                'grid grid-cols-12 gap-6 px-4 py-2 mb-2' => $isTailwind && ($defaultAttributes['default-styling'] ?? true),
             ])
             ->except(['default','default-colors','default-styling'])
         }} 
@@ -36,33 +36,33 @@
                 <div
                     @class([
                         'space-y-1 mb-4' =>
-                            $this->isBootstrap,
+                            $isBootstrap,
                         'col-12 col-sm-9 col-md-6 col-lg-3' =>
-                            $this->isBootstrap &&
+                            $isBootstrap &&
                             !$filter->hasFilterSlidedownColspan(),
                         'col-12 col-sm-6 col-md-6 col-lg-3' =>
-                            $this->isBootstrap &&
+                            $isBootstrap &&
                             $filter->hasFilterSlidedownColspan() &&
                             $filter->getFilterSlidedownColspan() === 2,
                         'col-12 col-sm-3 col-md-3 col-lg-3' =>
-                            $this->isBootstrap &&
+                            $isBootstrap &&
                             $filter->hasFilterSlidedownColspan() &&
                             $filter->getFilterSlidedownColspan() === 3,
                         'col-12 col-sm-1 col-md-1 col-lg-1' =>
-                            $this->isBootstrap &&
+                            $isBootstrap &&
                             $filter->hasFilterSlidedownColspan() &&
                             $filter->getFilterSlidedownColspan() === 4,
                         'space-y-1 col-span-12' =>
-                            $this->isTailwind,
+                            $isTailwind,
                         'sm:col-span-6 md:col-span-4 lg:col-span-2' =>
-                            $this->isTailwind &&
+                            $isTailwind &&
                             !$filter->hasFilterSlidedownColspan(),
                         'sm:col-span-12 md:col-span-8 lg:col-span-4' =>
-                            $this->isTailwind &&
+                            $isTailwind &&
                             $filter->hasFilterSlidedownColspan() &&
                             $filter->getFilterSlidedownColspan() === 2,
                         'sm:col-span-9 md:col-span-4 lg:col-span-3' =>
-                            $this->isTailwind &&
+                            $isTailwind &&
                             $filter->hasFilterSlidedownColspan() &&
                             $filter->getFilterSlidedownColspan() === 3,
                     ])

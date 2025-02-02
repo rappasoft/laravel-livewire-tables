@@ -1,11 +1,12 @@
+@aware(['isTailwind', 'isBootstrap'])
 @props(['direction' => 'none', 'customIconAttributes'])
 <span @class([
-        'relative flex items-center' => $this->isTailwind,
-        'relative d-flex align-items-center' => $this->isBootstrap
+        'relative flex items-center' => $isTailwind,
+        'relative d-flex align-items-center' => $isBootstrap
     ])
 >
 
-    @if($this->isTailwind)
+    @if($isTailwind)
         @switch($direction)
             @case('asc')
                 <x-heroicon-o-chevron-up {{ $attributes->merge($customIconAttributes)

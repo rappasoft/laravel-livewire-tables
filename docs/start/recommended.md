@@ -48,7 +48,7 @@ import '../../vendor/rappasoft/laravel-livewire-tables/resources/imports/laravel
 
 ## Update Layouts
 Ensure that your layouts do not reference any of the following blade directives, as these are not required with the above approach
-```
+```html
     <!-- Adds the Core Table Styles -->
     @rappasoftTableStyles
     
