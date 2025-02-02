@@ -3,7 +3,13 @@
 <x-livewire-tables::tools.filter-pills.wrapper :$filterKey :$filterPillData :shouldWatch="true">
     {{ $filterPillData->getTitle() }}:
 
-    {{ $filterPillData->getValueFromPillData() }}
+    @if(is_array($filterPillValues = $filterPillData->getPillValue()))
+        @foreach($filterPillValues as $filterPillValue)
+            {{ $filterPillValue }}{!! !$loop->last ? $separator : '' !!}
+        @endforeach
+    @else
+        {{ $filterPillValues }}
+    @endif
 
 </x-livewire-tables::tools.filter-pills.wrapper>
 
