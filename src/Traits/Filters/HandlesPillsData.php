@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Filters;
 
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\Filters\FilterPillData;
+
 trait HandlesPillsData
 {
     public function getPillDataForFilter(): array
@@ -13,17 +15,16 @@ trait HandlesPillsData
                 if ($filter->isEmpty($value)) {
                     continue;
                 }
-                $filterPillValue = $filter->getFilterPillValue($value);
-                $filterPillTitle = $filter->getFilterPillTitle();
+                $isAnExternalLivewireFilter = (method_exists($filter, 'isAnExternalLivewireFilter') && $filter->isAnExternalLivewireFilter());
+                $separator = method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ';
 
-                $filters[$filter->getKey()] = [
-                    'filter' => $filter,
-                    'isAnExternalLivewireFilter' => (method_exists($filter, 'isAnExternalLivewireFilter') && $filter->isAnExternalLivewireFilter()),
-                    'filterSelectName' => $filterSelectName,
-                    'filterPillTitle' => $filterPillTitle,
-                    'filterPillValue' => $filterPillValue,
-                    'separator' => method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ',
-                ];
+                $filterPillAttributes = $this->getFilterPillsItemAttributes();
+                
+                if ($filter->hasPillAttributes())
+                {
+                    $filterPillAttributes = array_merge($filterPillAttributes, $filter->getPillAttributes());
+                }
+                $filters[$filter->getKey()] = FilterPillData::make($filter->getFilterPillTitle(), $filterSelectName, $filter->getFilterPillValue($value), $separator, $isAnExternalLivewireFilter, $filter->hasCustomPillBlade(), $filter->getCustomPillBlade(), $filterPillAttributes);
             }
         }
 

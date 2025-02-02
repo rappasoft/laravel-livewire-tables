@@ -19,9 +19,6 @@ document.addEventListener('alpine:init', () => {
         selectAllStatus: wire.entangle('selectAll'),
         delaySelectAll: wire.entangle('delaySelectAll'),
         hideBulkActionsWhenEmpty: wire.entangle('hideBulkActionsWhenEmpty'),
-        externalFilterPillsVals: wire.entangle('externalFilterPillsValues').live,
-        showFilterPillLabel: [],
-        filterPillsSeparator: ', ',
         dragging: false,
         reorderEnabled: false,
         sourceID: '',
@@ -34,11 +31,37 @@ document.addEventListener('alpine:init', () => {
         evenNotInOdd: {},
         oddNotInEven: {},
         orderedRows: [],
-        defaultReorderColumn: wire.get('defaultReorderColumn'),
+        defaultReorderColumn: wire.entangle('defaultReorderColumn'),
         reorderStatus: wire.entangle('reorderStatus'),
         currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
+        externalFilterPillsVals: wire.entangle('externalFilterPillsValues'),
+        internalFilterPillsVals: wire.entangle('internalFilterPillsVals'),
+        showFilterPillLabel: [],
+        filterPillsSeparator: ', ',
+        showFilterPillsSection: true,
+        resetSpecificFilter(filterKey)
+        {
+            this.externalFilterPillsVals[filterKey] = [];
+            wire.call('resetFilter',filterKey);
+        },
+        resetAllFilters()
+        {
+            this.externalFilterPillsVals = [];
+            wire.call('setFilterDefaults');
+        },
+        setInternalFilterPillVal(filterKey, filterValues)
+        {
+            console.log('setInternalFilterPillVal');
+            console.log('filterKey:'+filterKey);
+            console.log('filterValues:'+filterValues);
+
+            if(typeof(filterValues) !== 'undefined')
+            {
+                this.internalFilterPillsVals[filterKey] = filterValues;
+            }
+        },
         syncExternalFilterPillsValues(filterKey,filterValues) {
             this.externalFilterPillsVals[filterKey] = filterValues;
             this.showFilterPillLabel[filterKey] = this.getFilterPillsLength(filterKey);
@@ -46,6 +69,18 @@ document.addEventListener('alpine:init', () => {
         getFilterPillsLength(filterKey)
         {
             return Object.keys(this.externalFilterPillsVals[filterKey]).length ?? 0;
+        },
+        showFilterPillsValue(filterKey, filterPillValue)
+        {
+            if(typeof(filterPillValue) !== "undefined")
+            {
+                this.externalFilterPillsVals[filterKey] = filterPillValue;
+            }
+            else
+            {
+                this.externalFilterPillsVals[filterKey] = null;
+            }
+            
         },
         setFilterPillsLength(externalFilterPillsValues)
         {
@@ -64,6 +99,22 @@ document.addEventListener('alpine:init', () => {
         {
             let pillsLength = this.getFilterPillsLength(filterKey);
             return (this.getFilterPillsLength(filterKey) > 0);
+        },
+        getFilterPillImplodedValues(filterKey, separator)
+        {
+            let filterPillValues = this.externalFilterPillsVals[filterKey];
+            if(filterPillValues !== 'undefined')
+            {
+                console.log("filterPillValues Are Defined");
+                let joinedValues = filterPillValues.join(separator);
+                console.log("joinedValues");
+                console.log(joinedValues);
+
+                return joinedValues;
+            }
+            console.log("filterPillValues Are Not Defined");
+
+            return '';
         },
         showFilterPillsSeparator(filterKey,index)
         {
@@ -280,8 +331,7 @@ document.addEventListener('alpine:init', () => {
             this.listeners.forEach((listener) => {
                 listener();
             });
-
-        }
+        },
     }));
 
     Alpine.data('booleanFilter', (wire,filterKey,tableName,defaultValue) => ({
@@ -692,6 +742,54 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 
+    Alpine.data('filterPillsGeneric', (localFilterKey, localFilterPillsSeparator, shouldWatch) => ({
+        localFilterKey: localFilterKey,
+        localFilterPillsSeparator: localFilterPillsSeparator,
+        localFilterPillValues: '',
+        localShouldWatch: Boolean(shouldWatch),
+        localHasValues: true,
+        updateHasValues()
+        {
+            this.localHasValues = (this.localFilterPillValues.length > 0);
+        },
+        updateLocalFilterPillImplodedValues(filterPillValues)
+        {
+            if(typeof(filterPillValues) !== 'undefined')
+            {
+                if(Array.isArray(filterPillValues))
+                {
+                    let joinedValues = filterPillValues.join(this.localFilterPillsSeparator);
+                    return joinedValues;
+                }
+                else
+                {
+                    return filterPillValues;
+                }
+            }
+            return "";
+        },
+        getLocalFilterPillImplodedValues()
+        {
+            let filterPillValues = this.externalFilterPillsVals[this.localFilterKey];
+            return this.updateLocalFilterPillImplodedValues(filterPillValues);
+        },
+        init()
+        {
+            this.$nextTick(() => { 
+                this.localFilterPillValues = this.getLocalFilterPillImplodedValues(); 
+                this.updateHasValues();
+            });
+            if(this.localShouldWatch)
+            {
+                this.$watch('externalFilterPillsVals.'+this.localFilterKey, filterPillValues => { 
+                    console.log('filterPillsGeneric - externalFilterPillsVals - changed');
+                    this.localFilterPillValues = this.updateLocalFilterPillImplodedValues(filterPillValues); 
+                    this.updateHasValues();
+                });      
+            }
+        }
+    }));
+
     Alpine.data('filterPillsArrayExternal', (tableNameVal, filterKeyVal) => ({
         tableName: tableNameVal,
         filterKey: filterKeyVal,
@@ -701,6 +799,7 @@ document.addEventListener('alpine:init', () => {
         hasLoaded: false,
         updatedPillsValues(event)
         {
+            console.log("filterPillsArrayExternal - updatedPillsValues");
             this.hasLoaded = false;
             let eventTableName = event.detail.tableName ?? '';
             let eventFilterValues = event.detail.filterValues;
@@ -716,10 +815,13 @@ document.addEventListener('alpine:init', () => {
         },
         refreshFilterPill(event)
         {
+            console.log("filterPillsArrayExternal - refreshFilterPill");
 
         },
         refreshFilterPillNew(event)
         {
+            console.log("filterPillsArrayExternal - refreshFilterPillNew");
+
             let eventFilterValues = event.detail.filterValues;
 
             this.filterPillValues = eventFilterValues;

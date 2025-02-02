@@ -1,4 +1,4 @@
-@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
 @if ($isTailwind)
     <div class="@if ($this->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($this->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
         <div
@@ -25,7 +25,7 @@
                         x-bind:aria-expanded="open"
                         aria-expanded="true"
                     >
-                        {{ __($this->getLocalisationPath.'Columns') }}
+                        {{ __($localisationPath.'Columns') }}
 
                         <x-heroicon-m-chevron-down class="-mr-1 ml-2 h-5 w-5" />
                     </button>
@@ -65,7 +65,7 @@
                                     @checked($this->getSelectableSelectedColumns()->count() === $this->getSelectableColumns()->count())
                                     @if($this->getSelectableSelectedColumns()->count() === $this->getSelectableColumns()->count())  wire:click="deselectAllColumns" @else wire:click="selectAllColumns" @endif
                                 >
-                                <span class="ml-2">{{ __($this->getLocalisationPath.'All Columns') }}</span>
+                                <span class="ml-2">{{ __($localisationPath.'All Columns') }}</span>
                             </label>
                         </div>
 
@@ -129,7 +129,7 @@
                 type="button" id="{{ $tableName }}-columnSelect" aria-haspopup="true"
                 x-bind:aria-expanded="open"
             >
-                {{ __($this->getLocalisationPath.'Columns') }}
+                {{ __($localisationPath.'Columns') }}
             </button>
 
             <div
@@ -149,7 +149,7 @@
                                 @if($this->getSelectableSelectedColumns()->count() == $this->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                             />
 
-                            <span class="ml-2">{{ __($this->getLocalisationPath.'All Columns') }}</span>
+                            <span class="ml-2">{{ __($localisationPath.'All Columns') }}</span>
 
 
                         </label>
@@ -170,7 +170,7 @@
                         />
 
                         <label wire:loading.attr="disabled" class="form-check-label">
-                            {{ __($this->getLocalisationPath.'All Columns') }}
+                            {{ __($localisationPath.'All Columns') }}
                         </label>
                     </div>
                 @endif

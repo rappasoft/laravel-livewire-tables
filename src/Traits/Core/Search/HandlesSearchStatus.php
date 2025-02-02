@@ -15,6 +15,12 @@ trait HandlesSearchStatus
     }
 
     #[Computed]
+    public function showSearchField(): bool
+    {
+        return ($this->searchIsEnabled() && $this->searchVisibilityIsEnabled());
+    }
+
+    #[Computed]
     public function searchIsEnabled(): bool
     {
         return $this->getSearchStatus() === true;

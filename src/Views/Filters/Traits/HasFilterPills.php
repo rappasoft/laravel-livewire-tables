@@ -2,8 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Styling\HandlesFilterPillsAttributes;
+
 trait HasFilterPills
 {
+    use HandlesFilterPillsAttributes;
+    
     protected ?string $filterPillTitle = null;
 
     protected array $filterPillValues = [];

@@ -1,4 +1,4 @@
-@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
 
 <div {{ $attributes->merge([
 
@@ -15,24 +15,15 @@
         'text-gray-700 dark:text-white' => $isTailwind,
         '' =>  $isBootstrap,
     ])>
-        {{ __($this->getLocalisationPath.'Applied Filters') }}:
+        {{ __($localisationPath.'Applied Filters') }}:
     </small>
-    @tableloop($this->getPillDataForFilter() as $filterKey => $data)
-        @php
-            $filterPillValue = $data['filterPillValue'];
-            $filterPillTitle = $data['filterPillTitle'];
-            $filterSelectName = $data['filterSelectName'];
-            $isAnExternalLivewireFilter = $data['isAnExternalLivewireFilter'];
-            $separator = $data['separator'];
-
-        @endphp
-        @if ($data['filter']->hasCustomPillBlade())
-            @include($data['filter']->getCustomPillBlade(), ['filter' => $data['filter']])
-        @elseif($isAnExternalLivewireFilter)
-            <x-livewire-tables::tools.filter-pills.external-item :$filterKey :$filterPillTitle :$filterPillValue :$filterSelectName :$separator />
-
+    @tableloop($this->getPillDataForFilter() as $filterKey => $filterPillData)
+        @if ($filterPillData->hasCustomPillBlade)
+            @include($filterPillData->getCustomPillBlade(), ['filter' => $this->getFilterByKey($filterKey)])
+        @elseif($filterPillData->isAnExternalLivewireFilter)
+            <x-livewire-tables::tools.filter-pills.external-item :$filterKey :$filterPillData />
         @else
-            <x-livewire-tables::tools.filter-pills.item :$filterPillTitle :$filterPillValue :$filterSelectName :$separator/>
+            <x-livewire-tables::tools.filter-pills.item :$filterKey :$filterPillData />
         @endif
     @endtableloop
 

@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Helpers;
 
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Livewire\Attributes\Computed;
 
 trait FilterVisibilityHelpers
 {
@@ -27,6 +28,12 @@ trait FilterVisibilityHelpers
         return $this->getFilters()
             ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus())
             ->count() > 0;
+    }
+
+    #[Computed]
+    public function showFiltersButton(): bool
+    {
+        return ($this->filtersAreEnabled() && $this->filtersVisibilityIsEnabled() && $this->hasVisibleFilters());
     }
 
     /**

@@ -14,6 +14,7 @@ trait ColumnSelectHelpers
         return $this->columnSelectStatus;
     }
 
+    #[Computed]
     public function columnSelectIsEnabled(): bool
     {
         return $this->getColumnSelectStatus() === true;
