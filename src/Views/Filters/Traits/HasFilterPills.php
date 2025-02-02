@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Styling\HandlesFilterPi
 trait HasFilterPills
 {
     use HandlesFilterPillsAttributes;
-    
+
     protected ?string $filterPillTitle = null;
 
     protected array $filterPillValues = [];

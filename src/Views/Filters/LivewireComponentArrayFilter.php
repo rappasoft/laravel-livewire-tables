@@ -18,10 +18,10 @@ class LivewireComponentArrayFilter extends Filter
 
     public function validate(array $value): array|bool
     {
-        if (!$this->isEmpty($value))
-        {
+        if (! $this->isEmpty($value)) {
             return $value;
         }
+
         return [];
     }
 

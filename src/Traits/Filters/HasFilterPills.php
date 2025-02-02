@@ -17,8 +17,10 @@ trait HasFilterPills
     public bool $filterPillsStatus = true;
 
     public array $externalFilterPillsValues = [];
-    public array $internalFilterPillsVals = ['name' => null];
-    public array $externalFilterPillsLength = [];
-    public array $internalFilterPillsLength = [];
 
+    public array $internalFilterPillsVals = ['name' => null];
+
+    public array $externalFilterPillsLength = [];
+
+    public array $internalFilterPillsLength = [];
 }

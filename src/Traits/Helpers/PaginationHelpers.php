@@ -30,7 +30,7 @@ trait PaginationHelpers
     #[Computed]
     public function showPaginationDropdown(): bool
     {
-        return ($this->paginationIsEnabled() && $this->perPageVisibilityIsEnabled());
+        return $this->paginationIsEnabled() && $this->perPageVisibilityIsEnabled();
     }
 
     #[Computed]

@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Helpers;
 
 use Illuminate\Support\Collection;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Livewire\Attributes\Computed;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait FilterVisibilityHelpers
 {
@@ -33,7 +33,7 @@ trait FilterVisibilityHelpers
     #[Computed]
     public function showFiltersButton(): bool
     {
-        return ($this->filtersAreEnabled() && $this->filtersVisibilityIsEnabled() && $this->hasVisibleFilters());
+        return $this->filtersAreEnabled() && $this->filtersVisibilityIsEnabled() && $this->hasVisibleFilters();
     }
 
     /**

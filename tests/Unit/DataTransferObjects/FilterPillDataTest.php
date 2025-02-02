@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class FilterPillDataTest extends TestCase
 {
-
     public function test_check_all_default_dto_elements()
     {
         $filterPillTitle = 'filterPillTitle';
@@ -31,7 +30,7 @@ final class FilterPillDataTest extends TestCase
 
         $dto = FilterPillData::make($filterPillTitle, $filterSelectName, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes);
 
-        $this->assertSame($dto->toArray(),$defaultData);
+        $this->assertSame($dto->toArray(), $defaultData);
     }
 
     public function test_can_get_filter_title()
@@ -108,7 +107,7 @@ final class FilterPillDataTest extends TestCase
         $this->assertSame($dto->getSeparatedPillValue(), 'test123 , test345');
 
     }
-    
+
     public function test_can_check_if_has_custom_pill_blade()
     {
         $filterPillTitle = 'filterPillTitle';
@@ -137,8 +136,4 @@ final class FilterPillDataTest extends TestCase
         $dto = FilterPillData::make($filterPillTitle, $filterSelectName, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes);
         $this->assertSame($dto->getCustomPillBlade(), $customPillBlade);
     }
-
-
-
-
 }

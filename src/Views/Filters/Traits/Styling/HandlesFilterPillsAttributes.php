@@ -15,13 +15,14 @@ trait HandlesFilterPillsAttributes
 
     public function hasPillAttributes(): bool
     {
-        return !empty($this->pillAttributes);
+        return ! empty($this->pillAttributes);
     }
 
     public function getPillAttributes(): array
     {
         $attributes = array_merge(['default-colors' => true, 'default-styling' => true], $this->pillAttributes);
         ksort($attributes);
+
         return $attributes;
     }
 
@@ -34,5 +35,4 @@ trait HandlesFilterPillsAttributes
 
         return $this;
     }
-
 }

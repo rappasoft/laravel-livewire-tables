@@ -19,9 +19,8 @@ trait HandlesPillsData
                 $separator = method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ';
 
                 $filterPillAttributes = $this->getFilterPillsItemAttributes();
-                
-                if ($filter->hasPillAttributes())
-                {
+
+                if ($filter->hasPillAttributes()) {
                     $filterPillAttributes = array_merge($filterPillAttributes, $filter->getPillAttributes());
                 }
                 $filters[$filter->getKey()] = FilterPillData::make($filter->getFilterPillTitle(), $filterSelectName, $filter->getFilterPillValue($value), $separator, $isAnExternalLivewireFilter, $filter->hasCustomPillBlade(), $filter->getCustomPillBlade(), $filterPillAttributes);
