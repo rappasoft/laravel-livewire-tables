@@ -790,6 +790,34 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 
+    Alpine.data('filterPillsArrayExternalNew', (wire, filterKey) => ({
+        externalFilterKey: filterKey,
+        pillValues: [],
+        optionsAvailable: wire.entangle('optionsAvailable'), 
+        optionsSelected: wire.entangle('optionsSelected').live, 
+        selectedItems: [], 
+        syncItems(items) { 
+            this.pillValues = [];
+            items.forEach((item) => {
+                this.pillValues.push(this.optionsAvailable[item]);
+            });
+            if(this.pillValues.length > 0)
+            {
+                this.pillValues.sort();
+                this.syncExternalFilterPillsValues(this.externalFilterKey,this.pillValues);
+            }
+            this.optionsSelected = this.selectedItems;
+            wire.set('value', this.selectedItems);
+
+        }, 
+        init() { 
+            this.selectedItems = this.optionsSelected;
+            this.syncItems(this.selectedItems);
+            this.$watch('selectedItems', value => this.syncItems(value)); 
+        } 
+
+    }));
+
     Alpine.data('filterPillsArrayExternal', (tableNameVal, filterKeyVal) => ({
         tableName: tableNameVal,
         filterKey: filterKeyVal,
