@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
+use Illuminate\View\ComponentAttributeBag;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use Illuminate\View\ComponentAttributeBag;
 
 #[Group('Filters')]
 abstract class FilterTestCase extends TestCase
@@ -184,7 +184,6 @@ abstract class FilterTestCase extends TestCase
 
         $this->assertSame($attributes, $filter->getPillAttributes());
 
-
     }
 
     public function test_can_set_custom_pill_attributes_bag(): void
@@ -196,6 +195,4 @@ abstract class FilterTestCase extends TestCase
         $this->assertSame(new ComponentAttributeBag($attributes)->getAttributes(), $filter->getPillAttributesBag()->getAttributes());
 
     }
-
-
 }
