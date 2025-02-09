@@ -92,4 +92,19 @@ final class ViewComponentColumnTest extends TestCase
         $column = ViewComponentColumn::make('Total Users')->component('test-component')->attributes(fn ($value, $row, Column $column) => 'test')->getContents(Pet::find(1));
 
     }
+
+    public function test_can_not_return_invalid_attributes_return(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $column = ViewComponentColumn::make('Total Users')
+            ->customComponent(\Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent::class)
+            ->attributes(fn ($value, $row, Column $column) => (string) 'test');
+
+        $contents = $column->getContents(Pet::find(1));
+
+        $this->assertSame('<div>2420</div>', $contents);
+
+    }
+
 }
