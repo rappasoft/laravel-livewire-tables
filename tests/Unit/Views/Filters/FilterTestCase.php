@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Illuminate\View\ComponentAttributeBag;
 
 #[Group('Filters')]
 abstract class FilterTestCase extends TestCase
@@ -154,6 +155,47 @@ abstract class FilterTestCase extends TestCase
         }
 
         $this->assertSame($standardAttributes, $currentAttributeBag);
+    }
+
+    public function test_can_get_custom_pill_attributes(): void
+    {
+        $filter = self::$filterInstance;
+
+        $attributes = array_merge(['default-colors' => true, 'default-styling' => true], []);
+        ksort($attributes);
+
+        $this->assertSame($attributes, $filter->getPillAttributes());
 
     }
+
+    public function test_can_set_custom_pill_attributes(): void
+    {
+        $filter = self::$filterInstance;
+
+        $attributes = array_merge(['default-colors' => true, 'default-styling' => true], []);
+        ksort($attributes);
+
+        $this->assertSame($attributes, $filter->getPillAttributes());
+
+        $attributes = array_merge(['class' => 'bg-red-500', 'default-colors' => true, 'default-styling' => true], []);
+        ksort($attributes);
+
+        $filter->setPillAttributes(['class' => 'bg-red-500']);
+
+        $this->assertSame($attributes, $filter->getPillAttributes());
+
+
+    }
+
+    public function test_can_set_custom_pill_attributes_bag(): void
+    {
+        $attributes = array_merge(['class' => 'bg-red-500', 'default-colors' => true, 'default-styling' => true], []);
+        ksort($attributes);
+        $filter = self::$filterInstance;
+        $filter->setPillAttributes(['class' => 'bg-red-500']);
+        $this->assertSame(new ComponentAttributeBag($attributes)->getAttributes(), $filter->getPillAttributesBag()->getAttributes());
+
+    }
+
+
 }
