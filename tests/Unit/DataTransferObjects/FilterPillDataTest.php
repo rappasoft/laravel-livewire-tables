@@ -147,7 +147,6 @@ final class FilterPillDataTest extends TestCase
         $this->assertSame($dto->getCustomPillBlade(), $customPillBlade);
     }
 
-
     public function test_can_get_filter_pill_display_data_html()
     {
         $filterPillTitle = 'filterPillTitle';
@@ -181,5 +180,4 @@ final class FilterPillDataTest extends TestCase
 
         $this->assertSame($displayData->getAttributes(), $bag->getAttributes());
     }
-
 }
