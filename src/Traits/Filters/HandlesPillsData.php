@@ -22,36 +22,34 @@ trait HandlesPillsData
 
                 //  dd($value);
 
-
-                if($hasCustomPillBlade = $filter->hasCustomPillBlade())
-                {
+                if ($hasCustomPillBlade = $filter->hasCustomPillBlade()) {
                     $customPillBlade = $filter->getCustomPillBlade();
                 }
-                
-                if(is_array($value) && !empty($value))
-                {
+
+                if (is_array($value) && ! empty($value)) {
                     $separatedValues = implode($separator, $filter->getFilterPillValue($value));
                 }
-                
+
                 $filters[$filter->getKey()] = FilterPillData::make(
-                    customPillBlade: $customPillBlade, 
+                    customPillBlade: $customPillBlade,
                     filterPillsItemAttributes: array_merge($this->getFilterPillsItemAttributes(), ($filter->hasPillAttributes() ? $filter->getPillAttributes() : [])),
 
-                    filterPillTitle: $filter->getFilterPillTitle(), 
-                    filterPillValue: $filter->getFilterPillValue($value), 
+                    filterPillTitle: $filter->getFilterPillTitle(),
+                    filterPillValue: $filter->getFilterPillValue($value),
 
-                    filterSelectName: $filterSelectName, 
+                    filterSelectName: $filterSelectName,
 
-                    hasCustomPillBlade: $hasCustomPillBlade, 
-                    isAnExternalLivewireFilter: $isAnExternalLivewireFilter, 
+                    hasCustomPillBlade: $hasCustomPillBlade,
+                    isAnExternalLivewireFilter: $isAnExternalLivewireFilter,
                     separatedValues: $separatedValues,
-                    separator: method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ', 
+                    separator: method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ',
                     renderPillsAsHtml: $filter->getPillsAreHtml() ?? false,
                     customResetButtonAttributes: $filter->getPillResetButtonAttributes(),
 
                 );
             }
         }
+
         return $filters;
     }
 }

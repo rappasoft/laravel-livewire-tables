@@ -34,7 +34,6 @@ trait HandlesFilterPillsAttributes
      * [Description for getPillAttributes]
      *
      * @return array<mixed>
-     * 
      */
     public function getPillAttributes(): array
     {
@@ -53,7 +52,7 @@ trait HandlesFilterPillsAttributes
 
         return $this;
     }
-    
+
     public function setPillResetButtonAttributes(array $attributes = []): self
     {
         $this->pillResetButtonAttributes = [...$this->getPillResetButtonAttributes(), ...$attributes];
@@ -69,23 +68,18 @@ trait HandlesFilterPillsAttributes
     /**
      * [Description for getFilterPillResetButtonAttributesMerged]
      *
-     * @param array<mixed> $resetFilterButtonAttributes
-     * 
+     * @param  array<mixed>  $resetFilterButtonAttributes
      * @return array<mixed>
-     * 
      */
     public function getFilterPillResetButtonAttributesMerged(array $resetFilterButtonAttributes): array
     {
         return array_merge(
             [
                 'x-on:click.prevent' => "resetSpecificFilter('".$this->getKey()."')",
-                'type' => "button",
+                'type' => 'button',
             ],
             $resetFilterButtonAttributes,
             $this->getPillResetButtonAttributes()
         );
     }
-
-
-
 }

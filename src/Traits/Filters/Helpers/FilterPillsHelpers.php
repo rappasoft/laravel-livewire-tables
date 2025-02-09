@@ -49,20 +49,16 @@ trait FilterPillsHelpers
             }
 
             $validatedValue = $filter->validate($item);
-            if($filter instanceof BooleanFilter)
-            {
-                return !($filter->isEmpty($validatedValue));
-            }
-            elseif($validatedValue === null || $validatedValue === 'null') 
-            {
+            if ($filter instanceof BooleanFilter) {
+                return ! ($filter->isEmpty($validatedValue));
+            } elseif ($validatedValue === null || $validatedValue === 'null') {
                 return false;
-            } 
-            elseif(is_array($validatedValue))
-            {
+            } elseif (is_array($validatedValue)) {
                 if (array_key_exists(0, $validatedValue) && (is_null($validatedValue[0]) || $validatedValue[0] == 'null')) {
                     return false;
                 }
             }
+
             return is_array($validatedValue) ? count($validatedValue) : $validatedValue !== null;
         }, ARRAY_FILTER_USE_BOTH);
     }

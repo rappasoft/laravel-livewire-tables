@@ -91,7 +91,7 @@ trait HasFilterPills
     {
         return $this->pillsAsHtml ?? false;
     }
-    
+
     public function setPillsAsHtml(bool $status = true): self
     {
         $this->pillsAsHtml = $status;

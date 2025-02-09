@@ -77,10 +77,9 @@ trait FilterConfiguration
                     if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
                         // Let the filter class validate the value
                         $value = $filter->validate($value);
-                        if (!($filter instanceof BooleanFilter) && ($value === false)) {
+                        if (! ($filter instanceof BooleanFilter) && ($value === false)) {
                             continue;
                         }
-
 
                         $this->callHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);
                         $this->callTraitHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);
