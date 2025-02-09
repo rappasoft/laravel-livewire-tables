@@ -9,6 +9,18 @@ use Rappasoft\LaravelLivewireTables\Views\Action;
 trait ActionsHelpers
 {
     #[Computed]
+    public function showActionsInToolbarLeft(): bool
+    {
+        return $this->hasActions() && $this->showActionsInToolbar() && $this->getActionsPosition() === 'left';
+    }
+
+    #[Computed]
+    public function showActionsInToolbarRight(): bool
+    {
+        return $this->hasActions() && $this->showActionsInToolbar() && $this->getActionsPosition() === 'right';
+    }
+
+    #[Computed]
     public function showActionsInToolbar(): bool
     {
         return $this->displayActionsInToolbar ?? false;

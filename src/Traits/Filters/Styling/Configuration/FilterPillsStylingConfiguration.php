@@ -4,18 +4,41 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Styling\Configuration;
 
 trait FilterPillsStylingConfiguration
 {
-    protected function setFilterPillsItemAttributes(array $attributes = []): self
+    protected function setShowFilterPillsWhileLoading(bool $status): self
     {
-        return $this->mergeCustomAttributes(propertyName: 'filterPillsItemAttributes', customAttributes: $attributes);
+        $this->showFilterPillsWhileLoading = $status;
+
+        return $this;
     }
 
-    protected function setFilterPillsResetFilterButtonAttributes(array $attributes = []): self
+    protected function showFilterPillsWhileLoadingEnabled(): self
     {
-        return $this->mergeCustomAttributes(propertyName: 'filterPillsResetFilterButtonAttributes', customAttributes: $attributes);
+        return $this->setShowFilterPillsWhileLoading(true);
     }
 
-    protected function setFilterPillsResetAllButtonAttributes(array $attributes = []): self
+    protected function showFilterPillsWhileLoadingDisabled(): self
     {
-        return $this->mergeCustomAttributes(propertyName: 'filterPillsResetAllButtonAttributes', customAttributes: $attributes);
+        return $this->setShowFilterPillsWhileLoading(false);
+    }
+
+    public function setFilterPillsItemAttributes(array $attributes = []): self
+    {
+        $this->filterPillsItemAttributes = [...$this->filterPillsItemAttributes, ...$attributes];
+
+        return $this;
+    }
+
+    public function setFilterPillsResetFilterButtonAttributes(array $attributes = []): self
+    {
+        $this->filterPillsResetFilterButtonAttributes = [...$this->filterPillsResetFilterButtonAttributes, ...$attributes];
+
+        return $this;
+    }
+
+    public function setFilterPillsResetAllButtonAttributes(array $attributes = []): self
+    {
+        $this->filterPillsResetAllButtonAttributes = [...$this->filterPillsResetAllButtonAttributes, ...$attributes];
+
+        return $this;
     }
 }

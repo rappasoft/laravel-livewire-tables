@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Filters;
 
+use Illuminate\View\ComponentAttributeBag;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
@@ -154,6 +155,94 @@ abstract class FilterTestCase extends TestCase
         }
 
         $this->assertSame($standardAttributes, $currentAttributeBag);
+    }
 
+    public function test_can_get_custom_pill_attributes(): void
+    {
+        $filter = self::$filterInstance;
+
+        $attributes = array_merge(['default-colors' => true, 'default-styling' => true], []);
+        ksort($attributes);
+
+        $this->assertSame($attributes, $filter->getPillAttributes());
+
+    }
+
+    public function test_can_set_custom_pill_attributes(): void
+    {
+        $filter = self::$filterInstance;
+
+        $attributes = array_merge(['default-colors' => true, 'default-styling' => true], []);
+        ksort($attributes);
+
+        $this->assertSame($attributes, $filter->getPillAttributes());
+
+        $attributes = array_merge(['class' => 'bg-red-500', 'default-colors' => true, 'default-styling' => true], []);
+        ksort($attributes);
+
+        $filter->setPillAttributes(['class' => 'bg-red-500']);
+
+        $this->assertSame($attributes, $filter->getPillAttributes());
+
+    }
+
+    public function test_can_set_custom_pill_attributes_bag(): void
+    {
+        $attributes = array_merge(['class' => 'bg-red-500', 'default-colors' => true, 'default-styling' => true], []);
+        ksort($attributes);
+        $filter = self::$filterInstance;
+        $filter->setPillAttributes(['class' => 'bg-red-500']);
+        $bag = new ComponentAttributeBag($attributes);
+
+        $this->assertSame($bag->getAttributes(), $filter->getPillAttributesBag()->getAttributes());
+
+    }
+
+    public function test_can_get_default_reset_attributes(): void
+    {
+        $filter = self::$filterInstance;
+
+        $this->assertSame($filter->getPillResetButtonAttributes(), []);
+    }
+
+    public function test_can_get_default_reset_attributes_merged(): void
+    {
+        $filter = self::$filterInstance;
+
+        $this->assertSame($filter->getFilterPillResetButtonAttributesMerged([]), [
+            'x-on:click.prevent' => "resetSpecificFilter('".$filter->getKey()."')",
+            'type' => 'button',
+        ]);
+    }
+
+    public function test_can_set_custom_reset_attributes(): void
+    {
+        $filter = self::$filterInstance;
+        $filter->setPillResetButtonAttributes(['class' => 'bg-red-500']);
+        $this->assertSame($filter->getPillResetButtonAttributes(), ['class' => 'bg-red-500']);
+    }
+
+    public function test_can_get_reset_attributes_merged(): void
+    {
+        $filter = self::$filterInstance;
+
+        $this->assertSame($filter->getFilterPillResetButtonAttributesMerged(['class' => 'bg-red-500']), [
+            'x-on:click.prevent' => "resetSpecificFilter('".$filter->getKey()."')",
+            'type' => 'button',
+            'class' => 'bg-red-500',
+        ]);
+    }
+
+    public function test_can_set_reset_attributes_merged(): void
+    {
+        $filter = self::$filterInstance;
+
+        $filter->setPillResetButtonAttributes(['class' => 'bg-blue-500']);
+
+        $this->assertSame($filter->getFilterPillResetButtonAttributesMerged($filter->getPillResetButtonAttributes()), [
+            'x-on:click.prevent' => "resetSpecificFilter('".$filter->getKey()."')",
+            'type' => 'button',
+            'class' => 'bg-blue-500',
+        ]);
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectDropdownFilter, MultiSelectFilter};
+use Rappasoft\LaravelLivewireTables\Views\Filters\{BooleanFilter,MultiSelectDropdownFilter, MultiSelectFilter};
 
 trait FilterConfiguration
 {
@@ -52,16 +52,6 @@ trait FilterConfiguration
 
     }
 
-    #[On('livewireArrayFilterUpdateValues')]
-    public function updateLivewireArrayFilterValues(string $filterKey, string $tableName, array $values): void
-    {
-        if ($this->tableName == $tableName) {
-            $filter = $this->getFilterByKey($filterKey);
-            $filter->options($values);
-        }
-
-    }
-
     public function selectAllFilterOptions(string $filterKey): void
     {
         $filter = $this->getFilterByKey($filterKey);
@@ -87,8 +77,7 @@ trait FilterConfiguration
                     if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
                         // Let the filter class validate the value
                         $value = $filter->validate($value);
-
-                        if ($value === false) {
+                        if (! ($filter instanceof BooleanFilter) && ($value === false)) {
                             continue;
                         }
 

@@ -111,4 +111,14 @@ trait FilterHelpers
     {
         return count($this->getAppliedFiltersWithValues());
     }
+
+    public function getAppliedFiltersCollection(): Collection
+    {
+        $validFilterKeys = $this->getFilters()
+            ->map(fn (Filter $filter) => $filter->getKey())
+            ->toArray();
+
+        return collect($this->filterComponents ?? [])
+            ->filter(fn ($value, $key) => in_array($key, $validFilterKeys, true));
+    }
 }

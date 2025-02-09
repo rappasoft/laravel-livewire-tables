@@ -59,7 +59,7 @@ trait IsExternalArrayFilter
     }
 
     #[Renderless]
-    public function renderingIsExternalArrayFilter(): void
+    public function renderingIsExternalArrayFilter(\Illuminate\View\View $view, array $data = []): void
     {
         $returnValues = [];
 

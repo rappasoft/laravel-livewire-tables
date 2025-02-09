@@ -1,37 +1,41 @@
-@aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
-@props(['filterKey'])
+@aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
+@props(['filterKey', 'filterPillData'])
+
+@php
+    
+    $filterButtonAttributes = $filterPillData->getCalculatedCustomResetButtonAttributes($filterKey,$this->getFilterPillsResetFilterButtonAttributes);
+
+@endphp
 @if ($isTailwind)
-    <button
-        wire:click="resetFilter('{{ $filterKey }}')"
-        type="button"
+    <button 
         {{
-            $attributes->merge($this->getFilterPillsResetFilterButtonAttributes())
+            $attributes->merge($filterButtonAttributes)
             ->class([
-                'flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center focus:outline-none' => $this->getFilterPillsResetFilterButtonAttributes()['default-styling'],
-                'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => $this->getFilterPillsResetFilterButtonAttributes()['default-colors'],
+                'flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center focus:outline-none' => $filterButtonAttributes['default-styling'],
+                'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => $filterButtonAttributes['default-colors'],
             ])
-            ->except(['default-styling', 'default-colors'])
+            ->except(['default', 'default-colors', 'default-styling', 'default-text'])
         }}
     >
-        <span class="sr-only">{{ __($this->getLocalisationPath.'Remove filter option') }}</span>
+        <span class="sr-only">{{ __($localisationPath.'Remove filter option') }}</span>
         <x-heroicon-m-x-mark class="h-full" />
     </button>
 @else
     <a
         href="#"
-        wire:click="resetFilter('{{ $filterKey }}')"
+        x-on:click.prevent="resetSpecificFilter('{{ $filterKey }}')"
         {{
-            $attributes->merge($this->getFilterPillsResetFilterButtonAttributes())
+            $attributes->merge($filterButtonAttributes)
             ->class([
-                'text-white ml-2' => $isBootstrap && $this->getFilterPillsResetFilterButtonAttributes()['default-styling']
+                'text-white ml-2' => $isBootstrap && $filterButtonAttributes['default-styling']
             ])
-            ->except(['default-styling', 'default-colors'])
+            ->except(['default', 'default-colors', 'default-styling', 'default-text'])
         }}
     >
         <span @class([
             'sr-only' => $isBootstrap4,
             'visually-hidden' => $isBootstrap5,
-            ])>{{ __($this->getLocalisationPath.'Remove filter option') }}
+            ])>{{ __($localisationPath.'Remove filter option') }}
             </span>
         <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-tiny"  />
     </a>

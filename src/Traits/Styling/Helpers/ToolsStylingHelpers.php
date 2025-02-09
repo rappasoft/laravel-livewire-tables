@@ -7,7 +7,8 @@ use Livewire\Attributes\Computed;
 
 trait ToolsStylingHelpers
 {
-    protected function getToolsAttributes(): array
+    #[Computed]
+    public function getToolsAttributes(): array
     {
         return $this->getCustomAttributes(propertyName: 'toolsAttributes', default: false, classicMode: false);
     }
