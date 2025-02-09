@@ -12,9 +12,9 @@ trait HandlesPillsData
 
         foreach ($this->getAppliedFiltersWithValuesForPills() as $filterSelectName => $value) {
             if (! is_null($filter = $this->getFilterByKey($filterSelectName))) {
-                //if ($filter->isEmpty($value)) {
-               //     continue;
-               // }
+                // if ($filter->isEmpty($value)) {
+                //     continue;
+                // }
                 $customPillBlade = null;
                 $hasCustomPillBlade = $filter->hasCustomPillBlade();
                 $isAnExternalLivewireFilter = (method_exists($filter, 'isAnExternalLivewireFilter') && $filter->isAnExternalLivewireFilter());
