@@ -106,5 +106,4 @@ final class ViewComponentColumnTest extends TestCase
         $this->assertSame('<div>2420</div>', $contents);
 
     }
-
 }
