@@ -8,7 +8,8 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasConfig, HasLabelAttrib
 
 trait IsFilter
 {
-    use HasLocalisations,
+    use HandlesDefaultValue,
+        HasLocalisations,
         HasFilterPills,
         HasFilterLabel,
         FilterConfiguration,
@@ -18,17 +19,14 @@ trait IsFilter
         HasLabelAttributes,
         HasVisibility,
         HasView,
-        HandlesFilterInputAttributes;
+        HandlesFilterInputAttributes,
+        HandlesClearButton;
 
     protected string $name;
 
     protected string $key;
 
-    protected bool $resetByClearButton = true;
-
     protected mixed $filterCallback = null;
-
-    protected mixed $filterDefaultValue = null;
 
     public array $genericDisplayData = [];
 }

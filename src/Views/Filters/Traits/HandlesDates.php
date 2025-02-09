@@ -2,11 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Pills\HandlesPillsLocale;
 use Carbon\Carbon;
 
 trait HandlesDates
 {
-    use HasPillsLocale;
+    use HandlesPillsLocale;
 
     protected string $inputDateFormat;
 

@@ -4,24 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 trait FilterConfiguration
 {
-    public function notResetByClearButton(): self
-    {
-        $this->resetByClearButton = false;
 
-        return $this;
-    }
-
-    /**
-     * Sets a Default Value via the Filter Component
-     *
-     * @param  mixed  $value
-     */
-    public function setFilterDefaultValue($value): self
-    {
-        $this->filterDefaultValue = $value;
-
-        return $this;
-    }
 
     public function setGenericDisplayData(array $genericDisplayData = []): self
     {

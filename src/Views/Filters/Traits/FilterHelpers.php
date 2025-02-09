@@ -32,13 +32,6 @@ trait FilterHelpers
         return [];
     }
 
-    /**
-     * Get the filter options.
-     */
-    public function getDefaultValue(): mixed
-    {
-        return null;
-    }
 
     public function filter(callable $callback): Filter
     {
@@ -57,18 +50,6 @@ trait FilterHelpers
         return $this->filterCallback;
     }
 
-    public function isResetByClearButton(): bool
-    {
-        return $this->resetByClearButton === true;
-    }
-
-    /**
-     * Determines if the Filter has a Default Value via the Component
-     */
-    public function hasFilterDefaultValue(): bool
-    {
-        return ! is_null($this->filterDefaultValue);
-    }
 
     public function generateWireKey(string $tableName, string $filterType, string $extraData = ''): string
     {

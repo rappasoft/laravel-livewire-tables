@@ -1,8 +1,8 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
+namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Pills;
 
-trait HasPillsLocale
+trait HandlesPillsLocale
 {
     protected ?string $pillsLocale;
 
@@ -22,4 +22,5 @@ trait HasPillsLocale
     {
         return isset($this->pillsLocale) ? $this->pillsLocale : ($this->getConfig('locale') ?? config('app.locale', 'en'));
     }
+
 }

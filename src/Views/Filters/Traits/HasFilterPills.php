@@ -3,18 +3,20 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Styling\HandlesFilterPillsAttributes;
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Pills\{HandlesPillsAsHtml,HandlesPillsCustomBlade,HandlesPillsLocale};
 
 trait HasFilterPills
 {
-    use HandlesFilterPillsAttributes;
+    use HandlesPillsAsHtml,
+        HandlesPillsCustomBlade,
+        HandlesPillsLocale,
+        HandlesFilterPillsAttributes;
 
     protected ?string $filterPillTitle = null;
 
     protected array $filterPillValues = [];
 
-    protected ?string $filterCustomPillBlade = null;
 
-    protected bool $pillsAsHtml = false;
 
     public function setFilterPillTitle(string $title): self
     {
@@ -33,12 +35,6 @@ trait HasFilterPills
         return $this;
     }
 
-    public function setFilterPillBlade(string $blade): self
-    {
-        $this->filterCustomPillBlade = $blade;
-
-        return $this;
-    }
 
     public function getCustomFilterPillTitle(): ?string
     {
@@ -71,41 +67,5 @@ trait HasFilterPills
         return $this->getCustomFilterPillValues()[$value] ?? null;
     }
 
-    /**
-     * Determine if filter has a Custom Pill Blade
-     */
-    public function hasCustomPillBlade(): bool
-    {
-        return $this->filterCustomPillBlade != null;
-    }
 
-    /**
-     * Get the path to the Custom Pill Blade
-     */
-    public function getCustomPillBlade(): ?string
-    {
-        return $this->filterCustomPillBlade;
-    }
-
-    public function getPillsAreHtml(): bool
-    {
-        return $this->pillsAsHtml ?? false;
-    }
-
-    public function setPillsAsHtml(bool $status = true): self
-    {
-        $this->pillsAsHtml = $status;
-
-        return $this;
-    }
-
-    public function setPillsAsHtmlEnabled(): self
-    {
-        return $this->setPillsAsHtml(true);
-    }
-
-    public function setPillsAsHtmlDisabled(): self
-    {
-        return $this->setPillsAsHtml(false);
-    }
 }
