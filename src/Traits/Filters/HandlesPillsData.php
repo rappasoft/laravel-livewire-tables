@@ -15,18 +15,43 @@ trait HandlesPillsData
                 if ($filter->isEmpty($value)) {
                     continue;
                 }
+                $customPillBlade = null;
                 $isAnExternalLivewireFilter = (method_exists($filter, 'isAnExternalLivewireFilter') && $filter->isAnExternalLivewireFilter());
                 $separator = method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ';
+                $separatedValues = null;
 
-                $filterPillAttributes = $this->getFilterPillsItemAttributes();
+                //  dd($value);
 
-                if ($filter->hasPillAttributes()) {
-                    $filterPillAttributes = array_merge($filterPillAttributes, $filter->getPillAttributes());
+
+                if($hasCustomPillBlade = $filter->hasCustomPillBlade())
+                {
+                    $customPillBlade = $filter->getCustomPillBlade();
                 }
-                $filters[$filter->getKey()] = FilterPillData::make($filter->getFilterPillTitle(), $filterSelectName, $filter->getFilterPillValue($value), $separator, $isAnExternalLivewireFilter, $filter->hasCustomPillBlade(), $filter->getCustomPillBlade(), $filterPillAttributes);
+                
+                if(is_array($value) && !empty($value))
+                {
+                    $separatedValues = implode($separator, $filter->getFilterPillValue($value));
+                }
+                
+                $filters[$filter->getKey()] = FilterPillData::make(
+                    customPillBlade: $customPillBlade, 
+                    filterPillsItemAttributes: array_merge($this->getFilterPillsItemAttributes(), ($filter->hasPillAttributes() ? $filter->getPillAttributes() : [])),
+
+                    filterPillTitle: $filter->getFilterPillTitle(), 
+                    filterPillValue: $filter->getFilterPillValue($value), 
+
+                    filterSelectName: $filterSelectName, 
+
+                    hasCustomPillBlade: $hasCustomPillBlade, 
+                    isAnExternalLivewireFilter: $isAnExternalLivewireFilter, 
+                    separatedValues: $separatedValues,
+                    separator: method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ', 
+                    renderPillsAsHtml: $filter->getPillsAreHtml() ?? false,
+                    customResetButtonAttributes: $filter->getPillResetButtonAttributes(),
+
+                );
             }
         }
-
         return $filters;
     }
 }

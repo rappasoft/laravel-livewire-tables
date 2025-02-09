@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectDropdownFilter, MultiSelectFilter};
+use Rappasoft\LaravelLivewireTables\Views\Filters\{BooleanFilter,MultiSelectDropdownFilter, MultiSelectFilter};
 
 trait FilterConfiguration
 {
@@ -77,10 +77,10 @@ trait FilterConfiguration
                     if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
                         // Let the filter class validate the value
                         $value = $filter->validate($value);
-
-                        if ($value === false) {
+                        if (!($filter instanceof BooleanFilter) && ($value === false)) {
                             continue;
                         }
+
 
                         $this->callHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);
                         $this->callTraitHook('filterApplying', ['filter' => $filter->getKey(), 'value' => $value]);

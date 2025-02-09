@@ -52,9 +52,9 @@ public function configure(): void
 ---
 
 ### setFilterPillsItemAttributes
-Allows for customisation of the appearance of the "Filter Pills Item"
+Allows for customisation of the appearance of each "Filter Pills Item"
 
-Note that this utilises a refreshed approach for attributes, and allows for appending to, or replacing the styles and colors independently, via the below methods.
+Note that this allows for appending to, or replacing the styles and colors independently, via the below methods.
 
 #### default-colors
 Setting to false will disable the default colors for the Filter Pills Item, the default colors are:
@@ -70,7 +70,19 @@ Bootstrap 4: `badge badge-pill badge-info d-inline-flex align-items-center`
 
 Bootstrap 5: `badge rounded-pill bg-info d-inline-flex align-items-center`
 
-Tailwind: `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 capitalize`
+Tailwind: `inline-flex items-center px-2.5 py-0.5 rounded-full leading-4`
+
+#### default-text
+Setting to false will disable the default text styling for the Filter Pills Item, the default text styling is:
+
+Bootstrap 4: none
+
+Bootstrap 5: none
+
+Tailwind: `text-xs font-medium capitalize`
+
+Note that colors are handled via default-colours
+
 
 ```php
 public function configure(): void
@@ -88,7 +100,7 @@ public function configure(): void
 ### setFilterPillsResetFilterButtonAttributes
 Allows for customisation of the appearance of the "Filter Pills Reset Filter Button"
 
-Note that this utilises a refreshed approach for attributes, and allows for appending to, or replacing the styles and colors independently, via the below methods.
+Note that this utilises allows for appending to, or replacing the styles and colors independently, via the below methods.
 
 #### default-colors
 Setting to false will disable the default colors for the Filter Pills Reset Filter Button, the default colors are:
@@ -120,7 +132,7 @@ public function configure(): void
 ### setFilterPillsResetAllButtonAttributes
 Allows for customisation of the appearance of the "Filter Pills Reset All Button"
 
-Note that this utilises a refreshed approach for attributes, and allows for appending to, or replacing the styles and colors independently, via the below methods.
+Note that this allows for appending to, or replacing the styles and colors independently, via the below methods.
 
 #### default-colors
 Setting to false will disable the default colors for the Filter Pills Reset All Button, the default colors are:
@@ -198,7 +210,10 @@ SelectFilter::make('Active')
 
 ### setFilterPillBlade
 
-Set a blade file for use in displaying the filter values in the pills area.  You can use this in conjunction with setFilterPillValues() to prettify your applied filter values display.  You will receive two properties ($filter) containing the filter instance, and ($value) containing the filter value.
+Set a blade file for use in displaying the filter values in the pills area.  You can use this in conjunction with setFilterPillValues() to prettify your applied filter values display.  You will receive two properties:
+- $filter which contains the filter instance
+- $filterPillData which contains an instance of "Rappasoft\LaravelLivewireTables\DataTransferObjects\Filters\FilterPillData"
+    This provides ready access to configured pills elements
 
 ```php
 SelectFilter::make('Active')
@@ -208,20 +223,33 @@ SelectFilter::make('Active')
 Example blade:
 ```php
 @aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
-@props(['filterPillTitle', 'filterPillValue', 'filterSelectName', 'separator'])
-<x-livewire-tables::tools.filter-pills.wrapper :$filterSelectName>
-    {{ $filterPillTitle }}:
+@props(['filterKey', 'filterPillData'])
+<x-livewire-tables::tools.filter-pills.wrapper :$filterKey :$filterPillData  >
 
-    @if(is_array($filterPillValue))
-        @foreach($filterPillValue as $filterPillArrayValue)
-            {{ $filterPillArrayValue }}{!! !$loop->last ? $separator : '' !!}
-        @endforeach
-    @else
-        {{ $filterPillValue }}
-    @endif
+    <span {{ $filterPillData->getFilterPillDisplayData() }}></span>
 
 </x-livewire-tables::tools.filter-pills.wrapper>
+```
 
+#### $filterPillData
+An example of the returned object is below:
+
+```php
+Rappasoft\LaravelLivewireTables\DataTransferObjects\Filters\FilterPillData {
+  #filterPillTitle: "Name"
+  #filterSelectName: "name"
+  #filterPillValue: "A Value Here"
+  #separator: ", "
+  +isAnExternalLivewireFilter: false
+  +hasCustomPillBlade: true
+  #customPillBlade: "tests.tables.pills.test"
+  #filterPillsItemAttributes: array:4 [▼
+    // Any Custom Defined Attributes
+  ]
+  #separatedValues: null
+  #renderPillsAsHtml: false
+  #watchForEvents: false
+}
 ```
 
 ### setPillAttributes
@@ -230,7 +258,7 @@ This may be used in conjunction with, or instead of the setFilterPillsItemAttrib
 
 Note that if used, this will **replace** any matching array keys defined in the setFilterPillsItemAttributes method. 
 
-Note that this utilises a refreshed approach for attributes, and allows for appending to, or replacing the styles and colors independently
+Note that this allows for appending to, or replacing the styles and colors independently
 
 #### default-colors
 Setting to false will disable the default colors for this Filter's Pills Item, the default colors are:
@@ -262,6 +290,25 @@ SelectFilter::make('Active')
     ])
     ->setPillAttributes([
         'class' => 'bg-rose-300 text-rose-800 dark:bg-indigo-200 dark:text-indigo-900',
+        'default-colors' => false, // Replace the default colors classes
+        'default-styling' => true // Use the default styling classes
+    ])
+```
+
+### setPillResetButtonAttributes
+
+This method allows for customisation of the filter's reset button within the Pills.  This will merge/over-ride anything set in the Component setFilterPillsResetFilterButtonAttributes() method.
+
+```php
+SelectFilter::make('Active')
+    ->options([
+        '' => 'All',
+        '1' => 'Yes',
+        '0' => 'No',
+    ])
+    ->setFilterPillTitle('User Status')
+    ->setPillResetButtonAttributes([
+        'class' => 'bg-red-500 text-cyan-500',
         'default-colors' => false, // Replace the default colors classes
         'default-styling' => true // Use the default styling classes
     ])

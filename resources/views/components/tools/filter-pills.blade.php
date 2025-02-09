@@ -18,12 +18,11 @@
         {{ __($localisationPath.'Applied Filters') }}:
     </small>
     @tableloop($this->getPillDataForFilter() as $filterKey => $filterPillData)
+
         @if ($filterPillData->hasCustomPillBlade)
-            @include($filterPillData->getCustomPillBlade(), ['filter' => $this->getFilterByKey($filterKey)])
-        @elseif($filterPillData->isAnExternalLivewireFilter)
-            <x-livewire-tables::tools.filter-pills.external-item :$filterKey :$filterPillData />
+            @include($filterPillData->getCustomPillBlade(), ['filter' => $this->getFilterByKey($filterKey), 'filterPillData' => $filterPillData])
         @else
-            <x-livewire-tables::tools.filter-pills.item :$filterKey :$filterPillData />
+            <x-livewire-tables::tools.filter-pills.pills-item :$filterKey :$filterPillData :shouldWatch="$filterPillData->isAnExternalLivewireFilter" />
         @endif
     @endtableloop
 

@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Helpers;
 
 use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 
 trait FilterPillsHelpers
 {
@@ -46,19 +47,22 @@ trait FilterPillsHelpers
             if ($filter->isHiddenFromPills() || is_null($item)) {
                 return false;
             }
+
             $validatedValue = $filter->validate($item);
-
-            if (is_null($validatedValue) || $filter->isEmpty($validatedValue) || $validatedValue == 'null') {
+            if($filter instanceof BooleanFilter)
+            {
+                return !($filter->isEmpty($validatedValue));
+            }
+            elseif($validatedValue === null || $validatedValue === 'null') 
+            {
                 return false;
-            } else {
-                if (is_array($validatedValue)) {
-                    if (array_key_exists(0, $validatedValue) && (is_null($validatedValue[0]) || $validatedValue[0] == 'null')) {
-                        return false;
-
-                    }
+            } 
+            elseif(is_array($validatedValue))
+            {
+                if (array_key_exists(0, $validatedValue) && (is_null($validatedValue[0]) || $validatedValue[0] == 'null')) {
+                    return false;
                 }
             }
-
             return is_array($validatedValue) ? count($validatedValue) : $validatedValue !== null;
         }, ARRAY_FILTER_USE_BOTH);
     }

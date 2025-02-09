@@ -14,6 +14,8 @@ trait HasFilterPills
 
     protected ?string $filterCustomPillBlade = null;
 
+    protected bool $pillsAsHtml = false;
+
     public function setFilterPillTitle(string $title): self
     {
         $this->filterPillTitle = $title;
@@ -83,5 +85,27 @@ trait HasFilterPills
     public function getCustomPillBlade(): ?string
     {
         return $this->filterCustomPillBlade;
+    }
+
+    public function getPillsAreHtml(): bool
+    {
+        return $this->pillsAsHtml ?? false;
+    }
+    
+    public function setPillsAsHtml(bool $status = true): self
+    {
+        $this->pillsAsHtml = $status;
+
+        return $this;
+    }
+
+    public function setPillsAsHtmlEnabled(): self
+    {
+        return $this->setPillsAsHtml(true);
+    }
+
+    public function setPillsAsHtmlDisabled(): self
+    {
+        return $this->setPillsAsHtml(false);
     }
 }

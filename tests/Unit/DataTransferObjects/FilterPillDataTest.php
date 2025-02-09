@@ -13,10 +13,12 @@ final class FilterPillDataTest extends TestCase
         $filterSelectName = 'filterSelectName';
         $filterPillValue = 'filterPillValue';
         $separator = ' , ';
-        $isAnExternalLivewireFilter = false;
+        $isAnExternalLivewireFilter = 0;
+        $renderPillsAsHtml = 0;
+        $watchForEvents = 0;
         $hasCustomPillBlade = false;
         $customPillBlade = null;
-        $filterPillsItemAttributes = ['default' => true, 'default-colors' => true, 'default-styling' => true];
+        $filterPillsItemAttributes = ['default' => true, 'default-colors' => true, 'default-styling' => true, 'default-text' => true];
         $defaultData = [
             'filterPillTitle' => $filterPillTitle,
             'filterSelectName' => $filterSelectName,
@@ -26,11 +28,18 @@ final class FilterPillDataTest extends TestCase
             'customPillBlade' => $customPillBlade,
             'separator' => $separator,
             'filterPillsItemAttributes' => $filterPillsItemAttributes,
+            'renderPillsAsHtml' => $renderPillsAsHtml,
+            'watchForEvents' => $watchForEvents,
+            'separatedValues' => 'filterPillValue',
         ];
 
         $dto = FilterPillData::make($filterPillTitle, $filterSelectName, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes);
+        $dtoArray = $dto->toArray();
 
-        $this->assertSame($dto->toArray(), $defaultData);
+        ksort($defaultData);
+        ksort($dtoArray);
+
+        $this->assertSame($defaultData, $dtoArray);
     }
 
     public function test_can_get_filter_title()
