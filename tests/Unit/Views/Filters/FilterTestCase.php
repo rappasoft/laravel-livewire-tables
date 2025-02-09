@@ -245,5 +245,4 @@ abstract class FilterTestCase extends TestCase
             'class' => 'bg-blue-500',
         ]);
     }
-
 }
