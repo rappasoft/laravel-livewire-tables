@@ -197,4 +197,53 @@ abstract class FilterTestCase extends TestCase
         $this->assertSame($bag->getAttributes(), $filter->getPillAttributesBag()->getAttributes());
 
     }
+
+    public function test_can_get_default_reset_attributes(): void
+    {
+        $filter = self::$filterInstance;
+
+        $this->assertSame($filter->getPillResetButtonAttributes(), []);
+    }
+
+    public function test_can_get_default_reset_attributes_merged(): void
+    {
+        $filter = self::$filterInstance;
+
+        $this->assertSame($filter->getFilterPillResetButtonAttributesMerged([]), [
+            'x-on:click.prevent' => "resetSpecificFilter('".$filter->getKey()."')",
+            'type' => 'button',
+        ]);
+    }
+
+    public function test_can_set_custom_reset_attributes(): void
+    {
+        $filter = self::$filterInstance;
+        $filter->setPillResetButtonAttributes(['class' => 'bg-red-500']);
+        $this->assertSame($filter->getPillResetButtonAttributes(), ['class' => 'bg-red-500']);
+    }
+
+    public function test_can_get_reset_attributes_merged(): void
+    {
+        $filter = self::$filterInstance;
+
+        $this->assertSame($filter->getFilterPillResetButtonAttributesMerged(['class' => 'bg-red-500']), [
+            'x-on:click.prevent' => "resetSpecificFilter('".$filter->getKey()."')",
+            'type' => 'button',
+            'class' => 'bg-red-500',
+        ]);
+    }
+
+    public function test_can_set_reset_attributes_merged(): void
+    {
+        $filter = self::$filterInstance;
+
+        $filter->setPillResetButtonAttributes(['class' => 'bg-blue-500']);
+
+        $this->assertSame($filter->getFilterPillResetButtonAttributesMerged($filter->getPillResetButtonAttributes()), [
+            'x-on:click.prevent' => "resetSpecificFilter('".$filter->getKey()."')",
+            'type' => 'button',
+            'class' => 'bg-blue-500',
+        ]);
+    }
+
 }
