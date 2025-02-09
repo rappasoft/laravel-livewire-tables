@@ -245,4 +245,18 @@ abstract class FilterTestCase extends TestCase
             'class' => 'bg-blue-500',
         ]);
     }
+
+    public function test_can_check_pills_are_html(): void
+    {
+        $filter = self::$filterInstance;
+        $this->assertFalse($filter->getPillsAreHtml());
+
+        $filter->setPillsAsHtmlEnabled();
+        $this->assertTrue($filter->getPillsAreHtml());
+
+        $filter->setPillsAsHtmlDisabled();
+        $this->assertFalse($filter->getPillsAreHtml());
+
+    }
+
 }
