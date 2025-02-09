@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\DataTransferObjects;
 
+use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\DataTransferObjects\Filters\FilterPillData;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
@@ -145,4 +146,40 @@ final class FilterPillDataTest extends TestCase
         $dto = FilterPillData::make($filterPillTitle, $filterSelectName, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes);
         $this->assertSame($dto->getCustomPillBlade(), $customPillBlade);
     }
+
+
+    public function test_can_get_filter_pill_display_data_html()
+    {
+        $filterPillTitle = 'filterPillTitle';
+        $filterSelectName = 'filterSelectName';
+        $filterPillValue = 'filterPillValue';
+        $separator = ' , ';
+        $isAnExternalLivewireFilter = true;
+        $hasCustomPillBlade = true;
+        $customPillBlade = 'test-blade';
+        $filterPillsItemAttributes = ['default' => true, 'default-colors' => true, 'default-styling' => true];
+        $dto = FilterPillData::make($filterPillTitle, $filterSelectName, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes, '', true, false, []);
+        $displayData = $dto->getExternalFilterPillDisplayData();
+        $bag = new ComponentAttributeBag(['x-html' => 'displayString']);
+
+        $this->assertSame($displayData->getAttributes(), $bag->getAttributes());
+    }
+
+    public function test_can_get_filter_pill_display_data_non_html()
+    {
+        $filterPillTitle = 'filterPillTitle';
+        $filterSelectName = 'filterSelectName';
+        $filterPillValue = 'filterPillValue';
+        $separator = ' , ';
+        $isAnExternalLivewireFilter = false;
+        $hasCustomPillBlade = true;
+        $customPillBlade = 'test-blade';
+        $filterPillsItemAttributes = ['default' => true, 'default-colors' => true, 'default-styling' => true];
+        $dto = FilterPillData::make($filterPillTitle, $filterSelectName, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes);
+        $displayData = $dto->getExternalFilterPillDisplayData();
+        $bag = new ComponentAttributeBag(['x-text' => 'displayString']);
+
+        $this->assertSame($displayData->getAttributes(), $bag->getAttributes());
+    }
+
 }
