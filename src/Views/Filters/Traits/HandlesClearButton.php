@@ -10,13 +10,11 @@ trait HandlesClearButton
     {
         return $this->resetByClearButton === true;
     }
-    
+
     public function notResetByClearButton(): self
     {
         $this->resetByClearButton = false;
 
         return $this;
     }
-
-
 }

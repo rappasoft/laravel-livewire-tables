@@ -13,7 +13,6 @@ trait HandlesPillsCustomBlade
         return $this;
     }
 
-    
     /**
      * Determine if filter has a Custom Pill Blade
      */

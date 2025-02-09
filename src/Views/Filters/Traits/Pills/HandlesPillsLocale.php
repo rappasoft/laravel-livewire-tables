@@ -22,5 +22,4 @@ trait HandlesPillsLocale
     {
         return isset($this->pillsLocale) ? $this->pillsLocale : ($this->getConfig('locale') ?? config('app.locale', 'en'));
     }
-
 }

@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
-use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Styling\HandlesFilterPillsAttributes;
 use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Pills\{HandlesPillsAsHtml,HandlesPillsCustomBlade,HandlesPillsLocale};
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Styling\HandlesFilterPillsAttributes;
 
 trait HasFilterPills
 {
@@ -15,8 +15,6 @@ trait HasFilterPills
     protected ?string $filterPillTitle = null;
 
     protected array $filterPillValues = [];
-
-
 
     public function setFilterPillTitle(string $title): self
     {
@@ -34,7 +32,6 @@ trait HasFilterPills
 
         return $this;
     }
-
 
     public function getCustomFilterPillTitle(): ?string
     {
@@ -66,6 +63,4 @@ trait HasFilterPills
     {
         return $this->getCustomFilterPillValues()[$value] ?? null;
     }
-
-
 }

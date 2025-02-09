@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
-use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Pills\HandlesPillsLocale;
 use Carbon\Carbon;
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Pills\HandlesPillsLocale;
 
 trait HandlesDates
 {

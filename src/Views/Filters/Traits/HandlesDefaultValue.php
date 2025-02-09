@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 trait HandlesDefaultValue
 {
-
     protected mixed $filterDefaultValue = null;
 
     /**
@@ -18,7 +17,7 @@ trait HandlesDefaultValue
 
         return $this;
     }
-    
+
     /**
      * Get the filter options.
      */
@@ -26,6 +25,7 @@ trait HandlesDefaultValue
     {
         return null;
     }
+
     /**
      * Determines if the Filter has a Default Value via the Component
      */
@@ -33,5 +33,4 @@ trait HandlesDefaultValue
     {
         return ! is_null($this->filterDefaultValue);
     }
-
 }

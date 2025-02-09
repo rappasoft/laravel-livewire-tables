@@ -4,8 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 trait FilterConfiguration
 {
-
-
     public function setGenericDisplayData(array $genericDisplayData = []): self
     {
         $this->genericDisplayData = [
