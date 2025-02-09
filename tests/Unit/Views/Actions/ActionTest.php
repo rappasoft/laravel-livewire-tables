@@ -438,9 +438,8 @@ final class ActionTest extends TestCase
             ->setWireAction('wire:click')
             ->setWireActionParams('testactionparams')
             ->hideIf(false);
-            $this->assertTrue($action->isVisible());
-            $this->assertFalse($action->isHidden());
-    
-    }
+        $this->assertTrue($action->isVisible());
+        $this->assertFalse($action->isHidden());
 
+    }
 }
