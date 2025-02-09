@@ -258,5 +258,4 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse($filter->getPillsAreHtml());
 
     }
-
 }
