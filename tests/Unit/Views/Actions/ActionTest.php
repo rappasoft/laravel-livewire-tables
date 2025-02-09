@@ -398,4 +398,49 @@ final class ActionTest extends TestCase
         $this->assertFalse($petsTable->showActionsInToolbar());
 
     }
+
+    public function test_can_set_action_visible_defaults(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->setIconLeft()
+            ->setWireAction('wire:click')
+            ->setWireActionParams('testactionparams');
+        $this->assertTrue($action->isVisible());
+        $this->assertFalse($action->isHidden());
+
+    }
+
+    public function test_can_set_action_hidden(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->setIconLeft()
+            ->setWireAction('wire:click')
+            ->setWireActionParams('testactionparams')
+            ->hideIf(true);
+        $this->assertTrue($action->isHidden());
+        $this->assertFalse($action->isVisible());
+
+    }
+
+    public function test_can_set_action_visible(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->setIconLeft()
+            ->setWireAction('wire:click')
+            ->setWireActionParams('testactionparams')
+            ->hideIf(false);
+            $this->assertTrue($action->isVisible());
+            $this->assertFalse($action->isHidden());
+    
+    }
+
 }
