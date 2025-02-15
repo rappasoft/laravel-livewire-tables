@@ -10,41 +10,21 @@ trait HandlesPillsData
     {
         $filters = [];
 
-        foreach ($this->getAppliedFiltersWithValuesForPills() as $filterSelectName => $value) {
-            if (! is_null($filter = $this->getFilterByKey($filterSelectName))) {
-                // if ($filter->isEmpty($value)) {
-                //     continue;
-                // }
-                $customPillBlade = null;
-                $hasCustomPillBlade = $filter->hasCustomPillBlade();
-                $isAnExternalLivewireFilter = (method_exists($filter, 'isAnExternalLivewireFilter') && $filter->isAnExternalLivewireFilter());
-                $separator = method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ';
-                $separatedValues = null;
-
-                //  dd($value);
-
-                if ($hasCustomPillBlade) {
-                    $customPillBlade = $filter->getCustomPillBlade();
-                }
-
-                if (is_array($value) && ! empty($value)) {
-                    $separatedValues = implode($separator, $filter->getFilterPillValue($value));
-                }
-
+        foreach ($this->getAppliedFiltersWithValuesForPills() as $filterKey => $value) {
+            if (! is_null($filter = $this->getFilterByKey($filterKey))) {
                 $filters[$filter->getKey()] = FilterPillData::make(
-                    customPillBlade: $customPillBlade,
+                    filterKey: $filter->getKey(),
+                    customPillBlade: $filter->getCustomPillBlade() ?? null,
                     filterPillsItemAttributes: array_merge($this->getFilterPillsItemAttributes(), ($filter->hasPillAttributes() ? $filter->getPillAttributes() : [])),
 
                     filterPillTitle: $filter->getFilterPillTitle(),
                     filterPillValue: $filter->getFilterPillValue($value),
 
-                    filterSelectName: $filterSelectName,
-
-                    hasCustomPillBlade: $hasCustomPillBlade,
-                    isAnExternalLivewireFilter: $isAnExternalLivewireFilter,
-                    separatedValues: $separatedValues,
+                    hasCustomPillBlade: $filter->hasCustomPillBlade(),
+                    isAnExternalLivewireFilter: (method_exists($filter, 'isAnExternalLivewireFilter') && $filter->isAnExternalLivewireFilter()),
                     separator: method_exists($filter, 'getPillsSeparator') ? $filter->getPillsSeparator() : ', ',
                     renderPillsAsHtml: $filter->getPillsAreHtml() ?? false,
+                    renderPillsTitleAsHtml: $filter->getFilterPillTitleAsHtml() ?? false,
                     customResetButtonAttributes: $filter->getPillResetButtonAttributes(),
 
                 );

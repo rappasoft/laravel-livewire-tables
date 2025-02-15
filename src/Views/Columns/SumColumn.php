@@ -2,11 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsAggregateColumn;
 
 class SumColumn extends AggregateColumn
 {
-    use IsAggregateColumn;
 
     public string $aggregateMethod = 'sum';
 

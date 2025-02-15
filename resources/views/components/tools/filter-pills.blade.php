@@ -22,7 +22,7 @@
         @if ($filterPillData->hasCustomPillBlade)
             @include($filterPillData->getCustomPillBlade(), ['filter' => $this->getFilterByKey($filterKey), 'filterPillData' => $filterPillData])
         @else
-            <x-livewire-tables::tools.filter-pills.pills-item :$filterKey :$filterPillData :shouldWatch="$filterPillData->isAnExternalLivewireFilter" />
+            <x-livewire-tables::filter-pill :$filterKey :$filterPillData />
         @endif
     @endtableloop
 

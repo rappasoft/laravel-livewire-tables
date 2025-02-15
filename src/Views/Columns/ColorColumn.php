@@ -6,17 +6,15 @@ use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasDefaultStringValue;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColorColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ColorColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\HasDefaultStringValue;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ColorColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ColorColumnHelpers;
 
 class ColorColumn extends Column
 {
-    use IsColumn;
     use ColorColumnConfiguration,
-        ColorColumnHelpers;
-    use HasDefaultStringValue;
+        ColorColumnHelpers,
+        HasDefaultStringValue;
 
     public ?Closure $colorCallback;
 
@@ -42,4 +40,5 @@ class ColorColumn extends Column
     {
         return parent::getValue($row) ?? $this->getDefaultValue();
     }
+
 }

@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\LinkColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasLocationCallback, HasTitleCallback};
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\LinkColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\LinkColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\LinkColumnHelpers;
 
 class LinkColumn extends Column
 {

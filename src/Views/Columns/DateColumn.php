@@ -2,21 +2,22 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\DateColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\DateColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\DateColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\DateColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\HasInputOutputFormat;
 
 class DateColumn extends Column
 {
-    use IsColumn;
-    use DateColumnConfiguration,
-        DateColumnHelpers { DateColumnHelpers::getValue insteadof IsColumn; }
+    use HasInputOutputFormat,
+        DateColumnConfiguration,
+        DateColumnHelpers;
 
     public string $inputFormat = 'Y-m-d';
 
@@ -25,6 +26,15 @@ class DateColumn extends Column
     public string $emptyValue = '';
 
     protected string $view = 'livewire-tables::includes.columns.date';
+
+    public function getValue(Model $row): Carbon|DateTime|string|null
+    {
+        if ($this->isBaseColumn()) {
+            return $row->{$this->getField()};
+        }
+
+        return $row->{$this->getRelationString().'.'.$this->getField()};
+    }
 
     public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
@@ -44,4 +54,5 @@ class DateColumn extends Column
 
         return $this->getEmptyValue();
     }
+
 }

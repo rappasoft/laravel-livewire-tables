@@ -2,14 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasComponentView;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ViewComponentColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ViewComponentColumnHelpers;
 use ReflectionClass;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\HasComponentView;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ViewComponentColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ViewComponentColumnHelpers;
 
 class ViewComponentColumn extends Column
 {
@@ -25,8 +25,7 @@ class ViewComponentColumn extends Column
         $this->html();
 
     }
-
-    public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if ($this->isLabel()) {
             throw new DataTableConfigurationException('You can not use a label column with a component column');
@@ -58,4 +57,5 @@ class ViewComponentColumn extends Column
         }
 
     }
+
 }
