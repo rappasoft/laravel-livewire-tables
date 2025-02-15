@@ -78,7 +78,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default' => $default,
             'default-colors' => $defaultColors,
             'default-styling' => $defaultStyling,
-        ], collect($this->basicTable->{$getMethod}())->only(['class','default','default-colors','default-styling'])->toArray());
+        ], collect($this->basicTable->{$getMethod}())->only(['class', 'default', 'default-colors', 'default-styling'])->toArray());
 
         $this->basicTable->{$setMethod}([
             'default' => $default,
@@ -92,7 +92,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default' => $default,
             'default-colors' => ! $defaultColors,
             'default-styling' => $defaultStyling,
-        ], collect($this->basicTable->{$getMethod}())->only(['class','default','default-colors','default-styling'])->toArray());
+        ], collect($this->basicTable->{$getMethod}())->only(['class', 'default', 'default-colors', 'default-styling'])->toArray());
     }
 
     #[DataProvider('bulkActionAttributesProvider')]
@@ -107,7 +107,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
 
         $this->basicTable->{$setMethod}($data);
 
-        $this->assertSame($data, collect($this->basicTable->{$getMethod}())->only(['class','default','default-colors','default-styling'])->toArray());
+        $this->assertSame($data, collect($this->basicTable->{$getMethod}())->only(['class', 'default', 'default-colors', 'default-styling'])->toArray());
 
         $attributeBag = new ComponentAttributeBag($data);
 
@@ -134,7 +134,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
         ksort($data);
         $returnedData = $this->basicTable->getBulkActionsTdCheckboxAttributes();
         ksort($returnedData);
-        
+
         $this->assertSame($data, $returnedData);
     }
 
