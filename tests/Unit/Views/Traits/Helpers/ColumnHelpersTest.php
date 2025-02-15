@@ -2,11 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Traits\Helpers;
 
+use PHPUnit\Framework\Attributes\Group;
 use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
+#[Group('Columns')]
 final class ColumnHelpersTest extends TestCase
 {
     public function test_can_get_column_from(): void

@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\DateColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\DateColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\{IsColumn,HasInputOutputFormat};
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\DateColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\DateColumnHelpers;
 
 class DateColumn extends Column
 {
-    use IsColumn;
-    use DateColumnConfiguration,
+    use IsColumn,
+        HasInputOutputFormat,
+        DateColumnConfiguration,
         DateColumnHelpers { DateColumnHelpers::getValue insteadof IsColumn; }
 
     public string $inputFormat = 'Y-m-d';

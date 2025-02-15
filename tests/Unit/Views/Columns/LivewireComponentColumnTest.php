@@ -2,12 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 
+#[Group('Columns')]
 final class LivewireComponentColumnTest extends TestCase
 {
     public function test_can_set_the_column_title(): void
@@ -58,8 +60,9 @@ final class LivewireComponentColumnTest extends TestCase
     public function test_can_not_avoid_defining_livewire_component(): void
     {
         $this->expectException(DataTableConfigurationException::class);
+        $col = LivewireComponentColumn::make('Name');
 
-        $contents = LivewireComponentColumn::make('Name')->getContents(Pet::find(1));
+        $contents = $col->getContents(Pet::find(1));
 
     }
 

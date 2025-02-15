@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Group;
 use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Components\TestComponent;
@@ -10,6 +11,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
+#[Group('Columns')]
 final class ComponentColumnTest extends TestCase
 {
     protected function setUp(): void
@@ -63,7 +65,7 @@ final class ComponentColumnTest extends TestCase
                 'age' => $row->age,
             ])
             ->slot(fn ($value, $row, Column $column) => (($row->age < 10) ? 'youngslot' : 'oldslot'))
-            ->component('livewire-tables-test::test');
+            ->component('test-component');
 
         $pet1 = Pet::where('age', '>', 11)->first();
         $pet1_contents = $column->getContents($pet1);
@@ -83,7 +85,7 @@ final class ComponentColumnTest extends TestCase
                 'age' => $row->age,
             ])
             ->slot(fn ($value, $row, Column $column) => (($row->age < 10) ? 'youngslot' : 'oldslot'))
-            ->component('livewire-tables-test::test');
+            ->component('test-component');
 
         $pet1 = Pet::where('age', '>', 11)->first();
         $pet1_contents = $column->getContents($pet1);
@@ -92,6 +94,20 @@ final class ComponentColumnTest extends TestCase
         $pet2 = Pet::where('age', '<', 5)->first();
         $pet2_contents = $column->getContents($pet2);
         $this->assertSame(2, $pet2_contents->getData()['attributes']['age']);
+
+    }
+
+    public function test_can_not_return_invalid_attributes_return(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $column = ComponentColumn::make('Total Users')
+            ->component('test-component')
+            ->attributes(fn ($value, $row, Column $column) => (string) 'test');
+
+        $contents = $column->getContents(Pet::find(1));
+
+        $this->assertSame('<div>2420</div>', $contents);
 
     }
 }

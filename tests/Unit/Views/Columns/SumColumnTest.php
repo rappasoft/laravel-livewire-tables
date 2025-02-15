@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\DataProviderExternal;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
@@ -9,6 +10,7 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Unit\Attributes\AggregateColumnProvider;
 use Rappasoft\LaravelLivewireTables\Views\Columns\SumColumn;
 
+#[Group('Columns')]
 final class SumColumnTest extends TestCase
 {
     protected function setUp(): void

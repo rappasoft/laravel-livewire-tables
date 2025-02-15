@@ -4,8 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ButtonGroupColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ButtonGroupColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ButtonGroupColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ButtonGroupColumnHelpers;
 
 class ButtonGroupColumn extends Column
 {
@@ -20,16 +20,16 @@ class ButtonGroupColumn extends Column
     {
         parent::__construct($title, $from);
 
-        if (! isset($from)) {
-            $this->label(fn () => null);
-        }
+        $this->label(fn () => null);
     }
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|\Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return $this->getColumnViewWithDefaults()
+        return view($this->getView())
             ->withColumn($this)
             ->withRow($row)
+            ->withIsTailwind($this->isTailwind())
+            ->withIsBootstrap($this->isBootstrap())
             ->withButtons($this->getButtons())
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }

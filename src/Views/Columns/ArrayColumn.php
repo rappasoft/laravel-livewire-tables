@@ -2,16 +2,19 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ArrayColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ArrayColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\IsColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ArrayColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ArrayColumnHelpers;
 
 class ArrayColumn extends Column
 {
     use IsColumn,
         ArrayColumnConfiguration,
-        ArrayColumnHelpers { ArrayColumnHelpers::getContents insteadof IsColumn; }
+        ArrayColumnHelpers;
 
     public string $separator = '<br />';
 
@@ -28,4 +31,25 @@ class ArrayColumn extends Column
             $this->label(fn () => null);
         }
     }
+
+    public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    {
+        $outputValues = [];
+        $value = $this->getValue($row);
+
+        if (! $this->hasDataCallback()) {
+            throw new DataTableConfigurationException('You must set a data() method on an ArrayColumn');
+        }
+
+        if (! $this->hasOutputFormatCallback()) {
+            throw new DataTableConfigurationException('You must set an outputFormat() method on an ArrayColumn');
+        }
+
+        foreach (call_user_func($this->getDataCallback(), $value, $row) as $i => $v) {
+            $outputValues[] = call_user_func($this->getOutputFormatCallback(), $i, $v);
+        }
+
+        return new HtmlString((! empty($outputValues) ? implode($this->getSeparator(), $outputValues) : $this->getEmptyValue()));
+    }
+
 }

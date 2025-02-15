@@ -2,9 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ColorColumn;
 
+#[Group('Columns')]
 final class ColorColumnTest extends TestCase
 {
     public function test_can_set_the_column_title(): void

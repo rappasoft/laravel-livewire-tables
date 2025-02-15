@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\WireLinkColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasActionCallback, HasConfirmation, HasTitleCallback};
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\WireLinkColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasActionCallback,HasConfirmation, HasTitleCallback};
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\WireLinkColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\WireLinkColumnHelpers;
 
 class WireLinkColumn extends Column
 {
@@ -36,8 +36,10 @@ class WireLinkColumn extends Column
             throw new DataTableConfigurationException('You must specify an action callback for a WireLink column.');
         }
 
-        return $this->getColumnViewWithDefaults()
+        return view($this->getView())
             ->withColumn($this)
+            ->withIsTailwind($this->isTailwind())
+            ->withIsBootstrap($this->isBootstrap())
             ->withTitle(app()->call($this->getTitleCallback(), ['row' => $row]))
             ->withPath(app()->call($this->getActionCallback(), ['row' => $row]))
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
