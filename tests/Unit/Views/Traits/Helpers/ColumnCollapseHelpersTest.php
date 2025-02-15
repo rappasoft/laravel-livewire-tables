@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Traits\Helpers;
 
-use PHPUnit\Framework\Attributes\Group;
 use Closure;
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 

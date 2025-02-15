@@ -34,7 +34,6 @@ trait AggregateColumnHelpers
         return $this->foreignColumn;
     }
 
-    
     public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if (! isset($this->dataSource)) {

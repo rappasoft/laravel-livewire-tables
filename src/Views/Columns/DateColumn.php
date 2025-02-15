@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\{IsColumn,HasInputOutputFormat};
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\DateColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\DateColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\{HasInputOutputFormat, IsColumn};
 
 class DateColumn extends Column
 {

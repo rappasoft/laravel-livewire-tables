@@ -7,8 +7,8 @@ use Illuminate\Support\HtmlString;
 use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\HasComponentView;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ViewComponentColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\HasComponentView;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ViewComponentColumnHelpers;
 use ReflectionClass;
 
@@ -59,5 +59,4 @@ class ViewComponentColumn extends Column
         }
 
     }
-
 }

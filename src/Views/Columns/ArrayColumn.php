@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\IsColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ArrayColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ArrayColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\IsColumn;
 
 class ArrayColumn extends Column
 {
@@ -51,5 +51,4 @@ class ArrayColumn extends Column
 
         return new HtmlString((! empty($outputValues) ? implode($this->getSeparator(), $outputValues) : $this->getEmptyValue()));
     }
-
 }
