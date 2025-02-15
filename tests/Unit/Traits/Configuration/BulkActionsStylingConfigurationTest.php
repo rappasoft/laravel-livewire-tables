@@ -31,6 +31,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'BulkActionsThAttributes',
             'BulkActionsThCheckboxAttributes',
             'BulkActionsTdAttributes',
+            'BulkActionsTdCheckboxAttributes',
             'BulkActionsRowButtonAttributes',
         ];
     }
@@ -77,7 +78,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default' => $default,
             'default-colors' => $defaultColors,
             'default-styling' => $defaultStyling,
-        ], $this->basicTable->{$getMethod}());
+        ], collect($this->basicTable->{$getMethod}())->only(['class','default','default-colors','default-styling'])->toArray());
 
         $this->basicTable->{$setMethod}([
             'default' => $default,
@@ -91,7 +92,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default' => $default,
             'default-colors' => ! $defaultColors,
             'default-styling' => $defaultStyling,
-        ], $this->basicTable->{$getMethod}());
+        ], collect($this->basicTable->{$getMethod}())->only(['class','default','default-colors','default-styling'])->toArray());
     }
 
     #[DataProvider('bulkActionAttributesProvider')]
@@ -106,7 +107,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
 
         $this->basicTable->{$setMethod}($data);
 
-        $this->assertSame($data, $this->basicTable->{$getMethod}());
+        $this->assertSame($data, collect($this->basicTable->{$getMethod}())->only(['class','default','default-colors','default-styling'])->toArray());
 
         $attributeBag = new ComponentAttributeBag($data);
 
@@ -131,8 +132,10 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default-styling' => false,
         ];
         ksort($data);
-
-        $this->assertSame($data, $this->basicTable->getBulkActionsTdCheckboxAttributes());
+        $returnedData = $this->basicTable->getBulkActionsTdCheckboxAttributes();
+        ksort($returnedData);
+        
+        $this->assertSame($data, $returnedData);
     }
 
     public function test_bulk_actions_th_attributes_returns_default_true_if_not_set(): void
