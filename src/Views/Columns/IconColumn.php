@@ -37,5 +37,4 @@ class IconColumn extends Column
             ->withClasses($attributeBag['class'])
             ->withAttributes(collect($attributeBag)->except('class')->toArray());
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 
-
 trait AggregateColumnHelpers
 {
     public function getDataSource(): string

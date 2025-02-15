@@ -52,9 +52,9 @@ class FilterPillDataOld
     public function getSeparatedPillValue(): array|string|null
     {
         if ($this->isPillValueAnArray()) {
-            return htmlentities(implode($this->getSeparator(), $this->getPillValue()), ENT_QUOTES,'UTF-8');
+            return htmlentities(implode($this->getSeparator(), $this->getPillValue()), ENT_QUOTES, 'UTF-8');
         } else {
-            return htmlentities($this->getPillValue(), ENT_QUOTES,'UTF-8');
+            return htmlentities($this->getPillValue(), ENT_QUOTES, 'UTF-8');
         }
     }
 
@@ -115,9 +115,10 @@ class FilterPillDataOld
 
         return $this->getInternalFilterPillDisplayData();
     }
+
     public function getFilterPillDisplayDataVal(): string
     {
-        return htmlentities($this->getSeparatedValues(), ENT_QUOTES,'UTF-8');
+        return htmlentities($this->getSeparatedValues(), ENT_QUOTES, 'UTF-8');
     }
 
     public function getFilterPillDisplayDataArray(): array
@@ -132,12 +133,9 @@ class FilterPillDataOld
 
     public function getExternalFilterPillDisplayDataArray(array $array = []): array
     {
-        if($this->shouldUsePillsAsHtml())
-        {
+        if ($this->shouldUsePillsAsHtml()) {
             $array['x-html'] = 'displayString';
-        }
-        else
-        {
+        } else {
             $array['x-text'] = 'displayString';
         }
 
@@ -148,14 +146,11 @@ class FilterPillDataOld
     {
 
         $array['x-data'] = "{ internalDisplayString: ''}";
-        $array['x-init'] = "internalDisplayString = updatePillValues(".json_encode($this->getFilterPillDisplayDataVal()).")";
+        $array['x-init'] = 'internalDisplayString = updatePillValues('.json_encode($this->getFilterPillDisplayDataVal()).')';
 
-        if($this->shouldUsePillsAsHtml())
-        {
+        if ($this->shouldUsePillsAsHtml()) {
             $array['x-html'] = 'internalDisplayString';
-        }
-        else
-        {
+        } else {
             $array['x-text'] = 'internalDisplayString';
         }
 

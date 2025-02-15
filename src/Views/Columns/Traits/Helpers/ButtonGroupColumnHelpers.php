@@ -12,6 +12,4 @@ trait ButtonGroupColumnHelpers
             ->reject(fn ($button) => ! $button instanceof LinkColumn)
             ->toArray();
     }
-
-
 }

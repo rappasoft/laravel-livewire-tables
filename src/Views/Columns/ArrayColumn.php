@@ -49,5 +49,4 @@ class ArrayColumn extends Column
 
         return new HtmlString((! empty($outputValues) ? implode($this->getSeparator(), $outputValues) : $this->getEmptyValue()));
     }
-
 }

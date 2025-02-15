@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 
-
 trait ViewComponentColumnHelpers
 {
     public function hasCustomComponent(): bool
@@ -14,6 +13,4 @@ trait ViewComponentColumnHelpers
     {
         return $this->customComponentView;
     }
-
-
 }

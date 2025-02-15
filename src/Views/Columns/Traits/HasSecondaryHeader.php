@@ -43,9 +43,6 @@ trait HasSecondaryHeader
         return $this->secondaryHeaderCallback !== null;
     }
 
-    /**
-     * @return mixed
-     */
     public function getSecondaryHeaderCallback(): mixed
     {
         return $this->secondaryHeaderCallback;

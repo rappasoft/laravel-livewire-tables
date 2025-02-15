@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
-
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
@@ -10,8 +9,8 @@ use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\DateColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\DateColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\HasInputOutputFormat;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\DateColumnHelpers;
 
 class DateColumn extends Column
 {
@@ -54,5 +53,4 @@ class DateColumn extends Column
 
         return $this->getEmptyValue();
     }
-
 }

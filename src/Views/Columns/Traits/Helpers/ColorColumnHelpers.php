@@ -22,5 +22,4 @@ trait ColorColumnHelpers
     {
         return isset($this->colorCallback);
     }
-
 }

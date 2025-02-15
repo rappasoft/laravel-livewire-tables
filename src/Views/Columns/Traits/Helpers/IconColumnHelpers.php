@@ -24,6 +24,4 @@ trait IconColumnHelpers
     {
         return isset($this->iconCallback);
     }
-
-
 }

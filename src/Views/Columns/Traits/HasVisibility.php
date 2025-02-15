@@ -16,9 +16,6 @@ trait HasVisibility
         return $this->hidden === true;
     }
 
-    /**
-     * @param  mixed  $condition
-     */
     public function hideIf(mixed $condition): self
     {
         $this->hidden = $condition;

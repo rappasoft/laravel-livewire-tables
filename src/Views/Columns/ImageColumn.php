@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasLocationCallback;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ImageColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ImageColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasLocationCallback;
 
 class ImageColumn extends Column
 {
@@ -37,5 +37,4 @@ class ImageColumn extends Column
             ->withPath(app()->call($this->getLocationCallback(), ['row' => $row]))
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }
-
 }

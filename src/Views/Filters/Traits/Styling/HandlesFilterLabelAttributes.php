@@ -24,6 +24,4 @@ trait HandlesFilterLabelAttributes
 
         return $this;
     }
-
-
 }

@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
@@ -53,5 +52,4 @@ class LivewireComponentColumn extends Column
         ));
 
     }
-
 }

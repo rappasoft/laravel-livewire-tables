@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 
 trait DateColumnHelpers
 {
-
     /**
      * Retrieve the Empty Value to use for the Column
      */
@@ -12,6 +11,4 @@ trait DateColumnHelpers
     {
         return $this->emptyValue;
     }
-
-
 }

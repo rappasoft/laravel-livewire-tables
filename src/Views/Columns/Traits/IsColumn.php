@@ -4,10 +4,10 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits;
 
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\Core\HasLocalisations;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasLabelAttributes, HasTheme};
-use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\{HasColumnView, HasFooter, HasSecondaryHeader, HasVisibility, IsCollapsible, IsSearchable, IsSelectable, IsSortable};
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\{ColumnHelpers,RelationshipHelpers};
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\{HasColumnView, HasFooter, HasSecondaryHeader, HasVisibility, IsCollapsible, IsSearchable, IsSelectable, IsSortable};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasLabelAttributes, HasTheme};
 
 trait IsColumn
 {
@@ -28,7 +28,7 @@ trait IsColumn
         HasVisibility;
 
     // Defunct and unused
-    //protected ?DataTableComponent $component = null;
+    // protected ?DataTableComponent $component = null;
 
     // What displays in the columns header
     protected string $title;
@@ -67,6 +67,4 @@ trait IsColumn
     protected ?int $columnIndex;
 
     protected ?int $rowIndex;
-
-
 }

@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits;
 
 trait HasInputOutputFormat
 {
-
     /**
      * Define the outputFormat to use for the Column
      */
@@ -40,5 +39,4 @@ trait HasInputOutputFormat
     {
         return $this->inputFormat;
     }
-
 }

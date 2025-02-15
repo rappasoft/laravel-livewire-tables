@@ -33,5 +33,4 @@ class ButtonGroupColumn extends Column
             ->withButtons($this->getButtons())
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }
-
 }

@@ -13,17 +13,16 @@ class FilterPill extends Component
     {
         $this->shouldWatch = $this->filterPillData->shouldWatchForEvents() ?? 0;
     }
-    
+
     public function render(): null|string|\Illuminate\Support\HtmlString|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire-tables::includes.filter-pill')
-        ->with([
-            'filterPillsItemAttributes' => $this->filterPillData->getFilterPillsItemAttributes(),
-            'pillDisplayDataArray' => $this->filterPillData->getFilterPillDisplayDataArray(),
-            'pillTitleDisplayDataArray' => $this->filterPillData->getFilterTitleDisplayDataArray(),
-            'setupData' => $this->filterPillData->getPillSetupData($this->filterKey,$this->shouldWatch),
-        ]);
+            ->with([
+                'filterPillsItemAttributes' => $this->filterPillData->getFilterPillsItemAttributes(),
+                'pillDisplayDataArray' => $this->filterPillData->getFilterPillDisplayDataArray(),
+                'pillTitleDisplayDataArray' => $this->filterPillData->getFilterTitleDisplayDataArray(),
+                'setupData' => $this->filterPillData->getPillSetupData($this->filterKey, $this->shouldWatch),
+            ]);
 
     }
-
 }

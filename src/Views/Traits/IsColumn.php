@@ -8,5 +8,4 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\IsColumn as BaseIsColum
 trait IsColumn
 {
     use BaseIsColumn;
-
 }

@@ -19,5 +19,4 @@ trait LivewireComponentColumnHelpers
     {
         return isset($this->livewireComponent);
     }
-
 }
