@@ -2,13 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\AggregateColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\AggregateColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\IsAggregateColumn as BaseIsAggregateColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\IsColumn;
 
+// No Longer Used - present for reference only
 trait IsAggregateColumn
 {
     use IsColumn,
-        AggregateColumnHelpers,
-        AggregateColumnConfiguration { AggregateColumnHelpers::getContents insteadof IsColumn;
-            AggregateColumnConfiguration::sortable insteadof IsColumn; }
+        BaseIsAggregateColumn;
 }

@@ -1,11 +1,5 @@
 @aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
-@props(['filterKey', 'filterPillData'])
-
-@php
-    
-    $filterButtonAttributes = $filterPillData->getCalculatedCustomResetButtonAttributes($filterKey,$this->getFilterPillsResetFilterButtonAttributes);
-
-@endphp
+@props(['filterKey', 'filterPillData', 'filterButtonAttributes' => $filterPillData->getCalculatedCustomResetButtonAttributes($filterKey,$this->getFilterPillsResetFilterButtonAttributes)])
 @if ($isTailwind)
     <button 
         {{

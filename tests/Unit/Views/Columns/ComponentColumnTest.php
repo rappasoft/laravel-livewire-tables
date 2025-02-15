@@ -94,4 +94,18 @@ final class ComponentColumnTest extends TestCase
         $this->assertSame(2, $pet2_contents->getData()['attributes']['age']);
 
     }
+
+    public function test_can_not_return_invalid_attributes_return(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $column = ComponentColumn::make('Total Users')
+            ->component('livewire-tables-test::test')
+            ->attributes(fn ($value, $row, Column $column) => (string) 'test');
+
+        $contents = $column->getContents(Pet::find(1));
+
+        $this->assertSame('<div>2420</div>', $contents);
+
+    }
 }

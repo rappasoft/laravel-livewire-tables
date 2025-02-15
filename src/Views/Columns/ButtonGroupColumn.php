@@ -4,8 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ButtonGroupColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ButtonGroupColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ButtonGroupColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ButtonGroupColumnHelpers;
 
 class ButtonGroupColumn extends Column
 {

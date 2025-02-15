@@ -44,15 +44,34 @@ document.addEventListener('alpine:init', () => {
         removeHTMLTags(htmlString) {
             // Create a new DOMParser instance
             const parser = new DOMParser();
+            var textContent = '';
             // Parse the HTML string
-            let  doc = parser.parseFromString(htmlString, 'text/html');
+            let doc = parser.parseFromString(htmlString, 'text/html');
+
+            console.log("docs.body.innerText");
+            console.log(doc.body);
+            
+              
             // Extract text content
-            let textContent = doc.body.innerText || "";
+            let textContent = doc.body.firstChild.textContent || "";
             // Trim whitespace
             let trimmedContent = textContent.trim();
 
             return trimmedContent;
         },        
+        convertHTML(str) {
+            let replacements = {
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",//THIS PROBLEM ME NO MORE THANKS TO ieahleen
+              "'": "&apos;",
+              "<>": "&lt;&gt;",
+            }
+            return str.replace(/(&|<|>|"|'|<>)/gi, function(noe) {
+              return replacements[noe];
+            });
+        },
         resetSpecificFilter(filterKey)
         {
             this.externalFilterPillsVals[filterKey] = [];
@@ -833,6 +852,10 @@ document.addEventListener('alpine:init', () => {
                 {
                     joinedValues = this.removeHTMLTags(joinedValues);
                 }
+                else
+                {
+                    console.log("SHOULD RENDER AS HTML");
+                }
 
                 if (joinedValues !== null)
                 {
@@ -875,16 +898,17 @@ document.addEventListener('alpine:init', () => {
     
                 if(eventPillItem != "")
                 {
+                    var htmlDecoded = this.convertHTML(eventPillItem);
+
                     if(this.isExternalFilter)
                     {
                         let filterPillValues = this.externalFilterPillsVals[this.localFilterKey];
-    
-                        filterPillValues.push(eventPillItem);
+                        filterPillValues.push(htmlDecoded);
                         this.updatePillValues(filterPillValues);
                     }
                     else
                     {
-                        this.updatePillValues(eventPillItem);
+                        this.updatePillValues(htmlDecoded);
                     }    
                 }
             }
@@ -910,6 +934,7 @@ document.addEventListener('alpine:init', () => {
             this.isExternalFilter = Boolean(this.localData['isAnExternalLivewireFilter'] ?? 0);
             this.shouldRenderAsHTML = Boolean(this.localData['renderPillsAsHtml'] ?? 0);
             this.pillValues = this.localData['pillValues'] ?? null;
+            this.separatedValues = this.localData['separatedValues'] ?? null;
 
             this.$nextTick(() => { 
                 if(this.isExternalFilter)
