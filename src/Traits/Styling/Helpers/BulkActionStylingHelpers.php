@@ -94,14 +94,15 @@ trait BulkActionStylingHelpers
         $array = array_merge(
             [
                 'x-cloak',
-                'x-show' => "!currentlyReorderingStatus",
-                'x-model' => "selectedItems",
-                'wire:loading.attr.delay' => "disabled",
-                'type' => "checkbox",
-            ], 
+                'x-show' => '!currentlyReorderingStatus',
+                'x-model' => 'selectedItems',
+                'wire:loading.attr.delay' => 'disabled',
+                'type' => 'checkbox',
+            ],
             $this->getCustomAttributes('bulkActionsTdCheckboxAttributes')
         );
         ksort($array);
+
         return $array;
 
     }

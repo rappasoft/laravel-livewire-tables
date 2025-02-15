@@ -126,9 +126,9 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'x-model' => 'selectedItems',
             'wire:loading.attr.delay' => 'disabled',
             'type' => 'checkbox',
-            'default' => true, 
-            'default-colors' => false, 
-            'default-styling' => false
+            'default' => true,
+            'default-colors' => false,
+            'default-styling' => false,
         ];
         ksort($data);
 
