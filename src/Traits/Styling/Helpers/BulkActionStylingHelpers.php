@@ -85,13 +85,24 @@ trait BulkActionStylingHelpers
     }
 
     /**
-     * Used to get attributes for the Bulk Actions TD
+     * Used to get attributes for the Bulk Actions TD Checkbox
      *
      * @return array<mixed>
      */
     public function getBulkActionsTdCheckboxAttributes(): array
     {
-        return $this->getCustomAttributes('bulkActionsTdCheckboxAttributes');
+        $array = array_merge(
+            [
+                'x-cloak',
+                'x-show' => "!currentlyReorderingStatus",
+                'x-model' => "selectedItems",
+                'wire:loading.attr.delay' => "disabled",
+                'type' => "checkbox",
+            ], 
+            $this->getCustomAttributes('bulkActionsTdCheckboxAttributes')
+        );
+        ksort($array);
+        return $array;
 
     }
 

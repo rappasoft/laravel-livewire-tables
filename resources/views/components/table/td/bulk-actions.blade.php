@@ -12,16 +12,12 @@
             'inline-flex rounded-md shadow-sm' => $isTailwind,
             'form-check' => $isBootstrap5,
         ])>
-            <input
-                x-cloak x-show="!currentlyReorderingStatus"
-                x-model="selectedItems"
-                wire:key="{{ $tableName . 'selectedItems-'.$row->{$primaryKey} }}"
-                wire:loading.attr.delay="disabled"
+            <input wire:key="{{ $tableName . 'selectedItems-'.$row->{$primaryKey} }}" 
                 value="{{ $row->{$primaryKey} }}"
-                type="checkbox"
                 {{
                     $attributes->merge($bulkActionsTdCheckboxAttributes)->class([
-                        'rounded border-gray-300 text-indigo-600 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => ($isTailwind) && ($bulkActionsTdCheckboxAttributes['default'] ?? true),
+                        'border-gray-300 text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => ($isTailwind) && (($bulkActionsTdCheckboxAttributes['default'] ?? true) || ($bulkActionsTdCheckboxAttributes['default-colors'] ?? true)),
+                        'rounded shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50' => ($isTailwind) && (($bulkActionsTdCheckboxAttributes['default'] ?? true) || ($bulkActionsTdCheckboxAttributes['default-styling'] ?? true)),
                         'form-check-input' => ($isBootstrap5) && ($bulkActionsTdCheckboxAttributes['default'] ?? true),
                     ])->except(['default','default-styling','default-colors'])
                 }}

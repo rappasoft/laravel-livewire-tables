@@ -1,11 +1,11 @@
-@aware(['isTailwind', 'isBootstrap'])
+@aware(['tableName','isTailwind', 'isBootstrap'])
 @php
     $customAttributes = $this->hasBulkActionsThAttributes ? $this->getBulkActionsThAttributes : $this->getAllThAttributes($this->getBulkActionsColumn())['customAttributes'];
     $bulkActionsThCheckboxAttributes = $this->getBulkActionsThCheckboxAttributes();
 @endphp
 
 @if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
-    <x-livewire-tables::table.th.plain  :displayMinimisedOnReorder="true" wire:key="{{ $this->getTableName }}-thead-bulk-actions" :$customAttributes>
+    <x-livewire-tables::table.th.plain  :displayMinimisedOnReorder="true" wire:key="{{ $tableName }}-thead-bulk-actions" :$customAttributes>
         <div
             x-data="{newSelectCount: 0, indeterminateCheckbox: false, bulkActionHeaderChecked: false}"
             x-init="$watch('selectedItems', value => indeterminateCheckbox = (value.length > 0 && value.length < paginationTotalItemCount))"

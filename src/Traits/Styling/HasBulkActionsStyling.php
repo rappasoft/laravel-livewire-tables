@@ -18,7 +18,7 @@ trait HasBulkActionsStyling
 
     protected array $bulkActionsTdAttributes = ['default' => true];
 
-    protected array $bulkActionsTdCheckboxAttributes = ['default' => true];
+    protected array $bulkActionsTdCheckboxAttributes = ['default' => true, 'default-colors' => false, 'default-styling' => false];
 
     protected array $bulkActionsButtonAttributes = ['default-colors' => true, 'default-styling' => true];
 
