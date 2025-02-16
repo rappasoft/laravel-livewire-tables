@@ -9,8 +9,6 @@ class Column
 {
     use IsColumn;
 
-    protected bool $displayColumnLabel = true;
-
     protected string $view = '';
 
     public function __construct(string $title, ?string $from = null)

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 trait ColumnHelpers
 {
@@ -122,11 +121,6 @@ trait ColumnHelpers
         return $row->{$this->getRelationString().'.'.$this->getField()};
     }
 
-    public function isReorderColumn(): bool
-    {
-        return $this->isReorderColumn;
-    }
-
     public function isHtml(): bool
     {
         return $this->html === true;
@@ -143,28 +137,6 @@ trait ColumnHelpers
         });
 
         return $this;
-    }
-
-    public function isClickable(): bool
-    {
-        return $this->clickable &&
-            $this->getHasTableRowUrl() &&
-            ! $this instanceof LinkColumn;
-    }
-
-    public function getColumnLabelStatus(): bool
-    {
-        return $this->displayColumnLabel ?? true;
-    }
-
-    public function getHasTableRowUrl(): bool
-    {
-        return $this->hasTableRowUrl;
-    }
-
-    public function getIsReorderColumn(): bool
-    {
-        return $this->isReorderColumn;
     }
 
     public function getColumnIndex(): int

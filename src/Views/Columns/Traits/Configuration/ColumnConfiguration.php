@@ -18,45 +18,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    public function unclickable(): self
-    {
-        $this->clickable = false;
-
-        return $this;
-    }
-
-    public function setColumnLabelStatusDisabled(): self
-    {
-        $this->setColumnLabelStatus(false);
-
-        return $this;
-    }
-
-    public function setColumnLabelStatusEnabled(): self
-    {
-        $this->setColumnLabelStatus(true);
-
-        return $this;
-    }
-
-    public function setColumnLabelStatus(bool $status): void
-    {
-        $this->displayColumnLabel = $status;
-    }
-
-    public function setHasTableRowUrl(bool $hasTableRowUrl): self
-    {
-        $this->hasTableRowUrl = $hasTableRowUrl;
-
-        return $this;
-    }
-
-    public function setIsReorderColumn(bool $isReorderColumn): self
-    {
-        $this->isReorderColumn = $isReorderColumn;
-
-        return $this;
-    }
 
     public function setIndexes(int $rowIndex, int $columnIndex): self
     {

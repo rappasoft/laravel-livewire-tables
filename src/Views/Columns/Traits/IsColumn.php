@@ -11,8 +11,11 @@ trait IsColumn
 {
     use HasLocalisations,
         HasDataTableComponent,
+        IsReorderColumn,
+        HasColumnLabelStatus,
         HasRelations,
         HasLabelFormat,
+        HasClickable,
         HasSlug,
         ColumnConfiguration,
         ColumnHelpers,
@@ -44,12 +47,6 @@ trait IsColumn
     protected ?string $table = null;
 
     protected bool $html = false;
-
-    protected bool $clickable = true;
-
-    protected bool $hasTableRowUrl = false;
-
-    protected bool $isReorderColumn = false;
 
     protected ?int $columnIndex;
 
