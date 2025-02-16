@@ -20,6 +20,8 @@ trait HandlesFilterPillsAttributes
      */
     protected array $pillResetButtonAttributes = [];
 
+    protected bool $pillTitleAsHtml = false;
+
     public function getPillAttributesBag(): ComponentAttributeBag
     {
         return new ComponentAttributeBag($this->getPillAttributes());
@@ -81,5 +83,17 @@ trait HandlesFilterPillsAttributes
             $resetFilterButtonAttributes,
             $this->getPillResetButtonAttributes()
         );
+    }
+
+    public function setFilterPillTitleAsHtml(bool $pillTitleAsHtml): self
+    {
+        $this->pillTitleAsHtml = $pillTitleAsHtml;
+
+        return $this;
+    }
+
+    public function getFilterPillTitleAsHtml(): bool
+    {
+        return $this->pillTitleAsHtml;
     }
 }
