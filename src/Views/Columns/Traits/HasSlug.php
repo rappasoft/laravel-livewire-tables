@@ -2,9 +2,16 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits;
 
-trait HasCustomSlug
+use Illuminate\Support\Str;
+
+trait HasSlug
 {
     protected ?string $customSlug = null;
+
+    public function getSlug(): string
+    {
+        return Str::slug($this->hasCustomSlug() ? $this->getCustomSlug() : $this->getTitle());
+    }
 
     public function getCustomSlug(): string
     {
@@ -22,4 +29,10 @@ trait HasCustomSlug
 
         return $this;
     }
+
+    public function isColumnBySlug(string $slug): bool
+    {
+        return $this->getSlug() === $slug;
+    }
+
 }

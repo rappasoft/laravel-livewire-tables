@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\{HtmlString,Str};
+use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
@@ -25,11 +25,6 @@ trait ColumnHelpers
         return $this->title;
     }
 
-    public function getSlug(): string
-    {
-        return Str::slug($this->hasCustomSlug() ? $this->getCustomSlug() : $this->getTitle());
-    }
-
     public function getField(): ?string
     {
         return $this->field;
@@ -48,11 +43,6 @@ trait ColumnHelpers
     public function isColumnBySelectName(string $name): bool
     {
         return $this->getColumnSelectName() === $name;
-    }
-
-    public function isColumnBySlug(string $slug): bool
-    {
-        return $this->getSlug() === $slug;
     }
 
     public function hasField(): bool
@@ -132,31 +122,12 @@ trait ColumnHelpers
         return $row->{$this->getRelationString().'.'.$this->getField()};
     }
 
-    public function eagerLoadRelationsIsEnabled(): bool
-    {
-        return $this->eagerLoadRelations === true;
-    }
 
     public function isReorderColumn(): bool
     {
         return $this->isReorderColumn;
     }
 
-    public function hasFormatter(): bool
-    {
-        return $this->formatCallback !== null;
-    }
-
-    public function getFormatCallback(): ?callable
-    {
-        return $this->formatCallback;
-    }
-
-    // TODO
-    public function getLabelCallback(): ?callable
-    {
-        return $this->labelCallback;
-    }
 
     public function isHtml(): bool
     {

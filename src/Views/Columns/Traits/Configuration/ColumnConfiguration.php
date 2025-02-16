@@ -2,25 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnConfiguration
 {
-    public function label(callable $callback): self
-    {
-        $this->from = null;
-        $this->field = null;
-        $this->labelCallback = $callback;
-
-        return $this;
-    }
-
-    public function format(callable $callable): Column
-    {
-        $this->formatCallback = $callable;
-
-        return $this;
-    }
 
     public function html(): self
     {
@@ -32,13 +16,6 @@ trait ColumnConfiguration
     public function setTable(string $table): self
     {
         $this->table = $table;
-
-        return $this;
-    }
-
-    public function eagerLoadRelations(): self
-    {
-        $this->eagerLoadRelations = true;
 
         return $this;
     }

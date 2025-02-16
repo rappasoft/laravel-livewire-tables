@@ -1,11 +1,16 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
+namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits;
 
 use Illuminate\Support\Collection;
 
-trait RelationshipHelpers
+trait HasRelations
 {
+    // An array of relationships: i.e. address.group.name => ['address', 'group']
+    protected array $relations = [];
+
+    protected bool $eagerLoadRelations = false;
+
     public function isBaseColumn(): bool
     {
         return ! $this->hasRelations() && $this->hasField();
@@ -29,4 +34,17 @@ trait RelationshipHelpers
 
         return null;
     }
+
+    public function eagerLoadRelations(): self
+    {
+        $this->eagerLoadRelations = true;
+
+        return $this;
+    }
+
+    public function eagerLoadRelationsIsEnabled(): bool
+    {
+        return $this->eagerLoadRelations === true;
+    }
+
 }

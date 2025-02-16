@@ -4,17 +4,18 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Core\HasLocalisations;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\{ColumnHelpers,RelationshipHelpers};
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\{ColumnHelpers};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasLabelAttributes, HasTheme};
 
 trait IsColumn
 {
     use HasLocalisations,
         HasDataTableComponent,
-        HasCustomSlug,
+        HasRelations,
+        HasLabelFormat,
+        HasSlug,
         ColumnConfiguration,
         ColumnHelpers,
-        RelationshipHelpers,
         IsCollapsible,
         IsSearchable,
         IsSelectable,
@@ -42,16 +43,7 @@ trait IsColumn
     // The table of the columns or relationship
     protected ?string $table = null;
 
-    // An array of relationships: i.e. address.group.name => ['address', 'group']
-    protected array $relations = [];
-
-    protected bool $eagerLoadRelations = false;
-
-    protected mixed $formatCallback = null;
-
     protected bool $html = false;
-
-    protected mixed $labelCallback = null;
 
     protected bool $clickable = true;
 
