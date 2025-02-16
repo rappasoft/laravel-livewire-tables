@@ -10,7 +10,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 trait ColumnHelpers
 {
-
     public function hasFrom(): bool
     {
         return $this->from !== null;
