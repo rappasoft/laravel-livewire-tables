@@ -48,5 +48,4 @@ trait HasToolsStyling
 
         return $this;
     }
-
 }

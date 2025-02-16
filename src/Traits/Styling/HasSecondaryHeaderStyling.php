@@ -42,5 +42,4 @@ trait HasSecondaryHeaderStyling
 
         return $this;
     }
-
 }

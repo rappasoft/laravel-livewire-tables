@@ -36,6 +36,4 @@ trait HasColumnSelectStyling
 
         return $this;
     }
-
-
 }

@@ -50,5 +50,4 @@ trait HasSortingPillsStyling
 
         return $this;
     }
-
 }

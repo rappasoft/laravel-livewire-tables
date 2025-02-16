@@ -69,5 +69,4 @@ trait HasLoadingPlaceholderStyling
 
         return $this;
     }
-
 }

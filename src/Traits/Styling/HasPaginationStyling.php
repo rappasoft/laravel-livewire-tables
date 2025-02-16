@@ -41,5 +41,4 @@ trait HasPaginationStyling
 
         return $this;
     }
-
 }

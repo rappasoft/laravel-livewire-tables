@@ -42,5 +42,4 @@ trait HasFooterStyling
 
         return $this;
     }
-
 }

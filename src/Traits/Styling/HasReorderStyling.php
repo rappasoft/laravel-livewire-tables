@@ -6,7 +6,6 @@ use Livewire\Attributes\Computed;
 
 trait HasReorderStyling
 {
-
     protected array $reorderThAttributes = ['default' => true];
 
     /**
@@ -35,5 +34,4 @@ trait HasReorderStyling
 
         return $this;
     }
-
 }

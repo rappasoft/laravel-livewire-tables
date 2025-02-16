@@ -25,7 +25,7 @@ trait HasBulkActionsStyling
 
     protected array $bulkActionsRowButtonAttributes = ['default-colors' => true, 'default-styling' => true];
 
-        /**
+    /**
      * Used to get attributes for the Bulk Actions Button
      *
      * @return array<mixed>
@@ -131,7 +131,7 @@ trait HasBulkActionsStyling
         return $this->getCustomAttributesBagFromArray($this->getBulkActionsRowButtonAttributes());
     }
 
-        /**
+    /**
      * Used to set attributes for the Bulk Actions Menu Button
      */
     public function setBulkActionsButtonAttributes(array $bulkActionsButtonAttributes): self
@@ -210,5 +210,4 @@ trait HasBulkActionsStyling
 
         return $this;
     }
-
 }
