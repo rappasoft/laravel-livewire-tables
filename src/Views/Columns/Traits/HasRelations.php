@@ -46,5 +46,4 @@ trait HasRelations
     {
         return $this->eagerLoadRelations === true;
     }
-
 }

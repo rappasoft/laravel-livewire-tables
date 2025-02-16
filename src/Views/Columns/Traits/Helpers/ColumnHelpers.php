@@ -122,12 +122,10 @@ trait ColumnHelpers
         return $row->{$this->getRelationString().'.'.$this->getField()};
     }
 
-
     public function isReorderColumn(): bool
     {
         return $this->isReorderColumn;
     }
-
 
     public function isHtml(): bool
     {

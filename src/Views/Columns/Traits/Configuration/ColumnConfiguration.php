@@ -2,10 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration;
 
-
 trait ColumnConfiguration
 {
-
     public function html(): self
     {
         $this->html = true;

@@ -34,5 +34,4 @@ trait HasSlug
     {
         return $this->getSlug() === $slug;
     }
-
 }

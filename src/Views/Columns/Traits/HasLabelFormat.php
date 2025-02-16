@@ -25,7 +25,7 @@ trait HasLabelFormat
     {
         return $this->labelCallback;
     }
-    
+
     public function label(callable $callback): self
     {
         $this->from = null;
