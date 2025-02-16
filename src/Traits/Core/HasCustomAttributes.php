@@ -81,19 +81,16 @@ trait HasCustomAttributes
     {
 
         if ($classicMode) {
-            $defaultItems = ['default','default-colors','default-styling'];
+            $defaultItems = ['default', 'default-colors', 'default-styling'];
 
             if ($this->hasCustomAttributes($propertyName)) {
                 $vals = $this->{$propertyName};
 
-                foreach($defaultItems as $defaultItem)
-                {
-                    if(!array_key_exists($defaultItem, $vals) || is_null($vals[$defaultItem]))
-                    {
+                foreach ($defaultItems as $defaultItem) {
+                    if (! array_key_exists($defaultItem, $vals) || is_null($vals[$defaultItem])) {
                         $vals[$defaultItem] = $default;
                     }
                 }
-
 
                 ksort($vals);
 
@@ -102,14 +99,12 @@ trait HasCustomAttributes
 
             return ['default' => $default, 'default-colors' => $default, 'default-styling' => $default];
         } else {
-            $defaultItems = ['default-colors','default-styling'];
+            $defaultItems = ['default-colors', 'default-styling'];
 
             if ($this->hasCustomAttributes($propertyName)) {
                 $vals = $this->{$propertyName};
-                foreach($defaultItems as $defaultItem)
-                {
-                    if(!array_key_exists($defaultItem, $vals) || is_null($vals[$defaultItem]))
-                    {
+                foreach ($defaultItems as $defaultItem) {
+                    if (! array_key_exists($defaultItem, $vals) || is_null($vals[$defaultItem])) {
                         $vals[$defaultItem] = $default;
                     }
                 }
@@ -123,13 +118,12 @@ trait HasCustomAttributes
 
         }
     }
-    
+
     public function setCustomAttributesDefaults(string $propertyName, array $customAttributes, bool $default = false, bool $classicMode = true): self
     {
-        
-        $this->{$propertyName} = array_merge($this->getCustomAttributesNew(propertyName: $propertyName, default: $default, classicMode: $classicMode),$customAttributes);
+
+        $this->{$propertyName} = array_merge($this->getCustomAttributesNew(propertyName: $propertyName, default: $default, classicMode: $classicMode), $customAttributes);
 
         return $this;
     }
-
 }

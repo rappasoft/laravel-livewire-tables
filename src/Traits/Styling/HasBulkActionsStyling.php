@@ -14,7 +14,7 @@ trait HasBulkActionsStyling
     protected array $bulkActionsThCheckboxAttributes = ['default' => null, 'default-colors' => null, 'default-styling' => null];
 
     protected array $bulkActionsTdAttributes = ['default' => null, 'default-colors' => null, 'default-styling' => null];
-    
+
     protected array $bulkActionsTdCheckboxAttributes = ['default' => null, 'default-colors' => null, 'default-styling' => null];
 
     protected array $bulkActionsButtonAttributes = ['default-colors' => true, 'default-styling' => true];
@@ -140,7 +140,7 @@ trait HasBulkActionsStyling
     {
         return $this->getCustomAttributesBagFromArray($this->getBulkActionsRowButtonAttributes());
     }
-    
+
     /**
      * Used to set attributes for the Bulk Actions Menu Button
      */

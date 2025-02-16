@@ -73,7 +73,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default-styling' => $defaultStyling,
         ]);
 
-        $returnedData = collect($this->basicTable->{$getMethod}())->only(['class','default','default-colors','default-styling'])->sortKeys()->toArray();
+        $returnedData = collect($this->basicTable->{$getMethod}())->only(['class', 'default', 'default-colors', 'default-styling'])->sortKeys()->toArray();
 
         $this->assertSame([
             'class' => $class1,
@@ -82,7 +82,6 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default-styling' => $defaultStyling,
         ], $returnedData);
 
-
         $this->basicTable->{$setMethod}([
             'default' => $default,
             'class' => $class2,
@@ -90,7 +89,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default-styling' => $defaultStyling,
         ]);
 
-        $returnedData = collect($this->basicTable->{$getMethod}())->only(['class','default','default-colors','default-styling'])->sortKeys()->toArray();
+        $returnedData = collect($this->basicTable->{$getMethod}())->only(['class', 'default', 'default-colors', 'default-styling'])->sortKeys()->toArray();
 
         $this->assertSame([
             'class' => $class2,
@@ -112,8 +111,8 @@ final class BulkActionsStylingConfigurationTest extends TestCase
 
         $this->basicTable->{$setMethod}($data);
 
-        $returnedData = collect($this->basicTable->{$getMethod}())->only(['class','default','default-colors','default-styling'])->sortKeys()->toArray();
-        
+        $returnedData = collect($this->basicTable->{$getMethod}())->only(['class', 'default', 'default-colors', 'default-styling'])->sortKeys()->toArray();
+
         $this->assertSame($data, $returnedData);
 
         $attributeBag = new ComponentAttributeBag($data);
@@ -128,8 +127,8 @@ final class BulkActionsStylingConfigurationTest extends TestCase
 
     public function test_bulk_actions_td_checkbox_attributes_returns_default_true_if_not_set(): void
     {
-        
-        $this->assertSame(['default' => true, 'default-colors' => true, 'default-styling' => true], collect($this->basicTable->getBulkActionsTdCheckboxAttributes())->only(['class','default','default-colors','default-styling'])->sortKeys()->toArray());
+
+        $this->assertSame(['default' => true, 'default-colors' => true, 'default-styling' => true], collect($this->basicTable->getBulkActionsTdCheckboxAttributes())->only(['class', 'default', 'default-colors', 'default-styling'])->sortKeys()->toArray());
     }
 
     public function test_bulk_actions_th_attributes_returns_default_true_if_not_set(): void
@@ -149,8 +148,8 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'x-model' => 'selectedItems',
             'wire:loading.attr.delay' => 'disabled',
             'type' => 'checkbox',
-            'default' => true, 
-            'default-colors' => true, 
+            'default' => true,
+            'default-colors' => true,
             'default-styling' => true,
         ];
         ksort($defaultData);
@@ -168,14 +167,13 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'x-model' => 'selectedItems',
             'wire:loading.attr.delay' => 'disabled',
             'type' => 'checkbox',
-            'default' => true, 
-            'default-colors' => true, 
+            'default' => true,
+            'default-colors' => true,
             'default-styling' => true,
         ]);
         $returnedAttributeBag = new ComponentAttributeBag($this->basicTable->getBulkActionsTdCheckboxAttributes());
-        
-        $this->assertSame($defaultAttributeBag->getAttributes(), $returnedAttributeBag->getAttributes());
 
+        $this->assertSame($defaultAttributeBag->getAttributes(), $returnedAttributeBag->getAttributes());
 
         $this->basicTable->setBulkActionsTdCheckboxAttributes([
             'default-colors' => true,
@@ -188,8 +186,8 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'wire:loading.attr.delay' => 'disabled',
             'type' => 'checkbox',
             'class' => 'w-12',
-            'default' => false, 
-            'default-colors' => true, 
+            'default' => false,
+            'default-colors' => true,
             'default-styling' => false,
         ]);
 
@@ -197,6 +195,4 @@ final class BulkActionsStylingConfigurationTest extends TestCase
         $this->assertSame($customAttributeBag->getAttributes(), $updatedAttributeBag->getAttributes());
 
     }
-
-
 }
