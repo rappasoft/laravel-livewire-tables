@@ -11,7 +11,7 @@ class FilterPill extends Component
 
     public function __construct(public string $filterKey, public FilterPillData $filterPillData)
     {
-        $this->shouldWatch = $this->filterPillData->shouldWatchForEvents();
+        $this->shouldWatch = (bool) $this->filterPillData->shouldWatchForEvents();
     }
 
     public function render(): null|string|\Illuminate\Support\HtmlString|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
