@@ -18,7 +18,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-
     public function setIndexes(int $rowIndex, int $columnIndex): self
     {
         $this->setRowIndex($rowIndex);

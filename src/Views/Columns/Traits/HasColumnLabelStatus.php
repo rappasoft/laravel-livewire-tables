@@ -27,5 +27,4 @@ trait HasColumnLabelStatus
     {
         return $this->setColumnLabelStatus(false);
     }
-
 }

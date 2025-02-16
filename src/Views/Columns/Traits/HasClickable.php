@@ -21,7 +21,7 @@ trait HasClickable
     {
         return $this->hasTableRowUrl;
     }
-    
+
     public function unclickable(): self
     {
         $this->clickable = false;
@@ -35,6 +35,4 @@ trait HasClickable
 
         return $this;
     }
-
-
 }

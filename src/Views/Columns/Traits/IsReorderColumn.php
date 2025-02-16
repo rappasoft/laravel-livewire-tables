@@ -14,13 +14,12 @@ trait IsReorderColumn
     public function getIsReorderColumn(): bool
     {
         return $this->isReorderColumn;
-    }    
-    
+    }
+
     public function setIsReorderColumn(bool $isReorderColumn): self
     {
         $this->isReorderColumn = $isReorderColumn;
 
         return $this;
     }
-
 }
