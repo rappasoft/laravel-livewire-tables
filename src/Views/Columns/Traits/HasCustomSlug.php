@@ -22,6 +22,4 @@ trait HasCustomSlug
 
         return $this;
     }
-
-
 }

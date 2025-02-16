@@ -42,5 +42,4 @@ abstract class ColumnTestCase extends TestCase
         $this->assertFalse(self::$columnInstance->isReorderColumn());
 
     }
-
 }
