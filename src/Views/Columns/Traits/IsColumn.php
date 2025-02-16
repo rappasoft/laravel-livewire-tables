@@ -5,13 +5,13 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits;
 use Rappasoft\LaravelLivewireTables\Traits\Core\HasLocalisations;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\{ColumnHelpers,RelationshipHelpers};
-use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\{HasColumnView, HasFooter, HasSecondaryHeader, HasVisibility, IsCollapsible, IsSearchable, IsSelectable, IsSortable};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasLabelAttributes, HasTheme};
 
 trait IsColumn
 {
     use HasLocalisations,
         HasDataTableComponent,
+        HasCustomSlug,
         ColumnConfiguration,
         ColumnHelpers,
         RelationshipHelpers,
@@ -54,8 +54,6 @@ trait IsColumn
     protected mixed $labelCallback = null;
 
     protected bool $clickable = true;
-
-    protected ?string $customSlug = null;
 
     protected bool $hasTableRowUrl = false;
 

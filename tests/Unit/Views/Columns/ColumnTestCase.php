@@ -36,4 +36,11 @@ abstract class ColumnTestCase extends TestCase
 
         $this->assertSame($this->basicTable, self::$columnInstance->getComponent());
     }
+
+    public function test_can_check_if_is_reorder_column(): void
+    {
+        $this->assertFalse(self::$columnInstance->isReorderColumn());
+
+    }
+
 }

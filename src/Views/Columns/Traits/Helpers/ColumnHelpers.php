@@ -183,16 +183,6 @@ trait ColumnHelpers
             ! $this instanceof LinkColumn;
     }
 
-    public function getCustomSlug(): string
-    {
-        return $this->customSlug;
-    }
-
-    public function hasCustomSlug(): bool
-    {
-        return $this->customSlug !== null;
-    }
-
     public function getColumnLabelStatus(): bool
     {
         return $this->displayColumnLabel ?? true;
