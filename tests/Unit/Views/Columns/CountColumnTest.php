@@ -5,28 +5,27 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 
 #[Group('Columns')]
-final class CountColumnTest extends TestCase
+final class CountColumnTest extends ColumnTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
         parent::setupSpeciesTable();
+        self::$columnInstance = CountColumn::make('Total Users');
+
     }
 
     public function test_can_set_the_column_title(): void
     {
-        $column = CountColumn::make('Total Users');
-
-        $this->assertSame('Total Users', $column->getTitle());
+        $this->assertSame('Total Users', self::$columnInstance->getTitle());
     }
 
     public function test_can_setup_column_correctly(): void
     {
-        $column = CountColumn::make('Total Users')
+        $column = self::$columnInstance
             ->setDataSource('users')
             ->sortable();
 
@@ -37,7 +36,7 @@ final class CountColumnTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $column = CountColumn::make('Average Age')
+        $column = self::$columnInstance
             ->sortable();
         $contents = $column->getContents(Pet::find(1));
         $this->assertNull($contents);
@@ -48,7 +47,7 @@ final class CountColumnTest extends TestCase
     {
         $rows = $this->speciesTable->getRows();
         $row1 = $rows->first();
-        $column = CountColumn::make('Pets')
+        $column = self::$columnInstance
             ->setDataSource('pets');
         $contents = $column->getContents($rows->first());
         $this->assertSame('2', $contents);

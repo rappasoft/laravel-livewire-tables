@@ -4,17 +4,15 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
 #[Group('Columns')]
-final class BooleanColumnTest extends TestCase
+final class BooleanColumnTest extends ColumnTestCase
 {
-    public function test_can_set_the_column_title(): void
+    protected function setUp(): void
     {
-        $column = BooleanColumn::make('Name', 'name');
-
-        $this->assertSame('Name', $column->getTitle());
+        parent::setUp();
+        self::$columnInstance = BooleanColumn::make('Name', 'name');
     }
 
     public function test_can_render_field(): void
@@ -84,28 +82,27 @@ final class BooleanColumnTest extends TestCase
     {
         $column = BooleanColumn::make('Name', 'name');
 
-        $this->assertFalse($column->getIsToggleable());
-        $this->assertNull($column->getToggleMethod());
-        $column->toggleable('changeStatus');
-        $this->assertTrue($column->getIsToggleable());
-        $this->assertSame('changeStatus', $column->getToggleMethod());
+        $this->assertFalse(self::$columnInstance->getIsToggleable());
+        $this->assertNull(self::$columnInstance->getToggleMethod());
+        self::$columnInstance->toggleable('changeStatus');
+        $this->assertTrue(self::$columnInstance->getIsToggleable());
+        $this->assertSame('changeStatus', self::$columnInstance->getToggleMethod());
     }
 
     public function test_can_set_toggleable_with_confirm_message(): void
     {
-        $column = BooleanColumn::make('Name', 'name')
-            ->toggleable('changeStatus');
+        self::$columnInstance->toggleable('changeStatus');
 
-        $this->assertTrue($column->getIsToggleable());
-        $this->assertSame('changeStatus', $column->getToggleMethod());
+        $this->assertTrue(self::$columnInstance->getIsToggleable());
+        $this->assertSame('changeStatus', self::$columnInstance->getToggleMethod());
 
-        $this->assertFalse($column->hasConfirmMessage());
+        $this->assertFalse(self::$columnInstance->hasConfirmMessage());
 
-        $column->confirmMessage('Are you sure?');
+        self::$columnInstance->confirmMessage('Are you sure?');
 
-        $this->assertTrue($column->hasConfirmMessage());
+        $this->assertTrue(self::$columnInstance->hasConfirmMessage());
 
-        $this->assertSame('Are you sure?', $column->getConfirmMessage());
+        $this->assertSame('Are you sure?', self::$columnInstance->getConfirmMessage());
     }
 
     public function test_can_get_value(): void

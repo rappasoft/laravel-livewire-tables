@@ -5,26 +5,27 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 use PHPUnit\Framework\Attributes\Group;
 // use Illuminate\Support\Facades\Exceptions;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\IconColumn;
 
 #[Group('Columns')]
-final class IconColumnTest extends TestCase
+final class IconColumnTest extends ColumnTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        self::$columnInstance = IconColumn::make('Icon Column 1', 'favorite_color');
+    }
+
     public function test_can_set_the_column_title(): void
     {
-        $column = IconColumn::make('Icon Column 1', 'favorite_color');
-
-        $this->assertSame('Icon Column 1', $column->getTitle());
+        $this->assertSame('Icon Column 1', self::$columnInstance->getTitle());
     }
 
     public function test_can_get_the_column_view(): void
     {
-        $column = IconColumn::make('Icon Column 1', 'favorite_color');
-
-        $this->assertSame('livewire-tables::includes.columns.icon', $column->getView());
-        $column->setView('test-icon-column');
-        $this->assertSame('test-icon-column', $column->getView());
+        $this->assertSame('livewire-tables::includes.columns.icon', self::$columnInstance->getView());
+        self::$columnInstance->setView('test-icon-column');
+        $this->assertSame('test-icon-column', self::$columnInstance->getView());
 
     }
 

@@ -7,24 +7,18 @@ use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ViewComponentColumn;
 
 #[Group('Columns')]
-final class ViewComponentColumnTest extends TestCase
+final class ViewComponentColumnTest extends ColumnTestCase
 {
+
     protected function setUp(): void
     {
         parent::setUp();
         Blade::component('test-component', TestComponent::class);
-    }
-
-    public function test_can_set_the_column_title(): void
-    {
-        $column = ViewComponentColumn::make('Total Users');
-
-        $this->assertSame('Total Users', $column->getTitle());
+        self::$columnInstance = ViewComponentColumn::make('Name');
     }
 
     public function test_can_have_component_view(): void
@@ -84,14 +78,14 @@ final class ViewComponentColumnTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $column = ViewComponentColumn::make('Total Users')->label(fn () => 'My Label')->getContents(Pet::find(1));
+        self::$columnInstance->label(fn () => 'My Label')->getContents(Pet::find(1));
     }
 
     public function test_can_not_return_invalid_attributes(): void
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $column = ViewComponentColumn::make('Total Users')->component('test-component')->attributes(fn ($value, $row, Column $column) => 'test')->getContents(Pet::find(1));
+        self::$columnInstance->component('test-component')->attributes(fn ($value, $row, Column $column) => 'test')->getContents(Pet::find(1));
 
     }
 }

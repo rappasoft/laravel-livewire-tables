@@ -5,18 +5,16 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 
 #[Group('Columns')]
-final class LivewireComponentColumnTest extends TestCase
+final class LivewireComponentColumnTest extends ColumnTestCase
 {
-    public function test_can_set_the_column_title(): void
+    protected function setUp(): void
     {
-        $column = LivewireComponentColumn::make('Name', 'name');
-
-        $this->assertSame('Name', $column->getTitle());
+        parent::setUp();
+        self::$columnInstance = LivewireComponentColumn::make('Name', 'name');
     }
 
     public function test_can_not_be_a_label_without_component(): void
@@ -37,24 +35,20 @@ final class LivewireComponentColumnTest extends TestCase
 
     public function test_can_add_livewire_component(): void
     {
-        $column = LivewireComponentColumn::make('Name', 'name');
-
-        $this->assertFalse($column->hasLivewireComponent());
-        $column->component('test-component');
-        $this->assertTrue($column->hasLivewireComponent());
+        $this->assertFalse(self::$columnInstance->hasLivewireComponent());
+        self::$columnInstance->component('test-component');
+        $this->assertTrue(self::$columnInstance->hasLivewireComponent());
     }
 
     public function test_can_get_livewire_component(): void
     {
-        $column = LivewireComponentColumn::make('Name', 'name');
+        $this->assertFalse(self::$columnInstance->hasLivewireComponent());
+        $this->assertNull(self::$columnInstance->getLivewireComponent());
 
-        $this->assertFalse($column->hasLivewireComponent());
-        $this->assertNull($column->getLivewireComponent());
+        self::$columnInstance->component('test-component');
 
-        $column->component('test-component');
-
-        $this->assertTrue($column->hasLivewireComponent());
-        $this->assertSame('test-component', $column->getLivewireComponent());
+        $this->assertTrue(self::$columnInstance->hasLivewireComponent());
+        $this->assertSame('test-component', self::$columnInstance->getLivewireComponent());
     }
 
     public function test_can_not_avoid_defining_livewire_component(): void
@@ -77,22 +71,22 @@ final class LivewireComponentColumnTest extends TestCase
 
     public function test_can_check_attribute_callback_presence(): void
     {
-        $column = LivewireComponentColumn::make('Name', 'name')->component('test-component');
-        $this->assertFalse($column->hasAttributesCallback());
+        self::$columnInstance->component('test-component');
+        $this->assertFalse(self::$columnInstance->hasAttributesCallback());
     }
 
     public function test_can_set_attribute_callback(): void
     {
-        $column = LivewireComponentColumn::make('Name', 'name')->component('test-component');
-        $this->assertFalse($column->hasAttributesCallback());
+        self::$columnInstance->component('test-component');
+        $this->assertFalse(self::$columnInstance->hasAttributesCallback());
 
-        $column->attributes(function ($row) {
+        self::$columnInstance->attributes(function ($row) {
             return [
                 'class' => '!rounded-lg self-center',
                 'default' => true,
             ];
         });
 
-        $this->assertTrue($column->hasAttributesCallback());
+        $this->assertTrue(self::$columnInstance->hasAttributesCallback());
     }
 }
