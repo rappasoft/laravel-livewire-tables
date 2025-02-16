@@ -9,13 +9,13 @@ trait HasBulkActionsStyling
 {
     protected array $bulkActionsCheckboxAttributes = [];
 
-    protected array $bulkActionsThAttributes = ['default' => true];
+    protected array $bulkActionsThAttributes = ['default' => null, 'default-colors' => null, 'default-styling' => null];
 
-    protected array $bulkActionsThCheckboxAttributes = ['default' => true];
+    protected array $bulkActionsThCheckboxAttributes = ['default' => null, 'default-colors' => null, 'default-styling' => null];
 
-    protected array $bulkActionsTdAttributes = ['default' => true];
-
-    protected array $bulkActionsTdCheckboxAttributes = ['default' => true, 'default-colors' => false, 'default-styling' => false];
+    protected array $bulkActionsTdAttributes = ['default' => null, 'default-colors' => null, 'default-styling' => null];
+    
+    protected array $bulkActionsTdCheckboxAttributes = ['default' => null, 'default-colors' => null, 'default-styling' => null];
 
     protected array $bulkActionsButtonAttributes = ['default-colors' => true, 'default-styling' => true];
 
@@ -69,7 +69,7 @@ trait HasBulkActionsStyling
     #[Computed]
     public function getBulkActionsThAttributes(): array
     {
-        return $this->getCustomAttributes('bulkActionsThAttributes');
+        return $this->getCustomAttributesNew('bulkActionsThAttributes', true, true);
 
     }
 
@@ -79,7 +79,7 @@ trait HasBulkActionsStyling
     #[Computed]
     public function hasBulkActionsThAttributes(): bool
     {
-        return $this->getBulkActionsThAttributes() != ['default' => true, 'default-colors' => false, 'default-styling' => false];
+        return $this->getBulkActionsThAttributes() != ['default' => true, 'default-colors' => true, 'default-styling' => true];
     }
 
     /**
@@ -89,7 +89,8 @@ trait HasBulkActionsStyling
      */
     public function getBulkActionsThCheckboxAttributes(): array
     {
-        return $this->getCustomAttributes('bulkActionsThCheckboxAttributes');
+        return $this->getCustomAttributesNew('bulkActionsThCheckboxAttributes', true, true);
+
     }
 
     /**
@@ -97,9 +98,10 @@ trait HasBulkActionsStyling
      *
      * @return array<mixed>
      */
+    #[Computed]
     public function getBulkActionsTdAttributes(): array
     {
-        return $this->getCustomAttributes('bulkActionsTdAttributes');
+        return $this->getCustomAttributesNew('bulkActionsTdAttributes', true, true);
     }
 
     /**
@@ -107,23 +109,18 @@ trait HasBulkActionsStyling
      *
      * @return array<mixed>
      */
+    #[Computed]
     public function getBulkActionsTdCheckboxAttributes(): array
     {
-        return $this->getCustomAttributes('bulkActionsTdCheckboxAttributes');
-        $array = array_merge(
+        return array_merge(
             [
-                'x-cloak',
                 'x-show' => '!currentlyReorderingStatus',
                 'x-model' => 'selectedItems',
                 'wire:loading.attr.delay' => 'disabled',
                 'type' => 'checkbox',
             ],
-            $this->getCustomAttributes('bulkActionsTdCheckboxAttributes')
+            $this->getCustomAttributesNew('bulkActionsTdCheckboxAttributes', true, true)
         );
-        ksort($array);
-
-        return $array;
-
     }
 
     /**
@@ -143,15 +140,13 @@ trait HasBulkActionsStyling
     {
         return $this->getCustomAttributesBagFromArray($this->getBulkActionsRowButtonAttributes());
     }
-
+    
     /**
      * Used to set attributes for the Bulk Actions Menu Button
      */
     public function setBulkActionsButtonAttributes(array $bulkActionsButtonAttributes): self
     {
-        $this->setCustomAttributes('bulkActionsButtonAttributes', $bulkActionsButtonAttributes);
-
-        return $this;
+        return $this->setCustomAttributes('bulkActionsButtonAttributes', $bulkActionsButtonAttributes);
     }
 
     /**
@@ -159,9 +154,7 @@ trait HasBulkActionsStyling
      */
     public function setBulkActionsMenuAttributes(array $bulkActionsMenuAttributes): self
     {
-        $this->setCustomAttributes('bulkActionsMenuAttributes', $bulkActionsMenuAttributes);
-
-        return $this;
+        return $this->setCustomAttributes('bulkActionsMenuAttributes', $bulkActionsMenuAttributes);
     }
 
     /**
@@ -169,9 +162,7 @@ trait HasBulkActionsStyling
      */
     public function setBulkActionsMenuItemAttributes(array $bulkActionsMenuItemAttributes): self
     {
-        $this->setCustomAttributes('bulkActionsMenuItemAttributes', $bulkActionsMenuItemAttributes);
-
-        return $this;
+        return $this->setCustomAttributes('bulkActionsMenuItemAttributes', $bulkActionsMenuItemAttributes);
     }
 
     /**
@@ -179,9 +170,8 @@ trait HasBulkActionsStyling
      */
     public function setBulkActionsTdAttributes(array $bulkActionsTdAttributes): self
     {
-        $this->setCustomAttributes('bulkActionsTdAttributes', $bulkActionsTdAttributes);
+        return $this->setCustomAttributesDefaults('bulkActionsTdAttributes', $bulkActionsTdAttributes);
 
-        return $this;
     }
 
     /**
@@ -189,9 +179,7 @@ trait HasBulkActionsStyling
      */
     public function setBulkActionsTdCheckboxAttributes(array $bulkActionsTdCheckboxAttributes): self
     {
-        $this->setCustomAttributes('bulkActionsTdCheckboxAttributes', $bulkActionsTdCheckboxAttributes);
-
-        return $this;
+        return $this->setCustomAttributesDefaults('bulkActionsTdCheckboxAttributes', $bulkActionsTdCheckboxAttributes);
     }
 
     /**
@@ -199,9 +187,7 @@ trait HasBulkActionsStyling
      */
     public function setBulkActionsThAttributes(array $bulkActionsThAttributes): self
     {
-        $this->setCustomAttributes('bulkActionsThAttributes', $bulkActionsThAttributes);
-
-        return $this;
+        return $this->setCustomAttributesDefaults('bulkActionsThAttributes', $bulkActionsThAttributes);
     }
 
     /**
@@ -209,9 +195,7 @@ trait HasBulkActionsStyling
      */
     public function setBulkActionsThCheckboxAttributes(array $bulkActionsThCheckboxAttributes): self
     {
-        $this->setCustomAttributes('bulkActionsThCheckboxAttributes', $bulkActionsThCheckboxAttributes);
-
-        return $this;
+        return $this->setCustomAttributesDefaults('bulkActionsThCheckboxAttributes', $bulkActionsThCheckboxAttributes);
     }
 
     /**
@@ -219,8 +203,6 @@ trait HasBulkActionsStyling
      */
     public function setBulkActionsRowButtonAttributes(array $bulkActionsRowButtonAttributes): self
     {
-        $this->setCustomAttributes('bulkActionsRowButtonAttributes', $bulkActionsRowButtonAttributes);
-
-        return $this;
+        return $this->setCustomAttributes('bulkActionsRowButtonAttributes', $bulkActionsRowButtonAttributes);
     }
 }
