@@ -3,20 +3,13 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Illuminate\Support\{HtmlString,Str};
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 trait ColumnHelpers
 {
-    // Defunct and unused
-    /*public function getComponent(): ?DataTableComponent
-    {
-        return $this->component;
-    }*/
 
     public function hasFrom(): bool
     {
