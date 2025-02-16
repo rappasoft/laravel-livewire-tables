@@ -22,7 +22,6 @@ trait HandlesFilterPillsAttributes
 
     protected bool $pillTitleAsHtml = false;
 
-
     public function getPillAttributesBag(): ComponentAttributeBag
     {
         return new ComponentAttributeBag($this->getPillAttributes());
@@ -97,5 +96,4 @@ trait HandlesFilterPillsAttributes
     {
         return $this->pillTitleAsHtml;
     }
-
 }
