@@ -13,7 +13,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ViewComponentColumn;
 #[Group('Columns')]
 final class ViewComponentColumnTest extends ColumnTestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();

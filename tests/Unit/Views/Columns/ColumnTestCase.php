@@ -15,6 +15,7 @@ abstract class ColumnTestCase extends TestCase
         parent::setUp();
 
     }
+
     public static function tearDownAfterClass(): void
     {
         self::$columnInstance = null;
@@ -24,7 +25,6 @@ abstract class ColumnTestCase extends TestCase
     {
         $this->assertSame('Name', self::$columnInstance->getTitle());
     }
-
 
     public function test_can_set_the_column_component(): void
     {

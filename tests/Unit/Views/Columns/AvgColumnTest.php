@@ -20,7 +20,6 @@ final class AvgColumnTest extends ColumnTestCase
         parent::setupSpeciesTable();
     }
 
-
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_setup_column_correctly(string $relation_name, string $foreign_field): void
     {

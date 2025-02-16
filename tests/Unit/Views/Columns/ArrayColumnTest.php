@@ -80,6 +80,4 @@ final class ArrayColumnTest extends ColumnTestCase
         $this->assertSame('Unknown', self::$columnInstance->getEmptyValue());
 
     }
-
-
 }

@@ -19,7 +19,6 @@ final class ComponentColumnTest extends ColumnTestCase
         self::$columnInstance = ComponentColumn::make('Name', 'name');
     }
 
-
     public function test_can_not_set_component_column_as_label(): void
     {
         $this->expectException(DataTableConfigurationException::class);

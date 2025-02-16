@@ -17,7 +17,7 @@ trait HasDataTableComponent
 
     public function hasComponent(): bool
     {
-        return (isset($this->component) && !is_null($this->component));
+        return isset($this->component) && ! is_null($this->component);
     }
 
     public function getComponent(): ?DataTableComponent

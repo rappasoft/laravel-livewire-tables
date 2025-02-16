@@ -16,7 +16,6 @@ final class ImageColumnTest extends ColumnTestCase
         self::$columnInstance = ImageColumn::make('Name', 'name');
     }
 
-
     public function test_can_not_infer_field_name_from_title_if_no_from(): void
     {
         $column = ImageColumn::make('My Title');

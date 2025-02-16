@@ -15,7 +15,6 @@ final class ButtonGroupColumnTest extends ColumnTestCase
         self::$columnInstance = ButtonGroupColumn::make('Name', 'name');
     }
 
-
     public function test_can_render_field(): void
     {
         $column = ButtonGroupColumn::make('Name')->getContents(Pet::find(1));
