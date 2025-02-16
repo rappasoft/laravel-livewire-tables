@@ -126,7 +126,6 @@ trait HasBulkActionsStyling
 
     }
 
-
     /**
      * Used to get attributes for the Bulk Actions Row Buttons
      *
