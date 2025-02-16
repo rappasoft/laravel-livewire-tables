@@ -58,7 +58,7 @@ class FilterPillData
 
     public function getIsAnExternalLivewireFilter(): int
     {
-        return intval($this->isAnExternalLivewireFilter ?? false);
+        return intval($this->isAnExternalLivewireFilter ?? 0);
     }
 
     public function getSeparator(): string
@@ -68,17 +68,17 @@ class FilterPillData
 
     public function shouldUsePillsAsHtml(): int
     {
-        return intval($this->renderPillsAsHtml ?? false);
+        return intval($this->renderPillsAsHtml ?? 0);
     }
 
     public function shouldUsePillsTitleAsHtml(): int
     {
-        return intval($this->renderPillsTitleAsHtml ?? false);
+        return intval($this->renderPillsTitleAsHtml ?? 0);
     }
 
     public function shouldWatchForEvents(): int
     {
-        return intval($this->watchForEvents ?? false);
+        return intval($this->watchForEvents ?? 0);
     }
 
     public function isPillValueAnArray(): bool
