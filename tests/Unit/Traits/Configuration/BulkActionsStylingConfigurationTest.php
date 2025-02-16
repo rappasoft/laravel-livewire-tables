@@ -78,7 +78,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default' => $default,
             'default-colors' => $defaultColors,
             'default-styling' => $defaultStyling,
-        ], $this->basicTable->{$getMethod}());
+        ], collect($this->basicTable->{$getMethod}())->only(['class', 'default', 'default-colors', 'default-styling'])->toArray());
 
         $this->basicTable->{$setMethod}([
             'default' => $default,
@@ -92,7 +92,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
             'default' => $default,
             'default-colors' => ! $defaultColors,
             'default-styling' => $defaultStyling,
-        ], $this->basicTable->{$getMethod}());
+        ], collect($this->basicTable->{$getMethod}())->only(['class', 'default', 'default-colors', 'default-styling'])->toArray());
     }
 
     #[DataProvider('bulkActionAttributesProvider')]
@@ -107,7 +107,7 @@ final class BulkActionsStylingConfigurationTest extends TestCase
 
         $this->basicTable->{$setMethod}($data);
 
-        $this->assertSame($data, $this->basicTable->{$getMethod}());
+        $this->assertSame($data, collect($this->basicTable->{$getMethod}())->only(['class', 'default', 'default-colors', 'default-styling'])->toArray());
 
         $attributeBag = new ComponentAttributeBag($data);
 
@@ -121,11 +121,26 @@ final class BulkActionsStylingConfigurationTest extends TestCase
 
     public function test_bulk_actions_td_checkbox_attributes_returns_default_true_if_not_set(): void
     {
-        $this->assertSame(['default' => true, 'default-colors' => false, 'default-styling' => false], $this->basicTable->getBulkActionsTdCheckboxAttributes());
+        $data = [
+            'x-cloak',
+            'x-show' => '!currentlyReorderingStatus',
+            'x-model' => 'selectedItems',
+            'wire:loading.attr.delay' => 'disabled',
+            'type' => 'checkbox',
+            'default' => true,
+            'default-colors' => false,
+            'default-styling' => false,
+        ];
+        ksort($data);
+        $returnedData = $this->basicTable->getBulkActionsTdCheckboxAttributes();
+        ksort($returnedData);
+
+        $this->assertSame($data, $returnedData);
     }
 
     public function test_bulk_actions_th_attributes_returns_default_true_if_not_set(): void
     {
+
         $this->assertSame(['default' => true, 'default-colors' => false, 'default-styling' => false], $this->basicTable->getBulkActionsThAttributes());
     }
 

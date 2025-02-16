@@ -15,7 +15,7 @@ trait HasBulkActionsStyling
 
     protected array $bulkActionsTdAttributes = ['default' => true];
 
-    protected array $bulkActionsTdCheckboxAttributes = ['default' => true];
+    protected array $bulkActionsTdCheckboxAttributes = ['default' => true, 'default-colors' => false, 'default-styling' => false];
 
     protected array $bulkActionsButtonAttributes = ['default-colors' => true, 'default-styling' => true];
 
@@ -110,8 +110,22 @@ trait HasBulkActionsStyling
     public function getBulkActionsTdCheckboxAttributes(): array
     {
         return $this->getCustomAttributes('bulkActionsTdCheckboxAttributes');
+        $array = array_merge(
+            [
+                'x-cloak',
+                'x-show' => '!currentlyReorderingStatus',
+                'x-model' => 'selectedItems',
+                'wire:loading.attr.delay' => 'disabled',
+                'type' => 'checkbox',
+            ],
+            $this->getCustomAttributes('bulkActionsTdCheckboxAttributes')
+        );
+        ksort($array);
+
+        return $array;
 
     }
+
 
     /**
      * Used to get attributes for the Bulk Actions Row Buttons
