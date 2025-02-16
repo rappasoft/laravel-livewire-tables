@@ -20,7 +20,7 @@ class FilterPillData
         protected bool $renderPillsAsHtml,
         protected bool $watchForEvents,
         protected array $customResetButtonAttributes,
-        protected bool $renderPillsTitleAsHtml ) {}
+        protected bool $renderPillsTitleAsHtml) {}
 
     public static function make(string $filterKey, string $filterPillTitle, string|array|null $filterPillValue, string $separator = ', ', bool $isAnExternalLivewireFilter = false, bool $hasCustomPillBlade = false, ?string $customPillBlade = null, array $filterPillsItemAttributes = [], bool $renderPillsAsHtml = false, bool $watchForEvents = false, array $customResetButtonAttributes = [], bool $renderPillsTitleAsHtml = false): FilterPillData
     {
@@ -56,7 +56,6 @@ class FilterPillData
         return $this->customResetButtonAttributes ?? [];
     }
 
-
     public function getIsAnExternalLivewireFilter(): int
     {
         return intval($this->isAnExternalLivewireFilter ?? false);
@@ -87,8 +86,7 @@ class FilterPillData
         return ! is_null($this->filterPillValue) && is_array($this->filterPillValue);
     }
 
-
-    public function getSeparatedPillValue(): string|null
+    public function getSeparatedPillValue(): ?string
     {
         if ($this->isPillValueAnArray()) {
             return implode($this->getSeparator(), $this->getPillValue());
@@ -97,11 +95,11 @@ class FilterPillData
         }
     }
 
-    public function getSafeSeparatedPillValue(): string|null
+    public function getSafeSeparatedPillValue(): ?string
     {
         $string = $this->getSeparatedPillValue();
 
-        return htmlentities($string, ENT_QUOTES,'UTF-8');
+        return htmlentities($string, ENT_QUOTES, 'UTF-8');
 
     }
 
@@ -109,7 +107,6 @@ class FilterPillData
     {
         return array_merge(['default' => true, 'default-colors' => true, 'default-styling' => true, 'default-text' => true], $this->filterPillsItemAttributes);
     }
-
 
     public function getFilterPillDisplayDataArray(): array
     {
@@ -132,7 +129,7 @@ class FilterPillData
     {
 
         $array['x-data'] = "{ internalDisplayString: ''}";
-        $array['x-init'] = "internalDisplayString = updatePillValues(".json_encode($this->getSafeSeparatedPillValue()).")";
+        $array['x-init'] = 'internalDisplayString = updatePillValues('.json_encode($this->getSafeSeparatedPillValue()).')';
         $array[$this->shouldUsePillsAsHtml() ? 'x-html' : 'x-text'] = 'internalDisplayString';
 
         return $array;
@@ -141,6 +138,7 @@ class FilterPillData
     public function getFilterTitleDisplayDataArray(array $array = []): array
     {
         $array[$this->shouldUsePillsTitleAsHtml() ? 'x-html' : 'x-text'] = "localFilterTitle + ':&nbsp;'";
+
         return $array;
     }
 
