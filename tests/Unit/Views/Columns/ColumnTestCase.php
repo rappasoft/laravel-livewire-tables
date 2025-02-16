@@ -42,17 +42,15 @@ abstract class ColumnTestCase extends TestCase
         $this->assertFalse(self::$columnInstance->isReorderColumn());
 
     }
-    
+
     public function test_can_get_sorting_pills_direction_deprecated(): void
     {
-        $this->assertSame('A-Z',self::$columnInstance->getSortingPillDirection($this->basicTable,'asc'));
-        $this->assertSame('Z-A', self::$columnInstance->getSortingPillDirection($this->basicTable,'desc'));
+        $this->assertSame('A-Z', self::$columnInstance->getSortingPillDirection($this->basicTable, 'asc'));
+        $this->assertSame('Z-A', self::$columnInstance->getSortingPillDirection($this->basicTable, 'desc'));
 
         self::$columnInstance->setSortingPillDirections('1-2', '2-1');
-        $this->assertSame('1-2',self::$columnInstance->getSortingPillDirection($this->basicTable,'asc'));
-        $this->assertSame('2-1',self::$columnInstance->getSortingPillDirection($this->basicTable,'desc'));
+        $this->assertSame('1-2', self::$columnInstance->getSortingPillDirection($this->basicTable, 'asc'));
+        $this->assertSame('2-1', self::$columnInstance->getSortingPillDirection($this->basicTable, 'desc'));
 
     }
-
-    
 }
