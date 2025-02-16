@@ -2,18 +2,18 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
 
-final class ImageColumnTest extends TestCase
+#[Group('Columns')]
+final class ImageColumnTest extends ColumnTestCase
 {
-    public function test_can_set_the_column_title(): void
+    protected function setUp(): void
     {
-        $column = ImageColumn::make('Name', 'name');
-
-        $this->assertSame('Name', $column->getTitle());
+        parent::setUp();
+        self::$columnInstance = ImageColumn::make('Name', 'name');
     }
 
     public function test_can_not_infer_field_name_from_title_if_no_from(): void

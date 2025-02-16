@@ -3,25 +3,20 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
 use Illuminate\Support\Facades\Blade;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Components\TestComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
-final class ComponentColumnTest extends TestCase
+#[Group('Columns')]
+final class ComponentColumnTest extends ColumnTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
-    }
-
-    public function test_can_set_the_column_title(): void
-    {
-        $column = ComponentColumn::make('Name', 'name');
-
-        $this->assertSame('Name', $column->getTitle());
+        self::$columnInstance = ComponentColumn::make('Name', 'name');
     }
 
     public function test_can_not_set_component_column_as_label(): void
@@ -36,7 +31,7 @@ final class ComponentColumnTest extends TestCase
     public function test_can_not_be_both_collapsible_on_mobile_and_on_tablet(): void
     {
         $this->expectException(DataTableConfigurationException::class);
-        $column = ComponentColumn::make('Name', 'name')->collapseOnMobile()->collapseOnTablet();
+        $column = self::$columnInstance->collapseOnMobile()->collapseOnTablet();
         $row = Pet::find(1);
         $column->getContents($row);
 
@@ -63,7 +58,7 @@ final class ComponentColumnTest extends TestCase
                 'age' => $row->age,
             ])
             ->slot(fn ($value, $row, Column $column) => (($row->age < 10) ? 'youngslot' : 'oldslot'))
-            ->component('livewire-tables-test::test');
+            ->component('test-component');
 
         $pet1 = Pet::where('age', '>', 11)->first();
         $pet1_contents = $column->getContents($pet1);
@@ -83,7 +78,7 @@ final class ComponentColumnTest extends TestCase
                 'age' => $row->age,
             ])
             ->slot(fn ($value, $row, Column $column) => (($row->age < 10) ? 'youngslot' : 'oldslot'))
-            ->component('livewire-tables-test::test');
+            ->component('test-component');
 
         $pet1 = Pet::where('age', '>', 11)->first();
         $pet1_contents = $column->getContents($pet1);
@@ -92,6 +87,20 @@ final class ComponentColumnTest extends TestCase
         $pet2 = Pet::where('age', '<', 5)->first();
         $pet2_contents = $column->getContents($pet2);
         $this->assertSame(2, $pet2_contents->getData()['attributes']['age']);
+
+    }
+
+    public function test_can_not_return_invalid_attributes_return(): void
+    {
+        $this->expectException(DataTableConfigurationException::class);
+
+        $column = ComponentColumn::make('Total Users')
+            ->component('test-component')
+            ->attributes(fn ($value, $row, Column $column) => (string) 'test');
+
+        $contents = $column->getContents(Pet::find(1));
+
+        $this->assertSame('<div>2420</div>', $contents);
 
     }
 }

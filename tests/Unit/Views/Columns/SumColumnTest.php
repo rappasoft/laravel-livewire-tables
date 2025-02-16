@@ -3,31 +3,27 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
 use PHPUnit\Framework\Attributes\DataProviderExternal;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Unit\Attributes\AggregateColumnProvider;
 use Rappasoft\LaravelLivewireTables\Views\Columns\SumColumn;
 
-final class SumColumnTest extends TestCase
+#[Group('Columns')]
+final class SumColumnTest extends ColumnTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
         parent::setupSpeciesTable();
-    }
+        self::$columnInstance = SumColumn::make('Name');
 
-    public function test_can_set_the_column_title(): void
-    {
-        $column = SumColumn::make('Sum User Age');
-
-        $this->assertSame('Sum User Age', $column->getTitle());
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_setup_column_correctly(string $relation_name, string $foreign_field): void
     {
-        $column = SumColumn::make('Sum User Age')
+        $column = self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
 
@@ -39,7 +35,7 @@ final class SumColumnTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $column = SumColumn::make('Sum User Age')
+        $column = self::$columnInstance
             ->sortable();
         $contents = $column->getContents(Pet::find(1));
         $this->assertNull($contents);
@@ -49,7 +45,7 @@ final class SumColumnTest extends TestCase
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_set_foreign_column(string $relation_name, string $foreign_field): void
     {
-        $column = SumColumn::make('Sum User Age')
+        $column = self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
         $this->assertTrue($column->hasForeignColumn());
@@ -63,7 +59,7 @@ final class SumColumnTest extends TestCase
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_get_data_source(string $relation_name, string $foreign_field): void
     {
-        $column = SumColumn::make('Sum User Age')
+        $column = self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
         $this->assertTrue($column->hasDataSource());
@@ -73,7 +69,7 @@ final class SumColumnTest extends TestCase
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_get_foreign_column(string $relation_name, string $foreign_field): void
     {
-        $column = SumColumn::make('Sum User Age')
+        $column = self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
         $this->assertTrue($column->hasForeignColumn());
@@ -83,7 +79,7 @@ final class SumColumnTest extends TestCase
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_get_data_source_fields(string $relation_name, string $foreign_field): void
     {
-        $column = SumColumn::make('Sum User Age')
+        $column = self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
         $this->assertTrue($column->hasDataSource());
@@ -95,7 +91,7 @@ final class SumColumnTest extends TestCase
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_get_aggregate_method(string $relation_name, string $foreign_field): void
     {
-        $column = SumColumn::make('Sum User Age')
+        $column = self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
         $this->assertSame('sum', $column->getAggregateMethod());

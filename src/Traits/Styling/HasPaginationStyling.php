@@ -2,15 +2,43 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling;
 
-use Rappasoft\LaravelLivewireTables\Traits\Styling\Configuration\PaginationStylingConfiguration;
-use Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers\PaginationStylingHelpers;
+use Illuminate\View\ComponentAttributeBag;
+use Livewire\Attributes\Computed;
 
 trait HasPaginationStyling
 {
-    use PaginationStylingConfiguration,
-        PaginationStylingHelpers;
-
     protected array $perPageFieldAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
 
     protected array $paginationWrapperAttributes = ['class' => ''];
+
+    #[Computed]
+    public function getPerPageFieldAttributes(): array
+    {
+        return $this->perPageFieldAttributes;
+    }
+
+    public function getPaginationWrapperAttributes(): array
+    {
+        return $this->paginationWrapperAttributes ?? ['class' => ''];
+    }
+
+    #[Computed]
+    public function getPaginationWrapperAttributesBag(): ComponentAttributeBag
+    {
+        return new ComponentAttributeBag($this->getPaginationWrapperAttributes());
+    }
+
+    public function setPerPageFieldAttributes(array $attributes = []): self
+    {
+        $this->perPageFieldAttributes = [...$this->perPageFieldAttributes, ...$attributes];
+
+        return $this;
+    }
+
+    public function setPaginationWrapperAttributes(array $paginationWrapperAttributes): self
+    {
+        $this->paginationWrapperAttributes = array_merge(['class' => ''], $paginationWrapperAttributes);
+
+        return $this;
+    }
 }
