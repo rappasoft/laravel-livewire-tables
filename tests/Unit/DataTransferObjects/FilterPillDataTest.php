@@ -57,10 +57,9 @@ final class FilterPillDataTest extends TestCase
         $customPillBlade = 'test-blade';
         $filterPillsItemAttributes = ['default' => true, 'default-colors' => true, 'default-styling' => true];
         $dto = FilterPillData::make($filterKey, $filterPillTitle, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes, false, false, [], false);
-        
+
         $this->assertSame($dto->getTitle(), $filterPillTitle);
     }
-
 
     public function test_can_get_filter_value()
     {
@@ -151,7 +150,6 @@ final class FilterPillDataTest extends TestCase
         $renderPillsAsHtml = true;
         $renderPillsTitleAsHtml = false;
 
-        
         $dto = FilterPillData::make($filterKey, $filterPillTitle, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes, $renderPillsAsHtml, false, [], $renderPillsTitleAsHtml);
         $displayData = new ComponentAttributeBag($dto->getExternalFilterPillDisplayDataArray());
         $bag = new ComponentAttributeBag(['x-html' => 'displayString']);
@@ -173,7 +171,7 @@ final class FilterPillDataTest extends TestCase
         $renderPillsTitleAsHtml = false;
 
         $filterPillsItemAttributes = ['default' => true, 'default-colors' => true, 'default-styling' => true];
-        
+
         $dto = FilterPillData::make($filterKey, $filterPillTitle, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes, $renderPillsAsHtml, false, [], $renderPillsTitleAsHtml);
         $displayData = new ComponentAttributeBag($dto->getExternalFilterPillDisplayDataArray());
         $bag = new ComponentAttributeBag(['x-text' => 'displayString']);
