@@ -13,8 +13,7 @@
     ->except(['default', 'default-styling', 'default-colors'])
 }}
 >
-<span {{ $attributes->merge($pillTitleDisplayDataArray) }}></span>
-
+<span {{ $attributes->merge($pillTitleDisplayDataArray) }}></span>:&nbsp;
 <span {{ $attributes->merge($pillDisplayDataArray) }}></span>
 
 <x-livewire-tables::tools.filter-pills.buttons.reset-filter :$filterKey :$filterPillData/>
