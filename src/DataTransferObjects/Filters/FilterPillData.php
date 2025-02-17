@@ -137,7 +137,7 @@ class FilterPillData
 
     public function getFilterTitleDisplayDataArray(array $array = []): array
     {
-        $array[$this->shouldUsePillsTitleAsHtml() ? 'x-html' : 'x-text'] = "localFilterTitle";
+        $array[$this->shouldUsePillsTitleAsHtml() ? 'x-html' : 'x-text'] = 'localFilterTitle';
 
         return $array;
     }
