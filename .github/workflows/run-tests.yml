@@ -174,3 +174,86 @@ jobs:
 
       - name: Run Visuals Tests
         run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
+
+  test-laravel12:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        os: [ubuntu-24.04]
+        php: [8.2, 8.3, 8.4]
+        laravel: [12.*]
+        stability: [prefer-dist]
+
+    name: PHP-${{ matrix.php }} - Laravel-12
+    env:
+      extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
+      extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, :psr
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup cache environment
+        id: extcache
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.extensions }}
+          key: ${{ env.extensionKey }}
+
+      - name: Cache extensions
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.extcache.outputs.dir }}
+          key: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ matrix.os }}-${{ steps.extcache.outputs.key }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.extensions }}
+          tools: phpunit:latest
+          ini-values: memory_limit=512M
+          coverage: none
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+
+      - name: Add token
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        run: |
+          composer config github-oauth.github.com $GITHUB_TOKEN
+          
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
+
+      - name: Update dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer update --${{ matrix.stability }} --no-interaction
+
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Run Unit Tests
+        run: php ./vendor/bin/paratest --testsuite "Laravel Livewire Tables Unit Test Suite" --no-coverage
+
+      - name: Run Visuals Tests
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
