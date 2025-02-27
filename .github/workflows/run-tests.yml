@@ -16,7 +16,7 @@ jobs:
       max-parallel: 2
       matrix:
         os: [ubuntu-24.04]
-        php: [8.2, 8.3, 8.4]
+        php: [8.2, 8.3]
         laravel: [10.*]
         stability: [prefer-dist]
 
