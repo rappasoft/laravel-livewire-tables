@@ -457,6 +457,5 @@ final class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-02', 'maxDate' => 'asdf']));
         $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-02', 'maxDate' => '4121-31-31']));
 
-
     }
 }

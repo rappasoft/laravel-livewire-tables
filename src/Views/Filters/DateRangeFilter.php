@@ -43,7 +43,7 @@ class DateRangeFilter extends Filter
         if (! (($startDate = $this->createCarbonDate($returnedValues['minDate'])) instanceof Carbon) || ! (($endDate = $this->createCarbonDate($returnedValues['maxDate'])) instanceof Carbon)) {
             return false;
         }
-        
+
         if ($startDate->gt($endDate)) {
             return false;
         }
