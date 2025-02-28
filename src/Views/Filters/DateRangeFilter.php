@@ -40,12 +40,10 @@ class DateRangeFilter extends Filter
             return false;
         }
 
-        $startDate = $this->createCarbonDate($returnedValues['minDate']);
-        $endDate = $this->createCarbonDate($returnedValues['maxDate']);
-
-        if (! ($startDate instanceof Carbon) || ! ($endDate instanceof Carbon)) {
+        if (! (($startDate = $this->createCarbonDate($returnedValues['minDate'])) instanceof Carbon) || ! (($endDate = $this->createCarbonDate($returnedValues['maxDate'])) instanceof Carbon)) {
             return false;
         }
+
         if ($startDate->gt($endDate)) {
             return false;
         }
@@ -198,6 +196,9 @@ class DateRangeFilter extends Filter
 
     public function isEmpty(array|string|null $value): bool
     {
+        if (is_null($value) || empty($value)) {
+            return true;
+        }
         $values = [];
         if (is_array($value)) {
             if (! isset($value['minDate']) || ! isset($value['maxDate'])) {

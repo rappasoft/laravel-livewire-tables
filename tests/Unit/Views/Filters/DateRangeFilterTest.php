@@ -435,4 +435,27 @@ final class DateRangeFilterTest extends FilterTestCase
         $this->assertSame('de', self::$filterInstance->getPillsLocale());
         $this->assertTrue(self::$filterInstance->hasPillsLocale());
     }
+
+    public function test_can_check_validation_rejects_invalid_values_array(): void
+    {
+        $missingStartDate = self::$filterInstance->validate([null, '2020-01-01']);
+        $missingEndDate = self::$filterInstance->validate(['2020-01-01', null]);
+        $missingBoth = self::$filterInstance->validate([null, null]);
+
+        $this->assertFalse($missingStartDate);
+        $this->assertFalse($missingEndDate);
+        $this->assertFalse($missingBoth);
+        $this->assertTrue(self::$filterInstance->isEmpty($missingStartDate));
+        $this->assertTrue(self::$filterInstance->isEmpty($missingEndDate));
+        $this->assertTrue(self::$filterInstance->isEmpty($missingBoth));
+    }
+
+    public function test_can_check_validation_rejects_broken_values_array(): void
+    {
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => 'asdf', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '4121-31-31', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-02', 'maxDate' => 'asdf']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-02', 'maxDate' => '4121-31-31']));
+
+    }
 }
