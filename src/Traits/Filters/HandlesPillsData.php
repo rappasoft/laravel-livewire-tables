@@ -11,7 +11,7 @@ trait HandlesPillsData
         $filters = [];
 
         foreach ($this->getAppliedFiltersWithValuesForPills() as $filterKey => $value) {
-            if (! is_null($filter = $this->getFilterByKey($filterKey)) && !$filter->isEmpty($filter->validate($value))) {
+            if (! is_null($filter = $this->getFilterByKey($filterKey)) && ! $filter->isEmpty($filter->validate($value))) {
                 $filters[$filter->getKey()] = FilterPillData::make(
                     filterKey: $filter->getKey(),
                     customPillBlade: $filter->getCustomPillBlade() ?? null,

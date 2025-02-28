@@ -438,9 +438,9 @@ final class DateRangeFilterTest extends FilterTestCase
 
     public function test_can_check_validation_rejects_invalid_values_array(): void
     {
-        $missingStartDate = self::$filterInstance->validate([null,'2020-01-01']);
+        $missingStartDate = self::$filterInstance->validate([null, '2020-01-01']);
         $missingEndDate = self::$filterInstance->validate(['2020-01-01', null]);
-        $missingBoth = self::$filterInstance->validate([null,null]);
+        $missingBoth = self::$filterInstance->validate([null, null]);
 
         $this->assertFalse($missingStartDate);
         $this->assertFalse($missingEndDate);
@@ -454,6 +454,4 @@ final class DateRangeFilterTest extends FilterTestCase
     {
         $this->assertFalse(self::$filterInstance->validate(['minDate' => 'asdf', 'maxDate' => '2020-02-02']));
     }
-
-
 }
