@@ -49,11 +49,13 @@ trait FilterPillsHelpers
             }
 
             $validatedValue = $filter->validate($item);
+
             if ($filter instanceof BooleanFilter) {
                 return ! ($filter->isEmpty($validatedValue));
-            } elseif ($validatedValue === null || $validatedValue === 'null') {
+            } elseif ($validatedValue === null || $validatedValue === 'null' || $filter->isEmpty($validatedValue)) {
                 return false;
             } elseif (is_array($validatedValue)) {
+                $filter->isEmpty($validatedValue);
                 if (array_key_exists(0, $validatedValue) && (is_null($validatedValue[0]) || $validatedValue[0] == 'null')) {
                     return false;
                 }
