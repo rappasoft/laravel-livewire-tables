@@ -17,6 +17,13 @@ trait ReorderingHelpers
         return $this->reorderStatus;
     }
 
+    #[Computed]
+    public function showReorderButton(): bool
+    {
+        return $this->getReorderStatus() === true;
+    }
+
+    #[Computed]
     public function reorderIsEnabled(): bool
     {
         return $this->getReorderStatus() === true;

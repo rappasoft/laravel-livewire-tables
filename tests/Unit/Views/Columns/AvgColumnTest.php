@@ -3,35 +3,31 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
 use PHPUnit\Framework\Attributes\DataProviderExternal;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Unit\Attributes\AggregateColumnProvider;
 use Rappasoft\LaravelLivewireTables\Views\Columns\AvgColumn;
 
-final class AvgColumnTest extends TestCase
+#[Group('Columns')]
+final class AvgColumnTest extends ColumnTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
+        self::$columnInstance = AvgColumn::make('Name');
+
         parent::setupSpeciesTable();
-    }
-
-    public function test_can_set_the_column_title(): void
-    {
-        $column = AvgColumn::make('Average Age');
-
-        $this->assertSame('Average Age', $column->getTitle());
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_setup_column_correctly(string $relation_name, string $foreign_field): void
     {
-        $column = AvgColumn::make('Average Age')
+        self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
 
-        $this->assertNotEmpty($column);
+        $this->assertNotEmpty(self::$columnInstance);
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
@@ -39,79 +35,79 @@ final class AvgColumnTest extends TestCase
     {
         $this->expectException(DataTableConfigurationException::class);
 
-        $column = AvgColumn::make('Average Age')
+        self::$columnInstance
             ->sortable();
-        $contents = $column->getContents(Pet::find(1));
-        $this->assertNull($contents);
+        $contents = self::$columnInstance->getContents(Pet::find(1));
+        $this->assertNull(self::$columnInstance);
 
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_get_data_source(string $relation_name, string $foreign_field): void
     {
-        $column = AvgColumn::make('Average Age')
+        self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
-        $this->assertTrue($column->hasDataSource());
-        $this->assertSame($relation_name, $column->getDataSource());
+        $this->assertTrue(self::$columnInstance->hasDataSource());
+        $this->assertSame($relation_name, self::$columnInstance->getDataSource());
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_get_foreign_column(string $relation_name, string $foreign_field): void
     {
-        $column = AvgColumn::make('Average Age')
+        self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
-        $this->assertTrue($column->hasForeignColumn());
-        $this->assertSame($foreign_field, $column->getForeignColumn());
+        $this->assertTrue(self::$columnInstance->hasForeignColumn());
+        $this->assertSame($foreign_field, self::$columnInstance->getForeignColumn());
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_set_foreign_column(string $relation_name, string $foreign_field): void
     {
-        $column = AvgColumn::make('Average Age')
+        self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
-        $this->assertTrue($column->hasForeignColumn());
-        $this->assertSame($foreign_field, $column->getForeignColumn());
-        $column->setForeignColumn('test');
-        $this->assertTrue($column->hasForeignColumn());
-        $this->assertSame('test', $column->getForeignColumn());
+        $this->assertTrue(self::$columnInstance->hasForeignColumn());
+        $this->assertSame($foreign_field, self::$columnInstance->getForeignColumn());
+        self::$columnInstance->setForeignColumn('test');
+        $this->assertTrue(self::$columnInstance->hasForeignColumn());
+        $this->assertSame('test', self::$columnInstance->getForeignColumn());
 
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_get_data_source_fields(string $relation_name, string $foreign_field): void
     {
-        $column = AvgColumn::make('Average Age')
+        self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
-        $this->assertTrue($column->hasDataSource());
-        $this->assertSame($relation_name, $column->getDataSource());
-        $this->assertTrue($column->hasForeignColumn());
-        $this->assertSame($foreign_field, $column->getForeignColumn());
+        $this->assertTrue(self::$columnInstance->hasDataSource());
+        $this->assertSame($relation_name, self::$columnInstance->getDataSource());
+        $this->assertTrue(self::$columnInstance->hasForeignColumn());
+        $this->assertSame($foreign_field, self::$columnInstance->getForeignColumn());
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_can_get_aggregate_method(string $relation_name, string $foreign_field): void
     {
-        $column = AvgColumn::make('Average Age')
+        self::$columnInstance
             ->setDataSource($relation_name, $foreign_field)
             ->sortable();
-        $this->assertSame('avg', $column->getAggregateMethod());
-        $column->setAggregateMethod('test_avg');
-        $this->assertSame('test_avg', $column->getAggregateMethod());
+        $this->assertSame('avg', self::$columnInstance->getAggregateMethod());
+        self::$columnInstance->setAggregateMethod('test_avg');
+        $this->assertSame('test_avg', self::$columnInstance->getAggregateMethod());
     }
 
     #[DataProviderExternal(AggregateColumnProvider::class, 'relationshipProvider')]
     public function test_renders_correctly(string $relation_name, string $foreign_field): void
     {
         $rows = $this->speciesTable->getRows();
-        $column = AvgColumn::make('Average Age')
+        self::$columnInstance
             ->setDataSource('pets', 'age');
-        $contents = $column->getContents($rows->first());
+        $contents = self::$columnInstance->getContents($rows->first());
         $this->assertSame('15', $contents);
-        $contents = $column->getContents($rows[2]);
+        $contents = self::$columnInstance->getContents($rows[2]);
         $this->assertSame('6', $contents);
     }
 }

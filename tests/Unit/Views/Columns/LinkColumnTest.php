@@ -2,18 +2,18 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
-final class LinkColumnTest extends TestCase
+#[Group('Columns')]
+final class LinkColumnTest extends ColumnTestCase
 {
-    public function test_can_set_the_column_title(): void
+    protected function setUp(): void
     {
-        $column = LinkColumn::make('Name', 'name');
-
-        $this->assertSame('Name', $column->getTitle());
+        parent::setUp();
+        self::$columnInstance = LinkColumn::make('Name', 'name');
     }
 
     public function test_can_not_infer_field_name_from_title_if_no_from(): void
@@ -46,7 +46,7 @@ final class LinkColumnTest extends TestCase
 
     public function test_can_check_ishtml_from_html_column(): void
     {
-        $column = LinkColumn::make('Name', 'name')
+        $column = self::$columnInstance
             ->title(fn ($row) => 'Title')
             ->location(fn ($row) => "#$row->id")
             ->html();
@@ -56,7 +56,7 @@ final class LinkColumnTest extends TestCase
 
     public function test_can_get_html_from_html_label_column(): void
     {
-        $column = LinkColumn::make('Name', 'name')
+        $column = self::$columnInstance
             ->title(fn ($row) => '<strong>My Label</strong>')
             ->location(fn ($row) => "#$row->id")
             ->html();

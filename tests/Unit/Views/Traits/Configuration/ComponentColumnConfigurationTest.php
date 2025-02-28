@@ -3,9 +3,11 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Traits\Configuration;
 
 use Closure;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
+#[Group('Columns')]
 final class ComponentColumnConfigurationTest extends TestCase
 {
     public function test_component_column_can_set_slot_callback(): void

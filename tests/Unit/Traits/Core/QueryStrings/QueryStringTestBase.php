@@ -23,6 +23,21 @@ class QueryStringTestBase extends TestCase
             {
                 $this->setDataTableFingerprint('test');
             }
+
+            public function setQueryStringAliasForFilter(string $alias): self
+            {
+                return parent::setQueryStringAliasForFilter($alias);
+            }
+
+            public function setQueryStringForFilterEnabled(): self
+            {
+                return parent::setQueryStringForFilterEnabled();
+            }
+
+            public function setQueryStringForFilterDisabled(): self
+            {
+                return parent::setQueryStringForFilterDisabled();
+            }
         };
     }
 }

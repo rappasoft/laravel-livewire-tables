@@ -2,24 +2,24 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Group;
 // use Illuminate\Support\Facades\Exceptions;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
-final class DateColumnTest extends TestCase
+#[Group('Columns')]
+final class DateColumnTest extends ColumnTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
         parent::setupPetOwnerTable();
+        self::$columnInstance = DateColumn::make('Last Visit', 'last_visit');
     }
 
     public function test_can_set_the_column_title(): void
     {
-        $column = DateColumn::make('Last Visit', 'last_visit');
-
-        $this->assertSame('Last Visit', $column->getTitle());
+        $this->assertSame('Last Visit', self::$columnInstance->getTitle());
     }
 
     public function test_can_infer_field_name_from_title_if_no_from(): void
@@ -31,21 +31,17 @@ final class DateColumnTest extends TestCase
 
     public function test_can_set_base_field_from_from(): void
     {
-        $column = DateColumn::make('Name', 'last_visit');
-
-        $this->assertSame('last_visit', $column->getField());
+        $this->assertSame('last_visit', self::$columnInstance->getField());
     }
 
     public function test_can_set_relation_field_from_from(): void
     {
-        $column = DateColumn::make('Name', 'last_visit');
-
-        $this->assertSame('last_visit', $column->getField());
+        $this->assertSame('last_visit', self::$columnInstance->getField());
     }
 
     public function test_can_get_column_formatted_contents(): void
     {
-        $column = DateColumn::make('Name', 'last_visit')->inputFormat('Y-m-d')->outputFormat('Y-m-d');
+        $column = self::$columnInstance->inputFormat('Y-m-d')->outputFormat('Y-m-d');
 
         $rows = $this->basicTable->getRows();
 
@@ -55,7 +51,7 @@ final class DateColumnTest extends TestCase
 
     public function test_can_get_column_reformatted_contents(): void
     {
-        $column = DateColumn::make('Name', 'last_visit')->inputFormat('Y-m-d')->outputFormat('d-m-Y');
+        $column = self::$columnInstance->inputFormat('Y-m-d')->outputFormat('d-m-Y');
 
         $rows = $this->basicTable->getRows();
 
@@ -64,7 +60,7 @@ final class DateColumnTest extends TestCase
 
     public function test_can_not_get_column_reformatted_contents_with_bad_values(): void
     {
-        $column = DateColumn::make('Name', 'last_visit')->inputFormat('d-m-Y')->outputFormat('d-m-Y');
+        $column = self::$columnInstance->inputFormat('d-m-Y')->outputFormat('d-m-Y');
         $column->emptyValue('Not Found');
 
         $firstRow = $this->basicTable->getRows()->first();
@@ -93,7 +89,7 @@ final class DateColumnTest extends TestCase
 
     public function test_can_set_column_empty_value(): void
     {
-        $column = DateColumn::make('Name', 'last_visit')->inputFormat('d-m-Y')->outputFormat('d-m-Y');
+        $column = self::$columnInstance->inputFormat('d-m-Y')->outputFormat('d-m-Y');
         $this->assertSame('', $column->getEmptyValue());
 
         $column->emptyValue('Not Found');

@@ -4,8 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions, IsStringFilter};
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\{HasOptions, HasWireables, IsStringFilter};
 
 class SelectFilter extends Filter
 {

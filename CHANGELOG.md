@@ -2,8 +2,30 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.7.0] - 2025-02-27
 
-## [v3.6.0] - UNRELEASED
+### Bug Fixes
+- Filters urgent fixes - correct Filter Default QueryString by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2188
+- Fix Search Field in bootstrap by @yparitcher in https://github.com/rappasoft/laravel-livewire-tables/pull/2183
+- Add "after-tools" configurable area by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2180
+
+### New Features
+- Add setFilterPillTitleAsHtml by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2204
+- Enable setting styles for sorting pills as a configuration by @HussamAlhennawi in https://github.com/rappasoft/laravel-livewire-tables/pull/2179
+- Enable setting styles for filter pills as a configuration by @HussamAlhennawi in https://github.com/rappasoft/laravel-livewire-tables/pull/2178
+- Enable setting styles for column select as a configuration by @HussamAlhennawi in https://github.com/rappasoft/laravel-livewire-tables/pull/2175
+- BulkActionTweaks - Adding default checkbox, customising attribute behaviours by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2203
+- Laravel v12 Support by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2217
+
+### Tweaks
+- Tweak for text pill title by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2206
+- Tweak Return Types by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2205
+- Migrate Column/Filter Traits by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2202
+- Filter Rationalisation & Livewire Array Filter improvements by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2191
+- Move Filter View Traits by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2189
+- Filter Trait - Reorganization by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2181
+
+## [v3.6.0] - 2025-01-16
 
 ### Bug Fixes
 - Ensure Default Sorting Is Shown in Pills by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2138

@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ImageColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ImageColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ImageColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasLocationCallback;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ImageColumnHelpers;
 
 class ImageColumn extends Column
 {
@@ -20,10 +20,8 @@ class ImageColumn extends Column
     public function __construct(string $title, ?string $from = null)
     {
         parent::__construct($title, $from);
-        if (! isset($from)) {
-            $this->label(fn () => null);
-        }
 
+        $this->label(fn () => null);
     }
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -32,8 +30,10 @@ class ImageColumn extends Column
             throw new DataTableConfigurationException('You must specify a location callback for an image column.');
         }
 
-        return $this->getColumnViewWithDefaults()
+        return view($this->getView())
             ->withColumn($this)
+            ->withIsTailwind($this->isTailwind())
+            ->withIsBootstrap($this->isBootstrap())
             ->withPath(app()->call($this->getLocationCallback(), ['row' => $row]))
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }

@@ -43,6 +43,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->addBladeLoopDirective();
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
+        Blade::componentNamespace('Rappasoft\\LaravelLivewireTables\\View\\Components', 'livewire-tables');
 
         $this->consoleCommands();
 

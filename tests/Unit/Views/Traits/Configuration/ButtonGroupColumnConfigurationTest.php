@@ -2,10 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
+#[Group('Columns')]
 final class ButtonGroupColumnConfigurationTest extends TestCase
 {
     public function test_button_group_column_can_set_buttons(): void

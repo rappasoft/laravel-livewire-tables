@@ -2,18 +2,18 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\WireLinkColumn;
 
-class WireLinkColumnTest extends TestCase
+#[Group('Columns')]
+class WireLinkColumnTest extends ColumnTestCase
 {
-    public function test_can_set_the_column_title(): void
+    protected function setUp(): void
     {
-        $column = WireLinkColumn::make('Name', 'name');
-
-        $this->assertSame('Name', $column->getTitle());
+        parent::setUp();
+        self::$columnInstance = WireLinkColumn::make('Name', 'name');
     }
 
     public function test_can_not_infer_field_name_from_title_if_no_from(): void
@@ -53,14 +53,12 @@ class WireLinkColumnTest extends TestCase
 
     public function test_can_add_confirm_message(): void
     {
-        $column = WireLinkColumn::make('Name', 'name');
+        $this->assertFalse(self::$columnInstance->hasConfirmMessage());
 
-        $this->assertFalse($column->hasConfirmMessage());
+        self::$columnInstance->confirmMessage('Test');
 
-        $column->confirmMessage('Test');
+        $this->assertTrue(self::$columnInstance->hasConfirmMessage());
 
-        $this->assertTrue($column->hasConfirmMessage());
-
-        $this->assertSame('Test', $column->getConfirmMessage());
+        $this->assertSame('Test', self::$columnInstance->getConfirmMessage());
     }
 }

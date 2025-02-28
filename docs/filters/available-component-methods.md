@@ -85,41 +85,9 @@ public function configure(): void
 
 ---
 
-## setFilterPillsStatus
+## Pills
 
-**Enabled by default**, show/hide the filter pills.
-
-```php
-public function configure(): void
-{
-    $this->setFilterPillsStatus(true);
-    $this->setFilterPillsStatus(false);
-}
-```
-
-## setFilterPillsEnabled
-
-Show the filter pills for the component.
-
-```php
-public function configure(): void
-{
-    // Shorthand for $this->setFilterPillsStatus(true)
-    $this->setFilterPillsEnabled();
-}
-```
-
-## setFilterPillsDisabled
-
-Hide the filter pills for the component.
-
-```php
-public function configure(): void
-{
-    // Shorthand for $this->setFilterPillsStatus(false)
-    $this->setFilterPillsDisabled();
-}
-```
+See the [Filter Pills](./filter-pills) documentation for help with configuring the pills
 
 ---
 

@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\HasWireables;
 
 class BooleanFilter extends Filter
 {

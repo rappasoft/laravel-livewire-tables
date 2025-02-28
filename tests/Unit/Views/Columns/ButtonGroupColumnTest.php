@@ -2,17 +2,17 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 
-final class ButtonGroupColumnTest extends TestCase
+#[Group('Columns')]
+final class ButtonGroupColumnTest extends ColumnTestCase
 {
-    public function test_can_set_the_column_title(): void
+    protected function setUp(): void
     {
-        $column = ButtonGroupColumn::make('Name', 'name');
-
-        $this->assertSame('Name', $column->getTitle());
+        parent::setUp();
+        self::$columnInstance = ButtonGroupColumn::make('Name', 'name');
     }
 
     public function test_can_render_field(): void

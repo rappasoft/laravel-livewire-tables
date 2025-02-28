@@ -2,13 +2,22 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Styling;
 
-use Rappasoft\LaravelLivewireTables\Traits\Styling\Configuration\ActionsStylingConfiguration;
-use Rappasoft\LaravelLivewireTables\Traits\Styling\Helpers\ActionsStylingHelpers;
+use Livewire\Attributes\Computed;
 
 trait HasActionsStyling
 {
-    use ActionsStylingConfiguration,
-        ActionsStylingHelpers;
-
     protected array $actionWrapperAttributes = ['class' => '', 'default-styling' => true, 'default-colors' => true];
+
+    #[Computed]
+    public function getActionWrapperAttributes(): array
+    {
+        return [...['class' => '', 'default-styling' => true, 'default-colors' => true], ...$this->actionWrapperAttributes];
+    }
+
+    public function setActionWrapperAttributes(array $actionWrapperAttributes): self
+    {
+        $this->actionWrapperAttributes = [...$this->actionWrapperAttributes, ...$actionWrapperAttributes];
+
+        return $this;
+    }
 }

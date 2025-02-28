@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\IsFilter;
 
 abstract class Filter
 {

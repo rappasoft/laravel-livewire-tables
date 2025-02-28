@@ -31,11 +31,100 @@ document.addEventListener('alpine:init', () => {
         evenNotInOdd: {},
         oddNotInEven: {},
         orderedRows: [],
-        defaultReorderColumn: wire.get('defaultReorderColumn'),
+        defaultReorderColumn: wire.entangle('defaultReorderColumn'),
         reorderStatus: wire.entangle('reorderStatus'),
         currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
+        externalFilterPillsVals: wire.entangle('externalFilterPillsValues'),
+        internalFilterPillsVals: wire.entangle('internalFilterPillsVals'),
+        showFilterPillLabel: [],
+        filterPillsSeparator: ', ',
+        showFilterPillsSection: true,
+        removeHTMLTags(htmlString) {
+            // Create a new DOMParser instance
+            const parser = new DOMParser();
+            // Parse the HTML string
+            let  doc = parser.parseFromString(htmlString, 'text/html');
+            // Extract text content
+            let textContent = doc.body.innerText || "";
+            // Trim whitespace
+            let trimmedContent = textContent.trim();
+
+            return trimmedContent;
+        },        
+        resetSpecificFilter(filterKey)
+        {
+            this.externalFilterPillsVals[filterKey] = [];
+            wire.call('resetFilter',filterKey);
+        },
+        resetAllFilters()
+        {
+            this.externalFilterPillsVals = [];
+            wire.call('setFilterDefaults');
+        },
+        setInternalFilterPillVal(filterKey, filterValues)
+        {
+
+            if(typeof(filterValues) !== 'undefined')
+            {
+                this.internalFilterPillsVals[filterKey] = filterValues;
+            }
+        },
+        syncExternalFilterPillsValues(filterKey,filterValues) {
+            this.externalFilterPillsVals[filterKey] = filterValues;
+            this.showFilterPillLabel[filterKey] = this.getFilterPillsLength(filterKey);
+        },
+        getFilterPillsLength(filterKey)
+        {
+            return Object.keys(this.externalFilterPillsVals[filterKey]).length ?? 0;
+        },
+        showFilterPillsValue(filterKey, filterPillValue)
+        {
+            if(typeof(filterPillValue) !== "undefined")
+            {
+                this.externalFilterPillsVals[filterKey] = filterPillValue;
+            }
+            else
+            {
+                this.externalFilterPillsVals[filterKey] = null;
+            }
+            
+        },
+        setFilterPillsLength(externalFilterPillsValues)
+        {
+            let filterValueLength = 0;
+            if (typeof(externalFilterPillsValues) !== 'undefined')
+            {
+                filterValueLength = Object.keys(externalFilterPillsValues).length ?? 0;
+            }
+            else
+            {
+                filterValueLength = 0;
+            }
+            return filterValueLength; 
+        },
+        showFilterPillsLabel(filterKey)
+        {
+            let pillsLength = this.getFilterPillsLength(filterKey);
+            return (this.getFilterPillsLength(filterKey) > 0);
+        },
+        getFilterPillImplodedValues(filterKey, separator)
+        {
+            let filterPillValues = this.externalFilterPillsVals[filterKey];
+            if(filterPillValues !== 'undefined')
+            {
+                let joinedValues = filterPillValues.join(separator);
+
+                return joinedValues;
+            }
+
+            return '';
+        },
+        showFilterPillsSeparator(filterKey,index)
+        {
+            return ((index+1) < (this.getFilterPillsLength(filterKey)));
+        },
         dragStart(event) {
             this.$nextTick(() => { this.setupEvenOddClasses() });
             this.sourceID = event.target.id;
@@ -247,11 +336,11 @@ document.addEventListener('alpine:init', () => {
             this.listeners.forEach((listener) => {
                 listener();
             });
-
-        }
+        },
     }));
 
     Alpine.data('booleanFilter', (wire,filterKey,tableName,defaultValue) => ({
+        localListeners: [],
         switchOn: false, 
         value: wire.entangle('filterComponents.'+filterKey).live, 
         init() { 
@@ -259,22 +348,28 @@ document.addEventListener('alpine:init', () => {
             if (typeof this.value !== 'undefined') { 
                 this.switchOn = Boolean(Number(this.value)); 
             }
-            this.listeners.push(
+            this.localListeners.push(
                 Livewire.on('filter-was-set', (detail) => {
-                    if(detail.tableName == tableName && detail.filterKey == filterKey) { 
+                    if(detail.tableName == this.tableName && detail.filterKey == filterKey) { 
                         this.switchOn = detail.value ?? defaultValue; 
                     }
                 })
             );
-        }
+        },
+        destroy() {
+            this.localListeners.forEach((listener) => {
+                listener();
+            });
+        },
     }));
 
     Alpine.data('newBooleanFilter', (filterKey,tableName,defaultValue) => ({
+        booleanFilterKey: filterKey,
         switchOn: false, 
         value: false, 
         toggleStatus()
         {
-            let tempValue = Boolean(Number(this.$wire.get('filterComponents.'+filterKey) ?? this.value));
+            let tempValue = Boolean(Number(this.$wire.get('filterComponents.'+this.booleanFilterKey) ?? this.value));
             let newBoolean = !tempValue;
             this.switchOn = this.value = newBoolean;
             return Number(newBoolean);
@@ -282,12 +377,12 @@ document.addEventListener('alpine:init', () => {
         toggleStatusWithUpdate()
         {
             let newValue = this.toggleStatus();
-            this.$wire.set('filterComponents.'+filterKey, newValue);
+            this.$wire.set('filterComponents.'+this.booleanFilterKey, newValue);
         },
         toggleStatusWithReset()
         {
             let newValue = this.toggleStatus();
-            this.$wire.call('resetFilter',filterKey);
+            this.$wire.call('resetFilter',this.booleanFilterKey);
         },
         setSwitchOn(val)
         {
@@ -295,20 +390,67 @@ document.addEventListener('alpine:init', () => {
             this.switchOn = Boolean(number); 
         },
         init() { 
+
             this.$nextTick(() => { 
-                this.value = this.$wire.get('filterComponents.'+filterKey) ?? defaultValue;
+                this.value = this.$wire.get('filterComponents.'+this.booleanFilterKey) ?? defaultValue;
                 this.setSwitchOn(this.value ?? 0);
             });
 
             this.listeners.push(
                 Livewire.on('filter-was-set', (detail) => {
-                    if(detail.tableName == tableName && detail.filterKey == filterKey) { 
+                    if(detail.tableName == this.tableName && detail.filterKey == this.booleanFilterKey) { 
                         this.switchOn = detail.value ?? defaultValue; 
                     }
                 })
             );
         }
     }));
+
+    Alpine.data('booleanFilterLatest', (data) => ({
+        booleanFilterKey: data.filterKey,
+        booleanFilterDefaultValue: data.defaultValue,
+        switchOn: false, 
+        value: false, 
+        toggleStatus()
+        {
+            let tempValue = Boolean(Number(this.$wire.get('filterComponents.'+this.booleanFilterKey) ?? this.value));
+            let newBoolean = !tempValue;
+            this.switchOn = this.value = newBoolean;
+            return Number(newBoolean);
+        },
+        toggleStatusWithUpdate()
+        {
+            let newValue = this.toggleStatus();
+            this.$wire.set('filterComponents.'+this.booleanFilterKey, newValue);
+        },
+        toggleStatusWithReset()
+        {
+            let newValue = this.toggleStatus();
+            this.$wire.call('resetFilter',this.booleanFilterKey);
+        },
+        setSwitchOn(val)
+        {
+            let number = Number(val ?? 0);
+            this.switchOn = Boolean(number); 
+        },
+        init() { 
+
+            this.$nextTick(() => { 
+                this.value = this.$wire.get('filterComponents.'+this.booleanFilterKey) ?? this.booleanFilterDefaultValue;
+                this.setSwitchOn(this.value ?? 0);
+            });
+
+            this.listeners.push(
+                Livewire.on('filter-was-set', (detail) => {
+                    if(detail.tableName == this.tableName && detail.filterKey == this.booleanFilterKey) { 
+                        this.switchOn = detail.value ?? this.booleanFilterDefaultValue; 
+                    }
+                })
+            );
+        }
+    }));
+
+
 
     Alpine.data('numberRangeFilter', (wire, filterKey, parentElementPath, filterConfig, childElementRoot) => ({
         allFilters: wire.entangle('filterComponents', false),
@@ -658,5 +800,176 @@ document.addEventListener('alpine:init', () => {
         init() {
         }
     }));
+
+    Alpine.data('filterPillsHandler', (data) => ({
+        localData: data,
+        localFilterKey: '',
+        localFilterTitle: '',
+        isExternalFilter: false,
+        shouldRenderAsHTML: false,
+        shouldWatchPillValues: false,
+        pillsSeparator: ',',
+        pillValues: null,
+        pillHasValues: false,
+        displayString: '',
+        generateLocalFilterPillImplodedValues(filterPillValues)
+        {
+            if(typeof(filterPillValues) !== 'undefined')
+            {
+                var temporarySeparatorString = '---tablepillsseparator---';
+                var regex = new RegExp(temporarySeparatorString, 'g');
+                var joinedValues;
+
+                if(Array.isArray(filterPillValues))
+                {
+                    joinedValues = filterPillValues.join(temporarySeparatorString);
+                }
+                else
+                {
+                    joinedValues = filterPillValues;    
+                }
+
+                if(!this.shouldRenderAsHTML)
+                {
+                    joinedValues = this.removeHTMLTags(joinedValues);
+                }
+
+                if (joinedValues !== null)
+                {
+                    let replacedJoinedValues = joinedValues.replace(regex, this.pillsSeparator);
+                    return replacedJoinedValues;
+    
+                }
+                return "";
+            }
+            return "";
+        },
+        clearExternalFilterPill()
+        {
+            if(this.isExternalFilter)
+            {
+                this.externalFilterPillsVals[this.localFilterKey] = [];
+                this.displayString = this.generateLocalFilterPillImplodedValues(this.externalFilterPillsVals[this.localFilterKey]); 
+                this.updatePillHasValues();
+                this.resetSpecificFilter(this.localFilterKey);
+            }
+        },
+        trigger: {
+            ['@filterpillupdate.window'](event) {
+                this.watchForUpdateEvent(event);
+            },
+        },
+        checkEventIsValid(eventTableName, eventFilterKey)
+        {
+            return ((this.tableName === eventTableName) && (this.localFilterKey === eventFilterKey));
+        },
+        watchForUpdateEvent(event)
+        {
+            if(this.checkEventIsValid(event.detail.tableName ?? '', event.detail.filterKey ?? ''))
+            {
+                let eventPillItem = event.detail.pillItem ?? '';
+                if(!this.shouldRenderAsHTML)
+                {
+                    eventPillItem = this.removeHTMLTags(eventPillItem);
+                }
+    
+                if(eventPillItem != "")
+                {
+                    if(this.isExternalFilter)
+                    {
+                        let filterPillValues = this.externalFilterPillsVals[this.localFilterKey];
+    
+                        filterPillValues.push(eventPillItem);
+                        this.updatePillValues(filterPillValues);
+                    }
+                    else
+                    {
+                        this.updatePillValues(eventPillItem);
+                    }    
+                }
+            }
+        },
+        updatePillValues(filterPillValues)
+        {
+            this.pillValues = filterPillValues;
+            this.displayString = this.generateLocalFilterPillImplodedValues(filterPillValues); 
+            this.updatePillHasValues();
+
+            return this.displayString;
+        },
+        updatePillHasValues()
+        {
+            this.pillHasValues = (this.displayString.length > 0);
+        },
+        init()
+        {
+            this.localFilterKey = this.localData['filterKey'] ?? 'unknown';
+            this.localFilterTitle = this.localData['filterPillTitle'] ?? 'Unknown';
+            this.pillsSeparator = this.localData['separator'] ?? ',';
+            this.shouldWatchPillValues = Boolean(this.localData['watchForEvents'] ?? 0);
+            this.isExternalFilter = Boolean(this.localData['isAnExternalLivewireFilter'] ?? 0);
+            this.shouldRenderAsHTML = Boolean(this.localData['renderPillsAsHtml'] ?? 0);
+            this.pillValues = this.localData['pillValues'] ?? null;
+
+            this.$nextTick(() => { 
+                if(this.isExternalFilter)
+                {
+                    this.updatePillValues(this.externalFilterPillsVals[this.localFilterKey]);
+                }
+                else
+                {
+                    this.updatePillValues(this.pillValues);
+                }
+            });
+            if(this.isExternalFilter && this.shouldWatchPillValues)
+            {
+                this.$watch('externalFilterPillsVals.'+this.localFilterKey, filterPillValues => { 
+                    this.updatePillValues(filterPillValues);
+                });      
+            }
+        }
+    }));
+
+
+    Alpine.data('tablesExternalFilter', (wire, filterKey) => ({
+        externalFilterKey: filterKey,
+        pillValues: [],
+        optionsAvailable: wire.entangle('optionsAvailable'), 
+        optionsSelected: wire.entangle('optionsSelected').live, 
+        selectedItems: wire.entangle('selectedItems'), 
+        sendValueToPill(value)
+        {
+            let sentValue = this.removeHTMLTags(value);
+            this.$dispatch('filterpillupdate', { tableName: this.tableName, filterKey: this.externalFilterKey, pillItem: sentValue });
+        },
+        overridePill(values)
+        {
+            let sentValue = this.removeHTMLTags(values);
+            this.$dispatch('filterpillupdate', { tableName: this.tableName, filterKey: this.externalFilterKey, pillItem: sentValue });
+        },
+        syncItems(items) { 
+            this.pillValues = [];
+            items.forEach((item) => {
+                this.pillValues.push(this.optionsAvailable[item]);
+            });
+            if(this.pillValues.length > 0)
+            {
+                this.pillValues.sort();
+                this.syncExternalFilterPillsValues(this.externalFilterKey,this.pillValues);
+            }
+            this.optionsSelected = this.selectedItems;
+            wire.set('value', this.selectedItems);
+
+        }, 
+        init() { 
+            this.selectedItems = this.optionsSelected;
+            this.syncItems(this.selectedItems);
+            this.$watch('selectedItems', value => this.syncItems(value)); 
+        } 
+
+
+    }));
+
+
 
 });

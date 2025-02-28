@@ -2,25 +2,28 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ColorColumn;
 
-final class ColorColumnTest extends TestCase
+#[Group('Columns')]
+final class ColorColumnTest extends ColumnTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        self::$columnInstance = ColorColumn::make('Favorite Color', 'favorite_color');
+    }
+
     public function test_can_set_the_column_title(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color');
-
-        $this->assertSame('Favorite Color', $column->getTitle());
+        $this->assertSame('Favorite Color', self::$columnInstance->getTitle());
     }
 
     public function test_can_get_the_column_view(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color');
-
-        $this->assertSame('livewire-tables::includes.columns.color', $column->getView());
-        $column->setView('test-color-column');
-        $this->assertSame('test-color-column', $column->getView());
+        $this->assertSame('livewire-tables::includes.columns.color', self::$columnInstance->getView());
+        self::$columnInstance->setView('test-color-column');
+        $this->assertSame('test-color-column', self::$columnInstance->getView());
 
     }
 
@@ -33,38 +36,31 @@ final class ColorColumnTest extends TestCase
 
     public function test_can_set_base_field_from_from(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color');
-
-        $this->assertSame('favorite_color', $column->getField());
+        $this->assertSame('favorite_color', self::$columnInstance->getField());
     }
 
     public function test_can_set_view(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color');
-
-        $this->assertSame('livewire-tables::includes.columns.color', $column->getView());
+        $this->assertSame('livewire-tables::includes.columns.color', self::$columnInstance->getView());
     }
 
     public function test_can_set_default_value(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color')->defaultValue('#FEFEFE');
+        self::$columnInstance->defaultValue('#FEFEFE');
 
-        $this->assertSame('#FEFEFE', $column->getDefaultValue());
+        $this->assertSame('#FEFEFE', self::$columnInstance->getDefaultValue());
     }
 
     public function test_can_set_relation_field_from_from(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color');
-
-        $this->assertSame('favorite_color', $column->getField());
+        $this->assertSame('favorite_color', self::$columnInstance->getField());
     }
 
     public function test_can_check_color_callback_presence(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color');
-        $this->assertFalse($column->hasColorCallback());
+        $this->assertFalse(self::$columnInstance->hasColorCallback());
 
-        $column->color(
+        self::$columnInstance->color(
             function ($row) {
                 if ($row->species_id == 1) {
                     return '#ff0000';
@@ -76,58 +72,54 @@ final class ColorColumnTest extends TestCase
 
             }
         );
-        $this->assertTrue($column->hasColorCallback());
+        $this->assertTrue(self::$columnInstance->hasColorCallback());
 
     }
 
     public function test_can_check_attribute_callback_presence(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color');
-        $this->assertFalse($column->hasAttributesCallback());
+        $this->assertFalse(self::$columnInstance->hasAttributesCallback());
     }
 
     public function test_can_set_attribute_callback(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color');
-        $this->assertFalse($column->hasAttributesCallback());
+        $this->assertFalse(self::$columnInstance->hasAttributesCallback());
 
-        $column->attributes(function ($row) {
+        self::$columnInstance->attributes(function ($row) {
             return [
                 'class' => '!rounded-lg self-center',
                 'default' => true,
             ];
         });
 
-        $this->assertTrue($column->hasAttributesCallback());
+        $this->assertTrue(self::$columnInstance->hasAttributesCallback());
     }
 
     public function test_can_get_attribute_callback(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color')->attributes(function ($row) {
+        self::$columnInstance->attributes(function ($row) {
             return [
                 'class' => '!rounded-lg self-center',
                 'default' => true,
             ];
         });
         $rows = $this->basicTable->setAdditionalSelects(['pets.favorite_color as favorite_color'])->getRows();
-        $this->assertSame(['class' => '!rounded-lg self-center', 'default' => true], $column->getAttributeBag($rows->first())->getAttributes());
+        $this->assertSame(['class' => '!rounded-lg self-center', 'default' => true], self::$columnInstance->getAttributeBag($rows->first())->getAttributes());
     }
 
     public function test_can_get_column_formatted_contents(): void
     {
-        $column = ColorColumn::make('Favorite Color', 'favorite_color');
-
         $rows = $this->basicTable->setAdditionalSelects(['pets.favorite_color as favorite_color'])->getRows();
 
-        $this->assertSame($rows->first()->favorite_color, $column->getValue($rows->first()));
-        $this->assertSame($rows->first()->favorite_color, $column->getColor($rows->first()));
+        $this->assertSame($rows->first()->favorite_color, self::$columnInstance->getValue($rows->first()));
+        $this->assertSame($rows->first()->favorite_color, self::$columnInstance->getColor($rows->first()));
 
-        $this->assertSame($rows->last()->favorite_color, $column->getColor($rows->last()));
-        $this->assertSame($rows->last()->favorite_color, $column->getValue($rows->last()));
+        $this->assertSame($rows->last()->favorite_color, self::$columnInstance->getColor($rows->last()));
+        $this->assertSame($rows->last()->favorite_color, self::$columnInstance->getValue($rows->last()));
 
         $currentRow = $rows->slice(2, 1)->first();
-        $this->assertSame($currentRow->favorite_color, $column->getValue($currentRow));
-        $this->assertSame($currentRow->favorite_color, $column->getColor($currentRow));
+        $this->assertSame($currentRow->favorite_color, self::$columnInstance->getValue($currentRow));
+        $this->assertSame($currentRow->favorite_color, self::$columnInstance->getColor($currentRow));
     }
 
     public function test_can_get_column_contents_from_color(): void

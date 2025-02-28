@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Traits\IsAggregateColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\IsAggregateColumn;
 
 class AggregateColumn extends Column
 {

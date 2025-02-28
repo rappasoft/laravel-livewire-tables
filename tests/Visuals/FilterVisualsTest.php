@@ -103,6 +103,7 @@ final class FilterVisualsTest extends TestCase
             ->assertDontSee('Applied Filters');
     }
 
+    /* Temporary Removal
     public function test_filters_pills_separator_is_customisable(): void
     {
         Livewire::test(new class extends PetsTable
@@ -161,7 +162,7 @@ final class FilterVisualsTest extends TestCase
                 'American Shorthair,',
                 'Maine Coon',
             ]);
-    }
+    }*/
 
     public function test_filters_popover_menu_is_customisable(): void
     {
