@@ -198,6 +198,10 @@ class DateRangeFilter extends Filter
 
     public function isEmpty(array|string|null $value): bool
     {
+        if(is_null($value) || empty($value))
+        {
+            return true;
+        }
         $values = [];
         if (is_array($value)) {
             if (! isset($value['minDate']) || ! isset($value['maxDate'])) {
