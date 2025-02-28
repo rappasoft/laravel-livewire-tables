@@ -453,5 +453,10 @@ final class DateRangeFilterTest extends FilterTestCase
     public function test_can_check_validation_rejects_broken_values_array(): void
     {
         $this->assertFalse(self::$filterInstance->validate(['minDate' => 'asdf', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '4121-31-31', 'maxDate' => '2020-02-02']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-02', 'maxDate' => 'asdf']));
+        $this->assertFalse(self::$filterInstance->validate(['minDate' => '2020-02-02', 'maxDate' => '4121-31-31']));
+
+
     }
 }
