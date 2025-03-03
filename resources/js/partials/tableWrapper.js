@@ -21,14 +21,7 @@ function tableWrapper() {
                 this.clearSelected();
                 this.selectAllStatus = false;
             } else {
-                if (this.delaySelectAll)
-                {   
-                    this.setAllItemsSelected();
-                }
-                else
-                {
-                    this.setAllSelected();
-                }
+                this.setAllSelected();
             }
         },
         setAllItemsSelected() {
@@ -42,13 +35,10 @@ function tableWrapper() {
             if (!showBulkActionsAlpine) {
                 return;
             }
-            if (this.delaySelectAll)
-            {   
+            if (this.delaySelectAll) {
                 this.selectAllStatus = true;
                 this.selectAllOnPage();
-            }
-            else
-            {
+            } else {
                 wire.setAllSelected();
             }
         },
