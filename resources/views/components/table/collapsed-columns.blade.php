@@ -28,7 +28,7 @@
                 @foreach($this->getCollapsedColumnsForContent as $colIndex => $column)
 
                     <p wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}" @class([
-                            'block mb-2 hidden' => $isTailwind,
+                            'block mb-2' => $isTailwind,
                             'sm:block' => $isTailwind && $column->shouldCollapseAlways(),
                             'sm:block md:hidden' => $isTailwind && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
                             'sm:block lg:hidden' => $isTailwind && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
