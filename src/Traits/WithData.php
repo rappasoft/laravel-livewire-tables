@@ -107,17 +107,23 @@ trait WithData
                     $this->paginationTotalItemCount = $this->getBuilder()->count();
 
                     return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
-                } else {
-                    $this->paginationTotalItemCount = -1;
-
-                    return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? 10 : $this->getPerPage(), ['*'], $this->getComputedPageName());
                 }
+
+                $this->paginationTotalItemCount = -1;
+
+                return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? 10 : $this->getPerPage(), ['*'], $this->getComputedPageName());
 
             } elseif ($this->isPaginationMethod('cursor')) {
 
-                $this->paginationTotalItemCount = $this->getBuilder()->count();
+                if ($this->getShouldRetrieveTotalItemCount()) {
+                    $this->paginationTotalItemCount = $this->getBuilder()->count();
 
-                return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                    return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                }
+
+                $this->paginationTotalItemCount = -1;
+
+                return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? 10 : $this->getPerPage(), ['*'], $this->getComputedPageName());
             } else {
                 throw new DataTableConfigurationException('Pagination method must be either simple, standard or cursor');
             }
