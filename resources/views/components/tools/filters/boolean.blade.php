@@ -2,9 +2,7 @@
     $defaultValue = ($filter->hasFilterDefaultValue() ? (bool) $filter->getFilterDefaultValue() : false)
 @endphp
 @if($isTailwind)
-    <div class="flex flex-cols"
-        x-data="newBooleanFilter('{{ $filter->getKey() }}', '{{ $tableName }}', '{{ $defaultValue }}')"
-    >
+    <div class="flex flex-cols" x-data="newBooleanFilter('{{ $filter->getKey() }}', '{{ $tableName }}', '{{ $defaultValue }}')">
         <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
         <input id="thisId" type="checkbox" name="switch" class="hidden" :checked="value" />
 
@@ -29,16 +27,12 @@
         </template>
     </div>
 @elseif($isBootstrap4)
-    <div class="custom-control custom-switch"
-        x-data="newBooleanFilter('{{ $filter->getKey() }}', '{{ $tableName }}', '{{ $defaultValue }}')"
-    >
-        <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
-        <input id="thisId" type="checkbox" name="switch" class="custom-control-input" role="switch" :checked="value" @click="toggleStatusWithUpdate" x-ref="switchButton"/>
+    <div class="custom-control custom-switch" x-data="newBooleanFilter('{{ $filter->getKey() }}', '{{ $tableName }}', '{{ $defaultValue }}')">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1" :checked="value" @click="toggleStatusWithUpdate" x-ref="switchButton">
+        <x-livewire-tables::tools.filter-label class="custom-control-label" for="customSwitch1" :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
     </div>
 @else
-    <div class="form-check form-switch"
-        x-data="newBooleanFilter('{{ $filter->getKey() }}', '{{ $tableName }}', '{{ $defaultValue }}')"
-    >
+    <div class="form-check form-switch" x-data="newBooleanFilter('{{ $filter->getKey() }}', '{{ $tableName }}', '{{ $defaultValue }}')">
         <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
         <input id="thisId" type="checkbox" name="switch" class="form-check-input" role="switch" :checked="value" @click="toggleStatusWithUpdate" x-ref="switchButton"/>
     </div>
