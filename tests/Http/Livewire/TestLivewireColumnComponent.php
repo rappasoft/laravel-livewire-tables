@@ -5,8 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 class TestLivewireColumnComponent extends \Livewire\Component
 {
     public string $id;
+
     public string $name;
+
     public string $value;
+
     public string $type;
 
     /**
