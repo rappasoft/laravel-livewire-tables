@@ -160,4 +160,13 @@ final class LivewireComponentColumnTest extends ColumnTestCase
 
         $this->assertStringContainsString('<div>Name:Cartman</div><div>Type:test</div>', $temp->pubGetHtmlString($temp->pubRetrieveAttributes($row), $key));
     }
+
+    public function test_can_get_contents_correctly(): void
+    {
+        $row = Pet::find(1);
+        $temp = self::setup_with_public_methods();
+        $key = 'test-table-'.$row->{$row->getKeyName()};
+
+        $this->assertStringContainsString('<div>Name:Cartman</div><div>Type:test</div>', $temp->getContents($row));
+    }
 }
