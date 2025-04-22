@@ -2,12 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
-use Illuminate\Database\Eloquent\Model;
 
 #[Group('Columns')]
 final class LivewireComponentColumnTest extends ColumnTestCase
@@ -97,9 +97,8 @@ final class LivewireComponentColumnTest extends ColumnTestCase
 
         $row = Pet::find(1);
 
-        $temp = (new class("name", "name") extends LivewireComponentColumn
+        $temp = (new class('name', 'name') extends LivewireComponentColumn
         {
-
             public function pubRetrieveAttributes(Model $row)
             {
                 return $this->retrieveAttributes($row);
@@ -112,17 +111,16 @@ final class LivewireComponentColumnTest extends ColumnTestCase
 
             public function pubGetBlade(array $attributes, string $key)
             {
-                return $this->getBlade($attributes,$key);
+                return $this->getBlade($attributes, $key);
             }
 
             public function pubGetHtmlString(array $attributes, string $key)
             {
-                return $this->getHtmlString($attributes,$key);
+                return $this->getHtmlString($attributes, $key);
             }
-
         })->component('test-component')->attributes(function ($columnValue, $row) {
             return [
-                'type' => "test",
+                'type' => 'test',
                 'name' => $row->name,
             ];
         });
@@ -132,12 +130,11 @@ final class LivewireComponentColumnTest extends ColumnTestCase
         return $temp;
     }
 
-
     public function test_can_get_attributes_correctly(): void
     {
         $row = Pet::find(1);
         $temp = self::setup_with_public_methods();
-        $key = "test-table-".$row->{$row->getKeyName()};
+        $key = 'test-table-'.$row->{$row->getKeyName()};
 
         $this->assertSame(['type' => 'test', 'name' => 'Cartman'], $temp->pubRetrieveAttributes($row));
 
@@ -148,21 +145,19 @@ final class LivewireComponentColumnTest extends ColumnTestCase
     {
         $row = Pet::find(1);
         $temp = self::setup_with_public_methods();
-        $key = "test-table-".$row->{$row->getKeyName()};
+        $key = 'test-table-'.$row->{$row->getKeyName()};
 
-        $this->assertStringContainsString('wire:snapshot="{&quot;data&quot;:{&quot;id&quot;:null,&quot;name&quot;:&quot;Cartman&quot;,&quot;value&quot;:null,&quot;type&quot;:&quot;test&quot;}', $temp->pubGetBlade($temp->pubRetrieveAttributes($row),$key));
-        
-        $this->assertStringContainsString('<div>Name:Cartman</div><div>Type:test</div>', $temp->pubGetBlade($temp->pubRetrieveAttributes($row),$key));
+        $this->assertStringContainsString('wire:snapshot="{&quot;data&quot;:{&quot;id&quot;:null,&quot;name&quot;:&quot;Cartman&quot;,&quot;value&quot;:null,&quot;type&quot;:&quot;test&quot;}', $temp->pubGetBlade($temp->pubRetrieveAttributes($row), $key));
+
+        $this->assertStringContainsString('<div>Name:Cartman</div><div>Type:test</div>', $temp->pubGetBlade($temp->pubRetrieveAttributes($row), $key));
     }
 
     public function test_can_get_html_string_correctly(): void
     {
         $row = Pet::find(1);
         $temp = self::setup_with_public_methods();
-        $key = "test-table-".$row->{$row->getKeyName()};
+        $key = 'test-table-'.$row->{$row->getKeyName()};
 
-        $this->assertStringContainsString('<div>Name:Cartman</div><div>Type:test</div>', $temp->pubGetHtmlString($temp->pubRetrieveAttributes($row),$key));
+        $this->assertStringContainsString('<div>Name:Cartman</div><div>Type:test</div>', $temp->pubGetHtmlString($temp->pubRetrieveAttributes($row), $key));
     }
-
 }
-

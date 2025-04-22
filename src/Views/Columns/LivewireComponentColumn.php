@@ -18,24 +18,19 @@ class LivewireComponentColumn extends Column
 
     /**
      * The Livewire Component assigned to this Column
-     *
-     * @var string|null
      */
     protected ?string $livewireComponent;
 
     /**
      * Gets the contents for current row
-     *
-     * @param Model $row
-     * @return null|string|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $this->runPreChecks();
-        
+
         $attributes = $this->retrieveAttributes($row);
 
-        return $this->getHtmlString($attributes, $this->getTable()."-".$row->{$row->getKeyName()});
+        return $this->getHtmlString($attributes, $this->getTable().'-'.$row->{$row->getKeyName()});
 
     }
 }
