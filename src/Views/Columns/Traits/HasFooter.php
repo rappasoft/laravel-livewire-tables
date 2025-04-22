@@ -53,17 +53,16 @@ trait HasFooter
 
     public function footerCallbackIsString(): bool
     {
-        if(!$this->hasFooterCallback())
-        {
+        if (! $this->hasFooterCallback()) {
             return false;
         }
+
         return is_string($this->getFooterCallback());
     }
 
     public function footerCallbackIsFilter(): bool
     {
-        if(!$this->hasFooterCallback())
-        {
+        if (! $this->hasFooterCallback()) {
             return false;
         }
 

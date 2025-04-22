@@ -50,8 +50,7 @@ trait HasSecondaryHeader
 
     public function secondaryHeaderCallbackIsString(): bool
     {
-        if(!$this->hasSecondaryHeaderCallback())
-        {
+        if (! $this->hasSecondaryHeaderCallback()) {
             return false;
         }
 
@@ -60,8 +59,7 @@ trait HasSecondaryHeader
 
     public function secondaryHeaderCallbackIsFilter(): bool
     {
-        if(!$this->hasSecondaryHeaderCallback())
-        {
+        if (! $this->hasSecondaryHeaderCallback()) {
             return false;
         }
 
