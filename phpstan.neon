@@ -27,10 +27,6 @@ parameters:
             - src/Traits/Helpers/QueryHelpers.php
             - src/Views/Columns/Traits/HasSlot.php
             - src/Views/Columns/Traits/Helpers/ArrayColumnHelpers.php
-        - identifier: instanceof.alwaysTrue
-          paths:
-            - src/Views/Columns/Traits/HasFooter.php
-            - src/Views/Columns/Traits/HasSecondaryHeader.php
         - identifier: function.alreadyNarrowedType
           paths: 
             - src/Views/Columns/Traits/Helpers/ArrayColumnHelpers.php
@@ -41,3 +37,6 @@ parameters:
             - src/Views/Filters/Traits/HasOptions.php
             - src/Views/Traits/Core/HasTheme.php
             - src/Views/Traits/Core/HasView.php
+        - identifier: unset.possiblyHookedProperty
+          paths:
+            - src/Traits/Configuration/CollapsingColumnConfiguration.php

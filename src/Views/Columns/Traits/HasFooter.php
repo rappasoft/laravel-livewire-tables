@@ -111,7 +111,7 @@ trait HasFooter
 
     public function getFooterFilter(?Filter $filter, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string
     {
-        if ($filter !== null && $filter instanceof Filter) {
+        if ($filter !== null) {
             return $filter->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();
         } else {
             throw new DataTableConfigurationException('The footer callback must be a closure, filter object, or filter key if using footerFilter().');

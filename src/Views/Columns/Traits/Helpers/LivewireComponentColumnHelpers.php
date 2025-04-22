@@ -78,7 +78,7 @@ trait LivewireComponentColumnHelpers
     /**
      * getBlade Render
      */
-    protected function getBlade(array $attributes, string $key)
+    protected function getBlade(array $attributes, string $key): string
     {
         return Blade::render(
             '<livewire:dynamic-component :component="$component" :key="$key" '.$this->implodeAttributes($attributes).' />',

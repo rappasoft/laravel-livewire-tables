@@ -43,7 +43,7 @@ class FilterPillData
 
     public function getHasCustomPillBlade(): bool
     {
-        return $this->hasCustomPillBlade ?? false;
+        return $this->hasCustomPillBlade;
     }
 
     public function getCustomPillBlade(): ?string
@@ -53,32 +53,32 @@ class FilterPillData
 
     public function getCustomResetButtonAttributes(): array
     {
-        return $this->customResetButtonAttributes ?? [];
+        return $this->customResetButtonAttributes;
     }
 
     public function getIsAnExternalLivewireFilter(): int
     {
-        return intval($this->isAnExternalLivewireFilter ?? 0);
+        return intval($this->isAnExternalLivewireFilter);
     }
 
     public function getSeparator(): string
     {
-        return $this->separator ?? ', ';
+        return $this->separator;
     }
 
     public function shouldUsePillsAsHtml(): int
     {
-        return intval($this->renderPillsAsHtml ?? 0);
+        return intval($this->renderPillsAsHtml);
     }
 
     public function shouldUsePillsTitleAsHtml(): int
     {
-        return intval($this->renderPillsTitleAsHtml ?? 0);
+        return intval($this->renderPillsTitleAsHtml);
     }
 
     public function shouldWatchForEvents(): int
     {
-        return intval($this->watchForEvents ?? 0);
+        return intval($this->watchForEvents);
     }
 
     public function isPillValueAnArray(): bool
