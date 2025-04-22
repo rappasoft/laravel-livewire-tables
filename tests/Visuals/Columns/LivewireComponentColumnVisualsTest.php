@@ -19,10 +19,10 @@ final class LivewireComponentColumnVisualsTest extends TestCase
     public function test_icon_column_renders_correctly(): void
     {
         Livewire::test(PetsTableWithLivewireColumn::class)
-        ->assertSeeHtmlInOrder([
-            '<div>Name:Ben</div><div>Type:test</div>',
-            '<div>Name:Cartman</div><div>Type:test</div>',
-        ]);
+            ->assertSeeHtmlInOrder([
+                '<div>Name:Ben</div><div>Type:test</div>',
+                '<div>Name:Cartman</div><div>Type:test</div>',
+            ]);
 
     }
 
@@ -39,10 +39,10 @@ final class LivewireComponentColumnVisualsTest extends TestCase
             }
         };
         Livewire::test($temp)
-        ->assertSeeHtmlInOrder([
-            '<div>Name:Ben</div><div>Type:test</div>',
-            '<div>Name:Cartman</div><div>Type:test</div>',
-        ]);
+            ->assertSeeHtmlInOrder([
+                '<div>Name:Ben</div><div>Type:test</div>',
+                '<div>Name:Cartman</div><div>Type:test</div>',
+            ]);
     }
 
     public function test_icon_column_renders_correctly_with_desc_sort(): void
@@ -58,9 +58,9 @@ final class LivewireComponentColumnVisualsTest extends TestCase
             }
         };
         Livewire::test($temp)
-        ->assertSeeHtmlInOrder([
-            '<div>Name:Cartman</div><div>Type:test</div>',
-            '<div>Name:Ben</div><div>Type:test</div>',
-        ]);
+            ->assertSeeHtmlInOrder([
+                '<div>Name:Cartman</div><div>Type:test</div>',
+                '<div>Name:Ben</div><div>Type:test</div>',
+            ]);
     }
 }
