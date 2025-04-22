@@ -93,7 +93,7 @@ final class LivewireComponentColumnTest extends ColumnTestCase
 
     public static function setup_with_public_methods()
     {
-        \Livewire\Livewire::component('test-component', \Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\TestComponent::class);
+        \Livewire\Livewire::component('test-livewire-column-component', \Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\TestLivewireColumnComponent::class);
 
         $row = Pet::find(1);
 
