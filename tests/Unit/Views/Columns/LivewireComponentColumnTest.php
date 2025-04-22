@@ -118,7 +118,7 @@ final class LivewireComponentColumnTest extends ColumnTestCase
             {
                 return $this->getHtmlString($attributes, $key);
             }
-        })->component('test-component')->attributes(function ($columnValue, $row) {
+        })->component('test-livewire-column-component')->attributes(function ($columnValue, $row) {
             return [
                 'type' => 'test',
                 'name' => $row->name,
