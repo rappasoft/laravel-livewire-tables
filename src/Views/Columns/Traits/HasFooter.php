@@ -53,11 +53,20 @@ trait HasFooter
 
     public function footerCallbackIsString(): bool
     {
+        if(!$this->hasFooterCallback())
+        {
+            return false;
+        }
         return is_string($this->getFooterCallback());
     }
 
     public function footerCallbackIsFilter(): bool
     {
+        if(!$this->hasFooterCallback())
+        {
+            return false;
+        }
+
         $callback = $this->getFooterCallback();
 
         return $callback instanceof Filter;
@@ -66,9 +75,10 @@ trait HasFooter
     public function getFooterContents(mixed $rows, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string|HtmlString
     {
         $value = null;
-        $callback = $this->getFooterCallback();
-
         if ($this->hasFooterCallback()) {
+
+            $callback = $this->getFooterCallback();
+
             if (is_callable($callback)) {
                 $value = call_user_func($callback, $rows);
 

@@ -50,11 +50,21 @@ trait HasSecondaryHeader
 
     public function secondaryHeaderCallbackIsString(): bool
     {
+        if(!$this->hasSecondaryHeaderCallback())
+        {
+            return false;
+        }
+
         return is_string($this->getSecondaryHeaderCallback());
     }
 
     public function secondaryHeaderCallbackIsFilter(): bool
     {
+        if(!$this->hasSecondaryHeaderCallback())
+        {
+            return false;
+        }
+
         $callback = $this->getSecondaryHeaderCallback();
 
         return $callback instanceof Filter;
@@ -63,9 +73,11 @@ trait HasSecondaryHeader
     public function getSecondaryHeaderContents(mixed $rows, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string|HtmlString
     {
         $value = null;
-        $callback = $this->getSecondaryHeaderCallback();
 
         if ($this->hasSecondaryHeaderCallback()) {
+
+            $callback = $this->getSecondaryHeaderCallback();
+
             if (is_callable($callback)) {
                 $value = call_user_func($callback, $rows);
                 if ($this->isHtml()) {
