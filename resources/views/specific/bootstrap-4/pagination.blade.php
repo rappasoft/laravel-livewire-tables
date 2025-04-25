@@ -3,11 +3,11 @@
         @php(isset($this->numberOfPaginatorsRendered[$paginator->getPageName()]) ? $this->numberOfPaginatorsRendered[$paginator->getPageName()]++ : $this->numberOfPaginatorsRendered[$paginator->getPageName()] = 1)
 
         <nav>
-            <ul class="pagination">
+            <ul class="pagination d-flex flex-wrap justify-content-start">
                 {{-- Previous Page Link --}}
                 @if ($paginator->onFirstPage())
                     <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                        <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                        <span class="page-link text-nowrap" aria-hidden="true">&lsaquo;</span>
                     </li>
                 @else
                     <li class="page-item">
@@ -20,7 +20,7 @@
                     @foreach ($elements as $element)
                         {{-- "Three Dots" Separator --}}
                         @if (is_string($element))
-                            <li class="page-item disabled" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
+                            <li class="page-item disabled" aria-disabled="true"><span class="page-link text-nowrap">{{ $element }}</span></li>
                         @endif
 
                         {{-- Array Of Links --}}
@@ -43,7 +43,7 @@
                     </li>
                 @else
                     <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                        <span class="page-link" aria-hidden="true">&rsaquo;</span>
+                        <span class="page-link text-nowrap" aria-hidden="true">&rsaquo;</span>
                     </li>
                 @endif
             </ul>
