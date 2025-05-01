@@ -55,10 +55,10 @@ class ArrayColumn extends Column
 
         $returnedValue = (! empty($outputValues) ? implode($this->getSeparator(), $outputValues) : $this->getEmptyValue());
 
-        if ($this->hasOutputWrapperStart() && $this->hasOutputWrapperEnd())
-        {
-            $returnedValue = $this->getOutputWrapperStart() . $returnedValue . $this->getOutputWrapperEnd();
+        if ($this->hasOutputWrapperStart() && $this->hasOutputWrapperEnd()) {
+            $returnedValue = $this->getOutputWrapperStart().$returnedValue.$this->getOutputWrapperEnd();
         }
+
         return new HtmlString($returnedValue);
     }
 }

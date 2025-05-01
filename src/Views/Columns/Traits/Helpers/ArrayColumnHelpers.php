@@ -39,8 +39,6 @@ trait ArrayColumnHelpers
         return $this->outputFormat;
     }
 
-    
-    
     public function hasOutputWrapperStart(): bool
     {
         return $this->outputWrapperStart !== null && is_string($this->outputWrapperStart);
