@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration;
 
+use Illuminate\View\ComponentAttributeBag;
+
 trait ArrayColumnConfiguration
 {
     public function separator(string $value): self
