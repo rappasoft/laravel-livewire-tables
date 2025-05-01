@@ -55,7 +55,7 @@ trait ArrayColumnConfiguration
 
         return $this->wrapperStart('<div '.$bag->merge($attribs).'>')
             ->wrapperEnd('</div>')
-            ->separator("");
+            ->separator('');
     }
 
     public function flexRow(array $attribs = []): self
@@ -64,6 +64,6 @@ trait ArrayColumnConfiguration
 
         return $this->wrapperStart('<div '.$bag->merge($attribs).'>')
             ->wrapperEnd('</div>')
-            ->separator("");
+            ->separator('');
     }
 }
