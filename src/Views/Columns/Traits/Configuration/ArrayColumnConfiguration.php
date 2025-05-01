@@ -54,7 +54,8 @@ trait ArrayColumnConfiguration
         $bag = new ComponentAttributeBag(['class' => $this->isTailwind() ? 'flex flex-col' : 'd-flex d-flex-col']);
 
         return $this->wrapperStart('<div '.$bag->merge($attribs).'>')
-            ->wrapperEnd('</div>');
+            ->wrapperEnd('</div>')
+            ->separator("");
     }
 
     public function flexRow(array $attribs = []): self
@@ -62,6 +63,7 @@ trait ArrayColumnConfiguration
         $bag = new ComponentAttributeBag(['class' => $this->isTailwind() ? 'flex flex-row' : 'd-flex d-flex-row']);
 
         return $this->wrapperStart('<div '.$bag->merge($attribs).'>')
-            ->wrapperEnd('</div>');
+            ->wrapperEnd('</div>')
+            ->separator("");
     }
 }
