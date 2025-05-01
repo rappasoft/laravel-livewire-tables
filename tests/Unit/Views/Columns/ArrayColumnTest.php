@@ -4,8 +4,8 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ArrayColumn;
 use Rappasoft\LaravelLivewireTables\Tests\Models\{Pet,Veterinary};
+use Rappasoft\LaravelLivewireTables\Views\Columns\ArrayColumn;
 
 #[Group('Columns')]
 final class ArrayColumnTest extends ColumnTestCase
