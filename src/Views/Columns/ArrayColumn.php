@@ -2,13 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ArrayColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ArrayColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\IsColumn;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\HtmlString;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 class ArrayColumn extends Column
 {
@@ -36,7 +36,6 @@ class ArrayColumn extends Column
         }
     }
 
-    
     public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $outputValues = [];

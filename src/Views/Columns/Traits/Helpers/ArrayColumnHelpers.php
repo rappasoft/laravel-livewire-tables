@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 
-
 trait ArrayColumnHelpers
 {
     public function hasSeparator(): bool
@@ -59,5 +58,4 @@ trait ArrayColumnHelpers
     {
         return $this->outputWrapperEnd;
     }
-
 }
