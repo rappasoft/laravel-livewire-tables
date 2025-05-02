@@ -4,9 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\DataTransferObjects;
 
 class FilterGenericData
 {
-    public function __construct(public string $tableName, public string $filterLayout, public bool $isTailwind = false, public bool $isBootstrap4 = false, public bool $isBootstrap5 = false)
-    {
-    }
+    public function __construct(public string $tableName, public string $filterLayout, public bool $isTailwind = false, public bool $isBootstrap4 = false, public bool $isBootstrap5 = false) {}
 
     /**
      * Convert To Array

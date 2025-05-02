@@ -33,8 +33,6 @@ class FilterPillData
 
     /**
      * Get the Filter Key
-     *
-     * @return string
      */
     public function getFilterKey(): string
     {
@@ -43,14 +41,12 @@ class FilterPillData
 
     /**
      * Get the title for the Filter Pill
-     *
-     * @return string
      */
     public function getTitle(): string
     {
         return $this->filterPillTitle;
     }
-    
+
     /**
      * Get The Filter Pill Value
      *
@@ -63,8 +59,6 @@ class FilterPillData
 
     /**
      * Determing if there is a Custom Pill blade set
-     *
-     * @return boolean
      */
     public function getHasCustomPillBlade(): bool
     {
@@ -73,8 +67,6 @@ class FilterPillData
 
     /**
      * Get The Custom Pill Blade (if set)
-     *
-     * @return string|null
      */
     public function getCustomPillBlade(): ?string
     {
@@ -93,8 +85,6 @@ class FilterPillData
 
     /**
      * Determine of this is an External Livewire Filter
-     *
-     * @return integer
      */
     public function getIsAnExternalLivewireFilter(): int
     {
@@ -103,8 +93,6 @@ class FilterPillData
 
     /**
      * Get the Separator for Pill Values
-     *
-     * @return string
      */
     public function getSeparator(): string
     {
@@ -113,8 +101,6 @@ class FilterPillData
 
     /**
      * Determine if Pills should render as HTML
-     *
-     * @return integer
      */
     public function shouldUsePillsAsHtml(): int
     {
@@ -123,8 +109,6 @@ class FilterPillData
 
     /**
      * Determine if Pill Title should render as HTML
-     *
-     * @return integer
      */
     public function shouldUsePillsTitleAsHtml(): int
     {
@@ -133,8 +117,6 @@ class FilterPillData
 
     /**
      * Determine if Should watch for Events (i.e. is an External Filter)
-     *
-     * @return integer
      */
     public function shouldWatchForEvents(): int
     {
@@ -143,8 +125,6 @@ class FilterPillData
 
     /**
      * Determine if Pill Value is an Array
-     *
-     * @return boolean
      */
     public function isPillValueAnArray(): bool
     {
@@ -153,8 +133,6 @@ class FilterPillData
 
     /**
      * Return the separator separated value for the pill
-     *
-     * @return string|null
      */
     public function getSeparatedPillValue(): ?string
     {
@@ -167,8 +145,6 @@ class FilterPillData
 
     /**
      * Return the safe, separator separated value for the pill
-     *
-     * @return string|null
      */
     public function getSafeSeparatedPillValue(): ?string
     {
@@ -203,11 +179,10 @@ class FilterPillData
         return $this->getInternalFilterPillDisplayDataArray($array);
     }
 
-    
     /**
      * Get the Display Data for the Filter Pills
      *
-     * @param array<mixed> $array
+     * @param  array<mixed>  $array
      * @return array<mixed>
      */
     public function getExternalFilterPillDisplayDataArray(array $array = []): array
@@ -220,7 +195,7 @@ class FilterPillData
     /**
      * Get the Display Data for the Filter Pills
      *
-     * @param array<mixed> $array
+     * @param  array<mixed>  $array
      * @return array<mixed>
      */
     public function getInternalFilterPillDisplayDataArray(array $array = []): array
@@ -236,7 +211,7 @@ class FilterPillData
     /**
      * Get the Display Data for the Filter Pills Title
      *
-     * @param array<mixed> $array
+     * @param  array<mixed>  $array
      * @return array<mixed>
      */
     public function getFilterTitleDisplayDataArray(array $array = []): array
@@ -249,8 +224,6 @@ class FilterPillData
     /**
      * Get the initial setup data
      *
-     * @param string $filterKey
-     * @param boolean $shouldWatch
      * @return array<mixed>
      */
     public function getPillSetupData(string $filterKey = '', bool $shouldWatch = false): array
@@ -263,8 +236,7 @@ class FilterPillData
     /**
      * Calculate Any Reset Button Attributes
      *
-     * @param string $filterKey
-     * @param array<mixed> $filterPillsResetFilterButtonAttributes
+     * @param  array<mixed>  $filterPillsResetFilterButtonAttributes
      * @return array<mixed>
      */
     public function getCalculatedCustomResetButtonAttributes(string $filterKey, array $filterPillsResetFilterButtonAttributes): array
