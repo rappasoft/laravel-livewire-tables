@@ -30,7 +30,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
             // Load Default Translations
             $this->loadJsonTranslationsFrom(
                 __DIR__.'/../resources/lang/json'
-            );
+            ); 
 
             // Override if Published
             $this->loadJsonTranslationsFrom(
