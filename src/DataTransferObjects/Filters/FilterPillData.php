@@ -12,15 +12,15 @@ class FilterPillData
         protected string $filterKey,
         protected string $filterPillTitle,
         protected string|array|null $filterPillValue,
-        protected string $separator,
-        public bool $isAnExternalLivewireFilter,
-        public bool $hasCustomPillBlade,
-        protected ?string $customPillBlade,
-        protected array $filterPillsItemAttributes,
-        protected bool $renderPillsAsHtml,
-        protected bool $watchForEvents,
-        protected array $customResetButtonAttributes,
-        protected bool $renderPillsTitleAsHtml) {}
+        protected string $separator = ',',
+        public bool $isAnExternalLivewireFilter = false,
+        public bool $hasCustomPillBlade = false,
+        protected ?string $customPillBlade = null,
+        protected array $filterPillsItemAttributes = [],
+        protected bool $renderPillsAsHtml = false,
+        protected bool $watchForEvents = false,
+        protected array $customResetButtonAttributes = [],
+        protected bool $renderPillsTitleAsHtml = false) {}
 
     public static function make(string $filterKey, string $filterPillTitle, string|array|null $filterPillValue, string $separator = ', ', bool $isAnExternalLivewireFilter = false, bool $hasCustomPillBlade = false, ?string $customPillBlade = null, array $filterPillsItemAttributes = [], bool $renderPillsAsHtml = false, bool $watchForEvents = false, array $customResetButtonAttributes = [], bool $renderPillsTitleAsHtml = false): FilterPillData
     {
@@ -43,7 +43,7 @@ class FilterPillData
 
     public function getHasCustomPillBlade(): bool
     {
-        return $this->hasCustomPillBlade ?? false;
+        return $this->hasCustomPillBlade;
     }
 
     public function getCustomPillBlade(): ?string
@@ -53,32 +53,32 @@ class FilterPillData
 
     public function getCustomResetButtonAttributes(): array
     {
-        return $this->customResetButtonAttributes ?? [];
+        return $this->customResetButtonAttributes;
     }
 
     public function getIsAnExternalLivewireFilter(): int
     {
-        return intval($this->isAnExternalLivewireFilter ?? 0);
+        return intval($this->isAnExternalLivewireFilter);
     }
 
     public function getSeparator(): string
     {
-        return $this->separator ?? ', ';
+        return $this->separator;
     }
 
     public function shouldUsePillsAsHtml(): int
     {
-        return intval($this->renderPillsAsHtml ?? 0);
+        return intval($this->renderPillsAsHtml);
     }
 
     public function shouldUsePillsTitleAsHtml(): int
     {
-        return intval($this->renderPillsTitleAsHtml ?? 0);
+        return intval($this->renderPillsTitleAsHtml);
     }
 
     public function shouldWatchForEvents(): int
     {
-        return intval($this->watchForEvents ?? 0);
+        return intval($this->watchForEvents);
     }
 
     public function isPillValueAnArray(): bool

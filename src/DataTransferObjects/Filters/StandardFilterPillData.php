@@ -28,7 +28,7 @@ class StandardFilterPillData
 
     public function shouldUsePillsAsHtml(): bool
     {
-        return $this->renderPillsAsHtml ?? false;
+        return $this->renderPillsAsHtml;
     }
 
     public function toArray(): array

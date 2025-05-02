@@ -27,8 +27,7 @@ trait CollapsingColumnConfiguration
 
     public function unsetCollapsedStatuses(): void
     {
-        unset($this->shouldAlwaysCollapse);
-        unset($this->shouldMobileCollapse);
-        unset($this->shouldTabletCollapse);
+        $this->shouldAlwaysCollapse = $this->shouldMobileCollapse = $this->shouldTabletCollapse = false;
+
     }
 }
