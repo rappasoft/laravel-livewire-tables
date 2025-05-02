@@ -80,6 +80,30 @@ final class ArrayColumnTest extends ColumnTestCase
         $this->assertSame('Unknown', self::$columnInstance->getEmptyValue());
 
     }
+    
+    public function test_can_use_wrapper(): void
+    {
+        self::$columnInstance
+            ->data(fn ($value, $row) => ($row->pets))
+            ->outputFormat(fn ($index, $value) => '<a href="'.$value->id.'">'.$value->name.'</a>')
+            ->wrapperStart('<div class="start-of-wrapper">')
+            ->wrapperEnd("</div>");
+
+        $contents = self::$columnInstance->getContents(Veterinary::find(1));
+        $this->assertSame('<div class="start-of-wrapper"><a href="1">Cartman</a><a href="2">Tux</a></div>', $contents->toHtml());
+    }
+
+    public function test_can_use_wrapper_ul(): void
+    {
+        self::$columnInstance
+            ->data(fn ($value, $row) => ($row->pets))
+            ->outputFormat(fn ($index, $value) => '<li><a href="'.$value->id.'">'.$value->name.'</a></li>')
+            ->wrapperStart('<ul class="start-of-wrapper">')
+            ->wrapperEnd("</ul>");
+
+        $contents = self::$columnInstance->getContents(Veterinary::find(1));
+        $this->assertSame('<ul class="start-of-wrapper"><li><a href="1">Cartman</a></li><li><a href="2">Tux</a></li></ul>', $contents->toHtml());
+    }
 
     public function test_can_use_flexcol(): void
     {
