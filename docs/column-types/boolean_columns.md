@@ -89,7 +89,7 @@ BooleanColumn::make('Active', 'status')
     ->toggleable('changeStatus'),
 ```
 
-Then your "changeStatus" method may look like
+Then your "changeStatus" method may look like (make sure you are selecting the `id` in the query)
 ```php
     public function changeStatus(int $id)
     {
@@ -108,7 +108,7 @@ BooleanColumn::make('Active', 'status')
     ->toggleable('changeStatus'),
 ```
 
-Then your "changeStatus" method may look like
+Then your "changeStatus" method may look like (make sure you are selecting the `id` in the query)
 ```php
     public function changeStatus(int $id)
     {

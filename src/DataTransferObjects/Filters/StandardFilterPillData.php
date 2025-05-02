@@ -11,26 +11,43 @@ class StandardFilterPillData
         return new self($filterPillTitle, $filterSelectName, $filterPillValue, $renderPillsAsHtml);
     }
 
+    /**
+     * Get the Pill Title
+     */
     public function getTitle(): string
     {
         return $this->filterPillTitle;
     }
 
+    /**
+     * Get the Filter Select Name
+     */
     public function getSelectName(): string
     {
         return $this->filterSelectName;
     }
 
+    /**
+     * Get The Pill Value
+     */
     public function getPillValue(): string
     {
         return $this->filterPillValue;
     }
 
+    /**
+     * Should Use Pills as HTML
+     */
     public function shouldUsePillsAsHtml(): bool
     {
-        return $this->renderPillsAsHtml ?? false;
+        return $this->renderPillsAsHtml;
     }
 
+    /**
+     * Returns the data to an array
+     *
+     * @return array<mixed>
+     */
     public function toArray(): array
     {
         return [

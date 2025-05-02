@@ -2,6 +2,13 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## PREVIEW
+### Bug Fixes
+- Improved Pagination UX for Bootstrap 4 by @daniel-skopek in https://github.com/rappasoft/laravel-livewire-tables/pull/2251
+
+### Tweaks
+- Tidying PHPDocs by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2246
+
 ## [v3.7.1] - 2025-02-28
 ### Bug Fixes
 - Ensure that LinkColumn is included in query if "from" is defined

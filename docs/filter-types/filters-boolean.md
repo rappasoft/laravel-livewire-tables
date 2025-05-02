@@ -4,7 +4,7 @@ weight: 2
 ---
 
 ## Beta
-This is currently in beta, and will only work with Tailwind.
+This is currently in beta, but should work with Tailwind, Bootstrap 4 and Bootstrap 5 as of latest version
 
 ## Details
 
