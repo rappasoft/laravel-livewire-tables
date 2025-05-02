@@ -8,9 +8,6 @@ trait LivewireComponentColumnConfiguration
 {
     /**
      * Defines which component to use
-     *
-     * @param string $livewireComponent
-     * @return self
      */
     public function component(string $livewireComponent): self
     {

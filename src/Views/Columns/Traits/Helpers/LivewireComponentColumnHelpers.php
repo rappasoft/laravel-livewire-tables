@@ -11,8 +11,6 @@ trait LivewireComponentColumnHelpers
 {
     /**
      * Retrieves the defined Component View
-     *
-     * @return string|null
      */
     public function getLivewireComponent(): ?string
     {
@@ -21,8 +19,6 @@ trait LivewireComponentColumnHelpers
 
     /**
      * Determines whether a Livewire Component has been set
-     *
-     * @return boolean
      */
     public function hasLivewireComponent(): bool
     {
@@ -32,7 +28,6 @@ trait LivewireComponentColumnHelpers
     /**
      * Retrieves attributes based on callback
      *
-     * @param Model $row
      * @return array<mixed>
      */
     protected function retrieveAttributes(Model $row): array
@@ -52,11 +47,8 @@ trait LivewireComponentColumnHelpers
         return $attributes;
     }
 
-
     /**
      * Runs pre-checks
-     *
-     * @return boolean
      */
     protected function runPreChecks(): bool
     {
@@ -78,8 +70,7 @@ trait LivewireComponentColumnHelpers
     /**
      * Implodes defined attributes to be used
      *
-     * @param array<mixed> $attributes
-     * @return string
+     * @param  array<mixed>  $attributes
      */
     protected function implodeAttributes(array $attributes): string
     {
@@ -91,11 +82,9 @@ trait LivewireComponentColumnHelpers
     /**
      * getBlade Render
      *
-     * @param array<mixed> $attributes
-     * @param string $key
-     * @return string
+     * @param  array<mixed>  $attributes
      */
-     protected function getBlade(array $attributes, string $key): string
+    protected function getBlade(array $attributes, string $key): string
     {
         return Blade::render(
             '<livewire:dynamic-component :component="$component" :key="$key" '.$this->implodeAttributes($attributes).' />',
@@ -110,9 +99,7 @@ trait LivewireComponentColumnHelpers
     /**
      * Gets HTML String
      *
-     * @param array<mixed> $attributes
-     * @param string $key
-     * @return HtmlString
+     * @param  array<mixed>  $attributes
      */
     protected function getHtmlString(array $attributes, string $key): HtmlString
     {
