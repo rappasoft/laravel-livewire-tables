@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
+use Rappasoft\LaravelLivewireTables\Tests\Models\{Pet,Veterinary};
 use Rappasoft\LaravelLivewireTables\Views\Columns\ArrayColumn;
 
 #[Group('Columns')]
@@ -80,4 +80,49 @@ final class ArrayColumnTest extends ColumnTestCase
         $this->assertSame('Unknown', self::$columnInstance->getEmptyValue());
 
     }
+
+    public function test_can_use_flexcol(): void
+    {
+        self::$columnInstance
+            ->data(fn ($value, $row) => ($row->pets))
+            ->outputFormat(fn ($index, $value) => '<a href="'.$value->id.'">'.$value->name.'</a>')
+            ->flexCol();
+
+        $contents = self::$columnInstance->getContents(Veterinary::find(1));
+        $this->assertSame('<div class="flex flex-col"><a href="1">Cartman</a><a href="2">Tux</a></div>', $contents->toHtml());
+    }
+
+    public function test_can_use_flexcol_with_attributes(): void
+    {
+        self::$columnInstance
+            ->data(fn ($value, $row) => ($row->pets))
+            ->outputFormat(fn ($index, $value) => '<a href="'.$value->id.'">'.$value->name.'</a>')
+            ->flexCol(['class' => 'bg-red-500']);
+
+        $contents = self::$columnInstance->getContents(Veterinary::find(1));
+        $this->assertSame('<div class="bg-red-500 flex flex-col"><a href="1">Cartman</a><a href="2">Tux</a></div>', $contents->toHtml());
+    }
+
+    public function test_can_use_flexrow(): void
+    {
+        self::$columnInstance
+            ->data(fn ($value, $row) => ($row->pets))
+            ->outputFormat(fn ($index, $value) => '<a href="'.$value->id.'">'.$value->name.'</a>')
+            ->flexRow();
+
+        $contents = self::$columnInstance->getContents(Veterinary::find(1));
+        $this->assertSame('<div class="flex flex-row"><a href="1">Cartman</a><a href="2">Tux</a></div>', $contents->toHtml());
+    }
+
+    public function test_can_use_flexrow_with_attributes(): void
+    {
+        self::$columnInstance
+            ->data(fn ($value, $row) => ($row->pets))
+            ->outputFormat(fn ($index, $value) => '<a href="'.$value->id.'">'.$value->name.'</a>')
+            ->flexRow(['class' => 'bg-blue-500']);
+
+        $contents = self::$columnInstance->getContents(Veterinary::find(1));
+        $this->assertSame('<div class="bg-blue-500 flex flex-row"><a href="1">Cartman</a><a href="2">Tux</a></div>', $contents->toHtml());
+    }
+
 }
