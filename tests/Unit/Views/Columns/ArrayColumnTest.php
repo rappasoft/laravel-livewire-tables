@@ -98,7 +98,7 @@ final class ArrayColumnTest extends ColumnTestCase
         self::$columnInstance
             ->data(fn ($value, $row) => ($row->pets))
             ->outputFormat(fn ($index, $value) => '<li><a href="'.$value->id.'">'.$value->name.'</a></li>')
-            ->separator("")
+            ->separator('')
             ->wrapperStart('<ul class="start-of-wrapper">')
             ->wrapperEnd('</ul>');
 
