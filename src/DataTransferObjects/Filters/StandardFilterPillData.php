@@ -13,8 +13,6 @@ class StandardFilterPillData
 
     /**
      * Get the Pill Title
-     *
-     * @return string
      */
     public function getTitle(): string
     {
@@ -23,8 +21,6 @@ class StandardFilterPillData
 
     /**
      * Get the Filter Select Name
-     *
-     * @return string
      */
     public function getSelectName(): string
     {
@@ -33,8 +29,6 @@ class StandardFilterPillData
 
     /**
      * Get The Pill Value
-     *
-     * @return string
      */
     public function getPillValue(): string
     {
@@ -43,13 +37,12 @@ class StandardFilterPillData
 
     /**
      * Should Use Pills as HTML
-     *
-     * @return boolean
      */
     public function shouldUsePillsAsHtml(): bool
     {
         return $this->renderPillsAsHtml;
     }
+
     /**
      * Returns the data to an array
      *
