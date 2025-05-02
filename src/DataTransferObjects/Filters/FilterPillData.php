@@ -31,61 +31,131 @@ class FilterPillData
         return new self($filterKey, $filterPillTitle, $filterPillValue, $separator, $isAnExternalLivewireFilter, $hasCustomPillBlade, $customPillBlade, $filterPillsItemAttributes, $renderPillsAsHtml, $watchForEvents, $customResetButtonAttributes, $renderPillsTitleAsHtml);
     }
 
+    /**
+     * Get the Filter Key
+     *
+     * @return string
+     */
+    public function getFilterKey(): string
+    {
+        return $this->filterKey;
+    }
+
+    /**
+     * Get the title for the Filter Pill
+     *
+     * @return string
+     */
     public function getTitle(): string
     {
         return $this->filterPillTitle;
     }
-
+    
+    /**
+     * Get The Filter Pill Value
+     *
+     * @return array<mixed>|string|null
+     */
     public function getPillValue(): array|string|null
     {
         return $this->filterPillValue;
     }
 
+    /**
+     * Determing if there is a Custom Pill blade set
+     *
+     * @return boolean
+     */
     public function getHasCustomPillBlade(): bool
     {
         return $this->hasCustomPillBlade;
     }
 
+    /**
+     * Get The Custom Pill Blade (if set)
+     *
+     * @return string|null
+     */
     public function getCustomPillBlade(): ?string
     {
         return $this->customPillBlade;
     }
 
+    /**
+     * Get Custom Reset Button Attributes
+     *
+     * @return array<mixed>
+     */
     public function getCustomResetButtonAttributes(): array
     {
         return $this->customResetButtonAttributes;
     }
 
+    /**
+     * Determine of this is an External Livewire Filter
+     *
+     * @return integer
+     */
     public function getIsAnExternalLivewireFilter(): int
     {
         return intval($this->isAnExternalLivewireFilter);
     }
 
+    /**
+     * Get the Separator for Pill Values
+     *
+     * @return string
+     */
     public function getSeparator(): string
     {
         return $this->separator;
     }
 
+    /**
+     * Determine if Pills should render as HTML
+     *
+     * @return integer
+     */
     public function shouldUsePillsAsHtml(): int
     {
         return intval($this->renderPillsAsHtml);
     }
 
+    /**
+     * Determine if Pill Title should render as HTML
+     *
+     * @return integer
+     */
     public function shouldUsePillsTitleAsHtml(): int
     {
         return intval($this->renderPillsTitleAsHtml);
     }
 
+    /**
+     * Determine if Should watch for Events (i.e. is an External Filter)
+     *
+     * @return integer
+     */
     public function shouldWatchForEvents(): int
     {
         return intval($this->watchForEvents);
     }
 
+    /**
+     * Determine if Pill Value is an Array
+     *
+     * @return boolean
+     */
     public function isPillValueAnArray(): bool
     {
         return ! is_null($this->filterPillValue) && is_array($this->filterPillValue);
     }
 
+    /**
+     * Return the separator separated value for the pill
+     *
+     * @return string|null
+     */
     public function getSeparatedPillValue(): ?string
     {
         if ($this->isPillValueAnArray()) {
@@ -95,6 +165,11 @@ class FilterPillData
         }
     }
 
+    /**
+     * Return the safe, separator separated value for the pill
+     *
+     * @return string|null
+     */
     public function getSafeSeparatedPillValue(): ?string
     {
         $string = $this->getSeparatedPillValue();
@@ -103,11 +178,21 @@ class FilterPillData
 
     }
 
+    /**
+     * Get the attributes for the Filter Pills Item
+     *
+     * @return array<mixed>
+     */
     public function getFilterPillsItemAttributes(): array
     {
         return array_merge(['default' => true, 'default-colors' => true, 'default-styling' => true, 'default-text' => true], $this->filterPillsItemAttributes);
     }
 
+    /**
+     * Get the Display Data for the Filter Pills
+     *
+     * @return array<mixed>
+     */
     public function getFilterPillDisplayDataArray(): array
     {
         $array = [];
@@ -118,6 +203,13 @@ class FilterPillData
         return $this->getInternalFilterPillDisplayDataArray($array);
     }
 
+    
+    /**
+     * Get the Display Data for the Filter Pills
+     *
+     * @param array<mixed> $array
+     * @return array<mixed>
+     */
     public function getExternalFilterPillDisplayDataArray(array $array = []): array
     {
         $array[$this->shouldUsePillsAsHtml() ? 'x-html' : 'x-text'] = 'displayString';
@@ -125,6 +217,12 @@ class FilterPillData
         return $array;
     }
 
+    /**
+     * Get the Display Data for the Filter Pills
+     *
+     * @param array<mixed> $array
+     * @return array<mixed>
+     */
     public function getInternalFilterPillDisplayDataArray(array $array = []): array
     {
 
@@ -135,6 +233,12 @@ class FilterPillData
         return $array;
     }
 
+    /**
+     * Get the Display Data for the Filter Pills Title
+     *
+     * @param array<mixed> $array
+     * @return array<mixed>
+     */
     public function getFilterTitleDisplayDataArray(array $array = []): array
     {
         $array[$this->shouldUsePillsTitleAsHtml() ? 'x-html' : 'x-text'] = 'localFilterTitle';
@@ -142,6 +246,13 @@ class FilterPillData
         return $array;
     }
 
+    /**
+     * Get the initial setup data
+     *
+     * @param string $filterKey
+     * @param boolean $shouldWatch
+     * @return array<mixed>
+     */
     public function getPillSetupData(string $filterKey = '', bool $shouldWatch = false): array
     {
         $array = array_merge(['filterKey' => $filterKey, 'watchForEvents' => $shouldWatch], $this->toArray());
@@ -149,6 +260,13 @@ class FilterPillData
         return $array;
     }
 
+    /**
+     * Calculate Any Reset Button Attributes
+     *
+     * @param string $filterKey
+     * @param array<mixed> $filterPillsResetFilterButtonAttributes
+     * @return array<mixed>
+     */
     public function getCalculatedCustomResetButtonAttributes(string $filterKey, array $filterPillsResetFilterButtonAttributes): array
     {
         return array_merge(
@@ -165,10 +283,15 @@ class FilterPillData
         );
     }
 
+    /**
+     * Returns the data to an array
+     *
+     * @return array<mixed>
+     */
     public function toArray(): array
     {
         return [
-            'filterKey' => $this->filterKey,
+            'filterKey' => $this->getFilterKey(),
             'filterPillTitle' => $this->getTitle(),
             'filterPillValue' => $this->getPillValue(),
             'isAnExternalLivewireFilter' => $this->getIsAnExternalLivewireFilter(),
