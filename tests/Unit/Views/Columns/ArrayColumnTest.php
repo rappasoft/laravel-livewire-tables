@@ -124,5 +124,4 @@ final class ArrayColumnTest extends ColumnTestCase
         $contents = self::$columnInstance->getContents(Veterinary::find(1));
         $this->assertSame('<div class="bg-blue-500 flex flex-row"><a href="1">Cartman</a><a href="2">Tux</a></div>', $contents->toHtml());
     }
-
 }

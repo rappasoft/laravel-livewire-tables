@@ -32,5 +32,4 @@ class ArrayColumn extends Column
             $this->label(fn () => null);
         }
     }
-
 }

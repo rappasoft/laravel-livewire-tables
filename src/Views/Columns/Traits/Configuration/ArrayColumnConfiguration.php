@@ -54,8 +54,7 @@ trait ArrayColumnConfiguration
     /**
      * Setup Flex Col Behaviour
      *
-     * @param array<mixed> $attribs
-     * @return self
+     * @param  array<mixed>  $attribs
      */
     public function flexCol(array $attribs = []): self
     {
@@ -69,8 +68,7 @@ trait ArrayColumnConfiguration
     /**
      * Setup Flex Row Behaviour
      *
-     * @param array<mixed> $attribs
-     * @return self
+     * @param  array<mixed>  $attribs
      */
     public function flexRow(array $attribs = []): self
     {

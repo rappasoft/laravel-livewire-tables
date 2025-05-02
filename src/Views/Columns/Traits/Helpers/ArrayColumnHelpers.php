@@ -88,5 +88,4 @@ trait ArrayColumnHelpers
 
         return new HtmlString($returnedValue);
     }
-
 }
