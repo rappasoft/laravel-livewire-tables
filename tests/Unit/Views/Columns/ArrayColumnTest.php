@@ -90,7 +90,7 @@ final class ArrayColumnTest extends ColumnTestCase
             ->wrapperEnd('</div>');
 
         $contents = self::$columnInstance->getContents(Veterinary::find(1));
-        $this->assertSame('<div class="start-of-wrapper"><a href="1">Cartman</a><a href="2">Tux</a></div>', $contents->toHtml());
+        $this->assertSame('<div class="start-of-wrapper"><a href="1">Cartman</a><br /><a href="2">Tux</a></div>', $contents->toHtml());
     }
 
     public function test_can_use_wrapper_ul(): void
@@ -98,6 +98,7 @@ final class ArrayColumnTest extends ColumnTestCase
         self::$columnInstance
             ->data(fn ($value, $row) => ($row->pets))
             ->outputFormat(fn ($index, $value) => '<li><a href="'.$value->id.'">'.$value->name.'</a></li>')
+            ->separator("")
             ->wrapperStart('<ul class="start-of-wrapper">')
             ->wrapperEnd('</ul>');
 
