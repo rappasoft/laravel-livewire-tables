@@ -84,7 +84,7 @@ trait LivewireComponentColumnHelpers
             '<livewire:dynamic-component :component="$component" :key="$key" '.$this->implodeAttributes($attributes).' />',
             [
                 'component' => $this->getLivewireComponent(),
-                'key' => $key,
+                'key' => \Illuminate\Support\Str::random(),
                 ...$attributes,
             ],
         );
