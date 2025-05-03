@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.7.3] - 2025-05-03
+### Bug Fixes
+- Interim fix for Livewire Component Columns to mitigate core Livewire bug by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2258
+
 ## [v3.7.2] - 2025-05-03
 ### Bug Fixes
 - Improved Pagination UX for Bootstrap 4 by @daniel-skopek in https://github.com/rappasoft/laravel-livewire-tables/pull/2251
