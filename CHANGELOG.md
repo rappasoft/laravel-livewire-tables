@@ -2,16 +2,23 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## PREVIEW
+## [v3.7.2] - 2025-05-03
 ### Bug Fixes
 - Improved Pagination UX for Bootstrap 4 by @daniel-skopek in https://github.com/rappasoft/laravel-livewire-tables/pull/2251
+- Fixes for livewire component column by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2245
+- Boolean filter for bootstrap by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2244
+- Update IsNumericFilter.php by @G4Zz0L1 in https://github.com/rappasoft/laravel-livewire-tables/pull/2230
+- Fixed collapsed function bug with tailwind CSS on mobile version by CarlosChub27 in https://github.com/rappasoft/laravel-livewire-tables/pull/2228
+
+### New Features
+- Add Wrapper Options to ArrayColumn by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2255
 
 ### Tweaks
 - Tidying PHPDocs by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2246
 
 ## [v3.7.1] - 2025-02-28
 ### Bug Fixes
-- Ensure that LinkColumn is included in query if "from" is defined
+- Ensure that LinkColumn is included in query if "from" is defined by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2224
 
 ## [v3.7.0] - 2025-02-27
 
