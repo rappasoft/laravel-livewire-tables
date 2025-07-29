@@ -37,3 +37,12 @@ Many of the standard methods are available, for example
     ])
     ->setFilterDefaultValue(true)
 ```
+
+Or simple active column example
+
+```php
+    BooleanFilter::make('Active')
+        ->filter(function (Builder $builder, bool $enabled) {
+            $builder->where('active', $enabled);
+        })
+```
