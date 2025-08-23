@@ -18,7 +18,7 @@
                     'hidden' =>  $isTailwind && $column && $column->shouldCollapseAlways(),
                     'hidden md:table-cell' => $isTailwind && $column && $column->shouldCollapseOnMobile(),
                     'hidden lg:table-cell' => $isTailwind && $column && $column->shouldCollapseOnTablet(),
-                    '' => $isBootstrap && ($customAttributes['default'] ?? true),
+                    'small' => $isBootstrap && ($customAttributes['default'] ?? true),
                     'd-none' => $isBootstrap && $column && $column->shouldCollapseAlways(),
                     'd-none d-md-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnMobile(),
                     'd-none d-lg-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnTablet(),

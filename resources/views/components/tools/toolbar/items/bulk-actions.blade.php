@@ -16,7 +16,7 @@
             {{ 
                 $attributes->merge($this->getBulkActionsButtonAttributes)
                 ->class([
-                    'btn dropdown-toggle d-block d-md-inline' => $isBootstrap && ($this->getBulkActionsButtonAttributes['default-styling'] ?? true),
+                    'btn btn-sm dropdown-toggle d-block d-md-inline' => $isBootstrap && ($this->getBulkActionsButtonAttributes['default-styling'] ?? true),
                     'border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $isTailwind && ($this->getBulkActionsButtonAttributes['default-colors'] ?? true),
                     'inline-flex justify-center w-full rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50' => $isTailwind && ($this->getBulkActionsButtonAttributes['default-styling'] ?? true),
 

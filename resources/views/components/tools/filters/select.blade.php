@@ -10,8 +10,8 @@
                 ->class([
                     'block w-full transition duration-150 ease-in-out rounded-md shadow-sm focus:ring focus:ring-opacity-50' => $isTailwind && ($filterInputAttributes['default-styling'] ?? true),
                     'border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-800 dark:text-white dark:border-gray-600' => $isTailwind && ($filterInputAttributes['default-colors'] ?? true),
-                    'form-control' => $isBootstrap4 && ($filterInputAttributes['default-styling'] ?? true),
-                    'form-select' => $isBootstrap5 && ($filterInputAttributes['default-styling'] ?? true),
+                    'form-control form-control-sm' => $isBootstrap4 && ($filterInputAttributes['default-styling'] ?? true),
+                    'form-select form-select-sm' => $isBootstrap5 && ($filterInputAttributes['default-styling'] ?? true),
                 ])
                 ->except(['default-styling','default-colors']) 
             }}>

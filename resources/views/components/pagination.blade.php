@@ -47,14 +47,10 @@
         @else
             @if ($this->paginationIsEnabled && $this->isPaginationMethod('standard') && $currentRows->lastPage() > 1)
                 <div class="row mt-3">
-                    <div class="col-12 col-md-6 overflow-auto">
-                        {{ $currentRows->links('livewire-tables::specific.bootstrap-4.pagination') }}
-                    </div>
-
                     <div @class([
-                        "col-12 col-md-6 text-center text-muted",
-                        "text-md-right" => $isBootstrap4,
-                        "text-md-end" => $isBootstrap5,
+                        "col-12 col-md-6 text-center text-muted small",
+                        "text-md-left" => $isBootstrap4,
+                        "text-md-start" => $isBootstrap5,
                         ])>
                         @if($this->showPaginationDetails)
                             <span>{{ __($localisationPath.'Showing') }}</span>
@@ -66,17 +62,17 @@
                             <span>{{ __($localisationPath.'results') }}</span>
                         @endif
                     </div>
+
+                    <div class="col-12 col-md-6 overflow-auto d-flex justify-content-end">
+                        {{ $currentRows->links('livewire-tables::specific.bootstrap-4.pagination') }}
+                    </div>
                 </div>
             @elseif ($this->paginationIsEnabled && $this->isPaginationMethod('simple'))
                 <div class="row mt-3">
-                    <div class="col-12 col-md-6 overflow-auto">
-                        {{ $currentRows->links('livewire-tables::specific.bootstrap-4.simple-pagination') }}
-                    </div>
-
                     <div @class([
                         "col-12 col-md-6 text-center text-muted",
-                        "text-md-right" => $isBootstrap4,
-                        "text-md-end" => $isBootstrap5,
+                        "text-md-left" => $isBootstrap4,
+                        "text-md-start" => $isBootstrap5,
                     ])>
                         @if($this->showPaginationDetails)
                             <span>{{ __($localisationPath.'Showing') }}</span>
@@ -84,6 +80,10 @@
                             <span>{{ __($localisationPath.'to') }}</span>
                             <strong>{{ $currentRows->count() ? $currentRows->lastItem() : 0 }}</strong>
                         @endif
+                    </div>
+
+                    <div class="col-12 col-md-6 overflow-auto d-flex justify-content-end">
+                        {{ $currentRows->links('livewire-tables::specific.bootstrap-4.simple-pagination') }}
                     </div>
                 </div>
             @elseif ($this->paginationIsEnabled && $this->isPaginationMethod('cursor'))

@@ -12,7 +12,7 @@
             'border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:border-indigo-300 focus:ring-indigo-200' => $isTailwind && !$this->hasSearch()  && (($this->getSearchFieldAttributes()['default'] ?? true) || ($this->getSearchFieldAttributes()['default-colors'] ?? true)),
             'block w-full' => !$this->hasSearchIcon,
             'pl-8 pr-4' => $this->hasSearchIcon,
-            'form-control' => $isBootstrap && $this->getSearchFieldAttributes()['default'] ?? true,
+            'form-control form-control-sm' => $isBootstrap && $this->getSearchFieldAttributes()['default'] ?? true,
         ])
         ->except(['default','default-styling','default-colors']) 
     }}

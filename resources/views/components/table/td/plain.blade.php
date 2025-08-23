@@ -19,7 +19,7 @@
     <td {{ $attributes
         ->merge($customAttributes)
         ->class([
-            '' => $customAttributes['default'] ?? true,
+            'small' => $customAttributes['default'] ?? true,
             'd-none' => $column && $column->shouldCollapseAlways(),
             'd-none d-md-table-cell' => $column && $column->shouldCollapseOnMobile(),
             'd-none d-lg-table-cell' => $column && $column->shouldCollapseOnTablet(),
