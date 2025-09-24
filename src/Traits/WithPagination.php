@@ -31,9 +31,13 @@ trait WithPagination
 
     public array $paginationCurrentItems = [];
 
+    public array $paginationCurrentSelectableItems = [];
+
     public int $paginationCurrentCount = 0;
 
     public ?int $paginationTotalItemCount = null;
+
+    public ?int $paginationTotalSelectableItemCount = null;
 
     public array $numberOfPaginatorsRendered = [];
 

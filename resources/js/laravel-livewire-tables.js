@@ -7,14 +7,17 @@ document.addEventListener('alpine:init', () => {
         paginationCurrentCount: wire.entangle('paginationCurrentCount'),
         paginationTotalItemCount: wire.entangle('paginationTotalItemCount'),
         paginationCurrentItems: wire.entangle('paginationCurrentItems'),
+        paginationCurrentSelectableItems: wire.entangle('paginationCurrentSelectableItems'),
+        hasDisabledBulkActionsRows: wire.entangle('hasDisabledBulkActionsRows'),
         selectedItems: wire.entangle('selected'),
         alwaysShowBulkActions: !wire.entangle('hideBulkActionsWhenEmpty'),
+        paginationTotalSelectableItemCount: wire.entangle("paginationTotalSelectableItemCount"),
         toggleSelectAll() {
             if (!showBulkActionsAlpine) {
                 return;
             }
 
-            if (this.paginationTotalItemCount === this.selectedItems.length) {
+            if (this.paginationTotalSelectableItemCount === this.selectedItems.length) {
                 this.clearSelected();
             } else {
                 this.setAllSelected();
@@ -39,8 +42,11 @@ document.addEventListener('alpine:init', () => {
                 return;
             }
 
+            console.log('bulk-select 222patched rzv')
             let tempSelectedItems = this.selectedItems;
-            const iterator = this.paginationCurrentItems.values();
+            const iterator = this.hasDisabledBulkActionsRows
+                ? this.paginationCurrentSelectableItems
+                : this.paginationCurrentItems.values();
             for (const value of iterator) {
                 tempSelectedItems.push(value.toString());
             }
@@ -85,7 +91,7 @@ document.addEventListener('alpine:init', () => {
         updateWire() {
             let tmpFilterMin = parseInt(this.filterMin);
             let tmpFilterMax = parseInt(this.filterMax);
-    
+
             if (tmpFilterMin != this.originalMin || tmpFilterMax != this.originalMax) {
                 if (tmpFilterMax < tmpFilterMin) {
                     this.filterMin = tmpFilterMax;
@@ -103,14 +109,14 @@ document.addEventListener('alpine:init', () => {
                 this.wireValues = { 'min': this.filterMin, 'max': this.filterMax };
                 wire.set('filterComponents.' + filterKey, this.wireValues);
             }
-    
+
         },
         init() {
             this.setupWire();
             this.$watch('allFilters', value => this.setupWire());
         },
     }));
-    
+
     Alpine.data('flatpickrFilter', (wire, filterKey, filterConfig, refLocation, locale) => ({
         wireValues: wire.entangle('filterComponents.' + filterKey),
         flatpickrInstance: flatpickr(refLocation, {
@@ -159,8 +165,8 @@ document.addEventListener('alpine:init', () => {
             this.setupWire();
             this.$watch('wireValues', value => this.setupWire());
         }
-    
-    
+
+
     }));
     Alpine.data('reorderFunction', (wire, tableID, primaryKeyName) => ({
         dragging: false,
@@ -192,7 +198,7 @@ document.addEventListener('alpine:init', () => {
             }
             let target = event.target.closest('tr');
             this.currentlyHighlightedElement = target;
- 
+
             if (event.offsetY < (target.getBoundingClientRect().height / 2)) {
                 target.classList.add('laravel-livewire-tables-highlight-top');
                 target.classList.remove('laravel-livewire-tables-highlight-bottom');
@@ -209,7 +215,7 @@ document.addEventListener('alpine:init', () => {
             if (typeof this.currentlyHighlightedElement == 'object') {
                 this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
             }
- 
+
             let target = event.target.closest('tr');
             let parent = event.target.closest('tr').parentNode;
             let element = document.getElementById(this.sourceID).closest('tr');
@@ -227,8 +233,8 @@ document.addEventListener('alpine:init', () => {
             if (newPosition < originalPosition) {
                 loopStart = newPosition;
             }
- 
-            /* 
+
+            /*
             let evenList = parentNode.querySelectorAll("table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(even of tr.rappasoft-striped-row) ").forEach(function (elem) {
                 elem.classList.remove(...this.oddNotInEven);
                 row.classList.add(...this.evenNotInOdd);
@@ -253,14 +259,14 @@ document.addEventListener('alpine:init', () => {
         reorderToggle() {
             if (this.currentlyReorderingStatus) {
                 wire.disableReordering();
- 
+
             }
             else {
                 if (this.hideReorderColumnUnlessReorderingStatus) {
                     this.reorderDisplayColumn = true;
                 }
                 wire.enableReordering();
- 
+
             }
         },
         cancelReorder() {
@@ -268,7 +274,7 @@ document.addEventListener('alpine:init', () => {
                 this.reorderDisplayColumn = false;
             }
             wire.disableReordering();
- 
+
         },
         updateOrderedItems() {
             let table = document.getElementById(tableID);
@@ -280,11 +286,11 @@ document.addEventListener('alpine:init', () => {
         },
         setupEvenOddClasses() {
             if (this.currentlyReorderingStatus === true) {
- 
+
                 let tbody = document.getElementById(tableID).getElementsByTagName('tbody')[0];
                 let evenRowClassArray = [];
                 let oddRowClassArray = [];
- 
+
                 if (tbody.rows[0] !== undefined && tbody.rows[1] !== undefined) {
                     evenRowClassArray = Array.from(tbody.rows[0].classList);
                     oddRowClassArray = Array.from(tbody.rows[1].classList);
@@ -297,8 +303,8 @@ document.addEventListener('alpine:init', () => {
         },
         init() {
             this.$watch('currentlyReorderingStatus', value => this.setupEvenOddClasses());
- 
+
         }
     }));
- 
+
 });

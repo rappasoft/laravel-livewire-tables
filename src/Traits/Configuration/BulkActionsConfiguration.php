@@ -150,4 +150,11 @@ trait BulkActionsConfiguration
 
         return $this;
     }
+
+    public function setHasDisabledBulkActionRows(bool $status): self
+    {
+        $this->hasDisabledBulkActionsRows = $status;
+
+        return $this;
+    }
 }

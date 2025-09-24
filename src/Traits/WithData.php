@@ -38,6 +38,14 @@ trait WithData
         // Get All Currently Paginated Items Primary Keys
         $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
 
+        // Get Currently Selectable Paginated Items Primary Keys
+        $this->paginationCurrentSelectableItems = $executedQuery
+            ->filter(function ($row) {
+                return $this->hasBulkSelection($row);
+            })
+            ->pluck($this->getPrimaryKey())
+            ->toArray() ?? [];
+
         // Get Count of Items in Current Page
         $this->paginationCurrentCount = $executedQuery->count();
 
@@ -79,12 +87,18 @@ trait WithData
                 // Get the total number of items available
                 $this->paginationTotalItemCount = $paginatedResults->total() ?? 0;
 
+                $this->paginationTotalSelectableItemCount = $this->hasDisabledBulkSectionRows() ?
+                    $this->computeTotalSelectableCount() : $this->paginationTotalItemCount;
+
                 return $paginatedResults;
             }
 
             if ($this->isPaginationMethod('simple')) {
 
                 $this->paginationTotalItemCount = $this->getBuilder()->count();
+
+                $this->paginationTotalSelectableItemCount = $this->hasDisabledBulkSectionRows() ?
+                    $this->computeTotalSelectableCount() : $this->paginationTotalItemCount;
 
                 return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
 
@@ -93,6 +107,8 @@ trait WithData
             if ($this->isPaginationMethod('cursor')) {
 
                 $this->paginationTotalItemCount = $this->getBuilder()->count();
+                $this->paginationTotalSelectableItemCount = $this->hasDisabledBulkSectionRows() ?
+                    $this->computeTotalSelectableCount() : $this->paginationTotalItemCount;
 
                 return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
             }
@@ -261,5 +277,17 @@ trait WithData
             'filterGenericData' => $this->getFilterGenericData(),
             'rows' => $this->getRows(),
         ]);
+    }
+
+    protected function computeTotalSelectableCount(): int
+    {
+        $count = 0;
+        $this->baseQuery()->each(function ($row) use (&$count) {
+            if ($this->hasBulkSelection($row)) {
+                $count++;
+            }
+        });
+
+        return $count;
     }
 }

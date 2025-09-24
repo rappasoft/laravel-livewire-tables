@@ -22,6 +22,8 @@ trait WithBulkActions
 
     public bool $hideBulkActionsWhenEmpty = false;
 
+    public bool $hasDisabledBulkActionsRows = false;
+
     public ?string $bulkActionConfirmDefaultMessage;
 
     protected array $bulkActionsCheckboxAttributes = [];

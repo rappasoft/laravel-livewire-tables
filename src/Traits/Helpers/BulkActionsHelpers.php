@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Illuminate\Database\Eloquent\Model;
+
 trait BulkActionsHelpers
 {
     public function getBulkActionsStatus(): bool
@@ -145,7 +147,32 @@ trait BulkActionsHelpers
     public function setAllSelected(): void
     {
         $this->setSelectAllEnabled();
-        $this->setSelected((clone $this->baseQuery())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => (string) $item)->toArray());
+
+        if ($this->hasDisabledBulkSectionRows()) {
+            $selected = [];
+            (clone $this->baseQuery())
+                ->each(function ($item) use (&$selected) {
+                    if (!$this->hasBulkSelection($item)) {
+                        return;
+                    }
+
+                    $selected[] = (string)$item->{$this->getPrimaryKey()};
+                    $this->setSelected($selected);
+                });
+        } else {
+            $this->setSelected((clone $this->baseQuery())->pluck($this->getBuilder()->getModel()->getTable() . '.' . $this->getPrimaryKey())->map(fn($item) => (string)$item)->toArray());
+
+        }
+    }
+
+    public function hasBulkSelection(Model $model): bool
+    {
+        return true;
+    }
+
+    public function hasDisabledBulkSectionRows(): bool
+    {
+        return $this->hasDisabledBulkActionsRows;
     }
 
     public function showBulkActionsDropdownAlpine(): bool
