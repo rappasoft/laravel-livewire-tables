@@ -315,20 +315,29 @@ final class ReorderingVisualsTest extends TestCase
 
     public function test_collapsing_columns_hide_on_reorder(): void
     {
-        // TODO
-        $this->assertTrue(true);
+        Livewire::test(PetsTable::class)
+            ->call('setReorderEnabled')
+            ->call('setCollapsingColumnsEnabled')
+            ->call('enableReordering')
+            ->assertSet('collapsingColumnsStatus', false);
     }
 
     public function test_secondary_header_hides_on_reorder(): void
     {
-        // TODO
-        $this->assertTrue(true);
+        Livewire::test(PetsTable::class)
+            ->call('setReorderEnabled')
+            ->call('setSecondaryHeaderEnabled')
+            ->call('enableReordering')
+            ->assertSet('secondaryHeaderStatus', false);
     }
 
     public function test_footer_hides_on_reorder(): void
     {
-        // TODO
-        $this->assertTrue(true);
+        Livewire::test(PetsTable::class)
+            ->call('setReorderEnabled')
+            ->call('setFooterEnabled')
+            ->call('enableReordering')
+            ->assertSet('footerStatus', false);
     }
 
     // TODO: Append as new features added

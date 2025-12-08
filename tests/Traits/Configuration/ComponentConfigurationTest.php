@@ -441,4 +441,132 @@ final class ComponentConfigurationTest extends TestCase
         $this->assertSame(['default-styling' => true, 'default-colors' => true], $this->basicTable->getCollapsingColumnButtonCollapseAttributes());
 
     }
+
+    public function test_can_set_table_heading(): void
+    {
+        $this->assertFalse($this->basicTable->hasTableHeading());
+        $this->assertNull($this->basicTable->getTableHeading());
+
+        $this->basicTable->heading('Users');
+
+        $this->assertTrue($this->basicTable->hasTableHeading());
+        $this->assertSame('Users', $this->basicTable->getTableHeading());
+    }
+
+    public function test_can_set_table_description(): void
+    {
+        $this->assertFalse($this->basicTable->hasTableDescription());
+        $this->assertNull($this->basicTable->getTableDescription());
+
+        $this->basicTable->description('Manage your users');
+
+        $this->assertTrue($this->basicTable->hasTableDescription());
+        $this->assertSame('Manage your users', $this->basicTable->getTableDescription());
+    }
+
+    public function test_can_set_custom_header_view(): void
+    {
+        $this->assertFalse($this->basicTable->hasCustomHeaderView());
+        $this->assertNull($this->basicTable->getCustomHeaderView());
+        $this->assertSame([], $this->basicTable->getCustomHeaderData());
+
+        $this->basicTable->header('custom.header', ['key' => 'value']);
+
+        $this->assertTrue($this->basicTable->hasCustomHeaderView());
+        $this->assertSame('custom.header', $this->basicTable->getCustomHeaderView());
+        $this->assertSame(['key' => 'value'], $this->basicTable->getCustomHeaderData());
+    }
+
+    public function test_can_set_empty_state_heading(): void
+    {
+        $this->assertFalse($this->basicTable->hasEmptyStateHeading());
+        $this->assertNull($this->basicTable->getEmptyStateHeading());
+
+        $this->basicTable->emptyStateHeading('No users found');
+
+        $this->assertTrue($this->basicTable->hasEmptyStateHeading());
+        $this->assertSame('No users found', $this->basicTable->getEmptyStateHeading());
+    }
+
+    public function test_can_set_empty_state_description(): void
+    {
+        $this->assertFalse($this->basicTable->hasEmptyStateDescription());
+        $this->assertNull($this->basicTable->getEmptyStateDescription());
+
+        $this->basicTable->emptyStateDescription('Get started by creating a new user.');
+
+        $this->assertTrue($this->basicTable->hasEmptyStateDescription());
+        $this->assertSame('Get started by creating a new user.', $this->basicTable->getEmptyStateDescription());
+    }
+
+    public function test_can_set_custom_empty_state_view(): void
+    {
+        $this->assertFalse($this->basicTable->hasCustomEmptyStateView());
+        $this->assertNull($this->basicTable->getCustomEmptyStateView());
+        $this->assertSame([], $this->basicTable->getCustomEmptyStateData());
+
+        $this->basicTable->emptyState('custom.empty-state', ['key' => 'value']);
+
+        $this->assertTrue($this->basicTable->hasCustomEmptyStateView());
+        $this->assertSame('custom.empty-state', $this->basicTable->getCustomEmptyStateView());
+        $this->assertSame(['key' => 'value'], $this->basicTable->getCustomEmptyStateData());
+    }
+
+    public function test_can_set_record_classes_with_string(): void
+    {
+        $this->assertFalse($this->basicTable->hasRecordClasses());
+
+        $this->basicTable->recordClasses('bg-blue-100');
+
+        $this->assertTrue($this->basicTable->hasRecordClasses());
+
+        $pet = Pet::find(1);
+        $attributes = $this->basicTable->getTrAttributes($pet, 0);
+        $this->assertStringContainsString('bg-blue-100', $attributes['class'] ?? '');
+    }
+
+    public function test_can_set_record_classes_with_array(): void
+    {
+        $this->basicTable->recordClasses(['bg-blue-100', 'hover:bg-blue-200']);
+
+        $this->assertTrue($this->basicTable->hasRecordClasses());
+
+        $pet = Pet::find(1);
+        $attributes = $this->basicTable->getTrAttributes($pet, 0);
+        $classes = explode(' ', $attributes['class'] ?? '');
+        $this->assertContains('bg-blue-100', $classes);
+        $this->assertContains('hover:bg-blue-200', $classes);
+    }
+
+    public function test_can_set_record_classes_with_closure(): void
+    {
+        $this->basicTable->recordClasses(function ($row) {
+            return $row->id === 1 ? 'bg-green-100' : 'bg-red-100';
+        });
+
+        $this->assertTrue($this->basicTable->hasRecordClasses());
+
+        $pet1 = Pet::find(1);
+        $attributes1 = $this->basicTable->getTrAttributes($pet1, 0);
+        $this->assertStringContainsString('bg-green-100', $attributes1['class'] ?? '');
+
+        $pet2 = Pet::find(2);
+        $attributes2 = $this->basicTable->getTrAttributes($pet2, 1);
+        $this->assertStringContainsString('bg-red-100', $attributes2['class'] ?? '');
+    }
+
+    public function test_record_classes_merge_with_tr_attributes(): void
+    {
+        $this->basicTable->setTrAttributes(function ($row, $index) {
+            return ['class' => 'existing-class', 'data-id' => $row->id];
+        });
+
+        $this->basicTable->recordClasses('new-class');
+
+        $pet = Pet::find(1);
+        $attributes = $this->basicTable->getTrAttributes($pet, 0);
+        $this->assertStringContainsString('existing-class', $attributes['class']);
+        $this->assertStringContainsString('new-class', $attributes['class']);
+        $this->assertSame(1, $attributes['data-id']);
+    }
 }

@@ -47,3 +47,57 @@ There have been several changes and tweaks to the behaviour of this area, includ
 - Reorder method respects the defined primary key, rather than expecting "id".
 For more details, please see
 [https://rappasoft.com/docs/laravel-livewire-tables/v3/reordering/introduction](https://rappasoft.com/docs/laravel-livewire-tables/v3/reordering/introduction)
+
+### New Features (v3.5+)
+
+Several new features have been added to enhance functionality:
+
+#### Enhanced Polling
+The `poll()` method now supports time string formats:
+```php
+$this->poll('10s'); // Instead of setRefreshTime(10000)
+```
+
+#### Table Summaries
+Add aggregate calculations to columns:
+```php
+Column::make('Price', 'price')->summary('sum');
+```
+
+#### Table Header/Description
+Add headings and descriptions to tables:
+```php
+$this->heading('Users')->description('Manage your users');
+```
+
+#### Custom Row Classes
+Easily apply conditional CSS classes:
+```php
+$this->recordClasses(fn($record) => match($record->status) {
+    'active' => 'bg-green-100',
+    default => '',
+});
+```
+
+#### Deferred Loading
+Load table data asynchronously:
+```php
+$this->deferLoading();
+```
+
+#### Global Settings
+Configure defaults for all tables:
+```php
+DataTableComponent::configureUsing(function ($table) {
+    $table->poll('30s');
+});
+```
+
+#### Enhanced Empty State
+Customize empty state with heading and description:
+```php
+$this->emptyStateHeading('No users found')
+    ->emptyStateDescription('Get started by creating a new user.');
+```
+
+See the [documentation](../datatable/available-methods) for complete details on all new features.

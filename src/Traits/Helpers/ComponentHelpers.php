@@ -103,6 +103,41 @@ trait ComponentHelpers
         return __($this->emptyMessage);
     }
 
+    public function hasCustomEmptyStateView(): bool
+    {
+        return $this->customEmptyStateView !== null;
+    }
+
+    public function getCustomEmptyStateView(): string|\Illuminate\Contracts\View\View|null
+    {
+        return $this->customEmptyStateView;
+    }
+
+    public function getCustomEmptyStateData(): array
+    {
+        return $this->customEmptyStateData;
+    }
+
+    public function hasEmptyStateHeading(): bool
+    {
+        return ! empty($this->emptyStateHeading);
+    }
+
+    public function getEmptyStateHeading(): ?string
+    {
+        return $this->emptyStateHeading;
+    }
+
+    public function hasEmptyStateDescription(): bool
+    {
+        return ! empty($this->emptyStateDescription);
+    }
+
+    public function getEmptyStateDescription(): ?string
+    {
+        return $this->emptyStateDescription;
+    }
+
     public function getOfflineIndicatorStatus(): bool
     {
         return $this->offlineIndicatorStatus;
@@ -206,5 +241,40 @@ trait ComponentHelpers
     public function getComputedPropertiesStatus(): bool
     {
         return $this->useComputedProperties ?? false;
+    }
+
+    public function hasTableHeading(): bool
+    {
+        return ! empty($this->tableHeading);
+    }
+
+    public function getTableHeading(): ?string
+    {
+        return $this->tableHeading;
+    }
+
+    public function hasTableDescription(): bool
+    {
+        return ! empty($this->tableDescription);
+    }
+
+    public function getTableDescription(): ?string
+    {
+        return $this->tableDescription;
+    }
+
+    public function hasCustomHeaderView(): bool
+    {
+        return $this->customHeaderView !== null;
+    }
+
+    public function getCustomHeaderView(): string|\Illuminate\Contracts\View\View|null
+    {
+        return $this->customHeaderView;
+    }
+
+    public function getCustomHeaderData(): array
+    {
+        return $this->customHeaderData;
     }
 }

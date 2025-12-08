@@ -21,6 +21,37 @@ trait ComponentConfiguration
         return $this;
     }
 
+    /**
+     * Set a custom empty state view
+     */
+    public function emptyState(string|\Illuminate\Contracts\View\View $view, array $data = []): self
+    {
+        $this->customEmptyStateView = $view;
+        $this->customEmptyStateData = $data;
+
+        return $this;
+    }
+
+    /**
+     * Set empty state heading
+     */
+    public function emptyStateHeading(string $heading): self
+    {
+        $this->emptyStateHeading = $heading;
+
+        return $this;
+    }
+
+    /**
+     * Set empty state description
+     */
+    public function emptyStateDescription(string $description): self
+    {
+        $this->emptyStateDescription = $description;
+
+        return $this;
+    }
+
     public function setOfflineIndicatorStatus(bool $status): self
     {
         $this->offlineIndicatorStatus = $status;
@@ -163,6 +194,37 @@ trait ComponentConfiguration
     public function useComputedPropertiesDisabled(): self
     {
         $this->useComputedProperties = false;
+
+        return $this;
+    }
+
+    /**
+     * Set the table heading
+     */
+    public function heading(string $heading): self
+    {
+        $this->tableHeading = $heading;
+
+        return $this;
+    }
+
+    /**
+     * Set the table description
+     */
+    public function description(string $description): self
+    {
+        $this->tableDescription = $description;
+
+        return $this;
+    }
+
+    /**
+     * Set a custom header view
+     */
+    public function header(string|\Illuminate\Contracts\View\View $view, array $data = []): self
+    {
+        $this->customHeaderView = $view;
+        $this->customHeaderData = $data;
 
         return $this;
     }

@@ -96,6 +96,19 @@ trait TableAttributeConfiguration
     }
 
     /**
+     * Set CSS classes for table rows based on the record data
+     * Accepts a string or array of classes, or a closure that returns classes
+     *
+     * @param string|array|callable $classes
+     */
+    public function recordClasses(string|array|callable $classes): self
+    {
+        $this->recordClassesCallback = is_callable($classes) ? $classes : fn ($row) => $classes;
+
+        return $this;
+    }
+
+    /**
      * Set a list of attributes to override on the td elements
      */
     public function setTdAttributes(callable $callback): self

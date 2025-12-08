@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -9,38 +11,71 @@ use Rappasoft\LaravelLivewireTables\Events\FilterApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
 
+/**
+ * Filter functionality for DataTableComponent
+ */
 trait WithFilters
 {
     use FilterConfiguration,
         FilterHelpers;
 
+    /**
+     * Whether filters are enabled (locked from frontend)
+     */
     #[Locked]
     public bool $filtersStatus = true;
 
+    /**
+     * Whether filters are visible (locked from frontend)
+     */
     #[Locked]
     public bool $filtersVisibilityStatus = true;
 
+    /**
+     * Whether filter pills are shown (locked from frontend)
+     */
     #[Locked]
     public bool $filterPillsStatus = true;
 
-    // Entangled in JS
+    /**
+     * Whether slidedown filters are visible by default (entangled with JS)
+     */
     public bool $filterSlideDownDefaultVisible = false;
 
+    /**
+     * Filter layout: popover or slide-down (locked from frontend)
+     */
     #[Locked]
     public string $filterLayout = 'popover';
 
+    /**
+     * Number of filters (locked from frontend)
+     */
     #[Locked]
     public int $filterCount;
 
-    // Set in JS
+    /**
+     * Filter component values (set in JS)
+     * @var array<string, mixed>
+     */
     public array $filterComponents = [];
 
-    // Set in Frontend
+    /**
+     * Currently applied filter values (set in frontend)
+     * @var array<string, mixed>
+     */
     public array $appliedFilters = [];
 
+    /**
+     * Generic filter data
+     * @var array<string, mixed>
+     */
     public array $filterGenericData = [];
 
-    protected ?Collection $filterCollection;
+    /**
+     * Filter collection cache
+     */
+    protected ?Collection $filterCollection = null;
 
     public function filters(): array
     {

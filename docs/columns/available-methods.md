@@ -234,6 +234,38 @@ Column::make('Name')
     ->setSortingPillDirections('Asc', 'Desc'),
 ```
 
+## Summaries
+
+Summaries allow you to display aggregate calculations for columns. See the [full summaries documentation](../datatable/summaries) for complete details.
+
+### Basic Usage
+
+Add a summary to a column:
+
+```php
+Column::make('Price', 'price')
+    ->summary('sum'), // Sum of all prices
+```
+
+### Available Summary Types
+
+- `'sum'` - Sum of all values
+- `'avg'` - Average of all values
+- `'count'` - Count of rows
+- `'min'` - Minimum value
+- `'max'` - Maximum value
+
+### Custom Summary Callback
+
+You can provide a custom callback for complex calculations:
+
+```php
+Column::make('Total Revenue')
+    ->summary(function($rows) {
+        return $rows->sum('price') * $rows->sum('quantity');
+    }),
+```
+
 ## Misc.
 
 ### Eager Loading Relationships

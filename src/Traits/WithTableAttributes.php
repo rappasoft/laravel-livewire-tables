@@ -32,4 +32,6 @@ trait WithTableAttributes
     protected ?object $trUrlCallback;
 
     protected ?object $trUrlTargetCallback;
+
+    protected ?object $recordClassesCallback;
 }

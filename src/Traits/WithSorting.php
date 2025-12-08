@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -8,27 +10,58 @@ use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
 
+/**
+ * Sorting functionality for DataTableComponent
+ */
 trait WithSorting
 {
     use SortingConfiguration,
         SortingHelpers;
 
+    /**
+     * Active sorts (column => direction)
+     * @var array<string, string>
+     */
     public array $sorts = [];
 
+    /**
+     * Columns that are sortable
+     */
     public Collection $sortableColumns;
 
+    /**
+     * Whether sorting is enabled
+     */
     public bool $sortingStatus = true;
 
+    /**
+     * Whether only single column sorting is allowed
+     */
     public bool $singleColumnSortingStatus = true;
 
+    /**
+     * Whether to show sorting pills
+     */
     public bool $sortingPillsStatus = true;
 
+    /**
+     * Default sort column
+     */
     public ?string $defaultSortColumn = null;
 
+    /**
+     * Default sort direction
+     */
     public string $defaultSortDirection = 'asc';
 
+    /**
+     * Label for ascending sort
+     */
     public string $defaultSortingLabelAsc = 'A-Z';
 
+    /**
+     * Label for descending sort
+     */
     public string $defaultSortingLabelDesc = 'Z-A';
 
     public function queryStringWithSorting(): array

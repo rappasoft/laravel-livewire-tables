@@ -18,6 +18,45 @@ public function configure(): void
 }
 ```
 
+### heading
+
+Set a heading for the table.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->heading('Users');
+}
+```
+
+### description
+
+Set a description for the table that appears below the heading.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->heading('Users')
+      ->description('Manage your users here.');
+}
+```
+
+### header
+
+Set a custom header view for the table.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->header(view('tables.header', [
+          'heading' => 'Users',
+      ]));
+}
+```
+
 ### useComputedPropertiesDisabled
 
 If you have published the Views **prior to v3.4.5**, and do not wish to remove the published views, then you should add the following call, which will disable the new Computed Properties behaviour.  Note that publishing the views is not recommended!
@@ -197,4 +236,130 @@ public function configure(): void
 {
   $this->setEmptyMessage('No results found');
 }
+```
+
+### emptyState
+
+Set a custom empty state view.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->emptyState(view('tables.empty-state'));
+}
+```
+
+### emptyStateHeading
+
+Set a custom heading for the empty state.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->emptyStateHeading('No users found');
+}
+```
+
+### emptyStateDescription
+
+Set a custom description for the empty state.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->emptyStateHeading('No users found')
+      ->emptyStateDescription('Get started by creating a new user.');
+}
+```
+
+### recordClasses
+
+Set CSS classes for table rows based on the record data. Accepts a string, array of classes, or a closure.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->recordClasses(fn($record) => match($record->status) {
+          'active' => 'bg-green-100',
+          'inactive' => 'bg-red-100',
+          default => '',
+      });
+}
+```
+
+You can also use a simple string or array:
+
+```php
+// String
+$this->recordClasses('hover:bg-gray-50');
+
+// Array
+$this->recordClasses(['hover:bg-gray-50', 'transition-colors']);
+```
+
+### deferLoading
+
+Enable deferred loading - table data will load asynchronously.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->deferLoading();
+}
+```
+
+### groupBy
+
+Group rows by a column value. See [Row Grouping](row-grouping) for more details.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->groupBy('status'); // Group rows by the 'status' column
+}
+```
+
+### groupsCollapsed
+
+Set groups to be collapsed by default.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->groupBy('status')
+      ->groupsCollapsed();
+}
+```
+
+### groupsExpanded
+
+Set groups to be expanded by default (default behavior).
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->groupBy('status')
+      ->groupsExpanded();
+}
+```
+
+### disableGrouping
+
+Disable row grouping.
+
+```php
+public function configure(): void
+{
+  $this->setPrimaryKey('id')
+      ->disableGrouping();
+}
+```
 ```

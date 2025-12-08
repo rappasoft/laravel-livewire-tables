@@ -175,7 +175,7 @@ trait WithReordering
         $this->getReorderingBackup();
     }
 
-    public function renderingWithReordering(): void
+    public function renderingWithReordering(?\Illuminate\View\View $view = null, array $data = []): void
     {
         $this->setupReordering();
     }

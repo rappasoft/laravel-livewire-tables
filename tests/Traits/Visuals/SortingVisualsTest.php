@@ -6,6 +6,7 @@ use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 final class SortingVisualsTest extends TestCase
 {
@@ -193,11 +194,22 @@ final class SortingVisualsTest extends TestCase
     #[Depends('test_array_setup')]
     public function test_sort_field_and_direction_are_applied_if_no_sort_callback(array $petNames): void
     {
-        // TODO: Test that there is no callback
+        // Test that sorting works without a custom callback (uses default field sorting)
+        $nameColumn = Column::make('Name', 'name')->sortable();
+        
         Livewire::test(PetsTable::class)
             ->assertSeeInOrder($this->default10)
             ->call('setSort', 'name', 'desc')
             ->assertSeeInOrder($this->rsortNames);
+        
+        // Verify the column doesn't have a custom sort callback
+        $table = new PetsTable();
+        $table->boot();
+        $table->bootedComponentUtilities();
+        $table->bootedWithData();
+        $table->bootedWithColumns();
+        $column = $table->getColumnBySelectName('name');
+        $this->assertFalse($column->hasSortCallback());
     }
 
     /**

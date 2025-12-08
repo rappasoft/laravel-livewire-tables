@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Support\Collection;
@@ -8,22 +10,43 @@ use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnHelpers;
 
+/**
+ * Column management for DataTableComponent
+ */
 trait WithColumns
 {
     use ColumnConfiguration;
     use ColumnHelpers;
 
+    /**
+     * Collection of table columns
+     */
     protected Collection $columns;
 
+    /**
+     * Columns prepended to the table
+     */
     protected Collection $prependedColumns;
 
+    /**
+     * Columns appended to the table
+     */
     protected Collection $appendedColumns;
 
-    protected ?bool $shouldAlwaysCollapse;
+    /**
+     * Whether columns should always collapse
+     */
+    protected ?bool $shouldAlwaysCollapse = null;
 
-    protected ?bool $shouldMobileCollapse;
+    /**
+     * Whether columns should collapse on mobile
+     */
+    protected ?bool $shouldMobileCollapse = null;
 
-    protected ?bool $shouldTabletCollapse;
+    /**
+     * Whether columns should collapse on tablet
+     */
+    protected ?bool $shouldTabletCollapse = null;
 
     /**
      * Sets up Columns

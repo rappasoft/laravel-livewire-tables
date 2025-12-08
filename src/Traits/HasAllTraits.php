@@ -20,12 +20,15 @@ trait HasAllTraits
         WithConfigurableAreas,
         WithCustomisations,
         WithDebugging,
+        WithDeferredLoading,
         WithEvents,
         WithFilters,
         WithFooter,
+        WithGrouping,
         WithQueryString,
         WithRefresh,
         WithReordering,
         WithSecondaryHeader,
+        WithSummaries,
         WithTableAttributes;
 }

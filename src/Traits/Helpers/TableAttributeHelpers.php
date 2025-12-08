@@ -53,7 +53,25 @@ trait TableAttributeHelpers
     #[Computed]
     public function getTrAttributes(Model $row, int $index): array
     {
-        return isset($this->trAttributesCallback) ? call_user_func($this->trAttributesCallback, $row, $index) : ['default' => true];
+        $attributes = isset($this->trAttributesCallback) ? call_user_func($this->trAttributesCallback, $row, $index) : ['default' => true];
+
+        // Merge record classes if set
+        if (isset($this->recordClassesCallback)) {
+            $classes = call_user_func($this->recordClassesCallback, $row);
+            if ($classes) {
+                $classesArray = is_array($classes) ? $classes : explode(' ', $classes);
+                $existingClasses = isset($attributes['class']) ? explode(' ', $attributes['class']) : [];
+                $mergedClasses = array_unique(array_merge($existingClasses, $classesArray));
+                $attributes['class'] = implode(' ', array_filter($mergedClasses));
+            }
+        }
+
+        return $attributes;
+    }
+
+    public function hasRecordClasses(): bool
+    {
+        return isset($this->recordClassesCallback);
     }
 
     #[Computed]

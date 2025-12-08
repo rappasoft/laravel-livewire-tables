@@ -7,6 +7,25 @@ weight: 1
 
 **Note:** You should only enable one of the following methods on the component.
 
+## poll
+
+Set the refresh interval using a time string format. This is the recommended method for setting polling intervals.
+
+```php
+public function configure(): void
+{
+    $this->setPrimaryKey('id')
+        ->poll('10s'); // Refresh every 10 seconds
+}
+```
+
+Supported time formats:
+- `'10s'` - 10 seconds
+- `'30s'` - 30 seconds  
+- `'1m'` - 1 minute
+- `'5m'` - 5 minutes
+- `'1h'` - 1 hour
+
 ## setRefreshTime
 
 Set the amount of time in milliseconds as a refresh interval.

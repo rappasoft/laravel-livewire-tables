@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -8,34 +10,54 @@ use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SearchConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SearchHelpers;
 
+/**
+ * Search functionality for DataTableComponent
+ */
 trait WithSearch
 {
     use SearchConfiguration,
         SearchHelpers;
 
+    /**
+     * Current search query
+     */
     public string $search = '';
 
+    /**
+     * Whether search is enabled (locked from frontend modification)
+     */
     #[Locked]
     public bool $searchStatus = true;
 
+    /**
+     * Custom search placeholder text
+     */
     protected ?string $searchPlaceholder = null;
 
+    /**
+     * Whether search input is visible
+     */
     protected bool $searchVisibilityStatus = true;
 
+    /**
+     * Search filter input configurations
+     */
     protected ?bool $searchFilterBlur = null;
-
     protected ?int $searchFilterDebounce = null;
-
     protected ?bool $searchFilterDefer = null;
-
     protected ?bool $searchFilterLazy = null;
-
     protected ?bool $searchFilterLive = null;
-
     protected ?int $searchFilterThrottle = null;
 
+    /**
+     * Custom attributes for search field
+     * @var array<string, mixed>
+     */
     protected array $searchFieldAttributes = [];
 
+    /**
+     * Whether to trim search strings
+     */
     protected bool $trimSearchString = false;
 
     protected function queryStringWithSearch(): array

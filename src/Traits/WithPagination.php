@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Livewire\Attributes\Locked;
@@ -7,49 +9,97 @@ use Livewire\WithPagination as LivewirePagination;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\PaginationConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\PaginationHelpers;
 
+/**
+ * Pagination functionality for DataTableComponent
+ */
 trait WithPagination
 {
     use LivewirePagination,
         PaginationConfiguration,
         PaginationHelpers;
 
+    /**
+     * Custom page name for query string
+     */
     public ?string $pageName = null;
 
+    /**
+     * Items per page
+     */
     public int $perPage = 10;
 
+    /**
+     * Accepted per page values (locked from frontend)
+     * @var array<int, int>
+     */
     #[Locked]
     public array $perPageAccepted = [10, 25, 50];
 
+    /**
+     * Pagination theme (tailwind/bootstrap)
+     */
     #[Locked]
     public string $paginationTheme = 'tailwind';
 
+    /**
+     * Whether pagination is enabled
+     */
     #[Locked]
     public bool $paginationStatus = true;
 
+    /**
+     * Whether pagination controls are visible
+     */
     #[Locked]
     public bool $paginationVisibilityStatus = true;
 
+    /**
+     * Whether per-page selector is visible
+     */
     #[Locked]
     public bool $perPageVisibilityStatus = true;
 
-    // Entangled in JS
+    /**
+     * Current page items (entangled with JS)
+     * @var array<int, mixed>
+     */
     public array $paginationCurrentItems = [];
 
-    // Entangled in JS
+    /**
+     * Current page item count (entangled with JS)
+     */
     public int $paginationCurrentCount = 0;
 
-    // Entangled in JS
+    /**
+     * Total item count (entangled with JS)
+     */
     public ?int $paginationTotalItemCount = null;
 
+    /**
+     * Track number of paginators rendered
+     * @var array<string, int>
+     */
     public array $numberOfPaginatorsRendered = [];
 
-    // standard, simple, cursor
+    /**
+     * Pagination method: standard, simple, or cursor
+     */
     protected string $paginationMethod = 'standard';
 
+    /**
+     * Whether to show pagination details
+     */
     protected bool $shouldShowPaginationDetails = true;
 
+    /**
+     * Per-page field attributes
+     * @var array<string, mixed>
+     */
     protected array $perPageFieldAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
 
+    /**
+     * Whether to retrieve total item count
+     */
     protected bool $shouldRetrieveTotalItemCount = true;
 
     public function mountWithPagination(): void
@@ -88,7 +138,7 @@ trait WithPagination
         return [];
     }
 
-    public function renderingWithPagination(): void
+    public function renderingWithPagination(?\Illuminate\View\View $view = null, array $data = []): void
     {
         $this->setupPagination();
     }

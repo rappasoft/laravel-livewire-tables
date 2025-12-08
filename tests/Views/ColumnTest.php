@@ -46,10 +46,19 @@ final class ColumnTest extends TestCase
 
     public function test_can_get_contents_of_column(): void
     {
-        // TODO: Figure out how to call getContents on a row object to verify that way
         $rows = $this->basicTable->getRows();
-        $this->assertSame('Cartman', $rows->first()->name);
-        $this->assertSame('Norwegian Forest', $rows->first()['breed.name']);
+        $firstRow = $rows->first();
+        
+        // Test direct property access
+        $this->assertSame('Cartman', $firstRow->name);
+        $this->assertSame('Norwegian Forest', $firstRow['breed.name']);
+        
+        // Test getContents method on column
+        $nameColumn = $this->basicTable->getColumnBySelectName('name');
+        $this->assertSame('Cartman', $nameColumn->getContents($firstRow));
+        
+        $breedColumn = $this->basicTable->getColumnBySelectName('breed.name');
+        $this->assertSame('Norwegian Forest', $breedColumn->getContents($firstRow));
     }
 
     public function test_can_get_column_formatted_contents(): void
