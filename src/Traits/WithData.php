@@ -38,7 +38,7 @@ trait WithData
         $executedQuery = $this->executeQuery();
 
         // Get All Currently Paginated Items Primary Keys
-        $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
+        $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray();
 
         // Get Count of Items in Current Page
         $this->paginationCurrentCount = $executedQuery->count();
@@ -66,12 +66,16 @@ trait WithData
 
         if ($this->hasExtraWithSums()) {
             foreach ($this->getExtraWithSums() as $extraSum) {
-                $builder->withSum($extraSum['table'], $extraSum['field']);
+                if (isset($extraSum['table'], $extraSum['field'])) {
+                    $builder->withSum($extraSum['table'], $extraSum['field']);
+                }
             }
         }
         if ($this->hasExtraWithAvgs()) {
             foreach ($this->getExtraWithAvgs() as $extraAvg) {
-                $builder->withAvg($extraAvg['table'], $extraAvg['field']);
+                if (isset($extraAvg['table'], $extraAvg['field'])) {
+                    $builder->withAvg($extraAvg['table'], $extraAvg['field']);
+                }
             }
         }
 

@@ -31,11 +31,12 @@
     },
     "require-dev": {
         "ext-sqlite3": "*",
+        "blade-ui-kit/blade-icons": "^1.8",
         "brianium/paratest": "^5.0|^6.0|^7.0|^8.0",
+        "larastan/larastan": "^2.6",
         "laravel/pint": "^1.10",
         "monolog/monolog": "*",
         "nunomaduro/collision": "^6.0|^7.0|^8.0",
-        "larastan/larastan": "^2.6",
         "orchestra/testbench": "^7.0|^8.0|^9.0",
         "phpunit/phpunit": "^9.0|^10.0|^11.0"
     },

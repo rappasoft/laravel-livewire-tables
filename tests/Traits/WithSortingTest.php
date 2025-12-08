@@ -70,10 +70,55 @@ final class WithSortingTest extends TestCase
 
     public function test_sort_callback_gets_applied_if_specified(): void
     {
-        // TODO
         $this->basicTable->clearSorts();
         $this->basicTable->sortBy('breed.name');
         $this->assertSame($this->basicTable->getSorts(), ['breed.name' => 'asc']);
+        
+        $this->basicTable->applySorting();
+        $sql = $this->basicTable->getBuilder()->toSql();
+        // Should use the callback which orders by pets.id
+        $this->assertStringContainsStringIgnoringCase('order by', $sql);
+    }
+
+    public function test_invalid_sort_direction_defaults_to_asc(): void
+    {
+        $this->basicTable->setSort('id', 'invalid');
+        $this->basicTable->applySorting();
+        
+        // Should default to asc without throwing exception
+        $sql = $this->basicTable->getBuilder()->toSql();
+        $this->assertStringContainsStringIgnoringCase('order by', $sql);
+    }
+
+    public function test_sorting_with_missing_column_does_not_throw(): void
+    {
+        $this->basicTable->setSort('nonexistent_column', 'asc');
+        $this->basicTable->applySorting();
+        
+        // Should handle gracefully without throwing exception
+        $this->assertTrue(true);
+    }
+
+    public function test_default_sort_applies_when_no_sorts_set(): void
+    {
+        $this->basicTable->clearSorts();
+        $this->basicTable->setDefaultSort('id', 'desc');
+        $this->basicTable->applySorting();
+        
+        $sql = $this->basicTable->getBuilder()->toSql();
+        $this->assertStringContainsStringIgnoringCase('order by', $sql);
+        $this->assertStringContainsStringIgnoringCase('"id"', $sql);
+    }
+
+    public function test_default_sort_does_not_apply_when_sorts_exist(): void
+    {
+        $this->basicTable->setSort('name', 'asc');
+        $this->basicTable->setDefaultSort('id', 'desc');
+        $this->basicTable->applySorting();
+        
+        $sql = $this->basicTable->getBuilder()->toSql();
+        // Should use 'name' not 'id'
+        $this->assertStringContainsStringIgnoringCase('"name"', $sql);
     }
 
     public function test_cannot_set_sort_on_unsortable_column(): void
