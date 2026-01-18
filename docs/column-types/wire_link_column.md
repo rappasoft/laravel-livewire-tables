@@ -36,6 +36,66 @@ And you may also pass an array of attributes, which will be applied to the "butt
         ]),
 ```
 
+## Icons
+
+You can add icons to the left and/or right of the button text using the `setIconLeft()` and `setIconRight()` methods:
+
+```php
+    WireLinkColumn::make("Delete Item")
+        ->title(fn($row) => 'Delete Item')
+        ->action(fn($row) => 'delete("'.$row->id.'")')
+        ->setIconLeft('heroicon-o-trash'),
+```
+
+You can also add icons on both sides:
+```php
+    WireLinkColumn::make("View Details")
+        ->title(fn($row) => 'View')
+        ->action(fn($row) => 'viewDetails("'.$row->id.'")')
+        ->setIconLeft('heroicon-o-eye')
+        ->setIconRight('heroicon-o-chevron-right'),
+```
+
+The `setIcon()` method is an alias for `setIconRight()`:
+```php
+    WireLinkColumn::make("Delete Item")
+        ->title(fn($row) => 'Delete Item')
+        ->action(fn($row) => 'delete("'.$row->id.'")')
+        ->setIcon('heroicon-o-trash'),
+```
+
+### Icon Attributes
+
+You can customize icon attributes individually or for both icons:
+
+```php
+    WireLinkColumn::make("Delete Item")
+        ->title(fn($row) => 'Delete Item')
+        ->action(fn($row) => 'delete("'.$row->id.'")')
+        ->setIconLeft('heroicon-o-trash')
+        ->setIconLeftAttributes(['class' => 'w-4 h-4 mr-2']),
+```
+
+```php
+    WireLinkColumn::make("View Details")
+        ->title(fn($row) => 'View')
+        ->action(fn($row) => 'viewDetails("'.$row->id.'")')
+        ->setIconLeft('heroicon-o-eye')
+        ->setIconRight('heroicon-o-chevron-right')
+        ->setIconLeftAttributes(['class' => 'w-4 h-4 mr-2'])
+        ->setIconRightAttributes(['class' => 'w-4 h-4 ml-2']),
+```
+
+To set the same attributes for both icons:
+```php
+    WireLinkColumn::make("Action")
+        ->title(fn($row) => 'Action')
+        ->action(fn($row) => 'doAction("'.$row->id.'")')
+        ->setIconLeft('heroicon-o-star')
+        ->setIconRight('heroicon-o-star')
+        ->setIconAttributes(['class' => 'w-5 h-5']),
+```
+
 Please also see the following for other available methods:
 <ul>
     <li>

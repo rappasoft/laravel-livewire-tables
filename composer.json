@@ -27,7 +27,7 @@
         "blade-ui-kit/blade-heroicons": "^2.1",
         "illuminate/contracts": "^10.0|^11.0|^12.0",
         "illuminate/support": "^10.0|^11.0|^12.0",
-        "livewire/livewire": "^3.0|dev-main"
+        "livewire/livewire": "^3.0|^4.0|dev-main"
     },
     "require-dev": {
         "ext-sqlite3": "*",

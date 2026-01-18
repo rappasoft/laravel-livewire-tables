@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\WireLinkColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\HasIcons;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\WireLinkColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasActionCallback,HasConfirmation, HasTitleCallback};
 
@@ -15,7 +16,8 @@ class WireLinkColumn extends Column
         WireLinkColumnHelpers,
         HasActionCallback,
         HasTitleCallback,
-        HasConfirmation;
+        HasConfirmation,
+        HasIcons;
 
     protected string $view = 'livewire-tables::includes.columns.wire-link';
 
@@ -42,6 +44,12 @@ class WireLinkColumn extends Column
             ->withIsBootstrap($this->isBootstrap())
             ->withTitle(app()->call($this->getTitleCallback(), ['row' => $row]))
             ->withPath(app()->call($this->getActionCallback(), ['row' => $row]))
-            ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
+            ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : [])
+            ->withHasIconLeft($this->hasIconLeft())
+            ->withIconLeft($this->getIconLeft())
+            ->withIconLeftAttributes($this->getIconLeftAttributes())
+            ->withHasIconRight($this->hasIconRight())
+            ->withIconRight($this->getIconRight())
+            ->withIconRightAttributes($this->getIconRightAttributes());
     }
 }

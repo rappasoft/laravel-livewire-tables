@@ -6,4 +6,16 @@
     @if($column->hasActionCallback())
         wire:click="{{ $path }}"
     @endif
->{{ $title }}</button>
+>
+    @if($hasIconLeft)
+        @svg($iconLeft, $iconLeftAttributes->get('class'), $iconLeftAttributes->except('class')->getAttributes())
+    @endif
+    @if($column->isHtml())
+        {!! $title !!}
+    @else
+        {{ $title }}
+    @endif
+    @if($hasIconRight)
+        @svg($iconRight, $iconRightAttributes->get('class'), $iconRightAttributes->except('class')->getAttributes())
+    @endif
+</button>
