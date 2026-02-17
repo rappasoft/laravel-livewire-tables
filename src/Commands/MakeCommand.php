@@ -7,8 +7,6 @@ use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Livewire\Features\SupportConsoleCommands\Commands\ComponentParser;
-use Livewire\Features\SupportConsoleCommands\Commands\MakeCommand as LivewireMakeCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
@@ -21,7 +19,11 @@ use function Laravel\Prompts\text;
  */
 class MakeCommand extends Command implements PromptsForMissingInput
 {
-    protected ComponentParser $parser;
+    protected string $className;
+
+    protected string $classNamespace;
+
+    protected string $classPath;
 
     /**
      * @var string
@@ -56,19 +58,23 @@ class MakeCommand extends Command implements PromptsForMissingInput
      */
     public function handle(): void
     {
-        $this->parser = new ComponentParser(
-            config('livewire.class_namespace'),
-            config('livewire.view_path'),
-            $this->argument('name')
-        );
+        $name = $this->argument('name');
 
-        $livewireMakeCommand = new LivewireMakeCommand;
+        $segments = str($name)->replace(['/', '\\'], '.')
+            ->explode('.')
+            ->map(fn ($s) => Str::studly($s))
+            ->all();
 
-        if ($livewireMakeCommand->isReservedClassName($name = $this->parser->className())) {
-            $this->line("<fg=red;options=bold>Class is reserved:</> {$name}");
+        $this->className = array_pop($segments);
 
-            return;
-        }
+        $baseNamespace = config('livewire.class_namespace', 'App\\Livewire');
+        $this->classNamespace = ! empty($segments)
+            ? $baseNamespace.'\\'.implode('\\', $segments)
+            : $baseNamespace;
+
+        $classBasePath = config('livewire.class_path', app_path('Livewire'));
+        $subPath = ! empty($segments) ? implode('/', $segments).'/' : '';
+        $this->classPath = $classBasePath.'/'.$subPath.$this->className.'.php';
 
         $this->model = Str::studly($this->argument('model'));
         $this->modelPath = $this->argument('modelpath') ?? null;
@@ -77,24 +83,22 @@ class MakeCommand extends Command implements PromptsForMissingInput
 
         $this->createClass($force);
 
-        $this->info('Livewire Datatable Created: '.$this->parser->className());
+        $this->info('Livewire Datatable Created: '.$this->className);
     }
 
     protected function createClass(bool $force = false): bool
     {
-        $classPath = $this->parser->classPath();
-
-        if (! $force && File::exists($classPath)) {
-            $this->line("<fg=red;options=bold>Class already exists:</> {$this->parser->relativeClassPath()}");
+        if (! $force && File::exists($this->classPath)) {
+            $this->line("<fg=red;options=bold>Class already exists:</> {$this->classPath}");
 
             return false;
         }
 
-        $this->ensureDirectoryExists($classPath);
+        $this->ensureDirectoryExists($this->classPath);
 
-        File::put($classPath, $this->classContents());
+        File::put($this->classPath, $this->classContents());
 
-        return $classPath;
+        return true;
     }
 
     protected function ensureDirectoryExists(string $path): void
@@ -108,7 +112,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
     {
         return str_replace(
             ['[namespace]', '[class]', '[model]', '[model_import]', '[columns]'],
-            [$this->parser->classNamespace(), $this->parser->className(), $this->model, $this->getModelImport(), $this->generateColumns($this->getModelImport())],
+            [$this->classNamespace, $this->className, $this->model, $this->getModelImport(), $this->generateColumns($this->getModelImport())],
             file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'table.stub')
         );
     }
