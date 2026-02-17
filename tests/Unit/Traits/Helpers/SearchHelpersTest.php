@@ -183,7 +183,7 @@ final class SearchHelpersTest extends TestCase
 
         $temp->resetSearchConfiguration()->setSearchBlur();
 
-        $this->assertSame('.blur', $temp->getSearchOptions());
+        $this->assertSame('.live.blur', $temp->getSearchOptions());
 
         $temp->resetSearchConfiguration()->setSearchLazy();
 

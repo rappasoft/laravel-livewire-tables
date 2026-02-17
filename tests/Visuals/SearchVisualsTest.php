@@ -59,9 +59,9 @@ final class SearchVisualsTest extends TestCase
     public function test_search_blur_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)
-            ->assertDontSeeHtml('wire:model.blur="search"')
+            ->assertDontSeeHtml('wire:model.live.blur="search"')
             ->call('setSearchBlur')
-            ->assertSeeHtml('wire:model.blur="search"');
+            ->assertSeeHtml('wire:model.live.blur="search"');
     }
 
     public function test_search_lazy_filter_is_applied(): void

@@ -12,7 +12,7 @@ class LivewireComponentArrayFilter extends Filter
     use HasOptions;
     use IsLivewireComponentFilter;
 
-    public string $wireMethod = 'blur';
+    public string $wireMethod = 'live.blur';
 
     protected string $view = 'livewire-tables::components.tools.filters.livewire-component-array-filter';
 
