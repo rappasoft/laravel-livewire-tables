@@ -92,7 +92,7 @@ For the following Filters, you may customise how the input is wire:model into th
 You may override this using the following methods, on any of the above Filter types:
 
 ### setWireBlur()
-Forces the filter to use a wire:model.blur approach
+Forces the filter to use a wire:model.live.blur approach
 ```php
     TextFilter::make('Name')
     ->config([
