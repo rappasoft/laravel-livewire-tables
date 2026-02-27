@@ -8,7 +8,7 @@
     @endif
 >
     @if($hasIconLeft)
-        @svg($iconLeft, $iconLeftAttributes->get('class'), $iconLeftAttributes->except('class')->getAttributes())
+        @svg($iconLeft, $iconLeftAttributes->get('class'), $iconLeftAttributes->except(['class', 'default-styling'])->getAttributes())
     @endif
     @if($column->isHtml())
         {!! $title !!}
@@ -16,6 +16,6 @@
         {{ $title }}
     @endif
     @if($hasIconRight)
-        @svg($iconRight, $iconRightAttributes->get('class'), $iconRightAttributes->except('class')->getAttributes())
+        @svg($iconRight, $iconRightAttributes->get('class'), $iconRightAttributes->except(['class', 'default-styling'])->getAttributes())
     @endif
 </button>
