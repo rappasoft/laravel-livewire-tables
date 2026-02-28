@@ -34,10 +34,8 @@ abstract class DataTableComponent extends Component
      * Returns a placeholder view for Livewire lazy loading support.
      * Uses the configured lazy placeholder view if set, otherwise falls back to the default.
      * Override this method in your table component to provide a fully custom placeholder.
-     *
-     * @param  array<string, mixed>  $params
      */
-    public function placeholder(array $params = []): \Illuminate\Contracts\View\View
+    public function placeholder()
     {
         $content = null;
 
@@ -49,6 +47,7 @@ abstract class DataTableComponent extends Component
 
         return view('livewire-tables::lazy-placeholder', [
             'lazyPlaceholderContent' => $content,
+            'alpineDefaultScope' => $this->getAlpineDefaultScope(),
             'isTailwind' => $this->isTailwind,
             'isBootstrap' => $this->isBootstrap,
             'isBootstrap4' => $this->isBootstrap4,

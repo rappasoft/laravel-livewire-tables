@@ -7,7 +7,7 @@
 @php($isBootstrap5 = $this->isBootstrap5)
 @php($localisationPath = $this->getLocalisationPath)
 
-<div x-data="{ currentlyReorderingStatus: false, paginationTotalItemCount: 0, paginationCurrentCount: 0, paginationCurrentItems: [], selectedItems: [], selectAllStatus: false, delaySelectAll: false, hideBulkActionsWhenEmpty: false, reorderStatus: false, reorderDisplayColumn: false, shouldBeDisplayed: true, filtersOpen: false }">
+<div x-data="{{ $this->getAlpineDefaultScope() }}">
     <div {{ $this->getTopLevelAttributes() }}>
 
             @includeWhen(
