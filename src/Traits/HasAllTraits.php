@@ -10,6 +10,7 @@ trait HasAllTraits
     // Note Specific Order Below!
     use WithTableHooks;
     use HasLocalisations,
+        WithLazyPlaceholder,
         WithLoadingPlaceholder,
         HasTheme,
         WithFilters;

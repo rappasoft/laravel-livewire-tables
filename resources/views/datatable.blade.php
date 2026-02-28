@@ -7,9 +7,8 @@
 @php($isBootstrap5 = $this->isBootstrap5)
 @php($localisationPath = $this->getLocalisationPath)
 
-<div>
-    <div x-data="{ currentlyReorderingStatus: false }">
-        <div {{ $this->getTopLevelAttributes() }}>
+<div x-data="{ currentlyReorderingStatus: false, paginationTotalItemCount: 0, paginationCurrentCount: 0, paginationCurrentItems: [], selectedItems: [], selectAllStatus: false, delaySelectAll: false, hideBulkActionsWhenEmpty: false, reorderStatus: false, reorderDisplayColumn: false, shouldBeDisplayed: true, filtersOpen: false }">
+    <div {{ $this->getTopLevelAttributes() }}>
 
             @includeWhen(
                 $this->hasConfigurableAreaFor('before-wrapper'),
@@ -157,6 +156,5 @@
                 $this->getParametersForConfigurableArea('after-wrapper')
             )
 
-        </div>
     </div>
 </div>
