@@ -40,7 +40,7 @@ final class NumberFilterVisualsTest extends FilterVisualsTestCase
                 ];
             }
         })
-            ->assertSeeHtml('<input wire:model.blur="filterComponents.numberfilter" class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-800 dark:text-white dark:border-gray-600" id="table-filter-numberfilter" max="100" min="20" steps="0.5" type="number" wire:key="table-filter-number-numberfilter" />');
+            ->assertSeeHtml('<input wire:model.live.blur="filterComponents.numberfilter" class="block w-full rounded-md shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-800 dark:text-white dark:border-gray-600" id="table-filter-numberfilter" max="100" min="20" steps="0.5" type="number" wire:key="table-filter-number-numberfilter" />');
 
     }
 }

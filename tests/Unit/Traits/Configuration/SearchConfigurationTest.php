@@ -139,7 +139,7 @@ final class SearchConfigurationTest extends TestCase
         $this->basicTable->setSearchBlur();
 
         $this->assertTrue($this->basicTable->hasSearchBlur());
-        $this->assertSame('.blur', $this->basicTable->getSearchOptions());
+        $this->assertSame('.live.blur', $this->basicTable->getSearchOptions());
     }
 
     public function test_cant_set_search_blur_with_other_search_modifiers(): void

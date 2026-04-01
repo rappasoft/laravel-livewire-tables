@@ -14,7 +14,7 @@ class DateRangeFilter extends Filter
         HasConfig;
     use HasWireables;
 
-    public string $wireMethod = 'blur';
+    public string $wireMethod = 'live.blur';
 
     protected string $view = 'livewire-tables::components.tools.filters.date-range';
 
