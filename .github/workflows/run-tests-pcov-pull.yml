@@ -3,25 +3,27 @@ name: run-tests-pcov-pull
 on:
   push:
     branches:
-      - 'development'
-      - 'master'
+      - development
+      - master
   pull_request:
     branches:
-      - 'development'
-      - 'master'
+      - development
+      - master
 
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-24.04]
         php: [8.3]
-        laravel: [11]
+        laravel: [11, 13]
         stability: [prefer-dist]
 
     name: PCOV - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-withpcov
       extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pcov,pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo
@@ -71,11 +73,11 @@ jobs:
           restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           composer config github-oauth.github.com $GITHUB_TOKEN
-          
+
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
@@ -98,5 +100,3 @@ jobs:
           token: $CODECOV_TOKEN
           files: ./coverage.xml
           verbose: true
-
-

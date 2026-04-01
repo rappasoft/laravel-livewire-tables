@@ -3,22 +3,27 @@ name: Run Tests Pull
 on:
   pull_request:
     branches:
-      - 'development'
-      - 'master'
+      - development
+      - master
 
 jobs:
   test-laravel10:
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
       max-parallel: 2
       matrix:
         os: [ubuntu-latest]
         php: [8.2, 8.3]
-        laravel: [10.*]
+        laravel: ['10.*', '13.*']
         stability: [prefer-dist]
+        exclude:
+          - laravel: '13.*'
+            php: 8.2
 
     name: PULL PHP-${{ matrix.php }} - Laravel-10
+
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, :psr
@@ -26,7 +31,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup cache environment
         id: extcache
         uses: shivammathur/cache-extensions@v1
@@ -68,11 +73,11 @@ jobs:
           restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           composer config github-oauth.github.com $GITHUB_TOKEN
-          
+
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
@@ -92,16 +97,21 @@ jobs:
 
   test-laravel11:
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
       max-parallel: 2
       matrix:
         os: [ubuntu-latest]
         php: [8.2, 8.3, 8.4]
-        laravel: [11.*]
+        laravel: ['11.*', '13.*']
         stability: [prefer-dist]
+        exclude:
+          - laravel: '13.*'
+            php: 8.2
 
     name: PULL PHP-${{ matrix.php }} - Laravel-11
+
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
       extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, :psr
@@ -109,7 +119,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup cache environment
         id: extcache
         uses: shivammathur/cache-extensions@v1
@@ -151,11 +161,11 @@ jobs:
           restore-keys: ${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           composer config github-oauth.github.com $GITHUB_TOKEN
-          
+
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
@@ -175,16 +185,21 @@ jobs:
 
   test-laravel12:
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
       max-parallel: 2
       matrix:
         os: [ubuntu-latest]
         php: [8.2, 8.3, 8.4]
-        laravel: [12.*]
+        laravel: ['12.*', '13.*']
         stability: [prefer-dist]
+        exclude:
+          - laravel: '13.*'
+            php: 8.2
 
     name: PULL PHP-${{ matrix.php }} - Laravel-12
+
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
       extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, :psr
@@ -192,7 +207,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup cache environment
         id: extcache
         uses: shivammathur/cache-extensions@v1
@@ -234,11 +249,11 @@ jobs:
           restore-keys: ${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-composer-
 
       - name: Add token
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           composer config github-oauth.github.com $GITHUB_TOKEN
-          
+
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
