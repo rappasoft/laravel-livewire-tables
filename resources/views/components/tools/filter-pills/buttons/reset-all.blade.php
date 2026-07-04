@@ -1,10 +1,22 @@
 @aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
-@if ($isTailwind)
+
+@if($isBootstrap)
     <button
         x-on:click.prevent="resetAllFilters"
-        @class([
-            'focus:outline-none active:outline-none'
-        ])>
+        type="button"
+        {{
+            $attributes->merge($this->getFilterPillsResetAllButtonAttributes)
+            ->class(['lwt-pills__clear' => ($this->getFilterPillsResetAllButtonAttributes['default-styling'] ?? true)])
+            ->except(['default-styling', 'default-colors'])
+        }}
+    >
+        <i class="bi bi-x-circle" aria-hidden="true"></i>
+        <span>{{ __($localisationPath.'Clear') }}</span>
+    </button>
+@elseif ($isTailwind)
+    <button
+        x-on:click.prevent="resetAllFilters"
+        class="focus:outline-none active:outline-none">
         <span
             {{
                 $attributes->merge($this->getFilterPillsResetAllButtonAttributes)
@@ -18,19 +30,4 @@
             {{ __($localisationPath.'Clear') }}
         </span>
     </button>
-@else
-    <a
-        href="#"
-        x-on:click.prevent="resetAllFilters"
-        {{
-            $attributes->merge($this->getFilterPillsResetAllButtonAttributes)
-            ->class([
-                'badge badge-pill badge-light' => $isBootstrap4 && ($this->getFilterPillsResetAllButtonAttributes['default-styling'] ?? true),
-                'badge rounded-pill bg-light text-dark text-decoration-none' => $isBootstrap5 && ($this->getFilterPillsResetAllButtonAttribute['default-styling'] ?? true),
-            ])
-            ->except(['default-styling', 'default-colors'])
-        }}
-    >
-        {{ __($localisationPath.'Clear') }}
-    </a>
 @endif
