@@ -4,15 +4,20 @@
             ->merge($this->getFilterPopoverAttributes)
             ->merge(['role' => 'menu'])
             ->class([
-                'w-100' => $this->getFilterPopoverAttributes['default-width'] ?? true,
-                'dropdown-menu mt-md-5' => $this->isBootstrap4,
-                'dropdown-menu' => $this->isBootstrap5,
-            ]) }} x-bind:class="{ 'show': filterPopoverOpen }">
-        @foreach ($this->getVisibleFilters() as $filter)
-            <div id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper" wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar" class="p-2">
-                {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
-            </div>
-        @endforeach
+                'dropdown-menu dropdown-menu-end mt-md-5' => $this->isBootstrap4,
+                'dropdown-menu dropdown-menu-end' => $this->isBootstrap5,
+            ])
+            ->except(['default', 'default-width', 'default-styling', 'default-colors']) }} x-bind:class="{ 'show': filterPopoverOpen }">
+        <div class="lwt-filter-grid">
+            @foreach ($this->getVisibleFilters() as $filter)
+                <div id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper" wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar" @class([
+                    'lwt-filter-col',
+                    'lwt-filter-col--wide' => $filter instanceof \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter || $filter instanceof \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter,
+                ])>
+                    {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
+                </div>
+            @endforeach
+        </div>
 
         @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
             <div class='dropdown-divider'></div>
