@@ -2,8 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 
-use Carbon\Carbon;
-use DateTime;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 trait DateColumnHelpers
@@ -16,7 +15,7 @@ trait DateColumnHelpers
         return $this->emptyValue;
     }
 
-    public function getValue(Model $row): Carbon|DateTime|string|null
+    public function getValue(Model $row): DateTimeInterface|string|null
     {
         if ($this->isBaseColumn()) {
             return $row->{$this->getField()};

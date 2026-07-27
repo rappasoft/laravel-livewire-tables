@@ -58,6 +58,20 @@ final class DateColumnTest extends ColumnTestCase
         $this->assertSame('04-05-2023', $column->getContents($rows->last()));
     }
 
+    public function test_can_get_column_contents_for_immutable_datetime_casts(): void
+    {
+        // No inputFormat on purpose: an immutable cast must reach getContents() as a
+        // DateTimeInterface and be formatted directly, never string-coerced and re-parsed
+        $column = self::$columnInstance->outputFormat('d-m-Y');
+
+        $row = $this->basicTable->getRows()->last();
+        $row->mergeCasts(['last_visit' => 'immutable_datetime']);
+
+        $this->assertInstanceOf(\Carbon\CarbonImmutable::class, $row->last_visit);
+        $this->assertInstanceOf(\DateTimeInterface::class, $column->getValue($row));
+        $this->assertSame('04-05-2023', $column->getContents($row));
+    }
+
     public function test_can_not_get_column_reformatted_contents_with_bad_values(): void
     {
         $column = self::$columnInstance->inputFormat('d-m-Y')->outputFormat('d-m-Y');
