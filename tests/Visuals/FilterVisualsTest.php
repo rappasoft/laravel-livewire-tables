@@ -2,11 +2,17 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Visuals;
 
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableNoFilters;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 #[Group('Visuals')]
 final class FilterVisualsTest extends TestCase
@@ -177,34 +183,34 @@ final class FilterVisualsTest extends TestCase
             public function filters(): array
             {
                 return [
-                    \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter::make('Breed')
+                    MultiSelectFilter::make('Breed')
                         ->options(
-                            \Rappasoft\LaravelLivewireTables\Tests\Models\Breed::query()
+                            Breed::query()
                                 ->orderBy('name')
                                 ->get()
                                 ->keyBy('id')
                                 ->map(fn ($breed) => $breed->name)
                                 ->toArray()
                         )
-                        ->filter(function (\Illuminate\Database\Eloquent\Builder $builder, array $values) {
+                        ->filter(function (Builder $builder, array $values) {
                             return $builder->whereIn('pets.breed_id', $values);
                         }),
-                    \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter::make('Species')
+                    MultiSelectDropdownFilter::make('Species')
                         ->options(
-                            \Rappasoft\LaravelLivewireTables\Tests\Models\Species::query()
+                            Species::query()
                                 ->orderBy('name')
                                 ->get()
                                 ->keyBy('id')
                                 ->map(fn ($species) => $species->name)
                                 ->toArray()
                         )
-                        ->filter(function (\Illuminate\Database\Eloquent\Builder $builder, array $values) {
+                        ->filter(function (Builder $builder, array $values) {
                             return $builder->whereIn('pets.species_id', $values);
                         })
                         ->setPillsSeparator('<br />'),
 
-                    \Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter::make('Pet Name', 'pet_name_filter')
-                        ->filter(function (\Illuminate\Database\Eloquent\Builder $builder, string $value) {
+                    TextFilter::make('Pet Name', 'pet_name_filter')
+                        ->filter(function (Builder $builder, string $value) {
                             return $builder->where('pets.name', '=', $value);
                         }),
                 ];

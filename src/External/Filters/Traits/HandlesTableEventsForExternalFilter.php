@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\External\Filters\Traits;
 
+use Illuminate\View\View;
 use Livewire\Attributes\{On,Renderless};
 
 trait HandlesTableEventsForExternalFilter
@@ -15,7 +16,7 @@ trait HandlesTableEventsForExternalFilter
     }
 
     #[Renderless]
-    public function renderingHandlesTableEventsForExternalFilter(\Illuminate\View\View $view, array $data = []): void
+    public function renderingHandlesTableEventsForExternalFilter(View $view, array $data = []): void
     {
         if ($this->needsUpdating) {
             $this->needsUpdating = false;

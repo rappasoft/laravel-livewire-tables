@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
+use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
@@ -136,11 +137,11 @@ final class ColumnHelpersTest extends TestCase
     {
         $column = Column::make('Name');
 
-        $this->assertSame(\Illuminate\Support\Str::slug($column->getTitle()), $column->getSlug());
+        $this->assertSame(Str::slug($column->getTitle()), $column->getSlug());
 
         $column->setCustomSlug('test123');
 
-        $this->assertSame(\Illuminate\Support\Str::slug('test123'), $column->getSlug());
+        $this->assertSame(Str::slug('test123'), $column->getSlug());
     }
 
     public function test_can_check_if_column_label_should_be_shown(): void

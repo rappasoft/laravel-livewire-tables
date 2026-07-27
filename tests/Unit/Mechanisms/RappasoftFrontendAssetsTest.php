@@ -2,21 +2,24 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Mechanisms;
 
+use Carbon\Carbon;
 use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class RappasoftFrontendAssetsTest extends TestCase
 {
     public function test_js_response_setup_cache_enabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
-        $lastModified = \Carbon\Carbon::now()->timestamp;
+        $lastModified = Carbon::now()->timestamp;
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableJavaScriptAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => $lastModified, 'responseHeaders' => $response->headers->all()];
@@ -29,8 +32,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableJavaScriptAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
@@ -43,8 +46,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableStylesAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
@@ -59,8 +62,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableStylesAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
@@ -75,8 +78,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableThirdPartyStylesAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
@@ -91,8 +94,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableThirdPartyStylesAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
@@ -101,12 +104,12 @@ class RappasoftFrontendAssetsTest extends TestCase
     public function test_third_party_js_response_setup_cache_enabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
-        $lastModified = \Carbon\Carbon::now()->timestamp;
+        $lastModified = Carbon::now()->timestamp;
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableThirdPartyJavaScriptAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => $lastModified, 'responseHeaders' => $response->headers->all()];
@@ -119,8 +122,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableThirdPartyJavaScriptAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];

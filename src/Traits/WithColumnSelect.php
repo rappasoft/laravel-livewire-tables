@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Illuminate\View\View;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
@@ -71,7 +72,7 @@ trait WithColumnSelect
         }
     }
 
-    public function renderingWithColumnSelect(\Illuminate\View\View $view, array $data = []): void
+    public function renderingWithColumnSelect(View $view, array $data = []): void
     {
         if (! $this->getComputedPropertiesStatus()) {
             $view->with([

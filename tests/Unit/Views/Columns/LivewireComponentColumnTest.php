@@ -3,8 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
+use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\TestLivewireColumnComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
@@ -93,7 +95,7 @@ final class LivewireComponentColumnTest extends ColumnTestCase
 
     public static function setup_with_public_methods()
     {
-        \Livewire\Livewire::component('test-livewire-column-component', \Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\TestLivewireColumnComponent::class);
+        Livewire::component('test-livewire-column-component', TestLivewireColumnComponent::class);
 
         $row = Pet::find(1);
 

@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
+use Illuminate\Support\HtmlString;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
@@ -63,7 +64,7 @@ final class LinkColumnTest extends ColumnTestCase
 
         $rows = $this->basicTable->getRows();
         $location = '#'.$rows->first()->id;
-        $htmlString = new \Illuminate\Support\HtmlString('<a href="'.$location.'"><strong>My Label</strong></a>');
+        $htmlString = new HtmlString('<a href="'.$location.'"><strong>My Label</strong></a>');
 
         // Removing every whitespace and line break for the comparison
         $expectedHtml = preg_replace('/\s+/', '', $htmlString->toHtml());

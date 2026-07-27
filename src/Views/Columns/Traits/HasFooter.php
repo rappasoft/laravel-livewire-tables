@@ -2,7 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\HtmlString;
+use Illuminate\View\Factory;
+use Illuminate\View\View;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
@@ -71,7 +74,7 @@ trait HasFooter
         return $callback instanceof Filter;
     }
 
-    public function getFooterContents(mixed $rows, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string|HtmlString
+    public function getFooterContents(mixed $rows, array $filterGenericData): Application|Factory|View|string|HtmlString
     {
         $value = null;
         if ($this->hasFooterCallback()) {
@@ -118,7 +121,7 @@ trait HasFooter
         }
     }
 
-    public function getFooterFilter(?Filter $filter, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string
+    public function getFooterFilter(?Filter $filter, array $filterGenericData): Application|Factory|View|string
     {
         if ($filter !== null) {
             return $filter->setFilterPosition('footer')->setGenericDisplayData($filterGenericData)->render();

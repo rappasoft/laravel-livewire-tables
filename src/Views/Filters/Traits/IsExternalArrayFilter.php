@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
+use Illuminate\View\View;
 use Livewire\Attributes\{Modelable, On, Renderless};
 
 trait IsExternalArrayFilter
@@ -59,7 +60,7 @@ trait IsExternalArrayFilter
     }
 
     #[Renderless]
-    public function renderingIsExternalArrayFilter(\Illuminate\View\View $view, array $data = []): void
+    public function renderingIsExternalArrayFilter(View $view, array $data = []): void
     {
         $returnValues = [];
 

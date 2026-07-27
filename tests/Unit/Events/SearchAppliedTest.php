@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Events;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Event;
 use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
@@ -59,7 +60,7 @@ final class SearchAppliedTest extends TestCase
     {
         Event::fake();
 
-        $user = new \Illuminate\Foundation\Auth\User;
+        $user = new User;
         $user->id = '1234';
         $user->name = 'Bob';
         $this->actingAs($user);
@@ -78,7 +79,7 @@ final class SearchAppliedTest extends TestCase
 
         config()->set('livewire-tables.events.enableUserForEvent', false);
 
-        $user = new \Illuminate\Foundation\Auth\User;
+        $user = new User;
         $user->id = '1234';
         $user->name = 'Bob';
         $this->actingAs($user);
