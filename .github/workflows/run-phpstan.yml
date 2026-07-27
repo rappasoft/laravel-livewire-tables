@@ -17,7 +17,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [8.4]
-        laravel: [12]
+        laravel: [13]
         stability: [prefer-dist]
 
     name: PHPStan - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
