@@ -2,8 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
-use PHPUnit\Framework\Attributes\Group;
+use Carbon\CarbonImmutable;
 // use Illuminate\Support\Facades\Exceptions;
+use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 
@@ -67,7 +68,7 @@ final class DateColumnTest extends ColumnTestCase
         $row = $this->basicTable->getRows()->last();
         $row->mergeCasts(['last_visit' => 'immutable_datetime']);
 
-        $this->assertInstanceOf(\Carbon\CarbonImmutable::class, $row->last_visit);
+        $this->assertInstanceOf(CarbonImmutable::class, $row->last_visit);
         $this->assertInstanceOf(\DateTimeInterface::class, $column->getValue($row));
         $this->assertSame('04-05-2023', $column->getContents($row));
     }
