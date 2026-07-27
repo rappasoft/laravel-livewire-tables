@@ -11,6 +11,7 @@
     <testsuites>
         <testsuite name="Laravel Livewire Tables Unit Test Suite">
             <directory>tests/Unit</directory>
+            <directory>tests/Localisations/Unit</directory>
         </testsuite>
         <testsuite name="Laravel Livewire Tables Visuals Test Suite">
             <directory>tests/Visuals</directory>
