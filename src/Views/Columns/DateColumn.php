@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Carbon\Carbon;
-use DateTime;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
@@ -32,7 +32,7 @@ class DateColumn extends Column
         try {
             $dateTime = $this->getValue($row);
             if ($dateTime != '' && $dateTime != null) {
-                if ($dateTime instanceof DateTime) {
+                if ($dateTime instanceof DateTimeInterface) {
                     return $dateTime->format($this->getOutputFormat());
                 } else {
                     // Check if format matches what is expected and return Carbon instance if so, otherwise emptyValue
