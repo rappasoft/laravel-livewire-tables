@@ -3,6 +3,12 @@
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [v3.8.0] - 2026-07-28
+### Behavior Changes
+These are intentional fixes, but they change existing behavior. Review them before upgrading.
+
+- **PostgreSQL string filters are now case-insensitive.** The wildcard string filters (`contains`, `notContains`, `startsWith`, `notStartsWith`, `endsWith`, `notEndsWith`) now use `ilike` on PostgreSQL instead of `like`, matching the search box. Queries that previously relied on case-sensitive filtering will return more rows. No other driver is affected — PostgreSQL is the only supported driver whose `like` is case-sensitive by default.
+- **`resources/views/components/table/th/bulk-actions.blade.php` changed.** The "select all" header checkbox now routes through the Alpine `setAllSelected()` method so `setDelaySelectAllEnabled()` is honoured, and reads `paginationTotalSelectableItemCount` instead of `paginationTotalItemCount`. If you published this view, your copy is unaffected by the upgrade and will keep the old behavior — re-publish it or merge the change by hand to pick up the fix.
+
 ### New Features
 - Laravel 13 support by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
 
