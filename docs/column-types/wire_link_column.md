@@ -36,6 +36,28 @@ And you may also pass an array of attributes, which will be applied to the "butt
         ]),
 ```
 
+## Icons
+
+You may display an icon alongside the title. The icon string is used as a CSS class, so it works with any icon font (FontAwesome, Bootstrap Icons, etc.)
+
+```php
+    WireLinkColumn::make("Delete Item")
+        ->title(fn($row) => 'Delete Item')
+        ->action(fn($row) => 'delete("'.$row->id.'")')
+        ->setIcon('fas fa-trash'),
+```
+
+The icon appears to the right of the title by default. Use `setIconLeft()` / `setIconRight()` to change the side, and `setIconAttributes()` to customise the `<i>` element:
+
+```php
+    WireLinkColumn::make("Delete Item")
+        ->title(fn($row) => 'Delete Item')
+        ->action(fn($row) => 'delete("'.$row->id.'")')
+        ->setIcon('fas fa-trash')
+        ->setIconLeft()
+        ->setIconAttributes(['class' => 'text-red-500']),
+```
+
 Please also see the following for other available methods:
 <ul>
     <li>

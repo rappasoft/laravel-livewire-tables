@@ -32,4 +32,15 @@ abstract class DataTableComponent extends Component
     {
         return view('livewire-tables::datatable');
     }
+
+    /**
+     * Livewire's default lazy placeholder is a bare <div>, which Alpine initialises
+     * before the real table is morphed in, so every x-show/x-bind in the table then
+     * throws a ReferenceError. Carrying the fallback scope avoids that.
+     * Override this to render a skeleton instead.
+     */
+    public function placeholder(): string
+    {
+        return '<div x-data="'.$this->getAlpineFallbackScope().'"></div>';
+    }
 }

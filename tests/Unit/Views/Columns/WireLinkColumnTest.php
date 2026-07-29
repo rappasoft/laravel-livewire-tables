@@ -51,6 +51,18 @@ class WireLinkColumnTest extends ColumnTestCase
         $this->assertNotEmpty($column);
     }
 
+    public function test_can_render_icon_on_either_side_of_the_title(): void
+    {
+        $column = WireLinkColumn::make('Name')->title(fn ($row) => 'Edit')->action(fn ($row) => 'delete("'.$row->id.'")')->setIcon('fas fa-pencil');
+
+        // Right is the HasIcon default
+        $this->assertStringContainsString('>Edit<i class="ml-1 fas fa-pencil"></i></button>', $column->getContents(Pet::find(1))->render());
+
+        $column->setIconLeft();
+
+        $this->assertStringContainsString('><i class="mr-1 fas fa-pencil"></i>Edit</button>', $column->getContents(Pet::find(1))->render());
+    }
+
     public function test_can_add_confirm_message(): void
     {
         $this->assertFalse(self::$columnInstance->hasConfirmMessage());

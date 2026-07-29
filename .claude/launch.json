@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "demo",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/Rappa/Documents/Programming/Local/GitHub/Packages/Livewire Tables Demo' && php artisan serve --port=8123"
+      ],
+      "port": 8123
+    }
+  ]
+}

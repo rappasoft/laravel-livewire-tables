@@ -92,6 +92,9 @@ jobs:
       - name: Run Visuals Tests
         run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
 
+      - name: Run Localisation Presence Tests
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Localisations Presence" --no-coverage
+
   test-laravel11:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -174,6 +177,9 @@ jobs:
 
       - name: Run Visuals Tests
         run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
+
+      - name: Run Localisation Presence Tests
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Localisations Presence" --no-coverage
 
   test-laravel12:
     runs-on: ${{ matrix.os }}
@@ -258,6 +264,9 @@ jobs:
       - name: Run Visuals Tests
         run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
 
+      - name: Run Localisation Presence Tests
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Localisations Presence" --no-coverage
+
   test-laravel13:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -340,3 +349,6 @@ jobs:
 
       - name: Run Visuals Tests
         run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
+
+      - name: Run Localisation Presence Tests
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Localisations Presence" --no-coverage

@@ -34,16 +34,6 @@ trait ColumnHelpers
                     $this->columnsWithSecondaryHeader = true;
                 }
 
-                if ($column instanceof AggregateColumn) {
-                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
-                        $this->addExtraWithCount($column->getDataSource());
-                    } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
-                        $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
-                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
-                        $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
-                    }
-                }
-
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {
                         $column->setTable($this->getBuilder()->getModel()->getTable());
@@ -56,6 +46,40 @@ trait ColumnHelpers
             });
 
         $this->hasRunColumnSetup = true;
+    }
+
+    /**
+     * Registers the withCount/withSum/withAvg for each AggregateColumn.
+     *
+     * Deliberately not part of setupColumns(): setupColumnSelect() calls getColumns(),
+     * so at that point selectedColumns is still empty and every aggregate would look
+     * deselected. Called from baseQuery() instead, and only once per request.
+     */
+    protected function setupAggregateColumns(): void
+    {
+        if ($this->hasRunAggregateColumnSetup) {
+            return;
+        }
+
+        $this->hasRunAggregateColumnSetup = true;
+
+        foreach ($this->getColumns() as $column) {
+            if (! $column instanceof AggregateColumn || ! $column->hasDataSource()) {
+                continue;
+            }
+
+            if ($this->getExcludeDeselectedColumnsFromQuery() && $column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)) {
+                continue;
+            }
+
+            if ($column->getAggregateMethod() == 'count') {
+                $this->addExtraWithCount($column->getDataSource());
+            } elseif ($column->getAggregateMethod() == 'sum' && $column->hasForeignColumn()) {
+                $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
+            } elseif ($column->getAggregateMethod() == 'avg' && $column->hasForeignColumn()) {
+                $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
+            }
+        }
     }
 
     public function getColumns(): Collection

@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
+use Closure;
+
 trait BulkActionsConfiguration
 {
     /**
@@ -191,6 +193,17 @@ trait BulkActionsConfiguration
     public function setDelaySelectAllDisabled(): self
     {
         $this->setDelaySelectAllStatus(false);
+
+        return $this;
+    }
+
+    /**
+     * Rows for which the callback returns false get no bulk action checkbox,
+     * and are left out of "select all".
+     */
+    public function setBulkActionsRowFilter(Closure $callback): self
+    {
+        $this->bulkActionsRowFilter = $callback;
 
         return $this;
     }

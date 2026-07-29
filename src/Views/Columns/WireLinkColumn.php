@@ -11,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\WireLinkColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\WireLinkColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasActionCallback,HasConfirmation, HasTitleCallback};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasActionCallback,HasConfirmation, HasIcon, HasTitleCallback};
 
 class WireLinkColumn extends Column
 {
@@ -19,7 +19,8 @@ class WireLinkColumn extends Column
         WireLinkColumnHelpers,
         HasActionCallback,
         HasTitleCallback,
-        HasConfirmation;
+        HasConfirmation,
+        HasIcon;
 
     protected string $view = 'livewire-tables::includes.columns.wire-link';
 

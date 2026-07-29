@@ -46,6 +46,10 @@ trait WithPagination
     // Entangled in JS
     public ?int $paginationTotalItemCount = null;
 
+    // Mirrors paginationTotalItemCount unless a bulk actions row filter is set,
+    // in which case it stays -1 until "select all" has run
+    public int $paginationTotalSelectableItemCount = -1;
+
     public array $numberOfPaginatorsRendered = [];
 
     // standard, simple, cursor

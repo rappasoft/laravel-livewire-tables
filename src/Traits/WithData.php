@@ -31,7 +31,16 @@ trait WithData
         $executedQuery = $this->executeQuery();
 
         // Get All Currently Paginated Items Primary Keys
-        $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
+        // filtered in place rather than as a second property, this is only read by selectAllOnPage()
+        $this->paginationCurrentItems = $executedQuery
+            ->filter(fn ($row) => $this->rowIsSelectable($row))
+            ->pluck($this->getPrimaryKey())
+            ->values()
+            ->toArray() ?? [];
+
+        if (! $this->hasBulkActionsRowFilter()) {
+            $this->paginationTotalSelectableItemCount = $this->paginationTotalItemCount ?? -1;
+        }
 
         // Get Count of Items in Current Page
         $this->paginationCurrentCount = $executedQuery->count();
@@ -56,6 +65,8 @@ trait WithData
         $this->setBuilder($this->applyFilters());
 
         $builder = $this->getBuilder();
+
+        $this->setupAggregateColumns();
 
         if ($this->hasExtraWiths()) {
             $builder->with($this->getExtraWiths());
@@ -116,9 +127,15 @@ trait WithData
 
             } elseif ($this->isPaginationMethod('cursor')) {
 
-                $this->paginationTotalItemCount = $this->getBuilder()->count();
+                if ($this->getShouldRetrieveTotalItemCount()) {
+                    $this->paginationTotalItemCount = $this->getBuilder()->count();
 
-                return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                    return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? $this->paginationTotalItemCount : $this->getPerPage(), ['*'], $this->getComputedPageName());
+                }
+
+                $this->paginationTotalItemCount = -1;
+
+                return $this->getBuilder()->cursorPaginate($this->getPerPage() === -1 ? 10 : $this->getPerPage(), ['*'], $this->getComputedPageName());
             } else {
                 throw new DataTableConfigurationException('Pagination method must be either simple, standard or cursor');
             }

@@ -2,6 +2,7 @@
 <div @class([
         'ml-0 ml-md-2' => $isBootstrap4,
         'ms-0 ms-md-2' => $isBootstrap5,
+        'mb-4 w-full md:w-auto md:mb-0 md:ml-2' => $isTailwind,
     ])
 >
     <select wire:model.live="perPage" id="{{ $tableName }}-perPage"

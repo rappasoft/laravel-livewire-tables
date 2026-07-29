@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Closure;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\BulkActionsConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\BulkActionsHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\Styling\HasBulkActionsStyling;
@@ -20,6 +21,8 @@ trait WithBulkActions
     public array $bulkActions = [];
 
     public array $bulkActionConfirms = [];
+
+    protected ?Closure $bulkActionsRowFilter = null;
 
     // Entangled in JS
     public array $selected = [];

@@ -359,4 +359,19 @@ final class PaginationVisualsTest extends TestCase
                 'class="bg-gre-500 dark:bg-ba-500"',
             ]);
     }
+
+    public function test_every_pagination_button_is_typed(): void
+    {
+        // A <button> with no type submits the surrounding form, so a table inside
+        // a <form wire:submit> used to submit it on every pagination click
+        foreach (glob(__DIR__.'/../../resources/views/specific/*/*pagination.blade.php') as $blade) {
+            $contents = file_get_contents($blade);
+
+            $this->assertSame(
+                substr_count($contents, '<button'),
+                substr_count($contents, 'type="button"'),
+                basename(dirname($blade)).'/'.basename($blade).' has an untyped <button>'
+            );
+        }
+    }
 }

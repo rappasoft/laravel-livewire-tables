@@ -7,6 +7,30 @@ use Livewire\Attributes\Computed;
 trait FilterMenuStylingHelpers
 {
     /**
+     * Used to get attributes for the Filter Button
+     *
+     * @return array<mixed>
+     */
+    #[Computed]
+    public function getFilterButtonAttributes(): array
+    {
+        return $this->filterButtonAttributes;
+
+    }
+
+    /**
+     * Used to get attributes for the Filter Button Badge
+     *
+     * @return array<mixed>
+     */
+    #[Computed]
+    public function getFilterButtonBadgeAttributes(): array
+    {
+        return $this->filterButtonBadgeAttributes;
+
+    }
+
+    /**
      * Used to get attributes for the Filter Popover
      *
      * @return array<mixed>

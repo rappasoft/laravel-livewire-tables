@@ -7,6 +7,22 @@ use Closure;
 trait FilterMenuStylingConfiguration
 {
     /**
+     * Used to set attributes for the Filter Button
+     */
+    public function setFilterButtonAttributes(array $attributes): self
+    {
+        return $this->mergeCustomAttributes(propertyName: 'filterButtonAttributes', customAttributes: $attributes);
+    }
+
+    /**
+     * Used to set attributes for the Filter Button Badge
+     */
+    public function setFilterButtonBadgeAttributes(array $attributes): self
+    {
+        return $this->mergeCustomAttributes(propertyName: 'filterButtonBadgeAttributes', customAttributes: $attributes);
+    }
+
+    /**
      * Used to set attributes for the Filter Popover
      */
     public function setFilterPopoverAttributes(array $attributes): self
