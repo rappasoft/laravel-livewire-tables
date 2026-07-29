@@ -2,6 +2,21 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.8.0] - 2026-07-28
+### New Features
+- Laravel 13 support by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+
+### Bug Fixes
+- DateColumn no longer blanks out `immutable_date`/`immutable_datetime` casts — `CarbonImmutable` is now formatted directly instead of being coerced to a string and re-parsed by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- Search is now case-insensitive on PostgreSQL, which uses `ilike` instead of `like` by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- Prevent InvalidCharacterError by correctly rendering x-cloak attribute by @pascalberski in https://github.com/rappasoft/laravel-livewire-tables/pull/2266
+- Key the x-cloak for TableAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2271
+- Change w-100 to w-auto for Bootstrap Bulk Actions Menu and ColumnSelect by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2270
+
+### Tweaks
+- Pin Livewire to `^3.0`, dropping the `dev-main` constraint that pulled in Livewire 4 by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- Restore CI: run the test suite across Laravel 10–13, run the localisation suite, and remove the stale bot by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+
 ## [v3.7.3] - 2025-05-03
 ### Bug Fixes
 - Interim fix for Livewire Component Columns to mitigate core Livewire bug by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2258
