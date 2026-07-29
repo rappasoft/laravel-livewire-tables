@@ -31,7 +31,16 @@ trait WithData
         $executedQuery = $this->executeQuery();
 
         // Get All Currently Paginated Items Primary Keys
-        $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
+        // ponytail: filtered in place rather than as a second property, this is only read by selectAllOnPage()
+        $this->paginationCurrentItems = $executedQuery
+            ->filter(fn ($row) => $this->rowIsSelectable($row))
+            ->pluck($this->getPrimaryKey())
+            ->values()
+            ->toArray() ?? [];
+
+        if (! $this->hasBulkActionsRowFilter()) {
+            $this->paginationTotalSelectableItemCount = $this->paginationTotalItemCount ?? -1;
+        }
 
         // Get Count of Items in Current Page
         $this->paginationCurrentCount = $executedQuery->count();

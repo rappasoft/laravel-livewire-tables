@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -156,7 +157,39 @@ trait BulkActionsHelpers
     public function setAllSelected(): void
     {
         $this->setSelectAllEnabled();
+
+        if ($this->hasBulkActionsRowFilter()) {
+            // The filter is a PHP callback, so the rows have to be fetched to apply it.
+            // Qualified select because joinRelations() would otherwise overwrite the
+            // primary key with a joined table's id
+            $selected = (clone $this->baseQuery())
+                ->select($this->getBuilder()->getModel()->getTable().'.*')
+                ->get()
+                ->filter(fn (Model $row) => $this->rowIsSelectable($row))
+                ->map(fn (Model $row) => (string) $row->{$this->getPrimaryKey()})
+                ->values()
+                ->toArray();
+
+            // Cheaper than counting the selectable rows on every render, and the
+            // select all checkbox only needs the total once it has been used
+            $this->paginationTotalSelectableItemCount = count($selected);
+
+            $this->setSelected($selected);
+
+            return;
+        }
+
         $this->setSelected((clone $this->baseQuery())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => (string) $item)->toArray());
+    }
+
+    public function hasBulkActionsRowFilter(): bool
+    {
+        return $this->bulkActionsRowFilter !== null;
+    }
+
+    public function rowIsSelectable(Model $row): bool
+    {
+        return $this->hasBulkActionsRowFilter() ? (bool) call_user_func($this->bulkActionsRowFilter, $row) : true;
     }
 
     public function showBulkActionsDropdownAlpine(): bool

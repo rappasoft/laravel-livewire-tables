@@ -331,3 +331,15 @@ $this->setSelectAllEnabled();
 ## setDelaySelectAllDisabled
 
 This is the default behaviour, see setDelaySelectEnabled for details on what enabling this does.
+## setBulkActionsRowFilter
+
+Excludes specific rows from bulk actions. Rows for which the callback returns `false` get no checkbox, and are skipped by both "select all" and "select all on page".
+
+```php
+public function configure(): void
+{
+    $this->setBulkActionsRowFilter(fn (Pet $row) => ! $row->is_locked);
+}
+```
+
+The callback runs in PHP rather than SQL, so `setAllSelected()` has to retrieve the rows to apply it. Prefer a filter/search if the same result can be expressed in the query.

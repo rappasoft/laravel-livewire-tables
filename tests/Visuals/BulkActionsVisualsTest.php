@@ -4,7 +4,9 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Visuals;
 
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Group;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FilteredBulkActionsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 #[Group('Visuals')]
@@ -24,6 +26,29 @@ final class BulkActionsVisualsTest extends TestCase
             ->assertSeeHtml('aria-label="Select All"')
             ->assertSeeHtml('aria-label="row 1"')
             ->assertSeeHtml('aria-label="row 2"');
+    }
+
+    public function test_filtered_out_rows_get_no_checkbox_and_are_not_selected_by_select_all(): void
+    {
+        Livewire::test(FilteredBulkActionsTable::class)
+            ->assertSeeHtml('aria-label="row 1"')
+            ->assertDontSeeHtml('aria-label="row 2"')
+            ->assertSeeHtml('aria-label="row 3"')
+            // selectAllOnPage() iterates this, so row 2 must not be in it
+            ->assertSet('paginationCurrentItems', [1, 3, 4, 5])
+            ->call('setAllSelected')
+            ->assertSet('paginationTotalSelectableItemCount', Pet::count() - 1);
+
+        $this->assertNotContains('2', Livewire::test(FilteredBulkActionsTable::class)->call('setAllSelected')->get('selected'));
+    }
+
+    public function test_select_all_still_covers_every_row_without_a_filter(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->call('setBulkActions', ['activate' => 'Activate'])
+            ->assertSet('paginationCurrentItems', [1, 2, 3, 4, 5])
+            ->call('setAllSelected')
+            ->assertCount('selected', Pet::count());
     }
 
     /*
