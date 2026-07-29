@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Core\HasLocalisations;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\ColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\{ColumnHelpers};
+use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers\ColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasLabelAttributes, HasTheme};
 
 trait IsColumn

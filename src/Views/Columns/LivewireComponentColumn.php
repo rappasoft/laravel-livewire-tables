@@ -2,6 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
@@ -24,7 +27,7 @@ class LivewireComponentColumn extends Column
     /**
      * Gets the contents for current row
      */
-    public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|Application|Factory|View
     {
         $this->runPreChecks();
 

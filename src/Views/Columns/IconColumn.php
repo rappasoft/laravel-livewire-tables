@@ -3,7 +3,11 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Closure;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\IconColumnConfiguration;
@@ -28,7 +32,7 @@ class IconColumn extends Column
         $this->html();
     }
 
-    public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|Application|Factory|View
     {
         $attributeBag = $this->getAttributeBag($row);
 

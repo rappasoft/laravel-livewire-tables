@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Http;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Component;
 
 class TestComponent extends Component
@@ -20,7 +21,7 @@ class TestComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        return \Illuminate\Support\Facades\Blade::render(
+        return Blade::render(
             '<div>'.($this->testItem ?? 'Unknown').'</div>');
 
     }

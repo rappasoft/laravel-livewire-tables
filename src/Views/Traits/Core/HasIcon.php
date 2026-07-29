@@ -43,7 +43,7 @@ trait HasIcon
 
     public function getIconRight(): bool
     {
-        return $this->iconRight ?? true;
+        return $this->iconRight;
     }
 
     public function setIconLeft(): self

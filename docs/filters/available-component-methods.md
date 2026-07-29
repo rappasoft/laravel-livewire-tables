@@ -172,6 +172,40 @@ public function configure(): void
 }
 ```
 
+## setFilterButtonAttributes
+
+Allows for the customisation of the appearance of the Filter Button.
+
+You may replace default colors by setting "default-colors" to false, or default styling by setting "default-styling" to false, and specifying replacement classes in the "class" property.
+
+```php
+public function configure(): void
+{
+    $this->setFilterButtonAttributes([
+        'class' => 'border-rose-300 bg-white text-rose-700 hover:bg-rose-50',
+        'default-colors' => false,
+        'default-styling' => true,
+    ]);
+}
+```
+
+## setFilterButtonBadgeAttributes
+
+Allows for the customisation of the appearance of the Filter Button Badge, which displays the count of applied filters.
+
+You may replace default colors by setting "default-colors" to false, or default styling by setting "default-styling" to false, and specifying replacement classes in the "class" property.
+
+```php
+public function configure(): void
+{
+    $this->setFilterButtonBadgeAttributes([
+        'class' => 'bg-rose-100 text-rose-800',
+        'default-colors' => false,
+        'default-styling' => true,
+    ]);
+}
+```
+
 ## setFilterPopoverAttributes
 
 Allows for the customisation of the appearance of the Filter Popover Menu.

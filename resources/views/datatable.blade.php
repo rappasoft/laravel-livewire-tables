@@ -8,7 +8,7 @@
 @php($localisationPath = $this->getLocalisationPath)
 
 <div>
-    <div x-data="{ currentlyReorderingStatus: false }">
+    <div x-data="{{ $this->getAlpineFallbackScope }}">
         <div {{ $this->getTopLevelAttributes() }}>
 
             @includeWhen(

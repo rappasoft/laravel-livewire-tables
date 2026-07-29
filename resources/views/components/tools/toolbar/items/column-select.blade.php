@@ -122,7 +122,7 @@
                 {{
                     $attributes->merge($this->getColumnSelectButtonAttributes())
                     ->class([
-                        'btn dropdown-toggle d-block w-100 d-md-inline' => $this->getColumnSelectButtonAttributes()['default-styling'],
+                        'btn dropdown-toggle d-block w-auto d-md-inline' => $this->getColumnSelectButtonAttributes()['default-styling'],
                     ])
                     ->except(['default-styling', 'default-colors'])
                 }}
@@ -135,8 +135,8 @@
             <div
                 x-bind:class="{ 'show': open }"
                 @class([
-                    'dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3' => $isBootstrap4,
-                    'dropdown-menu dropdown-menu-end w-100' => $isBootstrap5,
+                    'dropdown-menu dropdown-menu-right w-auto mt-0 mt-md-3' => $isBootstrap4,
+                    'dropdown-menu dropdown-menu-end w-auto' => $isBootstrap5,
                 ])
                 aria-labelledby="columnSelect-{{ $tableName }}"
             >

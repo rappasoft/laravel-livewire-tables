@@ -10,6 +10,8 @@ final class EmptyStringTest extends BaseLocalisationCase
     #[DataProvider('localisationProvider')]
     public function test_can_get_localised_empty_message(string $locale): void
     {
+        $localisationStrings = self::getLocaleStrings($locale);
+
         $localisedString = $localisationStrings['No items found, try to broaden your search'] ?? $locale;
         $this->basicTable->changeLocale($locale);
         $this->assertEquals($localisedString, $this->basicTable->getEmptyMessage());

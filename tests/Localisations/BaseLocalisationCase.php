@@ -39,6 +39,7 @@ class BaseLocalisationCase extends TestCase
             'de',
             'en',
             'es',
+            'fa',
             'fr',
             'id',
             'it',

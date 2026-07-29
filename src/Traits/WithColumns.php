@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnHelpers;
@@ -19,6 +20,8 @@ trait WithColumns
     protected ?Collection $appendedColumns;
 
     protected bool $hasRunColumnSetup = false;
+
+    protected bool $hasRunAggregateColumnSetup = false;
 
     /**
      * Sets up Columns
@@ -53,7 +56,7 @@ trait WithColumns
     /**
      * Add Columns to View
      */
-    public function renderingWithColumns(\Illuminate\View\View $view, array $data = []): void
+    public function renderingWithColumns(View $view, array $data = []): void
     {
         if (! $this->getComputedPropertiesStatus()) {
             $view->with([

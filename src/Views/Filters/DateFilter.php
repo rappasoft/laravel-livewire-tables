@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
+use Carbon\Carbon;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\{HandlesDates, HasConfig, HasWireables, IsStringFilter};
 
@@ -22,7 +23,7 @@ class DateFilter extends Filter
     {
         $this->setInputDateFormat('Y-m-d')->setOutputDateFormat($this->getConfig('pillFormat') ?? 'Y-m-d');
         $carbonDate = $this->createCarbonDate($value);
-        if ($carbonDate instanceof \Carbon\Carbon) {
+        if ($carbonDate instanceof Carbon) {
             return $carbonDate->format('Y-m-d');
         }
 
@@ -33,7 +34,7 @@ class DateFilter extends Filter
     {
         if ($this->validate($value)) {
             $carbonDate = $this->createCarbonDate($value);
-            if ($carbonDate instanceof \Carbon\Carbon) {
+            if ($carbonDate instanceof Carbon) {
                 return $this->outputTranslatedDate($carbonDate);
             }
         }

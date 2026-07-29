@@ -54,7 +54,7 @@ final class ActionTest extends TestCase
         $this->assertFalse($action->hasIcon());
 
         $action->setIconAttributes(['class' => 'font-sm text-sm']);
-        $bag = new \Illuminate\View\ComponentAttributeBag(['class' => 'font-sm text-sm', 'default-styling' => true]);
+        $bag = new ComponentAttributeBag(['class' => 'font-sm text-sm', 'default-styling' => true]);
 
         $this->assertSame($bag->getAttributes(), $action->getIconAttributes()->getAttributes());
         $this->assertSame(['class' => 'font-sm text-sm', 'default-styling' => true], $action->iconAttributes);
@@ -267,7 +267,7 @@ final class ActionTest extends TestCase
             public function actions(): array
             {
                 return [
-                    \Rappasoft\LaravelLivewireTables\Views\Actions\Action::make('Test Edit 1')
+                    Action::make('Test Edit 1')
                         ->setRoute('dashboard24'),
                 ];
             }

@@ -9,7 +9,10 @@ use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{BrokenSecondaryHeaderTable, NoBuildMethodTable, NoPrimaryKeyTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableAttributes};
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\IconColumn;
 
 #[Group('Visuals')]
 final class IconColumnVisualsTest extends TestCase
@@ -28,9 +31,9 @@ final class IconColumnVisualsTest extends TestCase
             public function columns(): array
             {
                 return [
-                    \Rappasoft\LaravelLivewireTables\Views\Column::make('Name')->searchable(),
-                    \Rappasoft\LaravelLivewireTables\Views\Columns\IconColumn::make('Old Age', 'age')
-                        ->setIcon(function (\Rappasoft\LaravelLivewireTables\Tests\Models\Pet $row, int $value) {
+                    Column::make('Name')->searchable(),
+                    IconColumn::make('Old Age', 'age')
+                        ->setIcon(function (Pet $row, int $value) {
                             if ($value >= 5) {
                                 return 'heroicon-o-check-circle';
                             } else {

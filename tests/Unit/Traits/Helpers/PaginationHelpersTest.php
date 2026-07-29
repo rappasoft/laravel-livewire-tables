@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
+use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 final class PaginationHelpersTest extends TestCase
@@ -159,6 +160,21 @@ final class PaginationHelpersTest extends TestCase
 
     }
 
+    public function test_cursor_pagination_skips_the_total_item_count_when_disabled(): void
+    {
+        // Avoiding the count() is the whole point of cursor pagination, so the
+        // toggle has to be honoured here and not just for simple pagination
+        $this->basicTable->setPaginationMethod('cursor');
+
+        $this->basicTable->getRows();
+        $this->assertSame(5, $this->basicTable->paginationTotalItemCount);
+
+        $this->basicTable->setShouldRetrieveTotalItemCountDisabled();
+
+        $this->basicTable->getRows();
+        $this->assertSame(-1, $this->basicTable->paginationTotalItemCount);
+    }
+
     public function test_can_toggle_total_item_count_retrieval_via_status(): void
     {
 
@@ -191,15 +207,15 @@ final class PaginationHelpersTest extends TestCase
 
     public function test_can_get_pagination_wrapper_attributes_bag(): void
     {
-        $this->assertSame((new \Illuminate\View\ComponentAttributeBag(['class' => '']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
+        $this->assertSame((new ComponentAttributeBag(['class' => '']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
 
         $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg']);
 
-        $this->assertSame((new \Illuminate\View\ComponentAttributeBag(['class' => 'text-lg']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
+        $this->assertSame((new ComponentAttributeBag(['class' => 'text-lg']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
 
         $this->basicTable->setPaginationWrapperAttributes(['class' => 'text-lg', 'testval' => '123']);
 
-        $this->assertSame((new \Illuminate\View\ComponentAttributeBag(['class' => 'text-lg', 'testval' => '123']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
+        $this->assertSame((new ComponentAttributeBag(['class' => 'text-lg', 'testval' => '123']))->getAttributes(), $this->basicTable->getPaginationWrapperAttributesBag()->getAttributes());
 
     }
 

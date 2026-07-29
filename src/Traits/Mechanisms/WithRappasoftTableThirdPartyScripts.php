@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
 use Livewire\Drawer\Utils;
+use Symfony\Component\HttpFoundation\Response;
 
 trait WithRappasoftTableThirdPartyScripts
 {
@@ -26,7 +27,7 @@ trait WithRappasoftTableThirdPartyScripts
         $this->rappasoftTableScriptThirdPartyRoute = $route;
     }
 
-    public function returnRappasoftTableThirdPartyJavaScriptAsFile(): \Symfony\Component\HttpFoundation\Response
+    public function returnRappasoftTableThirdPartyJavaScriptAsFile(): Response
     {
         return $this->pretendResponseIsJs(__DIR__.'/../../../resources/js/laravel-livewire-tables-thirdparty.min.js');
     }

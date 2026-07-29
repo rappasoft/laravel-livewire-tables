@@ -126,12 +126,23 @@ trait TableAttributeHelpers
         return $this->shouldBeDisplayed;
     }
 
+    /**
+     * Fallback values for the Alpine variables the table views reference, for the
+     * windows where laravellivewiretable() has not initialised yet — the outer
+     * wrapper, and the lazy-loading placeholder that Livewire morphs into the table.
+     */
+    #[Computed]
+    public function getAlpineFallbackScope(): string
+    {
+        return '{ currentlyReorderingStatus: false, filtersOpen: false, hideBulkActionsWhenEmpty: false, paginationTotalItemCount: 0, reorderDisplayColumn: false, reorderStatus: false, selectAllStatus: false, selectedItems: [] }';
+    }
+
     public function getTopLevelAttributesArray(): array
     {
         return [
             'x-data' => 'laravellivewiretable($wire)',
             'x-init' => "setTableId('".$this->getTableAttributes()['id']."'); setAlpineBulkActions('".$this->showBulkActionsDropdownAlpine()."'); setPrimaryKeyName('".$this->getPrimaryKey()."');",
-            'x-cloak',
+            'x-cloak' => '',
             'x-show' => 'shouldBeDisplayed',
             'x-on:show-table.window' => 'showTable(event)',
             'x-on:hide-table.window' => 'hideTable(event)',

@@ -3,7 +3,7 @@
 <div {{ $attributes->merge([
 
     'wire:loading.class' => $this->displayFilterPillsWhileLoading ? '' : 'invisible',
-    'x-cloak',
+    'x-cloak' => '',
 ])
 ->class([
     'mb-4 px-4 md:p-0' => $isTailwind,

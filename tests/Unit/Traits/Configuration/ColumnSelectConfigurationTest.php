@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Configuration;
 
+use Livewire\Exceptions\PropertyNotFoundException;
 use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
@@ -14,7 +15,7 @@ final class ColumnSelectConfigurationTest extends TestCase
 
     public function test_check_protected_fields_column_select_status(): void
     {
-        $this->expectException(\Livewire\Exceptions\PropertyNotFoundException::class);
+        $this->expectException(PropertyNotFoundException::class);
         $this->assertIsBool($this->basicTable->columnSelectStatus);
     }
 

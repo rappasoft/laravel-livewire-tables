@@ -8,11 +8,19 @@ trait HandlesWildcardStrings
 {
     use HandlesApplyingFilter;
 
+    /**
+     * pgsql "like" is case-sensitive, every other supported driver's isn't
+     */
+    private function likeOperator(Builder $builder): string
+    {
+        return $builder->getModel()->getConnection()->getDriverName() === 'pgsql' ? 'ilike' : 'like';
+    }
+
     public function contains(?string $fieldName = null): self
     {
         if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->where($this->getFieldName(), 'like', '%'.$value.'%');
+                $builder->where($this->getFieldName(), $this->likeOperator($builder), '%'.$value.'%');
             });
         }
 
@@ -23,7 +31,7 @@ trait HandlesWildcardStrings
     {
         if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereNot($this->getFieldName(), 'like', '%'.$value.'%');
+                $builder->whereNot($this->getFieldName(), $this->likeOperator($builder), '%'.$value.'%');
             });
         }
 
@@ -34,7 +42,7 @@ trait HandlesWildcardStrings
     {
         if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->where($this->getFieldName(), 'like', $value.'%');
+                $builder->where($this->getFieldName(), $this->likeOperator($builder), $value.'%');
             });
         }
 
@@ -45,7 +53,7 @@ trait HandlesWildcardStrings
     {
         if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereNot($this->getFieldName(), 'like', $value.'%');
+                $builder->whereNot($this->getFieldName(), $this->likeOperator($builder), $value.'%');
             });
         }
 
@@ -56,7 +64,7 @@ trait HandlesWildcardStrings
     {
         if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->where($this->getFieldName(), 'like', '%'.$value);
+                $builder->where($this->getFieldName(), $this->likeOperator($builder), '%'.$value);
             });
         }
 
@@ -67,7 +75,7 @@ trait HandlesWildcardStrings
     {
         if ($this->shouldApplyFilter($fieldName)) {
             $this->filter(function (Builder $builder, string $value) {
-                $builder->whereNot($this->getFieldName(), 'like', '%'.$value);
+                $builder->whereNot($this->getFieldName(), $this->likeOperator($builder), '%'.$value);
             });
         }
 

@@ -2,6 +2,43 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [v3.8.0] - 2026-07-28
+### Behavior Changes
+These are intentional fixes, but they change existing behavior. Review them before upgrading.
+
+- **PostgreSQL string filters are now case-insensitive.** The wildcard string filters (`contains`, `notContains`, `startsWith`, `notStartsWith`, `endsWith`, `notEndsWith`) now use `ilike` on PostgreSQL instead of `like`, matching the search box. Queries that previously relied on case-sensitive filtering will return more rows. No other driver is affected — PostgreSQL is the only supported driver whose `like` is case-sensitive by default.
+- **`resources/views/components/table/th/bulk-actions.blade.php` changed.** The "select all" header checkbox now routes through the Alpine `setAllSelected()` method so `setDelaySelectAllEnabled()` is honoured, and reads `paginationTotalSelectableItemCount` instead of `paginationTotalItemCount`. If you published this view, your copy is unaffected by the upgrade and will keep the old behavior — re-publish it or merge the change by hand to pick up the fix.
+
+### New Features
+- Laravel 13 support by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- Icon support on `WireLinkColumn` via `setIcon()`, `setIconLeft()`/`setIconRight()`, and `setIconAttributes()` by @shynne109 in https://github.com/rappasoft/laravel-livewire-tables/pull/2316
+- `setBulkActionsRowFilter()` excludes rows from bulk actions — filtered rows get no checkbox and are left out of "select all" by @RazvanDrelciuc in https://github.com/rappasoft/laravel-livewire-tables/pull/2303
+- The filter button and its badge are now stylable through configuration by @HussamAlhennawi in https://github.com/rappasoft/laravel-livewire-tables/pull/2182
+
+### Bug Fixes
+- DateColumn no longer blanks out `immutable_date`/`immutable_datetime` casts — `CarbonImmutable` is now formatted directly instead of being coerced to a string and re-parsed by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- Search is now case-insensitive on PostgreSQL, which uses `ilike` instead of `like` — originally reported and fixed by @ARL-Steve in https://github.com/rappasoft/laravel-livewire-tables/pull/2284, landed via https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- The wildcard string filters now use `ilike` on PostgreSQL too, extending @ARL-Steve's fix in https://github.com/rappasoft/laravel-livewire-tables/pull/2284 to `contains`, `notContains`, `startsWith`, `notStartsWith`, `endsWith`, and `notEndsWith`
+- The "select all" header checkbox now routes through Alpine, so `setDelaySelectAllEnabled()` is honoured instead of every row being fetched immediately by @matberry in https://github.com/rappasoft/laravel-livewire-tables/pull/2122
+- Cursor pagination now honours `setShouldRetrieveTotalItemCountDisabled()` — avoiding the `count()` is the point of cursor pagination, but the toggle was only checked for simple pagination by @mattusik in https://github.com/rappasoft/laravel-livewire-tables/pull/2231
+- Bulk action checkboxes now have accessible names — every one of them was previously announced by screen readers as a bare "checkbox" by @belkri in https://github.com/rappasoft/laravel-livewire-tables/pull/2300
+- Livewire lazy loading no longer throws Alpine `ReferenceError`s by @shynne109 in https://github.com/rappasoft/laravel-livewire-tables/pull/2320
+- Aggregate subqueries are skipped for deselected columns when `setExcludeDeselectedColumnsFromQuery()` is on by @glamax13 in https://github.com/rappasoft/laravel-livewire-tables/pull/2278
+- The Tailwind per-page dropdown is aligned with the column-select beside it by @inforisorse in https://github.com/rappasoft/laravel-livewire-tables/pull/2209
+- 22 of 24 locales rendered the literal string `cancel` on the reorder toolbar — seven missing keys (`cancel`, `loading`, `save`, `min`, `max`, `Bulk Actions Confirm`, `Select All On Page`) are now filled across all 23 affected locale files
+- The Bootstrap search input no longer applies `form-control` on Tailwind when `getSearchFieldAttributes()` omits the `default` key — `??` binds looser than `&&`, so the condition parsed the wrong way
+- Prevent InvalidCharacterError by correctly rendering x-cloak attribute by @pascalberski in https://github.com/rappasoft/laravel-livewire-tables/pull/2266
+- Key the x-cloak for TableAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2271
+- Change w-100 to w-auto for Bootstrap Bulk Actions Menu and ColumnSelect by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2270
+
+### Tweaks
+- Pin Livewire to `^3.0`, dropping the `dev-main` constraint that pulled in Livewire 4 by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- Restore CI: run the test suite across Laravel 10–13, add the localisation unit tests to the unit suite, and remove the stale bot by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- Indonesian translations for Cancel, Bulk Actions Confirm, and Select All On Page by @ilsyaa in https://github.com/rappasoft/laravel-livewire-tables/pull/2279
+- Document the plain BooleanFilter form by @Muetze42 in https://github.com/rappasoft/laravel-livewire-tables/pull/2286
+- Run the localisation presence suite in CI, so a missing translation key fails the build
+- Guard that every pagination `<button>` carries `type="button"` — an untyped button submits the surrounding form
+
 ## [v3.7.3] - 2025-05-03
 ### Bug Fixes
 - Interim fix for Livewire Component Columns to mitigate core Livewire bug by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2258

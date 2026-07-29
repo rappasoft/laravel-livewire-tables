@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views;
 
+use Illuminate\Support\HtmlString;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
@@ -92,7 +93,7 @@ final class ColumnTest extends TestCase
     {
         $column = Column::make('Name', 'name')->label(fn () => '<strong>My Label</strong>')->html();
         $rows = $this->basicTable->getRows();
-        $htmlString = new \Illuminate\Support\HtmlString('<strong>My Label</strong>');
+        $htmlString = new HtmlString('<strong>My Label</strong>');
         $this->assertSame($htmlString->toHtml(), $column->getContents($rows->first())->toHtml());
     }
 
@@ -103,7 +104,7 @@ final class ColumnTest extends TestCase
 
         $column->format(fn ($value) => strtoupper($value))->html();
 
-        $htmlString = new \Illuminate\Support\HtmlString(strtoupper($rows->first()->name));
+        $htmlString = new HtmlString(strtoupper($rows->first()->name));
 
         $this->assertSame($htmlString->toHtml(), $column->getContents($rows->first())->toHtml());
     }

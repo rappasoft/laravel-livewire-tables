@@ -11,6 +11,10 @@ trait HasFilterMenuStyling
     use FilterMenuStylingConfiguration,
         FilterMenuStylingHelpers;
 
+    protected array $filterButtonAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];
+
+    protected array $filterButtonBadgeAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];
+
     protected array $filterPopoverAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true, 'default-width' => true];
 
     protected array $filterSlidedownWrapperAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];

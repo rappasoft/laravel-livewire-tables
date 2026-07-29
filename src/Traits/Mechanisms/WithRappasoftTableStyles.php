@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
+use Symfony\Component\HttpFoundation\Response;
+
 trait WithRappasoftTableStyles
 {
     /** Rappasoft Styles */
@@ -21,7 +23,7 @@ trait WithRappasoftTableStyles
         $this->rappasoftTableStylesRoute = $route;
     }
 
-    public function returnRappasoftTableStylesAsFile(): \Symfony\Component\HttpFoundation\Response
+    public function returnRappasoftTableStylesAsFile(): Response
     {
         return $this->pretendResponseIsCSS(__DIR__.'/../../../resources/css/laravel-livewire-tables.min.css');
     }

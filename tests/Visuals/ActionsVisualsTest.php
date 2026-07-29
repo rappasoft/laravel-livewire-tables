@@ -6,6 +6,8 @@ use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Group;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Traits\WithActions;
+use Rappasoft\LaravelLivewireTables\Views\Actions\Action;
 
 #[Group('Visuals')]
 final class ActionsVisualsTest extends TestCase
@@ -14,12 +16,12 @@ final class ActionsVisualsTest extends TestCase
     {
         $petsTable = (new class extends PetsTable
         {
-            use \Rappasoft\LaravelLivewireTables\Traits\WithActions;
+            use WithActions;
 
             public function actions(): array
             {
                 return [
-                    \Rappasoft\LaravelLivewireTables\Views\Actions\Action::make('Test Edit 1')
+                    Action::make('Test Edit 1')
                         ->setRoute('dashboard24'),
                 ];
             }
@@ -50,12 +52,12 @@ final class ActionsVisualsTest extends TestCase
     {
         $petsTable = (new class extends PetsTable
         {
-            use \Rappasoft\LaravelLivewireTables\Traits\WithActions;
+            use WithActions;
 
             public function actions(): array
             {
                 return [
-                    \Rappasoft\LaravelLivewireTables\Views\Actions\Action::make('Test Edit 1')
+                    Action::make('Test Edit 1')
                         ->setRoute('dashboard24'),
                 ];
             }
@@ -86,12 +88,12 @@ final class ActionsVisualsTest extends TestCase
     {
         $petsTable = (new class extends PetsTable
         {
-            use \Rappasoft\LaravelLivewireTables\Traits\WithActions;
+            use WithActions;
 
             public function actions(): array
             {
                 return [
-                    \Rappasoft\LaravelLivewireTables\Views\Actions\Action::make('Test Edit 1')
+                    Action::make('Test Edit 1')
                         ->setRoute('dashboard24'),
                 ];
             }
