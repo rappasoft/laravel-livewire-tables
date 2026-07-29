@@ -1,4 +1,4 @@
-@aware([ 'tableName','primaryKey', 'isTailwind', 'isBootstrap', 'isBootstrap4', 'isBootstrap5'])
+@aware([ 'tableName','primaryKey', 'isTailwind', 'isBootstrap', 'isBootstrap4', 'isBootstrap5', 'localisationPath'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -12,9 +12,10 @@
             'inline-flex rounded-md shadow-sm' => $isTailwind,
             'form-check' => $isBootstrap5,
         ])>
-            <x-livewire-tables::forms.checkbox 
-                wire:key="{{ $tableName . 'selectedItems-'.$row->{$primaryKey} }}" 
+            <x-livewire-tables::forms.checkbox
+                wire:key="{{ $tableName . 'selectedItems-'.$row->{$primaryKey} }}"
                 value="{{ $row->{$primaryKey} }}"
+                aria-label="{{ __($localisationPath.'row').' '.$row->{$primaryKey} }}"
                 :checkboxAttributes=$tdCheckboxAttributes
             />
         </div>

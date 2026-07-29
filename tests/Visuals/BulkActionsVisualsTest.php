@@ -16,6 +16,16 @@ final class BulkActionsVisualsTest extends TestCase
             ->assertDontSee('No items found. Try to broaden your search.');
     }
 
+    public function test_bulk_action_checkboxes_have_an_accessible_name(): void
+    {
+        // Without these a screen reader announces every checkbox as just "checkbox"
+        Livewire::test(PetsTable::class)
+            ->call('setBulkActions', ['activate' => 'Activate'])
+            ->assertSeeHtml('aria-label="Select All"')
+            ->assertSeeHtml('aria-label="row 1"')
+            ->assertSeeHtml('aria-label="row 2"');
+    }
+
     /*
     public function test_bulk_dropdown_shows_when_necessary(): void
     {

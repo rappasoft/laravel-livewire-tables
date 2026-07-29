@@ -1,4 +1,4 @@
-@aware(['tableName','isTailwind', 'isBootstrap'])
+@aware(['tableName','isTailwind', 'isBootstrap', 'localisationPath'])
 @php
     $customAttributes = $this->hasBulkActionsThAttributes ? $this->getBulkActionsThAttributes : $this->getAllThAttributes($this->getBulkActionsColumn())['customAttributes'];
     $bulkActionsThCheckboxAttributes = $this->getBulkActionsThCheckboxAttributes();
@@ -19,6 +19,7 @@
                 x-init="$watch('indeterminateCheckbox', value => $el.indeterminate = value); $watch('selectedItems', value => newSelectCount = value.length);"
                 x-on:click="if(selectedItems.length == paginationTotalItemCount) { $el.indeterminate = false; $wire.clearSelected(); bulkActionHeaderChecked = false; } else { bulkActionHeaderChecked = true; $el.indeterminate = false; $wire.setAllSelected(); }"
                 type="checkbox"
+                aria-label="{{ __($localisationPath.'Select All') }}"
                 :checked="selectedItems.length == paginationTotalItemCount"
                 {{
                     $attributes->merge($bulkActionsThCheckboxAttributes)->class([
