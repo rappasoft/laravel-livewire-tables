@@ -31,7 +31,7 @@ trait WithData
         $executedQuery = $this->executeQuery();
 
         // Get All Currently Paginated Items Primary Keys
-        // ponytail: filtered in place rather than as a second property, this is only read by selectAllOnPage()
+        // filtered in place rather than as a second property, this is only read by selectAllOnPage()
         $this->paginationCurrentItems = $executedQuery
             ->filter(fn ($row) => $this->rowIsSelectable($row))
             ->pluck($this->getPrimaryKey())

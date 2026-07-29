@@ -34,7 +34,7 @@ trait WithSearch
             }
 
             if ($searchableColumns->count()) {
-                // ponytail: pgsql "like" is case-sensitive, every other supported driver's isn't
+                // pgsql "like" is case-sensitive, every other supported driver's isn't
                 $likeOperator = $this->getBuilder()->getModel()->getConnection()->getDriverName() === 'pgsql' ? 'ilike' : 'like';
 
                 $this->setBuilder($this->getBuilder()->where(function ($query) use ($likeOperator, $searchableColumns, $search) {
