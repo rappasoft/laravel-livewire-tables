@@ -57,6 +57,8 @@ trait WithData
 
         $builder = $this->getBuilder();
 
+        $this->setupAggregateColumns();
+
         if ($this->hasExtraWiths()) {
             $builder->with($this->getExtraWiths());
         }

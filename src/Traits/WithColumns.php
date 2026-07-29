@@ -21,6 +21,8 @@ trait WithColumns
 
     protected bool $hasRunColumnSetup = false;
 
+    protected bool $hasRunAggregateColumnSetup = false;
+
     /**
      * Sets up Columns
      */

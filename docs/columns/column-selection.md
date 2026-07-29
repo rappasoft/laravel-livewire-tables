@@ -60,6 +60,17 @@ Column::make('Address', 'address.address')
 
 ## Available Methods
 
+### setExcludeDeselectedColumnsFromQuery
+
+**Disabled by default**. When enabled, deselected columns are left out of the query entirely — their fields are not selected, their relations are not joined, and any `CountColumn`/`SumColumn`/`AvgColumn` skips its aggregate subquery.
+
+```php
+public function configure(): void
+{
+    $this->setExcludeDeselectedColumnsFromQueryEnabled();
+}
+```
+
 ### setColumnSelectStatus
 
 **Enabled by default**, enable/disable column select for the component.
