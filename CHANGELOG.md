@@ -8,7 +8,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Bug Fixes
 - DateColumn no longer blanks out `immutable_date`/`immutable_datetime` casts — `CarbonImmutable` is now formatted directly instead of being coerced to a string and re-parsed by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
-- Search is now case-insensitive on PostgreSQL, which uses `ilike` instead of `like` by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- Search is now case-insensitive on PostgreSQL, which uses `ilike` instead of `like` — originally reported and fixed by @ARL-Steve in https://github.com/rappasoft/laravel-livewire-tables/pull/2284, landed via https://github.com/rappasoft/laravel-livewire-tables/pull/2332
 - Prevent InvalidCharacterError by correctly rendering x-cloak attribute by @pascalberski in https://github.com/rappasoft/laravel-livewire-tables/pull/2266
 - Key the x-cloak for TableAttributes by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2271
 - Change w-100 to w-auto for Bootstrap Bulk Actions Menu and ColumnSelect by @lrljoe in https://github.com/rappasoft/laravel-livewire-tables/pull/2270
