@@ -15,7 +15,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Tweaks
 - Pin Livewire to `^3.0`, dropping the `dev-main` constraint that pulled in Livewire 4 by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
-- Restore CI: run the test suite across Laravel 10–13, run the localisation suite, and remove the stale bot by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
+- Restore CI: run the test suite across Laravel 10–13, add the localisation unit tests to the unit suite, and remove the stale bot by @rappa819 in https://github.com/rappasoft/laravel-livewire-tables/pull/2332
 
 ## [v3.7.3] - 2025-05-03
 ### Bug Fixes
