@@ -8,7 +8,7 @@
     <x-livewire-tables::table.th.plain  :displayMinimisedOnReorder="true" wire:key="{{ $tableName }}-thead-bulk-actions" :$customAttributes>
         <div
             x-data="{newSelectCount: 0, indeterminateCheckbox: false, bulkActionHeaderChecked: false}"
-            x-init="$watch('selectedItems', value => indeterminateCheckbox = (value.length > 0 && value.length < $wire.paginationTotalSelectableItemCount))"
+            x-init="$watch('selectedItems', value => indeterminateCheckbox = (!selectAllStatus && value.length > 0 && value.length < $wire.paginationTotalSelectableItemCount))"
             x-cloak x-show="currentlyReorderingStatus !== true"
             @class([
                 'inline-flex rounded-md shadow-sm' => $isTailwind,
@@ -17,10 +17,11 @@
         >
             <input
                 x-init="$watch('indeterminateCheckbox', value => $el.indeterminate = value); $watch('selectedItems', value => newSelectCount = value.length);"
-                x-on:click="if(selectedItems.length == $wire.paginationTotalSelectableItemCount) { $el.indeterminate = false; $wire.clearSelected(); bulkActionHeaderChecked = false; } else { bulkActionHeaderChecked = true; $el.indeterminate = false; $wire.setAllSelected(); }"
+                {{-- setAllSelected() rather than $wire.setAllSelected(), the Alpine method is the one that honours delaySelectAll --}}
+                x-on:click="if(selectAllStatus || selectedItems.length == $wire.paginationTotalSelectableItemCount) { $el.indeterminate = false; $wire.clearSelected(); bulkActionHeaderChecked = false; } else { bulkActionHeaderChecked = true; $el.indeterminate = false; setAllSelected(); }"
                 type="checkbox"
                 aria-label="{{ __($localisationPath.'Select All') }}"
-                :checked="selectedItems.length == $wire.paginationTotalSelectableItemCount"
+                :checked="selectAllStatus || selectedItems.length == $wire.paginationTotalSelectableItemCount"
                 {{
                     $attributes->merge($bulkActionsThCheckboxAttributes)->class([
                         'border-gray-300 text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => $isTailwind && (($bulkActionsThCheckboxAttributes['default'] ?? true) || ($bulkActionsThCheckboxAttributes['default-colors'] ?? true)),

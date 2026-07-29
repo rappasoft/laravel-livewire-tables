@@ -42,6 +42,16 @@ final class BulkActionsVisualsTest extends TestCase
         $this->assertNotContains('2', Livewire::test(FilteredBulkActionsTable::class)->call('setAllSelected')->get('selected'));
     }
 
+    public function test_select_all_header_goes_through_alpine_so_delay_select_all_is_honoured(): void
+    {
+        // $wire.setAllSelected() skips the delaySelectAll branch entirely, so with the
+        // delay enabled every row was still fetched and the header never showed checked
+        Livewire::test(PetsTable::class)
+            ->call('setBulkActions', ['activate' => 'Activate'])
+            ->assertSeeHtml('$el.indeterminate = false; setAllSelected(); }')
+            ->assertSeeHtml(':checked="selectAllStatus || selectedItems.length ==');
+    }
+
     public function test_select_all_still_covers_every_row_without_a_filter(): void
     {
         Livewire::test(PetsTable::class)
