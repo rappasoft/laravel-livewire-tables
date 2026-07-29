@@ -170,6 +170,19 @@ final class FilterVisualsTest extends TestCase
             ]);
     }*/
 
+    public function test_filter_button_and_badge_are_customisable(): void
+    {
+        Livewire::test(PetsTable::class)
+            ->set('filterComponents.breed', [1, 2])
+            ->assertSeeHtml('class="inline-flex justify-center w-full rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50 border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"')
+            ->assertSeeHtml('class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 capitalize bg-indigo-100 text-indigo-800 dark:bg-indigo-200 dark:text-indigo-900"')
+            // The attributes are protected, so they only survive the request that sets them
+            ->call('setFilterButtonAttributes', ['class' => 'bg-rose-500', 'default-colors' => false])
+            ->assertSeeHtml('class="inline-flex justify-center w-full rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50 bg-rose-500"')
+            ->call('setFilterButtonBadgeAttributes', ['class' => 'bg-rose-100', 'default-colors' => false])
+            ->assertSeeHtml('class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 capitalize bg-rose-100"');
+    }
+
     public function test_filters_popover_menu_is_customisable(): void
     {
         Livewire::test(new class extends PetsTable

@@ -1,6 +1,12 @@
 @aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
 @props([])
 
+@php
+    // Own bag: $attributes is already spent on the button, and re-merging it here
+    // would duplicate any pass-through attribute onto the badge
+    $badgeAttributes = new \Illuminate\View\ComponentAttributeBag($this->getFilterButtonBadgeAttributes);
+@endphp
+
 <div 
                 @class([
                     'ml-0 ml-md-2 mb-3 mb-md-0' => $isBootstrap4,
@@ -22,10 +28,16 @@
         <div>
             <button
                 type="button"
-                @class([
-                    'btn dropdown-toggle d-block w-100 d-md-inline' => $isBootstrap,
-                    'inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $isTailwind,
-                ])
+                {{
+                    $attributes
+                    ->merge($this->getFilterButtonAttributes)
+                    ->class([
+                        'btn dropdown-toggle d-block w-100 d-md-inline' => $isBootstrap && ($this->getFilterButtonAttributes['default-styling'] ?? true),
+                        'inline-flex justify-center w-full rounded-md border shadow-sm px-4 py-2 text-sm font-medium focus:ring focus:ring-opacity-50' => $isTailwind && ($this->getFilterButtonAttributes['default-styling'] ?? true),
+                        'border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $isTailwind && ($this->getFilterButtonAttributes['default-colors'] ?? true),
+                    ])
+                    ->except(['default','default-styling','default-colors'])
+                }}
                 @if ($this->isFilterLayoutPopover()) x-on:click="filterPopoverOpen = !filterPopoverOpen"
                     aria-haspopup="true"
                     x-bind:aria-expanded="filterPopoverOpen"
@@ -36,10 +48,15 @@
                 {{ __($localisationPath.'Filters') }}
 
                 @if ($count = $this->getFilterBadgeCount())
-                    <span @class([
-                            'badge badge-info' => $isBootstrap,
-                            'ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $isTailwind,
-                        ])>
+                    <span {{
+                            $badgeAttributes
+                            ->class([
+                                'badge badge-info' => $isBootstrap && ($this->getFilterButtonBadgeAttributes['default-styling'] ?? true),
+                                'ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 capitalize' => $isTailwind && ($this->getFilterButtonBadgeAttributes['default-styling'] ?? true),
+                                'bg-indigo-100 text-indigo-800 dark:bg-indigo-200 dark:text-indigo-900' => $isTailwind && ($this->getFilterButtonBadgeAttributes['default-colors'] ?? true),
+                            ])
+                            ->except(['default','default-styling','default-colors'])
+                        }}>
                         {{ $count }}
                     </span>
                 @endif
