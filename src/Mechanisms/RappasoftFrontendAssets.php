@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Mechanisms;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Livewire\Drawer\Utils;
@@ -9,6 +10,7 @@ use Rappasoft\LaravelLivewireTables\Traits\Mechanisms\WithRappasoftTableScripts;
 use Rappasoft\LaravelLivewireTables\Traits\Mechanisms\WithRappasoftTableStyles;
 use Rappasoft\LaravelLivewireTables\Traits\Mechanisms\WithRappasoftTableThirdPartyScripts;
 use Rappasoft\LaravelLivewireTables\Traits\Mechanisms\WithRappasoftTableThirdPartyStyles;
+use Symfony\Component\HttpFoundation\Response;
 
 class RappasoftFrontendAssets
 {
@@ -64,7 +66,7 @@ class RappasoftFrontendAssets
         Blade::directive('rappasoftTableThirdPartyStyles', [static::class, 'rappasoftTableThirdPartyStyles']);
     }
 
-    protected function pretendResponseIsJs(string $file): \Symfony\Component\HttpFoundation\Response
+    protected function pretendResponseIsJs(string $file): Response
     {
 
         if (config('livewire-tables.cache_assets', false) === true) {
@@ -73,7 +75,7 @@ class RappasoftFrontendAssets
             $cacheControl = 'public, max-age=86400';
         } else {
             $expires = strtotime('+1 second');
-            $lastModified = \Carbon\Carbon::now()->timestamp;
+            $lastModified = Carbon::now()->timestamp;
             $cacheControl = 'public, max-age=1';
         }
 
@@ -87,7 +89,7 @@ class RappasoftFrontendAssets
         return response()->file($file, $headers);
     }
 
-    protected function pretendResponseIsCSS(string $file): \Symfony\Component\HttpFoundation\Response
+    protected function pretendResponseIsCSS(string $file): Response
     {
         if (config('livewire-tables.cache_assets', false) === true) {
             $expires = strtotime('+1 day');
@@ -95,7 +97,7 @@ class RappasoftFrontendAssets
             $cacheControl = 'public, max-age=86400';
         } else {
             $expires = strtotime('+1 second');
-            $lastModified = \Carbon\Carbon::now()->timestamp;
+            $lastModified = Carbon::now()->timestamp;
             $cacheControl = 'public, max-age=1';
         }
 

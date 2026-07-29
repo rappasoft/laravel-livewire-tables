@@ -2,7 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 
-class TestLivewireColumnComponent extends \Livewire\Component
+use Illuminate\Support\Facades\Blade;
+use Livewire\Component;
+
+class TestLivewireColumnComponent extends Component
 {
     public string $id;
 
@@ -17,7 +20,7 @@ class TestLivewireColumnComponent extends \Livewire\Component
      */
     public function render()
     {
-        return \Illuminate\Support\Facades\Blade::render(
+        return Blade::render(
             '<div>'.
             '<div>Name:'.($this->name ?? 'Unknown').'</div>'.
             '<div>Type:'.($this->type ?? 'Unknown').'</div>'.

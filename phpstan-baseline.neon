@@ -1,26 +1,80 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Offset ''1'' on array\<string, non\-empty\-list\> in empty\(\) does not exist\.$#'
+			message: '#^Offset ''1'' on array\<string, non\-empty\-list\<mixed\>\> in empty\(\) does not exist\.$#'
 			identifier: empty.offset
 			count: 1
 			path: src/DataTableComponent.php
 
 		-
-			message: '#^Offset ''99'' on array\<string, non\-empty\-list\> in isset\(\) does not exist\.$#'
+			message: '#^Offset ''99'' on array\<string, non\-empty\-list\<mixed\>\> in isset\(\) does not exist\.$#'
 			identifier: isset.offset
 			count: 1
 			path: src/DataTableComponent.php
 
 		-
-			message: '#^Offset ''99'' on non\-empty\-array\<1\|string, list\> in isset\(\) does not exist\.$#'
+			message: '#^Offset ''99'' on non\-empty\-array\<1\|string, list\<mixed\>\> in isset\(\) does not exist\.$#'
 			identifier: isset.offset
 			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Parameter \#1 \$column of method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:pluck\(\) expects Illuminate\\Contracts\\Database\\Query\\Expression\|model property of Illuminate\\Database\\Eloquent\\Model, string given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/DataTableComponent.php
 
 		-
 			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
 			identifier: argument.type
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$actionsPosition \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$alwaysHideBulkActionsDropdownOption \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$clearSelectedOnFilter \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$clearSelectedOnSearch \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$delaySelectAll \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$displayActionsInToolbar \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$filterComponents \(array\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 2
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$loadingPlaceholderContent \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
 			count: 1
 			path: src/DataTableComponent.php
 
@@ -31,10 +85,64 @@ parameters:
 			path: src/DataTableComponent.php
 
 		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$paginationWrapperAttributes \(array\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$reorderThAttributes \(array\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$search \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$selectedColumns \(array\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$trimSearchString \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\DataTableComponent\:\:\$useComputedProperties \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/DataTableComponent.php
+
+		-
 			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/View/Components/FilterPill.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Action\:\:\$iconRight \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Action.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Action\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Action.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Action\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Action.php
 
 		-
 			message: '#^Unsafe usage of new static\(\)\.$#'
@@ -43,10 +151,184 @@ parameters:
 			path: src/Views/Action.php
 
 		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$displayColumnLabel \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Column.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Column.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Column.php
+
+		-
 			message: '#^Unsafe usage of new static\(\)\.$#'
 			identifier: new.static
 			count: 1
 			path: src/Views/Column.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$displayColumnLabel \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/AggregateColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Columns/AggregateColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/AggregateColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$displayColumnLabel \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/ArrayColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Columns/ArrayColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/ArrayColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$displayColumnLabel \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/AvgColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Columns/AvgColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/AvgColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Columns\\BooleanColumn\:\:\$isToggleable \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/BooleanColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$displayColumnLabel \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/ColorColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Columns\\ColorColumn\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Columns/ColorColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Columns\\ColorColumn\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/ColorColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$displayColumnLabel \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/CountColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Columns/CountColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/CountColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$displayColumnLabel \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/DateColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Columns\\DateColumn\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Columns/DateColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Columns\\DateColumn\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/DateColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$displayColumnLabel \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/SumColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Columns/SumColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Column\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Columns/SumColumn.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filter\:\:\$pillResetButtonAttributes \(array\<mixed\>\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filter\:\:\$pillsAsHtml \(bool\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filter\:\:\$view \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: src/Views/Filter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filter\:\:\$view \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filter.php
 
 		-
 			message: '#^Unsafe usage of new static\(\)\.$#'
@@ -55,8 +337,50 @@ parameters:
 			path: src/Views/Filter.php
 
 		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\DateRangeFilter\:\:\$options \(array\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filters/DateRangeFilter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\LivewireComponentArrayFilter\:\:\$livewireComponent \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filters/LivewireComponentArrayFilter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\LivewireComponentArrayFilter\:\:\$options \(array\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 2
+			path: src/Views/Filters/LivewireComponentArrayFilter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\LivewireComponentArrayFilter\:\:\$pillsSeparator \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filters/LivewireComponentArrayFilter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\LivewireComponentFilter\:\:\$livewireComponent \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filters/LivewireComponentFilter.php
+
+		-
 			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<int,string\>\:\:filter\(\) expects \(callable\(string, int\)\: bool\)\|null, Closure\(mixed\)\: int\<0, max\> given\.$#'
 			identifier: argument.type
+			count: 1
+			path: src/Views/Filters/MultiSelectDropdownFilter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\MultiSelectDropdownFilter\:\:\$options \(array\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filters/MultiSelectDropdownFilter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\MultiSelectDropdownFilter\:\:\$pillsSeparator \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
 			count: 1
 			path: src/Views/Filters/MultiSelectDropdownFilter.php
 
@@ -79,10 +403,28 @@ parameters:
 			path: src/Views/Filters/MultiSelectFilter.php
 
 		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\MultiSelectFilter\:\:\$options \(array\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filters/MultiSelectFilter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\MultiSelectFilter\:\:\$pillsSeparator \(string\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filters/MultiSelectFilter.php
+
+		-
 			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<int,string\>\:\:filter\(\) expects \(callable\(string, int\)\: bool\)\|null, Closure\(mixed\)\: int\<0, max\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/Views/Filters/NumberRangeFilter.php
+
+		-
+			message: '#^Property Rappasoft\\LaravelLivewireTables\\Views\\Filters\\SelectFilter\:\:\$options \(array\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: src/Views/Filters/SelectFilter.php
 
 		-
 			message: '#^Unable to resolve the template type TMapWithKeysKey in call to method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>\:\:mapWithKeys\(\)$#'

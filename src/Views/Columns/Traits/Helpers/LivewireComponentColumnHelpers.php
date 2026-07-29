@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait LivewireComponentColumnHelpers
@@ -84,7 +85,7 @@ trait LivewireComponentColumnHelpers
             '<livewire:dynamic-component :component="$component" :key="$key" '.$this->implodeAttributes($attributes).' />',
             [
                 'component' => $this->getLivewireComponent(),
-                'key' => \Illuminate\Support\Str::random(),
+                'key' => Str::random(),
                 ...$attributes,
             ],
         );

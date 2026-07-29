@@ -10,6 +10,7 @@ use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -281,7 +282,7 @@ trait WithData
     /**
      * Add Rows And Generic Data to View
      */
-    public function renderingWithData(\Illuminate\View\View $view, array $data = []): void
+    public function renderingWithData(View $view, array $data = []): void
     {
         if (! $this->getComputedPropertiesStatus()) {
             $view->with([

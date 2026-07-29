@@ -2,6 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\View\Factory;
+use Illuminate\View\View;
+use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait IsLivewireComponentFilter
@@ -22,7 +26,7 @@ trait IsLivewireComponentFilter
             throw new DataTableConfigurationException('You must specify a valid path to your Livewire Component Filter.');
         }
 
-        if (! is_subclass_of($class, \Livewire\Component::class)) {
+        if (! is_subclass_of($class, Component::class)) {
             throw new DataTableConfigurationException('Your Livewire Component Filter MUST Extend Livewire\Component.');
         }
 
@@ -36,7 +40,7 @@ trait IsLivewireComponentFilter
         return $this->livewireComponent ?? '';
     }
 
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    public function render(): string|Application|View|Factory
     {
         if ($this->livewireComponent == '') {
             throw new DataTableConfigurationException('You must specify a valid path to your Livewire Component Filter.');

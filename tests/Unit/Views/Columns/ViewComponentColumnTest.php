@@ -53,7 +53,7 @@ final class ViewComponentColumnTest extends ColumnTestCase
             ]);
 
         $this->assertFalse($column->hasCustomComponent());
-        $column->customComponent(\Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent::class);
+        $column->customComponent(TestComponent::class);
         $contents = $column->getContents(Pet::find(1));
         $this->assertSame('<div>2420</div>', $contents);
         $this->assertTrue($column->hasCustomComponent());

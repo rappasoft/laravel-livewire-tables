@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables;
 
+use Composer\InstalledVersions;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -15,9 +16,9 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-        if (class_exists(AboutCommand::class) && class_exists(\Composer\InstalledVersions::class)) {
+        if (class_exists(AboutCommand::class) && class_exists(InstalledVersions::class)) {
             AboutCommand::add('Rappasoft Laravel Livewire Tables', [
-                'Version' => \Composer\InstalledVersions::getPrettyVersion('rappasoft/laravel-livewire-tables'),
+                'Version' => InstalledVersions::getPrettyVersion('rappasoft/laravel-livewire-tables'),
             ]);
         }
 

@@ -2,6 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
@@ -74,7 +77,7 @@ trait ColumnHelpers
     }
 
     // TODO: Test
-    public function renderContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function renderContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|Application|Factory|View
     {
         if ($this->shouldCollapseOnMobile() && $this->shouldCollapseOnTablet()) {
             throw new DataTableConfigurationException('You should only specify a columns should collapse on mobile OR tablet, not both.');
@@ -84,7 +87,7 @@ trait ColumnHelpers
     }
 
     // TODO: Test
-    public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|Application|Factory|View
     {
         if ($this->isLabel()) {
             $value = call_user_func($this->getLabelCallback(), $row, $this);

@@ -17,7 +17,7 @@ final class DataTableComponentVisualsTest extends TestCase
 {
     public function test_primary_key_has_to_be_set(): void
     {
-        $this->expectException(\Illuminate\View\ViewException::class);
+        $this->expectException(ViewException::class);
         Livewire::test(NoPrimaryKeyTable::class)
             ->call('setSearch', 'abcd');
     }

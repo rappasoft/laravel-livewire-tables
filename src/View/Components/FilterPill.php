@@ -2,6 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\View\Components;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
 use Rappasoft\LaravelLivewireTables\DataTransferObjects\Filters\FilterPillData;
 
@@ -14,7 +18,7 @@ class FilterPill extends Component
         $this->shouldWatch = (bool) $this->filterPillData->shouldWatchForEvents();
     }
 
-    public function render(): null|string|\Illuminate\Support\HtmlString|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function render(): null|string|HtmlString|Application|Factory|View
     {
         return view('livewire-tables::includes.filter-pill')
             ->with([

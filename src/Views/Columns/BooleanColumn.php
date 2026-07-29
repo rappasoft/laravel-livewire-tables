@@ -2,7 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Configuration\BooleanColumnConfiguration;
@@ -26,7 +30,7 @@ class BooleanColumn extends Column
 
     protected ?string $toggleMethod;
 
-    public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|Application|Factory|View
     {
         if ($this->isLabel()) {
             throw new DataTableConfigurationException('You can not specify a boolean column as a label.');

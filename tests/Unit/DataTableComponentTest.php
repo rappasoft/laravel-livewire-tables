@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit;
 
+use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoColumnsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
@@ -66,7 +67,7 @@ class DataTableComponentTest extends TestCase
 
     public function test_minimum_one_column_expected(): void
     {
-        $this->expectException(\Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException::class);
+        $this->expectException(NoColumnsException::class);
         $table = new NoColumnsTable;
         $table->mountHasFiltersCore();
         $table->boot();

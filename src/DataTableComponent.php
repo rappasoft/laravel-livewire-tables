@@ -2,6 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\HasAllTraits;
@@ -25,7 +28,7 @@ abstract class DataTableComponent extends Component
      */
     public function booted(): void {}
 
-    public function render(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function render(): Application|Factory|View
     {
         return view('livewire-tables::datatable');
     }

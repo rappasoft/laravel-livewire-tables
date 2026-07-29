@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Mechanisms;
 
+use Symfony\Component\HttpFoundation\Response;
+
 trait WithRappasoftTableThirdPartyStyles
 {
     /** Rappasoft Third Party Styles */
@@ -21,7 +23,7 @@ trait WithRappasoftTableThirdPartyStyles
         $this->rappasoftTableThirdPartyStyleRoute = $route;
     }
 
-    public function returnRappasoftTableThirdPartyStylesAsFile(): \Symfony\Component\HttpFoundation\Response
+    public function returnRappasoftTableThirdPartyStylesAsFile(): Response
     {
         return $this->pretendResponseIsCSS(__DIR__.'/../../../resources/css/laravel-livewire-tables-thirdparty.min.css');
     }

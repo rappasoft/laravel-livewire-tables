@@ -23,6 +23,7 @@ final class CheckKeyPresenceTest extends BaseLocalisationCase
         $engStrings = self::getEnLocaleStrings();
         $localisedStrings = self::getLocaleStrings($locale);
         foreach ($engStrings as $key => $value) {
+            $this->assertArrayHasKey($key, $localisedStrings, 'Locale "'.$locale.'" is missing translation key "'.$key.'"');
             $this->assertNotNull($localisedStrings[$key]);
         }
     }

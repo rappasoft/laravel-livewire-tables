@@ -2,7 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\HtmlString;
+use Illuminate\View\Factory;
+use Illuminate\View\View;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
@@ -68,7 +71,7 @@ trait HasSecondaryHeader
         return $callback instanceof Filter;
     }
 
-    public function getSecondaryHeaderContents(mixed $rows, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string|HtmlString
+    public function getSecondaryHeaderContents(mixed $rows, array $filterGenericData): Application|Factory|View|string|HtmlString
     {
         $value = null;
 
@@ -116,7 +119,7 @@ trait HasSecondaryHeader
         }
     }
 
-    public function getSecondaryHeaderFilter(?Filter $filter, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string
+    public function getSecondaryHeaderFilter(?Filter $filter, array $filterGenericData): Application|Factory|View|string
     {
         if ($filter !== null) {
             return $filter->setFilterPosition('header')->setGenericDisplayData($filterGenericData)->render();
