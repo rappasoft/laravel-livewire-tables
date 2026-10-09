@@ -2,6 +2,13 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## Unreleased
+
+- Adopt the Bootstrap toolbar, filters, filter pills, and column selector redesign from [#2329](https://github.com/rappasoft/laravel-livewire-tables/pull/2329), preserving customization attributes and using the existing Heroicons dependency. The styles are scoped to Bootstrap tables and the pagination label is translated across supported locales. Republish or merge updated package views and CSS if your application published them.
+- Document and test distinct table names for independent reordering sessions on pages with multiple tables ([#2328](https://github.com/rappasoft/laravel-livewire-tables/issues/2328)). The default table name remains `table` for backward compatibility.
+- Update verified CI actions, install dependencies even when the Composer download cache is restored, and correct Laravel version constraints. Add PHP 8.1 and 8.5 boundary coverage and remove the duplicate localization test-suite registration.
+- Prefer stable dependencies, raise PHPUnit security minima, and support PHPUnit 13. Legacy Laravel 10/11 compatibility tests allowlist only four verified upstream framework advisories in their temporary CI configuration; production applications should use patched Laravel 12.69+ or 13.30+.
+
 ## [v3.8.0] - 2026-07-28
 ### Behavior Changes
 These are intentional fixes, but they change existing behavior. Review them before upgrading.

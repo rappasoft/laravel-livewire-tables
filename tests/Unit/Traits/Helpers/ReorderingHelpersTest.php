@@ -78,6 +78,23 @@ final class ReorderingHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->hasReorderingSession());
     }
 
+    public function test_named_tables_keep_reordering_sessions_separate(): void
+    {
+        $this->setupSpeciesTable();
+        $this->basicTable->setTableName('pets');
+        $this->speciesTable->setTableName('species');
+
+        $this->basicTable->setReorderingSession();
+        $this->assertFalse($this->speciesTable->hasReorderingSession());
+
+        $this->speciesTable->setReorderingSession();
+        $this->basicTable->forgetReorderingSession();
+
+        $this->assertFalse($this->basicTable->hasReorderingSession());
+        $this->assertTrue($this->speciesTable->hasReorderingSession());
+        $this->assertNotSame($this->basicTable->getReorderingBackupSessionKey(), $this->speciesTable->getReorderingBackupSessionKey());
+    }
+
     public function test_can_get_reordering_session_key(): void
     {
         $this->assertSame('table-reordering', $this->basicTable->getReorderingSessionKey());
