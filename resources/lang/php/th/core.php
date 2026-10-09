@@ -21,6 +21,7 @@ return [
     'No' => 'เลขที่',
     'No items found, try to broaden your search' => 'ไม่พบรายการที่ค้นหา',
     'of' => 'จาก',
+    'Per Page' => 'ต่อหน้า',
     'Remove filter option' => 'เอาตัวกรองออก',
     'Remove sort option' => 'เอาการเรียงลำดับออก',
     'Reorder' => 'จัดลำดับ',

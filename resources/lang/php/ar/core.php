@@ -21,6 +21,7 @@ return [
     'No' => 'لا',
     'No items found, try to broaden your search' => 'لم يتم العثور على العناصر. حاول توسيع نطاق البحث',
     'of' => 'ل',
+    'Per Page' => 'لكل صفحة',
     'Remove filter option' => 'إزالة خيار التصفية',
     'Remove sort option' => 'إزالة خيار الفرز',
     'Reorder' => 'إعادة ترتيب',

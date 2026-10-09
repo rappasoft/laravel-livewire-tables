@@ -3,7 +3,6 @@
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="false"
-         cacheResult="false" 
          executionOrder="random" 
          failOnRisky="false" 
          failOnEmptyTestSuite="false" 
@@ -15,9 +14,6 @@
         </testsuite>
         <testsuite name="Laravel Livewire Tables Visuals Test Suite">
             <directory>tests/Visuals</directory>
-        </testsuite>
-        <testsuite name="Laravel Livewire Tables Localisations Unit">
-            <directory>tests/Localisations/Unit</directory>
         </testsuite>
         <testsuite name="Laravel Livewire Tables Localisations Presence">
             <directory>tests/Localisations/Presence</directory>

@@ -22,6 +22,7 @@ return [
     'No' => 'Tidak',
     'No items found, try to broaden your search' => 'Tidak ada data yang ditemukan. Cobalah untuk memperluas pencarian Anda.',
     'of' => 'dari',
+    'Per Page' => 'Per halaman',
     'Remove filter option' => 'Hapus opsi filter',
     'Remove sort option' => 'Hapus opsi pengurutan',
     'Reorder' => 'Urutkan ulang',

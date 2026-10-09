@@ -21,6 +21,7 @@ return [
     'No' => 'خیر',
     'No items found, try to broaden your search' => 'موردی یافت نشد، جستجوی خود را گسترش دهید',
     'of' => 'از',
+    'Per Page' => 'در هر صفحه',
     'Remove filter option' => 'حذف گزینه فیلتر',
     'Remove sort option' => 'حذف گزینه مرتب‌سازی',
     'Reorder' => 'دوباره مرتب کنید',

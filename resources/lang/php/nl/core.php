@@ -21,6 +21,7 @@ return [
     'No' => 'Nee',
     'No items found, try to broaden your search' => 'Er zijn geen items gevonden. Probeer uw zoekopdracht te verfijnen',
     'of' => 'van',
+    'Per Page' => 'Per pagina',
     'Remove filter option' => 'Filteroptie verwijderen',
     'Remove sort option' => 'Sorteeroptie verwijderen',
     'Reorder' => 'Hersorteren',

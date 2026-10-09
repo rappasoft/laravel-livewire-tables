@@ -21,6 +21,7 @@ return [
     'No' => 'Nej',
     'No items found, try to broaden your search' => 'Inga föremål hittades. Försök vidga din sökning',
     'of' => 'av',
+    'Per Page' => 'Per sida',
     'Remove filter option' => 'Rensa valt filter',
     'Remove sort option' => 'Rensa vald sortering',
     'Reorder' => 'Omordna',

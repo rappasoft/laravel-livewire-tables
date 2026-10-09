@@ -6,20 +6,19 @@
     {{
         $toolBarAttributes->merge()
         ->class([
+            'lwt-toolbar' => $isBootstrap && ($toolBarAttributes['default-styling'] ?? true),
             'md:flex md:justify-between mb-4 px-4 md:p-0' => $isTailwind && ($toolBarAttributes['default-styling'] ?? true),
-            'd-md-flex justify-content-between mb-3' => $isBootstrap && ($toolBarAttributes['default-styling'] ?? true),
         ])
         ->except(['default','default-styling','default-colors'])
     }}
 >
     <div @class([
-            'd-md-flex' => $isBootstrap,
+            'lwt-toolbar__group lwt-toolbar__group--left' => $isBootstrap,
             'w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2' => $isTailwind,
         ])
     >
         @if ($this->hasConfigurableAreaFor('toolbar-left-start'))
             <div x-cloak x-show="!currentlyReorderingStatus" @class([
-                'mb-3 mb-md-0 input-group' => $isBootstrap,
                 'flex rounded-md shadow-sm' => $isTailwind,
             ])>
                 @include($this->getConfigurableAreaFor('toolbar-left-start'), $this->getParametersForConfigurableArea('toolbar-left-start'))
@@ -44,7 +43,6 @@
 
         @if ($this->hasConfigurableAreaFor('toolbar-left-end'))
             <div x-cloak x-show="!currentlyReorderingStatus" @class([
-                'mb-3 mb-md-0 input-group' => $isBootstrap,
                 'flex rounded-md shadow-sm' => $isTailwind,
             ])>
                 @include($this->getConfigurableAreaFor('toolbar-left-end'), $this->getParametersForConfigurableArea('toolbar-left-end'))
@@ -54,7 +52,7 @@
 
     <div x-cloak x-show="!currentlyReorderingStatus"
         @class([
-            'd-md-flex' => $isBootstrap,
+            'lwt-toolbar__group lwt-toolbar__group--right' => $isBootstrap,
             'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => $isTailwind,
         ])
     >

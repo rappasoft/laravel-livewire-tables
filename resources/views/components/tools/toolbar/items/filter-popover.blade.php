@@ -1,27 +1,32 @@
 @aware(['tableName'])
 @if($this->isBootstrap)
-    <ul x-cloak {{ $attributes
+    <div x-cloak {{ $attributes
             ->merge($this->getFilterPopoverAttributes)
-            ->merge(['role' => 'menu'])
+            ->merge(['role' => 'group', 'aria-label' => __($this->getLocalisationPath.'Filters')])
             ->class([
-                'w-100' => $this->getFilterPopoverAttributes['default-width'] ?? true,
-                'dropdown-menu mt-md-5' => $this->isBootstrap4,
-                'dropdown-menu' => $this->isBootstrap5,
-            ]) }} x-bind:class="{ 'show': filterPopoverOpen }">
-        @foreach ($this->getVisibleFilters() as $filter)
-            <div id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper" wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar" class="p-2">
-                {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
-            </div>
-        @endforeach
+                'dropdown-menu',
+                'lwt-filter-popover' => $this->getFilterPopoverAttributes['default-width'] ?? true,
+            ])
+            ->except(['default', 'default-width', 'default-styling', 'default-colors']) }} x-bind:class="{ 'show': filterPopoverOpen }">
+        <div class="lwt-filter-grid">
+            @foreach ($this->getVisibleFilters() as $filter)
+                <div id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper" wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar" @class([
+                    'lwt-filter-col',
+                    'lwt-filter-col--wide' => $filter instanceof \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter || $filter instanceof \Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter,
+                ])>
+                    {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
+                </div>
+            @endforeach
+        </div>
 
         @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
             <div class='dropdown-divider'></div>
             <x-livewire-tables::tools.toolbar.items.filter-popover.clear-button />
         @endif
-    </ul>
+    </div>
 @else
     <div x-cloak x-show="filterPopoverOpen"
-        {{ 
+        {{
             $attributes
             ->merge($this->getFilterPopoverAttributes)
             ->merge([
@@ -40,7 +45,7 @@
                 'origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50' => $this->getFilterPopoverAttributes['default-styling'] ?? true,
                 'bg-white divide-gray-100 ring-black dark:bg-gray-700 dark:text-white dark:divide-gray-600' => $this->getFilterPopoverAttributes['default-colors'] ?? true,
             ])
-            ->except(['x-cloak', 'x-show', 'default','default-width', 'default-styling','default-colors']) 
+            ->except(['x-cloak', 'x-show', 'default','default-width', 'default-styling','default-colors'])
         }}>
 
         @foreach ($this->getVisibleFilters() as $filter)

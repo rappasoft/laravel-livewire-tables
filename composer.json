@@ -37,7 +37,7 @@
         "monolog/monolog": "*",
         "nunomaduro/collision": "^6.0|^7.0|^8.0|^9.0",
         "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0|^11.0",
-        "phpunit/phpunit": "^9.0|^10.0|^11.0|^12.0"
+        "phpunit/phpunit": "^9.6.33|^10.5.62|^11.5.50|^12.5.8|^13.0"
     },
     "autoload": {
         "psr-4": {
@@ -65,6 +65,6 @@
             ]
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

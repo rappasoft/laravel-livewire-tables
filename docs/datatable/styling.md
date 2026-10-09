@@ -497,3 +497,26 @@ public function configure(): void
 ```
 
 Keep in mind that you must only call methods from configure() once to avoid overriding or conflicting results.
+## Bootstrap Toolbar and Filters
+
+The `bootstrap-4` and `bootstrap-5` themes use the package stylesheet for the toolbar, search field, filter chips, column selection, and pagination controls. Keep core asset injection enabled, or include the core stylesheet using the methods in the [Including Assets documentation](../start/including-assets.md).
+
+The toolbar uses the Heroicons already bundled with the package. No Bootstrap Icons installation is required. Bootstrap 5 colors follow its `--bs-body-bg`, `--bs-body-color`, and related theme variables; the new styles are scoped to Bootstrap table wrappers.
+
+Existing search icons and field, filter input, filter button, badge, column checkbox, and pagination attribute methods still apply. Set `default-styling` to `false` to replace a control's default classes with your own.
+
+```php
+public function configure(): void
+{
+    $this->setPrimaryKey('id');
+    $this->setTheme('bootstrap-5');
+    $this->setSearchFieldAttributes([
+        'class' => 'form-control',
+        'aria-label' => 'Find customers',
+        'default-styling' => false,
+    ]);
+    $this->setSearchIcon('heroicon-o-magnifying-glass');
+}
+```
+
+If your application overrides package views, compare the updated Bootstrap templates and carry your custom markup forward when upgrading. Tailwind retains its existing templates and styling.

@@ -21,6 +21,7 @@ return [
     'No' => 'Não',
     'No items found, try to broaden your search' => 'Nenhum resultado encontrado. Tente ampliar a sua pesquisa',
     'of' => 'de',
+    'Per Page' => 'Por página',
     'Remove filter option' => 'Remover opção de filtro',
     'Remove sort option' => 'Remover opção de ordenação',
     'Reorder' => 'Reordenar',

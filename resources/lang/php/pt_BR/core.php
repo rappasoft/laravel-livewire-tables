@@ -23,6 +23,7 @@ return [
     'of' => 'de',
     'Reorder' => 'Reordenar',
     'results' => 'resultados',
+    'Per Page' => 'Por página',
     'Remove filter option' => 'Remover opção de filtro',
     'Remove sort option' => 'Remover opção de ordenação',
     'row' => 'linha',

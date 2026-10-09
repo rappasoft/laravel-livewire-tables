@@ -21,6 +21,7 @@ return [
     'No' => 'HAYIR',
     'No items found, try to broaden your search' => 'Kayıt bulunamadı',
     'of' => ' ',
+    'Per Page' => 'Sayfa başına',
     'Remove filter option' => 'Filtre seçeneğini kaldır',
     'Remove sort option' => 'Sıralama seçeneğini kaldır',
     'Reorder' => 'Yeniden Sırala',

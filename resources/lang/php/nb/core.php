@@ -21,6 +21,7 @@ return [
     'No' => 'Nei',
     'No items found, try to broaden your search' => 'Ingen elementer funnet. Prøv å utvide søket',
     'of' => 'av',
+    'Per Page' => 'Per side',
     'Remove filter option' => 'Fjern filtervalg',
     'Remove sort option' => 'Fjern sorteringsvalg',
     'Reorder' => 'Omorganiser',
