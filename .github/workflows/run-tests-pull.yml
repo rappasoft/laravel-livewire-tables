@@ -88,8 +88,9 @@ jobs:
       - name: Setup problem matchers for PHPUnit
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
+      # Laravel 10/11 generate facade cache files non-atomically; parallel workers can read incomplete files.
       - name: Run Unit Tests
-        run: php ./vendor/bin/paratest --testsuite "Laravel Livewire Tables Unit Test Suite" --no-coverage
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Unit Test Suite" --no-coverage
 
       - name: Run Visuals Tests
         run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
@@ -175,8 +176,9 @@ jobs:
       - name: Setup problem matchers for PHPUnit
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
+      # Laravel 10/11 generate facade cache files non-atomically; parallel workers can read incomplete files.
       - name: Run Unit Tests
-        run: php ./vendor/bin/paratest --testsuite "Laravel Livewire Tables Unit Test Suite" --no-coverage
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Unit Test Suite" --no-coverage
 
       - name: Run Visuals Tests
         run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Visuals Test Suite" --no-coverage
