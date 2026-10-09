@@ -462,7 +462,7 @@ label[dir=rtl] .range-slider {
 }
 
 .lwt-bootstrap .lwt-toolbar__group--right {
-    margin-left: auto;
+    margin-inline-start: auto;
 }
 
 .lwt-bootstrap .lwt-search {
@@ -476,7 +476,7 @@ label[dir=rtl] .range-slider {
 
 .lwt-bootstrap .lwt-search__icon {
     position: absolute;
-    left: 0.85rem;
+    inset-inline-start: 0.85rem;
     display: inline-flex;
     color: var(--lwt-muted);
     font-size: 0.95rem;
@@ -485,7 +485,8 @@ label[dir=rtl] .range-slider {
 
 .lwt-bootstrap .lwt-search__input {
     width: 100%;
-    padding: 0.5rem 2.6rem 0.5rem 2.4rem;
+    padding-block: 0.5rem;
+    padding-inline: 2.4rem 2.6rem;
     color: var(--lwt-text);
     background-color: var(--lwt-surface);
     border: 1px solid var(--lwt-border);
@@ -507,7 +508,7 @@ label[dir=rtl] .range-slider {
 
 .lwt-bootstrap .lwt-search__clear {
     position: absolute;
-    right: 0.45rem;
+    inset-inline-end: 0.45rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -916,7 +917,7 @@ label[dir=rtl] .range-slider {
     }
 
     .lwt-bootstrap .lwt-toolbar__group--right {
-        margin-left: 0;
+        margin-inline-start: 0;
         justify-content: space-between;
     }
 
@@ -954,7 +955,7 @@ label[dir=rtl] .range-slider {
 }
 
 .lwt-bootstrap .lwt-search:not(.lwt-search--icon) .lwt-search__input {
-    padding-left: 0.75rem;
+    padding-inline-start: 0.75rem;
 }
 
 .lwt-bootstrap .lwt-ms__input:disabled + .lwt-ms__chip {

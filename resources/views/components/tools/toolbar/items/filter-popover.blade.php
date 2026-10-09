@@ -4,7 +4,7 @@
             ->merge($this->getFilterPopoverAttributes)
             ->merge(['role' => 'group', 'aria-label' => __($this->getLocalisationPath.'Filters')])
             ->class([
-                'dropdown-menu dropdown-menu-end mt-md-5' => $this->isBootstrap4,
+                'dropdown-menu dropdown-menu-right mt-md-5' => $this->isBootstrap4,
                 'dropdown-menu dropdown-menu-end' => $this->isBootstrap5,
                 'lwt-filter-popover' => $this->getFilterPopoverAttributes['default-width'] ?? true,
             ])
