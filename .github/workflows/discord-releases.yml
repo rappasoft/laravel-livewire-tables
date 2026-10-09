@@ -9,11 +9,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
       - name: Package Releases
-        uses: SethCohen/github-releases-to-discord@latest
-        env: 
-          WEBHOOK_DISCORD_RELEASE_URL: ${{ secrets.WEBHOOK_DISCORD_RELEASE_URL }} 
+        uses: SethCohen/github-releases-to-discord@24d166886aee4646d448c8a389ff9e1ebcab3682 # v1.20.0
         with:
-          webhook_url: $WEBHOOK_DISCORD_RELEASE_URL
+          webhook_url: ${{ secrets.WEBHOOK_DISCORD_RELEASE_URL }}
           color: "2105893"
           username: "GitHub Release-Bot"
           avatar_url: "https://cdn.discordapp.com/avatars/487431320314576937/bd64361e4ba6313d561d54e78c9e7171.png"
