@@ -21,6 +21,7 @@ return [
     'No' => 'Jo',
     'No items found, try to broaden your search' => 'Nuk u gjetën artikuj. Provoni të zgjeroni kërkimin tuaj',
     'of' => 'nga',
+    'Per Page' => 'Për faqe',
     'Remove filter option' => 'Hiq opsionin e filtrit',
     'Remove sort option' => 'Hiq opsionin e renditjes',
     'Reorder' => 'Riorganizo',

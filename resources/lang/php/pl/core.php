@@ -21,6 +21,7 @@ return [
     'No' => 'Nie',
     'No items found, try to broaden your search' => 'Brak rezultatów do wyświetlenia',
     'of' => 'z',
+    'Per Page' => 'Na stronę',
     'Remove filter option' => 'Usuń opcję filtra',
     'Remove sort option' => 'Usuń opcję sortowania',
     'Reorder' => 'Zmień kolejność',

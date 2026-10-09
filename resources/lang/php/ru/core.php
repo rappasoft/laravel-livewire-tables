@@ -21,6 +21,7 @@ return [
     'No' => 'Нет',
     'No items found, try to broaden your search' => 'Ничего не найдено. Попробуйте расширить поиск',
     'of' => 'из',
+    'Per Page' => 'На страницу',
     'Remove filter option' => 'Удалить фильтр',
     'Remove sort option' => 'Удалить параметр сортировки',
     'Reorder' => 'Переупорядочить',

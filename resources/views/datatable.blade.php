@@ -7,7 +7,7 @@
 @php($isBootstrap5 = $this->isBootstrap5)
 @php($localisationPath = $this->getLocalisationPath)
 
-<div>
+<div @class(['lwt-bootstrap' => $isBootstrap])>
     <div x-data="{{ $this->getAlpineFallbackScope }}">
         <div {{ $this->getTopLevelAttributes() }}>
 
@@ -133,7 +133,7 @@
                     @else
                         <x-livewire-tables::table.empty />
                     @endif
-                    
+
 
                     @if ($this->footerIsEnabled() && $this->hasColumnsWithFooter())
                         <x-slot name="tfoot">

@@ -22,6 +22,7 @@ return [
     'No items found, try to broaden your search' => '無資料呈現。請嘗試擴大搜尋範圍',
     'of' => '筆資料，共',
     'Reorder' => '重新排序',
+    'Per Page' => '每頁',
     'Remove filter option' => '移除過濾規則',
     'Remove sort option' => '移除排序規則',
     'results' => '筆資料',

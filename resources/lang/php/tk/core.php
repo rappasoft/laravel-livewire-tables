@@ -21,6 +21,7 @@ return [
     'No' => 'Hayir',
     'No items found, try to broaden your search' => 'Hiç zat tapylmady. Gözlegiňizi giňeltmäge synanyşyň',
     'of' => 'aralygy',
+    'Per Page' => 'Her sahypada',
     'Remove filter option' => 'Süzgüç görnüşini aýyryň',
     'Remove sort option' => 'Tertiplemek görnüşini aýyryň',
     'Reorder' => 'Tertibe salmak',

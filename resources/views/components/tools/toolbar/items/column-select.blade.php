@@ -122,23 +122,25 @@
                 {{
                     $attributes->merge($this->getColumnSelectButtonAttributes())
                     ->class([
-                        'btn dropdown-toggle d-block w-auto d-md-inline' => $this->getColumnSelectButtonAttributes()['default-styling'],
+                        'lwt-btn' => $this->getColumnSelectButtonAttributes()['default-styling'],
                     ])
                     ->except(['default-styling', 'default-colors'])
                 }}
                 type="button" id="{{ $tableName }}-columnSelect" aria-haspopup="true"
                 x-bind:aria-expanded="open"
             >
-                {{ __($localisationPath.'Columns') }}
+                <x-heroicon-o-view-columns class="lwt-btn__icon" aria-hidden="true" />
+                <span>{{ __($localisationPath.'Columns') }}</span>
+                <x-heroicon-m-chevron-down class="lwt-btn__caret" aria-hidden="true" />
             </button>
 
             <div
                 x-bind:class="{ 'show': open }"
                 @class([
                     'dropdown-menu dropdown-menu-right w-auto mt-0 mt-md-3' => $isBootstrap4,
-                    'dropdown-menu dropdown-menu-end w-auto' => $isBootstrap5,
+                    'dropdown-menu dropdown-menu-end lwt-colselect-menu' => $isBootstrap5,
                 ])
-                aria-labelledby="columnSelect-{{ $tableName }}"
+                aria-labelledby="{{ $tableName }}-columnSelect"
             >
                 @if($isBootstrap4)
                     <div wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
@@ -148,81 +150,60 @@
                                 type="checkbox"
                                 @if($this->getSelectableSelectedColumns()->count() == $this->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
                             />
-
                             <span class="ml-2">{{ __($localisationPath.'All Columns') }}</span>
-
-
                         </label>
                     </div>
-                @elseif($isBootstrap5)
-                    <div class="form-check ms-2" wire:key="{{ $tableName }}-columnSelect-selectAll-{{ rand(0,1000) }}">
-                        <input
-                            wire:loading.attr="disabled"
-                            type="checkbox"
-                            {{
-                                $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
-                                ->class([
-                                    'form-check-input' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
-                                ])
-                                ->except(['default-styling', 'default-colors'])
-                            }}
-                            @if($this->getSelectableSelectedColumns()->count() == $this->getSelectableColumns()->count()) checked wire:click="deselectAllColumns" @else unchecked wire:click="selectAllColumns" @endif
-                        />
 
-                        <label wire:loading.attr="disabled" class="form-check-label">
+                    @foreach ($this->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
+                        <div wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}">
+                            <label wire:loading.attr="disabled" wire:target="selectedColumns" class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}">
+                                <input wire:model.live="selectedColumns" wire:target="selectedColumns" wire:loading.attr="disabled" type="checkbox" value="{{ $columnSlug }}" />
+                                <span class="ml-2">{{ $columnTitle }}</span>
+                            </label>
+                        </div>
+                    @endforeach
+                @elseif($isBootstrap5)
+                    @php($allColumnsSelected = $this->getSelectableSelectedColumns()->count() === $this->getSelectableColumns()->count())
+                    <div class="lwt-ms" role="group" aria-label="{{ __($localisationPath.'Columns') }}">
+                        <div class="lwt-ms__option">
+                        <input
+                            id="{{ $tableName }}-columnSelect-all"
+                            type="checkbox"
+                            wire:loading.attr="disabled"
+                            wire:click="{{ $allColumnsSelected ? 'deselectAllColumns' : 'selectAllColumns' }}"
+                            @checked($allColumnsSelected)
+                            {{ $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                ->class(['lwt-ms__input' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling']])
+                                ->except(['default-styling', 'default-colors']) }}
+                        />
+                        <label for="{{ $tableName }}-columnSelect-all"
+                            @class(['lwt-ms__chip lwt-ms__chip--all' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'], 'is-active' => $allColumnsSelected])
+                        >
                             {{ __($localisationPath.'All Columns') }}
                         </label>
-                    </div>
-                @endif
+                        </div>
 
-                @foreach ($this->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
-                    <div
-                        wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}"
-                        @class([
-                            'form-check ms-2' => $isBootstrap5,
-                        ])
-                    >
-                        @if ($isBootstrap4)
-                            <label
-                                wire:loading.attr="disabled"
-                                wire:target="selectedColumns"
-                                class="px-2 {{ $loop->last ? 'mb-0' : 'mb-1' }}"
-                            >
+                        @foreach ($this->getColumnsForColumnSelect() as $columnSlug => $columnTitle)
+                            <div class="lwt-ms__option" wire:key="{{ $tableName }}-columnSelect-{{ $loop->index }}">
                                 <input
+                                    id="{{ $tableName }}-columnSelect-input-{{ $loop->index }}"
                                     wire:model.live="selectedColumns"
                                     wire:target="selectedColumns"
-                                    wire:loading.attr="disabled" type="checkbox"
+                                    wire:loading.attr="disabled"
+                                    type="checkbox"
+                                    {{ $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                        ->class(['lwt-ms__input' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling']])
+                                        ->except(['default-styling', 'default-colors']) }}
                                     value="{{ $columnSlug }}"
                                 />
-                                <span class="ml-2">
+                                <label for="{{ $tableName }}-columnSelect-input-{{ $loop->index }}"
+                                    @class(['lwt-ms__chip' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling']])>
                                     {{ $columnTitle }}
-                                </span>
-                            </label>
-                        @elseif($isBootstrap5)
-                            <input
-                                wire:model.live="selectedColumns"
-                                wire:target="selectedColumns"
-                                wire:loading.attr="disabled"
-                                type="checkbox"
-                                {{
-                                    $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
-                                    ->class([
-                                        'form-check-input' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
-                                    ])
-                                    ->except(['default-styling', 'default-colors'])
-                                }}
-                                value="{{ $columnSlug }}"
-                            />
-                            <label
-                                wire:loading.attr="disabled"
-                                wire:target="selectedColumns"
-                                class="{{ $loop->last ? 'mb-0' : 'mb-1' }} form-check-label"
-                            >
-                                {{ $columnTitle }}
-                            </label>
-                        @endif
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+                @endif
             </div>
         </div>
     </div>

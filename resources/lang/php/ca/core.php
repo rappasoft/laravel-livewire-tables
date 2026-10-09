@@ -21,6 +21,7 @@ return [
     'No' => 'No',
     'No items found, try to broaden your search' => "No s'han trobat elements. Intenti ampliar la cerca",
     'of' => 'de',
+    'Per Page' => 'Per pàgina',
     'Remove filter option' => 'Elimina opció de filtre',
     'Remove sort option' => "Elimina opció d'ordenació",
     'Reorder' => 'Reordena',
