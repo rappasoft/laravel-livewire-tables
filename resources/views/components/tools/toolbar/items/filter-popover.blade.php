@@ -4,8 +4,7 @@
             ->merge($this->getFilterPopoverAttributes)
             ->merge(['role' => 'group', 'aria-label' => __($this->getLocalisationPath.'Filters')])
             ->class([
-                'dropdown-menu dropdown-menu-right mt-md-5' => $this->isBootstrap4,
-                'dropdown-menu dropdown-menu-end' => $this->isBootstrap5,
+                'dropdown-menu',
                 'lwt-filter-popover' => $this->getFilterPopoverAttributes['default-width'] ?? true,
             ])
             ->except(['default', 'default-width', 'default-styling', 'default-colors']) }} x-bind:class="{ 'show': filterPopoverOpen }">

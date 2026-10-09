@@ -445,6 +445,7 @@ label[dir=rtl] .range-slider {
 }
 
 .lwt-bootstrap .lwt-toolbar {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -638,8 +639,15 @@ label[dir=rtl] .range-slider {
     background-color: var(--lwt-surface-solid);
 }
 
+.lwt-bootstrap .lwt-toolbar .btn-group:has(> .lwt-filter-popover) {
+    position: static;
+}
+
 .lwt-bootstrap .lwt-filter-popover {
-    width: min(96vw, 64rem);
+    left: auto;
+    right: auto;
+    inset-inline-start: 0;
+    width: min(100%, 64rem);
     max-height: 85vh;
 }
 

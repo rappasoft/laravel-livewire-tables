@@ -54,6 +54,7 @@ final class BootstrapToolbarVisualsTest extends TestCase
             ->assertSeeHtml('data-filter-badge="kept"')
             ->assertSeeHtml('data-filter-input="kept"')
             ->assertSeeHtml('data-popover="kept"')
+            ->assertSeeHtml('class="dropdown-menu lwt-filter-popover"')
             ->assertSeeHtml('wire:model.live.debounce.750ms="search"')
             ->assertSeeHtml('placeholder="Find pets"')
             ->assertDontSeeHtml('bi bi-');
