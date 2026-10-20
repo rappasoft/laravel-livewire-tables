@@ -2,12 +2,21 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
-## Unreleased
+## [v3.10.0] - 2026-10-20
+
+### Upgrade Notes
+
+- Livewire 3 remains supported. Applications moving to Livewire 4 should follow its upgrade guide and run `php artisan optimize:clear`.
+- If you published package views or JavaScript, merge the updated files into your overrides, or back up customizations before republishing `livewire-tables-views` and `livewire-tables-public`. The updated views preserve blur search/filter timing, and the JavaScript fixes reordering across multiple tables.
+- Keep distinct table names and matching data arrays for independent query strings and persisted state on pages containing multiple tables. Existing names and IDs remain compatible.
+
+### Changes
 
 - Support Livewire 4 while retaining Livewire 3 compatibility and test both major versions explicitly in CI.
 - Generate class-based tables without depending on removed Livewire console internals, preserving configured namespaces, paths and overwrite protection.
 - Preserve search and filter blur behavior across Livewire versions and handle whole-array filter updates.
 - Scope reordering to the owning table so pages containing multiple tables cannot move or save another table's rows; exclude structural rows from saved order data ([#2328](https://github.com/rappasoft/laravel-livewire-tables/issues/2328)).
+- Move the public demo to [tables.rappasoft.com](https://tables.rappasoft.com), running Livewire 4 with Tailwind, Bootstrap 4 and Bootstrap 5 examples.
 
 ## [v3.9.0] - 2026-10-09
 
