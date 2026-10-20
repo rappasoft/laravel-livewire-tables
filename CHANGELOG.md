@@ -7,6 +7,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Support Livewire 4 while retaining Livewire 3 compatibility and test both major versions explicitly in CI.
 - Generate class-based tables without depending on removed Livewire console internals, preserving configured namespaces, paths and overwrite protection.
 - Preserve search and filter blur behavior across Livewire versions and handle whole-array filter updates.
+- Scope reordering to the owning table so pages containing multiple tables cannot move or save another table's rows; exclude structural rows from saved order data ([#2328](https://github.com/rappasoft/laravel-livewire-tables/issues/2328)).
 
 ## [v3.9.0] - 2026-10-09
 

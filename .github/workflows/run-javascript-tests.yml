@@ -1,0 +1,17 @@
+name: Run JavaScript Tests
+
+on:
+  pull_request:
+    branches: [development, master]
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 24
+      - name: Test table reordering
+        run: node --test tests/JavaScript/reordering.test.cjs

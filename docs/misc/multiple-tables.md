@@ -9,7 +9,9 @@ This feature **does not work** for multiple tables on the same page that are the
 
 > **Set a distinct `$tableName` on every table sharing a page — even if you do not use the query string.**
 >
-> `$tableName` defaults to `table` for every component, and it keys more than the query string: it also keys the reordering session, the stored filters, and the stored column selection. Two tables that both keep the default silently share all of that state, which shows up as one table loading another's rows when you start reordering. See [What the table name keys](#what-the-table-name-keys) below.
+> `$tableName` defaults to `table` for every component, and it keys more than the query string: it also keys the reordering session, the stored filters, and the stored column selection. Tables sharing a name also share these persistence keys. See [What the table name keys](#what-the-table-name-keys) below.
+
+Reordering locates the table and its data rows within the owning Livewire component. This prevents another table's rows from being moved or saved when tables share their default HTML IDs. Give each table its own name and matching data array for independent query strings, persisted state and HTML IDs.
 
 ---
 
