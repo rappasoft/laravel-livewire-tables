@@ -10,7 +10,7 @@ class NumberFilter extends Filter
     use IsNumericFilter;
     use HasWireables;
 
-    public string $wireMethod = 'blur';
+    public string $wireMethod = 'live.blur';
 
     protected string $view = 'livewire-tables::components.tools.filters.number';
 

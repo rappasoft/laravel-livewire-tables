@@ -28,6 +28,20 @@ final class BulkActionsVisualsTest extends TestCase
             ->assertSeeHtml('aria-label="row 2"');
     }
 
+    public function test_bulk_message_row_keeps_its_own_alpine_scope(): void
+    {
+        $html = Livewire::test(PetsTable::class)
+            ->call('setBulkActions', ['activate' => 'Activate'])
+            ->html();
+
+        $document = new \DOMDocument;
+        $document->loadHTML($html, LIBXML_NOERROR | LIBXML_NOWARNING);
+        $rows = (new \DOMXPath($document))->query('//tr[@*[name()="wire:key"]="table-bulk-select-message"]');
+
+        $this->assertCount(1, $rows);
+        $this->assertSame('{}', $rows->item(0)->getAttribute('x-data'));
+    }
+
     public function test_filtered_out_rows_get_no_checkbox_and_are_not_selected_by_select_all(): void
     {
         Livewire::test(FilteredBulkActionsTable::class)

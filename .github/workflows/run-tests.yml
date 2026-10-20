@@ -18,9 +18,10 @@ jobs:
         os: [ubuntu-24.04]
         php: [8.1, 8.2, 8.3]
         laravel: [10.*]
+        livewire: [3.*, 4.*]
         stability: [prefer-dist]
 
-    name: PHP-${{ matrix.php }} - Laravel-10
+    name: PHP-${{ matrix.php }} - Laravel-10 - Livewire-${{ matrix.livewire }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, :psr
@@ -65,8 +66,8 @@ jobs:
       - uses: actions/cache@v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-
 
       - name: Add token
         env: 
@@ -79,7 +80,7 @@ jobs:
         run: composer config --json policy.advisories.ignore-id '{"PKSA-d5tc-s1qs-h781":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-m5cs-t1y6-qpcs":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-3r5d-mb8f-1qw9":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-mdq4-51ck-6kdq":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+."}'
 
       - name: Install dependencies
-        run: composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+        run: composer require "laravel/framework:${{ matrix.laravel }}" "livewire/livewire:${{ matrix.livewire }}" --no-interaction --no-update
 
       - name: Update dependencies
         run: composer update --${{ matrix.stability }} --no-interaction
@@ -109,9 +110,10 @@ jobs:
         os: [ubuntu-24.04]
         php: [8.2, 8.3, 8.4]
         laravel: [11.*]
+        livewire: [3.*, 4.*]
         stability: [prefer-dist]
 
-    name: PHP-${{ matrix.php }} - Laravel-11
+    name: PHP-${{ matrix.php }} - Laravel-11 - Livewire-${{ matrix.livewire }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, :psr
@@ -156,8 +158,8 @@ jobs:
       - uses: actions/cache@v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-
 
       - name: Add token
         env: 
@@ -170,7 +172,7 @@ jobs:
         run: composer config --json policy.advisories.ignore-id '{"PKSA-d5tc-s1qs-h781":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-m5cs-t1y6-qpcs":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-3r5d-mb8f-1qw9":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-mdq4-51ck-6kdq":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+."}'
 
       - name: Install dependencies
-        run: composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+        run: composer require "laravel/framework:${{ matrix.laravel }}" "livewire/livewire:${{ matrix.livewire }}" --no-interaction --no-update
 
       - name: Update dependencies
         run: composer update --${{ matrix.stability }} --no-interaction
@@ -200,9 +202,10 @@ jobs:
         os: [ubuntu-24.04]
         php: [8.2, 8.3, 8.4]
         laravel: [12.*]
+        livewire: [3.*, 4.*]
         stability: [prefer-dist]
 
-    name: PHP-${{ matrix.php }} - Laravel-12
+    name: PHP-${{ matrix.php }} - Laravel-12 - Livewire-${{ matrix.livewire }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, :psr
@@ -247,8 +250,8 @@ jobs:
       - uses: actions/cache@v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-
 
       - name: Add token
         env: 
@@ -261,7 +264,7 @@ jobs:
         run: composer config --json policy.advisories.ignore-id '{"PKSA-d5tc-s1qs-h781":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-m5cs-t1y6-qpcs":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-3r5d-mb8f-1qw9":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-mdq4-51ck-6kdq":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+."}'
 
       - name: Install dependencies
-        run: composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+        run: composer require "laravel/framework:${{ matrix.laravel }}" "livewire/livewire:${{ matrix.livewire }}" --no-interaction --no-update
 
       - name: Update dependencies
         run: composer update --${{ matrix.stability }} --no-interaction
@@ -290,9 +293,10 @@ jobs:
         os: [ubuntu-24.04]
         php: [8.3, 8.4, 8.5]
         laravel: [13.*]
+        livewire: [3.*, 4.*]
         stability: [prefer-dist]
 
-    name: PHP-${{ matrix.php }} - Laravel-13
+    name: PHP-${{ matrix.php }} - Laravel-13 - Livewire-${{ matrix.livewire }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, :psr
@@ -337,8 +341,8 @@ jobs:
       - uses: actions/cache@v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-
 
       - name: Add token
         env: 
@@ -351,7 +355,7 @@ jobs:
         run: composer config --json policy.advisories.ignore-id '{"PKSA-d5tc-s1qs-h781":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-m5cs-t1y6-qpcs":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-3r5d-mb8f-1qw9":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+.","PKSA-mdq4-51ck-6kdq":"Legacy Laravel 10/11 compatibility tests only; production apps must use patched Laravel 12.69+ or 13.30+."}'
 
       - name: Install dependencies
-        run: composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+        run: composer require "laravel/framework:${{ matrix.laravel }}" "livewire/livewire:${{ matrix.livewire }}" --no-interaction --no-update
 
       - name: Update dependencies
         run: composer update --${{ matrix.stability }} --no-interaction

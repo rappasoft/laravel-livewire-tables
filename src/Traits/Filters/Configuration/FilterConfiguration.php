@@ -94,8 +94,29 @@ trait FilterConfiguration
         return $this->getBuilder();
     }
 
-    public function updatedFilterComponents(string|array|null $value, string $filterName): void
+    public function updatedFilterComponents(string|array|null $value, ?string $filterName = null): void
     {
+        if ($filterName === null) {
+            foreach ($this->getFilters() as $filter) {
+                $filterKey = $filter->getKey();
+                $previousValue = $this->appliedFilters[$filterKey] ?? $filter->getDefaultValue();
+                $filterValue = array_key_exists($filterKey, $this->filterComponents)
+                    ? $this->filterComponents[$filterKey]
+                    : (is_array($previousValue) ? [] : null);
+
+                if ($filterValue !== $previousValue) {
+                    $this->updatedFilterComponents($filterValue, $filterKey);
+                }
+            }
+
+            return;
+        }
+
+        if (str_contains($filterName, '.')) {
+            $filterName = explode('.', $filterName, 2)[0];
+            $value = $this->filterComponents[$filterName] ?? $value;
+        }
+
         $this->resetComputedPage();
 
         // Clear bulk actions on filter - if enabled

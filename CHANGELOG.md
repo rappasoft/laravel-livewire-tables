@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## Unreleased
+
+- Support Livewire 4 while retaining Livewire 3 compatibility and test both major versions explicitly in CI.
+- Generate class-based tables without depending on removed Livewire console internals, preserving configured namespaces, paths and overwrite protection.
+- Preserve search and filter blur behavior across Livewire versions and handle whole-array filter updates.
+
 ## [v3.9.0] - 2026-10-09
 
 ### Upgrade Notes

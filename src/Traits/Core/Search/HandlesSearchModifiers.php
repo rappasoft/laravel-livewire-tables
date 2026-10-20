@@ -73,7 +73,7 @@ trait HandlesSearchModifiers
         }
 
         if ($this->hasSearchBlur()) {
-            return '.blur';
+            return '.live.blur';
         }
 
         if ($this->hasSearchLazy()) {

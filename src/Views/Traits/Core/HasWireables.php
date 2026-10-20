@@ -26,7 +26,7 @@ trait HasWireables
     {
         $wireMethod = $this->checkWireMethod($wireMethod);
 
-        $this->{$wireMethod} = 'blur';
+        $this->{$wireMethod} = 'live.blur';
 
         return $this;
     }
@@ -69,7 +69,7 @@ trait HasWireables
     {
         $wireMethod = $this->checkWireMethod($wireMethod);
 
-        return $this->getWireMethodString($this->{$wireMethod} ?? 'blur', $wireableElement);
+        return $this->getWireMethodString($this->{$wireMethod} ?? 'live.blur', $wireableElement);
     }
 
     public function getWireMethodString(string $wireMethod, string $wireableElement): string
