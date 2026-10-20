@@ -25,9 +25,9 @@ trait IsExternalArrayFilter
     public array $selectOptions = [];
 
     #[On('filter-was-set')]
-    public function setFilterValues(string $tableName, string $filterKey, array $value): void
+    public function setFilterValues(string $tableName, string $filterKey, string|array|null $value): void
     {
-        if ($tableName == $this->tableName && $filterKey == $this->filterKey && $this->selectedItems != $value) {
+        if ($tableName == $this->tableName && $filterKey == $this->filterKey && is_array($value) && $this->selectedItems != $value) {
             $this->selectedItems = $value;
             $this->needsUpdating = false;
 
@@ -37,7 +37,7 @@ trait IsExternalArrayFilter
     protected function clearFilter() {}
 
     #[Renderless]
-    public function updatedSelectedItems(string $value): void
+    public function updatedSelectedItems(): void
     {
         if (! $this->needsUpdating) {
             $this->needsUpdating = true;
@@ -64,7 +64,7 @@ trait IsExternalArrayFilter
     {
         $returnValues = [];
 
-        if ($this->needsUpdating == true && ! empty($this->selectedItems)) {
+        if ($this->needsUpdating == true) {
             foreach ($this->selectedItems as $selectedItem) {
                 $returnValues[$selectedItem] = $this->selectOptions[$selectedItem] ?? 'Unknown';
             }

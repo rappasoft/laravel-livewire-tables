@@ -18,9 +18,10 @@ jobs:
         os: [ubuntu-latest]
         php: [8.4]
         laravel: [13]
+        livewire: [3.*, 4.*]
         stability: [prefer-dist]
 
-    name: PHPStan - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: PHPStan - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }} - Livewire-${{ matrix.livewire }}
     env:
       extensionKey: phpextensions-${{ matrix.os }}-P${{ matrix.php }}
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, exif, iconv, fileinfo
@@ -64,8 +65,8 @@ jobs:
       - uses: actions/cache@v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: phpstan-${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: phpstan-${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-composer-
+          key: phpstan-${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: phpstan-${{ matrix.os }}-PHP${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}-composer-
 
       - name: Add token
         env: 
@@ -74,7 +75,7 @@ jobs:
           composer config github-oauth.github.com $GITHUB_TOKEN
           
       - name: Install dependencies
-        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
+        run: composer require "laravel/framework:${{ matrix.laravel }}.*" "livewire/livewire:${{ matrix.livewire }}" --no-interaction --no-update
 
       - name: Update dependencies
         run: composer update --${{ matrix.stability }} --no-interaction -W
@@ -85,7 +86,7 @@ jobs:
       - uses: actions/cache@v6.1.0
         with:
           path: ./build/phpstan
-          key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
+          key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}-LW${{ matrix.livewire }}
 
       - name: Run PHPStan Tests
         run: ./vendor/bin/phpstan analyse

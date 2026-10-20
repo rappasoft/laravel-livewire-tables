@@ -13,6 +13,8 @@ Create a new datatable component called `UsersTable` in `App\Livewire` that uses
 php artisan make:datatable UsersTable User
 ```
 
+The command generates class-based components on Livewire 3 and 4. It honors `livewire.class_namespace` and, when configured, `livewire.class_path`. Nested names such as `Admin.UsersTable` create a class in the corresponding subdirectory. Existing files are preserved unless you pass `--force`.
+
 ### Custom Model Path
 
 You may pass a Custom Path to your model, should it not be contained within the "App" or "App\Models" namespaces:

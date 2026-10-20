@@ -15,7 +15,7 @@ A dynamic Laravel Livewire component for data tables.
 
 ![Full Table](https://i.imgur.com/2kfibjR.png)
 
-### [Bootstrap 4 Demo](https://tables.laravel-boilerplate.com/bootstrap-4) | [Bootstrap 5 Demo](https://tables.laravel-boilerplate.com/bootstrap-5) | [Tailwind Demo](https://tables.laravel-boilerplate.com/tailwind) | [Demo Repository](https://github.com/rappasoft/laravel-livewire-tables-demo)
+### [Bootstrap 4 Demo](https://tables.rappasoft.com/bootstrap-4) | [Bootstrap 5 Demo](https://tables.rappasoft.com/bootstrap-5) | [Tailwind Demo](https://tables.rappasoft.com/tailwind) | [Demo Repository](https://github.com/rappasoft/laravel-livewire-tables-demo)
 
 ## Installation
 
@@ -25,7 +25,7 @@ You can install the package via composer:
 composer require rappasoft/laravel-livewire-tables
 ```
 
-You must also have [Alpine.js](https://alpinejs.dev) version 3 or greater installed and available to the component.
+Supports Livewire 3 and 4. Livewire includes [Alpine.js](https://alpinejs.dev); avoid loading a second copy in your application.
 
 ## Documentation and Usage Instructions
 

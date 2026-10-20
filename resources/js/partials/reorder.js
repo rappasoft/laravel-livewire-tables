@@ -19,22 +19,42 @@ function tableReorder() {
         currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
         hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
+        getReorderTable() {
+            return Array.from(wire.$el.querySelectorAll('table')).find(table =>
+                table.id === tableID && table.closest('[wire\\:id]') === wire.$el &&
+                table.parentElement.closest('table')?.closest('[wire\\:id]') !== wire.$el
+            );
+        },
+        getReorderRows() {
+            let table = this.getReorderTable();
+            return table ? Array.from(table.tBodies).flatMap(tbody =>
+                Array.from(tbody.children).filter(row => row.tagName === 'TR' && row.hasAttribute('rowpk') && row.closest('[wire\\:id]') === wire.$el)
+            ) : [];
+        },
         dragStart(event) {
+            this.sourceID = '';
+            let row = event.target.closest('tr');
+            if (!this.getReorderRows().includes(row)) {
+                return;
+            }
             this.$nextTick(() => { this.setupEvenOddClasses() });
-
-
-            this.sourceID = event.target.id;
+            this.sourceID = row.id;
             event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.setData('text/plain', event.target.id);
-            event.target.classList.add("laravel-livewire-tables-dragging");
+            event.dataTransfer.setData('text/plain', row.id);
+            event.dataTransfer.setData('application/x-livewire-tables', JSON.stringify([wire.$el.getAttribute('wire:id'), tableID]));
+            row.classList.add("laravel-livewire-tables-dragging");
         },
         dragOverEvent(event) {
             if (typeof this.currentlyHighlightedElement == 'object') {
                 this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
             }
             let target = event.target.closest('tr');
+            let rows = this.getReorderRows();
+            if (!rows.some(row => row.id === this.sourceID) || !rows.includes(target)) {
+                return;
+            }
             this.currentlyHighlightedElement = target;
- 
+
             if (event.offsetY < (target.getBoundingClientRect().height / 2)) {
                 target.classList.add('laravel-livewire-tables-highlight-top');
                 target.classList.remove('laravel-livewire-tables-highlight-bottom');
@@ -45,39 +65,34 @@ function tableReorder() {
             }
         },
         dragLeaveEvent(event) {
-            event.target.closest('tr').classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
+            let target = event.target.closest('tr');
+            if (this.getReorderRows().includes(target)) {
+                target.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
+            }
         },
         dropEvent(event) {
             if (typeof this.currentlyHighlightedElement == 'object') {
                 this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
             }
- 
+            let rows = this.getReorderRows();
             let target = event.target.closest('tr');
-            let parent = event.target.closest('tr').parentNode;
-            let element = document.getElementById(this.sourceID).closest('tr');
-            element.classList.remove("laravel-livewire-table-dragging");
-            let originalPosition = element.rowIndex;
-            let newPosition = target.rowIndex;
-            let table = document.getElementById(tableID);
-            let loopStart = originalPosition;
+            let element = rows.find(row => row.id === this.sourceID);
+            this.sourceID = '';
+            if (!element || !rows.includes(target) || event.dataTransfer.getData('application/x-livewire-tables') !== JSON.stringify([wire.$el.getAttribute('wire:id'), tableID])) {
+                return;
+            }
+            element.classList.remove("laravel-livewire-tables-dragging");
+            if (element === target) {
+                return;
+            }
             if (event.offsetY > (target.getBoundingClientRect().height / 2)) {
-                parent.insertBefore(element, target.nextSibling);
+                target.parentNode.insertBefore(element, target.nextSibling);
             }
             else {
-                parent.insertBefore(element, target);
+                target.parentNode.insertBefore(element, target);
             }
-            if (newPosition < originalPosition) {
-                loopStart = newPosition;
-            }
- 
-            /* 
-            let evenList = parentNode.querySelectorAll("table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(even of tr.rappasoft-striped-row) ").forEach(function (elem) {
-                elem.classList.remove(...this.oddNotInEven);
-                row.classList.add(...this.evenNotInOdd);
-            });
-            */
             let nextLoop = 'even';
-            for (let i = 1, row; row = table.rows[i]; i++) {
+            for (let row of this.getReorderRows()) {
                 if (!row.classList.contains('hidden') && !row.classList.contains('md:hidden') ) {
                     if (nextLoop === 'even') {
                         row.classList.remove(...this.oddNotInEven);
@@ -96,7 +111,7 @@ function tableReorder() {
             this.$nextTick(() => { this.setupEvenOddClasses() });
             if (this.currentlyReorderingStatus) {
                 wire.disableReordering();
- 
+
             }
             else {
                 this.setupEvenOddClasses();
@@ -104,7 +119,7 @@ function tableReorder() {
                     this.reorderDisplayColumn = true;
                 }
                 wire.enableReordering();
- 
+
             }
         },
         cancelReorder() {
@@ -112,31 +127,26 @@ function tableReorder() {
                 this.reorderDisplayColumn = false;
             }
             wire.disableReordering();
- 
+
         },
         updateOrderedItems() {
-            let table = document.getElementById(tableID);
-            let orderedRows = [];
-            for (let i = 1, row; row = table.rows[i]; i++) {
-            orderedRows.push({ [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
+            if (!this.getReorderTable()) {
+                return;
             }
+            let orderedRows = this.getReorderRows().map((row, index) => ({
+                [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: index + 1
+            }));
             wire.storeReorder(orderedRows);
         },
         setupEvenOddClasses() {
             if (this.evenNotInOdd.length === undefined || this.evenNotInOdd.length == 0 || this.oddNotInEven.length === undefined || this.oddNotInEven.length == 0)
             {
-                let tbody = document.getElementById(tableID).getElementsByTagName('tbody')[0];
-                let evenRowClassArray = [];
-                let oddRowClassArray = [];
- 
-                if (tbody.rows[0] !== undefined && tbody.rows[1] !== undefined) {
-                    evenRowClassArray = Array.from(tbody.rows[0].classList);
-                    oddRowClassArray = Array.from(tbody.rows[1].classList);
+                let rows = this.getReorderRows();
+                if (rows[0] !== undefined && rows[1] !== undefined) {
+                    let evenRowClassArray = Array.from(rows[0].classList);
+                    let oddRowClassArray = Array.from(rows[1].classList);
                     this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
                     this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
-
-                    evenRowClassArray = []
-                    oddRowClassArray = []
                 }
             }
         },

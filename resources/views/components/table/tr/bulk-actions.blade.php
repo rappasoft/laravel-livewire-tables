@@ -7,7 +7,9 @@
         $simplePagination = $this->isPaginationMethod('simple');
     @endphp
 
+    {{-- Keep inherited Alpine scope when Livewire 3 detaches this row during reordering. --}}
     <x-livewire-tables::table.tr.plain
+        x-data="{}"
         x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
         wire:key="{{ $tableName }}-bulk-select-message"
         @class([

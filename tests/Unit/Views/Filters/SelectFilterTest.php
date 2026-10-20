@@ -87,8 +87,8 @@ final class SelectFilterTest extends FilterTestCase
 
         self::$filterInstance->setWireBlur();
 
-        $this->assertSame('blur', self::$filterInstance->getWireableMethod());
-        $this->assertSame('wire:model.blur="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
+        $this->assertSame('live.blur', self::$filterInstance->getWireableMethod());
+        $this->assertSame('wire:model.live.blur="filterComponents.active"', self::$filterInstance->getWireMethod('filterComponents.'.self::$filterInstance->getKey()));
 
         self::$filterInstance->setWireDefer();
 
