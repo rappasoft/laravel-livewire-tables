@@ -64,11 +64,13 @@
             </div>
         @endif
     </div>
-@elseif ($isBootstrap4)
+@elseif ($isBootstrap)
     <div>
         @if ($this->sortingPillsAreEnabled() && $this->hasSorts())
-            <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">
-                <small>{{ __($localisationPath.'Applied Sorting') }}:</small>
+            <div class="lwt-pills" x-cloak x-show="!currentlyReorderingStatus">
+                <span class="lwt-pills__label">
+                    {{ __($localisationPath.'Applied Sorting') }}
+                </span>
 
                 @foreach($this->getSorts() as $columnSelectName => $direction)
                     @php($column = $this->getColumnBySelectName($columnSelectName) ?? $this->getColumnBySlug($columnSelectName))
@@ -77,106 +79,50 @@
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled && ! $this->columnSelectIsEnabledForColumn($column))
 
-                    <span
+                    <div
                         wire:key="{{ $tableName . '-sorting-pill-' . $columnSelectName }}"
                         {{
                             $attributes->merge($this->getSortingPillsItemAttributes())
                             ->class([
-                                'badge badge-pill badge-info d-inline-flex align-items-center' => $this->getSortingPillsItemAttributes()['default-styling'],
+                                'lwt-pill' => $this->getSortingPillsItemAttributes()['default-styling'],
                             ])
                             ->except(['default-styling', 'default-colors'])
                         }}
                     >
-                        {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirectionLabel($direction, $this->getDefaultSortingLabelAsc, $this->getDefaultSortingLabelDesc) }}
+                        <span class="lwt-pill__title">{{ $column->getSortingPillTitle() }}</span>
+                        <span class="lwt-pill__value">{{ $column->getSortingPillDirectionLabel($direction, $this->getDefaultSortingLabelAsc, $this->getDefaultSortingLabelDesc) }}</span>
 
-                        <a
-                            href="#"
+                        <button
+                            type="button"
                             wire:click="clearSort('{{ $columnSelectName }}')"
                             {{
                                 $attributes->merge($this->getSortingPillsClearSortButtonAttributes())
                                 ->class([
-                                    'text-white ml-2' => $this->getSortingPillsClearSortButtonAttributes()['default-styling'],
+                                    'lwt-pill__remove' => $this->getSortingPillsClearSortButtonAttributes()['default-styling'],
                                 ])
                                 ->except(['default-styling', 'default-colors'])
                             }}
+                            aria-label="{{ __($localisationPath.'Remove sort option') }}"
                         >
-                            <span class="sr-only">{{ __($localisationPath.'Remove sort option') }}</span>
-                            <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-smaller" />
-                        </a>
-                    </span>
+                            <x-heroicon-m-x-mark class="lwt-btn__icon" aria-hidden="true" style="font-size: 0.7rem;" />
+                        </button>
+                    </div>
                 @endforeach
 
-                <a
-                    href="#"
+                <button
+                    type="button"
                     wire:click.prevent="clearSorts"
                     {{
                         $attributes->merge($this->getSortingPillsClearAllButtonAttributes())
                         ->class([
-                            'badge badge-pill badge-light' => $this->getSortingPillsClearAllButtonAttributes()['default-styling'],
+                            'lwt-pills__clear' => $this->getSortingPillsClearAllButtonAttributes()['default-styling'],
                         ])
                         ->except(['default-styling', 'default-colors'])
                     }}
                 >
-                    {{ __($localisationPath.'Clear') }}
-                </a>
-            </div>
-        @endif
-    </div>
-@elseif ($isBootstrap5)
-    <div>
-        @if ($this->sortingPillsAreEnabled() && $this->hasSorts())
-            <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">
-                <small>{{ __($localisationPath.'Applied Sorting') }}:</small>
-
-                @foreach($this->getSorts() as $columnSelectName => $direction)
-                    @php($column = $this->getColumnBySelectName($columnSelectName) ?? $this->getColumnBySlug($columnSelectName))
-
-                    @continue(is_null($column))
-                    @continue($column->isHidden())
-                    @continue($this->columnSelectIsEnabled && ! $this->columnSelectIsEnabledForColumn($column))
-
-                    <span
-                        wire:key="{{ $tableName }}-sorting-pill-{{ $columnSelectName }}"
-                        {{
-                            $attributes->merge($this->getSortingPillsItemAttributes())
-                            ->class([
-                                'badge rounded-pill bg-info d-inline-flex align-items-center' => $this->getSortingPillsItemAttributes()['default-styling'],
-                            ])
-                            ->except(['default-styling', 'default-colors'])
-                        }}
-                    >
-                        {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirectionLabel($direction, $this->getDefaultSortingLabelAsc, $this->getDefaultSortingLabelDesc) }}
-
-                        <a
-                            href="#"
-                            wire:click="clearSort('{{ $columnSelectName }}')"
-                            {{
-                                $attributes->merge($this->getSortingPillsClearSortButtonAttributes())
-                                ->class([
-                                    'text-white ms-2' => $this->getSortingPillsClearSortButtonAttributes()['default-styling'],
-                                ])
-                                ->except(['default-styling', 'default-colors'])
-                            }}
-                        >
-                            <span class="visually-hidden">{{ __($localisationPath.'Remove sort option') }}</span>
-                            <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-smaller" />
-                        </a>
-                    </span>
-                @endforeach
-
-                <a
-                    href="#"
-                    wire:click.prevent="clearSorts"
-                    {{
-                        $attributes->merge($this->getSortingPillsClearAllButtonAttributes())
-                        ->class([
-                            'badge rounded-pill bg-light text-dark text-decoration-none' => $this->getSortingPillsClearAllButtonAttributes()['default-styling'],
-                        ])
-                        ->except(['default-styling', 'default-colors'])
-                    }}
-                >
-                    {{ __($localisationPath.'Clear') }}
-                </a>
+                    <x-heroicon-o-x-circle class="lwt-btn__icon" aria-hidden="true" />
+                    <span>{{ __($localisationPath.'Clear') }}</span>
+                </button>
             </div>
         @endif
     </div>
