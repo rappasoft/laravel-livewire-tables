@@ -34,7 +34,7 @@ trait ColumnHelpers
                     $this->columnsWithSecondaryHeader = true;
                 }
 
-                if ($column->hasField()) {
+                if ($column->hasField() && ! $this->usesCollectionDataSource()) {
                     if ($column->isBaseColumn()) {
                         $column->setTable($this->getBuilder()->getModel()->getTable());
                     } else {
