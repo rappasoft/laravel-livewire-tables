@@ -32,7 +32,9 @@ trait HasFiltersCore
 
     public function bootedHasFiltersCore(): void
     {
-        $this->setBuilder($this->builder());
+        if (! $this->usesCollectionDataSource()) {
+            $this->setBuilder($this->builder());
+        }
 
         foreach ($this->filterComponents as $filterKey => $value) {
             $this->appliedFilters[$filterKey] = $value;

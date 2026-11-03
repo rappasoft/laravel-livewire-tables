@@ -14,9 +14,39 @@ use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 
 trait WithData
 {
+    protected ?Collection $resolvedCollection = null;
+
+    protected bool $resolvedCollectionIsSet = false;
+
+    /**
+     * Alternate data source to builder()/the model. Components wanting to feed
+     * the table from an in-memory Collection instead of an Eloquent query
+     * override this instead of builder().
+     */
+    public function collection(): ?Collection
+    {
+        return null;
+    }
+
+    protected function getCollection(): ?Collection
+    {
+        if (! $this->resolvedCollectionIsSet) {
+            $this->resolvedCollection = $this->collection();
+            $this->resolvedCollectionIsSet = true;
+        }
+
+        return $this->resolvedCollection;
+    }
+
+    protected function usesCollectionDataSource(): bool
+    {
+        return $this->getCollection() !== null;
+    }
+
     /**
      * Retrieves the rows for the executed query
      */
@@ -24,11 +54,15 @@ trait WithData
     public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
 
-        // Setup the Base Query
-        $this->baseQuery();
+        if ($this->usesCollectionDataSource()) {
+            $executedQuery = $this->executeCollectionQuery();
+        } else {
+            // Setup the Base Query
+            $this->baseQuery();
 
-        // Execute the Query
-        $executedQuery = $this->executeQuery();
+            // Execute the Query
+            $executedQuery = $this->executeQuery();
+        }
 
         // Get All Currently Paginated Items Primary Keys
         // filtered in place rather than as a second property, this is only read by selectAllOnPage()
@@ -142,6 +176,119 @@ trait WithData
         }
 
         return $this->getBuilder()->get();
+    }
+
+    protected function executeCollectionQuery(): Collection|LengthAwarePaginator
+    {
+        $items = $this->getCollection();
+
+        $items = $this->applySearchToCollection($items);
+        $items = $this->applyFiltersToCollection($items);
+        $items = $this->applySortingToCollection($items);
+
+        if (! $this->paginationIsEnabled()) {
+            $this->paginationTotalItemCount = $items->count();
+
+            return $items->values();
+        }
+
+        $this->paginationTotalItemCount = $items->count();
+
+        $perPage = $this->getPerPage() === -1 ? max($this->paginationTotalItemCount, 1) : $this->getPerPage();
+        $page = Paginator::resolveCurrentPage($this->getComputedPageName());
+
+        return new LengthAwarePaginator(
+            $items->forPage($page, $perPage)->values(),
+            $this->paginationTotalItemCount,
+            $perPage,
+            $page,
+            [
+                'path' => Paginator::resolveCurrentPath(),
+                'pageName' => $this->getComputedPageName(),
+            ]
+        );
+    }
+
+    protected function applySearchToCollection(Collection $items): Collection
+    {
+        if (! $this->searchIsEnabled() || ! $this->hasSearch()) {
+            return $items;
+        }
+
+        $searchableColumns = $this->getSearchableColumns();
+        $search = mb_strtolower($this->getSearch());
+
+        if (! $searchableColumns->count()) {
+            return $items;
+        }
+
+        return $items->filter(function ($row) use ($searchableColumns, $search) {
+            foreach ($searchableColumns as $column) {
+                if ($column->hasSearchCallback()) {
+                    if (($column->getSearchCallback())($row, $search)) {
+                        return true;
+                    }
+
+                    continue;
+                }
+
+                $value = data_get($row, $column->getField());
+
+                if ($value !== null && str_contains(mb_strtolower((string) $value), $search)) {
+                    return true;
+                }
+            }
+
+            return false;
+        })->values();
+    }
+
+    protected function applyFiltersToCollection(Collection $items): Collection
+    {
+        if (! $this->filtersAreEnabled() || ! $this->hasFilters() || ! $this->hasAppliedFiltersWithValues()) {
+            return $items;
+        }
+
+        foreach ($this->getFilters() as $filter) {
+            foreach ($this->getAppliedFiltersWithValues() as $key => $value) {
+                if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
+                    $value = $filter->validate($value);
+
+                    if (! ($filter instanceof BooleanFilter) && $value === false) {
+                        continue;
+                    }
+
+                    $items = ($filter->getFilterCallback())($items, $value);
+                }
+            }
+        }
+
+        return $items->values();
+    }
+
+    protected function applySortingToCollection(Collection $items): Collection
+    {
+        $criteria = [];
+
+        foreach ($this->getSorts() as $columnSelectName => $direction) {
+            if (! in_array($direction, ['asc', 'desc'])) {
+                $direction = 'asc';
+            }
+
+            $column = $this->getColumnBySelectName($columnSelectName);
+
+            if (is_null($column) || ! $column->isSortable()) {
+                continue;
+            }
+
+            $criteria[] = [$column->getField(), $direction];
+        }
+
+        if (empty($criteria)) {
+            return $items;
+        }
+
+        return $items->sortBy($criteria)->values();
     }
 
     protected function joinRelations(): Builder
