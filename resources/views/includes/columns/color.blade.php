@@ -7,7 +7,7 @@
             
         ]) }}
         @style([
-            "background-color: {$color}" => $color,
+            "background-color: ".e($color) => $color,
         ])
     >
     </div>

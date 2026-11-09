@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ReorderingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ReorderingHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\Styling\HasReorderStyling;
@@ -12,10 +13,12 @@ trait WithReordering
         ReorderingHelpers,
         HasReorderStyling;
 
-    // Entangled in JS
+    // Read in JS. Locked: these decide what the query is ordered by and whether reordering runs
+    #[Locked]
     public bool $reorderStatus = false;
 
-    // Entangled in JS
+    // Read in JS
+    #[Locked]
     public bool $currentlyReorderingStatus = false;
 
     // Entangled in JS
@@ -25,6 +28,7 @@ trait WithReordering
     public bool $reorderDisplayColumn = false;
 
     // Retrieved in JS
+    #[Locked]
     public string $defaultReorderColumn = 'sort';
 
     public array $orderedItems = [];
@@ -51,6 +55,10 @@ trait WithReordering
 
     public function enableReordering(): void
     {
+        if ($this->reorderIsDisabled()) {
+            return;
+        }
+
         $this->setReorderingSession();
         $this->setReorderingBackup();
         $this->resetReorderFields();
@@ -166,9 +174,34 @@ trait WithReordering
 
     public function storeReorder(array $rows = []): void
     {
-        $this->{$this->getReorderMethod()}($rows);
+        if ($this->reorderIsDisabled()) {
+            return;
+        }
+
+        $this->{$this->getReorderMethod()}($this->onlyReorderableRows($rows));
         $this->forgetReorderingSession();
         $this->getReorderingBackup();
+    }
+
+    /**
+     * $rows comes straight from the browser and reorder() usually writes it to the database,
+     * so reduce it to [primary key, position] for rows this table's builder() can see
+     *
+     * @param  array<mixed>  $rows
+     * @return array<int, array<string, mixed>>
+     */
+    protected function onlyReorderableRows(array $rows): array
+    {
+        $key = $this->getPrimaryKey();
+        $column = $this->getDefaultReorderColumn();
+
+        $rows = array_filter($rows, fn ($row) => is_array($row) && isset($row[$key], $row[$column]) && is_scalar($row[$key]) && is_numeric($row[$column]));
+        $known = array_flip($this->onlyKeysInTable(array_column($rows, $key)));
+
+        return array_values(array_map(
+            fn (array $row) => [$key => $row[$key], $column => (int) $row[$column]],
+            array_filter($rows, fn (array $row) => isset($known[(string) $row[$key]]))
+        ));
     }
 
     public function renderingWithReordering(): void

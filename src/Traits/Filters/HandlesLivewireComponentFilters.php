@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Filters;
 
 use Livewire\Attributes\On;
+use Rappasoft\LaravelLivewireTables\Views\Filters\LivewireComponentArrayFilter;
 
 trait HandlesLivewireComponentFilters
 {
@@ -18,7 +19,10 @@ trait HandlesLivewireComponentFilters
     {
         if ($this->getTableName() == $tableName) {
             $filter = $this->getFilterByKey($filterKey);
-            $filter->options($values);
+            // Any other filter validates against its options, so the browser must not be able to replace them
+            if ($filter instanceof LivewireComponentArrayFilter) {
+                $filter->options($values);
+            }
         }
     }
 
@@ -32,7 +36,7 @@ trait HandlesLivewireComponentFilters
             $setup['original'] = $this->getFilters();
             $filterArray = $this->filterCollection->toArray();
             foreach ($filterArray as $index => $filter) {
-                if ($filter->getKey() == $filterKey) {
+                if ($filter->getKey() == $filterKey && $filter instanceof LivewireComponentArrayFilter) {
                     $options = collect($values)->pluck('value', 'id')->toArray();
                     $filter->options($options);
                     $filterArray[$index] = $filter;

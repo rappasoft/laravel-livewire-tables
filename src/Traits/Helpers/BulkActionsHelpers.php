@@ -134,6 +134,8 @@ trait BulkActionsHelpers
      */
     public function updatedSelected(): void
     {
+        $this->selected = $this->onlyKeysInTable($this->selected, true);
+
         if (! $this->getDelaySelectAllStatus()) {
             $this->setSelectAllDisabled();
         }
@@ -180,6 +182,36 @@ trait BulkActionsHelpers
         }
 
         $this->setSelected((clone $this->baseQuery())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => (string) $item)->toArray());
+    }
+
+    /**
+     * Keys sent by the browser prove nothing: keep those of rows builder() returns
+     * and, for a selection, that the bulk actions row filter allows
+     *
+     * @param  array<mixed>  $keys
+     * @return array<int, int|string>
+     */
+    protected function onlyKeysInTable(array $keys, bool $selectableOnly = false): array
+    {
+        $keys = array_filter($keys, fn ($key) => is_string($key) || is_int($key));
+        $table = $this->builder()->getModel()->getTable();
+        $qualifiedKey = $table.'.'.$this->getPrimaryKey();
+        $found = [];
+
+        // Chunked to stay under the drivers' bound parameter limits
+        foreach (array_chunk($keys, 1000) as $chunk) {
+            $query = $this->builder()->whereIn($qualifiedKey, $chunk);
+
+            if ($selectableOnly && $this->hasBulkActionsRowFilter()) {
+                $rows = $query->select($table.'.*')->get()->filter(fn (Model $row) => $this->rowIsSelectable($row))->pluck($this->getPrimaryKey());
+            } else {
+                $rows = $query->pluck($qualifiedKey);
+            }
+
+            $found += $rows->mapWithKeys(fn ($key) => [(string) $key => true])->all();
+        }
+
+        return array_values(array_filter($keys, fn ($key) => isset($found[(string) $key])));
     }
 
     public function hasBulkActionsRowFilter(): bool
