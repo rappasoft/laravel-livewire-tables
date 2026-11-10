@@ -16,6 +16,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ColorColumn;
+use Rappasoft\LaravelLivewireTables\Views\Filters\LivewireComponentArrayFilter;
 
 /** The suite's BaseTable opens every method to the browser; these fixtures behave like a real table. */
 trait UsesPackageBrowserCallableMethods
@@ -76,6 +77,14 @@ class ColorPetsTable extends PetsTable
             Column::make('ID', 'id'),
             ColorColumn::make('Favorite Color', 'favorite_color'),
         ];
+    }
+}
+
+class ExternalArrayFilterPetsTable extends PetsTable
+{
+    public function filters(): array
+    {
+        return [...parent::filters(), LivewireComponentArrayFilter::make('External', 'external_filter')];
     }
 }
 
@@ -263,5 +272,22 @@ final class SecurityTest extends TestCase
         );
 
         $this->assertArrayNotHasKey('breed_select_filter', $component->instance()->getAppliedFiltersWithValues());
+    }
+
+    public function test_only_external_array_filters_take_their_options_from_an_event(): void
+    {
+        $table = new ExternalArrayFilterPetsTable;
+        $table->bootAll();
+        $selectOptions = $table->getFilterByKey('breed_select_filter')->getOptions();
+
+        $table->updateLivewireArrayFilterValues('external_filter', 'table', ['1' => 'One']);
+        $this->assertSame(['1' => 'One'], $table->getFilterByKey('external_filter')->getOptions());
+
+        $table->updateLivewireArrayFilterValuesNew('external_filter', 'table', [['id' => '2', 'value' => 'Two']]);
+        $this->assertSame(['2' => 'Two'], $table->getFilterByKey('external_filter')->getOptions());
+
+        $table->updateLivewireArrayFilterValues('breed_select_filter', 'table', ['x' => 'y']);
+        $table->updateLivewireArrayFilterValuesNew('breed_select_filter', 'table', [['id' => 'x', 'value' => 'y']]);
+        $this->assertSame($selectOptions, $table->getFilterByKey('breed_select_filter')->getOptions());
     }
 }
