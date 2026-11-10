@@ -7,7 +7,7 @@ When you click the "Save" button, your ordered elements will be returned as an a
 
 You will receive a multi-dimensional array, containing an array item per record, with the primary key, and order field.
 
-It is recommended that you perform some validation before bulk updating data, but it is in the correct format to perform upserts.
+The package only passes on rows that your `builder()` returns, reduced to the primary key and an integer order field, so it is in the correct format to perform upserts. You should still check that the user is allowed to reorder.
 
 ```php
 public function reorder(array $items): void

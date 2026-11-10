@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\ComponentHookRegistry;
 use Rappasoft\LaravelLivewireTables\Commands\MakeCommand;
-use Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets;
+use Rappasoft\LaravelLivewireTables\Features\{AutoInjectRappasoftAssets, GuardBrowserCalls};
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 
 class LaravelLivewireTablesServiceProvider extends ServiceProvider
@@ -102,6 +102,8 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/livewire-tables.php', 'livewire-tables'
         );
+        ComponentHookRegistry::register(GuardBrowserCalls::class);
+
         if (config('livewire-tables.inject_core_assets_enabled') || config('livewire-tables.inject_third_party_assets_enabled') || config('livewire-tables.enable_blade_directives')) {
             (new RappasoftFrontendAssets)->register();
             ComponentHookRegistry::register(AutoInjectRappasoftAssets::class);

@@ -150,6 +150,19 @@ public function configure(): void
 
 ## Misc.
 
+### browserCallableMethods
+
+Livewire lets the browser call any public method of a component. The configuration methods on this page are only meant to be used from `configure()`, so the package refuses them when they are called from the browser, along with every other package method that the table's own frontend does not need. Methods you define on your own component are not affected.
+
+If your frontend calls a package method directly, add it to the list:
+
+```php
+public function browserCallableMethods(): array
+{
+    return [...parent::browserCallableMethods(), 'setPerPage'];
+}
+```
+
 ### setEmptyMessage
 
 Set the message displayed when the table is filtered but there are no results to show.

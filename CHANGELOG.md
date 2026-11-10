@@ -2,6 +2,22 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [Unreleased]
+
+### Upgrade Notes
+
+- The browser can no longer call this package's configuration methods (`setPrimaryKey()`, `setConfigurableArea()`, `setPaginationDisabled()` and the rest) on a table. Methods your own component defines are unaffected. If your frontend calls another package method directly, for example `$wire.setPerPage(25)`, add it by overriding `browserCallableMethods()`.
+- `reorderStatus`, `currentlyReorderingStatus` and `defaultReorderColumn` are now locked properties. Set them in `configure()`; they can no longer be set with `wire:model` or `$wire.set()`.
+- `reorder()` now only receives `[primary key, position]` for rows returned by your `builder()`, with the position cast to an integer.
+- `selected` is reduced to rows returned by your `builder()` (and allowed by `setBulkActionsRowFilter()`) whenever the browser updates it.
+
+### Security
+
+- Refuse browser calls to configuration methods, which allowed reading undisplayed columns, including arbitrary views and invoking protected methods.
+- Escape attribute values on Link, Image, WireLink and ButtonGroup columns, and the colour of a ColorColumn.
+- Validate reorder rows and bulk action selections against the table's query, and ignore reorder calls when reordering is disabled.
+- Only external Livewire array filters accept replacement options from an event.
+
 ## [v3.10.0] - 2026-10-20
 
 ### Upgrade Notes

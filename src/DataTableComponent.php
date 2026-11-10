@@ -28,6 +28,26 @@ abstract class DataTableComponent extends Component
      */
     public function booted(): void {}
 
+    /**
+     * The package methods the browser may call. Everything else this package defines is
+     * configuration and is refused, see Features\GuardBrowserCalls. Methods defined by the
+     * application itself are unaffected. Override to extend:
+     * return [...parent::browserCallableMethods(), 'setPerPage'];
+     *
+     * @return array<int, string>
+     */
+    public function browserCallableMethods(): array
+    {
+        return [
+            'sortBy', 'setSort', 'clearSort', 'clearSorts',
+            'setSearch', 'clearSearch',
+            'setFilter', 'resetFilter', 'setFilterDefaults', 'selectAllFilterOptions',
+            'selectAllColumns', 'deselectAllColumns',
+            'setAllSelected', 'clearSelected',
+            'enableReordering', 'disableReordering', 'storeReorder',
+        ];
+    }
+
     public function render(): Application|Factory|View
     {
         return view('livewire-tables::datatable');

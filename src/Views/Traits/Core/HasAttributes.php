@@ -43,7 +43,8 @@ trait HasAttributes
                 return $attributes[$key] ? $key : '';
             }
 
-            return $key.'="'.$attributes[$key].'"';
+            // Values routinely come from row data; false = leave already-encoded entities alone
+            return $key.'="'.e($attributes[$key], false).'"';
         }, array_keys($attributes)));
     }
 }
