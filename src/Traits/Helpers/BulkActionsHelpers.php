@@ -205,7 +205,7 @@ trait BulkActionsHelpers
             if ($selectableOnly && $this->hasBulkActionsRowFilter()) {
                 $rows = $query->select($table.'.*')->get()->filter(fn (Model $row) => $this->rowIsSelectable($row))->pluck($this->getPrimaryKey());
             } else {
-                $rows = $query->pluck($qualifiedKey);
+                $rows = $query->toBase()->pluck($qualifiedKey);
             }
 
             $found += $rows->mapWithKeys(fn ($key) => [(string) $key => true])->all();
